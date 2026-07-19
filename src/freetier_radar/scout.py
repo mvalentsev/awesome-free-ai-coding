@@ -60,11 +60,18 @@ DISCOVER_PROMPT = SYSTEM_RULES + """
 TASK: DISCOVER-NEW legal free coding tools / free-tier LLM APIs / no-card trials.
 Existing ids (do not repeat): {existing}
 Domains already covered (do not repeat): {domains}
+Blocklisted domains (never propose): {blocked}
 Use ONLY the evidence below (search hits, fetched pages, curated feed excerpts).
 Propose an entry ONLY when the evidence explicitly supports its free offering,
 and set source_urls to the evidence URLs you used. Official vendor pages only —
-no reverse proxies, key-sharing or scraped gateways. The probe endpoint must be
-a server-rendered page containing the keywords, or a public JSON models API.
+no reverse proxies, key-sharing or scraped gateways. Every entry must be
+directly usable by a developer in coding tools: either an HTTP API endpoint
+(OpenAI-compatible or similar) that plugs into coding agents (opencode, Claude
+Code, Codex CLI), or a coding agent/IDE/CLI itself with free included model
+usage or credits. Browser-only SDKs, consumer-only apps, and BYOK-only tools
+without any bundled free model usage do not qualify. The probe
+endpoint must be a server-rendered page containing the keywords, or a public
+JSON models API.
 Output format:
 new_entries:
   - id: <slug>
@@ -75,6 +82,8 @@ new_entries:
     card_required: false
     offering: ...
     limits: ...
+    models:                # API entries only, and only when the evidence names them
+      - {{family: <substring of the vendor's API model ids>, tier: frontier | strong, released: 'YYYY-MM'}}
     probe: {{type: page-keywords, endpoint: <official url>, keywords: ["free"]}}
 Max 8. Empty list if the evidence shows nothing new.
 EVIDENCE:
@@ -224,6 +233,19 @@ def _parse(text: str) -> dict:
     return data if isinstance(data, dict) else {}
 
 
+def load_blocklist(path: Path) -> dict[str, str]:
+    """domain -> reason; missing file means an empty blocklist."""
+    if not path.exists():
+        return {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or []
+    return {str(d["domain"]).lower(): str(d.get("reason", ""))
+            for d in data if isinstance(d, dict) and d.get("domain")}
+
+
+def is_blocked(domain: str, blocklist: dict[str, str]) -> bool:
+    return any(domain == b or domain.endswith("." + b) for b in blocklist)
+
+
 def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
     """Synchronous single-shot version of the weekly probe for vetting proposals."""
     try:
@@ -252,8 +274,10 @@ def apply_updates(entries: list[Entry], updates: list[dict]) -> list[str]:
 
 def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
               verifier: Callable[[Entry], str | None] | None = None,
+              blocklist: dict[str, str] | None = None,
               ) -> tuple[list[str], list[str]]:
-    """Validate, dedupe (by id and domain) and probe-verify proposals.
+    """Validate, dedupe (by id and domain), blocklist-filter and probe-verify
+    proposals.
 
     Returns (added ids, rejected "id: reason" strings). With no verifier the
     probe check is skipped (tests, offline runs)."""
@@ -271,6 +295,9 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
                                       "provisional": True, "probe_failures": 0})
         except Exception as exc:
             rejected.append(f"{rid}: invalid ({type(exc).__name__})")
+            continue
+        if blocklist and is_blocked(domain_of(e.url), blocklist):
+            rejected.append(f"{e.id}: blocklisted domain")
             continue
         if domain_of(e.url) in existing_domains:
             rejected.append(f"{e.id}: domain already covered")
@@ -301,7 +328,8 @@ def apply_supersede(entries: list[Entry], supersede: list[dict]) -> list[str]:
 def run_scout(llm, entries: list[Entry], failures: list[dict],
               page_fetcher: Callable[[list[str]], dict[str, str]], today: date,
               evidence: Evidence | None = None,
-              verifier: Callable[[Entry], str | None] | None = None) -> dict:
+              verifier: Callable[[Entry], str | None] | None = None,
+              blocklist: dict[str, str] | None = None) -> dict:
     result = {"updates": [], "new": [], "rejected": [], "supersede": [],
               "providers": evidence.providers if evidence else []}
 
@@ -323,10 +351,11 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         data = _parse(llm.complete(DISCOVER_PROMPT.format(
             existing=", ".join(e.id for e in entries),
             domains=", ".join(sorted({domain_of(e.url) for e in entries})),
+            blocked=", ".join(sorted(blocklist)) if blocklist else "none",
             evidence=format_evidence(evidence),
         )))
         result["new"], result["rejected"] = apply_new(
-            entries, data.get("new_entries") or [], today, verifier)
+            entries, data.get("new_entries") or [], today, verifier, blocklist)
 
     families = sorted({m.family for e in entries for m in e.models})
     if families:
@@ -340,6 +369,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
     parser.add_argument("--failures", type=Path, default=Path("failures/failures.json"))
+    parser.add_argument("--blocklist", type=Path, default=Path("blocklist.yaml"))
     parser.add_argument("--pr-body", type=Path, default=Path("scout-pr.md"))
     args = parser.parse_args()
 
@@ -365,7 +395,8 @@ def main() -> None:
                           headers={"User-Agent": "freetier-radar/0.2"}) as probe_client:
             result = run_scout(llm, entries, failures, fetch_page_texts, date.today(),
                                evidence=evidence,
-                               verifier=lambda e: probe_check_sync(e, probe_client))
+                               verifier=lambda e: probe_check_sync(e, probe_client),
+                               blocklist=load_blocklist(args.blocklist))
     except RuntimeError as exc:
         # every LLM backend failed — leave the registry untouched, don't fail CI
         print(f"scout aborted: {exc}")

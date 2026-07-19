@@ -1,0 +1,10 @@
+# Domains the scout must never propose (and reviewers rejected for cause).
+# Matching is by domain suffix: "puter.com" also blocks developer.puter.com.
+- domain: puter.com
+  reason: browser-only SDK (User-Pays model), not an HTTP endpoint usable from coding agents
+- domain: ainative.studio
+  reason: unvetted aggregator with inconsistent quota claims
+- domain: cline.bot
+  reason: free tool but BYOK-only, no bundled free model usage
+- domain: aider.chat
+  reason: free tool but BYOK-only, no bundled free model usage

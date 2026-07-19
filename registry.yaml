@@ -1,7 +1,7 @@
 entries:
 - id: openrouter-free
   name: OpenRouter (free models)
-  category: api-free-tier
+  category: aggregator
   url: https://openrouter.ai
   source_urls:
   - https://openrouter.ai/docs/faq
@@ -27,6 +27,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 10
 - id: google-ai-studio
   name: Google AI Studio (Gemini API)
   category: api-free-tier
@@ -35,7 +36,8 @@ entries:
   - https://ai.google.dev/gemini-api/docs/rate-limits
   card_required: false
   offering: Free tier for Gemini 2.5 Flash/Pro API
-  limits: Per-model daily free quotas (see rate-limits page)
+  limits: Low per-model daily caps on the free tier (see rate-limits page) — among
+    the stingiest here
   models:
   - family: gemini-2.5
     tier: frontier
@@ -50,6 +52,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 99
 - id: groq-free
   name: Groq
   category: api-free-tier
@@ -76,6 +79,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 20
 - id: cerebras-free
   name: Cerebras Inference
   category: api-free-tier
@@ -99,6 +103,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 30
 - id: mistral-free
   name: Mistral La Plateforme
   category: api-free-tier
@@ -122,6 +127,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 90
 - id: github-models
   name: GitHub Models
   category: api-free-tier
@@ -145,6 +151,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 80
 - id: cloudflare-workers-ai
   name: Cloudflare Workers AI
   category: api-free-tier
@@ -168,6 +175,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 60
 - id: ollama-cloud
   name: Ollama Cloud
   category: api-free-tier
@@ -194,6 +202,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: true
+  rank: 70
 - id: opencode
   name: opencode
   category: agent-cli
@@ -214,6 +223,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 40
 - id: kilo-code
   name: Kilo Code
   category: agent-cli
@@ -234,6 +244,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 30
 - id: zed
   name: Zed
   category: trial
@@ -254,6 +265,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 60
 - id: trae
   name: Trae
   category: trial
@@ -274,6 +286,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 70
 - id: windsurf
   name: Windsurf
   category: trial
@@ -294,6 +307,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 50
 - id: mimo-code
   name: MiMo Code
   category: agent-cli
@@ -317,6 +331,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 10
 - id: easy-gonka-api
   name: Easy GonkaAI API
   category: trial
@@ -339,6 +354,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: true
+  rank: 90
 - id: github-copilot-free
   name: GitHub Copilot Free
   category: trial
@@ -363,6 +379,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 10
 - id: google-jules
   name: Google Jules
   category: trial
@@ -385,6 +402,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 30
 - id: kiro
   name: Kiro
   category: trial
@@ -408,6 +426,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 20
 - id: cursor-hobby
   name: Cursor (Hobby)
   category: trial
@@ -431,6 +450,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 40
 - id: openai-codex-cli
   name: OpenAI Codex CLI
   category: agent-cli
@@ -455,53 +475,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-- id: cline
-  name: Cline
-  category: agent-cli
-  url: https://cline.bot/
-  source_urls:
-  - https://github.com/cline/cline
-  card_required: false
-  offering: Open-source (Apache-2.0) autonomous coding agent for VS Code, JetBrains
-    and CLI; BYOK — pair with free-tier provider keys or local models for zero model
-    cost
-  limits: Tool is free and unlimited; model usage is BYOK (no bundled free-model quota)
-  models: []
-  probe:
-    type: page-keywords
-    endpoint: https://github.com/cline/cline
-    keywords:
-    - open source
-    - apache
-    free_marker: ''
-  first_seen: '2026-07-20'
-  last_verified: '2026-07-19'
-  probe_failures: 0
-  provisional: false
-- id: aider
-  name: Aider
-  category: agent-cli
-  url: https://aider.chat/
-  source_urls:
-  - https://aider.chat/
-  - https://aider.chat/docs/faq.html
-  card_required: false
-  offering: Free, open-source terminal coding agent with tight git integration; BYOK
-    — works with free-tier provider keys or local models via Ollama
-  limits: Tool is free and open-source; model usage is BYOK (no bundled free-model
-    quota)
-  models: []
-  probe:
-    type: page-keywords
-    endpoint: https://aider.chat/
-    keywords:
-    - open source
-    - free
-    free_marker: ''
-  first_seen: '2026-07-20'
-  last_verified: '2026-07-19'
-  probe_failures: 0
-  provisional: false
+  rank: 20
 - id: nvidia-nim
   name: NVIDIA NIM (build.nvidia.com)
   category: api-free-tier
@@ -529,6 +503,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 10
 - id: zai-glm
   name: Z.ai (Zhipu GLM)
   category: api-free-tier
@@ -554,6 +529,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 50
 - id: ovh-ai-endpoints
   name: OVHcloud AI Endpoints
   category: api-free-tier
@@ -581,6 +557,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 40
 - id: pollinations
   name: Pollinations.AI
   category: api-free-tier
@@ -605,6 +582,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 92
 - id: alibaba-model-studio
   name: Alibaba Cloud Model Studio (DashScope, international)
   category: api-free-tier
@@ -633,6 +611,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 94
 - id: scaleway-generative
   name: Scaleway Generative APIs
   category: api-free-tier
@@ -660,9 +639,10 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+  rank: 98
 - id: huggingface-inference
   name: Hugging Face Inference Providers
-  category: api-free-tier
+  category: aggregator
   url: https://huggingface.co/docs/inference-providers
   source_urls:
   - https://huggingface.co/docs/inference-providers/pricing
@@ -688,28 +668,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-- id: puter-free
-  name: Puter.js (free LLM API)
-  category: api-free-tier
-  url: https://developer.puter.com/tutorials/free-llm-api/
-  source_urls:
-  - https://developer.puter.com/tutorials/free-llm-api/
-  card_required: false
-  offering: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at
-    no developer cost via Puter's User-Pays model
-  limits: No API key or developer cost; usage billed to each end user's Puter account;
-    per-model rate limits
-  models: []
-  probe:
-    type: page-keywords
-    endpoint: https://developer.puter.com/tutorials/free-llm-api/
-    keywords:
-    - free
-    free_marker: ''
-  first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
-  probe_failures: 0
-  provisional: true
+  rank: 20
 - id: novita
   name: Novita AI
   category: api-free-tier
@@ -733,6 +692,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: true
+  rank: 96
 - id: upstage
   name: Upstage (Solar API)
   category: trial
@@ -754,3 +714,4 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: true
+  rank: 80

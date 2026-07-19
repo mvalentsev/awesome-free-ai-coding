@@ -42,6 +42,13 @@ def test_build_context_rows():
     assert ctx["archived"] == []
 
 
+def test_rank_orders_rows_within_section():
+    entries = [make(id="worst", name="Worst", rank=99), make(id="best", name="Best", rank=1)]
+    ctx = build_context(entries, TODAY)
+    section = next(s for s in ctx["sections"] if s["title"].startswith("LLM APIs"))
+    assert [r["name"] for r in section["rows"]] == ["Best", "Worst"]
+
+
 def test_render_readme(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     from freetier_radar.models import save_registry

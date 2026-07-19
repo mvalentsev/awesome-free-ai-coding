@@ -54,6 +54,7 @@ class Entry(BaseModel):
     last_verified: date
     probe_failures: int = 0
     provisional: bool = False
+    rank: int = 100  # sort key within a category: lower renders higher
 
 
 def load_registry(path: Path) -> list[Entry]:

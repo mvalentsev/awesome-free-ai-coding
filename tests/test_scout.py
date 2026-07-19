@@ -73,6 +73,14 @@ def test_apply_new_skips_duplicates_and_invalid():
     assert new.provisional is True and new.first_seen == TODAY and new.last_verified == TODAY
 
 
+def test_apply_new_rejects_blocklisted_domain():
+    entries = [make()]
+    added, rejected = apply_new(entries, [proposal(id="p", url="https://developer.puter.com/x")],
+                                TODAY, blocklist={"puter.com": "browser sdk"})
+    assert added == []
+    assert rejected == ["p: blocklisted domain"]
+
+
 def test_apply_new_rejects_covered_domain():
     entries = [make()]
     added, rejected = apply_new(entries, [proposal(id="clone", url="https://www.x.ai/deep")], TODAY)

@@ -14,7 +14,7 @@ CATEGORY_TITLES: dict[Category, str] = {
     Category.AGENT_CLI: "Coding agents & CLIs",
     Category.API_FREE_TIER: "LLM APIs with free tier",
     Category.TRIAL: "Trials (no card when possible)",
-    Category.AGGREGATOR: "Aggregators",
+    Category.AGGREGATOR: "Aggregators (one key, many providers)",
 }
 
 
@@ -45,7 +45,9 @@ def build_context(entries: list[Entry], today: date) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
     sections = [
-        {"title": title, "rows": [_row(e) for e in active if e.category is cat]}
+        {"title": title,
+         "rows": [_row(e) for e in sorted((e for e in active if e.category is cat),
+                                          key=lambda e: (e.rank, e.name.lower()))]}
         for cat, title in CATEGORY_TITLES.items()
     ]
     return {"date": today.isoformat(), "sections": sections,
