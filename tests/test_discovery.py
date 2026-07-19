@@ -2,7 +2,7 @@ import httpx
 import respx
 
 from freetier_radar.discovery import (
-    Evidence, Hit, brave_search, domain_of, format_evidence, gather_evidence,
+    Evidence, Hit, domain_of, format_evidence, gather_evidence,
     github_search, hn_search, tavily_search,
 )
 
@@ -21,16 +21,6 @@ def test_tavily_search():
     with httpx.Client() as c:
         hits = tavily_search(c, "key", "free llm api")
     assert hits == [Hit("https://a.dev", "A", "free tier", "tavily")]
-
-
-@respx.mock
-def test_brave_search():
-    respx.get("https://api.search.brave.com/res/v1/web/search").mock(return_value=httpx.Response(
-        200, json={"web": {"results": [{"url": "https://b.dev", "title": "B", "description": "free plan"}]}}
-    ))
-    with httpx.Client() as c:
-        hits = brave_search(c, "key", "free llm api")
-    assert hits == [Hit("https://b.dev", "B", "free plan", "brave")]
 
 
 @respx.mock

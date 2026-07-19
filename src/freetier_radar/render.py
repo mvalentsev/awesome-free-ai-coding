@@ -48,7 +48,8 @@ def build_context(entries: list[Entry], today: date) -> dict:
         {"title": title, "rows": [_row(e) for e in active if e.category is cat]}
         for cat, title in CATEGORY_TITLES.items()
     ]
-    return {"date": today.isoformat(), "sections": sections, "archived": [_row(e) for e in archived]}
+    return {"date": today.isoformat(), "sections": sections,
+            "archived": [_row(e) for e in archived], "active_count": len(active)}
 
 
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path, today: date | None = None) -> str:

@@ -40,8 +40,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SCOUT_BASE_URL: ${{ vars.SCOUT_BASE_URL }}
+          SCOUT_MODEL: ${{ vars.SCOUT_MODEL }}
+          SCOUT_API_KEY: ${{ secrets.SCOUT_API_KEY }}
         run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md
 
       - name: Render README with scout changes

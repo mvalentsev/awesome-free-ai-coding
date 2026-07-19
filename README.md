@@ -1,8 +1,8 @@
 # awesome-free-ai-coding
 
-![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-brightgreen)
+![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-brightgreen) ![Live entries](https://img.shields.io/badge/live%20entries-29-blue)
 
-> Legal free tiers, trials and free-model APIs for AI coding — auto-verified weekly; dead offers drop to the [Archive](#archive).
+> Legal free tiers, trials and free-model APIs for AI coding — auto-verified twice a week; dead offers drop to the [Archive](#archive).
 
 ### Coding agents & CLIs
 | Tool | What you get | Models | Limits | Card required | Verified |
@@ -50,4 +50,14 @@ Outdated or unverifiable entries:
 _Empty._
 ---
 
-Data lives in `registry.yaml`. Updates: scheduled probes (GitHub Actions) + a web-evidence scout (Tavily/Brave/HN/GitHub search + curated feeds) that proposes changes via PR — every proposal is probe-verified before it lands. Suggest a service: open an issue.
+## How this list stays fresh
+
+This repository is an autonomous system, not a hand-curated list:
+
+- **Live probes, twice a week.** A GitHub Actions pipeline hits every entry's public models API or pricing page and re-verifies that the free offer is still real. The `Verified` dates above are earned by passing a probe, never typed by hand.
+- **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds for new legal free offers; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
+- **Probe-gated proposals.** Every scout candidate must pass its own live probe before it is even proposed, and it lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
+- **Self-pruning.** Entries that keep failing probes, or stay unverified for 60+ days, move to the Archive automatically.
+- **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
+
+`registry.yaml` is the single source of truth; this README is generated from it. Suggest a service by opening an issue — it will be probed like everything else.

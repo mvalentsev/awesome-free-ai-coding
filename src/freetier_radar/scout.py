@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import re
+import time
 from datetime import date
 from pathlib import Path
 from typing import Callable
@@ -27,6 +28,14 @@ DISCOVERY_QUERIES = [
 
 FALLBACK_OPENROUTER_MODEL = "deepseek/deepseek-chat-v3-0324:free"
 PREFERRED_MODEL_HINTS = ("deepseek", "qwen", "gpt-oss", "glm", "llama")
+
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+# Anonymous, keyless OpenAI-compatible endpoint (rate-limited) — last-resort
+# backend so the scout keeps working with zero configured secrets.
+OVH_BASE_URL = "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
+OVH_PREFERRED_HINTS = ("gpt-oss", "qwen3")
+RETRY_429_ATTEMPTS = 3
+RETRY_429_SLEEP = 20.0
 
 SYSTEM_RULES = (
     "You update a registry of LEGAL free LLM coding resources. "
@@ -96,30 +105,66 @@ _Proposed by the web-evidence scout — review before merging. Weekly probes kee
 
 
 class LLMClient:
-    """Gemini first (free tier), OpenRouter free models as fallback."""
+    """Ordered backend chain, first success wins:
 
-    def __init__(self, gemini_key: str | None, openrouter_key: str | None,
+    1. custom OpenAI-compatible endpoint (SCOUT_BASE_URL / SCOUT_MODEL /
+       optional SCOUT_API_KEY) — point it at NVIDIA NIM, Groq, Cerebras, ...
+    2. Gemini API                 (GEMINI_API_KEY)
+    3. OpenRouter :free models    (OPENROUTER_API_KEY, model picked live)
+    4. anonymous OVH AI Endpoints (no key at all)
+    """
+
+    def __init__(self, gemini_key: str | None = None, openrouter_key: str | None = None,
                  openrouter_model: str | None = None,
                  gemini_model: str = "gemini-2.5-flash",
+                 custom_base_url: str | None = None, custom_model: str | None = None,
+                 custom_key: str | None = None,
                  http: httpx.Client | None = None):
         self._gemini_key = gemini_key
         self._or_key = openrouter_key
         self._or_model = openrouter_model
         self._gemini_model = gemini_model
+        self._custom_base_url = custom_base_url.rstrip("/") if custom_base_url else None
+        self._custom_model = custom_model
+        self._custom_key = custom_key
+        self._ovh_model: str | None = None
         self._http = http or httpx.Client(timeout=httpx.Timeout(90.0, connect=15.0))
 
     def complete(self, prompt: str) -> str:
+        backends = []
+        if self._custom_base_url and self._custom_model:
+            backends.append(("custom", self._custom))
+        if self._gemini_key:
+            backends.append(("gemini", self._gemini))
+        if self._or_key:
+            backends.append(("openrouter", self._openrouter))
+        backends.append(("ovh-anonymous", self._ovh))
         errors = []
-        for fn in (self._gemini, self._openrouter):
+        for name, fn in backends:
             try:
                 return fn(prompt)
             except (RuntimeError, httpx.HTTPError, KeyError, IndexError) as exc:
-                errors.append(str(exc))
+                errors.append(f"{name}: {exc}")
         raise RuntimeError("all LLM backends failed: " + "; ".join(errors))
 
+    def _chat(self, base_url: str, model: str, key: str | None, prompt: str) -> str:
+        headers = {"Authorization": f"Bearer {key}"} if key else {}
+        for attempt in range(RETRY_429_ATTEMPTS):
+            r = self._http.post(
+                f"{base_url}/chat/completions", headers=headers,
+                json={"model": model, "messages": [{"role": "user", "content": prompt}]},
+            )
+            if r.status_code == 429 and attempt + 1 < RETRY_429_ATTEMPTS:
+                time.sleep(RETRY_429_SLEEP)
+                continue
+            r.raise_for_status()
+            return r.json()["choices"][0]["message"]["content"]
+        raise RuntimeError("rate-limited on every attempt")
+
+    def _custom(self, prompt: str) -> str:
+        return self._chat(self._custom_base_url, self._custom_model, self._custom_key, prompt)
+
     def _gemini(self, prompt: str) -> str:
-        if not self._gemini_key:
-            raise RuntimeError("no GEMINI_API_KEY")
         url = ("https://generativelanguage.googleapis.com/v1beta/models/"
                f"{self._gemini_model}:generateContent?key={self._gemini_key}")
         r = self._http.post(url, json={"contents": [{"parts": [{"text": prompt}]}]})
@@ -127,34 +172,46 @@ class LLMClient:
         return r.json()["candidates"][0]["content"]["parts"][0]["text"]
 
     def _openrouter(self, prompt: str) -> str:
-        if not self._or_key:
-            raise RuntimeError("no OPENROUTER_API_KEY")
         if self._or_model is None:
             self._or_model = pick_openrouter_model(self._http)
-        r = self._http.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={"Authorization": f"Bearer {self._or_key}"},
-            json={"model": self._or_model, "messages": [{"role": "user", "content": prompt}]},
-        )
-        r.raise_for_status()
-        return r.json()["choices"][0]["message"]["content"]
+        return self._chat(OPENROUTER_BASE_URL, self._or_model, self._or_key, prompt)
+
+    def _ovh(self, prompt: str) -> str:
+        if self._ovh_model is None:
+            self._ovh_model = pick_ovh_model(self._http)
+        return self._chat(OVH_BASE_URL, self._ovh_model, None, prompt)
+
+
+def _list_model_ids(http: httpx.Client, base_url: str) -> list[str]:
+    r = http.get(f"{base_url}/models")
+    r.raise_for_status()
+    return [str(m.get("id", "")) for m in r.json().get("data", []) if isinstance(m, dict)]
 
 
 def pick_openrouter_model(http: httpx.Client) -> str:
     """Pick a currently-listed :free model so the fallback never rots."""
     try:
-        r = http.get("https://openrouter.ai/api/v1/models")
-        r.raise_for_status()
-        data = r.json().get("data", [])
-        free = [str(m.get("id", "")) for m in data if isinstance(m, dict)
-                and str(m.get("id", "")).endswith(":free")]
+        ids = _list_model_ids(http, OPENROUTER_BASE_URL)
     except (httpx.HTTPError, json.JSONDecodeError):
         return FALLBACK_OPENROUTER_MODEL
+    free = [i for i in ids if i.endswith(":free")]
     for hint in PREFERRED_MODEL_HINTS:
         for model_id in free:
             if hint in model_id:
                 return model_id
     return free[0] if free else FALLBACK_OPENROUTER_MODEL
+
+
+def pick_ovh_model(http: httpx.Client) -> str:
+    """Pick a live model on the anonymous OVH endpoint (errors fail the backend over)."""
+    ids = _list_model_ids(http, OVH_BASE_URL)
+    for hint in OVH_PREFERRED_HINTS:
+        for model_id in ids:
+            if hint in model_id.lower():
+                return model_id
+    if not ids:
+        raise RuntimeError("no models listed on OVH endpoint")
+    return ids[0]
 
 
 def extract_yaml_block(text: str) -> str:
@@ -286,15 +343,16 @@ def main() -> None:
     parser.add_argument("--pr-body", type=Path, default=Path("scout-pr.md"))
     args = parser.parse_args()
 
-    gemini_key = os.environ.get("GEMINI_API_KEY")
-    or_key = os.environ.get("OPENROUTER_API_KEY")
-    if not gemini_key and not or_key:
-        print("no LLM keys configured, skipping scout")
-        return
-
     entries = load_registry(args.registry)
     failures = json.loads(args.failures.read_text()) if args.failures.exists() else []
-    llm = LLMClient(gemini_key, or_key, os.environ.get("SCOUT_OPENROUTER_MODEL"))
+    llm = LLMClient(
+        gemini_key=os.environ.get("GEMINI_API_KEY"),
+        openrouter_key=os.environ.get("OPENROUTER_API_KEY"),
+        openrouter_model=os.environ.get("SCOUT_OPENROUTER_MODEL"),
+        custom_base_url=os.environ.get("SCOUT_BASE_URL"),
+        custom_model=os.environ.get("SCOUT_MODEL"),
+        custom_key=os.environ.get("SCOUT_API_KEY"),
+    )
 
     known_domains = {domain_of(e.url) for e in entries}
     known_domains |= {domain_of(u) for e in entries for u in e.source_urls}
@@ -302,11 +360,17 @@ def main() -> None:
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
           f"providers: {', '.join(evidence.providers) or 'none'}")
 
-    with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
-                      headers={"User-Agent": "freetier-radar/0.2"}) as probe_client:
-        result = run_scout(llm, entries, failures, fetch_page_texts, date.today(),
-                           evidence=evidence,
-                           verifier=lambda e: probe_check_sync(e, probe_client))
+    try:
+        with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
+                          headers={"User-Agent": "freetier-radar/0.2"}) as probe_client:
+            result = run_scout(llm, entries, failures, fetch_page_texts, date.today(),
+                               evidence=evidence,
+                               verifier=lambda e: probe_check_sync(e, probe_client))
+    except RuntimeError as exc:
+        # every LLM backend failed — leave the registry untouched, don't fail CI
+        print(f"scout aborted: {exc}")
+        args.pr_body.write_text(f"## Scout proposals\n\nScout aborted: {exc}\n", encoding="utf-8")
+        return
 
     save_registry(args.registry, entries)
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(

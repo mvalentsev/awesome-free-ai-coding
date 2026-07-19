@@ -6,8 +6,8 @@ import respx
 from freetier_radar.discovery import Evidence, Hit
 from freetier_radar.models import Entry
 from freetier_radar.scout import (
-    FALLBACK_OPENROUTER_MODEL, apply_new, apply_supersede, apply_updates,
-    extract_yaml_block, pick_openrouter_model, run_scout,
+    FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, apply_new, apply_supersede,
+    apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
 )
 
 TODAY = date(2026, 7, 19)
@@ -145,3 +145,36 @@ def test_pick_openrouter_model_falls_back_on_error():
     respx.get("https://openrouter.ai/api/v1/models").mock(return_value=httpx.Response(500))
     with httpx.Client() as http:
         assert pick_openrouter_model(http) == FALLBACK_OPENROUTER_MODEL
+
+
+@respx.mock
+def test_llm_chain_falls_back_to_keyless_ovh(monkeypatch):
+    import freetier_radar.scout as scout_mod
+    monkeypatch.setattr(scout_mod, "RETRY_429_SLEEP", 0)
+    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "Meta-Llama-3_3-70B"}, {"id": "gpt-oss-120b"}]}
+    ))
+    route = respx.post(f"{OVH_BASE_URL}/chat/completions")
+    route.side_effect = [
+        httpx.Response(429),
+        httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]}),
+    ]
+    with httpx.Client() as http:
+        llm = LLMClient(http=http)  # zero keys configured
+        assert llm.complete("hi") == "ok"
+    assert route.call_count == 2
+    assert "Authorization" not in route.calls[0].request.headers
+    assert b"gpt-oss-120b" in route.calls[0].request.content
+
+
+@respx.mock
+def test_llm_chain_custom_endpoint_first():
+    route = respx.post("https://nim.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "custom"}}]})
+    )
+    with httpx.Client() as http:
+        llm = LLMClient(gemini_key="g", openrouter_key="o",
+                        custom_base_url="https://nim.example/v1/", custom_model="m",
+                        custom_key="k", http=http)
+        assert llm.complete("hi") == "custom"
+    assert route.calls[0].request.headers["Authorization"] == "Bearer k"

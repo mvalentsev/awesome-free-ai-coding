@@ -2,7 +2,6 @@
 
 Sources, each optional and independent:
 - Tavily search                 (needs TAVILY_API_KEY)
-- Brave web search              (needs BRAVE_API_KEY)
 - Hacker News via Algolia       (keyless)
 - GitHub repository search      (keyless; GITHUB_TOKEN raises rate limits)
 - Curated awesome-list feeds    (keyless raw markdown)
@@ -13,7 +12,6 @@ the run, so the scout always gets the best evidence available.
 from __future__ import annotations
 
 import re
-import time
 from dataclasses import dataclass, field
 from typing import Callable, Mapping
 from urllib.parse import urlparse
@@ -22,7 +20,6 @@ import httpx
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
-BRAVE_DELAY = 1.1  # free plan allows 1 request/second
 
 CURATED_FEEDS = [
     "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md",
@@ -71,21 +68,6 @@ def tavily_search(client: httpx.Client, key: str, query: str, count: int = 6) ->
     return [
         Hit(it["url"], it.get("title", ""), (it.get("content") or "")[:400], "tavily")
         for it in r.json().get("results", [])
-        if it.get("url")
-    ]
-
-
-def brave_search(client: httpx.Client, key: str, query: str, count: int = 6) -> list[Hit]:
-    r = client.get(
-        "https://api.search.brave.com/res/v1/web/search",
-        params={"q": query, "count": count},
-        headers={"X-Subscription-Token": key, "Accept": "application/json"},
-    )
-    r.raise_for_status()
-    items = (r.json().get("web") or {}).get("results", [])
-    return [
-        Hit(it["url"], it.get("title", ""), (it.get("description") or "")[:400], "brave")
-        for it in items
         if it.get("url")
     ]
 
@@ -145,8 +127,6 @@ def _searchers(client: httpx.Client, env: Mapping[str, str]) -> list[tuple[str, 
     searchers: list[tuple[str, Callable[[str], list[Hit]]]] = []
     if env.get("TAVILY_API_KEY"):
         searchers.append(("tavily", lambda q: tavily_search(client, env["TAVILY_API_KEY"], q)))
-    if env.get("BRAVE_API_KEY"):
-        searchers.append(("brave", lambda q: brave_search(client, env["BRAVE_API_KEY"], q)))
     searchers.append(("hn", lambda q: hn_search(client, q)))
     searchers.append(("github", lambda q: github_search(client, q, env.get("GITHUB_TOKEN"))))
     return searchers
@@ -161,9 +141,7 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
     try:
         for name, search in _searchers(client, env):
             found = False
-            for i, q in enumerate(queries):
-                if name == "brave" and i:
-                    time.sleep(BRAVE_DELAY)
+            for q in queries:
                 try:
                     hits = search(q)
                 except httpx.HTTPError:
