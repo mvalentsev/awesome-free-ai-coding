@@ -11,10 +11,10 @@ from .models import Category, Entry, load_registry
 ARCHIVE_AFTER_DAYS = 60
 
 CATEGORY_TITLES: dict[Category, str] = {
-    Category.AGENT_CLI: "Coding agents & CLIs",
-    Category.API_FREE_TIER: "LLM APIs with free tier",
-    Category.TRIAL: "Trials (no card when possible)",
-    Category.AGGREGATOR: "Aggregators (one key, many providers)",
+    Category.AGENT_CLI: "🤖 Coding agents & CLIs",
+    Category.API_FREE_TIER: "🔌 LLM APIs with free tier",
+    Category.TRIAL: "🎁 Trials (no card when possible)",
+    Category.AGGREGATOR: "🧭 Aggregators (one key, many providers)",
 }
 
 
@@ -35,7 +35,7 @@ def _row(e: Entry) -> dict[str, str]:
         "url": e.url,
         "offering": e.offering,
         "limits": e.limits or "—",
-        "card": "⚠️ Yes" if e.card_required else "❌ No",
+        "card": "💳 Yes" if e.card_required else "✅ No",
         "verified": e.last_verified.isoformat(),
         "models": ", ".join(fams) if fams else "—",
     }

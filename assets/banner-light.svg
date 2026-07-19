@@ -1,0 +1,31 @@
+<svg width="1160" height="300" viewBox="0 0 1160 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="awesome-free-ai-coding — legal free LLM APIs and coding agents, probe-verified">
+  <defs>
+    <linearGradient id="sweep" x1="150" y1="150" x2="255" y2="45" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3fb950" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#3fb950" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="300" y1="0" x2="1100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3fb950"/>
+      <stop offset="1" stop-color="#58a6ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="1158" height="298" rx="16" fill="#ffffff" stroke="#d0d7de" stroke-width="2"/>
+  <g>
+    <circle cx="150" cy="150" r="105" stroke="#1a7f37" stroke-opacity="0.25" stroke-width="2"/>
+    <circle cx="150" cy="150" r="70" stroke="#1a7f37" stroke-opacity="0.35" stroke-width="2"/>
+    <circle cx="150" cy="150" r="35" stroke="#1a7f37" stroke-opacity="0.45" stroke-width="2"/>
+    <line x1="45" y1="150" x2="255" y2="150" stroke="#1a7f37" stroke-opacity="0.15" stroke-width="2"/>
+    <line x1="150" y1="45" x2="150" y2="255" stroke="#1a7f37" stroke-opacity="0.15" stroke-width="2"/>
+    <path d="M150 150 L255 45 A148.5 148.5 0 0 0 150 1.5 Z" fill="url(#sweep)" transform="translate(0,0) scale(0.707) translate(62,62)"/>
+    <line x1="150" y1="150" x2="224" y2="76" stroke="#3fb950" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="150" cy="150" r="5" fill="#1a7f37"/>
+    <circle cx="196" cy="118" r="6" fill="#3fb950"/>
+    <circle cx="112" cy="102" r="5" fill="#3fb950"/>
+    <circle cx="185" cy="197" r="5" fill="#58a6ff"/>
+    <circle cx="93" cy="182" r="4" fill="#f85149" fill-opacity="0.7"/>
+  </g>
+  <text x="300" y="135" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="52" font-weight="700" fill="#1f2328">awesome-free-ai-coding</text>
+  <rect x="302" y="158" width="640" height="5" rx="2.5" fill="url(#accent)"/>
+  <text x="300" y="205" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" fill="#57606a">Legal free LLM APIs &amp; coding agents for developers</text>
+  <text x="300" y="240" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" fill="#6e7781">self-updating · probe-verified twice a week · dead offers auto-archived</text>
+</svg>

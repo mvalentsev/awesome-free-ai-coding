@@ -1,0 +1,46 @@
+name: Suggest a service
+description: Propose a legal free tier, trial or free-model API for the registry
+title: "[suggest]: "
+labels: [suggestion]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Official URL
+      description: The vendor's official site (no proxies, no mirrors)
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: Page that proves the free offer
+      description: Pricing/docs page where the free tier, free models or no-card trial is stated
+      placeholder: https://example.com/pricing
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - LLM API with free tier
+        - Coding agent / CLI with bundled free usage
+        - Trial (no card)
+        - Aggregator
+    validations:
+      required: true
+  - type: input
+    id: free-what
+    attributes:
+      label: What exactly is free?
+      placeholder: e.g. 1M tokens/month on model X, no credit card
+    validations:
+      required: true
+  - type: checkboxes
+    id: legality
+    attributes:
+      label: Legality check
+      options:
+        - label: This is an official offer by the vendor itself (not a reverse proxy, key share, or scraped gateway)
+          required: true

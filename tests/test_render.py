@@ -36,16 +36,16 @@ def test_build_context_rows():
     entries = [make(models=[{"family": "a"}, {"family": "b", "superseded_by": "c"}])]
     ctx = build_context(entries, TODAY)
     assert ctx["date"] == "2026-07-19"
-    section = next(s for s in ctx["sections"] if s["title"].startswith("LLM APIs"))
+    section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
     assert section["rows"][0]["models"] == "a"
-    assert section["rows"][0]["card"] == "❌ No"
+    assert section["rows"][0]["card"] == "✅ No"
     assert ctx["archived"] == []
 
 
 def test_rank_orders_rows_within_section():
     entries = [make(id="worst", name="Worst", rank=99), make(id="best", name="Best", rank=1)]
     ctx = build_context(entries, TODAY)
-    section = next(s for s in ctx["sections"] if s["title"].startswith("LLM APIs"))
+    section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
     assert [r["name"] for r in section["rows"]] == ["Best", "Worst"]
 
 
@@ -56,10 +56,12 @@ def test_render_readme(tmp_path: Path):
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
     assert "last%20verified-2026--07--19" in text
-    assert "live%20entries-1-blue" in text
-    assert "### Coding agents & CLIs" in text
-    assert "### LLM APIs with free tier" in text
+    assert "live%20entries-1-58a6ff" in text
+    assert "Coding agents & CLIs" in text
+    assert "LLM APIs with free tier" in text
     assert "## How this list stays fresh" in text
+    assert "```mermaid" in text
+    assert "banner-dark.svg" in text
     assert "## Archive" in text
     assert "Dead Tool" in text.split("## Archive")[1]
     assert out.read_text(encoding="utf-8") == text

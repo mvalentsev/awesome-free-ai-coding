@@ -1,8 +1,21 @@
-# awesome-free-ai-coding
+<div align="center">
 
-![Last verified](https://img.shields.io/badge/last%20verified-{{ date | replace('-', '--') }}-brightgreen) ![Live entries](https://img.shields.io/badge/live%20entries-{{ active_count }}-blue)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <img alt="awesome-free-ai-coding — legal free LLM APIs & coding agents, probe-verified" src="assets/banner-light.svg" width="860">
+</picture>
 
-> Legal free tiers, trials and free-model APIs for AI coding — auto-verified twice a week; dead offers drop to the [Archive](#archive).
+[![CI](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
+![Last verified](https://img.shields.io/badge/last%20verified-{{ date | replace('-', '--') }}-3fb950)
+![Live entries](https://img.shields.io/badge/live%20entries-{{ active_count }}-58a6ff)
+[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+
+**[🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [⚙️ How it works](#how-this-list-stays-fresh)**
+
+</div>
+
+> **Every row below is machine-verified.** Legal free tiers, trials and free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages; dead offers drop to the [Archive](#archive) automatically.
 
 {% for s in sections %}
 ### {{ s.title }}
@@ -22,18 +35,40 @@ Outdated or unverifiable entries:
 |---|---|
 {% for r in archived %}| [{{ r.name }}]({{ r.url }}) | {{ r.verified }} |
 {% endfor %}{% else %}
-_Empty._
+_Empty — the radar is clean._
 {% endif %}
----
 
 ## How this list stays fresh
 
 This repository is an autonomous system, not a hand-curated list:
 
-- **Live probes, twice a week.** A GitHub Actions pipeline hits every entry's public models API or pricing page and re-verifies that the free offer is still real. The `Verified` dates above are earned by passing a probe, never typed by hand.
-- **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds for new legal free offers; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
-- **Probe-gated proposals.** Every scout candidate must pass its own live probe before it is even proposed, and it lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
-- **Self-pruning.** Entries that keep failing probes, or stay unverified for 60+ days, move to the Archive automatically.
+```mermaid
+flowchart LR
+    S["🌐 web scout<br/>Tavily · HN · GitHub · curated feeds"] --> L["🧠 LLM extract<br/>(evidence only)"]
+    L --> G{"🛡 probe gate"}
+    G -->|verified| PR["📬 pull request"]
+    PR -->|human merge| R[("registry.yaml")]
+    R --> P{"📡 live probes<br/>twice a week"}
+    P -->|pass| V["✅ verified date updated"]
+    P -->|fail ×3 or stale 60d| A["🗄 Archive"]
+    R -->|render| MD["README.md<br/>(this page)"]
+```
+
+- **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. `Verified` dates are earned by passing a probe, never typed by hand.
+- **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
+- **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
+- **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
-`registry.yaml` is the single source of truth; this README is generated from it. Suggest a service by opening an issue — it will be probed like everything else.
+## Contributing
+
+`registry.yaml` is the single source of truth; this README is generated from it — don't edit it by hand.
+Know a legal free offer that's missing? **[Suggest a service](../../issues/new?template=suggest-a-service.yml)** — it will be probed like everything else. Details in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+<div align="center">
+
+**⭐ If this list saved you a credit-card form, star the repo — it keeps the radar visible.**
+
+<sub>Maintained by robots · reviewed by humans · MIT</sub>
+
+</div>
