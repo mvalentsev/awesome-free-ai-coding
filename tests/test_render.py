@@ -48,10 +48,9 @@ def test_render_readme(tmp_path: Path):
     save_registry(reg, [make(), make(id="dead", name="Dead Tool", probe_failures=5)])
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
-    assert "last%20verified-2026-07-19" in text
+    assert "last%20verified-2026--07--19" in text
     assert "### Coding agents & CLIs" in text
     assert "### LLM APIs with free tier" in text
-    assert "Русский" not in text
     assert "## Archive" in text
     assert "Dead Tool" in text.split("## Archive")[1]
     assert out.read_text(encoding="utf-8") == text

@@ -1,6 +1,9 @@
 .venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 failures/
 scout-pr.md
 .idea/
+.mimocode/
+docs/compose/

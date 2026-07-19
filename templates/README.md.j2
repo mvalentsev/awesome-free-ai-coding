@@ -1,6 +1,6 @@
 # awesome-free-ai-coding
 
-![Last verified](https://img.shields.io/badge/last%20verified-{{ date }}-brightgreen)
+![Last verified](https://img.shields.io/badge/last%20verified-{{ date | replace('-', '--') }}-brightgreen)
 
 > Legal free tiers, trials and free-model APIs for AI coding — auto-verified weekly; dead offers drop to the [Archive](#archive).
 
@@ -26,4 +26,4 @@ _Empty._
 {% endif %}
 ---
 
-Data lives in `registry.yaml`. Updates: weekly probes (GitHub Actions) + LLM scout proposals via PR. Suggest a service: open an issue.
+Data lives in `registry.yaml`. Updates: scheduled probes (GitHub Actions) + a web-evidence scout (Tavily/Brave/HN/GitHub search + curated feeds) that proposes changes via PR — every proposal is probe-verified before it lands. Suggest a service: open an issue.

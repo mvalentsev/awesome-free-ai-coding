@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+from dataclasses import dataclass
 from datetime import date
+from enum import Enum
 from pathlib import Path
 
 import httpx
@@ -11,16 +13,55 @@ import httpx
 from .models import Entry, ProbeType, load_registry, save_registry
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
-UA = {"User-Agent": "freetier-radar/0.1 (+https://github.com/awesome-free-ai-coding)"}
+UA = {"User-Agent": "freetier-radar/0.2"}
+ATTEMPTS = 3
+BACKOFF_SECONDS = 2.0
+CONCURRENCY = 8
 
 
-async def probe_entry(client: httpx.AsyncClient, entry: Entry) -> str | None:
-    """None = probe passed, string = description of the problem."""
-    try:
-        resp = await client.get(entry.probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
-        resp.raise_for_status()
-    except httpx.HTTPError as exc:
-        return f"http error: {exc}"
+class ProbeStatus(str, Enum):
+    PASS = "pass"
+    FAIL = "fail"  # page reachable but the free offer is no longer evidenced
+    INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
+
+
+@dataclass
+class ProbeResult:
+    status: ProbeStatus
+    detail: str = ""
+
+
+async def probe_entry(client: httpx.AsyncClient, entry: Entry,
+                      attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS) -> ProbeResult:
+    last = ""
+    for i in range(attempts):
+        if i:
+            await asyncio.sleep(backoff * i)
+        try:
+            resp = await client.get(entry.probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
+        except httpx.HTTPError as exc:
+            last = f"network error: {exc}"
+            continue
+        if resp.status_code in (401, 403, 429):
+            return ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: HTTP {resp.status_code}")
+        if resp.status_code >= 500:
+            last = f"HTTP {resp.status_code}"
+            continue
+        if resp.status_code >= 400:
+            return ProbeResult(ProbeStatus.FAIL, f"page gone: HTTP {resp.status_code}")
+        detail = check_content(resp, entry)
+        if detail is None:
+            return ProbeResult(ProbeStatus.PASS)
+        return ProbeResult(ProbeStatus.FAIL, detail)
+    return ProbeResult(ProbeStatus.INCONCLUSIVE, f"unreachable after {attempts} attempts: {last}")
+
+
+def check_content(resp: httpx.Response, entry: Entry) -> str | None:
+    """None = content confirms the entry; string = what is missing.
+
+    Works on both sync and async httpx responses, so the scout reuses it to
+    vet newly proposed entries before accepting them.
+    """
     if entry.probe.type is ProbeType.API_MODELS:
         return _check_api_models(resp, entry)
     return _check_page_keywords(resp, entry)
@@ -49,29 +90,45 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     return f"missing keywords: {', '.join(missing)}" if missing else None
 
 
-def apply_results(entries: list[Entry], results: dict[str, str | None], today: date) -> list[Entry]:
-    failed = []
+def apply_results(entries: list[Entry], results: dict[str, ProbeResult], today: date) -> list[Entry]:
+    """PASS verifies and resets failures; FAIL increments them; INCONCLUSIVE
+    touches nothing — the staleness rule archives entries that stay unverifiable.
+    Returns entries needing scout attention (FAIL and INCONCLUSIVE)."""
+    needs_attention = []
     for e in entries:
-        detail = results.get(e.id)
-        if detail is None:
+        result = results.get(e.id)
+        if result is None:
+            continue
+        if result.status is ProbeStatus.PASS:
             e.last_verified = today
             e.probe_failures = 0
         else:
-            e.probe_failures += 1
-            failed.append(e)
-    return failed
+            if result.status is ProbeStatus.FAIL:
+                e.probe_failures += 1
+            needs_attention.append(e)
+    return needs_attention
 
 
 async def _amain(registry_path: Path, failures_dir: Path) -> None:
     entries = load_registry(registry_path)
+    sem = asyncio.Semaphore(CONCURRENCY)
+
+    async def bounded(entry: Entry) -> ProbeResult:
+        async with sem:
+            return await probe_entry(client, entry)
+
     async with httpx.AsyncClient(headers=UA) as client:
-        results = {e.id: await probe_entry(client, e) for e in entries}
-    failed = apply_results(entries, results, date.today())
+        outcomes = await asyncio.gather(*(bounded(e) for e in entries))
+    results = {e.id: r for e, r in zip(entries, outcomes)}
+    flagged = apply_results(entries, results, date.today())
     save_registry(registry_path, entries)
     failures_dir.mkdir(parents=True, exist_ok=True)
-    payload = [{"id": e.id, "detail": results[e.id]} for e in failed]
+    payload = [
+        {"id": e.id, "status": results[e.id].status.value, "detail": results[e.id].detail}
+        for e in flagged
+    ]
     (failures_dir / "failures.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False))
-    print(f"probed {len(entries)} entries, {len(failed)} failed")
+    print(f"probed {len(entries)} entries, {len(flagged)} need attention")
 
 
 def main() -> None:

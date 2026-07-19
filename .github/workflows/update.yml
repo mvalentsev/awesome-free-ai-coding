@@ -2,7 +2,7 @@ name: update
 
 on:
   schedule:
-    - cron: "23 5 * * 3"   # weekly, Wednesday 05:23 UTC
+    - cron: "23 5 * * 1,4"   # twice a week, Monday and Thursday 05:23 UTC
   workflow_dispatch:
 
 permissions:
@@ -35,11 +35,17 @@ jobs:
           git diff --staged --quiet || git commit -m "chore: verification $(date -u +%F)"
           git push
 
-      - name: Scout (LLM proposals)
+      - name: Scout (web discovery + LLM proposals)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md
+
+      - name: Render README with scout changes
+        run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
       - name: Open scout PR
         uses: peter-evans/create-pull-request@v7
