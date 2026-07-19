@@ -24,7 +24,7 @@ entries:
     keywords: []
     free_marker: :free
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: google-ai-studio
@@ -47,7 +47,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: groq-free
@@ -73,7 +73,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: cerebras-free
@@ -96,7 +96,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: mistral-free
@@ -119,7 +119,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: github-models
@@ -142,7 +142,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: cloudflare-workers-ai
@@ -165,7 +165,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: ollama-cloud
@@ -191,7 +191,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: true
 - id: opencode
@@ -211,7 +211,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: kilo-code
@@ -231,7 +231,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: zed
@@ -251,7 +251,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: trae
@@ -271,7 +271,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
 - id: windsurf
@@ -291,6 +291,400 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: mimo-code
+  name: MiMo Code
+  category: agent-cli
+  url: https://mimo.xiaomi.com/coder
+  source_urls:
+  - https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md
+  - https://mimo.xiaomi.com/mimocode/start
+  card_required: false
+  offering: Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto"
+    channel runs Xiaomi's MiMo models with no login, API key, or card
+  limits: MiMo Auto is free for a limited time; anonymous channel, zero configuration
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md
+    keywords:
+    - mimo auto
+    - free
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: easy-gonka-api
+  name: Easy GonkaAI API
+  category: trial
+  url: https://gonka-api.org/
+  source_urls:
+  - https://gonka-api.org/
+  card_required: false
+  offering: Third-party OpenAI-compatible broker to the permissionless Gonka decentralized
+    inference network (Qwen, Kimi and other open models)
+  limits: 10M free tokens on signup (one-time trial, no card); paid usage billed in
+    crypto
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://gonka-api.org/
+    keywords:
+    - free tokens
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: true
+- id: github-copilot-free
+  name: GitHub Copilot Free
+  category: trial
+  url: https://github.com/features/copilot
+  source_urls:
+  - https://docs.github.com/en/copilot/concepts/billing/individual-plans
+  - https://docs.github.com/en/copilot/get-started/plans
+  card_required: false
+  offering: Free Copilot plan for individual developers in VS Code, JetBrains, Visual
+    Studio and CLI; completions, limited chat and agent usage
+  limits: 2,000 code completions/month; limited chat & agent requests; auto model
+    selection only
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://docs.github.com/en/copilot/concepts/billing/individual-plans
+    keywords:
+    - 2,000 code completions
+    - no subscription or payment required
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: google-jules
+  name: Google Jules
+  category: trial
+  url: https://jules.google/
+  source_urls:
+  - https://jules.google/docs/usage-limits
+  card_required: false
+  offering: Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro;
+    connects to GitHub repos and works autonomously
+  limits: 15 tasks per rolling 24 hours; 3 concurrent tasks
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://jules.google/docs/usage-limits
+    keywords:
+    - concurrent tasks
+    - gemini 2.5 pro
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: kiro
+  name: Kiro
+  category: trial
+  url: https://kiro.dev/
+  source_urls:
+  - https://kiro.dev/pricing/
+  card_required: false
+  offering: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon
+    Q Developer) with Claude Sonnet 4.5 and open-weight models
+  limits: 50 credits/month; requires social login or AWS Builder ID; credits do not
+    roll over
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://kiro.dev/pricing/
+    keywords:
+    - kiro free
+    - 50 credits
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: cursor-hobby
+  name: Cursor (Hobby)
+  category: trial
+  url: https://cursor.com/
+  source_urls:
+  - https://cursor.com/pricing
+  card_required: false
+  offering: Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests
+    and Tab completions, no credit card
+  limits: Limited Agent requests and Tab completions; Auto model only; pauses at cap
+    until reset
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://cursor.com/pricing
+    keywords:
+    - hobby
+    - no credit card required
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: openai-codex-cli
+  name: OpenAI Codex CLI
+  category: agent-cli
+  url: https://developers.openai.com/codex/
+  source_urls:
+  - https://learn.chatgpt.com/docs/pricing
+  - https://github.com/openai/codex
+  card_required: false
+  offering: Open-source coding CLI, free by signing in with a $0 ChatGPT Free account;
+    local coding tasks included on all plans
+  limits: Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling
+    + weekly rate limits; local tasks only
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://learn.chatgpt.com/docs/pricing
+    keywords:
+    - codex are included
+    - chatgpt free
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: cline
+  name: Cline
+  category: agent-cli
+  url: https://cline.bot/
+  source_urls:
+  - https://github.com/cline/cline
+  card_required: false
+  offering: Open-source (Apache-2.0) autonomous coding agent for VS Code, JetBrains
+    and CLI; BYOK — pair with free-tier provider keys or local models for zero model
+    cost
+  limits: Tool is free and unlimited; model usage is BYOK (no bundled free-model quota)
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://github.com/cline/cline
+    keywords:
+    - open source
+    - apache
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: aider
+  name: Aider
+  category: agent-cli
+  url: https://aider.chat/
+  source_urls:
+  - https://aider.chat/
+  - https://aider.chat/docs/faq.html
+  card_required: false
+  offering: Free, open-source terminal coding agent with tight git integration; BYOK
+    — works with free-tier provider keys or local models via Ollama
+  limits: Tool is free and open-source; model usage is BYOK (no bundled free-model
+    quota)
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://aider.chat/
+    keywords:
+    - open source
+    - free
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: nvidia-nim
+  name: NVIDIA NIM (build.nvidia.com)
+  category: api-free-tier
+  url: https://build.nvidia.com
+  source_urls:
+  - https://build.nvidia.com/explore/discover
+  card_required: false
+  offering: Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer
+    Program (OpenAI-compatible at integrate.api.nvidia.com/v1)
+  limits: Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise
+  models:
+  - family: nemotron
+    tier: frontier
+    released: 2026-03
+  - family: llama-4
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://build.nvidia.com/explore/discover
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: zai-glm
+  name: Z.ai (Zhipu GLM)
+  category: api-free-tier
+  url: https://z.ai
+  source_urls:
+  - https://docs.z.ai/guides/overview/pricing
+  card_required: false
+  offering: GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4)
+  limits: GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x
+    not free; rate-limited
+  models:
+  - family: glm-4.5
+    tier: strong
+    released: 2025-07
+  probe:
+    type: page-keywords
+    endpoint: https://docs.z.ai/guides/overview/pricing
+    keywords:
+    - glm-4.5-flash
+    - free
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: ovh-ai-endpoints
+  name: OVHcloud AI Endpoints
+  category: api-free-tier
+  url: https://endpoints.ai.cloud.ovh.net
+  source_urls:
+  - https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models
+  - https://www.ovhcloud.com/en/public-cloud/ai-endpoints/
+  card_required: false
+  offering: EU-hosted serverless open-model API; anonymous tier needs no signup or
+    API key (OpenAI-compatible)
+  limits: No-key anonymous access, rate-limited; free API key raises limits
+  models:
+  - family: qwen3
+    tier: strong
+    released: 2025-04
+  - family: gpt-oss
+    tier: strong
+    released: 2025-08
+  probe:
+    type: api-models
+    endpoint: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models
+    keywords: []
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: pollinations
+  name: Pollinations.AI
+  category: api-free-tier
+  url: https://pollinations.ai
+  source_urls:
+  - https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md
+  card_required: false
+  offering: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)
+  limits: Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model
+    is GPT-OSS-20B
+  models:
+  - family: gpt-oss
+    tier: strong
+    released: 2025-08
+  probe:
+    type: page-keywords
+    endpoint: https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md
+    keywords:
+    - no signup
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: alibaba-model-studio
+  name: Alibaba Cloud Model Studio (DashScope, international)
+  category: api-free-tier
+  url: https://www.alibabacloud.com/en/product/modelstudio
+  source_urls:
+  - https://www.alibabacloud.com/help/en/model-studio/model-pricing
+  card_required: false
+  offering: Free quota for Qwen models on DashScope, international (Singapore) region;
+    OpenAI-compatible
+  limits: 1,000,000 free tokens per model, valid 90 days after activation; Singapore/international
+    scope only
+  models:
+  - family: qwen3-max
+    tier: frontier
+    released: 2026-04
+  - family: qwen3-coder
+    tier: strong
+    released: 2025-07
+  probe:
+    type: page-keywords
+    endpoint: https://www.alibabacloud.com/help/en/model-studio/model-pricing
+    keywords:
+    - free quota
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: scaleway-generative
+  name: Scaleway Generative APIs
+  category: api-free-tier
+  url: https://www.scaleway.com/en/generative-apis/
+  source_urls:
+  - https://www.scaleway.com/en/docs/generative-apis/faq/
+  card_required: true
+  offering: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every
+    new customer
+  limits: 1,000,000 free tokens then pay-per-token; a valid payment method is required
+  models:
+  - family: glm-5.2
+    tier: frontier
+    released: 2026-04
+  - family: qwen3
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://www.scaleway.com/en/docs/generative-apis/faq/
+    keywords:
+    - free tier
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
+  probe_failures: 0
+  provisional: false
+- id: huggingface-inference
+  name: Hugging Face Inference Providers
+  category: api-free-tier
+  url: https://huggingface.co/docs/inference-providers
+  source_urls:
+  - https://huggingface.co/docs/inference-providers/pricing
+  card_required: false
+  offering: Routed access to 200+ models across providers (Groq, Cerebras, Together,
+    etc.) with a free HF account
+  limits: Free users get $0.10/month credits (subject to change); credits apply only
+    on HF-routed requests
+  models:
+  - family: deepseek
+    tier: frontier
+    released: 2025-03
+  - family: qwen3
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://huggingface.co/docs/inference-providers/pricing
+    keywords:
+    - monthly credits
+    free_marker: ''
+  first_seen: '2026-07-20'
+  last_verified: '2026-07-20'
   probe_failures: 0
   provisional: false
