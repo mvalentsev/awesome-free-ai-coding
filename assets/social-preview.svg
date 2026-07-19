@@ -1,0 +1,37 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="sweep" x1="320" y1="320" x2="530" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3fb950" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#3fb950" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="600" y1="0" x2="1220" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3fb950"/>
+      <stop offset="1" stop-color="#58a6ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <g>
+    <circle cx="320" cy="320" r="210" stroke="#3fb950" stroke-opacity="0.22" stroke-width="3"/>
+    <circle cx="320" cy="320" r="140" stroke="#3fb950" stroke-opacity="0.32" stroke-width="3"/>
+    <circle cx="320" cy="320" r="70" stroke="#3fb950" stroke-opacity="0.45" stroke-width="3"/>
+    <line x1="110" y1="320" x2="530" y2="320" stroke="#3fb950" stroke-opacity="0.14" stroke-width="3"/>
+    <line x1="320" y1="110" x2="320" y2="530" stroke="#3fb950" stroke-opacity="0.14" stroke-width="3"/>
+    <path d="M320 320 L468 172 A209 209 0 0 0 320 111 Z" fill="url(#sweep)"/>
+    <line x1="320" y1="320" x2="468" y2="172" stroke="#3fb950" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="320" cy="320" r="9" fill="#3fb950"/>
+    <circle cx="412" cy="256" r="11" fill="#3fb950"/>
+    <circle cx="244" cy="224" r="9" fill="#3fb950"/>
+    <circle cx="390" cy="414" r="9" fill="#58a6ff"/>
+    <circle cx="206" cy="384" r="7" fill="#f85149" fill-opacity="0.8"/>
+  </g>
+  <text x="600" y="255" font-family="DejaVu Sans Mono, ui-monospace, Menlo, monospace" font-size="58" font-weight="700" fill="#e6edf3">awesome-free-</text>
+  <text x="600" y="325" font-family="DejaVu Sans Mono, ui-monospace, Menlo, monospace" font-size="58" font-weight="700" fill="#e6edf3">ai-coding</text>
+  <rect x="602" y="352" width="560" height="6" rx="3" fill="url(#accent)"/>
+  <text x="600" y="410" font-family="DejaVu Sans, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="30" fill="#8b949e">Legal free LLM APIs &amp; coding agents</text>
+  <text x="600" y="455" font-family="DejaVu Sans, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="24" fill="#6e7781">self-updating · probe-verified twice a week</text>
+  <text x="600" y="493" font-family="DejaVu Sans, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="24" fill="#6e7781">dead offers auto-archived</text>
+</svg>
