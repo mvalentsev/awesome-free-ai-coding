@@ -688,3 +688,69 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
+- id: puter-free
+  name: Puter.js (free LLM API)
+  category: api-free-tier
+  url: https://developer.puter.com/tutorials/free-llm-api/
+  source_urls:
+  - https://developer.puter.com/tutorials/free-llm-api/
+  card_required: false
+  offering: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at
+    no developer cost via Puter's User-Pays model
+  limits: No API key or developer cost; usage billed to each end user's Puter account;
+    per-model rate limits
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://developer.puter.com/tutorials/free-llm-api/
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: true
+- id: novita
+  name: Novita AI
+  category: api-free-tier
+  url: https://novita.ai/
+  source_urls:
+  - https://novita.ai/pricing
+  - https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md
+  card_required: false
+  offering: Inference cloud for 200+ open models; selected models priced Free plus
+    a small signup trial credit
+  limits: Selected models free on the pricing page (e.g. Hunyuan 3); ~$0.5 trial credit
+    valid 1 year
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://novita.ai/pricing
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: true
+- id: upstage
+  name: Upstage (Solar API)
+  category: trial
+  url: https://console.upstage.ai/
+  source_urls:
+  - https://console.upstage.ai/
+  - https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md
+  card_required: false
+  offering: Upstage Solar LLM API; $10 free credit on signup, no card
+  limits: $10 signup credit (see console for validity); pay-as-you-go after
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://console.upstage.ai/
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: true
