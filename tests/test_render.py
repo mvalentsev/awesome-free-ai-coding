@@ -45,11 +45,11 @@ def test_build_context_rows():
 def test_render_readme(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     from freetier_radar.models import save_registry
-    save_registry(reg, [make(), make(id="dead", probe_failures=5)])
+    save_registry(reg, [make(), make(id="dead", name="Dead Tool", probe_failures=5)])
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
     assert "last%20verified-2026-07-19" in text
     assert "## English" in text and "## Русский" in text
     assert "## Archive" in text
-    assert "dead" in text.split("## Archive")[1]
+    assert "Dead Tool" in text.split("## Archive")[1]
     assert out.read_text(encoding="utf-8") == text
