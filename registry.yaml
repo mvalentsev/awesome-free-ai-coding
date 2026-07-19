@@ -261,7 +261,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-  rank: 30
+  rank: 20
 - id: zed
   name: Zed
   category: trial
@@ -348,7 +348,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-  rank: 15
+  rank: 30
 - id: easy-gonka-api
   name: Easy GonkaAI API
   category: trial
@@ -492,7 +492,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-  rank: 20
+  rank: 40
 - id: nvidia-nim
   name: NVIDIA NIM (build.nvidia.com)
   category: api-free-tier
