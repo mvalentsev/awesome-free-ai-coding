@@ -82,7 +82,8 @@ new_entries:
     card_required: false
     offering: ...
     limits: ...
-    models:                # API entries only, and only when the evidence names them
+    models:                # ONLY models actually usable for free on the free tier/plan,
+                           # never the vendor's paid catalog; omit when the evidence is silent
       - {{family: <substring of the vendor's API model ids>, tier: frontier | strong, released: 'YYYY-MM'}}
     probe: {{type: page-keywords, endpoint: <official url>, keywords: ["free"]}}
 Max 8. Empty list if the evidence shows nothing new.

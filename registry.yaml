@@ -251,16 +251,7 @@ entries:
   offering: VS Code agent extension; free starter credits usable on 500+ routed models
     (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...)
   limits: Free credits on signup
-  models:
-  - family: claude-sonnet-5
-    tier: frontier
-    released: ''
-  - family: gpt-5.5
-    tier: frontier
-    released: ''
-  - family: gemini-3.1-pro
-    tier: frontier
-    released: ''
+  models: []
   probe:
     type: page-keywords
     endpoint: https://kilocode.ai

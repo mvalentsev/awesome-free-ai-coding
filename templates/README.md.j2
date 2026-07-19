@@ -7,7 +7,7 @@
 {% for s in sections %}
 ### {{ s.title }}
 {% if s.rows %}
-| Tool | What you get | Models | Limits | Card required | Verified |
+| Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 {% for r in s.rows %}| [{{ r.name }}]({{ r.url }}) | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | {{ r.card }} | {{ r.verified }} |
 {% endfor %}{% else %}
