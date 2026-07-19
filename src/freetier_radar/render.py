@@ -10,11 +10,11 @@ from .models import Category, Entry, load_registry
 
 ARCHIVE_AFTER_DAYS = 60
 
-CATEGORY_TITLES: dict[Category, tuple[str, str]] = {
-    Category.AGENT_CLI: ("Coding agents & CLIs", "Кодинг-агенты и CLI"),
-    Category.API_FREE_TIER: ("LLM APIs with free tier", "LLM API с free tier"),
-    Category.TRIAL: ("Trials (no card when possible)", "Триалы (по возможности без карты)"),
-    Category.AGGREGATOR: ("Aggregators", "Агрегаторы"),
+CATEGORY_TITLES: dict[Category, str] = {
+    Category.AGENT_CLI: "Coding agents & CLIs",
+    Category.API_FREE_TIER: "LLM APIs with free tier",
+    Category.TRIAL: "Trials (no card when possible)",
+    Category.AGGREGATOR: "Aggregators",
 }
 
 
@@ -45,8 +45,8 @@ def build_context(entries: list[Entry], today: date) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
     sections = [
-        {"en": en, "ru": ru, "rows": [_row(e) for e in active if e.category is cat]}
-        for cat, (en, ru) in CATEGORY_TITLES.items()
+        {"title": title, "rows": [_row(e) for e in active if e.category is cat]}
+        for cat, title in CATEGORY_TITLES.items()
     ]
     return {"date": today.isoformat(), "sections": sections, "archived": [_row(e) for e in archived]}
 

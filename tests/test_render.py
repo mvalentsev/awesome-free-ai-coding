@@ -36,7 +36,7 @@ def test_build_context_rows():
     entries = [make(models=[{"family": "a"}, {"family": "b", "superseded_by": "c"}])]
     ctx = build_context(entries, TODAY)
     assert ctx["date"] == "2026-07-19"
-    section = next(s for s in ctx["sections"] if s["en"].startswith("LLM APIs"))
+    section = next(s for s in ctx["sections"] if s["title"].startswith("LLM APIs"))
     assert section["rows"][0]["models"] == "a"
     assert section["rows"][0]["card"] == "❌ No"
     assert ctx["archived"] == []
@@ -49,7 +49,9 @@ def test_render_readme(tmp_path: Path):
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
     assert "last%20verified-2026-07-19" in text
-    assert "## English" in text and "## Русский" in text
+    assert "### Coding agents & CLIs" in text
+    assert "### LLM APIs with free tier" in text
+    assert "Русский" not in text
     assert "## Archive" in text
     assert "Dead Tool" in text.split("## Archive")[1]
     assert out.read_text(encoding="utf-8") == text

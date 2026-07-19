@@ -15,7 +15,7 @@ UA = {"User-Agent": "freetier-radar/0.1 (+https://github.com/awesome-free-ai-cod
 
 
 async def probe_entry(client: httpx.AsyncClient, entry: Entry) -> str | None:
-    """None = проба прошла, строка = описание проблемы."""
+    """None = probe passed, string = description of the problem."""
     try:
         resp = await client.get(entry.probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
         resp.raise_for_status()

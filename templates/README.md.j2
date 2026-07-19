@@ -3,11 +3,9 @@
 ![Last verified](https://img.shields.io/badge/last%20verified-{{ date }}-brightgreen)
 
 > Legal free tiers, trials and free-model APIs for AI coding — auto-verified weekly; dead offers drop to the [Archive](#archive).
-> Легальные бесплатные тарифы, триалы и API с free-моделями для AI-кодинга — авто-проверка еженедельно; мёртвые офферы уезжают в [Архив](#archive).
 
-## English
 {% for s in sections %}
-### {{ s.en }}
+### {{ s.title }}
 {% if s.rows %}
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
@@ -16,26 +14,15 @@
 _Nothing verified right now._
 {% endif %}
 {% endfor %}
-## Русский
-{% for s in sections %}
-### {{ s.ru }}
-{% if s.rows %}
-| Тул | Что дают | Модели | Лимиты | Нужна карта | Проверено |
-|---|---|---|---|---|---|
-{% for r in s.rows %}| [{{ r.name }}]({{ r.url }}) | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | {{ r.card }} | {{ r.verified }} |
-{% endfor %}{% else %}
-_Сейчас ничего не подтверждено._
-{% endif %}
-{% endfor %}
 ## Archive
 
-Outdated or unverifiable entries / Устаревшие или неподтверждённые записи:
+Outdated or unverifiable entries:
 {% if archived %}
 | Tool | Last verified |
 |---|---|
 {% for r in archived %}| [{{ r.name }}]({{ r.url }}) | {{ r.verified }} |
 {% endfor %}{% else %}
-_Empty / Пусто._
+_Empty._
 {% endif %}
 ---
 
