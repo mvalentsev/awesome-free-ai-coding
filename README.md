@@ -11,11 +11,10 @@
 |---|---|---|---|---|---|
 | [opencode](https://opencode.ai) | Open-source TUI agent, BYOK or free models via OpenRouter | — | Free with your own free-tier keys | ❌ No | 2026-07-19 |
 | [Kilo Code](https://kilocode.ai) | VS Code agent extension with free starter credits | — | Free credits on signup | ❌ No | 2026-07-19 |
-| [MiMoCode](https://mimocode.ai) | Coding agent with free tier | — | TBD by scout | ❌ No | 2026-07-19 |
 ### LLM APIs with free tier
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | deepseek, qwen3-coder, kimi-k2, glm-4.5 | 50 req/day free (1000/day with $10 balance) | ❌ No | 2026-07-19 |
+| [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | gpt-oss, nemotron-3-ultra, gemma-4 | 50 req/day free (1000/day with $10 balance) | ❌ No | 2026-07-19 |
 | [Google AI Studio (Gemini API)](https://aistudio.google.com) | Free tier for Gemini 2.5 Flash/Pro API | gemini-2.5 | Per-model daily free quotas (see rate-limits page) | ❌ No | 2026-07-19 |
 | [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ❌ No | 2026-07-19 |
 | [Cerebras Inference](https://www.cerebras.ai) | Very fast inference, free tier | qwen3 | Free tier with daily limits | ❌ No | 2026-07-19 |
@@ -37,11 +36,10 @@ _Nothing verified right now._
 |---|---|---|---|---|---|
 | [opencode](https://opencode.ai) | Open-source TUI agent, BYOK or free models via OpenRouter | — | Free with your own free-tier keys | ❌ No | 2026-07-19 |
 | [Kilo Code](https://kilocode.ai) | VS Code agent extension with free starter credits | — | Free credits on signup | ❌ No | 2026-07-19 |
-| [MiMoCode](https://mimocode.ai) | Coding agent with free tier | — | TBD by scout | ❌ No | 2026-07-19 |
 ### LLM API с free tier
 | Тул | Что дают | Модели | Лимиты | Нужна карта | Проверено |
 |---|---|---|---|---|---|
-| [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | deepseek, qwen3-coder, kimi-k2, glm-4.5 | 50 req/day free (1000/day with $10 balance) | ❌ No | 2026-07-19 |
+| [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | gpt-oss, nemotron-3-ultra, gemma-4 | 50 req/day free (1000/day with $10 balance) | ❌ No | 2026-07-19 |
 | [Google AI Studio (Gemini API)](https://aistudio.google.com) | Free tier for Gemini 2.5 Flash/Pro API | gemini-2.5 | Per-model daily free quotas (see rate-limits page) | ❌ No | 2026-07-19 |
 | [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ❌ No | 2026-07-19 |
 | [Cerebras Inference](https://www.cerebras.ai) | Very fast inference, free tier | qwen3 | Free tier with daily limits | ❌ No | 2026-07-19 |

@@ -1,194 +1,296 @@
 entries:
-  # --- api-free-tier ---
-  - id: openrouter-free
-    name: OpenRouter (free models)
-    category: api-free-tier
-    url: https://openrouter.ai
-    source_urls: [https://openrouter.ai/docs/faq]
-    card_required: false
-    offering: One API key for rotating :free variants of frontier models
-    limits: "50 req/day free (1000/day with $10 balance)"
-    models:
-      - {family: "deepseek", tier: frontier, released: "2025-12"}
-      - {family: "qwen3-coder", tier: strong, released: "2025-07"}
-      - {family: "kimi-k2", tier: frontier, released: "2025-07"}
-      - {family: "glm-4.5", tier: strong, released: "2025-07"}
-    probe: {type: api-models, endpoint: "https://openrouter.ai/api/v1/models", free_marker: ":free"}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: google-ai-studio
-    name: Google AI Studio (Gemini API)
-    category: api-free-tier
-    url: https://aistudio.google.com
-    source_urls: [https://ai.google.dev/gemini-api/docs/rate-limits]
-    card_required: false
-    offering: Free tier for Gemini 2.5 Flash/Pro API
-    limits: "Per-model daily free quotas (see rate-limits page)"
-    models:
-      - {family: "gemini-2.5", tier: frontier, released: "2025-06"}
-    probe: {type: page-keywords, endpoint: "https://ai.google.dev/gemini-api/docs/rate-limits", keywords: ["free tier"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: groq-free
-    name: Groq
-    category: api-free-tier
-    url: https://groq.com
-    source_urls: [https://console.groq.com/docs/rate-limits]
-    card_required: false
-    offering: Fast inference free tier
-    limits: "Free tier daily limits per model"
-    models:
-      - {family: "llama-4", tier: strong, released: "2025-04"}
-      - {family: "qwen3", tier: strong, released: "2025-04"}
-    probe: {type: page-keywords, endpoint: "https://console.groq.com/docs/rate-limits", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: cerebras-free
-    name: Cerebras Inference
-    category: api-free-tier
-    url: https://www.cerebras.ai
-    source_urls: [https://www.cerebras.ai/pricing]
-    card_required: false
-    offering: Very fast inference, free tier
-    limits: "Free tier with daily limits"
-    models:
-      - {family: "qwen3", tier: strong, released: "2025-04"}
-    probe: {type: page-keywords, endpoint: "https://www.cerebras.ai/pricing", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: mistral-free
-    name: Mistral La Plateforme
-    category: api-free-tier
-    url: https://mistral.ai
-    source_urls: [https://docs.mistral.ai/getting-started/quickstart/]
-    card_required: false
-    offering: Free experiment tier on La Plateforme
-    limits: "Experiment tier rate limits"
-    models:
-      - {family: "mistral-medium", tier: strong, released: "2025-05"}
-    probe: {type: page-keywords, endpoint: "https://docs.mistral.ai/getting-started/quickstart/", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: github-models
-    name: GitHub Models
-    category: api-free-tier
-    url: https://github.com/marketplace/models
-    source_urls: [https://docs.github.com/en/github-models]
-    card_required: false
-    offering: Free playground+API for catalog models with GitHub account
-    limits: "Per-model rate limits, free tier"
-    models:
-      - {family: "gpt-4.1", tier: strong, released: "2025-04"}
-    probe: {type: page-keywords, endpoint: "https://docs.github.com/en/github-models", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: cloudflare-workers-ai
-    name: Cloudflare Workers AI
-    category: api-free-tier
-    url: https://workers.cloudflare.com
-    source_urls: [https://developers.cloudflare.com/workers-ai/platform/pricing/]
-    card_required: false
-    offering: 10k neurons/day free
-    limits: "10,000 neurons/day free allocation"
-    models:
-      - {family: "llama-4", tier: strong, released: "2025-04"}
-    probe: {type: page-keywords, endpoint: "https://developers.cloudflare.com/workers-ai/platform/pricing/", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: ollama-cloud
-    name: Ollama Cloud
-    category: api-free-tier
-    url: https://ollama.com/cloud
-    source_urls: [https://ollama.com/cloud]
-    card_required: false
-    offering: Cloud-hosted open models with free usage tier
-    limits: "Free tier with hourly/daily limits"
-    models:
-      - {family: "qwen3-coder", tier: strong, released: "2025-07"}
-      - {family: "gpt-oss", tier: strong, released: "2025-08"}
-    probe: {type: page-keywords, endpoint: "https://ollama.com/cloud", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-    provisional: true
-
-  # --- agent-cli ---
-  - id: opencode
-    name: opencode
-    category: agent-cli
-    url: https://opencode.ai
-    source_urls: [https://opencode.ai/docs/]
-    card_required: false
-    offering: Open-source TUI agent, BYOK or free models via OpenRouter
-    limits: "Free with your own free-tier keys"
-    probe: {type: page-keywords, endpoint: "https://opencode.ai/docs/", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: kilo-code
-    name: Kilo Code
-    category: agent-cli
-    url: https://kilocode.ai
-    source_urls: [https://kilocode.ai]
-    card_required: false
-    offering: VS Code agent extension with free starter credits
-    limits: "Free credits on signup"
-    probe: {type: page-keywords, endpoint: "https://kilocode.ai", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: mimocode
-    name: MiMoCode
-    category: agent-cli
-    url: https://mimocode.ai
-    source_urls: [https://mimocode.ai]
-    card_required: false
-    offering: Coding agent with free tier
-    limits: "TBD by scout"
-    probe: {type: page-keywords, endpoint: "https://mimocode.ai", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-    provisional: true
-
-  # --- trial ---
-  - id: zed
-    name: Zed
-    category: trial
-    url: https://zed.dev
-    source_urls: [https://zed.dev/pricing]
-    card_required: false
-    offering: Free plan with AI features
-    limits: "Free plan limits on AI usage"
-    probe: {type: page-keywords, endpoint: "https://zed.dev/pricing", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: trae
-    name: Trae
-    category: trial
-    url: https://www.trae.ai
-    source_urls: [https://www.trae.ai]
-    card_required: false
-    offering: Free access to frontier models in IDE
-    limits: "Free tier quotas"
-    probe: {type: page-keywords, endpoint: "https://www.trae.ai", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
-
-  - id: windsurf
-    name: Windsurf
-    category: trial
-    url: https://windsurf.com
-    source_urls: [https://windsurf.com/pricing]
-    card_required: false
-    offering: Free plan + trial of paid tiers
-    limits: "Free plan credits"
-    probe: {type: page-keywords, endpoint: "https://windsurf.com/pricing", keywords: ["free"]}
-    first_seen: 2026-07-19
-    last_verified: 2026-07-19
+- id: openrouter-free
+  name: OpenRouter (free models)
+  category: api-free-tier
+  url: https://openrouter.ai
+  source_urls:
+  - https://openrouter.ai/docs/faq
+  card_required: false
+  offering: One API key for rotating :free variants of frontier models
+  limits: 50 req/day free (1000/day with $10 balance)
+  models:
+  - family: gpt-oss
+    tier: strong
+    released: 2025-08
+  - family: nemotron-3-ultra
+    tier: strong
+    released: 2026-03
+  - family: gemma-4
+    tier: strong
+    released: 2026-04
+  probe:
+    type: api-models
+    endpoint: https://openrouter.ai/api/v1/models
+    keywords: []
+    free_marker: :free
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: google-ai-studio
+  name: Google AI Studio (Gemini API)
+  category: api-free-tier
+  url: https://aistudio.google.com
+  source_urls:
+  - https://ai.google.dev/gemini-api/docs/rate-limits
+  card_required: false
+  offering: Free tier for Gemini 2.5 Flash/Pro API
+  limits: Per-model daily free quotas (see rate-limits page)
+  models:
+  - family: gemini-2.5
+    tier: frontier
+    released: 2025-06
+  probe:
+    type: page-keywords
+    endpoint: https://ai.google.dev/gemini-api/docs/rate-limits
+    keywords:
+    - free tier
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: groq-free
+  name: Groq
+  category: api-free-tier
+  url: https://groq.com
+  source_urls:
+  - https://console.groq.com/docs/rate-limits
+  card_required: false
+  offering: Fast inference free tier
+  limits: Free tier daily limits per model
+  models:
+  - family: llama-4
+    tier: strong
+    released: 2025-04
+  - family: qwen3
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://console.groq.com/docs/rate-limits
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: cerebras-free
+  name: Cerebras Inference
+  category: api-free-tier
+  url: https://www.cerebras.ai
+  source_urls:
+  - https://www.cerebras.ai/pricing
+  card_required: false
+  offering: Very fast inference, free tier
+  limits: Free tier with daily limits
+  models:
+  - family: qwen3
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://www.cerebras.ai/pricing
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: mistral-free
+  name: Mistral La Plateforme
+  category: api-free-tier
+  url: https://mistral.ai
+  source_urls:
+  - https://docs.mistral.ai/getting-started/quickstart/
+  card_required: false
+  offering: Free experiment tier on La Plateforme
+  limits: Experiment tier rate limits
+  models:
+  - family: mistral-medium
+    tier: strong
+    released: 2025-05
+  probe:
+    type: page-keywords
+    endpoint: https://docs.mistral.ai/getting-started/quickstart/
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: github-models
+  name: GitHub Models
+  category: api-free-tier
+  url: https://github.com/marketplace/models
+  source_urls:
+  - https://docs.github.com/en/github-models
+  card_required: false
+  offering: Free playground+API for catalog models with GitHub account
+  limits: Per-model rate limits, free tier
+  models:
+  - family: gpt-4.1
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://docs.github.com/en/github-models
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: cloudflare-workers-ai
+  name: Cloudflare Workers AI
+  category: api-free-tier
+  url: https://workers.cloudflare.com
+  source_urls:
+  - https://developers.cloudflare.com/workers-ai/platform/pricing/
+  card_required: false
+  offering: 10k neurons/day free
+  limits: 10,000 neurons/day free allocation
+  models:
+  - family: llama-4
+    tier: strong
+    released: 2025-04
+  probe:
+    type: page-keywords
+    endpoint: https://developers.cloudflare.com/workers-ai/platform/pricing/
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: ollama-cloud
+  name: Ollama Cloud
+  category: api-free-tier
+  url: https://ollama.com/cloud
+  source_urls:
+  - https://ollama.com/cloud
+  card_required: false
+  offering: Cloud-hosted open models with free usage tier
+  limits: Free tier with hourly/daily limits
+  models:
+  - family: qwen3-coder
+    tier: strong
+    released: 2025-07
+  - family: gpt-oss
+    tier: strong
+    released: 2025-08
+  probe:
+    type: page-keywords
+    endpoint: https://ollama.com/cloud
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: true
+- id: opencode
+  name: opencode
+  category: agent-cli
+  url: https://opencode.ai
+  source_urls:
+  - https://opencode.ai/docs/
+  card_required: false
+  offering: Open-source TUI agent, BYOK or free models via OpenRouter
+  limits: Free with your own free-tier keys
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://opencode.ai/docs/
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: kilo-code
+  name: Kilo Code
+  category: agent-cli
+  url: https://kilocode.ai
+  source_urls:
+  - https://kilocode.ai
+  card_required: false
+  offering: VS Code agent extension with free starter credits
+  limits: Free credits on signup
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://kilocode.ai
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: zed
+  name: Zed
+  category: trial
+  url: https://zed.dev
+  source_urls:
+  - https://zed.dev/pricing
+  card_required: false
+  offering: Free plan with AI features
+  limits: Free plan limits on AI usage
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://zed.dev/pricing
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: trae
+  name: Trae
+  category: trial
+  url: https://www.trae.ai
+  source_urls:
+  - https://www.trae.ai
+  card_required: false
+  offering: Free access to frontier models in IDE
+  limits: Free tier quotas
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://www.trae.ai
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
+- id: windsurf
+  name: Windsurf
+  category: trial
+  url: https://windsurf.com
+  source_urls:
+  - https://windsurf.com/pricing
+  card_required: false
+  offering: Free plan + trial of paid tiers
+  limits: Free plan credits
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://windsurf.com/pricing
+    keywords:
+    - free
+    free_marker: ''
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  probe_failures: 0
+  provisional: false
