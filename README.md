@@ -1,6 +1,6 @@
 # awesome-free-ai-coding
 
-![Last verified](https://img.shields.io/badge/last%20verified-2026--07--19-brightgreen) ![Live entries](https://img.shields.io/badge/live%20entries-33-blue)
+![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-brightgreen) ![Live entries](https://img.shields.io/badge/live%20entries-32-blue)
 
 > Legal free tiers, trials and free-model APIs for AI coding — auto-verified twice a week; dead offers drop to the [Archive](#archive).
 
@@ -13,7 +13,6 @@
 | [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | — | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ❌ No | 2026-07-19 |
 | [Cline](https://cline.bot/) | Open-source (Apache-2.0) autonomous coding agent for VS Code, JetBrains and CLI; BYOK — pair with free-tier provider keys or local models for zero model cost | — | Tool is free and unlimited; model usage is BYOK (no bundled free-model quota) | ❌ No | 2026-07-19 |
 | [Aider](https://aider.chat/) | Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama | — | Tool is free and open-source; model usage is BYOK (no bundled free-model quota) | ❌ No | 2026-07-19 |
-| [AINative Studio (Free Starter Plan)](https://ainative.studio/) | Free code editor with 1K API credits, 10K LLM tokens per month | — | 10K tokens/month in free tier | ❌ No | 2026-07-19 |
 ### LLM APIs with free tier
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
@@ -32,7 +31,8 @@
 | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | qwen3-max, qwen3-coder | 1,000,000 free tokens per model, valid 90 days after activation; Singapore/international scope only | ❌ No | 2026-07-19 |
 | [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) | EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer | glm-5.2, qwen3 | 1,000,000 free tokens then pay-per-token; a valid payment method is required | ⚠️ Yes | 2026-07-19 |
 | [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | deepseek, qwen3 | Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests | ❌ No | 2026-07-19 |
-| [Puter.js Free LLM API](https://developer.puter.com/tutorials/free-llm-api/) | Access to hundreds of LLMs without API keys or backend infrastructure | — | No limits on token usage; request limits depend on chosen model | ❌ No | 2026-07-19 |
+| [Puter.js (free LLM API)](https://developer.puter.com/tutorials/free-llm-api/) | Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model | — | No API key or developer cost; usage billed to each end user's Puter account; per-model rate limits | ❌ No | 2026-07-19 |
+| [Novita AI](https://novita.ai/) | Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit | — | Selected models free on the pricing page (e.g. Hunyuan 3); ~$0.5 trial credit valid 1 year | ❌ No | 2026-07-19 |
 ### Trials (no card when possible)
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
@@ -44,8 +44,7 @@
 | [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | — | 15 tasks per rolling 24 hours; 3 concurrent tasks | ❌ No | 2026-07-19 |
 | [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | — | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ❌ No | 2026-07-19 |
 | [Cursor (Hobby)](https://cursor.com/) | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset | ❌ No | 2026-07-19 |
-| [Novita (Trial Credits)](https://novita.ai/) | 0.5$ credit for 1 year of free usage | — | 0.5$ FC for 1 year | ❌ No | 2026-07-19 |
-| [Upstage (Trial Credits)](https://console.upstage.ai/) | 10$ credit for 3 months of free usage | — | 10$ credit for 3 months | ❌ No | 2026-07-19 |
+| [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | — | $10 signup credit (see console for validity); pay-as-you-go after | ❌ No | 2026-07-19 |
 ### Aggregators
 _Nothing verified right now._
 ## Archive
