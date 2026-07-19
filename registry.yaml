@@ -24,7 +24,7 @@ entries:
     keywords: []
     free_marker: :free
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: google-ai-studio
@@ -47,7 +47,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: groq-free
@@ -73,7 +73,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: cerebras-free
@@ -96,7 +96,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: mistral-free
@@ -119,7 +119,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: github-models
@@ -142,7 +142,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: cloudflare-workers-ai
@@ -165,7 +165,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: ollama-cloud
@@ -191,7 +191,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: true
 - id: opencode
@@ -211,7 +211,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: kilo-code
@@ -231,7 +231,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: zed
@@ -251,7 +251,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: trae
@@ -271,7 +271,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: windsurf
@@ -291,7 +291,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: mimo-code
@@ -314,7 +314,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: easy-gonka-api
@@ -336,7 +336,7 @@ entries:
     - free tokens
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: true
 - id: github-copilot-free
@@ -360,7 +360,7 @@ entries:
     - no subscription or payment required
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: google-jules
@@ -382,7 +382,7 @@ entries:
     - gemini 2.5 pro
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: kiro
@@ -405,7 +405,7 @@ entries:
     - 50 credits
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: cursor-hobby
@@ -428,7 +428,7 @@ entries:
     - no credit card required
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: openai-codex-cli
@@ -452,7 +452,7 @@ entries:
     - chatgpt free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: cline
@@ -475,7 +475,7 @@ entries:
     - apache
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: aider
@@ -499,7 +499,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: nvidia-nim
@@ -526,7 +526,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: zai-glm
@@ -551,7 +551,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: ovh-ai-endpoints
@@ -578,7 +578,7 @@ entries:
     keywords: []
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: pollinations
@@ -602,7 +602,7 @@ entries:
     - no signup
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: alibaba-model-studio
@@ -630,7 +630,7 @@ entries:
     - free quota
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: scaleway-generative
@@ -657,7 +657,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
 - id: huggingface-inference
@@ -685,6 +685,6 @@ entries:
     - monthly credits
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
