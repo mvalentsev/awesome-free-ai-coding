@@ -208,22 +208,39 @@ entries:
   category: agent-cli
   url: https://opencode.ai
   source_urls:
+  - https://opencode.ai/docs/zen/
   - https://opencode.ai/docs/
   card_required: false
-  offering: Open-source TUI agent, BYOK or free models via OpenRouter
-  limits: Free with your own free-tier keys
-  models: []
+  offering: Open-source TUI/desktop coding agent with free models included via the
+    opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra);
+    any provider via BYOK too
+  limits: Bundled Zen models priced Free (some marked limited-time); frontier models
+    pay-as-you-go
+  models:
+  - family: big-pickle
+    tier: strong
+    released: ''
+  - family: deepseek-v4-flash
+    tier: strong
+    released: ''
+  - family: mimo-v2.5
+    tier: strong
+    released: ''
+  - family: nemotron-3-ultra
+    tier: strong
+    released: ''
   probe:
     type: page-keywords
-    endpoint: https://opencode.ai/docs/
+    endpoint: https://opencode.ai/docs/zen/
     keywords:
+    - big pickle
     - free
     free_marker: ''
   first_seen: '2026-07-19'
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-  rank: 40
+  rank: 10
 - id: kilo-code
   name: Kilo Code
   category: agent-cli
@@ -331,7 +348,7 @@ entries:
   last_verified: '2026-07-19'
   probe_failures: 0
   provisional: false
-  rank: 10
+  rank: 15
 - id: easy-gonka-api
   name: Easy GonkaAI API
   category: trial

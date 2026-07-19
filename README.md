@@ -7,10 +7,10 @@
 ### Coding agents & CLIs
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
+| [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ❌ No | 2026-07-19 |
 | [MiMo Code](https://mimo.xiaomi.com/coder) | Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card | — | MiMo Auto is free for a limited time; anonymous channel, zero configuration | ❌ No | 2026-07-19 |
 | [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | — | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ❌ No | 2026-07-19 |
 | [Kilo Code](https://kilocode.ai) | VS Code agent extension with free starter credits | — | Free credits on signup | ❌ No | 2026-07-19 |
-| [opencode](https://opencode.ai) | Open-source TUI agent, BYOK or free models via OpenRouter | — | Free with your own free-tier keys | ❌ No | 2026-07-19 |
 ### LLM APIs with free tier
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
