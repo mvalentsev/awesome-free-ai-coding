@@ -11,7 +11,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [⚙️ How it works](#how-this-list-stays-fresh)**
+**[🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [⚙️ How it works](#how-this-list-stays-fresh)**
 
 </div>
 
@@ -37,6 +37,28 @@ Outdated or unverifiable entries:
 {% endfor %}{% else %}
 _Empty — the radar is clean._
 {% endif %}
+
+## 🔧 Plug it into your agent
+
+Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK:
+
+| Provider | Base URL | Key env var | Get a key |
+|---|---|---|---|
+{% for c in connections %}| {{ c.name }} | `{{ c.base_url }}` | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
+{% endfor %}
+Zero-signup sanity check — works with no account, no key, right now:
+
+```bash
+curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gpt-oss-120b","messages":[{"role":"user","content":"2+2?"}]}'
+```
+
+Ready-made artifacts, regenerated on every update:
+
+- [`configs/opencode.json`](configs/opencode.json) — drop-in [opencode](https://opencode.ai) config with every provider wired up (keys via `{env:...}`, keyless endpoints work immediately)
+- [`configs/free-llm.env.example`](configs/free-llm.env.example) — commented env exports for any OpenAI-compatible tool
+- [`index.json`](index.json) — machine-readable registry; `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json | jq '.entries[].id'`
 
 ## How this list stays fresh
 

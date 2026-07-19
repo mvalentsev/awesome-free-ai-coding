@@ -18,6 +18,16 @@ entries:
   - family: gemma-4
     tier: strong
     released: 2026-04
+  api:
+    base_url: https://openrouter.ai/api/v1
+    key_url: https://openrouter.ai/settings/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - tencent/hy3:free
+    - poolside/laguna-xs-2.1:free
+    - cohere/north-mini-code:free
+    note: pick models with the :free suffix
   probe:
     type: api-models
     endpoint: https://openrouter.ai/api/v1/models
@@ -42,6 +52,13 @@ entries:
   - family: gemini-2.5
     tier: frontier
     released: 2025-06
+  api:
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+    key_url: https://aistudio.google.com/apikey
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: pass the key as Bearer
   probe:
     type: page-keywords
     endpoint: https://ai.google.dev/gemini-api/docs/rate-limits
@@ -69,6 +86,13 @@ entries:
   - family: qwen3
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://api.groq.com/openai/v1
+    key_url: https://console.groq.com/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: ''
   probe:
     type: page-keywords
     endpoint: https://console.groq.com/docs/rate-limits
@@ -93,6 +117,13 @@ entries:
   - family: qwen3
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://api.cerebras.ai/v1
+    key_url: https://cloud.cerebras.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: ''
   probe:
     type: page-keywords
     endpoint: https://www.cerebras.ai/pricing
@@ -117,6 +148,13 @@ entries:
   - family: mistral-medium
     tier: strong
     released: 2025-05
+  api:
+    base_url: https://api.mistral.ai/v1
+    key_url: https://console.mistral.ai/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: Experiment tier needs account activation
   probe:
     type: page-keywords
     endpoint: https://docs.mistral.ai/getting-started/quickstart/
@@ -141,6 +179,13 @@ entries:
   - family: gpt-4.1
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://models.github.ai/inference
+    key_url: https://github.com/settings/personal-access-tokens
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: GitHub PAT with models:read scope; model ids namespaced (openai/...)
   probe:
     type: page-keywords
     endpoint: https://docs.github.com/en/github-models
@@ -165,6 +210,13 @@ entries:
   - family: llama-4
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
+    key_url: https://dash.cloudflare.com/profile/api-tokens
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: substitute {account_id} with your Cloudflare account ID
   probe:
     type: page-keywords
     endpoint: https://developers.cloudflare.com/workers-ai/platform/pricing/
@@ -192,6 +244,16 @@ entries:
   - family: gpt-oss
     tier: strong
     released: 2025-08
+  api:
+    base_url: https://ollama.com/v1
+    key_url: https://ollama.com/settings/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - qwen3.5:397b
+    - gpt-oss:120b
+    - deepseek-v4-flash
+    note: ''
   probe:
     type: page-keywords
     endpoint: https://ollama.com/cloud
@@ -341,35 +403,6 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 30
-- id: easy-gonka-api
-  name: Easy GonkaAI API
-  category: trial
-  url: https://gonka-api.org/
-  source_urls:
-  - https://gonka-api.org/
-  card_required: false
-  offering: Third-party OpenAI-compatible broker to the permissionless Gonka decentralized
-    inference network (Qwen, Kimi and other open models)
-  limits: 10M free tokens on signup (one-time trial, no card); paid usage billed in
-    crypto
-  models:
-  - family: minimax-m2
-    tier: strong
-    released: ''
-  - family: kimi-k2
-    tier: strong
-    released: ''
-  probe:
-    type: page-keywords
-    endpoint: https://gonka-api.org/
-    keywords:
-    - free tokens
-    free_marker: ''
-  first_seen: '2026-07-20'
-  last_verified: '2026-07-19'
-  probe_failures: 0
-  provisional: true
-  rank: 90
 - id: github-copilot-free
   name: GitHub Copilot Free
   category: trial
@@ -526,6 +559,16 @@ entries:
   - family: llama-4
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://integrate.api.nvidia.com/v1
+    key_url: https://build.nvidia.com
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-ai/deepseek-v4-flash
+    - nvidia/nemotron-3-nano-30b-a3b
+    - meta/llama-4-maverick-17b-128e-instruct
+    note: ''
   probe:
     type: page-keywords
     endpoint: https://build.nvidia.com/explore/discover
@@ -551,6 +594,13 @@ entries:
   - family: glm-4.5
     tier: strong
     released: 2025-07
+  api:
+    base_url: https://api.z.ai/api/paas/v4
+    key_url: https://z.ai/manage-apikey/apikey-list
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead
   probe:
     type: page-keywords
     endpoint: https://docs.z.ai/guides/overview/pricing
@@ -581,6 +631,15 @@ entries:
   - family: gpt-oss
     tier: strong
     released: 2025-08
+  api:
+    base_url: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
+    auth: none
+    openai_compatible: true
+    model_ids:
+    - gpt-oss-120b
+    - Qwen3.6-27B
+    - Qwen3.5-9B
+    note: anonymous, rate-limited; free key raises limits
   probe:
     type: api-models
     endpoint: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models
@@ -605,6 +664,13 @@ entries:
   - family: gpt-oss
     tier: strong
     released: 2025-08
+  api:
+    base_url: https://text.pollinations.ai/openai
+    key_url: https://auth.pollinations.ai
+    auth: none
+    openai_compatible: true
+    model_ids: []
+    note: anonymous works; optional token raises rate limits
   probe:
     type: page-keywords
     endpoint: https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md
@@ -634,6 +700,13 @@ entries:
   - family: qwen3-coder
     tier: strong
     released: 2025-07
+  api:
+    base_url: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+    key_url: https://modelstudio.console.alibabacloud.com
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: international (Singapore) endpoint; keys are region-specific
   probe:
     type: page-keywords
     endpoint: https://www.alibabacloud.com/help/en/model-studio/model-pricing
@@ -662,6 +735,13 @@ entries:
   - family: qwen3
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://api.scaleway.ai/v1
+    key_url: https://console.scaleway.com
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: 'non-default project: https://api.scaleway.ai/{project_id}/v1'
   probe:
     type: page-keywords
     endpoint: https://www.scaleway.com/en/docs/generative-apis/faq/
@@ -691,6 +771,13 @@ entries:
   - family: qwen3
     tier: strong
     released: 2025-04
+  api:
+    base_url: https://router.huggingface.co/v1
+    key_url: https://huggingface.co/settings/tokens
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: chat-only; model ids namespaced (openai/gpt-oss-120b)
   probe:
     type: page-keywords
     endpoint: https://huggingface.co/docs/inference-providers/pricing
@@ -715,6 +802,16 @@ entries:
   limits: Selected models free on the pricing page (e.g. Hunyuan 3); ~$0.5 trial credit
     valid 1 year
   models: []
+  api:
+    base_url: https://api.novita.ai/openai
+    key_url: https://novita.ai/settings/key-management
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek/deepseek-v4-pro
+    - qwen/qwen3.7-max
+    - zai-org/glm-5.2
+    note: ''
   probe:
     type: page-keywords
     endpoint: https://novita.ai/pricing
@@ -743,6 +840,13 @@ entries:
   - family: solar-mini
     tier: strong
     released: ''
+  api:
+    base_url: https://api.upstage.ai/v1
+    key_url: https://console.upstage.ai/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: ''
   probe:
     type: page-keywords
     endpoint: https://console.upstage.ai/

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from datetime import date
 from pathlib import Path
 
@@ -41,6 +42,18 @@ def _row(e: Entry) -> dict[str, str]:
     }
 
 
+def env_var(entry_id: str) -> str:
+    return entry_id.removesuffix("-free").replace("-", "_").replace(".", "_").upper() + "_API_KEY"
+
+
+def _connectable(entries: list[Entry], today: date) -> list[Entry]:
+    return sorted(
+        (e for e in entries
+         if not is_archived(e, today) and e.api and e.api.base_url and e.api.openai_compatible),
+        key=lambda e: (e.rank, e.name.lower()),
+    )
+
+
 def build_context(entries: list[Entry], today: date) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
@@ -50,8 +63,63 @@ def build_context(entries: list[Entry], today: date) -> dict:
                                           key=lambda e: (e.rank, e.name.lower()))]}
         for cat, title in CATEGORY_TITLES.items()
     ]
+    connections = [
+        {"name": e.name, "base_url": e.api.base_url,
+         "auth": "—" if e.api.auth == "none" else f"`{env_var(e.id)}`",
+         "key_url": e.api.key_url or "", "note": e.api.note}
+        for e in _connectable(entries, today)
+    ]
     return {"date": today.isoformat(), "sections": sections,
-            "archived": [_row(e) for e in archived], "active_count": len(active)}
+            "archived": [_row(e) for e in archived], "active_count": len(active),
+            "connections": connections}
+
+
+def build_index(entries: list[Entry], today: date) -> dict:
+    return {
+        "generated": today.isoformat(),
+        "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
+        "entries": [
+            {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today)}
+            for e in entries
+        ],
+    }
+
+
+def build_opencode_config(entries: list[Entry], today: date) -> dict:
+    providers = {}
+    for e in _connectable(entries, today):
+        options: dict = {"baseURL": e.api.base_url}
+        if e.api.auth != "none":
+            options["apiKey"] = "{env:" + env_var(e.id) + "}"
+        ids = e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
+        models = {mid: {"name": mid} for mid in ids}
+        providers[e.id] = {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": e.name,
+            "options": options,
+            "models": models,
+        }
+    return {"$schema": "https://opencode.ai/config.json", "provider": providers}
+
+
+def build_env_example(entries: list[Entry], today: date) -> str:
+    lines = [
+        "# Free LLM providers — generated from registry.yaml, do not edit by hand.",
+        "# Fill the keys you use, then `source` this file. Every endpoint is",
+        "# OpenAI-compatible: point any SDK/agent at the base URL next to the key.",
+        "",
+    ]
+    for e in _connectable(entries, today):
+        if e.api.auth == "none":
+            lines.append(f"# ── {e.name} — no key needed · base: {e.api.base_url}")
+        else:
+            key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
+            lines.append(f"# ── {e.name} — base: {e.api.base_url}{key_hint}")
+            lines.append(f'export {env_var(e.id)}=""')
+        if e.api.note:
+            lines.append(f"#    note: {e.api.note}")
+        lines.append("")
+    return "\n".join(lines)
 
 
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path, today: date | None = None) -> str:
@@ -68,6 +136,22 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path, today
     return text
 
 
+def render_artifacts(registry_path: Path, root: Path, today: date | None = None) -> None:
+    """index.json + configs/ — the machine-usable outputs, regenerated with the README."""
+    today = today or date.today()
+    entries = load_registry(registry_path)
+    (root / "index.json").write_text(
+        json.dumps(build_index(entries, today), indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8")
+    configs = root / "configs"
+    configs.mkdir(parents=True, exist_ok=True)
+    (configs / "opencode.json").write_text(
+        json.dumps(build_opencode_config(entries, today), indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8")
+    (configs / "free-llm.env.example").write_text(
+        build_env_example(entries, today) + "\n", encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
@@ -75,4 +159,5 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=Path("README.md"))
     args = parser.parse_args()
     render_readme(args.registry, args.templates, args.out)
-    print(f"rendered {args.out}")
+    render_artifacts(args.registry, args.out.parent if args.out.parent != Path("") else Path("."))
+    print(f"rendered {args.out}, index.json, configs/")

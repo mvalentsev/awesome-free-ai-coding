@@ -39,6 +39,16 @@ class Probe(BaseModel):
     free_marker: str = ""
 
 
+class ApiInfo(BaseModel):
+    """Connection details a developer pastes into an agent/SDK config."""
+    base_url: str | None = None
+    key_url: str | None = None
+    auth: str = "api-key"  # "api-key" | "none"
+    openai_compatible: bool = True
+    model_ids: list[str] = []  # exact callable ids for generated configs
+    note: str = ""
+
+
 class Entry(BaseModel):
     id: str
     name: str
@@ -49,6 +59,7 @@ class Entry(BaseModel):
     offering: str
     limits: str = ""
     models: list[ModelFamily] = []
+    api: ApiInfo | None = None
     probe: Probe
     first_seen: date
     last_verified: date

@@ -1,0 +1,269 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "nvidia-nim": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA NIM (build.nvidia.com)",
+      "options": {
+        "baseURL": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "{env:NVIDIA_NIM_API_KEY}"
+      },
+      "models": {
+        "deepseek-ai/deepseek-v4-flash": {
+          "name": "deepseek-ai/deepseek-v4-flash"
+        },
+        "nvidia/nemotron-3-nano-30b-a3b": {
+          "name": "nvidia/nemotron-3-nano-30b-a3b"
+        },
+        "meta/llama-4-maverick-17b-128e-instruct": {
+          "name": "meta/llama-4-maverick-17b-128e-instruct"
+        }
+      }
+    },
+    "openrouter-free": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenRouter (free models)",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKey": "{env:OPENROUTER_API_KEY}"
+      },
+      "models": {
+        "tencent/hy3:free": {
+          "name": "tencent/hy3:free"
+        },
+        "poolside/laguna-xs-2.1:free": {
+          "name": "poolside/laguna-xs-2.1:free"
+        },
+        "cohere/north-mini-code:free": {
+          "name": "cohere/north-mini-code:free"
+        }
+      }
+    },
+    "groq-free": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Groq",
+      "options": {
+        "baseURL": "https://api.groq.com/openai/v1",
+        "apiKey": "{env:GROQ_API_KEY}"
+      },
+      "models": {
+        "llama-4": {
+          "name": "llama-4"
+        },
+        "qwen3": {
+          "name": "qwen3"
+        }
+      }
+    },
+    "huggingface-inference": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Hugging Face Inference Providers",
+      "options": {
+        "baseURL": "https://router.huggingface.co/v1",
+        "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
+      },
+      "models": {
+        "deepseek": {
+          "name": "deepseek"
+        },
+        "qwen3": {
+          "name": "qwen3"
+        }
+      }
+    },
+    "cerebras-free": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Cerebras Inference",
+      "options": {
+        "baseURL": "https://api.cerebras.ai/v1",
+        "apiKey": "{env:CEREBRAS_API_KEY}"
+      },
+      "models": {
+        "qwen3": {
+          "name": "qwen3"
+        }
+      }
+    },
+    "ovh-ai-endpoints": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OVHcloud AI Endpoints",
+      "options": {
+        "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
+      },
+      "models": {
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        },
+        "Qwen3.6-27B": {
+          "name": "Qwen3.6-27B"
+        },
+        "Qwen3.5-9B": {
+          "name": "Qwen3.5-9B"
+        }
+      }
+    },
+    "zai-glm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Z.ai (Zhipu GLM)",
+      "options": {
+        "baseURL": "https://api.z.ai/api/paas/v4",
+        "apiKey": "{env:ZAI_GLM_API_KEY}"
+      },
+      "models": {
+        "glm-4.5": {
+          "name": "glm-4.5"
+        }
+      }
+    },
+    "cloudflare-workers-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Cloudflare Workers AI",
+      "options": {
+        "baseURL": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1",
+        "apiKey": "{env:CLOUDFLARE_WORKERS_AI_API_KEY}"
+      },
+      "models": {
+        "llama-4": {
+          "name": "llama-4"
+        }
+      }
+    },
+    "ollama-cloud": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Cloud",
+      "options": {
+        "baseURL": "https://ollama.com/v1",
+        "apiKey": "{env:OLLAMA_CLOUD_API_KEY}"
+      },
+      "models": {
+        "qwen3.5:397b": {
+          "name": "qwen3.5:397b"
+        },
+        "gpt-oss:120b": {
+          "name": "gpt-oss:120b"
+        },
+        "deepseek-v4-flash": {
+          "name": "deepseek-v4-flash"
+        }
+      }
+    },
+    "github-models": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "GitHub Models",
+      "options": {
+        "baseURL": "https://models.github.ai/inference",
+        "apiKey": "{env:GITHUB_MODELS_API_KEY}"
+      },
+      "models": {
+        "gpt-4.1": {
+          "name": "gpt-4.1"
+        }
+      }
+    },
+    "upstage": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Upstage (Solar API)",
+      "options": {
+        "baseURL": "https://api.upstage.ai/v1",
+        "apiKey": "{env:UPSTAGE_API_KEY}"
+      },
+      "models": {
+        "solar-pro-3": {
+          "name": "solar-pro-3"
+        },
+        "solar-mini": {
+          "name": "solar-mini"
+        }
+      }
+    },
+    "mistral-free": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Mistral La Plateforme",
+      "options": {
+        "baseURL": "https://api.mistral.ai/v1",
+        "apiKey": "{env:MISTRAL_API_KEY}"
+      },
+      "models": {
+        "mistral-medium": {
+          "name": "mistral-medium"
+        }
+      }
+    },
+    "pollinations": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Pollinations.AI",
+      "options": {
+        "baseURL": "https://text.pollinations.ai/openai"
+      },
+      "models": {
+        "gpt-oss": {
+          "name": "gpt-oss"
+        }
+      }
+    },
+    "alibaba-model-studio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Alibaba Cloud Model Studio (DashScope, international)",
+      "options": {
+        "baseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "{env:ALIBABA_MODEL_STUDIO_API_KEY}"
+      },
+      "models": {
+        "qwen3-max": {
+          "name": "qwen3-max"
+        },
+        "qwen3-coder": {
+          "name": "qwen3-coder"
+        }
+      }
+    },
+    "novita": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Novita AI",
+      "options": {
+        "baseURL": "https://api.novita.ai/openai",
+        "apiKey": "{env:NOVITA_API_KEY}"
+      },
+      "models": {
+        "deepseek/deepseek-v4-pro": {
+          "name": "deepseek/deepseek-v4-pro"
+        },
+        "qwen/qwen3.7-max": {
+          "name": "qwen/qwen3.7-max"
+        },
+        "zai-org/glm-5.2": {
+          "name": "zai-org/glm-5.2"
+        }
+      }
+    },
+    "scaleway-generative": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Scaleway Generative APIs",
+      "options": {
+        "baseURL": "https://api.scaleway.ai/v1",
+        "apiKey": "{env:SCALEWAY_GENERATIVE_API_KEY}"
+      },
+      "models": {
+        "glm-5.2": {
+          "name": "glm-5.2"
+        },
+        "qwen3": {
+          "name": "qwen3"
+        }
+      }
+    },
+    "google-ai-studio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Google AI Studio (Gemini API)",
+      "options": {
+        "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        "apiKey": "{env:GOOGLE_AI_STUDIO_API_KEY}"
+      },
+      "models": {
+        "gemini-2.5": {
+          "name": "gemini-2.5"
+        }
+      }
+    }
+  }
+}

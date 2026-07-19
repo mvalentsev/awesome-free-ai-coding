@@ -7,11 +7,11 @@
 
 [![CI](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-28-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-27-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [⚙️ How it works](#how-this-list-stays-fresh)**
+**[🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [⚙️ How it works](#how-this-list-stays-fresh)**
 
 </div>
 
@@ -51,7 +51,6 @@
 | [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | claude-haiku, gpt-5.2-mini, kimi-k2.5 | Free plan credits | ✅ No | 2026-07-19 |
 | [Trae](https://www.trae.ai) | Free access to frontier models in IDE | — | Free tier quotas | ✅ No | 2026-07-19 |
 | [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | solar-pro-3, solar-mini | $10 signup credit (see console for validity); pay-as-you-go after | ✅ No | 2026-07-19 |
-| [Easy GonkaAI API](https://gonka-api.org/) | Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models) | minimax-m2, kimi-k2 | 10M free tokens on signup (one-time trial, no card); paid usage billed in crypto | ✅ No | 2026-07-19 |
 ### 🧭 Aggregators (one key, many providers)
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
@@ -61,6 +60,43 @@
 
 Outdated or unverifiable entries:
 _Empty — the radar is clean._
+
+## 🔧 Plug it into your agent
+
+Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK:
+
+| Provider | Base URL | Key env var | Get a key |
+|---|---|---|---|
+| NVIDIA NIM (build.nvidia.com) | `https://integrate.api.nvidia.com/v1` | `NVIDIA_NIM_API_KEY` | [key](https://build.nvidia.com) |
+| OpenRouter (free models) | `https://openrouter.ai/api/v1` | `OPENROUTER_API_KEY` | [key](https://openrouter.ai/settings/keys) |
+| Groq | `https://api.groq.com/openai/v1` | `GROQ_API_KEY` | [key](https://console.groq.com/keys) |
+| Hugging Face Inference Providers | `https://router.huggingface.co/v1` | `HUGGINGFACE_INFERENCE_API_KEY` | [key](https://huggingface.co/settings/tokens) |
+| Cerebras Inference | `https://api.cerebras.ai/v1` | `CEREBRAS_API_KEY` | [key](https://cloud.cerebras.ai) |
+| OVHcloud AI Endpoints | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | — | not needed |
+| Z.ai (Zhipu GLM) | `https://api.z.ai/api/paas/v4` | `ZAI_GLM_API_KEY` | [key](https://z.ai/manage-apikey/apikey-list) |
+| Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1` | `CLOUDFLARE_WORKERS_AI_API_KEY` | [key](https://dash.cloudflare.com/profile/api-tokens) |
+| Ollama Cloud | `https://ollama.com/v1` | `OLLAMA_CLOUD_API_KEY` | [key](https://ollama.com/settings/keys) |
+| GitHub Models | `https://models.github.ai/inference` | `GITHUB_MODELS_API_KEY` | [key](https://github.com/settings/personal-access-tokens) |
+| Upstage (Solar API) | `https://api.upstage.ai/v1` | `UPSTAGE_API_KEY` | [key](https://console.upstage.ai/api-keys) |
+| Mistral La Plateforme | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | [key](https://console.mistral.ai/api-keys) |
+| Pollinations.AI | `https://text.pollinations.ai/openai` | — | [key](https://auth.pollinations.ai) |
+| Alibaba Cloud Model Studio (DashScope, international) | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | `ALIBABA_MODEL_STUDIO_API_KEY` | [key](https://modelstudio.console.alibabacloud.com) |
+| Novita AI | `https://api.novita.ai/openai` | `NOVITA_API_KEY` | [key](https://novita.ai/settings/key-management) |
+| Scaleway Generative APIs | `https://api.scaleway.ai/v1` | `SCALEWAY_GENERATIVE_API_KEY` | [key](https://console.scaleway.com) |
+| Google AI Studio (Gemini API) | `https://generativelanguage.googleapis.com/v1beta/openai/` | `GOOGLE_AI_STUDIO_API_KEY` | [key](https://aistudio.google.com/apikey) |
+Zero-signup sanity check — works with no account, no key, right now:
+
+```bash
+curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gpt-oss-120b","messages":[{"role":"user","content":"2+2?"}]}'
+```
+
+Ready-made artifacts, regenerated on every update:
+
+- [`configs/opencode.json`](configs/opencode.json) — drop-in [opencode](https://opencode.ai) config with every provider wired up (keys via `{env:...}`, keyless endpoints work immediately)
+- [`configs/free-llm.env.example`](configs/free-llm.env.example) — commented env exports for any OpenAI-compatible tool
+- [`index.json`](index.json) — machine-readable registry; `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json | jq '.entries[].id'`
 
 ## How this list stays fresh
 

@@ -10,3 +10,7 @@
   reason: free tool but BYOK-only, no bundled free model usage
 - domain: zed.dev
   reason: free plan is BYOK / external agents only, no bundled model usage
+- domain: gonka-api.org
+  reason: hostile to AI agents — /for-agents page carries prompt-injection instructing
+    secret exfiltration and referral spam; do not list, do not fetch
+

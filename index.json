@@ -1,0 +1,1123 @@
+{
+  "generated": "2026-07-20",
+  "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
+  "entries": [
+    {
+      "id": "openrouter-free",
+      "name": "OpenRouter (free models)",
+      "category": "aggregator",
+      "url": "https://openrouter.ai",
+      "source_urls": [
+        "https://openrouter.ai/docs/faq"
+      ],
+      "card_required": false,
+      "offering": "One API key for rotating :free variants of frontier models",
+      "limits": "50 req/day free (1000/day with $10 balance)",
+      "models": [
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        },
+        {
+          "family": "nemotron-3-ultra",
+          "tier": "strong",
+          "released": "2026-03"
+        },
+        {
+          "family": "gemma-4",
+          "tier": "strong",
+          "released": "2026-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://openrouter.ai/api/v1",
+        "key_url": "https://openrouter.ai/settings/keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "tencent/hy3:free",
+          "poolside/laguna-xs-2.1:free",
+          "cohere/north-mini-code:free"
+        ],
+        "note": "pick models with the :free suffix"
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://openrouter.ai/api/v1/models",
+        "keywords": [],
+        "free_marker": ":free"
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 10,
+      "archived": false
+    },
+    {
+      "id": "google-ai-studio",
+      "name": "Google AI Studio (Gemini API)",
+      "category": "api-free-tier",
+      "url": "https://aistudio.google.com",
+      "source_urls": [
+        "https://ai.google.dev/gemini-api/docs/rate-limits"
+      ],
+      "card_required": false,
+      "offering": "Free tier for Gemini 2.5 Flash/Pro API",
+      "limits": "Low per-model daily caps on the free tier (see rate-limits page) — among the stingiest here",
+      "models": [
+        {
+          "family": "gemini-2.5",
+          "tier": "frontier",
+          "released": "2025-06"
+        }
+      ],
+      "api": {
+        "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        "key_url": "https://aistudio.google.com/apikey",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "pass the key as Bearer"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://ai.google.dev/gemini-api/docs/rate-limits",
+        "keywords": [
+          "free tier"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 99,
+      "archived": false
+    },
+    {
+      "id": "groq-free",
+      "name": "Groq",
+      "category": "api-free-tier",
+      "url": "https://groq.com",
+      "source_urls": [
+        "https://console.groq.com/docs/rate-limits"
+      ],
+      "card_required": false,
+      "offering": "Fast inference free tier",
+      "limits": "Free tier daily limits per model",
+      "models": [
+        {
+          "family": "llama-4",
+          "tier": "strong",
+          "released": "2025-04"
+        },
+        {
+          "family": "qwen3",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.groq.com/openai/v1",
+        "key_url": "https://console.groq.com/keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": ""
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://console.groq.com/docs/rate-limits",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 20,
+      "archived": false
+    },
+    {
+      "id": "cerebras-free",
+      "name": "Cerebras Inference",
+      "category": "api-free-tier",
+      "url": "https://www.cerebras.ai",
+      "source_urls": [
+        "https://www.cerebras.ai/pricing"
+      ],
+      "card_required": false,
+      "offering": "Very fast inference, free tier",
+      "limits": "Free tier with daily limits",
+      "models": [
+        {
+          "family": "qwen3",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.cerebras.ai/v1",
+        "key_url": "https://cloud.cerebras.ai",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": ""
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.cerebras.ai/pricing",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 30,
+      "archived": false
+    },
+    {
+      "id": "mistral-free",
+      "name": "Mistral La Plateforme",
+      "category": "api-free-tier",
+      "url": "https://mistral.ai",
+      "source_urls": [
+        "https://docs.mistral.ai/getting-started/quickstart/"
+      ],
+      "card_required": false,
+      "offering": "Free experiment tier on La Plateforme",
+      "limits": "Experiment tier rate limits",
+      "models": [
+        {
+          "family": "mistral-medium",
+          "tier": "strong",
+          "released": "2025-05"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.mistral.ai/v1",
+        "key_url": "https://console.mistral.ai/api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "Experiment tier needs account activation"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.mistral.ai/getting-started/quickstart/",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 90,
+      "archived": false
+    },
+    {
+      "id": "github-models",
+      "name": "GitHub Models",
+      "category": "api-free-tier",
+      "url": "https://github.com/marketplace/models",
+      "source_urls": [
+        "https://docs.github.com/en/github-models"
+      ],
+      "card_required": false,
+      "offering": "Free playground+API for catalog models with GitHub account",
+      "limits": "Per-model rate limits, free tier",
+      "models": [
+        {
+          "family": "gpt-4.1",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://models.github.ai/inference",
+        "key_url": "https://github.com/settings/personal-access-tokens",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "GitHub PAT with models:read scope; model ids namespaced (openai/...)"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.github.com/en/github-models",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 80,
+      "archived": false
+    },
+    {
+      "id": "cloudflare-workers-ai",
+      "name": "Cloudflare Workers AI",
+      "category": "api-free-tier",
+      "url": "https://workers.cloudflare.com",
+      "source_urls": [
+        "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+      ],
+      "card_required": false,
+      "offering": "10k neurons/day free",
+      "limits": "10,000 neurons/day free allocation",
+      "models": [
+        {
+          "family": "llama-4",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1",
+        "key_url": "https://dash.cloudflare.com/profile/api-tokens",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "substitute {account_id} with your Cloudflare account ID"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 60,
+      "archived": false
+    },
+    {
+      "id": "ollama-cloud",
+      "name": "Ollama Cloud",
+      "category": "api-free-tier",
+      "url": "https://ollama.com/cloud",
+      "source_urls": [
+        "https://ollama.com/cloud"
+      ],
+      "card_required": false,
+      "offering": "Cloud-hosted open models with free usage tier",
+      "limits": "Free tier with hourly/daily limits",
+      "models": [
+        {
+          "family": "qwen3-coder",
+          "tier": "strong",
+          "released": "2025-07"
+        },
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        }
+      ],
+      "api": {
+        "base_url": "https://ollama.com/v1",
+        "key_url": "https://ollama.com/settings/keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "qwen3.5:397b",
+          "gpt-oss:120b",
+          "deepseek-v4-flash"
+        ],
+        "note": ""
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://ollama.com/cloud",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 70,
+      "archived": false
+    },
+    {
+      "id": "opencode",
+      "name": "opencode",
+      "category": "agent-cli",
+      "url": "https://opencode.ai",
+      "source_urls": [
+        "https://opencode.ai/docs/zen/",
+        "https://opencode.ai/docs/"
+      ],
+      "card_required": false,
+      "offering": "Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too",
+      "limits": "Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go",
+      "models": [
+        {
+          "family": "big-pickle",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "deepseek-v4-flash",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "mimo-v2.5",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "nemotron-3-ultra",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://opencode.ai/docs/zen/",
+        "keywords": [
+          "big pickle",
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 10,
+      "archived": false
+    },
+    {
+      "id": "kilo-code",
+      "name": "Kilo Code",
+      "category": "agent-cli",
+      "url": "https://kilocode.ai",
+      "source_urls": [
+        "https://kilocode.ai"
+      ],
+      "card_required": false,
+      "offering": "VS Code agent extension; free starter credits usable on 500+ routed models (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...)",
+      "limits": "Free credits on signup",
+      "models": [],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://kilocode.ai",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 20,
+      "archived": false
+    },
+    {
+      "id": "trae",
+      "name": "Trae",
+      "category": "trial",
+      "url": "https://www.trae.ai",
+      "source_urls": [
+        "https://www.trae.ai"
+      ],
+      "card_required": false,
+      "offering": "Free access to frontier models in IDE",
+      "limits": "Free tier quotas",
+      "models": [],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.trae.ai",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 70,
+      "archived": false
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "category": "trial",
+      "url": "https://windsurf.com",
+      "source_urls": [
+        "https://windsurf.com/pricing"
+      ],
+      "card_required": false,
+      "offering": "Free plan + trial of paid tiers",
+      "limits": "Free plan credits",
+      "models": [
+        {
+          "family": "claude-haiku",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "gpt-5.2-mini",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "kimi-k2.5",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://windsurf.com/pricing",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 50,
+      "archived": false
+    },
+    {
+      "id": "mimo-code",
+      "name": "MiMo Code",
+      "category": "agent-cli",
+      "url": "https://mimo.xiaomi.com/coder",
+      "source_urls": [
+        "https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
+        "https://mimo.xiaomi.com/mimocode/start"
+      ],
+      "card_required": false,
+      "offering": "Xiaomi's open-source (MIT) terminal coding agent; built-in \"MiMo Auto\" channel runs Xiaomi's MiMo models with no login, API key, or card",
+      "limits": "MiMo Auto is free for a limited time; anonymous channel, zero configuration",
+      "models": [
+        {
+          "family": "mimo",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
+        "keywords": [
+          "mimo auto",
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 30,
+      "archived": false
+    },
+    {
+      "id": "github-copilot-free",
+      "name": "GitHub Copilot Free",
+      "category": "trial",
+      "url": "https://github.com/features/copilot",
+      "source_urls": [
+        "https://docs.github.com/en/copilot/concepts/billing/individual-plans",
+        "https://docs.github.com/en/copilot/get-started/plans"
+      ],
+      "card_required": false,
+      "offering": "Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage",
+      "limits": "2,000 code completions/month; limited chat & agent requests; auto model selection only",
+      "models": [],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.github.com/en/copilot/concepts/billing/individual-plans",
+        "keywords": [
+          "2,000 code completions",
+          "no subscription or payment required"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 10,
+      "archived": false
+    },
+    {
+      "id": "google-jules",
+      "name": "Google Jules",
+      "category": "trial",
+      "url": "https://jules.google/",
+      "source_urls": [
+        "https://jules.google/docs/usage-limits"
+      ],
+      "card_required": false,
+      "offering": "Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously",
+      "limits": "15 tasks per rolling 24 hours; 3 concurrent tasks",
+      "models": [
+        {
+          "family": "gemini-2.5",
+          "tier": "frontier",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://jules.google/docs/usage-limits",
+        "keywords": [
+          "concurrent tasks",
+          "gemini 2.5 pro"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 30,
+      "archived": false
+    },
+    {
+      "id": "kiro",
+      "name": "Kiro",
+      "category": "trial",
+      "url": "https://kiro.dev/",
+      "source_urls": [
+        "https://kiro.dev/pricing/"
+      ],
+      "card_required": false,
+      "offering": "Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models",
+      "limits": "50 credits/month; requires social login or AWS Builder ID; credits do not roll over",
+      "models": [
+        {
+          "family": "claude-sonnet-4.5",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "qwen3-coder",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "deepseek-v3.2",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "minimax-2.1",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://kiro.dev/pricing/",
+        "keywords": [
+          "kiro free",
+          "50 credits"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 20,
+      "archived": false
+    },
+    {
+      "id": "cursor-hobby",
+      "name": "Cursor (Hobby)",
+      "category": "trial",
+      "url": "https://cursor.com/",
+      "source_urls": [
+        "https://cursor.com/pricing"
+      ],
+      "card_required": false,
+      "offering": "Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card",
+      "limits": "Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset",
+      "models": [],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://cursor.com/pricing",
+        "keywords": [
+          "hobby",
+          "no credit card required"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 40,
+      "archived": false
+    },
+    {
+      "id": "openai-codex-cli",
+      "name": "OpenAI Codex CLI",
+      "category": "agent-cli",
+      "url": "https://developers.openai.com/codex/",
+      "source_urls": [
+        "https://learn.chatgpt.com/docs/pricing",
+        "https://github.com/openai/codex"
+      ],
+      "card_required": false,
+      "offering": "Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans",
+      "limits": "Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only",
+      "models": [
+        {
+          "family": "gpt-5.6",
+          "tier": "frontier",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://learn.chatgpt.com/docs/pricing",
+        "keywords": [
+          "codex are included",
+          "chatgpt free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 40,
+      "archived": false
+    },
+    {
+      "id": "nvidia-nim",
+      "name": "NVIDIA NIM (build.nvidia.com)",
+      "category": "api-free-tier",
+      "url": "https://build.nvidia.com",
+      "source_urls": [
+        "https://build.nvidia.com/explore/discover"
+      ],
+      "card_required": false,
+      "offering": "Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1)",
+      "limits": "Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise",
+      "models": [
+        {
+          "family": "nemotron",
+          "tier": "frontier",
+          "released": "2026-03"
+        },
+        {
+          "family": "llama-4",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://integrate.api.nvidia.com/v1",
+        "key_url": "https://build.nvidia.com",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "deepseek-ai/deepseek-v4-flash",
+          "nvidia/nemotron-3-nano-30b-a3b",
+          "meta/llama-4-maverick-17b-128e-instruct"
+        ],
+        "note": ""
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://build.nvidia.com/explore/discover",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 10,
+      "archived": false
+    },
+    {
+      "id": "zai-glm",
+      "name": "Z.ai (Zhipu GLM)",
+      "category": "api-free-tier",
+      "url": "https://z.ai",
+      "source_urls": [
+        "https://docs.z.ai/guides/overview/pricing"
+      ],
+      "card_required": false,
+      "offering": "GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4)",
+      "limits": "GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited",
+      "models": [
+        {
+          "family": "glm-4.5",
+          "tier": "strong",
+          "released": "2025-07"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.z.ai/api/paas/v4",
+        "key_url": "https://z.ai/manage-apikey/apikey-list",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.z.ai/guides/overview/pricing",
+        "keywords": [
+          "glm-4.5-flash",
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 50,
+      "archived": false
+    },
+    {
+      "id": "ovh-ai-endpoints",
+      "name": "OVHcloud AI Endpoints",
+      "category": "api-free-tier",
+      "url": "https://endpoints.ai.cloud.ovh.net",
+      "source_urls": [
+        "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
+        "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/"
+      ],
+      "card_required": false,
+      "offering": "EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible)",
+      "limits": "No-key anonymous access, rate-limited; free API key raises limits",
+      "models": [
+        {
+          "family": "qwen3",
+          "tier": "strong",
+          "released": "2025-04"
+        },
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        }
+      ],
+      "api": {
+        "base_url": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1",
+        "auth": "none",
+        "openai_compatible": true,
+        "model_ids": [
+          "gpt-oss-120b",
+          "Qwen3.6-27B",
+          "Qwen3.5-9B"
+        ],
+        "note": "anonymous, rate-limited; free key raises limits"
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
+        "keywords": [],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 40,
+      "archived": false
+    },
+    {
+      "id": "pollinations",
+      "name": "Pollinations.AI",
+      "category": "api-free-tier",
+      "url": "https://pollinations.ai",
+      "source_urls": [
+        "https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md"
+      ],
+      "card_required": false,
+      "offering": "Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)",
+      "limits": "Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B",
+      "models": [
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        }
+      ],
+      "api": {
+        "base_url": "https://text.pollinations.ai/openai",
+        "key_url": "https://auth.pollinations.ai",
+        "auth": "none",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "anonymous works; optional token raises rate limits"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md",
+        "keywords": [
+          "no signup"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 92,
+      "archived": false
+    },
+    {
+      "id": "alibaba-model-studio",
+      "name": "Alibaba Cloud Model Studio (DashScope, international)",
+      "category": "api-free-tier",
+      "url": "https://www.alibabacloud.com/en/product/modelstudio",
+      "source_urls": [
+        "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+      ],
+      "card_required": false,
+      "offering": "Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible",
+      "limits": "1,000,000 free tokens per model, valid 90 days after activation; Singapore/international scope only",
+      "models": [
+        {
+          "family": "qwen3-max",
+          "tier": "frontier",
+          "released": "2026-04"
+        },
+        {
+          "family": "qwen3-coder",
+          "tier": "strong",
+          "released": "2025-07"
+        }
+      ],
+      "api": {
+        "base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+        "key_url": "https://modelstudio.console.alibabacloud.com",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "international (Singapore) endpoint; keys are region-specific"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+        "keywords": [
+          "free quota"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 94,
+      "archived": false
+    },
+    {
+      "id": "scaleway-generative",
+      "name": "Scaleway Generative APIs",
+      "category": "api-free-tier",
+      "url": "https://www.scaleway.com/en/generative-apis/",
+      "source_urls": [
+        "https://www.scaleway.com/en/docs/generative-apis/faq/"
+      ],
+      "card_required": true,
+      "offering": "EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer",
+      "limits": "1,000,000 free tokens then pay-per-token; a valid payment method is required",
+      "models": [
+        {
+          "family": "glm-5.2",
+          "tier": "frontier",
+          "released": "2026-04"
+        },
+        {
+          "family": "qwen3",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.scaleway.ai/v1",
+        "key_url": "https://console.scaleway.com",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "non-default project: https://api.scaleway.ai/{project_id}/v1"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.scaleway.com/en/docs/generative-apis/faq/",
+        "keywords": [
+          "free tier"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 98,
+      "archived": false
+    },
+    {
+      "id": "huggingface-inference",
+      "name": "Hugging Face Inference Providers",
+      "category": "aggregator",
+      "url": "https://huggingface.co/docs/inference-providers",
+      "source_urls": [
+        "https://huggingface.co/docs/inference-providers/pricing"
+      ],
+      "card_required": false,
+      "offering": "Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account",
+      "limits": "Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests",
+      "models": [
+        {
+          "family": "deepseek",
+          "tier": "frontier",
+          "released": "2025-03"
+        },
+        {
+          "family": "qwen3",
+          "tier": "strong",
+          "released": "2025-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://router.huggingface.co/v1",
+        "key_url": "https://huggingface.co/settings/tokens",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "chat-only; model ids namespaced (openai/gpt-oss-120b)"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://huggingface.co/docs/inference-providers/pricing",
+        "keywords": [
+          "monthly credits"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-20",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": false,
+      "rank": 20,
+      "archived": false
+    },
+    {
+      "id": "novita",
+      "name": "Novita AI",
+      "category": "api-free-tier",
+      "url": "https://novita.ai/",
+      "source_urls": [
+        "https://novita.ai/pricing",
+        "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md"
+      ],
+      "card_required": false,
+      "offering": "Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit",
+      "limits": "Selected models free on the pricing page (e.g. Hunyuan 3); ~$0.5 trial credit valid 1 year",
+      "models": [],
+      "api": {
+        "base_url": "https://api.novita.ai/openai",
+        "key_url": "https://novita.ai/settings/key-management",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "deepseek/deepseek-v4-pro",
+          "qwen/qwen3.7-max",
+          "zai-org/glm-5.2"
+        ],
+        "note": ""
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://novita.ai/pricing",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 96,
+      "archived": false
+    },
+    {
+      "id": "upstage",
+      "name": "Upstage (Solar API)",
+      "category": "trial",
+      "url": "https://console.upstage.ai/",
+      "source_urls": [
+        "https://console.upstage.ai/",
+        "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md"
+      ],
+      "card_required": false,
+      "offering": "Upstage Solar LLM API; $10 free credit on signup, no card",
+      "limits": "$10 signup credit (see console for validity); pay-as-you-go after",
+      "models": [
+        {
+          "family": "solar-pro-3",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "solar-mini",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "api": {
+        "base_url": "https://api.upstage.ai/v1",
+        "key_url": "https://console.upstage.ai/api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": ""
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://console.upstage.ai/",
+        "keywords": [
+          "free"
+        ],
+        "free_marker": ""
+      },
+      "first_seen": "2026-07-19",
+      "last_verified": "2026-07-19",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 80,
+      "archived": false
+    }
+  ]
+}

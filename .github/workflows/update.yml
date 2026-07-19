@@ -31,7 +31,7 @@ jobs:
         run: |
           git config user.name "freetier-bot"
           git config user.email "freetier-bot@users.noreply.github.com"
-          git add registry.yaml README.md
+          git add registry.yaml README.md index.json configs
           git diff --staged --quiet || git commit -m "chore: verification $(date -u +%F)"
           git push
 

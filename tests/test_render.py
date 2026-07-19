@@ -2,7 +2,10 @@ from datetime import date, timedelta
 from pathlib import Path
 
 from freetier_radar.models import Entry
-from freetier_radar.render import ARCHIVE_AFTER_DAYS, build_context, is_archived, render_readme
+from freetier_radar.render import (
+    ARCHIVE_AFTER_DAYS, build_context, build_env_example, build_opencode_config,
+    env_var, is_archived, render_readme,
+)
 
 TODAY = date(2026, 7, 19)
 
@@ -47,6 +50,51 @@ def test_rank_orders_rows_within_section():
     ctx = build_context(entries, TODAY)
     section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
     assert [r["name"] for r in section["rows"]] == ["Best", "Worst"]
+
+
+def test_env_var_naming():
+    assert env_var("groq-free") == "GROQ_API_KEY"
+    assert env_var("zai-glm") == "ZAI_GLM_API_KEY"
+
+
+def api_entry(**kw):
+    return make(**{"api": {"base_url": "https://api.x.ai/v1",
+                           "key_url": "https://x.ai/keys", "auth": "api-key"}, **kw})
+
+
+def test_opencode_config_and_env_example():
+    entries = [
+        api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}]),
+        make(id="keyless", name="Keyless",
+             api={"base_url": "https://free.example/v1", "auth": "none"}),
+        make(id="no-api", name="NoApi"),
+        make(id="not-compat", name="NC",
+             api={"base_url": "https://nc.example", "openai_compatible": False}),
+    ]
+    entries.append(make(id="pinned", name="Pinned",
+                        api={"base_url": "https://p.example/v1", "auth": "none",
+                             "model_ids": ["exact-id-1"]},
+                        models=[{"family": "ignored-family"}]))
+    cfg = build_opencode_config(entries, TODAY)
+    assert set(cfg["provider"]) == {"groq-free", "keyless", "pinned"}
+    assert cfg["provider"]["pinned"]["models"] == {"exact-id-1": {"name": "exact-id-1"}}
+    groq = cfg["provider"]["groq-free"]
+    assert groq["options"] == {"baseURL": "https://api.x.ai/v1", "apiKey": "{env:GROQ_API_KEY}"}
+    assert groq["models"] == {"llama-4": {"name": "llama-4"}}
+    assert "apiKey" not in cfg["provider"]["keyless"]["options"]
+
+    env = build_env_example(entries, TODAY)
+    assert 'export GROQ_API_KEY=""' in env
+    assert "no key needed" in env
+    assert "NoApi" not in env
+
+
+def test_context_connections():
+    entries = [api_entry(id="groq-free", name="Groq"), make(id="plain")]
+    ctx = build_context(entries, TODAY)
+    assert ctx["connections"] == [{"name": "Groq", "base_url": "https://api.x.ai/v1",
+                                   "auth": "`GROQ_API_KEY`", "key_url": "https://x.ai/keys",
+                                   "note": ""}]
 
 
 def test_render_readme(tmp_path: Path):
