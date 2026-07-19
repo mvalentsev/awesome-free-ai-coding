@@ -1,6 +1,6 @@
 # awesome-free-ai-coding
 
-![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-brightgreen) ![Live entries](https://img.shields.io/badge/live%20entries-29-blue)
+![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-brightgreen) ![Live entries](https://img.shields.io/badge/live%20entries-28-blue)
 
 > Legal free tiers, trials and free-model APIs for AI coding — auto-verified twice a week; dead offers drop to the [Archive](#archive).
 
@@ -8,9 +8,9 @@
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 | [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ❌ No | 2026-07-19 |
-| [Kilo Code](https://kilocode.ai) | VS Code agent extension with free starter credits | — | Free credits on signup | ❌ No | 2026-07-19 |
-| [MiMo Code](https://mimo.xiaomi.com/coder) | Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card | — | MiMo Auto is free for a limited time; anonymous channel, zero configuration | ❌ No | 2026-07-19 |
-| [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | — | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ❌ No | 2026-07-19 |
+| [Kilo Code](https://kilocode.ai) | VS Code agent extension; free starter credits usable on 500+ routed models (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...) | claude-sonnet-5, gpt-5.5, gemini-3.1-pro | Free credits on signup | ❌ No | 2026-07-19 |
+| [MiMo Code](https://mimo.xiaomi.com/coder) | Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card | mimo | MiMo Auto is free for a limited time; anonymous channel, zero configuration | ❌ No | 2026-07-19 |
+| [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ❌ No | 2026-07-19 |
 ### LLM APIs with free tier
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
@@ -32,14 +32,13 @@
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 | [GitHub Copilot Free](https://github.com/features/copilot) | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | 2,000 code completions/month; limited chat & agent requests; auto model selection only | ❌ No | 2026-07-19 |
-| [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | — | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ❌ No | 2026-07-19 |
-| [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | — | 15 tasks per rolling 24 hours; 3 concurrent tasks | ❌ No | 2026-07-19 |
+| [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | claude-sonnet-4.5, qwen3-coder, deepseek-v3.2, minimax-2.1 | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ❌ No | 2026-07-19 |
+| [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | gemini-2.5 | 15 tasks per rolling 24 hours; 3 concurrent tasks | ❌ No | 2026-07-19 |
 | [Cursor (Hobby)](https://cursor.com/) | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset | ❌ No | 2026-07-19 |
-| [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | — | Free plan credits | ❌ No | 2026-07-19 |
-| [Zed](https://zed.dev) | Free plan with AI features | — | Free plan limits on AI usage | ❌ No | 2026-07-19 |
+| [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | claude-haiku, gpt-5.2-mini, kimi-k2.5 | Free plan credits | ❌ No | 2026-07-19 |
 | [Trae](https://www.trae.ai) | Free access to frontier models in IDE | — | Free tier quotas | ❌ No | 2026-07-19 |
-| [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | — | $10 signup credit (see console for validity); pay-as-you-go after | ❌ No | 2026-07-19 |
-| [Easy GonkaAI API](https://gonka-api.org/) | Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models) | — | 10M free tokens on signup (one-time trial, no card); paid usage billed in crypto | ❌ No | 2026-07-19 |
+| [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | solar-pro-3, solar-mini | $10 signup credit (see console for validity); pay-as-you-go after | ❌ No | 2026-07-19 |
+| [Easy GonkaAI API](https://gonka-api.org/) | Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models) | minimax-m2, kimi-k2 | 10M free tokens on signup (one-time trial, no card); paid usage billed in crypto | ❌ No | 2026-07-19 |
 ### Aggregators (one key, many providers)
 | Tool | What you get | Models | Limits | Card required | Verified |
 |---|---|---|---|---|---|

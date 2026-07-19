@@ -248,9 +248,19 @@ entries:
   source_urls:
   - https://kilocode.ai
   card_required: false
-  offering: VS Code agent extension with free starter credits
+  offering: VS Code agent extension; free starter credits usable on 500+ routed models
+    (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...)
   limits: Free credits on signup
-  models: []
+  models:
+  - family: claude-sonnet-5
+    tier: frontier
+    released: ''
+  - family: gpt-5.5
+    tier: frontier
+    released: ''
+  - family: gemini-3.1-pro
+    tier: frontier
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://kilocode.ai
@@ -262,27 +272,6 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 20
-- id: zed
-  name: Zed
-  category: trial
-  url: https://zed.dev
-  source_urls:
-  - https://zed.dev/pricing
-  card_required: false
-  offering: Free plan with AI features
-  limits: Free plan limits on AI usage
-  models: []
-  probe:
-    type: page-keywords
-    endpoint: https://zed.dev/pricing
-    keywords:
-    - free
-    free_marker: ''
-  first_seen: '2026-07-19'
-  last_verified: '2026-07-19'
-  probe_failures: 0
-  provisional: false
-  rank: 60
 - id: trae
   name: Trae
   category: trial
@@ -313,7 +302,16 @@ entries:
   card_required: false
   offering: Free plan + trial of paid tiers
   limits: Free plan credits
-  models: []
+  models:
+  - family: claude-haiku
+    tier: strong
+    released: ''
+  - family: gpt-5.2-mini
+    tier: strong
+    released: ''
+  - family: kimi-k2.5
+    tier: strong
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://windsurf.com/pricing
@@ -336,7 +334,10 @@ entries:
   offering: Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto"
     channel runs Xiaomi's MiMo models with no login, API key, or card
   limits: MiMo Auto is free for a limited time; anonymous channel, zero configuration
-  models: []
+  models:
+  - family: mimo
+    tier: strong
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md
@@ -360,7 +361,13 @@ entries:
     inference network (Qwen, Kimi and other open models)
   limits: 10M free tokens on signup (one-time trial, no card); paid usage billed in
     crypto
-  models: []
+  models:
+  - family: minimax-m2
+    tier: strong
+    released: ''
+  - family: kimi-k2
+    tier: strong
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://gonka-api.org/
@@ -407,7 +414,10 @@ entries:
   offering: Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro;
     connects to GitHub repos and works autonomously
   limits: 15 tasks per rolling 24 hours; 3 concurrent tasks
-  models: []
+  models:
+  - family: gemini-2.5
+    tier: frontier
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://jules.google/docs/usage-limits
@@ -431,7 +441,19 @@ entries:
     Q Developer) with Claude Sonnet 4.5 and open-weight models
   limits: 50 credits/month; requires social login or AWS Builder ID; credits do not
     roll over
-  models: []
+  models:
+  - family: claude-sonnet-4.5
+    tier: strong
+    released: ''
+  - family: qwen3-coder
+    tier: strong
+    released: ''
+  - family: deepseek-v3.2
+    tier: strong
+    released: ''
+  - family: minimax-2.1
+    tier: strong
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://kiro.dev/pricing/
@@ -480,7 +502,10 @@ entries:
     local coding tasks included on all plans
   limits: Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling
     + weekly rate limits; local tasks only
-  models: []
+  models:
+  - family: gpt-5.6
+    tier: frontier
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://learn.chatgpt.com/docs/pricing
@@ -720,7 +745,13 @@ entries:
   card_required: false
   offering: Upstage Solar LLM API; $10 free credit on signup, no card
   limits: $10 signup credit (see console for validity); pay-as-you-go after
-  models: []
+  models:
+  - family: solar-pro-3
+    tier: strong
+    released: ''
+  - family: solar-mini
+    tier: strong
+    released: ''
   probe:
     type: page-keywords
     endpoint: https://console.upstage.ai/

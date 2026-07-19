@@ -8,3 +8,5 @@
   reason: free tool but BYOK-only, no bundled free model usage
 - domain: aider.chat
   reason: free tool but BYOK-only, no bundled free model usage
+- domain: zed.dev
+  reason: free plan is BYOK / external agents only, no bundled model usage
