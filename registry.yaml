@@ -236,8 +236,8 @@ entries:
   - https://ollama.com/cloud
   card_required: false
   offering: Cloud-hosted open models with free usage tier
-  limits: Free tier with hourly/daily limits; open models only — flagship models
-    (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription
+  limits: Free tier with hourly/daily limits; open models only — flagship models (DeepSeek
+    V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription
   models:
   - family: nemotron
     tier: frontier
@@ -258,8 +258,8 @@ entries:
     - minimax-m3
     - gpt-oss:120b
     - gemma4:31b
-    note: 'Free-tier model set verified live 2026-07-20; /v1/models lists the full
-      catalog including subscription-only models'
+    note: Free-tier model set verified live 2026-07-20; /v1/models lists the full
+      catalog including subscription-only models
   probe:
     type: page-keywords
     endpoint: https://ollama.com/cloud
