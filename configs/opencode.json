@@ -63,9 +63,6 @@
         "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
       },
       "models": {
-        "deepseek": {
-          "name": "deepseek"
-        },
         "qwen3": {
           "name": "qwen3"
         }
@@ -99,19 +96,6 @@
         },
         "Qwen3.5-9B": {
           "name": "Qwen3.5-9B"
-        }
-      }
-    },
-    "zai-glm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Z.ai (Zhipu GLM)",
-      "options": {
-        "baseURL": "https://api.z.ai/api/paas/v4",
-        "apiKey": "{env:ZAI_GLM_API_KEY}"
-      },
-      "models": {
-        "glm-4.5": {
-          "name": "glm-4.5"
         }
       }
     },

@@ -321,7 +321,8 @@
         {
           "family": "nemotron",
           "tier": "frontier",
-          "released": "2026-03"
+          "released": "2026-03",
+          "superseded_by": "nemotron-3-ultra"
         },
         {
           "family": "minimax-3",
@@ -525,7 +526,8 @@
         {
           "family": "mimo",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "mimo-v2.5"
         }
       ],
       "probe": {
@@ -542,7 +544,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": false
+      "archived": true
     },
     {
       "id": "github-copilot-free",
@@ -632,12 +634,14 @@
         {
           "family": "deepseek-v3.2",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "deepseek-v4-flash"
         },
         {
           "family": "minimax-2.1",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "minimax-3"
         }
       ],
       "probe": {
@@ -734,7 +738,8 @@
         {
           "family": "nemotron",
           "tier": "frontier",
-          "released": "2026-03"
+          "released": "2026-03",
+          "superseded_by": "nemotron-3-ultra"
         },
         {
           "family": "llama-4",
@@ -784,7 +789,8 @@
         {
           "family": "glm-4.5",
           "tier": "strong",
-          "released": "2025-07"
+          "released": "2025-07",
+          "superseded_by": "glm-5.2"
         }
       ],
       "api": {
@@ -809,7 +815,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false
+      "archived": true
     },
     {
       "id": "ovh-ai-endpoints",
@@ -1007,7 +1013,8 @@
         {
           "family": "deepseek",
           "tier": "frontier",
-          "released": "2025-03"
+          "released": "2025-03",
+          "superseded_by": "deepseek-v3.2"
         },
         {
           "family": "qwen3",
