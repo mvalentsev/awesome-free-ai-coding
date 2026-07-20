@@ -152,7 +152,10 @@ class LLMClient:
         errors = []
         for name, fn in backends:
             try:
-                return fn(prompt)
+                text = fn(prompt)
+                if not isinstance(text, str) or not text.strip():
+                    raise RuntimeError("empty completion")
+                return text
             except (RuntimeError, httpx.HTTPError, KeyError, IndexError) as exc:
                 errors.append(f"{name}: {exc}")
         raise RuntimeError("all LLM backends failed: " + "; ".join(errors))
@@ -232,6 +235,16 @@ def extract_yaml_block(text: str) -> str:
 def _parse(text: str) -> dict:
     data = yaml.safe_load(extract_yaml_block(text))
     return data if isinstance(data, dict) else {}
+
+
+def _ask(llm, prompt: str, attempts: int = 2) -> dict:
+    """LLM replies are untrusted YAML: retry a malformed one, then degrade to {}."""
+    for attempt in range(attempts):
+        try:
+            return _parse(llm.complete(prompt))
+        except yaml.YAMLError as exc:
+            print(f"unparseable LLM reply (attempt {attempt + 1}/{attempts}): {exc}")
+    return {}
 
 
 def load_blocklist(path: Path) -> dict[str, str]:
@@ -345,22 +358,22 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             + "\n".join(f"PAGE {u}:\n{pages.get(u, '')}" for u in e.source_urls)
             for e in ctx_entries
         )
-        data = _parse(llm.complete(FIX_PROMPT.format(context=context)))
+        data = _ask(llm, FIX_PROMPT.format(context=context))
         result["updates"] = apply_updates(entries, data.get("updates") or [])
 
     if evidence is not None and not evidence.is_empty():
-        data = _parse(llm.complete(DISCOVER_PROMPT.format(
+        data = _ask(llm, DISCOVER_PROMPT.format(
             existing=", ".join(e.id for e in entries),
             domains=", ".join(sorted({domain_of(e.url) for e in entries})),
             blocked=", ".join(sorted(blocklist)) if blocklist else "none",
             evidence=format_evidence(evidence),
-        )))
+        ))
         result["new"], result["rejected"] = apply_new(
             entries, data.get("new_entries") or [], today, verifier, blocklist)
 
     families = sorted({m.family for e in entries for m in e.models})
     if families:
-        data = _parse(llm.complete(GENERATIONS_PROMPT.format(families=", ".join(families))))
+        data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
         result["supersede"] = apply_supersede(entries, data.get("supersede") or [])
 
     return result

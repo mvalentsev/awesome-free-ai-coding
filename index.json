@@ -316,12 +316,17 @@
       ],
       "card_required": false,
       "offering": "Cloud-hosted open models with free usage tier",
-      "limits": "Free tier with hourly/daily limits",
+      "limits": "Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription",
       "models": [
         {
-          "family": "qwen3-coder",
+          "family": "nemotron",
+          "tier": "frontier",
+          "released": "2026-03"
+        },
+        {
+          "family": "minimax-3",
           "tier": "strong",
-          "released": "2025-07"
+          "released": "2026-06"
         },
         {
           "family": "gpt-oss",
@@ -335,11 +340,12 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "qwen3.5:397b",
+          "nemotron-3-ultra",
+          "minimax-m3",
           "gpt-oss:120b",
-          "deepseek-v4-flash"
+          "gemma4:31b"
         ],
-        "note": ""
+        "note": "Free-tier model set verified live 2026-07-20; /v1/models lists the full catalog including subscription-only models"
       },
       "probe": {
         "type": "page-keywords",

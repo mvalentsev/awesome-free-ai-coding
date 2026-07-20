@@ -33,7 +33,7 @@
 | [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | qwen3, gpt-oss | No-key anonymous access, rate-limited; free API key raises limits | ✅ No | 2026-07-20 |
 | [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.5 | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-20 |
 | [Cloudflare Workers AI](https://workers.cloudflare.com) | 10k neurons/day free | llama-4 | 10,000 neurons/day free allocation | ✅ No | 2026-07-20 |
-| [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | qwen3-coder, gpt-oss | Free tier with hourly/daily limits | ✅ No | 2026-07-20 |
+| [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | nemotron, minimax-3, gpt-oss | Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription | ✅ No | 2026-07-20 |
 | [GitHub Models](https://github.com/marketplace/models) | Free playground+API for catalog models with GitHub account | gpt-4.1 | Per-model rate limits, free tier | ✅ No | 2026-07-20 |
 | [Mistral La Plateforme](https://mistral.ai) | Free experiment tier on La Plateforme | mistral-medium | Experiment tier rate limits | ✅ No | 2026-07-20 |
 | [Pollinations.AI](https://pollinations.ai) | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | gpt-oss | Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B | ✅ No | 2026-07-20 |

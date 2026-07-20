@@ -136,14 +136,17 @@
         "apiKey": "{env:OLLAMA_CLOUD_API_KEY}"
       },
       "models": {
-        "qwen3.5:397b": {
-          "name": "qwen3.5:397b"
+        "nemotron-3-ultra": {
+          "name": "nemotron-3-ultra"
+        },
+        "minimax-m3": {
+          "name": "minimax-m3"
         },
         "gpt-oss:120b": {
           "name": "gpt-oss:120b"
         },
-        "deepseek-v4-flash": {
-          "name": "deepseek-v4-flash"
+        "gemma4:31b": {
+          "name": "gemma4:31b"
         }
       }
     },

@@ -6,7 +6,7 @@ import respx
 from freetier_radar.discovery import Evidence, Hit
 from freetier_radar.models import Entry
 from freetier_radar.scout import (
-    FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, apply_new, apply_supersede,
+    FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, _ask, apply_new, apply_supersede,
     apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
 )
 
@@ -173,6 +173,37 @@ def test_llm_chain_falls_back_to_keyless_ovh(monkeypatch):
     assert route.call_count == 2
     assert "Authorization" not in route.calls[0].request.headers
     assert b"gpt-oss-120b" in route.calls[0].request.content
+
+
+@respx.mock
+def test_llm_chain_skips_backend_on_empty_content():
+    respx.post("https://nim.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": None}}]})
+    )
+    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "gpt-oss-120b"}]}
+    ))
+    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]})
+    )
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://nim.example/v1", custom_model="m",
+                        custom_key="k", http=http)
+        assert llm.complete("hi") == "ok"
+
+
+def test_ask_retries_malformed_yaml_then_degrades():
+    class FlakyLLM:
+        def __init__(self, replies: list[str]):
+            self.replies = replies
+
+        def complete(self, prompt: str) -> str:
+            return self.replies.pop(0)
+
+    bad = "```yaml\nnew_entries:\n- id: x\n 百家乐 GLM-4.6 desencadenado\n```"
+    good = "```yaml\nnew_entries: []\n```"
+    assert _ask(FlakyLLM([bad, good]), "p") == {"new_entries": []}
+    assert _ask(FlakyLLM([bad, bad]), "p") == {}
 
 
 @respx.mock
