@@ -397,6 +397,7 @@ entries:
   - family: mimo
     tier: strong
     released: ''
+    superseded_by: mimo-v2.5
   probe:
     type: page-keywords
     endpoint: https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md
@@ -481,9 +482,11 @@ entries:
   - family: deepseek-v3.2
     tier: strong
     released: ''
+    superseded_by: deepseek-v4-flash
   - family: minimax-2.1
     tier: strong
     released: ''
+    superseded_by: minimax-3
   probe:
     type: page-keywords
     endpoint: https://kiro.dev/pricing/

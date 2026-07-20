@@ -525,7 +525,8 @@
         {
           "family": "mimo",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "mimo-v2.5"
         }
       ],
       "probe": {
@@ -542,7 +543,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": false
+      "archived": true
     },
     {
       "id": "github-copilot-free",
@@ -632,12 +633,14 @@
         {
           "family": "deepseek-v3.2",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "deepseek-v4-flash"
         },
         {
           "family": "minimax-2.1",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "minimax-3"
         }
       ],
       "probe": {
