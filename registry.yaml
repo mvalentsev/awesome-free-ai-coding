@@ -242,7 +242,6 @@ entries:
   - family: nemotron
     tier: frontier
     released: 2026-03
-    superseded_by: nemotron-3-ultra
   - family: minimax-3
     tier: strong
     released: 2026-06
@@ -566,7 +565,6 @@ entries:
   - family: nemotron
     tier: frontier
     released: 2026-03
-    superseded_by: nemotron-3-ultra
   - family: llama-4
     tier: strong
     released: 2025-04
@@ -605,7 +603,6 @@ entries:
   - family: glm-4.5
     tier: strong
     released: 2025-07
-    superseded_by: glm-5.2
   api:
     base_url: https://api.z.ai/api/paas/v4
     key_url: https://z.ai/manage-apikey/apikey-list
@@ -780,7 +777,6 @@ entries:
   - family: deepseek
     tier: frontier
     released: 2025-03
-    superseded_by: deepseek-v3.2
   - family: qwen3
     tier: strong
     released: 2025-04

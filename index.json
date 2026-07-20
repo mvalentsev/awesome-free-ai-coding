@@ -321,8 +321,7 @@
         {
           "family": "nemotron",
           "tier": "frontier",
-          "released": "2026-03",
-          "superseded_by": "nemotron-3-ultra"
+          "released": "2026-03"
         },
         {
           "family": "minimax-3",
@@ -738,8 +737,7 @@
         {
           "family": "nemotron",
           "tier": "frontier",
-          "released": "2026-03",
-          "superseded_by": "nemotron-3-ultra"
+          "released": "2026-03"
         },
         {
           "family": "llama-4",
@@ -789,8 +787,7 @@
         {
           "family": "glm-4.5",
           "tier": "strong",
-          "released": "2025-07",
-          "superseded_by": "glm-5.2"
+          "released": "2025-07"
         }
       ],
       "api": {
@@ -815,7 +812,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": true
+      "archived": false
     },
     {
       "id": "ovh-ai-endpoints",
@@ -1013,8 +1010,7 @@
         {
           "family": "deepseek",
           "tier": "frontier",
-          "released": "2025-03",
-          "superseded_by": "deepseek-v3.2"
+          "released": "2025-03"
         },
         {
           "family": "qwen3",
