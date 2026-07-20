@@ -94,6 +94,9 @@ EVIDENCE:
 GENERATIONS_PROMPT = SYSTEM_RULES + """
 TASK: MODEL-GENERATIONS. These model families are currently listed: {families}
 Mark families that have a clearly newer generation from the same vendor.
+A newer generation must be a DIFFERENT family: never mark a family as
+superseded by a model or variant of that same family (e.g. nemotron is
+not superseded by nemotron-3-ultra). When unsure, do not mark.
 Output format:
 supersede:
   - family: <old family>
