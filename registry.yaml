@@ -394,10 +394,9 @@ entries:
     channel runs Xiaomi's MiMo models with no login, API key, or card
   limits: MiMo Auto is free for a limited time; anonymous channel, zero configuration
   models:
-  - family: mimo
+  - family: mimo-v2.5
     tier: strong
     released: ''
-    superseded_by: mimo-v2.5
   probe:
     type: page-keywords
     endpoint: https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md

@@ -523,10 +523,9 @@
       "limits": "MiMo Auto is free for a limited time; anonymous channel, zero configuration",
       "models": [
         {
-          "family": "mimo",
+          "family": "mimo-v2.5",
           "tier": "strong",
-          "released": "",
-          "superseded_by": "mimo-v2.5"
+          "released": ""
         }
       ],
       "probe": {
@@ -543,7 +542,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": true
+      "archived": false
     },
     {
       "id": "github-copilot-free",

@@ -7,7 +7,7 @@
 
 [![CI](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--07--20-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-26-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-27-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -22,6 +22,7 @@
 |---|---|---|---|---|---|
 | [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ✅ No | 2026-07-20 |
 | [Kilo Code](https://kilocode.ai) | VS Code agent extension; free starter credits usable on 500+ routed models (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...) | — | Free credits on signup | ✅ No | 2026-07-20 |
+| [MiMo Code](https://mimo.xiaomi.com/coder) | Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card | mimo-v2.5 | MiMo Auto is free for a limited time; anonymous channel, zero configuration | ✅ No | 2026-07-20 |
 | [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ✅ No | 2026-07-20 |
 ### 🔌 LLM APIs with free tier
 | Tool | What you get | Free models | Limits | Card required | Verified |
@@ -58,9 +59,7 @@
 ## Archive
 
 Outdated or unverifiable entries:
-| Tool | Last verified |
-|---|---|
-| [MiMo Code](https://mimo.xiaomi.com/coder) | 2026-07-20 |
+_Empty — the radar is clean._
 
 ## 🔧 Plug it into your agent
 
