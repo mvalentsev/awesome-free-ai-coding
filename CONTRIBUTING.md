@@ -42,4 +42,5 @@ uv run freetier-probe    # live-probe all entries
 uv run freetier-render   # regenerate README.md from registry.yaml
 ```
 
-Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green.
+Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI runs
+it on every push and pull request, plus a registry validation / render smoke check.

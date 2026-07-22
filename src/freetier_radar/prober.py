@@ -17,6 +17,7 @@ UA = {"User-Agent": "freetier-radar/0.2"}
 ATTEMPTS = 3
 BACKOFF_SECONDS = 2.0
 CONCURRENCY = 8
+PROVISIONAL_PROMOTE_DAYS = 14
 
 
 class ProbeStatus(str, Enum):
@@ -93,6 +94,8 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
 def apply_results(entries: list[Entry], results: dict[str, ProbeResult], today: date) -> list[Entry]:
     """PASS verifies and resets failures; FAIL increments them; INCONCLUSIVE
     touches nothing — the staleness rule archives entries that stay unverifiable.
+    A provisional entry that keeps passing probes for PROVISIONAL_PROMOTE_DAYS
+    after first_seen is promoted to a regular entry.
     Returns entries needing scout attention (FAIL and INCONCLUSIVE)."""
     needs_attention = []
     for e in entries:
@@ -102,6 +105,8 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult], today: 
         if result.status is ProbeStatus.PASS:
             e.last_verified = today
             e.probe_failures = 0
+            if e.provisional and (today - e.first_seen).days >= PROVISIONAL_PROMOTE_DAYS:
+                e.provisional = False
         else:
             if result.status is ProbeStatus.FAIL:
                 e.probe_failures += 1

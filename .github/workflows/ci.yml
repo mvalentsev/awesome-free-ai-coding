@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+
+      - run: uv sync
+
+      - run: uv run pytest -q
+
+      # Validates registry.yaml (pydantic) and the templates on every PR —
+      # including scout PRs, which only touch the registry. Renders outside
+      # the repo so CI never mutates tracked files.
+      - name: Registry + render smoke check
+        run: uv run freetier-render --registry registry.yaml --templates templates --out /tmp/README.md

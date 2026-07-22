@@ -37,7 +37,7 @@ def _row(e: Entry) -> dict[str, str]:
         "offering": e.offering,
         "limits": e.limits or "—",
         "card": "💳 Yes" if e.card_required else "✅ No",
-        "verified": e.last_verified.isoformat(),
+        "verified": e.last_verified.isoformat() + (" 🧪" if e.provisional else ""),
         "models": ", ".join(fams) if fams else "—",
     }
 
@@ -71,6 +71,7 @@ def build_context(entries: list[Entry], today: date) -> dict:
     ]
     return {"date": today.isoformat(), "sections": sections,
             "archived": [_row(e) for e in archived], "active_count": len(active),
+            "has_provisional": any(e.provisional for e in active),
             "connections": connections}
 
 

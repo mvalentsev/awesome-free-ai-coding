@@ -123,3 +123,14 @@ def test_apply_results():
     assert failing.probe_failures == 1 and failing.last_verified == date(2026, 1, 1)
     assert blocked.probe_failures == 0 and blocked.last_verified == date(2026, 1, 1)
     assert [e.id for e in flagged] == ["pagey", "blocked"]
+
+
+def test_pass_promotes_provisional_after_settling():
+    e = api_entry()  # first_seen 2026-01-01
+    e.provisional = True
+    apply_results([e], {"x": ProbeResult(ProbeStatus.PASS)}, date(2026, 1, 10))
+    assert e.provisional is True  # too young to promote
+    apply_results([e], {"x": ProbeResult(ProbeStatus.FAIL, "gone")}, date(2026, 2, 1))
+    assert e.provisional is True  # only PASS promotes
+    apply_results([e], {"x": ProbeResult(ProbeStatus.PASS)}, date(2026, 1, 15))
+    assert e.provisional is False

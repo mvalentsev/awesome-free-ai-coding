@@ -57,6 +57,17 @@ def test_env_var_naming():
     assert env_var("zai-glm") == "ZAI_GLM_API_KEY"
 
 
+def test_provisional_marker_and_flag():
+    ctx = build_context([make(name="Prov", provisional=True),
+                         make(id="solid", name="Solid")], TODAY)
+    section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
+    verified = {r["name"]: r["verified"] for r in section["rows"]}
+    assert verified["Prov"].endswith("🧪")
+    assert verified["Solid"] == TODAY.isoformat()
+    assert ctx["has_provisional"] is True
+    assert build_context([make(id="solid", name="Solid")], TODAY)["has_provisional"] is False
+
+
 def api_entry(**kw):
     return make(**{"api": {"base_url": "https://api.x.ai/v1",
                            "key_url": "https://x.ai/keys", "auth": "api-key"}, **kw})

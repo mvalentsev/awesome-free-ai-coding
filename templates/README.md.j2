@@ -5,7 +5,8 @@
   <img alt="awesome-free-ai-coding — legal free LLM APIs & coding agents, probe-verified" src="assets/banner-light.svg" width="860">
 </picture>
 
-[![CI](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
+[![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
+[![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-{{ date | replace('-', '--') }}-3fb950)
 ![Live entries](https://img.shields.io/badge/live%20entries-{{ active_count }}-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
@@ -27,6 +28,10 @@
 _Nothing verified right now._
 {% endif %}
 {% endfor %}
+{% if has_provisional %}
+<sub>🧪 — added recently on fresh evidence; stays provisional until two weeks of probes confirm it.</sub>
+
+{% endif %}
 ## Archive
 
 Outdated or unverifiable entries:
