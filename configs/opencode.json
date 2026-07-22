@@ -39,6 +39,22 @@
         }
       }
     },
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek Platform",
+      "options": {
+        "baseURL": "https://api.deepseek.com",
+        "apiKey": "{env:DEEPSEEK_API_KEY}"
+      },
+      "models": {
+        "deepseek-chat": {
+          "name": "deepseek-chat"
+        },
+        "deepseek-reasoner": {
+          "name": "deepseek-reasoner"
+        }
+      }
+    },
     "groq-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Groq",
@@ -112,6 +128,19 @@
       "models": {
         "glm-4.5": {
           "name": "glm-4.5"
+        }
+      }
+    },
+    "longcat": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LongCat API Platform",
+      "options": {
+        "baseURL": "https://api.longcat.chat/openai/v1",
+        "apiKey": "{env:LONGCAT_API_KEY}"
+      },
+      "models": {
+        "LongCat-2.0": {
+          "name": "LongCat-2.0"
         }
       }
     },
@@ -192,6 +221,22 @@
         }
       }
     },
+    "reka": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Reka AI",
+      "options": {
+        "baseURL": "https://api.reka.ai/v1",
+        "apiKey": "{env:REKA_API_KEY}"
+      },
+      "models": {
+        "reka-core": {
+          "name": "reka-core"
+        },
+        "reka-flash": {
+          "name": "reka-flash"
+        }
+      }
+    },
     "pollinations": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Pollinations.AI",
@@ -217,6 +262,19 @@
         },
         "qwen3-coder": {
           "name": "qwen3-coder"
+        }
+      }
+    },
+    "cohere": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Cohere (trial keys)",
+      "options": {
+        "baseURL": "https://api.cohere.com/compatibility/v1",
+        "apiKey": "{env:COHERE_API_KEY}"
+      },
+      "models": {
+        "command-a": {
+          "name": "command-a"
         }
       }
     },

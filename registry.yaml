@@ -34,7 +34,7 @@ entries:
     keywords: []
     free_marker: :free
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -66,7 +66,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 99
@@ -100,7 +100,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -131,7 +131,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -162,7 +162,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -193,7 +193,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -224,7 +224,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -267,7 +267,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: true
   rank: 70
@@ -305,7 +305,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -327,7 +327,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -348,7 +348,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -378,7 +378,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -405,7 +405,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -430,7 +430,7 @@ entries:
     - no subscription or payment required
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -456,7 +456,7 @@ entries:
     - gemini 2.5 pro
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -494,7 +494,7 @@ entries:
     - 50 credits
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -518,7 +518,7 @@ entries:
     - no credit card required
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -546,7 +546,7 @@ entries:
     - chatgpt free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -584,7 +584,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -617,7 +617,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -654,7 +654,7 @@ entries:
     keywords: []
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -686,7 +686,7 @@ entries:
     - no signup
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 92
@@ -722,7 +722,7 @@ entries:
     - free quota
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 94
@@ -757,7 +757,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 98
@@ -793,7 +793,7 @@ entries:
     - monthly credits
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -827,7 +827,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: true
   rank: 96
@@ -862,7 +862,208 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-20'
+  last_verified: '2026-07-22'
   probe_failures: 0
   provisional: true
   rank: 80
+- id: longcat
+  name: LongCat API Platform
+  category: api-free-tier
+  url: https://longcat.chat/platform
+  source_urls:
+  - https://longcat.chat/platform/docs/api-docs
+  - https://x.com/Meituan_LongCat/status/2019773072849637725
+  card_required: false
+  offering: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with
+    a recurring daily free token quota
+  limits: 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day)
+    is announced and the model is uncapped during rollout
+  models:
+  - family: longcat-2.0
+    tier: strong
+    released: 2026-06
+  - family: longcat-flash
+    tier: strong
+    released: 2025-09
+  api:
+    base_url: https://api.longcat.chat/openai/v1
+    key_url: https://longcat.chat/platform
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - LongCat-2.0
+    note: Anthropic-compatible sibling at /anthropic/v1/messages; docs include a Claude
+      Code setup guide (cc-switch)
+  probe:
+    type: page-keywords
+    endpoint: https://longcat.chat/platform/docs/api-docs
+    keywords:
+    - /openai/v1/chat/completions
+    - LongCat-2.0
+    free_marker: ''
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-22'
+  probe_failures: 0
+  provisional: true
+  rank: 55
+- id: reka
+  name: Reka AI
+  category: api-free-tier
+  url: https://platform.reka.ai
+  source_urls:
+  - https://reka.ai/news/end-of-summer-updates
+  - https://docs.reka.ai/pricing
+  card_required: false
+  offering: Reka multimodal API (chat, research, vision) with free credits refreshed
+    automatically every month
+  limits: $10 free credits at the start of every month, usable on any API feature
+  models:
+  - family: reka-core
+    tier: strong
+    released: ''
+  - family: reka-flash
+    tier: strong
+    released: ''
+  api:
+    base_url: https://api.reka.ai/v1
+    key_url: https://platform.reka.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - reka-core
+    - reka-flash
+    note: OpenAI-style chat completions; research and vision endpoints go beyond the
+      OpenAI schema
+  probe:
+    type: page-keywords
+    endpoint: https://reka.ai/news/end-of-summer-updates
+    keywords:
+    - free tier
+    - $10 in free credits
+    free_marker: ''
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-22'
+  probe_failures: 0
+  provisional: true
+  rank: 91
+- id: cohere
+  name: Cohere (trial keys)
+  category: api-free-tier
+  url: https://cohere.com
+  source_urls:
+  - https://docs.cohere.com/docs/rate-limits
+  card_required: false
+  offering: Cohere Command models via free trial API keys that never expire
+  limits: 'Trial key: 1,000 API calls/month, rate-limited; production keys unlock
+    paid volume'
+  models:
+  - family: command-a
+    tier: strong
+    released: ''
+  api:
+    base_url: https://api.cohere.com/compatibility/v1
+    key_url: https://dashboard.cohere.com/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2
+  probe:
+    type: page-keywords
+    endpoint: https://docs.cohere.com/docs/rate-limits
+    keywords:
+    - trial keys
+    - 1,000
+    free_marker: ''
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-22'
+  probe_failures: 0
+  provisional: false
+  rank: 95
+- id: deepseek
+  name: DeepSeek Platform
+  category: trial
+  url: https://platform.deepseek.com
+  source_urls:
+  - https://api-docs.deepseek.com/quick_start/pricing/
+  - https://pricepertoken.com/endpoints/deepseek/free
+  card_required: false
+  offering: Official DeepSeek API; every new account gets a one-time free token grant,
+    no card required
+  limits: 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually
+    free models
+  models:
+  - family: deepseek-chat
+    tier: strong
+    released: ''
+  - family: deepseek-reasoner
+    tier: strong
+    released: ''
+  api:
+    base_url: https://api.deepseek.com
+    key_url: https://platform.deepseek.com/api_keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-chat
+    - deepseek-reasoner
+    note: ''
+  probe:
+    type: page-keywords
+    endpoint: https://api-docs.deepseek.com/quick_start/pricing/
+    keywords:
+    - deepseek-chat
+    free_marker: ''
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-22'
+  probe_failures: 0
+  provisional: true
+  rank: 15
+- id: qoder
+  name: Qoder
+  category: trial
+  url: https://qoder.com
+  source_urls:
+  - https://docs.qoder.com/account/pricing
+  card_required: false
+  offering: Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup,
+    then a free plan with basic models
+  limits: 'Trial: 300 credits for 2 weeks; free plan afterwards serves basic models
+    with a daily cap'
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://docs.qoder.com/account/pricing
+    keywords:
+    - free
+    - credits
+    free_marker: ''
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-22'
+  probe_failures: 0
+  provisional: true
+  rank: 60
+- id: charm-hyper
+  name: Crush + Charm Hyper
+  category: agent-cli
+  url: https://hyper.charm.land
+  source_urls:
+  - https://hyper.charm.land/faq
+  - https://github.com/charmbracelet/crush
+  card_required: false
+  offering: Charm's Crush terminal agent with Hyper, its official hosted model gateway;
+    the free plan includes monthly Hypercredits, zero data retention
+  limits: 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign
+    up from Crush or the site)
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://hyper.charm.land/faq
+    keywords:
+    - 100 hypercredits
+    - refreshing monthly
+    free_marker: ''
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-22'
+  probe_failures: 0
+  provisional: true
+  rank: 50

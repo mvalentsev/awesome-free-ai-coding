@@ -24,6 +24,9 @@ UA = {"User-Agent": "freetier-radar/0.2"}
 CURATED_FEEDS = [
     "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md",
     "https://raw.githubusercontent.com/sourcegraph/awesome-code-ai/main/README.md",
+    # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
+    # "no auth" channels for proprietary CLIs — claims still need official-page proof.
+    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/getting-started/PROVIDERS-GUIDE.md",
 ]
 
 NOISE_DOMAINS = {

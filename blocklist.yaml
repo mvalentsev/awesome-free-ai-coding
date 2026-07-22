@@ -13,4 +13,16 @@
 - domain: gonka-api.org
   reason: hostile to AI agents — /for-agents page carries prompt-injection instructing
     secret exfiltration and referral spam; do not list, do not fetch
+- domain: omniroute.online
+  reason: self-hosted BYOK router (localhost endpoint, no bundled credits or hosted
+    free tier); ships client-identity spoofing for proprietary CLI channels, so its
+    free-access claims are not evidence of official free tiers
+- domain: g4f.space
+  reason: gpt4free-style pooled/reverse-engineered access to paid models, not an
+    official free tier
+- domain: api.airforce
+  reason: pooled/reverse-engineered gateway of the g4f family — no official free offer
+- domain: theoldllm.vercel.app
+  reason: frontier-model access via browser-automation token harvesting — unofficial,
+    unstable, likely ToS-violating
 
