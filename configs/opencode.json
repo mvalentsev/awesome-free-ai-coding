@@ -118,19 +118,6 @@
         }
       }
     },
-    "zai-glm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Z.ai (Zhipu GLM)",
-      "options": {
-        "baseURL": "https://api.z.ai/api/paas/v4",
-        "apiKey": "{env:ZAI_GLM_API_KEY}"
-      },
-      "models": {
-        "glm-4.5": {
-          "name": "glm-4.5"
-        }
-      }
-    },
     "longcat": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LongCat API Platform",
@@ -176,19 +163,6 @@
         },
         "gemma4:31b": {
           "name": "gemma4:31b"
-        }
-      }
-    },
-    "github-models": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "GitHub Models",
-      "options": {
-        "baseURL": "https://models.github.ai/inference",
-        "apiKey": "{env:GITHUB_MODELS_API_KEY}"
-      },
-      "models": {
-        "gpt-4.1": {
-          "name": "gpt-4.1"
         }
       }
     },
