@@ -239,7 +239,8 @@
         {
           "family": "gpt-4.1",
           "tier": "strong",
-          "released": "2025-04"
+          "released": "2025-04",
+          "superseded_by": "gpt-5.6"
         }
       ],
       "api": {
@@ -263,7 +264,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
-      "archived": false
+      "archived": true
     },
     {
       "id": "cloudflare-workers-ai",
@@ -786,7 +787,8 @@
         {
           "family": "glm-4.5",
           "tier": "strong",
-          "released": "2025-07"
+          "released": "2025-07",
+          "superseded_by": "glm-5.2"
         }
       ],
       "api": {
@@ -811,7 +813,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false
+      "archived": true
     },
     {
       "id": "ovh-ai-endpoints",
