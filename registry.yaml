@@ -34,7 +34,7 @@ entries:
     keywords: []
     free_marker: :free
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -66,7 +66,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 99
@@ -100,7 +100,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -131,7 +131,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -162,7 +162,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -193,7 +193,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -224,7 +224,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -267,7 +267,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 70
@@ -305,7 +305,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -327,7 +327,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -348,7 +348,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -378,7 +378,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -405,7 +405,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -430,7 +430,7 @@ entries:
     - no subscription or payment required
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -456,7 +456,7 @@ entries:
     - gemini 2.5 pro
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -494,7 +494,7 @@ entries:
     - 50 credits
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -518,7 +518,7 @@ entries:
     - no credit card required
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -546,7 +546,7 @@ entries:
     - chatgpt free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -584,7 +584,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -617,7 +617,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -654,7 +654,7 @@ entries:
     keywords: []
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -686,7 +686,7 @@ entries:
     - no signup
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 92
@@ -722,7 +722,7 @@ entries:
     - free quota
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 94
@@ -757,7 +757,7 @@ entries:
     - free tier
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 98
@@ -793,7 +793,7 @@ entries:
     - monthly credits
     free_marker: ''
   first_seen: '2026-07-20'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -827,7 +827,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 96
@@ -862,7 +862,7 @@ entries:
     - free
     free_marker: ''
   first_seen: '2026-07-19'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 80
@@ -902,7 +902,7 @@ entries:
     - LongCat-2.0
     free_marker: ''
   first_seen: '2026-07-22'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 55
@@ -942,7 +942,7 @@ entries:
     - $10 in free credits
     free_marker: ''
   first_seen: '2026-07-22'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 91
@@ -975,7 +975,7 @@ entries:
     - 1,000
     free_marker: ''
   first_seen: '2026-07-22'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: false
   rank: 95
@@ -1014,7 +1014,7 @@ entries:
     - deepseek-chat
     free_marker: ''
   first_seen: '2026-07-22'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 15
@@ -1038,7 +1038,7 @@ entries:
     - credits
     free_marker: ''
   first_seen: '2026-07-22'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 60
@@ -1063,7 +1063,7 @@ entries:
     - refreshing monthly
     free_marker: ''
   first_seen: '2026-07-22'
-  last_verified: '2026-07-22'
+  last_verified: '2026-07-23'
   probe_failures: 0
   provisional: true
   rank: 50
