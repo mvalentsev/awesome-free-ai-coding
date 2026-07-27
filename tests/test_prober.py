@@ -4,7 +4,9 @@ import httpx
 import respx
 
 from freetier_radar.models import Entry
-from freetier_radar.prober import ProbeResult, ProbeStatus, apply_results, probe_entry
+from freetier_radar.prober import (
+    ProbeResult, ProbeStatus, apply_results, is_model_stale, probe_entry,
+)
 
 BASE = {
     "id": "x",
@@ -81,6 +83,30 @@ async def test_page_keywords_missing_is_fail():
 
 
 @respx.mock
+async def test_withdrawal_wording_fails_even_when_keywords_match():
+    """mimo-code's case: the page still advertises the free channel and says,
+    further down, that it is over."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder on the free tier, no credit card. "
+                  "Update: the free API service has ended on 2026-07-26."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "offer withdrawn" in result.detail and "free api service has ended" in result.detail
+
+
+@respx.mock
+async def test_entry_specific_dead_marker():
+    entry = page_entry()
+    entry.probe.dead_markers = ["mimo auto is gone"]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder on the free tier, no credit card. MiMo Auto is gone."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL and "mimo auto is gone" in result.detail
+
+
+@respx.mock
 async def test_blocked_is_inconclusive_without_retry():
     route = respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(403))
     async with httpx.AsyncClient() as client:
@@ -133,7 +159,27 @@ def test_apply_results():
     assert ok.last_verified == today and ok.probe_failures == 0
     assert failing.probe_failures == 1 and failing.last_verified == date(2026, 1, 1)
     assert blocked.probe_failures == 0 and blocked.last_verified == date(2026, 1, 1)
-    assert [e.id for e in flagged] == ["pagey", "blocked"]
+    assert [e.id for e, _ in flagged] == ["pagey", "blocked"]
+    assert [r.status for _, r in flagged] == [ProbeStatus.FAIL, ProbeStatus.INCONCLUSIVE]
+
+
+def test_fully_superseded_entry_passes_but_needs_attention():
+    """A supersede mark never archives — but it must not sit there either, or the
+    README keeps rendering "—" where the free models belong."""
+    e = api_entry()
+    e.models[0].superseded_by = "qwen4-coder"
+    assert is_model_stale(e)
+    flagged = apply_results([e], {"x": ProbeResult(ProbeStatus.PASS)}, date(2026, 7, 19))
+    assert e.last_verified == date(2026, 7, 19) and e.probe_failures == 0  # still live
+    assert [(x.id, r.status) for x, r in flagged] == [("x", ProbeStatus.STALE_MODELS)]
+
+
+def test_partly_superseded_entry_is_left_alone():
+    e = api_entry()
+    e.models.append(e.models[0].model_copy(update={"family": "qwen4-coder"}))
+    e.models[0].superseded_by = "qwen4-coder"
+    assert not is_model_stale(e)
+    assert apply_results([e], {"x": ProbeResult(ProbeStatus.PASS)}, date(2026, 7, 19)) == []
 
 
 def test_pass_promotes_provisional_after_settling():

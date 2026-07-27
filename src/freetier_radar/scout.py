@@ -37,6 +37,11 @@ OVH_PREFERRED_HINTS = ("gpt-oss", "qwen3")
 RETRY_429_ATTEMPTS = 3
 RETRY_429_SLEEP = 20.0
 
+# Retirement sweep: one page per live entry, trimmed so 30+ entries still fit a
+# single prompt. A quote shorter than this is too weak to verify against a page.
+RETIREMENT_PAGE_CHARS = 2500
+MIN_QUOTE_CHARS = 25
+
 SYSTEM_RULES = (
     "You update a registry of LEGAL free LLM coding resources. "
     "Output ONLY a yaml code block, no prose. Never invent URLs or limits: "
@@ -48,6 +53,9 @@ TASK: FIX-FAILED probes. For each flagged entry, using its failure detail and
 official page text below, propose corrected values (e.g. a working probe endpoint,
 updated limits). Allowed keys per update: id (unchanged), offering, limits,
 card_required, probe, models.
+A "stale-models" failure means the probe passed and the offer is alive, but every
+family listed for it was marked superseded: reply with a models list naming the
+families the free tier serves today, and leave the probe alone.
 Output format:
 updates:
   - id: <existing id>
@@ -99,6 +107,23 @@ EVIDENCE:
 {evidence}
 """
 
+RETIREMENT_PROMPT = SYSTEM_RULES + """
+TASK: FIND-RETIREMENTS. Below are live entries and the current text of their
+official pages. Report an entry ONLY when its own page announces that the free
+offering is ending or has already ended, and gives a date. A price change, a
+paid plan, a deprecated model or a retired unrelated product is NOT a
+retirement. Copy the announcing sentence verbatim from the page text — an
+entry whose quote is not on the page is discarded.
+Output format:
+retire:
+  - id: <existing id>
+    retired_on: YYYY-MM-DD   # the day the free offering stops
+    quote: <verbatim sentence from the page text below>
+Empty list if no page announces one.
+ENTRIES AND PAGE TEXTS:
+{context}
+"""
+
 GENERATIONS_PROMPT = SYSTEM_RULES + """
 TASK: MODEL-GENERATIONS. These model families are currently listed: {families}
 Mark families that have a clearly newer generation from the same vendor.
@@ -120,6 +145,7 @@ Updated entries: {updates}
 New entries (probe-verified): {new}
 Rejected candidates: {rejected}
 Superseded families: {supersede}
+Retirements announced by the vendor: {retired}
 
 _Proposed by the web-evidence scout — review before merging. Weekly probes keep re-verifying after merge._
 """
@@ -340,14 +366,50 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
 
 
 def apply_supersede(entries: list[Entry], supersede: list[dict]) -> list[str]:
+    """Report only the families this call actually changed. Re-reporting marks
+    that were already in place made PR bodies claim work their diff never did."""
     done = []
     for s in supersede:
+        target = s.get("superseded_by")
+        if not target:
+            continue
         for e in entries:
             for m in e.models:
-                if m.family == s.get("family") and s.get("superseded_by"):
-                    m.superseded_by = s["superseded_by"]
+                if m.family == s.get("family") and m.superseded_by != target:
+                    m.superseded_by = target
                     done.append(m.family)
     return done
+
+
+def _flatten(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip().lower()
+
+
+def apply_retirements(entries: list[Entry], retire: list[dict],
+                      pages: dict[str, str]) -> list[str]:
+    """Set retired_on from a vendor's own shutdown announcement.
+
+    The quote has to appear verbatim in the page text we fetched — a retirement
+    date is the one field that archives a live entry outright, so a paraphrased
+    or invented announcement must not be able to set it."""
+    applied = []
+    by_id = {e.id: e for e in entries}
+    for r in retire:
+        if not isinstance(r, dict):
+            continue
+        entry = by_id.get(r.get("id"))
+        quote = _flatten(str(r.get("quote", "")))
+        if entry is None or entry.retired_on is not None or len(quote) < MIN_QUOTE_CHARS:
+            continue
+        if quote not in _flatten(" ".join(pages.get(u, "") for u in entry.source_urls)):
+            continue
+        try:
+            when = date.fromisoformat(str(r.get("retired_on", "")))
+        except ValueError:
+            continue
+        entry.retired_on = when
+        applied.append(f"{entry.id} ({when.isoformat()})")
+    return applied
 
 
 def run_scout(llm, entries: list[Entry], failures: list[dict],
@@ -355,7 +417,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               evidence: Evidence | None = None,
               verifier: Callable[[Entry], str | None] | None = None,
               blocklist: dict[str, str] | None = None) -> dict:
-    result = {"updates": [], "new": [], "rejected": [], "supersede": [],
+    result = {"updates": [], "new": [], "rejected": [], "supersede": [], "retired": [],
               "providers": evidence.providers if evidence else []}
 
     if failures:
@@ -381,6 +443,21 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         ))
         result["new"], result["rejected"] = apply_new(
             entries, data.get("new_entries") or [], today, verifier, blocklist)
+
+    # Sweep every live entry for a shutdown announcement. Without this the scout
+    # only ever looks at an entry after its probe fails, i.e. on the day the free
+    # tier dies — a retirement announced weeks ahead goes unnoticed until then.
+    live = [e for e in entries if e.retired_on is None and e.source_urls]
+    if live:
+        pages = page_fetcher([e.source_urls[0] for e in live])
+        context = "\n\n".join(
+            f"ENTRY {e.id} ({e.name}) — offering: {e.offering}\n"
+            f"PAGE {e.source_urls[0]}:\n{pages.get(e.source_urls[0], '')[:RETIREMENT_PAGE_CHARS]}"
+            for e in live if pages.get(e.source_urls[0])
+        )
+        if context:
+            data = _ask(llm, RETIREMENT_PROMPT.format(context=context))
+            result["retired"] = apply_retirements(entries, data.get("retire") or [], pages)
 
     families = sorted({m.family for e in entries for m in e.models})
     if families:
@@ -435,5 +512,6 @@ def main() -> None:
         new=", ".join(result["new"]) or "—",
         rejected="; ".join(result["rejected"]) or "—",
         supersede=", ".join(result["supersede"]) or "—",
+        retired=", ".join(result["retired"]) or "—",
     ), encoding="utf-8")
     print(f"scout: {result}")

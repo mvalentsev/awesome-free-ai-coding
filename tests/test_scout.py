@@ -6,8 +6,8 @@ import respx
 from freetier_radar.discovery import Evidence, Hit
 from freetier_radar.models import Entry
 from freetier_radar.scout import (
-    FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, _ask, apply_new, apply_supersede,
-    apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
+    FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, _ask, apply_new, apply_retirements,
+    apply_supersede, apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
 )
 
 TODAY = date(2026, 7, 19)
@@ -104,6 +104,52 @@ def test_apply_supersede():
     assert done == ["old"]
     assert entries[0].models[0].superseded_by == "cur"
     assert entries[0].models[1].superseded_by is None
+
+
+def test_apply_supersede_reports_only_new_marks():
+    """PR #4 claimed four superseded families while its diff touched two: the
+    marks it re-reported were already in the registry."""
+    entries = [make(models=[{"family": "old", "superseded_by": "cur"}, {"family": "cur"}])]
+    assert apply_supersede(entries, [{"family": "old", "superseded_by": "cur"}]) == []
+    assert apply_supersede(entries, [{"family": "cur", "superseded_by": "next"}]) == ["cur"]
+
+
+def test_apply_retirements_needs_the_quote_on_the_page():
+    pages = {"https://x.ai": "we are shutting the free tier down on 30 september 2026, thanks"}
+    entries = [make(source_urls=["https://x.ai"])]
+
+    invented = apply_retirements(entries, [{
+        "id": "x", "retired_on": "2026-09-30",
+        "quote": "the free tier will be discontinued next quarter"}], pages)
+    assert invented == [] and entries[0].retired_on is None
+
+    grounded = apply_retirements(entries, [{
+        "id": "x", "retired_on": "2026-09-30",
+        "quote": "We are shutting the free tier down on 30 September 2026"}], pages)
+    assert grounded == ["x (2026-09-30)"] and entries[0].retired_on == date(2026, 9, 30)
+
+
+def test_apply_retirements_ignores_bad_dates_and_short_quotes():
+    pages = {"https://x.ai": "the free tier ends soon, we are shutting the free tier down"}
+    entries = [make(source_urls=["https://x.ai"])]
+    assert apply_retirements(entries, [
+        {"id": "x", "retired_on": "soon", "quote": "we are shutting the free tier down"},
+        {"id": "x", "retired_on": "2026-09-30", "quote": "ends soon"},
+        {"id": "nobody", "retired_on": "2026-09-30", "quote": "we are shutting the free tier down"},
+    ], pages) == []
+    assert entries[0].retired_on is None
+
+
+def test_run_scout_sweeps_live_entries_for_retirements():
+    """GitHub Models announced its shutdown weeks ahead; the scout only ever saw
+    an entry once its probe failed, i.e. on the day the tier died."""
+    page = "the free tier for github models will be retired on 2026-07-30, use the paid plan"
+    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire:\n  - id: x\n    retired_on: '2026-07-30'\n"
+                                       f"    quote: {page[:60]}\n```"})
+    entries = [make(source_urls=["https://x.ai/blog"])]
+    result = run_scout(llm, entries, [], lambda urls: {u: page for u in urls}, TODAY)
+    assert result["retired"] == ["x (2026-07-30)"]
+    assert entries[0].retired_on == date(2026, 7, 30)
 
 
 def test_run_scout_orchestration():

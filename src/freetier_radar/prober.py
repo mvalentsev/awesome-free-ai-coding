@@ -10,7 +10,7 @@ from pathlib import Path
 
 import httpx
 
-from .models import Entry, ProbeType, load_registry, save_registry
+from .models import DEAD_MARKERS, Entry, Probe, ProbeType, load_registry, save_registry
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
@@ -24,6 +24,7 @@ class ProbeStatus(str, Enum):
     PASS = "pass"
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
+    STALE_MODELS = "stale-models"  # offer verified, but every listed family is superseded
 
 
 @dataclass
@@ -85,18 +86,40 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     return f"missing families: {', '.join(missing)}" if missing else None
 
 
+def dead_marker_hit(text: str, probe: Probe) -> str | None:
+    """The phrase a vendor uses to announce the offer is over, if the page has one."""
+    for marker in (*DEAD_MARKERS, *probe.dead_markers):
+        if marker.lower() in text:
+            return marker
+    return None
+
+
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     text = resp.text.lower()
+    # An explicit withdrawal outranks the keywords: vendors leave the free tier
+    # described on the page and add the bad news next to it.
+    dead = dead_marker_hit(text, entry.probe)
+    if dead is not None:
+        return f'offer withdrawn: page says "{dead}"'
     missing = [k for k in entry.probe.keywords if k.lower() not in text]
     return f"missing keywords: {', '.join(missing)}" if missing else None
 
 
-def apply_results(entries: list[Entry], results: dict[str, ProbeResult], today: date) -> list[Entry]:
+def is_model_stale(entry: Entry) -> bool:
+    """Every listed family bumped to a newer generation. The entry is alive —
+    a supersede mark never archives — but the README has no free model left to
+    name for it, so the families need refreshing."""
+    return bool(entry.models) and all(m.superseded_by for m in entry.models)
+
+
+def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
+                  today: date) -> list[tuple[Entry, ProbeResult]]:
     """PASS verifies and resets failures; FAIL increments them; INCONCLUSIVE
     touches nothing — the staleness rule archives entries that stay unverifiable.
     A provisional entry that keeps passing probes for PROVISIONAL_PROMOTE_DAYS
     after first_seen is promoted to a regular entry.
-    Returns entries needing scout attention (FAIL and INCONCLUSIVE)."""
+    Returns (entry, result) pairs needing scout attention: FAIL, INCONCLUSIVE,
+    and passing entries whose model families are all superseded."""
     needs_attention = []
     for e in entries:
         result = results.get(e.id)
@@ -107,10 +130,15 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult], today: 
             e.probe_failures = 0
             if e.provisional and (today - e.first_seen).days >= PROVISIONAL_PROMOTE_DAYS:
                 e.provisional = False
+            if is_model_stale(e):
+                needs_attention.append((e, ProbeResult(
+                    ProbeStatus.STALE_MODELS,
+                    "every listed family is marked superseded — refresh models to the "
+                    "generation the free tier actually serves")))
         else:
             if result.status is ProbeStatus.FAIL:
                 e.probe_failures += 1
-            needs_attention.append(e)
+            needs_attention.append((e, result))
     return needs_attention
 
 
@@ -129,8 +157,8 @@ async def _amain(registry_path: Path, failures_dir: Path) -> None:
     save_registry(registry_path, entries)
     failures_dir.mkdir(parents=True, exist_ok=True)
     payload = [
-        {"id": e.id, "status": results[e.id].status.value, "detail": results[e.id].detail}
-        for e in flagged
+        {"id": e.id, "status": r.status.value, "detail": r.detail}
+        for e, r in flagged
     ]
     (failures_dir / "failures.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False))
     print(f"probed {len(entries)} entries, {len(flagged)} need attention")

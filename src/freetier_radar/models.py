@@ -15,6 +15,29 @@ GENERIC_KEYWORDS = frozenset({
     "no credit card required", "sign up", "get started",
 })
 
+# How a vendor words a withdrawal. Missing keywords catch an offer that quietly
+# vanished from the page; these catch the opposite case — the page still lists
+# the free tier and announces, a paragraph below, that it is over. Every phrase
+# names the free offer itself, so a page retiring some unrelated product does
+# not fail a live entry.
+DEAD_MARKERS = (
+    "no longer free",
+    "no longer available for free",
+    "free tier has ended",
+    "free trial has ended",
+    "free plan has ended",
+    "free access has ended",
+    "free api service has ended",
+    "free tier has been discontinued",
+    "free plan has been discontinued",
+    "free tier is being discontinued",
+    "discontinuing the free",
+    "discontinued the free",
+    "sunsetting the free",
+    "we are retiring the free",
+    "end of the free tier",
+)
+
 
 class Category(str, Enum):
     AGENT_CLI = "agent-cli"
@@ -45,6 +68,7 @@ class Probe(BaseModel):
     endpoint: str
     keywords: list[str] = []
     free_marker: str = ""
+    dead_markers: list[str] = []  # entry-specific withdrawal wording, on top of DEAD_MARKERS
 
     @model_validator(mode="after")
     def _keywords_must_anchor(self) -> Probe:
