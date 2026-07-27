@@ -37,10 +37,21 @@ OVH_PREFERRED_HINTS = ("gpt-oss", "qwen3")
 RETRY_429_ATTEMPTS = 3
 RETRY_429_SLEEP = 20.0
 
-# Retirement sweep: one page per live entry, trimmed so 30+ entries still fit a
-# single prompt. A quote shorter than this is too weak to verify against a page.
+# Retirement sweep: one page per live entry, trimmed so the prompt stays small.
+# A quote shorter than this is too weak to verify against a page.
 RETIREMENT_PAGE_CHARS = 2500
 MIN_QUOTE_CHARS = 25
+
+# Only pages carrying one of these reach the LLM. Feeding all 30 live pages in
+# cost ~20k tokens for a question that is almost always "no" — and a prompt that
+# large can exceed a backend's context, failing the whole scout run over an
+# optional sweep. The words are deliberately broad: false positives cost a few
+# hundred tokens, a miss costs a retirement.
+RETIREMENT_SIGNALS = (
+    "retir", "sunset", "discontinu", "deprecat", "shut down", "shutting down",
+    "shutdown", "will end", "has ended", "end of life", "no longer available",
+    "no longer be available", "no longer offer", "winding down", "last day",
+)
 
 SYSTEM_RULES = (
     "You update a registry of LEGAL free LLM coding resources. "
@@ -385,6 +396,11 @@ def _flatten(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip().lower()
 
 
+def _has_retirement_signal(text: str) -> bool:
+    lowered = text.lower()
+    return any(s in lowered for s in RETIREMENT_SIGNALS)
+
+
 def apply_retirements(entries: list[Entry], retire: list[dict],
                       pages: dict[str, str]) -> list[str]:
     """Set retired_on from a vendor's own shutdown announcement.
@@ -450,14 +466,20 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     live = [e for e in entries if e.retired_on is None and e.source_urls]
     if live:
         pages = page_fetcher([e.source_urls[0] for e in live])
+        candidates = [e for e in live if _has_retirement_signal(pages.get(e.source_urls[0], ""))]
         context = "\n\n".join(
             f"ENTRY {e.id} ({e.name}) — offering: {e.offering}\n"
             f"PAGE {e.source_urls[0]}:\n{pages.get(e.source_urls[0], '')[:RETIREMENT_PAGE_CHARS]}"
-            for e in live if pages.get(e.source_urls[0])
+            for e in candidates
         )
+        print(f"retirement sweep: {len(candidates)}/{len(live)} pages carry a signal")
         if context:
-            data = _ask(llm, RETIREMENT_PROMPT.format(context=context))
-            result["retired"] = apply_retirements(entries, data.get("retire") or [], pages)
+            # An optional sweep must never sink the run that finds new entries.
+            try:
+                data = _ask(llm, RETIREMENT_PROMPT.format(context=context))
+                result["retired"] = apply_retirements(entries, data.get("retire") or [], pages)
+            except RuntimeError as exc:
+                print(f"retirement sweep skipped: {exc}")
 
     families = sorted({m.family for e in entries for m in e.models})
     if families:

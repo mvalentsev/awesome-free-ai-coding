@@ -152,6 +152,31 @@ def test_run_scout_sweeps_live_entries_for_retirements():
     assert entries[0].retired_on == date(2026, 7, 30)
 
 
+def test_run_scout_skips_the_llm_when_no_page_hints_at_a_retirement():
+    """Almost every sweep answers "nothing retiring". Sending 30 unremarkable
+    pages to the LLM cost ~20k tokens and risked blowing a backend's context."""
+    llm = StubLLM({})
+    entries = [make(source_urls=["https://x.ai/blog"])]
+    run_scout(llm, entries, [], lambda urls: {u: "our free tier, as always" for u in urls}, TODAY)
+    assert not any("FIND-RETIREMENTS" in p for p in llm.prompts)
+
+
+def test_retirement_sweep_failure_does_not_sink_the_run():
+    class Flaky(StubLLM):
+        def complete(self, prompt: str) -> str:
+            if "FIND-RETIREMENTS" in prompt:
+                self.prompts.append(prompt)
+                raise RuntimeError("all LLM backends failed: context too long")
+            return super().complete(prompt)
+
+    llm = Flaky({"MODEL-GENERATIONS": "```yaml\nsupersede:\n  - family: old\n    superseded_by: cur\n```"})
+    entries = [make(source_urls=["https://x.ai/blog"], models=[{"family": "old"}])]
+    result = run_scout(llm, entries, [],
+                       lambda urls: {u: "the free tier will be discontinued" for u in urls}, TODAY)
+    assert result["retired"] == []
+    assert result["supersede"] == ["old"]  # the rest of the scout still ran
+
+
 def test_run_scout_orchestration():
     llm = StubLLM({
         "FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    limits: fixed\n```",
