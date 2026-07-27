@@ -20,11 +20,15 @@ CATEGORY_TITLES: dict[Category, str] = {
 
 
 def is_archived(entry: Entry, today: date) -> bool:
+    """Liveness comes from probes, staleness and vendor-announced retirement —
+    never from model generations. A provider whose catalog moves on is still
+    free, so a superseded family means "bump the row", not "bury the entry".
+    """
+    if entry.retired_on and today >= entry.retired_on:
+        return True
     if entry.probe_failures >= 3:
         return True
     if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
-        return True
-    if entry.models and all(m.superseded_by for m in entry.models):
         return True
     return False
 

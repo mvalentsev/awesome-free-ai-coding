@@ -126,8 +126,8 @@
         "apiKey": "{env:ZAI_GLM_API_KEY}"
       },
       "models": {
-        "glm-4.5": {
-          "name": "glm-4.5"
+        "glm-4.7-flash": {
+          "name": "glm-4.7-flash"
         }
       }
     },

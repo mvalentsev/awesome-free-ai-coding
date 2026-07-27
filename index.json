@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-23",
+  "generated": "2026-07-27",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "entries": [
     {
@@ -230,11 +230,12 @@
       "category": "api-free-tier",
       "url": "https://github.com/marketplace/models",
       "source_urls": [
-        "https://docs.github.com/en/github-models"
+        "https://docs.github.com/en/github-models",
+        "https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/"
       ],
       "card_required": false,
       "offering": "Free playground+API for catalog models with GitHub account",
-      "limits": "Per-model rate limits, free tier",
+      "limits": "Per-model rate limits, free tier; closed to new customers since 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30",
       "models": [
         {
           "family": "gpt-4.1",
@@ -260,6 +261,7 @@
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
+      "retired_on": "2026-07-30",
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
@@ -516,11 +518,12 @@
       "url": "https://mimo.xiaomi.com/coder",
       "source_urls": [
         "https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
-        "https://mimo.xiaomi.com/mimocode/start"
+        "https://mimo.xiaomi.com/mimocode/start",
+        "https://github.com/XiaomiMiMo/MiMo-Code/blob/main/packages/opencode/src/util/free-api-sunset.ts"
       ],
       "card_required": false,
-      "offering": "Xiaomi's open-source (MIT) terminal coding agent; built-in \"MiMo Auto\" channel runs Xiaomi's MiMo models with no login, API key, or card",
-      "limits": "MiMo Auto is free for a limited time; anonymous channel, zero configuration",
+      "offering": "Xiaomi's open-source (MIT) terminal coding agent; its built-in \"MiMo Auto\" channel used to run Xiaomi's MiMo models with no login, API key, or card",
+      "limits": "Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it past that timestamp (FREE_API_SUNSET_AT) and prompts: \"The free API service has ended\"; a paid Token Plan or a third-party API key is required now. The repo README still advertises the free channel",
       "models": [
         {
           "family": "mimo-v2.5",
@@ -539,10 +542,11 @@
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
+      "retired_on": "2026-07-26",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": false
+      "archived": true
     },
     {
       "id": "github-copilot-free",
@@ -784,9 +788,9 @@
       "limits": "GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited",
       "models": [
         {
-          "family": "glm-4.5",
+          "family": "glm-4.7-flash",
           "tier": "strong",
-          "released": "2025-07"
+          "released": "2026-01"
         }
       ],
       "api": {
@@ -801,7 +805,7 @@
         "type": "page-keywords",
         "endpoint": "https://docs.z.ai/guides/overview/pricing",
         "keywords": [
-          "glm-4.5-flash",
+          "glm-4.7-flash",
           "free"
         ],
         "free_marker": ""

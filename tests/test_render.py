@@ -29,8 +29,16 @@ def test_archive_rules():
     assert is_archived(make(probe_failures=3), TODAY)
     assert is_archived(make(last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1)), TODAY)
     assert not is_archived(make(last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS)), TODAY)
+    assert is_archived(make(retired_on=TODAY), TODAY)
+    assert is_archived(make(retired_on=TODAY - timedelta(days=1)), TODAY)
+    assert not is_archived(make(retired_on=TODAY + timedelta(days=1)), TODAY)
+
+
+def test_superseded_models_never_archive():
+    """A vendor shipping a newer generation means "bump the row", not "bury the
+    entry" — the free tier outlives the model family listed against it."""
     superseded = make(models=[{"family": "old", "superseded_by": "new"}])
-    assert is_archived(superseded, TODAY)
+    assert not is_archived(superseded, TODAY)
     mixed = make(models=[{"family": "old", "superseded_by": "new"}, {"family": "new"}])
     assert not is_archived(mixed, TODAY)
 

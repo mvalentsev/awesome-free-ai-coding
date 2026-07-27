@@ -63,6 +63,7 @@ class Entry(BaseModel):
     probe: Probe
     first_seen: date
     last_verified: date
+    retired_on: date | None = None  # vendor-announced shutdown; archives the row on that day
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher

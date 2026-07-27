@@ -7,8 +7,8 @@
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
-![Last verified](https://img.shields.io/badge/last%20verified-2026--07--23-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-33-58a6ff)
+![Last verified](https://img.shields.io/badge/last%20verified-2026--07--27-3fb950)
+![Live entries](https://img.shields.io/badge/live%20entries-32-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -23,7 +23,6 @@
 |---|---|---|---|---|---|
 | [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ✅ No | 2026-07-23 |
 | [Kilo Code](https://kilocode.ai) | VS Code agent extension; free starter credits usable on 500+ routed models (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...) | — | Free credits on signup | ✅ No | 2026-07-23 |
-| [MiMo Code](https://mimo.xiaomi.com/coder) | Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card | mimo-v2.5 | MiMo Auto is free for a limited time; anonymous channel, zero configuration | ✅ No | 2026-07-23 |
 | [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ✅ No | 2026-07-23 |
 | [Crush + Charm Hyper](https://hyper.charm.land) | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site) | ✅ No | 2026-07-23 🧪 |
 ### 🔌 LLM APIs with free tier
@@ -33,11 +32,11 @@
 | [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ✅ No | 2026-07-23 |
 | [Cerebras Inference](https://www.cerebras.ai) | Very fast inference, free tier | qwen3 | Free tier with daily limits | ✅ No | 2026-07-23 |
 | [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | qwen3, gpt-oss | No-key anonymous access, rate-limited; free API key raises limits | ✅ No | 2026-07-23 |
-| [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.5 | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-23 |
+| [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.7-flash | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-23 |
 | [LongCat API Platform](https://longcat.chat/platform) | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | longcat-2.0, longcat-flash | 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout | ✅ No | 2026-07-23 🧪 |
 | [Cloudflare Workers AI](https://workers.cloudflare.com) | 10k neurons/day free | llama-4 | 10,000 neurons/day free allocation | ✅ No | 2026-07-23 |
 | [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | nemotron, minimax-3, gpt-oss | Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription | ✅ No | 2026-07-23 🧪 |
-| [GitHub Models](https://github.com/marketplace/models) | Free playground+API for catalog models with GitHub account | gpt-4.1 | Per-model rate limits, free tier | ✅ No | 2026-07-23 |
+| [GitHub Models](https://github.com/marketplace/models) | Free playground+API for catalog models with GitHub account | gpt-4.1 | Per-model rate limits, free tier; closed to new customers since 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30 | ✅ No | 2026-07-23 |
 | [Mistral La Plateforme](https://mistral.ai) | Free experiment tier on La Plateforme | mistral-medium | Experiment tier rate limits | ✅ No | 2026-07-23 |
 | [Reka AI](https://platform.reka.ai) | Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month | reka-core, reka-flash | $10 free credits at the start of every month, usable on any API feature | ✅ No | 2026-07-23 🧪 |
 | [Pollinations.AI](https://pollinations.ai) | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | gpt-oss | Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B | ✅ No | 2026-07-23 |
@@ -68,7 +67,9 @@
 ## Archive
 
 Outdated or unverifiable entries:
-_Empty — the radar is clean._
+| Tool | Last verified |
+|---|---|
+| [MiMo Code](https://mimo.xiaomi.com/coder) | 2026-07-23 |
 
 ## 🔧 Plug it into your agent
 
@@ -123,14 +124,14 @@ flowchart LR
     PR -->|human merge| R[("registry.yaml")]
     R --> P{"📡 live probes<br/>twice a week"}
     P -->|pass| V["✅ verified date updated"]
-    P -->|fail ×3 or stale 60d| A["🗄 Archive"]
+    P -->|fail ×3 · stale 60d · shutdown announced| A["🗄 Archive"]
     R -->|render| MD["README.md<br/>(this page)"]
 ```
 
 - **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. `Verified` dates are earned by passing a probe, never typed by hand.
 - **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
-- **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
+- **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
 ## Contributing
