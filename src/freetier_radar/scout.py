@@ -71,7 +71,12 @@ Code, Codex CLI), or a coding agent/IDE/CLI itself with free included model
 usage or credits. Browser-only SDKs, consumer-only apps, and BYOK-only tools
 without any bundled free model usage do not qualify. The probe
 endpoint must be a server-rendered page containing the keywords, or a public
-JSON models API.
+JSON models API. Prefer the JSON models API whenever the vendor exposes one
+without a key. Keywords must anchor on something that disappears together with
+the offer — the free model's id, its quota figure, or its price row. Generic
+words are rejected: "free", "pricing" and "no credit card required" sit on a
+vendor page for months after the free tier is withdrawn, so a probe built out
+of them verifies nothing but that the page still loads.
 Output format:
 new_entries:
   - id: <slug>
@@ -85,7 +90,10 @@ new_entries:
     models:                # ONLY models actually usable for free on the free tier/plan,
                            # never the vendor's paid catalog; omit when the evidence is silent
       - {{family: <substring of the vendor's API model ids>, tier: frontier | strong, released: 'YYYY-MM'}}
-    probe: {{type: page-keywords, endpoint: <official url>, keywords: ["free"]}}
+    probe: {{type: page-keywords, endpoint: <official url>,
+             keywords: ["<free model id / quota figure / price row>", "free"]}}
+           # or, when a keyless models API exists:
+           {{type: api-models, endpoint: <https://.../v1/models>, free_marker: ''}}
 Max 8. Empty list if the evidence shows nothing new.
 EVIDENCE:
 {evidence}

@@ -1,6 +1,9 @@
 from datetime import date
 from pathlib import Path
 
+import pytest
+from pydantic import ValidationError
+
 from freetier_radar.models import Entry, load_registry, save_registry
 
 
@@ -34,6 +37,19 @@ def test_entry_validates():
     assert e.probe_failures == 0
     assert e.provisional is False
     assert e.models[0].superseded_by is None
+
+
+def test_blind_page_probe_is_rejected():
+    """Generic words alone outlive the offer — mimo-code kept passing on a
+    README that still advertised a channel the client had already cut off."""
+    blind = {**sample_entry(), "probe": {"type": "page-keywords",
+                                         "endpoint": "https://x.ai/pricing",
+                                         "keywords": ["free", "no credit card required"]}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(blind)
+
+    anchored = {**blind, "probe": {**blind["probe"], "keywords": ["solar-mini", "free"]}}
+    assert Entry.model_validate(anchored).probe.keywords[0] == "solar-mini"
 
 
 def test_registry_roundtrip(tmp_path: Path):

@@ -15,7 +15,7 @@ BASE = {
     "url": "https://x.ai",
     "offering": "stuff",
     "first_seen": date(2026, 1, 1),
-    "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["free"]},
+    "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["x-mini-2", "free"]},
 }
 
 

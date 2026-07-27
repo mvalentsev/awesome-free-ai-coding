@@ -16,7 +16,7 @@ BASE = {
     "name": "X", "category": "api-free-tier", "url": "https://x.ai",
     "offering": "old offering", "limits": "old limits",
     "first_seen": date(2026, 1, 1), "last_verified": date(2026, 1, 1),
-    "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["free"]},
+    "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["x-mini-2", "free"]},
 }
 
 
@@ -28,7 +28,7 @@ def make(**kw) -> Entry:
 def proposal(id: str = "new1", url: str = "https://n.ai") -> dict:
     return {
         "id": id, "name": "New", "category": "trial", "url": url, "offering": "trial",
-        "probe": {"type": "page-keywords", "endpoint": url, "keywords": ["free"]},
+        "probe": {"type": "page-keywords", "endpoint": url, "keywords": ["n-flash-1", "free"]},
     }
 
 
@@ -112,7 +112,8 @@ def test_run_scout_orchestration():
         "DISCOVER-NEW": "```yaml\nnew_entries:\n"
                         "  - id: new1\n    name: New\n    category: trial\n    url: https://n.ai\n"
                         "    offering: trial\n"
-                        "    probe: {type: page-keywords, endpoint: https://n.ai, keywords: [free]}\n```",
+                        "    probe: {type: page-keywords, endpoint: https://n.ai,"
+                        " keywords: [n-flash-1, free]}\n```",
         "MODEL-GENERATIONS": "```yaml\nsupersede:\n  - family: old\n    superseded_by: cur\n```",
     })
     entries = [make(models=[{"family": "old"}])]

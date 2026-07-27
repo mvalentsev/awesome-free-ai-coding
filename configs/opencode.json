@@ -179,19 +179,6 @@
         }
       }
     },
-    "github-models": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "GitHub Models",
-      "options": {
-        "baseURL": "https://models.github.ai/inference",
-        "apiKey": "{env:GITHUB_MODELS_API_KEY}"
-      },
-      "models": {
-        "gpt-4.1": {
-          "name": "gpt-4.1"
-        }
-      }
-    },
     "upstage": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Upstage (Solar API)",

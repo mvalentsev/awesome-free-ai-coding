@@ -73,7 +73,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         data = resp.json()
     except json.JSONDecodeError:
         return "response is not JSON"
-    items = data.get("data", []) if isinstance(data, dict) else []
+    items = data if isinstance(data, list) else data.get("data", []) if isinstance(data, dict) else []
     ids = [str(m.get("id", "")).lower() for m in items if isinstance(m, dict)]
     if not ids:
         return "no model ids in response"

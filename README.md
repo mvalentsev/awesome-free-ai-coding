@@ -8,7 +8,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--07--27-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-32-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-31-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -28,21 +28,20 @@
 ### 🔌 LLM APIs with free tier
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | nemotron, llama-4 | Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise | ✅ No | 2026-07-23 |
+| [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | nemotron | Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise | ✅ No | 2026-07-23 |
 | [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ✅ No | 2026-07-23 |
-| [Cerebras Inference](https://www.cerebras.ai) | Very fast inference, free tier | qwen3 | Free tier with daily limits | ✅ No | 2026-07-23 |
+| [Cerebras Inference](https://www.cerebras.ai) | Very fast inference; $5 in free credits on signup, no card | qwen3 | $5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan | ✅ No | 2026-07-23 |
 | [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | qwen3, gpt-oss | No-key anonymous access, rate-limited; free API key raises limits | ✅ No | 2026-07-23 |
 | [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.7-flash | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-23 |
 | [LongCat API Platform](https://longcat.chat/platform) | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | longcat-2.0, longcat-flash | 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout | ✅ No | 2026-07-23 🧪 |
 | [Cloudflare Workers AI](https://workers.cloudflare.com) | 10k neurons/day free | llama-4 | 10,000 neurons/day free allocation | ✅ No | 2026-07-23 |
 | [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | nemotron, minimax-3, gpt-oss | Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription | ✅ No | 2026-07-23 🧪 |
-| [GitHub Models](https://github.com/marketplace/models) | Free playground+API for catalog models with GitHub account | gpt-4.1 | Per-model rate limits, free tier; closed to new customers since 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30 | ✅ No | 2026-07-23 |
 | [Mistral La Plateforme](https://mistral.ai) | Free experiment tier on La Plateforme | mistral-medium | Experiment tier rate limits | ✅ No | 2026-07-23 |
 | [Reka AI](https://platform.reka.ai) | Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month | reka-core, reka-flash | $10 free credits at the start of every month, usable on any API feature | ✅ No | 2026-07-23 🧪 |
 | [Pollinations.AI](https://pollinations.ai) | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | gpt-oss | Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B | ✅ No | 2026-07-23 |
 | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | qwen3-max, qwen3-coder | 1,000,000 free tokens per model, valid 90 days after activation; Singapore/international scope only | ✅ No | 2026-07-23 |
 | [Cohere (trial keys)](https://cohere.com) | Cohere Command models via free trial API keys that never expire | command-a | Trial key: 1,000 API calls/month, rate-limited; production keys unlock paid volume | ✅ No | 2026-07-23 |
-| [Novita AI](https://novita.ai/) | Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit | — | Selected models free on the pricing page (e.g. Hunyuan 3); ~$0.5 trial credit valid 1 year | ✅ No | 2026-07-23 🧪 |
+| [Novita AI](https://novita.ai/) | Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit | — | Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year | ✅ No | 2026-07-23 🧪 |
 | [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) | EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer | glm-5.2, qwen3 | 1,000,000 free tokens then pay-per-token; a valid payment method is required | 💳 Yes | 2026-07-23 |
 | [Google AI Studio (Gemini API)](https://aistudio.google.com) | Free tier for Gemini 2.5 Flash/Pro API | gemini-2.5 | Low per-model daily caps on the free tier (see rate-limits page) — among the stingiest here | ✅ No | 2026-07-23 |
 ### 🎁 Trials (no card when possible)
@@ -69,6 +68,7 @@
 Outdated or unverifiable entries:
 | Tool | Last verified |
 |---|---|
+| [GitHub Models](https://github.com/marketplace/models) | 2026-07-23 |
 | [MiMo Code](https://mimo.xiaomi.com/coder) | 2026-07-23 |
 
 ## 🔧 Plug it into your agent
@@ -88,7 +88,6 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | LongCat API Platform | `https://api.longcat.chat/openai/v1` | `LONGCAT_API_KEY` | [key](https://longcat.chat/platform) |
 | Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1` | `CLOUDFLARE_WORKERS_AI_API_KEY` | [key](https://dash.cloudflare.com/profile/api-tokens) |
 | Ollama Cloud | `https://ollama.com/v1` | `OLLAMA_CLOUD_API_KEY` | [key](https://ollama.com/settings/keys) |
-| GitHub Models | `https://models.github.ai/inference` | `GITHUB_MODELS_API_KEY` | [key](https://github.com/settings/personal-access-tokens) |
 | Upstage (Solar API) | `https://api.upstage.ai/v1` | `UPSTAGE_API_KEY` | [key](https://console.upstage.ai/api-keys) |
 | Mistral La Plateforme | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | [key](https://console.mistral.ai/api-keys) |
 | Reka AI | `https://api.reka.ai/v1` | `REKA_API_KEY` | [key](https://platform.reka.ai) |
@@ -128,7 +127,7 @@ flowchart LR
     R -->|render| MD["README.md<br/>(this page)"]
 ```
 
-- **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. `Verified` dates are earned by passing a probe, never typed by hand.
+- **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. Each probe anchors on something that dies with the offer — the free model's id, its quota figure, its price row — never the word "free" on its own, which survives on a vendor's page for months after the free tier does not. `Verified` dates are earned by passing a probe, never typed by hand.
 - **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).

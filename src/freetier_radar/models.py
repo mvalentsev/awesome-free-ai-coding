@@ -5,7 +5,15 @@ from enum import Enum
 from pathlib import Path
 
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
+
+# Words every vendor keeps on the page long after the offer is gone. A probe
+# built out of these alone verifies that the page loads, nothing more.
+GENERIC_KEYWORDS = frozenset({
+    "free", "free tier", "free plan", "free trial", "free credits", "credits",
+    "api", "pricing", "price", "limits", "rate limits", "no credit card",
+    "no credit card required", "sign up", "get started",
+})
 
 
 class Category(str, Enum):
@@ -37,6 +45,19 @@ class Probe(BaseModel):
     endpoint: str
     keywords: list[str] = []
     free_marker: str = ""
+
+    @model_validator(mode="after")
+    def _keywords_must_anchor(self) -> Probe:
+        """A page-keywords probe needs at least one keyword that dies with the
+        offer — the free model's id, its quota figure, or the price row. Generic
+        words alone keep passing for months after a free tier is withdrawn."""
+        if self.type is ProbeType.PAGE_KEYWORDS:
+            if not any(k.strip().lower() not in GENERIC_KEYWORDS for k in self.keywords):
+                raise ValueError(
+                    f"probe {self.endpoint}: keywords {self.keywords} are all generic — "
+                    "anchor on a free model id, a quota figure or a price row"
+                )
+        return self
 
 
 class ApiInfo(BaseModel):

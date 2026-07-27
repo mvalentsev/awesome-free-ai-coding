@@ -36,7 +36,7 @@ def page_entry() -> Entry:
         "probe": {
             "type": "page-keywords",
             "endpoint": "https://x.ai/pricing",
-            "keywords": ["free tier", "no credit card"],
+            "keywords": ["qwen3-coder", "free tier", "no credit card"],
         },
     })
 
@@ -45,6 +45,17 @@ def page_entry() -> Entry:
 async def test_api_models_ok():
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
         200, json={"data": [{"id": "qwen/qwen3-coder:free"}, {"id": "other/paid"}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, api_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_api_models_accepts_a_bare_list():
+    """GitHub's catalog answers with a bare array instead of {"data": [...]}."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=[{"id": "vendor/qwen3-coder:free"}]
     ))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, api_entry(), backoff=0)
@@ -91,7 +102,7 @@ async def test_transient_5xx_retries_then_passes():
     route = respx.get("https://x.ai/pricing")
     route.side_effect = [
         httpx.Response(503),
-        httpx.Response(200, text="free tier, no credit card"),
+        httpx.Response(200, text="qwen3-coder on the free tier, no credit card"),
     ]
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, page_entry(), backoff=0)
