@@ -249,7 +249,8 @@
         {
           "family": "gpt-4.1",
           "tier": "strong",
-          "released": "2025-04"
+          "released": "2025-04",
+          "superseded_by": "gpt-5.6"
         }
       ],
       "api": {
@@ -501,7 +502,8 @@
         {
           "family": "claude-haiku",
           "tier": "strong",
-          "released": ""
+          "released": "",
+          "superseded_by": "claude-sonnet-4.5"
         },
         {
           "family": "gpt-5.2-mini",
@@ -810,7 +812,8 @@
         {
           "family": "glm-4.7-flash",
           "tier": "strong",
-          "released": "2026-01"
+          "released": "2026-01",
+          "superseded_by": "glm-5.2"
         }
       ],
       "api": {
@@ -1039,7 +1042,8 @@
         {
           "family": "deepseek",
           "tier": "frontier",
-          "released": "2025-03"
+          "released": "2025-03",
+          "superseded_by": "deepseek-v3.2"
         },
         {
           "family": "qwen3",

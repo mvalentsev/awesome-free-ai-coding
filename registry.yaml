@@ -191,6 +191,7 @@ entries:
   - family: gpt-4.1
     tier: strong
     released: 2025-04
+    superseded_by: gpt-5.6
   api:
     base_url: https://models.github.ai/inference
     key_url: https://github.com/settings/personal-access-tokens
@@ -390,6 +391,7 @@ entries:
   - family: claude-haiku
     tier: strong
     released: ''
+    superseded_by: claude-sonnet-4.5
   - family: gpt-5.2-mini
     tier: strong
     released: ''
@@ -637,6 +639,7 @@ entries:
   - family: glm-4.7-flash
     tier: strong
     released: 2026-01
+    superseded_by: glm-5.2
   api:
     base_url: https://api.z.ai/api/paas/v4
     key_url: https://z.ai/manage-apikey/apikey-list
@@ -817,6 +820,7 @@ entries:
   - family: deepseek
     tier: frontier
     released: 2025-03
+    superseded_by: deepseek-v3.2
   - family: qwen3
     tier: strong
     released: 2025-04

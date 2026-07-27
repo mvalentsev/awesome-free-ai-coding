@@ -63,9 +63,6 @@
         "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
       },
       "models": {
-        "deepseek": {
-          "name": "deepseek"
-        },
         "qwen3": {
           "name": "qwen3"
         }
@@ -109,11 +106,7 @@
         "baseURL": "https://api.z.ai/api/paas/v4",
         "apiKey": "{env:ZAI_GLM_API_KEY}"
       },
-      "models": {
-        "glm-4.7-flash": {
-          "name": "glm-4.7-flash"
-        }
-      }
+      "models": {}
     },
     "longcat": {
       "npm": "@ai-sdk/openai-compatible",

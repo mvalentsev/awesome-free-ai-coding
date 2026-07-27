@@ -32,7 +32,7 @@
 | [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ✅ No | 2026-07-27 |
 | [Cerebras Inference](https://www.cerebras.ai) | Very fast inference; $5 in free credits on signup, no card | qwen3 | $5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan | ✅ No | 2026-07-27 |
 | [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | qwen3, gpt-oss | No-key anonymous access, rate-limited; free API key raises limits | ✅ No | 2026-07-27 |
-| [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.7-flash | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-27 |
+| [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | — | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-27 |
 | [LongCat API Platform](https://longcat.chat/platform) | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | longcat-2.0, longcat-flash | 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout | ✅ No | 2026-07-27 🧪 |
 | [Cloudflare Workers AI](https://workers.cloudflare.com) | 10k neurons/day free | llama-4 | 10,000 neurons/day free allocation | ✅ No | 2026-07-27 |
 | [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | nemotron, minimax-3, gpt-oss | Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription | ✅ No | 2026-07-27 🧪 |
@@ -51,7 +51,7 @@
 | [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | claude-sonnet-4.5, qwen3-coder | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ✅ No | 2026-07-27 |
 | [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | gemini-2.5 | 15 tasks per rolling 24 hours; 3 concurrent tasks | ✅ No | 2026-07-27 |
 | [Cursor (Hobby)](https://cursor.com/) | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset | ✅ No | 2026-07-27 |
-| [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | claude-haiku, gpt-5.2-mini, kimi-k2.5 | Free plan credits | ✅ No | 2026-07-27 |
+| [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | gpt-5.2-mini, kimi-k2.5 | Free plan credits | ✅ No | 2026-07-27 |
 | [Qoder](https://qoder.com) | Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models | — | Trial: 300 credits for 2 weeks; free plan afterwards serves basic models with a daily cap | ✅ No | 2026-07-27 🧪 |
 | [Trae](https://www.trae.ai) | Free access to frontier models in IDE | — | Free tier quotas | ✅ No | 2026-07-27 |
 | [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | solar-pro-3, solar-mini | $10 signup credit (see console for validity); pay-as-you-go after | ✅ No | 2026-07-27 🧪 |
@@ -59,7 +59,7 @@
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 | [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | gpt-oss, nemotron-3-ultra, gemma-4 | 50 req/day free (1000/day with $10 balance) | ✅ No | 2026-07-27 |
-| [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | deepseek, qwen3 | Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests | ✅ No | 2026-07-27 |
+| [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | qwen3 | Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests | ✅ No | 2026-07-27 |
 <sub>🧪 — added recently on fresh evidence; stays provisional until two weeks of probes confirm it.</sub>
 
 ## Archive
