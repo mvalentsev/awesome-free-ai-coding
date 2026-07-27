@@ -311,7 +311,7 @@ entries:
     endpoint: https://opencode.ai/docs/zen/
     keywords:
     - big pickle
-    - free
+    - mimo-v2.5-free
     free_marker: ''
   first_seen: '2026-07-19'
   last_verified: '2026-07-23'
@@ -323,18 +323,21 @@ entries:
   category: agent-cli
   url: https://kilocode.ai
   source_urls:
+  - https://kilocode.ai/pricing
   - https://kilocode.ai
   card_required: false
-  offering: VS Code agent extension; free starter credits usable on 500+ routed models
-    (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...)
-  limits: Free credits on signup
+  offering: Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto
+    Free" to the free models the Kilo Gateway carries, with BYOK and local models
+    (Ollama, LM Studio) alongside
+  limits: $0/mo, no hosted credit required — free models where the gateway has them;
+    everything else runs on pay-as-you-go credits or a Kilo Pass subscription
   models: []
   probe:
     type: page-keywords
-    endpoint: https://kilocode.ai
+    endpoint: https://kilocode.ai/pricing
     keywords:
-    - kilo auto
-    - no credit card required
+    - free models through kilo gateway
+    - no hosted credit required
     free_marker: ''
   first_seen: '2026-07-19'
   last_verified: '2026-07-23'
@@ -851,6 +854,7 @@ entries:
   category: trial
   url: https://console.upstage.ai/
   source_urls:
+  - https://console.upstage.ai/docs/getting-started
   - https://console.upstage.ai/
   - https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md
   card_required: false
@@ -872,9 +876,9 @@ entries:
     note: ''
   probe:
     type: page-keywords
-    endpoint: https://console.upstage.ai/login
+    endpoint: https://console.upstage.ai/docs/getting-started
     keywords:
-    - $10 free credit
+    - $10 in free credit
     free_marker: ''
   first_seen: '2026-07-19'
   last_verified: '2026-07-23'
@@ -994,45 +998,6 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 95
-- id: deepseek
-  name: DeepSeek Platform
-  category: trial
-  url: https://platform.deepseek.com
-  source_urls:
-  - https://api-docs.deepseek.com/quick_start/pricing/
-  - https://pricepertoken.com/endpoints/deepseek/free
-  card_required: false
-  offering: Official DeepSeek API; every new account gets a one-time free token grant,
-    no card required
-  limits: 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually
-    free models
-  models:
-  - family: deepseek-chat
-    tier: strong
-    released: ''
-  - family: deepseek-reasoner
-    tier: strong
-    released: ''
-  api:
-    base_url: https://api.deepseek.com
-    key_url: https://platform.deepseek.com/api_keys
-    auth: api-key
-    openai_compatible: true
-    model_ids:
-    - deepseek-chat
-    - deepseek-reasoner
-    note: ''
-  probe:
-    type: page-keywords
-    endpoint: https://api-docs.deepseek.com/quick_start/pricing/
-    keywords:
-    - deepseek-chat
-    free_marker: ''
-  first_seen: '2026-07-22'
-  last_verified: '2026-07-23'
-  probe_failures: 0
-  provisional: true
-  rank: 15
 - id: qoder
   name: Qoder
   category: trial

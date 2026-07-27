@@ -39,22 +39,6 @@
         }
       }
     },
-    "deepseek": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "DeepSeek Platform",
-      "options": {
-        "baseURL": "https://api.deepseek.com",
-        "apiKey": "{env:DEEPSEEK_API_KEY}"
-      },
-      "models": {
-        "deepseek-chat": {
-          "name": "deepseek-chat"
-        },
-        "deepseek-reasoner": {
-          "name": "deepseek-reasoner"
-        }
-      }
-    },
     "groq-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Groq",

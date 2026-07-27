@@ -46,7 +46,8 @@
         "type": "api-models",
         "endpoint": "https://openrouter.ai/api/v1/models",
         "keywords": [],
-        "free_marker": ":free"
+        "free_marker": ":free",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -88,7 +89,8 @@
           "gemini-2.5-flash",
           "free tier"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -135,7 +137,8 @@
           "free plan limits",
           "llama-4"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -177,7 +180,8 @@
         "keywords": [
           "$5 in free credits"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -219,7 +223,8 @@
           "free mode",
           "mistral-medium"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -259,7 +264,8 @@
         "type": "api-models",
         "endpoint": "https://models.github.ai/catalog/models",
         "keywords": [],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -302,7 +308,8 @@
           "10,000 neurons per day",
           "free allocation"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -359,7 +366,8 @@
           "$0",
           "free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -407,9 +415,10 @@
         "endpoint": "https://opencode.ai/docs/zen/",
         "keywords": [
           "big pickle",
-          "free"
+          "mimo-v2.5-free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -424,20 +433,22 @@
       "category": "agent-cli",
       "url": "https://kilocode.ai",
       "source_urls": [
+        "https://kilocode.ai/pricing",
         "https://kilocode.ai"
       ],
       "card_required": false,
-      "offering": "VS Code agent extension; free starter credits usable on 500+ routed models (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...)",
-      "limits": "Free credits on signup",
+      "offering": "Open-source VS Code / JetBrains / CLI agent; its $0 plan routes \"Auto Free\" to the free models the Kilo Gateway carries, with BYOK and local models (Ollama, LM Studio) alongside",
+      "limits": "$0/mo, no hosted credit required — free models where the gateway has them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription",
       "models": [],
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://kilocode.ai",
+        "endpoint": "https://kilocode.ai/pricing",
         "keywords": [
-          "kilo auto",
-          "no credit card required"
+          "free models through kilo gateway",
+          "no hosted credit required"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -465,7 +476,8 @@
           "\"name\":\"free\"",
           "advanced_model_request_limit"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -509,7 +521,8 @@
           "light quota to code with agents",
           "free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -545,7 +558,8 @@
           "mimo auto",
           "free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -575,7 +589,8 @@
           "2,000 code completions",
           "no subscription or payment required"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -609,7 +624,8 @@
           "concurrent tasks",
           "gemini 2.5 pro"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -660,7 +676,8 @@
           "kiro free",
           "50 credits"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -688,7 +705,8 @@
           "hobby",
           "no credit card required"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -723,7 +741,8 @@
           "codex are included",
           "chatgpt free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -766,7 +785,8 @@
         "type": "api-models",
         "endpoint": "https://integrate.api.nvidia.com/v1/models",
         "keywords": [],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -808,7 +828,8 @@
           "glm-4.7-flash",
           "free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -856,7 +877,8 @@
         "type": "api-models",
         "endpoint": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
         "keywords": [],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -897,7 +919,8 @@
         "keywords": [
           "no signup"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -943,7 +966,8 @@
         "keywords": [
           "free quota"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -990,7 +1014,8 @@
           "1,000,000 tokens",
           "free tier"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -1036,7 +1061,8 @@
         "keywords": [
           "monthly credits"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-07-23",
@@ -1077,7 +1103,8 @@
           "ling-3.0-flash",
           "free"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -1092,6 +1119,7 @@
       "category": "trial",
       "url": "https://console.upstage.ai/",
       "source_urls": [
+        "https://console.upstage.ai/docs/getting-started",
         "https://console.upstage.ai/",
         "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md"
       ],
@@ -1120,11 +1148,12 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://console.upstage.ai/login",
+        "endpoint": "https://console.upstage.ai/docs/getting-started",
         "keywords": [
-          "$10 free credit"
+          "$10 in free credit"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-23",
@@ -1174,7 +1203,8 @@
           "/openai/v1/chat/completions",
           "LongCat-2.0"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-07-23",
@@ -1225,7 +1255,8 @@
           "free tier",
           "$10 in free credits"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-07-23",
@@ -1267,63 +1298,14 @@
           "trial keys",
           "1,000"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-07-23",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
-      "archived": false
-    },
-    {
-      "id": "deepseek",
-      "name": "DeepSeek Platform",
-      "category": "trial",
-      "url": "https://platform.deepseek.com",
-      "source_urls": [
-        "https://api-docs.deepseek.com/quick_start/pricing/",
-        "https://pricepertoken.com/endpoints/deepseek/free"
-      ],
-      "card_required": false,
-      "offering": "Official DeepSeek API; every new account gets a one-time free token grant, no card required",
-      "limits": "5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models",
-      "models": [
-        {
-          "family": "deepseek-chat",
-          "tier": "strong",
-          "released": ""
-        },
-        {
-          "family": "deepseek-reasoner",
-          "tier": "strong",
-          "released": ""
-        }
-      ],
-      "api": {
-        "base_url": "https://api.deepseek.com",
-        "key_url": "https://platform.deepseek.com/api_keys",
-        "auth": "api-key",
-        "openai_compatible": true,
-        "model_ids": [
-          "deepseek-chat",
-          "deepseek-reasoner"
-        ],
-        "note": ""
-      },
-      "probe": {
-        "type": "page-keywords",
-        "endpoint": "https://api-docs.deepseek.com/quick_start/pricing/",
-        "keywords": [
-          "deepseek-chat"
-        ],
-        "free_marker": ""
-      },
-      "first_seen": "2026-07-22",
-      "last_verified": "2026-07-23",
-      "probe_failures": 0,
-      "provisional": true,
-      "rank": 15,
       "archived": false
     },
     {
@@ -1345,7 +1327,8 @@
           "300 credits",
           "14-day pro trial"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-07-23",
@@ -1374,7 +1357,8 @@
           "100 hypercredits",
           "refreshing monthly"
         ],
-        "free_marker": ""
+        "free_marker": "",
+        "dead_markers": []
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-07-23",

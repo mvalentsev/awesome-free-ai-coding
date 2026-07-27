@@ -8,7 +8,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--07--27-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-31-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-30-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -22,7 +22,7 @@
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 | [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ✅ No | 2026-07-23 |
-| [Kilo Code](https://kilocode.ai) | VS Code agent extension; free starter credits usable on 500+ routed models (Claude Sonnet 5, GPT-5.5, Gemini 3.1 Pro, ...) | — | Free credits on signup | ✅ No | 2026-07-23 |
+| [Kilo Code](https://kilocode.ai) | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the free models the Kilo Gateway carries, with BYOK and local models (Ollama, LM Studio) alongside | — | $0/mo, no hosted credit required — free models where the gateway has them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription | ✅ No | 2026-07-23 |
 | [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ✅ No | 2026-07-23 |
 | [Crush + Charm Hyper](https://hyper.charm.land) | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site) | ✅ No | 2026-07-23 🧪 |
 ### 🔌 LLM APIs with free tier
@@ -48,7 +48,6 @@
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 | [GitHub Copilot Free](https://github.com/features/copilot) | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | 2,000 code completions/month; limited chat & agent requests; auto model selection only | ✅ No | 2026-07-23 |
-| [DeepSeek Platform](https://platform.deepseek.com) | Official DeepSeek API; every new account gets a one-time free token grant, no card required | deepseek-chat, deepseek-reasoner | 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models | ✅ No | 2026-07-23 🧪 |
 | [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | claude-sonnet-4.5, qwen3-coder | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ✅ No | 2026-07-23 |
 | [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | gemini-2.5 | 15 tasks per rolling 24 hours; 3 concurrent tasks | ✅ No | 2026-07-23 |
 | [Cursor (Hobby)](https://cursor.com/) | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset | ✅ No | 2026-07-23 |
@@ -79,7 +78,6 @@ Connection details for every live OpenAI-compatible API above — paste the base
 |---|---|---|---|
 | NVIDIA NIM (build.nvidia.com) | `https://integrate.api.nvidia.com/v1` | `NVIDIA_NIM_API_KEY` | [key](https://build.nvidia.com) |
 | OpenRouter (free models) | `https://openrouter.ai/api/v1` | `OPENROUTER_API_KEY` | [key](https://openrouter.ai/settings/keys) |
-| DeepSeek Platform | `https://api.deepseek.com` | `DEEPSEEK_API_KEY` | [key](https://platform.deepseek.com/api_keys) |
 | Groq | `https://api.groq.com/openai/v1` | `GROQ_API_KEY` | [key](https://console.groq.com/keys) |
 | Hugging Face Inference Providers | `https://router.huggingface.co/v1` | `HUGGINGFACE_INFERENCE_API_KEY` | [key](https://huggingface.co/settings/tokens) |
 | Cerebras Inference | `https://api.cerebras.ai/v1` | `CEREBRAS_API_KEY` | [key](https://cloud.cerebras.ai) |
