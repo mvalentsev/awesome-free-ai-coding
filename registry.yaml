@@ -33,8 +33,9 @@ entries:
     endpoint: https://openrouter.ai/api/v1/models
     keywords: []
     free_marker: :free
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -66,8 +67,9 @@ entries:
     - gemini-2.5-flash
     - free tier
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 99
@@ -101,8 +103,9 @@ entries:
     - free plan limits
     - llama-4
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -134,8 +137,9 @@ entries:
     keywords:
     - $5 in free credits
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -166,8 +170,9 @@ entries:
     - free mode
     - mistral-medium
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -198,8 +203,9 @@ entries:
     endpoint: https://models.github.ai/catalog/models
     keywords: []
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   retired_on: '2026-06-16'
   probe_failures: 0
   provisional: false
@@ -231,8 +237,9 @@ entries:
     - 10,000 neurons per day
     - free allocation
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -275,8 +282,9 @@ entries:
     - $0
     - free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 70
@@ -313,8 +321,9 @@ entries:
     - big pickle
     - mimo-v2.5-free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -339,8 +348,9 @@ entries:
     - free models through kilo gateway
     - no hosted credit required
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -361,8 +371,9 @@ entries:
     - '"name":"free"'
     - advanced_model_request_limit
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -392,8 +403,9 @@ entries:
     - light quota to code with agents
     - free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -423,8 +435,9 @@ entries:
     - mimo auto
     - free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   retired_on: '2026-07-26'
   probe_failures: 0
   provisional: false
@@ -449,8 +462,9 @@ entries:
     - 2,000 code completions
     - no subscription or payment required
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -475,8 +489,9 @@ entries:
     - concurrent tasks
     - gemini 2.5 pro
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -513,8 +528,9 @@ entries:
     - kiro free
     - 50 credits
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -537,8 +553,9 @@ entries:
     - hobby
     - no credit card required
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -565,8 +582,9 @@ entries:
     - codex are included
     - chatgpt free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -599,8 +617,9 @@ entries:
     endpoint: https://integrate.api.nvidia.com/v1/models
     keywords: []
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -632,8 +651,9 @@ entries:
     - glm-4.7-flash
     - free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -669,8 +689,9 @@ entries:
     endpoint: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models
     keywords: []
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -701,8 +722,9 @@ entries:
     keywords:
     - no signup
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 92
@@ -737,8 +759,9 @@ entries:
     keywords:
     - free quota
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 94
@@ -773,8 +796,9 @@ entries:
     - 1,000,000 tokens
     - free tier
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 98
@@ -809,8 +833,9 @@ entries:
     keywords:
     - monthly credits
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-20'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -844,8 +869,9 @@ entries:
     - ling-3.0-flash
     - free
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 96
@@ -880,8 +906,9 @@ entries:
     keywords:
     - $10 in free credit
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-19'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 80
@@ -920,8 +947,9 @@ entries:
     - /openai/v1/chat/completions
     - LongCat-2.0
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-22'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 55
@@ -960,8 +988,9 @@ entries:
     - free tier
     - $10 in free credits
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-22'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 91
@@ -993,8 +1022,9 @@ entries:
     - trial keys
     - 1,000
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-22'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: false
   rank: 95
@@ -1017,8 +1047,9 @@ entries:
     - 300 credits
     - 14-day pro trial
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-22'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 60
@@ -1042,8 +1073,9 @@ entries:
     - 100 hypercredits
     - refreshing monthly
     free_marker: ''
+    dead_markers: []
   first_seen: '2026-07-22'
-  last_verified: '2026-07-23'
+  last_verified: '2026-07-27'
   probe_failures: 0
   provisional: true
   rank: 50
