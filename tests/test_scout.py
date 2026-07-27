@@ -7,7 +7,7 @@ from freetier_radar.discovery import Evidence, Hit
 from freetier_radar.models import Entry
 from freetier_radar.scout import (
     FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, _ask, apply_new, apply_retirements,
-    apply_supersede, apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
+    apply_updates, extract_yaml_block, pick_openrouter_model, run_scout, supersede_proposals,
 )
 
 TODAY = date(2026, 7, 19)
@@ -98,20 +98,23 @@ def test_apply_new_uses_verifier():
     assert rejected == ["bad: probe failed (missing keywords: free)"]
 
 
-def test_apply_supersede():
+def test_supersede_is_proposed_never_written():
+    """A mark decides what the README calls free, but the model proposing it sees
+    only family names. z.ai's free glm-4.7-flash got buried behind paid glm-5.2
+    that way, so the registry is left alone and a human decides."""
     entries = [make(models=[{"family": "old"}, {"family": "cur"}])]
-    done = apply_supersede(entries, [{"family": "old", "superseded_by": "cur"}, {"family": "nope", "superseded_by": "cur"}])
-    assert done == ["old"]
-    assert entries[0].models[0].superseded_by == "cur"
+    proposed = supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"},
+                                             {"family": "nope", "superseded_by": "cur"}])
+    assert proposed == ["x: old → cur"]
+    assert entries[0].models[0].superseded_by is None
     assert entries[0].models[1].superseded_by is None
 
 
-def test_apply_supersede_reports_only_new_marks():
-    """PR #4 claimed four superseded families while its diff touched two: the
-    marks it re-reported were already in the registry."""
+def test_supersede_proposals_skip_marks_already_in_place():
+    """PR #4 claimed four superseded families while its diff touched two."""
     entries = [make(models=[{"family": "old", "superseded_by": "cur"}, {"family": "cur"}])]
-    assert apply_supersede(entries, [{"family": "old", "superseded_by": "cur"}]) == []
-    assert apply_supersede(entries, [{"family": "cur", "superseded_by": "next"}]) == ["cur"]
+    assert supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"}]) == []
+    assert supersede_proposals(entries, [{"family": "cur", "superseded_by": "next"}]) == ["x: cur → next"]
 
 
 def test_apply_retirements_needs_the_quote_on_the_page():
@@ -174,7 +177,7 @@ def test_retirement_sweep_failure_does_not_sink_the_run():
     result = run_scout(llm, entries, [],
                        lambda urls: {u: "the free tier will be discontinued" for u in urls}, TODAY)
     assert result["retired"] == []
-    assert result["supersede"] == ["old"]  # the rest of the scout still ran
+    assert result["supersede"] == ["x: old → cur"]  # the rest of the scout still ran
 
 
 def test_run_scout_orchestration():
@@ -194,10 +197,10 @@ def test_run_scout_orchestration():
                        evidence=evidence, verifier=lambda e: None)
     assert result["updates"] == ["x"]
     assert result["new"] == ["new1"]
-    assert result["supersede"] == ["old"]
+    assert result["supersede"] == ["x: old → cur"]
     assert result["providers"] == ["hn"]
     assert entries[0].limits == "fixed"
-    assert entries[0].models[0].superseded_by == "cur"
+    assert entries[0].models[0].superseded_by is None  # proposed, not written
     assert any("FAILURE: fail — boom" in p for p in llm.prompts)
 
 

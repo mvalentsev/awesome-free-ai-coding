@@ -155,8 +155,10 @@ Discovery sources used: {providers}
 Updated entries: {updates}
 New entries (probe-verified): {new}
 Rejected candidates: {rejected}
-Superseded families: {supersede}
 Retirements announced by the vendor: {retired}
+
+Generation bumps suggested — **not applied**, edit registry.yaml yourself if a
+free tier really moved on: {supersede}
 
 _Proposed by the web-evidence scout — review before merging. Weekly probes keep re-verifying after merge._
 """
@@ -376,20 +378,28 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
     return added, rejected
 
 
-def apply_supersede(entries: list[Entry], supersede: list[dict]) -> list[str]:
-    """Report only the families this call actually changed. Re-reporting marks
-    that were already in place made PR bodies claim work their diff never did."""
-    done = []
+def supersede_proposals(entries: list[Entry], supersede: list[dict]) -> list[str]:
+    """Describe generation bumps for a human to accept — never write them.
+
+    The scout used to apply these straight to the registry, and three times
+    running it buried a free family behind a paid one: z.ai's glm-4.7-flash was
+    marked superseded by glm-5.2 while that entry's own limits say the GLM-5.x
+    flagships are not free. The mark decides what the README lists as free, but
+    the model proposing it sees only a list of family names — no entry, no
+    limits, no page. So it cannot answer the question that matters, which is
+    not "what is newer" but "what does this free tier serve today".
+
+    Only bumps that would change something are reported."""
+    out = []
     for s in supersede:
-        target = s.get("superseded_by")
-        if not target:
+        family, target = s.get("family"), s.get("superseded_by")
+        if not family or not target:
             continue
         for e in entries:
             for m in e.models:
-                if m.family == s.get("family") and m.superseded_by != target:
-                    m.superseded_by = target
-                    done.append(m.family)
-    return done
+                if m.family == family and m.superseded_by != target:
+                    out.append(f"{e.id}: {family} → {target}")
+    return out
 
 
 def _flatten(text: str) -> str:
@@ -484,7 +494,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     families = sorted({m.family for e in entries for m in e.models})
     if families:
         data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
-        result["supersede"] = apply_supersede(entries, data.get("supersede") or [])
+        result["supersede"] = supersede_proposals(entries, data.get("supersede") or [])
 
     return result
 
