@@ -7,7 +7,7 @@
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
-![Last verified](https://img.shields.io/badge/last%20verified-2026--07--27-3fb950)
+![Last verified](https://img.shields.io/badge/last%20verified-2026--07--30-3fb950)
 ![Live entries](https://img.shields.io/badge/live%20entries-30-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
@@ -21,45 +21,45 @@
 ### 🤖 Coding agents & CLIs
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ✅ No | 2026-07-27 |
-| [Kilo Code](https://kilocode.ai) | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the free models the Kilo Gateway carries, with BYOK and local models (Ollama, LM Studio) alongside | — | $0/mo, no hosted credit required — free models where the gateway has them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription | ✅ No | 2026-07-27 |
-| [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ✅ No | 2026-07-27 |
-| [Crush + Charm Hyper](https://hyper.charm.land) | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site) | ✅ No | 2026-07-27 🧪 |
+| [opencode](https://opencode.ai) | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra | Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go | ✅ No | 2026-07-30 |
+| [Kilo Code](https://kilocode.ai) | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the free models the Kilo Gateway carries, with BYOK and local models (Ollama, LM Studio) alongside | — | $0/mo, no hosted credit required — free models where the gateway has them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription | ✅ No | 2026-07-30 |
+| [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ✅ No | 2026-07-30 |
+| [Crush + Charm Hyper](https://hyper.charm.land) | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site) | ✅ No | 2026-07-30 🧪 |
 ### 🔌 LLM APIs with free tier
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | nemotron | Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise | ✅ No | 2026-07-27 |
-| [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ✅ No | 2026-07-27 |
-| [Cerebras Inference](https://www.cerebras.ai) | Very fast inference; $5 in free credits on signup, no card | qwen3 | $5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan | ✅ No | 2026-07-27 |
-| [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | qwen3, gpt-oss | No-key anonymous access, rate-limited; free API key raises limits | ✅ No | 2026-07-27 |
-| [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.7-flash | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-27 |
-| [LongCat API Platform](https://longcat.chat/platform) | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | longcat-2.0, longcat-flash | 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout | ✅ No | 2026-07-27 🧪 |
-| [Cloudflare Workers AI](https://workers.cloudflare.com) | 10k neurons/day free | llama-4 | 10,000 neurons/day free allocation | ✅ No | 2026-07-27 |
-| [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | nemotron, minimax-3, gpt-oss | Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription | ✅ No | 2026-07-27 🧪 |
-| [Mistral La Plateforme](https://mistral.ai) | Free experiment tier on La Plateforme | mistral-medium | Experiment tier rate limits | ✅ No | 2026-07-27 |
-| [Reka AI](https://platform.reka.ai) | Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month | reka-core, reka-flash | $10 free credits at the start of every month, usable on any API feature | ✅ No | 2026-07-27 🧪 |
-| [Pollinations.AI](https://pollinations.ai) | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | gpt-oss | Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B | ✅ No | 2026-07-27 |
-| [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | qwen3-max, qwen3-coder | 1,000,000 free tokens per model, valid 90 days after activation; Singapore/international scope only | ✅ No | 2026-07-27 |
-| [Cohere (trial keys)](https://cohere.com) | Cohere Command models via free trial API keys that never expire | command-a | Trial key: 1,000 API calls/month, rate-limited; production keys unlock paid volume | ✅ No | 2026-07-27 |
-| [Novita AI](https://novita.ai/) | Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit | — | Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year | ✅ No | 2026-07-27 🧪 |
-| [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) | EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer | glm-5.2, qwen3 | 1,000,000 free tokens then pay-per-token; a valid payment method is required | 💳 Yes | 2026-07-27 |
-| [Google AI Studio (Gemini API)](https://aistudio.google.com) | Free tier for Gemini 2.5 Flash/Pro API | gemini-2.5 | Low per-model daily caps on the free tier (see rate-limits page) — among the stingiest here | ✅ No | 2026-07-27 |
+| [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | nemotron | Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise | ✅ No | 2026-07-30 |
+| [Groq](https://groq.com) | Fast inference free tier | llama-4, qwen3 | Free tier daily limits per model | ✅ No | 2026-07-30 |
+| [Cerebras Inference](https://www.cerebras.ai) | Very fast inference; $5 in free credits on signup, no card | qwen3 | $5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan | ✅ No | 2026-07-30 |
+| [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net) | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | qwen3, gpt-oss | No-key anonymous access, rate-limited; free API key raises limits | ✅ No | 2026-07-30 |
+| [Z.ai (Zhipu GLM)](https://z.ai) | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | glm-4.7-flash | GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited | ✅ No | 2026-07-30 |
+| [LongCat API Platform](https://longcat.chat/platform) | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | longcat-2.0, longcat-flash | 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout | ✅ No | 2026-07-30 🧪 |
+| [Cloudflare Workers AI](https://workers.cloudflare.com) | 10k neurons/day free | llama-4 | 10,000 neurons/day free allocation | ✅ No | 2026-07-30 |
+| [Ollama Cloud](https://ollama.com/cloud) | Cloud-hosted open models with free usage tier | nemotron, minimax-3, gpt-oss | Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription | ✅ No | 2026-07-30 🧪 |
+| [Mistral La Plateforme](https://mistral.ai) | Free experiment tier on La Plateforme | mistral-medium | Experiment tier rate limits | ✅ No | 2026-07-30 |
+| [Reka AI](https://platform.reka.ai) | Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month | reka-core, reka-flash | $10 free credits at the start of every month, usable on any API feature | ✅ No | 2026-07-30 🧪 |
+| [Pollinations.AI](https://pollinations.ai) | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | gpt-oss | Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B | ✅ No | 2026-07-30 |
+| [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | qwen3-max, qwen3-coder | 1,000,000 free tokens per model, valid 90 days after activation; Singapore/international scope only | ✅ No | 2026-07-30 |
+| [Cohere (trial keys)](https://cohere.com) | Cohere Command models via free trial API keys that never expire | command-a | Trial key: 1,000 API calls/month, rate-limited; production keys unlock paid volume | ✅ No | 2026-07-30 |
+| [Novita AI](https://novita.ai/) | Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit | — | Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year | ✅ No | 2026-07-30 🧪 |
+| [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) | EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer | glm-5.2, qwen3 | 1,000,000 free tokens then pay-per-token; a valid payment method is required | 💳 Yes | 2026-07-30 |
+| [Google AI Studio (Gemini API)](https://aistudio.google.com) | Free tier for Gemini 2.5 Flash/Pro API | gemini-2.5 | Low per-model daily caps on the free tier (see rate-limits page) — among the stingiest here | ✅ No | 2026-07-30 |
 ### 🎁 Trials (no card when possible)
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| [GitHub Copilot Free](https://github.com/features/copilot) | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | 2,000 code completions/month; limited chat & agent requests; auto model selection only | ✅ No | 2026-07-27 |
-| [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | claude-sonnet-4.5, qwen3-coder | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ✅ No | 2026-07-27 |
-| [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | gemini-2.5 | 15 tasks per rolling 24 hours; 3 concurrent tasks | ✅ No | 2026-07-27 |
-| [Cursor (Hobby)](https://cursor.com/) | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset | ✅ No | 2026-07-27 |
-| [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | claude-haiku, gpt-5.2-mini, kimi-k2.5 | Free plan credits | ✅ No | 2026-07-27 |
-| [Qoder](https://qoder.com) | Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models | — | Trial: 300 credits for 2 weeks; free plan afterwards serves basic models with a daily cap | ✅ No | 2026-07-27 🧪 |
-| [Trae](https://www.trae.ai) | Free access to frontier models in IDE | — | Free tier quotas | ✅ No | 2026-07-27 |
-| [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | solar-pro-3, solar-mini | $10 signup credit (see console for validity); pay-as-you-go after | ✅ No | 2026-07-27 🧪 |
+| [GitHub Copilot Free](https://github.com/features/copilot) | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | 2,000 code completions/month; limited chat & agent requests; auto model selection only | ✅ No | 2026-07-30 |
+| [Kiro](https://kiro.dev/) | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | claude-sonnet-4.5, qwen3-coder | 50 credits/month; requires social login or AWS Builder ID; credits do not roll over | ✅ No | 2026-07-30 |
+| [Google Jules](https://jules.google/) | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | gemini-2.5 | 15 tasks per rolling 24 hours; 3 concurrent tasks | ✅ No | 2026-07-30 |
+| [Cursor (Hobby)](https://cursor.com/) | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset | ✅ No | 2026-07-30 |
+| [Windsurf](https://windsurf.com) | Free plan + trial of paid tiers | claude-haiku, gpt-5.2-mini, kimi-k2.5 | Free plan credits | ✅ No | 2026-07-30 |
+| [Qoder](https://qoder.com) | Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models | — | Trial: 300 credits for 2 weeks; free plan afterwards serves basic models with a daily cap | ✅ No | 2026-07-30 🧪 |
+| [Trae](https://www.trae.ai) | Free access to frontier models in IDE | — | Free tier quotas | ✅ No | 2026-07-30 |
+| [Upstage (Solar API)](https://console.upstage.ai/) | Upstage Solar LLM API; $10 free credit on signup, no card | solar-pro-3, solar-mini | $10 signup credit (see console for validity); pay-as-you-go after | ✅ No | 2026-07-30 🧪 |
 ### 🧭 Aggregators (one key, many providers)
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | gpt-oss, nemotron-3-ultra, gemma-4 | 50 req/day free (1000/day with $10 balance) | ✅ No | 2026-07-27 |
-| [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | deepseek, qwen3 | Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests | ✅ No | 2026-07-27 |
+| [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | gpt-oss, nemotron-3-ultra, gemma-4 | 50 req/day free (1000/day with $10 balance) | ✅ No | 2026-07-30 |
+| [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | deepseek, qwen3 | Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests | ✅ No | 2026-07-30 |
 <sub>🧪 — added recently on fresh evidence; stays provisional until two weeks of probes confirm it.</sub>
 
 ## Archive
@@ -67,8 +67,8 @@
 Outdated or unverifiable entries:
 | Tool | Last verified |
 |---|---|
-| [GitHub Models](https://github.com/marketplace/models) | 2026-07-27 |
-| [MiMo Code](https://mimo.xiaomi.com/coder) | 2026-07-27 |
+| [GitHub Models](https://github.com/marketplace/models) | 2026-07-30 |
+| [MiMo Code](https://mimo.xiaomi.com/coder) | 2026-07-30 |
 
 ## 🔧 Plug it into your agent
 
