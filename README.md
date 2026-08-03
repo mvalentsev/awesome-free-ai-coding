@@ -8,7 +8,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--08--03-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-31-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-32-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -44,6 +44,7 @@
 | [Novita AI](https://novita.ai/) | Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit | — | Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Venti); ~$0.5 trial credit valid 1 year | ✅ No | 2026-08-03 |
 | [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) | EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer | glm-5.2, qwen3 | 1,000,000 free tokens then pay-per-token; a valid payment method is required | 💳 Yes | 2026-08-03 |
 | [Google AI Studio (Gemini API)](https://aistudio.google.com) | Free tier for Gemini 2.5 Flash/Pro API | gemini-2.5 | Low per-model daily caps on the free tier (see rate-limits page) — among the stingiest here | ✅ No | 2026-08-03 |
+| [BazaarLink](https://bazaarlink.ai) | OpenAI-compatible free LLM API gateway (base_url https://bazaarlink.ai/api/v1) with 2 always-free models (Deepseek V4 Flash, Qwen3.7 Flash) and an `auto:free` router. No credit card, programmatic agent self-registration at /api/v1/agents/register. | Deepseek V4 Flash, Qwen3.7 Flash | 10 requests/minute, 150 requests/day (×1 default; ×3 for accounts that have topped up). After free quota is hit, requests continue at paid rate if credit is present, otherwise rate-limited. | ✅ No | 2026-08-03 🧪 |
 ### 🎁 Trials (no card when possible)
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|

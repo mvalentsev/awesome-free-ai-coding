@@ -1120,3 +1120,37 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 100
+- id: bazaarlink
+  name: BazaarLink
+  category: api-free-tier
+  url: https://bazaarlink.ai
+  source_urls:
+  - https://bazaarlink.ai/free
+  card_required: false
+  offering: OpenAI-compatible free LLM API gateway (base_url https://bazaarlink.ai/api/v1)
+    with 2 always-free models (Deepseek V4 Flash, Qwen3.7 Flash) and an `auto:free`
+    router. No credit card, programmatic agent self-registration at /api/v1/agents/register.
+  limits: 10 requests/minute, 150 requests/day (×1 default; ×3 for accounts that have
+    topped up). After free quota is hit, requests continue at paid rate if credit
+    is present, otherwise rate-limited.
+  models:
+  - family: Deepseek V4 Flash
+    tier: strong
+    released: '2026'
+  - family: Qwen3.7 Flash
+    tier: strong
+    released: '2026'
+  probe:
+    type: page-keywords
+    endpoint: https://bazaarlink.ai/free
+    keywords:
+    - Deepseek V4 Flash
+    - Qwen3.7 Flash
+    - '150'
+    free_marker: ''
+    dead_markers: []
+  first_seen: '2026-08-03'
+  last_verified: '2026-08-03'
+  probe_failures: 0
+  provisional: true
+  rank: 100
