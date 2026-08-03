@@ -52,6 +52,20 @@ def test_blind_page_probe_is_rejected():
     assert Entry.model_validate(anchored).probe.keywords[0] == "solar-mini"
 
 
+def test_zero_price_flag_belongs_to_a_models_api():
+    """A pricing page publishes no machine-readable prices, so the flag would sit
+    there doing nothing — silent for a check whose job is to catch a price."""
+    misplaced = {**sample_entry(), "probe": {"type": "page-keywords",
+                                             "endpoint": "https://x.ai/pricing",
+                                             "keywords": ["solar-mini", "free"],
+                                             "require_zero_price": True}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(misplaced)
+
+    on_the_api = {**sample_entry(), "probe": {**sample_entry()["probe"], "require_zero_price": True}}
+    assert Entry.model_validate(on_the_api).probe.require_zero_price
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

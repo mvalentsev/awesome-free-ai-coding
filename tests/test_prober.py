@@ -74,6 +74,86 @@ async def test_api_models_missing_family_is_fail():
     assert result.status is ProbeStatus.FAIL and "qwen3-coder" in result.detail
 
 
+def zero_price_entry() -> Entry:
+    e = api_entry()
+    e.probe.require_zero_price = True
+    return e
+
+
+@respx.mock
+async def test_zero_priced_model_passes():
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_free_id_that_acquired_a_price_is_fail():
+    """The hole this closes: an aggregator keeps the id — suffix and all — and
+    starts charging for it. Substring matching alone would pass forever."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0.0000002", "completion": "0.0000008"}},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail and "2e-07/8e-07" in result.detail
+
+
+@respx.mock
+async def test_zero_price_accepts_vercel_style_input_output_rows():
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "pricing": {"input": "0", "output": "0"}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_zero_price_ignores_cache_and_image_rows():
+    """A free lane is priced by ordinary tokens; vendors publish cache and image
+    rows next to them, and a nonzero one there does not make the model paid."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", "pricing": {
+            "prompt": "0", "completion": "0", "input_cache_read": "0.0000001", "image": "0.001"}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_zero_price_needs_a_published_price():
+    """Silence is not a zero: an entry that qualifies only because two models are
+    priced 0 cannot be verified against a catalog that stopped saying so."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free"}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
+
+
+@respx.mock
+async def test_one_free_variant_is_enough():
+    """The paid twin sits in the same catalog under the same family name."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"id": "vendor/qwen3-coder:free-preview", "pricing": {"prompt": "0.001", "completion": "0.002"}},
+            {"id": "vendor/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 @respx.mock
 async def test_page_keywords_missing_is_fail():
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="Free tier for everyone"))
@@ -104,6 +184,41 @@ async def test_entry_specific_dead_marker():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.FAIL and "mimo auto is gone" in result.detail
+
+
+@respx.mock
+async def test_bot_challenge_is_inconclusive_not_a_dead_offer():
+    """cto.new answered a Vercel checkpoint to everything that was not a browser.
+    A wall served with HTTP 200 carries none of the keywords, and counting that
+    as a failure archives a live service after three runs."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="<html><title>Just a moment...</title>"
+                  "<body>Enable JavaScript and cookies to continue</body></html>"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE and "bot challenge" in result.detail
+
+
+@respx.mock
+async def test_a_noscript_notice_does_not_shield_a_dead_offer():
+    """The marker is only consulted once the keywords have already failed — but a
+    page that serves its offer above a <noscript> must still pass, and one that
+    has genuinely dropped the offer must still fail on the keywords."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="<noscript>Please enable JavaScript to view this site</noscript>"
+                  "qwen3-coder on the free tier, no credit card"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_challenge_wording_in_a_models_response_is_inconclusive():
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, text="<html>Checking your browser before accessing api.x.ai</html>"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, api_entry(), backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE and "checking your browser" in result.detail
 
 
 @respx.mock

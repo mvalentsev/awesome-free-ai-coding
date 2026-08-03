@@ -16,7 +16,7 @@ import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
 from .models import Entry, load_registry, save_registry
-from .prober import check_content
+from .prober import challenge_marker_hit, check_content
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -350,7 +350,14 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
         return f"unreachable: {exc}"
     if resp.status_code >= 400:
         return f"HTTP {resp.status_code}"
-    return check_content(resp, entry)
+    problem = check_content(resp, entry)
+    if problem is None:
+        return None
+    # Name the bot wall in the rejection reason. "missing keywords" reads as a
+    # bad proposal; "bot challenge" tells the reviewer the endpoint answers a
+    # wall to everything that is not a browser — cto.new's lesson, in the PR body.
+    challenge = challenge_marker_hit(resp.text)
+    return f'bot challenge: page says "{challenge}"' if challenge else problem
 
 
 def apply_updates(entries: list[Entry], updates: list[dict]) -> tuple[list[str], list[str]]:

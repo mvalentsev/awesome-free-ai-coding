@@ -47,7 +47,8 @@
         "endpoint": "https://openrouter.ai/api/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": true
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -90,7 +91,8 @@
           "free tier"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -138,7 +140,8 @@
           "llama-4"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -181,7 +184,8 @@
           "$5 in free credits"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -224,7 +228,8 @@
           "mistral-medium"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -265,7 +270,8 @@
         "endpoint": "https://models.github.ai/catalog/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-07-30",
@@ -309,7 +315,8 @@
           "free allocation"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -367,7 +374,8 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -418,7 +426,8 @@
           "mimo-v2.5-free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -448,7 +457,8 @@
           "no hosted credit required"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -477,7 +487,8 @@
           "advanced_model_request_limit"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -522,7 +533,8 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -559,7 +571,8 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -590,7 +603,8 @@
           "no subscription or payment required"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -625,7 +639,8 @@
           "gemini 2.5 pro"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -677,7 +692,8 @@
           "50 credits"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -706,7 +722,8 @@
           "no credit card required"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -742,7 +759,8 @@
           "chatgpt free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -786,7 +804,8 @@
         "endpoint": "https://integrate.api.nvidia.com/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -829,7 +848,8 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -878,7 +898,8 @@
         "endpoint": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -920,7 +941,8 @@
           "no signup"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -967,7 +989,8 @@
           "free quota"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -1015,7 +1038,8 @@
           "free tier"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -1062,7 +1086,8 @@
           "monthly credits"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-08-03",
@@ -1104,7 +1129,8 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -1153,7 +1179,8 @@
           "$10 in free credit"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-03",
@@ -1204,7 +1231,8 @@
           "LongCat-2.0"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-08-03",
@@ -1256,7 +1284,8 @@
           "$10 in free credits"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-08-03",
@@ -1299,7 +1328,8 @@
           "1,000"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-08-03",
@@ -1328,7 +1358,8 @@
           "14-day pro trial"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-08-03",
@@ -1358,7 +1389,8 @@
           "refreshing monthly"
         ],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": false
       },
       "first_seen": "2026-07-22",
       "last_verified": "2026-08-03",
@@ -1407,7 +1439,8 @@
         "endpoint": "https://ai-gateway.vercel.sh/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": true
       },
       "first_seen": "2026-08-03",
       "last_verified": "2026-08-03",
@@ -1456,7 +1489,8 @@
         "endpoint": "https://bazaarlink.ai/api/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": []
+        "dead_markers": [],
+        "require_zero_price": true
       },
       "first_seen": "2026-08-03",
       "last_verified": "2026-08-03",

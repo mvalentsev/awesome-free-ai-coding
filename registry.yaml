@@ -34,6 +34,7 @@ entries:
     keywords: []
     free_marker: :free
     dead_markers: []
+    require_zero_price: true
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -68,6 +69,7 @@ entries:
     - free tier
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -104,6 +106,7 @@ entries:
     - llama-4
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -138,6 +141,7 @@ entries:
     - $5 in free credits
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -171,6 +175,7 @@ entries:
     - mistral-medium
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -204,6 +209,7 @@ entries:
     keywords: []
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-07-30'
   retired_on: '2026-06-16'
@@ -238,6 +244,7 @@ entries:
     - free allocation
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -283,6 +290,7 @@ entries:
     - free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -322,6 +330,7 @@ entries:
     - mimo-v2.5-free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -349,6 +358,7 @@ entries:
     - no hosted credit required
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -372,6 +382,7 @@ entries:
     - advanced_model_request_limit
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -404,6 +415,7 @@ entries:
     - free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -436,6 +448,7 @@ entries:
     - free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   retired_on: '2026-07-26'
@@ -463,6 +476,7 @@ entries:
     - no subscription or payment required
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -490,6 +504,7 @@ entries:
     - gemini 2.5 pro
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -529,6 +544,7 @@ entries:
     - 50 credits
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -554,6 +570,7 @@ entries:
     - no credit card required
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -583,6 +600,7 @@ entries:
     - chatgpt free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -618,6 +636,7 @@ entries:
     keywords: []
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -652,6 +671,7 @@ entries:
     - free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -690,6 +710,7 @@ entries:
     keywords: []
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -723,6 +744,7 @@ entries:
     - no signup
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -760,6 +782,7 @@ entries:
     - free quota
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -797,6 +820,7 @@ entries:
     - free tier
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -834,6 +858,7 @@ entries:
     - monthly credits
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -870,6 +895,7 @@ entries:
     - free
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -907,6 +933,7 @@ entries:
     - $10 in free credit
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-19'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -948,6 +975,7 @@ entries:
     - LongCat-2.0
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-22'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -989,6 +1017,7 @@ entries:
     - $10 in free credits
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-22'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -1023,6 +1052,7 @@ entries:
     - 1,000
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-22'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -1048,6 +1078,7 @@ entries:
     - 14-day pro trial
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-22'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -1074,6 +1105,7 @@ entries:
     - refreshing monthly
     free_marker: ''
     dead_markers: []
+    require_zero_price: false
   first_seen: '2026-07-22'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -1115,6 +1147,7 @@ entries:
     keywords: []
     free_marker: ''
     dead_markers: []
+    require_zero_price: true
   first_seen: '2026-08-03'
   last_verified: '2026-08-03'
   probe_failures: 0
@@ -1155,6 +1188,7 @@ entries:
     keywords: []
     free_marker: :free
     dead_markers: []
+    require_zero_price: true
   first_seen: '2026-08-03'
   last_verified: '2026-08-03'
   probe_failures: 0

@@ -38,6 +38,30 @@ DEAD_MARKERS = (
     "end of the free tier",
 )
 
+# A bot wall answering HTTP 200. Cloudflare, Vercel's Security Checkpoint and
+# their kin serve a challenge page in place of the vendor's own; it carries none
+# of the probe keywords, so without this the check reads as "the free offer is
+# gone" and three runs later archives a service that never stopped working.
+# cto.new taught the mirror image — a probe that passes on the runner and
+# nowhere else — so a challenge is not a pass either: it is not an answer at all,
+# which is what INCONCLUSIVE is for.
+CHALLENGE_MARKERS = (
+    "enable javascript to continue",
+    "enable javascript and cookies to continue",
+    "please enable javascript to view",
+    "please turn javascript on",
+    "vercel security checkpoint",
+    "checking your browser",
+    "verifying you are human",
+    "verify you are human",
+    "just a moment...</title>",
+    "cf-browser-verification",
+    "cf_chl_opt",
+    "__cf_chl",
+    "ddos protection by cloudflare",
+    "attention required! | cloudflare",
+)
+
 
 class Category(str, Enum):
     AGENT_CLI = "agent-cli"
@@ -69,6 +93,18 @@ class Probe(BaseModel):
     keywords: list[str] = []
     free_marker: str = ""
     dead_markers: list[str] = []  # entry-specific withdrawal wording, on top of DEAD_MARKERS
+    require_zero_price: bool = False  # api-models: the matched id must still be priced 0
+
+    @model_validator(mode="after")
+    def _zero_price_needs_a_price_list(self) -> Probe:
+        """Only a models API publishes prices. Set on a page-keywords probe the
+        flag would silently do nothing, which is the worst outcome for a check
+        whose whole job is to notice a free model quietly acquiring a price."""
+        if self.require_zero_price and self.type is not ProbeType.API_MODELS:
+            raise ValueError(
+                f"probe {self.endpoint}: require_zero_price needs an api-models probe"
+            )
+        return self
 
     @model_validator(mode="after")
     def _keywords_must_anchor(self) -> Probe:

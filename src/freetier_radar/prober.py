@@ -10,7 +10,9 @@ from pathlib import Path
 
 import httpx
 
-from .models import DEAD_MARKERS, Entry, Probe, ProbeType, load_registry, save_registry
+from .models import (
+    CHALLENGE_MARKERS, DEAD_MARKERS, Entry, Probe, ProbeType, load_registry, save_registry,
+)
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
@@ -54,6 +56,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         detail = check_content(resp, entry)
         if detail is None:
             return ProbeResult(ProbeStatus.PASS)
+        # Only asked once the content check has already failed. Plenty of live
+        # pages carry a <noscript> asking for JavaScript while serving the offer
+        # perfectly well above it — on those the keywords match and this never
+        # runs. It is when they do NOT match that the wording matters: a bot wall
+        # means we did not see the vendor's page, not that the offer is gone.
+        challenge = challenge_marker_hit(resp.text)
+        if challenge is not None:
+            return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
         return ProbeResult(ProbeStatus.FAIL, detail)
     return ProbeResult(ProbeStatus.INCONCLUSIVE, f"unreachable after {attempts} attempts: {last}")
 
@@ -69,21 +79,80 @@ def check_content(resp: httpx.Response, entry: Entry) -> str | None:
     return _check_page_keywords(resp, entry)
 
 
+def _price_of(model: dict) -> list[float] | None:
+    """What one plain completion costs, as the vendor publishes it, or None when
+    it publishes nothing we understand. OpenRouter and BazaarLink name the rows
+    prompt/completion, Vercel input/output; cache, image and request rows are
+    ignored — a free lane is defined by the price of ordinary tokens."""
+    pricing = model.get("pricing")
+    if not isinstance(pricing, dict):
+        return None
+    prices = []
+    for key in ("prompt", "completion", "input", "output"):
+        value = pricing.get(key)
+        if isinstance(value, (str, int, float)) and not isinstance(value, bool):
+            try:
+                prices.append(float(value))
+            except ValueError:
+                return None
+    return prices or None
+
+
+def _price_note(model: dict) -> str:
+    prices = _price_of(model)
+    mid = str(model.get("id", "?"))
+    if prices is None:
+        return f"{mid} publishes no price"
+    return f"{mid} priced {'/'.join(f'{p:g}' for p in prices)}"
+
+
 def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     try:
         data = resp.json()
     except json.JSONDecodeError:
         return "response is not JSON"
-    items = data if isinstance(data, list) else data.get("data", []) if isinstance(data, dict) else []
-    ids = [str(m.get("id", "")).lower() for m in items if isinstance(m, dict)]
-    if not ids:
+    items = [m for m in (data if isinstance(data, list)
+                         else data.get("data", []) if isinstance(data, dict) else [])
+             if isinstance(m, dict)]
+    if not any(m.get("id") for m in items):
         return "no model ids in response"
     marker = entry.probe.free_marker.lower()
-    missing = [
-        m.family for m in entry.models
-        if not any(m.family.lower() in mid and (not marker or marker in mid) for mid in ids)
-    ]
-    return f"missing families: {', '.join(missing)}" if missing else None
+    missing, priced = [], []
+    for family in entry.models:
+        matches = [
+            m for m in items
+            if family.family.lower() in str(m.get("id", "")).lower()
+            and (not marker or marker in str(m.get("id", "")).lower())
+        ]
+        if not matches:
+            missing.append(family.family)
+            continue
+        # Presence in the catalog is not the offer: an aggregator can leave a
+        # free model's id exactly where it was and start charging for it, and a
+        # substring check would keep passing forever. Where the vendor publishes
+        # prices, the zero is the offer.
+        if entry.probe.require_zero_price and not any(_is_free(m) for m in matches):
+            priced.append(", ".join(_price_note(m) for m in matches[:3]))
+    problems = []
+    if missing:
+        problems.append(f"missing families: {', '.join(missing)}")
+    if priced:
+        problems.append(f"no longer free: {'; '.join(priced)}")
+    return " | ".join(problems) if problems else None
+
+
+def _is_free(model: dict) -> bool:
+    prices = _price_of(model)
+    return prices is not None and all(p == 0 for p in prices)
+
+
+def challenge_marker_hit(text: str) -> str | None:
+    """The wording of a bot wall standing where the vendor's page should be."""
+    lowered = text.lower()
+    for marker in CHALLENGE_MARKERS:
+        if marker in lowered:
+            return marker
+    return None
 
 
 def dead_marker_hit(text: str, probe: Probe) -> str | None:
