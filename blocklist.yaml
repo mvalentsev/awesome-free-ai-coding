@@ -25,4 +25,9 @@
 - domain: theoldllm.vercel.app
   reason: frontier-model access via browser-automation token harvesting — unofficial,
     unstable, likely ToS-violating
+- domain: cto.new
+  reason: 'free models are chat-only: no API endpoint and no free agent runs, so
+    nothing here plugs into a coding tool. Its pages also sit behind a Vercel
+    Security Checkpoint that answers HTTP 429 to every non-browser client, so no
+    probe on this domain can verify anything'
 
