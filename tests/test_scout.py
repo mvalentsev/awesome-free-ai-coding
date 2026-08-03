@@ -52,11 +52,36 @@ def test_extract_yaml_block():
 
 def test_apply_updates_only_editable():
     entries = [make()]
-    applied = apply_updates(entries, [{"id": "x", "limits": "new limits", "id_hack": "y", "name": "Hacked"}])
-    assert applied == ["x"]
+    applied, rejected = apply_updates(
+        entries, [{"id": "x", "limits": "new limits", "id_hack": "y", "name": "Hacked"}])
+    assert applied == ["x"] and rejected == []
     assert entries[0].limits == "new limits"
     assert entries[0].name == "X"
     assert entries[0].id == "x"
+
+
+def test_apply_updates_reads_a_null_as_unchanged():
+    """"Leave the probe alone" comes back as `probe: null` — which used to reach
+    pydantic as "erase the probe" and crash the whole scout."""
+    entries = [make()]
+    applied, rejected = apply_updates(entries, [{"id": "x", "probe": None, "limits": "new limits"}])
+    assert applied == ["x"] and rejected == []
+    assert entries[0].probe.endpoint == "https://x.ai"
+    assert entries[0].limits == "new limits"
+
+
+def test_apply_updates_with_nothing_to_change_is_a_no_op():
+    entries = [make()]
+    assert apply_updates(entries, [{"id": "x", "probe": None}]) == ([], [])
+    assert entries[0].limits == "old limits"
+
+
+def test_apply_updates_rejects_an_invalid_update_instead_of_raising():
+    entries = [make()]
+    applied, rejected = apply_updates(entries, [{"id": "x", "probe": {"type": "telepathy"}}])
+    assert applied == []
+    assert rejected == ["x: invalid update (ValidationError)"]
+    assert entries[0].probe.endpoint == "https://x.ai"  # left as it was
 
 
 def test_apply_new_skips_duplicates_and_invalid():
@@ -202,6 +227,43 @@ def test_run_scout_orchestration():
     assert entries[0].limits == "fixed"
     assert entries[0].models[0].superseded_by is None  # proposed, not written
     assert any("FAILURE: fail — boom" in p for p in llm.prompts)
+
+
+def test_run_scout_survives_a_bad_fix_and_still_discovers():
+    """A single unusable correction used to abort the run — after the
+    verification commit was already pushed, so it could not even be rerun."""
+    llm = StubLLM({
+        "FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    probe: null\n    offering: ''\n```",
+        "DISCOVER-NEW": "```yaml\nnew_entries:\n"
+                        "  - id: new1\n    name: New\n    category: trial\n    url: https://n.ai\n"
+                        "    offering: trial\n"
+                        "    probe: {type: page-keywords, endpoint: https://n.ai,"
+                        " keywords: [n-flash-1, free]}\n```",
+    })
+    entries = [make()]
+    evidence = Evidence(hits=[Hit("https://n.ai", "New tool", "free plan", "hn")], providers=["hn"])
+    result = run_scout(llm, entries, [{"id": "x", "status": "fail", "detail": "page gone: HTTP 410"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=evidence, verifier=lambda e: None)
+    assert result["updates"] == ["x"]
+    assert entries[0].probe.endpoint == "https://x.ai"  # the null did not erase it
+    assert entries[0].offering == ""
+    assert result["new"] == ["new1"]  # discovery still ran
+
+
+def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
+    llm = StubLLM({
+        "FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    probe: {type: telepathy}\n```",
+        "DISCOVER-NEW": "```yaml\nnew_entries:\n  - id: broken\n```",
+    })
+    entries = [make()]
+    evidence = Evidence(hits=[Hit("https://n.ai", "New tool", "free plan", "hn")], providers=["hn"])
+    result = run_scout(llm, entries, [{"id": "x", "status": "fail", "detail": "boom"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=evidence, verifier=lambda e: None)
+    assert result["updates"] == []
+    assert result["rejected"] == ["x: invalid update (ValidationError)",
+                                  "broken: invalid (ValidationError)"]
 
 
 def test_run_scout_skips_discovery_without_evidence():

@@ -117,13 +117,21 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     """PASS verifies and resets failures; FAIL increments them; INCONCLUSIVE
     touches nothing — the staleness rule archives entries that stay unverifiable.
     A provisional entry that keeps passing probes for PROVISIONAL_PROMOTE_DAYS
-    after first_seen is promoted to a regular entry.
+    after first_seen is promoted to a regular entry. An entry past its
+    vendor-announced retirement date is left alone entirely.
     Returns (entry, result) pairs needing scout attention: FAIL, INCONCLUSIVE,
     and passing entries whose model families are all superseded."""
     needs_attention = []
     for e in entries:
         result = results.get(e.id)
         if result is None:
+            continue
+        # The vendor's own shutdown date has passed: the entry is archived and
+        # its endpoint is meant to be dead. Re-verifying it would keep moving
+        # last_verified forward on a service that is gone, and flagging it sends
+        # the scout off to "fix" the probe — which is how GitHub Models' HTTP
+        # 410 crashed the 2026-08-03 run.
+        if e.retired_on is not None and today >= e.retired_on:
             continue
         if result.status is ProbeStatus.PASS:
             e.last_verified = today

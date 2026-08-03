@@ -182,6 +182,25 @@ def test_partly_superseded_entry_is_left_alone():
     assert apply_results([e], {"x": ProbeResult(ProbeStatus.PASS)}, date(2026, 7, 19)) == []
 
 
+def test_a_retired_entry_is_left_alone():
+    """GitHub Models started answering HTTP 410 the day after its shutdown. The
+    entry is already archived by retired_on, so flagging it only sent the scout
+    to repair a probe for a product that no longer exists."""
+    e = api_entry()
+    e.retired_on = date(2026, 7, 30)
+    assert apply_results([e], {"x": ProbeResult(ProbeStatus.FAIL, "page gone: HTTP 410")},
+                         date(2026, 8, 3)) == []
+    assert e.probe_failures == 0 and e.last_verified == date(2026, 1, 1)
+
+
+def test_an_announced_retirement_still_in_the_future_is_probed_normally():
+    e = api_entry()
+    e.retired_on = date(2026, 8, 30)
+    flagged = apply_results([e], {"x": ProbeResult(ProbeStatus.FAIL, "missing families")},
+                            date(2026, 8, 3))
+    assert [x.id for x, _ in flagged] == ["x"] and e.probe_failures == 1
+
+
 def test_pass_promotes_provisional_after_settling():
     e = api_entry()  # first_seen 2026-01-01
     e.provisional = True

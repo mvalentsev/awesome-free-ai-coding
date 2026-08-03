@@ -67,6 +67,8 @@ card_required, probe, models.
 A "stale-models" failure means the probe passed and the offer is alive, but every
 family listed for it was marked superseded: reply with a models list naming the
 families the free tier serves today, and leave the probe alone.
+Output only the keys you are actually changing — never a null value, and skip an
+entry entirely when you have nothing to correct for it.
 Output format:
 updates:
   - id: <existing id>
@@ -321,19 +323,34 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
     return check_content(resp, entry)
 
 
-def apply_updates(entries: list[Entry], updates: list[dict]) -> list[str]:
-    applied = []
+def apply_updates(entries: list[Entry], updates: list[dict]) -> tuple[list[str], list[str]]:
+    """Apply the LLM's corrections to flagged entries.
+
+    Returns (applied ids, rejected "id: reason" strings). One bad update must
+    not sink the run: by the time the scout speaks, the verification commit is
+    already pushed, and a failed run cannot be rerun (it checks out the old SHA
+    and its push is refused as non-fast-forward). Two ways the model gets an
+    update wrong, both seen live: a null where the prompt told it to leave a
+    key alone (`probe: null` for the retired github-models entry, run
+    30798513182, 2026-08-03) and a corrected value that does not validate."""
+    applied, rejected = [], []
     for i, e in enumerate(entries):
-        upd = next((u for u in updates if u.get("id") == e.id), None)
+        upd = next((u for u in updates if isinstance(u, dict) and u.get("id") == e.id), None)
         if not upd:
             continue
-        data = e.model_dump(mode="json")
-        for key in EDITABLE:
-            if key in upd:
-                data[key] = upd[key]
-        entries[i] = Entry.model_validate(data)
+        # A null means "unchanged", never "erase this field": the model writes
+        # one whenever it has nothing to change for a key the prompt named.
+        changed = {k: upd[k] for k in EDITABLE if upd.get(k) is not None}
+        if not changed:
+            continue
+        try:
+            entries[i] = Entry.model_validate({**e.model_dump(mode="json"), **changed})
+        except Exception as exc:
+            print(f"update for {e.id} rejected: {exc}")
+            rejected.append(f"{e.id}: invalid update ({type(exc).__name__})")
+            continue
         applied.append(e.id)
-    return applied
+    return applied, rejected
 
 
 def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
@@ -458,7 +475,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             for e in ctx_entries
         )
         data = _ask(llm, FIX_PROMPT.format(context=context))
-        result["updates"] = apply_updates(entries, data.get("updates") or [])
+        result["updates"], rejected = apply_updates(entries, data.get("updates") or [])
+        result["rejected"] += rejected
 
     if evidence is not None and not evidence.is_empty():
         data = _ask(llm, DISCOVER_PROMPT.format(
@@ -467,8 +485,9 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             blocked=", ".join(sorted(blocklist)) if blocklist else "none",
             evidence=format_evidence(evidence),
         ))
-        result["new"], result["rejected"] = apply_new(
+        result["new"], rejected = apply_new(
             entries, data.get("new_entries") or [], today, verifier, blocklist)
+        result["rejected"] += rejected
 
     # Sweep every live entry for a shutdown announcement. Without this the scout
     # only ever looks at an entry after its probe fails, i.e. on the day the free
