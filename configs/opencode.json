@@ -297,6 +297,25 @@
         }
       }
     },
+    "bazaarlink": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "BazaarLink",
+      "options": {
+        "baseURL": "https://bazaarlink.ai/api/v1",
+        "apiKey": "{env:BAZAARLINK_API_KEY}"
+      },
+      "models": {
+        "deepseek/deepseek-v4-flash:free": {
+          "name": "deepseek/deepseek-v4-flash:free"
+        },
+        "qwen/qwen3.7-flash:free": {
+          "name": "qwen/qwen3.7-flash:free"
+        },
+        "auto:free": {
+          "name": "auto:free"
+        }
+      }
+    },
     "vercel-ai-gateway": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Vercel AI Gateway",

@@ -1120,3 +1120,43 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 100
+- id: bazaarlink
+  name: BazaarLink
+  category: aggregator
+  url: https://bazaarlink.ai
+  source_urls:
+  - https://bazaarlink.ai/free
+  card_required: false
+  offering: OpenAI-compatible gateway to 199 models, with two always-free open models
+    and an auto:free router
+  limits: 10 req/min and 150 req/day on the free models (x3 for accounts that have
+    topped up); the other 196 models are metered at list rates
+  models:
+  - family: deepseek-v4-flash
+    tier: strong
+    released: 2026-07
+  - family: qwen3.7-flash
+    tier: strong
+    released: 2026-07
+  api:
+    base_url: https://bazaarlink.ai/api/v1
+    key_url: https://bazaarlink.ai/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek/deepseek-v4-flash:free
+    - qwen/qwen3.7-flash:free
+    - auto:free
+    note: only the :free ids and auto:free cost nothing; auto:free picks a free model
+      for you
+  probe:
+    type: api-models
+    endpoint: https://bazaarlink.ai/api/v1/models
+    keywords: []
+    free_marker: :free
+    dead_markers: []
+  first_seen: '2026-08-03'
+  last_verified: '2026-08-03'
+  probe_failures: 0
+  provisional: true
+  rank: 100
