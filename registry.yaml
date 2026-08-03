@@ -1079,3 +1079,28 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 50
+- id: cto-new
+  name: cto.new
+  category: agent-cli
+  url: https://cto.new
+  source_urls:
+  - https://cto.new
+  card_required: false
+  offering: Web-based coding agent that builds apps, agents, and startups. Free forever,
+    ad-supported, no credit card or API key required, with bundled access to Claude,
+    OpenAI, Gemini, Mistral, Grok, and DeepSeek models.
+  limits: Limits reset daily
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://cto.new
+    keywords:
+    - Limits reset daily
+    - Ad-supported
+    free_marker: ''
+    dead_markers: []
+  first_seen: '2026-08-03'
+  last_verified: '2026-08-03'
+  probe_failures: 0
+  provisional: true
+  rank: 100

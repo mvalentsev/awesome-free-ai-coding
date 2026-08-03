@@ -8,7 +8,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--08--03-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-30-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-31-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -25,6 +25,7 @@
 | [Kilo Code](https://kilocode.ai) | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the free models the Kilo Gateway carries, with BYOK and local models (Ollama, LM Studio) alongside | — | $0/mo, no hosted credit required — free models where the gateway has them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription | ✅ No | 2026-08-03 |
 | [OpenAI Codex CLI](https://developers.openai.com/codex/) | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | gpt-5.6 | Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only | ✅ No | 2026-08-03 |
 | [Crush + Charm Hyper](https://hyper.charm.land) | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site) | ✅ No | 2026-08-03 🧪 |
+| [cto.new](https://cto.new) | Web-based coding agent that builds apps, agents, and startups. Free forever, ad-supported, no credit card or API key required, with bundled access to Claude, OpenAI, Gemini, Mistral, Grok, and DeepSeek models. | — | Limits reset daily | ✅ No | 2026-08-03 🧪 |
 ### 🔌 LLM APIs with free tier
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
