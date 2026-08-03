@@ -6,6 +6,7 @@ import os
 import re
 import time
 import traceback
+from functools import partial
 from datetime import date
 from pathlib import Path
 from typing import Callable
@@ -40,13 +41,15 @@ RETRY_429_SLEEP = 20.0
 
 # Read timeout per backend call. The discovery prompt runs to ~78k characters
 # (~20k tokens) on a real evidence set, and a reasoning model can spend minutes
-# on it: measured 2026-08-03 against Ollama Cloud, minimax-m3 answered in 88s,
-# gpt-oss:120b in 33s, and nemotron-3-ultra — the scout's primary model until
-# that day — did not answer within 600s at all. Under the old 90s it timed out
-# on every scheduled run, silently, until the chain started logging failures.
+# on it: measured 2026-08-03, minimax-m3 answered in 88s, gpt-oss:120b in 33s,
+# deepseek-v4-flash-free peaked at 202s, and nemotron-3-ultra — the scout's
+# primary model until that day — did not answer within 600s at all. Under the
+# old 90s it timed out on every scheduled run, silently, until the chain
+# started logging failures. The run is twice a week, so waiting is cheap and
+# the ceiling sits well above the slowest backend we would actually use.
 # Note this is httpx's per-read timeout, not a deadline: a backend that keeps
 # trickling bytes can still hold the call open far longer.
-LLM_READ_TIMEOUT = 240.0
+LLM_READ_TIMEOUT = 300.0
 
 # Retirement sweep: one page per live entry, trimmed so the prompt stays small.
 # A quote shorter than this is too weak to verify against a page.
@@ -182,9 +185,13 @@ class LLMClient:
 
     1. custom OpenAI-compatible endpoint (SCOUT_BASE_URL / SCOUT_MODEL /
        optional SCOUT_API_KEY) — point it at NVIDIA NIM, Groq, Cerebras, ...
-    2. Gemini API                 (GEMINI_API_KEY)
-    3. OpenRouter :free models    (OPENROUTER_API_KEY, model picked live)
-    4. anonymous OVH AI Endpoints (no key at all)
+    2. a second endpoint of the same kind (SCOUT_FALLBACK_BASE_URL /
+       SCOUT_FALLBACK_MODEL / SCOUT_FALLBACK_API_KEY). Two configured free
+       providers beat one: on 2026-08-03 the primary timed out and the run
+       landed on OpenRouter, which answered a truncated body and killed it.
+    3. Gemini API                 (GEMINI_API_KEY)
+    4. OpenRouter :free models    (OPENROUTER_API_KEY, model picked live)
+    5. anonymous OVH AI Endpoints (no key at all)
     """
 
     def __init__(self, gemini_key: str | None = None, openrouter_key: str | None = None,
@@ -192,22 +199,30 @@ class LLMClient:
                  gemini_model: str = "gemini-2.5-flash",
                  custom_base_url: str | None = None, custom_model: str | None = None,
                  custom_key: str | None = None,
+                 fallback_base_url: str | None = None, fallback_model: str | None = None,
+                 fallback_key: str | None = None,
                  http: httpx.Client | None = None):
         self._gemini_key = gemini_key
         self._or_key = openrouter_key
         self._or_model = openrouter_model
         self._gemini_model = gemini_model
-        self._custom_base_url = custom_base_url.rstrip("/") if custom_base_url else None
-        self._custom_model = custom_model
-        self._custom_key = custom_key
+        # Both are plain OpenAI-compatible endpoints; an entry is used only when
+        # it has a url and a model, so a half-configured spare stays out.
+        self._customs = [
+            (name, url.rstrip("/"), model, key)
+            for name, url, model, key in (
+                ("custom", custom_base_url, custom_model, custom_key),
+                ("custom-fallback", fallback_base_url, fallback_model, fallback_key),
+            )
+            if url and model
+        ]
         self._ovh_model: str | None = None
         self._http = http or httpx.Client(
             timeout=httpx.Timeout(LLM_READ_TIMEOUT, connect=15.0))
 
     def complete(self, prompt: str) -> str:
-        backends = []
-        if self._custom_base_url and self._custom_model:
-            backends.append(("custom", self._custom))
+        backends = [(name, partial(self._chat, url, model, key))
+                    for name, url, model, key in self._customs]
         if self._gemini_key:
             backends.append(("gemini", self._gemini))
         if self._or_key:
@@ -243,9 +258,6 @@ class LLMClient:
             r.raise_for_status()
             return r.json()["choices"][0]["message"]["content"]
         raise RuntimeError("rate-limited on every attempt")
-
-    def _custom(self, prompt: str) -> str:
-        return self._chat(self._custom_base_url, self._custom_model, self._custom_key, prompt)
 
     def _gemini(self, prompt: str) -> str:
         url = ("https://generativelanguage.googleapis.com/v1beta/models/"
@@ -564,6 +576,9 @@ def main() -> None:
         custom_base_url=os.environ.get("SCOUT_BASE_URL"),
         custom_model=os.environ.get("SCOUT_MODEL"),
         custom_key=os.environ.get("SCOUT_API_KEY"),
+        fallback_base_url=os.environ.get("SCOUT_FALLBACK_BASE_URL"),
+        fallback_model=os.environ.get("SCOUT_FALLBACK_MODEL"),
+        fallback_key=os.environ.get("SCOUT_FALLBACK_API_KEY"),
     )
 
     known_domains = {domain_of(e.url) for e in entries}

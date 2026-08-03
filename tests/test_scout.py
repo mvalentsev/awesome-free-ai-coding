@@ -394,6 +394,39 @@ def test_main_reports_a_broken_scout_instead_of_failing_the_workflow(tmp_path, m
     assert registry.read_text() == before  # a half-run scout writes no registry
 
 
+@respx.mock
+def test_llm_chain_uses_the_second_endpoint_before_openrouter():
+    """Two configured free providers beat one: the primary timing out should
+    reach the spare, not hand the run to OpenRouter."""
+    respx.post("https://primary.example/v1/chat/completions").mock(
+        side_effect=httpx.ReadTimeout("too slow"))
+    spare = respx.post("https://spare.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "spare"}}]}))
+    openrouter = respx.post(f"{OPENROUTER_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "or"}}]}))
+    with httpx.Client() as http:
+        llm = LLMClient(openrouter_key="o",
+                        custom_base_url="https://primary.example/v1", custom_model="m",
+                        custom_key="k1",
+                        fallback_base_url="https://spare.example/v1/", fallback_model="m2",
+                        fallback_key="k2", http=http)
+        assert llm.complete("hi") == "spare"
+    assert spare.calls[0].request.headers["Authorization"] == "Bearer k2"
+    assert b'"m2"' in spare.calls[0].request.content
+    assert not openrouter.called
+
+
+@respx.mock
+def test_a_half_configured_fallback_is_ignored():
+    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "gpt-oss-120b"}]}))
+    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ovh"}}]}))
+    with httpx.Client() as http:
+        llm = LLMClient(fallback_base_url="https://spare.example/v1", http=http)  # no model
+        assert llm.complete("hi") == "ovh"
+
+
 def test_ask_retries_malformed_yaml_then_degrades():
     class FlakyLLM:
         def __init__(self, replies: list[str]):

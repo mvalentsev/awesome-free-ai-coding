@@ -44,6 +44,9 @@ jobs:
           SCOUT_BASE_URL: ${{ vars.SCOUT_BASE_URL }}
           SCOUT_MODEL: ${{ vars.SCOUT_MODEL }}
           SCOUT_API_KEY: ${{ secrets.SCOUT_API_KEY }}
+          SCOUT_FALLBACK_BASE_URL: ${{ vars.SCOUT_FALLBACK_BASE_URL }}
+          SCOUT_FALLBACK_MODEL: ${{ vars.SCOUT_FALLBACK_MODEL }}
+          SCOUT_FALLBACK_API_KEY: ${{ secrets.SCOUT_FALLBACK_API_KEY }}
         run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md
 
       - name: Render README with scout changes
