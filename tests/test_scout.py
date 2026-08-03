@@ -1,13 +1,16 @@
+import sys
 from datetime import date
 
 import httpx
 import respx
 
+from freetier_radar import scout
 from freetier_radar.discovery import Evidence, Hit
-from freetier_radar.models import Entry
+from freetier_radar.models import Entry, save_registry
 from freetier_radar.scout import (
-    FALLBACK_OPENROUTER_MODEL, OVH_BASE_URL, LLMClient, _ask, apply_new, apply_retirements,
-    apply_updates, extract_yaml_block, pick_openrouter_model, run_scout, supersede_proposals,
+    FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, LLMClient, _ask, apply_new,
+    apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
+    supersede_proposals,
 )
 
 TODAY = date(2026, 7, 19)
@@ -266,6 +269,26 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
                                   "broken: invalid (ValidationError)"]
 
 
+def test_a_dead_backend_chain_keeps_the_fixes_the_scout_already_made():
+    """Discovery holds the longest prompt of the run and dies first when the
+    backends give out; the fix phase's work must survive that."""
+    class Flaky(StubLLM):
+        def complete(self, prompt: str) -> str:
+            if "FIX-FAILED" not in prompt:
+                self.prompts.append(prompt)
+                raise RuntimeError("all LLM backends failed: openrouter: JSONDecodeError")
+            return super().complete(prompt)
+
+    llm = Flaky({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    limits: fixed\n```"})
+    entries = [make(models=[{"family": "old"}])]
+    evidence = Evidence(hits=[Hit("https://n.ai", "New tool", "free plan", "hn")], providers=["hn"])
+    result = run_scout(llm, entries, [{"id": "x", "status": "fail", "detail": "boom"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=evidence, verifier=lambda e: None)
+    assert result["updates"] == ["x"] and entries[0].limits == "fixed"
+    assert result["new"] == [] and result["supersede"] == []
+
+
 def test_run_scout_skips_discovery_without_evidence():
     llm = StubLLM({})
     entries = [make()]
@@ -327,6 +350,48 @@ def test_llm_chain_skips_backend_on_empty_content():
         llm = LLMClient(custom_base_url="https://nim.example/v1", custom_model="m",
                         custom_key="k", http=http)
         assert llm.complete("hi") == "ok"
+
+
+@respx.mock
+def test_llm_chain_skips_a_backend_that_answers_something_other_than_json():
+    """OpenRouter returned HTTP 200 with a truncated body on 2026-08-03: the
+    JSONDecodeError escaped the chain and killed the scout with OVH untried."""
+    respx.get(f"{OPENROUTER_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free"}]}
+    ))
+    respx.post(f"{OPENROUTER_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, text='{"choices": [{"message": {"cont')
+    )
+    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "gpt-oss-120b"}]}
+    ))
+    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]})
+    )
+    with httpx.Client() as http:
+        assert LLMClient(openrouter_key="o", http=http).complete("hi") == "ok"
+
+
+def test_main_reports_a_broken_scout_instead_of_failing_the_workflow(tmp_path, monkeypatch):
+    """main() runs after the verification commit is pushed, and a failed run
+    cannot be rerun — so whatever the scout hits, the job has to end clean."""
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [make()])
+    before = registry.read_text()
+    pr_body = tmp_path / "scout-pr.md"
+
+    def boom(*args, **kwargs):
+        raise ValueError("backend answered HTML")
+
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
+    monkeypatch.setattr(scout, "run_scout", boom)
+    monkeypatch.setattr(sys, "argv", [
+        "freetier-scout", "--registry", str(registry), "--pr-body", str(pr_body),
+        "--failures", str(tmp_path / "none.json"), "--blocklist", str(tmp_path / "none.yaml"),
+    ])
+    scout.main()  # must not raise
+    assert "Scout aborted: backend answered HTML" in pr_body.read_text()
+    assert registry.read_text() == before  # a half-run scout writes no registry
 
 
 def test_ask_retries_malformed_yaml_then_degrades():

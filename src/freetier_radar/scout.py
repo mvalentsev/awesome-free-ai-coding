@@ -5,6 +5,7 @@ import json
 import os
 import re
 import time
+import traceback
 from datetime import date
 from pathlib import Path
 from typing import Callable
@@ -208,8 +209,14 @@ class LLMClient:
                 if not isinstance(text, str) or not text.strip():
                     raise RuntimeError("empty completion")
                 return text
-            except (RuntimeError, httpx.HTTPError, KeyError, IndexError) as exc:
-                errors.append(f"{name}: {exc}")
+            # Deliberately broad: the only thing this loop can usefully do with a
+            # misbehaving backend is move to the next one. A narrow tuple let a
+            # JSONDecodeError out on 2026-08-03 — OpenRouter answered HTTP 200
+            # with a truncated body, and the scout died mid-chain with three
+            # untried backends behind it.
+            except Exception as exc:
+                print(f"scout backend {name} failed: {type(exc).__name__}: {exc}")
+                errors.append(f"{name}: {type(exc).__name__}: {exc}")
         raise RuntimeError("all LLM backends failed: " + "; ".join(errors))
 
     def _chat(self, base_url: str, model: str, key: str | None, prompt: str) -> str:
@@ -479,15 +486,21 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         result["rejected"] += rejected
 
     if evidence is not None and not evidence.is_empty():
-        data = _ask(llm, DISCOVER_PROMPT.format(
-            existing=", ".join(e.id for e in entries),
-            domains=", ".join(sorted({domain_of(e.url) for e in entries})),
-            blocked=", ".join(sorted(blocklist)) if blocklist else "none",
-            evidence=format_evidence(evidence),
-        ))
-        result["new"], rejected = apply_new(
-            entries, data.get("new_entries") or [], today, verifier, blocklist)
-        result["rejected"] += rejected
+        # Discovery carries the longest prompt of the run, so it is the phase
+        # most likely to exhaust a backend. Losing it must not also throw away
+        # the fixes the previous phase already made.
+        try:
+            data = _ask(llm, DISCOVER_PROMPT.format(
+                existing=", ".join(e.id for e in entries),
+                domains=", ".join(sorted({domain_of(e.url) for e in entries})),
+                blocked=", ".join(sorted(blocklist)) if blocklist else "none",
+                evidence=format_evidence(evidence),
+            ))
+            result["new"], rejected = apply_new(
+                entries, data.get("new_entries") or [], today, verifier, blocklist)
+            result["rejected"] += rejected
+        except RuntimeError as exc:
+            print(f"discovery skipped: {exc}")
 
     # Sweep every live entry for a shutdown announcement. Without this the scout
     # only ever looks at an entry after its probe fails, i.e. on the day the free
@@ -512,8 +525,13 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
 
     families = sorted({m.family for e in entries for m in e.models})
     if families:
-        data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
-        result["supersede"] = supersede_proposals(entries, data.get("supersede") or [])
+        # Pure suggestions for the PR body — the cheapest thing in the run to
+        # lose, and it runs last, so it must never discard what came before it.
+        try:
+            data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
+            result["supersede"] = supersede_proposals(entries, data.get("supersede") or [])
+        except RuntimeError as exc:
+            print(f"generation check skipped: {exc}")
 
     return result
 
@@ -550,8 +568,16 @@ def main() -> None:
                                evidence=evidence,
                                verifier=lambda e: probe_check_sync(e, probe_client),
                                blocklist=load_blocklist(args.blocklist))
-    except RuntimeError as exc:
-        # every LLM backend failed — leave the registry untouched, don't fail CI
+    except Exception as exc:
+        # Last line of defence, and deliberately catch-all. The scout is the
+        # optional half of the run: by the time it speaks, the verification
+        # commit is already pushed, and a failed job cannot be rerun (it checks
+        # out the old SHA and its push is refused as non-fast-forward). So
+        # nothing the scout can hit — every backend down, a backend answering
+        # HTML, a proposal that will not validate — is worth failing the
+        # workflow for. Leave the registry untouched, say so in the PR body,
+        # and let the traceback stand in the log.
+        traceback.print_exc()
         print(f"scout aborted: {exc}")
         args.pr_body.write_text(f"## Scout proposals\n\nScout aborted: {exc}\n", encoding="utf-8")
         return
