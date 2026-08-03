@@ -296,6 +296,22 @@
           "name": "gemini-2.5"
         }
       }
+    },
+    "vercel-ai-gateway": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Vercel AI Gateway",
+      "options": {
+        "baseURL": "https://ai-gateway.vercel.sh/v1",
+        "apiKey": "{env:VERCEL_AI_GATEWAY_API_KEY}"
+      },
+      "models": {
+        "inclusionai/ling-3.0-flash-free": {
+          "name": "inclusionai/ling-3.0-flash-free"
+        },
+        "poolside/laguna-s-2.1-free": {
+          "name": "poolside/laguna-s-2.1-free"
+        }
+      }
     }
   }
 }

@@ -8,7 +8,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Last verified](https://img.shields.io/badge/last%20verified-2026--08--03-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-30-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-31-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -60,6 +60,7 @@
 |---|---|---|---|---|---|
 | [OpenRouter (free models)](https://openrouter.ai) | One API key for rotating :free variants of frontier models | gpt-oss, nemotron-3-ultra, gemma-4 | 50 req/day free (1000/day with $10 balance) | ✅ No | 2026-08-03 |
 | [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers) | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | deepseek, qwen3 | Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests | ✅ No | 2026-08-03 |
+| [Vercel AI Gateway](https://vercel.com/ai-gateway) | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | ling-3.0-flash-free, laguna-s-2.1-free | $5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. The two -free ids cost $0 and never draw it down. Buying credits ends the monthly free credit | ✅ No | 2026-08-03 🧪 |
 <sub>🧪 — added recently on fresh evidence; stays provisional until two weeks of probes confirm it.</sub>
 
 ## Archive
@@ -95,6 +96,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | Novita AI | `https://api.novita.ai/openai` | `NOVITA_API_KEY` | [key](https://novita.ai/settings/key-management) |
 | Scaleway Generative APIs | `https://api.scaleway.ai/v1` | `SCALEWAY_GENERATIVE_API_KEY` | [key](https://console.scaleway.com) |
 | Google AI Studio (Gemini API) | `https://generativelanguage.googleapis.com/v1beta/openai/` | `GOOGLE_AI_STUDIO_API_KEY` | [key](https://aistudio.google.com/apikey) |
+| Vercel AI Gateway | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |
 Zero-signup sanity check — works with no account, no key, right now:
 
 ```bash
