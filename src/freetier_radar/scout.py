@@ -38,6 +38,16 @@ OVH_PREFERRED_HINTS = ("gpt-oss", "qwen3")
 RETRY_429_ATTEMPTS = 3
 RETRY_429_SLEEP = 20.0
 
+# Read timeout per backend call. The discovery prompt runs to ~78k characters
+# (~20k tokens) on a real evidence set, and a reasoning model can spend minutes
+# on it: measured 2026-08-03 against Ollama Cloud, minimax-m3 answered in 88s,
+# gpt-oss:120b in 33s, and nemotron-3-ultra — the scout's primary model until
+# that day — did not answer within 600s at all. Under the old 90s it timed out
+# on every scheduled run, silently, until the chain started logging failures.
+# Note this is httpx's per-read timeout, not a deadline: a backend that keeps
+# trickling bytes can still hold the call open far longer.
+LLM_READ_TIMEOUT = 240.0
+
 # Retirement sweep: one page per live entry, trimmed so the prompt stays small.
 # A quote shorter than this is too weak to verify against a page.
 RETIREMENT_PAGE_CHARS = 2500
@@ -191,7 +201,8 @@ class LLMClient:
         self._custom_model = custom_model
         self._custom_key = custom_key
         self._ovh_model: str | None = None
-        self._http = http or httpx.Client(timeout=httpx.Timeout(90.0, connect=15.0))
+        self._http = http or httpx.Client(
+            timeout=httpx.Timeout(LLM_READ_TIMEOUT, connect=15.0))
 
     def complete(self, prompt: str) -> str:
         backends = []
