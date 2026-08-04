@@ -22,8 +22,12 @@ CATEGORY_TITLES: dict[Category, str] = {
 }
 
 
+def _families(e: Entry) -> list[str]:
+    return [m.family for m in e.models if m.superseded_by is None]
+
+
 def _row(e: Entry) -> dict[str, str]:
-    fams = [m.family for m in e.models if m.superseded_by is None]
+    fams = _families(e)
     return {
         "name": e.name,
         "url": e.url,
@@ -31,7 +35,9 @@ def _row(e: Entry) -> dict[str, str]:
         "limits": e.limits or "—",
         "card": "💳 Yes" if e.card_required else "✅ No",
         "verified": e.last_verified.isoformat() + (" 🧪" if e.provisional else ""),
-        "models": ", ".join(fams) if fams else "—",
+        # Backticked, because a model id is something the reader will paste into
+        # a config rather than read as prose.
+        "models": ", ".join(f"`{f}`" for f in fams) if fams else "—",
     }
 
 
@@ -47,6 +53,40 @@ def _connectable(entries: list[Entry], today: date) -> list[Entry]:
     )
 
 
+def _model_index(active: list[Entry]) -> list[dict]:
+    """Model family → everyone who serves it free, most-served first.
+
+    Answers the question the per-provider tables cannot: a reader who wants
+    `qwen3` does not know, and should not have to scan twenty rows to learn,
+    which five entries carry it.
+    """
+    by_family: dict[str, list[Entry]] = {}
+    for e in active:
+        for family in _families(e):
+            by_family.setdefault(family, []).append(e)
+    return [
+        {"family": family,
+         "providers": [{"name": p.name, "url": p.url}
+                       for p in sorted(ps, key=lambda p: (p.rank, p.name.lower()))]}
+        for family, ps in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+    ]
+
+
+def _quickstart(connectable: list[Entry]) -> dict | None:
+    """The one call a reader can make before deciding to trust any of this:
+    keyless, OpenAI-compatible, with a model id the registry knows is callable.
+
+    Generated rather than typed, so the snippet is archived along with its entry
+    instead of sitting on the page as a command that stopped working.
+    """
+    for e in connectable:
+        if e.api.auth == "none" and e.api.model_ids:
+            return {"name": e.name, "url": e.url,
+                    "base_url": e.api.base_url.rstrip("/"),
+                    "model_id": e.api.model_ids[0]}
+    return None
+
+
 def build_context(entries: list[Entry], today: date) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
@@ -56,11 +96,12 @@ def build_context(entries: list[Entry], today: date) -> dict:
                                           key=lambda e: (e.rank, e.name.lower()))]}
         for cat, title in CATEGORY_TITLES.items()
     ]
+    connectable = _connectable(entries, today)
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "auth": "—" if e.api.auth == "none" else f"`{env_var(e.id)}`",
          "key_url": e.api.key_url or "", "note": e.api.note}
-        for e in _connectable(entries, today)
+        for e in connectable
     ]
     return {"date": today.isoformat(), "sections": sections,
             # The badge dates the evidence, not the render. Using today's date
@@ -72,7 +113,14 @@ def build_context(entries: list[Entry], today: date) -> dict:
                                     default=today).isoformat(),
             "archived": [_row(e) for e in archived], "active_count": len(active),
             "has_provisional": any(e.provisional for e in active),
-            "connections": connections}
+            "connections": connections,
+            # The headline counts. Every one of them is derived, so the page can
+            # never advertise a number the registry stopped backing.
+            "no_card_count": sum(1 for e in active if not e.card_required),
+            "no_signup_count": sum(1 for e in connectable if e.api.auth == "none"),
+            "endpoint_count": len(connections),
+            "model_index": _model_index(active),
+            "quickstart": _quickstart(connectable)}
 
 
 def build_index(entries: list[Entry], today: date) -> dict:

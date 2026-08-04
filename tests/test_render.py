@@ -48,7 +48,7 @@ def test_build_context_rows():
     ctx = build_context(entries, TODAY)
     assert ctx["date"] == "2026-07-19"
     section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
-    assert section["rows"][0]["models"] == "a"
+    assert section["rows"][0]["models"] == "`a`"
     assert section["rows"][0]["card"] == "✅ No"
     assert ctx["archived"] == []
 
@@ -145,6 +145,58 @@ def test_litellm_config_names_every_free_model_of_every_connectable_entry():
     ]
 
 
+def test_headline_counts_are_derived_from_the_registry():
+    """The numbers at the top of the page are a claim about the list, so they are
+    counted from it — a hand-typed "31 need no card" is one merged PR away from
+    being a lie, and the archived rows must not prop any of them up."""
+    entries = [
+        api_entry(id="groq-free", name="Groq"),
+        api_entry(id="keyless", name="Keyless",
+                  api={"base_url": "https://free.example/v1", "auth": "none"}),
+        make(id="paid", name="Paid", card_required=True),
+        make(id="buried", last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1)),
+    ]
+    ctx = build_context(entries, TODAY)
+    assert ctx["active_count"] == 3
+    assert ctx["no_card_count"] == 2
+    assert ctx["no_signup_count"] == 1
+    assert ctx["endpoint_count"] == 2
+
+
+def test_model_index_groups_providers_by_family():
+    """The per-provider tables cannot answer "who serves qwen3 for free?" — this
+    index does, most-served family first. Superseded families stay out of it:
+    they are not callable any more."""
+    entries = [
+        make(id="a", name="A", rank=1, models=[{"family": "qwen3"}, {"family": "gpt-oss"}]),
+        make(id="b", name="B", rank=2, models=[{"family": "qwen3"},
+                                               {"family": "old", "superseded_by": "new"}]),
+        make(id="buried", name="Buried", models=[{"family": "qwen3"}],
+             last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1)),
+    ]
+    index = build_context(entries, TODAY)["model_index"]
+    assert [m["family"] for m in index] == ["qwen3", "gpt-oss"]
+    assert [p["name"] for p in index[0]["providers"]] == ["A", "B"]
+
+
+def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
+    """The curl at the top of the README is the first thing a reader runs. Typed
+    by hand it would outlive the entry it calls; generated, it is archived along
+    with it. Only a keyless entry with a callable id can carry it."""
+    keyless_no_ids = make(id="k1", name="NoIds",
+                          api={"base_url": "https://a.example/v1", "auth": "none"})
+    assert build_context([keyless_no_ids], TODAY)["quickstart"] is None
+    assert build_context([api_entry(id="groq-free", name="Groq")], TODAY)["quickstart"] is None
+
+    usable = make(id="k2", name="Keyless", rank=1,
+                  api={"base_url": "https://b.example/v1/", "auth": "none",
+                       "model_ids": ["gpt-oss-120b"]})
+    quickstart = build_context([keyless_no_ids, usable], TODAY)["quickstart"]
+    assert quickstart == {"name": "Keyless", "url": "https://x.ai",
+                          "base_url": "https://b.example/v1",  # no double slash in the curl
+                          "model_id": "gpt-oss-120b"}
+
+
 def test_context_connections():
     entries = [api_entry(id="groq-free", name="Groq"), make(id="plain")]
     ctx = build_context(entries, TODAY)
@@ -163,9 +215,9 @@ def test_render_readme(tmp_path: Path):
     assert "live%20entries-1-58a6ff" in text
     assert "Coding agents & CLIs" in text
     assert "LLM APIs with free tier" in text
-    assert "## How this list stays fresh" in text
+    assert "## 📡 How this list stays fresh" in text
     assert "```mermaid" in text
     assert "banner-dark.svg" in text
-    assert "## Archive" in text
-    assert "Dead Tool" in text.split("## Archive")[1]
+    assert "## 📦 Archive" in text
+    assert "Dead Tool" in text.split("## 📦 Archive")[1]
     assert out.read_text(encoding="utf-8") == text

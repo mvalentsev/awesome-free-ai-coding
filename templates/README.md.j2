@@ -1,3 +1,4 @@
+<a name="top"></a>
 <div align="center">
 
 <picture>
@@ -12,36 +13,80 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [⚙️ How it works](#how-this-list-stays-fresh)**
+**[🚀 Start now](#-start-in-one-command) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 </div>
 
-> **Every row below is machine-verified.** Legal free tiers, trials and free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages; dead offers drop to the [Archive](#archive) automatically.
+> **Every row on this page is machine-verified.** Legal free tiers, trials and free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages; dead offers drop to the [Archive](#-archive) automatically.
 
+<div align="center">
+
+| **{{ active_count }}** | **{{ no_card_count }}** | **{{ no_signup_count }}** | **{{ endpoint_count }}** | **{{ model_index | length }}** |
+|:---:|:---:|:---:|:---:|:---:|
+| <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
+
+</div>
+
+## 🚀 Start in one command
+
+{% if quickstart %}
+No account, no key, no card, no waiting — [{{ quickstart.name }}]({{ quickstart.url }}) answers this in the terminal you already have open:
+
+```bash
+curl -s {{ quickstart.base_url }}/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"{{ quickstart.model_id }}","messages":[{"role":"user","content":"2+2?"}]}'
+```
+
+{% endif %}
+Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-agent)** — the configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and plain OpenAI SDKs are generated from the same registry and regenerated on every update.
+
+## 📋 The list
+
+<sub>**Card required** — ✅ No means no card is ever asked for{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand.</sub>
 {% for s in sections %}
+
 ### {{ s.title }}
 {% if s.rows %}
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-{% for r in s.rows %}| [{{ r.name }}]({{ r.url }}) | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | {{ r.card }} | {{ r.verified }} |
+{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})** | {{ r.offering }} | {{ r.models }} | <sub>{{ r.limits }}</sub> | {{ r.card }} | `{{ r.verified }}` |
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}
 {% endfor %}
-{% if has_provisional %}
-<sub>🧪 — added recently on fresh evidence; stays provisional until two weeks of probes confirm it.</sub>
 
+{% if model_index %}
+<details>
+<summary><b>🧠 Looking for one model in particular?</b> — {{ model_index | length }} model families, and everyone who serves them free</summary>
+<br>
+
+| Model family | Free at |
+|---|---|
+{% for m in model_index %}| `{{ m.family }}` | {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ ", " if not loop.last }}{% endfor %} |
+{% endfor %}
+
+</details>
 {% endif %}
-## Archive
 
-Outdated or unverifiable entries:
+## 📦 Archive
+
+<details>
+<summary>Offers that stopped verifying — kept visible so a dead tier is never silently forgotten</summary>
+<br>
 {% if archived %}
+
 | Tool | Last verified |
 |---|---|
-{% for r in archived %}| [{{ r.name }}]({{ r.url }}) | {{ r.verified }} |
-{% endfor %}{% else %}
+{% for r in archived %}| [{{ r.name }}]({{ r.url }}) | `{{ r.verified }}` |
+{% endfor %}
+
+{% else %}
+
 _Empty — the radar is clean._
+
 {% endif %}
+</details>
 
 ## 🔧 Plug it into your agent
 
@@ -49,24 +94,19 @@ Connection details for every live OpenAI-compatible API above — paste the base
 
 | Provider | Base URL | Key env var | Get a key |
 |---|---|---|---|
-{% for c in connections %}| {{ c.name }} | `{{ c.base_url }}` | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
+{% for c in connections %}| **{{ c.name }}**{% if c.note %}<br><sub>{{ c.note }}</sub>{% endif %} | `{{ c.base_url }}` | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
 {% endfor %}
-Zero-signup sanity check — works with no account, no key, right now:
-
-```bash
-curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{"model":"gpt-oss-120b","messages":[{"role":"user","content":"2+2?"}]}'
-```
 
 Ready-made artifacts, regenerated on every update:
 
-- [`configs/opencode.json`](configs/opencode.json) — drop-in [opencode](https://opencode.ai) config with every provider wired up (keys via `{env:...}`, keyless endpoints work immediately)
-- [`configs/free-llm.env.example`](configs/free-llm.env.example) — commented env exports for any OpenAI-compatible tool
-- [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint
-- [`index.json`](index.json) — machine-readable registry; `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json | jq '.entries[].id'`
+| File | What it gives you |
+|---|---|
+| [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
+| [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
+| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint |
+| [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
 
-## How this list stays fresh
+## 📡 How this list stays fresh
 
 This repository is an autonomous system, not a hand-curated list:
 
@@ -78,17 +118,27 @@ flowchart LR
     PR -->|human merge| R[("registry.yaml")]
     R --> P{"📡 live probes<br/>twice a week"}
     P -->|pass| V["✅ verified date updated"]
-    P -->|fail ×3 · stale 60d · shutdown announced| A["🗄 Archive"]
+    P -->|fail ×3 · stale 60d · shutdown announced| A["📦 Archive"]
     R -->|render| MD["README.md<br/>(this page)"]
+
+    classDef pass fill:#3fb95022,stroke:#3fb950,stroke-width:2px
+    classDef drop fill:#f8514922,stroke:#f85149,stroke-width:2px
+    classDef human fill:#58a6ff22,stroke:#58a6ff,stroke-width:2px
+    classDef store fill:#8957e522,stroke:#8957e5,stroke-width:2px
+    class G,P,V pass
+    class A drop
+    class PR,MD human
+    class R store
 ```
 
-- **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. Each probe anchors on something that dies with the offer — the free model's id, its quota figure, its price row, or a sentence quoted from the vendor's own page — never the word "free" on its own, which survives on a vendor's page for months after the free tier does not. Words like "hobby" or "monthly credits" are rejected by validation for the same reason. Where a gateway publishes prices, the probe also demands that the free model still costs zero — an id can stay in the catalog long after it stops being free. And a bot wall answering in place of a vendor's page counts as "could not check", never as "the offer is gone". `Verified` dates are earned by passing a probe, never typed by hand.
+- **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. `Verified` dates are earned by passing a probe, never typed by hand.
+- **Anchored on the offer, not on the word "free".** Each probe anchors on something that dies with the offer — the free model's id, its quota figure, its price row, or a sentence quoted from the vendor's own page. The word "free" survives on a vendor's page for months after the free tier does not, and so do "hobby" and "monthly credits"; validation rejects all of them. Where a gateway publishes prices, the probe also demands that the free model still costs zero — an id can stay in the catalog long after it stops being free. And a bot wall answering in place of a vendor's page counts as "could not check", never as "the offer is gone".
 - **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
-## Contributing
+## 🤝 Contributing
 
 `registry.yaml` is the single source of truth; this README is generated from it — don't edit it by hand.
 Know a legal free offer that's missing? **[Suggest a service](../../issues/new?template=suggest-a-service.yml)** — it will be probed like everything else. Details in [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -97,6 +147,6 @@ Know a legal free offer that's missing? **[Suggest a service](../../issues/new?t
 
 **⭐ If this list saved you a credit-card form, star the repo — it keeps the radar visible.**
 
-<sub>Maintained by robots · reviewed by humans · MIT</sub>
+<sub>Maintained by robots · reviewed by humans · MIT · <a href="#top">back to top ↑</a></sub>
 
 </div>
