@@ -15,7 +15,7 @@ import httpx
 import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
-from .models import Entry, load_registry, save_registry
+from .models import Entry, is_archived, load_registry, save_registry
 from .prober import challenge_marker_hit, check_content
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
@@ -47,9 +47,26 @@ RETRY_429_SLEEP = 20.0
 # old 90s it timed out on every scheduled run, silently, until the chain
 # started logging failures. The run is twice a week, so waiting is cheap and
 # the ceiling sits well above the slowest backend we would actually use.
-# Note this is httpx's per-read timeout, not a deadline: a backend that keeps
-# trickling bytes can still hold the call open far longer.
 LLM_READ_TIMEOUT = 300.0
+
+# Wall-clock ceiling for one backend call, which the read timeout above is not:
+# httpx restarts its clock on every byte received, so a backend that trickles
+# output holds the call open indefinitely. That is not theory — on 2026-08-03
+# OpenRouter streamed for ~9 minutes inside a 90-second timeout and then handed
+# over a truncated body. The ceiling sits above the slowest measured answer
+# (202s) with room to spare, and turns a trickle into a failure the chain can
+# step over.
+LLM_CALL_DEADLINE = 420.0
+
+# Wall-clock budget for the whole scout run. Four LLM phases over a five-backend
+# chain can multiply into hours of a job nobody is watching, and the scout is
+# the optional half of the run: a phase that has run out of time is worth
+# skipping, never worth hanging for. Overridable via SCOUT_DEADLINE_SECONDS.
+SCOUT_DEADLINE_SECONDS = 1800.0
+
+# Listing a backend's models is a small GET and must not inherit the long read
+# timeout meant for generation.
+MODELS_LIST_TIMEOUT = 30.0
 
 # Retirement sweep: one page per live entry, trimmed so the prompt stays small.
 # A quote shorter than this is too weak to verify against a page.
@@ -81,6 +98,10 @@ card_required, probe, models.
 A "stale-models" failure means the probe passed and the offer is alive, but every
 family listed for it was marked superseded: reply with a models list naming the
 families the free tier serves today, and leave the probe alone.
+A corrected page-keywords probe needs at least one keyword that dies with the
+offer — a quota or price figure, a model id or JSON field, or a sentence of four
+or more words quoted verbatim from the page below. Words like "free", "hobby",
+"free quota" or "no credit card required" are rejected: they outlive the offer.
 Output only the keys you are actually changing — never a null value, and skip an
 entry entirely when you have nothing to correct for it.
 Output format:
@@ -107,11 +128,21 @@ usage or credits. Browser-only SDKs, consumer-only apps, and BYOK-only tools
 without any bundled free model usage do not qualify. The probe
 endpoint must be a server-rendered page containing the keywords, or a public
 JSON models API. Prefer the JSON models API whenever the vendor exposes one
-without a key. Keywords must anchor on something that disappears together with
-the offer — the free model's id, its quota figure, or its price row. Generic
-words are rejected: "free", "pricing" and "no credit card required" sit on a
-vendor page for months after the free tier is withdrawn, so a probe built out
-of them verifies nothing but that the page still loads.
+without a key. At least one keyword must anchor on something that disappears
+together with the offer, in one of these three shapes:
+  - a figure: a quota, a price or a grant — "$0.10, subject to change",
+    "anonymous users get one request every 15 seconds";
+  - an id: the free model's id or a JSON field of the vendor's own API —
+    "mistral-medium", "advanced_model_request_limit", '"name":"free"';
+  - a sentence of four or more words quoted verbatim from the page and specific
+    to this offer — "free models through kilo gateway".
+Anything else is rejected outright, including "free", "hobby", "free quota",
+"monthly credits", "no signup" and "no credit card required": those sit on a
+vendor page for months after the free tier is withdrawn, so a probe built out of
+them verifies nothing but that the page still loads. Copy keywords verbatim from
+the evidence — a keyword that is not literally on the page fails immediately.
+On a gateway that publishes per-model prices, also set require_zero_price: true,
+so that an id kept in the catalog after it starts costing money fails the probe.
 Output format:
 new_entries:
   - id: <slug>
@@ -128,7 +159,8 @@ new_entries:
     probe: {{type: page-keywords, endpoint: <official url>,
              keywords: ["<free model id / quota figure / price row>", "free"]}}
            # or, when a keyless models API exists:
-           {{type: api-models, endpoint: <https://.../v1/models>, free_marker: ''}}
+           {{type: api-models, endpoint: <https://.../v1/models>, free_marker: '',
+             require_zero_price: true}}   # true whenever the API publishes prices
 Max 8. Empty list if the evidence shows nothing new.
 EVIDENCE:
 {evidence}
@@ -167,17 +199,43 @@ Empty list if nothing is clearly superseded.
 PR_BODY_TEMPLATE = """## Scout proposals
 
 Discovery sources used: {providers}
+Backend chain: {backend}
 
 Updated entries: {updates}
 New entries (probe-verified): {new}
 Rejected candidates: {rejected}
 Retirements announced by the vendor: {retired}
+Phases skipped (out of wall-clock budget): {skipped}
 
 Generation bumps suggested — **not applied**, edit registry.yaml yourself if a
 free tier really moved on: {supersede}
+Already dismissed in dismissed.yaml, not proposed again: {suppressed}
 
 _Proposed by the web-evidence scout — review before merging. Weekly probes keep re-verifying after merge._
 """
+
+
+class DeadlineExceeded(RuntimeError):
+    """A backend held the call open past the run's wall-clock budget."""
+
+
+class Deadline:
+    """The run's remaining wall-clock time, shared by every phase and every call.
+
+    Deliberately one budget rather than a per-phase allowance: the phases are
+    ordered by value — fixes first, then discovery, then the optional sweeps —
+    so a slow first phase should eat into the last one, not into the job.
+    """
+
+    def __init__(self, seconds: float, clock: Callable[[], float] = time.monotonic):
+        self._clock = clock
+        self._end = clock() + seconds
+
+    def remaining(self) -> float:
+        return self._end - self._clock()
+
+    def expired(self) -> bool:
+        return self.remaining() <= 0
 
 
 class LLMClient:
@@ -201,7 +259,11 @@ class LLMClient:
                  custom_key: str | None = None,
                  fallback_base_url: str | None = None, fallback_model: str | None = None,
                  fallback_key: str | None = None,
-                 http: httpx.Client | None = None):
+                 http: httpx.Client | None = None,
+                 deadline: Deadline | None = None,
+                 call_deadline: float = LLM_CALL_DEADLINE,
+                 force: str | None = None,
+                 clock: Callable[[], float] = time.monotonic):
         self._gemini_key = gemini_key
         self._or_key = openrouter_key
         self._or_model = openrouter_model
@@ -217,23 +279,54 @@ class LLMClient:
             if url and model
         ]
         self._ovh_model: str | None = None
+        self.answered_by: str | None = None
+        self._deadline = deadline
+        self._call_deadline = call_deadline
+        self._clock = clock
+        # "auto" is what the workflow sends when nobody picked a backend, so the
+        # dispatch input needs no conditional around it.
+        forced = (force or "").strip().lower()
+        self._force = None if forced in ("", "auto") else forced
         self._http = http or httpx.Client(
             timeout=httpx.Timeout(LLM_READ_TIMEOUT, connect=15.0))
 
-    def complete(self, prompt: str) -> str:
-        backends = [(name, partial(self._chat, url, model, key))
-                    for name, url, model, key in self._customs]
+    def _backends(self) -> list[tuple[str, Callable[[str], str]]]:
+        backends: list[tuple[str, Callable[[str], str]]] = [
+            (name, partial(self._chat, url, model, key))
+            for name, url, model, key in self._customs
+        ]
         if self._gemini_key:
             backends.append(("gemini", self._gemini))
         if self._or_key:
             backends.append(("openrouter", self._openrouter))
         backends.append(("ovh-anonymous", self._ovh))
+        return backends
+
+    def complete(self, prompt: str) -> str:
+        backends = self._backends()
+        if self._force is not None:
+            # Forcing exists to exercise a backend that never gets its turn —
+            # the spare endpoint answered in a local test and has not run in CI
+            # once, because the primary has never failed on a scheduled run.
+            # Falling through to another backend would defeat that, so an
+            # unconfigured name is an error, not a silent chain run.
+            backends = [b for b in backends if b[0] == self._force]
+            if not backends:
+                raise RuntimeError(
+                    f"forced backend {self._force!r} is not configured; available: "
+                    + ", ".join(n for n, _ in self._backends()))
         errors = []
         for name, fn in backends:
+            started = self._clock()
             try:
                 text = fn(prompt)
                 if not isinstance(text, str) or not text.strip():
                     raise RuntimeError("empty completion")
+                # Which backend actually answered is otherwise only visible as
+                # an absence — the run that quietly fell through to OpenRouter
+                # for weeks looked exactly like a healthy one in the log.
+                print(f"scout backend {name} answered in {self._clock() - started:.0f}s")
+                self.answered_by = name
                 return text
             # Deliberately broad: the only thing this loop can usefully do with a
             # misbehaving backend is move to the next one. A narrow tuple let a
@@ -245,26 +338,69 @@ class LLMClient:
                 errors.append(f"{name}: {type(exc).__name__}: {exc}")
         raise RuntimeError("all LLM backends failed: " + "; ".join(errors))
 
+    def describe(self) -> str:
+        """One line for the PR body: what the chain was, and who answered."""
+        chain = " → ".join(n for n, _ in self._backends())
+        head = f"forced {self._force} (configured: {chain})" if self._force else chain
+        return f"{head} — answered by {self.answered_by or 'nothing'}"
+
+    def _budget(self) -> float:
+        """Seconds this call may take: its own ceiling, or whatever is left of
+        the run — whichever is shorter."""
+        budget = self._call_deadline
+        if self._deadline is not None:
+            budget = min(budget, self._deadline.remaining())
+        if budget <= 0:
+            raise DeadlineExceeded("no wall-clock budget left for this run")
+        return budget
+
+    def _post(self, url: str, headers: dict[str, str], payload: dict) -> tuple[int, bytes]:
+        """POST and read the body against the clock, returning (status, body).
+
+        httpx's timeout is per read, not per call, so it cannot answer "has this
+        backend had long enough?" — it only ever asks "has it been silent for
+        too long?". A backend answering HTTP 200 and then trickling bytes passes
+        that test forever: OpenRouter streamed for ~9 minutes inside a 90-second
+        timeout on 2026-08-03 and delivered a truncated body at the end of it.
+        Reading in chunks and checking the wall clock makes that an ordinary
+        backend failure, which the chain already knows how to step over. The
+        read timeout stays on top for the opposite failure — a backend that
+        says nothing at all — capped by the same budget.
+        """
+        budget = self._budget()
+        end = self._clock() + budget
+        timeout = httpx.Timeout(min(LLM_READ_TIMEOUT, budget), connect=15.0)
+        with self._http.stream("POST", url, headers=headers, json=payload,
+                               timeout=timeout) as r:
+            if r.status_code == 429:
+                return r.status_code, b""
+            r.raise_for_status()
+            chunks = []
+            for chunk in r.iter_bytes():
+                chunks.append(chunk)
+                if self._clock() > end:
+                    raise DeadlineExceeded(
+                        f"{url} was still streaming after {budget:.0f}s")
+        return r.status_code, b"".join(chunks)
+
     def _chat(self, base_url: str, model: str, key: str | None, prompt: str) -> str:
         headers = {"Authorization": f"Bearer {key}"} if key else {}
         for attempt in range(RETRY_429_ATTEMPTS):
-            r = self._http.post(
-                f"{base_url}/chat/completions", headers=headers,
-                json={"model": model, "messages": [{"role": "user", "content": prompt}]},
+            status, body = self._post(
+                f"{base_url}/chat/completions", headers,
+                {"model": model, "messages": [{"role": "user", "content": prompt}]},
             )
-            if r.status_code == 429 and attempt + 1 < RETRY_429_ATTEMPTS:
+            if status != 429:
+                return json.loads(body)["choices"][0]["message"]["content"]
+            if attempt + 1 < RETRY_429_ATTEMPTS:
                 time.sleep(RETRY_429_SLEEP)
-                continue
-            r.raise_for_status()
-            return r.json()["choices"][0]["message"]["content"]
         raise RuntimeError("rate-limited on every attempt")
 
     def _gemini(self, prompt: str) -> str:
         url = ("https://generativelanguage.googleapis.com/v1beta/models/"
                f"{self._gemini_model}:generateContent?key={self._gemini_key}")
-        r = self._http.post(url, json={"contents": [{"parts": [{"text": prompt}]}]})
-        r.raise_for_status()
-        return r.json()["candidates"][0]["content"]["parts"][0]["text"]
+        _, body = self._post(url, {}, {"contents": [{"parts": [{"text": prompt}]}]})
+        return json.loads(body)["candidates"][0]["content"]["parts"][0]["text"]
 
     def _openrouter(self, prompt: str) -> str:
         if self._or_model is None:
@@ -278,7 +414,7 @@ class LLMClient:
 
 
 def _list_model_ids(http: httpx.Client, base_url: str) -> list[str]:
-    r = http.get(f"{base_url}/models")
+    r = http.get(f"{base_url}/models", timeout=MODELS_LIST_TIMEOUT)
     r.raise_for_status()
     return [str(m.get("id", "")) for m in r.json().get("data", []) if isinstance(m, dict)]
 
@@ -340,6 +476,26 @@ def load_blocklist(path: Path) -> dict[str, str]:
 
 def is_blocked(domain: str, blocklist: dict[str, str]) -> bool:
     return any(domain == b or domain.endswith("." + b) for b in blocklist)
+
+
+def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
+    """(entry id, family, newer family) triples a human has already rejected.
+
+    Since supersede became proposal-only the registry never records a decision
+    about a bump, so every run re-proposes the ones a reviewer threw out — z.a
+    i's free glm-4.7-flash "superseded by" the paid glm-5.2 came back in each PR.
+    This file is that memory: the proposal is a suggestion, and a suggestion
+    declined stays declined until a human removes the line.
+    """
+    if not path.exists():
+        return set()
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    items = data.get("dismissed") if isinstance(data, dict) else data
+    return {
+        (str(d["entry"]), str(d["family"]), str(d["superseded_by"]))
+        for d in (items or [])
+        if isinstance(d, dict) and d.get("entry") and d.get("family") and d.get("superseded_by")
+    }
 
 
 def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
@@ -432,7 +588,9 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
     return added, rejected
 
 
-def supersede_proposals(entries: list[Entry], supersede: list[dict]) -> list[str]:
+def supersede_proposals(entries: list[Entry], supersede: list[dict],
+                        dismissed: set[tuple[str, str, str]] | None = None,
+                        ) -> tuple[list[str], list[str]]:
     """Describe generation bumps for a human to accept — never write them.
 
     The scout used to apply these straight to the registry, and three times
@@ -443,8 +601,12 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict]) -> list[str
     limits, no page. So it cannot answer the question that matters, which is
     not "what is newer" but "what does this free tier serve today".
 
-    Only bumps that would change something are reported."""
-    out = []
+    Returns (proposed, suppressed). Only bumps that would change something are
+    reported, and a bump listed in dismissed.yaml is reported as suppressed
+    rather than silently dropped — a filter nobody can see is a filter nobody
+    can correct."""
+    dismissed = dismissed or set()
+    proposed, suppressed = [], []
     for s in supersede:
         family, target = s.get("family"), s.get("superseded_by")
         if not family or not target:
@@ -452,8 +614,12 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict]) -> list[str
         for e in entries:
             for m in e.models:
                 if m.family == family and m.superseded_by != target:
-                    out.append(f"{e.id}: {family} → {target}")
-    return out
+                    line = f"{e.id}: {family} → {target}"
+                    if (e.id, family, target) in dismissed:
+                        suppressed.append(line)
+                    else:
+                        proposed.append(line)
+    return proposed, suppressed
 
 
 def _flatten(text: str) -> str:
@@ -496,11 +662,23 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               page_fetcher: Callable[[list[str]], dict[str, str]], today: date,
               evidence: Evidence | None = None,
               verifier: Callable[[Entry], str | None] | None = None,
-              blocklist: dict[str, str] | None = None) -> dict:
-    result = {"updates": [], "new": [], "rejected": [], "supersede": [], "retired": [],
+              blocklist: dict[str, str] | None = None,
+              dismissed: set[tuple[str, str, str]] | None = None,
+              deadline: Deadline | None = None) -> dict:
+    result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
+              "retired": [], "skipped": [],
               "providers": evidence.providers if evidence else []}
 
-    if failures:
+    def within_budget(phase: str) -> bool:
+        """Phases run in descending order of value, so the one that finds the
+        budget spent is always the cheapest one left to lose."""
+        if deadline is not None and deadline.expired():
+            print(f"{phase} skipped: the run's wall-clock budget is spent")
+            result["skipped"].append(phase)
+            return False
+        return True
+
+    if failures and within_budget("fixes"):
         flagged = {f["id"]: f for f in failures}
         ctx_entries = [e for e in entries if e.id in flagged]
         urls = [u for e in ctx_entries for u in e.source_urls]
@@ -515,7 +693,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         result["updates"], rejected = apply_updates(entries, data.get("updates") or [])
         result["rejected"] += rejected
 
-    if evidence is not None and not evidence.is_empty():
+    if evidence is not None and not evidence.is_empty() and within_budget("discovery"):
         # Discovery carries the longest prompt of the run, so it is the phase
         # most likely to exhaust a backend. Losing it must not also throw away
         # the fixes the previous phase already made.
@@ -536,7 +714,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     # only ever looks at an entry after its probe fails, i.e. on the day the free
     # tier dies — a retirement announced weeks ahead goes unnoticed until then.
     live = [e for e in entries if e.retired_on is None and e.source_urls]
-    if live:
+    if live and within_budget("retirement sweep"):
         pages = page_fetcher([e.source_urls[0] for e in live])
         candidates = [e for e in live if _has_retirement_signal(pages.get(e.source_urls[0], ""))]
         context = "\n\n".join(
@@ -553,13 +731,18 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             except RuntimeError as exc:
                 print(f"retirement sweep skipped: {exc}")
 
-    families = sorted({m.family for e in entries for m in e.models})
-    if families:
+    # Archived entries are excluded: their families belong to a product that is
+    # gone, so any bump proposed for them is noise a reviewer can only ignore.
+    # GitHub Models kept drawing "gpt-4.1 → gpt-5.6" months after GitHub shut
+    # the product down.
+    families = sorted({m.family for e in entries if not is_archived(e, today) for m in e.models})
+    if families and within_budget("generation check"):
         # Pure suggestions for the PR body — the cheapest thing in the run to
         # lose, and it runs last, so it must never discard what came before it.
         try:
             data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
-            result["supersede"] = supersede_proposals(entries, data.get("supersede") or [])
+            result["supersede"], result["suppressed"] = supersede_proposals(
+                entries, data.get("supersede") or [], dismissed)
         except RuntimeError as exc:
             print(f"generation check skipped: {exc}")
 
@@ -571,11 +754,18 @@ def main() -> None:
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
     parser.add_argument("--failures", type=Path, default=Path("failures/failures.json"))
     parser.add_argument("--blocklist", type=Path, default=Path("blocklist.yaml"))
+    parser.add_argument("--dismissed", type=Path, default=Path("dismissed.yaml"))
     parser.add_argument("--pr-body", type=Path, default=Path("scout-pr.md"))
+    parser.add_argument(
+        "--dry-run", action="store_true",
+        help="run every phase but leave registry.yaml untouched — how the "
+             "fallback backend gets exercised without a PR to close afterwards")
     args = parser.parse_args()
 
     entries = load_registry(args.registry)
     failures = json.loads(args.failures.read_text()) if args.failures.exists() else []
+    deadline = Deadline(float(os.environ.get("SCOUT_DEADLINE_SECONDS")
+                              or SCOUT_DEADLINE_SECONDS))
     llm = LLMClient(
         gemini_key=os.environ.get("GEMINI_API_KEY"),
         openrouter_key=os.environ.get("OPENROUTER_API_KEY"),
@@ -586,6 +776,8 @@ def main() -> None:
         fallback_base_url=os.environ.get("SCOUT_FALLBACK_BASE_URL"),
         fallback_model=os.environ.get("SCOUT_FALLBACK_MODEL"),
         fallback_key=os.environ.get("SCOUT_FALLBACK_API_KEY"),
+        deadline=deadline,
+        force=os.environ.get("SCOUT_FORCE_BACKEND"),
     )
 
     known_domains = {domain_of(e.url) for e in entries}
@@ -600,7 +792,9 @@ def main() -> None:
             result = run_scout(llm, entries, failures, fetch_page_texts, date.today(),
                                evidence=evidence,
                                verifier=lambda e: probe_check_sync(e, probe_client),
-                               blocklist=load_blocklist(args.blocklist))
+                               blocklist=load_blocklist(args.blocklist),
+                               dismissed=load_dismissed(args.dismissed),
+                               deadline=deadline)
     except Exception as exc:
         # Last line of defence, and deliberately catch-all. The scout is the
         # optional half of the run: by the time it speaks, the verification
@@ -615,13 +809,19 @@ def main() -> None:
         args.pr_body.write_text(f"## Scout proposals\n\nScout aborted: {exc}\n", encoding="utf-8")
         return
 
-    save_registry(args.registry, entries)
+    if args.dry_run:
+        print("dry run: registry left untouched")
+    else:
+        save_registry(args.registry, entries)
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
         providers=", ".join(result["providers"]) or "none",
+        backend=llm.describe(),
         updates=", ".join(result["updates"]) or "—",
         new=", ".join(result["new"]) or "—",
         rejected="; ".join(result["rejected"]) or "—",
         supersede=", ".join(result["supersede"]) or "—",
+        suppressed=", ".join(result["suppressed"]) or "—",
         retired=", ".join(result["retired"]) or "—",
+        skipped=", ".join(result["skipped"]) or "—",
     ), encoding="utf-8")
     print(f"scout: {result}")

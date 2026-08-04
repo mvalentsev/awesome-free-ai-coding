@@ -1,0 +1,21 @@
+# Generation bumps a human has already looked at and rejected.
+#
+# The scout proposes supersede marks but never writes them (see scout.py), so
+# nothing in registry.yaml records a decision NOT to bump a family — and the
+# same suggestion comes back in every PR. This file is that memory: a triple
+# listed here is reported as "already dismissed" instead of being proposed
+# again. Delete a line to let the scout raise the question once more.
+#
+# It is not a blocklist for the family: only this exact (entry, family, target)
+# is silenced, so a genuinely newer free generation still gets proposed.
+
+dismissed:
+  - entry: zai-glm
+    family: glm-4.7-flash
+    superseded_by: glm-5.2
+    dismissed_on: 2026-08-04
+    reason: >-
+      GLM-5.x is z.ai's paid flagship — the entry's own limits say so. Applying
+      this bump emptied the README's only free z.ai model and dropped the entry
+      from the generated configs (PR #5, closed). The scout proposing it sees a
+      list of family names, not the free tier they belong to.

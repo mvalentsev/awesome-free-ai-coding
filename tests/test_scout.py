@@ -2,15 +2,16 @@ import sys
 from datetime import date
 
 import httpx
+import pytest
 import respx
 
 from freetier_radar import scout
 from freetier_radar.discovery import Evidence, Hit
 from freetier_radar.models import Entry, save_registry
 from freetier_radar.scout import (
-    FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, LLMClient, _ask, apply_new,
-    apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model, run_scout,
-    supersede_proposals,
+    FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, Deadline, LLMClient, _ask,
+    apply_new, apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model,
+    run_scout, supersede_proposals,
 )
 
 TODAY = date(2026, 7, 19)
@@ -18,7 +19,9 @@ TODAY = date(2026, 7, 19)
 BASE = {
     "name": "X", "category": "api-free-tier", "url": "https://x.ai",
     "offering": "old offering", "limits": "old limits",
-    "first_seen": date(2026, 1, 1), "last_verified": date(2026, 1, 1),
+    # Verified today: the scout runs straight after the probes, so a live entry
+    # is one the same run has just re-verified.
+    "first_seen": date(2026, 1, 1), "last_verified": TODAY,
     "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["x-mini-2", "free"]},
 }
 
@@ -131,9 +134,9 @@ def test_supersede_is_proposed_never_written():
     only family names. z.ai's free glm-4.7-flash got buried behind paid glm-5.2
     that way, so the registry is left alone and a human decides."""
     entries = [make(models=[{"family": "old"}, {"family": "cur"}])]
-    proposed = supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"},
-                                             {"family": "nope", "superseded_by": "cur"}])
-    assert proposed == ["x: old → cur"]
+    proposed, suppressed = supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"},
+                                                         {"family": "nope", "superseded_by": "cur"}])
+    assert proposed == ["x: old → cur"] and suppressed == []
     assert entries[0].models[0].superseded_by is None
     assert entries[0].models[1].superseded_by is None
 
@@ -141,8 +144,48 @@ def test_supersede_is_proposed_never_written():
 def test_supersede_proposals_skip_marks_already_in_place():
     """PR #4 claimed four superseded families while its diff touched two."""
     entries = [make(models=[{"family": "old", "superseded_by": "cur"}, {"family": "cur"}])]
-    assert supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"}]) == []
-    assert supersede_proposals(entries, [{"family": "cur", "superseded_by": "next"}]) == ["x: cur → next"]
+    assert supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"}]) == ([], [])
+    assert supersede_proposals(entries, [{"family": "cur", "superseded_by": "next"}]) \
+        == (["x: cur → next"], [])
+
+
+def test_a_dismissed_bump_is_reported_as_suppressed_not_proposed():
+    """Nothing in the registry records a rejected bump, so the scout re-proposed
+    z.ai's glm-4.7-flash → glm-5.2 in every PR. dismissed.yaml is that memory —
+    and the suppression is printed, because a filter nobody sees is a filter
+    nobody can correct."""
+    entries = [make(models=[{"family": "old"}])]
+    proposed, suppressed = supersede_proposals(
+        entries, [{"family": "old", "superseded_by": "cur"}], {("x", "old", "cur")})
+    assert proposed == [] and suppressed == ["x: old → cur"]
+    # Dismissing one target does not dismiss the family: a later generation is
+    # a different question.
+    proposed, suppressed = supersede_proposals(
+        entries, [{"family": "old", "superseded_by": "later"}], {("x", "old", "cur")})
+    assert proposed == ["x: old → later"] and suppressed == []
+
+
+def test_load_dismissed_reads_triples_and_ignores_junk(tmp_path):
+    path = tmp_path / "dismissed.yaml"
+    path.write_text(
+        "dismissed:\n"
+        "  - entry: zai-glm\n    family: glm-4.7-flash\n    superseded_by: glm-5.2\n"
+        "    reason: the flagship is not on the free tier\n"
+        "  - entry: half\n    family: written\n",  # no target: not a decision about anything
+        encoding="utf-8")
+    assert scout.load_dismissed(path) == {("zai-glm", "glm-4.7-flash", "glm-5.2")}
+    assert scout.load_dismissed(tmp_path / "absent.yaml") == set()
+
+
+def test_an_archived_entry_gets_no_generation_bumps():
+    """GitHub Models kept drawing "gpt-4.1 → gpt-5.6" in every PR body for
+    months after GitHub shut the product down."""
+    llm = StubLLM({"MODEL-GENERATIONS":
+                   "```yaml\nsupersede:\n  - family: old\n    superseded_by: cur\n```"})
+    entries = [make(models=[{"family": "old"}], retired_on=date(2026, 6, 1))]
+    result = run_scout(llm, entries, [], lambda urls: {}, TODAY)
+    assert result["supersede"] == []
+    assert not any("MODEL-GENERATIONS" in p for p in llm.prompts)
 
 
 def test_apply_retirements_needs_the_quote_on_the_page():
@@ -425,6 +468,86 @@ def test_a_half_configured_fallback_is_ignored():
     with httpx.Client() as http:
         llm = LLMClient(fallback_base_url="https://spare.example/v1", http=http)  # no model
         assert llm.complete("hi") == "ovh"
+
+
+def ticking(step: float):
+    """A clock that advances `step` seconds every time it is read."""
+    state = {"t": 0.0}
+
+    def clock() -> float:
+        state["t"] += step
+        return state["t"]
+    return clock
+
+
+@respx.mock
+def test_a_trickling_backend_is_cut_off_at_its_wall_clock_deadline():
+    """httpx restarts its timeout on every byte, so a backend that dribbles
+    output is never "too slow" by that measure: OpenRouter streamed for ~9
+    minutes inside a 90-second timeout on 2026-08-03 and then handed over a
+    truncated body."""
+    respx.post("https://slow.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, content=iter([b'{"choi', b'ces": [', b'{}]}'])))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://slow.example/v1", custom_model="m",
+                        http=http, call_deadline=5.0, clock=ticking(3.0))
+        with pytest.raises(RuntimeError, match="all LLM backends failed"):
+            llm.complete("hi")  # no OVH mock: the chain must die having tried
+
+
+def test_an_expired_run_budget_stops_a_backend_being_called_at_all():
+    """The budget belongs to the run, not to the call: once it is gone, opening
+    another connection only delays the report the workflow still has to write."""
+    spent = Deadline(0.0, clock=ticking(1.0))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://x.example/v1", custom_model="m",
+                        http=http, deadline=spent)
+        with pytest.raises(RuntimeError, match="no wall-clock budget left"):
+            llm.complete("hi")  # respx would raise on any unmocked request
+
+
+def test_run_scout_skips_its_phases_when_the_budget_is_spent():
+    llm = StubLLM({})
+    entries = [make(models=[{"family": "old"}], source_urls=["https://x.ai/blog"])]
+    evidence = Evidence(hits=[Hit("https://n.ai", "New tool", "free plan", "hn")], providers=["hn"])
+    result = run_scout(llm, entries, [{"id": "x", "status": "fail", "detail": "boom"}],
+                       lambda urls: {u: "the free tier will be discontinued" for u in urls},
+                       TODAY, evidence=evidence, verifier=lambda e: None,
+                       deadline=Deadline(0.0, clock=ticking(1.0)))
+    assert result["skipped"] == ["fixes", "discovery", "retirement sweep", "generation check"]
+    assert llm.prompts == []
+
+
+@respx.mock
+def test_forcing_a_backend_skips_the_ones_before_it():
+    """The spare endpoint has never run in CI — the primary has answered every
+    scheduled run since it was wired up — so the only way to exercise it is to
+    ask for it by name."""
+    primary = respx.post("https://primary.example/v1/chat/completions")
+    spare = respx.post("https://spare.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "spare"}}]}))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://primary.example/v1", custom_model="m",
+                        fallback_base_url="https://spare.example/v1", fallback_model="m2",
+                        http=http, force="custom-fallback")
+        assert llm.complete("hi") == "spare"
+    assert spare.called and not primary.called
+    assert llm.describe() == ("forced custom-fallback (configured: custom → custom-fallback → "
+                              "ovh-anonymous) — answered by custom-fallback")
+
+
+def test_forcing_a_backend_that_is_not_configured_is_an_error():
+    """Falling through to another backend would defeat the point of asking for
+    this one, and the run would report a green chain it never tested."""
+    llm = LLMClient(force="gemini")  # no GEMINI_API_KEY configured
+    with pytest.raises(RuntimeError, match="forced backend 'gemini' is not configured"):
+        llm.complete("hi")
+
+
+def test_auto_means_no_forced_backend():
+    """The workflow input defaults to "auto", so the env var arrives set."""
+    assert LLMClient(force="auto")._force is None
+    assert LLMClient(force="")._force is None
 
 
 def test_ask_retries_malformed_yaml_then_degrades():

@@ -4,6 +4,22 @@ on:
   schedule:
     - cron: "23 5 * * 1,4"   # twice a week, Monday and Thursday 05:23 UTC
   workflow_dispatch:
+    inputs:
+      scout_backend:
+        description: "LLM backend — auto runs the usual chain; a name forces that one and fails if it is unconfigured"
+        type: choice
+        default: auto
+        options:
+          - auto
+          - custom
+          - custom-fallback
+          - gemini
+          - openrouter
+          - ovh-anonymous
+      dry_run:
+        description: "Run every phase, commit nothing, open no PR (report lands in the run summary)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -12,6 +28,10 @@ permissions:
 jobs:
   update:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
+    # The scout keeps its own wall-clock budget (SCOUT_DEADLINE_SECONDS); this is
+    # the backstop for everything else, so a hung run cannot sit on the runner
+    # for the default six hours.
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -22,12 +42,13 @@ jobs:
       - run: uv sync
 
       - name: Probe all entries
-        run: uv run freetier-probe --registry registry.yaml --failures failures
+        run: uv run freetier-probe --registry registry.yaml --failures failures ${{ inputs.dry_run && '--dry-run' || '' }}
 
       - name: Render README
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
       - name: Commit verification results to main
+        if: ${{ !inputs.dry_run }}
         run: |
           git config user.name "freetier-bot"
           git config user.email "freetier-bot@users.noreply.github.com"
@@ -47,12 +68,22 @@ jobs:
           SCOUT_FALLBACK_BASE_URL: ${{ vars.SCOUT_FALLBACK_BASE_URL }}
           SCOUT_FALLBACK_MODEL: ${{ vars.SCOUT_FALLBACK_MODEL }}
           SCOUT_FALLBACK_API_KEY: ${{ secrets.SCOUT_FALLBACK_API_KEY }}
-        run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md
+          SCOUT_FORCE_BACKEND: ${{ inputs.scout_backend }}
+          SCOUT_DEADLINE_SECONDS: ${{ vars.SCOUT_DEADLINE_SECONDS }}
+        run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md ${{ inputs.dry_run && '--dry-run' || '' }}
 
       - name: Render README with scout changes
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
+      # The scout's report is the only account of what the run found. On a dry
+      # run there is no PR to carry it, and on a scheduled run it is worth
+      # having next to the log rather than only in the PR body.
+      - name: Publish the scout report in the run summary
+        if: always()
+        run: cat scout-pr.md >> "$GITHUB_STEP_SUMMARY" || true
+
       - name: Open scout PR
+        if: ${{ !inputs.dry_run }}
         uses: peter-evans/create-pull-request@v7
         with:
           branch: scout/weekly

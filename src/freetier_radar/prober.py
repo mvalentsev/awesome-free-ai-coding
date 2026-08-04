@@ -219,7 +219,7 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     return needs_attention
 
 
-async def _amain(registry_path: Path, failures_dir: Path) -> None:
+async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False) -> None:
     entries = load_registry(registry_path)
     sem = asyncio.Semaphore(CONCURRENCY)
 
@@ -231,7 +231,12 @@ async def _amain(registry_path: Path, failures_dir: Path) -> None:
         outcomes = await asyncio.gather(*(bounded(e) for e in entries))
     results = {e.id: r for e, r in zip(entries, outcomes)}
     flagged = apply_results(entries, results, date.today())
-    save_registry(registry_path, entries)
+    if dry_run:
+        # Verification dates are earned in CI, where the probes run from a known
+        # address. A local check is for reading, not for recording.
+        print("dry run: registry left untouched")
+    else:
+        save_registry(registry_path, entries)
     failures_dir.mkdir(parents=True, exist_ok=True)
     payload = [
         {"id": e.id, "status": r.status.value, "detail": r.detail}
@@ -245,5 +250,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
     parser.add_argument("--failures", type=Path, default=Path("failures"))
+    parser.add_argument("--dry-run", action="store_true",
+                        help="probe everything and report, but write no verification dates")
     args = parser.parse_args()
-    asyncio.run(_amain(args.registry, args.failures))
+    asyncio.run(_amain(args.registry, args.failures, args.dry_run))
