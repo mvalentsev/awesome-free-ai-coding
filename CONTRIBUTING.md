@@ -23,7 +23,26 @@ What does **not** qualify:
 - one-off marketing credits that require a credit card.
 
 Domains rejected for cause live in [`blocklist.yaml`](blocklist.yaml) — the scout
-will not re-propose them.
+will not re-propose them. Model-generation bumps a reviewer has already declined
+live in [`dismissed.yaml`](dismissed.yaml), so the same suggestion stops coming
+back in every pull request.
+
+## Probes must anchor on the offer
+
+Every `page-keywords` probe needs at least one keyword that disappears when the
+free tier does. Three shapes qualify:
+
+| Anchor | Example |
+|---|---|
+| a figure — quota, price, grant | `$0.10, subject to change` · `anonymous users get one request every 15 seconds` |
+| an id — model id or JSON field | `mistral-medium` · `advanced_model_request_limit` · `"name":"free"` |
+| a sentence of 4+ words quoted from the page | `free models through kilo gateway` |
+
+Words that outlive the offer are rejected by validation, so CI fails on them:
+`free`, `hobby`, `free quota`, `monthly credits`, `no signup`, `no credit card
+required`. On an `api-models` probe against a gateway that publishes prices, set
+`require_zero_price: true` — a model id can stay in the catalog long after it
+stops being free.
 
 ## How the pipeline works
 
@@ -38,9 +57,14 @@ entries via pull request. Humans review the PR; robots do everything else.
 ```bash
 uv sync
 uv run pytest
-uv run freetier-probe    # live-probe all entries
-uv run freetier-render   # regenerate README.md from registry.yaml
+uv run freetier-probe --dry-run   # live-probe all entries, record nothing
+uv run freetier-render            # regenerate README.md + index.json + configs/
 ```
+
+The `update` workflow also takes manual inputs: `dry_run` runs every phase and
+writes nothing (the scout's report lands in the run summary instead of a PR),
+and `scout_backend` forces one LLM backend instead of walking the chain — the
+only way to exercise a fallback that never gets its turn.
 
 Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI runs
 it on every push and pull request, plus a registry validation / render smoke check.

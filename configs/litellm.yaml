@@ -1,0 +1,210 @@
+# Free LLM providers as a LiteLLM proxy config — generated from
+# registry.yaml, do not edit by hand. Run: litellm --config litellm.yaml
+# Keys come from the environment (see free-llm.env.example); entries
+# marked `api_key: none` need no account at all.
+model_list:
+- model_name: nvidia-nim/deepseek-ai/deepseek-v4-flash
+  litellm_params:
+    model: openai/deepseek-ai/deepseek-v4-flash
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/nvidia/nemotron-3-nano-30b-a3b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-nano-30b-a3b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/meta/llama-4-maverick-17b-128e-instruct
+  litellm_params:
+    model: openai/meta/llama-4-maverick-17b-128e-instruct
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: openrouter-free/tencent/hy3:free
+  litellm_params:
+    model: openai/tencent/hy3:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/poolside/laguna-xs-2.1:free
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/cohere/north-mini-code:free
+  litellm_params:
+    model: openai/cohere/north-mini-code:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+- model_name: groq-free/llama-4
+  litellm_params:
+    model: openai/llama-4
+    api_base: https://api.groq.com/openai/v1
+    api_key: os.environ/GROQ_API_KEY
+- model_name: groq-free/qwen3
+  litellm_params:
+    model: openai/qwen3
+    api_base: https://api.groq.com/openai/v1
+    api_key: os.environ/GROQ_API_KEY
+- model_name: huggingface-inference/deepseek
+  litellm_params:
+    model: openai/deepseek
+    api_base: https://router.huggingface.co/v1
+    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
+- model_name: huggingface-inference/qwen3
+  litellm_params:
+    model: openai/qwen3
+    api_base: https://router.huggingface.co/v1
+    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
+- model_name: cerebras-free/qwen3
+  litellm_params:
+    model: openai/qwen3
+    api_base: https://api.cerebras.ai/v1
+    api_key: os.environ/CEREBRAS_API_KEY
+- model_name: ovh-ai-endpoints/gpt-oss-120b
+  litellm_params:
+    model: openai/gpt-oss-120b
+    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
+    api_key: none
+- model_name: ovh-ai-endpoints/Qwen3.6-27B
+  litellm_params:
+    model: openai/Qwen3.6-27B
+    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
+    api_key: none
+- model_name: ovh-ai-endpoints/Qwen3.5-9B
+  litellm_params:
+    model: openai/Qwen3.5-9B
+    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
+    api_key: none
+- model_name: zai-glm/glm-4.7-flash
+  litellm_params:
+    model: openai/glm-4.7-flash
+    api_base: https://api.z.ai/api/paas/v4
+    api_key: os.environ/ZAI_GLM_API_KEY
+- model_name: longcat/LongCat-2.0
+  litellm_params:
+    model: openai/LongCat-2.0
+    api_base: https://api.longcat.chat/openai/v1
+    api_key: os.environ/LONGCAT_API_KEY
+- model_name: cloudflare-workers-ai/llama-4
+  litellm_params:
+    model: openai/llama-4
+    api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
+    api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
+- model_name: ollama-cloud/nemotron-3-ultra
+  litellm_params:
+    model: openai/nemotron-3-ultra
+    api_base: https://ollama.com/v1
+    api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: ollama-cloud/minimax-m3
+  litellm_params:
+    model: openai/minimax-m3
+    api_base: https://ollama.com/v1
+    api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: ollama-cloud/gpt-oss:120b
+  litellm_params:
+    model: openai/gpt-oss:120b
+    api_base: https://ollama.com/v1
+    api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: ollama-cloud/gemma4:31b
+  litellm_params:
+    model: openai/gemma4:31b
+    api_base: https://ollama.com/v1
+    api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: upstage/solar-pro-3
+  litellm_params:
+    model: openai/solar-pro-3
+    api_base: https://api.upstage.ai/v1
+    api_key: os.environ/UPSTAGE_API_KEY
+- model_name: upstage/solar-mini
+  litellm_params:
+    model: openai/solar-mini
+    api_base: https://api.upstage.ai/v1
+    api_key: os.environ/UPSTAGE_API_KEY
+- model_name: mistral-free/mistral-medium
+  litellm_params:
+    model: openai/mistral-medium
+    api_base: https://api.mistral.ai/v1
+    api_key: os.environ/MISTRAL_API_KEY
+- model_name: reka/reka-core
+  litellm_params:
+    model: openai/reka-core
+    api_base: https://api.reka.ai/v1
+    api_key: os.environ/REKA_API_KEY
+- model_name: reka/reka-flash
+  litellm_params:
+    model: openai/reka-flash
+    api_base: https://api.reka.ai/v1
+    api_key: os.environ/REKA_API_KEY
+- model_name: pollinations/gpt-oss
+  litellm_params:
+    model: openai/gpt-oss
+    api_base: https://text.pollinations.ai/openai
+    api_key: none
+- model_name: alibaba-model-studio/qwen3-max
+  litellm_params:
+    model: openai/qwen3-max
+    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
+- model_name: alibaba-model-studio/qwen3-coder
+  litellm_params:
+    model: openai/qwen3-coder
+    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
+- model_name: cohere/command-a
+  litellm_params:
+    model: openai/command-a
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: novita/deepseek/deepseek-v4-pro
+  litellm_params:
+    model: openai/deepseek/deepseek-v4-pro
+    api_base: https://api.novita.ai/openai
+    api_key: os.environ/NOVITA_API_KEY
+- model_name: novita/qwen/qwen3.7-max
+  litellm_params:
+    model: openai/qwen/qwen3.7-max
+    api_base: https://api.novita.ai/openai
+    api_key: os.environ/NOVITA_API_KEY
+- model_name: novita/zai-org/glm-5.2
+  litellm_params:
+    model: openai/zai-org/glm-5.2
+    api_base: https://api.novita.ai/openai
+    api_key: os.environ/NOVITA_API_KEY
+- model_name: scaleway-generative/glm-5.2
+  litellm_params:
+    model: openai/glm-5.2
+    api_base: https://api.scaleway.ai/v1
+    api_key: os.environ/SCALEWAY_GENERATIVE_API_KEY
+- model_name: scaleway-generative/qwen3
+  litellm_params:
+    model: openai/qwen3
+    api_base: https://api.scaleway.ai/v1
+    api_key: os.environ/SCALEWAY_GENERATIVE_API_KEY
+- model_name: google-ai-studio/gemini-2.5
+  litellm_params:
+    model: openai/gemini-2.5
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: bazaarlink/deepseek/deepseek-v4-flash:free
+  litellm_params:
+    model: openai/deepseek/deepseek-v4-flash:free
+    api_base: https://bazaarlink.ai/api/v1
+    api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: bazaarlink/qwen/qwen3.7-flash:free
+  litellm_params:
+    model: openai/qwen/qwen3.7-flash:free
+    api_base: https://bazaarlink.ai/api/v1
+    api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: bazaarlink/auto:free
+  litellm_params:
+    model: openai/auto:free
+    api_base: https://bazaarlink.ai/api/v1
+    api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+- model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
+  litellm_params:
+    model: openai/poolside/laguna-s-2.1-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY

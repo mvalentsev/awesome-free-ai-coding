@@ -5,11 +5,14 @@ import json
 from datetime import date
 from pathlib import Path
 
+import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-from .models import Category, Entry, load_registry
+from .models import ARCHIVE_AFTER_DAYS, Category, Entry, is_archived, load_registry
 
-ARCHIVE_AFTER_DAYS = 60
+__all__ = ["ARCHIVE_AFTER_DAYS", "is_archived", "build_context", "build_index",
+           "build_opencode_config", "build_env_example", "env_var",
+           "render_readme", "render_artifacts", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
     Category.AGENT_CLI: "🤖 Coding agents & CLIs",
@@ -17,20 +20,6 @@ CATEGORY_TITLES: dict[Category, str] = {
     Category.TRIAL: "🎁 Trials (no card when possible)",
     Category.AGGREGATOR: "🧭 Aggregators (one key, many providers)",
 }
-
-
-def is_archived(entry: Entry, today: date) -> bool:
-    """Liveness comes from probes, staleness and vendor-announced retirement —
-    never from model generations. A provider whose catalog moves on is still
-    free, so a superseded family means "bump the row", not "bury the entry".
-    """
-    if entry.retired_on and today >= entry.retired_on:
-        return True
-    if entry.probe_failures >= 3:
-        return True
-    if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
-        return True
-    return False
 
 
 def _row(e: Entry) -> dict[str, str]:
@@ -74,6 +63,13 @@ def build_context(entries: list[Entry], today: date) -> dict:
         for e in _connectable(entries, today)
     ]
     return {"date": today.isoformat(), "sections": sections,
+            # The badge dates the evidence, not the render. Using today's date
+            # moved it forward whenever the README was regenerated without a
+            # probe run — claiming a freshness no entry had. The oldest passing
+            # probe among live entries is the honest reading: everything on this
+            # page has been confirmed at least this recently.
+            "verified_through": min((e.last_verified for e in active),
+                                    default=today).isoformat(),
             "archived": [_row(e) for e in archived], "active_count": len(active),
             "has_provisional": any(e.provisional for e in active),
             "connections": connections}
@@ -105,6 +101,31 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
             "models": models,
         }
     return {"$schema": "https://opencode.ai/config.json", "provider": providers}
+
+
+def build_litellm_config(entries: list[Entry], today: date) -> dict:
+    """LiteLLM proxy config — the same providers, for everything that speaks to
+    a proxy rather than to a provider.
+
+    `openai/<id>` is how LiteLLM is told an endpoint is OpenAI-compatible, and
+    `api_key: none` is its documented spelling for an endpoint that wants no key
+    at all — which several entries here genuinely do not. Aliases are prefixed
+    with the entry id because two providers routinely serve the same model id.
+    """
+    models = []
+    for e in _connectable(entries, today):
+        ids = e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
+        for model_id in ids:
+            models.append({
+                "model_name": f"{e.id}/{model_id}",
+                "litellm_params": {
+                    "model": f"openai/{model_id}",
+                    "api_base": e.api.base_url,
+                    "api_key": ("none" if e.api.auth == "none"
+                                else f"os.environ/{env_var(e.id)}"),
+                },
+            })
+    return {"model_list": models}
 
 
 def build_env_example(entries: list[Entry], today: date) -> str:
@@ -155,6 +176,14 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None)
         encoding="utf-8")
     (configs / "free-llm.env.example").write_text(
         build_env_example(entries, today) + "\n", encoding="utf-8")
+    (configs / "litellm.yaml").write_text(
+        "# Free LLM providers as a LiteLLM proxy config — generated from\n"
+        "# registry.yaml, do not edit by hand. Run: litellm --config litellm.yaml\n"
+        "# Keys come from the environment (see free-llm.env.example); entries\n"
+        "# marked `api_key: none` need no account at all.\n"
+        + yaml.safe_dump(build_litellm_config(entries, today), sort_keys=False,
+                         allow_unicode=True),
+        encoding="utf-8")
 
 
 def main() -> None:

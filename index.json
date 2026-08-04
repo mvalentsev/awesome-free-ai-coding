@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-03",
+  "generated": "2026-08-04",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "entries": [
     {
@@ -568,7 +568,7 @@
         "endpoint": "https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
         "keywords": [
           "mimo auto",
-          "free"
+          "mimo-v2.5"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -718,8 +718,8 @@
         "type": "page-keywords",
         "endpoint": "https://cursor.com/pricing",
         "keywords": [
-          "hobby",
-          "no credit card required"
+          "\"name\":\"hobby\",\"price\":\"0\"",
+          "limited agent requests"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -755,8 +755,7 @@
         "type": "page-keywords",
         "endpoint": "https://learn.chatgpt.com/docs/pricing",
         "keywords": [
-          "codex are included",
-          "chatgpt free"
+          "codex are included in your chatgpt free"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -938,7 +937,8 @@
         "type": "page-keywords",
         "endpoint": "https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md",
         "keywords": [
-          "no signup"
+          "no signup",
+          "anonymous users get one request every 15 seconds"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -986,7 +986,8 @@
         "type": "page-keywords",
         "endpoint": "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
         "keywords": [
-          "free quota"
+          "free quota",
+          "valid for 90 days after you activate"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -1083,7 +1084,8 @@
         "type": "page-keywords",
         "endpoint": "https://huggingface.co/docs/inference-providers/pricing",
         "keywords": [
-          "monthly credits"
+          "monthly credits",
+          "$0.10, subject to change"
         ],
         "free_marker": "",
         "dead_markers": [],

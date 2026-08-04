@@ -3,8 +3,8 @@ from pathlib import Path
 
 from freetier_radar.models import Entry
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, build_context, build_env_example, build_opencode_config,
-    env_var, is_archived, render_readme,
+    ARCHIVE_AFTER_DAYS, build_context, build_env_example, build_litellm_config,
+    build_opencode_config, env_var, is_archived, render_readme,
 )
 
 TODAY = date(2026, 7, 19)
@@ -108,6 +108,43 @@ def test_opencode_config_and_env_example():
     assert "NoApi" not in env
 
 
+def test_the_badge_dates_the_evidence_not_the_render():
+    """Rendering the README does not verify anything. The badge used to carry
+    today's date regardless, so a regeneration between probe runs claimed a
+    freshness no entry had; the oldest live probe is what the page can honestly
+    stand behind. An entry stale enough to be archived does not drag it down —
+    it is not on the page any more."""
+    entries = [make(last_verified=TODAY - timedelta(days=3)),
+               make(id="older", last_verified=TODAY - timedelta(days=9)),
+               make(id="buried", last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1))]
+    ctx = build_context(entries, TODAY)
+    assert ctx["verified_through"] == (TODAY - timedelta(days=9)).isoformat()
+    assert ctx["date"] == TODAY.isoformat()
+
+
+def test_litellm_config_names_every_free_model_of_every_connectable_entry():
+    entries = [api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}]),
+               api_entry(id="keyless", name="NoKey", api={
+                   "base_url": "https://free.example/v1", "auth": "none",
+                   "model_ids": ["gpt-oss-120b"]}),
+               make(id="plain"),  # no api block: nothing to point a proxy at
+               # An auto-routing plan lists no free model of its own, so there is
+               # no id a proxy could call: it contributes nothing rather than a
+               # broken alias.
+               api_entry(id="router", name="Router")]
+    cfg = build_litellm_config(entries, TODAY)
+    assert cfg["model_list"] == [
+        {"model_name": "groq-free/llama-4",
+         "litellm_params": {"model": "openai/llama-4",
+                            "api_base": "https://api.x.ai/v1",
+                            "api_key": "os.environ/GROQ_API_KEY"}},
+        {"model_name": "keyless/gpt-oss-120b",
+         "litellm_params": {"model": "openai/gpt-oss-120b",
+                            "api_base": "https://free.example/v1",
+                            "api_key": "none"}},  # LiteLLM's own spelling for "no key"
+    ]
+
+
 def test_context_connections():
     entries = [api_entry(id="groq-free", name="Groq"), make(id="plain")]
     ctx = build_context(entries, TODAY)
@@ -122,7 +159,7 @@ def test_render_readme(tmp_path: Path):
     save_registry(reg, [make(), make(id="dead", name="Dead Tool", probe_failures=5)])
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
-    assert "last%20verified-2026--07--19" in text
+    assert "all%20entries%20verified-2026--07--19" in text
     assert "live%20entries-1-58a6ff" in text
     assert "Coding agents & CLIs" in text
     assert "LLM APIs with free tier" in text
