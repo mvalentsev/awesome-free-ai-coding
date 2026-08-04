@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from datetime import date
 from enum import Enum
 from pathlib import Path
@@ -14,6 +15,63 @@ GENERIC_KEYWORDS = frozenset({
     "api", "pricing", "price", "limits", "rate limits", "no credit card",
     "no credit card required", "sign up", "get started",
 })
+
+# The same words on their own. A phrase is only as specific as the words it is
+# built from: "sign up for free and get started" is six words long and says
+# exactly as little as "free". Used to judge phrases the frozen set above cannot
+# enumerate — vendors word the same nothing in endless ways.
+GENERIC_WORDS = frozenset({
+    "a", "access", "an", "and", "any", "api", "apis", "are", "available", "card",
+    "credit", "credits", "for", "free", "get", "getting", "in", "is", "it", "limit",
+    "limits", "need", "needed", "no", "not", "now", "of", "on", "or", "our", "plan",
+    "plans", "price", "prices", "pricing", "rate", "required", "sign", "signup",
+    "start", "started", "the", "tier", "tiers", "to", "today", "trial", "trials",
+    "up", "us", "usage", "use", "using", "with", "without", "you", "your",
+})
+
+# A phrase this long, carrying at least one word of its own, is a quote from the
+# offer rather than a description of it: "light quota to code with agents" is
+# reworded the day the plan changes. Four is where the vendor-neutral filler
+# ("no credit card required") stops and the vendor's own sentence begins.
+ANCHOR_PHRASE_WORDS = 4
+
+# A model id, a JSON field, a path: kilo's `advanced_model_request_limit`,
+# Mistral's `mistral-medium`, Trae's `"name":"free"`. Quotes count as boundary
+# characters — a JSON key is exactly as anchoring as the id it holds.
+_ID_LIKE = re.compile(r'[\w"][-_/:.][\w"]')
+
+
+def normalize_keyword(keyword: str) -> str:
+    """Punctuation-free lowercase form, so `Free-Tier`, `"free tier"` and
+    `free tier.` all read as the same generic phrase."""
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\s]+", " ", keyword.lower())).strip()
+
+
+def is_anchor(keyword: str) -> bool:
+    """Does this keyword die together with the free offer?
+
+    Three ways it can, checked after the generic phrases are ruled out so that
+    dressing one up ("free-tier", `"free"`) does not sneak it past:
+
+    - a number — a quota, a price, a version: `$0.10, subject to change`,
+      `anonymous users get one request every 15 seconds`;
+    - an id-shaped token — a model id or a JSON field the vendor's own API uses;
+    - a phrase of ANCHOR_PHRASE_WORDS or more with at least one word that is not
+      pricing-page filler.
+
+    What this rejects is what a page keeps for months after the tier is
+    withdrawn: `hobby`, `free quota`, `monthly credits`, `no signup`.
+    """
+    normalized = normalize_keyword(keyword)
+    if not normalized or normalized in GENERIC_KEYWORDS:
+        return False
+    if any(ch.isdigit() for ch in keyword):
+        return True
+    if _ID_LIKE.search(keyword):
+        return True
+    words = normalized.split()
+    return (len(words) >= ANCHOR_PHRASE_WORDS
+            and any(w not in GENERIC_WORDS for w in words))
 
 # How a vendor words a withdrawal. Missing keywords catch an offer that quietly
 # vanished from the page; these catch the opposite case — the page still lists
@@ -109,13 +167,22 @@ class Probe(BaseModel):
     @model_validator(mode="after")
     def _keywords_must_anchor(self) -> Probe:
         """A page-keywords probe needs at least one keyword that dies with the
-        offer — the free model's id, its quota figure, or the price row. Generic
-        words alone keep passing for months after a free tier is withdrawn."""
+        offer — the free model's id, its quota figure, or the vendor's own
+        sentence about it. Generic words alone keep passing for months after a
+        free tier is withdrawn.
+
+        The first version of this rule only rejected keywords listed verbatim in
+        GENERIC_KEYWORDS, which let `hobby`, `free quota`, `no signup` and
+        `monthly credits` through — words that sit on a pricing page whatever
+        the page is currently offering. is_anchor() asks the question the list
+        cannot: would this string still be there once the free tier is gone?
+        """
         if self.type is ProbeType.PAGE_KEYWORDS:
-            if not any(k.strip().lower() not in GENERIC_KEYWORDS for k in self.keywords):
+            if not any(is_anchor(k) for k in self.keywords):
                 raise ValueError(
-                    f"probe {self.endpoint}: keywords {self.keywords} are all generic — "
-                    "anchor on a free model id, a quota figure or a price row"
+                    f"probe {self.endpoint}: none of the keywords {self.keywords} anchors on "
+                    "the offer — use a free model id, a quota or price figure, or a phrase "
+                    "of four or more words quoted from the page"
                 )
         return self
 
@@ -148,6 +215,27 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+
+ARCHIVE_AFTER_DAYS = 60
+
+
+def is_archived(entry: Entry, today: date) -> bool:
+    """Liveness comes from probes, staleness and vendor-announced retirement —
+    never from model generations. A provider whose catalog moves on is still
+    free, so a superseded family means "bump the row", not "bury the entry".
+
+    Lives with the model rather than with the renderer because it answers a
+    question about the entry, not about the README: the scout needs it too, to
+    keep from proposing work on entries the registry has already buried.
+    """
+    if entry.retired_on and today >= entry.retired_on:
+        return True
+    if entry.probe_failures >= 3:
+        return True
+    if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
+        return True
+    return False
 
 
 def load_registry(path: Path) -> list[Entry]:
