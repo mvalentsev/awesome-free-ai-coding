@@ -24,6 +24,11 @@ UA = {"User-Agent": "freetier-radar/0.2"}
 CURATED_FEEDS = [
     "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md",
     "https://raw.githubusercontent.com/sourcegraph/awesome-code-ai/main/README.md",
+    # A catalog rather than a page: one object per provider, endpoint and model
+    # ids included, so a new gateway arrives here as a base URL to probe instead
+    # of a sentence to interpret. Leads only, like the rest — it carried
+    # "1M tokens/day" for Cerebras while cerebras.ai/pricing said $5 in credits.
+    "https://raw.githubusercontent.com/vava-nessa/free-coding-models/main/sources.js",
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
     "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/getting-started/PROVIDERS-GUIDE.md",

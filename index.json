@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-05",
+  "generated": "2026-08-06",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "entries": [
     {
@@ -51,7 +51,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -95,7 +95,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -144,7 +144,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -188,7 +188,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -232,7 +232,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -319,7 +319,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -378,7 +378,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
@@ -430,7 +430,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -440,28 +440,53 @@
       "id": "kilo-code",
       "name": "Kilo Code",
       "category": "agent-cli",
-      "url": "https://kilocode.ai",
+      "url": "https://kilo.ai",
       "source_urls": [
-        "https://kilocode.ai/pricing",
-        "https://kilocode.ai"
+        "https://kilo.ai/pricing",
+        "https://api.kilo.ai/api/gateway/models"
       ],
       "card_required": false,
-      "offering": "Open-source VS Code / JetBrains / CLI agent; its $0 plan routes \"Auto Free\" to the free models the Kilo Gateway carries, with BYOK and local models (Ollama, LM Studio) alongside",
-      "limits": "$0/mo, no hosted credit required — free models where the gateway has them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription",
-      "models": [],
-      "probe": {
-        "type": "page-keywords",
-        "endpoint": "https://kilocode.ai/pricing",
-        "keywords": [
-          "free models through kilo gateway",
-          "no hosted credit required"
+      "offering": "Open-source VS Code / JetBrains / CLI agent; its $0 plan routes \"Auto Free\" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside",
+      "limits": "$0/mo, no hosted credit required — 13 ids in the gateway catalog are priced 0, Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription",
+      "models": [
+        {
+          "family": "nemotron-3-ultra",
+          "tier": "frontier",
+          "released": "2026-03"
+        },
+        {
+          "family": "north-mini-code",
+          "tier": "strong",
+          "released": "2026-06"
+        },
+        {
+          "family": "ling-3.0-flash",
+          "tier": "strong",
+          "released": "2026-05"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.kilo.ai/api/gateway",
+        "key_url": "https://app.kilo.ai/profile",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "kilo-auto/free",
+          "nvidia/nemotron-3-ultra-550b-a55b:free",
+          "cohere/north-mini-code:free"
         ],
-        "free_marker": "",
+        "note": "only the ids priced 0 are free — the same catalog meters 500+ paid models; kilo-auto/free is the router the $0 plan uses"
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://api.kilo.ai/api/gateway/models",
+        "keywords": [],
+        "free_marker": ":free",
         "dead_markers": [],
-        "require_zero_price": false
+        "require_zero_price": true
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -491,7 +516,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
@@ -537,7 +562,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -607,7 +632,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -643,7 +668,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -696,7 +721,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -726,7 +751,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -762,7 +787,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -807,7 +832,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -851,7 +876,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -901,7 +926,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -945,7 +970,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
@@ -994,7 +1019,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
@@ -1043,7 +1068,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
@@ -1092,7 +1117,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -1135,7 +1160,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
@@ -1185,7 +1210,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
@@ -1237,9 +1262,9 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 55,
       "archived": false
     },
@@ -1290,9 +1315,9 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 91,
       "archived": false
     },
@@ -1334,7 +1359,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
@@ -1364,9 +1389,9 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 60,
       "archived": false
     },
@@ -1395,9 +1420,9 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
-      "provisional": true,
+      "provisional": false,
       "rank": 50,
       "archived": false
     },
@@ -1445,7 +1470,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
@@ -1495,7 +1520,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-08-03",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
@@ -1544,7 +1569,122 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-05",
-      "last_verified": "2026-08-05",
+      "last_verified": "2026-08-06",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 100,
+      "archived": false
+    },
+    {
+      "id": "sambanova-cloud",
+      "name": "SambaNova Cloud",
+      "category": "api-free-tier",
+      "url": "https://cloud.sambanova.ai",
+      "source_urls": [
+        "https://docs.sambanova.ai/docs/en/models/rate-limits"
+      ],
+      "card_required": false,
+      "offering": "Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it",
+      "limits": "20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)",
+      "models": [
+        {
+          "family": "deepseek",
+          "tier": "strong",
+          "released": "2025-12"
+        },
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        },
+        {
+          "family": "gemma-4",
+          "tier": "strong",
+          "released": "2026-04"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.sambanova.ai/v1",
+        "key_url": "https://cloud.sambanova.ai/apis",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "DeepSeek-V3.1",
+          "Meta-Llama-3.3-70B-Instruct",
+          "gpt-oss-120b"
+        ],
+        "note": "model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.sambanova.ai/docs/en/models/rate-limits",
+        "keywords": [
+          "no payment method linked with your account",
+          "Meta-Llama-3.3-70B-Instruct",
+          "200000"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-08-06",
+      "last_verified": "2026-08-06",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 100,
+      "archived": false
+    },
+    {
+      "id": "routeway",
+      "name": "Routeway",
+      "category": "aggregator",
+      "url": "https://routeway.ai",
+      "source_urls": [
+        "https://api.routeway.ai/v1/models",
+        "https://routeway.ai/docs"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible gateway whose catalog carries eleven live :free ids priced at zero — gpt-oss-120b, Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 and the Llama 3.x line — beside a metered 100+ model catalog",
+      "limits": "Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go",
+      "models": [
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        },
+        {
+          "family": "ling-3.0-flash",
+          "tier": "strong",
+          "released": "2026-05"
+        },
+        {
+          "family": "step-3.7-flash",
+          "tier": "strong",
+          "released": "2026-06"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.routeway.ai/v1",
+        "key_url": "https://routeway.ai/dashboard/keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "gpt-oss-120b:free",
+          "ling-3.0-flash:free",
+          "step-3.7-flash:free"
+        ],
+        "note": "only the :free suffix is zero-priced; the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone — free ids here are worth a fallback, not a dependency"
+      },
+      "probe": {
+        "type": "api-models",
+        "endpoint": "https://api.routeway.ai/v1/models",
+        "keywords": [],
+        "free_marker": ":free",
+        "dead_markers": [],
+        "require_zero_price": true
+      },
+      "first_seen": "2026-08-06",
+      "last_verified": "2026-08-06",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,

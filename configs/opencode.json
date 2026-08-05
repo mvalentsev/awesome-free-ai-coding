@@ -71,6 +71,25 @@
         }
       }
     },
+    "kilo-code": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kilo Code",
+      "options": {
+        "baseURL": "https://api.kilo.ai/api/gateway",
+        "apiKey": "{env:KILO_CODE_API_KEY}"
+      },
+      "models": {
+        "kilo-auto/free": {
+          "name": "kilo-auto/free"
+        },
+        "nvidia/nemotron-3-ultra-550b-a55b:free": {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
+        },
+        "cohere/north-mini-code:free": {
+          "name": "cohere/north-mini-code:free"
+        }
+      }
+    },
     "cerebras-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Cerebras Inference",
@@ -313,6 +332,44 @@
         },
         "auto:free": {
           "name": "auto:free"
+        }
+      }
+    },
+    "routeway": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Routeway",
+      "options": {
+        "baseURL": "https://api.routeway.ai/v1",
+        "apiKey": "{env:ROUTEWAY_API_KEY}"
+      },
+      "models": {
+        "gpt-oss-120b:free": {
+          "name": "gpt-oss-120b:free"
+        },
+        "ling-3.0-flash:free": {
+          "name": "ling-3.0-flash:free"
+        },
+        "step-3.7-flash:free": {
+          "name": "step-3.7-flash:free"
+        }
+      }
+    },
+    "sambanova-cloud": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SambaNova Cloud",
+      "options": {
+        "baseURL": "https://api.sambanova.ai/v1",
+        "apiKey": "{env:SAMBANOVA_CLOUD_API_KEY}"
+      },
+      "models": {
+        "DeepSeek-V3.1": {
+          "name": "DeepSeek-V3.1"
+        },
+        "Meta-Llama-3.3-70B-Instruct": {
+          "name": "Meta-Llama-3.3-70B-Instruct"
+        },
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
         }
       }
     },

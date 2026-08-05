@@ -101,6 +101,20 @@ def _number(value: object) -> float | None:
         return None
 
 
+def _price_row(value: object) -> float | None:
+    """One side of the price, however the vendor writes the row down. Most spell
+    it as the bare number; Routeway wraps it in the unit it is quoted in —
+    `{"unit": "1M tokens", "price_per_million_t": 0}`. Which unit that is does
+    not matter to the only question asked here: is the row still a zero."""
+    if isinstance(value, dict):
+        for key in ("price_per_million_t", "price_per_million", "price", "amount", "value"):
+            price = _number(value.get(key))
+            if price is not None:
+                return price
+        return None
+    return _number(value)
+
+
 def _price_of(model: dict) -> list[float] | None:
     """What one plain completion costs, as the vendor publishes it, or None when
     it publishes nothing we understand. OpenRouter and BazaarLink name the rows
@@ -111,7 +125,7 @@ def _price_of(model: dict) -> list[float] | None:
         return _multiplier_price_of(model)
     prices = []
     for key in ("prompt", "completion", "input", "output"):
-        price = _number(pricing.get(key))
+        price = _price_row(pricing.get(key))
         if price is not None:
             prices.append(price)
         elif key in pricing:

@@ -116,6 +116,48 @@ async def test_zero_price_accepts_vercel_style_input_output_rows():
 
 
 @respx.mock
+async def test_zero_price_reads_a_row_quoted_with_its_unit():
+    """Routeway publishes the price inside the unit it is quoted in. Read as a
+    bare number the row came back unparseable, and every free id on that gateway
+    answered "publishes no price" — unverifiable, so unlistable."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "pricing": {
+            "input": {"unit": "1M tokens", "price_per_million_t": 0},
+            "output": {"unit": "1M tokens", "price_per_million_t": 0.0}}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_unit_quoted_row_that_acquired_a_price_is_fail():
+    """Same shape, billing now. The unit wrapper must not become a place a price
+    can hide."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "pricing": {
+            "input": {"unit": "1M tokens", "price_per_million_t": 0.2},
+            "output": {"unit": "1M tokens", "price_per_million_t": 0.8}}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail and "0.2/0.8" in result.detail
+
+
+@respx.mock
+async def test_a_unit_wrapper_without_a_number_is_not_a_zero():
+    """An empty wrapper is silence, not a published zero."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "pricing": {
+            "input": {"unit": "1M tokens"}, "output": {"unit": "1M tokens"}}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
+
+
+@respx.mock
 async def test_zero_price_ignores_cache_and_image_rows():
     """A free lane is priced by ordinary tokens; vendors publish cache and image
     rows next to them, and a nonzero one there does not make the model paid."""

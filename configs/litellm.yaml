@@ -53,6 +53,21 @@ model_list:
     model: openai/qwen3
     api_base: https://router.huggingface.co/v1
     api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
+- model_name: kilo-code/kilo-auto/free
+  litellm_params:
+    model: openai/kilo-auto/free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/nvidia/nemotron-3-ultra-550b-a55b:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/cohere/north-mini-code:free
+  litellm_params:
+    model: openai/cohere/north-mini-code:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
 - model_name: cerebras-free/qwen3
   litellm_params:
     model: openai/qwen3
@@ -198,6 +213,36 @@ model_list:
     model: openai/auto:free
     api_base: https://bazaarlink.ai/api/v1
     api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: routeway/gpt-oss-120b:free
+  litellm_params:
+    model: openai/gpt-oss-120b:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/ling-3.0-flash:free
+  litellm_params:
+    model: openai/ling-3.0-flash:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/step-3.7-flash:free
+  litellm_params:
+    model: openai/step-3.7-flash:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: sambanova-cloud/DeepSeek-V3.1
+  litellm_params:
+    model: openai/DeepSeek-V3.1
+    api_base: https://api.sambanova.ai/v1
+    api_key: os.environ/SAMBANOVA_CLOUD_API_KEY
+- model_name: sambanova-cloud/Meta-Llama-3.3-70B-Instruct
+  litellm_params:
+    model: openai/Meta-Llama-3.3-70B-Instruct
+    api_base: https://api.sambanova.ai/v1
+    api_key: os.environ/SAMBANOVA_CLOUD_API_KEY
+- model_name: sambanova-cloud/gpt-oss-120b
+  litellm_params:
+    model: openai/gpt-oss-120b
+    api_base: https://api.sambanova.ai/v1
+    api_key: os.environ/SAMBANOVA_CLOUD_API_KEY
 - model_name: tokenrouter/moonshotai/kimi-k3-free
   litellm_params:
     model: openai/moonshotai/kimi-k3-free
