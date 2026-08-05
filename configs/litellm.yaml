@@ -213,11 +213,6 @@ model_list:
     model: openai/auto:free
     api_base: https://bazaarlink.ai/api/v1
     api_key: os.environ/BAZAARLINK_API_KEY
-- model_name: routeway/gpt-oss-120b:free
-  litellm_params:
-    model: openai/gpt-oss-120b:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/ling-3.0-flash:free
   litellm_params:
     model: openai/ling-3.0-flash:free
@@ -226,6 +221,51 @@ model_list:
 - model_name: routeway/step-3.7-flash:free
   litellm_params:
     model: openai/step-3.7-flash:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/gemma-4-31b-it:free
+  litellm_params:
+    model: openai/gemma-4-31b-it:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/nemotron-3-nano-30b-a3b:free
+  litellm_params:
+    model: openai/nemotron-3-nano-30b-a3b:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/laguna-xs.2:free
+  litellm_params:
+    model: openai/laguna-xs.2:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/nemotron-nano-9b-v2:free
+  litellm_params:
+    model: openai/nemotron-nano-9b-v2:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/gpt-oss-120b:free
+  litellm_params:
+    model: openai/gpt-oss-120b:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/llama-3.3-70b-instruct:free
+  litellm_params:
+    model: openai/llama-3.3-70b-instruct:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/llama-3.1-8b-instruct:free
+  litellm_params:
+    model: openai/llama-3.1-8b-instruct:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/llama-3.2-3b-instruct:free
+  litellm_params:
+    model: openai/llama-3.2-3b-instruct:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: routeway/llama-3.2-1b-instruct:free
+  litellm_params:
+    model: openai/llama-3.2-1b-instruct:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1

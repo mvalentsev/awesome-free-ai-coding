@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **35** | **34** | **2** | **25** | **37** |
+| **35** | **34** | **2** | **25** | **38** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -90,23 +90,23 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[OpenRouter (free models)](https://openrouter.ai)** | One API key for rotating :free variants of frontier models | `gpt-oss`, `nemotron-3-ultra`, `gemma-4` | <sub>50 req/day free (1000/day with $10 balance)</sub> | ✅ No | `2026-08-06` |
 | **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers)** | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | `deepseek`, `qwen3` | <sub>Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests</sub> | ✅ No | `2026-08-06` |
 | **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router | `deepseek-v4-flash`, `qwen3.7-flash` | <sub>10 req/min and 150 req/day on the free models (x3 for accounts that have topped up); the other 196 models are metered at list rates</sub> | ✅ No | `2026-08-06 🧪` |
-| **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway whose catalog carries eleven live :free ids priced at zero — gpt-oss-120b, Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `ling-3.0-flash`, `step-3.7-flash` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-06 🧪` |
+| **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway carrying eleven live zero-priced :free ids — Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `ling-3.0-flash`, `step-3.7-flash`, `gemma-4`, `llama-3.3` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-06 🧪` |
 | **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron lane, inside a 121-model paid catalog | `kimi-k3`, `nemotron-3-nano-omni` | <sub>both free ids sit in the default group and publish no request cap; the other 119 models are metered at list rates</sub> | ✅ No | `2026-08-06 🧪` |
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `ling-3.0-flash-free`, `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. The two -free ids cost $0 and never draw it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-06 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 37 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 38 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
 |---|---|
 | `gpt-oss` | [OpenRouter (free models)](https://openrouter.ai), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Ollama Cloud](https://ollama.com/cloud), [Pollinations.AI](https://pollinations.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `qwen3` | [Groq](https://groq.com), [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers), [Cerebras Inference](https://www.cerebras.ai), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) |
+| `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai) |
 | `deepseek` | [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `deepseek-v4-flash` | [opencode](https://opencode.ai), [BazaarLink](https://bazaarlink.ai) |
 | `gemini-2.5` | [Google Jules](https://jules.google/), [Google AI Studio (Gemini API)](https://aistudio.google.com) |
-| `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `ling-3.0-flash` | [Kilo Code](https://kilo.ai), [Routeway](https://routeway.ai) |
 | `llama-4` | [Groq](https://groq.com), [Cloudflare Workers AI](https://workers.cloudflare.com) |
 | `nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Ollama Cloud](https://ollama.com/cloud) |
@@ -123,6 +123,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `kimi-k3` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
 | `laguna-s-2.1-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `ling-3.0-flash-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
+| `llama-3.3` | [Routeway](https://routeway.ai) |
 | `longcat-2.0` | [LongCat API Platform](https://longcat.chat/platform) |
 | `longcat-flash` | [LongCat API Platform](https://longcat.chat/platform) |
 | `mimo-v2.5` | [opencode](https://opencode.ai) |
@@ -180,7 +181,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Scaleway Generative APIs**<br><sub>non-default project: https://api.scaleway.ai/{project_id}/v1</sub> | `https://api.scaleway.ai/v1` | `SCALEWAY_GENERATIVE_API_KEY` | [key](https://console.scaleway.com) |
 | **Google AI Studio (Gemini API)**<br><sub>pass the key as Bearer</sub> | `https://generativelanguage.googleapis.com/v1beta/openai/` | `GOOGLE_AI_STUDIO_API_KEY` | [key](https://aistudio.google.com/apikey) |
 | **BazaarLink**<br><sub>only the :free ids and auto:free cost nothing; auto:free picks a free model for you</sub> | `https://bazaarlink.ai/api/v1` | `BAZAARLINK_API_KEY` | [key](https://bazaarlink.ai/keys) |
-| **Routeway**<br><sub>only the :free suffix is zero-priced; the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone — free ids here are worth a fallback, not a dependency</sub> | `https://api.routeway.ai/v1` | `ROUTEWAY_API_KEY` | [key](https://routeway.ai/dashboard/keys) |
+| **Routeway**<br><sub>all eleven ids are priced 0 and answering — the Free-models column names the five the probe anchors on, because a promo lane that rotates out must not archive a gateway that still has a free tier; laguna-m.1:free is priced 0 too but the catalog marks it unavailable, so it is left out. Only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone, so treat these ids as a fallback lane, not a dependency</sub> | `https://api.routeway.ai/v1` | `ROUTEWAY_API_KEY` | [key](https://routeway.ai/dashboard/keys) |
 | **SambaNova Cloud**<br><sub>model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane</sub> | `https://api.sambanova.ai/v1` | `SAMBANOVA_CLOUD_API_KEY` | [key](https://cloud.sambanova.ai/apis) |
 | **TokenRouter (PaleBlueDot)**<br><sub>only the ids priced 0 are free — the paid moonshotai/kimi-k3 sits in the same catalog. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here</sub> | `https://api.tokenrouter.com/v1` | `TOKENROUTER_API_KEY` | [key](https://www.tokenrouter.com/console/token) |
 | **Vercel AI Gateway**<br><sub>the two -free ids cost nothing; any other Free-Tier-eligible model spends the $5 monthly credit</sub> | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |

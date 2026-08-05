@@ -343,14 +343,38 @@
         "apiKey": "{env:ROUTEWAY_API_KEY}"
       },
       "models": {
-        "gpt-oss-120b:free": {
-          "name": "gpt-oss-120b:free"
-        },
         "ling-3.0-flash:free": {
           "name": "ling-3.0-flash:free"
         },
         "step-3.7-flash:free": {
           "name": "step-3.7-flash:free"
+        },
+        "gemma-4-31b-it:free": {
+          "name": "gemma-4-31b-it:free"
+        },
+        "nemotron-3-nano-30b-a3b:free": {
+          "name": "nemotron-3-nano-30b-a3b:free"
+        },
+        "laguna-xs.2:free": {
+          "name": "laguna-xs.2:free"
+        },
+        "nemotron-nano-9b-v2:free": {
+          "name": "nemotron-nano-9b-v2:free"
+        },
+        "gpt-oss-120b:free": {
+          "name": "gpt-oss-120b:free"
+        },
+        "llama-3.3-70b-instruct:free": {
+          "name": "llama-3.3-70b-instruct:free"
+        },
+        "llama-3.1-8b-instruct:free": {
+          "name": "llama-3.1-8b-instruct:free"
+        },
+        "llama-3.2-3b-instruct:free": {
+          "name": "llama-3.2-3b-instruct:free"
+        },
+        "llama-3.2-1b-instruct:free": {
+          "name": "llama-3.2-1b-instruct:free"
         }
       }
     },
