@@ -316,6 +316,22 @@
         }
       }
     },
+    "tokenrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "TokenRouter (PaleBlueDot)",
+      "options": {
+        "baseURL": "https://api.tokenrouter.com/v1",
+        "apiKey": "{env:TOKENROUTER_API_KEY}"
+      },
+      "models": {
+        "moonshotai/kimi-k3-free": {
+          "name": "moonshotai/kimi-k3-free"
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+        }
+      }
+    },
     "vercel-ai-gateway": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Vercel AI Gateway",

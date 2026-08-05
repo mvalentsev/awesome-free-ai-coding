@@ -198,6 +198,16 @@ model_list:
     model: openai/auto:free
     api_base: https://bazaarlink.ai/api/v1
     api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: tokenrouter/moonshotai/kimi-k3-free
+  litellm_params:
+    model: openai/moonshotai/kimi-k3-free
+    api_base: https://api.tokenrouter.com/v1
+    api_key: os.environ/TOKENROUTER_API_KEY
+- model_name: tokenrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+    api_base: https://api.tokenrouter.com/v1
+    api_key: os.environ/TOKENROUTER_API_KEY
 - model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-free

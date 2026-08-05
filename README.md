@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--03-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-32-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-33-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **32** | **31** | **2** | **21** | **32** |
+| **33** | **32** | **2** | **22** | **34** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -89,10 +89,11 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[OpenRouter (free models)](https://openrouter.ai)** | One API key for rotating :free variants of frontier models | `gpt-oss`, `nemotron-3-ultra`, `gemma-4` | <sub>50 req/day free (1000/day with $10 balance)</sub> | ✅ No | `2026-08-03` |
 | **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers)** | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | `deepseek`, `qwen3` | <sub>Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests</sub> | ✅ No | `2026-08-03` |
 | **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router | `deepseek-v4-flash`, `qwen3.7-flash` | <sub>10 req/min and 150 req/day on the free models (x3 for accounts that have topped up); the other 196 models are metered at list rates</sub> | ✅ No | `2026-08-03 🧪` |
+| **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron lane, inside a 121-model paid catalog | `kimi-k3`, `nemotron-3-nano-omni` | <sub>both free ids sit in the default group and publish no request cap; the other 119 models are metered at list rates</sub> | ✅ No | `2026-08-05 🧪` |
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `ling-3.0-flash-free`, `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. The two -free ids cost $0 and never draw it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-03 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 32 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 34 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -116,6 +117,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `gpt-5.2-mini` | [Windsurf](https://windsurf.com) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://developers.openai.com/codex/) |
 | `kimi-k2.5` | [Windsurf](https://windsurf.com) |
+| `kimi-k3` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
 | `laguna-s-2.1-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `ling-3.0-flash-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `longcat-2.0` | [LongCat API Platform](https://longcat.chat/platform) |
@@ -123,6 +125,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `mimo-v2.5` | [opencode](https://opencode.ai) |
 | `minimax-3` | [Ollama Cloud](https://ollama.com/cloud) |
 | `mistral-medium` | [Mistral La Plateforme](https://mistral.ai) |
+| `nemotron-3-nano-omni` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
 | `reka-core` | [Reka AI](https://platform.reka.ai) |
@@ -171,6 +174,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Scaleway Generative APIs**<br><sub>non-default project: https://api.scaleway.ai/{project_id}/v1</sub> | `https://api.scaleway.ai/v1` | `SCALEWAY_GENERATIVE_API_KEY` | [key](https://console.scaleway.com) |
 | **Google AI Studio (Gemini API)**<br><sub>pass the key as Bearer</sub> | `https://generativelanguage.googleapis.com/v1beta/openai/` | `GOOGLE_AI_STUDIO_API_KEY` | [key](https://aistudio.google.com/apikey) |
 | **BazaarLink**<br><sub>only the :free ids and auto:free cost nothing; auto:free picks a free model for you</sub> | `https://bazaarlink.ai/api/v1` | `BAZAARLINK_API_KEY` | [key](https://bazaarlink.ai/keys) |
+| **TokenRouter (PaleBlueDot)**<br><sub>only the ids priced 0 are free — the paid moonshotai/kimi-k3 sits in the same catalog. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here</sub> | `https://api.tokenrouter.com/v1` | `TOKENROUTER_API_KEY` | [key](https://www.tokenrouter.com/console/token) |
 | **Vercel AI Gateway**<br><sub>the two -free ids cost nothing; any other Free-Tier-eligible model spends the $5 monthly credit</sub> | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |
 
 Ready-made artifacts, regenerated on every update:

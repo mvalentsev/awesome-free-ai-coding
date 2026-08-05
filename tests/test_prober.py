@@ -154,6 +154,122 @@ async def test_one_free_variant_is_enough():
     assert result.status is ProbeStatus.PASS
 
 
+def new_api_entry() -> Entry:
+    """A catalog shaped the way the new-api family of gateways ships it:
+    `model_name` for the id, and multipliers instead of a pricing object."""
+    e = Entry.model_validate({
+        **BASE,
+        "models": [{"family": "kimi-k3", "tier": "frontier"}],
+        "probe": {
+            "type": "api-models",
+            "endpoint": "https://api.x.ai/v1/models",
+            "free_marker": "free",
+            "require_zero_price": True,
+        },
+    })
+    return e
+
+
+@respx.mock
+async def test_new_api_names_the_id_field_model_name():
+    """Reading only `id` left this whole catalog shape unverifiable: every row
+    answered "no model ids in response" and the entry could never be probed."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_name": "moonshotai/kimi-k3-free", "quota_type": 0,
+             "model_ratio": 0, "model_price": 0, "completion_ratio": 1},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, new_api_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_new_api_free_lane_that_acquired_a_ratio_is_fail():
+    """The multiplier is the price here: the id keeps its `-free` suffix and the
+    row starts billing the moment `model_ratio` stops being zero."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_name": "moonshotai/kimi-k3-free", "quota_type": 0,
+             "model_ratio": 1.5, "completion_ratio": 5},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, new_api_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail and "1.5/7.5" in result.detail
+
+
+@respx.mock
+async def test_new_api_paid_twin_does_not_vouch_for_the_free_lane():
+    """`kimi-k3` and `kimi-k3-free` share a family name; only the second one is
+    the offer, which is what free_marker keeps the check pointed at."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_name": "moonshotai/kimi-k3", "quota_type": 0, "model_ratio": 1.5},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, new_api_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "kimi-k3" in result.detail
+
+
+@respx.mock
+async def test_new_api_per_request_billing_is_read_from_model_price():
+    """`quota_type` 1 bills per call, and then `model_ratio` is meaningless —
+    reading it anyway would call a per-request-priced model free."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_name": "moonshotai/kimi-k3-free", "quota_type": 1,
+             "model_ratio": 0, "model_price": 0.01},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, new_api_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "0.01" in result.detail
+
+
+@respx.mock
+async def test_new_api_per_request_billing_sent_as_a_string():
+    """Same row, `quota_type` quoted. Compared strictly it would miss the
+    per-request branch and read the zero `model_ratio` as a free lane."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_name": "moonshotai/kimi-k3-free", "quota_type": "1",
+             "model_ratio": 0, "model_price": 0.01},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, new_api_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "0.01" in result.detail
+
+
+@respx.mock
+async def test_new_api_row_without_any_price_field_is_not_free():
+    """Same rule as the OpenAI-shaped catalogs: silence is not a zero."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"model_name": "moonshotai/kimi-k3-free"}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, new_api_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
+
+
+@respx.mock
+async def test_a_price_row_that_is_not_a_number_is_not_a_zero():
+    """A vendor that replaces its price with null or "on request" has stopped
+    publishing one; an empty price list would otherwise read as all-zeros."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": None, "completion": "0"}},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
+
+
 @respx.mock
 async def test_page_keywords_missing_is_fail():
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="Free tier for everyone"))

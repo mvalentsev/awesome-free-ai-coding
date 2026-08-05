@@ -1196,3 +1196,44 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 100
+- id: tokenrouter
+  name: TokenRouter (PaleBlueDot)
+  category: aggregator
+  url: https://www.tokenrouter.com
+  source_urls:
+  - https://api.tokenrouter.com/api/pricing
+  card_required: false
+  offering: Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron
+    lane, inside a 121-model paid catalog
+  limits: both free ids sit in the default group and publish no request cap; the other
+    119 models are metered at list rates
+  models:
+  - family: kimi-k3
+    tier: frontier
+    released: 2026-07
+  - family: nemotron-3-nano-omni
+    tier: strong
+    released: 2026-04
+  api:
+    base_url: https://api.tokenrouter.com/v1
+    key_url: https://www.tokenrouter.com/console/token
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - moonshotai/kimi-k3-free
+    - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+    note: only the ids priced 0 are free — the paid moonshotai/kimi-k3 sits in the
+      same catalog. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name
+      gateways on other TLDs are separate services and their keys do not work here
+  probe:
+    type: api-models
+    endpoint: https://api.tokenrouter.com/api/pricing
+    keywords: []
+    free_marker: free
+    dead_markers: []
+    require_zero_price: true
+  first_seen: '2026-08-05'
+  last_verified: '2026-08-05'
+  probe_failures: 0
+  provisional: true
+  rank: 100

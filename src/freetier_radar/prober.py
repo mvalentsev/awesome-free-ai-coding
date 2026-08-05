@@ -79,6 +79,28 @@ def check_content(resp: httpx.Response, entry: Entry) -> str | None:
     return _check_page_keywords(resp, entry)
 
 
+def _model_id(model: dict) -> str:
+    """What you put in the request body. OpenAI-shaped catalogs call the field
+    `id`; the new-api family of gateways (TokenRouter and its kin) calls the
+    same string `model_name`."""
+    for key in ("id", "model_name"):
+        value = model.get(key)
+        if isinstance(value, str) and value:
+            return value
+    return ""
+
+
+def _number(value: object) -> float | None:
+    """A price the vendor actually published. Booleans are numbers in Python and
+    would read as a free 0/paid 1, so they are not."""
+    if isinstance(value, bool) or not isinstance(value, (str, int, float)):
+        return None
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
 def _price_of(model: dict) -> list[float] | None:
     """What one plain completion costs, as the vendor publishes it, or None when
     it publishes nothing we understand. OpenRouter and BazaarLink name the rows
@@ -86,21 +108,40 @@ def _price_of(model: dict) -> list[float] | None:
     ignored — a free lane is defined by the price of ordinary tokens."""
     pricing = model.get("pricing")
     if not isinstance(pricing, dict):
-        return None
+        return _multiplier_price_of(model)
     prices = []
     for key in ("prompt", "completion", "input", "output"):
-        value = pricing.get(key)
-        if isinstance(value, (str, int, float)) and not isinstance(value, bool):
-            try:
-                prices.append(float(value))
-            except ValueError:
-                return None
+        price = _number(pricing.get(key))
+        if price is not None:
+            prices.append(price)
+        elif key in pricing:
+            return None
     return prices or None
+
+
+def _multiplier_price_of(model: dict) -> list[float] | None:
+    """The new-api family publishes no pricing object. A row is billed either per
+    request (`quota_type` 1, `model_price` in currency) or per token, where
+    `model_ratio` multiplies a house unit and `completion_ratio` scales the
+    output side of it. The unit cancels out for the only question asked here —
+    is this row still a zero — so the multipliers are compared directly.
+
+    `quota_type` is read loosely on purpose: a gateway that sends it as "1"
+    would otherwise fall through to the token branch, where a per-request price
+    sits next to a zero `model_ratio` and reads as free."""
+    if _number(model.get("quota_type")) == 1:
+        price = _number(model.get("model_price"))
+        return [price] if price is not None else None
+    ratio = _number(model.get("model_ratio"))
+    if ratio is None:
+        return None
+    completion = _number(model.get("completion_ratio"))
+    return [ratio, ratio * (completion if completion is not None else 1.0)]
 
 
 def _price_note(model: dict) -> str:
     prices = _price_of(model)
-    mid = str(model.get("id", "?"))
+    mid = _model_id(model) or "?"
     if prices is None:
         return f"{mid} publishes no price"
     return f"{mid} priced {'/'.join(f'{p:g}' for p in prices)}"
@@ -114,15 +155,15 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     items = [m for m in (data if isinstance(data, list)
                          else data.get("data", []) if isinstance(data, dict) else [])
              if isinstance(m, dict)]
-    if not any(m.get("id") for m in items):
+    if not any(_model_id(m) for m in items):
         return "no model ids in response"
     marker = entry.probe.free_marker.lower()
     missing, priced = [], []
     for family in entry.models:
         matches = [
             m for m in items
-            if family.family.lower() in str(m.get("id", "")).lower()
-            and (not marker or marker in str(m.get("id", "")).lower())
+            if family.family.lower() in _model_id(m).lower()
+            and (not marker or marker in _model_id(m).lower())
         ]
         if not matches:
             missing.append(family.family)

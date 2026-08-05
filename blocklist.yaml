@@ -30,4 +30,13 @@
     nothing here plugs into a coding tool. Its pages also sit behind a Vercel
     Security Checkpoint that answers HTTP 429 to every non-browser client, so no
     probe on this domain can verify anything'
+- domain: tokenrouter.me
+  reason: shares the name of the listed tokenrouter.com gateway — registered
+    2026-04-28, a week after that brand launched — and is pushed by the same posts
+    that advertise the other one's free Kimi lane. Sells flat plans ($4.40 for 30
+    days, "no request limits") over Kimi K2.7 Code and DeepSeek V4 Pro, whose
+    metered price on the gateway it imitates is $0.93/$3.86 and $0.43/$0.87 per 1M
+    tokens; a month of unmetered agent use cannot be licensed capacity at that
+    price. No legal entity, terms of service headings with empty bodies,
+    Telegram-only support, single Contabo VPS
 
