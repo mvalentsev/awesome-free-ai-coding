@@ -36,7 +36,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -71,7 +71,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 99
@@ -108,7 +108,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -143,7 +143,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -177,7 +177,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -246,7 +246,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -292,7 +292,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -332,7 +332,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -381,7 +381,7 @@ entries:
     require_zero_price: true
   first_seen: '2026-07-19'
   last_verified: '2026-08-06'
-  probe_failures: 0
+  probe_failures: 1
   provisional: false
   rank: 20
 - id: trae
@@ -404,7 +404,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -437,7 +437,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -498,7 +498,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -526,7 +526,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -566,7 +566,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -592,7 +592,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -621,7 +621,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -657,7 +657,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -692,7 +692,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -731,7 +731,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -766,7 +766,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 92
@@ -805,7 +805,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 94
@@ -843,7 +843,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 98
@@ -882,7 +882,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -919,7 +919,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 96
@@ -957,7 +957,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -999,7 +999,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 55
@@ -1041,7 +1041,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 91
@@ -1076,7 +1076,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 95
@@ -1102,7 +1102,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1129,7 +1129,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1172,7 +1172,7 @@ entries:
     require_zero_price: true
   first_seen: '2026-08-03'
   last_verified: '2026-08-06'
-  probe_failures: 0
+  probe_failures: 1
   provisional: true
   rank: 100
 - id: bazaarlink
@@ -1212,7 +1212,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-03'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: true
   rank: 100
@@ -1253,7 +1253,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-05'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: true
   rank: 100
@@ -1301,7 +1301,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-06'
-  last_verified: '2026-08-06'
+  last_verified: '2026-08-10'
   probe_failures: 0
   provisional: true
   rank: 100
@@ -1367,6 +1367,6 @@ entries:
     require_zero_price: true
   first_seen: '2026-08-06'
   last_verified: '2026-08-06'
-  probe_failures: 0
+  probe_failures: 1
   provisional: true
   rank: 100
