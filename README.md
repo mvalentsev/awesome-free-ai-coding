@@ -47,7 +47,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
 | **[opencode](https://opencode.ai)** | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | `big-pickle`, `deepseek-v4-flash`, `mimo-v2.5`, `nemotron-3-ultra` | <sub>Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go</sub> | ✅ No | `2026-08-10` |
-| **[Kilo Code](https://kilo.ai)** | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside | `nemotron-3-ultra`, `north-mini-code`, `ling-3.0-flash` | <sub>$0/mo, no hosted credit required — 13 ids in the gateway catalog are priced 0, Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription</sub> | ✅ No | `2026-08-06` |
+| **[Kilo Code](https://kilo.ai)** | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside | `step-3.7-flash`, `laguna-s-2.1` | <sub>$0/mo, no hosted credit required — 13 ids in the gateway catalog are priced 0, Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription</sub> | ✅ No | `2026-08-06` |
 | **[OpenAI Codex CLI](https://developers.openai.com/codex/)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | `gpt-5.6` | <sub>Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only</sub> | ✅ No | `2026-08-10` |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | <sub>100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)</sub> | ✅ No | `2026-08-10` |
 
@@ -103,14 +103,14 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `gpt-oss` | [OpenRouter (free models)](https://openrouter.ai), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Ollama Cloud](https://ollama.com/cloud), [Pollinations.AI](https://pollinations.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `qwen3` | [Groq](https://groq.com), [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers), [Cerebras Inference](https://www.cerebras.ai), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) |
 | `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
-| `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai) |
 | `deepseek` | [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `deepseek-v4-flash` | [opencode](https://opencode.ai), [BazaarLink](https://bazaarlink.ai) |
 | `gemini-2.5` | [Google Jules](https://jules.google/), [Google AI Studio (Gemini API)](https://aistudio.google.com) |
-| `ling-3.0-flash` | [Kilo Code](https://kilo.ai), [Routeway](https://routeway.ai) |
 | `llama-4` | [Groq](https://groq.com), [Cloudflare Workers AI](https://workers.cloudflare.com) |
 | `nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Ollama Cloud](https://ollama.com/cloud) |
+| `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `step-3.7-flash` | [Kilo Code](https://kilo.ai), [Routeway](https://routeway.ai) |
 | `big-pickle` | [opencode](https://opencode.ai) |
 | `claude-haiku` | [Windsurf](https://windsurf.com) |
 | `claude-sonnet-4.5` | [Kiro](https://kiro.dev/) |
@@ -121,7 +121,9 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `gpt-5.6` | [OpenAI Codex CLI](https://developers.openai.com/codex/) |
 | `kimi-k2.5` | [Windsurf](https://windsurf.com) |
 | `kimi-k3` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
+| `laguna-s-2.1` | [Kilo Code](https://kilo.ai) |
 | `laguna-s-2.1-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
+| `ling-3.0-flash` | [Routeway](https://routeway.ai) |
 | `ling-3.0-flash-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `llama-3.3` | [Routeway](https://routeway.ai) |
 | `longcat-2.0` | [LongCat API Platform](https://longcat.chat/platform) |
@@ -130,14 +132,12 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `minimax-3` | [Ollama Cloud](https://ollama.com/cloud) |
 | `mistral-medium` | [Mistral La Plateforme](https://mistral.ai) |
 | `nemotron-3-nano-omni` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
-| `north-mini-code` | [Kilo Code](https://kilo.ai) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
 | `reka-core` | [Reka AI](https://platform.reka.ai) |
 | `reka-flash` | [Reka AI](https://platform.reka.ai) |
 | `solar-mini` | [Upstage (Solar API)](https://console.upstage.ai/) |
 | `solar-pro-3` | [Upstage (Solar API)](https://console.upstage.ai/) |
-| `step-3.7-flash` | [Routeway](https://routeway.ai) |
 
 </details>
 

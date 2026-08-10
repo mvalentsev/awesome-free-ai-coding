@@ -450,19 +450,14 @@
       "limits": "$0/mo, no hosted credit required — 13 ids in the gateway catalog are priced 0, Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription",
       "models": [
         {
-          "family": "nemotron-3-ultra",
-          "tier": "frontier",
-          "released": "2026-03"
+          "family": "step-3.7-flash",
+          "tier": "strong",
+          "released": ""
         },
         {
-          "family": "north-mini-code",
+          "family": "laguna-s-2.1",
           "tier": "strong",
-          "released": "2026-06"
-        },
-        {
-          "family": "ling-3.0-flash",
-          "tier": "strong",
-          "released": "2026-05"
+          "released": ""
         }
       ],
       "api": {
