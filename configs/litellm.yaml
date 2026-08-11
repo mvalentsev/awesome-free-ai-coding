@@ -323,11 +323,6 @@ model_list:
     model: openai/mistral/leanstral-1-5
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
-- model_name: routeway/ling-3.0-flash:free
-  litellm_params:
-    model: openai/ling-3.0-flash:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/step-3.7-flash:free
   litellm_params:
     model: openai/step-3.7-flash:free
@@ -403,11 +398,6 @@ model_list:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     api_base: https://api.tokenrouter.com/v1
     api_key: os.environ/TOKENROUTER_API_KEY
-- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free

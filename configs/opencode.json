@@ -419,9 +419,6 @@
         "apiKey": "{env:ROUTEWAY_API_KEY}"
       },
       "models": {
-        "ling-3.0-flash:free": {
-          "name": "ling-3.0-flash:free"
-        },
         "step-3.7-flash:free": {
           "name": "step-3.7-flash:free"
         },
@@ -497,9 +494,6 @@
         "apiKey": "{env:VERCEL_AI_GATEWAY_API_KEY}"
       },
       "models": {
-        "inclusionai/ling-3.0-flash-free": {
-          "name": "inclusionai/ling-3.0-flash-free"
-        },
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
         }

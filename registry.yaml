@@ -1171,12 +1171,9 @@ entries:
   offering: One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits
     included every month
   limits: $5/month credit at provider list rates, renewed monthly; 217 of 316 models
-    eligible, lower per-model rate limits, no BYOK. The two -free ids cost $0 and
-    never draw it down. Buying credits ends the monthly free credit
+    eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and
+    never draws it down. Buying credits ends the monthly free credit
   models:
-  - family: ling-3.0-flash-free
-    tier: strong
-    released: 2026-07
   - family: laguna-s-2.1-free
     tier: strong
     released: 2026-07
@@ -1186,10 +1183,11 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - inclusionai/ling-3.0-flash-free
     - poolside/laguna-s-2.1-free
-    note: the two -free ids cost nothing; any other Free-Tier-eligible model spends
-      the $5 monthly credit
+    note: laguna-s-2.1-free costs nothing; any other Free-Tier-eligible model spends
+      the $5 monthly credit. inclusionai/ling-3.0-flash-free left the catalog in 2026-08
+      and the ling-3.0-tiny-free standing where it was publishes an empty pricing object,
+      so nothing here says it is free
   probe:
     type: api-models
     endpoint: https://ai-gateway.vercel.sh/v1/models
@@ -1340,18 +1338,15 @@ entries:
   - https://api.routeway.ai/v1/models
   - https://routeway.ai/docs
   card_required: false
-  offering: OpenAI-compatible gateway carrying eleven live zero-priced :free ids —
-    Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna
-    XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog
+  offering: OpenAI-compatible gateway carrying ten live zero-priced :free ids — Step
+    3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and
+    the Llama 3.x line — beside a metered 100+ model catalog
   limits: Starter plan is free — 200 req/day, one concurrent request, shared low-priority
     queue and best-effort availability; everything outside the :free ids is pay-as-you-go
   models:
   - family: gpt-oss
     tier: strong
     released: 2025-08
-  - family: ling-3.0-flash
-    tier: strong
-    released: 2026-05
   - family: step-3.7-flash
     tier: strong
     released: 2026-06
@@ -1367,7 +1362,6 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - ling-3.0-flash:free
     - step-3.7-flash:free
     - gemma-4-31b-it:free
     - nemotron-3-nano-30b-a3b:free
@@ -1378,10 +1372,11 @@ entries:
     - llama-3.1-8b-instruct:free
     - llama-3.2-3b-instruct:free
     - llama-3.2-1b-instruct:free
-    note: all eleven ids are priced 0 and answering — the Free-models column names
-      the five the probe anchors on, because a promo lane that rotates out must not
-      archive a gateway that still has a free tier; laguna-m.1:free is priced 0 too
-      but the catalog marks it unavailable, so it is left out. Only the :free suffix
+    note: all ten ids are priced 0 and answering — the Free-models column names the
+      four the probe anchors on, because a promo lane that rotates out must not archive
+      a gateway that still has a free tier; laguna-m.1:free is priced 0 too but the
+      catalog still marks it unavailable, so it is left out, and ling-3.0-flash:free
+      left the catalog altogether in 2026-08. Only the :free suffix
       is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway
       publishes no legal entity or terms of service and supports users through Discord
       alone, so treat these ids as a fallback lane, not a dependency

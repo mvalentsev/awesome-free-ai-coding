@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **37** | **36** | **2** | **26** | **46** |
+| **37** | **36** | **2** | **26** | **44** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -92,12 +92,12 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers)** | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | `deepseek`, `qwen3` | <sub>Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests</sub> | ✅ No | `2026-08-10` |
 | **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router | `deepseek-v4-flash`, `qwen3.7-flash` | <sub>10 req/min and 150 req/day on the free models (x3 for accounts that have topped up); the other 196 models are metered at list rates</sub> | ✅ No | `2026-08-10 🧪` |
 | **[Requesty](https://www.requesty.ai)** | OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | <sub>Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go</sub> | ✅ No | `2026-08-11 🧪` |
-| **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway carrying eleven live zero-priced :free ids — Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `ling-3.0-flash`, `step-3.7-flash`, `gemma-4`, `llama-3.3` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-06 🧪` |
+| **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway carrying ten live zero-priced :free ids — Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `step-3.7-flash`, `gemma-4`, `llama-3.3` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-06 🧪` |
 | **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron lane, inside a 121-model paid catalog | `kimi-k3`, `nemotron-3-nano-omni` | <sub>both free ids sit in the default group and publish no request cap; the other 119 models are metered at list rates</sub> | ✅ No | `2026-08-10 🧪` |
-| **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `ling-3.0-flash-free`, `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. The two -free ids cost $0 and never draw it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-06 🧪` |
+| **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and never draws it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-06 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 46 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 44 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -132,8 +132,6 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `laguna-s-2.1` | [Kilo Code](https://kilo.ai) |
 | `laguna-s-2.1-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai) |
-| `ling-3.0-flash` | [Routeway](https://routeway.ai) |
-| `ling-3.0-flash-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `llama-3.3` | [Routeway](https://routeway.ai) |
 | `longcat-2.0` | [LongCat API Platform](https://longcat.chat/platform) |
 | `longcat-flash` | [LongCat API Platform](https://longcat.chat/platform) |
@@ -192,10 +190,10 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Google AI Studio (Gemini API)**<br><sub>pass the key as Bearer</sub> | `https://generativelanguage.googleapis.com/v1beta/openai/` | `GOOGLE_AI_STUDIO_API_KEY` | [key](https://aistudio.google.com/apikey) |
 | **BazaarLink**<br><sub>only the :free ids and auto:free cost nothing; auto:free picks a free model for you</sub> | `https://bazaarlink.ai/api/v1` | `BAZAARLINK_API_KEY` | [key](https://bazaarlink.ai/keys) |
 | **Requesty**<br><sub>the ten ids listed are every row the catalog prices at 0, and the free plan serves those alone — ids here carry no :free suffix, so the price is the only thing separating them from the 585 metered rows beside them. nemotron-3.5-content-safety is a guardrail classifier rather than a coding model</sub> | `https://router.requesty.ai/v1` | `REQUESTY_API_KEY` | [key](https://app.requesty.ai/api-keys) |
-| **Routeway**<br><sub>all eleven ids are priced 0 and answering — the Free-models column names the five the probe anchors on, because a promo lane that rotates out must not archive a gateway that still has a free tier; laguna-m.1:free is priced 0 too but the catalog marks it unavailable, so it is left out. Only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone, so treat these ids as a fallback lane, not a dependency</sub> | `https://api.routeway.ai/v1` | `ROUTEWAY_API_KEY` | [key](https://routeway.ai/dashboard/keys) |
+| **Routeway**<br><sub>all ten ids are priced 0 and answering — the Free-models column names the four the probe anchors on, because a promo lane that rotates out must not archive a gateway that still has a free tier; laguna-m.1:free is priced 0 too but the catalog still marks it unavailable, so it is left out, and ling-3.0-flash:free left the catalog altogether in 2026-08. Only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone, so treat these ids as a fallback lane, not a dependency</sub> | `https://api.routeway.ai/v1` | `ROUTEWAY_API_KEY` | [key](https://routeway.ai/dashboard/keys) |
 | **SambaNova Cloud**<br><sub>model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane</sub> | `https://api.sambanova.ai/v1` | `SAMBANOVA_CLOUD_API_KEY` | [key](https://cloud.sambanova.ai/apis) |
 | **TokenRouter (PaleBlueDot)**<br><sub>only the ids priced 0 are free — the paid moonshotai/kimi-k3 sits in the same catalog. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here</sub> | `https://api.tokenrouter.com/v1` | `TOKENROUTER_API_KEY` | [key](https://www.tokenrouter.com/console/token) |
-| **Vercel AI Gateway**<br><sub>the two -free ids cost nothing; any other Free-Tier-eligible model spends the $5 monthly credit</sub> | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |
+| **Vercel AI Gateway**<br><sub>laguna-s-2.1-free costs nothing; any other Free-Tier-eligible model spends the $5 monthly credit. inclusionai/ling-3.0-flash-free left the catalog in 2026-08 and the ling-3.0-tiny-free standing where it was publishes an empty pricing object, so nothing here says it is free</sub> | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |
 
 Ready-made artifacts, regenerated on every update:
 
