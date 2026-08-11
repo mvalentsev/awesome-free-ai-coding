@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--06-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-38-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-37-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **38** | **37** | **2** | **27** | **46** |
+| **37** | **36** | **2** | **26** | **44** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -55,7 +55,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 ### 🔌 LLM APIs with free tier
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-| **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | `nemotron` | <sub>Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise</sub> | ✅ No | `2026-08-10` |
+| **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | `nemotron` | <sub>Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000 free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way</sub> | ✅ No | `2026-08-10` |
 | **[Groq](https://groq.com)** | Fast inference free tier | `llama-4`, `qwen3` | <sub>Free tier daily limits per model</sub> | ✅ No | `2026-08-10` |
 | **[Cerebras Inference](https://www.cerebras.ai)** | Very fast inference; $5 in free credits on signup, no card | `qwen3` | <sub>$5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan</sub> | ✅ No | `2026-08-10` |
 | **[OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net)** | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | `qwen3`, `gpt-oss` | <sub>No-key anonymous access, rate-limited; free API key raises limits</sub> | ✅ No | `2026-08-10` |
@@ -65,7 +65,6 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Ollama Cloud](https://ollama.com/cloud)** | Cloud-hosted open models with free usage tier | `nemotron`, `minimax-3`, `gpt-oss` | <sub>Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription</sub> | ✅ No | `2026-08-10` |
 | **[SEA-LION (AI Singapore)](https://sea-lion.ai)** | AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's | `qwen-sea-lion-v4.5`, `llama-sea-lion-v3.5` | <sub>Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead</sub> | ✅ No | `2026-08-11 🧪` |
 | **[Mistral La Plateforme](https://mistral.ai)** | Free experiment tier on La Plateforme | `mistral-medium` | <sub>Experiment tier rate limits</sub> | ✅ No | `2026-08-10` |
-| **[Reka AI](https://platform.reka.ai)** | Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month | `reka-core`, `reka-flash` | <sub>$10 free credits at the start of every month, usable on any API feature</sub> | ✅ No | `2026-08-10` |
 | **[Pollinations.AI](https://pollinations.ai)** | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | `gpt-oss` | <sub>Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B</sub> | ✅ No | `2026-08-10` |
 | **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | `qwen3-max`, `qwen3-coder` | <sub>1,000,000 free tokens per model, valid 90 days after activation; Singapore/international scope only</sub> | ✅ No | `2026-08-10` |
 | **[Cohere (trial keys)](https://cohere.com)** | Cohere Command models via free trial API keys that never expire | `command-a` | <sub>Trial key: 1,000 API calls/month, rate-limited; production keys unlock paid volume</sub> | ✅ No | `2026-08-10` |
@@ -98,7 +97,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and never draws it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-06 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 46 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 44 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -145,8 +144,6 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `qwen-sea-lion-v4.5` | [SEA-LION (AI Singapore)](https://sea-lion.ai) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
-| `reka-core` | [Reka AI](https://platform.reka.ai) |
-| `reka-flash` | [Reka AI](https://platform.reka.ai) |
 | `solar-mini` | [Upstage (Solar API)](https://console.upstage.ai/) |
 | `solar-pro-3` | [Upstage (Solar API)](https://console.upstage.ai/) |
 
@@ -171,7 +168,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 
 | Provider | Base URL | Key env var | Get a key |
 |---|---|---|---|
-| **NVIDIA NIM (build.nvidia.com)** | `https://integrate.api.nvidia.com/v1` | `NVIDIA_NIM_API_KEY` | [key](https://build.nvidia.com) |
+| **NVIDIA NIM (build.nvidia.com)**<br><sub>the catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your account still has credits to call them with</sub> | `https://integrate.api.nvidia.com/v1` | `NVIDIA_NIM_API_KEY` | [key](https://build.nvidia.com) |
 | **OpenRouter (free models)**<br><sub>pick models with the :free suffix; the five listed were zero-priced on 2026-08-11</sub> | `https://openrouter.ai/api/v1` | `OPENROUTER_API_KEY` | [key](https://openrouter.ai/settings/keys) |
 | **Groq** | `https://api.groq.com/openai/v1` | `GROQ_API_KEY` | [key](https://console.groq.com/keys) |
 | **Hugging Face Inference Providers**<br><sub>chat-only; model ids namespaced (openai/gpt-oss-120b)</sub> | `https://router.huggingface.co/v1` | `HUGGINGFACE_INFERENCE_API_KEY` | [key](https://huggingface.co/settings/tokens) |
@@ -185,7 +182,6 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **SEA-LION (AI Singapore)**<br><sub>the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page</sub> | `https://api.sea-lion.ai/v1` | `SEA_LION_API_KEY` | [key](https://playground.sea-lion.ai/key-manager) |
 | **Upstage (Solar API)** | `https://api.upstage.ai/v1` | `UPSTAGE_API_KEY` | [key](https://console.upstage.ai/api-keys) |
 | **Mistral La Plateforme**<br><sub>Experiment tier needs account activation</sub> | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | [key](https://console.mistral.ai/api-keys) |
-| **Reka AI**<br><sub>OpenAI-style chat completions; research and vision endpoints go beyond the OpenAI schema</sub> | `https://api.reka.ai/v1` | `REKA_API_KEY` | [key](https://platform.reka.ai) |
 | **Pollinations.AI**<br><sub>anonymous works; optional token raises rate limits</sub> | `https://text.pollinations.ai/openai` | — | [key](https://auth.pollinations.ai) |
 | **Alibaba Cloud Model Studio (DashScope, international)**<br><sub>international (Singapore) endpoint; keys are region-specific</sub> | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | `ALIBABA_MODEL_STUDIO_API_KEY` | [key](https://modelstudio.console.alibabacloud.com) |
 | **Cohere (trial keys)**<br><sub>OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2</sub> | `https://api.cohere.com/compatibility/v1` | `COHERE_API_KEY` | [key](https://dashboard.cohere.com/api-keys) |

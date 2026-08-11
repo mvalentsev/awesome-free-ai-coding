@@ -831,11 +831,12 @@
       "category": "api-free-tier",
       "url": "https://build.nvidia.com",
       "source_urls": [
-        "https://build.nvidia.com/explore/discover"
+        "https://build.nvidia.com/explore/discover",
+        "https://forums.developer.nvidia.com/t/api-credits-for-build-nvidia-com/306633"
       ],
       "card_required": false,
       "offering": "Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1)",
-      "limits": "Free tier ~40 req/min, no credit card; production use needs NVIDIA AI Enterprise",
+      "limits": "Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as \"a trial experience of NVIDIA NIM limited to 5000 free API credits\", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way",
       "models": [
         {
           "family": "nemotron",
@@ -853,7 +854,7 @@
           "nvidia/nemotron-3-nano-30b-a3b",
           "meta/llama-4-maverick-17b-128e-instruct"
         ],
-        "note": ""
+        "note": "the catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your account still has credits to call them with"
       },
       "probe": {
         "type": "api-models",
@@ -1298,59 +1299,6 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
-      "archived": false
-    },
-    {
-      "id": "reka",
-      "name": "Reka AI",
-      "category": "api-free-tier",
-      "url": "https://platform.reka.ai",
-      "source_urls": [
-        "https://reka.ai/news/end-of-summer-updates",
-        "https://docs.reka.ai/pricing"
-      ],
-      "card_required": false,
-      "offering": "Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month",
-      "limits": "$10 free credits at the start of every month, usable on any API feature",
-      "models": [
-        {
-          "family": "reka-core",
-          "tier": "strong",
-          "released": ""
-        },
-        {
-          "family": "reka-flash",
-          "tier": "strong",
-          "released": ""
-        }
-      ],
-      "api": {
-        "base_url": "https://api.reka.ai/v1",
-        "key_url": "https://platform.reka.ai",
-        "auth": "api-key",
-        "openai_compatible": true,
-        "model_ids": [
-          "reka-core",
-          "reka-flash"
-        ],
-        "note": "OpenAI-style chat completions; research and vision endpoints go beyond the OpenAI schema"
-      },
-      "probe": {
-        "type": "page-keywords",
-        "endpoint": "https://reka.ai/news/end-of-summer-updates",
-        "keywords": [
-          "free tier",
-          "$10 in free credits"
-        ],
-        "free_marker": "",
-        "dead_markers": [],
-        "require_zero_price": false
-      },
-      "first_seen": "2026-07-22",
-      "last_verified": "2026-08-10",
-      "probe_failures": 0,
-      "provisional": false,
-      "rank": 91,
       "archived": false
     },
     {

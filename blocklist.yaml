@@ -40,3 +40,17 @@
     price. No legal entity, terms of service headings with empty bodies,
     Telegram-only support, single Contabo VPS
 
+- domain: api.navy
+  reason: NavyAI's catalog is 163 models, 77 of them paid frontier ids — claude-opus-5,
+    claude-opus-4.8, the gpt-5.6 line, o3 — offered on a free plan of 150K tokens/day.
+    No one licenses that capacity to give away, which is the g4f shape api.airforce is
+    already here for; its house model is called schizogpt and its dashboard is backed
+    by Discord alone
+- domain: reka.ai
+  reason: the entry here claimed "$10 free credits at the start of every month" on the
+    strength of one dated announcement, reka.ai/news/end-of-summer-updates, which will
+    carry that sentence forever. No live vendor page corroborates it — docs.reka.ai/pricing
+    says only "you only pay for what you use", and platform.reka.ai/pricing sells Pay
+    as you go at $0/mo with credits you add yourself, no recurring grant anywhere. An
+    independent live probe (freellmapi, 2026) reports every model answering 402 "account
+    balance is $0.0". Removed 2026-08-11; delete this line if an account shows otherwise

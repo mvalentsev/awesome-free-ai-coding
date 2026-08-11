@@ -263,22 +263,6 @@
         }
       }
     },
-    "reka": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Reka AI",
-      "options": {
-        "baseURL": "https://api.reka.ai/v1",
-        "apiKey": "{env:REKA_API_KEY}"
-      },
-      "models": {
-        "reka-core": {
-          "name": "reka-core"
-        },
-        "reka-flash": {
-          "name": "reka-flash"
-        }
-      }
-    },
     "pollinations": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Pollinations.AI",

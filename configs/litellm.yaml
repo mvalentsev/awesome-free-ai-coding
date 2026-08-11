@@ -208,16 +208,6 @@ model_list:
     model: openai/mistral-medium
     api_base: https://api.mistral.ai/v1
     api_key: os.environ/MISTRAL_API_KEY
-- model_name: reka/reka-core
-  litellm_params:
-    model: openai/reka-core
-    api_base: https://api.reka.ai/v1
-    api_key: os.environ/REKA_API_KEY
-- model_name: reka/reka-flash
-  litellm_params:
-    model: openai/reka-flash
-    api_base: https://api.reka.ai/v1
-    api_key: os.environ/REKA_API_KEY
 - model_name: pollinations/gpt-oss
   litellm_params:
     model: openai/gpt-oss

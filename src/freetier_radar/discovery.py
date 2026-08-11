@@ -36,6 +36,12 @@ CURATED_FEEDS = [
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
     "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/getting-started/PROVIDERS-GUIDE.md",
+    # A directory rather than a router: 30 providers in one table with a free-model
+    # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
+    # The card column is the only machine-readable answer to that question anywhere
+    # in these feeds. Leads only — the same table still lists GitHub Models, retired
+    # 2026-07-30, and credits LLM7 with 15 free models when its catalog has none.
+    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/main/README.md",
     # A router's provider table: base URL, auth shape and a dated live-probe note
     # per gateway, written by someone who had to make each one answer. That makes
     # it the densest lead source here and the most opinionated — it carries
