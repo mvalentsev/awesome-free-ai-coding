@@ -348,7 +348,7 @@ entries:
     Free" to the zero-priced models the Kilo Gateway carries, and the same gateway
     answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio)
     alongside
-  limits: $0/mo, no hosted credit required — 13 ids in the gateway catalog are priced
+  limits: $0/mo, no hosted credit required — 12 ids in the gateway catalog are priced
     0, Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits
     or a Kilo Pass subscription
   models:
@@ -358,9 +358,12 @@ entries:
   - family: north-mini-code
     tier: strong
     released: 2026-06
-  - family: ling-3.0-flash
+  - family: step-3.7-flash
     tier: strong
-    released: 2026-05
+    released: 2026-06
+  - family: laguna-s-2.1
+    tier: strong
+    released: 2026-07
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -370,8 +373,12 @@ entries:
     - kilo-auto/free
     - nvidia/nemotron-3-ultra-550b-a55b:free
     - cohere/north-mini-code:free
+    - stepfun/step-3.7-flash:free
+    - poolside/laguna-s-2.1:free
     note: only the ids priced 0 are free — the same catalog meters 500+ paid models;
-      kilo-auto/free is the router the $0 plan uses
+      kilo-auto/free is the router the $0 plan uses. Ling 3.0 Flash left the free
+      lane on 2026-08 — inclusionai/ling-3.0-flash is metered now and the catalog
+      carries ling-3.0-tiny:free in its place
   probe:
     type: api-models
     endpoint: https://api.kilo.ai/api/gateway/models

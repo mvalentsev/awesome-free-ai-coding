@@ -87,6 +87,12 @@
         },
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
+        },
+        "stepfun/step-3.7-flash:free": {
+          "name": "stepfun/step-3.7-flash:free"
+        },
+        "poolside/laguna-s-2.1:free": {
+          "name": "poolside/laguna-s-2.1:free"
         }
       }
     },

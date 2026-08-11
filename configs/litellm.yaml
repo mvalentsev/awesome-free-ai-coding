@@ -68,6 +68,16 @@ model_list:
     model: openai/cohere/north-mini-code:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/stepfun/step-3.7-flash:free
+  litellm_params:
+    model: openai/stepfun/step-3.7-flash:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/poolside/laguna-s-2.1:free
+  litellm_params:
+    model: openai/poolside/laguna-s-2.1:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
 - model_name: cerebras-free/qwen3
   litellm_params:
     model: openai/qwen3
