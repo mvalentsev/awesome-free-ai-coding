@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--06-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-37-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-38-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **37** | **36** | **2** | **26** | **44** |
+| **38** | **37** | **2** | **27** | **46** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -63,6 +63,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[LongCat API Platform](https://longcat.chat/platform)** | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | `longcat-2.0`, `longcat-flash` | <sub>100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout</sub> | ✅ No | `2026-08-10` |
 | **[Cloudflare Workers AI](https://workers.cloudflare.com)** | 10k neurons/day free | `llama-4` | <sub>10,000 neurons/day free allocation</sub> | ✅ No | `2026-08-10` |
 | **[Ollama Cloud](https://ollama.com/cloud)** | Cloud-hosted open models with free usage tier | `nemotron`, `minimax-3`, `gpt-oss` | <sub>Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription</sub> | ✅ No | `2026-08-10` |
+| **[SEA-LION (AI Singapore)](https://sea-lion.ai)** | AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's | `qwen-sea-lion-v4.5`, `llama-sea-lion-v3.5` | <sub>Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead</sub> | ✅ No | `2026-08-11 🧪` |
 | **[Mistral La Plateforme](https://mistral.ai)** | Free experiment tier on La Plateforme | `mistral-medium` | <sub>Experiment tier rate limits</sub> | ✅ No | `2026-08-10` |
 | **[Reka AI](https://platform.reka.ai)** | Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month | `reka-core`, `reka-flash` | <sub>$10 free credits at the start of every month, usable on any API feature</sub> | ✅ No | `2026-08-10` |
 | **[Pollinations.AI](https://pollinations.ai)** | Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai) | `gpt-oss` | <sub>Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model is GPT-OSS-20B</sub> | ✅ No | `2026-08-10` |
@@ -97,7 +98,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and never draws it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-06 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 44 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 46 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -133,6 +134,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `laguna-s-2.1-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai) |
 | `llama-3.3` | [Routeway](https://routeway.ai) |
+| `llama-sea-lion-v3.5` | [SEA-LION (AI Singapore)](https://sea-lion.ai) |
 | `longcat-2.0` | [LongCat API Platform](https://longcat.chat/platform) |
 | `longcat-flash` | [LongCat API Platform](https://longcat.chat/platform) |
 | `mimo-v2.5` | [opencode](https://opencode.ai) |
@@ -140,6 +142,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `mistral-medium` | [Mistral La Plateforme](https://mistral.ai) |
 | `nemotron-3-nano-omni` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
 | `north-mini-code` | [Kilo Code](https://kilo.ai) |
+| `qwen-sea-lion-v4.5` | [SEA-LION (AI Singapore)](https://sea-lion.ai) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
 | `reka-core` | [Reka AI](https://platform.reka.ai) |
@@ -179,6 +182,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **LongCat API Platform**<br><sub>Anthropic-compatible sibling at /anthropic/v1/messages; docs include a Claude Code setup guide (cc-switch)</sub> | `https://api.longcat.chat/openai/v1` | `LONGCAT_API_KEY` | [key](https://longcat.chat/platform) |
 | **Cloudflare Workers AI**<br><sub>substitute {account_id} with your Cloudflare account ID</sub> | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1` | `CLOUDFLARE_WORKERS_AI_API_KEY` | [key](https://dash.cloudflare.com/profile/api-tokens) |
 | **Ollama Cloud**<br><sub>Free-tier model set verified live 2026-07-20; /v1/models lists the full catalog including subscription-only models</sub> | `https://ollama.com/v1` | `OLLAMA_CLOUD_API_KEY` | [key](https://ollama.com/settings/keys) |
+| **SEA-LION (AI Singapore)**<br><sub>the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page</sub> | `https://api.sea-lion.ai/v1` | `SEA_LION_API_KEY` | [key](https://playground.sea-lion.ai/key-manager) |
 | **Upstage (Solar API)** | `https://api.upstage.ai/v1` | `UPSTAGE_API_KEY` | [key](https://console.upstage.ai/api-keys) |
 | **Mistral La Plateforme**<br><sub>Experiment tier needs account activation</sub> | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | [key](https://console.mistral.ai/api-keys) |
 | **Reka AI**<br><sub>OpenAI-style chat completions; research and vision endpoints go beyond the OpenAI schema</sub> | `https://api.reka.ai/v1` | `REKA_API_KEY` | [key](https://platform.reka.ai) |

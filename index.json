@@ -1855,6 +1855,59 @@
       "provisional": true,
       "rank": 25,
       "archived": false
+    },
+    {
+      "id": "sea-lion",
+      "name": "SEA-LION (AI Singapore)",
+      "category": "api-free-tier",
+      "url": "https://sea-lion.ai",
+      "source_urls": [
+        "https://sea-lion.ai/try-sea-lion/",
+        "https://docs.sea-lion.ai/guides/inferencing/api"
+      ],
+      "card_required": false,
+      "offering": "AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's",
+      "limits": "Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead",
+      "models": [
+        {
+          "family": "qwen-sea-lion-v4.5",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "llama-sea-lion-v3.5",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "api": {
+        "base_url": "https://api.sea-lion.ai/v1",
+        "key_url": "https://playground.sea-lion.ai/key-manager",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "aisingapore/Qwen-SEA-LION-v4.5-27B-IT",
+          "aisingapore/Llama-SEA-LION-v3.5-70B-R"
+        ],
+        "note": "the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://sea-lion.ai/try-sea-lion/",
+        "keywords": [
+          "10 calls/min",
+          "prototype and test with our free api"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-08-11",
+      "last_verified": "2026-08-11",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 70,
+      "archived": false
     }
   ]
 }

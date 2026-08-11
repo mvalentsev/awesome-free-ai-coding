@@ -22,7 +22,11 @@ TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
 
 CURATED_FEEDS = [
-    "https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md",
+    # cheahjs/free-llm-api-resources was here until 2026-08-11, when the repo
+    # turned out to be gone — GitHub 404s it, so raise_for_status dropped the
+    # feed on every run and nobody noticed. The one list still carrying that
+    # name (nherx/free-llm-api-resources) is a 6KB stub whose only links are
+    # "Download Latest Release" and "Report Issues", so it is not a successor.
     "https://raw.githubusercontent.com/sourcegraph/awesome-code-ai/main/README.md",
     # A catalog rather than a page: one object per provider, endpoint and model
     # ids included, so a new gateway arrives here as a base URL to probe instead
@@ -32,6 +36,12 @@ CURATED_FEEDS = [
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
     "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/getting-started/PROVIDERS-GUIDE.md",
+    # A router's provider table: base URL, auth shape and a dated live-probe note
+    # per gateway, written by someone who had to make each one answer. That makes
+    # it the densest lead source here and the most opinionated — it carries
+    # NavyAI and AINative next to SEA-LION, so the usual rule holds twice over:
+    # leads only, official-page proof still required.
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/main/server/src/providers/index.ts",
 ]
 
 NOISE_DOMAINS = {
@@ -40,7 +50,12 @@ NOISE_DOMAINS = {
 }
 
 PAGE_TEXT_LIMIT = 5000
-FEED_TEXT_LIMIT = 12000
+# Raised from 12000 on 2026-08-11. A code-shaped feed appends: the provider
+# added last sits at the bottom of the file, so the cut was landing exactly on
+# the newest leads — 12000 chars of freellmapi's table carried 16 of its 25
+# gateways and dropped Requesty, NavyAI, NaraRouter and SEA-LION, the four worth
+# reading. 20000 costs ~15K more characters across all four feeds together.
+FEED_TEXT_LIMIT = 20000
 
 
 @dataclass

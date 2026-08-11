@@ -218,6 +218,22 @@
         }
       }
     },
+    "sea-lion": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SEA-LION (AI Singapore)",
+      "options": {
+        "baseURL": "https://api.sea-lion.ai/v1",
+        "apiKey": "{env:SEA_LION_API_KEY}"
+      },
+      "models": {
+        "aisingapore/Qwen-SEA-LION-v4.5-27B-IT": {
+          "name": "aisingapore/Qwen-SEA-LION-v4.5-27B-IT"
+        },
+        "aisingapore/Llama-SEA-LION-v3.5-70B-R": {
+          "name": "aisingapore/Llama-SEA-LION-v3.5-70B-R"
+        }
+      }
+    },
     "upstage": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Upstage (Solar API)",

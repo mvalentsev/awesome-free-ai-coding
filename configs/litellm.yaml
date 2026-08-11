@@ -183,6 +183,16 @@ model_list:
     model: openai/gemma4:31b
     api_base: https://ollama.com/v1
     api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: sea-lion/aisingapore/Qwen-SEA-LION-v4.5-27B-IT
+  litellm_params:
+    model: openai/aisingapore/Qwen-SEA-LION-v4.5-27B-IT
+    api_base: https://api.sea-lion.ai/v1
+    api_key: os.environ/SEA_LION_API_KEY
+- model_name: sea-lion/aisingapore/Llama-SEA-LION-v3.5-70B-R
+  litellm_params:
+    model: openai/aisingapore/Llama-SEA-LION-v3.5-70B-R
+    api_base: https://api.sea-lion.ai/v1
+    api_key: os.environ/SEA_LION_API_KEY
 - model_name: upstage/solar-pro-3
   litellm_params:
     model: openai/solar-pro-3
