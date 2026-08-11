@@ -18,19 +18,29 @@ model_list:
     model: openai/meta/llama-4-maverick-17b-128e-instruct
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
-- model_name: openrouter-free/tencent/hy3:free
+- model_name: openrouter-free/openai/gpt-oss-20b:free
   litellm_params:
-    model: openai/tencent/hy3:free
+    model: openai/openai/gpt-oss-20b:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/poolside/laguna-xs-2.1:free
+- model_name: openrouter-free/nvidia/nemotron-3-ultra-550b-a55b:free
   litellm_params:
-    model: openai/poolside/laguna-xs-2.1:free
+    model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/google/gemma-4-31b-it:free
+  litellm_params:
+    model: openai/google/gemma-4-31b-it:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/cohere/north-mini-code:free
   litellm_params:
     model: openai/cohere/north-mini-code:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/poolside/laguna-xs-2.1:free
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
 - model_name: groq-free/llama-4
@@ -58,9 +68,34 @@ model_list:
     model: openai/kilo-auto/free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/openrouter/free
+  litellm_params:
+    model: openai/openrouter/free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
 - model_name: kilo-code/nvidia/nemotron-3-ultra-550b-a55b:free
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/nvidia/nemotron-3-super-120b-a12b:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3-super-120b-a12b:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/nvidia/nemotron-3.5-lightning:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-lightning:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/nvidia/nemotron-3.5-content-safety:free
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-content-safety:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: kilo-code/cohere/north-mini-code:free
@@ -76,6 +111,21 @@ model_list:
 - model_name: kilo-code/poolside/laguna-s-2.1:free
   litellm_params:
     model: openai/poolside/laguna-s-2.1:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/poolside/laguna-xs-2.1:free
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/inclusionai/ling-3.0-tiny:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-tiny:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/tencent/hy3:free
+  litellm_params:
+    model: openai/tencent/hy3:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: cerebras-free/qwen3

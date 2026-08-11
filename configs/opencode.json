@@ -28,14 +28,20 @@
         "apiKey": "{env:OPENROUTER_API_KEY}"
       },
       "models": {
-        "tencent/hy3:free": {
-          "name": "tencent/hy3:free"
+        "openai/gpt-oss-20b:free": {
+          "name": "openai/gpt-oss-20b:free"
         },
-        "poolside/laguna-xs-2.1:free": {
-          "name": "poolside/laguna-xs-2.1:free"
+        "nvidia/nemotron-3-ultra-550b-a55b:free": {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
+        },
+        "google/gemma-4-31b-it:free": {
+          "name": "google/gemma-4-31b-it:free"
         },
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
+        },
+        "poolside/laguna-xs-2.1:free": {
+          "name": "poolside/laguna-xs-2.1:free"
         }
       }
     },
@@ -82,8 +88,23 @@
         "kilo-auto/free": {
           "name": "kilo-auto/free"
         },
+        "openrouter/free": {
+          "name": "openrouter/free"
+        },
         "nvidia/nemotron-3-ultra-550b-a55b:free": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
+        },
+        "nvidia/nemotron-3-super-120b-a12b:free": {
+          "name": "nvidia/nemotron-3-super-120b-a12b:free"
+        },
+        "nvidia/nemotron-3.5-lightning:free": {
+          "name": "nvidia/nemotron-3.5-lightning:free"
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+        },
+        "nvidia/nemotron-3.5-content-safety:free": {
+          "name": "nvidia/nemotron-3.5-content-safety:free"
         },
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
@@ -93,6 +114,15 @@
         },
         "poolside/laguna-s-2.1:free": {
           "name": "poolside/laguna-s-2.1:free"
+        },
+        "poolside/laguna-xs-2.1:free": {
+          "name": "poolside/laguna-xs-2.1:free"
+        },
+        "inclusionai/ling-3.0-tiny:free": {
+          "name": "inclusionai/ling-3.0-tiny:free"
+        },
+        "tencent/hy3:free": {
+          "name": "tencent/hy3:free"
         }
       }
     },
