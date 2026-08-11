@@ -1808,6 +1808,65 @@
       "provisional": true,
       "rank": 100,
       "archived": false
+    },
+    {
+      "id": "antigravity",
+      "name": "Google Antigravity",
+      "category": "agent-cli",
+      "url": "https://antigravity.google",
+      "source_urls": [
+        "https://antigravity.google/pricing",
+        "https://antigravity.google/docs/plans",
+        "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/"
+      ],
+      "card_required": false,
+      "offering": "Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do",
+      "limits": "$0/month, no subscription — Gemini 3.1 Pro, Gemini 3.5 Flash, Claude Sonnet & Opus 4.6 and gpt-oss-120b as agent models, unlimited Tab completions and unlimited Command requests, on a quota refreshed weekly. Google publishes no figure for that quota and says the baseline is set by the capacity it has",
+      "models": [
+        {
+          "family": "gemini-3.1-pro",
+          "tier": "frontier",
+          "released": ""
+        },
+        {
+          "family": "gemini-3.5-flash",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "claude-opus-4.6",
+          "tier": "frontier",
+          "released": ""
+        },
+        {
+          "family": "claude-sonnet-4.6",
+          "tier": "frontier",
+          "released": ""
+        },
+        {
+          "family": "gpt-oss",
+          "tier": "strong",
+          "released": "2025-08"
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://antigravity.google/pricing",
+        "keywords": [
+          "$0/month",
+          "gpt-oss-120b",
+          "basic weekly rate limits"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-08-11",
+      "last_verified": "2026-08-11",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 25,
+      "archived": false
     }
   ]
 }

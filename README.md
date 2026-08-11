@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--06-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-36-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-37-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **36** | **35** | **2** | **26** | **42** |
+| **37** | **36** | **2** | **26** | **46** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -48,6 +48,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 |---|---|---|---|---|---|
 | **[opencode](https://opencode.ai)** | Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too | `big-pickle`, `deepseek-v4-flash`, `mimo-v2.5`, `nemotron-3-ultra` | <sub>Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go</sub> | ✅ No | `2026-08-10` |
 | **[Kilo Code](https://kilo.ai)** | Open-source VS Code / JetBrains / CLI agent; its $0 plan routes "Auto Free" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1`, `ling-3.0-tiny` | <sub>$0/mo, no hosted credit required — the free lane is a rotating set of zero-priced ids, 13 of them on 2026-08-11 with Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription</sub> | ✅ No | `2026-08-06` |
+| **[Google Antigravity](https://antigravity.google)** | Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do | `gemini-3.1-pro`, `gemini-3.5-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | <sub>$0/month, no subscription — Gemini 3.1 Pro, Gemini 3.5 Flash, Claude Sonnet & Opus 4.6 and gpt-oss-120b as agent models, unlimited Tab completions and unlimited Command requests, on a quota refreshed weekly. Google publishes no figure for that quota and says the baseline is set by the capacity it has</sub> | ✅ No | `2026-08-11 🧪` |
 | **[OpenAI Codex CLI](https://developers.openai.com/codex/)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | `gpt-5.6` | <sub>Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only</sub> | ✅ No | `2026-08-10` |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | <sub>100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)</sub> | ✅ No | `2026-08-10` |
 
@@ -96,12 +97,12 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `ling-3.0-flash-free`, `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. The two -free ids cost $0 and never draw it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-06 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 42 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 46 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
 |---|---|
-| `gpt-oss` | [OpenRouter (free models)](https://openrouter.ai), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Ollama Cloud](https://ollama.com/cloud), [Pollinations.AI](https://pollinations.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
+| `gpt-oss` | [OpenRouter (free models)](https://openrouter.ai), [Google Antigravity](https://antigravity.google), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Ollama Cloud](https://ollama.com/cloud), [Pollinations.AI](https://pollinations.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `qwen3` | [Groq](https://groq.com), [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers), [Cerebras Inference](https://www.cerebras.ai), [OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net), [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) |
 | `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
@@ -116,8 +117,12 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `step-3.7-flash` | [Kilo Code](https://kilo.ai), [Routeway](https://routeway.ai) |
 | `big-pickle` | [opencode](https://opencode.ai) |
 | `claude-haiku` | [Windsurf](https://windsurf.com) |
+| `claude-opus-4.6` | [Google Antigravity](https://antigravity.google) |
 | `claude-sonnet-4.5` | [Kiro](https://kiro.dev/) |
+| `claude-sonnet-4.6` | [Google Antigravity](https://antigravity.google) |
 | `command-a` | [Cohere (trial keys)](https://cohere.com) |
+| `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google) |
+| `gemini-3.5-flash` | [Google Antigravity](https://antigravity.google) |
 | `glm-4.7-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-5.2` | [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) |
 | `gpt-5.2-mini` | [Windsurf](https://windsurf.com) |
