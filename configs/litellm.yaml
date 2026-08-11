@@ -273,6 +273,56 @@ model_list:
     model: openai/auto:free
     api_base: https://bazaarlink.ai/api/v1
     api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: requesty/nvidia/nemotron-3-ultra-550b-a55b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-ultra-550b-a55b
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/nvidia/nemotron-3-super-120b-a12b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-super-120b-a12b
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/nvidia/nemotron-3-nano-30b-a3b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-nano-30b-a3b
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
+  litellm_params:
+    model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/nvidia/nemotron-3.5-content-safety
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-content-safety
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/novita/inclusionai/ling-3.0-tiny
+  litellm_params:
+    model: openai/novita/inclusionai/ling-3.0-tiny
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/google/gemma-4-31b-it
+  litellm_params:
+    model: openai/google/gemma-4-31b-it
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/poolside/laguna-xs.2
+  litellm_params:
+    model: openai/poolside/laguna-xs.2
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/poolside/laguna-m.1
+  litellm_params:
+    model: openai/poolside/laguna-m.1
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+- model_name: requesty/mistral/leanstral-1-5
+  litellm_params:
+    model: openai/mistral/leanstral-1-5
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
 - model_name: routeway/ling-3.0-flash:free
   litellm_params:
     model: openai/ling-3.0-flash:free

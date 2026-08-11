@@ -371,6 +371,46 @@
         }
       }
     },
+    "requesty": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Requesty",
+      "options": {
+        "baseURL": "https://router.requesty.ai/v1",
+        "apiKey": "{env:REQUESTY_API_KEY}"
+      },
+      "models": {
+        "nvidia/nemotron-3-ultra-550b-a55b": {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b"
+        },
+        "nvidia/nemotron-3-super-120b-a12b": {
+          "name": "nvidia/nemotron-3-super-120b-a12b"
+        },
+        "nvidia/nemotron-3-nano-30b-a3b": {
+          "name": "nvidia/nemotron-3-nano-30b-a3b"
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+        },
+        "nvidia/nemotron-3.5-content-safety": {
+          "name": "nvidia/nemotron-3.5-content-safety"
+        },
+        "novita/inclusionai/ling-3.0-tiny": {
+          "name": "novita/inclusionai/ling-3.0-tiny"
+        },
+        "google/gemma-4-31b-it": {
+          "name": "google/gemma-4-31b-it"
+        },
+        "poolside/laguna-xs.2": {
+          "name": "poolside/laguna-xs.2"
+        },
+        "poolside/laguna-m.1": {
+          "name": "poolside/laguna-m.1"
+        },
+        "mistral/leanstral-1-5": {
+          "name": "mistral/leanstral-1-5"
+        }
+      }
+    },
     "routeway": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Routeway",

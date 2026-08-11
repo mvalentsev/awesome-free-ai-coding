@@ -115,12 +115,38 @@ def _price_row(value: object) -> float | None:
     return _number(value)
 
 
+def _tiered_price_of(tiers: list) -> list[float] | None:
+    """Requesty publishes one price row per usage tier, as a list of
+    `{prompt_tokens_threshold, input_price, output_price}` rather than a single
+    pricing object.
+
+    Every tier is read, because the question is whether the row is a zero all
+    the way up. A lane that costs nothing below a threshold and bills above it
+    is a discount, not a free model, and taking only the first row — the
+    cheapest one, since the list is ordered by threshold — would file it as
+    free."""
+    prices = []
+    for tier in tiers:
+        if not isinstance(tier, dict):
+            return None
+        for key in ("input_price", "output_price"):
+            price = _price_row(tier.get(key))
+            if price is not None:
+                prices.append(price)
+            elif key in tier:
+                return None
+    return prices or None
+
+
 def _price_of(model: dict) -> list[float] | None:
     """What one plain completion costs, as the vendor publishes it, or None when
     it publishes nothing we understand. OpenRouter and BazaarLink name the rows
-    prompt/completion, Vercel input/output; cache, image and request rows are
-    ignored — a free lane is defined by the price of ordinary tokens."""
+    prompt/completion, Vercel input/output, Requesty ships a tier per row; cache,
+    image and request rows are ignored — a free lane is defined by the price of
+    ordinary tokens."""
     pricing = model.get("pricing")
+    if isinstance(pricing, list):
+        return _tiered_price_of(pricing)
     if not isinstance(pricing, dict):
         return _multiplier_price_of(model)
     prices = []

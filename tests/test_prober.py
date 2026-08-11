@@ -158,6 +158,48 @@ async def test_a_unit_wrapper_without_a_number_is_not_a_zero():
 
 
 @respx.mock
+async def test_zero_price_reads_a_price_published_one_tier_per_row():
+    """Requesty ships `pricing` as a list of usage tiers instead of one object.
+    Read as a pricing object the list is not one, so every zero-priced id on that
+    gateway answered "publishes no price" — unverifiable, so unlistable."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free",
+                             "input_price": 0, "output_price": 0, "pricing": [
+                                 {"prompt_tokens_threshold": 0,
+                                  "input_price": 0, "cached_price": 0, "output_price": 0}]}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_tier_that_starts_billing_above_a_threshold_is_not_free():
+    """Free up to a token threshold and metered above it is a discount, not a
+    free model. The cheap first row must not stand in for the whole list."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "pricing": [
+            {"prompt_tokens_threshold": 0, "input_price": 0, "output_price": 0},
+            {"prompt_tokens_threshold": 200000, "input_price": 0.3, "output_price": 0.9}]}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail and "0.3/0.9" in result.detail
+
+
+@respx.mock
+async def test_an_empty_tier_list_is_not_a_zero():
+    """A catalog that stopped publishing its tiers is silent, not free."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "pricing": []}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
+
+
+@respx.mock
 async def test_zero_price_ignores_cache_and_image_rows():
     """A free lane is priced by ordinary tokens; vendors publish cache and image
     rows next to them, and a nonzero one there does not make the model paid."""
