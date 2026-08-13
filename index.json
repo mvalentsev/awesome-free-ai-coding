@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-11",
+  "generated": "2026-08-13",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "entries": [
     {
@@ -53,7 +53,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -97,7 +97,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
@@ -146,7 +146,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -190,7 +190,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -234,7 +234,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
@@ -321,7 +321,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -380,7 +380,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
@@ -432,7 +432,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -518,8 +518,8 @@
         "require_zero_price": true
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-06",
-      "probe_failures": 1,
+      "last_verified": "2026-08-13",
+      "probe_failures": 0,
       "provisional": false,
       "rank": 20,
       "archived": false
@@ -548,7 +548,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
@@ -594,7 +594,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -664,7 +664,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -700,7 +700,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
@@ -753,7 +753,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -783,7 +783,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -819,7 +819,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -865,7 +865,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -909,7 +909,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -959,7 +959,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -1003,7 +1003,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
@@ -1052,7 +1052,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
@@ -1101,7 +1101,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
@@ -1150,7 +1150,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-20",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
@@ -1193,7 +1193,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
@@ -1243,7 +1243,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
@@ -1295,7 +1295,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
@@ -1339,7 +1339,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
@@ -1369,7 +1369,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
@@ -1400,7 +1400,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-22",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
@@ -1444,8 +1444,8 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-08-06",
-      "probe_failures": 1,
+      "last_verified": "2026-08-13",
+      "probe_failures": 0,
       "provisional": true,
       "rank": 100,
       "archived": false
@@ -1494,7 +1494,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-03",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
@@ -1602,7 +1602,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-08-06",
-      "last_verified": "2026-08-10",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
@@ -1670,8 +1670,8 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-06",
-      "last_verified": "2026-08-06",
-      "probe_failures": 1,
+      "last_verified": "2026-08-13",
+      "probe_failures": 0,
       "provisional": true,
       "rank": 100,
       "archived": false
@@ -1739,7 +1739,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
@@ -1798,7 +1798,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": true,
       "rank": 25,
@@ -1851,7 +1851,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-08-11",
-      "last_verified": "2026-08-11",
+      "last_verified": "2026-08-13",
       "probe_failures": 0,
       "provisional": true,
       "rank": 70,
