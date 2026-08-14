@@ -618,6 +618,38 @@ async def test_family_parts_scattered_over_the_page_are_not_evidence():
 
 
 @respx.mock
+async def test_an_older_version_on_the_page_does_not_name_a_newer_family():
+    """The version half of a family name must not match inside a different
+    version. Kiro's pricing page is the live case: it puts Sonnet 4.5 on the
+    free tier and sells 4.6 and Opus, and its "Opus 4.5" used to be evidence for
+    a family called opus-5 — the exact drift this check exists to catch, waved
+    through by the check itself."""
+    entry = listing_entry()
+    entry.models = [entry.models[0].model_copy(update={"family": "opus-5"})]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder, free tier, no credit card. "
+                  "Paid plans add Opus 4.5 and Opus 4.6."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS and "opus-5" in result.detail
+
+
+@respx.mock
+async def test_a_version_ending_a_sentence_still_names_its_family():
+    """The other side of the same anchor: "MiniMax 2.1." ends a sentence on the
+    page Kiro's row is probed against, so a family may be followed by a period
+    and still be named. Only the left edge of each part is anchored."""
+    entry = listing_entry()
+    entry.models = [entry.models[0].model_copy(update={"family": "minimax-2.1"})]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder, free tier, no credit card. "
+                  "Open weight models such as DeepSeek v3.2 and MiniMax 2.1."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
 async def test_a_family_named_only_in_the_page_data_is_evidenced():
     """Read against the same bytes the keywords are: a name the vendor serves
     inside its page data is served. Whether it is named AS FREE is a stronger

@@ -369,12 +369,24 @@ def _named_in_parts(family: str, text: str) -> bool:
     4.6": two models sharing one version number, and neither of them a substring
     of the page. A warning that fires on entries that are correct is a warning
     that gets ignored, so a family also counts as named when its parts appear in
-    order and close together."""
+    order and close together.
+
+    Each part must start where a name starts. Without that, the version half of
+    a family name matches inside a *different* version and the check vouches for
+    a model nobody offers: kiro.dev/pricing, which serves Sonnet 4.5 free and
+    sells 4.6, named opus-5 for this function through the "5" in "Opus 4.5",
+    and glm-5 through a "GLM" in a country-support FAQ and a "5" in the minified
+    markup after it. Anchoring on the left is enough — anchoring on the right
+    too would unname minimax-2.1, which that same page writes at the end of a
+    sentence as "MiniMax 2.1.". Measured against every live page-keywords entry
+    on 2026-08-14: no family this repository publishes changes verdict.
+    """
     parts = [p for p in re.split(r"[\s_-]+", family.lower()) if p]
     if len(parts) < 2:
         return False
     spread = r"[^\n]{0,%d}?" % NAME_SPREAD
-    return re.search(spread.join(re.escape(p) for p in parts), text) is not None
+    anchored = (r"(?<![\w.])" + re.escape(p) for p in parts)
+    return re.search(spread.join(anchored), text) is not None
 
 
 def is_model_stale(entry: Entry) -> bool:
