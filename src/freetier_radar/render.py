@@ -2,16 +2,20 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import date
+from datetime import date, datetime, time, timezone
 from pathlib import Path
+from xml.sax.saxutils import escape, quoteattr
 
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
+from .history import Event, EventType, load_history
 from .models import (ARCHIVE_AFTER_DAYS, WATCH_RECHECK_DAYS, Category, Entry, Watched,
-                     is_archived, is_watch_current, load_registry, load_watchlist)
+                     is_archived, is_watch_current, live_families, load_registry,
+                     load_watchlist)
 
-__all__ = ["ARCHIVE_AFTER_DAYS", "is_archived", "build_context", "build_index",
+__all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES",
+           "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "env_var",
            "render_readme", "render_artifacts", "main"]
 
@@ -22,9 +26,37 @@ CATEGORY_TITLES: dict[Category, str] = {
     Category.AGGREGATOR: "🧭 Aggregators (one key, many providers)",
 }
 
+REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
+# GitHub Pages rather than raw.githubusercontent.com, which serves every file as
+# text/plain and is documented as not being a CDN — a feed is polled hourly by
+# every subscriber, which is exactly the hotlinking that asks for. The URL is
+# baked into the feed's own <id> and <link rel="self">, so it cannot be changed
+# later without breaking every subscription that ever read it.
+FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
+FEED_ENTRIES = 50
+README_CHANGES = 10
+
+# What each event is called where a human reads it. The feed titles stand alone
+# in a reader's inbox, so they name the thing that happened; the README labels
+# sit in a column beside the name and can be shorter.
+FEED_TITLES: dict[EventType, str] = {
+    EventType.ADDED: "New: {name}",
+    EventType.ARCHIVED: "Archived: {name}",
+    EventType.RESTORED: "Back: {name}",
+    EventType.REMOVED: "Delisted: {name}",
+    EventType.MODELS: "Free models changed: {name}",
+}
+CHANGE_LABELS: dict[EventType, str] = {
+    EventType.ADDED: "➕ Added",
+    EventType.ARCHIVED: "📦 Archived",
+    EventType.RESTORED: "↩ Restored",
+    EventType.REMOVED: "➖ Delisted",
+    EventType.MODELS: "🔄 Free models",
+}
+
 
 def _families(e: Entry) -> list[str]:
-    return [m.family for m in e.models if m.superseded_by is None]
+    return live_families(e)
 
 
 def _row(e: Entry) -> dict[str, str]:
@@ -97,8 +129,98 @@ def _watch_rows(watchlist: list[Watched], today: date) -> list[dict]:
     ]
 
 
+def _newest_first(events: list[Event], limit: int) -> list[Event]:
+    return sorted(events, key=lambda e: e.ts, reverse=True)[:limit]
+
+
+def _change_rows(events: list[Event], limit: int = README_CHANGES) -> list[dict]:
+    """The tail of the log, newest first, as Markdown table cells.
+
+    Pipes are escaped here rather than rejected in `freetier-check`: an event's
+    detail is copied out of an entry's own `offering`, so a pipe in it is a
+    perfectly good sentence that only this one table would trip over.
+    """
+    return [
+        {"date": ev.ts.date().isoformat(),
+         "label": CHANGE_LABELS[ev.event],
+         "name": ev.name,
+         "url": ev.url or REPO_URL,
+         "detail": ev.detail.replace("|", r"\|") or "—"}
+        for ev in _newest_first(events, limit)
+    ]
+
+
+def _rfc3339(stamp: datetime) -> str:
+    """Atom demands a full timestamp with an offset. A naive one can only have
+    come from a hand-written line; read it as UTC rather than as this runner's
+    local time, which is the one thing it certainly is not."""
+    if stamp.tzinfo is None:
+        stamp = stamp.replace(tzinfo=timezone.utc)
+    return stamp.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _feed_entry_id(ev: Event) -> str:
+    """A tag URI, per RFC 4151 — permanent, unique, and not a promise that
+    anything is served at that address.
+
+    The timestamp is part of it because the same entry legitimately produces the
+    same kind of event more than once: a gateway rotates its free lane, and
+    `models` fires again a fortnight later. A reader that has seen this id must
+    never be shown the row again, so nothing here may be derived from anything
+    a later run can change — not the entry's name, not its url, not its position
+    in the file.
+    """
+    when = _rfc3339(ev.ts).replace("-", "").replace(":", "")
+    return f"tag:mvalentsev.github.io,2026:awesome-free-ai-coding/{ev.event.value}/{ev.id}/{when}"
+
+
+def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES) -> str:
+    """The change log as Atom.
+
+    Hand-written rather than templated, because the escaping is the substance:
+    an entry's name and a vendor's own sentence about its free tier both reach
+    this file verbatim, and an unescaped ampersand in either makes the whole feed
+    unparseable rather than one row wrong.
+    """
+    recent = _newest_first(events, limit)
+    updated = max((e.ts for e in recent),
+                  default=datetime.combine(today, time.min, tzinfo=timezone.utc))
+    out = [
+        '<?xml version="1.0" encoding="utf-8"?>',
+        '<feed xmlns="http://www.w3.org/2005/Atom">',
+        "  <title>awesome-free-ai-coding — what changed</title>",
+        "  <subtitle>Free LLM APIs and coding agents arriving, changing and dying, "
+        "as the twice-weekly probes see it.</subtitle>",
+        f"  <id>{FEED_URL}</id>",
+        f"  <link rel=\"self\" href={quoteattr(FEED_URL)}/>",
+        f"  <link rel=\"alternate\" href={quoteattr(REPO_URL)}/>",
+        f"  <updated>{_rfc3339(updated)}</updated>",
+        "  <author><name>freetier-radar</name></author>",
+    ]
+    for ev in recent:
+        title = FEED_TITLES[ev.event].format(name=ev.name)
+        summary = ev.detail or title
+        # Only where the list is what the event is about. An entry on its way
+        # out carries its last known families too, and appending them to
+        # "Delisted" reads as an offer rather than as an epitaph.
+        if ev.models and ev.event in (EventType.ADDED, EventType.RESTORED, EventType.MODELS):
+            summary += " · free models: " + ", ".join(ev.models)
+        out += [
+            "  <entry>",
+            f"    <id>{escape(_feed_entry_id(ev))}</id>",
+            f"    <title>{escape(title)}</title>",
+            f"    <link rel=\"alternate\" href={quoteattr(ev.url or REPO_URL)}/>",
+            f"    <updated>{_rfc3339(ev.ts)}</updated>",
+            f"    <summary type=\"text\">{escape(summary)}</summary>",
+            "  </entry>",
+        ]
+    out.append("</feed>")
+    return "\n".join(out) + "\n"
+
+
 def build_context(entries: list[Entry], today: date,
-                  watchlist: list[Watched] | None = None) -> dict:
+                  watchlist: list[Watched] | None = None,
+                  history: list[Event] | None = None) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
     sections = [
@@ -137,14 +259,21 @@ def build_context(entries: list[Entry], today: date,
             # scout filters proposals with, so the page and the machinery can
             # never drift apart.
             "watchlist": _watch_rows(watchlist or [], today),
-            "watch_recheck_days": WATCH_RECHECK_DAYS}
+            "watch_recheck_days": WATCH_RECHECK_DAYS,
+            # The only part of this page that is not a statement about today.
+            # Everything else is regenerated from scratch each run and remembers
+            # nothing, which left "did anything change?" answerable only from
+            # git log.
+            "changes": _change_rows(history or []),
+            "feed_url": FEED_URL}
 
 
 def build_index(entries: list[Entry], today: date,
                 watchlist: list[Watched] | None = None) -> dict:
     return {
         "generated": today.isoformat(),
-        "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
+        "source": REPO_URL,
+        "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today)}
             for e in entries
@@ -228,6 +357,12 @@ def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[
     return load_watchlist(watchlist_path or registry_path.parent / "watchlist.yaml")
 
 
+def _history_beside(registry_path: Path) -> list[Event]:
+    """The change log of this registry, read the same way — a sibling file, and
+    missing means nothing has been recorded yet."""
+    return load_history(registry_path.parent / "history.jsonl")
+
+
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
                   today: date | None = None, watchlist_path: Path | None = None) -> str:
     today = today or date.today()
@@ -239,7 +374,8 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
         lstrip_blocks=True,
     )
     context = build_context(load_registry(registry_path), today,
-                            _watchlist_beside(registry_path, watchlist_path))
+                            _watchlist_beside(registry_path, watchlist_path),
+                            _history_beside(registry_path))
     text = env.get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
     return text
@@ -247,10 +383,13 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
 
 def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                      watchlist_path: Path | None = None) -> None:
-    """index.json + configs/ — the machine-usable outputs, regenerated with the README."""
+    """index.json + configs/ + feed.xml — the machine-usable outputs, regenerated
+    with the README."""
     today = today or date.today()
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
+    (root / "feed.xml").write_text(
+        build_feed(_history_beside(registry_path), today), encoding="utf-8")
     (root / "index.json").write_text(
         json.dumps(build_index(entries, today, watchlist), indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
@@ -282,4 +421,4 @@ def main() -> None:
     render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
     render_artifacts(args.registry, args.out.parent if args.out.parent != Path("") else Path("."),
                      watchlist_path=args.watchlist)
-    print(f"rendered {args.out}, index.json, configs/")
+    print(f"rendered {args.out}, index.json, feed.xml, configs/")

@@ -153,6 +153,27 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 </details>
 
+<details>
+<summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of the rest</summary>
+<br>
+
+| When | What | Details |
+|---|---|---|
+| `2026-08-14` | ➖ Delisted **[Novita AI](https://novita.ai/)** | <sub>—</sub> |
+| `2026-08-14` | ➕ Added **[CodeGPT](https://www.codegpt.co)** | <sub>VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it</sub> |
+| `2026-08-14` | ➕ Added **[AI21 Labs (Jamba)](https://www.ai21.com)** | <sub>AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat</sub> |
+| `2026-08-14` | 🔄 Free models **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | <sub>added glm-4.6v-flash</sub> |
+| `2026-08-14` | 🔄 Free models **[Z.ai (Zhipu GLM)](https://z.ai)** | <sub>added glm-4.5-flash, glm-4.6v-flash</sub> |
+| `2026-08-14` | 🔄 Free models **[Kilo Code](https://kilo.ai)** | <sub>dropped ling-3.0-tiny</sub> |
+| `2026-08-14` | 🔄 Free models **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | <sub>dropped kimi-k3</sub> |
+| `2026-08-11` | ➖ Delisted **[Reka AI](https://platform.reka.ai)** | <sub>—</sub> |
+| `2026-08-11` | ➕ Added **[SEA-LION (AI Singapore)](https://sea-lion.ai)** | <sub>AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's</sub> |
+| `2026-08-11` | 🔄 Free models **[Routeway](https://routeway.ai)** | <sub>dropped ling-3.0-flash</sub> |
+
+<sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
+
+</details>
+
 ## 📦 Archive
 
 <details>
@@ -237,6 +258,7 @@ Ready-made artifacts, regenerated on every update:
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint |
 | [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
+| [`history.jsonl`](history.jsonl) · [feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |
 
 ## 📡 How this list stays fresh
 
@@ -269,6 +291,7 @@ flowchart LR
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after 90 days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on this page, above, with what would change the answer.
+- **Nothing changes silently.** Every arrival, archival, delisting and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml) — the log is compared against the list itself rather than against the previous run, so an entry that goes stale without a single field changing is still reported.
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
 ## 🤝 Contributing

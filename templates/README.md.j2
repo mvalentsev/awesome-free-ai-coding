@@ -69,6 +69,21 @@ _Nothing verified right now._
 </details>
 {% endif %}
 
+{% if changes %}
+<details>
+<summary><b>🕰 What changed</b> — the last {{ changes | length }} registry events, and an <a href="{{ feed_url }}">Atom feed</a> of the rest</summary>
+<br>
+
+| When | What | Details |
+|---|---|---|
+{% for c in changes %}| `{{ c.date }}` | {{ c.label }} **[{{ c.name }}]({{ c.url }})** | <sub>{{ c.detail }}</sub> |
+{% endfor %}
+
+<sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="{{ feed_url }}">the feed</a> instead of re-reading the table.</sub>
+
+</details>
+{% endif %}
+
 ## 📦 Archive
 
 <details>
@@ -122,6 +137,7 @@ Ready-made artifacts, regenerated on every update:
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint |
 | [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
+| [`history.jsonl`](history.jsonl) · [feed]({{ feed_url }}) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |
 
 ## 📡 How this list stays fresh
 
@@ -154,6 +170,7 @@ flowchart LR
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after {{ watch_recheck_days }} days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on this page, above, with what would change the answer.
+- **Nothing changes silently.** Every arrival, archival, delisting and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed]({{ feed_url }}) — the log is compared against the list itself rather than against the previous run, so an entry that goes stale without a single field changing is still reported.
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
 ## 🤝 Contributing

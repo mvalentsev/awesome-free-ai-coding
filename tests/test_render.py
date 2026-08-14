@@ -1,10 +1,13 @@
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from xml.etree import ElementTree
 
+from freetier_radar.history import Event
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, build_context, build_env_example, build_index, build_litellm_config,
-    build_opencode_config, env_var, is_archived, render_readme,
+    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, build_context,
+    build_env_example, build_feed, build_index, build_litellm_config,
+    build_opencode_config, env_var, is_archived, render_artifacts, render_readme,
 )
 
 TODAY = date(2026, 7, 19)
@@ -247,3 +250,133 @@ def test_index_publishes_the_watchlist_beside_the_entries():
     assert index["watchlist"] == [
         {"domains": ["example.ai"], "name": "Example", "checked_on": "2026-07-01",
          "reason": "no free tier today", "reopen_if": "they publish one", "current": True}]
+
+
+# ---- what changed, and the feed that carries it ---------------------------
+
+def ev(**kw) -> Event:
+    return Event.model_validate({"ts": "2026-07-18T05:23:00Z", "event": "added",
+                                 "id": "x", "name": "X", "url": "https://x.ai", **kw})
+
+
+def test_a_registry_with_no_history_renders_exactly_as_before():
+    assert build_context([make()], TODAY)["changes"] == []
+
+
+FIRST_EVENT = datetime(2026, 6, 1, 5, 23, tzinfo=timezone.utc)
+
+
+def test_the_what_changed_rows_are_newest_first_and_capped():
+    events = [ev(id=f"e{n}", name=f"E{n}", ts=FIRST_EVENT + timedelta(days=n))
+              for n in range(README_CHANGES + 3)]
+    rows = build_context([make()], TODAY, history=events)["changes"]
+    assert len(rows) == README_CHANGES
+    newest = README_CHANGES + 2
+    assert [r["name"] for r in rows] == [f"E{n}" for n in range(newest, newest - README_CHANGES, -1)]
+    assert rows[0]["date"] == (FIRST_EVENT + timedelta(days=newest)).date().isoformat()
+
+
+def test_each_kind_of_event_is_labelled_for_a_reader():
+    kinds = ["added", "archived", "restored", "removed", "models"]
+    rows = build_context([make()], TODAY,
+                         history=[ev(event=k, id=k) for k in kinds])["changes"]
+    assert len({r["label"] for r in rows}) == len(kinds)
+    assert all(r["label"] for r in rows)
+
+
+def test_a_pipe_in_an_event_detail_cannot_split_the_table_row():
+    rows = build_context([make()], TODAY,
+                         history=[ev(detail="free | not free")])["changes"]
+    assert rows[0]["detail"] == r"free \| not free"
+
+
+def test_the_feed_is_well_formed_atom():
+    feed = ElementTree.fromstring(build_feed([ev()], TODAY))
+    ns = "{http://www.w3.org/2005/Atom}"
+    assert feed.tag == f"{ns}feed"
+    assert feed.findtext(f"{ns}id") == FEED_URL
+    assert feed.findtext(f"{ns}title")
+    assert feed.findtext(f"{ns}updated") == "2026-07-18T05:23:00Z"
+    assert any(link.get("rel") == "self" and link.get("href") == FEED_URL
+               for link in feed.findall(f"{ns}link"))
+    entry = feed.find(f"{ns}entry")
+    assert entry.findtext(f"{ns}title") == "New: X"
+    assert entry.findtext(f"{ns}updated") == "2026-07-18T05:23:00Z"
+    assert entry.findtext(f"{ns}summary") is not None
+    assert entry.find(f"{ns}link").get("href") == "https://x.ai"
+
+
+def test_every_feed_entry_has_its_own_permanent_id():
+    events = [ev(id="a", ts="2026-07-18T05:23:00Z"),
+              ev(id="a", event="models", ts="2026-07-18T05:23:00Z"),
+              ev(id="a", event="models", ts="2026-07-18T06:23:00Z")]
+    ns = "{http://www.w3.org/2005/Atom}"
+    ids = [e.findtext(f"{ns}id")
+           for e in ElementTree.fromstring(build_feed(events, TODAY)).findall(f"{ns}entry")]
+    assert len(set(ids)) == 3
+    assert all(i.startswith("tag:") for i in ids)
+
+
+def test_the_feed_escapes_what_would_otherwise_break_the_xml():
+    feed = build_feed([ev(name="A & B <script>", detail="1 < 2 & 3 > 2")], TODAY)
+    assert "<script>" not in feed
+    entry = ElementTree.fromstring(feed).find("{http://www.w3.org/2005/Atom}entry")
+    assert entry.findtext("{http://www.w3.org/2005/Atom}title") == "New: A & B <script>"
+
+
+def test_the_feed_carries_the_newest_events_first_and_stops_at_the_cap():
+    events = [ev(id=f"e{n}", ts=FIRST_EVENT + timedelta(days=n))
+              for n in range(FEED_ENTRIES + 3)]
+    ns = "{http://www.w3.org/2005/Atom}"
+    parsed = ElementTree.fromstring(build_feed(events, TODAY))
+    stamps = [e.findtext(f"{ns}updated") for e in parsed.findall(f"{ns}entry")]
+    assert len(stamps) == FEED_ENTRIES
+    assert stamps == sorted(stamps, reverse=True)
+    assert parsed.findtext(f"{ns}updated") == stamps[0]
+
+
+def test_an_empty_history_still_produces_a_valid_feed():
+    ns = "{http://www.w3.org/2005/Atom}"
+    parsed = ElementTree.fromstring(build_feed([], TODAY))
+    assert parsed.findall(f"{ns}entry") == []
+    assert parsed.findtext(f"{ns}updated") == "2026-07-19T00:00:00Z"
+
+
+def test_render_writes_the_feed_beside_the_other_artifacts(tmp_path: Path):
+    from freetier_radar.history import append_history
+    from freetier_radar.models import save_registry
+    save_registry(tmp_path / "registry.yaml", [make()])
+    append_history(tmp_path / "history.jsonl", [ev()])
+
+    render_artifacts(tmp_path / "registry.yaml", tmp_path, today=TODAY)
+
+    feed = (tmp_path / "feed.xml").read_text(encoding="utf-8")
+    assert feed.startswith("<?xml")
+    assert "New: X" in feed
+
+
+def test_the_readme_shows_what_changed_and_links_the_feed(tmp_path: Path):
+    from freetier_radar.history import append_history
+    from freetier_radar.models import save_registry
+    save_registry(tmp_path / "registry.yaml", [make()])
+    append_history(tmp_path / "history.jsonl", [ev(name="Newcomer", detail="10 free calls")])
+
+    text = render_readme(tmp_path / "registry.yaml", Path("templates"),
+                         tmp_path / "README.md", today=TODAY)
+
+    changed = text.split("## 📦 Archive")[0]
+    assert "Newcomer" in changed
+    assert "10 free calls" in changed
+    assert FEED_URL in text
+
+
+def test_a_departing_entry_is_not_summarised_by_the_models_it_no_longer_serves():
+    ns = "{http://www.w3.org/2005/Atom}"
+    feed = build_feed([ev(event="removed", models=["gpt-oss"], detail="")], TODAY)
+    summary = ElementTree.fromstring(feed).find(f"{ns}entry").findtext(f"{ns}summary")
+    assert "gpt-oss" not in summary
+
+
+def test_an_event_with_nothing_to_say_renders_a_dash_like_every_other_empty_cell():
+    rows = build_context([make()], TODAY, history=[ev(event="removed", detail="")])["changes"]
+    assert rows[0]["detail"] == "—"

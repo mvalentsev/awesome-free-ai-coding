@@ -65,21 +65,30 @@ News, GitHub search, curated feeds, and a digest of every models.dev provider th
 publishes a zero-cost model → LLM extraction → live probe gate) proposes new entries
 via pull request. Humans review the PR; robots do everything else.
 
+Every change to what the list publishes — a row arriving, dropping to the
+Archive, being delisted, or changing its free models — is appended to
+[`history.jsonl`](history.jsonl) by those same two commands and published as an
+[Atom feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml).
+**Never edit it by hand.** It is append-only, and it is compared against the
+registry rather than against the previous run, so a row you add by hand is
+reported by the next scheduled run rather than going unrecorded.
+
 ## Development
 
 ```bash
 uv sync
 uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
-uv run freetier-render            # regenerate README.md + index.json + configs/
-uv run freetier-check             # validate the four curated files against each other
+uv run freetier-render            # regenerate README.md + index.json + feed.xml + configs/
+uv run freetier-check             # validate the curated files against each other
 ```
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
 `blocklist.yaml`, `dismissed.yaml` or `watchlist.yaml`. Three of those are read
 only by the scout, which runs behind a catch-all — so before this existed, a
 malformed one could reach `main` and turn into a green workflow that had quietly
-done nothing.
+done nothing. It checks `history.jsonl` too, for the different reason that the
+log is the only file here that cannot be regenerated from another one.
 
 The `update` workflow also takes manual inputs: `dry_run` runs every phase and
 writes nothing (the scout's report lands in the run summary instead of a PR),
