@@ -496,7 +496,8 @@
       "url": "https://kilo.ai",
       "source_urls": [
         "https://kilo.ai/pricing",
-        "https://api.kilo.ai/api/gateway/models"
+        "https://api.kilo.ai/api/gateway/models",
+        "https://kilocode.ai"
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent; its $0 plan routes \"Auto Free\" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside",
@@ -607,7 +608,9 @@
       "url": "https://devin.ai/desktop",
       "source_urls": [
         "https://devin.ai/pricing",
-        "https://devin.ai/blog/windsurf-is-now-devin-desktop"
+        "https://devin.ai/blog/windsurf-is-now-devin-desktop",
+        "https://windsurf.com",
+        "https://codeium.com"
       ],
       "card_required": false,
       "offering": "Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf",

@@ -56,6 +56,15 @@ read:
       Tabnine, JetBrains AI, Bolt.new, Lovable and v0 — so the yield has
       already been taken. Note for any re-read: its tools.ts data file is a
       subset of the README, so diff both or the second half goes unseen.
+      Re-read the same day at the user's request and nothing had moved — its
+      last commit is 2026-08-09, five days before the first read — so the
+      second pass went after what the first had not looked for. Two things
+      came back. Its Related Resources section names five lists, four of them
+      already answered here and one, inmve/free-ai-coding, that was not; it
+      has its own row below. And its own tables disagree with each other: the
+      Commercial Use Summary marks Cohere "Yes", while its changelog removed
+      Cohere as "non-commercial only". Cohere's pricing page settles it
+      against the table, and this registry's row now carries the restriction.
     reopen_if: >-
       It splits the LLM-API rows into their own machine-readable file, or its
       uncovered hosts stop being non-API tools.
@@ -189,3 +198,26 @@ read:
       It publishes the directory as data rather than as a README — its own site
       keeps the structured half behind Cloudflare — or its submissions start
       surfacing providers the six curated feeds do not carry.
+
+  - url: https://github.com/inmve/free-ai-coding
+    name: inmve/free-ai-coding
+    checked_on: '2026-08-14'
+    reason: >-
+      Reached from ShaikhWarsi's Related Resources on a re-read, and the right
+      shape on paper: 759 stars, a README.template.md built by
+      scripts/build-readmes.js out of locales/*.json, where the tool rows are
+      structured objects rather than prose. That is close to the split this
+      file asks other directories for — and it stopped. The last commit is
+      2025-12-05 and locales/en.json still carries meta.lastUpdated "December
+      5, 2025", eight months of drift that shows: it sells Gemini CLI's free
+      tier (closed 2026-06-18), Amazon Q Developer (superseded by Kiro),
+      Cursor "Free until Dec 11, 2025" and Windsurf under a name Cognition
+      retired on 2026-06-02. All 45 domains it links already have a verdict
+      here — three of them only after this read, because kilocode.ai,
+      codeium.com and windsurf.com redirect into rows we list and were
+      recorded under no name. Its ranking rule, "pro-grade means >60% on
+      SWE-bench Verified", is the self-reported benchmark score this project
+      has declined six times.
+    reopen_if: >-
+      It starts committing again, or its locale files begin carrying a quota
+      the six curated feeds do not.

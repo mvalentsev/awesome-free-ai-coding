@@ -148,3 +148,14 @@
     The API host behind yqcloud.top's AIchatOS2 frontend — same verdict, listed
     separately because the adapter that uses it names this domain and not the
     other one.
+- domain: continue.dev
+  reason: >-
+    The product is gone: continue.dev now serves one page, "Continue has joined
+    Cursor … Continue was acquired by Cursor", continue.dev/pricing is a GitHub
+    Pages 404 and hub.continue.dev no longer resolves (measured 2026-08-14).
+    The open-source extension "remains freely available" and was BYOK-only
+    anyway, the cline.bot case, so nothing here bundles model usage.
+- domain: hub.continue.dev
+  reason: >-
+    Continue's model hub, listed separately because third-party lists still
+    link it — the host stopped resolving when Cursor absorbed the company.
