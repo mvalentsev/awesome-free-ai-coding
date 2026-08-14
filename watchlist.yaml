@@ -130,16 +130,67 @@ watched:
       Public docs or a keyless catalog appear that state what is free and on
       what terms.
 
+  - domains: [aws.amazon.com]
+    name: Amazon Q Developer
+    checked_on: '2026-08-14'
+    reason: >-
+      The free tier is real — aws.amazon.com/q/developer/pricing is
+      server-rendered and says "Amazon Q Developer offers a perpetual Free Tier
+      with monthly limits", 50 agentic requests a month, "Access latest Claude
+      models", "Use in the IDE or CLI", with IDE limits reserved for AWS Builder
+      ID users. It is not listed because it is the predecessor of an entry this
+      list already carries. AWS has folded both of its surfaces into Kiro: the
+      product page runs an End of support notice reading "On April 30, 2027, AWS
+      will discontinue support for Amazon Q Developer IDE plugins. For
+      capabilities similar to Amazon Q Developer IDE plugins, explore Kiro", and
+      the user guide is blunter about the other half — "The Q CLI has become the
+      Kiro CLI." Kiro is listed with its own perpetual free tier, so carrying
+      both would be one offer twice, the second copy with a shutdown date on it.
+      Recorded because the pricing page still advertises the tier and keeps
+      reaching us through curated feeds.
+    reopen_if: >-
+      Amazon Q Developer outlives the 2027-04-30 plugin end-of-support as a
+      product with a free tier of its own rather than as a route into Kiro.
+
+  - domains: [novita.ai]
+    name: Novita AI
+    checked_on: '2026-08-14'
+    reason: >-
+      Listed here from 2026-07-19 until 2026-08-14, when a hand check found the
+      free lane gone with no announcement anywhere. novita.ai/pricing carries
+      102 published prices and not one of them is zero; the two models this
+      entry named as free are now billed — inclusionai/ling-3.0-flash at
+      $0.06/$0.18 per Mt and mindai/macaron-v1-venti at 15000/45000 micro-units
+      — and novita.ai/models marks every one of its 102 rows "isFree": false in
+      its own page data. The keyless catalog does carry eleven rows at
+      input_token_price_per_m 0, but they publish no pricing object, four are
+      plainly internal (ai_infer_test_1/2/3, bunny) and the rest 404 on their
+      own model pages, so that is an unpriced shelf and not an offer. What is
+      left is the ~$0.5 signup credit, and a trial is not a tier. The old probe
+      passed through all of this because it anchored on the id
+      "ling-3.0-flash" plus the word "free" — both still on the page — instead
+      of on the price beside the id.
+    reopen_if: >-
+      novita.ai/pricing shows a zero price, or a model on novita.ai/models
+      carries "isFree": true.
+
   - domains: [aionlabs.ai]
     name: Aion Labs
     checked_on: '2026-08-14'
     reason: >-
-      Reached from a curated feed's provider table and does not resolve to an
-      LLM API vendor at all: aionlabs.ai sells email agents and its only free
-      offer is a "free use-case audit". Recorded so the same feed row does not
-      send the next run down the same path.
+      Re-checked 2026-08-14, and the first reason recorded here was wrong: this
+      is an LLM API vendor, not the email-agent company of the same name. The
+      site sells "Powerful AI Models & Agents" with "access via an
+      OpenAI-compatible API"; api.aionlabs.ai/v1/models answers
+      keyless with four models — aion-2.0, aion-3.0, aion-3.0-mini and
+      aion-rp-llama-3.1-8b, roleplay and storytelling variants of DeepSeek and
+      GLM. The verdict is unchanged for a different reason: every one of the
+      four publishes a price and none of them is zero, the cheapest being
+      aion-3.0-mini at $0.0000007 per prompt token. Note the catalog answers
+      {"models": [...]} rather than the OpenAI {"data": [...]} shape, so an
+      api-models probe here would need that read first.
     reopen_if: >-
-      A different, actual LLM API provider is identified behind this name.
+      A zero-priced row appears in the api.aionlabs.ai catalog.
 
   - domains: [tokenrouter.io]
     name: TokenRouter.io

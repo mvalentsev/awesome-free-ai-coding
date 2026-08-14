@@ -238,21 +238,6 @@ model_list:
     model: openai/command-a
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
-- model_name: novita/deepseek/deepseek-v4-pro
-  litellm_params:
-    model: openai/deepseek/deepseek-v4-pro
-    api_base: https://api.novita.ai/openai
-    api_key: os.environ/NOVITA_API_KEY
-- model_name: novita/qwen/qwen3.7-max
-  litellm_params:
-    model: openai/qwen/qwen3.7-max
-    api_base: https://api.novita.ai/openai
-    api_key: os.environ/NOVITA_API_KEY
-- model_name: novita/zai-org/glm-5.2
-  litellm_params:
-    model: openai/zai-org/glm-5.2
-    api_base: https://api.novita.ai/openai
-    api_key: os.environ/NOVITA_API_KEY
 - model_name: scaleway-generative/glm-5.2
   litellm_params:
     model: openai/glm-5.2

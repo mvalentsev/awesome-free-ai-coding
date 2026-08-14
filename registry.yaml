@@ -933,42 +933,6 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 20
-- id: novita
-  name: Novita AI
-  category: api-free-tier
-  url: https://novita.ai/
-  source_urls:
-  - https://novita.ai/pricing
-  card_required: false
-  offering: Inference cloud for 200+ open models; selected models priced Free plus
-    a small signup trial credit
-  limits: Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron
-    V1 Venti); ~$0.5 trial credit valid 1 year
-  models: []
-  api:
-    base_url: https://api.novita.ai/openai
-    key_url: https://novita.ai/settings/key-management
-    auth: api-key
-    openai_compatible: true
-    model_ids:
-    - deepseek/deepseek-v4-pro
-    - qwen/qwen3.7-max
-    - zai-org/glm-5.2
-    note: ''
-  probe:
-    type: page-keywords
-    endpoint: https://novita.ai/pricing
-    keywords:
-    - ling-3.0-flash
-    - free
-    free_marker: ''
-    dead_markers: []
-    require_zero_price: false
-  first_seen: '2026-07-19'
-  last_verified: '2026-08-13'
-  probe_failures: 0
-  provisional: false
-  rank: 96
 - id: upstage
   name: Upstage (Solar API)
   category: trial

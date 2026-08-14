@@ -310,25 +310,6 @@
         }
       }
     },
-    "novita": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Novita AI",
-      "options": {
-        "baseURL": "https://api.novita.ai/openai",
-        "apiKey": "{env:NOVITA_API_KEY}"
-      },
-      "models": {
-        "deepseek/deepseek-v4-pro": {
-          "name": "deepseek/deepseek-v4-pro"
-        },
-        "qwen/qwen3.7-max": {
-          "name": "qwen/qwen3.7-max"
-        },
-        "zai-org/glm-5.2": {
-          "name": "zai-org/glm-5.2"
-        }
-      }
-    },
     "scaleway-generative": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Scaleway Generative APIs",
