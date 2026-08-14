@@ -1,0 +1,154 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "DX TOKEN" [ref=e5] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e10]:
+          - link "首页" [ref=e11] [cursor=pointer]:
+            - /url: /
+          - link "定价" [ref=e12] [cursor=pointer]:
+            - /url: /pricing
+          - link "套餐" [ref=e13] [cursor=pointer]:
+            - /url: /tokenplan
+          - link "免费" [ref=e14] [cursor=pointer]:
+            - /url: /free
+          - link "对比" [ref=e15] [cursor=pointer]:
+            - /url: /coding-plan-comparison
+          - button "实验室" [ref=e17]
+          - link "教程" [ref=e20] [cursor=pointer]:
+            - /url: /tutorials
+        - generic [ref=e21]:
+          - button "切换深色模式" [ref=e22]
+          - link "登录" [ref=e25] [cursor=pointer]:
+            - /url: /auth/login
+    - main [ref=e26]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - generic [ref=e31]: 自有端点
+            - heading "接入你自己的 API 供应商" [level=1] [ref=e34]
+            - paragraph [ref=e35]: "在控制台添加自有端点，用 {身份码}/{模型名} 调用。请求直接转发到你的供应商，免费不扣余额，不经过平台路由和计费。"
+          - generic [ref=e37]:
+            - heading "三步接入" [level=2] [ref=e41]
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - generic [ref=e44]: "1"
+                - generic [ref=e45]:
+                  - paragraph [ref=e46]: 在控制台「自有端点」页面添加供应商
+                  - paragraph [ref=e47]: 填写 Base URL、API Key、模型列表
+              - generic [ref=e48]:
+                - generic [ref=e49]: "2"
+                - generic [ref=e50]:
+                  - paragraph [ref=e51]: "使用 {身份码}/{模型名} 调用"
+                  - generic [ref=e52]:
+                    - generic [ref=e53]: 模型名称
+                    - generic [ref=e57]:
+                      - button [ref=e58]
+                      - code [ref=e62]: "model: abc123/gpt-4o"
+              - generic [ref=e63]:
+                - generic [ref=e64]: "3"
+                - generic [ref=e65]:
+                  - paragraph [ref=e66]: 请求直接转发到你的供应商，免费不扣余额
+                  - generic [ref=e67]: 不经过平台路由、计费、模型替换、省流
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - heading "核心特性" [level=2] [ref=e73]
+            - paragraph [ref=e74]: 为什么使用自有端点？
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - heading "完全免费" [level=3] [ref=e82]
+              - paragraph [ref=e83]: 请求直接转发，不扣余额，不消耗套餐次数
+            - generic [ref=e84]:
+              - heading "隐私安全" [level=3] [ref=e88]
+              - paragraph [ref=e89]: API Key 加密存储，请求经平台转发到你的供应商
+            - generic [ref=e90]:
+              - heading "多端点故障转移" [level=3] [ref=e96]
+              - paragraph [ref=e97]: 添加多个供应商，按排序依次尝试，自动切换
+            - generic [ref=e98]:
+              - heading "兼容标准接口" [level=3] [ref=e103]
+              - paragraph [ref=e104]: 支持 OpenAI / Anthropic 标准接口，零改动接入
+        - generic [ref=e105]:
+          - heading "使用场景" [level=2] [ref=e107]
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]: 自有 GPU 集群
+              - paragraph [ref=e116]: 使用 vLLM / GPUSTack 等自建推理服务，通过自有端点接入平台，在 Cherry Studio、Cursor 等工具中无缝使用。
+            - generic [ref=e117]:
+              - generic [ref=e118]: 多供应商聚合
+              - paragraph [ref=e125]: 添加多个 API 供应商（OpenAI 官方、Azure、代理商等），平台按排序自动故障转移，哪个可用走哪个。
+            - generic [ref=e126]:
+              - generic [ref=e127]: 成本优化
+              - paragraph [ref=e134]: 对高频调用模型使用自有端点（已有供应商合约），平台路由用于补充其他模型，双管齐下降低成本。
+            - generic [ref=e135]:
+              - generic [ref=e136]: 统一入口
+              - paragraph [ref=e141]: 在工具中只需配置一个平台地址，自有模型和平台模型混合使用，无需切换 API 地址。
+        - generic [ref=e142]:
+          - heading "常见问题" [level=2] [ref=e144]
+          - generic [ref=e145]:
+            - generic [ref=e147]:
+              - generic [ref=e148]: Q
+              - generic [ref=e150]:
+                - heading "自有端点收费吗？" [level=3] [ref=e151]
+                - paragraph [ref=e152]: 不收费。请求直接转发到你的供应商，不扣余额、不消耗套餐次数、不经过平台计费。你只需要为你自己的供应商付费。
+            - generic [ref=e154]:
+              - generic [ref=e155]: Q
+              - generic [ref=e157]:
+                - heading "API Key 安全吗？" [level=3] [ref=e158]
+                - paragraph [ref=e159]: API Key 加密存储在数据库中，前端只显示脱敏后的掩码（如 ****xxxx）。请求转发时在服务端解密使用，不会暴露给客户端。
+            - generic [ref=e161]:
+              - generic [ref=e162]: Q
+              - generic [ref=e164]:
+                - heading "支持哪些接口格式？" [level=3] [ref=e165]
+                - paragraph [ref=e166]: 支持 OpenAI 标准（/v1/chat/completions）和 Anthropic 标准（/v1/messages）。系统根据你的请求协议自动选择正确的端点路径。
+            - generic [ref=e168]:
+              - generic [ref=e169]: Q
+              - generic [ref=e171]:
+                - heading "多个供应商有相同模型怎么办？" [level=3] [ref=e172]
+                - paragraph [ref=e173]: 系统按你在控制台设置的排序依次尝试。第一个供应商请求失败时自动切换到下一个，实现故障转移。
+            - generic [ref=e175]:
+              - generic [ref=e176]: Q
+              - generic [ref=e178]:
+                - heading "裸模型名（不带身份码前缀）会走自有端点吗？" [level=3] [ref=e179]
+                - paragraph [ref=e180]: 会。当平台路由中没有该模型时，系统会自动 fallback 到你的自有端点查找。但建议使用 身份码/模型名 格式显式调用以确保走自有端点。
+        - generic [ref=e184]:
+          - heading "接入你的第一个自有端点" [level=2] [ref=e185]
+          - paragraph [ref=e186]: 前往控制台「自有端点」页面，添加供应商配置
+          - link "前往配置" [ref=e187] [cursor=pointer]:
+            - /url: /console/providers
+    - contentinfo [ref=e190]:
+      - generic [ref=e191]:
+        - generic [ref=e192]:
+          - generic [ref=e193]:
+            - generic [ref=e194]: DX TOKEN
+            - paragraph [ref=e199]: 智能AI模型中转网关
+          - generic [ref=e200]:
+            - heading "产品" [level=4] [ref=e201]
+            - list [ref=e202]:
+              - listitem [ref=e203]:
+                - link "定价" [ref=e204] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e205]:
+                - link "Token Plan" [ref=e206] [cursor=pointer]:
+                  - /url: /tokenplan
+              - listitem [ref=e207]:
+                - link "免费路由" [ref=e208] [cursor=pointer]:
+                  - /url: /free
+          - generic [ref=e209]:
+            - heading "开发者" [level=4] [ref=e210]
+            - list [ref=e211]:
+              - listitem [ref=e212]:
+                - link "文档" [ref=e213] [cursor=pointer]:
+                  - /url: /docs
+              - listitem [ref=e214]:
+                - link "教程" [ref=e215] [cursor=pointer]:
+                  - /url: /tutorials
+              - listitem [ref=e216]:
+                - link "服务条款" [ref=e217] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e218]:
+                - link "隐私政策" [ref=e219] [cursor=pointer]:
+                  - /url: /about
+          - paragraph [ref=e222]: 二维码
+        - paragraph [ref=e224]: © 2026 DX TOKEN. 版权所有
+  - alert [ref=e225]
