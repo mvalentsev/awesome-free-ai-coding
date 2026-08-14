@@ -1579,3 +1579,33 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 90
+- id: codegpt
+  name: CodeGPT
+  category: agent-cli
+  url: https://www.codegpt.co
+  source_urls:
+  - https://www.codegpt.co/pricing
+  card_required: false
+  offering: VS Code / JetBrains coding agent whose $0 plan includes model usage rather
+    than only BYOK — a small daily allowance on its own Economy models, plus BYOK
+    across 15+ providers and local models (Ollama, LM Studio) beside it
+  limits: 10 free interactions a day on Economy models, described as free forever,
+    plus a one-off $1.50 welcome credit for the premium ones; the pricing page says
+    plainly "No credit card required". Unlimited use of the same Economy models is
+    the paid Professional plan at $9-10/mo. CodeGPT does not publish which models
+    the Economy tier routes to, so this row names none
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://www.codegpt.co/pricing
+    keywords:
+    - 10 free interactions every day on Economy models
+    - $1.50 welcome credit for premium models
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-14'
+  last_verified: '2026-08-14'
+  probe_failures: 0
+  provisional: true
+  rank: 60

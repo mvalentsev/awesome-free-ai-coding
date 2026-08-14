@@ -90,3 +90,8 @@ def test_a_dismissal_that_matches_nothing_is_dead_weight(tmp_path: Path):
     problems = check(root, TODAY)
     assert any("ghost is not an entry id" in p for p in problems)
     assert any("has no family" in p for p in problems)
+
+
+def test_a_pipe_would_break_the_readme_table(tmp_path: Path):
+    root = build(tmp_path, watched=[{**WATCHED, "reason": "free | not free"}])
+    assert any("has a pipe in reason" in p for p in check(root, TODAY))

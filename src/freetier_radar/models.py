@@ -238,6 +238,46 @@ def is_archived(entry: Entry, today: date) -> bool:
     return False
 
 
+# ---- the files this repository curates by hand ----------------------------
+# All four loaders live here rather than in scout.py, where the first three
+# grew: they are read by the scout, by the renderer and by freetier-check, and
+# a validator that had to import the scout would drag an LLM client and an HTTP
+# stack in behind it. A missing file always means "empty", never an error — each
+# of these is optional to a caller that has no opinion about it.
+
+def load_blocklist(path: Path) -> dict[str, str]:
+    """domain -> reason; missing file means an empty blocklist."""
+    if not path.exists():
+        return {}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or []
+    return {str(d["domain"]).lower(): str(d.get("reason", ""))
+            for d in data if isinstance(d, dict) and d.get("domain")}
+
+
+def is_blocked(domain: str, blocklist: dict[str, str]) -> bool:
+    return any(domain == b or domain.endswith("." + b) for b in blocklist)
+
+
+def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
+    """(entry id, family, newer family) triples a human has already rejected.
+
+    Since supersede became proposal-only the registry never records a decision
+    about a bump, so every run re-proposes the ones a reviewer threw out — z.a
+    i's free glm-4.7-flash "superseded by" the paid glm-5.2 came back in each PR.
+    This file is that memory: the proposal is a suggestion, and a suggestion
+    declined stays declined until a human removes the line.
+    """
+    if not path.exists():
+        return set()
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    items = data.get("dismissed") if isinstance(data, dict) else data
+    return {
+        (str(d["entry"]), str(d["family"]), str(d["superseded_by"]))
+        for d in (items or [])
+        if isinstance(d, dict) and d.get("entry") and d.get("family") and d.get("superseded_by")
+    }
+
+
 class Watched(BaseModel):
     """A service that belongs on neither list yet: legitimate, but with no free
     tier a developer can reach today.

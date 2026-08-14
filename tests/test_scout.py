@@ -591,7 +591,21 @@ def test_apply_new_rejects_a_service_the_watchlist_already_answered():
     added, rejected = apply_new(entries, [proposal(id="w", url="https://api.n.ai/v1")],
                                 TODAY, watchlist=[watch()])
     assert added == []
-    assert rejected == ["w: on the watchlist since 2026-07-01 — no zero-priced row in its catalog"]
+    assert rejected == ["w: on the watchlist since 2026-07-01 — "
+                        "no zero-priced row in its catalog. Every model is metered"]
+
+
+def test_a_long_watch_reason_is_cut_by_length_not_at_the_first_full_stop():
+    """The reasons are full of hostnames and prices, so splitting on '.' cuts
+    'api.llm7.io' in half and reads as a typo in the PR body."""
+    entries = [make()]
+    long_reason = watch()
+    long_reason.reason = "api.llm7.io serves 35 models and " + "every one of them is metered " * 8
+    _, rejected = apply_new(entries, [proposal(id="w", url="https://api.n.ai/v1")],
+                            TODAY, watchlist=[long_reason])
+    quoted = rejected[0].split(" — ", 1)[1]
+    assert quoted.startswith("api.llm7.io serves 35 models")
+    assert quoted.endswith("…") and len(quoted) <= scout.WATCH_REASON_IN_PR + 1
 
 
 def test_an_expired_watch_verdict_lets_the_proposal_through():

@@ -20,8 +20,8 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
-from .models import Entry, is_archived, load_registry, load_watchlist
-from .scout import load_blocklist, load_dismissed, is_blocked
+from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismissed,
+                     load_registry, load_watchlist)
 
 __all__ = ["check", "main"]
 
@@ -99,6 +99,13 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(
                 f"watchlist: {w.name} has no reopen_if — a verdict with no way back "
                 f"is a blocklist entry in the wrong file")
+        # Both fields render as cells of a Markdown table, where an unescaped
+        # pipe silently splits the row into extra columns.
+        for field, text in (("reason", w.reason), ("reopen_if", w.reopen_if)):
+            if "|" in text:
+                problems.append(
+                    f"watchlist: {w.name} has a pipe in {field} — it would break the "
+                    f"README table row it renders into")
         for d in w.domains:
             if d.lower() in seen_domains:
                 problems.append(f"watchlist: duplicate domain {d}")

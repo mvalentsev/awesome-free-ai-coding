@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--10-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-38-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-39-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **38** | **37** | **2** | **26** | **47** |
+| **39** | **38** | **2** | **26** | **47** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -51,6 +51,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Google Antigravity](https://antigravity.google)** | Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do | `gemini-3.1-pro`, `gemini-3.5-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | <sub>$0/month, no subscription — Gemini 3.1 Pro, Gemini 3.5 Flash, Claude Sonnet & Opus 4.6 and gpt-oss-120b as agent models, unlimited Tab completions and unlimited Command requests, on a quota refreshed weekly. Google publishes no figure for that quota and says the baseline is set by the capacity it has</sub> | ✅ No | `2026-08-13 🧪` |
 | **[OpenAI Codex CLI](https://developers.openai.com/codex/)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | `gpt-5.6` | <sub>Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only</sub> | ✅ No | `2026-08-13` |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | <sub>100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)</sub> | ✅ No | `2026-08-13` |
+| **[CodeGPT](https://www.codegpt.co)** | VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it | — | <sub>10 free interactions a day on Economy models, described as free forever, plus a one-off $1.50 welcome credit for the premium ones; the pricing page says plainly "No credit card required". Unlimited use of the same Economy models is the paid Professional plan at $9-10/mo. CodeGPT does not publish which models the Economy tier routes to, so this row names none</sub> | ✅ No | `2026-08-14 🧪` |
 
 ### 🔌 LLM APIs with free tier
 | Tool | What you get | Free models | Limits | Card required | Verified |

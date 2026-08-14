@@ -15,11 +15,18 @@ import httpx
 import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
-from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_watch_current,
-                     load_registry, load_watchlist, save_registry, watch_match)
+# The curated-file loaders live in models.py; re-exported here because this is
+# where callers and tests have always reached for them.
+from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_blocked,
+                     is_watch_current, load_blocklist, load_dismissed, load_registry,
+                     load_watchlist, save_registry, watch_match)
 from .prober import challenge_marker_hit, check_content
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
+
+# How much of a watchlist reason to quote when a proposal is turned away. The PR
+# body lists rejections on one line each; the full reason runs to a paragraph.
+WATCH_REASON_IN_PR = 120
 
 DISCOVERY_QUERIES = [
     "free tier LLM API for developers",
@@ -472,39 +479,6 @@ def _ask(llm, prompt: str, attempts: int = 2) -> dict:
     return {}
 
 
-def load_blocklist(path: Path) -> dict[str, str]:
-    """domain -> reason; missing file means an empty blocklist."""
-    if not path.exists():
-        return {}
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or []
-    return {str(d["domain"]).lower(): str(d.get("reason", ""))
-            for d in data if isinstance(d, dict) and d.get("domain")}
-
-
-def is_blocked(domain: str, blocklist: dict[str, str]) -> bool:
-    return any(domain == b or domain.endswith("." + b) for b in blocklist)
-
-
-def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
-    """(entry id, family, newer family) triples a human has already rejected.
-
-    Since supersede became proposal-only the registry never records a decision
-    about a bump, so every run re-proposes the ones a reviewer threw out — z.a
-    i's free glm-4.7-flash "superseded by" the paid glm-5.2 came back in each PR.
-    This file is that memory: the proposal is a suggestion, and a suggestion
-    declined stays declined until a human removes the line.
-    """
-    if not path.exists():
-        return set()
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    items = data.get("dismissed") if isinstance(data, dict) else data
-    return {
-        (str(d["entry"]), str(d["family"]), str(d["superseded_by"]))
-        for d in (items or [])
-        if isinstance(d, dict) and d.get("entry") and d.get("family") and d.get("superseded_by")
-    }
-
-
 def format_watchlist(watchlist: list[Watched], today: date) -> str:
     """The current verdicts, for the discovery prompt.
 
@@ -611,9 +585,14 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
             continue
         watched = watch_match(domain_of(e.url), watchlist or [], today)
         if watched is not None:
+            # Truncated by length rather than at the first full stop: the reasons
+            # are full of hostnames and prices, so splitting on "." cuts
+            # "api.llm7.io" in half and reads as a typo in the PR body.
+            reason = " ".join(watched.reason.split())
+            if len(reason) > WATCH_REASON_IN_PR:
+                reason = reason[:WATCH_REASON_IN_PR].rsplit(" ", 1)[0] + "…"
             rejected.append(
-                f"{e.id}: on the watchlist since {watched.checked_on.isoformat()} — "
-                f"{watched.reason.split('.')[0].strip()}")
+                f"{e.id}: on the watchlist since {watched.checked_on.isoformat()} — {reason}")
             continue
         if verifier is not None:
             problem = verifier(e)
