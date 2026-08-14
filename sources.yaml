@@ -15,9 +15,12 @@
 # `reopen_if` names what would change the answer, so the next look starts from
 # the last one instead of from zero.
 #
-# This is not a blocklist. Nothing here is disreputable — a source lands here
-# for carrying nothing this registry can use, which is a statement about the
-# overlap and not about the list.
+# This is not a blocklist. A source usually lands here for carrying nothing this
+# registry can use, which is a statement about the overlap and not about the
+# list. One entry below is here for the opposite reason — what it carries is
+# disqualified by CONTRIBUTING rather than merely absent — and it is filed here
+# anyway, because a verdict on a list belongs with the verdicts on lists even
+# when the answer is that kind of no.
 
 read:
   - url: https://github.com/Shubhamsaboo/awesome-llm-apps
@@ -108,3 +111,39 @@ read:
       It starts publishing free-tier terms it verified itself rather than a
       key-configuration list, or its provider set stops tracking
       mnfst/awesome-free-llm-apis.
+
+  - url: https://github.com/xtekky/gpt4free
+    name: xtekky/gpt4free
+    checked_on: '2026-08-14'
+    reason: >-
+      The one entry here that is not a directory at all, and the only one whose
+      contents this repository rejects on principle rather than on overlap: it
+      is a Python library whose 101 provider classes reach paid products by
+      impersonating their own clients — Microsoft Copilot, Perplexity, Grok,
+      Claude, the Gemini web app, Qwen chat, DeepSeek chat, Meta AI, You.com,
+      Quillbot, Opera Aria, Blackbox, four Hugging Face Spaces — which is the
+      "reverse proxies, key sharing, scraped or unofficial gateways" line in
+      CONTRIBUTING, in one repository. Its own hosted instance, g4f.space, has
+      been on the blocklist since before this file existed. Read whole anyway,
+      because a provider adapter is a claim someone made work: 219 hosts across
+      g4f/ and docs/, of which 45 are already carried here and every remaining
+      official inference provider is a name this repository already has a
+      verdict on. One file distorts the count — needs_auth/BlackboxPro.py is a
+      model catalog, so lambdalabs, snowflake, databricks, featherless and a
+      dozen more appear in it as model-provenance links rather than as
+      endpoints anyone here could call. What was genuinely new was eight
+      services with no verdict in this repository, now in watchlist.yaml, and
+      three that no longer exist: cablyai.com and theb.ai do not resolve,
+      fenayai.com answers a Cloudflare 530, and gpt4free still ships a class for
+      each. Its one transferable idea is config.yaml routing — named routes that
+      fall through a provider chain on conditions like
+      "quota.models.<id>.remainingFraction > 0 and error_count < 3", the shape
+      configs/litellm.yaml would take if it grouped deployments. Measured
+      against this registry rather than admired: 7 of 71 callable ids are served
+      by two or more entries, and 5 of those 7 are OpenRouter's own :free
+      catalog seen through two gateways, so the fallback group it suggests has
+      two real members and one of them is a card-required trial.
+    reopen_if: >-
+      It starts publishing a table of official free tiers — vendor, quota,
+      source page — rather than provider adapters. A new adapter is not a
+      reason: this read covered every one of them.

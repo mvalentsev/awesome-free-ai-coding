@@ -741,3 +741,147 @@ watched:
     reopen_if: >-
       DX TOKEN publishes terms of service and a legal entity, or states where
       the models on its own dxnt/ prefix are licensed from.
+
+  # Eight services that had no verdict here until xtekky/gpt4free was read
+  # whole on 2026-08-14 (that read's own verdict is in sources.yaml). Every
+  # one of them is legitimate; none of them has a free lane this list can
+  # hand a developer today.
+
+  - domains: [giga.chat, gigachat.devices.sberbank.ru, developers.sber.ru]
+    name: GigaChat API (Sber)
+    checked_on: '2026-08-14'
+    reason: >-
+      The largest free grant this repository has ever verified, and it still
+      cannot be listed. Sber's own tariff page, updated 22 July 2026, says
+      "В рамках Freemium-режима пользователи получают 365 000 000 бесплатных
+      токенов для генерации текста" and breaks it down in a served table that
+      glues each figure to the ids it applies to — 250 000 000 for Lite
+      (GigaChat, GigaChat-2), 40 000 000 for Pro, 25 000 000 for Max,
+      50 000 000 for GigaChat-3-Ultra — each valid 12 months, "Генерация текста
+      выполняется в одном потоке", one stream at a time. Every new account gets
+      the Freemium tariff by default and no card is asked for; only the paid
+      packages take one. The endpoint is OpenAI-shaped and printed in the docs:
+      base_url "https://api.giga.chat/v1", model "GigaChat". What blocks it is
+      the transport. Both api.giga.chat and gigachat.devices.sberbank.ru serve
+      certificates issued by "C = RU, O = The Ministry of Digital Development
+      and Communications, CN = Russian Trusted Sub CA", chaining to a Russian
+      Trusted Root CA that is in no mainstream trust store — measured here, not
+      inferred: httpx fails both with CERTIFICATE_VERIFY_FAILED, and Sber
+      documents the fix as installing the НУЦ Минцифры certificates at
+      application or OS level. That is a change to the reader's machine, and to
+      what their machine trusts for every other TLS connection, which is not a
+      thing a row in a table can ask for in a footnote. Registration is a second
+      gate on top: the console takes a Сбер ID and issues scope
+      GIGACHAT_API_PERS.
+    reopen_if: >-
+      api.giga.chat serves a certificate from a publicly trusted CA, or Sber
+      documents an endpoint that does. At that point only the Сбер ID gate is
+      left, which is the SenseNova case and lives inside an entry, and the
+      anchor is already measured: the 365 000 000 sentence and the per-tier
+      table sit in served HTML with ordinary spaces.
+
+  - domains: [you.com]
+    name: You.com API
+    checked_on: '2026-08-14'
+    reason: >-
+      A genuinely free, genuinely keyless lane that is the wrong kind of thing.
+      you.com/docs offers "Try it free — no API key required": point any
+      MCP-enabled tool at https://api.you.com/mcp?profile=free and "use
+      you-search with no signup or credentials", capped at 100 queries a day,
+      with new accounts getting $100 in credits for the rest. It names Claude
+      Code, Cursor, VS Code and JetBrains by name, so it is aimed squarely at
+      the readers of this list — but what it hands them is web search, not model
+      access, and CONTRIBUTING asks an entry for a lane you can point a coding
+      agent's model at.
+    reopen_if: >-
+      You.com opens a free lane on an inference endpoint rather than on search
+      and retrieval — or this list decides that free agent tooling belongs in a
+      section of its own, in which case this is the first row in it.
+
+  - domains: [blackbox.ai]
+    name: Blackbox AI
+    checked_on: '2026-08-14'
+    reason: >-
+      Two tiers on its own pricing page and neither is free: "PAY AS YOU GO",
+      metered per token against prepaid credits, and "ENTERPRISE", "Your model,
+      your keys, your contract". The $0 in the first column is the monthly
+      commitment — "$0 / MO COMMIT ... Committed spend None — pay for what you
+      use" — not a token allowance, which is the same shape this repository
+      rejected for AIHubMix's neighbours and for ZenMux. The 300+ model table
+      below prices every row.
+    reopen_if: >-
+      Blackbox publishes a free tier with a token or request allowance, on the
+      pricing page rather than in an extension listing.
+
+  - domains: [orcarouter.ai]
+    name: OrcaRouter
+    checked_on: '2026-08-14'
+    reason: >-
+      A router whose free plan is free routing, not free tokens: "Hacker Free
+      Forever. Zero markup on all tokens ... 3 API keys · 0% token markup", and
+      in its own words "You pay each provider's published rate; OrcaRouter adds
+      $0 per token". Its structured pricing data agrees — an Offer named "Free"
+      at price 0 with the description "Pay provider cost only". That is the
+      standing rule here that a zero in a price column is not a lane you can
+      reach: nothing is granted, the $0 is the fee for the routing.
+    reopen_if: >-
+      OrcaRouter grants credits or a free model lane of its own, rather than
+      charging nothing to pass a paid one through.
+
+  - domains: [aibadgr.com]
+    name: Badgr
+    checked_on: '2026-08-14'
+    reason: >-
+      Not an inference free tier — GPU capacity by the hour, advertised as
+      "Available now Badgr 4090". The pricing page's $0 is a subscription that
+      does not exist: "Pay as you go $0 /month + usage: every account gets the
+      same features", "no setup fee, no monthly minimum". A wallet, and not even
+      a wallet with anything in it.
+    reopen_if: >-
+      Badgr starts granting inference credits, or serves models rather than
+      renting the cards they run on.
+
+  - domains: [whiterabbitneo.com, deephat.ai]
+    name: Deep Hat (formerly WhiteRabbitNeo, Kindo)
+    checked_on: '2026-08-14'
+    reason: >-
+      Renamed since gpt4free wrote its adapter — whiterabbitneo.com now
+      redirects to deephat.ai, "Deep Hat, formerly Whiterabbitneo, is Kindo's
+      uncensored cybersecurity model". The four "Use it for free" and "Try it
+      for free" buttons on that page all lead to the hosted app; the API route
+      on the same page is "Get a demo". The weights are on Hugging Face, which
+      is a licence rather than a free tier, and is not an endpoint anyone can
+      point an agent at without hosting it themselves.
+    reopen_if: >-
+      Deep Hat publishes an API with a free lane, rather than a hosted app and
+      open weights.
+
+  - domains: [phind.com]
+    name: Phind
+    checked_on: '2026-08-14'
+    reason: >-
+      Nothing could be verified, and that is the finding. www.phind.com and
+      www.phind.com/plans both answer HTTP 403 to every client tried here,
+      including one sending a full browser header set — so no probe on this
+      domain can read an offer, and this list would be repeating a claim rather
+      than checking one. Worth the record because the name is otherwise a
+      plausible candidate: a developer-facing answer engine with an editor
+      extension is exactly the shape CONTRIBUTING admits when the free usage is
+      bundled. Note also that gpt4free does not call phind.com at all — its
+      adapter points at phindai.org, an unrelated clone, now on the blocklist.
+    reopen_if: >-
+      Phind serves its plans page to a non-browser client, or publishes free
+      terms anywhere a probe can reach.
+
+  - domains: [yupp.ai]
+    name: Yupp
+    checked_on: '2026-08-14'
+    reason: >-
+      Unreadable rather than absent: yupp.ai answers HTTP 429 to every request
+      made here, browser headers included, and the docs.yupp.ai its adapter
+      implies does not resolve at all. gpt4free's own class for it carries
+      working = False and needs cloudscraper, which is the same verdict from the
+      other side. Nothing states an offer, so there is nothing to verify.
+    reopen_if: >-
+      Yupp serves a plan or docs page to an ordinary HTTP client, and that page
+      describes an API rather than a chat product.

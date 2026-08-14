@@ -127,3 +127,24 @@
     stated provenance and no legal pages is the unofficial-gateway case that
     api.airforce and tokenrouter.me are already here for.
 
+- domain: phindai.org
+  reason: >-
+    An unofficial clone trading on a real vendor's name: the page titles itself
+    "Phind AI: Search Engine for Developers" and answers its own FAQ with "Is
+    Phind search engine free to use ... It provides a completely free version
+    for all developers", while the actual Phind is phind.com, which is
+    unaffiliated and answers 403 to everything. gpt4free ships it as a keyless
+    backend, which is what it is — a free frontend over somebody else's paid
+    model, in the g4f.space shape. Blocked rather than watchlisted because the
+    risk here is a reader taking it for the vendor it imitates.
+- domain: yqcloud.top
+  reason: >-
+    AIchatOS2, an anonymous Chinese chat frontend serving proprietary models
+    with no account, no terms and no vendor behind it; gpt4free calls its
+    backend directly as api.binjie.fun. Reverse-engineered access to a paid
+    product, which is the standing reason on this list.
+- domain: binjie.fun
+  reason: >-
+    The API host behind yqcloud.top's AIchatOS2 frontend — same verdict, listed
+    separately because the adapter that uses it names this domain and not the
+    other one.
