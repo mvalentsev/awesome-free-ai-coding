@@ -147,3 +147,45 @@ read:
       It starts publishing a table of official free tiers — vendor, quota,
       source page — rather than provider adapters. A new adapter is not a
       reason: this read covered every one of them.
+
+  - url: https://github.com/nejib1/Free-LLM
+    name: nejib1/Free-LLM
+    checked_on: '2026-08-14'
+    reason: >-
+      The closest thing to this repository that exists as a list, and still not
+      a seventh feed. Read whole rather than by README — 185 files, 225KB, five
+      translations of the directory plus a code-examples folder per provider —
+      it carries 35 API providers and nine local runtimes. Thirty-one of the 35
+      already had a verdict here; the four that did not, Coze, Venice.ai,
+      Cerebrium and FriendliAI, were read from their own pages the same day and
+      are now in watchlist.yaml. Ten of the 35 appear in none of the six
+      curated feeds, which is the measurement that earned the sixth feed its
+      slot — but six of those ten were already carried here from direct reads,
+      so what a seventh feed would add is the four names this single read has
+      already spent. Accuracy is the other half of the answer. Its Cerebras row
+      is wrong in four columns at once — "No" credit card, "1,000,000 Tokens /
+      Day", "Free Forever", and a model list of Llama 3.1 8B/70B, Llama 4 Scout
+      and Qwen3 32B — where Cerebras' own docs, read here on 2026-08-14,
+      require a payment method before the API answers at all, expire the
+      credits 30 days after they are granted, answer "Is there a permanently
+      free tier?" with "No", and serve gpt-oss-120b, zai-glm-4.7 and
+      gemma-4-31b. It files Inference.net under permanent free tiers at 30 RPM
+      where that vendor's $0 plan is a gateway-and-tracing tier priced "$0 +
+      usage", and it still ships a code-examples directory for GitHub Models,
+      retired 2026-07-30. Nor is its site the machine-readable half:
+      free-llm.com/api/<slug> is a marketing landing page rather than JSON, and
+      /api/providers and /sitemap.xml answer a Cloudflare 403. What it does
+      share is structure — a "Credit Card?" column per row and a permanent /
+      renewable / one-time split, which are this registry's card_required and
+      category under other names — and one idea worth naming: it keeps a
+      per-tool configuration page for Claude Code, Cursor and Codex CLI beside
+      the per-provider snippets. Measured rather than admired, as with
+      gpt4free's routing config: freetier-render already generates
+      configs/litellm.yaml, configs/opencode.json and
+      configs/free-llm.env.example from the registry, and the tools that page
+      covers are configured by a base URL and a key, both of which those files
+      already carry — so the gap is three hand-written pages, not a capability.
+    reopen_if: >-
+      It publishes the directory as data rather than as a README — its own site
+      keeps the structured half behind Cloudflare — or its submissions start
+      surfacing providers the six curated feeds do not carry.

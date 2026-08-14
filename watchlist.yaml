@@ -387,7 +387,7 @@ watched:
     reopen_if: >-
       Baseten publishes the size of the signup credit.
 
-  - domains: [hyperbolic.ai]
+  - domains: [hyperbolic.ai, hyperbolic.xyz]
     name: Hyperbolic
     checked_on: '2026-08-14'
     reason: >-
@@ -395,7 +395,10 @@ watched:
       hyperbolic.ai/pricing is a 404 and the home page sells on-demand GPUs
       "billed by the hour" and reserved capacity at discounted rates. The $1
       inference credit third-party lists still quote is not on any page it
-      serves.
+      serves. Both domains are recorded because the lists still point at the
+      older one: hyperbolic.xyz/pricing and app.hyperbolic.xyz redirect to the
+      .ai host (measured 2026-08-14), so a verdict filed under one name would
+      have left the other free to be re-proposed.
     reopen_if: >-
       Hyperbolic publishes an inference free tier or signup credit again.
 
@@ -885,3 +888,71 @@ watched:
     reopen_if: >-
       Yupp serves a plan or docs page to an ordinary HTTP client, and that page
       describes an API rather than a chat product.
+
+  # The four names nejib1/Free-LLM carried that nothing here had a verdict on,
+  # read 2026-08-14. The list files all four as free — Coze and Venice under
+  # "permanent free tier", Cerebrium and Friendli as $30 and $10 signup credits.
+  - domains: [venice.ai]
+    name: Venice.ai
+    checked_on: '2026-08-14'
+    reason: >-
+      The Free plan does carry an "API Access" checkmark, and the docs say what
+      it is worth: "You can create a key before funding the account, but model
+      requests will not succeed until the account can consume DIEM, bundled
+      credits, or USD". DIEM comes from staking VVV and bundled credits from a
+      subscription, which venice.ai/pricing states from the other side — "Pro
+      subscribers get free-tier API access". So the free lane is a key that
+      cannot call anything, and every row of the docs price table is quoted in
+      dollars per million tokens.
+    reopen_if: >-
+      An unfunded Venice account gets a callable allowance, or a model appears
+      priced at zero for the Free plan.
+
+  - domains: [friendli.ai]
+    name: FriendliAI
+    checked_on: '2026-08-14'
+    reason: >-
+      friendli.ai/pricing prices everything it serves: per-token rates for the
+      Model APIs — GLM-5.2 at $1.4 in / $4.4 out per 1M, gemma-4-31B-it at
+      $0.14 / $0.4 — and per-second GPU time for dedicated endpoints, $2.9 an
+      hour on an A100 up to $12.0 on a B300. The word "free" does not occur in
+      the served text of that page at all, and its own "How do I get started?"
+      answer is sign up, generate a key, make a request, with no grant in
+      between. The $10 signup credit third-party lists quote is on none of it.
+    reopen_if: >-
+      FriendliAI states a signup grant or a zero-priced model on a page it
+      serves.
+
+  - domains: [cerebrium.ai]
+    name: Cerebrium
+    checked_on: '2026-08-14'
+    reason: >-
+      The wrong shape twice over. It is a serverless platform you deploy your
+      own container to rather than a model endpoint you can aim an agent at,
+      which is the BYOK case CONTRIBUTING excludes; and the free thing on
+      cerebrium.ai/pricing is the Hobby plan's allowance of seats and slots —
+      "Up to 3 deployed apps", 3 seats, 1 day of log retention — while the
+      compute underneath is billed throughout, the page's own worked example
+      putting 500,000 requests at "roughly $309" a month. No $30 credit appears
+      anywhere on it.
+    reopen_if: >-
+      Cerebrium starts serving hosted models on a free allowance rather than
+      hosting yours.
+
+  - domains: [coze.com]
+    name: Coze
+    checked_on: '2026-08-14'
+    reason: >-
+      Nothing here can be read, so nothing can be verified: www.coze.com
+      answers every path tried with the same 43,754-byte SPA shell — the API
+      overview, the pricing guide, /robots.txt and /sitemap.xml alike — and the
+      document API behind that shell replies {"code":700012006,"msg":"Login
+      verification is invalid"}. No quota, model list or terms are served
+      anywhere a probe could anchor. The shape is doubtful as well — its own
+      og:title calls it an "AI Agent Intelligent Office Platform" and its API
+      is /v3/chat against bots built inside its workspace, which is the
+      hosted-app-builder case CONTRIBUTING excludes — but the verification rule
+      alone settles it, the way it settled Morph LLM.
+    reopen_if: >-
+      Coze serves its developer docs or pricing to an ordinary HTTP client, and
+      that page describes model access rather than bot invocations.
