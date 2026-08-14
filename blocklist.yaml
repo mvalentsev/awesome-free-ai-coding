@@ -114,4 +114,18 @@
   reason: >-
     The API host 肖恩AI publishes for itself (speed.toter.me). Same service as
     supxh.xin.
+- domain: llm7.io
+  reason: >-
+    Moved here from the watchlist on 2026-08-14, and the record it replaces was
+    wrong on the facts: LLM7 does have a recurring free lane. docs.llm7.io says
+    "turbo models are fast models available to anonymous and free-token users",
+    five of its 36 rows carry that tier, and docs.llm7.io/limits grants
+    anonymous callers 500,000 tokens per 24 hours with no signup at all. The
+    disqualifier is provenance, not absence. `owned_by` is empty on all 36 rows;
+    the paid 31 include claude-opus-5, claude-fable-5, gpt-5.6-sol, grok-4.6 and
+    gemini-omni-flash at a fraction of their list price; and llm7.io/terms,
+    /privacy and /about all answer 404, so the service publishes no legal entity
+    and no terms of any kind. Serving four vendors' flagship models with no
+    stated provenance and no legal pages is the unofficial-gateway case that
+    api.airforce and tokenrouter.me are already here for.
 

@@ -1654,3 +1654,47 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 90
+- id: poolside
+  name: Poolside Platform
+  category: api-free-tier
+  url: https://poolside.ai
+  source_urls:
+  - https://docs.poolside.ai/get-started/quickstart
+  - https://docs.poolside.ai/api/overview
+  card_required: false
+  offering: Free self-serve developer access to the Laguna coding models, direct from
+    the vendor whose models this list already carries second-hand through OpenRouter
+    and Kilo Gateway
+  limits: Poolside publishes none. Its quickstart offers "fast, free developer access"
+    as the recommended of four access paths, with the organisation's own deployment
+    a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the
+    docs site states a quota, a rate limit or a duration. Treat it as unquantified
+    rather than as generous
+  models: []
+  api:
+    base_url: https://inference.poolside.ai/v1
+    key_url: https://platform.poolside.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - poolside/laguna-s-2.1
+    - poolside/laguna-xs-2.1
+    note: the two ids come from docs.poolside.ai/api/overview, a different page from
+      the one the probe reads — the vendor documents no free-versus-paid split for
+      Platform keys anywhere, so this row claims no free models and names none in
+      its column. The key is created by signing in to Poolside Platform, whose
+      dashboard sits behind a Cloudflare check no probe can read
+  probe:
+    type: page-keywords
+    endpoint: https://docs.poolside.ai/get-started/quickstart
+    keywords:
+    - Choose this option for fast, free developer access
+    - fastest way to get a free Poolside API key
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-14'
+  last_verified: '2026-08-14'
+  probe_failures: 0
+  provisional: true
+  rank: 100

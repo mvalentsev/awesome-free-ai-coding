@@ -244,17 +244,6 @@ watched:
     reopen_if: >-
       TokenRouter.io starts bundling model usage rather than routing only.
 
-  - domains: [llm7.io]
-    name: LLM7
-    checked_on: '2026-08-11'
-    reason: >-
-      Carries a reputation for a shared free tier that its own catalog no
-      longer supports: 35 models on api.llm7.io, every one of them tier `pro`
-      or `turbo` and usage-priced, zero free rows. Curated feeds still credit
-      it with 15 free models, which is how it keeps coming back.
-    reopen_if: >-
-      A zero-priced row reappears in the api.llm7.io catalog.
-
   - domains: [morphllm.com]
     name: Morph (fast-apply)
     checked_on: '2026-07-22'

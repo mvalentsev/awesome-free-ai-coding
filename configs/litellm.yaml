@@ -318,6 +318,16 @@ model_list:
     model: openai/auto:free
     api_base: https://bazaarlink.ai/api/v1
     api_key: os.environ/BAZAARLINK_API_KEY
+- model_name: poolside/poolside/laguna-s-2.1
+  litellm_params:
+    model: openai/poolside/laguna-s-2.1
+    api_base: https://inference.poolside.ai/v1
+    api_key: os.environ/POOLSIDE_API_KEY
+- model_name: poolside/poolside/laguna-xs-2.1
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1
+    api_base: https://inference.poolside.ai/v1
+    api_key: os.environ/POOLSIDE_API_KEY
 - model_name: requesty/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b

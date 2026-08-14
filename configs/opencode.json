@@ -396,6 +396,22 @@
         }
       }
     },
+    "poolside": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Poolside Platform",
+      "options": {
+        "baseURL": "https://inference.poolside.ai/v1",
+        "apiKey": "{env:POOLSIDE_API_KEY}"
+      },
+      "models": {
+        "poolside/laguna-s-2.1": {
+          "name": "poolside/laguna-s-2.1"
+        },
+        "poolside/laguna-xs-2.1": {
+          "name": "poolside/laguna-xs-2.1"
+        }
+      }
+    },
     "requesty": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Requesty",

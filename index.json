@@ -1926,6 +1926,48 @@
       "provisional": true,
       "rank": 90,
       "archived": false
+    },
+    {
+      "id": "poolside",
+      "name": "Poolside Platform",
+      "category": "api-free-tier",
+      "url": "https://poolside.ai",
+      "source_urls": [
+        "https://docs.poolside.ai/get-started/quickstart",
+        "https://docs.poolside.ai/api/overview"
+      ],
+      "card_required": false,
+      "offering": "Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway",
+      "limits": "Poolside publishes none. Its quickstart offers \"fast, free developer access\" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the docs site states a quota, a rate limit or a duration. Treat it as unquantified rather than as generous",
+      "models": [],
+      "api": {
+        "base_url": "https://inference.poolside.ai/v1",
+        "key_url": "https://platform.poolside.ai",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "poolside/laguna-s-2.1",
+          "poolside/laguna-xs-2.1"
+        ],
+        "note": "the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split for Platform keys anywhere, so this row claims no free models and names none in its column. The key is created by signing in to Poolside Platform, whose dashboard sits behind a Cloudflare check no probe can read"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.poolside.ai/get-started/quickstart",
+        "keywords": [
+          "Choose this option for fast, free developer access",
+          "fastest way to get a free Poolside API key"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-08-14",
+      "last_verified": "2026-08-14",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 100,
+      "archived": false
     }
   ],
   "watchlist": [
@@ -2069,16 +2111,6 @@
       "checked_on": "2026-08-05",
       "reason": "Legitimate commercial routing layer, and the third unrelated service to carry the TokenRouter name — check the TLD before acting on any lead here, because .com is the listed PaleBlueDot gateway and .me is blocklisted. Its quickstart says \"You need at least one AI provider key to route requests\" and sends you to platform.openai.com, i.e. BYOK-only with no bundled model usage, and its \"Free tier available\" covers the routing plan, not tokens — the pricing page's own words are \"Pay only for routing and insights\". Not blocklisted precisely because nothing is wrong with it.",
       "reopen_if": "TokenRouter.io starts bundling model usage rather than routing only.",
-      "current": true
-    },
-    {
-      "domains": [
-        "llm7.io"
-      ],
-      "name": "LLM7",
-      "checked_on": "2026-08-11",
-      "reason": "Carries a reputation for a shared free tier that its own catalog no longer supports: 35 models on api.llm7.io, every one of them tier `pro` or `turbo` and usage-priced, zero free rows. Curated feeds still credit it with 15 free models, which is how it keeps coming back.",
-      "reopen_if": "A zero-priced row reappears in the api.llm7.io catalog.",
       "current": true
     },
     {
