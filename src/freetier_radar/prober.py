@@ -449,6 +449,11 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     ]
     (failures_dir / "failures.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False))
     print(f"probed {len(entries)} entries, {len(flagged)} need attention")
+    # failures.json never leaves the runner, so the count alone was the whole
+    # public account of a probe that fails from CI and passes from a laptop —
+    # the one class of failure that cannot be reproduced locally.
+    for row in payload:
+        print(f"  {row['id']}: {row['status']} — {row['detail'] or 'no detail'}")
 
 
 def main() -> None:

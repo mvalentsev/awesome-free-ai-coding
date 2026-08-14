@@ -788,6 +788,38 @@ async def test_a_probe_run_records_what_changed_beside_the_registry(tmp_path):
 
 
 @respx.mock
+async def test_the_summary_line_names_what_needs_attention(tmp_path, capsys):
+    """failures.json stays on the runner, so "1 need attention" in the log was
+    the whole account of a probe that passes from a laptop and fails from CI —
+    the one discrepancy nobody can reproduce locally by definition. The id and
+    its reason belong in the line everyone reads."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="nothing the entry claims is on this page"))
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [page_entry()])
+
+    await _amain(registry, tmp_path / "failures", dry_run=True)
+
+    out = capsys.readouterr().out
+    assert "probed 1 entries, 1 need attention" in out
+    assert "pagey" in out and "qwen3-coder" in out
+
+
+@respx.mock
+async def test_a_clean_run_says_so_without_a_trailing_list(tmp_path, capsys):
+    """Nothing flagged has to read as nothing flagged — an empty bracket after
+    the count is the shape that makes a green run look broken."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder free tier no credit card"))
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [page_entry()])
+
+    await _amain(registry, tmp_path / "failures", dry_run=True)
+
+    assert "probed 1 entries, 0 need attention\n" in capsys.readouterr().out
+
+
+@respx.mock
 async def test_a_dry_run_records_no_history(tmp_path):
     """A local read must leave no trace, exactly as it leaves no verification
     date — the history is a log of what was published, not of who looked."""
