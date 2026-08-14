@@ -29,7 +29,8 @@ dismissed:
   # 2026-08-14, with no glm-5 row at all. Each of these five would replace a
   # verified free family with one nobody has verified as free on that vendor.
   # Left deliberately un-dismissed from the same run: routeway llama-3.3 →
-  # llama-4, which nobody here has checked against Routeway's catalog.
+  # llama-4, which nobody here had checked against Routeway's catalog. Checked
+  # on 2026-08-14 and dismissed at the bottom of this file.
   - entry: zai-glm
     family: glm-4.5-flash
     superseded_by: glm-5
@@ -62,3 +63,30 @@ dismissed:
     reason: >-
       Cerebras' Free Trial table listed zai-glm-4.7 and no glm-5 row on
       2026-08-14, and that trial needs a card in any case.
+
+  # The two bumps the 2026-08-14 rehearsal offered that were left for a checker.
+  # Both are the same error the glm-5 block above describes, arriving by the two
+  # other routes a vendor leaves open: a priced catalog that carries the newer
+  # generation outside the free lane, and a page that contradicts itself.
+  - entry: routeway
+    family: llama-3.3
+    superseded_by: llama-4
+    dismissed_on: 2026-08-14
+    reason: >-
+      Routeway does carry Llama 4 — llama-4-maverick at $0.11/$0.44 and
+      llama-4-scout at $0.10/$0.225 per 1M tokens. Its free lane is the
+      `:free` suffix priced at zero, and the only Llama in it is
+      llama-3.3-70b-instruct:free (11 free ids read from
+      api.routeway.ai/v1/models on 2026-08-14). A catalog a row can reach is
+      not the same as the lane that row is listed for.
+  - entry: kiro
+    family: claude-sonnet-4.5
+    superseded_by: claude-sonnet-4.6
+    dismissed_on: 2026-08-14
+    reason: >-
+      kiro.dev/docs/models prices every model against an explicit Free column:
+      Sonnet 4.5 is ticked, Sonnet 4.6 is blank and sits with the Opus models
+      the same page sells to paid plans. The pricing page the probe reads says
+      both — its plan card and its footnote say the free tier gets Sonnet 4.5,
+      its FAQ prose says Sonnet 4.6 — so this bump will be proposed again from
+      that page every run, which is what this file is for.

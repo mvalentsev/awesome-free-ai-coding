@@ -126,6 +126,7 @@ entries:
   source_urls:
   - https://inference-docs.cerebras.ai/support/rate-limits
   - https://www.cerebras.ai/pricing
+  - https://inference-docs.cerebras.ai/models
   card_required: true
   offering: Very fast inference; $5 in trial credits that expire in 30 days, card
     required before the API answers at all
@@ -585,11 +586,19 @@ entries:
   url: https://kiro.dev/
   source_urls:
   - https://kiro.dev/pricing/
+  - https://kiro.dev/docs/models
   card_required: false
   offering: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon
     Q Developer) with Claude Sonnet 4.5 and open-weight models
-  limits: 50 credits/month; requires social login or AWS Builder ID; credits do not
-    roll over
+  limits: '50 credits/month; requires social login or AWS Builder ID; credits do not
+    roll over; not available in AWS GovCloud, and free-tier requests are always served
+    from the US. Kiro''s docs settle what those credits reach, in a table with a Free
+    column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek
+    3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku
+    4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on exactly
+    that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose says
+    the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked
+    2026-08-14)'
   models:
   - family: claude-sonnet-4.5
     tier: strong
