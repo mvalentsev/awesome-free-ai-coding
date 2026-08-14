@@ -90,3 +90,39 @@ dismissed:
       both — its plan card and its footnote say the free tier gets Sonnet 4.5,
       its FAQ prose says Sonnet 4.6 — so this bump will be proposed again from
       that page every run, which is what this file is for.
+
+  # Three of the six bumps the 2026-08-14 rehearsal on b4e0b3b offered, each
+  # checked against the vendor rather than against the proposal. The other
+  # three were left standing because nobody has read their pages today:
+  # zai-glm glm-4.5-flash → glm-4.6v-flash and glm-4.6v-flash → glm-4.7, both
+  # inside z.ai's own Flash line, and upstage solar-mini → solar-pro-3, where
+  # the row already lists both families.
+  - entry: google-jules
+    family: gemini-2.5
+    superseded_by: gemini-3.1-pro
+    dismissed_on: 2026-08-14
+    reason: >-
+      Gemini 3 Pro is what the paid plans buy. jules.google/docs/usage-limits
+      sets Model Access per plan: "Gemini 2.5 Pro" on the free Jules row,
+      "Higher access to the latest model (starting with Gemini 3 Pro)" on
+      Jules in Pro and "Priority access" on Ultra. The free row is pinned to
+      2.5 deliberately, and gemini-3.1-pro is not a name that page uses at all.
+  - entry: groq-free
+    family: llama-3.3
+    superseded_by: llama-4
+    dismissed_on: 2026-08-14
+    reason: >-
+      The bump 9c92a9b removed, arriving again from the same bytes that caused
+      it: console.groq.com/docs/rate-limits carries llama-4 only inside the
+      OpenAPI schema it embeds, while the Free Plan Limits table it renders has
+      thirteen rows and no Llama 4 among them. Expect this one every run — the
+      id is in the page and the offer is not.
+  - entry: vercel-ai-gateway
+    family: glm-4.6v-flash
+    superseded_by: glm-4.7
+    dismissed_on: 2026-08-14
+    reason: >-
+      Measured off ai-gateway.vercel.sh/v1/models on 2026-08-14: zai/glm-4.7 is
+      $0.60/$2.20 per 1M, and of the 327 models in that catalog exactly two are
+      priced 0 in and 0 out — poolside/laguna-s-2.1-free and zai/glm-4.6v-flash.
+      The Flash row is the free lane; every other GLM there is metered.
