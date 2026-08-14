@@ -449,27 +449,32 @@ entries:
   provisional: false
   rank: 70
 - id: windsurf
-  name: Windsurf
+  name: Devin Desktop (formerly Windsurf)
   category: trial
-  url: https://windsurf.com
+  url: https://devin.ai/desktop
   source_urls:
-  - https://windsurf.com/pricing
+  - https://devin.ai/pricing
+  - https://devin.ai/blog/windsurf-is-now-devin-desktop
   card_required: false
-  offering: Free plan + trial of paid tiers
+  offering: Free plan of Cognition's desktop coding agent — the IDE that shipped as
+    Windsurf
   limits: 'The $0 plan is "Light quota to code with agents", "Limited model availability",
     unlimited inline edits and unlimited Tab completions. Which models that quota
-    reaches is not published: "access to OpenAI, Claude, and Gemini frontier models"
-    is what the $20 Pro plan adds, and the only mention of a small model anywhere
-    on the page is a tip about making a quota last, not a plan feature. The page is
-    now titled "Plans and Pricing | Devin" — Windsurf renders under Cognition''s brand
-    (read 2026-08-14)'
+    reaches is published nowhere. "Access to OpenAI, Claude, and Gemini frontier models"
+    is what the $20 Pro plan adds; the only mention of a small model on the whole
+    page is a tip about making a quota last; and the one tier-tagged catalogue Cognition
+    serves, docs.devin.ai/desktop/models, carries TEAMS_TIER_PRO and TEAMS_TIER_ENTERPRISE_SAAS
+    and no free tier at all, pricing Claude Haiku 4.5 under Enterprise. The product
+    was renamed on 2 June 2026 — "Windsurf is now Devin Desktop" — and windsurf.com,
+    windsurf.com/pricing and docs.windsurf.com all 308 to devin.ai, where the word
+    Windsurf no longer appears on the pricing page (read 2026-08-14)'
   models: []
   probe:
     type: page-keywords
-    endpoint: https://windsurf.com/pricing
+    endpoint: https://devin.ai/pricing
     keywords:
     - light quota to code with agents
-    - free
+    - Limited model availability
     free_marker: ''
     dead_markers: []
     require_zero_price: false

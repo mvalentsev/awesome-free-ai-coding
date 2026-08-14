@@ -533,7 +533,13 @@ watched:
       before your paid balance") but nothing states that a new account is
       granted any, how many, or how often. Our probe never noticed, because it
       anchored on the endpoint path and the model name rather than on the
-      offer — novita's failure, again.
+      offer — novita's failure, again. Where our figure came from, for whoever
+      is tempted to re-add it: free daily quotas at LongCat belong to the era
+      before GA. The Chinese change log grants one on 2026-04-20, to the
+      PREVIEW model — "初始额度5,000,000 Tokens/天 ... 每日最多可获得120,000,000
+      Tokens" — and 赠送 appears nowhere in that log at all. The reference
+      response for GET /openai/v1/models in the docs now lists exactly one
+      entry, "id": "LongCat-2.0", "owned_by": "LongCat".
     reopen_if: >-
       LongCat publishes a free daily token quota, or a stated signup grant, on
       a server-rendered page of its own.
