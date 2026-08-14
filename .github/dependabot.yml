@@ -1,0 +1,16 @@
+# Here for one reason: `astral-sh/setup-uv` is pinned to an exact version in
+# both workflows because its publisher stopped shipping major tags at v8, and a
+# pin nobody watches is how a workflow ends up three majors behind — which is
+# exactly where these two were before 2026-08-14. The other two actions float
+# their major tag and are along for the ride.
+#
+# Monthly, because the only cost of a late action bump is a deprecation warning,
+# and this repository already opens a pull request twice a week.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore

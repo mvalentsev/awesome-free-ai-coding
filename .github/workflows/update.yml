@@ -33,9 +33,10 @@ jobs:
     # for the default six hours.
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v5
+      # Exact by necessity — see the note in ci.yml.
+      - uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: "3.12"
 
@@ -84,7 +85,7 @@ jobs:
 
       - name: Open scout PR
         if: ${{ !inputs.dry_run }}
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: scout/weekly
           delete-branch: true

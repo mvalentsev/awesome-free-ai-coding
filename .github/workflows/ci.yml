@@ -12,9 +12,14 @@ jobs:
   test:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v5
+      # An exact version where the two lines around it float a major tag:
+      # setup-uv stopped publishing major and minor tags at v8, on purpose, so
+      # `@v10` is a ref that does not exist and the step fails outright. The
+      # pin is watched by .github/dependabot.yml, which is the only reason it
+      # can be this specific without going stale.
+      - uses: astral-sh/setup-uv@v10.0.1
         with:
           python-version: "3.12"
 
