@@ -56,11 +56,20 @@
         "apiKey": "{env:GROQ_API_KEY}"
       },
       "models": {
-        "llama-4": {
-          "name": "llama-4"
+        "llama-3.3-70b-versatile": {
+          "name": "llama-3.3-70b-versatile"
         },
-        "qwen3": {
-          "name": "qwen3"
+        "llama-3.1-8b-instant": {
+          "name": "llama-3.1-8b-instant"
+        },
+        "openai/gpt-oss-120b": {
+          "name": "openai/gpt-oss-120b"
+        },
+        "openai/gpt-oss-20b": {
+          "name": "openai/gpt-oss-20b"
+        },
+        "qwen/qwen3.6-27b": {
+          "name": "qwen/qwen3.6-27b"
         }
       }
     },
@@ -268,11 +277,7 @@
         "baseURL": "https://api.mistral.ai/v1",
         "apiKey": "{env:MISTRAL_API_KEY}"
       },
-      "models": {
-        "mistral-medium": {
-          "name": "mistral-medium"
-        }
-      }
+      "models": {}
     },
     "pollinations": {
       "npm": "@ai-sdk/openai-compatible",
@@ -332,8 +337,14 @@
         "apiKey": "{env:GOOGLE_AI_STUDIO_API_KEY}"
       },
       "models": {
-        "gemini-2.5": {
-          "name": "gemini-2.5"
+        "gemini-3.7-flash": {
+          "name": "gemini-3.7-flash"
+        },
+        "gemini-3.5-flash-lite": {
+          "name": "gemini-3.5-flash-lite"
+        },
+        "gemini-2.5-pro": {
+          "name": "gemini-2.5-pro"
         }
       }
     },

@@ -48,14 +48,29 @@ model_list:
     model: openai/poolside/laguna-xs-2.1:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
-- model_name: groq-free/llama-4
+- model_name: groq-free/llama-3.3-70b-versatile
   litellm_params:
-    model: openai/llama-4
+    model: openai/llama-3.3-70b-versatile
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
-- model_name: groq-free/qwen3
+- model_name: groq-free/llama-3.1-8b-instant
   litellm_params:
-    model: openai/qwen3
+    model: openai/llama-3.1-8b-instant
+    api_base: https://api.groq.com/openai/v1
+    api_key: os.environ/GROQ_API_KEY
+- model_name: groq-free/openai/gpt-oss-120b
+  litellm_params:
+    model: openai/openai/gpt-oss-120b
+    api_base: https://api.groq.com/openai/v1
+    api_key: os.environ/GROQ_API_KEY
+- model_name: groq-free/openai/gpt-oss-20b
+  litellm_params:
+    model: openai/openai/gpt-oss-20b
+    api_base: https://api.groq.com/openai/v1
+    api_key: os.environ/GROQ_API_KEY
+- model_name: groq-free/qwen/qwen3.6-27b
+  litellm_params:
+    model: openai/qwen/qwen3.6-27b
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
 - model_name: kilo-code/kilo-auto/free
@@ -223,11 +238,6 @@ model_list:
     model: openai/mercury-edit-2
     api_base: https://api.inceptionlabs.ai/v1
     api_key: os.environ/INCEPTION_LABS_API_KEY
-- model_name: mistral-free/mistral-medium
-  litellm_params:
-    model: openai/mistral-medium
-    api_base: https://api.mistral.ai/v1
-    api_key: os.environ/MISTRAL_API_KEY
 - model_name: pollinations/gpt-oss
   litellm_params:
     model: openai/gpt-oss
@@ -248,9 +258,19 @@ model_list:
     model: openai/command-a
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
-- model_name: google-ai-studio/gemini-2.5
+- model_name: google-ai-studio/gemini-3.7-flash
   litellm_params:
-    model: openai/gemini-2.5
+    model: openai/gemini-3.7-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemini-3.5-flash-lite
+  litellm_params:
+    model: openai/gemini-3.5-flash-lite
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemini-2.5-pro
+  litellm_params:
+    model: openai/gemini-2.5-pro
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
 - model_name: aihubmix/coding-glm-5.2-free
