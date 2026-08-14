@@ -51,7 +51,12 @@ CURATED_FEEDS = [
     # per gateway, written by someone who had to make each one answer. That makes
     # it the densest lead source here and the most opinionated — it carries
     # NavyAI and AINative next to SEA-LION, so the usual rule holds twice over:
-    # leads only, official-page proof still required.
+    # leads only, official-page proof still required. Its verdicts are dated
+    # opinions and two of them have now been wrong here: it says SambaNova's free
+    # tier is "permanently gone" while docs.sambanova.ai still keys a Free Tier to
+    # "no payment method linked with your account" (checked 2026-08-06 and again
+    # 2026-08-14), and it credits AINative with "a recurring ~10M tokens/month free
+    # allocation" that ainative.studio/pricing contradicts on its own page.
     "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/main/server/src/providers/index.ts",
 ]
 
