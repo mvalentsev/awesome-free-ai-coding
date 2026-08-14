@@ -242,7 +242,7 @@ This repository is an autonomous system, not a hand-curated list:
 
 ```mermaid
 flowchart LR
-    S["🌐 web scout<br/>Tavily · HN · GitHub · curated feeds"] --> L["🧠 LLM extract<br/>(evidence only)"]
+    S["🌐 web scout<br/>Tavily · HN · GitHub · feeds · models.dev"] --> L["🧠 LLM extract<br/>(evidence only)"]
     L --> G{"🛡 probe gate"}
     G -->|verified| PR["📬 pull request"]
     PR -->|human merge| R[("registry.yaml")]
@@ -263,7 +263,7 @@ flowchart LR
 
 - **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. `Verified` dates are earned by passing a probe, never typed by hand.
 - **Anchored on the offer, not on the word "free".** Each probe anchors on something that dies with the offer — the free model's id, its quota figure, its price row, or a sentence quoted from the vendor's own page. The word "free" survives on a vendor's page for months after the free tier does not, and so do "hobby" and "monthly credits"; validation rejects all of them. Where a gateway publishes prices, the probe also demands that the free model still costs zero — an id can stay in the catalog long after it stops being free. And a bot wall answering in place of a vendor's page counts as "could not check", never as "the offer is gone".
-- **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
+- **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub, curated feeds and a digest of every models.dev provider publishing a zero-cost model; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after 90 days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on this page, above, with what would change the answer.

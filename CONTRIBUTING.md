@@ -61,8 +61,9 @@ unavailable`.
 `registry.yaml` is the single source of truth. `README.md` is **generated** — never
 edit it by hand. Twice a week GitHub Actions probes every entry (live model APIs and
 pricing pages), commits verification results, and a web-evidence scout (Tavily, Hacker
-News, GitHub search, curated feeds → LLM extraction → live probe gate) proposes new
-entries via pull request. Humans review the PR; robots do everything else.
+News, GitHub search, curated feeds, and a digest of every models.dev provider that
+publishes a zero-cost model → LLM extraction → live probe gate) proposes new entries
+via pull request. Humans review the PR; robots do everything else.
 
 ## Development
 

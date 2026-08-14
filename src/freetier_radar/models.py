@@ -4,6 +4,7 @@ import re
 from datetime import date
 from enum import Enum
 from pathlib import Path
+from urllib.parse import urlparse
 
 import yaml
 from pydantic import BaseModel, model_validator
@@ -215,6 +216,25 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+
+def domain_of(url: str) -> str:
+    return urlparse(url).netloc.lower().removeprefix("www.")
+
+
+def known_domains(entries: list[Entry]) -> set[str]:
+    """Every host the registry already reaches an entry at.
+
+    All three matter, which is what makes this a function rather than a set
+    comprehension at the call site: NVIDIA is listed at build.nvidia.com,
+    documented at docs.api.nvidia.com and served at integrate.api.nvidia.com,
+    and a set built from the url alone reported our own entry back to us as an
+    undiscovered provider.
+    """
+    domains = {domain_of(e.url) for e in entries}
+    domains |= {domain_of(u) for e in entries for u in e.source_urls}
+    domains |= {domain_of(e.api.base_url) for e in entries if e.api and e.api.base_url}
+    return {d for d in domains if d}
 
 
 ARCHIVE_AFTER_DAYS = 60

@@ -3,8 +3,19 @@ import respx
 
 from freetier_radar.discovery import (
     Evidence, Hit, _feed_excerpt, domain_of, fetch_page_texts, format_evidence,
-    gather_evidence, github_search, hn_search, tavily_search,
+    gather_evidence, github_search, hn_search, models_dev_digest, tavily_search,
 )
+
+MODELS_DEV = "https://models.dev/api.json"
+
+
+def provider(pid, api, *costs, doc=None, name=None):
+    """One models.dev provider: a cost pair per model, in that catalog's shape."""
+    return {
+        "id": pid, "name": name or pid.title(), "api": api, "doc": doc,
+        "models": {f"m{i}": {"id": f"{pid}/m{i}", "cost": {"input": c[0], "output": c[1]}}
+                   for i, c in enumerate(costs)},
+    }
 
 
 def test_domain_of():
@@ -67,6 +78,7 @@ def test_gather_evidence_keyless_dedup_and_filters(monkeypatch):
     respx.get("https://newtool.dev/pricing").mock(return_value=httpx.Response(
         200, text="<html><body>Generous free tier</body></html>"
     ))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={}))
     with httpx.Client() as c:
         ev = gather_evidence(["q1"], {"x.ai"}, env={}, http=c)
     assert [h.url for h in ev.hits] == ["https://newtool.dev/pricing"]
@@ -104,10 +116,29 @@ def test_gather_evidence_stores_the_excerpt_not_the_whole_feed(monkeypatch):
         return_value=httpx.Response(200, json={"items": []}))
     respx.get("https://raw.example.com/list.md").mock(
         return_value=httpx.Response(200, text="first provider" + "." * 100 + "last provider"))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={}))
     with httpx.Client() as c:
         ev = gather_evidence(["q1"], set(), env={}, http=c)
     feed = ev.feeds["https://raw.example.com/list.md"]
     assert feed.startswith("first provider") and feed.endswith("last provider")
+
+
+@respx.mock
+def test_gather_evidence_collects_the_models_dev_digest(monkeypatch):
+    import freetier_radar.discovery as disc
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [])
+    respx.get("https://hn.algolia.com/api/v1/search").mock(
+        return_value=httpx.Response(200, json={"hits": []}))
+    respx.get("https://api.github.com/search/repositories").mock(
+        return_value=httpx.Response(200, json={"items": []}))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0)),
+        "known": provider("known", "https://api.known.ai/v1", (0, 0)),
+    }))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], {"known.ai"}, env={}, http=c)
+    assert "newgw" in ev.digests[MODELS_DEV] and "known" not in ev.digests[MODELS_DEV]
+    assert "models.dev" in ev.providers
 
 
 @respx.mock
@@ -179,6 +210,75 @@ def test_a_page_fetch_keeps_its_own_timeout_when_the_budget_is_wide():
         fetch_page_texts(["https://ok.dev"], c, time_left=lambda: 900.0)
     timeout = route.calls.last.request.extensions["timeout"]
     assert timeout == {"connect": 10.0, "read": 30.0, "write": 30.0, "pool": 30.0}
+
+
+@respx.mock
+def test_the_digest_names_a_provider_with_a_zero_cost_row():
+    """The point of the source: 185 providers carrying a machine-readable price
+    per model, which is a lead stream no prose feed can match."""
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0), (1.5, 3.0),
+                          doc="https://newgw.com/docs", name="NewGW"),
+        "paidgw": provider("paidgw", "https://api.paidgw.com/v1", (1.0, 2.0)),
+    }))
+    with httpx.Client() as c:
+        digest = models_dev_digest(c, known_domains=set())
+    assert "newgw (NewGW)" in digest and "https://api.newgw.com/v1" in digest
+    assert "1/2 rows at cost 0" in digest and "newgw/m0" in digest
+    assert "paidgw" not in digest
+
+
+@respx.mock
+def test_the_digest_leaves_out_what_the_curated_files_already_answer():
+    """A digest that re-proposes the registry is noise the scout pays for twice."""
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "known": provider("known", "https://api.known.ai/v1", (0, 0)),
+        "sub": provider("sub", "https://api.sub.known.ai/v1", (0, 0)),
+    }))
+    with httpx.Client() as c:
+        digest = models_dev_digest(c, known_domains={"known.ai"})
+    assert digest == ""
+
+
+@respx.mock
+def test_the_digest_leaves_out_a_local_runtime():
+    """LMStudio and its kin publish a loopback address and a catalog of models
+    priced 0 — free because you are the one hosting them, which is not an offer
+    anyone can be pointed at."""
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "lmstudio": provider("lmstudio", "http://127.0.0.1:1234/v1", (0, 0)),
+        "local": provider("local", "http://localhost:8080/v1", (0, 0)),
+    }))
+    with httpx.Client() as c:
+        assert models_dev_digest(c, known_domains=set()) == ""
+
+
+@respx.mock
+def test_the_digest_says_what_a_zero_in_this_catalog_does_not_mean():
+    """Verified 2026-08-14: kenari reads 38/38 at zero because it quotes IDR in a
+    unit models.dev could not parse, and every *-coding-plan provider reads zero
+    because the usage is inside a paid subscription. A lead stream that does not
+    carry its own caveat is a proposal generator."""
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0)),
+    }))
+    with httpx.Client() as c:
+        digest = models_dev_digest(c, known_domains=set())
+    assert "subscription" in digest and "currency" in digest
+
+
+@respx.mock
+def test_the_digest_is_empty_rather_than_raising_when_the_catalog_is_down():
+    """An optional source must never sink the phase that carries the others."""
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(503))
+    with httpx.Client() as c:
+        assert models_dev_digest(c, known_domains=set()) == ""
+
+
+def test_format_evidence_renders_a_digest_under_its_own_heading():
+    ev = Evidence(digests={MODELS_DEV: "- newgw (NewGW) ..."})
+    text = format_evidence(ev)
+    assert "DERIVED FROM" in text and MODELS_DEV in text and "- newgw (NewGW) ..." in text
 
 
 def test_format_evidence_and_is_empty():

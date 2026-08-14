@@ -18,8 +18,8 @@ from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, g
 # The curated-file loaders live in models.py; re-exported here because this is
 # where callers and tests have always reached for them.
 from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_blocked,
-                     is_watch_current, load_blocklist, load_dismissed, load_registry,
-                     load_watchlist, save_registry, watch_match)
+                     is_watch_current, known_domains, load_blocklist, load_dismissed,
+                     load_registry, load_watchlist, save_registry, watch_match)
 from .prober import challenge_marker_hit, check_content
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
@@ -833,9 +833,7 @@ def main() -> None:
         force=os.environ.get("SCOUT_FORCE_BACKEND"),
     )
 
-    known_domains = {domain_of(e.url) for e in entries}
-    known_domains |= {domain_of(u) for e in entries for u in e.source_urls}
-    evidence = gather_evidence(DISCOVERY_QUERIES, known_domains, os.environ,
+    evidence = gather_evidence(DISCOVERY_QUERIES, known_domains(entries), os.environ,
                                time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining)
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
           f"providers: {', '.join(evidence.providers) or 'none'}")

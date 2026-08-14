@@ -7,7 +7,7 @@ from pydantic import ValidationError
 import yaml
 
 from freetier_radar.models import (WATCH_RECHECK_DAYS, Entry, Watched, is_anchor,
-                                    load_registry, load_watchlist, save_registry,
+                                    known_domains, load_registry, load_watchlist, save_registry,
                                     watch_match)
 
 
@@ -161,3 +161,24 @@ def test_a_missing_watchlist_is_an_empty_one(tmp_path: Path):
 def test_a_watch_entry_needs_a_domain():
     with pytest.raises(ValidationError):
         Watched.model_validate(watched(domains=[]))
+
+
+def test_known_domains_covers_where_an_entry_is_actually_reached():
+    """NVIDIA is the case that made this a function. The registry reaches it at
+    build.nvidia.com while models.dev lists integrate.api.nvidia.com, and a
+    known-domain set built from the url alone reported our own entry as a new
+    lead. An entry is known at every host it publishes."""
+    e = Entry.model_validate({
+        **sample_entry(),
+        "url": "https://build.nvidia.com",
+        "source_urls": ["https://docs.api.nvidia.com/nim/"],
+        "api": {"base_url": "https://integrate.api.nvidia.com/v1", "auth": "api-key"},
+    })
+    assert known_domains([e]) == {
+        "build.nvidia.com", "docs.api.nvidia.com", "integrate.api.nvidia.com",
+    }
+
+
+def test_known_domains_of_an_entry_without_an_api_block():
+    e = Entry.model_validate(sample_entry())
+    assert known_domains([e]) == {"openrouter.ai"}

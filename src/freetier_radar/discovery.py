@@ -11,12 +11,17 @@ the run, so the scout always gets the best evidence available.
 """
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass, field
 from typing import Callable, Mapping
-from urllib.parse import urlparse
 
 import httpx
+
+# Lives with the model layer, which is where the registry's own idea of "a host
+# we already carry" belongs; re-exported here because every caller and test has
+# always reached for it through this module.
+from .models import domain_of  # noqa: F401
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
@@ -50,6 +55,24 @@ CURATED_FEEDS = [
     "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/main/server/src/providers/index.ts",
 ]
 
+# A machine catalog rather than a list: 185 providers, one object per model with
+# a published cost, maintained for the opencode/models.dev ecosystem. Read as a
+# digest instead of a feed — see models_dev_digest.
+MODELS_DEV_URL = "https://models.dev/api.json"
+MODELS_DEV_MAX_PROVIDERS = 50
+MODELS_DEV_CAVEAT = (
+    "PROVIDERS ON models.dev PUBLISHING AT LEAST ONE MODEL AT COST 0, excluding every domain "
+    "already carried in the registry. A zero in this catalog is a lead and not evidence of a "
+    "free tier: it also reads zero when the usage is included in a paid subscription (which is "
+    "what every *-coding-plan and *-token-plan row is) and when the vendor quotes a currency "
+    "the catalog could not parse (kenari publishes IDR and reads 38/38 free). Confirm on the "
+    "vendor's own page before proposing any of these."
+)
+
+# Every catalog entry pointing at one of these is a runtime the user hosts, and
+# its models are priced 0 because there is no vendor in the transaction.
+LOCAL_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0", "[::1]", "::1"}
+
 NOISE_DOMAINS = {
     "reddit.com", "x.com", "twitter.com", "facebook.com", "youtube.com",
     "medium.com", "linkedin.com", "instagram.com", "tiktok.com",
@@ -79,14 +102,14 @@ class Evidence:
     hits: list[Hit] = field(default_factory=list)
     pages: dict[str, str] = field(default_factory=dict)
     feeds: dict[str, str] = field(default_factory=dict)
+    # Kept apart from `feeds` because it is not an excerpt of anything a human
+    # wrote: it is our own reading of a machine catalog, and the prompt has to
+    # say so or the scout will quote it as though the vendor did.
+    digests: dict[str, str] = field(default_factory=dict)
     providers: list[str] = field(default_factory=list)
 
     def is_empty(self) -> bool:
-        return not (self.hits or self.pages or self.feeds)
-
-
-def domain_of(url: str) -> str:
-    return urlparse(url).netloc.lower().removeprefix("www.")
+        return not (self.hits or self.pages or self.feeds or self.digests)
 
 
 def tavily_search(client: httpx.Client, key: str, query: str, count: int = 6) -> list[Hit]:
@@ -197,6 +220,69 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
     return out
 
 
+def models_dev_digest(client: httpx.Client, known_domains: set[str],
+                      url: str = MODELS_DEV_URL,
+                      max_providers: int = MODELS_DEV_MAX_PROVIDERS) -> str:
+    """Providers on models.dev carrying at least one zero-cost row, minus the ones
+    already answered by the curated files.
+
+    Not a feed: 3.7 MB and 185 providers cannot go in a prompt, and would be
+    mostly prices for models nobody here is looking for. What survives the read
+    is the one question this project asks — which vendor publishes a row at
+    zero — as a line per provider with the endpoint to probe. Measured
+    2026-08-14: 46 unknown providers, 6075 characters.
+
+    A zero here is a lead and never evidence, which the digest says out loud
+    because two failure modes were verified the day it was written and neither
+    is visible in the number itself.
+    """
+    try:
+        r = client.get(url)
+        r.raise_for_status()
+        catalog = r.json()
+    except (httpx.HTTPError, json.JSONDecodeError):
+        return ""
+    if not isinstance(catalog, dict):
+        return ""
+
+    rows = []
+    for pid, p in catalog.items():
+        if not isinstance(p, dict):
+            continue
+        models = p.get("models")
+        if not isinstance(models, dict):
+            continue
+        free = [m for m in models.values() if isinstance(m, dict) and _is_zero_cost(m)]
+        if not free:
+            continue
+        endpoint = p.get("api") or p.get("doc") or ""
+        host = domain_of(endpoint).split(":")[0]
+        if not host or host in LOCAL_HOSTS:
+            continue
+        if any(host == k or host.endswith("." + k) for k in known_domains if k):
+            continue
+        ids = ", ".join(str(m.get("id") or "?") for m in free[:3])
+        rows.append((len(free), f"- {pid} ({p.get('name') or pid}) api {p.get('api') or '—'} "
+                                f"doc {p.get('doc') or '—'} — {len(free)}/{len(models)} "
+                                f"rows at cost 0: {ids}"))
+    if not rows:
+        return ""
+
+    rows.sort(key=lambda r: -r[0])
+    lines = [MODELS_DEV_CAVEAT] + [line for _, line in rows[:max_providers]]
+    if len(rows) > max_providers:
+        lines.append(f"- ... {len(rows) - max_providers} further providers with a zero-cost "
+                     f"row omitted from this digest.")
+    return "\n".join(lines)
+
+
+def _is_zero_cost(model: dict) -> bool:
+    cost = model.get("cost")
+    if not isinstance(cost, dict):
+        return False
+    return cost.get("input") == 0 and cost.get("output") == 0
+
+
 def _searchers(client: httpx.Client, env: Mapping[str, str]) -> list[tuple[str, Callable[[str], list[Hit]]]]:
     searchers: list[tuple[str, Callable[[str], list[Hit]]]] = []
     if env.get("TAVILY_API_KEY"):
@@ -269,6 +355,12 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
                 continue
         if ev.feeds:
             ev.providers.append("curated-feeds")
+
+        if not spent():
+            digest = models_dev_digest(client, known_domains)
+            if digest:
+                ev.digests[MODELS_DEV_URL] = digest
+                ev.providers.append("models.dev")
     finally:
         if own:
             client.close()
@@ -284,4 +376,6 @@ def format_evidence(ev: Evidence, max_hits: int = 40) -> str:
             lines.append(f"\nPAGE {url}:\n{text}")
     for url, text in ev.feeds.items():
         lines.append(f"\nCURATED FEED {url} (excerpt):\n{text}")
+    for url, text in ev.digests.items():
+        lines.append(f"\nDERIVED FROM {url} — our own reading of that catalog, not its words:\n{text}")
     return "\n".join(lines)
