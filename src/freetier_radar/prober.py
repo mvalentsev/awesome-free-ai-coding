@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import re
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from enum import Enum
@@ -56,6 +57,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             return ProbeResult(ProbeStatus.FAIL, f"page gone: HTTP {resp.status_code}")
         detail = check_content(resp, entry)
         if detail is None:
+            # The offer is evidenced. Whether the models the README hangs off it
+            # still are is a second question, and only a page-keywords probe
+            # leaves it open — see unevidenced_families.
+            unevidenced = unevidenced_families(resp, entry)
+            if unevidenced:
+                return ProbeResult(ProbeStatus.STALE_MODELS,
+                                   "listed families the page does not name: "
+                                   + ", ".join(unevidenced))
             return ProbeResult(ProbeStatus.PASS)
         # Only asked once the content check has already failed. Plenty of live
         # pages carry a <noscript> asking for JavaScript while serving the offer
@@ -292,6 +301,64 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     return f"missing keywords: {', '.join(missing)}" if missing else None
 
 
+def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
+    """Families the README publishes that the probed page does not even name.
+
+    `_check_api_models` demands every listed family back from the catalog, so on
+    that half of the registry a model that quietly leaves takes its row with it.
+    A page-keywords probe had no equivalent: its keywords anchor the OFFER, and
+    nothing ever asked whether the models listed beside that offer are still
+    there. Measured 2026-08-14 across every live page-keywords entry, a third of
+    the published families appeared nowhere in the page their probe reads.
+
+    Deliberately weak, in two ways that are both the point:
+
+    It reads the same bytes the keywords do, so a name the vendor serves inside
+    its page data counts. Whether the page names the model AS FREE is the
+    stronger question, and the one an anchor keyword answers — novita's id sat
+    next to a price for weeks before anyone noticed, and no presence check would
+    have caught that.
+
+    And it never fails an entry. Three failures archive a row, so a marketing
+    page that drops a model name in a restyle would bury a live service inside a
+    week; the rotating-lane rule (Kilo, TokenRouter) says the same thing from the
+    other side. STALE_MODELS is what "the offer is alive, the Models column is
+    not trustworthy" already means here, and it is what the scout's FIX_PROMPT
+    already knows how to repair.
+    """
+    if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
+        return []
+    squashed, text = _squash(resp.text), resp.text.lower()
+    return [m.family for m in entry.models
+            if _squash(m.family) not in squashed and not _named_in_parts(m.family, text)]
+
+
+def _squash(s: str) -> str:
+    """Case and separators removed: vendors write "Qwen3 Coder" and "GLM-4.7
+    Flash" for what the registry calls qwen3-coder and glm-4.7-flash."""
+    return re.sub(r"[\s_-]+", "", s.lower())
+
+
+# How far apart the parts of a family name may sit and still be one name. Wide
+# enough for the words a vendor folds in ("Claude Sonnet & Opus 4.6" spends 24),
+# narrow enough that a price list mentioning claude in one row and 4.6 in
+# another does not vouch for a model nobody offers.
+NAME_SPREAD = 48
+
+
+def _named_in_parts(family: str, text: str) -> bool:
+    """Antigravity enumerates its free agent models as "Claude Sonnet & Opus
+    4.6": two models sharing one version number, and neither of them a substring
+    of the page. A warning that fires on entries that are correct is a warning
+    that gets ignored, so a family also counts as named when its parts appear in
+    order and close together."""
+    parts = [p for p in re.split(r"[\s_-]+", family.lower()) if p]
+    if len(parts) < 2:
+        return False
+    spread = r"[^\n]{0,%d}?" % NAME_SPREAD
+    return re.search(spread.join(re.escape(p) for p in parts), text) is not None
+
+
 def is_model_stale(entry: Entry) -> bool:
     """Every listed family bumped to a newer generation. The entry is alive —
     a supersede mark never archives — but the README has no free model left to
@@ -320,12 +387,19 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
         # 410 crashed the 2026-08-03 run.
         if e.retired_on is not None and today >= e.retired_on:
             continue
-        if result.status is ProbeStatus.PASS:
+        # STALE_MODELS is a pass with a note: the probe reached the page and the
+        # offer was evidenced there, so the liveness bookkeeping is the same one
+        # a PASS gets. Letting last_verified freeze instead would archive the row
+        # by staleness in ARCHIVE_AFTER_DAYS over a question about its Models
+        # column — which is the opposite of what the flag is for.
+        if result.status in (ProbeStatus.PASS, ProbeStatus.STALE_MODELS):
             e.last_verified = today
             e.probe_failures = 0
             if e.provisional and (today - e.first_seen).days >= PROVISIONAL_PROMOTE_DAYS:
                 e.provisional = False
-            if is_model_stale(e):
+            if result.status is ProbeStatus.STALE_MODELS:
+                needs_attention.append((e, result))
+            elif is_model_stale(e):
                 needs_attention.append((e, ProbeResult(
                     ProbeStatus.STALE_MODELS,
                     "every listed family is marked superseded — refresh models to the "

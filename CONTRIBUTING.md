@@ -59,6 +59,18 @@ it too, with no setting to turn on: a row the vendor marks uncallable is not a
 free lane whatever its price says, and it fails the probe as `marked
 unavailable`.
 
+**Every family in `models[]` must be named on the page the probe reads.** The
+Free models column is a claim, and it needs to be re-checkable by the same run
+that re-checks the offer: an `api-models` probe demands each family back from the
+catalog, and a `page-keywords` probe now looks for each family in the page it
+already fetched. A family the page does not name is reported as `stale-models` —
+the entry stays live and verified, because a marketing page dropping a model name
+is not a tier ending, but the column is flagged until someone fixes it. Where the
+vendor keeps its offer on one page and its model list on another, probe the page
+that carries both, or list fewer families: an id that belongs to the free lane but
+has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
+configs without making a claim on the page.
+
 ## How the pipeline works
 
 `registry.yaml` is the single source of truth. `README.md` is **generated** — never

@@ -21,7 +21,7 @@ from .history import record_changes
 from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_blocked,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_watchlist, save_registry, watch_match)
-from .prober import challenge_marker_hit, check_content
+from .prober import challenge_marker_hit, check_content, unevidenced_families
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -112,9 +112,11 @@ TASK: FIX-FAILED probes. For each flagged entry, using its failure detail and
 official page text below, propose corrected values (e.g. a working probe endpoint,
 updated limits). Allowed keys per update: id (unchanged), offering, limits,
 card_required, probe, models.
-A "stale-models" failure means the probe passed and the offer is alive, but every
-family listed for it was marked superseded: reply with a models list naming the
-families the free tier serves today, and leave the probe alone.
+A "stale-models" failure means the probe passed and the offer is alive, but the
+entry's model list is in doubt — either every family listed for it was marked
+superseded, or the page no longer names a family the entry lists. The failure
+detail says which. Reply with a models list naming only families the page text
+below names itself, and leave the probe alone.
 A corrected page-keywords probe needs at least one keyword that dies with the
 offer — a quota or price figure, a model id or JSON field, or a sentence of four
 or more words quoted verbatim from the page below. Words like "free", "hobby",
@@ -528,7 +530,14 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
         return f"HTTP {resp.status_code}"
     problem = check_content(resp, entry)
     if problem is None:
-        return None
+        # An existing row only gets flagged for this — three failures archive it,
+        # and a live service must not go down over a Models column. A proposal is
+        # the other case entirely: nothing is protected yet, and a column the
+        # page cannot back is how bazaarlink arrived naming two families that
+        # matched no id the vendor served.
+        unevidenced = unevidenced_families(resp, entry)
+        return ("listed families the page does not name: " + ", ".join(unevidenced)
+                if unevidenced else None)
     # Name the bot wall in the rejection reason. "missing keywords" reads as a
     # bad proposal; "bot challenge" tells the reviewer the endpoint answers a
     # wall to everything that is not a browser — cto.new's lesson, in the PR body.

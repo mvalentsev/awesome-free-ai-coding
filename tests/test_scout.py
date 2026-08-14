@@ -120,6 +120,29 @@ def test_apply_new_rejects_covered_domain():
     assert rejected == ["clone: domain already covered"]
 
 
+@respx.mock
+def test_probe_check_rejects_a_proposal_naming_a_family_the_page_does_not():
+    """bazaarlink's proposal invented two families that matched no id the vendor
+    served. A new entry is authored from scratch, so there is no live row to
+    protect and no reason to accept a Models column the page cannot back."""
+    e = make(id="new1", models=[{"family": "x-mini-2", "tier": "strong"},
+                                {"family": "x-ultra-9", "tier": "strong"}])
+    respx.get("https://x.ai").mock(return_value=httpx.Response(
+        200, text="x-mini-2 is free for everyone"))
+    with httpx.Client() as client:
+        assert scout.probe_check_sync(e, client) == (
+            "listed families the page does not name: x-ultra-9")
+
+
+@respx.mock
+def test_probe_check_accepts_a_family_the_page_spells_differently():
+    e = make(id="new1", models=[{"family": "x-mini-2", "tier": "strong"}])
+    respx.get("https://x.ai").mock(return_value=httpx.Response(
+        200, text="X Mini 2 is free for everyone, and x-mini-2 is its id"))
+    with httpx.Client() as client:
+        assert scout.probe_check_sync(e, client) is None
+
+
 def test_apply_new_uses_verifier():
     entries = [make()]
     added, rejected = apply_new(

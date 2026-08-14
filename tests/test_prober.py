@@ -488,6 +488,125 @@ async def test_a_noscript_notice_does_not_shield_a_dead_offer():
     assert result.status is ProbeStatus.PASS
 
 
+def listing_entry() -> Entry:
+    """A page-keywords entry that publishes a Models column, which page_entry()
+    deliberately does not: the families are the thing under test here."""
+    e = page_entry()
+    e.models = [m.model_copy() for m in api_entry().models]  # qwen3-coder
+    return e
+
+
+@respx.mock
+async def test_a_family_the_page_does_not_name_flags_without_failing():
+    """The offer is evidenced — the keywords all match — but the README lists a
+    model the page says nothing about. novita's lesson generalised: a probe that
+    only watches the offer lets the Models column drift on its own. It must not
+    FAIL, or three runs of a restyled marketing page archive a live service."""
+    entry = listing_entry()
+    entry.models.append(entry.models[0].model_copy(update={"family": "llama-4"}))
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder on the free tier, no credit card"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert "llama-4" in result.detail and "qwen3-coder" not in result.detail
+
+
+@respx.mock
+async def test_a_family_the_page_spells_with_spaces_is_evidenced():
+    """Vendors write "Qwen3 Coder", the registry writes qwen3-coder. Comparing
+    with separators and case removed is what keeps this check from flagging
+    every entry on its first run."""
+    entry = listing_entry()
+    entry.models.append(entry.models[0].model_copy(update={"family": "llama-4"}))
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder and Llama 4 on the free tier, no credit card"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_family_folded_into_a_shared_suffix_is_evidenced():
+    """Antigravity's pricing page enumerates its free agent models as "Claude
+    Sonnet & Opus 4.6" — two models, one version number. A substring test calls
+    a true row a lie, and a warning that fires on correct entries is a warning
+    nobody reads. The parts have to arrive close together, though: "claude" and
+    "4.6" at opposite ends of a price list vouch for nothing."""
+    entry = listing_entry()
+    entry.models = [entry.models[0].model_copy(update={"family": "claude-opus-4.6"})]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder, free tier, no credit card. "
+                  "Agent model: Claude Sonnet &amp; Opus 4.6, gpt-oss-120b"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_family_parts_scattered_over_the_page_are_not_evidence():
+    entry = listing_entry()
+    entry.models = [entry.models[0].model_copy(update={"family": "claude-opus-4.6"})]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder, free tier, no credit card. Claude models are on the Pro plan."
+                  + " filler" * 40 + " Opus is a trademark." + " filler" * 40 + " version 4.6"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS and "claude-opus-4.6" in result.detail
+
+
+@respx.mock
+async def test_a_family_named_only_in_the_page_data_is_evidenced():
+    """Read against the same bytes the keywords are: a name the vendor serves
+    inside its page data is served. Whether it is named AS FREE is a stronger
+    question, and the one an anchor keyword exists to answer."""
+    entry = listing_entry()
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text='free tier, no credit card<script>{"id":"vendor/qwen3-coder"}</script>'))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_dead_offer_outranks_an_unevidenced_family():
+    """Both are true at once when a vendor pulls a tier and its models with it.
+    The withdrawal is the bigger news and must not be downgraded to a flag."""
+    entry = listing_entry()
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="free tier, no credit card, qwen3-coder — "
+                  "update: the free API service has ended"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL and "offer withdrawn" in result.detail
+
+
+@respx.mock
+async def test_an_api_models_entry_is_not_family_checked_against_prose():
+    """_check_api_models already demands every family back from the catalog. A
+    second pass over the same bytes would only invent a second vocabulary for
+    the same finding."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free"}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, api_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+def test_stale_models_verifies_the_entry_like_a_pass():
+    """The offer was confirmed; only the Models column is in doubt. Freezing
+    last_verified instead would archive the row by staleness in sixty days."""
+    e = listing_entry()
+    e.provisional = True
+    flagged = apply_results([e], {"pagey": ProbeResult(
+        ProbeStatus.STALE_MODELS, "listed families the page does not name: llama-4")},
+        date(2026, 7, 19))
+    assert e.last_verified == date(2026, 7, 19) and e.probe_failures == 0
+    assert e.provisional is False
+    assert [(x.id, r.status) for x, r in flagged] == [("pagey", ProbeStatus.STALE_MODELS)]
+
+
 @respx.mock
 async def test_challenge_wording_in_a_models_response_is_inconclusive():
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
