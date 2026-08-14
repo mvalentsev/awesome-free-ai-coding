@@ -61,6 +61,8 @@ PAGE_TEXT_LIMIT = 5000
 # the newest leads — 12000 chars of freellmapi's table carried 16 of its 25
 # gateways and dropped Requesty, NavyAI, NaraRouter and SEA-LION, the four worth
 # reading. 20000 costs ~15K more characters across all four feeds together.
+# It stays at 20000: the cut moved to both ends of the file instead (see
+# _feed_excerpt), which covered the same blind spot without buying more prompt.
 FEED_TEXT_LIMIT = 20000
 
 
@@ -130,6 +132,29 @@ def github_search(client: httpx.Client, query: str, token: str | None = None,
         for it in r.json().get("items", [])
         if it.get("stargazers_count", 0) >= min_stars
     ]
+
+
+def _feed_excerpt(text: str, limit: int = FEED_TEXT_LIMIT) -> str:
+    """A window on a feed too long to send whole, taken from both of its ends.
+
+    Head-first was already known to cut the newest leads off an append-shaped
+    file, which is why the limit was raised on 2026-08-11. Measuring the feeds
+    again on 2026-08-14 showed the head is not simply the better half either:
+    free-coding-models keeps its provider-to-endpoint map in the last 5005
+    characters of `sources.js`, so reading 20000 from the top named 9 of its 20
+    providers and not one endpoint. Both ends of the same budget name all 20
+    with their endpoints, and the only other oversized feed lost no row it had
+    under the old cut.
+
+    The middle is what goes, and on these files the middle is per-model rows for
+    providers both ends already name. The cut is marked rather than silent: a
+    feed that reads as one continuous document invites the scout to conclude
+    things about a list it has only seen the ends of.
+    """
+    if len(text) <= limit:
+        return text
+    head = int(limit * 0.75)
+    return f"{text[:head]}\n… {len(text) - limit} characters elided …\n{text[head - limit:]}"
 
 
 def _timeout_within(left: float | None) -> httpx.Timeout:
@@ -239,7 +264,7 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
             try:
                 r = client.get(feed)
                 r.raise_for_status()
-                ev.feeds[feed] = r.text[:FEED_TEXT_LIMIT]
+                ev.feeds[feed] = _feed_excerpt(r.text, FEED_TEXT_LIMIT)
             except httpx.HTTPError:
                 continue
         if ev.feeds:

@@ -2,8 +2,8 @@ import httpx
 import respx
 
 from freetier_radar.discovery import (
-    Evidence, Hit, domain_of, fetch_page_texts, format_evidence, gather_evidence,
-    github_search, hn_search, tavily_search,
+    Evidence, Hit, _feed_excerpt, domain_of, fetch_page_texts, format_evidence,
+    gather_evidence, github_search, hn_search, tavily_search,
 )
 
 
@@ -73,6 +73,41 @@ def test_gather_evidence_keyless_dedup_and_filters(monkeypatch):
     assert ev.pages["https://newtool.dev/pricing"].strip() == "Generous free tier"
     assert ev.feeds == {"https://raw.example.com/list.md": "- curated"}
     assert ev.providers == ["hn", "curated-feeds"]
+
+
+def test_a_feed_that_fits_the_limit_is_read_whole():
+    assert _feed_excerpt("- one lead", limit=100) == "- one lead"
+
+
+def test_an_oversized_feed_is_read_from_both_ends():
+    """Measured 2026-08-14 against the feeds actually configured: read head-first
+    only, free-coding-models' sources.js gave up 9 of its 20 providers and none
+    of their endpoints, because the object mapping provider to URL is the last
+    5005 characters of the file. Both ends, same 20000-char budget: 20 of 20 with
+    endpoints, and the only other oversized feed lost no row it had before. What
+    the elision drops is the middle — model rows for providers both ends already
+    name."""
+    text = "HEAD" + "x" * 200 + "TAIL"
+    excerpt = _feed_excerpt(text, limit=100)
+    assert excerpt.startswith("HEAD") and excerpt.endswith("TAIL")
+    assert "108 characters elided" in excerpt
+
+
+@respx.mock
+def test_gather_evidence_stores_the_excerpt_not_the_whole_feed(monkeypatch):
+    import freetier_radar.discovery as disc
+    monkeypatch.setattr(disc, "CURATED_FEEDS", ["https://raw.example.com/list.md"])
+    monkeypatch.setattr(disc, "FEED_TEXT_LIMIT", 80)
+    respx.get("https://hn.algolia.com/api/v1/search").mock(
+        return_value=httpx.Response(200, json={"hits": []}))
+    respx.get("https://api.github.com/search/repositories").mock(
+        return_value=httpx.Response(200, json={"items": []}))
+    respx.get("https://raw.example.com/list.md").mock(
+        return_value=httpx.Response(200, text="first provider" + "." * 100 + "last provider"))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c)
+    feed = ev.feeds["https://raw.example.com/list.md"]
+    assert feed.startswith("first provider") and feed.endswith("last provider")
 
 
 @respx.mock
