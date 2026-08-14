@@ -511,6 +511,15 @@
         }
       }
     },
+    "sensenova": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SenseNova (SenseTime 商汤)",
+      "options": {
+        "baseURL": "https://token.sensenova.cn/v1",
+        "apiKey": "{env:SENSENOVA_API_KEY}"
+      },
+      "models": {}
+    },
     "tokenrouter": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "TokenRouter (PaleBlueDot)",

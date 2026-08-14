@@ -682,43 +682,62 @@ watched:
       docs describe Lite as "轻量级大语言模型 ... 具有更高的响应速度，支持免费使用"
       (a lightweight model, faster to respond, free to use), give the model id
       as `lite` and publish an OpenAI-compatible base url,
-      https://spark-api-open.xf-yun.com/v1/. What is missing is everything a
-      reader needs after that: the page states no quota, no QPS and no duration
-      for the free lane — only that a daily and a per-second throttle exist —
-      and the key is issued from console.xfyun.cn, a Chinese console whose
-      registration gate is behind JavaScript and could not be read. That is the
-      ModelScope case: a real free tier this list cannot yet tell a developer
-      how to reach, or anchor a probe to.
+      https://spark-api-open.xf-yun.com/v1/. An anchor exists too, contrary to
+      an earlier note here: 「具有更高的响应速度,支持免费使用」 sits in the Lite column of
+      that page's version table in served HTML, glued to the id by
+      「lite指向Lite版本」 beside it. What blocks the listing is reachability. No
+      served page states a quota, a QPS or a duration for the Lite lane; the
+      figures that exist — the 0元/百万tokens cell and the 200,000-token free
+      package — appear only after JavaScript runs on xinghuo.xfyun.cn/sparkapi,
+      and that same table conditions the package on 个人认证 or 企业认证, real-name
+      verification. Whether `lite` itself is reachable without it is stated
+      nowhere, and console.xfyun.cn renders 「加载中……」 and nothing else. That is
+      the ModelScope case: a real free model this list cannot yet tell a
+      developer how to reach.
     reopen_if: >-
-      iFlytek publishes a figure for the Lite lane — tokens, QPS or duration —
-      on a server-rendered page, or the registration gate turns out not to need
-      a mainland-China identity.
+      iFlytek states, on a served page, what the Lite lane costs and whether it
+      needs 实名认证 — or the registration gate turns out not to need a
+      mainland-China identity.
 
   - domains: [intern-ai.org.cn]
     name: Intern AI (书生 / InternLM, Shanghai AI Lab)
     checked_on: '2026-08-14'
     reason: >-
-      Reached through a feed that credits it with a free OpenAI-format API at
-      chat.intern-ai.org.cn/api/v1, 10 requests a minute and a key valid for six
-      months. None of that could be confirmed: every page on the domain answers
-      an empty shell — chat.intern-ai.org.cn renders zero characters of text and
-      the documentation route six — so there is no served sentence about a free
-      tier to quote, and nothing a page-keywords probe could anchor on. Recorded
-      as unread rather than as absent: the shell is a JavaScript console, not a
-      withdrawn offer.
+      The docs are readable after all, at internlm.intern-ai.org.cn/doc/docs/ —
+      and the trailing slash is load-bearing, since the same path without it
+      answers a 168-byte stub, which is what an earlier check here mistook for
+      an empty domain. 197KB of served HTML confirms the base url
+      chat.intern-ai.org.cn/api/v1, the four model ids, an Anthropic-format
+      endpoint with a Claude Code guide, and a quota: 「API 流控限制：默认每用户
+      每分钟限制30次」, thirty requests a minute rather than the ten a feed credits
+      it with. What is missing is the offer itself. Across all nine doc pages
+      the words 免费, 收费, 付费, 计费 and 价格 do not occur once: the service states
+      no price, free or otherwise, so there is nothing to verify and nothing an
+      anchor could hang on — 每分钟限制30次 is a rate limit that would read exactly
+      the same the day it started billing.
     reopen_if: >-
-      Intern AI serves its API terms on a page that answers without JavaScript,
-      or publishes them somewhere a probe can read.
+      Intern AI states a price, or states that the API is free, on a served
+      page.
 
-  - domains: [sensenova.cn, sensetime.com]
-    name: SenseNova (商汤 SenseTime)
+  - domains: [dxnt.com]
+    name: DX TOKEN
     checked_on: '2026-08-14'
     reason: >-
-      Same shape as the Intern AI record and the same day. A feed credits it
-      with free lanes at token.sensenova.cn/v1 — 1500 requests per 5 hours on
-      sensenova-6.7-flash-lite, 500 on deepseek-v4-flash — and
-      platform.sensenova.cn serves 24 characters of text, the page title alone.
-      Nothing on the domain states an offer, so there is nothing to verify and
-      nothing to probe.
+      Blocklisted earlier the same day on a reason that turned out to be wrong,
+      and moved here rather than left standing. The claim was that its model ids
+      anonymise the upstream they route to; dxnt.com/byok refutes it in its own
+      words — "在控制台添加自有端点，用 {身份码}/{模型名} 调用。请求直接转发到你的供应商" — so the
+      opaque four-character prefixes (ot5k/, its0/, ry5b/) are per-user identity
+      codes for a customer's OWN endpoint, not a hidden supplier, and dxnt's own
+      catalog names its models plainly as dxnt/qwen3.5-397b-a17b and the like.
+      Its free route is four models at multiplier 0, mostly open-weight
+      (nemotron-3-nano, llama-3.2-90b-vision, step-3.7-flash,
+      sensenova-6.7-flash-lite), which is capacity anyone may host. What is left
+      is not enough to block and not enough to list: the service calls itself a
+      中转网关, a relay gateway, discloses no sourcing for the proprietary Chinese
+      models it relays, and its footer links 服务条款 and 隐私政策 both resolve to a
+      page containing neither, so there are no terms and no legal entity behind
+      any of it.
     reopen_if: >-
-      SenseNova publishes its free quota on a server-rendered page.
+      DX TOKEN publishes terms of service and a legal entity, or states where
+      the models on its own dxnt/ prefix are licensed from.

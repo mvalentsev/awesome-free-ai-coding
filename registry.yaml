@@ -135,7 +135,9 @@ entries:
     inactive until you do". Asked "Is there a permanently free tier?" the same page
     answers "No". Free Trial rate limits are per model — 5 RPM / 30K TPM / 1M TPD
     on each of the three (read 2026-08-14). The marketing pricing page still promises
-    the credits "after making an account" and mentions no card'
+    the credits "after making an account" and mentions no card. Cerebras'' model
+    catalog adds that "Z.ai GLM 4.7 is scheduled for deprecation on August 17, 2026",
+    so expect the Models column below to lose that row on or after that date'
   models:
   - family: gpt-oss
     tier: strong
@@ -1690,6 +1692,50 @@ entries:
     keywords:
     - Choose this option for fast, free developer access
     - fastest way to get a free Poolside API key
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-14'
+  last_verified: '2026-08-14'
+  probe_failures: 0
+  provisional: true
+  rank: 100
+- id: sensenova
+  name: SenseNova (SenseTime 商汤)
+  category: api-free-tier
+  url: https://www.sensenova.cn
+  source_urls:
+  - https://www.sensenova.cn/token-plan
+  card_required: false
+  offering: SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible
+    url, free for everyone while the token plan is in public beta
+  limits: The plan page says plainly 公测期完全免费开放，付费档位即将上线 — free during the public
+    beta, paid tiers coming — at ¥0/month with 每模型 1,500 次调用 / 5 小时, a rolling
+    1,500 calls per model per five hours, 特殊模型除外. So it refills rather than
+    draining, but it is a beta the vendor has already announced the end of. Signup
+    needs a phone number; whether a non-mainland one is accepted could not be
+    verified from any served page
+  models: []
+  api:
+    base_url: https://token.sensenova.cn/v1
+    key_url: https://platform.sensenova.cn
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: the base url is not printed on any server-rendered page — it is taken from
+      the vendor's console docs and corroborated directly, since
+      token.sensenova.cn/v1/models answers 401 "Authorization Not Found" in an
+      OpenAI-shaped envelope. The callable ids live only in that JavaScript console,
+      which no probe here can read, so none are published; the plan page names
+      "SenseNova 6.8 Flash Lite" in prose alone. Beware sensenova-6.7-flash-lite,
+      which third-party lists still carry — the vendor routes it to 6.8 and retires
+      the alias on 2026-08-31
+  probe:
+    type: page-keywords
+    endpoint: https://www.sensenova.cn/token-plan
+    keywords:
+    - 公测期完全免费开放，付费档位即将上线
+    - 每模型 1,500 次调用
     free_marker: ''
     dead_markers: []
     require_zero_price: false
