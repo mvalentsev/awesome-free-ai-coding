@@ -2199,6 +2199,46 @@
       "reason": "Genuinely free and genuinely legitimate — \"A free, community-powered generation service: volunteers share spare computer power so anyone can generate images and text\", open source, kudos-priority rather than payment, and its status endpoints answer keyless. It fails this list's bar on shape, not on honesty. There is no OpenAI-compatible route to point a coding agent at: generation goes through /api/v2/generate/text/async as a queued job, and the client that added it to a proxy had to write a dedicated adapter because max_tokens must be >=16, stop must be an array, there is no tool calling and no upstream streaming. Nor is there a model set to publish: /api/v2/status/models?type=text is a live census of whichever volunteers are online, today mostly roleplay fine-tunes (aphrodite/TheDrummer/Cydonia-24B, koboldcpp/Angelic_Eclipse-12B) beside one google/gemma-4-31b, each row carrying its own queue and ETA.",
       "reopen_if": "AI Horde publishes an OpenAI-compatible chat endpoint with tool calling, or a stable set of models it guarantees.",
       "current": true
+    },
+    {
+      "domains": [
+        "together.ai"
+      ],
+      "name": "Together AI",
+      "checked_on": "2026-08-14",
+      "reason": "Serverless inference priced per token with no free lane on its own pages. together.ai/pricing is a per-1M-token table whose cheapest row is still paid, and the word \"free\" does not occur once in the served text of that page, of docs.together.ai/docs/serverless/rate-limits, or of the quickstart; no model id ending in -Free is served on any of the three. The rate-limit page talks about bursts and real-time capacity and never about a tier.",
+      "reopen_if": "Together publishes a free tier or a zero-priced model row, or a model id ending in -Free returns to its catalog.",
+      "current": true
+    },
+    {
+      "domains": [
+        "perplexity.ai"
+      ],
+      "name": "Perplexity (Sonar API)",
+      "checked_on": "2026-08-14",
+      "reason": "Pay-per-use with no free allowance of its own. The word \"free\" does not occur in the served text of docs.perplexity.ai/getting-started/pricing, which prices Sonar at $1 in and $1 out per 1M tokens, search requests at $5 per 1000 and each tool per invocation; the page's only credit language is \"Purchase API credits through AWS Marketplace\". Credits bundled with a paid subscription, if any, would be a wallet behind a paywall rather than a free tier.",
+      "reopen_if": "Perplexity publishes an API allowance reachable without a paid subscription or a credit purchase.",
+      "current": true
+    },
+    {
+      "domains": [
+        "replicate.com"
+      ],
+      "name": "Replicate",
+      "checked_on": "2026-08-14",
+      "reason": "replicate.com/pricing says \"You only pay for what you use on Replicate\" and prices every model by hardware-second or by token. The only \"free\" in the served text is the \"Try for free\" sign-in button in the header — no signup grant, no recurring allowance, no zero-priced model.",
+      "reopen_if": "Replicate publishes a signup grant or a recurring allowance rather than pay-as-you-go only.",
+      "current": true
+    },
+    {
+      "domains": [
+        "modal.com"
+      ],
+      "name": "Modal",
+      "checked_on": "2026-08-14",
+      "reason": "Recurring and real — modal.com/pricing gives the $0/month Starter plan \"$30 / month free credits\" — but the credits buy compute, not inference. They are spent on containers and GPU-seconds running a model the developer deploys themselves, so there is no vendor in the transaction, nothing to probe behind an OpenAI-compatible URL and nothing to put in a Models column. It fails this list's bar on shape, the way a free Colab GPU does.",
+      "reopen_if": "Modal serves models of its own behind an OpenAI-compatible endpoint on a free allowance.",
+      "current": true
     }
   ]
 }

@@ -71,4 +71,15 @@
     "Void doesn't send your messages through a private backend like Cursor or
     Windsurf. Cut out the middleman and connect directly", so there is no
     backend that could bundle model usage and the free editor grants none.
+- domain: roocode.com
+  reason: >-
+    BYOK-only, the cline.bot case. Every path on roocode.com 301s to
+    roomote.dev, the same team's cloud agent, whose split of the work is
+    "Us. Hosting, networking, sandboxes, upgrades / You. Inference key" beside
+    a 7-day trial and then $49/mo. Kilo Code, which forked Roo Code, is listed
+    here instead precisely because it ships model usage of its own.
+- domain: roomote.dev
+  reason: >-
+    Where roocode.com now points — model-agnostic BYOK by its own home page,
+    so the free trial buys hosting and never inference.
 
