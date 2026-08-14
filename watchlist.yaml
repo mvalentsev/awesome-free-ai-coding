@@ -508,3 +508,32 @@ watched:
       The v0 free plan's credits become spendable through an OpenAI-compatible
       or otherwise general model endpoint.
 
+  - domains: [longcat.chat]
+    name: LongCat API Platform (Meituan)
+    checked_on: '2026-08-14'
+    reason: >-
+      Listed here from 2026-07-22 for a recurring 100K free tokens a day, and
+      delisted because that quota is published nowhere on Meituan's own site
+      today. Two dated entries in its change log explain what happened.
+      "Version: 2026-05-29 — LongCat Model Service Sunset" retired the whole
+      Flash line the free quota applied to: "Effective May 29, 2026, the
+      platform will retire the following 6 models: LongCat-Flash-Chat,
+      LongCat-Flash-Thinking, LongCat-Flash-Thinking-2601, LongCat-Flash-Lite,
+      LongCat-Flash-Omni-2603, LongCat-Flash-Chat-2602-Exp". Then "Version:
+      2026-06-30 — LongCat-2.0 Release & Billing Now Available" turned on Token
+      Packs and pay-as-you-go. The API is alive and good, but it is now priced:
+      "Pay-As-You-Go currently supports LongCat-2.0" at $0.75 uncached input and
+      $2.95 output per 1M tokens, and its prerequisites end with "Top up your
+      balance at Billing → Recharge". The words "free" and 免费 appear nowhere in
+      Quick Start, Token Pack, API Pay-As-You-Go, the FAQ, the API overview or
+      the pricing page — the one "free" in the change log is about chatting on
+      the consumer LongCat Chat app, not the API. The platform page itself is a
+      21-character client-rendered shell. Complimentary credits exist as a
+      concept ("If you also have complimentary credits, those are consumed
+      before your paid balance") but nothing states that a new account is
+      granted any, how many, or how often. Our probe never noticed, because it
+      anchored on the endpoint path and the model name rather than on the
+      offer — novita's failure, again.
+    reopen_if: >-
+      LongCat publishes a free daily token quota, or a stated signup grant, on
+      a server-rendered page of its own.

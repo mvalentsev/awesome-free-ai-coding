@@ -53,16 +53,6 @@ model_list:
     model: openai/qwen3
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
-- model_name: huggingface-inference/deepseek
-  litellm_params:
-    model: openai/deepseek
-    api_base: https://router.huggingface.co/v1
-    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
-- model_name: huggingface-inference/qwen3
-  litellm_params:
-    model: openai/qwen3
-    api_base: https://router.huggingface.co/v1
-    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
 - model_name: kilo-code/kilo-auto/free
   litellm_params:
     model: openai/kilo-auto/free
@@ -128,9 +118,19 @@ model_list:
     model: openai/tencent/hy3:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
-- model_name: cerebras-free/qwen3
+- model_name: cerebras-free/gpt-oss-120b
   litellm_params:
-    model: openai/qwen3
+    model: openai/gpt-oss-120b
+    api_base: https://api.cerebras.ai/v1
+    api_key: os.environ/CEREBRAS_API_KEY
+- model_name: cerebras-free/zai-glm-4.7
+  litellm_params:
+    model: openai/zai-glm-4.7
+    api_base: https://api.cerebras.ai/v1
+    api_key: os.environ/CEREBRAS_API_KEY
+- model_name: cerebras-free/gemma-4-31b
+  litellm_params:
+    model: openai/gemma-4-31b
     api_base: https://api.cerebras.ai/v1
     api_key: os.environ/CEREBRAS_API_KEY
 - model_name: ovh-ai-endpoints/gpt-oss-120b
@@ -163,11 +163,6 @@ model_list:
     model: openai/glm-4.6v-flash
     api_base: https://api.z.ai/api/paas/v4
     api_key: os.environ/ZAI_GLM_API_KEY
-- model_name: longcat/LongCat-2.0
-  litellm_params:
-    model: openai/LongCat-2.0
-    api_base: https://api.longcat.chat/openai/v1
-    api_key: os.environ/LONGCAT_API_KEY
 - model_name: cloudflare-workers-ai/llama-4
   litellm_params:
     model: openai/llama-4
@@ -238,16 +233,6 @@ model_list:
     model: openai/command-a
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
-- model_name: scaleway-generative/glm-5.2
-  litellm_params:
-    model: openai/glm-5.2
-    api_base: https://api.scaleway.ai/v1
-    api_key: os.environ/SCALEWAY_GENERATIVE_API_KEY
-- model_name: scaleway-generative/qwen3
-  litellm_params:
-    model: openai/qwen3
-    api_base: https://api.scaleway.ai/v1
-    api_key: os.environ/SCALEWAY_GENERATIVE_API_KEY
 - model_name: google-ai-studio/gemini-2.5
   litellm_params:
     model: openai/gemini-2.5

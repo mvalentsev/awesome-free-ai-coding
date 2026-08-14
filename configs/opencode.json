@@ -68,14 +68,7 @@
         "baseURL": "https://router.huggingface.co/v1",
         "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
       },
-      "models": {
-        "deepseek": {
-          "name": "deepseek"
-        },
-        "qwen3": {
-          "name": "qwen3"
-        }
-      }
+      "models": {}
     },
     "kilo-code": {
       "npm": "@ai-sdk/openai-compatible",
@@ -134,8 +127,14 @@
         "apiKey": "{env:CEREBRAS_API_KEY}"
       },
       "models": {
-        "qwen3": {
-          "name": "qwen3"
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        },
+        "zai-glm-4.7": {
+          "name": "zai-glm-4.7"
+        },
+        "gemma-4-31b": {
+          "name": "gemma-4-31b"
         }
       }
     },
@@ -173,19 +172,6 @@
         },
         "glm-4.6v-flash": {
           "name": "glm-4.6v-flash"
-        }
-      }
-    },
-    "longcat": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "LongCat API Platform",
-      "options": {
-        "baseURL": "https://api.longcat.chat/openai/v1",
-        "apiKey": "{env:LONGCAT_API_KEY}"
-      },
-      "models": {
-        "LongCat-2.0": {
-          "name": "LongCat-2.0"
         }
       }
     },
@@ -317,14 +303,7 @@
         "baseURL": "https://api.scaleway.ai/v1",
         "apiKey": "{env:SCALEWAY_GENERATIVE_API_KEY}"
       },
-      "models": {
-        "glm-5.2": {
-          "name": "glm-5.2"
-        },
-        "qwen3": {
-          "name": "qwen3"
-        }
-      }
+      "models": {}
     },
     "google-ai-studio": {
       "npm": "@ai-sdk/openai-compatible",

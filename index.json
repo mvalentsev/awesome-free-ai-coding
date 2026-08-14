@@ -156,20 +156,30 @@
     {
       "id": "cerebras-free",
       "name": "Cerebras Inference",
-      "category": "api-free-tier",
+      "category": "trial",
       "url": "https://www.cerebras.ai",
       "source_urls": [
-        "https://www.cerebras.ai/pricing",
-        "https://inference-docs.cerebras.ai/support/pricing"
+        "https://inference-docs.cerebras.ai/support/rate-limits",
+        "https://www.cerebras.ai/pricing"
       ],
-      "card_required": false,
-      "offering": "Very fast inference; $5 in free credits on signup, no card",
-      "limits": "$5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan",
+      "card_required": true,
+      "offering": "Very fast inference; $5 in trial credits that expire in 30 days, card required before the API answers at all",
+      "limits": "Cerebras' own docs: \"New accounts receive $5 in free credits after adding a verified payment method\", credits \"expire 30 days after they're granted\", and \"If you skip adding a payment method at sign-up, Playground and API access remain inactive until you do\". Asked \"Is there a permanently free tier?\" the same page answers \"No\". Free Trial rate limits are per model — 5 RPM / 30K TPM / 1M TPD on each of the three (read 2026-08-14). The marketing pricing page still promises the credits \"after making an account\" and mentions no card",
       "models": [
         {
-          "family": "qwen3",
+          "family": "gpt-oss",
           "tier": "strong",
-          "released": "2025-04"
+          "released": "2025-08"
+        },
+        {
+          "family": "glm-4.7",
+          "tier": "strong",
+          "released": "2026-01"
+        },
+        {
+          "family": "gemma-4",
+          "tier": "strong",
+          "released": "2026-04"
         }
       ],
       "api": {
@@ -177,14 +187,19 @@
         "key_url": "https://cloud.cerebras.ai",
         "auth": "api-key",
         "openai_compatible": true,
-        "model_ids": [],
-        "note": ""
+        "model_ids": [
+          "gpt-oss-120b",
+          "zai-glm-4.7",
+          "gemma-4-31b"
+        ],
+        "note": "the Free Trial tier reaches every model in the public catalog, which is these three: \"Every model on the public Model Catalog is available on the Free Trial tier, subject to the per-model Free Trial rate limits\""
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://www.cerebras.ai/pricing",
+        "endpoint": "https://inference-docs.cerebras.ai/support/rate-limits",
         "keywords": [
-          "$5 in free credits"
+          "after adding a verified payment method",
+          "credits expire 30 days after"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -338,24 +353,8 @@
       ],
       "card_required": false,
       "offering": "Cloud-hosted open models with free usage tier",
-      "limits": "Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription",
-      "models": [
-        {
-          "family": "nemotron",
-          "tier": "frontier",
-          "released": "2026-03"
-        },
-        {
-          "family": "minimax-3",
-          "tier": "strong",
-          "released": "2026-06"
-        },
-        {
-          "family": "gpt-oss",
-          "tier": "strong",
-          "released": "2025-08"
-        }
-      ],
+      "limits": "The $0 plan reads \"Access cloud models\" and nothing more: which models it reaches is not published anywhere on ollama.com, only implied by a per-model \"usage level\" from 1 (gpt-oss:20b) to 4 (deepseek-v4-pro), while Pro is sold as \"Access larger, more powerful cloud models\". Tested by hand rather than read: nemotron-3 ultra/super/nano, gpt-oss 120b/20b, gemma4:31b and minimax-m3 answered on the free plan on 2026-08-03, and every flagship (DeepSeek V4, GLM-5.x, Kimi K2.x, Qwen3.5, Mistral Large 3) returned 403 subscription-required",
+      "models": [],
       "api": {
         "base_url": "https://ollama.com/v1",
         "key_url": "https://ollama.com/settings/keys",
@@ -367,14 +366,14 @@
           "gpt-oss:120b",
           "gemma4:31b"
         ],
-        "note": "Free-tier model set verified live 2026-07-20; /v1/models lists the full catalog including subscription-only models"
+        "note": "Free-tier model set verified live 2026-08-03 by calling them; /v1/models lists the full catalog including subscription-only models"
       },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://ollama.com/cloud",
         "keywords": [
           "$0",
-          "free"
+          "Access cloud models"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -560,24 +559,8 @@
       ],
       "card_required": false,
       "offering": "Free plan + trial of paid tiers",
-      "limits": "Free plan credits",
-      "models": [
-        {
-          "family": "claude-haiku",
-          "tier": "strong",
-          "released": ""
-        },
-        {
-          "family": "gpt-5.2-mini",
-          "tier": "strong",
-          "released": ""
-        },
-        {
-          "family": "kimi-k2.5",
-          "tier": "strong",
-          "released": ""
-        }
-      ],
+      "limits": "The $0 plan is \"Light quota to code with agents\", \"Limited model availability\", unlimited inline edits and unlimited Tab completions. Which models that quota reaches is not published: \"access to OpenAI, Claude, and Gemini frontier models\" is what the $20 Pro plan adds, and the only mention of a small model anywhere on the page is a tip about making a quota last, not a plan feature. The page is now titled \"Plans and Pricing | Devin\" — Windsurf renders under Cognition's brand (read 2026-08-14)",
+      "models": [],
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://windsurf.com/pricing",
@@ -978,11 +961,12 @@
       "category": "api-free-tier",
       "url": "https://pollinations.ai",
       "source_urls": [
+        "https://text.pollinations.ai/models",
         "https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md"
       ],
       "card_required": false,
       "offering": "Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)",
-      "limits": "Anonymous 1 req/15s (no signup); anon text model is GPT-OSS-20B. The documented free registration that lifts this to 1 req/5s is unreachable — its host stopped resolving on 2026-08-14",
+      "limits": "Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model and tags it with the tier it belongs to — \"openai-fast\", described as \"GPT-OSS 20B Reasoning LLM (OVH)\", tier \"anonymous\", aliased to openai / gpt-oss / gpt-oss-20b. The documented free registration that lifts the rate to 1 req/5s is unreachable — its host stopped resolving on 2026-08-14",
       "models": [
         {
           "family": "gpt-oss",
@@ -999,10 +983,10 @@
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md",
+        "endpoint": "https://text.pollinations.ai/models",
         "keywords": [
-          "no signup",
-          "anonymous users get one request every 15 seconds"
+          "\"tier\":\"anonymous\"",
+          "GPT-OSS 20B"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -1074,19 +1058,8 @@
       ],
       "card_required": true,
       "offering": "EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer",
-      "limits": "1,000,000 free tokens then pay-per-token; a valid payment method is required",
-      "models": [
-        {
-          "family": "glm-5.2",
-          "tier": "frontier",
-          "released": "2026-04"
-        },
-        {
-          "family": "qwen3",
-          "tier": "strong",
-          "released": "2025-04"
-        }
-      ],
+      "limits": "1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — \"The Free Tier is applied to the most expensive tokens first\", across the whole serverless catalog, which on 2026-08-14 read glm-5.2, deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b and the Mistral line",
+      "models": [],
       "api": {
         "base_url": "https://api.scaleway.ai/v1",
         "key_url": "https://console.scaleway.com",
@@ -1123,19 +1096,8 @@
       ],
       "card_required": false,
       "offering": "Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account",
-      "limits": "Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests",
-      "models": [
-        {
-          "family": "deepseek",
-          "tier": "frontier",
-          "released": "2025-03"
-        },
-        {
-          "family": "qwen3",
-          "tier": "strong",
-          "released": "2025-04"
-        }
-      ],
+      "limits": "Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across everything the router reaches, so which models it buys depends on their price, not on a tier (read 2026-08-14)",
+      "models": [],
       "api": {
         "base_url": "https://router.huggingface.co/v1",
         "key_url": "https://huggingface.co/settings/tokens",
@@ -1209,58 +1171,6 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
-      "archived": false
-    },
-    {
-      "id": "longcat",
-      "name": "LongCat API Platform",
-      "category": "api-free-tier",
-      "url": "https://longcat.chat/platform",
-      "source_urls": [
-        "https://longcat.chat/platform/docs/api-docs",
-        "https://x.com/Meituan_LongCat/status/2019773072849637725"
-      ],
-      "card_required": false,
-      "offering": "Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota",
-      "limits": "100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout",
-      "models": [
-        {
-          "family": "longcat-2.0",
-          "tier": "strong",
-          "released": "2026-06"
-        },
-        {
-          "family": "longcat-flash",
-          "tier": "strong",
-          "released": "2025-09"
-        }
-      ],
-      "api": {
-        "base_url": "https://api.longcat.chat/openai/v1",
-        "key_url": "https://longcat.chat/platform",
-        "auth": "api-key",
-        "openai_compatible": true,
-        "model_ids": [
-          "LongCat-2.0"
-        ],
-        "note": "Anthropic-compatible sibling at /anthropic/v1/messages; docs include a Claude Code setup guide (cc-switch)"
-      },
-      "probe": {
-        "type": "page-keywords",
-        "endpoint": "https://longcat.chat/platform/docs/api-docs",
-        "keywords": [
-          "/openai/v1/chat/completions",
-          "LongCat-2.0"
-        ],
-        "free_marker": "",
-        "dead_markers": [],
-        "require_zero_price": false
-      },
-      "first_seen": "2026-07-22",
-      "last_verified": "2026-08-13",
-      "probe_failures": 0,
-      "provisional": false,
-      "rank": 55,
       "archived": false
     },
     {
@@ -1777,19 +1687,8 @@
       ],
       "card_required": false,
       "offering": "AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's",
-      "limits": "Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead",
-      "models": [
-        {
-          "family": "qwen-sea-lion-v4.5",
-          "tier": "strong",
-          "released": ""
-        },
-        {
-          "family": "llama-sea-lion-v3.5",
-          "tier": "strong",
-          "released": ""
-        }
-      ],
+      "limits": "Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead. The two surfaces do not overlap — the page that calls the API free names no model, and the docs page that names aisingapore/Qwen-SEA-LION-v4.5-27B-IT — and dates the 10 RPM limit to 04 Jun 2026 — never says free",
+      "models": [],
       "api": {
         "base_url": "https://api.sea-lion.ai/v1",
         "key_url": "https://playground.sea-lion.ai/key-manager",
@@ -2258,6 +2157,16 @@
       "checked_on": "2026-08-14",
       "reason": "The closest of the three to qualifying and still out. Its free plan is \"$5 of included monthly credits\" with a \"7 message/day limit\", and it does have an API — api.v0.dev/v1, keyed by V0_API_KEY — but that API is /chats/:id/messages, a product endpoint for driving v0's own builder, not a model endpoint. The credit buys v0 messages, not tokens you can spend on your own codebase. Vercel's model credits that can be spent that way are already listed here as Vercel AI Gateway.",
       "reopen_if": "The v0 free plan's credits become spendable through an OpenAI-compatible or otherwise general model endpoint.",
+      "current": true
+    },
+    {
+      "domains": [
+        "longcat.chat"
+      ],
+      "name": "LongCat API Platform (Meituan)",
+      "checked_on": "2026-08-14",
+      "reason": "Listed here from 2026-07-22 for a recurring 100K free tokens a day, and delisted because that quota is published nowhere on Meituan's own site today. Two dated entries in its change log explain what happened. \"Version: 2026-05-29 — LongCat Model Service Sunset\" retired the whole Flash line the free quota applied to: \"Effective May 29, 2026, the platform will retire the following 6 models: LongCat-Flash-Chat, LongCat-Flash-Thinking, LongCat-Flash-Thinking-2601, LongCat-Flash-Lite, LongCat-Flash-Omni-2603, LongCat-Flash-Chat-2602-Exp\". Then \"Version: 2026-06-30 — LongCat-2.0 Release & Billing Now Available\" turned on Token Packs and pay-as-you-go. The API is alive and good, but it is now priced: \"Pay-As-You-Go currently supports LongCat-2.0\" at $0.75 uncached input and $2.95 output per 1M tokens, and its prerequisites end with \"Top up your balance at Billing → Recharge\". The words \"free\" and 免费 appear nowhere in Quick Start, Token Pack, API Pay-As-You-Go, the FAQ, the API overview or the pricing page — the one \"free\" in the change log is about chatting on the consumer LongCat Chat app, not the API. The platform page itself is a 21-character client-rendered shell. Complimentary credits exist as a concept (\"If you also have complimentary credits, those are consumed before your paid balance\") but nothing states that a new account is granted any, how many, or how often. Our probe never noticed, because it anchored on the endpoint path and the model name rather than on the offer — novita's failure, again.",
+      "reopen_if": "LongCat publishes a free daily token quota, or a stated signup grant, on a server-rendered page of its own.",
       "current": true
     }
   ]
