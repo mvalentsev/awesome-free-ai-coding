@@ -1,5 +1,5 @@
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 import httpx
 import pytest
@@ -7,7 +7,7 @@ import respx
 
 from freetier_radar import scout
 from freetier_radar.discovery import Evidence, Hit
-from freetier_radar.models import Entry, save_registry
+from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched, save_registry
 from freetier_radar.scout import (
     FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, Deadline, LLMClient, _ask,
     apply_new, apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model,
@@ -575,3 +575,45 @@ def test_llm_chain_custom_endpoint_first():
                         custom_key="k", http=http)
         assert llm.complete("hi") == "custom"
     assert route.calls[0].request.headers["Authorization"] == "Bearer k"
+
+
+def watch(domain: str = "n.ai", checked_on: str = "2026-07-01") -> Watched:
+    return Watched.model_validate({
+        "domains": [domain], "name": "Watched Co", "checked_on": checked_on,
+        "reason": "no zero-priced row in its catalog. Every model is metered",
+        "reopen_if": "a zero-priced row appears"})
+
+
+def test_apply_new_rejects_a_service_the_watchlist_already_answered():
+    """A watched service usually still serves a page, so without this the
+    proposal would spend a live probe re-asking a question a human answered."""
+    entries = [make()]
+    added, rejected = apply_new(entries, [proposal(id="w", url="https://api.n.ai/v1")],
+                                TODAY, watchlist=[watch()])
+    assert added == []
+    assert rejected == ["w: on the watchlist since 2026-07-01 — no zero-priced row in its catalog"]
+
+
+def test_an_expired_watch_verdict_lets_the_proposal_through():
+    entries = [make()]
+    stale = watch(checked_on=(TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat())
+    added, rejected = apply_new(entries, [proposal(id="w", url="https://api.n.ai/v1")],
+                                TODAY, watchlist=[stale])
+    assert added == ["w"] and rejected == []
+
+
+def test_the_discovery_prompt_carries_only_verdicts_the_file_still_trusts():
+    fresh, stale = watch("fresh.ai"), watch("stale.ai", checked_on="2026-01-01")
+    text = scout.format_watchlist([fresh, stale], TODAY)
+    assert "fresh.ai" in text and "reopen if: a zero-priced row appears" in text
+    assert "stale.ai" not in text
+    assert scout.format_watchlist([], TODAY) == "none"
+
+
+def test_run_scout_reports_verdicts_due_for_a_recheck():
+    """The loop-closer: an expired verdict stops suppressing silently and starts
+    appearing in the PR body instead, so the question reaches a human."""
+    expired = (TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat()
+    result = scout.run_scout(StubLLM({}), [make()], [], lambda urls: {}, TODAY,
+                             watchlist=[watch("fresh.ai"), watch("stale.ai", checked_on=expired)])
+    assert result["stale_watch"] == [f"Watched Co (checked {expired})"]

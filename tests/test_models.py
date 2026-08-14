@@ -1,10 +1,18 @@
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
 
-from freetier_radar.models import Entry, is_anchor, load_registry, save_registry
+import yaml
+
+from freetier_radar.models import (WATCH_RECHECK_DAYS, Entry, Watched, is_anchor,
+                                    load_registry, load_watchlist, save_registry,
+                                    watch_match)
+
+
+def save_yaml(path: Path, data: dict) -> None:
+    path.write_text(yaml.safe_dump(data), encoding="utf-8")
 
 
 def sample_entry() -> dict:
@@ -117,3 +125,39 @@ def test_registry_roundtrip(tmp_path: Path):
     assert loaded[0].last_verified == date(2026, 7, 19)
     assert loaded[0].category.value == "api-free-tier"
     assert loaded[0].probe.type.value == "api-models"
+
+
+def watched(**kw) -> dict:
+    return {"domains": ["example.ai"], "name": "Example",
+            "checked_on": "2026-08-01", "reason": "no free tier today",
+            "reopen_if": "they publish one", **kw}
+
+
+def test_a_watch_verdict_covers_subdomains_and_every_spelling(tmp_path: Path):
+    path = tmp_path / "watchlist.yaml"
+    save_yaml(path, {"watched": [watched(domains=["modelscope.cn", "modelscope.ai"])]})
+    wl = load_watchlist(path)
+    today = date(2026, 8, 14)
+    assert watch_match("api-inference.modelscope.cn", wl, today) is not None
+    assert watch_match("modelscope.ai", wl, today) is not None
+    assert watch_match("modelscope.com", wl, today) is None
+
+
+def test_a_watch_verdict_expires_instead_of_burying_the_service(tmp_path: Path):
+    """The whole difference between this file and blocklist.yaml. A verdict that
+    kept suppressing forever would be a blocklist entry with softer wording."""
+    path = tmp_path / "watchlist.yaml"
+    save_yaml(path, {"watched": [watched(checked_on="2026-05-01")]})
+    wl = load_watchlist(path)
+    last_day = date(2026, 5, 1) + timedelta(days=WATCH_RECHECK_DAYS)
+    assert watch_match("example.ai", wl, last_day) is not None
+    assert watch_match("example.ai", wl, last_day + timedelta(days=1)) is None
+
+
+def test_a_missing_watchlist_is_an_empty_one(tmp_path: Path):
+    assert load_watchlist(tmp_path / "nope.yaml") == []
+
+
+def test_a_watch_entry_needs_a_domain():
+    with pytest.raises(ValidationError):
+        Watched.model_validate(watched(domains=[]))

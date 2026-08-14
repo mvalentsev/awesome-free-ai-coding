@@ -15,7 +15,8 @@ import httpx
 import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
-from .models import Entry, is_archived, load_registry, save_registry
+from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_watch_current,
+                     load_registry, load_watchlist, save_registry, watch_match)
 from .prober import challenge_marker_hit, check_content
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
@@ -117,6 +118,9 @@ TASK: DISCOVER-NEW legal free coding tools / free-tier LLM APIs / no-card trials
 Existing ids (do not repeat): {existing}
 Domains already covered (do not repeat): {domains}
 Blocklisted domains (never propose): {blocked}
+Checked recently and found to have no reachable free tier — propose one of these
+ONLY if the evidence below shows the specific change named after "reopen if":
+{watched}
 Use ONLY the evidence below (search hits, fetched pages, curated feed excerpts).
 Propose an entry ONLY when the evidence explicitly supports its free offering,
 and set source_urls to the evidence URLs you used. Official vendor pages only —
@@ -210,6 +214,9 @@ Phases skipped (out of wall-clock budget): {skipped}
 Generation bumps suggested — **not applied**, edit registry.yaml yourself if a
 free tier really moved on: {supersede}
 Already dismissed in dismissed.yaml, not proposed again: {suppressed}
+
+Watchlist verdicts due for a re-check (older than {recheck_days} days, and no
+longer suppressing anything): {stale_watch}
 
 _Proposed by the web-evidence scout — review before merging. Weekly probes keep re-verifying after merge._
 """
@@ -498,6 +505,26 @@ def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
     }
 
 
+def format_watchlist(watchlist: list[Watched], today: date) -> str:
+    """The current verdicts, for the discovery prompt.
+
+    Expired ones are left out deliberately: telling the model a service has no
+    free tier on the strength of a verdict this file itself no longer trusts is
+    how a watchlist quietly becomes a blocklist. `reopen_if` goes in because the
+    useful instruction is not "never propose this" but "propose it when THIS
+    changed" — the model is reading fresh evidence the verdict never saw.
+    """
+    current = [w for w in watchlist if is_watch_current(w, today)]
+    if not current:
+        return "none"
+    return "\n".join(
+        f"- {w.name} ({', '.join(w.domains)}), checked {w.checked_on.isoformat()}: "
+        f"{w.reason.strip()}"
+        + (f" — reopen if: {w.reopen_if.strip()}" if w.reopen_if else "")
+        for w in current
+    )
+
+
 def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
     """Synchronous single-shot version of the weekly probe for vetting proposals."""
     try:
@@ -549,12 +576,18 @@ def apply_updates(entries: list[Entry], updates: list[dict]) -> tuple[list[str],
 def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
               verifier: Callable[[Entry], str | None] | None = None,
               blocklist: dict[str, str] | None = None,
+              watchlist: list[Watched] | None = None,
               ) -> tuple[list[str], list[str]]:
-    """Validate, dedupe (by id and domain), blocklist-filter and probe-verify
-    proposals.
+    """Validate, dedupe (by id and domain), blocklist- and watchlist-filter, and
+    probe-verify proposals.
 
     Returns (added ids, rejected "id: reason" strings). With no verifier the
-    probe check is skipped (tests, offline runs)."""
+    probe check is skipped (tests, offline runs).
+
+    The watchlist filter is checked after the blocklist and before the probe: a
+    service with no free tier usually still serves a page, so its proposal would
+    burn a live probe on a question a human already answered. An expired verdict
+    filters nothing on purpose — that is what makes it a watchlist."""
     existing_ids = {e.id for e in entries}
     existing_domains = {domain_of(e.url) for e in entries}
     added, rejected = [], []
@@ -575,6 +608,12 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
             continue
         if domain_of(e.url) in existing_domains:
             rejected.append(f"{e.id}: domain already covered")
+            continue
+        watched = watch_match(domain_of(e.url), watchlist or [], today)
+        if watched is not None:
+            rejected.append(
+                f"{e.id}: on the watchlist since {watched.checked_on.isoformat()} — "
+                f"{watched.reason.split('.')[0].strip()}")
             continue
         if verifier is not None:
             problem = verifier(e)
@@ -664,9 +703,15 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               verifier: Callable[[Entry], str | None] | None = None,
               blocklist: dict[str, str] | None = None,
               dismissed: set[tuple[str, str, str]] | None = None,
+              watchlist: list[Watched] | None = None,
               deadline: Deadline | None = None) -> dict:
     result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
               "retired": [], "skipped": [],
+              # Verdicts that have aged out of suppressing anything. Reported so
+              # the question reaches a human on a schedule instead of only when
+              # someone happens to re-read the file.
+              "stale_watch": [f"{w.name} (checked {w.checked_on.isoformat()})"
+                              for w in (watchlist or []) if not is_watch_current(w, today)],
               "providers": evidence.providers if evidence else []}
 
     def within_budget(phase: str) -> bool:
@@ -702,10 +747,11 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
                 existing=", ".join(e.id for e in entries),
                 domains=", ".join(sorted({domain_of(e.url) for e in entries})),
                 blocked=", ".join(sorted(blocklist)) if blocklist else "none",
+                watched=format_watchlist(watchlist or [], today),
                 evidence=format_evidence(evidence),
             ))
             result["new"], rejected = apply_new(
-                entries, data.get("new_entries") or [], today, verifier, blocklist)
+                entries, data.get("new_entries") or [], today, verifier, blocklist, watchlist)
             result["rejected"] += rejected
         except RuntimeError as exc:
             print(f"discovery skipped: {exc}")
@@ -755,6 +801,7 @@ def main() -> None:
     parser.add_argument("--failures", type=Path, default=Path("failures/failures.json"))
     parser.add_argument("--blocklist", type=Path, default=Path("blocklist.yaml"))
     parser.add_argument("--dismissed", type=Path, default=Path("dismissed.yaml"))
+    parser.add_argument("--watchlist", type=Path, default=Path("watchlist.yaml"))
     parser.add_argument("--pr-body", type=Path, default=Path("scout-pr.md"))
     parser.add_argument(
         "--dry-run", action="store_true",
@@ -762,7 +809,16 @@ def main() -> None:
              "fallback backend gets exercised without a PR to close afterwards")
     args = parser.parse_args()
 
+    # This repository's own files load here, outside the catch-all below, and are
+    # meant to raise. The catch-all exists for what the scout cannot control — a
+    # backend down, a model answering HTML — and swallowing a config error into
+    # it makes a broken repo look like a quiet run: on 2026-08-14 a colon in a
+    # blocklist reason made yaml.safe_load throw, the scout aborted before its
+    # first LLM call, and the workflow still reported success.
     entries = load_registry(args.registry)
+    blocklist = load_blocklist(args.blocklist)
+    dismissed = load_dismissed(args.dismissed)
+    watchlist = load_watchlist(args.watchlist)
     failures = json.loads(args.failures.read_text()) if args.failures.exists() else []
     deadline = Deadline(float(os.environ.get("SCOUT_DEADLINE_SECONDS")
                               or SCOUT_DEADLINE_SECONDS))
@@ -792,8 +848,9 @@ def main() -> None:
             result = run_scout(llm, entries, failures, fetch_page_texts, date.today(),
                                evidence=evidence,
                                verifier=lambda e: probe_check_sync(e, probe_client),
-                               blocklist=load_blocklist(args.blocklist),
-                               dismissed=load_dismissed(args.dismissed),
+                               blocklist=blocklist,
+                               dismissed=dismissed,
+                               watchlist=watchlist,
                                deadline=deadline)
     except Exception as exc:
         # Last line of defence, and deliberately catch-all. The scout is the
@@ -821,6 +878,8 @@ def main() -> None:
         rejected="; ".join(result["rejected"]) or "—",
         supersede=", ".join(result["supersede"]) or "—",
         suppressed=", ".join(result["suppressed"]) or "—",
+        stale_watch=", ".join(result["stale_watch"]) or "—",
+        recheck_days=WATCH_RECHECK_DAYS,
         retired=", ".join(result["retired"]) or "—",
         skipped=", ".join(result["skipped"]) or "—",
     ), encoding="utf-8")

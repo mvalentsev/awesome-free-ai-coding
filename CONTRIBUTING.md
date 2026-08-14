@@ -27,6 +27,15 @@ will not re-propose them. Model-generation bumps a reviewer has already declined
 live in [`dismissed.yaml`](dismissed.yaml), so the same suggestion stops coming
 back in every pull request.
 
+**If your suggestion is declined, it probably lands in
+[`watchlist.yaml`](watchlist.yaml), not the blocklist.** Most services checked
+here are legitimate and simply have nothing free today, or publish their offer
+only on a page no probe can read. That verdict is recorded with its date, its
+reason and a `reopen_if` naming the evidence that would change it — and it
+expires after 90 days, at which point the scout is free to raise the service
+again. If you can supply what `reopen_if` asks for, open the issue again; if the
+verdict itself is wrong, say so and delete the record in your pull request.
+
 ## Probes must anchor on the offer
 
 Every `page-keywords` probe needs at least one keyword that disappears when the
@@ -59,7 +68,14 @@ uv sync
 uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
 uv run freetier-render            # regenerate README.md + index.json + configs/
+uv run freetier-check             # validate the four curated files against each other
 ```
+
+`freetier-check` is the one to run after editing any of `registry.yaml`,
+`blocklist.yaml`, `dismissed.yaml` or `watchlist.yaml`. Three of those are read
+only by the scout, which runs behind a catch-all — so before this existed, a
+malformed one could reach `main` and turn into a green workflow that had quietly
+done nothing.
 
 The `update` workflow also takes manual inputs: `dry_run` runs every phase and
 writes nothing (the scout's report lands in the run summary instead of a PR),

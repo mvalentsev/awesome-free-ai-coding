@@ -153,6 +153,16 @@ model_list:
     model: openai/glm-4.7-flash
     api_base: https://api.z.ai/api/paas/v4
     api_key: os.environ/ZAI_GLM_API_KEY
+- model_name: zai-glm/glm-4.5-flash
+  litellm_params:
+    model: openai/glm-4.5-flash
+    api_base: https://api.z.ai/api/paas/v4
+    api_key: os.environ/ZAI_GLM_API_KEY
+- model_name: zai-glm/glm-4.6v-flash
+  litellm_params:
+    model: openai/glm-4.6v-flash
+    api_base: https://api.z.ai/api/paas/v4
+    api_key: os.environ/ZAI_GLM_API_KEY
 - model_name: longcat/LongCat-2.0
   litellm_params:
     model: openai/LongCat-2.0
@@ -396,5 +406,10 @@ model_list:
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+- model_name: vercel-ai-gateway/zai/glm-4.6v-flash
+  litellm_params:
+    model: openai/zai/glm-4.6v-flash
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY

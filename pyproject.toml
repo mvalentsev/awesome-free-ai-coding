@@ -20,6 +20,7 @@ dev = [
 freetier-probe = "freetier_radar.prober:main"
 freetier-scout = "freetier_radar.scout:main"
 freetier-render = "freetier_radar.render:main"
+freetier-check = "freetier_radar.validate:main"
 
 [build-system]
 requires = ["hatchling"]

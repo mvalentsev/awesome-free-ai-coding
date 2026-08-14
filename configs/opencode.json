@@ -167,6 +167,12 @@
       "models": {
         "glm-4.7-flash": {
           "name": "glm-4.7-flash"
+        },
+        "glm-4.5-flash": {
+          "name": "glm-4.5-flash"
+        },
+        "glm-4.6v-flash": {
+          "name": "glm-4.6v-flash"
         }
       }
     },
@@ -493,6 +499,9 @@
       "models": {
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
+        },
+        "zai/glm-4.6v-flash": {
+          "name": "zai/glm-4.6v-flash"
         }
       }
     }

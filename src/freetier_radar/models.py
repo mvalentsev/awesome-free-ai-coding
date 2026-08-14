@@ -238,6 +238,78 @@ def is_archived(entry: Entry, today: date) -> bool:
     return False
 
 
+class Watched(BaseModel):
+    """A service that belongs on neither list yet: legitimate, but with no free
+    tier a developer can reach today.
+
+    The registry had two states and needed three. `blocklist.yaml` is a verdict
+    on the *service* — BYOK-only, pooled piracy, hostile to agents — and it is
+    meant to be permanent, so putting a legitimate vendor there buries it on the
+    day it opens a free lane. Leaving it in neither file is what actually
+    happened to tokenrouter.io and LLM7: nothing recorded the decision, so the
+    scout re-proposed them and a reviewer re-derived the same "no" from scratch.
+
+    This is a verdict on the *offer, on a date*. `checked_on` is what makes it
+    different from a quiet blocklist — it expires. `reopen_if` names the evidence
+    that would change the answer, so the next look starts from the last one
+    instead of from zero.
+    """
+    # A list, unlike blocklist.yaml's single domain, because a watched service is
+    # routinely reachable under more than one of them and a proposal may arrive
+    # under either: ModelScope answers on both .cn and .ai, and suppressing one
+    # spelling while the other sails through is the same as not suppressing.
+    domains: list[str]
+    name: str
+    checked_on: date
+    reason: str
+    reopen_if: str = ""
+
+    @model_validator(mode="after")
+    def _needs_a_domain(self) -> Watched:
+        if not self.domains:
+            raise ValueError(f"watchlist entry {self.name}: needs at least one domain")
+        return self
+
+
+# How long a "no free tier today" verdict is worth trusting. Long enough that a
+# lead does not churn through every twice-weekly run, short enough that a tier
+# opened in the meantime is noticed within a quarter. Past this the entry stops
+# suppressing proposals and is reported as due for a re-check instead.
+WATCH_RECHECK_DAYS = 90
+
+
+def load_watchlist(path: Path) -> list[Watched]:
+    """Missing file means an empty watchlist — the file is optional the way
+    blocklist.yaml is."""
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    items = data.get("watched") if isinstance(data, dict) else data
+    return [Watched.model_validate(w) for w in (items or [])]
+
+
+def is_watch_current(watched: Watched, today: date) -> bool:
+    """Is this verdict still young enough to answer for the service?"""
+    return (today - watched.checked_on).days <= WATCH_RECHECK_DAYS
+
+
+def watch_match(domain: str, watchlist: list[Watched], today: date) -> Watched | None:
+    """The current verdict covering this domain, if there is one.
+
+    Suffix-matched like the blocklist, so `siliconflow.com` also covers
+    `api.siliconflow.com`. An expired verdict deliberately matches nothing: that
+    is the whole difference between watching a service and burying it.
+    """
+    for w in watchlist:
+        if not is_watch_current(w, today):
+            continue
+        for raw in w.domains:
+            d = raw.lower()
+            if domain == d or domain.endswith("." + d):
+                return w
+    return None
+
+
 def load_registry(path: Path) -> list[Entry]:
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
     return [Entry.model_validate(e) for e in data["entries"]]

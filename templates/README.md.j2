@@ -88,6 +88,23 @@ _Empty — the radar is clean._
 {% endif %}
 </details>
 
+{% if watchlist %}
+<details>
+<summary><b>🔭 Checked and not listed</b> — {{ watchlist | length }} services whose free tier this list could not find or could not verify, and what would change the answer</summary>
+<br>
+
+<sub>Nothing here is disqualified — these are legitimate services with no free tier a developer can reach on the date checked. Each verdict expires after {{ watch_recheck_days }} days and gets asked again. The reasons live in [`watchlist.yaml`](watchlist.yaml); domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).</sub>
+
+| Service | Why it is not on the list | Checked |
+|---|---|---|
+{% for w in watchlist %}| **{{ w.name }}** | {{ w.reason }}{% if w.reopen_if %} <sub>**Reopens if:** {{ w.reopen_if }}</sub>{% endif %} | `{{ w.checked_on }}`{% if not w.current %} ⏰{% endif %} |
+{% endfor %}
+
+<sub>⏰ — the verdict is older than {{ watch_recheck_days }} days, no longer suppresses anything, and is due for a fresh look.</sub>
+
+</details>
+{% endif %}
+
 ## 🔧 Plug it into your agent
 
 Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK:
@@ -136,6 +153,7 @@ flowchart LR
 - **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
+- **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after {{ watch_recheck_days }} days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on this page, above, with what would change the answer.
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
 ## 🤝 Contributing

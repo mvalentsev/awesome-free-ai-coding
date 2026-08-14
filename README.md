@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--10-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-37-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-38-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **37** | **36** | **2** | **26** | **43** |
+| **38** | **37** | **2** | **26** | **47** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -59,7 +59,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Groq](https://groq.com)** | Fast inference free tier | `llama-4`, `qwen3` | <sub>Free tier daily limits per model</sub> | ✅ No | `2026-08-13` |
 | **[Cerebras Inference](https://www.cerebras.ai)** | Very fast inference; $5 in free credits on signup, no card | `qwen3` | <sub>$5 in free credits after making an account, usable on all Cerebras-hosted models; free-tier rate limits below the $10 Developer plan</sub> | ✅ No | `2026-08-13` |
 | **[OVHcloud AI Endpoints](https://endpoints.ai.cloud.ovh.net)** | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | `qwen3`, `gpt-oss` | <sub>No-key anonymous access, rate-limited; free API key raises limits</sub> | ✅ No | `2026-08-13` |
-| **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash` | <sub>GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited</sub> | ✅ No | `2026-08-13` |
+| **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | <sub>GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three rows z.ai's own price table reads Free on all four columns — every other model there says "Limited-time Free" instead, including the flagship GLM-5.x. Rate-limited</sub> | ✅ No | `2026-08-13` |
 | **[LongCat API Platform](https://longcat.chat/platform)** | Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota | `longcat-2.0`, `longcat-flash` | <sub>100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout</sub> | ✅ No | `2026-08-13` |
 | **[Cloudflare Workers AI](https://workers.cloudflare.com)** | 10k neurons/day free | `llama-4` | <sub>10,000 neurons/day free allocation</sub> | ✅ No | `2026-08-13` |
 | **[Ollama Cloud](https://ollama.com/cloud)** | Cloud-hosted open models with free usage tier | `nemotron`, `minimax-3`, `gpt-oss` | <sub>Free tier with hourly/daily limits; open models only — flagship models (DeepSeek V4, GLM-5, Kimi K2.x, Qwen3.5) need a subscription</sub> | ✅ No | `2026-08-13` |
@@ -84,6 +84,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Qoder](https://qoder.com)** | Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models | — | <sub>Trial: 300 credits for 2 weeks; free plan afterwards serves basic models with a daily cap</sub> | ✅ No | `2026-08-13` |
 | **[Trae](https://www.trae.ai)** | Free access to frontier models in IDE | — | <sub>Free tier quotas</sub> | ✅ No | `2026-08-13` |
 | **[Upstage (Solar API)](https://console.upstage.ai/)** | Upstage Solar LLM API; $10 free credit on signup, no card | `solar-pro-3`, `solar-mini` | <sub>$10 signup credit (see console for validity); pay-as-you-go after</sub> | ✅ No | `2026-08-13` |
+| **[AI21 Labs (Jamba)](https://www.ai21.com)** | AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat | `jamba-mini`, `jamba-large` | <sub>$10 of credits for 7 days, stated on AI21's own pricing page, with no card asked for; sign-in is email, Google, GitHub or SSO. The shortest trial window on this page — after it, Jamba Mini is $0.2/$0.4 and Jamba Large $2/$8 per 1M tokens</sub> | ✅ No | `2026-08-14 🧪` |
 
 ### 🧭 Aggregators (one key, many providers)
 | Tool | What you get | Free models | Limits | Card required | Verified |
@@ -94,10 +95,10 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Requesty](https://www.requesty.ai)** | OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | <sub>Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go</sub> | ✅ No | `2026-08-13 🧪` |
 | **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway carrying ten live zero-priced :free ids — Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `step-3.7-flash`, `gemma-4`, `llama-3.3` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-13 🧪` |
 | **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 127-model catalog metered at list rates | `nemotron-3-nano-omni` | <sub>the free id sits in the default group and publishes no request cap; the other 126 models are metered at list rates. The zero-priced Kimi K3 this entry was registered for is gone — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains</sub> | ✅ No | `2026-08-10 🧪` |
-| **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month | `laguna-s-2.1-free` | <sub>$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and never draws it down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-13 🧪` |
+| **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and two models that never touch the credit | `laguna-s-2.1-free`, `glm-4.6v-flash` | <sub>$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-13 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 43 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 47 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -109,6 +110,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `deepseek` | [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `deepseek-v4-flash` | [opencode](https://opencode.ai), [BazaarLink](https://bazaarlink.ai) |
 | `gemini-2.5` | [Google Jules](https://jules.google/), [Google AI Studio (Gemini API)](https://aistudio.google.com) |
+| `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `llama-4` | [Groq](https://groq.com), [Cloudflare Workers AI](https://workers.cloudflare.com) |
 | `nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Ollama Cloud](https://ollama.com/cloud) |
 | `nemotron-3-super` | [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
@@ -122,10 +124,13 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `command-a` | [Cohere (trial keys)](https://cohere.com) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google) |
 | `gemini-3.5-flash` | [Google Antigravity](https://antigravity.google) |
+| `glm-4.5-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.7-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-5.2` | [Scaleway Generative APIs](https://www.scaleway.com/en/generative-apis/) |
 | `gpt-5.2-mini` | [Windsurf](https://windsurf.com) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://developers.openai.com/codex/) |
+| `jamba-large` | [AI21 Labs (Jamba)](https://www.ai21.com) |
+| `jamba-mini` | [AI21 Labs (Jamba)](https://www.ai21.com) |
 | `kimi-k2.5` | [Windsurf](https://windsurf.com) |
 | `laguna-s-2.1` | [Kilo Code](https://kilo.ai) |
 | `laguna-s-2.1-free` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
@@ -161,6 +166,33 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 </details>
 
+<details>
+<summary><b>🔭 Checked and not listed</b> — 14 services whose free tier this list could not find or could not verify, and what would change the answer</summary>
+<br>
+
+<sub>Nothing here is disqualified — these are legitimate services with no free tier a developer can reach on the date checked. Each verdict expires after 90 days and gets asked again. The reasons live in [`watchlist.yaml`](watchlist.yaml); domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).</sub>
+
+| Service | Why it is not on the list | Checked |
+|---|---|---|
+| **Agnes AI** | The site titles itself "Free Omni-Modal AI API" and then publishes nothing to back it — /pricing and /docs both 404, the pages are a client-rendered shell, and api.agnes-ai.com answers its own JSON 404 for /v1/models, so no catalog, no prices and no quota are public. A free claim with no page behind it is exactly what this list refuses to repeat. <sub>**Reopens if:** Public docs or a keyless catalog appear that state what is free and on what terms.</sub> | `2026-08-14` |
+| **Aion Labs** | Reached from a curated feed's provider table and does not resolve to an LLM API vendor at all: aionlabs.ai sells email agents and its only free offer is a "free use-case audit". Recorded so the same feed row does not send the next run down the same path. <sub>**Reopens if:** A different, actual LLM API provider is identified behind this name.</sub> | `2026-08-14` |
+| **DeepSeek** | Re-checked against api-docs.deepseek.com/quick_start/pricing, which is server-rendered and prices every model — $0.14 in / $0.28 out per 1M for the cache-miss tier, no zero row anywhere. This confirms the 2026-07-27 removal: the 5M-token signup grant that used to be cited for DeepSeek was only ever reported by third parties and appears on no official page. <sub>**Reopens if:** An official DeepSeek page states a free grant or a zero-priced model.</sub> | `2026-08-14` |
+| **glhf.chat** | The service does not answer. Both the site and its OpenAI-compatible endpoint return Cloudflare 522 "Connection timed out" — the origin is down, not the edge. An offer that cannot be reached cannot be verified, and a dead host is not evidence of a withdrawn tier either, which is why this is a watch and not a block. <sub>**Reopens if:** The origin answers again and its free lane is still there.</sub> | `2026-08-14` |
+| **ModelScope (Alibaba)** | The free tier is real and large — 2,000 API calls a day across a catalog whose keyless api-inference.modelscope.cn/v1/models lists 43 served ids, DeepSeek V4 Flash/Pro, Qwen3.5-397B, Qwen3-Coder, GLM-5.2, MiniMax M3 and Step-3.7-Flash among them. Two things keep it off the list. Registration binds an Alibaba Cloud account and requires real-name verification, which is not something a developer outside mainland China can simply complete, so the offer is not directly usable the way this list means it. And there is nothing to probe — every docs page under /docs/model-service is a client-rendered shell (the served HTML carries 15 characters of text and an empty window.__detail_data__), while the models endpoint publishes no prices and no quota, so a probe there could only ever confirm that ids exist. A row this list cannot verify is a row it will not carry. <sub>**Reopens if:** ModelScope publishes a server-rendered quota page, or the free tier becomes reachable without real-name verification.</sub> | `2026-08-14` |
+| **Nebius Token Factory** | Rebranded from Nebius AI Studio — studio.nebius.com now redirects to tokenfactory.nebius.com. Its served pages carry no free tier at all: the pricing page prices storage and GPU-hours, the product page offers a "Start free" button and a sales contact, and the docs quickstart carries no grant, quota or trial. The catalog answers 401 without a key. Nothing here is a free offer a developer can name, so there is nothing to list. <sub>**Reopens if:** Token Factory publishes a signup grant or a free model lane on a served page.</sub> | `2026-08-14` |
+| **Nscale** | The serverless inference API exists — inference.api.nscale.com/v1/models answers 401 rather than 404 — but the company's public site is now enterprise AI-cloud marketing with no pricing page (/pricing and /serverless both 404) and the documentation redirects to a login wall. There is no public page stating a free tier and no public page a probe could read, which is two independent reasons the row cannot exist. <sub>**Reopens if:** Nscale puts its serverless pricing or free credits back on a public, server-rendered page.</sub> | `2026-08-14` |
+| **SiliconFlow** | siliconflow.com/pricing is server-rendered and states the whole offer in one sentence — "postpaid billing—plus $1 in free credits to get you started". One dollar is a sign-up courtesy, not a free tier: the same reasoning that kept Nous Portal off this list. No model in the pricing tables is priced at zero, and the catalog endpoint answers 401 on both the .com and .cn hosts, so there is no free lane to point an agent at. <sub>**Reopens if:** A zero-priced model appears in the served catalog, or the free grant becomes a recurring quota rather than a one-off dollar.</sub> | `2026-08-14` |
+| **xAI (Grok API)** | docs.x.ai prices every surface — text, Agent, TTS, STT, Imagine — and names no free tier or signup grant. x.ai/api answers HTTP 403 to every non-browser client, so even a stated offer could not be probed from here. The free API credits xAI ran in exchange for data sharing are not on any current page. <sub>**Reopens if:** A free tier or signup grant appears on a page that answers a plain HTTP client.</sub> | `2026-08-14` |
+| **LLM7** | Carries a reputation for a shared free tier that its own catalog no longer supports: 35 models on api.llm7.io, every one of them tier `pro` or `turbo` and usage-priced, zero free rows. Curated feeds still credit it with 15 free models, which is how it keeps coming back. <sub>**Reopens if:** A zero-priced row reappears in the api.llm7.io catalog.</sub> | `2026-08-11` |
+| **TokenRouter.io** | Legitimate commercial routing layer, and the third unrelated service to carry the TokenRouter name — check the TLD before acting on any lead here, because .com is the listed PaleBlueDot gateway and .me is blocklisted. Its quickstart says "You need at least one AI provider key to route requests" and sends you to platform.openai.com, i.e. BYOK-only with no bundled model usage, and its "Free tier available" covers the routing plan, not tokens — the pricing page's own words are "Pay only for routing and insights". Not blocklisted precisely because nothing is wrong with it. <sub>**Reopens if:** TokenRouter.io starts bundling model usage rather than routing only.</sub> | `2026-08-05` |
+| **Arcee (Trinity)** | Direct API grants are application-gated, and an application with a selection step is not an offer a developer can simply use — the same bar that keeps TokenRouter's builder programme out of its entry. The :free Trinity variants that are open live on OpenRouter, which this list already covers. <sub>**Reopens if:** Arcee opens direct API credits without an application.</sub> | `2026-07-22` |
+| **Morph (fast-apply)** | The one entry here with a free tier that is probably real — roughly 200 requests a month on the fast-apply model — and no way to verify it: morphllm.com/pricing is client-rendered, so the figure appears in no served HTML. Kept out on the verification rule alone, not on the offer. <sub>**Reopens if:** Morph's docs or pricing become server-rendered with the quota in them.</sub> | `2026-07-22` |
+| **Nous Portal** | The free tier is $0.10 a month of credit — decorative rather than usable, and far below what the third-party claim of "50 RPM free" suggested. <sub>**Reopens if:** The monthly grant becomes large enough to run an agent session on.</sub> | `2026-07-22` |
+
+<sub>⏰ — the verdict is older than 90 days, no longer suppresses anything, and is due for a fresh look.</sub>
+
+</details>
+
 ## 🔧 Plug it into your agent
 
 Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK:
@@ -192,7 +224,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Routeway**<br><sub>all ten ids are priced 0 and answering — the Free-models column names the four the probe anchors on, because a promo lane that rotates out must not archive a gateway that still has a free tier; laguna-m.1:free is priced 0 too but the catalog still marks it unavailable, so it is left out, and ling-3.0-flash:free left the catalog altogether in 2026-08. Only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone, so treat these ids as a fallback lane, not a dependency</sub> | `https://api.routeway.ai/v1` | `ROUTEWAY_API_KEY` | [key](https://routeway.ai/dashboard/keys) |
 | **SambaNova Cloud**<br><sub>model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane</sub> | `https://api.sambanova.ai/v1` | `SAMBANOVA_CLOUD_API_KEY` | [key](https://cloud.sambanova.ai/apis) |
 | **TokenRouter (PaleBlueDot)**<br><sub>one id in the catalog is priced 0 and it is the whole free lane here. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here</sub> | `https://api.tokenrouter.com/v1` | `TOKENROUTER_API_KEY` | [key](https://www.tokenrouter.com/console/token) |
-| **Vercel AI Gateway**<br><sub>laguna-s-2.1-free costs nothing; any other Free-Tier-eligible model spends the $5 monthly credit. inclusionai/ling-3.0-flash-free left the catalog in 2026-08 and the ling-3.0-tiny-free standing where it was publishes an empty pricing object, so nothing here says it is free</sub> | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |
+| **Vercel AI Gateway**<br><sub>both ids cost nothing; any other Free-Tier-eligible model spends the $5 monthly credit. glm-4.6v-flash is zero here because z.ai prices it at zero itself — its own table reads Free on all four columns while every neighbour reads "Limited-time Free" — so this is a vendor policy rather than a gateway promo lane. inclusionai/ling-3.0-flash-free left the catalog in 2026-08 and the ling-3.0-tiny-free standing where it was publishes an empty pricing object, so nothing there says it is free</sub> | `https://ai-gateway.vercel.sh/v1` | `VERCEL_AI_GATEWAY_API_KEY` | [key](https://vercel.com/dashboard/ai-gateway/api-keys) |
 
 Ready-made artifacts, regenerated on every update:
 
@@ -233,6 +265,7 @@ flowchart LR
 - **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub and curated feeds; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
 - **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
+- **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after 90 days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on this page, above, with what would change the answer.
 - **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
 
 ## 🤝 Contributing

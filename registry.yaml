@@ -702,11 +702,20 @@ entries:
   source_urls:
   - https://docs.z.ai/guides/overview/pricing
   card_required: false
-  offering: GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4)
-  limits: GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x
-    not free; rate-limited
+  offering: GLM Flash models free on the API, vision included (OpenAI-compatible at
+    api.z.ai/api/paas/v4)
+  limits: GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the
+    three rows z.ai's own price table reads Free on all four columns — every other
+    model there says "Limited-time Free" instead, including the flagship GLM-5.x.
+    Rate-limited
   models:
   - family: glm-4.7-flash
+    tier: strong
+    released: 2026-01
+  - family: glm-4.5-flash
+    tier: strong
+    released: 2025-07
+  - family: glm-4.6v-flash
     tier: strong
     released: 2026-01
   api:
@@ -720,8 +729,9 @@ entries:
     type: page-keywords
     endpoint: https://docs.z.ai/guides/overview/pricing
     keywords:
-    - glm-4.7-flash
-    - free
+    - GLM-4.7-Flash</td><td style="text-align:left">Free</td>
+    - GLM-4.5-Flash</td><td style="text-align:left">Free</td>
+    - GLM-4.6V-Flash</td><td style="text-align:left">Free</td>
     free_marker: ''
     dead_markers: []
     require_zero_price: false
@@ -1135,14 +1145,19 @@ entries:
   - https://vercel.com/docs/ai-gateway/openai-compat
   card_required: false
   offering: One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits
-    included every month
-  limits: $5/month credit at provider list rates, renewed monthly; 217 of 316 models
-    eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and
-    never draws it down. Buying credits ends the monthly free credit
+    included every month and two models that never touch the credit
+  limits: $5/month credit at provider list rates, renewed monthly; lower per-model
+    rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in
+    and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision
+    (128k context, images and PDFs, tool use) — and neither draws the credit down.
+    Buying credits ends the monthly free credit
   models:
   - family: laguna-s-2.1-free
     tier: strong
     released: 2026-07
+  - family: glm-4.6v-flash
+    tier: strong
+    released: 2026-01
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -1150,10 +1165,14 @@ entries:
     openai_compatible: true
     model_ids:
     - poolside/laguna-s-2.1-free
-    note: laguna-s-2.1-free costs nothing; any other Free-Tier-eligible model spends
-      the $5 monthly credit. inclusionai/ling-3.0-flash-free left the catalog in 2026-08
-      and the ling-3.0-tiny-free standing where it was publishes an empty pricing
-      object, so nothing here says it is free
+    - zai/glm-4.6v-flash
+    note: both ids cost nothing; any other Free-Tier-eligible model spends the $5
+      monthly credit. glm-4.6v-flash is zero here because z.ai prices it at zero
+      itself — its own table reads Free on all four columns while every neighbour
+      reads "Limited-time Free" — so this is a vendor policy rather than a gateway
+      promo lane. inclusionai/ling-3.0-flash-free left the catalog in 2026-08 and
+      the ling-3.0-tiny-free standing where it was publishes an empty pricing
+      object, so nothing there says it is free
   probe:
     type: api-models
     endpoint: https://ai-gateway.vercel.sh/v1/models
@@ -1510,3 +1529,53 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 70
+- id: ai21-labs
+  name: AI21 Labs (Jamba)
+  category: trial
+  url: https://www.ai21.com
+  source_urls:
+  - https://www.ai21.com/pricing/
+  - https://docs.ai21.com/docs/jamba-foundation-models.md
+  - https://docs.ai21.com/docs/create-api-key.md
+  card_required: false
+  offering: AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention
+    models built for 256K-token context, so the trial is worth spending on a long
+    file rather than on a chat
+  limits: $10 of credits for 7 days, stated on AI21's own pricing page, with no card
+    asked for; sign-in is email, Google, GitHub or SSO. The shortest trial window on
+    this page — after it, Jamba Mini is $0.2/$0.4 and Jamba Large $2/$8 per 1M tokens
+  models:
+  - family: jamba-mini
+    tier: strong
+    released: 2026-01
+  - family: jamba-large
+    tier: strong
+    released: 2025-07
+  api:
+    base_url: https://api.ai21.com/studio/v1
+    key_url: https://studio.ai21.com/sign-up
+    auth: api-key
+    openai_compatible: false
+    model_ids:
+    - jamba-mini
+    - jamba-large
+    note: POST /studio/v1/chat/completions is live and takes a Bearer key, but AI21
+      documents its own SDK and claims OpenAI compatibility nowhere, so this one is
+      left out of the generated configs rather than promised to work with an OpenAI
+      client. The older /studio/v1/models catalog answers HTTP 410 — that route is
+      retired, the chat route is not
+  probe:
+    type: page-keywords
+    endpoint: https://www.ai21.com/pricing/
+    keywords:
+    - $10 credits for 7 days
+    - No credit card needed
+    - Jamba Mini
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-14'
+  last_verified: '2026-08-14'
+  probe_failures: 0
+  provisional: true
+  rank: 90

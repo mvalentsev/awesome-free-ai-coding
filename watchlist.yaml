@@ -1,0 +1,201 @@
+# Services checked and NOT listed — because they have no free tier a developer
+# can reach today, not because anything is wrong with them.
+#
+# This is the third state the registry needed. `blocklist.yaml` is a verdict on
+# the service and is meant to be permanent, so putting a legitimate vendor there
+# buries it on the day it opens a free lane. Leaving a lead in neither file is
+# what used to happen: nothing recorded the decision, the scout re-proposed it
+# every run, and a reviewer re-derived the same "no" from scratch.
+#
+# A record here is a verdict on the OFFER, on a DATE. `checked_on` is what makes
+# it different from a quiet blocklist: after WATCH_RECHECK_DAYS (90) it stops
+# suppressing proposals and is reported as due for a re-check, so a tier that
+# opened in the meantime gets noticed within a quarter. `reopen_if` names the
+# evidence that would change the answer, so the next look starts from the last
+# one instead of from zero.
+#
+# Domains are suffix-matched: "siliconflow.com" also covers api.siliconflow.com.
+# Delete a record to make the scout free to propose the service again.
+
+watched:
+  - domains: [modelscope.cn, modelscope.ai]
+    name: ModelScope (Alibaba)
+    checked_on: '2026-08-14'
+    reason: >-
+      The free tier is real and large — 2,000 API calls a day across a catalog
+      whose keyless api-inference.modelscope.cn/v1/models lists 43 served ids,
+      DeepSeek V4 Flash/Pro, Qwen3.5-397B, Qwen3-Coder, GLM-5.2, MiniMax M3 and
+      Step-3.7-Flash among them. Two things keep it off the list. Registration
+      binds an Alibaba Cloud account and requires real-name verification, which
+      is not something a developer outside mainland China can simply complete,
+      so the offer is not directly usable the way this list means it. And there
+      is nothing to probe — every docs page under /docs/model-service is a
+      client-rendered shell (the served HTML carries 15 characters of text and
+      an empty window.__detail_data__), while the models endpoint publishes no
+      prices and no quota, so a probe there could only ever confirm that ids
+      exist. A row this list cannot verify is a row it will not carry.
+    reopen_if: >-
+      ModelScope publishes a server-rendered quota page, or the free tier
+      becomes reachable without real-name verification.
+
+  - domains: [siliconflow.com, siliconflow.cn]
+    name: SiliconFlow
+    checked_on: '2026-08-14'
+    reason: >-
+      siliconflow.com/pricing is server-rendered and states the whole offer in
+      one sentence — "postpaid billing—plus $1 in free credits to get you
+      started". One dollar is a sign-up courtesy, not a free tier: the same
+      reasoning that kept Nous Portal off this list. No model in the pricing
+      tables is priced at zero, and the catalog endpoint answers 401 on both
+      the .com and .cn hosts, so there is no free lane to point an agent at.
+    reopen_if: >-
+      A zero-priced model appears in the served catalog, or the free grant
+      becomes a recurring quota rather than a one-off dollar.
+
+  - domains: [nebius.com]
+    name: Nebius Token Factory
+    checked_on: '2026-08-14'
+    reason: >-
+      Rebranded from Nebius AI Studio — studio.nebius.com now redirects to
+      tokenfactory.nebius.com. Its served pages carry no free tier at all: the
+      pricing page prices storage and GPU-hours, the product page offers a
+      "Start free" button and a sales contact, and the docs quickstart carries
+      no grant, quota or trial. The catalog answers 401 without a key. Nothing
+      here is a free offer a developer can name, so there is nothing to list.
+    reopen_if: >-
+      Token Factory publishes a signup grant or a free model lane on a served
+      page.
+
+  - domains: [nscale.com]
+    name: Nscale
+    checked_on: '2026-08-14'
+    reason: >-
+      The serverless inference API exists — inference.api.nscale.com/v1/models
+      answers 401 rather than 404 — but the company's public site is now
+      enterprise AI-cloud marketing with no pricing page (/pricing and
+      /serverless both 404) and the documentation redirects to a login wall.
+      There is no public page stating a free tier and no public page a probe
+      could read, which is two independent reasons the row cannot exist.
+    reopen_if: >-
+      Nscale puts its serverless pricing or free credits back on a public,
+      server-rendered page.
+
+  - domains: [glhf.chat]
+    name: glhf.chat
+    checked_on: '2026-08-14'
+    reason: >-
+      The service does not answer. Both the site and its OpenAI-compatible
+      endpoint return Cloudflare 522 "Connection timed out" — the origin is
+      down, not the edge. An offer that cannot be reached cannot be verified,
+      and a dead host is not evidence of a withdrawn tier either, which is why
+      this is a watch and not a block.
+    reopen_if: >-
+      The origin answers again and its free lane is still there.
+
+  - domains: [x.ai]
+    name: xAI (Grok API)
+    checked_on: '2026-08-14'
+    reason: >-
+      docs.x.ai prices every surface — text, Agent, TTS, STT, Imagine — and
+      names no free tier or signup grant. x.ai/api answers HTTP 403 to every
+      non-browser client, so even a stated offer could not be probed from here.
+      The free API credits xAI ran in exchange for data sharing are not on any
+      current page.
+    reopen_if: >-
+      A free tier or signup grant appears on a page that answers a plain HTTP
+      client.
+
+  - domains: [deepseek.com]
+    name: DeepSeek
+    checked_on: '2026-08-14'
+    reason: >-
+      Re-checked against api-docs.deepseek.com/quick_start/pricing, which is
+      server-rendered and prices every model — $0.14 in / $0.28 out per 1M for
+      the cache-miss tier, no zero row anywhere. This confirms the 2026-07-27
+      removal: the 5M-token signup grant that used to be cited for DeepSeek was
+      only ever reported by third parties and appears on no official page.
+    reopen_if: >-
+      An official DeepSeek page states a free grant or a zero-priced model.
+
+  - domains: [agnes-ai.com]
+    name: Agnes AI
+    checked_on: '2026-08-14'
+    reason: >-
+      The site titles itself "Free Omni-Modal AI API" and then publishes
+      nothing to back it — /pricing and /docs both 404, the pages are a
+      client-rendered shell, and api.agnes-ai.com answers its own JSON 404 for
+      /v1/models, so no catalog, no prices and no quota are public. A free
+      claim with no page behind it is exactly what this list refuses to repeat.
+    reopen_if: >-
+      Public docs or a keyless catalog appear that state what is free and on
+      what terms.
+
+  - domains: [aionlabs.ai]
+    name: Aion Labs
+    checked_on: '2026-08-14'
+    reason: >-
+      Reached from a curated feed's provider table and does not resolve to an
+      LLM API vendor at all: aionlabs.ai sells email agents and its only free
+      offer is a "free use-case audit". Recorded so the same feed row does not
+      send the next run down the same path.
+    reopen_if: >-
+      A different, actual LLM API provider is identified behind this name.
+
+  - domains: [tokenrouter.io]
+    name: TokenRouter.io
+    checked_on: '2026-08-05'
+    reason: >-
+      Legitimate commercial routing layer, and the third unrelated service to
+      carry the TokenRouter name — check the TLD before acting on any lead
+      here, because .com is the listed PaleBlueDot gateway and .me is
+      blocklisted. Its quickstart says "You need at least one AI provider key
+      to route requests" and sends you to platform.openai.com, i.e. BYOK-only
+      with no bundled model usage, and its "Free tier available" covers the
+      routing plan, not tokens — the pricing page's own words are "Pay only for
+      routing and insights". Not blocklisted precisely because nothing is wrong
+      with it.
+    reopen_if: >-
+      TokenRouter.io starts bundling model usage rather than routing only.
+
+  - domains: [llm7.io]
+    name: LLM7
+    checked_on: '2026-08-11'
+    reason: >-
+      Carries a reputation for a shared free tier that its own catalog no
+      longer supports: 35 models on api.llm7.io, every one of them tier `pro`
+      or `turbo` and usage-priced, zero free rows. Curated feeds still credit
+      it with 15 free models, which is how it keeps coming back.
+    reopen_if: >-
+      A zero-priced row reappears in the api.llm7.io catalog.
+
+  - domains: [morphllm.com]
+    name: Morph (fast-apply)
+    checked_on: '2026-07-22'
+    reason: >-
+      The one entry here with a free tier that is probably real — roughly 200
+      requests a month on the fast-apply model — and no way to verify it:
+      morphllm.com/pricing is client-rendered, so the figure appears in no
+      served HTML. Kept out on the verification rule alone, not on the offer.
+    reopen_if: >-
+      Morph's docs or pricing become server-rendered with the quota in them.
+
+  - domains: [nousresearch.com]
+    name: Nous Portal
+    checked_on: '2026-07-22'
+    reason: >-
+      The free tier is $0.10 a month of credit — decorative rather than usable,
+      and far below what the third-party claim of "50 RPM free" suggested.
+    reopen_if: >-
+      The monthly grant becomes large enough to run an agent session on.
+
+  - domains: [arcee.ai]
+    name: Arcee (Trinity)
+    checked_on: '2026-07-22'
+    reason: >-
+      Direct API grants are application-gated, and an application with a
+      selection step is not an offer a developer can simply use — the same bar
+      that keeps TokenRouter's builder programme out of its entry. The :free
+      Trinity variants that are open live on OpenRouter, which this list
+      already covers.
+    reopen_if: >-
+      Arcee opens direct API credits without an application.

@@ -1,9 +1,9 @@
 from datetime import date, timedelta
 from pathlib import Path
 
-from freetier_radar.models import Entry
+from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, build_context, build_env_example, build_litellm_config,
+    ARCHIVE_AFTER_DAYS, build_context, build_env_example, build_index, build_litellm_config,
     build_opencode_config, env_var, is_archived, render_readme,
 )
 
@@ -221,3 +221,29 @@ def test_render_readme(tmp_path: Path):
     assert "## 📦 Archive" in text
     assert "Dead Tool" in text.split("## 📦 Archive")[1]
     assert out.read_text(encoding="utf-8") == text
+
+
+def watched(name: str = "Example", checked_on: str = "2026-07-01") -> Watched:
+    return Watched.model_validate({
+        "domains": ["example.ai"], "name": name, "checked_on": checked_on,
+        "reason": "no free tier today", "reopen_if": "they publish one"})
+
+
+def test_watchlist_rows_are_newest_first_and_carry_their_own_freshness():
+    old = watched("Old", (TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat())
+    ctx = build_context([make()], TODAY, watchlist=[old, watched("New", TODAY.isoformat())])
+    assert [w["name"] for w in ctx["watchlist"]] == ["New", "Old"]
+    assert [w["current"] for w in ctx["watchlist"]] == [True, False]
+    assert ctx["watch_recheck_days"] == WATCH_RECHECK_DAYS
+
+
+def test_a_registry_with_no_watchlist_renders_exactly_as_before():
+    assert build_context([make()], TODAY)["watchlist"] == []
+
+
+def test_index_publishes_the_watchlist_beside_the_entries():
+    index = build_index([make()], TODAY, [watched()])
+    assert [e["id"] for e in index["entries"]] == ["x"]
+    assert index["watchlist"] == [
+        {"domains": ["example.ai"], "name": "Example", "checked_on": "2026-07-01",
+         "reason": "no free tier today", "reopen_if": "they publish one", "current": True}]

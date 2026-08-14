@@ -875,11 +875,21 @@
         "https://docs.z.ai/guides/overview/pricing"
       ],
       "card_required": false,
-      "offering": "GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4)",
-      "limits": "GLM-4.7-Flash / GLM-4.5-Flash / GLM-4.6V-Flash priced Free; flagship GLM-5.x not free; rate-limited",
+      "offering": "GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)",
+      "limits": "GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three rows z.ai's own price table reads Free on all four columns — every other model there says \"Limited-time Free\" instead, including the flagship GLM-5.x. Rate-limited",
       "models": [
         {
           "family": "glm-4.7-flash",
+          "tier": "strong",
+          "released": "2026-01"
+        },
+        {
+          "family": "glm-4.5-flash",
+          "tier": "strong",
+          "released": "2025-07"
+        },
+        {
+          "family": "glm-4.6v-flash",
           "tier": "strong",
           "released": "2026-01"
         }
@@ -896,8 +906,9 @@
         "type": "page-keywords",
         "endpoint": "https://docs.z.ai/guides/overview/pricing",
         "keywords": [
-          "glm-4.7-flash",
-          "free"
+          "GLM-4.7-Flash</td><td style=\"text-align:left\">Free</td>",
+          "GLM-4.5-Flash</td><td style=\"text-align:left\">Free</td>",
+          "GLM-4.6V-Flash</td><td style=\"text-align:left\">Free</td>"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -1408,13 +1419,18 @@
         "https://vercel.com/docs/ai-gateway/openai-compat"
       ],
       "card_required": false,
-      "offering": "One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month",
-      "limits": "$5/month credit at provider list rates, renewed monthly; 217 of 316 models eligible, lower per-model rate limits, no BYOK. laguna-s-2.1-free costs $0 and never draws it down. Buying credits ends the monthly free credit",
+      "offering": "One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and two models that never touch the credit",
+      "limits": "$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Buying credits ends the monthly free credit",
       "models": [
         {
           "family": "laguna-s-2.1-free",
           "tier": "strong",
           "released": "2026-07"
+        },
+        {
+          "family": "glm-4.6v-flash",
+          "tier": "strong",
+          "released": "2026-01"
         }
       ],
       "api": {
@@ -1423,9 +1439,10 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "poolside/laguna-s-2.1-free"
+          "poolside/laguna-s-2.1-free",
+          "zai/glm-4.6v-flash"
         ],
-        "note": "laguna-s-2.1-free costs nothing; any other Free-Tier-eligible model spends the $5 monthly credit. inclusionai/ling-3.0-flash-free left the catalog in 2026-08 and the ling-3.0-tiny-free standing where it was publishes an empty pricing object, so nothing here says it is free"
+        "note": "both ids cost nothing; any other Free-Tier-eligible model spends the $5 monthly credit. glm-4.6v-flash is zero here because z.ai prices it at zero itself — its own table reads Free on all four columns while every neighbour reads \"Limited-time Free\" — so this is a vendor policy rather than a gateway promo lane. inclusionai/ling-3.0-flash-free left the catalog in 2026-08 and the ling-3.0-tiny-free standing where it was publishes an empty pricing object, so nothing there says it is free"
       },
       "probe": {
         "type": "api-models",
@@ -1842,6 +1859,205 @@
       "provisional": true,
       "rank": 70,
       "archived": false
+    },
+    {
+      "id": "ai21-labs",
+      "name": "AI21 Labs (Jamba)",
+      "category": "trial",
+      "url": "https://www.ai21.com",
+      "source_urls": [
+        "https://www.ai21.com/pricing/",
+        "https://docs.ai21.com/docs/jamba-foundation-models.md",
+        "https://docs.ai21.com/docs/create-api-key.md"
+      ],
+      "card_required": false,
+      "offering": "AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat",
+      "limits": "$10 of credits for 7 days, stated on AI21's own pricing page, with no card asked for; sign-in is email, Google, GitHub or SSO. The shortest trial window on this page — after it, Jamba Mini is $0.2/$0.4 and Jamba Large $2/$8 per 1M tokens",
+      "models": [
+        {
+          "family": "jamba-mini",
+          "tier": "strong",
+          "released": "2026-01"
+        },
+        {
+          "family": "jamba-large",
+          "tier": "strong",
+          "released": "2025-07"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.ai21.com/studio/v1",
+        "key_url": "https://studio.ai21.com/sign-up",
+        "auth": "api-key",
+        "openai_compatible": false,
+        "model_ids": [
+          "jamba-mini",
+          "jamba-large"
+        ],
+        "note": "POST /studio/v1/chat/completions is live and takes a Bearer key, but AI21 documents its own SDK and claims OpenAI compatibility nowhere, so this one is left out of the generated configs rather than promised to work with an OpenAI client. The older /studio/v1/models catalog answers HTTP 410 — that route is retired, the chat route is not"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.ai21.com/pricing/",
+        "keywords": [
+          "$10 credits for 7 days",
+          "No credit card needed",
+          "Jamba Mini"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-08-14",
+      "last_verified": "2026-08-14",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 90,
+      "archived": false
+    }
+  ],
+  "watchlist": [
+    {
+      "domains": [
+        "modelscope.cn",
+        "modelscope.ai"
+      ],
+      "name": "ModelScope (Alibaba)",
+      "checked_on": "2026-08-14",
+      "reason": "The free tier is real and large — 2,000 API calls a day across a catalog whose keyless api-inference.modelscope.cn/v1/models lists 43 served ids, DeepSeek V4 Flash/Pro, Qwen3.5-397B, Qwen3-Coder, GLM-5.2, MiniMax M3 and Step-3.7-Flash among them. Two things keep it off the list. Registration binds an Alibaba Cloud account and requires real-name verification, which is not something a developer outside mainland China can simply complete, so the offer is not directly usable the way this list means it. And there is nothing to probe — every docs page under /docs/model-service is a client-rendered shell (the served HTML carries 15 characters of text and an empty window.__detail_data__), while the models endpoint publishes no prices and no quota, so a probe there could only ever confirm that ids exist. A row this list cannot verify is a row it will not carry.",
+      "reopen_if": "ModelScope publishes a server-rendered quota page, or the free tier becomes reachable without real-name verification.",
+      "current": true
+    },
+    {
+      "domains": [
+        "siliconflow.com",
+        "siliconflow.cn"
+      ],
+      "name": "SiliconFlow",
+      "checked_on": "2026-08-14",
+      "reason": "siliconflow.com/pricing is server-rendered and states the whole offer in one sentence — \"postpaid billing—plus $1 in free credits to get you started\". One dollar is a sign-up courtesy, not a free tier: the same reasoning that kept Nous Portal off this list. No model in the pricing tables is priced at zero, and the catalog endpoint answers 401 on both the .com and .cn hosts, so there is no free lane to point an agent at.",
+      "reopen_if": "A zero-priced model appears in the served catalog, or the free grant becomes a recurring quota rather than a one-off dollar.",
+      "current": true
+    },
+    {
+      "domains": [
+        "nebius.com"
+      ],
+      "name": "Nebius Token Factory",
+      "checked_on": "2026-08-14",
+      "reason": "Rebranded from Nebius AI Studio — studio.nebius.com now redirects to tokenfactory.nebius.com. Its served pages carry no free tier at all: the pricing page prices storage and GPU-hours, the product page offers a \"Start free\" button and a sales contact, and the docs quickstart carries no grant, quota or trial. The catalog answers 401 without a key. Nothing here is a free offer a developer can name, so there is nothing to list.",
+      "reopen_if": "Token Factory publishes a signup grant or a free model lane on a served page.",
+      "current": true
+    },
+    {
+      "domains": [
+        "nscale.com"
+      ],
+      "name": "Nscale",
+      "checked_on": "2026-08-14",
+      "reason": "The serverless inference API exists — inference.api.nscale.com/v1/models answers 401 rather than 404 — but the company's public site is now enterprise AI-cloud marketing with no pricing page (/pricing and /serverless both 404) and the documentation redirects to a login wall. There is no public page stating a free tier and no public page a probe could read, which is two independent reasons the row cannot exist.",
+      "reopen_if": "Nscale puts its serverless pricing or free credits back on a public, server-rendered page.",
+      "current": true
+    },
+    {
+      "domains": [
+        "glhf.chat"
+      ],
+      "name": "glhf.chat",
+      "checked_on": "2026-08-14",
+      "reason": "The service does not answer. Both the site and its OpenAI-compatible endpoint return Cloudflare 522 \"Connection timed out\" — the origin is down, not the edge. An offer that cannot be reached cannot be verified, and a dead host is not evidence of a withdrawn tier either, which is why this is a watch and not a block.",
+      "reopen_if": "The origin answers again and its free lane is still there.",
+      "current": true
+    },
+    {
+      "domains": [
+        "x.ai"
+      ],
+      "name": "xAI (Grok API)",
+      "checked_on": "2026-08-14",
+      "reason": "docs.x.ai prices every surface — text, Agent, TTS, STT, Imagine — and names no free tier or signup grant. x.ai/api answers HTTP 403 to every non-browser client, so even a stated offer could not be probed from here. The free API credits xAI ran in exchange for data sharing are not on any current page.",
+      "reopen_if": "A free tier or signup grant appears on a page that answers a plain HTTP client.",
+      "current": true
+    },
+    {
+      "domains": [
+        "deepseek.com"
+      ],
+      "name": "DeepSeek",
+      "checked_on": "2026-08-14",
+      "reason": "Re-checked against api-docs.deepseek.com/quick_start/pricing, which is server-rendered and prices every model — $0.14 in / $0.28 out per 1M for the cache-miss tier, no zero row anywhere. This confirms the 2026-07-27 removal: the 5M-token signup grant that used to be cited for DeepSeek was only ever reported by third parties and appears on no official page.",
+      "reopen_if": "An official DeepSeek page states a free grant or a zero-priced model.",
+      "current": true
+    },
+    {
+      "domains": [
+        "agnes-ai.com"
+      ],
+      "name": "Agnes AI",
+      "checked_on": "2026-08-14",
+      "reason": "The site titles itself \"Free Omni-Modal AI API\" and then publishes nothing to back it — /pricing and /docs both 404, the pages are a client-rendered shell, and api.agnes-ai.com answers its own JSON 404 for /v1/models, so no catalog, no prices and no quota are public. A free claim with no page behind it is exactly what this list refuses to repeat.",
+      "reopen_if": "Public docs or a keyless catalog appear that state what is free and on what terms.",
+      "current": true
+    },
+    {
+      "domains": [
+        "aionlabs.ai"
+      ],
+      "name": "Aion Labs",
+      "checked_on": "2026-08-14",
+      "reason": "Reached from a curated feed's provider table and does not resolve to an LLM API vendor at all: aionlabs.ai sells email agents and its only free offer is a \"free use-case audit\". Recorded so the same feed row does not send the next run down the same path.",
+      "reopen_if": "A different, actual LLM API provider is identified behind this name.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tokenrouter.io"
+      ],
+      "name": "TokenRouter.io",
+      "checked_on": "2026-08-05",
+      "reason": "Legitimate commercial routing layer, and the third unrelated service to carry the TokenRouter name — check the TLD before acting on any lead here, because .com is the listed PaleBlueDot gateway and .me is blocklisted. Its quickstart says \"You need at least one AI provider key to route requests\" and sends you to platform.openai.com, i.e. BYOK-only with no bundled model usage, and its \"Free tier available\" covers the routing plan, not tokens — the pricing page's own words are \"Pay only for routing and insights\". Not blocklisted precisely because nothing is wrong with it.",
+      "reopen_if": "TokenRouter.io starts bundling model usage rather than routing only.",
+      "current": true
+    },
+    {
+      "domains": [
+        "llm7.io"
+      ],
+      "name": "LLM7",
+      "checked_on": "2026-08-11",
+      "reason": "Carries a reputation for a shared free tier that its own catalog no longer supports: 35 models on api.llm7.io, every one of them tier `pro` or `turbo` and usage-priced, zero free rows. Curated feeds still credit it with 15 free models, which is how it keeps coming back.",
+      "reopen_if": "A zero-priced row reappears in the api.llm7.io catalog.",
+      "current": true
+    },
+    {
+      "domains": [
+        "morphllm.com"
+      ],
+      "name": "Morph (fast-apply)",
+      "checked_on": "2026-07-22",
+      "reason": "The one entry here with a free tier that is probably real — roughly 200 requests a month on the fast-apply model — and no way to verify it: morphllm.com/pricing is client-rendered, so the figure appears in no served HTML. Kept out on the verification rule alone, not on the offer.",
+      "reopen_if": "Morph's docs or pricing become server-rendered with the quota in them.",
+      "current": true
+    },
+    {
+      "domains": [
+        "nousresearch.com"
+      ],
+      "name": "Nous Portal",
+      "checked_on": "2026-07-22",
+      "reason": "The free tier is $0.10 a month of credit — decorative rather than usable, and far below what the third-party claim of \"50 RPM free\" suggested.",
+      "reopen_if": "The monthly grant becomes large enough to run an agent session on.",
+      "current": true
+    },
+    {
+      "domains": [
+        "arcee.ai"
+      ],
+      "name": "Arcee (Trinity)",
+      "checked_on": "2026-07-22",
+      "reason": "Direct API grants are application-gated, and an application with a selection step is not an offer a developer can simply use — the same bar that keeps TokenRouter's builder programme out of its entry. The :free Trinity variants that are open live on OpenRouter, which this list already covers.",
+      "reopen_if": "Arcee opens direct API credits without an application.",
+      "current": true
     }
   ]
 }
