@@ -6,6 +6,7 @@ from pathlib import Path
 
 import yaml
 
+from freetier_radar.discovery import CURATED_FEEDS
 from freetier_radar.validate import check
 
 TODAY = date(2026, 8, 14)
@@ -26,8 +27,13 @@ def event(**kw) -> dict:
     return {"ts": "2026-08-10T05:23:00Z", "event": "added", "id": "x", "name": "X", **kw}
 
 
+SOURCE = {"url": "https://github.com/someone/a-list", "name": "someone/a-list",
+          "checked_on": "2026-08-01", "reason": "carries no provider-level data",
+          "reopen_if": "it starts publishing endpoints"}
+
+
 def build(tmp_path: Path, *, entries=None, blocklist=None, watched=None, dismissed=None,
-          history=None) -> Path:
+          history=None, sources=None) -> Path:
     (tmp_path / "registry.yaml").write_text(
         yaml.safe_dump({"entries": entries if entries is not None else [ENTRY]}), encoding="utf-8")
     (tmp_path / "blocklist.yaml").write_text(yaml.safe_dump(blocklist or []), encoding="utf-8")
@@ -35,6 +41,8 @@ def build(tmp_path: Path, *, entries=None, blocklist=None, watched=None, dismiss
         yaml.safe_dump({"watched": watched or []}), encoding="utf-8")
     (tmp_path / "dismissed.yaml").write_text(
         yaml.safe_dump({"dismissed": dismissed or []}), encoding="utf-8")
+    (tmp_path / "sources.yaml").write_text(
+        yaml.safe_dump({"read": sources or []}), encoding="utf-8")
     if history is not None:
         (tmp_path / "history.jsonl").write_text(
             "".join(json.dumps(e) + "\n" for e in history), encoding="utf-8")
@@ -77,10 +85,12 @@ def test_a_watch_verdict_needs_a_way_back(tmp_path: Path):
 def test_dates_may_not_run_ahead_of_today(tmp_path: Path):
     ahead = (TODAY + timedelta(days=1)).isoformat()
     root = build(tmp_path, entries=[{**ENTRY, "last_verified": ahead}],
-                 watched=[{**WATCHED, "checked_on": ahead}])
+                 watched=[{**WATCHED, "checked_on": ahead}],
+                 sources=[{**SOURCE, "checked_on": ahead}])
     problems = check(root, TODAY)
     assert any("last_verified" in p and "future" in p for p in problems)
-    assert any("checked_on" in p and "future" in p for p in problems)
+    assert any("watchlist" in p and "checked_on" in p and "future" in p for p in problems)
+    assert any("sources" in p and "checked_on" in p and "future" in p for p in problems)
 
 
 def test_duplicate_ids_urls_and_base_urls_are_caught(tmp_path: Path):
@@ -104,6 +114,34 @@ def test_a_dismissal_that_matches_nothing_is_dead_weight(tmp_path: Path):
 def test_a_pipe_would_break_the_readme_table(tmp_path: Path):
     root = build(tmp_path, watched=[{**WATCHED, "reason": "free | not free"}])
     assert any("has a pipe in reason" in p for p in check(root, TODAY))
+
+
+# ---- sources.yaml against discovery.py ------------------------------------
+
+def test_a_source_may_not_be_declined_and_still_read_every_run(tmp_path: Path):
+    """The contradiction this file exists to catch. CURATED_FEEDS is a raw
+    githubusercontent URL and a human writes down the github.com one they were
+    actually sent, so a plain string compare would never notice."""
+    feed = CURATED_FEEDS[0]
+    owner_repo = "/".join(feed.split("/")[3:5])
+    root = build(tmp_path, sources=[{**SOURCE, "url": f"https://github.com/{owner_repo}"}])
+    assert any("is also read every run" in p for p in check(root, TODAY))
+
+
+def test_a_source_verdict_needs_a_way_back(tmp_path: Path):
+    root = build(tmp_path, sources=[{**SOURCE, "reopen_if": ""}])
+    assert any("no reopen_if" in p for p in check(root, TODAY))
+
+
+def test_the_same_source_may_not_be_read_and_declined_twice(tmp_path: Path):
+    root = build(tmp_path, sources=[SOURCE, {**SOURCE, "checked_on": "2026-08-10"}])
+    assert any("duplicate source" in p for p in check(root, TODAY))
+
+
+def test_a_missing_sources_file_is_not_a_problem(tmp_path: Path):
+    root = build(tmp_path, watched=[WATCHED])
+    (root / "sources.yaml").unlink()
+    assert check(root, TODAY) == []
 
 
 # ---- history.jsonl — the one file here that cannot be regenerated ----------

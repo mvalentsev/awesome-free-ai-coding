@@ -18,9 +18,10 @@ from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, g
 from .history import record_changes
 # The curated-file loaders live in models.py; re-exported here because this is
 # where callers and tests have always reached for them.
-from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_blocked,
-                     is_watch_current, known_domains, load_blocklist, load_dismissed,
-                     load_registry, load_watchlist, save_registry, watch_match)
+from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Watched,
+                     is_archived, is_blocked, is_source_current, is_watch_current,
+                     known_domains, load_blocklist, load_dismissed, load_registry,
+                     load_sources, load_watchlist, save_registry, watch_match)
 from .prober import challenge_marker_hit, check_content, unevidenced_families
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
@@ -235,6 +236,9 @@ Already dismissed in dismissed.yaml, not proposed again: {suppressed}
 
 Watchlist verdicts due for a re-check (older than {recheck_days} days, and no
 longer suppressing anything): {stale_watch}
+
+Lists declined as feeds and due for a re-read (older than {source_days} days):
+{stale_sources}
 
 _Proposed by the web-evidence scout — review before merging. Weekly probes keep re-verifying after merge._
 """
@@ -711,6 +715,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               blocklist: dict[str, str] | None = None,
               dismissed: set[tuple[str, str, str]] | None = None,
               watchlist: list[Watched] | None = None,
+              sources: list[Source] | None = None,
               deadline: Deadline | None = None) -> dict:
     result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
               "retired": [], "skipped": [],
@@ -719,6 +724,11 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               # someone happens to re-read the file.
               "stale_watch": [f"{w.name} (checked {w.checked_on.isoformat()})"
                               for w in (watchlist or []) if not is_watch_current(w, today)],
+              # The same courier work for sources.yaml, which differs in that
+              # the scout never reads those lists and cannot act on this — the
+              # PR body is simply the only recurring channel to a human there is.
+              "stale_sources": [f"{s.name} (read {s.checked_on.isoformat()})"
+                                for s in (sources or []) if not is_source_current(s, today)],
               "providers": evidence.providers if evidence else []}
 
     def within_budget(phase: str) -> bool:
@@ -809,6 +819,7 @@ def main() -> None:
     parser.add_argument("--blocklist", type=Path, default=Path("blocklist.yaml"))
     parser.add_argument("--dismissed", type=Path, default=Path("dismissed.yaml"))
     parser.add_argument("--watchlist", type=Path, default=Path("watchlist.yaml"))
+    parser.add_argument("--sources", type=Path, default=Path("sources.yaml"))
     parser.add_argument("--pr-body", type=Path, default=Path("scout-pr.md"))
     parser.add_argument(
         "--dry-run", action="store_true",
@@ -826,6 +837,7 @@ def main() -> None:
     blocklist = load_blocklist(args.blocklist)
     dismissed = load_dismissed(args.dismissed)
     watchlist = load_watchlist(args.watchlist)
+    sources = load_sources(args.sources)
     failures = json.loads(args.failures.read_text()) if args.failures.exists() else []
     deadline = Deadline(float(os.environ.get("SCOUT_DEADLINE_SECONDS")
                               or SCOUT_DEADLINE_SECONDS))
@@ -863,6 +875,7 @@ def main() -> None:
                                blocklist=blocklist,
                                dismissed=dismissed,
                                watchlist=watchlist,
+                               sources=sources,
                                deadline=deadline)
     except Exception as exc:
         # Last line of defence, and deliberately catch-all. The scout is the
@@ -899,6 +912,8 @@ def main() -> None:
         suppressed=", ".join(result["suppressed"]) or "—",
         stale_watch=", ".join(result["stale_watch"]) or "—",
         recheck_days=WATCH_RECHECK_DAYS,
+        stale_sources=", ".join(result["stale_sources"]) or "—",
+        source_days=SOURCE_RECHECK_DAYS,
         retired=", ".join(result["retired"]) or "—",
         skipped=", ".join(result["skipped"]) or "—",
     ), encoding="utf-8")

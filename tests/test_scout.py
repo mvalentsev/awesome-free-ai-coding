@@ -8,7 +8,8 @@ import respx
 from freetier_radar import scout
 from freetier_radar.discovery import Evidence, Hit
 from freetier_radar.history import load_history
-from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched, save_registry
+from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source,
+                                   Watched, save_registry)
 from freetier_radar.scout import (
     FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, Deadline, LLMClient, _ask,
     apply_new, apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model,
@@ -631,6 +632,12 @@ def watch(domain: str = "n.ai", checked_on: str = "2026-07-01") -> Watched:
         "reopen_if": "a zero-priced row appears"})
 
 
+def source(name: str = "someone/a-list", checked_on: str = "2026-08-01") -> Source:
+    return Source.model_validate({
+        "url": f"https://github.com/{name}", "name": name, "checked_on": checked_on,
+        "reason": "carries no provider-level data", "reopen_if": "it starts publishing endpoints"})
+
+
 def test_apply_new_rejects_a_service_the_watchlist_already_answered():
     """A watched service usually still serves a page, so without this the
     proposal would spend a live probe re-asking a question a human answered."""
@@ -680,8 +687,19 @@ def test_run_scout_reports_verdicts_due_for_a_recheck():
     assert result["stale_watch"] == [f"Watched Co (checked {expired})"]
 
 
+def test_run_scout_reports_sources_due_for_a_re_read():
+    """Nothing else ever re-opens sources.yaml. The scout does not read those
+    lists and cannot act on them — it carries the question to the PR body,
+    which is the only recurring channel this repo has to a human."""
+    expired = (TODAY - timedelta(days=SOURCE_RECHECK_DAYS + 1)).isoformat()
+    result = scout.run_scout(StubLLM({}), [make()], [], lambda urls: {}, TODAY,
+                             sources=[source(), source("stale/list", checked_on=expired)])
+    assert result["stale_sources"] == [f"stale/list (read {expired})"]
+
+
 EMPTY_RUN = {"providers": [], "updates": [], "new": [], "rejected": [], "supersede": [],
-             "suppressed": [], "stale_watch": [], "retired": [], "skipped": []}
+             "suppressed": [], "stale_watch": [], "stale_sources": [], "retired": [],
+             "skipped": []}
 
 
 def _scout_argv(tmp_path, *extra) -> list[str]:
@@ -690,7 +708,25 @@ def _scout_argv(tmp_path, *extra) -> list[str]:
             "--failures", str(tmp_path / "none.json"),
             "--blocklist", str(tmp_path / "none.yaml"),
             "--dismissed", str(tmp_path / "none-dismissed.yaml"),
-            "--watchlist", str(tmp_path / "none-watchlist.yaml"), *extra]
+            "--watchlist", str(tmp_path / "none-watchlist.yaml"),
+            "--sources", str(tmp_path / "none-sources.yaml"), *extra]
+
+
+def test_the_pr_body_carries_every_line_the_template_promises(tmp_path, monkeypatch):
+    """The template is formatted once, in main, from the keys run_scout put in
+    the result. A key added to one and not the other fails nowhere else: on the
+    scheduled run, in CI, after the verification commit is already pushed."""
+    save_registry(tmp_path / "registry.yaml", [make()])
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
+    monkeypatch.setattr(scout, "run_scout", lambda *a, **k: {
+        **EMPTY_RUN, "stale_sources": ["someone/a-list (read 2026-01-01)"]})
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+
+    scout.main()
+
+    body = (tmp_path / "scout-pr.md").read_text()
+    assert "someone/a-list (read 2026-01-01)" in body
+    assert f"older than {SOURCE_RECHECK_DAYS} days" in body
 
 
 def test_main_records_what_the_scout_changed_in_the_history(tmp_path, monkeypatch):

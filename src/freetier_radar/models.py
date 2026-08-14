@@ -359,6 +359,50 @@ def load_watchlist(path: Path) -> list[Watched]:
     return [Watched.model_validate(w) for w in (items or [])]
 
 
+class Source(BaseModel):
+    """A list, catalog or directory read as a possible feed and not adopted.
+
+    `Watched` records a verdict on a service; this is the same record one level
+    up, on the thing that *proposes* services. CURATED_FEEDS in discovery.py is
+    the positive half — the five lists the scout reads every run — and nothing
+    held the negative half, so the cost of opening a list that carries no
+    provider data was paid again every time the link resurfaced. Three lists
+    went through that in a single week and left no trace in the repository:
+    the reasoning existed only in whichever conversation happened to have it.
+
+    A verdict on a SOURCE, on a DATE, for the same reason `Watched` is: a
+    directory can start carrying endpoints long after someone first opened it.
+    """
+    url: str
+    name: str
+    checked_on: date
+    reason: str
+    reopen_if: str = ""
+
+
+# Deliberately longer than WATCH_RECHECK_DAYS. A vendor can open a free tier in
+# any given week, so 90 days is the most a "nothing free here" verdict is worth
+# trusting — but a directory rarely changes what kind of directory it is, and
+# re-reading one every quarter would spend a session to re-learn the same thing.
+# Twice a year is often enough to catch a list that grew into a feed.
+SOURCE_RECHECK_DAYS = 180
+
+
+def load_sources(path: Path) -> list[Source]:
+    """Missing file means nothing has been declined yet."""
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    items = data.get("read") if isinstance(data, dict) else data
+    return [Source.model_validate(s) for s in (items or [])]
+
+
+def is_source_current(source: Source, today: date) -> bool:
+    """Past this the verdict is not wrong, only old enough to be worth asking
+    again — which is all this file ever claims."""
+    return (today - source.checked_on).days <= SOURCE_RECHECK_DAYS
+
+
 def is_watch_current(watched: Watched, today: date) -> bool:
     """Is this verdict still young enough to answer for the service?"""
     return (today - watched.checked_on).days <= WATCH_RECHECK_DAYS

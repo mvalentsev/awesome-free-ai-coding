@@ -28,7 +28,7 @@ jobs:
       - name: Registry + render smoke check
         run: uv run freetier-render --registry registry.yaml --templates templates --out /tmp/README.md
 
-      # The three curated files beside the registry are read only by the scout,
+      # The four curated files beside the registry are read only by the scout,
       # which runs behind a catch-all — so a malformed one used to reach main and
       # turn into a green run that had silently done nothing. This is where that
       # gets caught now, together with the contradictions that span two files.

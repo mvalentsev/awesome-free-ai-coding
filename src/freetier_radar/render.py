@@ -10,9 +10,9 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .history import Event, EventType, load_history
-from .models import (ARCHIVE_AFTER_DAYS, WATCH_RECHECK_DAYS, Category, Entry, Watched,
-                     is_archived, is_watch_current, live_families, load_registry,
-                     load_watchlist)
+from .models import (ARCHIVE_AFTER_DAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category,
+                     Entry, Watched, is_archived, is_watch_current, live_families,
+                     load_registry, load_watchlist)
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES",
            "is_archived", "build_context", "build_feed", "build_index",
@@ -260,6 +260,10 @@ def build_context(entries: list[Entry], today: date,
             # never drift apart.
             "watchlist": _watch_rows(watchlist or [], today),
             "watch_recheck_days": WATCH_RECHECK_DAYS,
+            # sources.yaml itself is not rendered — the page says how the
+            # verdicts work and the file holds them, the way it does for
+            # dismissed.yaml.
+            "source_recheck_days": SOURCE_RECHECK_DAYS,
             # The only part of this page that is not a statement about today.
             # Everything else is regenerated from scratch each run and remembers
             # nothing, which left "did anything change?" answerable only from

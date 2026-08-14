@@ -24,15 +24,34 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
+from .discovery import CURATED_FEEDS
 from .history import EventType, load_history
 from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismissed,
-                     load_registry, load_watchlist)
+                     load_registry, load_sources, load_watchlist)
 
 __all__ = ["check", "main"]
+
+_GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
 
 
 def _domain(url: str) -> str:
     return urlparse(url).netloc.lower().removeprefix("www.")
+
+
+def _source_key(url: str) -> str:
+    """One identity for a source however it happens to be spelled.
+
+    CURATED_FEEDS holds the raw.githubusercontent URL the scout actually
+    fetches, down to the branch and the file; a human writes down the
+    github.com link they were sent. Same list, and comparing the strings would
+    never say so.
+    """
+    parsed = urlparse(url)
+    host = _domain(url)
+    parts = [p for p in parsed.path.split("/") if p]
+    if host in _GITHUB_HOSTS and len(parts) >= 2:
+        return f"github:{parts[0].lower()}/{parts[1].lower()}"
+    return f"{host}{parsed.path.rstrip('/')}".lower()
 
 
 def check(root: Path, today: date | None = None) -> list[str]:
@@ -44,6 +63,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
     blocklist = load_blocklist(root / "blocklist.yaml")
     dismissed = load_dismissed(root / "dismissed.yaml")
     watchlist = load_watchlist(root / "watchlist.yaml")
+    sources = load_sources(root / "sources.yaml")
 
     # ---- within registry.yaml
     for field, values in (("id", [e.id for e in entries]),
@@ -129,6 +149,28 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(f"watchlist: duplicate domain {d}")
             seen_domains.add(d.lower())
 
+    # ---- sources.yaml against discovery.py
+    # A list is either read on every run or written down as not worth reading.
+    # Holding both is the same contradiction the blocklist and the watchlist
+    # can hold about a vendor, and it costs a fetch twice a week to keep.
+    feed_keys = {_source_key(f) for f in CURATED_FEEDS}
+    seen_sources: set[str] = set()
+    for s in sources:
+        if s.checked_on > today:
+            problems.append(f"sources: {s.name} checked_on {s.checked_on} is in the future")
+        if not s.reopen_if.strip():
+            problems.append(
+                f"sources: {s.name} has no reopen_if — a source that could never be worth "
+                f"re-reading belongs in the blocklist, not here")
+        key = _source_key(s.url)
+        if key in feed_keys:
+            problems.append(
+                f"sources: {s.name} is written down as declined and is also read every run "
+                f"as a curated feed")
+        if key in seen_sources:
+            problems.append(f"sources: duplicate source {s.url}")
+        seen_sources.add(key)
+
     # ---- history.jsonl
     # The only file here that cannot be regenerated from another one, and the
     # only one whose *order* carries meaning. Everything below is a way the log
@@ -174,8 +216,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Validate registry.yaml, blocklist.yaml, dismissed.yaml, "
-                    "watchlist.yaml and history.jsonl, and the rules that hold "
-                    "between them.")
+                    "watchlist.yaml, sources.yaml and history.jsonl, and the "
+                    "rules that hold between them.")
     parser.add_argument("--root", type=Path, default=Path("."))
     args = parser.parse_args()
 
@@ -184,4 +226,4 @@ def main() -> None:
         print(f"✗ {p}")
     if problems:
         raise SystemExit(f"{len(problems)} problem(s) found")
-    print("✓ registry, blocklist, dismissed, watchlist and history are consistent")
+    print("✓ registry, blocklist, dismissed, watchlist, sources and history are consistent")

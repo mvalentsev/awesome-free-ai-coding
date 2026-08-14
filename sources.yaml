@@ -1,0 +1,82 @@
+# Lists, catalogs and directories read as a possible feed and NOT adopted.
+#
+# `CURATED_FEEDS` in src/freetier_radar/discovery.py is the other half of this
+# decision: the lists the scout actually fetches on every run. Nothing held this
+# half, so the cost of opening a list that carries no provider data was paid
+# again every time the link resurfaced — three lists went through that in a
+# single week and left no trace in the repository, because the reasoning existed
+# only in whichever conversation happened to have it.
+#
+# Same shape as watchlist.yaml, one level up. That file records a verdict on a
+# service; this one records a verdict on the thing that proposes services. Both
+# are verdicts on a DATE: after SOURCE_RECHECK_DAYS (180) a row stops being
+# trusted and starts being reported in the scout's PR body as due for a re-read,
+# because a directory can grow into a feed long after someone first opened it.
+# `reopen_if` names what would change the answer, so the next look starts from
+# the last one instead of from zero.
+#
+# This is not a blocklist. Nothing here is disreputable — a source lands here
+# for carrying nothing this registry can use, which is a statement about the
+# overlap and not about the list.
+
+read:
+  - url: https://github.com/Shubhamsaboo/awesome-llm-apps
+    name: Shubhamsaboo/awesome-llm-apps
+    checked_on: '2026-08-14'
+    reason: >-
+      132k stars and none of them about free tiers: it is a catalog of 100+
+      agent, RAG and agent-skill templates you clone and run, so its providers
+      appear as the paid API a demo happens to call. Read whole rather than by
+      README — 1116 files, every URL extracted — it names 201 hosts this
+      repository does not carry, and not one of them is an inference provider
+      with a free tier; they are dev tooling and SaaS (Firecrawl, E2B, Qdrant,
+      Tavily, Exa, SerpAPI, Composio). Free-tier language occurs six times in
+      the whole tree, and the only occurrence naming an API provider is
+      "Free tier available for testing" about OpenRouter, listed here since the
+      beginning. The two vendors it did surface, Together AI and Perplexity,
+      are in watchlist.yaml as of the same day.
+    reopen_if: >-
+      It starts publishing a provider or free-tier table rather than app
+      templates.
+
+  - url: https://github.com/ShaikhWarsi/free-ai-tools
+    name: ShaikhWarsi/free-ai-tools
+    checked_on: '2026-08-14'
+    reason: >-
+      A general free-AI-tools directory, not a model-endpoint list. Of the 105
+      hosts in its 76KB README, 52 are already carried; the remainder is
+      writing, design, legal and automation software (canva.com, grammarly.com,
+      elevenlabs.io, harvey.ai, n8n.io, quillbot.com) that this registry does
+      not cover by category rather than by verdict. Its in-scope names were
+      triaged the day it was read and became watchlist rows — DeepInfra,
+      Fireworks, Baseten, Hyperbolic, Inference.net, Chutes, NLP Cloud,
+      Tabnine, JetBrains AI, Bolt.new, Lovable and v0 — so the yield has
+      already been taken. Note for any re-read: its tools.ts data file is a
+      subset of the README, so diff both or the second half goes unseen.
+    reopen_if: >-
+      It splits the LLM-API rows into their own machine-readable file, or its
+      uncovered hosts stop being non-API tools.
+
+  - url: https://github.com/mnfst/awesome-free-llm-apis
+    name: mnfst/awesome-free-llm-apis
+    checked_on: '2026-08-14'
+    reason: >-
+      The right subject and nothing new in it. Of the 38 hosts it links, 35 are
+      already carried; the three that are not are awesome.re (the list badge),
+      manifest.build (the maintainer's own product) and open.bigmodel.cn, which
+      is the China console of the vendor already listed under z.ai. A sixth
+      feed that re-states the five is prompt budget spent on agreement.
+    reopen_if: >-
+      Its provider table grows past what the curated feeds already carry.
+
+  - url: https://github.com/nherx/free-llm-api-resources
+    name: nherx/free-llm-api-resources
+    checked_on: '2026-08-14'
+    reason: >-
+      Read on 2026-08-11 as a possible successor to cheahjs/free-llm-api-resources,
+      which GitHub had started 404ing and which was dropped from CURATED_FEEDS
+      that day, and re-read on 2026-08-14 unchanged in substance. It carries the
+      name and not the data — 6KB whose only links are "Download Latest Release"
+      and "Report Issues", both to github.com, and no provider table at all.
+    reopen_if: >-
+      It publishes the provider tables the original carried.

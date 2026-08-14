@@ -39,6 +39,16 @@ expires after 90 days, at which point the scout is free to raise the service
 again. If you can supply what `reopen_if` asks for, open the issue again; if the
 verdict itself is wrong, say so and delete the record in your pull request.
 
+**Suggesting a list to read from, rather than a service?** The lists the scout
+already reads on every run are `CURATED_FEEDS` in
+[`discovery.py`](src/freetier_radar/discovery.py); the ones read once and put
+down are in [`sources.yaml`](sources.yaml), with the same date, reason and
+`reopen_if` a watchlist verdict carries. Check both before opening the issue —
+a list that carries nothing this registry can use costs a full read to find that
+out, and that read has often already happened. Those verdicts expire after 180
+days, and the scout reports the expired ones in its pull requests, because a
+directory can grow into a feed long after someone first opened it.
+
 ## Probes must anchor on the offer
 
 Every `page-keywords` probe needs at least one keyword that disappears when the
@@ -99,11 +109,12 @@ uv run freetier-check             # validate the curated files against each othe
 ```
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
-`blocklist.yaml`, `dismissed.yaml` or `watchlist.yaml`. Three of those are read
-only by the scout, which runs behind a catch-all — so before this existed, a
-malformed one could reach `main` and turn into a green workflow that had quietly
-done nothing. It checks `history.jsonl` too, for the different reason that the
-log is the only file here that cannot be regenerated from another one.
+`blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Four of
+those are read only by the scout, which runs behind a catch-all — so before this
+existed, a malformed one could reach `main` and turn into a green workflow that
+had quietly done nothing. It checks `history.jsonl` too, for the different
+reason that the log is the only file here that cannot be regenerated from
+another one.
 
 The `update` workflow also takes manual inputs: `dry_run` runs every phase and
 writes nothing (the scout's report lands in the run summary instead of a PR),

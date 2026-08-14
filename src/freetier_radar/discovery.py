@@ -26,6 +26,9 @@ from .models import domain_of  # noqa: F401
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
 
+# The lists read on every run. Their opposite is sources.yaml: lists read once
+# and put down, with the date and the reason. A candidate feed belongs in one
+# file or the other, never both — freetier-check enforces exactly that.
 CURATED_FEEDS = [
     # cheahjs/free-llm-api-resources was here until 2026-08-11, when the repo
     # turned out to be gone — GitHub 404s it, so raise_for_status dropped the

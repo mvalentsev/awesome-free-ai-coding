@@ -6,9 +6,9 @@ from pydantic import ValidationError
 
 import yaml
 
-from freetier_radar.models import (WATCH_RECHECK_DAYS, Entry, Watched, is_anchor,
-                                    known_domains, load_registry, load_watchlist, save_registry,
-                                    watch_match)
+from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Watched,
+                                    is_anchor, is_source_current, known_domains, load_registry,
+                                    load_sources, load_watchlist, save_registry, watch_match)
 
 
 def save_yaml(path: Path, data: dict) -> None:
@@ -161,6 +161,34 @@ def test_a_missing_watchlist_is_an_empty_one(tmp_path: Path):
 def test_a_watch_entry_needs_a_domain():
     with pytest.raises(ValidationError):
         Watched.model_validate(watched(domains=[]))
+
+
+def read_source(**kw) -> dict:
+    return {"url": "https://github.com/someone/a-list", "name": "someone/a-list",
+            "checked_on": "2026-08-01", "reason": "carries no provider-level data",
+            "reopen_if": "it starts publishing endpoints", **kw}
+
+
+def test_a_source_verdict_expires_so_a_list_gets_re_read(tmp_path: Path):
+    """watchlist.yaml's clock, one level up. A list that carried nothing in
+    August can be carrying a provider by February, and nobody re-opens a file
+    of verdicts on their own."""
+    path = tmp_path / "sources.yaml"
+    save_yaml(path, {"read": [read_source(checked_on="2026-05-01")]})
+    (source,) = load_sources(path)
+    last_day = date(2026, 5, 1) + timedelta(days=SOURCE_RECHECK_DAYS)
+    assert is_source_current(source, last_day)
+    assert not is_source_current(source, last_day + timedelta(days=1))
+
+
+def test_a_source_is_read_less_often_than_an_offer_is_rechecked():
+    """Different subject, different clock: a vendor can open a free tier any
+    week, but a directory rarely changes what kind of directory it is."""
+    assert SOURCE_RECHECK_DAYS > WATCH_RECHECK_DAYS
+
+
+def test_a_missing_sources_file_is_an_empty_one(tmp_path: Path):
+    assert load_sources(tmp_path / "nope.yaml") == []
 
 
 def test_known_domains_covers_where_an_entry_is_actually_reached():
