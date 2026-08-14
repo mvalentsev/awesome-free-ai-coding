@@ -664,3 +664,23 @@ watched:
     reopen_if: >-
       Modal serves models of its own behind an OpenAI-compatible endpoint on a
       free allowance.
+
+  - domains: [zenmux.ai]
+    name: ZenMux
+    checked_on: '2026-08-14'
+    reason: >-
+      The scout proposed this on 2026-08-14 and the probe passed, because
+      zenmux.ai/api/v1/models prices six of its 156 rows at 0 —
+      z-ai/glm-4.6v-flash-free, z-ai/glm-4.7-flash-free,
+      deepseek/deepseek-v4-flash-free, inclusionai/ling-3.0-tiny and the two
+      sapiens-ai/agnes-*-flash. A zero in a price column is not a lane you can
+      reach: ZenMux's own subscription guide says of its $0 Free tier "The Free
+      plan can only be used in Studio Chat on the web (roughly 5 conversations
+      per 5 hours) and provides no API Request access", and the other billing
+      system, Pay As You Go, is documented as "prepaid balance + pay-as-you-consume"
+      with a $5 minimum top-up. Neither published path hands a developer an API
+      key that calls those six ids without paying, so the free price is a
+      discount inside a paid plan rather than a free tier.
+    reopen_if: >-
+      ZenMux documents that a zero-balance Pay As You Go key may call the
+      -free ids, or the Free Builder tier gains API access.

@@ -238,6 +238,56 @@ model_list:
     model: openai/gemini-2.5
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: aihubmix/coding-glm-5.2-free
+  litellm_params:
+    model: openai/coding-glm-5.2-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/coding-glm-5.1-free
+  litellm_params:
+    model: openai/coding-glm-5.1-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/coding-kimi-k3-free
+  litellm_params:
+    model: openai/coding-kimi-k3-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/kimi-for-coding-free
+  litellm_params:
+    model: openai/kimi-for-coding-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/xiaomi-mimo-v2.5-free
+  litellm_params:
+    model: openai/xiaomi-mimo-v2.5-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/north-mini-code-free
+  litellm_params:
+    model: openai/north-mini-code-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/gpt-oss-20b-free
+  litellm_params:
+    model: openai/gpt-oss-20b-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/ling-3.0-tiny-free
+  litellm_params:
+    model: openai/ling-3.0-tiny-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/nemotron-3-ultra-550b-a55b-free
+  litellm_params:
+    model: openai/nemotron-3-ultra-550b-a55b-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/gemma-4-31b-it-free
+  litellm_params:
+    model: openai/gemma-4-31b-it-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: bazaarlink/deepseek/deepseek-v4-flash:free
   litellm_params:
     model: openai/deepseek/deepseek-v4-flash:free

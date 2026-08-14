@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--10-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-37-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-38-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **37** | **35** | **2** | **24** | **39** |
+| **38** | **36** | **2** | **25** | **40** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -90,6 +90,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 |---|---|---|---|---|---|
 | **[OpenRouter (free models)](https://openrouter.ai)** | One API key for rotating :free variants of frontier models | `gpt-oss`, `nemotron-3-ultra`, `gemma-4` | <sub>50 req/day free (1000/day with $10 balance)</sub> | ✅ No | `2026-08-13` |
 | **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers)** | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | — | <sub>Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across everything the router reaches, so which models it buys depends on their price, not on a tier (read 2026-08-14)</sub> | ✅ No | `2026-08-13` |
+| **[AIHubMix (free models)](https://aihubmix.com)** | One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly | `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | <sub>per-model RPM and daily token caps, published on each model's own page rather than in one table; the vendor states the quotas reset daily with no trial expiry and no payment method on file. Every free id carries a -free suffix and the paid twin beside it is metered at list rates</sub> | ✅ No | `2026-08-14 🧪` |
 | **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router | `deepseek-v4-flash`, `qwen3.7-flash` | <sub>10 req/min and 150 req/day on the free models (x3 for accounts that have topped up); the other 196 models are metered at list rates</sub> | ✅ No | `2026-08-13 🧪` |
 | **[Requesty](https://www.requesty.ai)** | OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | <sub>Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go</sub> | ✅ No | `2026-08-13 🧪` |
 | **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway carrying ten live zero-priced :free ids — Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `step-3.7-flash`, `gemma-4`, `llama-3.3` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-13 🧪` |
@@ -97,19 +98,21 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and two models that never touch the credit | `laguna-s-2.1-free`, `glm-4.6v-flash` | <sub>$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-13 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 39 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 40 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
 |---|---|
-| `gpt-oss` | [OpenRouter (free models)](https://openrouter.ai), [Google Antigravity](https://antigravity.google), [Cerebras Inference](https://www.cerebras.ai), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [Pollinations.AI](https://pollinations.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
+| `gpt-oss` | [OpenRouter (free models)](https://openrouter.ai), [Google Antigravity](https://antigravity.google), [Cerebras Inference](https://www.cerebras.ai), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [Pollinations.AI](https://pollinations.ai), [AIHubMix (free models)](https://aihubmix.com), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Cerebras Inference](https://www.cerebras.ai), [Requesty](https://www.requesty.ai), [Routeway](https://routeway.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
 | `deepseek-v4-flash` | [opencode](https://opencode.ai), [BazaarLink](https://bazaarlink.ai) |
 | `gemini-2.5` | [Google Jules](https://jules.google/), [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `llama-4` | [Groq](https://groq.com), [Cloudflare Workers AI](https://workers.cloudflare.com) |
+| `mimo-v2.5` | [opencode](https://opencode.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `nemotron-3-super` | [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
+| `north-mini-code` | [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `qwen3` | [Groq](https://groq.com), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `step-3.7-flash` | [Kilo Code](https://kilo.ai), [Routeway](https://routeway.ai) |
@@ -124,6 +127,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `glm-4.5-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.7` | [Cerebras Inference](https://www.cerebras.ai) |
 | `glm-4.7-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
+| `glm-5` | [AIHubMix (free models)](https://aihubmix.com) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
 | `jamba-large` | [AI21 Labs (Jamba)](https://www.ai21.com) |
 | `jamba-mini` | [AI21 Labs (Jamba)](https://www.ai21.com) |
@@ -132,11 +136,9 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai) |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
 | `llama-3.3` | [Routeway](https://routeway.ai) |
-| `mimo-v2.5` | [opencode](https://opencode.ai) |
 | `mistral-medium` | [Mistral La Plateforme](https://mistral.ai) |
 | `nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `nemotron-3-nano-omni` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
-| `north-mini-code` | [Kilo Code](https://kilo.ai) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
 | `solar-mini` | [Upstage (Solar API)](https://console.upstage.ai/) |
@@ -179,7 +181,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 </details>
 
 <details>
-<summary><b>🔭 Checked and not listed</b> — 43 services whose free tier this list could not find or could not verify, and what would change the answer</summary>
+<summary><b>🔭 Checked and not listed</b> — 44 services whose free tier this list could not find or could not verify, and what would change the answer</summary>
 <br>
 
 <sub>Nothing here is disqualified — these are legitimate services with no free tier a developer can reach on the date checked. Each verdict expires after 90 days and gets asked again. The reasons live in [`watchlist.yaml`](watchlist.yaml); domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).</sub>
@@ -224,6 +226,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **Warp** | The Free plan is real and costs nothing, but it bundles no model usage: warp.dev/pricing lists it as "Reload credits at pay-as-you-go rates" and "Bring your own AI inference", while the 1,500 included credits begin on the $20 Build plan. Third-party lists still credit the free plan with 150 then 75 AI credits a month; that allowance is no longer on the vendor's own page. A terminal that asks for your own key is the cline and aider case, not the opencode one. <sub>**Reopens if:** The Free plan on warp.dev/pricing lists an included monthly credit or token allowance instead of pay-as-you-go reloads.</sub> | `2026-08-14` |
 | **xAI (Grok API)** | docs.x.ai prices every surface — text, Agent, TTS, STT, Imagine — and names no free tier or signup grant. x.ai/api answers HTTP 403 to every non-browser client, so even a stated offer could not be probed from here. The free API credits xAI ran in exchange for data sharing are not on any current page. <sub>**Reopens if:** A free tier or signup grant appears on a page that answers a plain HTTP client.</sub> | `2026-08-14` |
 | **Xiaomi MiMo (API platform)** | A separate surface from the archived MiMo Code entry, and also paid. The keyless platform.xiaomimimo.com/api/v1/models publishes five models and prices all of them, the cheapest being mimo-v2.5 at $0.14 in / $0.28 out per M. The Token Plan is a paid subscription — the site advertises MiMo Claw at 14.9 yuan a month as "stackable with Token Plan" — and both mimo.mi.com/pricing and platform.xiaomimimo.com/pricing are client- rendered shells serving 29 characters of text, so no probe could read an offer there even if one appeared. <sub>**Reopens if:** The keyless catalog carries a zero-priced row, or a free tier appears in server-rendered HTML.</sub> | `2026-08-14` |
+| **ZenMux** | The scout proposed this on 2026-08-14 and the probe passed, because zenmux.ai/api/v1/models prices six of its 156 rows at 0 — z-ai/glm-4.6v-flash-free, z-ai/glm-4.7-flash-free, deepseek/deepseek-v4-flash-free, inclusionai/ling-3.0-tiny and the two sapiens-ai/agnes-*-flash. A zero in a price column is not a lane you can reach: ZenMux's own subscription guide says of its $0 Free tier "The Free plan can only be used in Studio Chat on the web (roughly 5 conversations per 5 hours) and provides no API Request access", and the other billing system, Pay As You Go, is documented as "prepaid balance + pay-as-you-consume" with a $5 minimum top-up. Neither published path hands a developer an API key that calls those six ids without paying, so the free price is a discount inside a paid plan rather than a free tier. <sub>**Reopens if:** ZenMux documents that a zero-balance Pay As You Go key may call the -free ids, or the Free Builder tier gains API access.</sub> | `2026-08-14` |
 | **LLM7** | Carries a reputation for a shared free tier that its own catalog no longer supports: 35 models on api.llm7.io, every one of them tier `pro` or `turbo` and usage-priced, zero free rows. Curated feeds still credit it with 15 free models, which is how it keeps coming back. <sub>**Reopens if:** A zero-priced row reappears in the api.llm7.io catalog.</sub> | `2026-08-11` |
 | **TokenRouter.io** | Legitimate commercial routing layer, and the third unrelated service to carry the TokenRouter name — check the TLD before acting on any lead here, because .com is the listed PaleBlueDot gateway and .me is blocklisted. Its quickstart says "You need at least one AI provider key to route requests" and sends you to platform.openai.com, i.e. BYOK-only with no bundled model usage, and its "Free tier available" covers the routing plan, not tokens — the pricing page's own words are "Pay only for routing and insights". Not blocklisted precisely because nothing is wrong with it. <sub>**Reopens if:** TokenRouter.io starts bundling model usage rather than routing only.</sub> | `2026-08-05` |
 | **Arcee (Trinity)** | Direct API grants are application-gated, and an application with a selection step is not an offer a developer can simply use — the same bar that keeps TokenRouter's builder programme out of its entry. The :free Trinity variants that are open live on OpenRouter, which this list already covers. <sub>**Reopens if:** Arcee opens direct API credits without an application.</sub> | `2026-07-22` |
@@ -258,6 +261,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Cohere (trial keys)**<br><sub>OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2</sub> | `https://api.cohere.com/compatibility/v1` | `COHERE_API_KEY` | [key](https://dashboard.cohere.com/api-keys) |
 | **Scaleway Generative APIs**<br><sub>non-default project: https://api.scaleway.ai/{project_id}/v1</sub> | `https://api.scaleway.ai/v1` | `SCALEWAY_GENERATIVE_API_KEY` | [key](https://console.scaleway.com) |
 | **Google AI Studio (Gemini API)**<br><sub>pass the key as Bearer</sub> | `https://generativelanguage.googleapis.com/v1beta/openai/` | `GOOGLE_AI_STUDIO_API_KEY` | [key](https://aistudio.google.com/apikey) |
+| **AIHubMix (free models)**<br><sub>the ten ids listed are the coding-relevant half of the 49 rows the catalog priced at 0 on 2026-08-14. The proprietary ones beside them (gpt-5.5-free, gpt-4.1-free, gemini-3.7-flash-free) are the platform paying for inference it resells, so they rotate faster than the open-weight rows and are deliberately not listed here. `model_id` is the callable string; `model_name` in the same catalog is a display title</sub> | `https://aihubmix.com/v1` | `AIHUBMIX_API_KEY` | [key](https://aihubmix.com/token) |
 | **BazaarLink**<br><sub>only the :free ids and auto:free cost nothing; auto:free picks a free model for you</sub> | `https://bazaarlink.ai/api/v1` | `BAZAARLINK_API_KEY` | [key](https://bazaarlink.ai/keys) |
 | **Requesty**<br><sub>the ten ids listed are every row the catalog prices at 0, and the free plan serves those alone — ids here carry no :free suffix, so the price is the only thing separating them from the 585 metered rows beside them. nemotron-3.5-content-safety is a guardrail classifier rather than a coding model</sub> | `https://router.requesty.ai/v1` | `REQUESTY_API_KEY` | [key](https://app.requesty.ai/api-keys) |
 | **Routeway**<br><sub>all ten ids are priced 0 and answering — the Free-models column names the four the probe anchors on, because a promo lane that rotates out must not archive a gateway that still has a free tier; laguna-m.1:free is priced 0 too but the catalog still marks it unavailable, so it is left out, and ling-3.0-flash:free left the catalog altogether in 2026-08. Only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and supports users through Discord alone, so treat these ids as a fallback lane, not a dependency</sub> | `https://api.routeway.ai/v1` | `ROUTEWAY_API_KEY` | [key](https://routeway.ai/dashboard/keys) |

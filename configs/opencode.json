@@ -318,6 +318,46 @@
         }
       }
     },
+    "aihubmix": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "AIHubMix (free models)",
+      "options": {
+        "baseURL": "https://aihubmix.com/v1",
+        "apiKey": "{env:AIHUBMIX_API_KEY}"
+      },
+      "models": {
+        "coding-glm-5.2-free": {
+          "name": "coding-glm-5.2-free"
+        },
+        "coding-glm-5.1-free": {
+          "name": "coding-glm-5.1-free"
+        },
+        "coding-kimi-k3-free": {
+          "name": "coding-kimi-k3-free"
+        },
+        "kimi-for-coding-free": {
+          "name": "kimi-for-coding-free"
+        },
+        "xiaomi-mimo-v2.5-free": {
+          "name": "xiaomi-mimo-v2.5-free"
+        },
+        "north-mini-code-free": {
+          "name": "north-mini-code-free"
+        },
+        "gpt-oss-20b-free": {
+          "name": "gpt-oss-20b-free"
+        },
+        "ling-3.0-tiny-free": {
+          "name": "ling-3.0-tiny-free"
+        },
+        "nemotron-3-ultra-550b-a55b-free": {
+          "name": "nemotron-3-ultra-550b-a55b-free"
+        },
+        "gemma-4-31b-it-free": {
+          "name": "gemma-4-31b-it-free"
+        }
+      }
+    },
     "bazaarlink": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "BazaarLink",

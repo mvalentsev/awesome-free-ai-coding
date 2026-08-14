@@ -1541,3 +1541,64 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 60
+- id: aihubmix
+  name: AIHubMix (free models)
+  category: aggregator
+  url: https://aihubmix.com
+  source_urls:
+  - https://docs.aihubmix.com/en/blogs/free-ai-models
+  - https://aihubmix.com/api/v1/models
+  card_required: false
+  offering: One OpenAI-compatible gateway over 850+ models, 49 of which the platform
+    prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format
+    /v1/messages are served, so a free id can back Claude Code directly
+  limits: per-model RPM and daily token caps, published on each model's own page
+    rather than in one table; the vendor states the quotas reset daily with no trial
+    expiry and no payment method on file. Every free id carries a -free suffix and
+    the paid twin beside it is metered at list rates
+  models:
+  - family: glm-5
+    tier: frontier
+    released: '2026-02'
+  - family: mimo-v2.5
+    tier: strong
+  - family: north-mini-code
+    tier: strong
+    released: '2026-06'
+  - family: gpt-oss
+    tier: strong
+    released: '2025-08'
+  api:
+    base_url: https://aihubmix.com/v1
+    key_url: https://aihubmix.com/token
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - coding-glm-5.2-free
+    - coding-glm-5.1-free
+    - coding-kimi-k3-free
+    - kimi-for-coding-free
+    - xiaomi-mimo-v2.5-free
+    - north-mini-code-free
+    - gpt-oss-20b-free
+    - ling-3.0-tiny-free
+    - nemotron-3-ultra-550b-a55b-free
+    - gemma-4-31b-it-free
+    note: the ten ids listed are the coding-relevant half of the 49 rows the catalog
+      priced at 0 on 2026-08-14. The proprietary ones beside them (gpt-5.5-free,
+      gpt-4.1-free, gemini-3.7-flash-free) are the platform paying for inference it
+      resells, so they rotate faster than the open-weight rows and are deliberately
+      not listed here. `model_id` is the callable string; `model_name` in the same
+      catalog is a display title
+  probe:
+    type: api-models
+    endpoint: https://aihubmix.com/api/v1/models
+    keywords: []
+    free_marker: free
+    dead_markers: []
+    require_zero_price: true
+  first_seen: '2026-08-14'
+  last_verified: '2026-08-14'
+  probe_failures: 0
+  provisional: true
+  rank: 100

@@ -92,8 +92,13 @@ def check_content(resp: httpx.Response, entry: Entry) -> str | None:
 def _model_id(model: dict) -> str:
     """What you put in the request body. OpenAI-shaped catalogs call the field
     `id`; the new-api family of gateways (TokenRouter and its kin) calls the
-    same string `model_name`."""
-    for key in ("id", "model_name"):
+    same string `model_name`.
+
+    `model_id` is read before `model_name` because a catalog that publishes both
+    means the second one as a title — AIHubMix ships `"model_id":
+    "coding-glm-5.1-free"` next to `"model_name": "Coding GLM 5.1 (free)"`, and
+    a family matched against the title misses every hyphen."""
+    for key in ("id", "model_id", "model_name"):
         value = model.get(key)
         if isinstance(value, str) and value:
             return value

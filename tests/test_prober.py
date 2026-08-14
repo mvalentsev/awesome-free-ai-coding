@@ -416,6 +416,56 @@ async def test_new_api_row_without_any_price_field_is_not_free():
     assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
 
 
+def titled_entry() -> Entry:
+    """A catalog that publishes both field names with opposite meanings:
+    `model_id` is what goes in the request body, `model_name` is the human
+    title beside it."""
+    return Entry.model_validate({
+        **BASE,
+        "models": [{"family": "coding-glm-5.1", "tier": "frontier"}],
+        "probe": {
+            "type": "api-models",
+            "endpoint": "https://api.x.ai/v1/models",
+            "free_marker": "free",
+            "require_zero_price": True,
+        },
+    })
+
+
+@respx.mock
+async def test_the_callable_id_wins_over_the_title_beside_it():
+    """AIHubMix keeps the id in `model_id` and a spaced-out title in
+    `model_name` — the same field the new-api gateways use for the id. Reading
+    the pair in that order turned every family into a miss, because a
+    hyphenated id never occurs inside a title that spells it with spaces."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_id": "coding-glm-5.1-free", "model_name": "Coding GLM 5.1 (free)",
+             "pricing": {"input": 0, "output": 0}},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, titled_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_titled_row_that_started_billing_is_reported_by_its_id():
+    """The price is still the offer here, and the failure has to name the string
+    a reader can look up — the id, not the title."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"model_id": "coding-glm-5.1-free", "model_name": "Coding GLM 5.1 (free)",
+             "pricing": {"input": 0.6, "output": 2.2}},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, titled_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail
+    assert "coding-glm-5.1-free priced 0.6/2.2" in result.detail
+
+
 @respx.mock
 async def test_a_price_row_that_is_not_a_number_is_not_a_zero():
     """A vendor that replaces its price with null or "on request" has stopped
