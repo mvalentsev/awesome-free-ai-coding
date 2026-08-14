@@ -773,7 +773,7 @@
       "id": "openai-codex-cli",
       "name": "OpenAI Codex CLI",
       "category": "agent-cli",
-      "url": "https://developers.openai.com/codex/",
+      "url": "https://learn.chatgpt.com/docs/codex/cli",
       "source_urls": [
         "https://learn.chatgpt.com/docs/pricing",
         "https://github.com/openai/codex"
@@ -910,7 +910,7 @@
       "id": "ovh-ai-endpoints",
       "name": "OVHcloud AI Endpoints",
       "category": "api-free-tier",
-      "url": "https://endpoints.ai.cloud.ovh.net",
+      "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
       "source_urls": [
         "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
         "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/"
