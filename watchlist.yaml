@@ -130,6 +130,42 @@ watched:
       Public docs or a keyless catalog appear that state what is free and on
       what terms.
 
+  - domains: [iflow.cn]
+    name: iFlow
+    checked_on: '2026-08-14'
+    reason: >-
+      Reached through the models.dev digest, which lists iflowcn with 14 of 14
+      models at cost 0 — and a rival list that says iFlow shut down on
+      2026-04-17, which is wrong. The service is alive: iflow.cn serves 67k
+      characters of a Chinese consumer assistant, and apis.iflow.cn answers 405
+      Method Not Allowed on /v1/chat/completions, so the route exists and only
+      rejects a GET. What is missing is anything to verify. The catalog path
+      /v1/models answers 404, platform.iflow.cn is a client-rendered shell
+      (3446 characters of text inside 35262 bytes, all of it login config), and
+      the only prices served anywhere are the consumer packages on iflow.cn,
+      whose free column lists its features at "0 次/月" and disabled. A row this
+      list cannot probe is a row it will not carry — the ModelScope bar.
+    reopen_if: >-
+      apis.iflow.cn serves a model catalog, or iFlow publishes a server-rendered
+      page stating the free quota of its developer platform.
+
+  - domains: [supermaven.com]
+    name: Supermaven
+    checked_on: '2026-08-14'
+    reason: >-
+      The free tier is real, recurring and cardless — supermaven.com/pricing is
+      server-rendered and states "Free Tier $0 /month", "Fast, high-quality code
+      suggestions", "Works with large codebases". It is completions and nothing
+      else: the same page marks "Adapts to your coding style", the 1M-token
+      context, the largest model and the "$5/month in Supermaven Chat credits"
+      as Pro only, and there is no API. So the free plan hands a developer no
+      model access to point a coding tool at, which is the bar that keeps
+      BYOK-only tools off this list. Copilot Free is listed and this is not for
+      exactly that reason: its free plan carries chat and agent use, not only
+      inline completions.
+    reopen_if: >-
+      Supermaven's free plan gains chat credits, agent use, or an API endpoint.
+
   - domains: [aws.amazon.com]
     name: Amazon Q Developer
     checked_on: '2026-08-14'
