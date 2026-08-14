@@ -2371,6 +2371,39 @@
       "reason": "The scout proposed this on 2026-08-14 and the probe passed, because zenmux.ai/api/v1/models prices six of its 156 rows at 0 — z-ai/glm-4.6v-flash-free, z-ai/glm-4.7-flash-free, deepseek/deepseek-v4-flash-free, inclusionai/ling-3.0-tiny and the two sapiens-ai/agnes-*-flash. A zero in a price column is not a lane you can reach: ZenMux's own subscription guide says of its $0 Free tier \"The Free plan can only be used in Studio Chat on the web (roughly 5 conversations per 5 hours) and provides no API Request access\", and the other billing system, Pay As You Go, is documented as \"prepaid balance + pay-as-you-consume\" with a $5 minimum top-up. Neither published path hands a developer an API key that calls those six ids without paying, so the free price is a discount inside a paid plan rather than a free tier.",
       "reopen_if": "ZenMux documents that a zero-balance Pay As You Go key may call the -free ids, or the Free Builder tier gains API access.",
       "current": true
+    },
+    {
+      "domains": [
+        "xfyun.cn",
+        "xf-yun.com",
+        "xinghuo.xfyun.cn"
+      ],
+      "name": "iFlytek Spark (讯飞星火)",
+      "checked_on": "2026-08-14",
+      "reason": "The free model is real and the vendor says so on its own page: the HTTP docs describe Lite as \"轻量级大语言模型 ... 具有更高的响应速度，支持免费使用\" (a lightweight model, faster to respond, free to use), give the model id as `lite` and publish an OpenAI-compatible base url, https://spark-api-open.xf-yun.com/v1/. What is missing is everything a reader needs after that: the page states no quota, no QPS and no duration for the free lane — only that a daily and a per-second throttle exist — and the key is issued from console.xfyun.cn, a Chinese console whose registration gate is behind JavaScript and could not be read. That is the ModelScope case: a real free tier this list cannot yet tell a developer how to reach, or anchor a probe to.",
+      "reopen_if": "iFlytek publishes a figure for the Lite lane — tokens, QPS or duration — on a server-rendered page, or the registration gate turns out not to need a mainland-China identity.",
+      "current": true
+    },
+    {
+      "domains": [
+        "intern-ai.org.cn"
+      ],
+      "name": "Intern AI (书生 / InternLM, Shanghai AI Lab)",
+      "checked_on": "2026-08-14",
+      "reason": "Reached through a feed that credits it with a free OpenAI-format API at chat.intern-ai.org.cn/api/v1, 10 requests a minute and a key valid for six months. None of that could be confirmed: every page on the domain answers an empty shell — chat.intern-ai.org.cn renders zero characters of text and the documentation route six — so there is no served sentence about a free tier to quote, and nothing a page-keywords probe could anchor on. Recorded as unread rather than as absent: the shell is a JavaScript console, not a withdrawn offer.",
+      "reopen_if": "Intern AI serves its API terms on a page that answers without JavaScript, or publishes them somewhere a probe can read.",
+      "current": true
+    },
+    {
+      "domains": [
+        "sensenova.cn",
+        "sensetime.com"
+      ],
+      "name": "SenseNova (商汤 SenseTime)",
+      "checked_on": "2026-08-14",
+      "reason": "Same shape as the Intern AI record and the same day. A feed credits it with free lanes at token.sensenova.cn/v1 — 1500 requests per 5 hours on sensenova-6.7-flash-lite, 500 on deepseek-v4-flash — and platform.sensenova.cn serves 24 characters of text, the page title alone. Nothing on the domain states an offer, so there is nothing to verify and nothing to probe.",
+      "reopen_if": "SenseNova publishes its free quota on a server-rendered page.",
+      "current": true
     }
   ]
 }

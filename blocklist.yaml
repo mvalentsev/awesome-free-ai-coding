@@ -82,4 +82,36 @@
   reason: >-
     Where roocode.com now points — model-agnostic BYOK by its own home page,
     so the free trial buys hosting and never inference.
+- domain: chatanywhere.tech
+  reason: >-
+    Its own README (chatanywhere/GPT_API_free, 40k stars) calls the endpoint a
+    "转发Host" — a forwarding host — and sells what it forwards at "最低官方1-2折",
+    10-20% of the official price, for Codex and Claude. A free lane of 10,000
+    points a day over gpt-5 and gpt-4o sits on the same relay. Nobody licenses
+    frontier capacity at a tenth of list to give a tenth of it away, which is
+    the same reasoning tokenrouter.me is here for.
+- domain: chatanywhere.org
+  reason: >-
+    The second forwarding host named in the same README, for use outside
+    mainland China. Same service as chatanywhere.tech.
+- domain: dxnt.com
+  reason: >-
+    Sells itself in its own page footer as "DX TOKEN 智能AI模型中转网关" — a relay
+    gateway — bundling GLM-5.2, Kimi-K2, MiniMax-M2, Claude and DeepSeek behind
+    one key from ¥9.9 a month, with 100 free routed calls a day on top. Its
+    model ids anonymise the upstream they route to (`dxnt/1ho` → `ry5b/...`,
+    `ot5k/openai/gpt-oss-120b`), so what is being resold is deliberately not
+    stated.
+- domain: supxh.xin
+  reason: >-
+    肖恩AI, a new-api instance on a personal domain handing out claude-opus-4-5,
+    claude-sonnet-4-5 and gemini-3.1-pro for a daily check-in and a referral
+    bonus, alongside "无限额度全模型卡" — unlimited-quota all-model cards — sold with
+    coupons. No legal entity, no terms of service, no claim of authorisation
+    from any of the vendors whose flagship models it serves. The capacity it
+    gives away is not capacity anyone licenses to give away.
+- domain: toter.me
+  reason: >-
+    The API host 肖恩AI publishes for itself (speed.toter.me). Same service as
+    supxh.xin.
 
