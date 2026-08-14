@@ -80,3 +80,31 @@ read:
       and "Report Issues", both to github.com, and no provider table at all.
     reopen_if: >-
       It publishes the provider tables the original carried.
+
+  - url: https://github.com/MrFadiAi/free-llm-gateway
+    name: MrFadiAi/free-llm-gateway
+    checked_on: '2026-08-14'
+    reason: >-
+      Software, not a listing, and its provider list is downstream of a feed
+      already declined here. It is a self-hosted FastAPI server — "Configure
+      your free API keys in `.env`, then use one base URL + one master key" —
+      so it is the BYOK-only case CONTRIBUTING excludes: it bundles no model
+      access of its own, and it is not a hosted relay either, which is why it
+      is here rather than on the blocklist. Read whole, not by README: 66
+      distinct hosts across models.yaml (55KB), config.py, providers.py,
+      provider_guides.py, .env.example and three dated test reports. Every
+      inference provider among them is already carried; what is left is two
+      benchmark sites (artificialanalysis.ai, lmarena.ai), Together AI's API
+      host under its second domain, and models.inference.ai.azure.com, which
+      is GitHub Models, archived here on 2026-07-30. Its README says where the
+      set comes from — "Auto-sync — pulls new free models from
+      awesome-free-llm-apis" — the list declined ten lines above. Its own
+      claims are the stale kind this file exists to stop paying for twice:
+      PROVIDER_TEST_RESULTS.md, dated 2026-05-24 like the last push, credits
+      Cerebras with a "30 RPM free tier" where Cerebras' docs give the Free
+      Trial 5 RPM against card-required credits, and the README still lists
+      GitHub Models.
+    reopen_if: >-
+      It starts publishing free-tier terms it verified itself rather than a
+      key-configuration list, or its provider set stops tracking
+      mnfst/awesome-free-llm-apis.
