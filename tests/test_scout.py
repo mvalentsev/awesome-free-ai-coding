@@ -260,6 +260,20 @@ def test_run_scout_skips_the_llm_when_no_page_hints_at_a_retirement():
     assert not any("FIND-RETIREMENTS" in p for p in llm.prompts)
 
 
+def test_the_retirement_sweep_names_the_entries_it_flagged(capsys):
+    """The sweep reported a bare count, so learning which entry tripped it meant
+    re-fetching every live entry's first source url by hand. The one that trips
+    it today is google-ai-studio, on the word "Deprecations" sitting in the docs
+    sidebar — benign, and invisible until someone reproduced the sweep."""
+    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire: []\n```"})
+    pages = {"https://x.ai/blog": "our free tier, as always",
+             "https://y.ai/docs": "release notes deprecations libraries migration"}
+    entries = [make(id="x", source_urls=["https://x.ai/blog"]),
+               make(id="y", source_urls=["https://y.ai/docs"])]
+    run_scout(llm, entries, [], lambda urls: {u: pages[u] for u in urls}, TODAY)
+    assert "retirement sweep: 1/2 pages carry a signal (y)" in capsys.readouterr().out
+
+
 def test_retirement_sweep_failure_does_not_sink_the_run():
     class Flaky(StubLLM):
         def complete(self, prompt: str) -> str:

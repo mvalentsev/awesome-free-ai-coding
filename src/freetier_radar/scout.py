@@ -785,7 +785,10 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             f"PAGE {e.source_urls[0]}:\n{pages.get(e.source_urls[0], '')[:RETIREMENT_PAGE_CHARS]}"
             for e in candidates
         )
-        print(f"retirement sweep: {len(candidates)}/{len(live)} pages carry a signal")
+        # Naming them costs one line and saves re-fetching every live entry's
+        # first source url to find out which one tripped a count of 1.
+        flagged = f" ({', '.join(e.id for e in candidates)})" if candidates else ""
+        print(f"retirement sweep: {len(candidates)}/{len(live)} pages carry a signal{flagged}")
         if context:
             # An optional sweep must never sink the run that finds new entries.
             try:
