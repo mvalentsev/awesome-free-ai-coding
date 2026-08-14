@@ -261,8 +261,13 @@ watched:
     reason: >-
       The free tier is $0.10 a month of credit — decorative rather than usable,
       and far below what the third-party claim of "50 RPM free" suggested.
+      The date stays at the July reading on purpose: re-asked on 2026-08-14
+      after a list credited it with a no-card free tier, portal.nousresearch.com
+      answered 429 "Vercel Security Checkpoint" to every client tried, home page
+      and pricing alike, so nothing there could be re-read either way.
     reopen_if: >-
-      The monthly grant becomes large enough to run an agent session on.
+      The monthly grant becomes large enough to run an agent session on, on a
+      page the portal serves to an ordinary HTTP client.
 
   - domains: [arcee.ai]
     name: Arcee (Trinity)
