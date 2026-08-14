@@ -337,6 +337,18 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     next to a price for weeks before anyone noticed, and no presence check would
     have caught that.
 
+    That weakness was measured the other way round on 2026-08-14, by byte
+    location rather than presence: of the 32 live page-keywords entries, four
+    match only in bytes a reader never sees, and every one of the four is
+    deliberate — trae's `"name":"free"`, cursor's `"name":"hobby","price":"0"`,
+    z.ai's ids glued to their price cells, and Upstage's own section heading
+    inside a client-rendered payload. What the same pass did catch is the shape
+    this docstring cannot: a family evidenced by an OpenAPI enum the page embeds
+    (Groq's llama-4, absent from the Free Plan Limits table beside it) and one
+    evidenced by an i18n bundle linking a 2025 blog post (Mistral). Both were
+    fixed in the registry rather than here, because from this function the two
+    cases are the same bytes.
+
     And it never fails an entry. Three failures archive a row, so a marketing
     page that drops a model name in a restyle would bury a live service inside a
     week; the rotating-lane rule (Kilo, TokenRouter) says the same thing from the
