@@ -63,6 +63,19 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(
                 f"registry: {e.id} first_seen {e.first_seen} is after "
                 f"last_verified {e.last_verified}")
+        # README.md is published through GitHub Pages, which builds it with
+        # Jekyll — measured, not assumed: the root of the Pages site serves the
+        # README rendered by jekyll-readme-index even with a .nojekyll file
+        # beside it. So every vendor sentence copied into an entry passes through
+        # Liquid, and two adjacent braces in one of them fail the build. A failed
+        # build is the quiet kind: the previous deploy keeps serving, so the
+        # Atom feed simply stops moving with nothing on the page to say why.
+        for field, text in (("offering", e.offering), ("limits", e.limits),
+                            ("name", e.name), ("api.note", e.api.note if e.api else "")):
+            if "{{" in text or "{%" in text:
+                problems.append(
+                    f"registry: {e.id} has Liquid delimiters in {field} — GitHub Pages "
+                    f"renders README.md with Jekyll and would fail to build it")
 
     # ---- registry against blocklist.yaml
     # We list it and we say it must never be proposed. One of the two is wrong.

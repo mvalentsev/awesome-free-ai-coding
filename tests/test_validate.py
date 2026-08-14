@@ -135,3 +135,12 @@ def test_removing_something_the_history_never_recorded_is_a_contradiction(tmp_pa
 def test_adding_something_the_history_already_has_is_a_contradiction(tmp_path: Path):
     root = build(tmp_path, history=[event(), event(ts="2026-08-11T05:23:00Z")])
     assert any("added" in p and "already" in p for p in check(root, TODAY))
+
+
+def test_text_that_reads_as_liquid_would_break_the_published_page(tmp_path: Path):
+    """README.md is served through GitHub Pages, which renders it with Jekyll.
+    A vendor sentence carrying `{{` or `{%` is a Liquid tag to that build, and a
+    failed build leaves the whole site — the Atom feed with it — on the previous
+    deploy without anything on this page saying so."""
+    root = build(tmp_path, entries=[{**ENTRY, "limits": "1000 req/day, {{ per key }}"}])
+    assert any("Liquid" in p and "limits" in p for p in check(root, TODAY))
