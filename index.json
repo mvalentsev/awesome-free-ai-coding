@@ -2087,6 +2087,57 @@
       "reason": "Direct API grants are application-gated, and an application with a selection step is not an offer a developer can simply use — the same bar that keeps TokenRouter's builder programme out of its entry. The :free Trinity variants that are open live on OpenRouter, which this list already covers.",
       "reopen_if": "Arcee opens direct API credits without an application.",
       "current": true
+    },
+    {
+      "domains": [
+        "ofox.ai"
+      ],
+      "name": "OfoxAI",
+      "checked_on": "2026-08-14",
+      "reason": "An OpenAI-compatible gateway with a keyless catalog — api.ofox.ai/v1/models answers 130 rows unauthenticated — and every text model in it is priced. Its eight GLM rows start at glm-4.7-flashx for $0.072 per M input, and there is no glm-4.7-flash in the catalog at all, so the third-party claim that it serves GLM-4.7-Flash at $0 per M is about a model it does not carry. The fourteen rows that do read prompt 0 and completion 0 are video, image and transcription models whose real price sits in a per-second or per-image field beside them.",
+      "reopen_if": "A text model in api.ofox.ai/v1/models prices both prompt and completion at zero.",
+      "current": true
+    },
+    {
+      "domains": [
+        "warp.dev"
+      ],
+      "name": "Warp",
+      "checked_on": "2026-08-14",
+      "reason": "The Free plan is real and costs nothing, but it bundles no model usage: warp.dev/pricing lists it as \"Reload credits at pay-as-you-go rates\" and \"Bring your own AI inference\", while the 1,500 included credits begin on the $20 Build plan. Third-party lists still credit the free plan with 150 then 75 AI credits a month; that allowance is no longer on the vendor's own page. A terminal that asks for your own key is the cline and aider case, not the opencode one.",
+      "reopen_if": "The Free plan on warp.dev/pricing lists an included monthly credit or token allowance instead of pay-as-you-go reloads.",
+      "current": true
+    },
+    {
+      "domains": [
+        "platform.xiaomimimo.com",
+        "mimo.mi.com"
+      ],
+      "name": "Xiaomi MiMo (API platform)",
+      "checked_on": "2026-08-14",
+      "reason": "A separate surface from the archived MiMo Code entry, and also paid. The keyless platform.xiaomimimo.com/api/v1/models publishes five models and prices all of them, the cheapest being mimo-v2.5 at $0.14 in / $0.28 out per M. The Token Plan is a paid subscription — the site advertises MiMo Claw at 14.9 yuan a month as \"stackable with Token Plan\" — and both mimo.mi.com/pricing and platform.xiaomimimo.com/pricing are client- rendered shells serving 29 characters of text, so no probe could read an offer there even if one appeared.",
+      "reopen_if": "The keyless catalog carries a zero-priced row, or a free tier appears in server-rendered HTML.",
+      "current": true
+    },
+    {
+      "domains": [
+        "atlassian.com"
+      ],
+      "name": "Atlassian Rovo Dev",
+      "checked_on": "2026-08-14",
+      "reason": "The free beta that third-party lists still quote at 5M tokens a day is over. atlassian.com/software/rovo-dev now says Rovo Dev is generally available and that \"limited monthly Rovo Dev credits per developer will be gradually rolled out to customers with a Standard, Premium, or Enterprise Cloud plan of Jira\" — an allowance that rides on a paid subscription, which is the same reason Copilot's paid tiers are not entries here.",
+      "reopen_if": "Atlassian publishes a Rovo Dev allowance reachable without a paid Jira Cloud plan.",
+      "current": true
+    },
+    {
+      "domains": [
+        "forgecode.dev"
+      ],
+      "name": "ForgeCode",
+      "checked_on": "2026-08-14",
+      "reason": "A coding harness that brings no model usage of its own. Its installation docs say ForgeCode \"needs access to at least one AI model\", walk you through entering an API key, and recommend reusing a ChatGPT Plus or Claude subscription you already pay for; forgecode.dev/pricing is a 404. The \"10K tokens a day via OpenRouter\" credited to it elsewhere is OpenRouter's own free tier reached with the reader's key, and OpenRouter is already an entry here.",
+      "reopen_if": "ForgeCode Services bundles model usage on a plan that costs nothing.",
+      "current": true
     }
   ]
 }

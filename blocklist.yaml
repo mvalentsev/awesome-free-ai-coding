@@ -67,3 +67,10 @@
     as you go at $0/mo with credits you add yourself, no recurring grant anywhere. An
     independent live probe (freellmapi, 2026) reports every model answering 402 "account
     balance is $0.0". Removed 2026-08-11; delete this line if an account shows otherwise
+- domain: voideditor.com
+  reason: >-
+    BYOK-only by design, the zed.dev case — Void's own home page sells it as
+    "Void doesn't send your messages through a private backend like Cursor or
+    Windsurf. Cut out the middleman and connect directly", so there is no
+    backend that could bundle model usage and the free editor grants none.
+
