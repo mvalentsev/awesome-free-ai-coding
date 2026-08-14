@@ -208,6 +208,16 @@ model_list:
     model: openai/solar-mini
     api_base: https://api.upstage.ai/v1
     api_key: os.environ/UPSTAGE_API_KEY
+- model_name: inception-labs/mercury-2
+  litellm_params:
+    model: openai/mercury-2
+    api_base: https://api.inceptionlabs.ai/v1
+    api_key: os.environ/INCEPTION_LABS_API_KEY
+- model_name: inception-labs/mercury-edit-2
+  litellm_params:
+    model: openai/mercury-edit-2
+    api_base: https://api.inceptionlabs.ai/v1
+    api_key: os.environ/INCEPTION_LABS_API_KEY
 - model_name: mistral-free/mistral-medium
   litellm_params:
     model: openai/mistral-medium

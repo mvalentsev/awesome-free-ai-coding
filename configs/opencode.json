@@ -242,6 +242,22 @@
         }
       }
     },
+    "inception-labs": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Inception Labs (Mercury)",
+      "options": {
+        "baseURL": "https://api.inceptionlabs.ai/v1",
+        "apiKey": "{env:INCEPTION_LABS_API_KEY}"
+      },
+      "models": {
+        "mercury-2": {
+          "name": "mercury-2"
+        },
+        "mercury-edit-2": {
+          "name": "mercury-edit-2"
+        }
+      }
+    },
     "mistral-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Mistral La Plateforme",

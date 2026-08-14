@@ -295,8 +295,21 @@ def dead_marker_hit(text: str, probe: Probe) -> str | None:
     return None
 
 
+_SPACE_LOOKALIKES = str.maketrans(dict.fromkeys(
+    "\u00a0\u202f\u2009\u2007\u2060", " "))
+
+
+def _plain_spaces(text: str) -> str:
+    """The typographic spaces a CMS puts between words a designer did not want
+    broken across lines. They are invisible in a browser and in a copy-paste, so
+    a keyword quoted off the page — "100 million free tokens" on Inception Labs'
+    own page — simply never occurs in the bytes, and the probe reports a
+    withdrawn offer over a non-breaking space."""
+    return text.translate(_SPACE_LOOKALIKES)
+
+
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
-    text = resp.text.lower()
+    text = _plain_spaces(resp.text.lower())
     # An explicit withdrawal outranks the keywords: vendors leave the free tier
     # described on the page and add the bad news next to it.
     dead = dead_marker_hit(text, entry.probe)

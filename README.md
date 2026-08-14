@@ -9,7 +9,7 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--08--10-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-38-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-39-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **38** | **36** | **2** | **25** | **40** |
+| **39** | **37** | **2** | **26** | **42** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -84,6 +84,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Trae](https://www.trae.ai)** | Free access to frontier models in IDE | — | <sub>Free tier quotas</sub> | ✅ No | `2026-08-13` |
 | **[Upstage (Solar API)](https://console.upstage.ai/)** | Upstage Solar LLM API; $10 free credit on signup, no card | `solar-pro-3`, `solar-mini` | <sub>$10 signup credit (see console for validity); pay-as-you-go after</sub> | ✅ No | `2026-08-13` |
 | **[AI21 Labs (Jamba)](https://www.ai21.com)** | AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat | `jamba-mini`, `jamba-large` | <sub>$10 of credits for 7 days, stated on AI21's own pricing page, with no card asked for; sign-in is email, Google, GitHub or SSO. The shortest trial window on this page — after it, Jamba Mini is $0.2/$0.4 and Jamba Large $2/$8 per 1M tokens</sub> | ✅ No | `2026-08-14 🧪` |
+| **[Inception Labs (Mercury)](https://platform.inceptionlabs.ai)** | A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls | `mercury-2`, `mercury-edit-2` | <sub>100 million tokens on every new account, no payment details required, and the grant does not refill — past it the account moves to pay-as-you-go at $0.25 per 1M input and $0.75 per 1M output. The Free tier is rate-limited separately at 100-1,000 requests, 100,000-1,000,000 input tokens and 10,000-100,000 output tokens per minute</sub> | ✅ No | `2026-08-14 🧪` |
 
 ### 🧭 Aggregators (one key, many providers)
 | Tool | What you get | Free models | Limits | Card required | Verified |
@@ -98,7 +99,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and two models that never touch the credit | `laguna-s-2.1-free`, `glm-4.6v-flash` | <sub>$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-13 🧪` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 40 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 42 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -136,6 +137,8 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai) |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
 | `llama-3.3` | [Routeway](https://routeway.ai) |
+| `mercury-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
+| `mercury-edit-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
 | `mistral-medium` | [Mistral La Plateforme](https://mistral.ai) |
 | `nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `nemotron-3-nano-omni` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
@@ -255,6 +258,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Ollama Cloud**<br><sub>Free-tier model set verified live 2026-08-03 by calling them; /v1/models lists the full catalog including subscription-only models</sub> | `https://ollama.com/v1` | `OLLAMA_CLOUD_API_KEY` | [key](https://ollama.com/settings/keys) |
 | **SEA-LION (AI Singapore)**<br><sub>the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page</sub> | `https://api.sea-lion.ai/v1` | `SEA_LION_API_KEY` | [key](https://playground.sea-lion.ai/key-manager) |
 | **Upstage (Solar API)** | `https://api.upstage.ai/v1` | `UPSTAGE_API_KEY` | [key](https://console.upstage.ai/api-keys) |
+| **Inception Labs (Mercury)**<br><sub>mercury-2 answers /v1/chat/completions; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions instead, so an OpenAI-shaped chat client cannot call it — point an autocomplete plugin at it, not a chat agent</sub> | `https://api.inceptionlabs.ai/v1` | `INCEPTION_LABS_API_KEY` | [key](https://platform.inceptionlabs.ai) |
 | **Mistral La Plateforme**<br><sub>Experiment tier needs account activation</sub> | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | [key](https://console.mistral.ai/api-keys) |
 | **Pollinations.AI**<br><sub>anonymous works and needs no key. The optional token that raises the rate limit has no working signup — auth.pollinations.ai, the host the vendor's own APIDOCS still sends you to, stopped resolving (NXDOMAIN from both Cloudflare and Google resolvers, 2026-08-14)</sub> | `https://text.pollinations.ai/openai` | — | not needed |
 | **Alibaba Cloud Model Studio (DashScope, international)**<br><sub>international (Singapore) endpoint; keys are region-specific</sub> | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | `ALIBABA_MODEL_STUDIO_API_KEY` | [key](https://modelstudio.console.alibabacloud.com) |

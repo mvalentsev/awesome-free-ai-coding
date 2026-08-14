@@ -416,6 +416,18 @@ async def test_new_api_row_without_any_price_field_is_not_free():
     assert result.status is ProbeStatus.FAIL and "publishes no price" in result.detail
 
 
+@respx.mock
+async def test_a_non_breaking_space_does_not_hide_the_keyword():
+    """Inception Labs writes its grant as "100 million&nbsp;free tokens", so the
+    quoted sentence a reader copies off the page never occurs in the bytes. A
+    typographic space is not a withdrawn offer, and it must not read as one."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder free\u00a0tier no\u202fcredit\u2009card"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 def titled_entry() -> Entry:
     """A catalog that publishes both field names with opposite meanings:
     `model_id` is what goes in the request body, `model_name` is the human
