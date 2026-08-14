@@ -46,6 +46,18 @@
     No one licenses that capacity to give away, which is the g4f shape api.airforce is
     already here for; its house model is called schizogpt and its dashboard is backed
     by Discord alone
+- domain: router-for.me
+  reason: CLIProxyAPI (github.com/router-for-me/CLIProxyAPI, docs at help.router-for.me)
+    re-exposes the OAuth session of a paid CLI subscription — Codex, Claude Code,
+    Antigravity, Grok, Kimi Code — as a local OpenAI/Anthropic endpoint. It issues
+    no keys and bundles no model usage, so it fails the registry bar the same way
+    cline and aider do, and its whole ecosystem sells that on the tagline "no API
+    keys needed", which is the client-identity pattern omniroute.online is already
+    here for. Its README is also the wrong place to read for leads: the provider
+    table is five vendor blurbs behind affiliate links, and the sponsor block is
+    fourteen relay resellers, several of them selling accounts outright ("Premium
+    AI Accounts & Top-ups", ChatGPT at "10% of the official subscription price").
+    Its own "More choices" section links OmniRoute
 - domain: reka.ai
   reason: the entry here claimed "$10 free credits at the start of every month" on the
     strength of one dated announcement, reka.ai/news/end-of-summer-updates, which will

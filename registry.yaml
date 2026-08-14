@@ -351,7 +351,7 @@ entries:
     answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio)
     alongside
   limits: $0/mo, no hosted credit required — the free lane is a rotating set of zero-priced
-    ids, 13 of them on 2026-08-11 with Nemotron 3 Ultra among them; everything else
+    ids, 13 of them on 2026-08-14 with Nemotron 3 Ultra among them; everything else
     runs on pay-as-you-go credits or a Kilo Pass subscription
   models:
   - family: nemotron-3-ultra
@@ -372,9 +372,6 @@ entries:
   - family: laguna-xs-2.1
     tier: strong
     released: 2026-07
-  - family: ling-3.0-tiny
-    tier: strong
-    released: 2026-08
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -392,13 +389,15 @@ entries:
     - stepfun/step-3.7-flash:free
     - poolside/laguna-s-2.1:free
     - poolside/laguna-xs-2.1:free
-    - inclusionai/ling-3.0-tiny:free
+    - liquid/lfm-2.5-2.6b:free
     - tencent/hy3:free
-    note: every id listed is priced 0 — the same catalog meters 500+ paid models.
-      kilo-auto/free and openrouter/free are routers, and nemotron-3.5-content-safety
-      is a guardrail classifier, so none of the three is a coding model. The lane
-      rotates — Ling 3.0 Flash left it in 2026-08 and ling-3.0-tiny:free stands in
-      its place
+    note: every id listed is priced 0 — the same catalog meters 346 more. kilo-auto/free
+      and openrouter/free are routers, and nemotron-3.5-content-safety is a guardrail
+      classifier, so none of the three is a coding model. The lane rotates fast —
+      Ling 3.0 Flash left it in 2026-08, ling-3.0-tiny:free stood in its place for
+      three days and was gone by 2026-08-14, with liquid/lfm-2.5-2.6b:free arriving
+      instead — which is why the ids that come and go stay here and out of the
+      Models column
   probe:
     type: api-models
     endpoint: https://api.kilo.ai/api/gateway/models
@@ -778,19 +777,22 @@ entries:
   - https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md
   card_required: false
   offering: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)
-  limits: Anonymous 1 req/15s (no signup); free registration 1 req/5s; anon text model
-    is GPT-OSS-20B
+  limits: Anonymous 1 req/15s (no signup); anon text model is GPT-OSS-20B. The documented
+    free registration that lifts this to 1 req/5s is unreachable — its host stopped
+    resolving on 2026-08-14
   models:
   - family: gpt-oss
     tier: strong
     released: 2025-08
   api:
     base_url: https://text.pollinations.ai/openai
-    key_url: https://auth.pollinations.ai
     auth: none
     openai_compatible: true
     model_ids: []
-    note: anonymous works; optional token raises rate limits
+    note: anonymous works and needs no key. The optional token that raises the rate
+      limit has no working signup — auth.pollinations.ai, the host the vendor's own
+      APIDOCS still sends you to, stopped resolving (NXDOMAIN from both Cloudflare
+      and Google resolvers, 2026-08-14)
   probe:
     type: page-keywords
     endpoint: https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md
@@ -927,7 +929,6 @@ entries:
   url: https://novita.ai/
   source_urls:
   - https://novita.ai/pricing
-  - https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md
   card_required: false
   offering: Inference cloud for 200+ open models; selected models priced Free plus
     a small signup trial credit
@@ -965,7 +966,6 @@ entries:
   source_urls:
   - https://console.upstage.ai/docs/getting-started
   - https://console.upstage.ai/
-  - https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md
   card_required: false
   offering: Upstage Solar LLM API; $10 free credit on signup, no card
   limits: $10 signup credit (see console for validity); pay-as-you-go after
@@ -1214,14 +1214,13 @@ entries:
   source_urls:
   - https://api.tokenrouter.com/api/pricing
   card_required: false
-  offering: Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron
-    lane, inside a 121-model paid catalog
-  limits: both free ids sit in the default group and publish no request cap; the other
-    119 models are metered at list rates
+  offering: One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside
+    a 127-model catalog metered at list rates
+  limits: the free id sits in the default group and publishes no request cap; the other
+    126 models are metered at list rates. The zero-priced Kimi K3 this entry was registered
+    for is gone — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only
+    the paid moonshotai/kimi-k3 remains
   models:
-  - family: kimi-k3
-    tier: frontier
-    released: 2026-07
   - family: nemotron-3-nano-omni
     tier: strong
     released: 2026-04
@@ -1231,11 +1230,10 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - moonshotai/kimi-k3-free
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
-    note: only the ids priced 0 are free — the paid moonshotai/kimi-k3 sits in the
-      same catalog. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name
-      gateways on other TLDs are separate services and their keys do not work here
+    note: one id in the catalog is priced 0 and it is the whole free lane here. PaleBlueDot
+      AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are
+      separate services and their keys do not work here
   probe:
     type: api-models
     endpoint: https://api.tokenrouter.com/api/pricing

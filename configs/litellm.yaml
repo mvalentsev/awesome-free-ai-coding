@@ -118,9 +118,9 @@ model_list:
     model: openai/poolside/laguna-xs-2.1:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
-- model_name: kilo-code/inclusionai/ling-3.0-tiny:free
+- model_name: kilo-code/liquid/lfm-2.5-2.6b:free
   litellm_params:
-    model: openai/inclusionai/ling-3.0-tiny:free
+    model: openai/liquid/lfm-2.5-2.6b:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: kilo-code/tencent/hy3:free
@@ -388,11 +388,6 @@ model_list:
     model: openai/gpt-oss-120b
     api_base: https://api.sambanova.ai/v1
     api_key: os.environ/SAMBANOVA_CLOUD_API_KEY
-- model_name: tokenrouter/moonshotai/kimi-k3-free
-  litellm_params:
-    model: openai/moonshotai/kimi-k3-free
-    api_base: https://api.tokenrouter.com/v1
-    api_key: os.environ/TOKENROUTER_API_KEY
 - model_name: tokenrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free

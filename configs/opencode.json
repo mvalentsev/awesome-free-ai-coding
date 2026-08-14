@@ -118,8 +118,8 @@
         "poolside/laguna-xs-2.1:free": {
           "name": "poolside/laguna-xs-2.1:free"
         },
-        "inclusionai/ling-3.0-tiny:free": {
-          "name": "inclusionai/ling-3.0-tiny:free"
+        "liquid/lfm-2.5-2.6b:free": {
+          "name": "liquid/lfm-2.5-2.6b:free"
         },
         "tencent/hy3:free": {
           "name": "tencent/hy3:free"
@@ -478,9 +478,6 @@
         "apiKey": "{env:TOKENROUTER_API_KEY}"
       },
       "models": {
-        "moonshotai/kimi-k3-free": {
-          "name": "moonshotai/kimi-k3-free"
-        },
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
         }
