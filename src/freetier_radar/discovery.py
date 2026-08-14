@@ -132,16 +132,36 @@ def github_search(client: httpx.Client, query: str, token: str | None = None,
     ]
 
 
+def _timeout_within(left: float | None) -> httpx.Timeout:
+    """No single request may outlive the budget it is spending. The cap only ever
+    shrinks the module's own timeouts, so a wide budget changes nothing."""
+    if left is None:
+        return TIMEOUT
+    return httpx.Timeout(min(TIMEOUT.read, left), connect=min(TIMEOUT.connect, left))
+
+
 def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
-                     limit: int = PAGE_TEXT_LIMIT) -> dict[str, str]:
-    """GET each URL, strip tags, collapse whitespace. Failures become empty strings."""
+                     limit: int = PAGE_TEXT_LIMIT,
+                     time_left: Callable[[], float] | None = None) -> dict[str, str]:
+    """GET each URL, strip tags, collapse whitespace. Failures become empty strings.
+
+    `time_left` returns the seconds the run has left (`Deadline.remaining`). Given
+    one, the loop stops rather than starting a fetch it cannot afford: ten
+    arbitrary hosts at 30 seconds of read timeout each is five minutes of run
+    riding on strangers' uptime. A URL left unfetched is simply absent from the
+    result — every caller already reads it with `.get(url, "")`, and claiming an
+    empty page would be claiming we looked.
+    """
     own = client is None
     client = client or httpx.Client(timeout=TIMEOUT, follow_redirects=True, headers=UA)
     out: dict[str, str] = {}
     try:
         for u in urls:
+            left = time_left() if time_left is not None else None
+            if left is not None and left <= 0:
+                break
             try:
-                r = client.get(u)
+                r = client.get(u, timeout=_timeout_within(left))
                 text = re.sub(r"<[^>]+>", " ", r.text)
                 out[u] = re.sub(r"\s+", " ", text)[:limit]
             except httpx.HTTPError:
@@ -162,15 +182,35 @@ def _searchers(client: httpx.Client, env: Mapping[str, str]) -> list[tuple[str, 
 
 
 def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[str, str],
-                    http: httpx.Client | None = None, max_pages: int = 10) -> Evidence:
-    """Run every available source over the queries and assemble deduplicated evidence."""
+                    http: httpx.Client | None = None, max_pages: int = 10,
+                    time_left: Callable[[], float] | None = None) -> Evidence:
+    """Run every available source over the queries and assemble deduplicated evidence.
+
+    `time_left` returns the seconds this phase may still spend. It exists because
+    the phase runs before the first LLM call and used to be bounded only by the
+    per-request timeouts: a typical run gathers everything in ~20 seconds, but
+    three searchers over five queries plus ten pages plus the feeds can hold the
+    line open for the better part of an hour, and the run's whole budget with it.
+    Every phase after this one would then report "skipped" while the workflow
+    reported success — nothing found, nothing wrong, nothing to see.
+
+    Running out is not an error: what has been gathered is returned and the scout
+    reasons over that. The clock is read between calls, so the phase can overrun
+    by at most the one request already in flight.
+    """
     ev = Evidence()
     own = http is None
     client = http or httpx.Client(timeout=TIMEOUT, follow_redirects=True, headers=UA)
+
+    def spent() -> bool:
+        return time_left is not None and time_left() <= 0
+
     try:
         for name, search in _searchers(client, env):
             found = False
             for q in queries:
+                if spent():
+                    break
                 try:
                     hits = search(q)
                 except httpx.HTTPError:
@@ -190,9 +230,12 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
             kept.append(h)
         ev.hits = kept
 
-        ev.pages = fetch_page_texts([h.url for h in kept[:max_pages]], client)
+        ev.pages = fetch_page_texts([h.url for h in kept[:max_pages]], client,
+                                    time_left=time_left)
 
         for feed in CURATED_FEEDS:
+            if spent():
+                break
             try:
                 r = client.get(feed)
                 r.raise_for_status()

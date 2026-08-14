@@ -51,7 +51,10 @@ Words that outlive the offer are rejected by validation, so CI fails on them:
 `free`, `hobby`, `free quota`, `monthly credits`, `no signup`, `no credit card
 required`. On an `api-models` probe against a gateway that publishes prices, set
 `require_zero_price: true` — a model id can stay in the catalog long after it
-stops being free.
+stops being free. Where a catalog publishes an `available` flag the probe reads
+it too, with no setting to turn on: a row the vendor marks uncallable is not a
+free lane whatever its price says, and it fails the probe as `marked
+unavailable`.
 
 ## How the pipeline works
 

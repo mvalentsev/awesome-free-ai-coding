@@ -506,6 +506,29 @@ def test_an_expired_run_budget_stops_a_backend_being_called_at_all():
             llm.complete("hi")  # respx would raise on any unmocked request
 
 
+def test_a_phase_budget_is_a_slice_of_the_run_and_expires_before_it():
+    """The evidence phase runs before the first LLM call and answers to no clock
+    of its own: one hung host there spends the run, and every phase after it then
+    reports "skipped" while the workflow reports success. A share is how a phase
+    that must not be able to do that gets its own smaller deadline."""
+    now = {"t": 0.0}
+    run = Deadline(100.0, clock=lambda: now["t"])
+    share = run.share(0.25)
+    assert share.remaining() == 25.0
+
+    now["t"] = 30.0
+    assert share.expired() and not run.expired()
+
+
+def test_a_share_is_taken_from_what_is_left_not_from_the_whole_run():
+    """Otherwise a phase starting late would be handed a budget the run cannot
+    honour, and the cap would quietly stop capping anything."""
+    now = {"t": 0.0}
+    run = Deadline(100.0, clock=lambda: now["t"])
+    now["t"] = 90.0
+    assert run.share(0.25).remaining() == 2.5
+
+
 def test_run_scout_skips_its_phases_when_the_budget_is_spent():
     llm = StubLLM({})
     entries = [make(models=[{"family": "old"}], source_urls=["https://x.ai/blog"])]

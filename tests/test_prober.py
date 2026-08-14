@@ -238,6 +238,81 @@ async def test_one_free_variant_is_enough():
     assert result.status is ProbeStatus.PASS
 
 
+@respx.mock
+async def test_a_free_id_the_catalog_marks_unavailable_is_fail():
+    """The price is not the whole offer. Routeway carries `laguna-m.1:free` at a
+    published 0 and marks it `available: false` in the same row — a lane nobody
+    can call, which a price-only check would keep vouching for forever."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "available": False, "pricing": {
+            "input": {"unit": "1M tokens", "price_per_million_t": 0},
+            "output": {"unit": "1M tokens", "price_per_million_t": 0}}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "marked unavailable" in result.detail and "qwen3-coder:free" in result.detail
+
+
+@respx.mock
+async def test_a_withdrawn_row_does_not_vouch_for_a_family_that_now_bills():
+    """The withdrawn row is the free one, the callable row is priced. Counting
+    both as matches would read the family as still having a free lane."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"id": "vendor/qwen3-coder:free", "available": False,
+             "pricing": {"prompt": "0", "completion": "0"}},
+            {"id": "vendor/qwen3-coder:free-v2", "available": True,
+             "pricing": {"prompt": "0.001", "completion": "0.002"}},
+        ]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail and "0.001/0.002" in result.detail
+    # The withdrawn row is not the reason and must not be quoted as the price.
+    assert "qwen3-coder:free priced 0/0" not in result.detail
+
+
+@respx.mock
+async def test_availability_is_read_when_a_vendor_stringifies_the_flag():
+    """A check that only ever fires on a JSON boolean is a check one `"false"`
+    away from never firing at all — the same trap `quota_type` already sprang."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "available": "false",
+                             "pricing": {"prompt": "0", "completion": "0"}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "marked unavailable" in result.detail
+
+
+@respx.mock
+async def test_an_outdated_marker_is_not_an_availability_verdict():
+    """Routeway flags eight superseded models `outdated: true` while leaving them
+    `available: true` and callable. Staleness is is_model_stale's question, and
+    reading it here would fail live entries over a model's age."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "vendor/qwen3-coder:free", "available": True,
+                             "outdated": True, "pricing": {"prompt": "0", "completion": "0"}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_availability_is_checked_without_a_price_requirement():
+    """Presence, not price: an entry that does not demand a published zero still
+    claims the family is callable, and the vendor here says it is not."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", "available": False}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, api_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "marked unavailable" in result.detail
+
+
 def new_api_entry() -> Entry:
     """A catalog shaped the way the new-api family of gateways ships it:
     `model_name` for the id, and multipliers instead of a pricing object."""

@@ -179,6 +179,32 @@ def _multiplier_price_of(model: dict) -> list[float] | None:
     return [ratio, ratio * (completion if completion is not None else 1.0)]
 
 
+def _is_withdrawn(model: dict) -> bool:
+    """The vendor's own verdict that a row cannot be called right now.
+
+    Of the catalogs probed here only Routeway publishes one — `available`, on all
+    239 of its rows, false on exactly one, and that one a zero-priced `:free` id.
+    That is the whole hole: the price stays 0 while the lane goes away, so a
+    price-only check vouches for it forever.
+
+    Read loosely, like `quota_type`: a gateway that stringifies the boolean would
+    otherwise turn this into a check that can never fire. A missing or null field
+    means the vendor said nothing, which is not a withdrawal.
+
+    `outdated` is deliberately not read. The same catalog sets it on eight models
+    that are `available: true` and callable — a model's age is is_model_stale's
+    question, and answering it here would fail live entries over it.
+    """
+    value = model.get("available", True)
+    if isinstance(value, bool):
+        return not value
+    if isinstance(value, (int, float)):
+        return value == 0
+    if isinstance(value, str):
+        return value.strip().lower() in ("false", "no", "off", "0")
+    return False
+
+
 def _price_note(model: dict) -> str:
     prices = _price_of(model)
     mid = _model_id(model) or "?"
@@ -198,7 +224,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     if not any(_model_id(m) for m in items):
         return "no model ids in response"
     marker = entry.probe.free_marker.lower()
-    missing, priced = [], []
+    missing, withdrawn, priced = [], [], []
     for family in entry.models:
         matches = [
             m for m in items
@@ -208,15 +234,25 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         if not matches:
             missing.append(family.family)
             continue
+        # A row the vendor marks uncallable is not a free lane whatever its price
+        # says, so it is dropped before the price is read below — otherwise a
+        # withdrawn zero would go on vouching for a family whose only callable
+        # row has started billing.
+        live = [m for m in matches if not _is_withdrawn(m)]
+        if not live:
+            withdrawn.append(", ".join(_model_id(m) or family.family for m in matches[:3]))
+            continue
         # Presence in the catalog is not the offer: an aggregator can leave a
         # free model's id exactly where it was and start charging for it, and a
         # substring check would keep passing forever. Where the vendor publishes
         # prices, the zero is the offer.
-        if entry.probe.require_zero_price and not any(_is_free(m) for m in matches):
-            priced.append(", ".join(_price_note(m) for m in matches[:3]))
+        if entry.probe.require_zero_price and not any(_is_free(m) for m in live):
+            priced.append(", ".join(_price_note(m) for m in live[:3]))
     problems = []
     if missing:
         problems.append(f"missing families: {', '.join(missing)}")
+    if withdrawn:
+        problems.append(f"marked unavailable: {'; '.join(withdrawn)}")
     if priced:
         problems.append(f"no longer free: {'; '.join(priced)}")
     return " | ".join(problems) if problems else None

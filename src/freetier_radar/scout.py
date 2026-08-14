@@ -72,6 +72,14 @@ LLM_CALL_DEADLINE = 420.0
 # skipping, never worth hanging for. Overridable via SCOUT_DEADLINE_SECONDS.
 SCOUT_DEADLINE_SECONDS = 1800.0
 
+# The share of that budget the evidence phase may spend before the first LLM call.
+# Measured 2026-08-14 on a keyless run: two searchers 4.8s, ten page fetches 13.4s,
+# five curated feeds 1.2s — 19.5s all told. The ceiling is 22x that on the default
+# budget, so it can only ever fire on a hang, not on a slow-but-working run. Left
+# uncapped the same phase can hold the line for ~1100s of its own accord, and it
+# is spending the LLM phases' time to do it.
+EVIDENCE_BUDGET_FRACTION = 0.25
+
 # Listing a backend's models is a small GET and must not inherit the long read
 # timeout meant for generation.
 MODELS_LIST_TIMEOUT = 30.0
@@ -250,6 +258,16 @@ class Deadline:
 
     def expired(self) -> bool:
         return self.remaining() <= 0
+
+    def share(self, fraction: float) -> "Deadline":
+        """A sub-budget for a phase that must not be able to spend the run.
+
+        Taken from what is left rather than from the original allowance, so it
+        can never outlive the run it belongs to. The exception to the one-budget
+        rule above: the phases ordered by value are the LLM ones, and a phase
+        that merely feeds them is not entitled to starve them.
+        """
+        return Deadline(self.remaining() * fraction, self._clock)
 
 
 class LLMClient:
@@ -817,14 +835,21 @@ def main() -> None:
 
     known_domains = {domain_of(e.url) for e in entries}
     known_domains |= {domain_of(u) for e in entries for u in e.source_urls}
-    evidence = gather_evidence(DISCOVERY_QUERIES, known_domains, os.environ)
+    evidence = gather_evidence(DISCOVERY_QUERIES, known_domains, os.environ,
+                               time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining)
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
           f"providers: {', '.join(evidence.providers) or 'none'}")
 
     try:
         with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
                           headers={"User-Agent": "freetier-radar/0.2"}) as probe_client:
-            result = run_scout(llm, entries, failures, fetch_page_texts, date.today(),
+            # Bound here rather than inside run_scout, which knows the fetcher
+            # only as a callable: the retirement sweep asks for one page per live
+            # entry — 39 of them today, each at its own 30s read timeout — inside
+            # a phase that checks the budget once, before any of them.
+            result = run_scout(llm, entries, failures,
+                               partial(fetch_page_texts, time_left=deadline.remaining),
+                               date.today(),
                                evidence=evidence,
                                verifier=lambda e: probe_check_sync(e, probe_client),
                                blocklist=blocklist,
