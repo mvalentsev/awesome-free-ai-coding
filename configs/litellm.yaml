@@ -18,6 +18,41 @@ model_list:
     model: openai/meta/llama-4-maverick-17b-128e-instruct
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: opencode/big-pickle
+  litellm_params:
+    model: openai/big-pickle
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/deepseek-v4-flash-free
+  litellm_params:
+    model: openai/deepseek-v4-flash-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/mimo-v2.5-free
+  litellm_params:
+    model: openai/mimo-v2.5-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/hy3-free
+  litellm_params:
+    model: openai/hy3-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/laguna-s-2.1-free
+  litellm_params:
+    model: openai/laguna-s-2.1-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/nemotron-3-ultra-free
+  litellm_params:
+    model: openai/nemotron-3-ultra-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/nemotron-3.5-lightning-free
+  litellm_params:
+    model: openai/nemotron-3.5-lightning-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
 - model_name: openrouter-free/openrouter/free
   litellm_params:
     model: openai/openrouter/free
@@ -253,9 +288,14 @@ model_list:
     model: openai/qwen3-coder
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-- model_name: cohere/command-a
+- model_name: cohere/north-mini-code-1-0
   litellm_params:
-    model: openai/command-a
+    model: openai/north-mini-code-1-0
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-a-03-2025
+  litellm_params:
+    model: openai/command-a-03-2025
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
 - model_name: google-ai-studio/gemini-3.7-flash

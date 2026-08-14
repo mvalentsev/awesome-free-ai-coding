@@ -9,11 +9,12 @@
       "category": "aggregator",
       "url": "https://openrouter.ai",
       "source_urls": [
-        "https://openrouter.ai/docs/faq"
+        "https://openrouter.ai/docs/faq",
+        "https://openrouter.ai/docs/api_reference/limits"
       ],
       "card_required": false,
       "offering": "One API key for rotating :free variants of frontier models",
-      "limits": "50 req/day free (1000/day with $10 balance)",
+      "limits": "20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter describes :free as \"always provided for free and has low rate limits\", warns that a negative credit balance can produce errors \"including for free models\", and notes a 429 may come from the upstream provider rather than the platform (read 2026-08-14)",
       "models": [
         {
           "family": "gpt-oss",
@@ -323,11 +324,12 @@
       "category": "api-free-tier",
       "url": "https://workers.cloudflare.com",
       "source_urls": [
-        "https://developers.cloudflare.com/workers-ai/platform/pricing/"
+        "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+        "https://developers.cloudflare.com/workers-ai/platform/limits/"
       ],
       "card_required": false,
       "offering": "10k neurons/day free",
-      "limits": "10,000 neurons/day free allocation",
+      "limits": "Cloudflare's free allocation \"allows anyone to use a total of 10,000 Neurons per day at no charge\", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. \"All limits reset daily at 00:00 UTC\", and past the cap \"further operations will fail with an error\" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Three catalog models sit outside the free lane whatever the neuron count: the same page notes that @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2 \"require a paid billing method\" (read 2026-08-14)",
       "models": [
         {
           "family": "llama-4",
@@ -414,8 +416,8 @@
         "https://opencode.ai/docs/"
       ],
       "card_required": false,
-      "offering": "Open-source TUI/desktop coding agent with free models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Nemotron 3 Ultra); any provider via BYOK too",
-      "limits": "Bundled Zen models priced Free (some marked limited-time); frontier models pay-as-you-go",
+      "offering": "Open-source TUI/desktop coding agent with seven zero-priced models included via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Hy3, Laguna S 2.1, Nemotron 3 Ultra, Nemotron 3.5 Lightning); any provider via BYOK too",
+      "limits": "Zen prices seven ids at zero — big-pickle, deepseek-v4-flash-free, mimo-v2.5-free, hy3-free, laguna-s-2.1-free, nemotron-3-ultra-free and nemotron-3.5-lightning-free — and calls every one of them \"available on OpenCode for a limited time\" while the team collects feedback. That feedback is the price: the privacy section exempts each free model from Zen's zero-retention policy (\"during its free period, collected data may be used to improve the model\"), and the two NVIDIA-backed ones are \"trial use only — do not submit personal or confidential data\". Mind the suffix: plain deepseek-v4-flash is the paid row at $0.14/$0.28 per 1M tokens. The documented signup is \"sign in to OpenCode Zen, add your billing details, and copy your API key\", and auto-reload charges $20 whenever the balance falls below $5 (read 2026-08-14)",
       "models": [
         {
           "family": "big-pickle",
@@ -433,11 +435,42 @@
           "released": ""
         },
         {
+          "family": "hy3",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "laguna-s-2.1",
+          "tier": "strong",
+          "released": ""
+        },
+        {
           "family": "nemotron-3-ultra",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "nemotron-3.5-lightning",
           "tier": "strong",
           "released": ""
         }
       ],
+      "api": {
+        "base_url": "https://opencode.ai/zen/v1",
+        "key_url": "https://opencode.ai/auth",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "big-pickle",
+          "deepseek-v4-flash-free",
+          "mimo-v2.5-free",
+          "hy3-free",
+          "laguna-s-2.1-free",
+          "nemotron-3-ultra-free",
+          "nemotron-3.5-lightning-free"
+        ],
+        "note": "these are the seven ids Zen prices at zero; inside an opencode config the same id is written opencode/<model-id>. Every other id on the same base URL is metered"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://opencode.ai/docs/zen/",
@@ -547,7 +580,7 @@
       ],
       "card_required": false,
       "offering": "Free access to frontier models in IDE",
-      "limits": "Free tier quotas",
+      "limits": "Trae publishes the free plan as words in its comparison table — \"Limited usage\", \"Standard queue\", \"Autocompletion 5000 / month\", \"Concurrent Cloud Tasks 2\" — and as numbers in the payload that table is rendered from: the same basic_usage_limit field that prints \"$5 Basic usage\" on Lite and \"$20\" on Pro reads 3 on Free, alongside advanced_model_request_limit 1000, premium_model_fast_request_limit 10, premium_model_slow_request_limit 50 and no_bonus_quota true. So the free plan is $3 of monthly Basic usage with no bonus quota, and the FAQ entry that would define Basic usage is collapsed with its answer absent from the page (read 2026-08-14)",
       "models": [],
       "probe": {
         "type": "page-keywords",
@@ -648,7 +681,7 @@
       ],
       "card_required": false,
       "offering": "Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage",
-      "limits": "2,000 code completions/month; limited chat & agent requests; auto model selection only",
+      "limits": "\"Up to 2,000 per month\" real-time code suggestions, and for everything agentic an \"allowance of GitHub AI Credits\" that GitHub quantifies for every paid plan — 1,500 monthly credits on Pro, 7,000 on Pro+, 20,000 on Max — and leaves unnumbered for Free, whose cell reads only \"Limited (auto model selection only)\". Model choice is not offered. GitHub scopes the plan to \"personal use only, not for users managed by an organization or enterprise\", and lists what it withholds from business use: access management, audit logs, policy management, file exclusion, usage data and indemnification coverage (read 2026-08-14)",
       "models": [],
       "probe": {
         "type": "page-keywords",
@@ -678,7 +711,7 @@
       ],
       "card_required": false,
       "offering": "Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously",
-      "limits": "15 tasks per rolling 24 hours; 3 concurrent tasks",
+      "limits": "15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table pins the free plan to Gemini 2.5 Pro while both paid rows read \"starting with Gemini 3 Pro\". Upgrading runs through a Google AI plan, \"currently available only for individual Google Accounts (ending in @gmail.com)\"; task limits are \"not shared or pooled\" on a family plan; and Google states it \"may adjust limits and features as we learn how people are using the product\" (read 2026-08-14)",
       "models": [
         {
           "family": "gemini-2.5",
@@ -764,11 +797,13 @@
       "category": "trial",
       "url": "https://cursor.com/",
       "source_urls": [
-        "https://cursor.com/pricing"
+        "https://cursor.com/pricing",
+        "https://cursor.com/help/models-and-usage/usage-limits",
+        "https://cursor.com/help/account-and-billing/pricing"
       ],
       "card_required": false,
       "offering": "Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card",
-      "limits": "Limited Agent requests and Tab completions; Auto model only; pauses at cap until reset",
+      "limits": "Cursor publishes no figure for Hobby anywhere. Its pricing card reads \"No credit card required\", \"Limited Agent requests\" and \"Access to Composer\"; the plan table in its own help centre prints \"Limited\" in the included-usage column where Pro reads $20 and Ultra $400; and the help page adds only that \"the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model\". Usage \"resets monthly with your billing cycle\" and \"does not roll over\"; at the cap Cursor shows a notification and offers on-demand billing or an upgrade. Which models Hobby reaches is never enumerated — \"Hobby users have access to a smaller set\" — and Cursor Router has not reached individual plans yet (read 2026-08-14)",
       "models": [],
       "probe": {
         "type": "page-keywords",
@@ -1199,14 +1234,22 @@
       "category": "api-free-tier",
       "url": "https://cohere.com",
       "source_urls": [
-        "https://docs.cohere.com/docs/rate-limits"
+        "https://docs.cohere.com/docs/rate-limits",
+        "https://cohere.com/pricing",
+        "https://docs.cohere.com/docs/north-mini-code-1.0",
+        "https://docs.cohere.com/docs/models"
       ],
       "card_required": false,
-      "offering": "Cohere Command models via free trial API keys that never expire",
-      "limits": "Trial key: 1,000 API calls/month, rate-limited; production keys unlock paid volume",
+      "offering": "Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type",
+      "limits": "Trial keys are \"limited to 1,000 API calls a month\" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys \"are not permitted to be used for production or commercial purposes\", and that every account \"begins as a personal account and only has access to Trial API keys\" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that \"for both trial keys and production keys, North Mini Code is free until rate limits are reached\", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)",
       "models": [
         {
           "family": "command-a",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "north-mini-code",
           "tier": "strong",
           "released": ""
         }
@@ -1216,8 +1259,11 @@
         "key_url": "https://dashboard.cohere.com/api-keys",
         "auth": "api-key",
         "openai_compatible": true,
-        "model_ids": [],
-        "note": "OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2"
+        "model_ids": [
+          "north-mini-code-1-0",
+          "command-a-03-2025"
+        ],
+        "note": "OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2. Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0 is the free-on-any-key one"
       },
       "probe": {
         "type": "page-keywords",
@@ -1247,7 +1293,7 @@
       ],
       "card_required": false,
       "offering": "Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models",
-      "limits": "Trial: 300 credits for 2 weeks; free plan afterwards serves basic models with a daily cap",
+      "limits": "The free plan is \"basic models for limited user messages\" plus limited completions and next edits and BYOK, and the daily cap on those basic models carries no published number: \"basic models have a daily limit; if you reach this limit, you'll need to wait until the next day to continue using the service\". What is quantified is the trial that comes with it — a 2-week Pro trial carrying 300 credits, unlimited completions and next edits, chat, agent, Experts Mode, Quest, Repo Wiki and Knowledge Card. Paid plans buy premium-model credits (2,000/month on Pro) that reset to zero when the subscription period ends, and running out of them drops you back to the same basic models (read 2026-08-14)",
       "models": [],
       "probe": {
         "type": "page-keywords",
@@ -1309,10 +1355,10 @@
       ],
       "card_required": false,
       "offering": "One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and two models that never touch the credit",
-      "limits": "$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Buying credits ends the monthly free credit",
+      "limits": "$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Mind the suffix on the first one, since the same catalog carries poolside/laguna-s-2.1 without it at $0.10/$0.20 per 1M tokens (read 2026-08-14). Buying credits ends the monthly free credit",
       "models": [
         {
-          "family": "laguna-s-2.1-free",
+          "family": "laguna-s-2.1",
           "tier": "strong",
           "released": "2026-07"
         },
@@ -2185,8 +2231,8 @@
       ],
       "name": "Nous Portal",
       "checked_on": "2026-07-22",
-      "reason": "The free tier is $0.10 a month of credit — decorative rather than usable, and far below what the third-party claim of \"50 RPM free\" suggested.",
-      "reopen_if": "The monthly grant becomes large enough to run an agent session on.",
+      "reason": "The free tier is $0.10 a month of credit — decorative rather than usable, and far below what the third-party claim of \"50 RPM free\" suggested. The date stays at the July reading on purpose: re-asked on 2026-08-14 after a list credited it with a no-card free tier, portal.nousresearch.com answered 429 \"Vercel Security Checkpoint\" to every client tried, home page and pricing alike, so nothing there could be re-read either way.",
+      "reopen_if": "The monthly grant becomes large enough to run an agent session on, on a page the portal serves to an ordinary HTTP client.",
       "current": true
     },
     {
