@@ -2138,6 +2138,127 @@
       "reason": "A coding harness that brings no model usage of its own. Its installation docs say ForgeCode \"needs access to at least one AI model\", walk you through entering an API key, and recommend reusing a ChatGPT Plus or Claude subscription you already pay for; forgecode.dev/pricing is a 404. The \"10K tokens a day via OpenRouter\" credited to it elsewhere is OpenRouter's own free tier reached with the reader's key, and OpenRouter is already an entry here.",
       "reopen_if": "ForgeCode Services bundles model usage on a plan that costs nothing.",
       "current": true
+    },
+    {
+      "domains": [
+        "deepinfra.com"
+      ],
+      "name": "DeepInfra",
+      "checked_on": "2026-08-14",
+      "reason": "deepinfra.com/pricing serves 17,500 characters of text and not one of them is \"free\" or \"credit\" — the whole page is per-token rates for language models and per-execution-time rates for everything else. The signup credit it is still credited with elsewhere is not on the vendor's own page.",
+      "reopen_if": "DeepInfra publishes a signup credit or a free model on its pricing page.",
+      "current": true
+    },
+    {
+      "domains": [
+        "fireworks.ai"
+      ],
+      "name": "Fireworks AI",
+      "checked_on": "2026-08-14",
+      "reason": "fireworks.ai/pricing offers \"Get started with $1 in free credits\" against serverless inference with \"postpaid billing\" — a grant that sits on top of a billing relationship rather than instead of one, and a fortieth of what the trials listed here carry ($10 at Upstage and AI21). Every model on the page is priced per token.",
+      "reopen_if": "Fireworks publishes a recurring free tier, or a signup grant reachable without postpaid billing that is worth an agent session.",
+      "current": true
+    },
+    {
+      "domains": [
+        "baseten.co"
+      ],
+      "name": "Baseten",
+      "checked_on": "2026-08-14",
+      "reason": "Its pricing FAQ says only that \"new Baseten accounts come with credits so you can get to know the UI and experiment with deployments for free\" — no figure, anywhere on the page. There is nothing a probe could anchor on, and a sentence with no number in it reads the same the day the credit stops being granted.",
+      "reopen_if": "Baseten publishes the size of the signup credit.",
+      "current": true
+    },
+    {
+      "domains": [
+        "hyperbolic.ai"
+      ],
+      "name": "Hyperbolic",
+      "checked_on": "2026-08-14",
+      "reason": "The business is GPU rental now, not a free inference lane — hyperbolic.ai/pricing is a 404 and the home page sells on-demand GPUs \"billed by the hour\" and reserved capacity at discounted rates. The $1 inference credit third-party lists still quote is not on any page it serves.",
+      "reopen_if": "Hyperbolic publishes an inference free tier or signup credit again.",
+      "current": true
+    },
+    {
+      "domains": [
+        "inference.net"
+      ],
+      "name": "Inference.net",
+      "checked_on": "2026-08-14",
+      "reason": "The $0 plan is a gateway and observability tier, not free inference: it lists \"1M included Gateway requests, 1M tracing spans, 14-day data retention, 1 seat, 30 req/min\" and is priced \"$0 + usage\", so the tokens themselves are still bought. The only opening credit on the page, $50, is attached to the $250-a-month Growth plan.",
+      "reopen_if": "The $0 plan includes inference credits or a zero-priced model rather than routing quota.",
+      "current": true
+    },
+    {
+      "domains": [
+        "chutes.ai"
+      ],
+      "name": "Chutes",
+      "checked_on": "2026-08-14",
+      "reason": "Re-confirms the 2026-08-06 reading, which was never written down. Its pricing page states the model outright — \"Pay per token. No subscription, no minimum, no markup\" — and the cheapest thing on it is a $10-a-month Plus plan bundling a daily request quota. The free-trial FAQ entry is a collapsed client-rendered answer with nothing behind it in the HTML.",
+      "reopen_if": "Chutes publishes a zero-priced model or a no-card trial quota.",
+      "current": true
+    },
+    {
+      "domains": [
+        "nlpcloud.com"
+      ],
+      "name": "NLP Cloud",
+      "checked_on": "2026-08-14",
+      "reason": "Unprobeable from here rather than judged: nlpcloud.com/pricing.html answers HTTP 403 to a request carrying a normal browser User-Agent, so there is no served page to read the offer off — the x.ai case. Nothing is claimed about the offer itself.",
+      "reopen_if": "The pricing page answers a plain HTTP request, and what it then says about a free tier.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tabnine.com"
+      ],
+      "name": "Tabnine",
+      "checked_on": "2026-08-14",
+      "reason": "tabnine.com/pricing serves 187 characters of text — a client-rendered shell with the plan table assembled in the browser. Whatever its free tier is today, there is nothing in the HTML for a probe to anchor on, which is the same reason Morph is not listed.",
+      "reopen_if": "Tabnine's pricing page carries its plan limits in server-rendered HTML.",
+      "current": true
+    },
+    {
+      "domains": [
+        "jetbrains.com"
+      ],
+      "name": "JetBrains AI Assistant",
+      "checked_on": "2026-08-14",
+      "reason": "jetbrains.com/ai serves 71 characters of text and the buy page is the same, so the AI Free quota cannot be read off anything this project can fetch. Recorded as unreadable rather than as absent.",
+      "reopen_if": "JetBrains publishes the AI Free quota in server-rendered HTML.",
+      "current": true
+    },
+    {
+      "domains": [
+        "bolt.new"
+      ],
+      "name": "Bolt.new",
+      "checked_on": "2026-08-14",
+      "reason": "A real bundled free tier — bolt.new/pricing gives the $0 plan \"300K tokens daily limit, 1M tokens per month\" — spent inside a hosted app builder. It buys generations in Bolt's own workspace, not model access a developer can point at a repository they already have, and there is no client to install and no endpoint to call. That is the line this list draws: an entry has to hand you model access you can aim at your own code.",
+      "reopen_if": "Bolt ships a CLI or an API whose free plan includes the model usage.",
+      "current": true
+    },
+    {
+      "domains": [
+        "lovable.dev"
+      ],
+      "name": "Lovable",
+      "checked_on": "2026-08-14",
+      "reason": "Same hosted-builder shape as Bolt, and thinner: its own FAQ says \"Paid plans have access to a credit balance\" and describes the free plan only as having \"grants included in the free plan\", with no figure in the served HTML.",
+      "reopen_if": "Lovable publishes a free-plan allowance in server-rendered HTML and a way to spend it outside its own workspace.",
+      "current": true
+    },
+    {
+      "domains": [
+        "v0.dev",
+        "v0.app"
+      ],
+      "name": "v0 (Vercel)",
+      "checked_on": "2026-08-14",
+      "reason": "The closest of the three to qualifying and still out. Its free plan is \"$5 of included monthly credits\" with a \"7 message/day limit\", and it does have an API — api.v0.dev/v1, keyed by V0_API_KEY — but that API is /chats/:id/messages, a product endpoint for driving v0's own builder, not a model endpoint. The credit buys v0 messages, not tokens you can spend on your own codebase. Vercel's model credits that can be spent that way are already listed here as Vercel AI Gateway.",
+      "reopen_if": "The v0 free plan's credits become spendable through an OpenAI-compatible or otherwise general model endpoint.",
+      "current": true
     }
   ]
 }

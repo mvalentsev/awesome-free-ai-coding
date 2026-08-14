@@ -20,7 +20,10 @@ What does **not** qualify:
 - reverse proxies, key sharing, scraped or "unofficial" gateways;
 - BYOK-only tools with zero bundled model usage (free software ≠ free LLM);
 - browser-only SDKs that can't serve as an agent endpoint;
-- one-off marketing credits that require a credit card.
+- one-off marketing credits that require a credit card;
+- hosted app builders whose free tokens are only spendable inside their own
+  workspace — an entry has to hand you model access you can aim at code you
+  already have, through a client you install or an endpoint you can call.
 
 Domains rejected for cause live in [`blocklist.yaml`](blocklist.yaml) — the scout
 will not re-propose them. Model-generation bumps a reviewer has already declined
