@@ -4,12 +4,13 @@ import argparse
 import asyncio
 import json
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime, timezone
 from enum import Enum
 from pathlib import Path
 
 import httpx
 
+from .history import record_changes
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, Entry, Probe, ProbeType, load_registry, save_registry,
 )
@@ -354,6 +355,14 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
         print("dry run: registry left untouched")
     else:
         save_registry(registry_path, entries)
+        # After the save, and against the history rather than against the
+        # entries as they were loaded: an entry archived by staleness alone
+        # changes no field of the registry, and an entry added by hand since the
+        # last run changed none of them during this one.
+        recorded = record_changes(registry_path, registry_path.parent / "history.jsonl",
+                                  date.today(), datetime.now(timezone.utc))
+        for ev in recorded:
+            print(f"history: {ev.event.value} {ev.id}")
     failures_dir.mkdir(parents=True, exist_ok=True)
     payload = [
         {"id": e.id, "status": r.status.value, "detail": r.detail}

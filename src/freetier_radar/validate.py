@@ -12,6 +12,10 @@ reached main and turned into a green workflow that had quietly done nothing
 The cross-file rules are the second half. Each one is a contradiction that a
 human can hold in two files without noticing, and each one was found by hand at
 least once before it was written down here.
+
+`history.jsonl` joined them for a stronger reason: it is the one file here that
+cannot be regenerated from any other, and the only one whose line *order* is
+part of its meaning.
 """
 from __future__ import annotations
 
@@ -20,6 +24,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
+from .history import EventType, load_history
 from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismissed,
                      load_registry, load_watchlist)
 
@@ -111,6 +116,34 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(f"watchlist: duplicate domain {d}")
             seen_domains.add(d.lower())
 
+    # ---- history.jsonl
+    # The only file here that cannot be regenerated from another one, and the
+    # only one whose *order* carries meaning. Everything below is a way the log
+    # can stop being a faithful account of what was published — a replay built
+    # on a broken log silently re-announces events subscribers have already had.
+    history = load_history(root / "history.jsonl")
+    live_ids: set[str] = set()
+    previous = None
+    for ev in history:
+        if ev.ts.date() > today:
+            problems.append(f"history: {ev.id} {ev.event.value} at {ev.ts} is in the future")
+        if previous is not None and ev.ts < previous:
+            problems.append(
+                f"history: {ev.id} {ev.event.value} at {ev.ts} is out of order — "
+                f"it follows an event at {previous}")
+        previous = ev.ts
+        if ev.event is EventType.REMOVED:
+            if ev.id not in live_ids:
+                problems.append(
+                    f"history: {ev.id} is removed without ever having been recorded")
+            live_ids.discard(ev.id)
+        elif ev.event is EventType.ADDED:
+            if ev.id in live_ids:
+                problems.append(f"history: {ev.id} is added while already recorded")
+            live_ids.add(ev.id)
+        else:
+            live_ids.add(ev.id)
+
     # ---- dismissed.yaml against the registry
     ids = {e.id for e in entries}
     for entry_id, family, target in sorted(dismissed):
@@ -127,8 +160,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Validate registry.yaml, blocklist.yaml, dismissed.yaml and "
-                    "watchlist.yaml, and the rules that hold between them.")
+        description="Validate registry.yaml, blocklist.yaml, dismissed.yaml, "
+                    "watchlist.yaml and history.jsonl, and the rules that hold "
+                    "between them.")
     parser.add_argument("--root", type=Path, default=Path("."))
     args = parser.parse_args()
 
@@ -137,4 +171,4 @@ def main() -> None:
         print(f"✗ {p}")
     if problems:
         raise SystemExit(f"{len(problems)} problem(s) found")
-    print("✓ registry, blocklist, dismissed and watchlist are consistent")
+    print("✓ registry, blocklist, dismissed, watchlist and history are consistent")

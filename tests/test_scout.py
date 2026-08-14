@@ -7,6 +7,7 @@ import respx
 
 from freetier_radar import scout
 from freetier_radar.discovery import Evidence, Hit
+from freetier_radar.history import load_history
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched, save_registry
 from freetier_radar.scout import (
     FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, Deadline, LLMClient, _ask,
@@ -654,3 +655,43 @@ def test_run_scout_reports_verdicts_due_for_a_recheck():
     result = scout.run_scout(StubLLM({}), [make()], [], lambda urls: {}, TODAY,
                              watchlist=[watch("fresh.ai"), watch("stale.ai", checked_on=expired)])
     assert result["stale_watch"] == [f"Watched Co (checked {expired})"]
+
+
+EMPTY_RUN = {"providers": [], "updates": [], "new": [], "rejected": [], "supersede": [],
+             "suppressed": [], "stale_watch": [], "retired": [], "skipped": []}
+
+
+def _scout_argv(tmp_path, *extra) -> list[str]:
+    return ["freetier-scout", "--registry", str(tmp_path / "registry.yaml"),
+            "--pr-body", str(tmp_path / "scout-pr.md"),
+            "--failures", str(tmp_path / "none.json"),
+            "--blocklist", str(tmp_path / "none.yaml"),
+            "--dismissed", str(tmp_path / "none-dismissed.yaml"),
+            "--watchlist", str(tmp_path / "none-watchlist.yaml"), *extra]
+
+
+def test_main_records_what_the_scout_changed_in_the_history(tmp_path, monkeypatch):
+    """The scout is the other command that writes registry.yaml, and the only
+    one that ever adds a row."""
+    save_registry(tmp_path / "registry.yaml", [make()])
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
+    monkeypatch.setattr(scout, "run_scout",
+                        lambda llm, entries, *a, **k: entries.append(
+                            make(id="newcomer", name="Newcomer")) or EMPTY_RUN)
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path))
+
+    scout.main()
+
+    events = load_history(tmp_path / "history.jsonl")
+    assert [(e.event.value, e.id) for e in events] == [("added", "newcomer"), ("added", "x")]
+
+
+def test_a_dry_run_scout_records_no_history(tmp_path, monkeypatch):
+    save_registry(tmp_path / "registry.yaml", [make()])
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
+    monkeypatch.setattr(scout, "run_scout", lambda *a, **k: EMPTY_RUN)
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+
+    scout.main()
+
+    assert not (tmp_path / "history.jsonl").exists()

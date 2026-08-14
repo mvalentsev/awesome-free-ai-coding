@@ -7,7 +7,7 @@ import re
 import time
 import traceback
 from functools import partial
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable
 
@@ -15,6 +15,7 @@ import httpx
 import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
+from .history import record_changes
 # The curated-file loaders live in models.py; re-exported here because this is
 # where callers and tests have always reached for them.
 from .models import (WATCH_RECHECK_DAYS, Entry, Watched, is_archived, is_blocked,
@@ -872,6 +873,13 @@ def main() -> None:
         print("dry run: registry left untouched")
     else:
         save_registry(args.registry, entries)
+        # Below the catch-all on purpose: a scout that aborted wrote no registry,
+        # so there is nothing for it to have changed. The prober has already
+        # recorded whatever the probes did; this call adds only what the scout
+        # did on top of that.
+        for ev in record_changes(args.registry, args.registry.parent / "history.jsonl",
+                                 date.today(), datetime.now(timezone.utc)):
+            print(f"history: {ev.event.value} {ev.id}")
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
         providers=", ".join(result["providers"]) or "none",
         backend=llm.describe(),

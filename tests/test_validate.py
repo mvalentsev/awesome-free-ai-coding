@@ -1,5 +1,6 @@
 """Every rule here is a contradiction a human can hold in two files without
 noticing. Each was found by hand at least once before it was written down."""
+import json
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -21,7 +22,12 @@ WATCHED = {"domains": ["watched.ai"], "name": "Watched Co", "checked_on": "2026-
            "reason": "nothing free today", "reopen_if": "a free lane appears"}
 
 
-def build(tmp_path: Path, *, entries=None, blocklist=None, watched=None, dismissed=None) -> Path:
+def event(**kw) -> dict:
+    return {"ts": "2026-08-10T05:23:00Z", "event": "added", "id": "x", "name": "X", **kw}
+
+
+def build(tmp_path: Path, *, entries=None, blocklist=None, watched=None, dismissed=None,
+          history=None) -> Path:
     (tmp_path / "registry.yaml").write_text(
         yaml.safe_dump({"entries": entries if entries is not None else [ENTRY]}), encoding="utf-8")
     (tmp_path / "blocklist.yaml").write_text(yaml.safe_dump(blocklist or []), encoding="utf-8")
@@ -29,6 +35,9 @@ def build(tmp_path: Path, *, entries=None, blocklist=None, watched=None, dismiss
         yaml.safe_dump({"watched": watched or []}), encoding="utf-8")
     (tmp_path / "dismissed.yaml").write_text(
         yaml.safe_dump({"dismissed": dismissed or []}), encoding="utf-8")
+    if history is not None:
+        (tmp_path / "history.jsonl").write_text(
+            "".join(json.dumps(e) + "\n" for e in history), encoding="utf-8")
     return tmp_path
 
 
@@ -95,3 +104,34 @@ def test_a_dismissal_that_matches_nothing_is_dead_weight(tmp_path: Path):
 def test_a_pipe_would_break_the_readme_table(tmp_path: Path):
     root = build(tmp_path, watched=[{**WATCHED, "reason": "free | not free"}])
     assert any("has a pipe in reason" in p for p in check(root, TODAY))
+
+
+# ---- history.jsonl — the one file here that cannot be regenerated ----------
+
+def test_a_repository_with_a_history_reports_nothing(tmp_path: Path):
+    root = build(tmp_path, watched=[WATCHED], history=[event()])
+    assert check(root, TODAY) == []
+
+
+def test_a_history_event_may_not_be_dated_in_the_future(tmp_path: Path):
+    ahead = (TODAY + timedelta(days=1)).isoformat() + "T00:00:00Z"
+    root = build(tmp_path, history=[event(ts=ahead)])
+    assert any("history" in p and "future" in p for p in check(root, TODAY))
+
+
+def test_history_events_must_be_in_the_order_they_happened(tmp_path: Path):
+    """An append-only log read back out of order means someone edited it by hand
+    or a merge interleaved two runs — either way the replay it feeds is wrong."""
+    root = build(tmp_path, history=[event(ts="2026-08-10T05:23:00Z"),
+                                    event(id="y", name="Y", ts="2026-08-09T05:23:00Z")])
+    assert any("out of order" in p for p in check(root, TODAY))
+
+
+def test_removing_something_the_history_never_recorded_is_a_contradiction(tmp_path: Path):
+    root = build(tmp_path, history=[event(event="removed", id="ghost", name="Ghost")])
+    assert any("removed" in p and "ghost" in p for p in check(root, TODAY))
+
+
+def test_adding_something_the_history_already_has_is_a_contradiction(tmp_path: Path):
+    root = build(tmp_path, history=[event(), event(ts="2026-08-11T05:23:00Z")])
+    assert any("added" in p and "already" in p for p in check(root, TODAY))

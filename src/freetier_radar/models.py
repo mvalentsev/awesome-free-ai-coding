@@ -218,6 +218,17 @@ class Entry(BaseModel):
     rank: int = 100  # sort key within a category: lower renders higher
 
 
+def live_families(entry: Entry) -> list[str]:
+    """The model families this entry actually publishes.
+
+    Superseded ones are a note to a reviewer — "bump this row to the generation
+    the free tier serves" — and the README hides them. Anything that reports on
+    what the list says must hide them too, or it announces a change no reader
+    can see.
+    """
+    return [m.family for m in entry.models if m.superseded_by is None]
+
+
 def domain_of(url: str) -> str:
     return urlparse(url).netloc.lower().removeprefix("www.")
 
