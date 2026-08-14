@@ -387,9 +387,12 @@ entries:
     each free model from Zen''s zero-retention policy ("during its free period, collected
     data may be used to improve the model"), and the two NVIDIA-backed ones are "trial
     use only — do not submit personal or confidential data". Mind the suffix: plain
-    deepseek-v4-flash is the paid row at $0.14/$0.28 per 1M tokens. The documented
-    signup is "sign in to OpenCode Zen, add your billing details, and copy your API
-    key", and auto-reload charges $20 whenever the balance falls below $5 (read 2026-08-14)'
+    deepseek-v4-flash is the paid row at $0.14/$0.28 per 1M tokens. Zen documents
+    signup as "sign in to OpenCode Zen, add your billing details, and copy your API
+    key", but the free ids answer without payment details on file — tested by hand
+    rather than read, 2026-08-15. Billing is what the metered ids want, and once it
+    is on, auto-reload tops the balance up by $20 whenever it falls below $5 (read
+    2026-08-14)'
   models:
   - family: big-pickle
     tier: strong
