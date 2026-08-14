@@ -19,3 +19,46 @@ dismissed:
       this bump emptied the README's only free z.ai model and dropped the entry
       from the generated configs (PR #5, closed). The scout proposing it sees a
       list of family names, not the free tier they belong to.
+
+  # The same mistake, newly reachable: `glm-5` became a family name in this list
+  # on 2026-08-14 when AIHubMix was added, because AIHubMix subsidises
+  # coding-glm-5*-free and genuinely serves that generation for nothing. It is
+  # the only place here that does. On z.ai, Vercel and Cerebras the GLM-5.x
+  # flagships are metered and the free lane is the Flash line — Cerebras' own
+  # Free Trial table listed gpt-oss-120b, zai-glm-4.7 and gemma-4-31b on
+  # 2026-08-14, with no glm-5 row at all. Each of these five would replace a
+  # verified free family with one nobody has verified as free on that vendor.
+  # Left deliberately un-dismissed from the same run: routeway llama-3.3 →
+  # llama-4, which nobody here has checked against Routeway's catalog.
+  - entry: zai-glm
+    family: glm-4.5-flash
+    superseded_by: glm-5
+    dismissed_on: 2026-08-14
+    reason: >-
+      glm-5 is free on AIHubMix, which pays for it, and metered on z.ai.
+  - entry: zai-glm
+    family: glm-4.6v-flash
+    superseded_by: glm-5
+    dismissed_on: 2026-08-14
+    reason: >-
+      glm-5 is free on AIHubMix, which pays for it, and metered on z.ai.
+  - entry: zai-glm
+    family: glm-4.7-flash
+    superseded_by: glm-5
+    dismissed_on: 2026-08-14
+    reason: >-
+      The 2026-08-04 dismissal with the same reasoning, retargeted: the scout
+      now names the family glm-5 rather than glm-5.2.
+  - entry: vercel-ai-gateway
+    family: glm-4.6v-flash
+    superseded_by: glm-5
+    dismissed_on: 2026-08-14
+    reason: >-
+      Vercel's zero-priced z.ai row is the Flash model; glm-5 is metered there.
+  - entry: cerebras-free
+    family: glm-4.7
+    superseded_by: glm-5
+    dismissed_on: 2026-08-14
+    reason: >-
+      Cerebras' Free Trial table listed zai-glm-4.7 and no glm-5 row on
+      2026-08-14, and that trial needs a card in any case.
