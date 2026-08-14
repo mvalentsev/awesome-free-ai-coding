@@ -24,12 +24,17 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
+    - openrouter/free
     - openai/gpt-oss-20b:free
     - nvidia/nemotron-3-ultra-550b-a55b:free
     - google/gemma-4-31b-it:free
     - cohere/north-mini-code:free
     - poolside/laguna-xs-2.1:free
-    note: pick models with the :free suffix; the five listed were zero-priced on 2026-08-11
+    note: pick models with the :free suffix; the five suffixed ids were zero-priced
+      on 2026-08-11. openrouter/free is different in kind — the catalog calls it the
+      Free Models Router, prices it 0/0 and lets it pick whichever free model is up,
+      so it is the id that survives this lane rotating (confirmed 2026-08-14). It is
+      a router, not a coding model, which is why it is here and not in the column
   probe:
     type: api-models
     endpoint: https://openrouter.ai/api/v1/models

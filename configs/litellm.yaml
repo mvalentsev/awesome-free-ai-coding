@@ -18,6 +18,11 @@ model_list:
     model: openai/meta/llama-4-maverick-17b-128e-instruct
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: openrouter-free/openrouter/free
+  litellm_params:
+    model: openai/openrouter/free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/openai/gpt-oss-20b:free
   litellm_params:
     model: openai/openai/gpt-oss-20b:free

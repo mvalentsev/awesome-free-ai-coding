@@ -28,6 +28,9 @@
         "apiKey": "{env:OPENROUTER_API_KEY}"
       },
       "models": {
+        "openrouter/free": {
+          "name": "openrouter/free"
+        },
         "openai/gpt-oss-20b:free": {
           "name": "openai/gpt-oss-20b:free"
         },
