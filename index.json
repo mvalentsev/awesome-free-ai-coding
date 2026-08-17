@@ -1406,14 +1406,9 @@
         "https://bazaarlink.ai/free"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router",
-      "limits": "10 req/min and 150 req/day on the free models (x3 for accounts that have topped up); the other 196 models are metered at list rates",
+      "offering": "OpenAI-compatible LLM gateway, with one always-free open model (Qwen3.7 Flash) and an auto:free router",
+      "limits": "10 req/min and 50 req/day on the free model (×1 without credit, ×2 for accounts that have topped up); other models are metered at list rates",
       "models": [
-        {
-          "family": "deepseek-v4-flash",
-          "tier": "strong",
-          "released": "2026-07"
-        },
         {
           "family": "qwen3.7-flash",
           "tier": "strong",

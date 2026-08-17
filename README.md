@@ -94,7 +94,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[OpenRouter (free models)](https://openrouter.ai)** | One API key for rotating :free variants of frontier models | `gpt-oss`, `nemotron-3-ultra`, `gemma-4` | <sub>20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter describes :free as "always provided for free and has low rate limits", warns that a negative credit balance can produce errors "including for free models", and notes a 429 may come from the upstream provider rather than the platform (read 2026-08-14)</sub> | ✅ No | `2026-08-17` |
 | **[Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers)** | Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account | — | <sub>Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across everything the router reaches, so which models it buys depends on their price, not on a tier (read 2026-08-14)</sub> | ✅ No | `2026-08-17` |
 | **[AIHubMix (free models)](https://aihubmix.com)** | One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly | `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | <sub>per-model RPM and daily token caps, published on each model's own page rather than in one table; the vendor states the quotas reset daily with no trial expiry and no payment method on file. Every free id carries a -free suffix and the paid twin beside it is metered at list rates</sub> | ✅ No | `2026-08-17 🧪` |
-| **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router | `deepseek-v4-flash`, `qwen3.7-flash` | <sub>10 req/min and 150 req/day on the free models (x3 for accounts that have topped up); the other 196 models are metered at list rates</sub> | ✅ No | `2026-08-13 🧪` |
+| **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible LLM gateway, with one always-free open model (Qwen3.7 Flash) and an auto:free router | `qwen3.7-flash` | <sub>10 req/min and 50 req/day on the free model (×1 without credit, ×2 for accounts that have topped up); other models are metered at list rates</sub> | ✅ No | `2026-08-13 🧪` |
 | **[Requesty](https://www.requesty.ai)** | OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | <sub>Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go</sub> | ✅ No | `2026-08-17 🧪` |
 | **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway carrying ten live zero-priced :free ids — Step 3.7 Flash, Gemma 4 31B, Nemotron 3 Nano, Poolside Laguna XS.2, gpt-oss-120b and the Llama 3.x line — beside a metered 100+ model catalog | `gpt-oss`, `step-3.7-flash`, `gemma-4`, `llama-3.3` | <sub>Starter plan is free — 200 req/day, one concurrent request, shared low-priority queue and best-effort availability; everything outside the :free ids is pay-as-you-go</sub> | ✅ No | `2026-08-17 🧪` |
 | **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 127-model catalog metered at list rates | `nemotron-3-nano-omni` | <sub>the free id sits in the default group and publishes no request cap; the other 126 models are metered at list rates. The zero-priced Kimi K3 this entry was registered for is gone — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains</sub> | ✅ No | `2026-08-17 🧪` |
@@ -111,7 +111,6 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
 | `laguna-s-2.1` | [opencode](https://opencode.ai), [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `north-mini-code` | [Kilo Code](https://kilo.ai), [Cohere (trial keys)](https://cohere.com), [AIHubMix (free models)](https://aihubmix.com) |
-| `deepseek-v4-flash` | [opencode](https://opencode.ai), [BazaarLink](https://bazaarlink.ai) |
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `llama-3.3` | [Groq](https://groq.com), [Routeway](https://routeway.ai) |
 | `mimo-v2.5` | [opencode](https://opencode.ai), [AIHubMix (free models)](https://aihubmix.com) |
@@ -124,6 +123,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `claude-sonnet-4.6` | [Google Antigravity](https://antigravity.google) |
 | `command-a` | [Cohere (trial keys)](https://cohere.com) |
 | `deepseek` | [SambaNova Cloud](https://cloud.sambanova.ai) |
+| `deepseek-v4-flash` | [opencode](https://opencode.ai) |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-pro` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google) |
@@ -161,6 +161,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 | When | What | Details |
 |---|---|---|
+| `2026-08-17` | 🔄 Free models **[BazaarLink](https://bazaarlink.ai)** | <sub>dropped deepseek-v4-flash</sub> |
 | `2026-08-17` | ➕ Added **[AIHubMix (free models)](https://aihubmix.com)** | <sub>One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly</sub> |
 | `2026-08-17` | 🔄 Free models **[Cerebras Inference](https://www.cerebras.ai)** | <sub>added gemma-4, glm-4.7, gpt-oss; dropped qwen3</sub> |
 | `2026-08-17` | 🔄 Free models **[Cohere (trial keys)](https://cohere.com)** | <sub>added north-mini-code</sub> |
@@ -170,7 +171,6 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `2026-08-17` | ➕ Added **[Inception Labs (Mercury)](https://platform.inceptionlabs.ai)** | <sub>A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls</sub> |
 | `2026-08-17` | ➖ Delisted **[LongCat API Platform](https://longcat.chat/platform)** | <sub>—</sub> |
 | `2026-08-17` | 🔄 Free models **[Mistral La Plateforme](https://mistral.ai)** | <sub>dropped mistral-medium</sub> |
-| `2026-08-17` | 🔄 Free models **[Ollama Cloud](https://ollama.com/cloud)** | <sub>dropped gpt-oss, minimax-3, nemotron</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 
