@@ -5,8 +5,127 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-14T10:21:30Z</updated>
+  <updated>2026-08-17T05:53:53Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/aihubmix/20260817T055353Z</id>
+    <title>New: AIHubMix (free models)</title>
+    <link rel="alternate" href="https://aihubmix.com"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly · free models: glm-5, mimo-v2.5, north-mini-code, gpt-oss</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cerebras-free/20260817T055353Z</id>
+    <title>Free models changed: Cerebras Inference</title>
+    <link rel="alternate" href="https://www.cerebras.ai"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">added gemma-4, glm-4.7, gpt-oss; dropped qwen3 · free models: gpt-oss, glm-4.7, gemma-4</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cohere/20260817T055353Z</id>
+    <title>Free models changed: Cohere (trial keys)</title>
+    <link rel="alternate" href="https://cohere.com"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">added north-mini-code · free models: command-a, north-mini-code</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260817T055353Z</id>
+    <title>Free models changed: Google AI Studio (Gemini API)</title>
+    <link rel="alternate" href="https://aistudio.google.com"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">added gemini-2.5-pro, gemini-3.5-flash-lite, gemini-3.7-flash; dropped gemini-2.5 · free models: gemini-3.7-flash, gemini-3.5-flash-lite, gemini-2.5-pro</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260817T055353Z</id>
+    <title>Free models changed: Groq</title>
+    <link rel="alternate" href="https://groq.com"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">added gpt-oss, llama-3.3, qwen3.6; dropped llama-4, qwen3 · free models: llama-3.3, gpt-oss, qwen3.6</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/huggingface-inference/20260817T055353Z</id>
+    <title>Free models changed: Hugging Face Inference Providers</title>
+    <link rel="alternate" href="https://huggingface.co/docs/inference-providers"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">dropped deepseek, qwen3</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/inception-labs/20260817T055353Z</id>
+    <title>New: Inception Labs (Mercury)</title>
+    <link rel="alternate" href="https://platform.inceptionlabs.ai"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls · free models: mercury-2, mercury-edit-2</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/longcat/20260817T055353Z</id>
+    <title>Delisted: LongCat API Platform</title>
+    <link rel="alternate" href="https://longcat.chat/platform"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">Delisted: LongCat API Platform</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/mistral-free/20260817T055353Z</id>
+    <title>Free models changed: Mistral La Plateforme</title>
+    <link rel="alternate" href="https://mistral.ai"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">dropped mistral-medium</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ollama-cloud/20260817T055353Z</id>
+    <title>Free models changed: Ollama Cloud</title>
+    <link rel="alternate" href="https://ollama.com/cloud"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">dropped gpt-oss, minimax-3, nemotron</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20260817T055353Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">added hy3, laguna-s-2.1, nemotron-3.5-lightning · free models: big-pickle, deepseek-v4-flash, mimo-v2.5, hy3, laguna-s-2.1, nemotron-3-ultra, nemotron-3.5-lightning</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/poolside/20260817T055353Z</id>
+    <title>New: Poolside Platform</title>
+    <link rel="alternate" href="https://poolside.ai"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/scaleway-generative/20260817T055353Z</id>
+    <title>Free models changed: Scaleway Generative APIs</title>
+    <link rel="alternate" href="https://www.scaleway.com/en/generative-apis/"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">dropped glm-5.2, qwen3</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/sea-lion/20260817T055353Z</id>
+    <title>Free models changed: SEA-LION (AI Singapore)</title>
+    <link rel="alternate" href="https://sea-lion.ai"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">dropped llama-sea-lion-v3.5, qwen-sea-lion-v4.5</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sensenova/20260817T055353Z</id>
+    <title>New: SenseNova (SenseTime 商汤)</title>
+    <link rel="alternate" href="https://www.sensenova.cn"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible url, free for everyone while the token plan is in public beta</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260817T055353Z</id>
+    <title>Free models changed: Vercel AI Gateway</title>
+    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">added laguna-s-2.1; dropped laguna-s-2.1-free · free models: laguna-s-2.1, glm-4.6v-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20260817T055353Z</id>
+    <title>Free models changed: Devin Desktop (formerly Windsurf)</title>
+    <link rel="alternate" href="https://devin.ai/desktop"/>
+    <updated>2026-08-17T05:53:53Z</updated>
+    <summary type="text">dropped claude-haiku, gpt-5.2-mini, kimi-k2.5</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/novita/20260814T102130Z</id>
     <title>Delisted: Novita AI</title>
@@ -237,124 +356,5 @@
     <link rel="alternate" href="https://platform.reka.ai"/>
     <updated>2026-07-22T08:15:54Z</updated>
     <summary type="text">Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month · free models: reka-core, reka-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/mimo-code/20260720T143041Z</id>
-    <title>Free models changed: MiMo Code</title>
-    <link rel="alternate" href="https://mimo.xiaomi.com/coder"/>
-    <updated>2026-07-20T14:30:41Z</updated>
-    <summary type="text">added mimo-v2.5 · free models: mimo-v2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260720T120046Z</id>
-    <title>Free models changed: Kiro</title>
-    <link rel="alternate" href="https://kiro.dev/"/>
-    <updated>2026-07-20T12:00:46Z</updated>
-    <summary type="text">dropped deepseek-v3.2, minimax-2.1 · free models: claude-sonnet-4.5, qwen3-coder</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/mimo-code/20260720T120046Z</id>
-    <title>Free models changed: MiMo Code</title>
-    <link rel="alternate" href="https://mimo.xiaomi.com/coder"/>
-    <updated>2026-07-20T12:00:46Z</updated>
-    <summary type="text">dropped mimo</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ollama-cloud/20260720T113024Z</id>
-    <title>Free models changed: Ollama Cloud</title>
-    <link rel="alternate" href="https://ollama.com/cloud"/>
-    <updated>2026-07-20T11:30:24Z</updated>
-    <summary type="text">added minimax-3, nemotron; dropped qwen3-coder · free models: nemotron, minimax-3, gpt-oss</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/easy-gonka-api/20260719T230327Z</id>
-    <title>Delisted: Easy GonkaAI API</title>
-    <link rel="alternate" href="https://gonka-api.org/"/>
-    <updated>2026-07-19T23:03:27Z</updated>
-    <summary type="text">Delisted: Easy GonkaAI API</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260719T223451Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilocode.ai"/>
-    <updated>2026-07-19T22:34:51Z</updated>
-    <summary type="text">dropped claude-sonnet-5, gemini-3.1-pro, gpt-5.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/easy-gonka-api/20260719T223157Z</id>
-    <title>Free models changed: Easy GonkaAI API</title>
-    <link rel="alternate" href="https://gonka-api.org/"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added kimi-k2, minimax-m2 · free models: minimax-m2, kimi-k2</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-jules/20260719T223157Z</id>
-    <title>Free models changed: Google Jules</title>
-    <link rel="alternate" href="https://jules.google/"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added gemini-2.5 · free models: gemini-2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260719T223157Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilocode.ai"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added claude-sonnet-5, gemini-3.1-pro, gpt-5.5 · free models: claude-sonnet-5, gpt-5.5, gemini-3.1-pro</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260719T223157Z</id>
-    <title>Free models changed: Kiro</title>
-    <link rel="alternate" href="https://kiro.dev/"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added claude-sonnet-4.5, deepseek-v3.2, minimax-2.1, qwen3-coder · free models: claude-sonnet-4.5, qwen3-coder, deepseek-v3.2, minimax-2.1</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/mimo-code/20260719T223157Z</id>
-    <title>Free models changed: MiMo Code</title>
-    <link rel="alternate" href="https://mimo.xiaomi.com/coder"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added mimo · free models: mimo</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openai-codex-cli/20260719T223157Z</id>
-    <title>Free models changed: OpenAI Codex CLI</title>
-    <link rel="alternate" href="https://developers.openai.com/codex/"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added gpt-5.6 · free models: gpt-5.6</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/upstage/20260719T223157Z</id>
-    <title>Free models changed: Upstage (Solar API)</title>
-    <link rel="alternate" href="https://console.upstage.ai/"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added solar-mini, solar-pro-3 · free models: solar-pro-3, solar-mini</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20260719T223157Z</id>
-    <title>Free models changed: Windsurf</title>
-    <link rel="alternate" href="https://windsurf.com"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">added claude-haiku, gpt-5.2-mini, kimi-k2.5 · free models: claude-haiku, gpt-5.2-mini, kimi-k2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/zed/20260719T223157Z</id>
-    <title>Delisted: Zed</title>
-    <link rel="alternate" href="https://zed.dev"/>
-    <updated>2026-07-19T22:31:57Z</updated>
-    <summary type="text">Delisted: Zed</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20260719T222642Z</id>
-    <title>Free models changed: opencode</title>
-    <link rel="alternate" href="https://opencode.ai"/>
-    <updated>2026-07-19T22:26:42Z</updated>
-    <summary type="text">added big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra · free models: big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/aider/20260719T222307Z</id>
-    <title>Delisted: Aider</title>
-    <link rel="alternate" href="https://aider.chat/"/>
-    <updated>2026-07-19T22:23:07Z</updated>
-    <summary type="text">Delisted: Aider</summary>
   </entry>
 </feed>
