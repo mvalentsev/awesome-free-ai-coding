@@ -1,22 +1,22 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
-    "nvidia-nim": {
+    "google-ai-studio": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "NVIDIA NIM (build.nvidia.com)",
+      "name": "Google AI Studio (Gemini API)",
       "options": {
-        "baseURL": "https://integrate.api.nvidia.com/v1",
-        "apiKey": "{env:NVIDIA_NIM_API_KEY}"
+        "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        "apiKey": "{env:GOOGLE_AI_STUDIO_API_KEY}"
       },
       "models": {
-        "deepseek-ai/deepseek-v4-flash": {
-          "name": "deepseek-ai/deepseek-v4-flash"
+        "gemini-3.7-flash": {
+          "name": "gemini-3.7-flash"
         },
-        "nvidia/nemotron-3-nano-30b-a3b": {
-          "name": "nvidia/nemotron-3-nano-30b-a3b"
+        "gemini-3.5-flash-lite": {
+          "name": "gemini-3.5-flash-lite"
         },
-        "meta/llama-4-maverick-17b-128e-instruct": {
-          "name": "meta/llama-4-maverick-17b-128e-instruct"
+        "gemini-2.5-pro": {
+          "name": "gemini-2.5-pro"
         }
       }
     },
@@ -104,15 +104,6 @@
         }
       }
     },
-    "huggingface-inference": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Hugging Face Inference Providers",
-      "options": {
-        "baseURL": "https://router.huggingface.co/v1",
-        "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
-      },
-      "models": {}
-    },
     "kilo-code": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Kilo Code",
@@ -162,220 +153,43 @@
         }
       }
     },
-    "cerebras-free": {
+    "requesty": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Cerebras Inference",
+      "name": "Requesty",
       "options": {
-        "baseURL": "https://api.cerebras.ai/v1",
-        "apiKey": "{env:CEREBRAS_API_KEY}"
+        "baseURL": "https://router.requesty.ai/v1",
+        "apiKey": "{env:REQUESTY_API_KEY}"
       },
       "models": {
-        "gpt-oss-120b": {
-          "name": "gpt-oss-120b"
+        "nvidia/nemotron-3-ultra-550b-a55b": {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b"
         },
-        "gemma-4-31b": {
-          "name": "gemma-4-31b"
-        }
-      }
-    },
-    "ovh-ai-endpoints": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "OVHcloud AI Endpoints",
-      "options": {
-        "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
-      },
-      "models": {
-        "gpt-oss-120b": {
-          "name": "gpt-oss-120b"
+        "nvidia/nemotron-3-super-120b-a12b": {
+          "name": "nvidia/nemotron-3-super-120b-a12b"
         },
-        "Qwen3.6-27B": {
-          "name": "Qwen3.6-27B"
+        "nvidia/nemotron-3-nano-30b-a3b": {
+          "name": "nvidia/nemotron-3-nano-30b-a3b"
         },
-        "Qwen3-Coder-30B-A3B-Instruct": {
-          "name": "Qwen3-Coder-30B-A3B-Instruct"
-        }
-      }
-    },
-    "zai-glm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Z.ai (Zhipu GLM)",
-      "options": {
-        "baseURL": "https://api.z.ai/api/paas/v4",
-        "apiKey": "{env:ZAI_GLM_API_KEY}"
-      },
-      "models": {
-        "glm-4.7-flash": {
-          "name": "glm-4.7-flash"
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
         },
-        "glm-4.5-flash": {
-          "name": "glm-4.5-flash"
+        "nvidia/nemotron-3.5-content-safety": {
+          "name": "nvidia/nemotron-3.5-content-safety"
         },
-        "glm-4.6v-flash": {
-          "name": "glm-4.6v-flash"
-        }
-      }
-    },
-    "cloudflare-workers-ai": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Cloudflare Workers AI",
-      "options": {
-        "baseURL": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1",
-        "apiKey": "{env:CLOUDFLARE_WORKERS_AI_API_KEY}"
-      },
-      "models": {
-        "llama-4": {
-          "name": "llama-4"
-        }
-      }
-    },
-    "ollama-cloud": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama Cloud",
-      "options": {
-        "baseURL": "https://ollama.com/v1",
-        "apiKey": "{env:OLLAMA_CLOUD_API_KEY}"
-      },
-      "models": {
-        "nemotron-3-ultra": {
-          "name": "nemotron-3-ultra"
+        "novita/inclusionai/ling-3.0-tiny": {
+          "name": "novita/inclusionai/ling-3.0-tiny"
         },
-        "minimax-m3": {
-          "name": "minimax-m3"
+        "google/gemma-4-31b-it": {
+          "name": "google/gemma-4-31b-it"
         },
-        "gpt-oss:120b": {
-          "name": "gpt-oss:120b"
+        "poolside/laguna-xs.2": {
+          "name": "poolside/laguna-xs.2"
         },
-        "gemma4:31b": {
-          "name": "gemma4:31b"
-        }
-      }
-    },
-    "sea-lion": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "SEA-LION (AI Singapore)",
-      "options": {
-        "baseURL": "https://api.sea-lion.ai/v1",
-        "apiKey": "{env:SEA_LION_API_KEY}"
-      },
-      "models": {
-        "aisingapore/Qwen-SEA-LION-v4.5-27B-IT": {
-          "name": "aisingapore/Qwen-SEA-LION-v4.5-27B-IT"
+        "poolside/laguna-m.1": {
+          "name": "poolside/laguna-m.1"
         },
-        "aisingapore/Llama-SEA-LION-v3.5-70B-R": {
-          "name": "aisingapore/Llama-SEA-LION-v3.5-70B-R"
-        }
-      }
-    },
-    "upstage": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Upstage (Solar API)",
-      "options": {
-        "baseURL": "https://api.upstage.ai/v1",
-        "apiKey": "{env:UPSTAGE_API_KEY}"
-      },
-      "models": {
-        "solar-pro-3": {
-          "name": "solar-pro-3"
-        },
-        "solar-mini": {
-          "name": "solar-mini"
-        }
-      }
-    },
-    "inception-labs": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Inception Labs (Mercury)",
-      "options": {
-        "baseURL": "https://api.inceptionlabs.ai/v1",
-        "apiKey": "{env:INCEPTION_LABS_API_KEY}"
-      },
-      "models": {
-        "mercury-2": {
-          "name": "mercury-2"
-        },
-        "mercury-edit-2": {
-          "name": "mercury-edit-2"
-        }
-      }
-    },
-    "mistral-free": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Mistral La Plateforme",
-      "options": {
-        "baseURL": "https://api.mistral.ai/v1",
-        "apiKey": "{env:MISTRAL_API_KEY}"
-      },
-      "models": {}
-    },
-    "pollinations": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Pollinations.AI",
-      "options": {
-        "baseURL": "https://text.pollinations.ai/openai"
-      },
-      "models": {
-        "gpt-oss": {
-          "name": "gpt-oss"
-        }
-      }
-    },
-    "alibaba-model-studio": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Alibaba Cloud Model Studio (DashScope, international)",
-      "options": {
-        "baseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
-        "apiKey": "{env:ALIBABA_MODEL_STUDIO_API_KEY}"
-      },
-      "models": {
-        "qwen3-max": {
-          "name": "qwen3-max"
-        },
-        "qwen3-coder": {
-          "name": "qwen3-coder"
-        }
-      }
-    },
-    "cohere": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Cohere (trial keys)",
-      "options": {
-        "baseURL": "https://api.cohere.com/compatibility/v1",
-        "apiKey": "{env:COHERE_API_KEY}"
-      },
-      "models": {
-        "north-mini-code-1-0": {
-          "name": "north-mini-code-1-0"
-        },
-        "command-a-03-2025": {
-          "name": "command-a-03-2025"
-        }
-      }
-    },
-    "scaleway-generative": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Scaleway Generative APIs",
-      "options": {
-        "baseURL": "https://api.scaleway.ai/v1",
-        "apiKey": "{env:SCALEWAY_GENERATIVE_API_KEY}"
-      },
-      "models": {}
-    },
-    "google-ai-studio": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Google AI Studio (Gemini API)",
-      "options": {
-        "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai/",
-        "apiKey": "{env:GOOGLE_AI_STUDIO_API_KEY}"
-      },
-      "models": {
-        "gemini-3.7-flash": {
-          "name": "gemini-3.7-flash"
-        },
-        "gemini-3.5-flash-lite": {
-          "name": "gemini-3.5-flash-lite"
-        },
-        "gemini-2.5-pro": {
-          "name": "gemini-2.5-pro"
+        "mistral/leanstral-1-5": {
+          "name": "mistral/leanstral-1-5"
         }
       }
     },
@@ -419,75 +233,51 @@
         }
       }
     },
-    "bazaarlink": {
+    "zai-glm": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "BazaarLink",
+      "name": "Z.ai (Zhipu GLM)",
       "options": {
-        "baseURL": "https://api.bazaarlink.ai/v1",
-        "apiKey": "{env:BAZAARLINK_API_KEY}"
+        "baseURL": "https://api.z.ai/api/paas/v4",
+        "apiKey": "{env:ZAI_GLM_API_KEY}"
       },
       "models": {
-        "qwen/qwen3.7-flash:free": {
-          "name": "qwen/qwen3.7-flash:free"
+        "glm-4.7-flash": {
+          "name": "glm-4.7-flash"
         },
-        "auto:free": {
-          "name": "auto:free"
+        "glm-4.5-flash": {
+          "name": "glm-4.5-flash"
+        },
+        "glm-4.6v-flash": {
+          "name": "glm-4.6v-flash"
         }
       }
     },
-    "poolside": {
+    "cerebras-free": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Poolside Platform",
+      "name": "Cerebras Inference",
       "options": {
-        "baseURL": "https://inference.poolside.ai/v1",
-        "apiKey": "{env:POOLSIDE_API_KEY}"
+        "baseURL": "https://api.cerebras.ai/v1",
+        "apiKey": "{env:CEREBRAS_API_KEY}"
       },
       "models": {
-        "poolside/laguna-s-2.1": {
-          "name": "poolside/laguna-s-2.1"
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
         },
-        "poolside/laguna-xs-2.1": {
-          "name": "poolside/laguna-xs-2.1"
+        "gemma-4-31b": {
+          "name": "gemma-4-31b"
         }
       }
     },
-    "requesty": {
+    "cloudflare-workers-ai": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Requesty",
+      "name": "Cloudflare Workers AI",
       "options": {
-        "baseURL": "https://router.requesty.ai/v1",
-        "apiKey": "{env:REQUESTY_API_KEY}"
+        "baseURL": "https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1",
+        "apiKey": "{env:CLOUDFLARE_WORKERS_AI_API_KEY}"
       },
       "models": {
-        "nvidia/nemotron-3-ultra-550b-a55b": {
-          "name": "nvidia/nemotron-3-ultra-550b-a55b"
-        },
-        "nvidia/nemotron-3-super-120b-a12b": {
-          "name": "nvidia/nemotron-3-super-120b-a12b"
-        },
-        "nvidia/nemotron-3-nano-30b-a3b": {
-          "name": "nvidia/nemotron-3-nano-30b-a3b"
-        },
-        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
-          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
-        },
-        "nvidia/nemotron-3.5-content-safety": {
-          "name": "nvidia/nemotron-3.5-content-safety"
-        },
-        "novita/inclusionai/ling-3.0-tiny": {
-          "name": "novita/inclusionai/ling-3.0-tiny"
-        },
-        "google/gemma-4-31b-it": {
-          "name": "google/gemma-4-31b-it"
-        },
-        "poolside/laguna-xs.2": {
-          "name": "poolside/laguna-xs.2"
-        },
-        "poolside/laguna-m.1": {
-          "name": "poolside/laguna-m.1"
-        },
-        "mistral/leanstral-1-5": {
-          "name": "mistral/leanstral-1-5"
+        "llama-4": {
+          "name": "llama-4"
         }
       }
     },
@@ -550,28 +340,6 @@
         }
       }
     },
-    "sensenova": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "SenseNova (SenseTime 商汤)",
-      "options": {
-        "baseURL": "https://token.sensenova.cn/v1",
-        "apiKey": "{env:SENSENOVA_API_KEY}"
-      },
-      "models": {}
-    },
-    "tokenrouter": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "TokenRouter (PaleBlueDot)",
-      "options": {
-        "baseURL": "https://api.tokenrouter.com/v1",
-        "apiKey": "{env:TOKENROUTER_API_KEY}"
-      },
-      "models": {
-        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
-          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
-        }
-      }
-    },
     "vercel-ai-gateway": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Vercel AI Gateway",
@@ -587,6 +355,238 @@
           "name": "zai/glm-4.6v-flash"
         }
       }
+    },
+    "alibaba-model-studio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Alibaba Cloud Model Studio (DashScope, international)",
+      "options": {
+        "baseURL": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "{env:ALIBABA_MODEL_STUDIO_API_KEY}"
+      },
+      "models": {
+        "qwen3-max": {
+          "name": "qwen3-max"
+        },
+        "qwen3-coder": {
+          "name": "qwen3-coder"
+        }
+      }
+    },
+    "bazaarlink": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "BazaarLink",
+      "options": {
+        "baseURL": "https://api.bazaarlink.ai/v1",
+        "apiKey": "{env:BAZAARLINK_API_KEY}"
+      },
+      "models": {
+        "qwen/qwen3.7-flash:free": {
+          "name": "qwen/qwen3.7-flash:free"
+        },
+        "auto:free": {
+          "name": "auto:free"
+        }
+      }
+    },
+    "nvidia-nim": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA NIM (build.nvidia.com)",
+      "options": {
+        "baseURL": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "{env:NVIDIA_NIM_API_KEY}"
+      },
+      "models": {
+        "deepseek-ai/deepseek-v4-flash": {
+          "name": "deepseek-ai/deepseek-v4-flash"
+        },
+        "nvidia/nemotron-3-nano-30b-a3b": {
+          "name": "nvidia/nemotron-3-nano-30b-a3b"
+        },
+        "meta/llama-4-maverick-17b-128e-instruct": {
+          "name": "meta/llama-4-maverick-17b-128e-instruct"
+        }
+      }
+    },
+    "tokenrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "TokenRouter (PaleBlueDot)",
+      "options": {
+        "baseURL": "https://api.tokenrouter.com/v1",
+        "apiKey": "{env:TOKENROUTER_API_KEY}"
+      },
+      "models": {
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+        }
+      }
+    },
+    "cohere": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Cohere (trial keys)",
+      "options": {
+        "baseURL": "https://api.cohere.com/compatibility/v1",
+        "apiKey": "{env:COHERE_API_KEY}"
+      },
+      "models": {
+        "north-mini-code-1-0": {
+          "name": "north-mini-code-1-0"
+        },
+        "command-a-03-2025": {
+          "name": "command-a-03-2025"
+        }
+      }
+    },
+    "huggingface-inference": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Hugging Face Inference Providers",
+      "options": {
+        "baseURL": "https://router.huggingface.co/v1",
+        "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
+      },
+      "models": {}
+    },
+    "ovh-ai-endpoints": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OVHcloud AI Endpoints",
+      "options": {
+        "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
+      },
+      "models": {
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        },
+        "Qwen3.6-27B": {
+          "name": "Qwen3.6-27B"
+        },
+        "Qwen3-Coder-30B-A3B-Instruct": {
+          "name": "Qwen3-Coder-30B-A3B-Instruct"
+        }
+      }
+    },
+    "upstage": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Upstage (Solar API)",
+      "options": {
+        "baseURL": "https://api.upstage.ai/v1",
+        "apiKey": "{env:UPSTAGE_API_KEY}"
+      },
+      "models": {
+        "solar-pro-3": {
+          "name": "solar-pro-3"
+        },
+        "solar-mini": {
+          "name": "solar-mini"
+        }
+      }
+    },
+    "sea-lion": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SEA-LION (AI Singapore)",
+      "options": {
+        "baseURL": "https://api.sea-lion.ai/v1",
+        "apiKey": "{env:SEA_LION_API_KEY}"
+      },
+      "models": {
+        "aisingapore/Qwen-SEA-LION-v4.5-27B-IT": {
+          "name": "aisingapore/Qwen-SEA-LION-v4.5-27B-IT"
+        },
+        "aisingapore/Llama-SEA-LION-v3.5-70B-R": {
+          "name": "aisingapore/Llama-SEA-LION-v3.5-70B-R"
+        }
+      }
+    },
+    "sensenova": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SenseNova (SenseTime 商汤)",
+      "options": {
+        "baseURL": "https://token.sensenova.cn/v1",
+        "apiKey": "{env:SENSENOVA_API_KEY}"
+      },
+      "models": {}
+    },
+    "inception-labs": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Inception Labs (Mercury)",
+      "options": {
+        "baseURL": "https://api.inceptionlabs.ai/v1",
+        "apiKey": "{env:INCEPTION_LABS_API_KEY}"
+      },
+      "models": {
+        "mercury-2": {
+          "name": "mercury-2"
+        },
+        "mercury-edit-2": {
+          "name": "mercury-edit-2"
+        }
+      }
+    },
+    "pollinations": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Pollinations.AI",
+      "options": {
+        "baseURL": "https://text.pollinations.ai/openai"
+      },
+      "models": {
+        "gpt-oss": {
+          "name": "gpt-oss"
+        }
+      }
+    },
+    "ollama-cloud": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Cloud",
+      "options": {
+        "baseURL": "https://ollama.com/v1",
+        "apiKey": "{env:OLLAMA_CLOUD_API_KEY}"
+      },
+      "models": {
+        "nemotron-3-ultra": {
+          "name": "nemotron-3-ultra"
+        },
+        "minimax-m3": {
+          "name": "minimax-m3"
+        },
+        "gpt-oss:120b": {
+          "name": "gpt-oss:120b"
+        },
+        "gemma4:31b": {
+          "name": "gemma4:31b"
+        }
+      }
+    },
+    "mistral-free": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Mistral La Plateforme",
+      "options": {
+        "baseURL": "https://api.mistral.ai/v1",
+        "apiKey": "{env:MISTRAL_API_KEY}"
+      },
+      "models": {}
+    },
+    "poolside": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Poolside Platform",
+      "options": {
+        "baseURL": "https://inference.poolside.ai/v1",
+        "apiKey": "{env:POOLSIDE_API_KEY}"
+      },
+      "models": {
+        "poolside/laguna-s-2.1": {
+          "name": "poolside/laguna-s-2.1"
+        },
+        "poolside/laguna-xs-2.1": {
+          "name": "poolside/laguna-xs-2.1"
+        }
+      }
+    },
+    "scaleway-generative": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Scaleway Generative APIs",
+      "options": {
+        "baseURL": "https://api.scaleway.ai/v1",
+        "apiKey": "{env:SCALEWAY_GENERATIVE_API_KEY}"
+      },
+      "models": {}
     }
   }
 }

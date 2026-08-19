@@ -105,7 +105,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 99
+  rank: 10
 - id: groq-free
   name: Groq
   category: api-free-tier
@@ -212,7 +212,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 30
+  rank: 35
 - id: mistral-free
   name: Mistral La Plateforme
   category: api-free-tier
@@ -249,7 +249,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 90
+  rank: 94
 - id: github-models
   name: GitHub Models
   category: api-free-tier
@@ -326,7 +326,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 60
+  rank: 40
 - id: ollama-cloud
   name: Ollama Cloud
   category: api-free-tier
@@ -368,7 +368,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 70
+  rank: 92
 - id: opencode
   name: opencode
   category: agent-cli
@@ -851,7 +851,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 10
+  rank: 70
 - id: zai-glm
   name: Z.ai (Zhipu GLM)
   category: api-free-tier
@@ -896,7 +896,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 50
+  rank: 30
 - id: ovh-ai-endpoints
   name: OVHcloud AI Endpoints
   category: api-free-tier
@@ -954,7 +954,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 40
+  rank: 80
 - id: pollinations
   name: Pollinations.AI
   category: api-free-tier
@@ -995,7 +995,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 92
+  rank: 90
 - id: alibaba-model-studio
   name: Alibaba Cloud Model Studio (DashScope, international)
   category: api-free-tier
@@ -1034,7 +1034,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 94
+  rank: 60
 - id: scaleway-generative
   name: Scaleway Generative APIs
   category: api-free-tier
@@ -1105,7 +1105,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 20
+  rank: 80
 - id: upstage
   name: Upstage (Solar API)
   category: trial
@@ -1198,7 +1198,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 95
+  rank: 75
 - id: qoder
   name: Qoder
   category: trial
@@ -1308,7 +1308,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: false
-  rank: 100
+  rank: 50
 - id: bazaarlink
   name: BazaarLink
   category: aggregator
@@ -1355,7 +1355,7 @@ entries:
   last_verified: '2026-08-13'
   probe_failures: 1
   provisional: true
-  rank: 100
+  rank: 60
 - id: tokenrouter
   name: TokenRouter (PaleBlueDot)
   category: aggregator
@@ -1394,7 +1394,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 70
 - id: sambanova-cloud
   name: SambaNova Cloud
   category: api-free-tier
@@ -1442,7 +1442,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 50
 - id: routeway
   name: Routeway
   category: aggregator
@@ -1504,7 +1504,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 40
 - id: requesty
   name: Requesty
   category: aggregator
@@ -1564,7 +1564,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 20
 - id: antigravity
   name: Google Antigravity
   category: agent-cli
@@ -1655,7 +1655,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 70
+  rank: 85
 - id: ai21-labs
   name: AI21 Labs (Jamba)
   category: trial
@@ -1798,7 +1798,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 30
 - id: inception-labs
   name: Inception Labs (Mercury)
   category: trial
@@ -1891,7 +1891,7 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 96
 - id: sensenova
   name: SenseNova (SenseTime 商汤)
   category: api-free-tier
@@ -1933,4 +1933,4 @@ entries:
   last_verified: '2026-08-17'
   probe_failures: 0
   provisional: true
-  rank: 100
+  rank: 88

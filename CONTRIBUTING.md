@@ -49,6 +49,26 @@ out, and that read has often already happened. Those verdicts expire after 180
 days, and the scout reports the expired ones in its pull requests, because a
 directory can grow into a feed long after someone first opened it.
 
+## How rows are ordered
+
+`rank` sorts a row within its section — lower renders higher — and it answers one
+question: **how much work can a developer actually get done on this offer without
+paying?** In order of what moves a row up:
+
+1. the vendor publishes the quota, so you can plan against it;
+2. the models it serves are ones people build with;
+3. no card, no verification wall, no "contact us".
+
+A real but unquantified free tier sits below one that prints its numbers, and a
+row that publishes no free model list at all sits below both — the page cannot
+tell a reader what they would be calling. A row that needs a card never leads the
+no-card rows it ties with.
+
+The first four no-card agents are also the top of the README, with the models
+they hand you, so this ordering is the page's answer to "what do I use, then?"
+Nothing about it is typed by hand: change `rank` and both the section and that
+block follow.
+
 ## Probes must anchor on the offer
 
 Every `page-keywords` probe needs at least one keyword that disappears when the

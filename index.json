@@ -114,7 +114,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 99,
+      "rank": 10,
       "archived": false
     },
     {
@@ -228,7 +228,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 30,
+      "rank": 35,
       "archived": false
     },
     {
@@ -266,7 +266,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 90,
+      "rank": 94,
       "archived": false
     },
     {
@@ -354,7 +354,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 60,
+      "rank": 40,
       "archived": false
     },
     {
@@ -397,7 +397,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 70,
+      "rank": 92,
       "archived": false
     },
     {
@@ -901,7 +901,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 10,
+      "rank": 70,
       "archived": false
     },
     {
@@ -956,7 +956,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 50,
+      "rank": 30,
       "archived": false
     },
     {
@@ -1012,7 +1012,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 40,
+      "rank": 80,
       "archived": false
     },
     {
@@ -1056,7 +1056,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 92,
+      "rank": 90,
       "archived": false
     },
     {
@@ -1105,7 +1105,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 94,
+      "rank": 60,
       "archived": false
     },
     {
@@ -1181,7 +1181,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 20,
+      "rank": 80,
       "archived": false
     },
     {
@@ -1285,7 +1285,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 95,
+      "rank": 75,
       "archived": false
     },
     {
@@ -1396,7 +1396,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 100,
+      "rank": 50,
       "archived": false
     },
     {
@@ -1441,7 +1441,7 @@
       "last_verified": "2026-08-13",
       "probe_failures": 1,
       "provisional": true,
-      "rank": 100,
+      "rank": 60,
       "archived": false
     },
     {
@@ -1484,7 +1484,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 70,
       "archived": false
     },
     {
@@ -1543,7 +1543,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 50,
       "archived": false
     },
     {
@@ -1611,7 +1611,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 40,
       "archived": false
     },
     {
@@ -1680,7 +1680,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 20,
       "archived": false
     },
     {
@@ -1781,7 +1781,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 70,
+      "rank": 85,
       "archived": false
     },
     {
@@ -1934,7 +1934,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 30,
       "archived": false
     },
     {
@@ -2030,7 +2030,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 96,
       "archived": false
     },
     {
@@ -2068,7 +2068,7 @@
       "last_verified": "2026-08-17",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 100,
+      "rank": 88,
       "archived": false
     }
   ],
