@@ -193,9 +193,9 @@ model_list:
     model: openai/Qwen3.6-27B
     api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
     api_key: none
-- model_name: ovh-ai-endpoints/Qwen3.5-9B
+- model_name: ovh-ai-endpoints/Qwen3-Coder-30B-A3B-Instruct
   litellm_params:
-    model: openai/Qwen3.5-9B
+    model: openai/Qwen3-Coder-30B-A3B-Instruct
     api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
     api_key: none
 - model_name: zai-glm/glm-4.7-flash

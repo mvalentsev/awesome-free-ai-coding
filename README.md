@@ -21,7 +21,7 @@
 
 <div align="center">
 
-| **41** | **39** | **2** | **29** | **45** |
+| **41** | **39** | **2** | **29** | **44** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -36,6 +36,7 @@ curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model":"gpt-oss-120b","messages":[{"role":"user","content":"2+2?"}]}'
 ```
+<sub>no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not that the offer is gone. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on</sub>
 
 Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-agent)** — the configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and plain OpenAI SDKs are generated from the same registry and regenerated on every update.
 
@@ -58,7 +59,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 |---|---|---|---|---|---|
 | **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1) | `nemotron` | <sub>Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000 free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way</sub> | ✅ No | `2026-08-17` |
 | **[Groq](https://groq.com)** | Fast inference against a free plan Groq publishes as a per-model rate table | `llama-3.3`, `gpt-oss`, `qwen3.6` | <sub>Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 14.4K / 6K / 500K on llama-3.1-8b-instant, 30 / 1K / 12K / 100K on llama-3.3-70b-versatile, 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b and qwen/qwen3.6-27b, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models (read 2026-08-14). Those thirteen rows are the whole free plan — no llama-4 among them, though the page carries the id in the API schema it embeds. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures</sub> | ✅ No | `2026-08-17` |
-| **[OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)** | EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible) | `qwen3`, `gpt-oss` | <sub>The anonymous lane is real and it is narrow: a chat-completions POST with no Authorization header answers 429 "API rate limit exceeded" rather than 401, so OVH rate-limits unauthenticated callers instead of turning them away (measured 2026-08-14). A free account raises that — OVH states "Flow limit: 400 requests per minute per project" for the Base API — and everything past the anonymous lane is metered: the keyless catalog publishes a price for 15 of its 20 models, including gpt-oss-120b at $0.00000047 per completion token, and only the two Qwen3Guard models, the two whisper models and stable-diffusion-xl read zero on both sides</sub> | ✅ No | `2026-08-17` |
+| **[OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)** | EU-hosted serverless open-model API — 24 models, and the anonymous lane needs no signup, no key and no card (OpenAI-compatible) | `gpt-oss`, `qwen3.6`, `qwen3-coder` | <sub>OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model" (help.ovhcloud.com, read 2026-08-19), and its own product page invites you to "Try all our models for free". The keyless calls really do answer — gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B and Qwen3-Coder-30B returned 200 with no Authorization header on 2026-08-19, while Qwen3.5-397B-A17B answered 429 on every attempt — so a 429 here is the quota, not a refusal. The per-token prices in the catalog are what an authenticated project pays: 15 of the 24 models carry one, gpt-oss-120b at $0.00000047 per completion token, and the rows priced zero on both sides are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl. None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes</sub> | ✅ No | `2026-08-17` |
 | **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | <sub>GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three rows z.ai's own price table reads Free on all four columns — every other model there says "Limited-time Free" instead, including the flagship GLM-5.x. Rate-limited</sub> | ✅ No | `2026-08-17` |
 | **[Cloudflare Workers AI](https://workers.cloudflare.com)** | 10k neurons/day free | `llama-4` | <sub>Cloudflare's free allocation "allows anyone to use a total of 10,000 Neurons per day at no charge", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. "All limits reset daily at 00:00 UTC", and past the cap "further operations will fail with an error" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Three catalog models sit outside the free lane whatever the neuron count: the same page notes that @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2 "require a paid billing method" (read 2026-08-14)</sub> | ✅ No | `2026-08-17` |
 | **[Ollama Cloud](https://ollama.com/cloud)** | Cloud-hosted open models with free usage tier | — | <sub>The $0 plan reads "Access cloud models" and nothing more: which models it reaches is not published anywhere on ollama.com, only implied by a per-model "usage level" from 1 (gpt-oss:20b) to 4 (deepseek-v4-pro), while Pro is sold as "Access larger, more powerful cloud models". Tested by hand rather than read: nemotron-3 ultra/super/nano, gpt-oss 120b/20b, gemma4:31b and minimax-m3 answered on the free plan on 2026-08-03, and every flagship (DeepSeek V4, GLM-5.x, Kimi K2.x, Qwen3.5, Mistral Large 3) returned 403 subscription-required</sub> | ✅ No | `2026-08-17` |
@@ -101,7 +102,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and two models that never touch the credit | `laguna-s-2.1`, `glm-4.6v-flash` | <sub>$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision (128k context, images and PDFs, tool use) — and neither draws the credit down. Mind the suffix on the first one, since the same catalog carries poolside/laguna-s-2.1 without it at $0.10/$0.20 per 1M tokens (read 2026-08-14). Buying credits ends the monthly free credit</sub> | ✅ No | `2026-08-17` |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 45 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 44 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -111,11 +112,12 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
 | `laguna-s-2.1` | [opencode](https://opencode.ai), [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `north-mini-code` | [Kilo Code](https://kilo.ai), [Cohere (trial keys)](https://cohere.com), [AIHubMix (free models)](https://aihubmix.com) |
+| `qwen3-coder` | [Kiro](https://kiro.dev/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `llama-3.3` | [Groq](https://groq.com), [Routeway](https://routeway.ai) |
 | `mimo-v2.5` | [opencode](https://opencode.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `nemotron-3-super` | [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
-| `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.6` | [Groq](https://groq.com), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `step-3.7-flash` | [Kilo Code](https://kilo.ai), [Routeway](https://routeway.ai) |
 | `big-pickle` | [opencode](https://opencode.ai) |
 | `claude-opus-4.6` | [Google Antigravity](https://antigravity.google) |
@@ -145,9 +147,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | `nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `nemotron-3-nano-omni` | [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
 | `nemotron-3.5-lightning` | [opencode](https://opencode.ai) |
-| `qwen3` | [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
-| `qwen3.6` | [Groq](https://groq.com) |
 | `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
 | `solar-mini` | [Upstage (Solar API)](https://console.upstage.ai/) |
 | `solar-pro-3` | [Upstage (Solar API)](https://console.upstage.ai/) |
@@ -272,7 +272,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 | **Hugging Face Inference Providers**<br><sub>chat-only; model ids namespaced (openai/gpt-oss-120b)</sub> | `https://router.huggingface.co/v1` | `HUGGINGFACE_INFERENCE_API_KEY` | [key](https://huggingface.co/settings/tokens) |
 | **Kilo Code**<br><sub>every id listed is priced 0 — the same catalog meters 346 more. kilo-auto/free and openrouter/free are routers, and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. The lane rotates fast — Ling 3.0 Flash left it in 2026-08, ling-3.0-tiny:free stood in its place for three days and was gone by 2026-08-14, with liquid/lfm-2.5-2.6b:free arriving instead — which is why the ids that come and go stay here and out of the Models column</sub> | `https://api.kilo.ai/api/gateway` | `KILO_CODE_API_KEY` | [key](https://app.kilo.ai/profile) |
 | **Cerebras Inference**<br><sub>the Free Trial tier reaches every model in the public catalog, which is these two: "Every model on the public Model Catalog is available on the Free Trial tier, subject to the per-model Free Trial rate limits"</sub> | `https://api.cerebras.ai/v1` | `CEREBRAS_API_KEY` | [key](https://cloud.cerebras.ai) |
-| **OVHcloud AI Endpoints**<br><sub>anonymous, rate-limited; free key raises limits</sub> | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | — | not needed |
+| **OVHcloud AI Endpoints**<br><sub>no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not that the offer is gone. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on</sub> | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | — | not needed |
 | **Z.ai (Zhipu GLM)**<br><sub>Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead</sub> | `https://api.z.ai/api/paas/v4` | `ZAI_GLM_API_KEY` | [key](https://z.ai/manage-apikey/apikey-list) |
 | **Cloudflare Workers AI**<br><sub>substitute {account_id} with your Cloudflare account ID</sub> | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1` | `CLOUDFLARE_WORKERS_AI_API_KEY` | [key](https://dash.cloudflare.com/profile/api-tokens) |
 | **Ollama Cloud**<br><sub>Free-tier model set verified live 2026-08-03 by calling them; /v1/models lists the full catalog including subscription-only models</sub> | `https://ollama.com/v1` | `OLLAMA_CLOUD_API_KEY` | [key](https://ollama.com/settings/keys) |

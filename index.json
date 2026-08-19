@@ -966,21 +966,27 @@
       "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
       "source_urls": [
         "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
+        "https://help.ovhcloud.com/csm/en-public-cloud-ai-endpoints-getting-started?id=kb_article_view&sysparm_article=KB0065401",
         "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/"
       ],
       "card_required": false,
-      "offering": "EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible)",
-      "limits": "The anonymous lane is real and it is narrow: a chat-completions POST with no Authorization header answers 429 \"API rate limit exceeded\" rather than 401, so OVH rate-limits unauthenticated callers instead of turning them away (measured 2026-08-14). A free account raises that — OVH states \"Flow limit: 400 requests per minute per project\" for the Base API — and everything past the anonymous lane is metered: the keyless catalog publishes a price for 15 of its 20 models, including gpt-oss-120b at $0.00000047 per completion token, and only the two Qwen3Guard models, the two whisper models and stable-diffusion-xl read zero on both sides",
+      "offering": "EU-hosted serverless open-model API — 24 models, and the anonymous lane needs no signup, no key and no card (OpenAI-compatible)",
+      "limits": "OVHcloud documents the anonymous lane rather than leaving it to be inferred: \"Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model\" (help.ovhcloud.com, read 2026-08-19), and its own product page invites you to \"Try all our models for free\". The keyless calls really do answer — gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B and Qwen3-Coder-30B returned 200 with no Authorization header on 2026-08-19, while Qwen3.5-397B-A17B answered 429 on every attempt — so a 429 here is the quota, not a refusal. The per-token prices in the catalog are what an authenticated project pays: 15 of the 24 models carry one, gpt-oss-120b at $0.00000047 per completion token, and the rows priced zero on both sides are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl. None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes",
       "models": [
-        {
-          "family": "qwen3",
-          "tier": "strong",
-          "released": "2025-04"
-        },
         {
           "family": "gpt-oss",
           "tier": "strong",
           "released": "2025-08"
+        },
+        {
+          "family": "qwen3.6",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "qwen3-coder",
+          "tier": "strong",
+          "released": "2025-07"
         }
       ],
       "api": {
@@ -990,9 +996,9 @@
         "model_ids": [
           "gpt-oss-120b",
           "Qwen3.6-27B",
-          "Qwen3.5-9B"
+          "Qwen3-Coder-30B-A3B-Instruct"
         ],
-        "note": "anonymous, rate-limited; free key raises limits"
+        "note": "no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not that the offer is gone. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on"
       },
       "probe": {
         "type": "api-models",

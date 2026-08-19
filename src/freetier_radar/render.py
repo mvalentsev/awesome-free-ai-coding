@@ -111,12 +111,20 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
 
     Generated rather than typed, so the snippet is archived along with its entry
     instead of sitting on the page as a command that stopped working.
+
+    The entry's api note rides along with it. A keyless lane is keyless because
+    it is rate-limited instead, and the first command in the README is exactly
+    where a reader meets that limit — an unexplained 429 on the one call the
+    page promises reads as "this list is stale", which is the opposite of what
+    it is. The caveat belongs in the registry beside the evidence for it, not
+    typed into the template, or it would outlive the entry it describes.
     """
     for e in connectable:
         if e.api.auth == "none" and e.api.model_ids:
             return {"name": e.name, "url": e.url,
                     "base_url": e.api.base_url.rstrip("/"),
-                    "model_id": e.api.model_ids[0]}
+                    "model_id": e.api.model_ids[0],
+                    "note": e.api.note}
     return None
 
 

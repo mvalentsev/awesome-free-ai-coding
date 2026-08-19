@@ -37,6 +37,9 @@ curl -s {{ quickstart.base_url }}/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model":"{{ quickstart.model_id }}","messages":[{"role":"user","content":"2+2?"}]}'
 ```
+{% if quickstart.note %}
+<sub>{{ quickstart.note }}</sub>
+{% endif %}
 
 {% endif %}
 Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-agent)** — the configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and plain OpenAI SDKs are generated from the same registry and regenerated on every update.

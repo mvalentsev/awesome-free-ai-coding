@@ -193,11 +193,30 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
 
     usable = make(id="k2", name="Keyless", rank=1,
                   api={"base_url": "https://b.example/v1/", "auth": "none",
-                       "model_ids": ["gpt-oss-120b"]})
+                       "model_ids": ["gpt-oss-120b"],
+                       "note": "2 requests per minute, per IP and per model"})
     quickstart = build_context([keyless_no_ids, usable], TODAY)["quickstart"]
     assert quickstart == {"name": "Keyless", "url": "https://x.ai",
                           "base_url": "https://b.example/v1",  # no double slash in the curl
-                          "model_id": "gpt-oss-120b"}
+                          "model_id": "gpt-oss-120b",
+                          # the rate limit that pays for the missing key travels
+                          # with the snippet: the reader meets it on this call
+                          "note": "2 requests per minute, per IP and per model"}
+
+
+def test_quickstart_note_reaches_the_page(tmp_path: Path):
+    """A keyless lane is rate-limited instead of authenticated, and the README's
+    first command is where a reader meets that. The caveat is rendered from the
+    entry rather than typed into the template, so it cannot outlive the entry."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="k2", name="Keyless", rank=1,
+                             api={"base_url": "https://b.example/v1", "auth": "none",
+                                  "model_ids": ["gpt-oss-120b"],
+                                  "note": "2 requests per minute, per IP and per model"})])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    quickstart = text.split("## 🚀 Start in one command")[1].split("Liked it?")[0]
+    assert "2 requests per minute, per IP and per model" in quickstart
 
 
 def test_context_connections():
