@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-17T05:53:53Z</updated>
+  <updated>2026-08-17T05:56:19Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20260817T055619Z</id>
+    <title>Free models changed: BazaarLink</title>
+    <link rel="alternate" href="https://bazaarlink.ai"/>
+    <updated>2026-08-17T05:56:19Z</updated>
+    <summary type="text">dropped deepseek-v4-flash · free models: qwen3.7-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/aihubmix/20260817T055353Z</id>
     <title>New: AIHubMix (free models)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://qoder.com"/>
     <updated>2026-07-22T08:15:54Z</updated>
     <summary type="text">Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/reka/20260722T081554Z</id>
-    <title>New: Reka AI</title>
-    <link rel="alternate" href="https://platform.reka.ai"/>
-    <updated>2026-07-22T08:15:54Z</updated>
-    <summary type="text">Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month · free models: reka-core, reka-flash</summary>
   </entry>
 </feed>
