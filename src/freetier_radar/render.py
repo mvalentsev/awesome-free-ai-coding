@@ -107,7 +107,12 @@ def _row(e: Entry) -> dict[str, str]:
         # see beside the name than in a column of agreement — the section
         # headings carry the count in words.
         "card_flag": " 💳" if e.card_required else "",
-        "verified": e.last_verified.isoformat() + (" 🧪" if e.provisional else ""),
+        # Both markers sit beside the name for the same reason: they are facts
+        # about the row, not values of a column, and the date column is the
+        # narrowest on the page — a second glyph in it wrapped the date onto two
+        # lines in every row that carried one.
+        "new_flag": " 🧪" if e.provisional else "",
+        "verified": e.last_verified.isoformat(),
         # Backticked, because a model id is something the reader will paste into
         # a config rather than read as prose.
         "models": ", ".join(f"`{f}`" for f in fams) if fams else "—",

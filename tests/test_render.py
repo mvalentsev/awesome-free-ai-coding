@@ -123,9 +123,13 @@ def test_provisional_marker_and_flag():
     ctx = build_context([make(name="Prov", provisional=True),
                          make(id="solid", name="Solid")], TODAY)
     section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
-    verified = {r["name"]: r["verified"] for r in section["rows"]}
-    assert verified["Prov"].endswith("🧪")
-    assert verified["Solid"] == TODAY.isoformat()
+    rows = {r["name"]: r for r in section["rows"]}
+    # the marker rides beside the name, where the card marker is; the date
+    # column is the narrowest on the page and a second glyph wrapped it in two
+    assert rows["Prov"]["new_flag"] == " 🧪"
+    assert rows["Prov"]["verified"] == TODAY.isoformat()
+    assert rows["Solid"]["new_flag"] == ""
+    assert rows["Solid"]["verified"] == TODAY.isoformat()
     assert ctx["has_provisional"] is True
     assert build_context([make(id="solid", name="Solid")], TODAY)["has_provisional"] is False
 
