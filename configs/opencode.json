@@ -426,13 +426,10 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "BazaarLink",
       "options": {
-        "baseURL": "https://bazaarlink.ai/api/v1",
+        "baseURL": "https://api.bazaarlink.ai/v1",
         "apiKey": "{env:BAZAARLINK_API_KEY}"
       },
       "models": {
-        "deepseek/deepseek-v4-flash:free": {
-          "name": "deepseek/deepseek-v4-flash:free"
-        },
         "qwen/qwen3.7-flash:free": {
           "name": "qwen/qwen3.7-flash:free"
         },

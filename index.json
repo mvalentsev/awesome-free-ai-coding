@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-17",
+  "generated": "2026-08-19",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -1403,11 +1403,12 @@
       "category": "aggregator",
       "url": "https://bazaarlink.ai",
       "source_urls": [
-        "https://bazaarlink.ai/free"
+        "https://bazaarlink.ai/free",
+        "https://bazaarlink.ai/en/docs"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible LLM gateway, with one always-free open model (Qwen3.7 Flash) and an auto:free router",
-      "limits": "10 req/min and 50 req/day on the free model (×1 without credit, ×2 for accounts that have topped up); other models are metered at list rates",
+      "offering": "OpenAI-compatible gateway to a 183-id catalog with exactly two zero-priced rows — Qwen3.7 Flash and the auto:free router",
+      "limits": "BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the single model it counts as free (\"Free Models Right Now: 1\", read 2026-08-19). Past the quota \"requests on free-quota models continue at the normal paid rate if you have credit; otherwise they are rate-limited until the quota resets\"; everything else in the catalog is metered at list rates. The second free id this entry was registered for is gone — deepseek/deepseek-v4-flash:free left between the 2026-08-13 and 2026-08-17 probes, and only the metered deepseek-v4-flash remains",
       "models": [
         {
           "family": "qwen3.7-flash",
@@ -1416,20 +1417,19 @@
         }
       ],
       "api": {
-        "base_url": "https://bazaarlink.ai/api/v1",
+        "base_url": "https://api.bazaarlink.ai/v1",
         "key_url": "https://bazaarlink.ai/keys",
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "deepseek/deepseek-v4-flash:free",
           "qwen/qwen3.7-flash:free",
           "auto:free"
         ],
-        "note": "only the :free ids and auto:free cost nothing; auto:free picks a free model for you"
+        "note": "only the :free id and auto:free cost nothing — the plain qwen3.7-flash beside it in the catalog is the metered twin ($0.03/$0.13 per 1M). auto:free picks a free model for you, and on a funded account it can fall through to the paid routing table \"unless paid fallback is disabled\""
       },
       "probe": {
         "type": "api-models",
-        "endpoint": "https://bazaarlink.ai/api/v1/models",
+        "endpoint": "https://api.bazaarlink.ai/v1/models",
         "keywords": [],
         "free_marker": ":free",
         "dead_markers": [],
