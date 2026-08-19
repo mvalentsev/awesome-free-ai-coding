@@ -5,8 +5,8 @@ from xml.etree import ElementTree
 from freetier_radar.history import Event
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, build_context,
-    build_env_example, build_feed, build_index, build_litellm_config,
+    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, README_LIMITS_TEASER,
+    build_context, build_env_example, build_feed, build_index, build_litellm_config,
     build_opencode_config, env_var, is_archived, render_artifacts, render_readme,
 )
 
@@ -61,6 +61,45 @@ def test_rank_orders_rows_within_section():
     ctx = build_context(entries, TODAY)
     section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
     assert [r["name"] for r in section["rows"]] == ["Best", "Worst"]
+
+
+def test_a_long_limits_cell_folds_without_losing_a_character():
+    """`limits` carries the vendor's own figures and where they were read, which
+    is the value of the page and also 400 characters in the median row. Folding
+    the tail keeps the table scannable; dropping any of it would not."""
+    short = "20 requests per minute on any :free id, 50 per day."
+    long = ("1,000,000 free tokens per model, valid 90 days after activation. " * 6).strip()
+
+    ctx = build_context([make(id="s", name="S", limits=short),
+                         make(id="l", name="L", limits=long)], TODAY)
+    cells = {r["name"]: r["limits"]
+             for s in ctx["sections"] for r in s["rows"]}
+
+    assert cells["S"] == f"<sub>{short}</sub>"
+    assert "<details>" not in cells["S"]
+
+    folded = cells["L"]
+    assert folded.startswith("<details><summary>") and folded.endswith("</details>")
+    assert long in folded                      # every character survives the fold
+    teaser = folded.split("<sub>")[1].split("</sub>")[0]
+    assert teaser.endswith(" …") and len(teaser) <= README_LIMITS_TEASER + 2
+    assert long.startswith(teaser[:-2])        # a cut on a word boundary, not a summary
+
+
+def test_a_section_counts_itself_and_the_card_free_rows_in_it():
+    entries = [make(id="a", name="A"), make(id="b", name="B"),
+               make(id="c", name="C", card_required=True)]
+    section = next(s for s in build_context(entries, TODAY)["sections"]
+                   if "LLM APIs" in s["title"])
+    assert (section["count"], section["no_card"], section["all_no_card"]) == (3, 2, False)
+
+    free_only = next(s for s in build_context(entries[:2], TODAY)["sections"]
+                     if "LLM APIs" in s["title"])
+    assert free_only["all_no_card"] is True
+    # an empty section claims nothing rather than claiming all of nothing
+    empty = next(s for s in build_context(entries, TODAY)["sections"]
+                 if "Aggregators" in s["title"])
+    assert (empty["count"], empty["all_no_card"]) == (0, False)
 
 
 def test_env_var_naming():

@@ -62,9 +62,11 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 ### {{ s.title }}
 {% if s.rows %}
+<sub>**{{ s.count }}** live · {% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %} · sorted by how much work you can get done for free</sub>
+
 | Tool | What you get | Free models | Limits | Card required | Verified |
 |---|---|---|---|---|---|
-{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})** | {{ r.offering }} | {{ r.models }} | <sub>{{ r.limits }}</sub> | {{ r.card }} | `{{ r.verified }}` |
+{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})** | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | {{ r.card }} | `{{ r.verified }}` |
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}

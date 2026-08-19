@@ -35,6 +35,11 @@ REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
 FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
 FEED_ENTRIES = 50
 README_CHANGES = 10
+# Where a limits cell stops showing and starts folding. The teaser is a cut at a
+# word boundary, so the gap between the two is what keeps a row from folding away
+# a line and a half of text to save half a line.
+README_LIMITS_TEASER = 150
+README_LIMITS_COLLAPSE = 260
 # How many agents the page answers "what do I code with, then?" by name before
 # the reference table starts. Four is what fits above the fold beside the
 # quickstart; the fifth-ranked agent is one section down either way.
@@ -63,13 +68,36 @@ def _families(e: Entry) -> list[str]:
     return live_families(e)
 
 
+def _limits_cell(text: str) -> str:
+    """The quota, and the evidence for it, in one table cell without the wall.
+
+    `limits` is where this list keeps its value — the vendor's own figures,
+    quoted, with the page and the date they were read on. It is also 400
+    characters in the median row and 1,268 in the longest, and six of those in a
+    column turn the table into something nobody scans. Collapsing the tail
+    behind a summary keeps every character and gives the page back its shape.
+
+    The teaser is a cut, not a summary: no sentence is composed here, and the
+    cut lands on a word boundary. It works because these rows are written
+    figure-first — "20 requests per minute on any :free id", "1,000,000 free
+    tokens per model", "15 tasks per rolling 24 hours" — so the number a reader
+    came for survives the cut, and the sourcing behind it is one click away.
+    """
+    if len(text) <= README_LIMITS_COLLAPSE:
+        return f"<sub>{text}</sub>"
+    cut = text.rfind(" ", 0, README_LIMITS_TEASER)
+    teaser = text[:cut if cut > 0 else README_LIMITS_TEASER].rstrip(" ,;:.—-")
+    return (f"<details><summary><sub>{teaser} …</sub></summary>"
+            f"<sub>{text}</sub></details>")
+
+
 def _row(e: Entry) -> dict[str, str]:
     fams = _families(e)
     return {
         "name": e.name,
         "url": e.url,
         "offering": e.offering,
-        "limits": e.limits or "—",
+        "limits": _limits_cell(e.limits) if e.limits else "<sub>—</sub>",
         "card": "💳 Yes" if e.card_required else "✅ No",
         "verified": e.last_verified.isoformat() + (" 🧪" if e.provisional else ""),
         # Backticked, because a model id is something the reader will paste into
@@ -257,12 +285,22 @@ def build_context(entries: list[Entry], today: date,
                   history: list[Event] | None = None) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
-    sections = [
-        {"title": title,
-         "rows": [_row(e) for e in sorted((e for e in active if e.category is cat),
-                                          key=lambda e: (e.rank, e.name.lower()))]}
-        for cat, title in CATEGORY_TITLES.items()
-    ]
+    sections = []
+    for cat, title in CATEGORY_TITLES.items():
+        rows = sorted((e for e in active if e.category is cat),
+                      key=lambda e: (e.rank, e.name.lower()))
+        # Counted here rather than in the template: the "no card" number is the
+        # one a reader is actually shopping for, and a section where it equals
+        # the row count should say so in those words instead of making them
+        # compare two figures.
+        no_card = sum(1 for e in rows if not e.card_required)
+        sections.append({
+            "title": title,
+            "rows": [_row(e) for e in rows],
+            "count": len(rows),
+            "no_card": no_card,
+            "all_no_card": bool(rows) and no_card == len(rows),
+        })
     connectable = _connectable(entries, today)
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
