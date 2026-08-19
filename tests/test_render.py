@@ -52,8 +52,20 @@ def test_build_context_rows():
     assert ctx["date"] == "2026-07-19"
     section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
     assert section["rows"][0]["models"] == "`a`"
-    assert section["rows"][0]["card"] == "✅ No"
+    assert section["rows"][0]["card_flag"] == ""
     assert ctx["archived"] == []
+
+
+def test_a_card_is_marked_where_it_is_asked_for_and_nowhere_else():
+    """39 of 41 rows said "✅ No" in a column of their own. The exception is what
+    a reader needs to see, and it is easier to see beside a name than inside a
+    column of agreement."""
+    ctx = build_context([make(id="free", name="Free"),
+                         make(id="paid", name="Paid", card_required=True)], TODAY)
+    flags = {r["name"]: r["card_flag"]
+             for s in ctx["sections"] for r in s["rows"]}
+    assert flags == {"Free": "", "Paid": " 💳"}
+    assert (ctx["card_count"], ctx["no_card_count"]) == (1, 1)
 
 
 def test_rank_orders_rows_within_section():

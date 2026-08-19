@@ -57,16 +57,16 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 ## 📋 The list
 
-<sub>**Card required** — ✅ No means no card is ever asked for{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand.</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
 {% if s.rows %}
 <sub>**{{ s.count }}** live · {% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %} · sorted by how much work you can get done for free</sub>
 
-| Tool | What you get | Free models | Limits | Card required | Verified |
-|---|---|---|---|---|---|
-{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})** | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | {{ r.card }} | `{{ r.verified }}` |
+| Tool | What you get | Free models | Limits | Verified |
+|---|---|---|---|---|
+{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }} | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | `{{ r.verified }}` |
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}
