@@ -173,9 +173,6 @@
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
         },
-        "zai-glm-4.7": {
-          "name": "zai-glm-4.7"
-        },
         "gemma-4-31b": {
           "name": "gemma-4-31b"
         }

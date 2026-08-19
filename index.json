@@ -189,17 +189,12 @@
       ],
       "card_required": true,
       "offering": "Very fast inference; $5 in trial credits that expire in 30 days, card required before the API answers at all",
-      "limits": "Cerebras' own docs: \"New accounts receive $5 in free credits after adding a verified payment method\", credits \"expire 30 days after they're granted\", and \"If you skip adding a payment method at sign-up, Playground and API access remain inactive until you do\". Asked \"Is there a permanently free tier?\" the same page answers \"No\". Free Trial rate limits are per model — 5 RPM / 30K TPM / 1M TPD on each of the three (read 2026-08-14). The marketing pricing page still promises the credits \"after making an account\" and mentions no card, and that contradiction has an end date: an account opened before the change keeps the old card-free API tier until 2026-08-17, when Cerebras moves it to \"the new free credit-based experience\" where \"you'll be required to add a payment method to unlock $5 in free credits\" — an in-account notice, read on 2026-08-15, that stands on no public page. Two other things land on that same date and are not this one: the catalog's \"Z.ai GLM 4.7 is scheduled for deprecation on August 17, 2026\", so the Models column loses that row, and the rate-limits page promising uncached token limits will be \"visible by August 17, 2026\"",
+      "limits": "Cerebras' own docs: \"New accounts receive $5 in free credits after adding a verified payment method\", credits \"expire 30 days after they're granted\", and \"If you skip adding a payment method at sign-up, Playground and API access remain inactive until you do\". Asked \"Is there a permanently free tier?\" the same page answers \"No\". Free Trial rate limits are per model — 5 RPM / 30K TPM / 1M TPH / 1M TPD on each of the two the public catalog now lists, GLM 4.7 having been deprecated on 2026-08-17 exactly as that catalog announced; the TPM figure is the uncached bucket, and cached tokens run against a separate total limit of 3× it (read 2026-08-19). The marketing pricing page still promises the credits \"after making an account\" and mentions no card — that was the old API tier, which accounts opened before the change kept until 2026-08-17 and which is now gone",
       "models": [
         {
           "family": "gpt-oss",
           "tier": "strong",
           "released": "2025-08"
-        },
-        {
-          "family": "glm-4.7",
-          "tier": "strong",
-          "released": "2026-01"
         },
         {
           "family": "gemma-4",
@@ -214,10 +209,9 @@
         "openai_compatible": true,
         "model_ids": [
           "gpt-oss-120b",
-          "zai-glm-4.7",
           "gemma-4-31b"
         ],
-        "note": "the Free Trial tier reaches every model in the public catalog, which is these three: \"Every model on the public Model Catalog is available on the Free Trial tier, subject to the per-model Free Trial rate limits\""
+        "note": "the Free Trial tier reaches every model in the public catalog, which is these two: \"Every model on the public Model Catalog is available on the Free Trial tier, subject to the per-model Free Trial rate limits\""
       },
       "probe": {
         "type": "page-keywords",

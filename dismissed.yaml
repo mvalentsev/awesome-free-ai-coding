@@ -23,11 +23,11 @@ dismissed:
   # The same mistake, newly reachable: `glm-5` became a family name in this list
   # on 2026-08-14 when AIHubMix was added, because AIHubMix subsidises
   # coding-glm-5*-free and genuinely serves that generation for nothing. It is
-  # the only place here that does. On z.ai, Vercel and Cerebras the GLM-5.x
-  # flagships are metered and the free lane is the Flash line — Cerebras' own
-  # Free Trial table listed gpt-oss-120b, zai-glm-4.7 and gemma-4-31b on
-  # 2026-08-14, with no glm-5 row at all. Each of these five would replace a
-  # verified free family with one nobody has verified as free on that vendor.
+  # the only place here that does. On z.ai and Vercel the GLM-5.x flagships are
+  # metered and the free lane is the Flash line. Each of these four would
+  # replace a verified free family with one nobody has verified as free on that
+  # vendor. A fifth line stood here for cerebras-free glm-4.7 → glm-5 until
+  # Cerebras deprecated GLM 4.7 on 2026-08-17 and the family left that row.
   # Left deliberately un-dismissed from the same run: routeway llama-3.3 →
   # llama-4, which nobody here had checked against Routeway's catalog. Checked
   # on 2026-08-14 and dismissed at the bottom of this file.
@@ -56,13 +56,6 @@ dismissed:
     dismissed_on: 2026-08-14
     reason: >-
       Vercel's zero-priced z.ai row is the Flash model; glm-5 is metered there.
-  - entry: cerebras-free
-    family: glm-4.7
-    superseded_by: glm-5
-    dismissed_on: 2026-08-14
-    reason: >-
-      Cerebras' Free Trial table listed zai-glm-4.7 and no glm-5 row on
-      2026-08-14, and that trial needs a card in any case.
 
   # The two bumps the 2026-08-14 rehearsal offered that were left for a checker.
   # Both are the same error the glm-5 block above describes, arriving by the two
