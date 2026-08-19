@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🚀 Start now](#-start-in-one-command) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
+**[🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 </div>
 
@@ -27,9 +27,20 @@
 
 </div>
 
-## 🚀 Start in one command
+## 🚀 Start here
 
-No account, no key, no card, no waiting — [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) answers this in the terminal you already have open:
+**Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
+
+| Agent | Models you get for nothing |
+|---|---|
+| **[opencode](https://opencode.ai)** | `big-pickle` · `deepseek-v4-flash` · `mimo-v2.5` · `hy3` · `laguna-s-2.1` · `nemotron-3-ultra` · `nemotron-3.5-lightning` |
+| **[Kilo Code](https://kilo.ai)** | `nemotron-3-ultra` · `nemotron-3-super` · `north-mini-code` · `step-3.7-flash` · `laguna-s-2.1` · `laguna-xs-2.1` |
+| **[Google Antigravity](https://antigravity.google)** | `gemini-3.1-pro` · `gemini-3.5-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss` |
+| **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | `gpt-5.6` |
+
+<sub>Every model name above is read back from the vendor's own API or pricing page twice a week, and the quota that comes with it is in the [table below](#-coding-agents--clis).</sub>
+
+**No account at all?** [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 
 ```bash
 curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \

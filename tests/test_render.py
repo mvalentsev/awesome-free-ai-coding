@@ -215,8 +215,48 @@ def test_quickstart_note_reaches_the_page(tmp_path: Path):
                                   "model_ids": ["gpt-oss-120b"],
                                   "note": "2 requests per minute, per IP and per model"})])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("## 🚀 Start in one command")[1].split("Liked it?")[0]
+    quickstart = text.split("No account at all?")[1].split("Liked it?")[0]
     assert "2 requests per minute, per IP and per model" in quickstart
+    # and it is framed as the demo it is, never as the way to work
+    assert "not a setup to write code on" in quickstart
+
+
+def test_starters_answer_what_to_code_with_before_the_reference_table(tmp_path: Path):
+    """The page opened on the keyless curl alone, which is the weakest offer on
+    it — a demo capped at a couple of requests a minute. What a reader wants
+    first is the agents that run on a $0 plan and the models they hand over, and
+    the registry already knows both."""
+    from freetier_radar.models import save_registry
+    agent = dict(category="agent-cli", api={"base_url": "https://b.example/v1"})
+    entries = [
+        make(id="second", name="Second", rank=20, **{**agent, "models": [{"family": "m-2"}]}),
+        make(id="first", name="First", rank=10, **{**agent, "models": [{"family": "m-1"}]}),
+        # free and good and silent about its models — nothing to put in the row
+        make(id="modelless", name="Modelless", rank=15, **agent),
+        # a card is the one thing this block promises nobody needs
+        make(id="paid", name="Paid", rank=1, card_required=True,
+             **{**agent, "models": [{"family": "m-3"}]}),
+        # an API is not an agent: it answers a different question, further down
+        make(id="api", name="Api", rank=1, models=[{"family": "m-4"}]),
+    ]
+    starters = build_context(entries, TODAY)["starters"]
+    assert [s["name"] for s in starters] == ["First", "Second"]
+    assert starters[0]["families"] == ["m-1"]
+
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
+    assert "`m-1`" in hero and "`m-2`" in hero
+    assert "Paid" not in hero and "Modelless" not in hero
+
+
+def test_starters_are_capped_and_ordered_by_rank():
+    """Four is what fits above the fold; the rest are one section down anyway."""
+    entries = [make(id=f"a{i}", name=f"A{i}", rank=i, category="agent-cli",
+                    models=[{"family": f"m-{i}"}]) for i in range(9, 0, -1)]
+    starters = build_context(entries, TODAY)["starters"]
+    assert [s["name"] for s in starters] == ["A1", "A2", "A3", "A4"]
 
 
 def test_context_connections():

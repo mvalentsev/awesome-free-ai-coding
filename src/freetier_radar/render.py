@@ -14,7 +14,7 @@ from .models import (ARCHIVE_AFTER_DAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS
                      Entry, Watched, is_archived, is_watch_current, live_families,
                      load_registry, load_watchlist)
 
-__all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES",
+__all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "README_STARTERS",
            "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "env_var",
            "render_readme", "render_artifacts", "main"]
@@ -35,6 +35,10 @@ REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
 FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
 FEED_ENTRIES = 50
 README_CHANGES = 10
+# How many agents the page answers "what do I code with, then?" by name before
+# the reference table starts. Four is what fits above the fold beside the
+# quickstart; the fifth-ranked agent is one section down either way.
+README_STARTERS = 4
 
 # What each event is called where a human reads it. The feed titles stand alone
 # in a reader's inbox, so they name the thing that happened; the README labels
@@ -103,6 +107,28 @@ def _model_index(active: list[Entry]) -> list[dict]:
                        for p in sorted(ps, key=lambda p: (p.rank, p.name.lower()))]}
         for family, ps in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))
     ]
+
+
+def _starters(active: list[Entry]) -> list[dict]:
+    """The agents a reader can code with today, named before the reference table.
+
+    The page used to open on the keyless curl alone, and that reads as an offer:
+    the one lane on this list that needs no account is also the weakest thing on
+    it — a demo rate-limited to a couple of requests a minute — so the first
+    impression of "free AI coding" became a toy nobody would write code with.
+    The answer to "what do I actually use?" is the agents that run on a $0 plan,
+    and it is already in the registry: category, `rank` (the maintainer's order
+    within it), `card_required`, and the model families a probe re-reads twice a
+    week. Nothing here is typed by hand, so the promise cannot outlive the row.
+
+    A row with no families is skipped rather than ranked down. CodeGPT and Charm
+    Hyper are free and good and say nothing about which models they route to,
+    and the whole point of this block is naming models.
+    """
+    rows = [e for e in active
+            if e.category is Category.AGENT_CLI and not e.card_required and live_families(e)]
+    return [{"name": e.name, "url": e.url, "families": live_families(e)}
+            for e in sorted(rows, key=lambda e: (e.rank, e.name.lower()))[:README_STARTERS]]
 
 
 def _quickstart(connectable: list[Entry]) -> dict | None:
@@ -261,6 +287,7 @@ def build_context(entries: list[Entry], today: date,
             "no_signup_count": sum(1 for e in connectable if e.api.auth == "none"),
             "endpoint_count": len(connections),
             "model_index": _model_index(active),
+            "starters": _starters(active),
             "quickstart": _quickstart(connectable),
             # The answer to "why isn't X here?", which a list like this is asked
             # more often than anything else. Rendered from the same file the

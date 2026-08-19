@@ -76,6 +76,23 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(f"registry: duplicate {field} {v!r}")
             seen.add(v)
 
+    # One family, one tier. The scout assigns the tier per proposal and nothing
+    # ever compared two rows, so the same model could be frontier on one vendor
+    # and strong on the next — nemotron-3-ultra was, across four rows, until
+    # 2026-08-19. It reads as a judgement about the vendor when it is a
+    # judgement about the model, and any page that ever sorts by it would sort
+    # the same model two ways.
+    tiers: dict[str, tuple[str, str]] = {}
+    for e in entries:
+        for m in e.models:
+            first = tiers.get(m.family)
+            if first is None:
+                tiers[m.family] = (m.tier.value, e.id)
+            elif first[0] != m.tier.value:
+                problems.append(
+                    f"registry: family {m.family!r} is {first[0]} on {first[1]} and "
+                    f"{m.tier.value} on {e.id} — a family carries one tier")
+
     for e in entries:
         if e.last_verified > today:
             problems.append(f"registry: {e.id} last_verified {e.last_verified} is in the future")

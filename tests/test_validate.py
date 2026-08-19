@@ -101,6 +101,25 @@ def test_duplicate_ids_urls_and_base_urls_are_caught(tmp_path: Path):
     assert any("duplicate api.base_url" in p for p in problems)
 
 
+def test_one_family_carries_one_tier(tmp_path: Path):
+    """The scout assigns a tier per proposal, so the same model arrived frontier
+    on one vendor and strong on the next — a judgement about the model recorded
+    as a judgement about the vendor."""
+    root = build(tmp_path, entries=[
+        {**ENTRY, "models": [{"family": "nemotron-3-ultra", "tier": "frontier"}]},
+        {**ENTRY, "id": "y", "url": "https://y.ai",
+         "models": [{"family": "nemotron-3-ultra", "tier": "strong"}]},
+    ])
+    assert any("a family carries one tier" in p for p in check(root, TODAY))
+
+    agreeing = build(tmp_path, entries=[
+        {**ENTRY, "models": [{"family": "nemotron-3-ultra", "tier": "frontier"}]},
+        {**ENTRY, "id": "y", "url": "https://y.ai",
+         "models": [{"family": "nemotron-3-ultra", "tier": "frontier"}]},
+    ])
+    assert check(agreeing, TODAY) == []
+
+
 def test_a_dismissal_that_matches_nothing_is_dead_weight(tmp_path: Path):
     root = build(tmp_path, dismissed=[
         {"entry": "ghost", "family": "a", "superseded_by": "b"},

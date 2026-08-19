@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🚀 Start now](#-start-in-one-command) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
+**[🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 </div>
 
@@ -27,10 +27,21 @@
 
 </div>
 
-## 🚀 Start in one command
+## 🚀 Start here
 
+{% if starters %}
+**Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
+
+| Agent | Models you get for nothing |
+|---|---|
+{% for s in starters %}| **[{{ s.name }}]({{ s.url }})** | {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %} |
+{% endfor %}
+
+<sub>Every model name above is read back from the vendor's own API or pricing page twice a week, and the quota that comes with it is in the [table below](#-coding-agents--clis).</sub>
+
+{% endif %}
 {% if quickstart %}
-No account, no key, no card, no waiting — [{{ quickstart.name }}]({{ quickstart.url }}) answers this in the terminal you already have open:
+**No account at all?** [{{ quickstart.name }}]({{ quickstart.url }}) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 
 ```bash
 curl -s {{ quickstart.base_url }}/chat/completions \

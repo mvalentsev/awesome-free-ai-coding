@@ -21,7 +21,7 @@ entries:
     tier: strong
     released: 2025-08
   - family: nemotron-3-ultra
-    tier: strong
+    tier: frontier
     released: 2026-03
   - family: gemma-4
     tier: strong
@@ -410,7 +410,7 @@ entries:
     tier: strong
     released: ''
   - family: nemotron-3-ultra
-    tier: strong
+    tier: frontier
     released: ''
   - family: nemotron-3.5-lightning
     tier: strong
