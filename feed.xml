@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-20T05:50:17Z</updated>
+  <updated>2026-08-20T05:54:27Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20260820T055427Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-08-20T05:54:27Z</updated>
+    <summary type="text">dropped laguna-s-2.1 · free models: big-pickle, deepseek-v4-flash, mimo-v2.5, hy3, nemotron-3-ultra, nemotron-3.5-lightning</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260820T055427Z</id>
+    <title>Free models changed: Vercel AI Gateway</title>
+    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
+    <updated>2026-08-20T05:54:27Z</updated>
+    <summary type="text">dropped glm-4.6v-flash · free models: laguna-s-2.1</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cerebras-free/20260820T055017Z</id>
     <title>Free models changed: Cerebras Inference</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://hyper.charm.land"/>
     <updated>2026-07-22T08:15:54Z</updated>
     <summary type="text">Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/cohere/20260722T081554Z</id>
-    <title>New: Cohere (trial keys)</title>
-    <link rel="alternate" href="https://cohere.com"/>
-    <updated>2026-07-22T08:15:54Z</updated>
-    <summary type="text">Cohere Command models via free trial API keys that never expire · free models: command-a</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/deepseek/20260722T081554Z</id>
-    <title>New: DeepSeek Platform</title>
-    <link rel="alternate" href="https://platform.deepseek.com"/>
-    <updated>2026-07-22T08:15:54Z</updated>
-    <summary type="text">Official DeepSeek API; every new account gets a one-time free token grant, no card required · free models: deepseek-chat, deepseek-reasoner</summary>
   </entry>
 </feed>

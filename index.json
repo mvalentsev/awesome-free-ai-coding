@@ -434,11 +434,6 @@
           "released": ""
         },
         {
-          "family": "laguna-s-2.1",
-          "tier": "strong",
-          "released": ""
-        },
-        {
           "family": "nemotron-3-ultra",
           "tier": "frontier",
           "released": ""
@@ -758,18 +753,6 @@
           "family": "qwen3-coder",
           "tier": "strong",
           "released": ""
-        },
-        {
-          "family": "deepseek-v3.2",
-          "tier": "strong",
-          "released": "",
-          "superseded_by": "deepseek-v4-flash"
-        },
-        {
-          "family": "minimax-2.1",
-          "tier": "strong",
-          "released": "",
-          "superseded_by": "minimax-3"
         }
       ],
       "probe": {
@@ -1366,11 +1349,6 @@
           "family": "laguna-s-2.1",
           "tier": "strong",
           "released": "2026-07"
-        },
-        {
-          "family": "glm-4.6v-flash",
-          "tier": "strong",
-          "released": "2026-01"
         }
       ],
       "api": {

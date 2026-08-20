@@ -406,9 +406,6 @@ entries:
   - family: hy3
     tier: strong
     released: ''
-  - family: laguna-s-2.1
-    tier: strong
-    released: ''
   - family: nemotron-3-ultra
     tier: frontier
     released: ''
@@ -721,14 +718,6 @@ entries:
   - family: qwen3-coder
     tier: strong
     released: ''
-  - family: deepseek-v3.2
-    tier: strong
-    released: ''
-    superseded_by: deepseek-v4-flash
-  - family: minimax-2.1
-    tier: strong
-    released: ''
-    superseded_by: minimax-3
   probe:
     type: page-keywords
     endpoint: https://kiro.dev/pricing/
@@ -1280,9 +1269,6 @@ entries:
   - family: laguna-s-2.1
     tier: strong
     released: 2026-07
-  - family: glm-4.6v-flash
-    tier: strong
-    released: 2026-01
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
