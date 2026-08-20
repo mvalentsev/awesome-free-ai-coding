@@ -23,11 +23,6 @@ model_list:
     model: openai/big-pickle
     api_base: https://opencode.ai/zen/v1
     api_key: os.environ/OPENCODE_API_KEY
-- model_name: opencode/deepseek-v4-flash-free
-  litellm_params:
-    model: openai/deepseek-v4-flash-free
-    api_base: https://opencode.ai/zen/v1
-    api_key: os.environ/OPENCODE_API_KEY
 - model_name: opencode/mimo-v2.5-free
   litellm_params:
     model: openai/mimo-v2.5-free
@@ -38,11 +33,6 @@ model_list:
     model: openai/hy3-free
     api_base: https://opencode.ai/zen/v1
     api_key: os.environ/OPENCODE_API_KEY
-- model_name: opencode/laguna-s-2.1-free
-  litellm_params:
-    model: openai/laguna-s-2.1-free
-    api_base: https://opencode.ai/zen/v1
-    api_key: os.environ/OPENCODE_API_KEY
 - model_name: opencode/nemotron-3-ultra-free
   litellm_params:
     model: openai/nemotron-3-ultra-free
@@ -51,6 +41,11 @@ model_list:
 - model_name: opencode/nemotron-3.5-lightning-free
   litellm_params:
     model: openai/nemotron-3.5-lightning-free
+    api_base: https://opencode.ai/zen/v1
+    api_key: os.environ/OPENCODE_API_KEY
+- model_name: opencode/muse-spark-1.2-contributor-free
+  litellm_params:
+    model: openai/muse-spark-1.2-contributor-free
     api_base: https://opencode.ai/zen/v1
     api_key: os.environ/OPENCODE_API_KEY
 - model_name: openrouter-free/openrouter/free
@@ -371,11 +366,6 @@ model_list:
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-- model_name: vercel-ai-gateway/zai/glm-4.6v-flash
-  litellm_params:
-    model: openai/zai/glm-4.6v-flash
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
 - model_name: alibaba-model-studio/qwen3-max

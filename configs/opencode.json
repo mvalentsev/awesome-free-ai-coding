@@ -31,23 +31,20 @@
         "big-pickle": {
           "name": "big-pickle"
         },
-        "deepseek-v4-flash-free": {
-          "name": "deepseek-v4-flash-free"
-        },
         "mimo-v2.5-free": {
           "name": "mimo-v2.5-free"
         },
         "hy3-free": {
           "name": "hy3-free"
         },
-        "laguna-s-2.1-free": {
-          "name": "laguna-s-2.1-free"
-        },
         "nemotron-3-ultra-free": {
           "name": "nemotron-3-ultra-free"
         },
         "nemotron-3.5-lightning-free": {
           "name": "nemotron-3.5-lightning-free"
+        },
+        "muse-spark-1.2-contributor-free": {
+          "name": "muse-spark-1.2-contributor-free"
         }
       }
     },
@@ -350,9 +347,6 @@
       "models": {
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
-        },
-        "zai/glm-4.6v-flash": {
-          "name": "zai/glm-4.6v-flash"
         }
       }
     },

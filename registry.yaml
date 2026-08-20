@@ -377,27 +377,29 @@ entries:
   - https://opencode.ai/docs/zen/
   - https://opencode.ai/docs/
   card_required: false
-  offering: Open-source TUI/desktop coding agent with seven zero-priced models included
-    via the opencode Zen gateway (Big Pickle, DeepSeek V4 Flash, MiMo-V2.5, Hy3, Laguna
-    S 2.1, Nemotron 3 Ultra, Nemotron 3.5 Lightning); any provider via BYOK too
-  limits: 'Zen prices seven ids at zero — big-pickle, deepseek-v4-flash-free, mimo-v2.5-free,
-    hy3-free, laguna-s-2.1-free, nemotron-3-ultra-free and nemotron-3.5-lightning-free
-    — and calls every one of them "available on OpenCode for a limited time" while
-    the team collects feedback. That feedback is the price: the privacy section exempts
-    each free model from Zen''s zero-retention policy ("during its free period, collected
-    data may be used to improve the model"), and the two NVIDIA-backed ones are "trial
-    use only — do not submit personal or confidential data". Mind the suffix: plain
-    deepseek-v4-flash is the paid row at $0.14/$0.28 per 1M tokens. Zen documents
-    signup as "sign in to OpenCode Zen, add your billing details, and copy your API
-    key", but the free ids answer without payment details on file — tested by hand
-    rather than read, 2026-08-15. Billing is what the metered ids want, and once it
-    is on, auto-reload tops the balance up by $20 whenever it falls below $5 (read
-    2026-08-14)'
+  offering: Open-source TUI/desktop coding agent with six zero-priced models included
+    via the opencode Zen gateway (Big Pickle, MiMo-V2.5, Hy3, Nemotron 3 Ultra, Nemotron
+    3.5 Lightning, Muse Spark 1.2 Contributor); any provider via BYOK too
+  limits: 'Zen prices six ids at zero — big-pickle, mimo-v2.5-free, hy3-free, nemotron-3-ultra-free,
+    nemotron-3.5-lightning-free and muse-spark-1.2-contributor-free — and calls every
+    one of them "available on OpenCode for a limited time" while the team collects
+    feedback. That feedback is the price: the privacy section exempts each free model
+    from Zen''s zero-retention policy ("during its free period, collected data may
+    be used to improve the model"), the two NVIDIA-backed ones are "trial use only
+    — do not submit personal or confidential data", and the newest buys its zero with
+    training rights — "heavily discounted token pricing in exchange for permission
+    to use your prompts and completions to train future Meta models", on a row the
+    pricing table still prints as Free in and Free out. Mind the suffix: plain muse-spark-1.2
+    is the paid row at $1.25/$4.25 per 1M tokens. Two ids left the free table by the
+    2026-08-20 read — deepseek-v4-flash is now metered at $0.22/$0.66 off-peak and
+    $0.44/$1.32 peak, and laguna-s-2.1 is off the page entirely — though both -free
+    ids are still in the catalog. Zen documents signup as "sign in to OpenCode Zen,
+    add your billing details, and copy your API key", but the free ids answer without
+    payment details on file — tested by hand rather than read, 2026-08-15. Billing
+    is what the metered ids want, and once it is on, auto-reload tops the balance
+    up by $20 whenever it falls below $5 (read 2026-08-20)'
   models:
   - family: big-pickle
-    tier: strong
-    released: ''
-  - family: deepseek-v4-flash
     tier: strong
     released: ''
   - family: mimo-v2.5
@@ -412,6 +414,9 @@ entries:
   - family: nemotron-3.5-lightning
     tier: strong
     released: ''
+  - family: muse-spark-1.2
+    tier: strong
+    released: ''
   api:
     base_url: https://opencode.ai/zen/v1
     key_url: https://opencode.ai/auth
@@ -419,15 +424,16 @@ entries:
     openai_compatible: true
     model_ids:
     - big-pickle
-    - deepseek-v4-flash-free
     - mimo-v2.5-free
     - hy3-free
-    - laguna-s-2.1-free
     - nemotron-3-ultra-free
     - nemotron-3.5-lightning-free
-    note: these are the seven ids Zen prices at zero; inside an opencode config the
+    - muse-spark-1.2-contributor-free
+    note: these are the six ids Zen prices at zero; inside an opencode config the
       same id is written opencode/<model-id>. Every other id on the same base URL
-      is metered
+      is metered. The catalog also still returns deepseek-v4-flash-free and laguna-s-2.1-free,
+      which the pricing table stopped listing at zero — treat them as metered until
+      it says otherwise
   probe:
     type: page-keywords
     endpoint: https://opencode.ai/docs/zen/
@@ -630,32 +636,37 @@ entries:
   category: trial
   url: https://github.com/features/copilot
   source_urls:
-  - https://docs.github.com/en/copilot/concepts/billing/individual-plans
   - https://docs.github.com/en/copilot/get-started/plans
+  - https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals
   card_required: false
   offering: Free Copilot plan for individual developers in VS Code, JetBrains, Visual
     Studio and CLI; completions, limited chat and agent usage
-  limits: '"Up to 2,000 per month" real-time code suggestions, and for everything
-    agentic an "allowance of GitHub AI Credits" that GitHub quantifies for every paid
-    plan — 1,500 monthly credits on Pro, 7,000 on Pro+, 20,000 on Max — and leaves
-    unnumbered for Free, whose cell reads only "Limited (auto model selection only)".
-    Model choice is not offered. GitHub scopes the plan to "personal use only, not
-    for users managed by an organization or enterprise", and lists what it withholds
-    from business use: access management, audit logs, policy management, file exclusion,
-    usage data and indemnification coverage (read 2026-08-14)'
+  limits: 'GitHub folded its Copilot billing-concepts page into the plans page on
+    or before 2026-08-20 and restated the figures there. Inline suggestions are "limited
+    to 2000 completions per month on Copilot Free"; for everything agentic, "Copilot
+    Free and Copilot Student both have an allowance of AI credits" — an allowance
+    GitHub numbers for every paid plan (1,500 monthly credits on Pro, 7,000 on Pro+,
+    20,000 on Max) and leaves unnumbered for Free, whose row in the plans table reads
+    only "An allowance of GitHub AI Credits" and "Limited" agents. Model choice is
+    not offered: "on Copilot Free and Copilot Student plans, access to models is available
+    through auto model selection only". The plan is still scoped to developers no
+    employer covers — "Copilot Free plans are only available to individual developers
+    who don''t have access to Copilot through an organization or enterprise" — but
+    the list of business features it withholds went with the old page and is not on
+    this one (read 2026-08-20)'
   models: []
   probe:
     type: page-keywords
-    endpoint: https://docs.github.com/en/copilot/concepts/billing/individual-plans
+    endpoint: https://docs.github.com/en/copilot/get-started/plans
     keywords:
-    - 2,000 code completions
-    - no subscription or payment required
+    - 2000 completions per month
+    - Copilot Free and Copilot Student both have an allowance of AI credits
     free_marker: ''
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-08-17'
-  probe_failures: 1
+  last_verified: '2026-08-20'
+  probe_failures: 0
   provisional: false
   rank: 10
 - id: google-jules
@@ -716,6 +727,12 @@ entries:
     tier: strong
     released: ''
   - family: qwen3-coder
+    tier: strong
+    released: ''
+  - family: deepseek-v3.2
+    tier: strong
+    released: ''
+  - family: minimax-2.1
     tier: strong
     released: ''
   probe:
@@ -1257,14 +1274,15 @@ entries:
   - https://vercel.com/docs/ai-gateway/openai-compat
   card_required: false
   offering: One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits
-    included every month and two models that never touch the credit
-  limits: $5/month credit at provider list rates, renewed monthly; lower per-model
-    rate limits, no BYOK. Exactly two of the 327 catalogued models are priced 0 in
-    and 0 out — Laguna S 2.1 Free for coding and z.ai's GLM-4.6V-Flash for vision
-    (128k context, images and PDFs, tool use) — and neither draws the credit down.
-    Mind the suffix on the first one, since the same catalog carries poolside/laguna-s-2.1
-    without it at $0.10/$0.20 per 1M tokens (read 2026-08-14). Buying credits ends
-    the monthly free credit
+    included every month and one model that never touches the credit
+  limits: '$5/month credit at provider list rates, renewed monthly; lower per-model
+    rate limits, no BYOK. Exactly one of the 350 catalogued models is a chat model
+    priced 0 in and 0 out — poolside''s Laguna S 2.1 Free — and it does not draw the
+    credit down; the only other zero row is xai/grok-stt, which is speech-to-text.
+    z.ai''s GLM-4.6V-Flash, free here until it left the catalog by the 2026-08-20
+    read, is gone: the 14 GLM rows that remain are all priced. Mind the suffix, since
+    the same catalog carries poolside/laguna-s-2.1 without it at $0.10/$0.20 per 1M
+    tokens (read 2026-08-20). Buying credits ends the monthly free credit'
   models:
   - family: laguna-s-2.1
     tier: strong
@@ -1276,13 +1294,11 @@ entries:
     openai_compatible: true
     model_ids:
     - poolside/laguna-s-2.1-free
-    - zai/glm-4.6v-flash
-    note: both ids cost nothing; any other Free-Tier-eligible model spends the $5
-      monthly credit. glm-4.6v-flash is zero here because z.ai prices it at zero itself
-      — its own table reads Free on all four columns while every neighbour reads "Limited-time
-      Free" — so this is a vendor policy rather than a gateway promo lane. inclusionai/ling-3.0-flash-free
-      left the catalog in 2026-08 and the ling-3.0-tiny-free standing where it was
-      publishes an empty pricing object, so nothing there says it is free
+    note: this id costs nothing; any other Free-Tier-eligible model spends the $5
+      monthly credit. zai/glm-4.6v-flash was the second one until it left the catalog
+      by the 2026-08-20 read. inclusionai/ling-3.0-flash-free left in 2026-08 too,
+      and the ling-3.0-tiny-free standing where it was publishes an empty pricing
+      object, so nothing there says it is free
   probe:
     type: api-models
     endpoint: https://ai-gateway.vercel.sh/v1/models
@@ -1291,8 +1307,8 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-03'
-  last_verified: '2026-08-17'
-  probe_failures: 1
+  last_verified: '2026-08-20'
+  probe_failures: 0
   provisional: false
   rank: 50
 - id: bazaarlink
