@@ -650,6 +650,40 @@ async def test_a_version_ending_a_sentence_still_names_its_family():
 
 
 @respx.mock
+async def test_a_version_the_vendor_prefixes_with_a_letter_still_names_its_family():
+    """The live regression this rule was written for. On 2026-08-14 Kiro's
+    pricing page listed its free-tier models as "DeepSeek v3.2 and MiniMax 2.1.";
+    on 2026-08-20 the same sentence about the same free tier read "DeepSeek 3.2,
+    and MiniMax M2.1". Nothing was withdrawn — a caption was retyped — but both
+    families went unnamed, and the scout turned that into a PR deleting them."""
+    entry = listing_entry()
+    entry.models = [entry.models[0].model_copy(update={"family": f})
+                    for f in ("deepseek-v3.2", "minimax-2.1")]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder, free tier, no credit card. Users on the Free Tier "
+                  "have access to open weight models such as DeepSeek 3.2, and MiniMax M2.1."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_letter_never_carries_a_bare_version_number():
+    """The relaxation stops at the dot. A generation written "2.1" is specific
+    enough to survive a vendor gluing an M to it; a bare "5" is not, and letting
+    a letter carry it would hand glm-5 every hashed h5 in the markup after a
+    GLM — undoing the left anchor two tests above."""
+    entry = listing_entry()
+    entry.models = [entry.models[0].model_copy(update={"family": "glm-5"})]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder, free tier, no credit card. "
+                  "GLM models are sold by the token.<span class=h5></span>"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS and "glm-5" in result.detail
+
+
+@respx.mock
 async def test_a_family_named_only_in_the_page_data_is_evidenced():
     """Read against the same bytes the keywords are: a name the vendor serves
     inside its page data is served. Whether it is named AS FREE is a stronger

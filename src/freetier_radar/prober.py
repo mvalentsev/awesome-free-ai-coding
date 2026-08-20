@@ -392,13 +392,47 @@ def _named_in_parts(family: str, text: str) -> bool:
     too would unname minimax-2.1, which that same page writes at the end of a
     sentence as "MiniMax 2.1.". Measured against every live page-keywords entry
     on 2026-08-14: no family this repository publishes changes verdict.
+
+    The letter in front of a version number is the vendor's, and it moves. On
+    2026-08-20 the same Kiro page restyled the free-tier footnote it had written
+    as "DeepSeek v3.2 and MiniMax 2.1." into "DeepSeek 3.2, and MiniMax M2.1" —
+    same two models, same sentence, same free tier, and both families unnamed
+    for this function. That is not a Models column going stale, it is a caption
+    being retyped, and it reached a scout PR proposing to delete two models the
+    vendor still hands out for free. So a version part is matched through
+    _version_pattern, which lets that prefix letter differ on either side.
+    Measured the same way on 2026-08-20, across all 18 live page-keywords
+    entries that publish a family: kiro is the only verdict that moves, and it
+    moves to none.
     """
     parts = [p for p in re.split(r"[\s_-]+", family.lower()) if p]
     if len(parts) < 2:
         return False
     spread = r"[^\n]{0,%d}?" % NAME_SPREAD
-    anchored = (r"(?<![\w.])" + re.escape(p) for p in parts)
+    anchored = (r"(?<![\w.])" + (_version_pattern(p) or re.escape(p)) for p in parts)
     return re.search(spread.join(anchored), text) is not None
+
+
+# A generation number the vendor may or may not put a letter in front of:
+# "v3.2", "3.2" and "M2.1" are one part each, and the letter is the vendor's.
+# The dot is required. A bare number carries no letter here, because a hashed
+# "h5" in minified markup would then name glm-5 for any page that says GLM
+# nearby — the exact failure the left anchor in _named_in_parts exists to stop,
+# walked back in through the number.
+DOTTED_VERSION = re.compile(r"[a-z]?(\d+(?:\.\d+)+)")
+
+
+def _version_pattern(part: str) -> str | None:
+    """How a dotted version part may be spelled, or None for any other part.
+
+    Three vendors write one generation three ways — "v3.2", "3.2", "M2.1" — and
+    the registry has to write it once, so the prefix letter is optional on both
+    sides. Nothing else about the part is relaxed: "2.1" still has to start
+    where a name starts, and still has to sit within NAME_SPREAD of the part
+    before it.
+    """
+    match = DOTTED_VERSION.fullmatch(part)
+    return None if match is None else r"[a-z]?" + re.escape(match.group(1))
 
 
 def is_model_stale(entry: Entry) -> bool:
