@@ -24,13 +24,15 @@ dismissed:
   # on 2026-08-14 when AIHubMix was added, because AIHubMix subsidises
   # coding-glm-5*-free and genuinely serves that generation for nothing. It is
   # the only place here that does. On z.ai and Vercel the GLM-5.x flagships are
-  # metered and the free lane is the Flash line. Each of these four would
+  # metered and the free lane is the Flash line. Each of these three would
   # replace a verified free family with one nobody has verified as free on that
-  # vendor. A fifth line stood here for cerebras-free glm-4.7 → glm-5 until
-  # Cerebras deprecated GLM 4.7 on 2026-08-17 and the family left that row.
-  # Left deliberately un-dismissed from the same run: routeway llama-3.3 →
-  # llama-4, which nobody here had checked against Routeway's catalog. Checked
-  # on 2026-08-14 and dismissed at the bottom of this file.
+  # vendor. Two more lines stood here and went the same way, the family leaving
+  # the row and taking its dismissal with it: cerebras-free glm-4.7 → glm-5,
+  # until Cerebras deprecated GLM 4.7 on 2026-08-17, and vercel-ai-gateway
+  # glm-4.6v-flash → glm-5, until that model left Vercel's catalog by
+  # 2026-08-20. Left deliberately un-dismissed from the same run: routeway
+  # llama-3.3 → llama-4, which nobody here had checked against Routeway's
+  # catalog. Checked on 2026-08-14 and dismissed at the bottom of this file.
   - entry: zai-glm
     family: glm-4.5-flash
     superseded_by: glm-5
@@ -50,12 +52,6 @@ dismissed:
     reason: >-
       The 2026-08-04 dismissal with the same reasoning, retargeted: the scout
       now names the family glm-5 rather than glm-5.2.
-  - entry: vercel-ai-gateway
-    family: glm-4.6v-flash
-    superseded_by: glm-5
-    dismissed_on: 2026-08-14
-    reason: >-
-      Vercel's zero-priced z.ai row is the Flash model; glm-5 is metered there.
 
   # The two bumps the 2026-08-14 rehearsal offered that were left for a checker.
   # Both are the same error the glm-5 block above describes, arriving by the two
@@ -73,6 +69,26 @@ dismissed:
       api.routeway.ai/v1/models on 2026-08-14). A catalog a row can reach is
       not the same as the lane that row is listed for.
   - entry: kiro
+    family: deepseek-v3.2
+    superseded_by: deepseek-v4-flash
+    dismissed_on: 2026-08-20
+    reason: >-
+      Applied once, in PR #3, and wrong from the start: kiro.dev/pricing names
+      neither DeepSeek V4 nor any 4.x DeepSeek, free or paid. What it does name,
+      in the footnote under its Free Tier column, is "open weight models such as
+      Qwen3 Coder Next, DeepSeek 3.2, and MiniMax M2.1", and kiro.dev/docs/models
+      ticks the same two in its Free column. The mark pointed at a generation
+      this vendor does not carry, and its only effect was to hide a free model
+      from the row.
+  - entry: kiro
+    family: minimax-2.1
+    superseded_by: minimax-3
+    dismissed_on: 2026-08-20
+    reason: >-
+      The same mark on the same row for the same reason. MiniMax M3 is not on
+      kiro.dev/pricing at all; M2.5 is, on the paid side, and M2.1 is what the
+      free footnote grants.
+  - entry: kiro
     family: claude-sonnet-4.5
     superseded_by: claude-sonnet-4.6
     dismissed_on: 2026-08-14
@@ -84,9 +100,11 @@ dismissed:
       its FAQ prose says Sonnet 4.6 — so this bump will be proposed again from
       that page every run, which is what this file is for.
 
-  # Three of the six bumps the 2026-08-14 rehearsal on b4e0b3b offered, each
-  # checked against the vendor rather than against the proposal. The other
-  # three were left standing because nobody has read their pages today:
+  # Two of the six bumps the 2026-08-14 rehearsal on b4e0b3b offered, each
+  # checked against the vendor rather than against the proposal. A third,
+  # vercel-ai-gateway glm-4.6v-flash → glm-4.7, stood here until the model it
+  # protected left Vercel's catalog by 2026-08-20. The other three were left
+  # standing because nobody has read their pages today:
   # zai-glm glm-4.5-flash → glm-4.6v-flash and glm-4.6v-flash → glm-4.7, both
   # inside z.ai's own Flash line, and upstage solar-mini → solar-pro-3, where
   # the row already lists both families.
@@ -110,12 +128,3 @@ dismissed:
       OpenAPI schema it embeds, while the Free Plan Limits table it renders has
       thirteen rows and no Llama 4 among them. Expect this one every run — the
       id is in the page and the offer is not.
-  - entry: vercel-ai-gateway
-    family: glm-4.6v-flash
-    superseded_by: glm-4.7
-    dismissed_on: 2026-08-14
-    reason: >-
-      Measured off ai-gateway.vercel.sh/v1/models on 2026-08-14: zai/glm-4.7 is
-      $0.60/$2.20 per 1M, and of the 327 models in that catalog exactly two are
-      priced 0 in and 0 out — poolside/laguna-s-2.1-free and zai/glm-4.6v-flash.
-      The Flash row is the free lane; every other GLM there is metered.
