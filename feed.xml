@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-17T05:56:19Z</updated>
+  <updated>2026-08-20T05:50:17Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cerebras-free/20260820T055017Z</id>
+    <title>Free models changed: Cerebras Inference</title>
+    <link rel="alternate" href="https://www.cerebras.ai"/>
+    <updated>2026-08-20T05:50:17Z</updated>
+    <summary type="text">dropped glm-4.7 · free models: gpt-oss, gemma-4</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260820T055017Z</id>
+    <title>Free models changed: OVHcloud AI Endpoints</title>
+    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
+    <updated>2026-08-20T05:50:17Z</updated>
+    <summary type="text">added qwen3-coder, qwen3.6; dropped qwen3 · free models: gpt-oss, qwen3.6, qwen3-coder</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20260817T055619Z</id>
     <title>Free models changed: BazaarLink</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://platform.deepseek.com"/>
     <updated>2026-07-22T08:15:54Z</updated>
     <summary type="text">Official DeepSeek API; every new account gets a one-time free token grant, no card required · free models: deepseek-chat, deepseek-reasoner</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/longcat/20260722T081554Z</id>
-    <title>New: LongCat API Platform</title>
-    <link rel="alternate" href="https://longcat.chat/platform"/>
-    <updated>2026-07-22T08:15:54Z</updated>
-    <summary type="text">Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota · free models: longcat-2.0, longcat-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/qoder/20260722T081554Z</id>
-    <title>New: Qoder</title>
-    <link rel="alternate" href="https://qoder.com"/>
-    <updated>2026-07-22T08:15:54Z</updated>
-    <summary type="text">Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models</summary>
   </entry>
 </feed>
