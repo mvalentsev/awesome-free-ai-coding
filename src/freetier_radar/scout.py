@@ -227,6 +227,7 @@ Backend chain: {backend}
 Updated entries: {updates}
 New entries (probe-verified): {new}
 Rejected candidates: {rejected}
+Flagged by the probe and still unfixed — these need a human: {unfixed}
 Retirements announced by the vendor: {retired}
 Phases skipped (out of wall-clock budget): {skipped}
 
@@ -573,10 +574,27 @@ def apply_updates(entries: list[Entry], updates: list[dict]) -> tuple[list[str],
             entries[i] = Entry.model_validate({**e.model_dump(mode="json"), **changed})
         except Exception as exc:
             print(f"update for {e.id} rejected: {exc}")
-            rejected.append(f"{e.id}: invalid update ({type(exc).__name__})")
+            rejected.append(f"{e.id}: invalid update to {', '.join(sorted(changed))}"
+                            f" — {_why(exc)}")
             continue
         applied.append(e.id)
     return applied, rejected
+
+
+def _why(exc: Exception) -> str:
+    """The rejection in one line, for the PR body rather than the run log.
+
+    A reviewer reads the PR; nobody reads the log of a run that succeeded. On
+    2026-08-20 the scout answered a failing github-copilot-free probe with a
+    table cell where a keyword string belongs, and all that reached the PR was
+    "invalid update (ValidationError)" — a live row failing its probe, the fix
+    for it found and thrown away, and no way to tell from the PR that either
+    had happened. Rejecting the value was right; hiding it was not."""
+    errors = getattr(exc, "errors", None)
+    if not callable(errors):
+        return str(exc).splitlines()[0]
+    return "; ".join(f"{'.'.join(str(part) for part in err['loc'])}: {err['msg']}"
+                     for err in errors()[:3]) or str(exc).splitlines()[0]
 
 
 def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
@@ -719,6 +737,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               deadline: Deadline | None = None) -> dict:
     result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
               "retired": [], "skipped": [],
+              # Filled in below, from what the fixes phase did not repair.
+              "unfixed": [],
               # Verdicts that have aged out of suppressing anything. Reported so
               # the question reaches a human on a schedule instead of only when
               # someone happens to re-read the file.
@@ -754,6 +774,16 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         data = _ask(llm, FIX_PROMPT.format(context=context))
         result["updates"], rejected = apply_updates(entries, data.get("updates") or [])
         result["rejected"] += rejected
+
+    # Everything the probe flagged that the run did not repair, carried into the
+    # PR with the verdict that flagged it. Without this a row can fail its probe
+    # and appear nowhere in the only artifact anyone reviews: the fixes phase
+    # can be skipped for budget, the model can decline to answer, and its answer
+    # can be rejected — and in all three cases the row goes on failing until
+    # three failures archive it. Reported after the phase so a repaired row
+    # drops off the list.
+    result["unfixed"] = [f"{f['id']}: {f.get('status', 'fail')} — {f.get('detail', '')}".strip(" —")
+                         for f in failures if f["id"] not in set(result["updates"])]
 
     if evidence is not None and not evidence.is_empty() and within_budget("discovery"):
         # Discovery carries the longest prompt of the run, so it is the phase
@@ -911,6 +941,7 @@ def main() -> None:
         updates=", ".join(result["updates"]) or "—",
         new=", ".join(result["new"]) or "—",
         rejected="; ".join(result["rejected"]) or "—",
+        unfixed="; ".join(result["unfixed"]) or "—",
         supersede=", ".join(result["supersede"]) or "—",
         suppressed=", ".join(result["suppressed"]) or "—",
         stale_watch=", ".join(result["stale_watch"]) or "—",

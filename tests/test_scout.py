@@ -85,10 +85,14 @@ def test_apply_updates_with_nothing_to_change_is_a_no_op():
 
 
 def test_apply_updates_rejects_an_invalid_update_instead_of_raising():
+    """And says what it rejected and why. The reason goes in the PR body, which
+    is the artifact a human reads; the exception type alone sent a reviewer to
+    the log of a green run to find out that a fix had been found and dropped."""
     entries = [make()]
     applied, rejected = apply_updates(entries, [{"id": "x", "probe": {"type": "telepathy"}}])
     assert applied == []
-    assert rejected == ["x: invalid update (ValidationError)"]
+    assert rejected == ["x: invalid update to probe — probe.type: Input should be "
+                        "'api-models' or 'page-keywords'; probe.endpoint: Field required"]
     assert entries[0].probe.endpoint == "https://x.ai"  # left as it was
 
 
@@ -347,8 +351,11 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
                        lambda urls: {u: "page text" for u in urls}, TODAY,
                        evidence=evidence, verifier=lambda e: None)
     assert result["updates"] == []
-    assert result["rejected"] == ["x: invalid update (ValidationError)",
+    assert result["rejected"] == ["x: invalid update to probe — probe.type: Input should be "
+                                  "'api-models' or 'page-keywords'; probe.endpoint: Field required",
                                   "broken: invalid (ValidationError)"]
+    # The row the scout could not repair is still failing, and says so.
+    assert result["unfixed"] == ["x: fail — boom"]
 
 
 def test_a_dead_backend_chain_keeps_the_fixes_the_scout_already_made():
@@ -713,7 +720,7 @@ def test_run_scout_reports_sources_due_for_a_re_read():
 
 EMPTY_RUN = {"providers": [], "updates": [], "new": [], "rejected": [], "supersede": [],
              "suppressed": [], "stale_watch": [], "stale_sources": [], "retired": [],
-             "skipped": []}
+             "skipped": [], "unfixed": []}
 
 
 def _scout_argv(tmp_path, *extra) -> list[str]:
