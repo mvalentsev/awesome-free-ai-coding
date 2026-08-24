@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-20T05:54:27Z</updated>
+  <updated>2026-08-24T05:57:03Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260824T055703Z</id>
+    <title>Free models changed: Kiro</title>
+    <link rel="alternate" href="https://kiro.dev/"/>
+    <updated>2026-08-24T05:57:03Z</updated>
+    <summary type="text">added deepseek-v3.2, minimax-2.1 · free models: claude-sonnet-4.5, qwen3-coder, deepseek-v3.2, minimax-2.1</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20260824T055703Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-08-24T05:57:03Z</updated>
+    <summary type="text">added muse-spark-1.2; dropped deepseek-v4-flash · free models: big-pickle, mimo-v2.5, hy3, nemotron-3-ultra, nemotron-3.5-lightning, muse-spark-1.2</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20260820T055427Z</id>
     <title>Free models changed: opencode</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://mimo.xiaomi.com/coder"/>
     <updated>2026-07-27T00:32:24Z</updated>
     <summary type="text">vendor-announced shutdown on 2026-07-26</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/zai-glm/20260727T003224Z</id>
-    <title>Free models changed: Z.ai (Zhipu GLM)</title>
-    <link rel="alternate" href="https://z.ai"/>
-    <updated>2026-07-27T00:32:24Z</updated>
-    <summary type="text">added glm-4.7-flash; dropped glm-4.5 · free models: glm-4.7-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/charm-hyper/20260722T081554Z</id>
-    <title>New: Crush + Charm Hyper</title>
-    <link rel="alternate" href="https://hyper.charm.land"/>
-    <updated>2026-07-22T08:15:54Z</updated>
-    <summary type="text">Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention</summary>
   </entry>
 </feed>
