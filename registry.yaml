@@ -17,9 +17,6 @@ entries:
     credit balance can produce errors "including for free models", and notes a 429
     may come from the upstream provider rather than the platform (read 2026-08-14)
   models:
-  - family: gpt-oss
-    tier: strong
-    released: 2025-08
   - family: nemotron-3-ultra
     tier: frontier
     released: 2026-03

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-24T05:57:03Z</updated>
+  <updated>2026-08-27T16:38:10Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260827T163810Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-08-27T16:38:10Z</updated>
+    <summary type="text">dropped gpt-oss · free models: nemotron-3-ultra, gemma-4</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260824T055703Z</id>
     <title>Free models changed: Kiro</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://build.nvidia.com"/>
     <updated>2026-07-27T00:32:57Z</updated>
     <summary type="text">dropped llama-4 · free models: nemotron</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/mimo-code/20260727T003224Z</id>
-    <title>Archived: MiMo Code</title>
-    <link rel="alternate" href="https://mimo.xiaomi.com/coder"/>
-    <updated>2026-07-27T00:32:24Z</updated>
-    <summary type="text">vendor-announced shutdown on 2026-07-26</summary>
   </entry>
 </feed>

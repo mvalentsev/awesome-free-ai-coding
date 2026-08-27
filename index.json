@@ -17,11 +17,6 @@
       "limits": "20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter describes :free as \"always provided for free and has low rate limits\", warns that a negative credit balance can produce errors \"including for free models\", and notes a 429 may come from the upstream provider rather than the platform (read 2026-08-14)",
       "models": [
         {
-          "family": "gpt-oss",
-          "tier": "strong",
-          "released": "2025-08"
-        },
-        {
           "family": "nemotron-3-ultra",
           "tier": "frontier",
           "released": "2026-03"

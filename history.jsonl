@@ -109,3 +109,4 @@
 {"ts": "2026-08-20T05:54:27.884106Z", "event": "models", "id": "vercel-ai-gateway", "name": "Vercel AI Gateway", "url": "https://vercel.com/ai-gateway", "models": ["laguna-s-2.1"], "detail": "dropped glm-4.6v-flash"}
 {"ts": "2026-08-24T05:57:03.520894Z", "event": "models", "id": "kiro", "name": "Kiro", "url": "https://kiro.dev/", "models": ["claude-sonnet-4.5", "qwen3-coder", "deepseek-v3.2", "minimax-2.1"], "detail": "added deepseek-v3.2, minimax-2.1"}
 {"ts": "2026-08-24T05:57:03.520894Z", "event": "models", "id": "opencode", "name": "opencode", "url": "https://opencode.ai", "models": ["big-pickle", "mimo-v2.5", "hy3", "nemotron-3-ultra", "nemotron-3.5-lightning", "muse-spark-1.2"], "detail": "added muse-spark-1.2; dropped deepseek-v4-flash"}
+{"ts": "2026-08-27T16:38:10.556708Z", "event": "models", "id": "openrouter-free", "name": "OpenRouter (free models)", "url": "https://openrouter.ai", "models": ["nemotron-3-ultra", "gemma-4"], "detail": "dropped gpt-oss"}
