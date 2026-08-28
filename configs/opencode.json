@@ -331,29 +331,17 @@
         "gemma-4-31b-it:free": {
           "name": "gemma-4-31b-it:free"
         },
-        "nemotron-3-nano-30b-a3b:free": {
-          "name": "nemotron-3-nano-30b-a3b:free"
-        },
-        "laguna-xs.2:free": {
-          "name": "laguna-xs.2:free"
-        },
-        "nemotron-nano-9b-v2:free": {
-          "name": "nemotron-nano-9b-v2:free"
-        },
         "gpt-oss-120b:free": {
           "name": "gpt-oss-120b:free"
         },
         "llama-3.3-70b-instruct:free": {
           "name": "llama-3.3-70b-instruct:free"
         },
-        "llama-3.1-8b-instruct:free": {
-          "name": "llama-3.1-8b-instruct:free"
-        },
         "llama-3.2-3b-instruct:free": {
           "name": "llama-3.2-3b-instruct:free"
         },
-        "llama-3.2-1b-instruct:free": {
-          "name": "llama-3.2-1b-instruct:free"
+        "muse-glimmer-30b:free": {
+          "name": "muse-glimmer-30b:free"
         }
       }
     },
@@ -429,14 +417,14 @@
         "apiKey": "{env:NVIDIA_NIM_API_KEY}"
       },
       "models": {
-        "deepseek-ai/deepseek-v4-flash": {
-          "name": "deepseek-ai/deepseek-v4-flash"
+        "deepseek-ai/deepseek-v4-flash-0731": {
+          "name": "deepseek-ai/deepseek-v4-flash-0731"
         },
         "nvidia/nemotron-3-nano-30b-a3b": {
           "name": "nvidia/nemotron-3-nano-30b-a3b"
         },
-        "meta/llama-4-maverick-17b-128e-instruct": {
-          "name": "meta/llama-4-maverick-17b-128e-instruct"
+        "meta/muse-glimmer-30b": {
+          "name": "meta/muse-glimmer-30b"
         }
       }
     },

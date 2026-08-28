@@ -373,21 +373,6 @@ model_list:
     model: openai/gemma-4-31b-it:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/nemotron-3-nano-30b-a3b:free
-  litellm_params:
-    model: openai/nemotron-3-nano-30b-a3b:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/laguna-xs.2:free
-  litellm_params:
-    model: openai/laguna-xs.2:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/nemotron-nano-9b-v2:free
-  litellm_params:
-    model: openai/nemotron-nano-9b-v2:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/gpt-oss-120b:free
   litellm_params:
     model: openai/gpt-oss-120b:free
@@ -398,19 +383,14 @@ model_list:
     model: openai/llama-3.3-70b-instruct:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/llama-3.1-8b-instruct:free
-  litellm_params:
-    model: openai/llama-3.1-8b-instruct:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/llama-3.2-3b-instruct:free
   litellm_params:
     model: openai/llama-3.2-3b-instruct:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/llama-3.2-1b-instruct:free
+- model_name: routeway/muse-glimmer-30b:free
   litellm_params:
-    model: openai/llama-3.2-1b-instruct:free
+    model: openai/muse-glimmer-30b:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
@@ -453,9 +433,9 @@ model_list:
     model: openai/auto:free
     api_base: https://api.bazaarlink.ai/v1
     api_key: os.environ/BAZAARLINK_API_KEY
-- model_name: nvidia-nim/deepseek-ai/deepseek-v4-flash
+- model_name: nvidia-nim/deepseek-ai/deepseek-v4-flash-0731
   litellm_params:
-    model: openai/deepseek-ai/deepseek-v4-flash
+    model: openai/deepseek-ai/deepseek-v4-flash-0731
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
 - model_name: nvidia-nim/nvidia/nemotron-3-nano-30b-a3b
@@ -463,9 +443,9 @@ model_list:
     model: openai/nvidia/nemotron-3-nano-30b-a3b
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
-- model_name: nvidia-nim/meta/llama-4-maverick-17b-128e-instruct
+- model_name: nvidia-nim/meta/muse-glimmer-30b
   litellm_params:
-    model: openai/meta/llama-4-maverick-17b-128e-instruct
+    model: openai/meta/muse-glimmer-30b
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
 - model_name: tokenrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
