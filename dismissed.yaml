@@ -128,3 +128,32 @@ dismissed:
       OpenAPI schema it embeds, while the Free Plan Limits table it renders has
       thirteen rows and no Llama 4 among them. Expect this one every run — the
       id is in the page and the offer is not.
+
+  # Both bumps PR #12 reported, each read off the vendor's own free/paid column
+  # on 2026-08-28. They fail the same way from opposite directions: Google
+  # prints the newer generation as not free, and SambaNova prints it as free
+  # twice over, in a lane the older one is already in.
+  - entry: google-ai-studio
+    family: gemini-2.5-pro
+    superseded_by: gemini-3.1-pro
+    dismissed_on: 2026-08-28
+    reason: >-
+      ai.google.dev/gemini-api/docs/pricing gives every model a Free Tier
+      column. On Gemini 3.1 Pro Preview it reads "Not available" for input,
+      output and context caching, beside $2.00 and $12.00 per 1M tokens on the
+      paid tier; on Gemini 2.5 Pro the same column reads "Free of charge" for
+      input and output. The bump would swap the row's only free Pro model for
+      the one Google sells — the google-jules dismissal above, on Google's
+      other free lane, for the same reason.
+  - entry: sambanova-cloud
+    family: deepseek
+    superseded_by: deepseek-v3.2
+    dismissed_on: 2026-08-28
+    reason: >-
+      docs.sambanova.ai/docs/en/models/rate-limits carries two Free Tier
+      tables and DeepSeek is in both — DeepSeek-V3.1 under Production models,
+      DeepSeek-V3.2 under Preview, each at 20 RPM / 20 RPD / 200,000 TPD. The
+      unversioned family covers both, which is what the entry's limits already
+      say ("DeepSeek V3.1/V3.2"). Applying the mark would hide the only
+      DeepSeek in the row and pin what it names to the Preview lane the same
+      page says "may be removed at short notice".

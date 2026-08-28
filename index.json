@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-27",
+  "generated": "2026-08-28",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -16,11 +16,6 @@
       "offering": "One API key for rotating :free variants of frontier models",
       "limits": "20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter describes :free as \"always provided for free and has low rate limits\", warns that a negative credit balance can produce errors \"including for free models\", and notes a 429 may come from the upstream provider rather than the platform (read 2026-08-14)",
       "models": [
-        {
-          "family": "gpt-oss",
-          "tier": "strong",
-          "released": "2025-08"
-        },
         {
           "family": "nemotron-3-ultra",
           "tier": "frontier",
@@ -39,13 +34,26 @@
         "openai_compatible": true,
         "model_ids": [
           "openrouter/free",
-          "openai/gpt-oss-20b:free",
           "nvidia/nemotron-3-ultra-550b-a55b:free",
+          "nvidia/nemotron-3-super-120b-a12b:free",
+          "nvidia/nemotron-3.5-lightning:free",
+          "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "nvidia/nemotron-3.5-content-safety:free",
           "google/gemma-4-31b-it:free",
+          "google/gemma-4-26b-a4b-it:free",
           "cohere/north-mini-code:free",
-          "poolside/laguna-xs-2.1:free"
+          "poolside/laguna-s-2.1:free",
+          "poolside/laguna-xs-2.1:free",
+          "z-ai/glm-5.2:free",
+          "minimax/minimax-m3:free",
+          "minimax/minimax-m2.7:free",
+          "thinkingmachines/inkling:free",
+          "thinkingmachines/inkling-small:free",
+          "dots-studio/dots-3-note-preview:free",
+          "inclusionai/ling-3.0-flash-fin:free",
+          "liquid/lfm-2.5-2.6b:free"
         ],
-        "note": "pick models with the :free suffix; the five suffixed ids were zero-priced on 2026-08-11. openrouter/free is different in kind — the catalog calls it the Free Models Router, prices it 0/0 and lets it pick whichever free model is up, so it is the id that survives this lane rotating (confirmed 2026-08-14). It is a router, not a coding model, which is why it is here and not in the column"
+        "note": "pick models with the :free suffix; all eighteen ids carrying it are priced 0/0 and the other 354 rows are metered (read 2026-08-28). openai/gpt-oss-20b:free left that set between the 2026-08-20 and 2026-08-24 probes, leaving its metered twin behind and taking gpt-oss out of the column. Five are not coding models: openrouter/free is the Free Models Router, priced 0/0, picking whichever free model is up and the id that survives this lane rotating; nemotron-3.5-content-safety is a guardrail, ling-3.0-flash-fin finance-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding"
       },
       "probe": {
         "type": "api-models",

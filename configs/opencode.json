@@ -59,20 +59,59 @@
         "openrouter/free": {
           "name": "openrouter/free"
         },
-        "openai/gpt-oss-20b:free": {
-          "name": "openai/gpt-oss-20b:free"
-        },
         "nvidia/nemotron-3-ultra-550b-a55b:free": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
+        },
+        "nvidia/nemotron-3-super-120b-a12b:free": {
+          "name": "nvidia/nemotron-3-super-120b-a12b:free"
+        },
+        "nvidia/nemotron-3.5-lightning:free": {
+          "name": "nvidia/nemotron-3.5-lightning:free"
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+        },
+        "nvidia/nemotron-3.5-content-safety:free": {
+          "name": "nvidia/nemotron-3.5-content-safety:free"
         },
         "google/gemma-4-31b-it:free": {
           "name": "google/gemma-4-31b-it:free"
         },
+        "google/gemma-4-26b-a4b-it:free": {
+          "name": "google/gemma-4-26b-a4b-it:free"
+        },
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
         },
+        "poolside/laguna-s-2.1:free": {
+          "name": "poolside/laguna-s-2.1:free"
+        },
         "poolside/laguna-xs-2.1:free": {
           "name": "poolside/laguna-xs-2.1:free"
+        },
+        "z-ai/glm-5.2:free": {
+          "name": "z-ai/glm-5.2:free"
+        },
+        "minimax/minimax-m3:free": {
+          "name": "minimax/minimax-m3:free"
+        },
+        "minimax/minimax-m2.7:free": {
+          "name": "minimax/minimax-m2.7:free"
+        },
+        "thinkingmachines/inkling:free": {
+          "name": "thinkingmachines/inkling:free"
+        },
+        "thinkingmachines/inkling-small:free": {
+          "name": "thinkingmachines/inkling-small:free"
+        },
+        "dots-studio/dots-3-note-preview:free": {
+          "name": "dots-studio/dots-3-note-preview:free"
+        },
+        "inclusionai/ling-3.0-flash-fin:free": {
+          "name": "inclusionai/ling-3.0-flash-fin:free"
+        },
+        "liquid/lfm-2.5-2.6b:free": {
+          "name": "liquid/lfm-2.5-2.6b:free"
         }
       }
     },
