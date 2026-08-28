@@ -358,6 +358,26 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
     assert result["unfixed"] == ["x: fail — boom"]
 
 
+def test_a_stale_ids_row_is_reported_rather_than_handed_to_the_model():
+    """What that row needs is an exact id copied out of a vendor catalog, and
+    `api` is not a key the fix prompt may write — so every correction the model
+    could return would change something that is not broken. It has to reach the
+    pull request as a line for a human instead."""
+    llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    limits: guessed\n```"})
+    entries = [make()]
+    result = run_scout(llm, entries,
+                       [{"id": "x", "status": "stale-ids",
+                         "detail": "api.model_ids the catalog no longer answers for: "
+                                   "vendor/gone is not in the catalog"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=None, verifier=lambda e: None)
+    assert result["updates"] == []
+    assert entries[0].limits != "guessed"
+    assert not any("FIX-FAILED" in p for p in llm.prompts)
+    assert result["unfixed"] == ["x: stale-ids — api.model_ids the catalog no longer "
+                                 "answers for: vendor/gone is not in the catalog"]
+
+
 def test_a_dead_backend_chain_keeps_the_fixes_the_scout_already_made():
     """Discovery holds the longest prompt of the run and dies first when the
     backends give out; the fix phase's work must survive that."""

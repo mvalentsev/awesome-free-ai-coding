@@ -4,7 +4,7 @@ import httpx
 import respx
 
 from freetier_radar.history import load_history
-from freetier_radar.models import Entry, save_registry
+from freetier_radar.models import ApiInfo, Entry, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, is_model_stale, probe_entry,
 )
@@ -720,6 +720,138 @@ async def test_an_api_models_entry_is_not_family_checked_against_prose():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, api_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
+
+
+def config_entry(*ids: str, zero_price: bool = True) -> Entry:
+    """An api-models entry that also publishes connection ids. `models[]` and
+    `api.model_ids` are separate claims about the same catalog, and only the
+    first of them was ever checked."""
+    e = api_entry()
+    e.api = ApiInfo(base_url="https://api.x.ai/v1", model_ids=list(ids))
+    e.probe.require_zero_price = zero_price
+    return e
+
+
+LANE = {"data": [{"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}}]}
+
+
+def _lane(*extra: dict) -> dict:
+    return {"data": LANE["data"] + list(extra)}
+
+
+@respx.mock
+async def test_a_config_id_the_catalog_dropped_flags_without_failing():
+    """The defect this check was written for: a family leaves `models[]`, its id
+    stays in `api.model_ids`, and the three generated configs go on handing out
+    an id that 404s. The offer is intact, so it must not FAIL — three failures
+    archive a live row over a stale config line."""
+    entry = config_entry("qwen/qwen3-coder:free", "openai/gpt-oss-20b:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(200, json=_lane()))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "openai/gpt-oss-20b:free" in result.detail
+    assert "qwen/qwen3-coder:free" not in result.detail
+
+
+@respx.mock
+async def test_a_reversioned_config_id_is_reported_with_its_successor():
+    """NVIDIA kept the model and re-dated its id — deepseek-v4-flash became
+    deepseek-v4-flash-0731 — so the repair is a rename. Without the hint a
+    reviewer cannot tell that case from a withdrawal, and the two want opposite
+    edits."""
+    entry = config_entry("deepseek-ai/deepseek-v4-flash")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "deepseek-ai/deepseek-v4-flash-0731",
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "carries deepseek-ai/deepseek-v4-flash-0731" in result.detail
+
+
+@respx.mock
+async def test_a_free_id_that_left_the_lane_does_not_name_its_metered_twin():
+    """Routeway's llama-3.1-8b-instruct:free left the free lane while
+    llama-3.1-8b-instruct went on being metered beside it. Only a prefix counts
+    as a successor, so the metered twin is never offered as one."""
+    entry = config_entry("llama-3.1-8b-instruct:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "llama-3.1-8b-instruct",
+                         "pricing": {"prompt": "0.0000002", "completion": "0.0000006"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "carries" not in result.detail
+
+
+@respx.mock
+async def test_a_config_id_the_vendor_marks_unavailable_is_dead():
+    """The same `available` flag `_check_api_models` reads for a family: a row
+    the vendor says cannot be called is not a config line, whatever it costs."""
+    entry = config_entry("qwen/qwen3-coder:free", "vendor/paused:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "vendor/paused:free", "available": False,
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS and "marked unavailable" in result.detail
+
+
+@respx.mock
+async def test_a_config_id_that_started_billing_is_dead_where_prices_are_read():
+    """An aggregator can leave an id exactly where it was and start charging for
+    it. On a row that sets require_zero_price the zero is the offer, and the
+    config should stop advertising the id the moment it stops being one."""
+    entry = config_entry("qwen/qwen3-coder:free", "vendor/nowpaid:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "vendor/nowpaid:free",
+                         "pricing": {"prompt": "0.000001", "completion": "0.000003"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS and "priced" in result.detail
+
+
+@respx.mock
+async def test_a_priced_config_id_is_kept_where_the_lane_is_a_quota():
+    """NVIDIA NIM and OVHcloud publish list prices for every row and hand out
+    the free tier as a quota instead, which is what require_zero_price: false
+    means. Reading the price there would empty two healthy configs."""
+    entry = config_entry("vendor/metered", zero_price=False)
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "vendor/metered",
+                         "pricing": {"prompt": "0.000001", "completion": "0.000003"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_config_ids_are_never_read_off_a_page():
+    """A page-keywords probe reads prose, where a missing id means nothing —
+    that is why unevidenced_families only ever flags, and here the consequence
+    would be a deletion from a config rather than a note on a column."""
+    entry = page_entry()
+    entry.api = ApiInfo(base_url="https://api.x.ai/v1", model_ids=["some/id-the-page-never-names"])
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder on the free tier, no credit card"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+def test_stale_ids_verifies_the_entry_like_a_pass():
+    """Same reasoning as stale-models one test below: the offer was confirmed,
+    only a field beside it is in doubt, and freezing last_verified would archive
+    a live row in sixty days over a config line."""
+    e = config_entry("vendor/gone")
+    e.provisional = True
+    flagged = apply_results([e], {"x": ProbeResult(
+        ProbeStatus.STALE_IDS, "api.model_ids the catalog no longer answers for: vendor/gone")},
+        date(2026, 7, 19))
+    assert e.last_verified == date(2026, 7, 19) and e.probe_failures == 0
+    assert e.provisional is False
+    assert [(x.id, r.status) for x, r in flagged] == [("x", ProbeStatus.STALE_IDS)]
 
 
 def test_stale_models_verifies_the_entry_like_a_pass():

@@ -22,7 +22,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      is_archived, is_blocked, is_source_current, is_watch_current,
                      known_domains, load_blocklist, load_dismissed, load_registry,
                      load_sources, load_watchlist, save_registry, watch_match)
-from .prober import challenge_marker_hit, check_content, unevidenced_families
+from .prober import ProbeStatus, challenge_marker_hit, check_content, unevidenced_families
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -760,8 +760,16 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             return False
         return True
 
-    if failures and within_budget("fixes"):
-        flagged = {f["id"]: f for f in failures}
+    # A stale-ids row is flagged and deliberately not sent. What it needs is an
+    # exact model id copied out of a vendor catalog; `api` is not a key this
+    # prompt may write, and every key it may write — probe, models, limits — is
+    # still correct on that row, so anything the model returned would change
+    # something that is not broken. It falls through to `unfixed` below and
+    # reaches the pull request as a line for a human.
+    fixable = {f["id"]: f for f in failures
+               if f.get("status") != ProbeStatus.STALE_IDS.value}
+    if fixable and within_budget("fixes"):
+        flagged = fixable
         ctx_entries = [e for e in entries if e.id in flagged]
         urls = [u for e in ctx_entries for u in e.source_urls]
         pages = page_fetcher(urls)

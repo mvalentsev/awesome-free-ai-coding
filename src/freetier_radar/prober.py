@@ -29,6 +29,7 @@ class ProbeStatus(str, Enum):
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
     STALE_MODELS = "stale-models"  # offer verified, but every listed family is superseded
+    STALE_IDS = "stale-ids"  # offer and families verified, but api.model_ids has dead ids
 
 
 @dataclass
@@ -65,6 +66,15 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 return ProbeResult(ProbeStatus.STALE_MODELS,
                                    "listed families the page does not name: "
                                    + ", ".join(unevidenced))
+            # A third question about the same fetched bytes, and the last field
+            # here that nothing read back. Only one of these two checks can fire
+            # on any given entry: each is guarded on the probe type the other
+            # cannot read.
+            dead = dead_model_ids(resp, entry)
+            if dead:
+                return ProbeResult(ProbeStatus.STALE_IDS,
+                                   "api.model_ids the catalog no longer answers for: "
+                                   + "; ".join(dead))
             return ProbeResult(ProbeStatus.PASS)
         # Only asked once the content check has already failed. Plenty of live
         # pages carry a <noscript> asking for JavaScript while serving the offer
@@ -228,14 +238,23 @@ def _price_note(model: dict) -> str:
     return f"{mid} priced {'/'.join(f'{p:g}' for p in prices)}"
 
 
-def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
+def _catalog_items(resp: httpx.Response) -> list[dict] | None:
+    """Every model row of an OpenAI-shaped catalog, however the vendor wraps it,
+    or None when the body is not JSON at all — the one case a caller has to tell
+    apart from an empty catalog."""
     try:
         data = resp.json()
     except json.JSONDecodeError:
+        return None
+    rows = (data if isinstance(data, list)
+            else data.get("data", []) if isinstance(data, dict) else [])
+    return [m for m in rows if isinstance(m, dict)]
+
+
+def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
+    items = _catalog_items(resp)
+    if items is None:
         return "response is not JSON"
-    items = [m for m in (data if isinstance(data, list)
-                         else data.get("data", []) if isinstance(data, dict) else [])
-             if isinstance(m, dict)]
     if not any(_model_id(m) for m in items):
         return "no model ids in response"
     marker = entry.probe.free_marker.lower()
@@ -363,6 +382,71 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
             if _squash(m.family) not in squashed and not _named_in_parts(m.family, text)]
 
 
+def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
+    """Ids in `api.model_ids` that the catalog no longer answers for.
+
+    This is the last curated field here that nothing ever read back. It is not
+    the Models column, so neither `_check_api_models` nor `unevidenced_families`
+    looks at it, and it is not on any page, so no keyword anchors it — yet it is
+    the field that fills `configs/litellm.yaml`, `configs/opencode.json` and
+    `configs/free-llm.env.example`, which is what a reader actually pastes into
+    a client. Three scout pull requests running dropped a family from `models[]`
+    and left its id here — bazaarlink in #10, opencode and vercel-ai-gateway in
+    #11, openrouter-free in #12 — and each time the configs went on handing out
+    an id that 404s until somebody happened to look. Measured 2026-08-28 across
+    the ten live api-models entries: 7 of their 72 ids were already dead, spread
+    over two rows whose probes were passing that morning.
+
+    Only an api-models entry can be asked, for the reason `unevidenced_families`
+    is deliberately weak: a page-keywords probe reads prose, and a name missing
+    from prose is not a withdrawal. Here the consequence would be worse — a
+    deletion from a config file rather than a flag on a column.
+
+    The match is exact, because `api.model_ids` holds what goes in the request
+    body. `deepseek-ai/deepseek-v4-flash` and its live successor
+    `deepseek-ai/deepseek-v4-flash-0731` are one model and two ids, and only the
+    second one answers; a substring test would call the row healthy forever.
+    That is also why a missing id is reported with any catalog id that extends
+    it: NVIDIA re-versioned that row rather than dropping it, so the repair is a
+    rename, and the two cases are indistinguishable without the hint.
+
+    It never fails an entry and never repairs one. A free lane rotating its ids
+    is this list doing its job — kilo-code's own note says so — so archiving a
+    row over it would be the mistake `unevidenced_families` exists to avoid.
+    And the repair is an exact string copied from a catalog, which is the last
+    thing to let an LLM guess at: the scout is told to leave these rows for a
+    human rather than sent off to fix them.
+    """
+    if entry.probe.type is not ProbeType.API_MODELS or entry.api is None:
+        return []
+    catalog: dict[str, dict] = {}
+    for model in _catalog_items(resp) or []:
+        mid = _model_id(model)
+        if mid:
+            catalog.setdefault(mid, model)
+    dead = []
+    for wanted in entry.api.model_ids:
+        model = catalog.get(wanted)
+        if model is None:
+            dead.append(f"{wanted} is not in the catalog{_successor_hint(wanted, catalog)}")
+        elif _is_withdrawn(model):
+            dead.append(f"{wanted} is marked unavailable")
+        elif entry.probe.require_zero_price and not _is_free(model):
+            dead.append(_price_note(model))
+    return dead
+
+
+def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:
+    """The catalog ids that extend a missing one, when a vendor re-versioned the
+    row instead of withdrawing it. Only a prefix counts, which is what keeps the
+    hint honest in the opposite case: Routeway's `llama-3.1-8b-instruct:free`
+    left its free lane while `llama-3.1-8b-instruct` went on being metered, and
+    naming the metered twin as the successor is exactly the confusion
+    `require_zero_price` was added to stop."""
+    heirs = sorted(mid for mid in catalog if mid != wanted and mid.startswith(wanted))
+    return f" (catalog carries {', '.join(heirs[:2])})" if heirs else ""
+
+
 def _squash(s: str) -> str:
     """Case and separators removed: vendors write "Qwen3 Coder" and "GLM-4.7
     Flash" for what the registry calls qwen3-coder and glm-4.7-flash."""
@@ -450,7 +534,8 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     after first_seen is promoted to a regular entry. An entry past its
     vendor-announced retirement date is left alone entirely.
     Returns (entry, result) pairs needing scout attention: FAIL, INCONCLUSIVE,
-    and passing entries whose model families are all superseded."""
+    passing entries whose model families are all superseded, and passing entries
+    flagged for their Models column or their `api.model_ids`."""
     needs_attention = []
     for e in entries:
         result = results.get(e.id)
@@ -463,17 +548,18 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
         # 410 crashed the 2026-08-03 run.
         if e.retired_on is not None and today >= e.retired_on:
             continue
-        # STALE_MODELS is a pass with a note: the probe reached the page and the
-        # offer was evidenced there, so the liveness bookkeeping is the same one
-        # a PASS gets. Letting last_verified freeze instead would archive the row
-        # by staleness in ARCHIVE_AFTER_DAYS over a question about its Models
-        # column — which is the opposite of what the flag is for.
-        if result.status in (ProbeStatus.PASS, ProbeStatus.STALE_MODELS):
+        # STALE_MODELS and STALE_IDS are passes with a note: the probe reached
+        # the page and the offer was evidenced there, so the liveness
+        # bookkeeping is the same one a PASS gets. Letting last_verified freeze
+        # instead would archive the row by staleness in ARCHIVE_AFTER_DAYS over
+        # a question about its Models column or its config ids — which is the
+        # opposite of what either flag is for.
+        if result.status in (ProbeStatus.PASS, ProbeStatus.STALE_MODELS, ProbeStatus.STALE_IDS):
             e.last_verified = today
             e.probe_failures = 0
             if e.provisional and (today - e.first_seen).days >= PROVISIONAL_PROMOTE_DAYS:
                 e.provisional = False
-            if result.status is ProbeStatus.STALE_MODELS:
+            if result.status is not ProbeStatus.PASS:
                 needs_attention.append((e, result))
             elif is_model_stale(e):
                 needs_attention.append((e, ProbeResult(
