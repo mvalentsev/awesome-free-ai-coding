@@ -25,7 +25,7 @@
 read:
   - url: https://github.com/Shubhamsaboo/awesome-llm-apps
     name: Shubhamsaboo/awesome-llm-apps
-    checked_on: '2026-08-14'
+    checked_on: '2026-08-30'
     reason: >-
       132k stars and none of them about free tiers: it is a catalog of 100+
       agent, RAG and agent-skill templates you clone and run, so its providers
@@ -37,7 +37,10 @@ read:
       the whole tree, and the only occurrence naming an API provider is
       "Free tier available for testing" about OpenRouter, listed here since the
       beginning. The two vendors it did surface, Together AI and Perplexity,
-      are in watchlist.yaml as of the same day.
+      are in watchlist.yaml as of the same day. Re-checked 2026-08-30, since it
+      pushes most days: the whole tree still holds exactly two paths matching
+      "provider" or "free", and both are React context components
+      (BuilderAgentProvider.tsx, CopilotKitProvider.tsx). Still app templates.
     reopen_if: >-
       It starts publishing a provider or free-tier table rather than app
       templates.
@@ -71,27 +74,41 @@ read:
 
   - url: https://github.com/mnfst/awesome-free-llm-apis
     name: mnfst/awesome-free-llm-apis
-    checked_on: '2026-08-14'
+    checked_on: '2026-08-30'
     reason: >-
       The right subject and nothing new in it. Of the 38 hosts it links, 35 are
       already carried; the three that are not are awesome.re (the list badge),
       manifest.build (the maintainer's own product) and open.bigmodel.cn, which
       is the China console of the vendor already listed under z.ai. A sixth
       feed that re-states the five is prompt budget spent on agreement.
+      Re-read 2026-08-30 after a 2026-08-21 push: 43 hosts now, and the two it
+      gained over the first read are docs.bigmodel.cn and dash.cloudflare.com —
+      second spellings of vendors already carried. The verdict is unchanged.
     reopen_if: >-
       Its provider table grows past what the curated feeds already carry.
 
   - url: https://github.com/nherx/free-llm-api-resources
     name: nherx/free-llm-api-resources
-    checked_on: '2026-08-14'
+    checked_on: '2026-08-30'
     reason: >-
       Read on 2026-08-11 as a possible successor to cheahjs/free-llm-api-resources,
       which GitHub had started 404ing and which was dropped from CURATED_FEEDS
       that day, and re-read on 2026-08-14 unchanged in substance. It carries the
       name and not the data — 6KB whose only links are "Download Latest Release"
       and "Report Issues", both to github.com, and no provider table at all.
+      Re-read 2026-08-30 because the repository had grown from 6KB to 997KB,
+      which is the shape of the reopen condition below and is not what happened.
+      What arrived is the original's CODE, not its data: src/data.py is 294 lines
+      of MODEL_TO_NAME_MAPPING plus three ignore-lists, with no provider, no
+      quota and no URL in it, and src/pull_available_models.py is the script that
+      queried the providers — 44 hosts, 8 of them not carried here, every one
+      either dead (api.kluster.ai, sunset 2026-06-09) or a paid cloud. The rest
+      of the weight is a 547KB zip. The README is unchanged SEO filler whose
+      every call to action, "Report Issues" included, points at that zip.
     reopen_if: >-
-      It publishes the provider tables the original carried.
+      It publishes the provider TABLES the original carried — vendor, quota,
+      source page — as text in the repository. More code from the original is
+      not the data, and neither is another release archive.
 
   - url: https://github.com/MrFadiAi/free-llm-gateway
     name: MrFadiAi/free-llm-gateway
@@ -123,7 +140,7 @@ read:
 
   - url: https://github.com/xtekky/gpt4free
     name: xtekky/gpt4free
-    checked_on: '2026-08-14'
+    checked_on: '2026-08-30'
     reason: >-
       The one entry here that is not a directory at all, and the only one whose
       contents this repository rejects on principle rather than on overlap: it
@@ -151,53 +168,17 @@ read:
       against this registry rather than admired: 7 of 71 callable ids are served
       by two or more entries, and 5 of those 7 are OpenRouter's own :free
       catalog seen through two gateways, so the fallback group it suggests has
-      two real members and one of them is a card-required trial.
+      two real members and one of them is a card-required trial. Re-checked
+      2026-08-30 by diffing the changed file list rather than re-reading 219
+      hosts, because the reopen condition below is narrow: of everything the
+      repository has changed since 2026-08-14, the provider work touched
+      DeepInfra, Airforce, Gemini, Nvidia and Ollama — five adapters this
+      repository already has a verdict on, two of them blocklisted. No table of
+      official free tiers appeared.
     reopen_if: >-
       It starts publishing a table of official free tiers — vendor, quota,
       source page — rather than provider adapters. A new adapter is not a
       reason: this read covered every one of them.
-
-  - url: https://github.com/nejib1/Free-LLM
-    name: nejib1/Free-LLM
-    checked_on: '2026-08-14'
-    reason: >-
-      The closest thing to this repository that exists as a list, and still not
-      a seventh feed. Read whole rather than by README — 185 files, 225KB, five
-      translations of the directory plus a code-examples folder per provider —
-      it carries 35 API providers and nine local runtimes. Thirty-one of the 35
-      already had a verdict here; the four that did not, Coze, Venice.ai,
-      Cerebrium and FriendliAI, were read from their own pages the same day and
-      are now in watchlist.yaml. Ten of the 35 appear in none of the six
-      curated feeds, which is the measurement that earned the sixth feed its
-      slot — but six of those ten were already carried here from direct reads,
-      so what a seventh feed would add is the four names this single read has
-      already spent. Accuracy is the other half of the answer. Its Cerebras row
-      is wrong in four columns at once — "No" credit card, "1,000,000 Tokens /
-      Day", "Free Forever", and a model list of Llama 3.1 8B/70B, Llama 4 Scout
-      and Qwen3 32B — where Cerebras' own docs, read here on 2026-08-14,
-      require a payment method before the API answers at all, expire the
-      credits 30 days after they are granted, answer "Is there a permanently
-      free tier?" with "No", and serve gpt-oss-120b, zai-glm-4.7 and
-      gemma-4-31b. It files Inference.net under permanent free tiers at 30 RPM
-      where that vendor's $0 plan is a gateway-and-tracing tier priced "$0 +
-      usage", and it still ships a code-examples directory for GitHub Models,
-      retired 2026-07-30. Nor is its site the machine-readable half:
-      free-llm.com/api/<slug> is a marketing landing page rather than JSON, and
-      /api/providers and /sitemap.xml answer a Cloudflare 403. What it does
-      share is structure — a "Credit Card?" column per row and a permanent /
-      renewable / one-time split, which are this registry's card_required and
-      category under other names — and one idea worth naming: it keeps a
-      per-tool configuration page for Claude Code, Cursor and Codex CLI beside
-      the per-provider snippets. Measured rather than admired, as with
-      gpt4free's routing config: freetier-render already generates
-      configs/litellm.yaml, configs/opencode.json and
-      configs/free-llm.env.example from the registry, and the tools that page
-      covers are configured by a base URL and a key, both of which those files
-      already carry — so the gap is three hand-written pages, not a capability.
-    reopen_if: >-
-      It publishes the directory as data rather than as a README — its own site
-      keeps the structured half behind Cloudflare — or its submissions start
-      surfacing providers the six curated feeds do not carry.
 
   - url: https://github.com/inmve/free-ai-coding
     name: inmve/free-ai-coding
@@ -220,4 +201,4 @@ read:
       has declined six times.
     reopen_if: >-
       It starts committing again, or its locale files begin carrying a quota
-      the six curated feeds do not.
+      the curated feeds do not.

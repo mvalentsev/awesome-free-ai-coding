@@ -43,7 +43,16 @@ CURATED_FEEDS = [
     "https://raw.githubusercontent.com/vava-nessa/free-coding-models/main/sources.js",
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
-    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/getting-started/PROVIDERS-GUIDE.md",
+    # This was docs/getting-started/PROVIDERS-GUIDE.md until 2026-08-30, when both
+    # files were measured against each other: the guide is a how-to that names one
+    # provider id in 13161 characters, while FREE_TIERS.md is the file the project
+    # edits when a free tier moves — 104 provider ids with a free type, a monthly
+    # figure and a ToS flag each, of which 70 survive the 20000-character excerpt,
+    # and the ones the cut loses are almost all already carried here. Its prose
+    # half is the useful half twice over: it names what it has just REMOVED
+    # (chutes, phind, kluster, aimlapi, yi) as well as what it has just added,
+    # which is the half a list normally leaves out.
+    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/reference/FREE_TIERS.md",
     # A directory rather than a router: 30 providers in one table with a free-model
     # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
     # The card column is the only machine-readable answer to that question anywhere
@@ -78,6 +87,18 @@ CURATED_FEEDS = [
     # 5 RPM / 30K TPM for the same models and answered its own question with
     # "Is there a permanently free tier? No."
     "https://raw.githubusercontent.com/for-the-zero/Free-LLM-Collection/main/README.md",
+    # Read once on 2026-08-14 and declined — sources.yaml carried the verdict, and
+    # its reopen_if named the test it would have to pass: "its submissions start
+    # surfacing providers the six curated feeds do not carry." On 2026-08-30 it
+    # did. Its table had grown from 35 providers to 40 and one of the new rows is
+    # Hetzner's Inference API, which appears in none of the six feeds above and in
+    # no other list of the fourteen re-read that day. It keeps a "Credit Card?"
+    # column and a base URL per row, so a lead arrives here already shaped like an
+    # entry. Leads only, and this one has earned the warning: the Hetzner row it
+    # was promoted for prints limits the vendor's own docs contradict — "3M input
+    # / 60K output tokens per 60s" and a 24h row that does not exist, where
+    # docs.hetzner.com reads 4M / 100k per 60s and 10 requests per 60s.
+    "https://raw.githubusercontent.com/nejib1/Free-LLM/main/README.md",
 ]
 
 # A machine catalog rather than a list: 185 providers, one object per model with

@@ -364,7 +364,7 @@ class Source(BaseModel):
 
     `Watched` records a verdict on a service; this is the same record one level
     up, on the thing that *proposes* services. CURATED_FEEDS in discovery.py is
-    the positive half — the five lists the scout reads every run — and nothing
+    the positive half — the lists the scout reads every run — and nothing
     held the negative half, so the cost of opening a list that carries no
     provider data was paid again every time the link resurfaced. Three lists
     went through that in a single week and left no trace in the repository:
