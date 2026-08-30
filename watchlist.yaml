@@ -1061,3 +1061,110 @@ watched:
     reopen_if: >-
       Liquid opens a hosted LFM API with a free lane a developer can call from
       outside its own SDK.
+
+  # The five records below replace blocklist lines removed on 2026-08-30, after a
+  # full re-audit of that file found their stated reason contradicted by the
+  # vendor's own catalog or pricing page. A blocklist entry is permanent and says
+  # "never propose this"; four of these say no such thing, and one was wrong.
+  - domains: [xkiro.com]
+    name: xKiro
+    checked_on: '2026-08-30'
+    reason: >-
+      Blocked on 2026-08-30 and un-blocked the same day: the reason given —
+      "sells a 5,000,000 free tokens/day plan over models it does not own" —
+      confused the catalog with the free lane, which is the mistake this
+      repository has a written rule against. api.xkiro.com/v1/models carries an
+      `access_tier` field per row, and every one of the 17 `:free` ids is Qwen at
+      `access_tier: free` with pricing 0/0, while claude-opus-5, the gpt-5.6 line
+      and grok-4.6 are all `access_tier: paid`. The paid prices are not
+      relay-shaped either: measured against each vendor's list, gpt-5.6-sol is
+      sold ABOVE list ($4.50/$27 against $4/$20), claude-opus-5 at 85% and
+      grok-4.6 at 75% — ordinary markup and discount, not the order of magnitude
+      that disqualified llm7.io. It publishes terms, privacy, about, contact,
+      docs and a status page, all served. Its own plan card reads "Free — $0/month
+      — Free forever — Free tokens 100K / day — Access to 35+ free models — no
+      card required". Not listed only because nothing here has called that lane,
+      and because the page's "35+ free models" overstates its own catalog by
+      double.
+    reopen_if: >-
+      Anyone verifies a keyless-of-charge call on the free lane, or the catalog's
+      `:free` set stops matching what the pricing page promises.
+
+  - domains: [unorouter.com]
+    name: UnoRouter
+    checked_on: '2026-08-30'
+    reason: >-
+      Blocked on 2026-08-30 and un-blocked the same day for the same error as
+      xKiro: the frontier ids that triggered it are the paid catalog, not the
+      free lane. Of 227 `:free` ids only nine are frontier-named, and all nine
+      are Google's cheap tier (gemini-flash-lite, gemini-3.5/3.6-flash-lite,
+      embeddings, robotics previews) — no Claude, no GPT. What keeps it off the
+      list is what cannot be read rather than what was found: its catalog
+      publishes no prices at all, so no probe here can tell a free id from a
+      metered one; its 338 rows are `owned_by: "custom"` on 318 of them; and 17
+      Claude ids are spelled in a vocabulary no public catalog uses —
+      claude-opus-5[1m], claude-sonnet-5-thinking[1m] — which a router may well
+      have invented for a context-and-reasoning preset, but which nothing on the
+      site explains. Its paid plans sell $50 of credit for $25, permanently.
+    reopen_if: >-
+      Its catalog starts publishing per-model prices, or a page states what the
+      free lane grants and where the `[1m]` ids come from.
+
+  - domains: [zed.dev]
+    name: Zed (Personal plan)
+    checked_on: '2026-08-30'
+    reason: >-
+      The blocklist said "free plan is BYOK / external agents only, no bundled
+      model usage", and zed.dev/pricing contradicts it: the Personal plan is
+      "$0 forever" and lists "2,000 accepted edit predictions" beside "Unlimited
+      use with your API keys or external agents". Those predictions run on Zed's
+      own hosted model, which is bundled usage in exactly the shape that keeps
+      GitHub Copilot Free on this list at 2,000 completions a month. Two things
+      stop it short of a row rather than of a re-check: the number carries no
+      period anywhere on the page, and Zed's own FAQ describes Personal as being
+      "for users who want a best-in-class code editor without AI capabilities",
+      so the vendor's two statements about its own free plan disagree. Edit
+      predictions are also completions and nothing else — no chat, no agent, no
+      model you can aim at a task.
+    reopen_if: >-
+      Zed states the period on the 2,000 predictions, or the Personal plan gains
+      any chat or agent usage of its own.
+
+  - domains: [reka.ai]
+    name: Reka AI
+    checked_on: '2026-08-30'
+    reason: >-
+      Moved off the blocklist, where it sat since 2026-08-11 with a reason that
+      ended "delete this line if an account shows otherwise" — a verdict written
+      to expire, filed where nothing expires. The finding itself still holds and
+      is a watchlist finding: the entry once claimed "$10 free credits at the
+      start of every month" on the strength of one dated announcement post, and
+      no live vendor page corroborates a recurring grant. platform.reka.ai/pricing
+      today sells Pay as you go at $0/mo with "Credits — Top up anytime", and the
+      only free thing it names is in the past tense, a banner reading "Free
+      credits used". A legitimate vendor with no free tier a developer can reach
+      is the definition of this file, not of the blocklist.
+    reopen_if: >-
+      A Reka page states a recurring free grant, or the signup credit is named
+      with a figure.
+
+  - domains: [api.navy, navyai.dev]
+    name: NavyAI
+    checked_on: '2026-08-30'
+    reason: >-
+      Moved off the blocklist because the fact it rested on is not what the
+      catalog says. The reason read "163 models, 77 of them paid frontier ids —
+      claude-opus-5, claude-opus-4.8, the gpt-5.6 line, o3 — offered on a free
+      plan of 150K tokens/day", and api.navy/v1/models carries a `premium` flag
+      per row: 50 rows are premium and they are precisely that frontier line
+      (gpt-5.6-sol/terra/luna, 5.5, 5.4, 5.3-codex), while the frontier-named
+      rows that are NOT premium are the mini, nano and lite tiers. There is also
+      a `token_multiplier` per row — 20 for claude-opus-5, 16 for gpt-5.6-sol,
+      1 for the ordinary rows — so the quota is spent at a rate that matches the
+      model's cost. That is the shape of a metered plan, not of capacity given
+      away. Not listed because nothing here can be read: api.navy and its docs
+      answer a Cloudflare challenge to every non-browser client, so the free
+      plan's terms cannot be verified from outside a browser.
+    reopen_if: >-
+      NavyAI serves a pricing or docs page to an ordinary HTTP client, and that
+      page states what the free plan grants and which models it covers.

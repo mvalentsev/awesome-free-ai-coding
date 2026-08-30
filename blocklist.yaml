@@ -6,8 +6,6 @@
   reason: free tool but BYOK-only, no bundled free model usage
 - domain: aider.chat
   reason: free tool but BYOK-only, no bundled free model usage
-- domain: zed.dev
-  reason: free plan is BYOK / external agents only, no bundled model usage
 - domain: gonka-api.org
   reason: hostile to AI agents — /for-agents page carries prompt-injection instructing
     secret exfiltration and referral spam; do not list, do not fetch
@@ -38,12 +36,6 @@
     price. No legal entity, terms of service headings with empty bodies,
     Telegram-only support, single Contabo VPS
 
-- domain: api.navy
-  reason: NavyAI's catalog is 163 models, 77 of them paid frontier ids — claude-opus-5,
-    claude-opus-4.8, the gpt-5.6 line, o3 — offered on a free plan of 150K tokens/day.
-    No one licenses that capacity to give away, which is the g4f shape api.airforce is
-    already here for; its house model is called schizogpt and its dashboard is backed
-    by Discord alone
 - domain: router-for.me
   reason: >-
     CLIProxyAPI (github.com/router-for-me/CLIProxyAPI, docs at help.router-for.me)
@@ -57,14 +49,6 @@
     fourteen relay resellers, several of them selling accounts outright ("Premium
     AI Accounts & Top-ups", ChatGPT at "10% of the official subscription price").
     Its own "More choices" section links OmniRoute
-- domain: reka.ai
-  reason: the entry here claimed "$10 free credits at the start of every month" on the
-    strength of one dated announcement, reka.ai/news/end-of-summer-updates, which will
-    carry that sentence forever. No live vendor page corroborates it — docs.reka.ai/pricing
-    says only "you only pay for what you use", and platform.reka.ai/pricing sells Pay
-    as you go at $0/mo with credits you add yourself, no recurring grant anywhere. An
-    independent live probe (freellmapi, 2026) reports every model answering 402 "account
-    balance is $0.0". Removed 2026-08-11; delete this line if an account shows otherwise
 - domain: voideditor.com
   reason: >-
     BYOK-only by design, the zed.dev case — Void's own home page sells it as
@@ -125,7 +109,15 @@
     /privacy and /about all answer 404, so the service publishes no legal entity
     and no terms of any kind. Serving four vendors' flagship models with no
     stated provenance and no legal pages is the unofficial-gateway case that
-    api.airforce and tokenrouter.me are already here for.
+    api.airforce and tokenrouter.me are already here for. Measured on 2026-08-30,
+    because "a fraction of list price" is the kind of phrase that needs a number:
+    against each vendor's own published price, LLM7 sells claude-sonnet-4-6 at
+    $0.12/$0.45 where Anthropic lists $3/$15 (4% and 3%), claude-haiku-4-5 at 4%,
+    gpt-5.4 at 6%/5%, gemini-3.7-flash at 8%, gpt-5.5 at 11%. A reseller's volume
+    discount is 15-25% off; an order of magnitude is not a discount but a
+    different supply. Its free lane is not the issue and never was — the six
+    turbo ids are open-weight (gpt-oss, gemma4:31b, codestral, Llama-3.1-8B,
+    mistral-Nemo, minimax-m2.7).
 
 - domain: phindai.org
   reason: >-
@@ -160,19 +152,15 @@
     Continue's model hub, listed separately because third-party lists still
     link it — the host stopped resolving when Cursor absorbed the company.
 - domain: freemodel.dev
-  reason: 'a gateway whose whole free catalog is somebody else''s paid product:
-    api.freemodel.dev/v1/models returns exactly three ids, gpt-5.6-luna, gpt-5.6-sol
-    and gpt-5.6-terra, all owned_by openai. Pooled or spoofed access to a frontier
-    vendor is not an official free tier'
-- domain: xkiro.com
-  reason: 'sells a "5,000,000 free tokens/day" plan over models it does not own:
-    api.xkiro.com/v1/models lists 103 ids including anthropic/claude-opus-5,
-    openai/gpt-5.6-luna and x-ai/grok-build-0.1 — the last being the id xAI''s CLI
-    subscription channel exposes, not one its API sells. Same family as the
-    reverse-engineered gateways already listed here'
-- domain: unorouter.com
-  reason: 'a relay dressed as a router: api.unorouter.com/v1/models returns 341 ids,
-    229 of them suffixed :free, owned_by "custom", "codex" and "coze" — and among
-    them claude-opus-5[1m], the internal Claude Code subscription id, which no
-    reseller can serve legitimately. Reached from the freellmapi feed, which had
-    live-probed its free lane without asking what was behind it'
+  reason: >-
+    The operator describes the method in its own billing UI. freemodel.dev
+    renders 44 characters without JavaScript, but its bundle carries the whole
+    product copy, and the cost-breakdown panel explains a discount with "a
+    discount we apply when ACCOUNT-POOL CHURN forces a re-write", beside a "High
+    quality route" and a "Discounted route" billed at different multipliers of
+    the standard rate. A pool of upstream accounts churning under a router is
+    the g4f case, stated by the operator rather than inferred. Note what is NOT
+    the reason: its three ids (gpt-5.6-luna, gpt-5.6-sol, gpt-5.6-terra) are
+    OpenAI's ordinary public API ids, and its free plan is "$5 in API credits on
+    signup" rather than free frontier access — a first read of this domain
+    blocked it on that catalog alone, which was wrong twice over.
