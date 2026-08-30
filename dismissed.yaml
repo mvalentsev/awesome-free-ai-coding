@@ -26,13 +26,13 @@ dismissed:
   # the only place here that does. On z.ai and Vercel the GLM-5.x flagships are
   # metered and the free lane is the Flash line. Each of these three would
   # replace a verified free family with one nobody has verified as free on that
-  # vendor. Two more lines stood here and went the same way, the family leaving
+  # vendor. Three more lines stood here and went the same way, the family leaving
   # the row and taking its dismissal with it: cerebras-free glm-4.7 → glm-5,
-  # until Cerebras deprecated GLM 4.7 on 2026-08-17, and vercel-ai-gateway
+  # until Cerebras deprecated GLM 4.7 on 2026-08-17; vercel-ai-gateway
   # glm-4.6v-flash → glm-5, until that model left Vercel's catalog by
-  # 2026-08-20. Left deliberately un-dismissed from the same run: routeway
-  # llama-3.3 → llama-4, which nobody here had checked against Routeway's
-  # catalog. Checked on 2026-08-14 and dismissed at the bottom of this file.
+  # 2026-08-20; and routeway llama-3.3 → llama-4, dismissed on 2026-08-14 after
+  # a check against Routeway's own catalog and removed on 2026-08-30, when the
+  # last Llama left that gateway's free lane and the family left the row.
   - entry: zai-glm
     family: glm-4.5-flash
     superseded_by: glm-5
@@ -53,21 +53,11 @@ dismissed:
       The 2026-08-04 dismissal with the same reasoning, retargeted: the scout
       now names the family glm-5 rather than glm-5.2.
 
-  # The two bumps the 2026-08-14 rehearsal offered that were left for a checker.
-  # Both are the same error the glm-5 block above describes, arriving by the two
-  # other routes a vendor leaves open: a priced catalog that carries the newer
-  # generation outside the free lane, and a page that contradicts itself.
-  - entry: routeway
-    family: llama-3.3
-    superseded_by: llama-4
-    dismissed_on: 2026-08-14
-    reason: >-
-      Routeway does carry Llama 4 — llama-4-maverick at $0.11/$0.44 and
-      llama-4-scout at $0.10/$0.225 per 1M tokens. Its free lane is the
-      `:free` suffix priced at zero, and the only Llama in it is
-      llama-3.3-70b-instruct:free (11 free ids read from
-      api.routeway.ai/v1/models on 2026-08-14). A catalog a row can reach is
-      not the same as the lane that row is listed for.
+  # The same error the glm-5 block above describes, arriving by the last route a
+  # vendor leaves open: a page that contradicts itself. Its companion — routeway
+  # llama-3.3 → llama-4, where a priced catalog carried the newer generation
+  # outside the free lane — stood here from 2026-08-14 until 2026-08-30, when
+  # Routeway's free lane dropped to three ids and no Llama was among them.
   - entry: kiro
     family: deepseek-v3.2
     superseded_by: deepseek-v4-flash

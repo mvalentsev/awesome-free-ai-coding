@@ -34,8 +34,8 @@
         "mimo-v2.5-free": {
           "name": "mimo-v2.5-free"
         },
-        "hy3-free": {
-          "name": "hy3-free"
+        "ling-3.0-flash-fin-free": {
+          "name": "ling-3.0-flash-fin-free"
         },
         "nemotron-3-ultra-free": {
           "name": "nemotron-3-ultra-free"
@@ -325,20 +325,11 @@
         "apiKey": "{env:ROUTEWAY_API_KEY}"
       },
       "models": {
-        "step-3.7-flash:free": {
-          "name": "step-3.7-flash:free"
-        },
         "gemma-4-31b-it:free": {
           "name": "gemma-4-31b-it:free"
         },
         "gpt-oss-120b:free": {
           "name": "gpt-oss-120b:free"
-        },
-        "llama-3.3-70b-instruct:free": {
-          "name": "llama-3.3-70b-instruct:free"
-        },
-        "llama-3.2-3b-instruct:free": {
-          "name": "llama-3.2-3b-instruct:free"
         },
         "muse-glimmer-30b:free": {
           "name": "muse-glimmer-30b:free"

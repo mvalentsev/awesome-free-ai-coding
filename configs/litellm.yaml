@@ -28,9 +28,9 @@ model_list:
     model: openai/mimo-v2.5-free
     api_base: https://opencode.ai/zen/v1
     api_key: os.environ/OPENCODE_API_KEY
-- model_name: opencode/hy3-free
+- model_name: opencode/ling-3.0-flash-fin-free
   litellm_params:
-    model: openai/hy3-free
+    model: openai/ling-3.0-flash-fin-free
     api_base: https://opencode.ai/zen/v1
     api_key: os.environ/OPENCODE_API_KEY
 - model_name: opencode/nemotron-3-ultra-free
@@ -363,11 +363,6 @@ model_list:
     model: openai/llama-4
     api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
     api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
-- model_name: routeway/step-3.7-flash:free
-  litellm_params:
-    model: openai/step-3.7-flash:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/gemma-4-31b-it:free
   litellm_params:
     model: openai/gemma-4-31b-it:free
@@ -376,16 +371,6 @@ model_list:
 - model_name: routeway/gpt-oss-120b:free
   litellm_params:
     model: openai/gpt-oss-120b:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/llama-3.3-70b-instruct:free
-  litellm_params:
-    model: openai/llama-3.3-70b-instruct:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/llama-3.2-3b-instruct:free
-  litellm_params:
-    model: openai/llama-3.2-3b-instruct:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/muse-glimmer-30b:free

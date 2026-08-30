@@ -391,26 +391,31 @@ entries:
   - https://opencode.ai/docs/
   card_required: false
   offering: Open-source TUI/desktop coding agent with six zero-priced models included
-    via the opencode Zen gateway (Big Pickle, MiMo-V2.5, Hy3, Nemotron 3 Ultra, Nemotron
-    3.5 Lightning, Muse Spark 1.2 Contributor); any provider via BYOK too
-  limits: 'Zen prices six ids at zero — big-pickle, mimo-v2.5-free, hy3-free, nemotron-3-ultra-free,
-    nemotron-3.5-lightning-free and muse-spark-1.2-contributor-free — and calls every
-    one of them "available on OpenCode for a limited time" while the team collects
-    feedback. That feedback is the price: the privacy section exempts each free model
-    from Zen''s zero-retention policy ("during its free period, collected data may
-    be used to improve the model"), the two NVIDIA-backed ones are "trial use only
-    — do not submit personal or confidential data", and the newest buys its zero with
-    training rights — "heavily discounted token pricing in exchange for permission
-    to use your prompts and completions to train future Meta models", on a row the
-    pricing table still prints as Free in and Free out. Mind the suffix: plain muse-spark-1.2
-    is the paid row at $1.25/$4.25 per 1M tokens. Two ids left the free table by the
-    2026-08-20 read — deepseek-v4-flash is now metered at $0.22/$0.66 off-peak and
-    $0.44/$1.32 peak, and laguna-s-2.1 is off the page entirely — though both -free
-    ids are still in the catalog. Zen documents signup as "sign in to OpenCode Zen,
-    add your billing details, and copy your API key", but the free ids answer without
-    payment details on file — tested by hand rather than read, 2026-08-15. Billing
-    is what the metered ids want, and once it is on, auto-reload tops the balance
-    up by $20 whenever it falls below $5 (read 2026-08-20)'
+    via the opencode Zen gateway (Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron
+    3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.2 Contributor); any provider via
+    BYOK too
+  limits: 'Zen prices six ids at zero — big-pickle, mimo-v2.5-free, ling-3.0-flash-fin-free,
+    nemotron-3-ultra-free, nemotron-3.5-lightning-free and muse-spark-1.2-contributor-free
+    — and calls every one of them "available on OpenCode for a limited time" while
+    the team collects feedback. That feedback is the price: the privacy section exempts
+    each free model from Zen''s zero-retention policy ("during its free period, collected
+    data may be used to improve the model"), the two NVIDIA-backed ones are "trial
+    use only — do not submit personal or confidential data", and the newest buys its
+    zero with training rights — "heavily discounted token pricing in exchange for
+    permission to use your prompts and completions to train future Meta models", on
+    a row the pricing table still prints as Free in and Free out. Mind the suffix:
+    plain muse-spark-1.2 is the paid row at $1.25/$4.25 per 1M tokens. Two ids left
+    the free table by the 2026-08-20 read — deepseek-v4-flash is now metered at $0.22/$0.66
+    off-peak and $0.44/$1.32 peak, and laguna-s-2.1 is off the page entirely — though
+    both -free ids are still in the catalog. Zen documents signup as "sign in to OpenCode
+    Zen, add your billing details, and copy your API key", but the free ids answer
+    without payment details on file — tested by hand rather than read, 2026-08-15.
+    Billing is what the metered ids want, and once it is on, auto-reload tops the
+    balance up by $20 whenever it falls below $5 (read 2026-08-20). The lane still
+    counts six, but not the same six: on 2026-08-30 hy3-free was gone from the page
+    altogether — no row in the pricing table, no id in the endpoints table, and not
+    listed under Deprecated models either — while ling-3.0-flash-fin-free had arrived
+    priced Free in, Free out'
   models:
   - family: big-pickle
     tier: strong
@@ -418,7 +423,7 @@ entries:
   - family: mimo-v2.5
     tier: strong
     released: ''
-  - family: hy3
+  - family: ling-3.0-flash-fin
     tier: strong
     released: ''
   - family: nemotron-3-ultra
@@ -438,7 +443,7 @@ entries:
     model_ids:
     - big-pickle
     - mimo-v2.5-free
-    - hy3-free
+    - ling-3.0-flash-fin-free
     - nemotron-3-ultra-free
     - nemotron-3.5-lightning-free
     - muse-spark-1.2-contributor-free
@@ -457,7 +462,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-08-27'
+  last_verified: '2026-08-30'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -1477,47 +1482,39 @@ entries:
   - https://routeway.ai/docs
   - https://docs.routeway.ai/getting-started/rate-limits
   card_required: false
-  offering: OpenAI-compatible gateway carrying six live zero-priced :free ids — Step
-    3.7 Flash, Gemma 4 31B, gpt-oss-120b, Meta's Muse Glimmer 30B and the Llama 3.2/3.3
-    line — beside 241 metered rows in the same catalog
-  limits: Free models, meaning every id ending :free, are capped at 5 requests per
+  offering: OpenAI-compatible gateway carrying three live zero-priced :free ids —
+    Gemma 4 31B, gpt-oss-120b and Meta's Muse Glimmer 30B — beside 238 metered rows
+    in the same catalog
+  limits: 'Free models, meaning every id ending :free, are capped at 5 requests per
     minute and 200 requests per day and return 429 past either; on the pay-as-you-go
     ids beside them Routeway "does not enforce API-level rate limits", only edge DDoS
-    protection (docs.routeway.ai rate-limits, read 2026-08-28)
+    protection (docs.routeway.ai rate-limits, re-read 2026-08-30). What churns here
+    is the lane rather than the caps: ten zero-priced ids on 2026-08-14, six on 2026-08-28
+    and three on 2026-08-30 — gemma-4-31b-it, gpt-oss-120b and muse-glimmer-30b —
+    with step-3.7-flash and the whole Llama 3.x line gone in the last two days. The
+    gateway publishes no legal entity or terms of service and is supported through
+    Discord alone: a fallback lane, not a dependency'
   models:
   - family: gpt-oss
     tier: strong
     released: 2025-08
-  - family: step-3.7-flash
-    tier: strong
-    released: 2026-06
   - family: gemma-4
     tier: strong
     released: 2026-04
-  - family: llama-3.3
-    tier: strong
-    released: 2024-12
   api:
     base_url: https://api.routeway.ai/v1
     key_url: https://routeway.ai/dashboard/keys
     auth: api-key
     openai_compatible: true
     model_ids:
-    - step-3.7-flash:free
     - gemma-4-31b-it:free
     - gpt-oss-120b:free
-    - llama-3.3-70b-instruct:free
-    - llama-3.2-3b-instruct:free
     - muse-glimmer-30b:free
-    note: 'all six are priced 0 and marked available in the catalog the probe reads
-      (2026-08-28); the Models column names only the four families the probe anchors
-      on, because a promo lane that rotates out must not archive a gateway whose free
-      tier is intact. It rotates fast: five of the ten ids listed here on 2026-08-14
-      had gone by this read, muse-glimmer-30b:free arrived, and laguna-m.1:free left
-      the catalog altogether. Only the :free suffix is zero-priced — the same catalog
-      meters Claude and GPT at list rates. The gateway publishes no legal entity or
-      terms of service and is supported through Discord alone: a fallback lane, not
-      a dependency'
+    note: 'all three are priced 0 and marked available in the catalog the probe reads
+      (2026-08-30), and only the :free suffix is zero-priced — the same catalog meters
+      Claude and GPT at list rates. muse-glimmer-30b is carried here and not in the
+      Models column: it arrived two days ago, and every family in that column is a
+      tripwire the api-models probe re-checks on every run'
   probe:
     type: api-models
     endpoint: https://api.routeway.ai/v1/models
@@ -1526,7 +1523,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-06'
-  last_verified: '2026-08-27'
+  last_verified: '2026-08-30'
   probe_failures: 0
   provisional: false
   rank: 40

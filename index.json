@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-28",
+  "generated": "2026-08-30",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -418,8 +418,8 @@
         "https://opencode.ai/docs/"
       ],
       "card_required": false,
-      "offering": "Open-source TUI/desktop coding agent with six zero-priced models included via the opencode Zen gateway (Big Pickle, MiMo-V2.5, Hy3, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.2 Contributor); any provider via BYOK too",
-      "limits": "Zen prices six ids at zero — big-pickle, mimo-v2.5-free, hy3-free, nemotron-3-ultra-free, nemotron-3.5-lightning-free and muse-spark-1.2-contributor-free — and calls every one of them \"available on OpenCode for a limited time\" while the team collects feedback. That feedback is the price: the privacy section exempts each free model from Zen's zero-retention policy (\"during its free period, collected data may be used to improve the model\"), the two NVIDIA-backed ones are \"trial use only — do not submit personal or confidential data\", and the newest buys its zero with training rights — \"heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models\", on a row the pricing table still prints as Free in and Free out. Mind the suffix: plain muse-spark-1.2 is the paid row at $1.25/$4.25 per 1M tokens. Two ids left the free table by the 2026-08-20 read — deepseek-v4-flash is now metered at $0.22/$0.66 off-peak and $0.44/$1.32 peak, and laguna-s-2.1 is off the page entirely — though both -free ids are still in the catalog. Zen documents signup as \"sign in to OpenCode Zen, add your billing details, and copy your API key\", but the free ids answer without payment details on file — tested by hand rather than read, 2026-08-15. Billing is what the metered ids want, and once it is on, auto-reload tops the balance up by $20 whenever it falls below $5 (read 2026-08-20)",
+      "offering": "Open-source TUI/desktop coding agent with six zero-priced models included via the opencode Zen gateway (Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.2 Contributor); any provider via BYOK too",
+      "limits": "Zen prices six ids at zero — big-pickle, mimo-v2.5-free, ling-3.0-flash-fin-free, nemotron-3-ultra-free, nemotron-3.5-lightning-free and muse-spark-1.2-contributor-free — and calls every one of them \"available on OpenCode for a limited time\" while the team collects feedback. That feedback is the price: the privacy section exempts each free model from Zen's zero-retention policy (\"during its free period, collected data may be used to improve the model\"), the two NVIDIA-backed ones are \"trial use only — do not submit personal or confidential data\", and the newest buys its zero with training rights — \"heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models\", on a row the pricing table still prints as Free in and Free out. Mind the suffix: plain muse-spark-1.2 is the paid row at $1.25/$4.25 per 1M tokens. Two ids left the free table by the 2026-08-20 read — deepseek-v4-flash is now metered at $0.22/$0.66 off-peak and $0.44/$1.32 peak, and laguna-s-2.1 is off the page entirely — though both -free ids are still in the catalog. Zen documents signup as \"sign in to OpenCode Zen, add your billing details, and copy your API key\", but the free ids answer without payment details on file — tested by hand rather than read, 2026-08-15. Billing is what the metered ids want, and once it is on, auto-reload tops the balance up by $20 whenever it falls below $5 (read 2026-08-20). The lane still counts six, but not the same six: on 2026-08-30 hy3-free was gone from the page altogether — no row in the pricing table, no id in the endpoints table, and not listed under Deprecated models either — while ling-3.0-flash-fin-free had arrived priced Free in, Free out",
       "models": [
         {
           "family": "big-pickle",
@@ -432,7 +432,7 @@
           "released": ""
         },
         {
-          "family": "hy3",
+          "family": "ling-3.0-flash-fin",
           "tier": "strong",
           "released": ""
         },
@@ -460,7 +460,7 @@
         "model_ids": [
           "big-pickle",
           "mimo-v2.5-free",
-          "hy3-free",
+          "ling-3.0-flash-fin-free",
           "nemotron-3-ultra-free",
           "nemotron-3.5-lightning-free",
           "muse-spark-1.2-contributor-free"
@@ -479,7 +479,7 @@
         "require_zero_price": false
       },
       "first_seen": "2026-07-19",
-      "last_verified": "2026-08-27",
+      "last_verified": "2026-08-30",
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
@@ -1551,8 +1551,8 @@
         "https://docs.routeway.ai/getting-started/rate-limits"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway carrying six live zero-priced :free ids — Step 3.7 Flash, Gemma 4 31B, gpt-oss-120b, Meta's Muse Glimmer 30B and the Llama 3.2/3.3 line — beside 241 metered rows in the same catalog",
-      "limits": "Free models, meaning every id ending :free, are capped at 5 requests per minute and 200 requests per day and return 429 past either; on the pay-as-you-go ids beside them Routeway \"does not enforce API-level rate limits\", only edge DDoS protection (docs.routeway.ai rate-limits, read 2026-08-28)",
+      "offering": "OpenAI-compatible gateway carrying three live zero-priced :free ids — Gemma 4 31B, gpt-oss-120b and Meta's Muse Glimmer 30B — beside 238 metered rows in the same catalog",
+      "limits": "Free models, meaning every id ending :free, are capped at 5 requests per minute and 200 requests per day and return 429 past either; on the pay-as-you-go ids beside them Routeway \"does not enforce API-level rate limits\", only edge DDoS protection (docs.routeway.ai rate-limits, re-read 2026-08-30). What churns here is the lane rather than the caps: ten zero-priced ids on 2026-08-14, six on 2026-08-28 and three on 2026-08-30 — gemma-4-31b-it, gpt-oss-120b and muse-glimmer-30b — with step-3.7-flash and the whole Llama 3.x line gone in the last two days. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
       "models": [
         {
           "family": "gpt-oss",
@@ -1560,19 +1560,9 @@
           "released": "2025-08"
         },
         {
-          "family": "step-3.7-flash",
-          "tier": "strong",
-          "released": "2026-06"
-        },
-        {
           "family": "gemma-4",
           "tier": "strong",
           "released": "2026-04"
-        },
-        {
-          "family": "llama-3.3",
-          "tier": "strong",
-          "released": "2024-12"
         }
       ],
       "api": {
@@ -1581,14 +1571,11 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "step-3.7-flash:free",
           "gemma-4-31b-it:free",
           "gpt-oss-120b:free",
-          "llama-3.3-70b-instruct:free",
-          "llama-3.2-3b-instruct:free",
           "muse-glimmer-30b:free"
         ],
-        "note": "all six are priced 0 and marked available in the catalog the probe reads (2026-08-28); the Models column names only the four families the probe anchors on, because a promo lane that rotates out must not archive a gateway whose free tier is intact. It rotates fast: five of the ten ids listed here on 2026-08-14 had gone by this read, muse-glimmer-30b:free arrived, and laguna-m.1:free left the catalog altogether. Only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency"
+        "note": "all three are priced 0 and marked available in the catalog the probe reads (2026-08-30), and only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. muse-glimmer-30b is carried here and not in the Models column: it arrived two days ago, and every family in that column is a tripwire the api-models probe re-checks on every run"
       },
       "probe": {
         "type": "api-models",
@@ -1599,7 +1586,7 @@
         "require_zero_price": true
       },
       "first_seen": "2026-08-06",
-      "last_verified": "2026-08-27",
+      "last_verified": "2026-08-30",
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
@@ -2652,6 +2639,67 @@
       "checked_on": "2026-08-14",
       "reason": "Nothing here can be read, so nothing can be verified: www.coze.com answers every path tried with the same 43,754-byte SPA shell — the API overview, the pricing guide, /robots.txt and /sitemap.xml alike — and the document API behind that shell replies {\"code\":700012006,\"msg\":\"Login verification is invalid\"}. No quota, model list or terms are served anywhere a probe could anchor. The shape is doubtful as well — its own og:title calls it an \"AI Agent Intelligent Office Platform\" and its API is /v3/chat against bots built inside its workspace, which is the hosted-app-builder case CONTRIBUTING excludes — but the verification rule alone settles it, the way it settled Morph LLM.",
       "reopen_if": "Coze serves its developer docs or pricing to an ordinary HTTP client, and that page describes model access rather than bot invocations.",
+      "current": true
+    },
+    {
+      "domains": [
+        "publicai.co"
+      ],
+      "name": "Public AI Inference Utility",
+      "checked_on": "2026-08-30",
+      "reason": "The word \"Free\" here names a rate-limit tier, not free inference. platform.publicai.co/plans puts four tiers side by side and the Free one buys \"100 requests/minute — default when you create an API key\"; the same page keeps the money in a separate paragraph — \"Rate limits and token usage billing are separate ... Token usage is billed against wallet credits\", with \"New accounts receive starter credits when they first use billing features\" and no figure attached to those credits anywhere on the portal. The catalog agrees: every one of the eleven models on platform.publicai.co/models carries a price (swiss-ai/apertus-v1.5-8b at $0.10/$0.20 per 1M, up to $0.82/$2.92 for the 70b), and none is listed at zero. An unnamed starter credit is the SiliconFlow reasoning again: a sign-up courtesy is not a free tier. The nonprofit itself is exactly what it says — a public-AI gateway fronting Apertus, SEA-LION, Olmo, Bielik and EuroLLM, and this list already carries SEA-LION from its own vendor.",
+      "reopen_if": "The portal names the starter credit, or /v1/models starts returning a model priced at zero.",
+      "current": true
+    },
+    {
+      "domains": [
+        "crof.ai",
+        "nahcrof.com"
+      ],
+      "name": "CrofAI",
+      "checked_on": "2026-08-30",
+      "reason": "A free account is not a free tier. crof.ai/home sells the on-ramp — \"Get an API key — free account, no credit card required\" — and crof.ai/pricing states the offer in one line: \"Pay for what you use. Per-token pricing across every model we serve. No subscriptions, no minimums — only the tokens you actually burn.\" The catalog behind it, ai.nahcrof.com/v1/models, is public and prices all 23 models; not one is at zero (the cheapest row read on 2026-08-30 was $0.35 in / $0.80 out per 1M). Reached from OmniRoute's provider table, where it is filed under paid.",
+      "reopen_if": "A model priced at 0 appears in ai.nahcrof.com/v1/models, or the pricing page starts naming a recurring free allowance.",
+      "current": true
+    },
+    {
+      "domains": [
+        "bluesminds.com"
+      ],
+      "name": "BluesMinds",
+      "checked_on": "2026-08-30",
+      "reason": "OmniRoute credits it with 22 free models and ~7M tokens a month; the vendor publishes nothing of the kind. www.bluesminds.com is an enterprise page whose only two calls to action are \"Sign in\" and \"Request access\", /pricing 404s, and there is no docs host to read. The one thing its API does say is what it runs on: api.bluesminds.com/v1/models answers {\"error\":{\"message\":\"Invalid token ...\",\"type\":\"new_api_error\"}}, the error shape of the New API resale panel, which is the software a key-pooling gateway is usually built from. Nothing here is verifiable and the free claim is a third party's.",
+      "reopen_if": "BluesMinds publishes a pricing or docs page an ordinary HTTP client can read, and that page names a free allowance of its own.",
+      "current": true
+    },
+    {
+      "domains": [
+        "bynara.id"
+      ],
+      "name": "Nara / NaraRouter",
+      "checked_on": "2026-08-30",
+      "reason": "An Indonesian startup's product page, not an offer. bynara.id describes NaraRouter as \"one OpenAI-compatible gateway to route, track, and control AI usage across providers\" and says nothing about price, quota or a free lane anywhere in its 3,362 characters; router.bynara.id/v1/models answers 401 \"A valid API key is required\", so the catalog cannot be read either. The three free models OmniRoute lists for it are a third party's claim with no vendor page behind them.",
+      "reopen_if": "Nara publishes pricing or docs naming a free allowance, or its catalog becomes readable and carries a model at zero.",
+      "current": true
+    },
+    {
+      "domains": [
+        "bytez.com"
+      ],
+      "name": "Bytez",
+      "checked_on": "2026-08-30",
+      "reason": "Nothing on this domain can be read by a probe. bytez.com serves a 63KB shell that renders 22 characters of text, docs.bytez.com renders 900 from half a megabyte, /pricing 404s into a client-side not-found, and api.bytez.com/models/v2/list/models answers {\"error\":\"Unauthorized\"}. The free claim carried by OmniRoute is a ~1M-token signup credit — a one-time grant even as reported — and no page here states it. The verification rule settles it the way it settled Coze and Morph.",
+      "reopen_if": "Bytez serves a pricing or docs page to an ordinary HTTP client and that page names a recurring free allowance rather than signup credits.",
+      "current": true
+    },
+    {
+      "domains": [
+        "liquid.ai"
+      ],
+      "name": "Liquid AI (LFM / LEAP)",
+      "checked_on": "2026-08-30",
+      "reason": "The wrong shape rather than the wrong price. Liquid's product is the LEAP edge platform — \"Discover, specialize, and deploy models on any device\" — whose models run on the phone or laptop you ship them to, not behind a hosted endpoint an agent can call: api.liquid.ai/v1/models does not exist (404 from the marketing app) and labs.liquid.ai serves no catalog either. A local runtime is out of scope here for the same reason Ollama's desktop build is, and the \"keyless\" row OmniRoute files for it names no endpoint.",
+      "reopen_if": "Liquid opens a hosted LFM API with a free lane a developer can call from outside its own SDK.",
       "current": true
     }
   ]
