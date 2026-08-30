@@ -398,6 +398,16 @@ model_list:
     model: openai/poolside/laguna-s-2.1-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+- model_name: hetzner-inference/Qwen/Qwen3.6-35B-A3B-FP8
+  litellm_params:
+    model: openai/Qwen/Qwen3.6-35B-A3B-FP8
+    api_base: https://inference.hetzner.com/api/v1
+    api_key: os.environ/HETZNER_INFERENCE_API_KEY
+- model_name: hetzner-inference/Qwen3.8-27B
+  litellm_params:
+    model: openai/Qwen3.8-27B
+    api_base: https://inference.hetzner.com/api/v1
+    api_key: os.environ/HETZNER_INFERENCE_API_KEY
 - model_name: alibaba-model-studio/qwen3-max
   litellm_params:
     model: openai/qwen3-max
@@ -448,6 +458,36 @@ model_list:
     model: openai/command-a-03-2025
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
+- model_name: regolo/glm5.2
+  litellm_params:
+    model: openai/glm5.2
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/gpt-oss-120b
+  litellm_params:
+    model: openai/gpt-oss-120b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/qwen3.8-27b
+  litellm_params:
+    model: openai/qwen3.8-27b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/Llama-3.3-70B-Instruct
+  litellm_params:
+    model: openai/Llama-3.3-70B-Instruct
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/apertus-70b
+  litellm_params:
+    model: openai/apertus-70b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/brick-v1-beta
+  litellm_params:
+    model: openai/brick-v1-beta
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
 - model_name: ovh-ai-endpoints/gpt-oss-120b
   litellm_params:
     model: openai/gpt-oss-120b
@@ -528,3 +568,8 @@ model_list:
     model: openai/poolside/laguna-xs-2.1
     api_base: https://inference.poolside.ai/v1
     api_key: os.environ/POOLSIDE_API_KEY
+- model_name: uncloseai/Lorbus/Qwen3.6-27B-int4-AutoRound
+  litellm_params:
+    model: openai/Lorbus/Qwen3.6-27B-int4-AutoRound
+    api_base: https://hermes.ai.unturf.com/v1
+    api_key: none

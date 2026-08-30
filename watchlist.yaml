@@ -961,3 +961,103 @@ watched:
     reopen_if: >-
       Coze serves its developer docs or pricing to an ordinary HTTP client, and
       that page describes model access rather than bot invocations.
+
+  - domains: [publicai.co]
+    name: Public AI Inference Utility
+    checked_on: '2026-08-30'
+    reason: >-
+      The word "Free" here names a rate-limit tier, not free inference.
+      platform.publicai.co/plans puts four tiers side by side and the Free one
+      buys "100 requests/minute — default when you create an API key"; the same
+      page keeps the money in a separate paragraph — "Rate limits and token
+      usage billing are separate ... Token usage is billed against wallet
+      credits", with "New accounts receive starter credits when they first use
+      billing features" and no figure attached to those credits anywhere on the
+      portal. The catalog agrees: every one of the eleven models on
+      platform.publicai.co/models carries a price (swiss-ai/apertus-v1.5-8b at
+      $0.10/$0.20 per 1M, up to $0.82/$2.92 for the 70b), and none is listed at
+      zero. An unnamed starter credit is the SiliconFlow reasoning again: a
+      sign-up courtesy is not a free tier. The nonprofit itself is exactly what
+      it says — a public-AI gateway fronting Apertus, SEA-LION, Olmo, Bielik and
+      EuroLLM, and this list already carries SEA-LION from its own vendor.
+    reopen_if: >-
+      The portal names the starter credit, or /v1/models starts returning a
+      model priced at zero.
+
+  - domains: [crof.ai, nahcrof.com]
+    name: CrofAI
+    checked_on: '2026-08-30'
+    reason: >-
+      A free account is not a free tier. crof.ai/home sells the on-ramp — "Get
+      an API key — free account, no credit card required" — and crof.ai/pricing
+      states the offer in one line: "Pay for what you use. Per-token pricing
+      across every model we serve. No subscriptions, no minimums — only the
+      tokens you actually burn." The catalog behind it, ai.nahcrof.com/v1/models,
+      is public and prices all 23 models; not one is at zero (the cheapest row
+      read on 2026-08-30 was $0.35 in / $0.80 out per 1M). Reached from
+      OmniRoute's provider table, where it is filed under paid.
+    reopen_if: >-
+      A model priced at 0 appears in ai.nahcrof.com/v1/models, or the pricing
+      page starts naming a recurring free allowance.
+
+  - domains: [bluesminds.com]
+    name: BluesMinds
+    checked_on: '2026-08-30'
+    reason: >-
+      OmniRoute credits it with 22 free models and ~7M tokens a month; the
+      vendor publishes nothing of the kind. www.bluesminds.com is an enterprise
+      page whose only two calls to action are "Sign in" and "Request access",
+      /pricing 404s, and there is no docs host to read. The one thing its API
+      does say is what it runs on: api.bluesminds.com/v1/models answers
+      {"error":{"message":"Invalid token ...","type":"new_api_error"}}, the
+      error shape of the New API resale panel, which is the software a
+      key-pooling gateway is usually built from. Nothing here is verifiable and
+      the free claim is a third party's.
+    reopen_if: >-
+      BluesMinds publishes a pricing or docs page an ordinary HTTP client can
+      read, and that page names a free allowance of its own.
+
+  - domains: [bynara.id]
+    name: Nara / NaraRouter
+    checked_on: '2026-08-30'
+    reason: >-
+      An Indonesian startup's product page, not an offer. bynara.id describes
+      NaraRouter as "one OpenAI-compatible gateway to route, track, and control
+      AI usage across providers" and says nothing about price, quota or a free
+      lane anywhere in its 3,362 characters; router.bynara.id/v1/models answers
+      401 "A valid API key is required", so the catalog cannot be read either.
+      The three free models OmniRoute lists for it are a third party's claim
+      with no vendor page behind them.
+    reopen_if: >-
+      Nara publishes pricing or docs naming a free allowance, or its catalog
+      becomes readable and carries a model at zero.
+
+  - domains: [bytez.com]
+    name: Bytez
+    checked_on: '2026-08-30'
+    reason: >-
+      Nothing on this domain can be read by a probe. bytez.com serves a 63KB
+      shell that renders 22 characters of text, docs.bytez.com renders 900 from
+      half a megabyte, /pricing 404s into a client-side not-found, and
+      api.bytez.com/models/v2/list/models answers {"error":"Unauthorized"}. The
+      free claim carried by OmniRoute is a ~1M-token signup credit — a one-time
+      grant even as reported — and no page here states it. The verification
+      rule settles it the way it settled Coze and Morph.
+    reopen_if: >-
+      Bytez serves a pricing or docs page to an ordinary HTTP client and that
+      page names a recurring free allowance rather than signup credits.
+
+  - domains: [liquid.ai]
+    name: Liquid AI (LFM / LEAP)
+    checked_on: '2026-08-30'
+    reason: >-
+      The wrong shape rather than the wrong price. Liquid's product is the LEAP
+      edge platform — "Discover, specialize, and deploy models on any device" —
+      whose models run on the phone or laptop you ship them to, not behind a
+      hosted endpoint an agent can call: api.liquid.ai/v1/models does not exist
+      (404 from the marketing app) and labs.liquid.ai serves no catalog either.
+      A local runtime is out of scope here for the same reason Ollama's desktop
+      build is, and the "keyless" row OmniRoute files for it names no endpoint.
+    reopen_if: >-
+      Liquid opens a hosted LFM API with a free lane a developer can call from
+      outside its own SDK.

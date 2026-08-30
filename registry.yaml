@@ -1959,3 +1959,158 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 88
+- id: hetzner-inference
+  name: Hetzner Inference API
+  category: api-free-tier
+  url: https://docs.hetzner.com/general/company-and-policy/experiments/inference/
+  source_urls:
+  - https://experiments.hetzner.com/inference
+  - https://inference.hetzner.com/api/v1/models
+  card_required: false
+  offering: OpenAI-compatible API on Hetzner's own EU hardware, free for as long as
+    the experiment runs
+  limits: 'Hetzner answers it in its own FAQ: "As long as the Inference API remains
+    in experimental status, it is free of charge. Should this status change, we will
+    notify you in advance via email with detailed information." Published per API
+    key: 4M input and 100k output tokens per 60s, plus 10 requests per 60s, HTTP 429
+    over either. No daily, monthly or lifetime cap is published and no end date is
+    named — the same page calls the service experimental, "provided for experimental
+    purposes only and offered as is", with performance and availability not guaranteed
+    and no backups. A Hetzner account is needed to mint a token and the docs do not
+    say whether a payment method is required; Hetzner''s own fraud-prevention page
+    offers a card charge as one of several verification routes (read 2026-08-30)'
+  models:
+  - family: qwen3.6
+    tier: strong
+    released: ''
+  - family: qwen3.8
+    tier: strong
+    released: ''
+  api:
+    base_url: https://inference.hetzner.com/api/v1
+    key_url: https://experiments.hetzner.com/inference
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - Qwen/Qwen3.6-35B-A3B-FP8
+    - Qwen3.8-27B
+    note: both ids are 262K-context and take text and images; /v1/models, /v1/completions
+      and /v1/chat/completions are the whole surface. The key is minted in the Inference
+      tab of experiments.hetzner.com, which is a client-rendered page behind a Hetzner
+      login — the readable copy of the terms is the docs page this row probes
+  probe:
+    type: page-keywords
+    endpoint: https://docs.hetzner.com/general/company-and-policy/experiments/inference/
+    keywords:
+    - remains in experimental status, it is free of charge
+    - https://inference.hetzner.com/api/v1
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-30'
+  last_verified: '2026-08-30'
+  probe_failures: 0
+  provisional: false
+  rank: 55
+- id: uncloseai
+  name: uncloseai (unturf)
+  category: api-free-tier
+  url: https://uncloseai.com
+  source_urls:
+  - https://hermes.ai.unturf.com/v1/models
+  card_required: false
+  offering: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account
+  limits: 'No quota is published anywhere on the site. The offer is a sentence — "we
+    offer free AI services powered by multiple AI models and a TTS endpoint ... embodying
+    the principles of both free as in beer & free as in freedom" — and the page names
+    three endpoints, of which one serves text today: hermes.ai.unturf.com/v1 answered
+    a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1 answers 403
+    "Access denied - This endpoint is closed". The served id is not the one the page''s
+    own examples call, and the vendor says so — "See our Model Discovery docs to query
+    the current model IDs being hosted" — so the id lives in api.model_ids and the
+    Free models column stays empty'
+  models: []
+  api:
+    base_url: https://hermes.ai.unturf.com/v1
+    auth: none
+    openai_compatible: true
+    model_ids:
+    - Lorbus/Qwen3.6-27B-int4-AutoRound
+    note: 'anonymous: the catalog and chat/completions both answer with no Authorization
+      header at all. One id is served at a time and it rotates — the endpoint is named
+      after Hermes and serves a Qwen build today — so treat the id as this week''s,
+      not the offer'
+  probe:
+    type: api-models
+    endpoint: https://hermes.ai.unturf.com/v1/models
+    keywords: []
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-30'
+  last_verified: '2026-08-30'
+  probe_failures: 0
+  provisional: false
+  rank: 97
+- id: regolo
+  name: Regolo AI
+  category: trial
+  url: https://regolo.ai/pricing/
+  source_urls:
+  - https://api.regolo.ai/v1/models
+  - https://docs.regolo.ai/
+  card_required: false
+  offering: EU (Italian) zero-retention inference; a month of full model access on
+    a daily token allowance, no card
+  limits: '"Start free for one month ... No credit card, no commitment": the trial
+    card names 1 month duration, "1M tokens per day" and "Stricter rate limits — fair
+    usage throttling applies", against "All Core Models", which on the same page is
+    every chat model in the library table (each marked Included under Core). Nothing
+    survives the 30 days — the page names no grant after it, only paid plans — and
+    the daily figure is the only number the trial publishes. One model is priced at
+    €0.00 in and out outside any trial, the in-house brick-v1-beta (read 2026-08-30)'
+  models:
+  - family: glm-5
+    tier: frontier
+    released: ''
+  - family: gpt-oss
+    tier: strong
+    released: ''
+  - family: qwen3.8
+    tier: strong
+    released: ''
+  - family: llama-3.3
+    tier: strong
+    released: ''
+  - family: apertus-70b
+    tier: strong
+    released: ''
+  api:
+    base_url: https://api.regolo.ai/v1
+    key_url: https://dashboard.regolo.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - glm5.2
+    - gpt-oss-120b
+    - qwen3.8-27b
+    - Llama-3.3-70B-Instruct
+    - apertus-70b
+    - brick-v1-beta
+    note: GET /v1/models is public and needs no key, but it publishes ids only — the
+      prices and the trial terms are on the pricing page this row probes. brick-v1-beta
+      is the one id priced at zero on that page
+  probe:
+    type: page-keywords
+    endpoint: https://regolo.ai/pricing/
+    keywords:
+    - 1M tokens per day
+    - No credit card, no commitment
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-08-30'
+  last_verified: '2026-08-30'
+  probe_failures: 0
+  provisional: false
+  rank: 75

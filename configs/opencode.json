@@ -368,6 +368,22 @@
         }
       }
     },
+    "hetzner-inference": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Hetzner Inference API",
+      "options": {
+        "baseURL": "https://inference.hetzner.com/api/v1",
+        "apiKey": "{env:HETZNER_INFERENCE_API_KEY}"
+      },
+      "models": {
+        "Qwen/Qwen3.6-35B-A3B-FP8": {
+          "name": "Qwen/Qwen3.6-35B-A3B-FP8"
+        },
+        "Qwen3.8-27B": {
+          "name": "Qwen3.8-27B"
+        }
+      }
+    },
     "alibaba-model-studio": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Alibaba Cloud Model Studio (DashScope, international)",
@@ -445,6 +461,34 @@
         },
         "command-a-03-2025": {
           "name": "command-a-03-2025"
+        }
+      }
+    },
+    "regolo": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Regolo AI",
+      "options": {
+        "baseURL": "https://api.regolo.ai/v1",
+        "apiKey": "{env:REGOLO_API_KEY}"
+      },
+      "models": {
+        "glm5.2": {
+          "name": "glm5.2"
+        },
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        },
+        "qwen3.8-27b": {
+          "name": "qwen3.8-27b"
+        },
+        "Llama-3.3-70B-Instruct": {
+          "name": "Llama-3.3-70B-Instruct"
+        },
+        "apertus-70b": {
+          "name": "apertus-70b"
+        },
+        "brick-v1-beta": {
+          "name": "brick-v1-beta"
         }
       }
     },
@@ -588,6 +632,18 @@
         },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
+        }
+      }
+    },
+    "uncloseai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "uncloseai (unturf)",
+      "options": {
+        "baseURL": "https://hermes.ai.unturf.com/v1"
+      },
+      "models": {
+        "Lorbus/Qwen3.6-27B-int4-AutoRound": {
+          "name": "Lorbus/Qwen3.6-27B-int4-AutoRound"
         }
       }
     },
