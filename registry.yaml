@@ -2576,14 +2576,21 @@ entries:
   offering: Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team
     trial with unlimited reviews and credits and no card
   limits: '"Free 14 Day Trial no credit card — Unlimited reviews, Unlimited credits"
-    is the whole free offer on the pricing page (read 2026-09-02); the plan it trials
-    is "Pro Team $30", billed at "$.012/credit, pooled across the team" with packs
-    from 2,500 credits ("~18 Reviews/Mo") to 20,000, "Designed for up to 30 users",
-    "Monthly billing • no commitment". The page''s own metadata still says "You can
-    start for free as an individual Developer", but no Developer plan is on the page
-    any more — the deals list that led here credits it with 30 PR reviews and 250
-    IDE credits a month, and the vendor no longer does. Which models the trial runs
-    on is not stated'
+    is the whole free offer on the pricing page (read 2026-09-02), and the FAQ beside
+    it says so: "Is there a free plan? We don''t offer a permanent free tier. After
+    your trial, pick a paid plan to keep reviewing." The docs put it as "The trial
+    is the initial state of every workspace, not a separate plan or tier" and "When
+    the trial ends, usage stops unless a paid billing setup is active". The plan it
+    trials is "Pro Team $30", "$.012/credit, pooled across the team", "Designed for
+    up to 30 users", "Monthly billing • no commitment". Two caveats the page does
+    not carry: the troubleshooting docs log "above trial max invokes of 30" for an
+    organisation on trial, and the Terms grant Qodo a licence "to train and improve
+    the Platform''s, the Qodo Models and Services'' performance" while the pricing
+    FAQ says "Qodo does not train models on your code". A standing free lane exists
+    for one audience: "Qualified open source projects can apply to the Qodo for Open
+    Source program for free access", which the Marketplace listing gates at "200+
+    GitHub stars". The Developer plan the deals list credits it with survives only
+    in the page''s metadata. Which models the trial runs on is not stated'
   models: []
   probe:
     type: page-keywords
@@ -2599,3 +2606,49 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 85
+- id: codebuddy
+  name: CodeBuddy (Tencent)
+  category: trial
+  url: https://www.codebuddy.ai
+  source_urls:
+  - https://www.codebuddy.ai/docs/ide/Account/pricing
+  - https://www.codebuddy.ai/docs/ide/Account/Subscription
+  - https://www.codebuddy.ai/document/term
+  card_required: false
+  offering: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries
+    100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with
+    every model open while the promotion runs
+  limits: 'The docs price table (last updated 2026-08-07, read 2026-09-02): "Plan
+    Free Pro", "Monthly Subscription Free $10.00 / month", "Base Credits / Month 100
+    1,000", "Promotional Bonus (Limited-Time Offer) 30 credits / day 50 credits /
+    day", "Real-Time Code Completion 5,000 completions / month (unlimited during the
+    promotional period)", "Automated Tasks 3 (99 during the promotional period)",
+    "Model Routing Auto routing (all models available during the promotional period)".
+    "Standard quotas resume when the promotion ends", and "The end date of this promotion
+    will be announced separately". "Base and bonus credits are issued monthly and
+    are valid for that month; they do not roll over"; "New users receive 250 credits
+    immediately upon their first sign-in. The credits are valid for 14 days". No card
+    for Free — the only card is the 7-day Pro trial, "after linking a credit card
+    and enabling auto-renewal". The docs name no model for the plan beyond "Hunyuan,
+    DeepSeek, and more". The terms are Tencent Cloud International Pte. Ltd.''s, require
+    users "at least 18 years old" and bar any "Sanctioned Jurisdiction"; the DPSA
+    says code is processed only to provide the feature. The China edition (codebuddy.cn,
+    体验版, 500 积分 a month, a real-name Tencent Cloud account) is a separate product
+    whose agreement licenses free-edition inputs and outputs "用于模型服务优化及本服务的改进" — to
+    optimise the model service — which the international terms do not'
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://www.codebuddy.ai/docs/ide/Account/pricing
+    keywords:
+    - 100 credits
+    - Base and bonus credits are issued monthly and are valid for that month
+    - Individual Plans
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-02'
+  probe_failures: 0
+  provisional: true
+  rank: 65

@@ -235,10 +235,12 @@ read:
       list of dated offers needs and a list of standing free tiers does not.
       The three claims were read against the vendors on 2026-09-02: qodo.ai's
       pricing page carries a 14-day no-card trial and no Developer plan (a
-      trial row now), codebuddy.ai serves nothing an HTTP client can read
-      (watchlisted), and augmentcode.com prices two plans from $100 a month
-      and names no free one (watchlisted). One of four free-tier claims held,
-      which is the rate to expect from a deals list.
+      trial row now), codebuddy.ai's Free plan is real and readable on its
+      VitePress docs — 100 credits a month plus a daily bonus and 250 welcome
+      credits, near the "250 credits per 2 weeks" the list says (a trial row
+      now), and augmentcode.com prices two plans from $100 a month and names
+      no free one (watchlisted). Two of four free-tier claims survived a read
+      of the vendor, one of them reworded.
     reopen_if: >-
       It separates free tiers from discounts into their own table, or its
       free-tier rows start naming quotas and model lists instead of savings.

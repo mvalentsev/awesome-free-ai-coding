@@ -1355,24 +1355,10 @@ watched:
       apply to trials or beta usage" — with no terms, quota or sign-up path
       beside it, and the docs' token-based pricing page prices every model at
       public API list price plus a 40% service fee from the first token. The
-      home page names nothing free either.
+      home page names nothing free either. Should a Community plan return, its
+      terms are still published (v1.9, 2026-01-14): "you grant us the right to
+      use your Customer Code, Output, and Usage Data to train the artificial
+      intelligence models", against the paid page's "No AI training allowed".
     reopen_if: >-
       A free or community plan with a stated quota appears on the pricing
       page.
-
-  - domains: [codebuddy.ai, codebuddy.cn, copilot.tencent.com]
-    name: CodeBuddy (Tencent)
-    checked_on: '2026-09-02'
-    reason: >-
-      Reached through the codertesla/ai-coding-deals list, which credits it
-      with 250 credits every two weeks. Nothing here can be read:
-      www.codebuddy.ai/pricing and the home page are 7-kilobyte JavaScript
-      shells with one character of text, every docs path under
-      www.codebuddy.ai/docs serves the same 3.2-kilobyte shell with 57
-      characters, copilot.tencent.com/pricing and www.codebuddy.cn/pricing
-      serve 31, /llms.txt answers 404 and docs.codebuddy.ai does not resolve.
-      Whatever the product grants, no page states it to an ordinary HTTP
-      client — the ModelScope bar.
-    reopen_if: >-
-      A server-rendered page, an llms.txt or a Markdown docs form states the
-      free quota and what models it reaches.
