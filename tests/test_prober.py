@@ -1101,6 +1101,23 @@ async def test_a_dead_offer_outranks_a_catalog_check():
     assert not route.called
 
 
+@respx.mock
+async def test_a_dry_run_counts_its_failures_so_a_shell_chain_can_stop(tmp_path):
+    """The dry run printed "1 need attention" and exited 0, and the `&&` after
+    it committed a row whose keyword its page did not carry. A count of FAILs
+    is what main() turns into the exit code; a stale-ids flag is a verified
+    row with a note and is not counted."""
+    good = api_entry()
+    bad = page_entry()
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free"}]}))
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="pay as you go"))
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [good, bad])
+    failed = await _amain(reg, tmp_path / "failures", dry_run=True)
+    assert failed == 1
+
+
 def test_stale_ids_verifies_the_entry_like_a_pass():
     """Same reasoning as stale-models one test below: the offer was confirmed,
     only a field beside it is in doubt, and freezing last_verified would archive

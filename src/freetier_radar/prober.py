@@ -772,7 +772,13 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     return needs_attention
 
 
-async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False) -> None:
+async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False) -> int:
+    """Returns the number of rows that FAILED, so a dry run can refuse to be
+    chained past: on 2026-09-02 a new row went into a commit with a keyword
+    its page did not carry, because the dry run printed the failure and
+    exited 0 and the `&&` after it never noticed. Flags that verify a row —
+    stale-ids, stale-models — are not counted; neither is INCONCLUSIVE, which
+    is the row's problem to report and not the run's."""
     entries = load_registry(registry_path)
     sem = asyncio.Semaphore(CONCURRENCY)
 
@@ -810,6 +816,7 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     # the one class of failure that cannot be reproduced locally.
     for row in payload:
         print(f"  {row['id']}: {row['status']} — {row['detail'] or 'no detail'}")
+    return sum(1 for _, r in flagged if r.status is ProbeStatus.FAIL)
 
 
 def main() -> None:
@@ -819,4 +826,9 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true",
                         help="probe everything and report, but write no verification dates")
     args = parser.parse_args()
-    asyncio.run(_amain(args.registry, args.failures, args.dry_run))
+    failed = asyncio.run(_amain(args.registry, args.failures, args.dry_run))
+    # A real run hands its failures to the scout and must exit 0 for the
+    # workflow to reach it; a dry run is read by a person, and a person
+    # chaining it in a shell wants the chain to stop here.
+    if args.dry_run and failed:
+        raise SystemExit(1)
