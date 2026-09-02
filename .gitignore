@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 failures/
 scout-pr.md
+scout-status.json
 .idea/
 .mimocode/
 docs/compose/

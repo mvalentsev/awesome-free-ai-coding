@@ -86,6 +86,13 @@ EVIDENCE_BUDGET_FRACTION = 0.25
 # timeout meant for generation.
 MODELS_LIST_TIMEOUT = 30.0
 
+# What an OpenAI-compatible endpoint answers about a model it no longer serves.
+# opencode Zen returned 400 for deepseek-v4-flash-free on 2026-08-31, eleven
+# days after moving that id off its free pricing table; 404 is the same news
+# from a stricter router. Both say "not this model", never "not this endpoint",
+# which is why they cost a candidate rather than the whole backend.
+BAD_MODEL_STATUS = (400, 404)
+
 # Retirement sweep: one page per live entry, trimmed so the prompt stays small.
 # A quote shorter than this is too weak to verify against a page.
 RETIREMENT_PAGE_CHARS = 2500
@@ -223,6 +230,7 @@ PR_BODY_TEMPLATE = """## Scout proposals
 
 Discovery sources used: {providers}
 Backend chain: {backend}
+Pinned scout models this registry does not list under that base url: {unlisted_pins}
 
 Updated entries: {updates}
 New entries (probe-verified): {new}
@@ -230,6 +238,7 @@ Rejected candidates: {rejected}
 Flagged by the probe and still unfixed — these need a human: {unfixed}
 Retirements announced by the vendor: {retired}
 Phases skipped (out of wall-clock budget): {skipped}
+Phases that asked and got nothing — every backend in the chain failed: {llm_outages}
 
 Generation bumps suggested — **not applied**, edit registry.yaml yourself if a
 free tier really moved on: {supersede}
@@ -278,6 +287,26 @@ class Deadline:
         return Deadline(self.remaining() * fraction, self._clock)
 
 
+def _model_candidates(pinned: str | None, published: list[str]) -> list[str]:
+    """The pinned model first, then the ids the registry publishes for that
+    endpoint, deduplicated with the order kept. A pin is a deliberate choice and
+    outranks the list; the list is what the pin falls back to once the vendor
+    retires it."""
+    return list(dict.fromkeys(m for m in ([pinned] if pinned else []) + list(published) if m))
+
+
+def published_model_ids(entries: list[Entry]) -> dict[str, list[str]]:
+    """Every API base url this registry publishes, mapped to the model ids it
+    lists under it. Retired rows are left out: their ids are precisely the ones
+    a vendor has stopped serving."""
+    pools: dict[str, list[str]] = {}
+    for entry in entries:
+        if entry.retired_on is not None or entry.api is None or not entry.api.base_url:
+            continue
+        pools.setdefault(entry.api.base_url.rstrip("/"), []).extend(entry.api.model_ids)
+    return pools
+
+
 class LLMClient:
     """Ordered backend chain, first success wins:
 
@@ -290,6 +319,21 @@ class LLMClient:
     3. Gemini API                 (GEMINI_API_KEY)
     4. OpenRouter :free models    (OPENROUTER_API_KEY, model picked live)
     5. anonymous OVH AI Endpoints (no key at all)
+
+    The two custom backends were the only ones naming a fixed model, and both
+    ids rotted where nothing could see them: they are repository variables,
+    outside the registry this project maintains and outside review. On
+    2026-08-31 that cost the run every backend at once. SCOUT_FALLBACK_MODEL
+    was deepseek-v4-flash-free, an id opencode Zen had moved off its free
+    pricing table eleven days earlier — a demotion this repository had already
+    written down — and the Ollama primary answered 402 because its $0 plan had
+    become a starter wallet. So `models_by_base_url` hands each custom backend
+    the model_ids of the registry rows that publish its base url: the
+    configured model stays first, as a deliberate pin, and the lane the
+    registry certifies as free stands behind it. `pick_openrouter_model` has
+    resolved live since the beginning for the same stated reason — "so the
+    fallback never rots" — and this is that rule reaching the half of the chain
+    that was still typed by hand.
     """
 
     def __init__(self, gemini_key: str | None = None, openrouter_key: str | None = None,
@@ -299,6 +343,7 @@ class LLMClient:
                  custom_key: str | None = None,
                  fallback_base_url: str | None = None, fallback_model: str | None = None,
                  fallback_key: str | None = None,
+                 models_by_base_url: dict[str, list[str]] | None = None,
                  http: httpx.Client | None = None,
                  deadline: Deadline | None = None,
                  call_deadline: float = LLM_CALL_DEADLINE,
@@ -309,17 +354,36 @@ class LLMClient:
         self._or_model = openrouter_model
         self._gemini_model = gemini_model
         # Both are plain OpenAI-compatible endpoints; an entry is used only when
-        # it has a url and a model, so a half-configured spare stays out.
-        self._customs = [
-            (name, url.rstrip("/"), model, key)
-            for name, url, model, key in (
-                ("custom", custom_base_url, custom_model, custom_key),
-                ("custom-fallback", fallback_base_url, fallback_model, fallback_key),
-            )
-            if url and model
-        ]
+        # it has a url and at least one model to try, so a half-configured spare
+        # stays out.
+        pools = models_by_base_url or {}
+        self.unlisted_pins: list[str] = []
+        self._customs: list[tuple[str, str, list[str], str | None]] = []
+        for name, url, model, key in (
+            ("custom", custom_base_url, custom_model, custom_key),
+            ("custom-fallback", fallback_base_url, fallback_model, fallback_key),
+        ):
+            if not url:
+                continue
+            base = url.rstrip("/")
+            published = pools.get(base, [])
+            candidates = _model_candidates(model, published)
+            if candidates:
+                self._customs.append((name, base, candidates, key))
+            # A pin the registry does not list as free is the state that broke
+            # the 2026-08-31 run, and it is now survivable rather than invisible
+            # — the chain drops it and carries on. Saying so in the PR body is
+            # what turns a silent recovery back into a decision: the answer is
+            # either "retype the variable" or "this row's ids are wrong", and
+            # only a human can tell which. Nothing is claimed when the registry
+            # does not describe the endpoint at all.
+            if model and published and model not in published:
+                self.unlisted_pins.append(f"{name}: {model} on {base}")
+        # (base url, model) pairs the endpoint has disowned during this run.
+        self._dead_models: set[tuple[str, str]] = set()
         self._ovh_model: str | None = None
         self.answered_by: str | None = None
+        self.answered_model: str | None = None
         self._deadline = deadline
         self._call_deadline = call_deadline
         self._clock = clock
@@ -332,8 +396,8 @@ class LLMClient:
 
     def _backends(self) -> list[tuple[str, Callable[[str], str]]]:
         backends: list[tuple[str, Callable[[str], str]]] = [
-            (name, partial(self._chat, url, model, key))
-            for name, url, model, key in self._customs
+            (name, partial(self._chat_any, url, candidates, key))
+            for name, url, candidates, key in self._customs
         ]
         if self._gemini_key:
             backends.append(("gemini", self._gemini))
@@ -365,7 +429,11 @@ class LLMClient:
                 # Which backend actually answered is otherwise only visible as
                 # an absence — the run that quietly fell through to OpenRouter
                 # for weeks looked exactly like a healthy one in the log.
-                print(f"scout backend {name} answered in {self._clock() - started:.0f}s")
+                # The model is named as well as the backend: it is no longer a
+                # constant of the configuration, and which one answered is the
+                # first thing worth knowing when a chain starts misbehaving.
+                model = f" ({self.answered_model})" if self.answered_model else ""
+                print(f"scout backend {name}{model} answered in {self._clock() - started:.0f}s")
                 self.answered_by = name
                 return text
             # Deliberately broad: the only thing this loop can usefully do with a
@@ -382,7 +450,10 @@ class LLMClient:
         """One line for the PR body: what the chain was, and who answered."""
         chain = " → ".join(n for n, _ in self._backends())
         head = f"forced {self._force} (configured: {chain})" if self._force else chain
-        return f"{head} — answered by {self.answered_by or 'nothing'}"
+        answered = self.answered_by or "nothing"
+        if self.answered_by and self.answered_model:
+            answered += f" ({self.answered_model})"
+        return f"{head} — answered by {answered}"
 
     def _budget(self) -> float:
         """Seconds this call may take: its own ceiling, or whatever is left of
@@ -423,6 +494,35 @@ class LLMClient:
                         f"{url} was still streaming after {budget:.0f}s")
         return r.status_code, b"".join(chunks)
 
+    def _chat_any(self, base_url: str, candidates: list[str], key: str | None,
+                  prompt: str) -> str:
+        """Try this endpoint's models in turn, dropping the ones it disowns.
+
+        The model id is the one part of a backend a vendor can retire without
+        touching anything else: the endpoint is up, the key is good, and the
+        call comes back 400 for a name that used to work. Treating that as a
+        dead backend walks away from a working provider, so it costs a
+        candidate instead. Every other answer — 401, the 402 of a spent
+        wallet, 429, 5xx, a trickle — is the backend's own problem and belongs
+        to the chain above, which already knows how to step over it.
+        """
+        rejected = []
+        for model in candidates:
+            # Remembered for the whole run: four phases against one endpoint
+            # would otherwise pay for the same retired id four times over.
+            if (base_url, model) in self._dead_models:
+                continue
+            try:
+                return self._chat(base_url, model, key, prompt)
+            except httpx.HTTPStatusError as exc:
+                if exc.response.status_code not in BAD_MODEL_STATUS:
+                    raise
+                self._dead_models.add((base_url, model))
+                rejected.append(f"{model} ({exc.response.status_code})")
+        raise RuntimeError(
+            "no model this endpoint still serves"
+            + (f": {', '.join(rejected)}" if rejected else ""))
+
     def _chat(self, base_url: str, model: str, key: str | None, prompt: str) -> str:
         headers = {"Authorization": f"Bearer {key}"} if key else {}
         for attempt in range(RETRY_429_ATTEMPTS):
@@ -431,6 +531,7 @@ class LLMClient:
                 {"model": model, "messages": [{"role": "user", "content": prompt}]},
             )
             if status != 429:
+                self.answered_model = model
                 return json.loads(body)["choices"][0]["message"]["content"]
             if attempt + 1 < RETRY_429_ATTEMPTS:
                 time.sleep(RETRY_429_SLEEP)
@@ -737,6 +838,13 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               deadline: Deadline | None = None) -> dict:
     result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
               "retired": [], "skipped": [],
+              # Phases that had budget, asked, and got nothing back because every
+              # backend in the chain failed. Without this a run that could not
+              # think is indistinguishable from a run that found nothing: on
+              # 2026-08-31 both custom backends were dead and OVH rate-limited
+              # the third call, the generation check never ran, and the job was
+              # green with an empty report.
+              "llm_outages": [],
               # Filled in below, from what the fixes phase did not repair.
               "unfixed": [],
               # Verdicts that have aged out of suppressing anything. Reported so
@@ -759,6 +867,14 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             result["skipped"].append(phase)
             return False
         return True
+
+    def lost_to_backends(phase: str, exc: Exception) -> None:
+        """A phase that had budget, asked, and came back empty-handed because
+        the whole chain was down. Reported apart from `skipped`, which never
+        asked at all — the two look the same in the registry and mean opposite
+        things about the run."""
+        print(f"{phase} skipped: {exc}")
+        result["llm_outages"].append(phase)
 
     # A stale-ids row is flagged and deliberately not sent. What it needs is an
     # exact model id copied out of a vendor catalog; `api` is not a key this
@@ -809,7 +925,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
                 entries, data.get("new_entries") or [], today, verifier, blocklist, watchlist)
             result["rejected"] += rejected
         except RuntimeError as exc:
-            print(f"discovery skipped: {exc}")
+            lost_to_backends("discovery", exc)
 
     # Sweep every live entry for a shutdown announcement. Without this the scout
     # only ever looks at an entry after its probe fails, i.e. on the day the free
@@ -833,7 +949,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
                 data = _ask(llm, RETIREMENT_PROMPT.format(context=context))
                 result["retired"] = apply_retirements(entries, data.get("retire") or [], pages)
             except RuntimeError as exc:
-                print(f"retirement sweep skipped: {exc}")
+                lost_to_backends("retirement sweep", exc)
 
     # Archived entries are excluded: their families belong to a product that is
     # gone, so any bump proposed for them is noise a reviewer can only ignore.
@@ -848,9 +964,26 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             result["supersede"], result["suppressed"] = supersede_proposals(
                 entries, data.get("supersede") or [], dismissed)
         except RuntimeError as exc:
-            print(f"generation check skipped: {exc}")
+            lost_to_backends("generation check", exc)
 
     return result
+
+
+def _write_status(path: Path, outages: list[str], aborted: str | None) -> None:
+    """The one machine-readable line the workflow reads once everything else is
+    written and pushed.
+
+    The scout exits 0 whatever happens, on purpose: by the time it speaks the
+    verification commit is already on main, and a failed job cannot be rerun —
+    it checks out the old SHA and its push is refused as non-fast-forward. But
+    exiting 0 was also the only thing anyone was ever told. The run of
+    2026-08-31 lost every backend it had, proposed nothing, and reported
+    success; four days passed before a human noticed, and only by reading the
+    log by hand. So the job's colour is decided by a last step reading this
+    file, after the pull request exists — a notification, not an invitation to
+    rerun."""
+    path.write_text(json.dumps({"llm_outages": outages, "aborted": aborted}),
+                    encoding="utf-8")
 
 
 def main() -> None:
@@ -862,6 +995,10 @@ def main() -> None:
     parser.add_argument("--watchlist", type=Path, default=Path("watchlist.yaml"))
     parser.add_argument("--sources", type=Path, default=Path("sources.yaml"))
     parser.add_argument("--pr-body", type=Path, default=Path("scout-pr.md"))
+    parser.add_argument(
+        "--status", type=Path, default=Path("scout-status.json"),
+        help="where to record whether the run's LLM work actually happened — "
+             "the workflow's last step reads this and decides the job's colour")
     parser.add_argument(
         "--dry-run", action="store_true",
         help="run every phase but leave registry.yaml untouched — how the "
@@ -892,6 +1029,10 @@ def main() -> None:
         fallback_base_url=os.environ.get("SCOUT_FALLBACK_BASE_URL"),
         fallback_model=os.environ.get("SCOUT_FALLBACK_MODEL"),
         fallback_key=os.environ.get("SCOUT_FALLBACK_API_KEY"),
+        # Both custom backends are pointed at endpoints this registry already
+        # describes, so the ids it certifies as free are exactly what a retired
+        # pin should fall back to.
+        models_by_base_url=published_model_ids(entries),
         deadline=deadline,
         force=os.environ.get("SCOUT_FORCE_BACKEND"),
     )
@@ -924,12 +1065,16 @@ def main() -> None:
         # commit is already pushed, and a failed job cannot be rerun (it checks
         # out the old SHA and its push is refused as non-fast-forward). So
         # nothing the scout can hit — every backend down, a backend answering
-        # HTML, a proposal that will not validate — is worth failing the
-        # workflow for. Leave the registry untouched, say so in the PR body,
-        # and let the traceback stand in the log.
+        # HTML, a proposal that will not validate — is worth *raising* out of
+        # here for: leave the registry untouched, say so in the PR body, let the
+        # traceback stand in the log, and exit 0 so that report still reaches a
+        # human. What an abort no longer does is pass unremarked — it goes in
+        # the status file, and the workflow's last step turns the run red on it
+        # once the pull request and the summary have landed.
         traceback.print_exc()
         print(f"scout aborted: {exc}")
         args.pr_body.write_text(f"## Scout proposals\n\nScout aborted: {exc}\n", encoding="utf-8")
+        _write_status(args.status, [], aborted=str(exc))
         return
 
     if args.dry_run:
@@ -946,6 +1091,7 @@ def main() -> None:
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
         providers=", ".join(result["providers"]) or "none",
         backend=llm.describe(),
+        unlisted_pins="; ".join(llm.unlisted_pins) or "—",
         updates=", ".join(result["updates"]) or "—",
         new=", ".join(result["new"]) or "—",
         rejected="; ".join(result["rejected"]) or "—",
@@ -958,5 +1104,7 @@ def main() -> None:
         source_days=SOURCE_RECHECK_DAYS,
         retired=", ".join(result["retired"]) or "—",
         skipped=", ".join(result["skipped"]) or "—",
+        llm_outages=", ".join(result["llm_outages"]) or "—",
     ), encoding="utf-8")
+    _write_status(args.status, result["llm_outages"], aborted=None)
     print(f"scout: {result}")

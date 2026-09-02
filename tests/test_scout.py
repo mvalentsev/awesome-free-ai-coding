@@ -1,3 +1,4 @@
+import json
 import sys
 from datetime import date, timedelta
 
@@ -13,7 +14,7 @@ from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entr
 from freetier_radar.scout import (
     FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, Deadline, LLMClient, _ask,
     apply_new, apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model,
-    run_scout, supersede_proposals,
+    published_model_ids, run_scout, supersede_proposals,
 )
 
 TODAY = date(2026, 7, 19)
@@ -494,13 +495,14 @@ def test_main_reports_a_broken_scout_instead_of_failing_the_workflow(tmp_path, m
 
     monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
     monkeypatch.setattr(scout, "run_scout", boom)
-    monkeypatch.setattr(sys, "argv", [
-        "freetier-scout", "--registry", str(registry), "--pr-body", str(pr_body),
-        "--failures", str(tmp_path / "none.json"), "--blocklist", str(tmp_path / "none.yaml"),
-    ])
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path))
     scout.main()  # must not raise
     assert "Scout aborted: backend answered HTML" in pr_body.read_text()
     assert registry.read_text() == before  # a half-run scout writes no registry
+    # Ending clean is not the same as passing unremarked: the workflow's last
+    # step reads this and turns the run red once the report has landed.
+    assert json.loads((tmp_path / "scout-status.json").read_text()) == {
+        "llm_outages": [], "aborted": "backend answered HTML"}
 
 
 @respx.mock
@@ -534,6 +536,118 @@ def test_a_half_configured_fallback_is_ignored():
     with httpx.Client() as http:
         llm = LLMClient(fallback_base_url="https://spare.example/v1", http=http)  # no model
         assert llm.complete("hi") == "ovh"
+
+
+@respx.mock
+def test_a_retired_pin_costs_a_candidate_and_not_the_endpoint():
+    """What took the whole chain down on 2026-08-31: SCOUT_FALLBACK_MODEL named
+    deepseek-v4-flash-free, an id opencode Zen had moved off its free pricing
+    table eleven days earlier — a demotion this registry had already written
+    down. A 400 is news about the model, so the ids the registry publishes for
+    that base url stand behind the pin."""
+    route = respx.post("https://zen.example/v1/chat/completions")
+    route.side_effect = [
+        httpx.Response(400, json={"error": {"message": "unknown model"}}),
+        httpx.Response(200, json={"choices": [{"message": {"content": "zen"}}]}),
+    ]
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://zen.example/v1",
+                        custom_model="retired-free", custom_key="k",
+                        models_by_base_url={"https://zen.example/v1": ["still-free"]},
+                        http=http)
+        assert llm.complete("hi") == "zen"
+    assert b'"retired-free"' in route.calls[0].request.content
+    assert b'"still-free"' in route.calls[1].request.content
+    assert llm.answered_model == "still-free"
+
+
+@respx.mock
+def test_a_spent_wallet_fails_the_backend_and_not_one_model():
+    """Ollama's $0 plan became a starter wallet between the 2026-08-27 and
+    2026-08-31 runs and answered 402 for a model that had worked all month.
+    Walking the endpoint's other ids on that is three more calls to a wallet
+    with nothing in it."""
+    route = respx.post("https://wallet.example/v1/chat/completions").mock(
+        return_value=httpx.Response(402, json={"error": "payment required"}))
+    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "gpt-oss-120b"}]}))
+    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ovh"}}]}))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://wallet.example/v1", custom_key="k",
+                        models_by_base_url={"https://wallet.example/v1": ["a", "b", "c"]},
+                        http=http)
+        assert llm.complete("hi") == "ovh"
+    assert route.call_count == 1
+
+
+@respx.mock
+def test_a_retired_model_is_paid_for_once_a_run():
+    """Four LLM phases against one endpoint: without a memory of what it
+    disowned, the run buys the same 400 four times."""
+    route = respx.post("https://zen.example/v1/chat/completions")
+    route.side_effect = [
+        httpx.Response(400),
+        httpx.Response(200, json={"choices": [{"message": {"content": "one"}}]}),
+        httpx.Response(200, json={"choices": [{"message": {"content": "two"}}]}),
+    ]
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://zen.example/v1", custom_model="gone",
+                        models_by_base_url={"https://zen.example/v1": ["live"]}, http=http)
+        assert llm.complete("hi") == "one"
+        assert llm.complete("again") == "two"
+    assert route.call_count == 3
+    assert sum(b'"gone"' in call.request.content for call in route.calls) == 1
+
+
+@respx.mock
+def test_a_backend_with_no_pin_runs_on_what_the_registry_publishes():
+    """SCOUT_MODEL names a deliberate choice; it is not what keeps the backend
+    configured. An endpoint this registry describes needs nothing typed."""
+    route = respx.post("https://zen.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "zen"}}]}))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://zen.example/v1/", custom_key="k",
+                        models_by_base_url={"https://zen.example/v1": ["first", "second"]},
+                        http=http)
+        assert llm.complete("hi") == "zen"
+    assert b'"first"' in route.calls[0].request.content
+
+
+def test_published_model_ids_leaves_out_the_rows_a_vendor_has_retired():
+    """A retired row's ids are precisely the ones that stopped being served."""
+    entries = [
+        make(id="live", api={"base_url": "https://a.example/v1", "model_ids": ["x", "y"]}),
+        make(id="also-live", api={"base_url": "https://a.example/v1/", "model_ids": ["z"]}),
+        make(id="gone", retired_on=date(2026, 6, 1),
+             api={"base_url": "https://a.example/v1", "model_ids": ["dead"]}),
+        make(id="no-api"),
+    ]
+    assert published_model_ids(entries) == {"https://a.example/v1": ["x", "y", "z"]}
+
+
+@respx.mock
+def test_a_pin_the_registry_does_not_list_is_named_in_the_report():
+    """The chain now survives a retired pin quietly, and a quiet recovery is
+    still a decision for a human: either the variable wants retyping or the
+    row's ids are wrong."""
+    respx.post("https://zen.example/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "zen"}}]}))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://zen.example/v1", custom_model="not-listed",
+                        models_by_base_url={"https://zen.example/v1": ["listed"]}, http=http)
+        assert llm.unlisted_pins == ["custom: not-listed on https://zen.example/v1"]
+        # Reported, not overruled: the pin is still what gets tried first.
+        assert llm.complete("hi") == "zen"
+        assert llm.answered_model == "not-listed"
+
+
+def test_no_claim_is_made_about_an_endpoint_the_registry_does_not_describe():
+    """Point SCOUT_BASE_URL at Groq or Cerebras and this registry has nothing to
+    say about the id — silence there is the only honest answer."""
+    llm = LLMClient(custom_base_url="https://groq.example/v1", custom_model="whatever",
+                    models_by_base_url={"https://elsewhere.example/v1": ["x"]})
+    assert llm.unlisted_pins == []
 
 
 def ticking(step: float):
@@ -622,7 +736,7 @@ def test_forcing_a_backend_skips_the_ones_before_it():
         assert llm.complete("hi") == "spare"
     assert spare.called and not primary.called
     assert llm.describe() == ("forced custom-fallback (configured: custom → custom-fallback → "
-                              "ovh-anonymous) — answered by custom-fallback")
+                              "ovh-anonymous) — answered by custom-fallback (m2)")
 
 
 def test_forcing_a_backend_that_is_not_configured_is_an_error():
@@ -740,7 +854,42 @@ def test_run_scout_reports_sources_due_for_a_re_read():
 
 EMPTY_RUN = {"providers": [], "updates": [], "new": [], "rejected": [], "supersede": [],
              "suppressed": [], "stale_watch": [], "stale_sources": [], "retired": [],
-             "skipped": [], "unfixed": []}
+             "skipped": [], "unfixed": [], "llm_outages": []}
+
+
+class DeadChainLLM:
+    """What `LLMClient.complete` raises once every backend has failed."""
+
+    def complete(self, prompt: str) -> str:
+        raise RuntimeError("all LLM backends failed: custom: HTTPStatusError: 402")
+
+
+def test_a_phase_that_loses_every_backend_says_so_instead_of_going_quiet():
+    """A run that could not think and a run that found nothing write the same
+    empty result. On 2026-08-31 that difference sat behind a green tick for four
+    days: both custom backends were dead, OVH rate-limited the third call, and
+    the generation check never ran."""
+    result = run_scout(DeadChainLLM(), [make(models=[{"family": "old"}])], [],
+                       lambda urls: {}, TODAY)
+
+    assert result["llm_outages"] == ["generation check"]
+    # `skipped` is the phase that never asked, and the two mean opposite things
+    # about the run.
+    assert result["skipped"] == []
+
+
+def test_main_writes_the_outage_the_workflows_last_step_reads(tmp_path, monkeypatch):
+    save_registry(tmp_path / "registry.yaml", [make()])
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
+    monkeypatch.setattr(scout, "run_scout",
+                        lambda *a, **k: {**EMPTY_RUN, "llm_outages": ["discovery"]})
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+
+    scout.main()
+
+    assert json.loads((tmp_path / "scout-status.json").read_text()) == {
+        "llm_outages": ["discovery"], "aborted": None}
+    assert "discovery" in (tmp_path / "scout-pr.md").read_text()
 
 
 def _scout_argv(tmp_path, *extra) -> list[str]:
@@ -750,7 +899,8 @@ def _scout_argv(tmp_path, *extra) -> list[str]:
             "--blocklist", str(tmp_path / "none.yaml"),
             "--dismissed", str(tmp_path / "none-dismissed.yaml"),
             "--watchlist", str(tmp_path / "none-watchlist.yaml"),
-            "--sources", str(tmp_path / "none-sources.yaml"), *extra]
+            "--sources", str(tmp_path / "none-sources.yaml"),
+            "--status", str(tmp_path / "scout-status.json"), *extra]
 
 
 def test_the_pr_body_carries_every_line_the_template_promises(tmp_path, monkeypatch):

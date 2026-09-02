@@ -92,3 +92,30 @@ jobs:
           title: "scout: registry proposals"
           body-path: scout-pr.md
           labels: scout
+
+      # Runs last, and only ever after the pull request and the summary exist,
+      # because a red run here is a notification and not an invitation to rerun:
+      # a rerun checks out the old SHA and its push is refused as
+      # non-fast-forward. A scout that could not think and a scout that found
+      # nothing produce the same empty report, and on 2026-08-31 the difference
+      # went unnoticed for four days behind a green tick — every backend in the
+      # chain was down and the generation check never ran.
+      - name: Check the scout actually had a backend
+        if: always()
+        run: |
+          if [ ! -f scout-status.json ]; then
+            echo "::error::the scout wrote no status file — it died before it could report"
+            exit 1
+          fi
+          cat scout-status.json
+          uv run python - <<'PY'
+          import json, sys
+          status = json.load(open("scout-status.json"))
+          aborted, outages = status.get("aborted"), status.get("llm_outages") or []
+          if aborted:
+              print(f"::error::scout aborted: {aborted}")
+          if outages:
+              print("::error::no backend in the chain answered for "
+                    + ", ".join(outages) + " — those phases did not run")
+          sys.exit(1 if aborted or outages else 0)
+          PY
