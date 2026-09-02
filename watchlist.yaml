@@ -1211,3 +1211,133 @@ watched:
     reopen_if: >-
       It ships a surface a developer uses on code directly — a CLI, an IDE
       extension or an OpenAI-compatible endpoint — reachable on the free tier.
+
+  - domains: [gitlab.com]
+    name: GitLab Duo Agent Platform
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest, which lists 23 duo-chat rows at
+      cost 0 because the price is not on the row. The product page,
+      docs.gitlab.com/user/duo_agent_platform/, files the platform under
+      "Tier: Premium, Ultimate" and says of the one place a free account
+      appears, "Features available on the Free tier require the purchase of
+      GitLab Credits" — the generally available features "consume GitLab
+      Credits when used". A credit you must buy is not a free tier.
+    reopen_if: >-
+      The docs state a credit allowance included with the Free tier at no
+      charge, with a figure.
+
+  - domains: [pendra.ai]
+    name: Pendra
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest (6/6 rows at cost 0). The free plan
+      is your own hardware: pendra.ai/pricing offers "Free £0 /month — For
+      personal use — sovereign inference on your hardware. 1 self-hosted
+      Pendra Worker", the home page says "Bring your own GPUs with a free
+      account, or let us manage everything", and the paid Pro tier at £99 a
+      month is what carries "£99 of credit to spend on on-demand GPUs".
+      api.pendra.ai/api/v1/models answers 401 to a keyless GET. A gateway to a
+      GPU you supply is not free inference.
+    reopen_if: >-
+      A hosted model callable on the free plan without supplying a worker,
+      with a quota on the pricing page.
+
+  - domains: [llmgateway.io]
+    name: LLM Gateway
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest (2/182 rows at cost 0). The word
+      "Free" names the platform plan, not inference: the pricing page's own
+      JSON-LD offer reads "Free … Access all 200+ models with a flat 5%
+      platform fee on credit purchases, or bring your own provider keys for
+      free", the page says "Start free with no credit card. Pay only for what
+      you use", and the docs put it as "Pay per-token with prepaid credits at
+      provider list rates, or bring your own provider keys (BYOK) for free".
+      The keyless catalog at api.llmgateway.io/v1/models prices 42 of 252
+      rows at 0 and every one of them is a router (custom, auto) or a media
+      model billed by another unit — TTS, image, video. No text model is
+      priced 0 and no sign-up credit is named. Open source under AGPLv3,
+      which is a reason to self-host, not a free lane.
+    reopen_if: >-
+      A text model priced 0 in the catalog, or a sign-up credit named on the
+      pricing page.
+
+  - domains: [nova.amazon.com]
+    name: Amazon Nova developer API
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest, which lists api.nova.amazon.com
+      with 2/2 rows at cost 0. Nothing here can be read: nova.amazon.com/dev,
+      /dev/documentation, /dev/pricing and even /llms.txt all serve the same
+      3.8-kilobyte JavaScript shell with 13 characters of visible text, and
+      api.nova.amazon.com/v1/models answers 500 to a keyless GET. Whatever
+      the developer portal grants, no page states it to an ordinary HTTP
+      client — the ModelScope bar, on the other side of the world.
+    reopen_if: >-
+      A server-rendered page states a free quota for the Nova API, or
+      /v1/models answers.
+
+  - domains: [llama.developer.meta.com, api.llama.com]
+    name: Meta Llama API
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest (7/7 rows at cost 0). The
+      developer site is a client-rendered shell — llama.developer.meta.com/,
+      /docs/overview and /docs/models are each 330 to 460 kilobytes of HTML
+      carrying 8 to 11 characters of text, /llms.txt answers 404 — and
+      api.llama.com/compat/v1/models answers 401 to a keyless GET. Meta may
+      well be serving these models at no charge; nothing it publishes to an
+      ordinary client says so, and a row this list cannot probe is a row it
+      will not carry.
+    reopen_if: >-
+      A readable pricing or rate-limits page for the Llama API states the free
+      allowance.
+
+  - domains: [inferx.net]
+    name: InferX
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest (12/12 rows at cost 0). The doc
+      link the catalog carries, model.inferx.net/endpoints, answers 404, and
+      the api url beside it answers 401 with "service failure: no tenant
+      context: set a default tenant" to a keyless /v1/models. Nothing here
+      names an offer, a price or a quota.
+    reopen_if: >-
+      A readable page states what a new account may call for free, and the
+      catalog answers.
+
+  - domains: [kimi.com]
+    name: Kimi For Coding (Moonshot)
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest, which lists api.kimi.com/coding
+      with 4/4 rows at cost 0 — the price is the membership, not the row. The
+      product docs say "Subscribers can also obtain an API Key" and give the
+      billing as "Membership subscription, monthly/annual payment, with rate
+      limiting" or "Pay-as-you-go, top up and use". The doc url the catalog
+      carries answers 404. No free membership is named anywhere read.
+    reopen_if: >-
+      A free membership tier with API access, with its quota stated.
+
+  - domains: [empiriolabs.ai]
+    name: EmpirioLabs
+    checked_on: '2026-09-02'
+    reason: >-
+      Reached through the models.dev digest (3/56 rows at cost 0). The keyless
+      catalog at api.empiriolabs.ai/v1/models prices 78 of 177 rows at 0 per
+      token, and almost all of them charge by another unit — video, music,
+      image, speech, search — while two chat rows, gemma-3-27b and
+      mistral-small-3-1, print "$0.0040 Per Message" beside their zero token
+      price. Three GLM Flash rows (glm-4-7-flash, glm-4-5-flash,
+      glm-4-6v-flash) are the only ones whose pricing rows read "Input Free /
+      Output Free", with the note "Base token use is free" — the same models
+      Z.ai serves free from its own gateway, which this list already carries.
+      Getting Started lists "prepaid credits on your account (top up via the
+      dashboard Billing page)" among the prerequisites, Billing says
+      "EmpirioLabs AI uses a prepaid balance system", and nothing read says a
+      zero-balance account can call the Free rows. Limits are 50 RPM and 2M
+      TPM per account.
+    reopen_if: >-
+      The docs say the Free rows run on an account with no top-up, or a
+      sign-up credit is named.

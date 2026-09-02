@@ -638,6 +638,56 @@ model_list:
     model: openai/minimax-m2.7:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: llmtr/minimax/minimax-m3-free
+  litellm_params:
+    model: openai/minimax/minimax-m3-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/minimax/minimax-m2.7-free
+  litellm_params:
+    model: openai/minimax/minimax-m2.7-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/nvidia/nemotron-3-ultra-550b-a55b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-ultra-550b-a55b
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/nvidia/nemotron-3-super-120b-a12b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-super-120b-a12b
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/qwen/qwen3.6-27b-free
+  litellm_params:
+    model: openai/qwen/qwen3.6-27b-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/inception/mercury-2-free
+  litellm_params:
+    model: openai/inception/mercury-2-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/poolside/laguna-xs-2.1
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/inclusionai/ling-3.0-flash-fin
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-fin
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/dots-studio/dots-3-note-preview
+  litellm_params:
+    model: openai/dots-studio/dots-3-note-preview
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/openai/gpt-oss-safeguard-20b
+  litellm_params:
+    model: openai/openai/gpt-oss-safeguard-20b
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
   litellm_params:
     model: openai/DeepSeek-V3.1
@@ -688,6 +738,66 @@ model_list:
     model: openai/Qwen3.8-27B
     api_base: https://inference.hetzner.com/api/v1
     api_key: os.environ/HETZNER_INFERENCE_API_KEY
+- model_name: kenari/glm-4-7-flash:free
+  litellm_params:
+    model: openai/glm-4-7-flash:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/nemotron-3-ultra-550b-a55b:free
+  litellm_params:
+    model: openai/nemotron-3-ultra-550b-a55b:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/nemotron-3-super-120b-a12b:free
+  litellm_params:
+    model: openai/nemotron-3-super-120b-a12b:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/step-3-7-flash:free
+  litellm_params:
+    model: openai/step-3-7-flash:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/laguna-s-2-1:free
+  litellm_params:
+    model: openai/laguna-s-2-1:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/laguna-xs-2-1:free
+  litellm_params:
+    model: openai/laguna-xs-2-1:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/hy3:free
+  litellm_params:
+    model: openai/hy3:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/mistral-medium-3-5:free
+  litellm_params:
+    model: openai/mistral-medium-3-5:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/mimo-v2-5:free
+  litellm_params:
+    model: openai/mimo-v2-5:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/qwen3-8-27b:free
+  litellm_params:
+    model: openai/qwen3-8-27b:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/agnes-2-0-flash:free
+  litellm_params:
+    model: openai/agnes-2-0-flash:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/muse-spark-1-2-contributor:free
+  litellm_params:
+    model: openai/muse-spark-1-2-contributor:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
 - model_name: alibaba-model-studio/qwen3-max
   litellm_params:
     model: openai/qwen3-max
@@ -798,6 +908,21 @@ model_list:
     model: openai/solar-mini
     api_base: https://api.upstage.ai/v1
     api_key: os.environ/UPSTAGE_API_KEY
+- model_name: meganova/mistralai/Mistral-Small-3.2-24B-Instruct-2506
+  litellm_params:
+    model: openai/mistralai/Mistral-Small-3.2-24B-Instruct-2506
+    api_base: https://api.meganova.ai/v1
+    api_key: os.environ/MEGANOVA_API_KEY
+- model_name: meganova/meganova-ai/manta-mini-1.0
+  litellm_params:
+    model: openai/meganova-ai/manta-mini-1.0
+    api_base: https://api.meganova.ai/v1
+    api_key: os.environ/MEGANOVA_API_KEY
+- model_name: meganova/meganova-ai/manta-flash-1.0
+  litellm_params:
+    model: openai/meganova-ai/manta-flash-1.0
+    api_base: https://api.meganova.ai/v1
+    api_key: os.environ/MEGANOVA_API_KEY
 - model_name: sea-lion/aisingapore/Qwen-SEA-LION-v4.5-27B-IT
   litellm_params:
     model: openai/aisingapore/Qwen-SEA-LION-v4.5-27B-IT

@@ -1359,16 +1359,14 @@ entries:
     - minimax/minimax-m2.7-free
     - inclusionai/ling-3.0-flash-fin
     - inclusionai/ling-3.0-flash-fin-free
-    ignored_ids:
-    - spacexai/grok-stt
     note: 'every id listed is priced 0 in and 0 out and draws nothing from the $5
       credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20,
       five on 2026-09-02: MiniMax M3 (Free) and M2.7 (Free) arrived beside metered
       twins at $0.30/$1.20 per 1M, and Ling 3.0 Flash Fin is priced 0 with and without
       its -free suffix. They stay out of the Models column until they have stood a
       while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20.
-      spacexai/grok-stt, the sixth zero row, is ignored on purpose: speech-to-text,
-      billed at $0.000028 per second of audio in the same row'
+      spacexai/grok-stt, the sixth row at 0 per token, is speech-to-text billed per
+      second of audio, which the probe reads as a price'
   probe:
     type: api-models
     endpoint: https://ai-gateway.vercel.sh/v1/models
@@ -2074,6 +2072,7 @@ entries:
   category: api-free-tier
   url: https://docs.hetzner.com/general/company-and-policy/experiments/inference/
   source_urls:
+  - https://docs.hetzner.com/general/company-and-policy/experiments/inference/
   - https://experiments.hetzner.com/inference
   - https://inference.hetzner.com/api/v1/models
   card_required: false
@@ -2282,3 +2281,273 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 28
+- id: meganova
+  name: MegaNova
+  category: aggregator
+  url: https://meganova.ai
+  source_urls:
+  - https://docs.meganova.ai/free-model-quota
+  - https://docs.meganova.ai/tiers
+  - https://api.meganova.ai/v1/models
+  card_required: false
+  offering: OpenAI-compatible gateway whose no-card Tier 1 account gets a daily free
+    quota on Mistral Small 3.2 and the house Manta routers — 50 a day per model, 550
+    across the lane
+  limits: 'Tier 1 is "Free, no credit card required" with "Free Models: <100B parameters
+    (including Manta Mini)" and "Limited free model access"; the Free Model Quota
+    page grants it per account with a "daily reset at 00:00 UTC": 50 a day each on
+    Mistral-Small-3.2-24B, Manta-Mini, Manta-Flash, five community Llama fine-tunes,
+    Qwen3-Embedding-8B and BGE-Reranker, "Total Free Quota per day 550", and 0 on
+    GLM-4.7-Flash and Manta-Pro until Tier 2 ("$1 deposit to unlock"). The page never
+    names the unit; its nearest sentence is "Each request reports: Remaining free
+    quota". Past the quota "usage continues based on the account''s billing configuration
+    (if the charge switch is turned on)". Mistral Small 3.2 is served at 8,192 tokens
+    of context here, Manta Flash at 16,384. The Website Terms say the Service Terms
+    "typically prohibit production or high-throughput use of free modules", against
+    the quota page''s own "lightweight production use"; the operator is Nebula Nova
+    Inc., a Delaware corporation, and its privacy policy lists prompts among the content
+    it collects (read 2026-09-02)'
+  models:
+  - family: mistral-small-3.2
+    tier: strong
+    released: 2025-06
+  api:
+    base_url: https://api.meganova.ai/v1
+    key_url: https://www.meganova.ai/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - mistralai/Mistral-Small-3.2-24B-Instruct-2506
+    - meganova-ai/manta-mini-1.0
+    - meganova-ai/manta-flash-1.0
+    ignored_ids:
+    - zai-org/GLM-4.7-Flash
+    - meganova-ai/manta-pro-1.0
+    - Systran/faster-whisper-large-v3
+    - Qwen/Qwen3-Embedding-8B
+    - BAAI/bge-reranker-v2-m3
+    - BruhzWater/Sapphira-L3.3-70b-0.1
+    - FallenMerick/MN-Violet-Lotus-12B
+    - Steelskull/L3.3-MS-Nevoria-70b
+    - Sao10K/L3-70B-Euryale-v2.1
+    - Sao10K/L3-8B-Stheno-v3.2
+    note: the three ids listed are the chat rows a Tier 1 account can call for free;
+      ten more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash and
+      manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B and
+      bge-reranker-v2-m3 are not chat models, and five are roleplay fine-tunes of
+      Llama (Sapphira, Violet Lotus, Nevoria, Euryale, Stheno). Manta Mini and Manta
+      Flash are MegaNova's own routers over open models, tagged best_role_play in
+      the catalog, so Mistral Small 3.2 is the one named coding model on the lane
+  probe:
+    type: api-models
+    endpoint: https://api.meganova.ai/v1/models
+    keywords: []
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: true
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-02'
+  probe_failures: 0
+  provisional: true
+  rank: 85
+- id: llmtr
+  name: LLMTR
+  category: aggregator
+  url: https://llmtr.com
+  source_urls:
+  - https://llmtr.com/docs/migration/openai-openrouter/
+  - https://llmtr.com/docs/en/billing/
+  - https://llmtr.com/v1/models
+  card_required: false
+  offering: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers
+    on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron
+    3 Ultra, Qwen3.6 27B and Mercury 2 among them
+  limits: 'The migration guide has a new account send its first request on a free
+    model before any top-up: "Model kataloğunda ücretsiz olarak işaretlenen bir chat
+    modelini seçin … Bu adım, sıfır bakiye ile gateway akışının çalıştığını doğrular"
+    — pick a chat model marked free in the catalog; this step verifies the gateway
+    flow works with a zero balance. Every free row''s own description says it is free
+    with a daily quota ("günlük kotayla ücretsiz"), and the figure is published nowhere
+    the docs reach: the Nemotron page sets "nvidia/nemotron-3-ultra-550b-a55b — Ücretsiz,
+    günlük kota" against the metered -262k twin and says only that when the quota
+    is full the free row limits requests. The lane churns and the vendor writes it
+    down — the provider "removed the free tier behind openai/gpt-oss-20b on 24 August
+    2026 and that model id was retired", and dots-3-note-preview''s row says it closes
+    on 30 September 2026. Paid use is a credit balance: "An 8% platform margin is
+    added on top of the requested top-up amount", "We never modify model prices".
+    "Prompt ve yanıt içeriği saklanmaz" — prompt and response content are not stored.
+    Docs are Turkish with an English subset (quickstart, billing, authentication);
+    /v1/models is public and cached (read 2026-09-02)'
+  models:
+  - family: nemotron-3-ultra
+    tier: frontier
+    released: 2026-03
+  - family: minimax-m3
+    tier: strong
+    released: 2026-05
+  - family: qwen3.6
+    tier: strong
+    released: 2026-04
+  - family: mercury-2
+    tier: strong
+    released: 2026-02
+  api:
+    base_url: https://llmtr.com/v1
+    key_url: https://llmtr.com/dashboard/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - minimax/minimax-m3-free
+    - minimax/minimax-m2.7-free
+    - nvidia/nemotron-3-ultra-550b-a55b
+    - nvidia/nemotron-3-super-120b-a12b
+    - qwen/qwen3.6-27b-free
+    - inception/mercury-2-free
+    - poolside/laguna-xs-2.1
+    - inclusionai/ling-3.0-flash-fin
+    - dots-studio/dots-3-note-preview
+    - openai/gpt-oss-safeguard-20b
+    ignored_ids:
+    - liquid/lfm-2.5-embedding-350m-free
+    note: the ten ids listed are every chat row the public catalog prices at 0 — eight
+      described as free with a daily quota, plus poolside/laguna-xs-2.1 and openai/gpt-oss-safeguard-20b,
+      a content classifier; liquid/lfm-2.5-embedding-350m-free is ignored on purpose
+      as an embeddings row. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota
+      row and nvidia/nemotron-3-ultra-550b-a55b-262k the metered one — same checkpoint,
+      different products, the vendor's own page says
+  probe:
+    type: api-models
+    endpoint: https://llmtr.com/v1/models
+    keywords: []
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: true
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-02'
+  probe_failures: 0
+  provisional: true
+  rank: 45
+- id: kenari
+  name: Kenari
+  category: aggregator
+  url: https://kenari.id
+  source_urls:
+  - https://kenari.id/en/docs/billing
+  - https://kenari.id/api/public/pricing
+  - https://kenari.id/v1/models
+  card_required: false
+  offering: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are
+    billed Rp 0 behind a per-minute and a daily cap — twelve on 2026-09-02, GLM-4.7-Flash,
+    Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them
+  limits: '"Models with the :free suffix, for example step-3-7-flash:free, are billed
+    at Rp 0. In exchange, there is a per-account request limit per minute", and "Besides
+    the per-minute limit, :free models also carry a daily request allowance with three
+    tiers, based on account status". The figures live in the public pricing endpoint
+    the docs point at, kenari.id/api/public/pricing (read 2026-09-02): a new account
+    gets 50 requests a day at 5 per minute, an account whose top-ups pass Rp 10,000
+    gets 1,000 a day at 10 per minute, and a subscription lifts the per-minute cap
+    to 15. "Running out of daily quota returns HTTP 429 with a Retry-After header
+    and reason free_quota_daily", and "The free lane is best-effort: capacity is kept
+    lean, with no guarantee of the same speed or availability as paid models". Sign-up
+    asks for no card — top-ups are QRIS, "tanpa kartu kredit internasional", without
+    an international credit card — and the privacy policy says "Kami tidak menyimpan
+    isi prompt maupun isi respons", prompt and response content are not stored; the
+    terms forbid reselling access. Docs are Indonesian with a full English mirror
+    under /en/docs'
+  models:
+  - family: glm-4.7-flash
+    tier: strong
+    released: 2026-01
+  - family: nemotron-3-ultra
+    tier: frontier
+    released: 2026-03
+  - family: nemotron-3-super
+    tier: strong
+    released: 2026-03
+  - family: step-3.7-flash
+    tier: strong
+    released: 2026-07
+  - family: laguna-s-2.1
+    tier: strong
+    released: 2026-07
+  api:
+    base_url: https://kenari.id/v1
+    key_url: https://kenari.id/keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - glm-4-7-flash:free
+    - nemotron-3-ultra-550b-a55b:free
+    - nemotron-3-super-120b-a12b:free
+    - step-3-7-flash:free
+    - laguna-s-2-1:free
+    - laguna-xs-2-1:free
+    - hy3:free
+    - mistral-medium-3-5:free
+    - mimo-v2-5:free
+    - qwen3-8-27b:free
+    - agnes-2-0-flash:free
+    - muse-spark-1-2-contributor:free
+    note: 'every :free id the catalog carries is listed — the catalog marks each one
+      `free: true` inside its pricing object and prints the metered Rupiah rate beside
+      it, which is what the same model costs without the suffix, so the probe reads
+      the flag and not the price. Ids write a version''s dot as a hyphen (glm-4-7-flash:free
+      for GLM-4.7-Flash). The same key serves /v1/chat/completions and an Anthropic-format
+      /v1/messages'
+  probe:
+    type: api-models
+    endpoint: https://kenari.id/v1/models
+    keywords: []
+    free_marker: :free
+    dead_markers: []
+    require_zero_price: true
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-02'
+  probe_failures: 0
+  provisional: true
+  rank: 55
+- id: infomaniak-ai
+  name: Infomaniak AI Services
+  category: trial
+  url: https://www.infomaniak.com/en/hosting/ai-services
+  source_urls:
+  - https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services
+  - https://www.infomaniak.com/en/hosting/ai-services/prices
+  card_required: true
+  offering: Swiss sovereign-cloud API over open-weight models with a one-month trial
+    wallet of one million credits, one credit per LLM token
+  limits: '"One million free credits allow you to test the service without commitment
+    for one month" and "The API is billed on a credit basis. Each request consumes
+    one credit or LLM token" (support guide 2845, read 2026-09-02). The card is the
+    gate: "A credit card is required to start using the API. An unpaid invoice will
+    result in service suspension", and the sales FAQ adds that at account creation
+    "we''ll ask you to confirm your identity by registering a valid payment card".
+    After the wallet, list rates in CHF per 1M tokens — Gemma 4 31B at CHF 0.20/0.40,
+    Kimi K2.6 at CHF 0.60/3.00, Qwen3.5-122B at CHF 0.40/3.20 — billed at the end
+    of the month, with a spending limit settable in the Manager. Models are hosted
+    in Switzerland, and "We don''t currently offer the option of training our AI Services
+    using custom data"'
+  models: []
+  api:
+    base_url: https://api.infomaniak.com/2/ai/{product_id}/openai/v1
+    key_url: https://manager.infomaniak.com
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: '{product_id} is the AI Services product id shown in the Infomaniak Manager,
+      where the API token is created too; the million credits are a one-month trial
+      rather than a standing lane, which is why the Free models column stays empty'
+  probe:
+    type: page-keywords
+    endpoint: https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services
+    keywords:
+    - One million free credits
+    - A credit card is required to start using the API
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-02'
+  probe_failures: 0
+  provisional: true
+  rank: 85

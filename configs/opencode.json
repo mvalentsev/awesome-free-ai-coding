@@ -492,6 +492,46 @@
         }
       }
     },
+    "llmtr": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LLMTR",
+      "options": {
+        "baseURL": "https://llmtr.com/v1",
+        "apiKey": "{env:LLMTR_API_KEY}"
+      },
+      "models": {
+        "minimax/minimax-m3-free": {
+          "name": "minimax/minimax-m3-free"
+        },
+        "minimax/minimax-m2.7-free": {
+          "name": "minimax/minimax-m2.7-free"
+        },
+        "nvidia/nemotron-3-ultra-550b-a55b": {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b"
+        },
+        "nvidia/nemotron-3-super-120b-a12b": {
+          "name": "nvidia/nemotron-3-super-120b-a12b"
+        },
+        "qwen/qwen3.6-27b-free": {
+          "name": "qwen/qwen3.6-27b-free"
+        },
+        "inception/mercury-2-free": {
+          "name": "inception/mercury-2-free"
+        },
+        "poolside/laguna-xs-2.1": {
+          "name": "poolside/laguna-xs-2.1"
+        },
+        "inclusionai/ling-3.0-flash-fin": {
+          "name": "inclusionai/ling-3.0-flash-fin"
+        },
+        "dots-studio/dots-3-note-preview": {
+          "name": "dots-studio/dots-3-note-preview"
+        },
+        "openai/gpt-oss-safeguard-20b": {
+          "name": "openai/gpt-oss-safeguard-20b"
+        }
+      }
+    },
     "sambanova-cloud": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "SambaNova Cloud",
@@ -549,6 +589,52 @@
         },
         "Qwen3.8-27B": {
           "name": "Qwen3.8-27B"
+        }
+      }
+    },
+    "kenari": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kenari",
+      "options": {
+        "baseURL": "https://kenari.id/v1",
+        "apiKey": "{env:KENARI_API_KEY}"
+      },
+      "models": {
+        "glm-4-7-flash:free": {
+          "name": "glm-4-7-flash:free"
+        },
+        "nemotron-3-ultra-550b-a55b:free": {
+          "name": "nemotron-3-ultra-550b-a55b:free"
+        },
+        "nemotron-3-super-120b-a12b:free": {
+          "name": "nemotron-3-super-120b-a12b:free"
+        },
+        "step-3-7-flash:free": {
+          "name": "step-3-7-flash:free"
+        },
+        "laguna-s-2-1:free": {
+          "name": "laguna-s-2-1:free"
+        },
+        "laguna-xs-2-1:free": {
+          "name": "laguna-xs-2-1:free"
+        },
+        "hy3:free": {
+          "name": "hy3:free"
+        },
+        "mistral-medium-3-5:free": {
+          "name": "mistral-medium-3-5:free"
+        },
+        "mimo-v2-5:free": {
+          "name": "mimo-v2-5:free"
+        },
+        "qwen3-8-27b:free": {
+          "name": "qwen3-8-27b:free"
+        },
+        "agnes-2-0-flash:free": {
+          "name": "agnes-2-0-flash:free"
+        },
+        "muse-spark-1-2-contributor:free": {
+          "name": "muse-spark-1-2-contributor:free"
         }
       }
     },
@@ -703,6 +789,34 @@
         },
         "solar-mini": {
           "name": "solar-mini"
+        }
+      }
+    },
+    "infomaniak-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Infomaniak AI Services",
+      "options": {
+        "baseURL": "https://api.infomaniak.com/2/ai/{product_id}/openai/v1",
+        "apiKey": "{env:INFOMANIAK_AI_API_KEY}"
+      },
+      "models": {}
+    },
+    "meganova": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MegaNova",
+      "options": {
+        "baseURL": "https://api.meganova.ai/v1",
+        "apiKey": "{env:MEGANOVA_API_KEY}"
+      },
+      "models": {
+        "mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+          "name": "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+        },
+        "meganova-ai/manta-mini-1.0": {
+          "name": "meganova-ai/manta-mini-1.0"
+        },
+        "meganova-ai/manta-flash-1.0": {
+          "name": "meganova-ai/manta-flash-1.0"
         }
       }
     },
