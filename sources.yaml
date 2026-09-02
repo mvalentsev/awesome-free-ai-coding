@@ -219,8 +219,17 @@ read:
       forget, a Kimi membership lottery drawn from an invite link, WeChat
       signup credits, a 90-day 1M-token Tencent trial grant and outright paid
       tools. Most rows carry the maintainer's own referral code — the Freebuff,
-      Kimi, Tencent and WorkBuddy links all do — which is a standing reason to
-      read the vendor rather than the row. Its promo-expiry checker
+      Kimi, Tencent and WorkBuddy links all do — which its CONTRIBUTING allows
+      on one condition, that "the deal is genuinely good for the user (same or
+      better than the public price)", and which is a standing reason to read
+      the vendor rather than the row. Its freshness badge is worth the same
+      caution: it renders last_verified-2026--08 while the README's own line
+      reads "Last comprehensive verification: June 2026". The two names it
+      surfaced that this registry already holds show what reading the row costs
+      — Amazon Q Developer and Supermaven are both watchlisted here with
+      verdicts the list does not have, that Q is the predecessor AWS is folding
+      into Kiro and that Supermaven's real free tier is inline completions with
+      no API. Its promo-expiry checker
       (scripts/check_promo_expiry.py, run weekly) is the one piece of
       machinery here worth borrowing: it is a deadline sweep, which is what a
       list of dated offers needs and a list of standing free tiers does not.
