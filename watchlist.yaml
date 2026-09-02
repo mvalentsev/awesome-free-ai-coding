@@ -964,7 +964,7 @@ watched:
 
   - domains: [publicai.co]
     name: Public AI Inference Utility
-    checked_on: '2026-08-30'
+    checked_on: '2026-09-02'
     reason: >-
       The word "Free" here names a rate-limit tier, not free inference.
       platform.publicai.co/plans puts four tiers side by side and the Free one
@@ -980,13 +980,19 @@ watched:
       sign-up courtesy is not a free tier. The nonprofit itself is exactly what
       it says — a public-AI gateway fronting Apertus, SEA-LION, Olmo, Bielik and
       EuroLLM, and this list already carries SEA-LION from its own vendor.
+      Re-read 2026-09-02: the plans page still says "every new API key starts
+      on the free tier" and "new accounts receive starter credits when they
+      first use billing features" with no figure attached, the models page
+      still prices every row ($0.10 to $2.92 per 1M), and api.publicai.co/v1/models
+      answers 401 to a keyless GET, so the catalog itself cannot be read
+      without an account.
     reopen_if: >-
-      The portal names the starter credit, or /v1/models starts returning a
-      model priced at zero.
+      The portal names the starter credit, or platform.publicai.co/models
+      lists a model at zero.
 
   - domains: [crof.ai, nahcrof.com]
     name: CrofAI
-    checked_on: '2026-08-30'
+    checked_on: '2026-09-02'
     reason: >-
       A free account is not a free tier. crof.ai/home sells the on-ramp — "Get
       an API key — free account, no credit card required" — and crof.ai/pricing
@@ -996,6 +1002,9 @@ watched:
       is public and prices all 23 models; not one is at zero (the cheapest row
       read on 2026-08-30 was $0.35 in / $0.80 out per 1M). Reached from
       OmniRoute's provider table, where it is filed under paid.
+      Re-read 2026-09-02: still 23 rows and none at zero, the cheapest still
+      $0.35 in / $0.80 out per 1M, and the only "free" on the pricing page is
+      a JavaScript comment about the billing portal.
     reopen_if: >-
       A model priced at 0 appears in ai.nahcrof.com/v1/models, or the pricing
       page starts naming a recurring free allowance.
