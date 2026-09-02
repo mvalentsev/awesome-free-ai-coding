@@ -234,6 +234,32 @@ def _timeout_within(left: float | None) -> httpx.Timeout:
     return httpx.Timeout(min(TIMEOUT.read, left), connect=min(TIMEOUT.connect, left))
 
 
+# What a reader never sees and a model should not be fed: the site's menus and
+# footer, stylesheets, the JavaScript-required notice, and scripts — except
+# JSON-LD, which is page content in a structured coat (Freebuff publishes its
+# FAQ there and nowhere else). Measured 2026-09-02 over the 45 live rows' first
+# source urls: script blocks were a median 30% of the raw HTML and 98% of the
+# worst page, and PAGE_TEXT_LIMIT was being spent on them and on the menus —
+# the retirement sweep's one signal was the word "Deprecations" in
+# ai.google.dev's sidebar, while three mentions in body text sat past the cap.
+_NOISE_BLOCK = re.compile(r"<(script|style|nav|footer|noscript)\b[^>]*>.*?</\1\s*>", re.S | re.I)
+_LD_JSON = re.compile(r"""type\s*=\s*["']?application/ld\+json""", re.I)
+
+
+def page_text(html: str) -> str:
+    """The page as prose: noise blocks dropped, tags stripped, whitespace
+    collapsed. What the scout reads and what a quote is verified against, so
+    the two never disagree about what was on the page."""
+    def drop(match: re.Match) -> str:
+        block = match.group(0)
+        opening = block[:block.find(">") + 1]
+        if match.group(1).lower() == "script" and _LD_JSON.search(opening):
+            return block
+        return " "
+    text = re.sub(r"<[^>]+>", " ", _NOISE_BLOCK.sub(drop, html))
+    return re.sub(r"\s+", " ", text)
+
+
 def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
                      limit: int = PAGE_TEXT_LIMIT,
                      time_left: Callable[[], float] | None = None) -> dict[str, str]:
@@ -256,8 +282,7 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
                 break
             try:
                 r = client.get(u, timeout=_timeout_within(left))
-                text = re.sub(r"<[^>]+>", " ", r.text)
-                out[u] = re.sub(r"\s+", " ", text)[:limit]
+                out[u] = page_text(r.text)[:limit]
             except httpx.HTTPError:
                 out[u] = ""
     finally:

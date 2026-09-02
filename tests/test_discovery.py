@@ -213,6 +213,31 @@ def test_a_page_fetch_keeps_its_own_timeout_when_the_budget_is_wide():
 
 
 @respx.mock
+def test_page_text_is_the_page_and_not_its_machinery():
+    """Measured 2026-09-02 across the 45 live rows' first source urls: script
+    blocks were a median 30% of the raw HTML and 98% of the worst page, and the
+    5000-character cap was being spent on them and on the site's menus — the
+    only retirement signal in the whole sweep was the word "Deprecations" in
+    ai.google.dev's sidebar, while three body-text mentions sat past the cap
+    unseen. Structured data stays: Freebuff publishes its FAQ as JSON-LD and
+    nowhere else."""
+    respx.get("https://p.dev").mock(return_value=httpx.Response(200, text=(
+        '<html><head><style>.nav{color:red}</style>'
+        '<script>window.__d={"retired":true}</script>'
+        '<script type="application/ld+json">{"@type":"Question","name":"Is it free?"}</script>'
+        '</head><body><nav>Release notes Deprecations Libraries</nav>'
+        '<noscript>Please enable JavaScript</noscript>'
+        '<p>Free tier: 1,000 requests a day</p>'
+        '<footer>Product shut down notices</footer></body></html>')))
+    with httpx.Client() as c:
+        text = fetch_page_texts(["https://p.dev"], c)["https://p.dev"]
+    assert "Free tier: 1,000 requests a day" in text
+    assert "Is it free?" in text
+    for noise in ("Deprecations", "retired", "shut down", "enable JavaScript", "color:red"):
+        assert noise not in text
+
+
+@respx.mock
 def test_the_digest_names_a_provider_with_a_zero_cost_row():
     """The point of the source: 185 providers carrying a machine-readable price
     per model, which is a lead stream no prose feed can match."""

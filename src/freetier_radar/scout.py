@@ -800,6 +800,19 @@ def _has_retirement_signal(text: str) -> bool:
     return any(s in lowered for s in RETIREMENT_SIGNALS)
 
 
+def _retirement_excerpt(text: str) -> str:
+    """The RETIREMENT_PAGE_CHARS the model is shown, cut around the first
+    signal rather than from the top of the page. The signal is searched in
+    every character the fetcher keeps and the model has to copy the announcing
+    sentence verbatim from what it sees, so an announcement past the first
+    RETIREMENT_PAGE_CHARS used to trip the count on every run and could never
+    become a proposal."""
+    lowered = text.lower()
+    hits = [i for i in (lowered.find(s) for s in RETIREMENT_SIGNALS) if i != -1]
+    start = max(0, min(hits, default=0) - RETIREMENT_PAGE_CHARS // 4)
+    return text[start:start + RETIREMENT_PAGE_CHARS]
+
+
 def apply_retirements(entries: list[Entry], retire: list[dict],
                       pages: dict[str, str]) -> list[str]:
     """Set retired_on from a vendor's own shutdown announcement.
@@ -938,7 +951,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         candidates = [e for e in live if _has_retirement_signal(pages.get(e.source_urls[0], ""))]
         context = "\n\n".join(
             f"ENTRY {e.id} ({e.name}) — offering: {e.offering}\n"
-            f"PAGE {e.source_urls[0]}:\n{pages.get(e.source_urls[0], '')[:RETIREMENT_PAGE_CHARS]}"
+            f"PAGE {e.source_urls[0]}:\n{_retirement_excerpt(pages.get(e.source_urls[0], ''))}"
             for e in candidates
         )
         # Naming them costs one line and saves re-fetching every live entry's

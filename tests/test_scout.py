@@ -13,7 +13,8 @@ from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entr
                                    Watched, save_registry)
 from freetier_radar.scout import (
     FALLBACK_OPENROUTER_MODEL, OPENROUTER_BASE_URL, OVH_BASE_URL, Deadline, LLMClient, _ask,
-    apply_new, apply_retirements, apply_updates, extract_yaml_block, pick_openrouter_model,
+    RETIREMENT_PAGE_CHARS, apply_new, apply_retirements, apply_updates, extract_yaml_block,
+    pick_openrouter_model,
     published_model_ids, run_scout, supersede_proposals,
 )
 
@@ -277,6 +278,22 @@ def test_the_retirement_sweep_names_the_entries_it_flagged(capsys):
                make(id="y", source_urls=["https://y.ai/docs"])]
     run_scout(llm, entries, [], lambda urls: {u: pages[u] for u in urls}, TODAY)
     assert "retirement sweep: 1/2 pages carry a signal (y)" in capsys.readouterr().out
+
+
+def test_the_retirement_excerpt_is_cut_around_the_signal_and_not_from_the_top():
+    """The signal was searched in every character the fetcher keeps while the
+    model was handed the first RETIREMENT_PAGE_CHARS, so an announcement in
+    the second half tripped the count on every run and could never become a
+    proposal — the sentence the model must copy verbatim was not in front of
+    it."""
+    filler = " ".join(["pricing table row"] * 400)
+    assert len(filler) > RETIREMENT_PAGE_CHARS
+    notice = "the free tier will be retired on 2026-07-30, use the paid plan"
+    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire: []\n```"})
+    entries = [make(source_urls=["https://x.ai/blog"])]
+    run_scout(llm, entries, [], lambda urls: {u: filler + " " + notice for u in urls}, TODAY)
+    prompt = next(p for p in llm.prompts if "FIND-RETIREMENTS" in p)
+    assert notice in prompt
 
 
 def test_retirement_sweep_failure_does_not_sink_the_run():
