@@ -232,11 +232,18 @@ def _is_withdrawn(model: dict) -> bool:
 
 
 def _price_note(model: dict) -> str:
-    prices = _price_of(model)
     mid = _model_id(model) or "?"
+    if _free_flag(model) is False:
+        return f"{mid} is marked not free by the catalog"
+    prices = _price_of(model)
     if prices is None:
         return f"{mid} publishes no price"
-    return f"{mid} priced {'/'.join(f'{p:g}' for p in prices)}"
+    note = f"{mid} priced {'/'.join(f'{p:g}' for p in prices)}"
+    pricing = model.get("pricing") if isinstance(model.get("pricing"), dict) else {}
+    extra = [f"{k} {_price_row(v):g}" for k, v in pricing.items()
+             if (k.lower() in _PER_CALL_KEYS or any(m in k.lower() for m in _PER_UNIT_MARKERS))
+             and _price_row(v) not in (None, 0)]
+    return note + (" plus " + ", ".join(extra) if extra else "")
 
 
 def _catalog_items(resp: httpx.Response) -> list[dict] | None:
@@ -263,7 +270,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     for family in entry.models:
         matches = [
             m for m in items
-            if family.family.lower() in _model_id(m).lower()
+            if _id_squash(family.family) in _id_squash(_model_id(m))
             and (not marker or marker in _model_id(m).lower())
         ]
         if not matches:
@@ -293,9 +300,65 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     return " | ".join(problems) if problems else None
 
 
+_FREE_FLAGS = ("isFree", "is_free", "free")
+
+
+def _free_flag(model: dict) -> bool | None:
+    """The vendor's own word on whether a row is free, where it gives one. Kilo
+    marks every row isFree and prices Google's Lyria previews at 0 with the
+    flag false; Kenari puts `free` inside `pricing` and prints the metered
+    rate beside it, because a :free call "is billed Rp 0" and the price rows
+    are what the same model costs without the suffix. Where the catalog says
+    in so many words whether a row is free, that is the answer, and the prices
+    are read only where it does not. A boolean only: a string or a number
+    under one of these keys is not a verdict."""
+    for holder in (model, model.get("pricing")):
+        if isinstance(holder, dict):
+            for key in _FREE_FLAGS:
+                value = holder.get(key)
+                if isinstance(value, bool):
+                    return value
+    return None
+
+
+# Price rows that bill every ordinary call of the model, whatever it is priced
+# per token: a flat charge per request, or a charge per unit of the model's
+# own medium. Vercel prices spacexai/grok-stt at 0 per token and 0.000028 per
+# second of audio; EmpirioLabs prices gemma-3-27b at 0 per token and $0.004
+# per message. Reading the token rows alone called both free.
+_PER_CALL_KEYS = ("request", "per_request", "request_price", "price_per_request")
+_PER_UNIT_MARKERS = ("per_second", "per_minute", "duration", "per_hour")
+
+
+def _charges_elsewhere(model: dict) -> bool:
+    """A non-zero price on the row that every ordinary call pays. Cache, image
+    and web-search rows stay ignored, as they always were: they price an
+    optional input, and a free text lane is still free without it. The list
+    is deliberately narrow — a stricter reading fails the offer check, and
+    three failed probes archive a live row, so an unknown add-on key must not
+    be able to do that. Measured 2026-09-02 across the eight live rows whose
+    prices are read: no listed id carries a non-zero price outside the token
+    rows, so nothing live turns on this."""
+    pricing = model.get("pricing")
+    if not isinstance(pricing, dict):
+        return False
+    for key, value in pricing.items():
+        lowered = key.lower()
+        if lowered in _PER_CALL_KEYS or any(m in lowered for m in _PER_UNIT_MARKERS):
+            price = _price_row(value)
+            if price is not None and price != 0:
+                return True
+    return False
+
+
 def _is_free(model: dict) -> bool:
+    """Free by the catalog's own account: its flag where it has one, else every
+    price it publishes for the row at zero."""
+    flag = _free_flag(model)
+    if flag is not None:
+        return flag
     prices = _price_of(model)
-    return prices is not None and all(p == 0 for p in prices)
+    return prices is not None and all(p == 0 for p in prices) and not _charges_elsewhere(model)
 
 
 def challenge_marker_hit(text: str) -> str | None:
@@ -460,10 +523,10 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     be the catalog.
 
     Ids in `api.ignored_ids` are left out: a zero somebody has read and left
-    unlisted, with the reason in `api.note`. Vercel's spacexai/grok-stt costs
-    0 per token and 0.000028 per second of audio; Kilo marks its two routers
-    isFree. Without the list those would print on every run, and a report
-    that always prints is a report nobody reads.
+    unlisted, with the reason in `api.note` — AIHubMix's two image generators,
+    and a row whose own description says it was removed from the platform.
+    Without the list those would print on every run, and a report that always
+    prints is a report nobody reads.
 
     Like dead_model_ids it never fails a row and is never handed to the
     scout: an id to add is an exact string copied out of a catalog, and
@@ -529,6 +592,16 @@ def _squash(s: str) -> str:
     """Case and separators removed: vendors write "Qwen3 Coder" and "GLM-4.7
     Flash" for what the registry calls qwen3-coder and glm-4.7-flash."""
     return re.sub(r"[\s_-]+", "", s.lower())
+
+
+def _id_squash(s: str) -> str:
+    """_squash for a catalog id, where the dot goes too: Kenari lists the
+    registry's glm-4.7-flash, step-3.7-flash and laguna-s-2.1 as
+    glm-4-7-flash:free, step-3-7-flash:free and laguna-s-2-1:free. A page is
+    prose and keeps its dots — "Qwen 3 6B" must not read as qwen3.6 — but an
+    id is one token, and a version written with a hyphen is the same
+    version."""
+    return re.sub(r"[\s_.\-]+", "", s.lower())
 
 
 # How far apart the parts of a family name may sit and still be one name. Wide

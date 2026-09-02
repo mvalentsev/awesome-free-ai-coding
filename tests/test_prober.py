@@ -4,7 +4,7 @@ import httpx
 import respx
 
 from freetier_radar.history import load_history
-from freetier_radar.models import ApiInfo, Entry, save_registry
+from freetier_radar.models import ApiInfo, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, is_model_stale, probe_entry,
 )
@@ -858,6 +858,73 @@ async def test_config_ids_are_never_read_off_a_page():
 
 
 @respx.mock
+async def test_a_family_matches_an_id_that_writes_its_dots_as_hyphens():
+    """Kenari lists glm-4.7-flash as glm-4-7-flash:free and step-3.7-flash as
+    step-3-7-flash:free. The registry spells a family one way for every row,
+    so the catalog id is squashed the same way a page is — plus the dot,
+    which an id has no other reason to lose."""
+    entry = api_entry()
+    entry.models = [ModelFamily(family="glm-4.7-flash"), ModelFamily(family="step-3.7-flash")]
+    entry.probe.require_zero_price = True
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"id": "glm-4-7-flash:free", "pricing": {"free": True, "input": 1100000000}},
+            {"id": "step-3-7-flash:free", "pricing": {"free": True, "input": 900000000}},
+            {"id": "glm-5-3", "pricing": {"free": False, "input": 10000000000}}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_zero_token_price_beside_a_per_request_charge_is_not_free():
+    """Vercel prices spacexai/grok-stt at 0 per token and 0.000028 per second of
+    audio in the same row; EmpirioLabs prices gemma-3-27b at 0 per token and
+    $0.004 per message. Reading only the token rows called both free. A row is
+    free when every price the vendor publishes for it is zero — measured
+    2026-09-02, no listed id on the eight rows whose prices are read carries a
+    non-zero price outside the token rows, so nothing live changes."""
+    entry = config_entry("qwen/qwen3-coder:free", "vendor/stt:free", "vendor/per-message:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane(
+            {"id": "vendor/stt:free",
+             "pricing": {"input": "0", "transcription_duration_cost_per_second": "0.000028"}},
+            {"id": "vendor/per-message:free",
+             "pricing": {"prompt": "0", "completion": "0", "request": "0.004"}},
+            {"id": "vendor/annotated:free",
+             "pricing": {"prompt": "0", "completion": "0", "varies_by_provider": True}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "vendor/stt:free priced" in result.detail
+    assert "vendor/per-message:free priced" in result.detail
+    # the boolean is an annotation, not a price: the row stays free, and unlisted
+    assert "vendor/annotated:free" in result.detail.split("does not list")[1]
+
+
+@respx.mock
+async def test_the_vendors_own_free_flag_outranks_its_price_rows():
+    """Kilo marks Google's Lyria previews isFree: false and prices them at 0;
+    Kenari marks twelve :free ids free: true and prints the metered rate beside
+    each one, since a :free call "does not deduct balance". Where a catalog says
+    in so many words whether a row is free, that is the answer, and the price
+    rows are read only where it does not."""
+    entry = config_entry("qwen/qwen3-coder:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane(
+            {"id": "google/lyria-3-pro-preview:free", "isFree": False,
+             "pricing": {"prompt": "0", "completion": "0"}},
+            {"id": "step-3-7-flash:free",
+             "pricing": {"free": True, "input": 1100000000, "output": 7700000000,
+                         "currency": "IDR"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "step-3-7-flash:free" in result.detail
+    assert "lyria" not in result.detail
+
+
+@respx.mock
 async def test_a_free_id_the_catalog_carries_and_the_config_does_not_is_reported():
     """The other half of the same defect. STALE_IDS read only the ids the
     registry already had, so a lane that grew was invisible: measured
@@ -917,10 +984,11 @@ async def test_where_no_marker_names_the_lane_every_zero_is_in_it():
 
 @respx.mock
 async def test_an_ignored_id_is_seen_and_not_reported():
-    """Vercel prices spacexai/grok-stt at 0 per token and 0.000028 per second
-    of audio; Kilo marks its two routers isFree. A zero the registry has looked
-    at and left out is recorded in api.ignored_ids, with the reason beside it
-    in api.note, so the report only ever shows ids nobody has judged yet."""
+    """AIHubMix prices two image generators at 0 beside its text lane, and one
+    row whose own description says it was removed from the platform. A zero
+    the registry has looked at and left out is recorded in api.ignored_ids,
+    with the reason beside it in api.note, so the report only ever shows ids
+    nobody has judged yet."""
     entry = config_entry("qwen/qwen3-coder:free")
     entry.api.ignored_ids = ["spacexai/grok-stt:free"]
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(

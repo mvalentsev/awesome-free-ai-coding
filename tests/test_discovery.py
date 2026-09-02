@@ -238,6 +238,20 @@ def test_page_text_is_the_page_and_not_its_machinery():
 
 
 @respx.mock
+def test_a_json_page_is_kept_as_it_is():
+    """Pollinations' first source url is its model catalog, JSON with a "<" in
+    one description: the tag stripper ate everything from there to the next
+    ">" and the scout was handed 286 characters of a 20-kilobyte page."""
+    respx.get("https://c.dev/models").mock(return_value=httpx.Response(
+        200, json=[{"name": "fast", "description": "for prompts < 4k tokens"},
+                   {"name": "big", "description": "everything > that"}],
+    ))
+    with httpx.Client() as c:
+        text = fetch_page_texts(["https://c.dev/models"], c)["https://c.dev/models"]
+    assert '"big"' in text and "everything > that" in text
+
+
+@respx.mock
 def test_the_digest_names_a_provider_with_a_zero_cost_row():
     """The point of the source: 185 providers carrying a machine-readable price
     per model, which is a lead stream no prose feed can match."""

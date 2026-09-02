@@ -282,7 +282,13 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
                 break
             try:
                 r = client.get(u, timeout=_timeout_within(left))
-                out[u] = page_text(r.text)[:limit]
+                # A catalog answers JSON, and JSON is not HTML: a "<" in one
+                # model's description is where the tag stripper would start
+                # eating, and Pollinations' 20-kilobyte catalog came back as
+                # 286 characters.
+                is_json = "json" in r.headers.get("content-type", "").lower()
+                text = re.sub(r"\s+", " ", r.text) if is_json else page_text(r.text)
+                out[u] = text[:limit]
             except httpx.HTTPError:
                 out[u] = ""
     finally:

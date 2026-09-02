@@ -152,7 +152,9 @@ class Probe(BaseModel):
     keywords: list[str] = []
     free_marker: str = ""
     dead_markers: list[str] = []  # entry-specific withdrawal wording, on top of DEAD_MARKERS
-    require_zero_price: bool = False  # api-models: the matched id must still be priced 0
+    # api-models: the matched id must still be free by the catalog's own account —
+    # its free flag where it has one, else every price it publishes at zero
+    require_zero_price: bool = False
 
     @model_validator(mode="after")
     def _zero_price_needs_a_price_list(self) -> Probe:
@@ -196,8 +198,8 @@ class ApiInfo(BaseModel):
     openai_compatible: bool = True
     model_ids: list[str] = []  # exact callable ids for generated configs
     # Zero-priced ids the catalog carries that are deliberately not in
-    # model_ids — a router, a guardrail classifier, a speech model, a lane the
-    # row does not track — with the reason in `note`. The probe reports every
+    # model_ids — an image generator, a row whose own description says it was
+    # removed, a lane the row does not track — with the reason in `note`. The probe reports every
     # free id it finds outside model_ids, and this is where a decision about
     # one of them is recorded so it is not reported again. Written only where
     # set: every api block already carries model_ids and note, and this list

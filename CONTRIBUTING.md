@@ -84,7 +84,10 @@ Words that outlive the offer are rejected by validation, so CI fails on them:
 `free`, `hobby`, `free quota`, `monthly credits`, `no signup`, `no credit card
 required`. On an `api-models` probe against a gateway that publishes prices, set
 `require_zero_price: true` — a model id can stay in the catalog long after it
-stops being free. Where a catalog publishes an `available` flag the probe reads
+stops being free. Free there means free by the catalog's own account: the
+vendor's `isFree`/`free` flag where the row carries one, otherwise every price
+the row publishes at zero — a zero per token beside a charge per request or per
+second of audio is a price. Where a catalog publishes an `available` flag the probe reads
 it too, with no setting to turn on: a row the vendor marks uncallable is not a
 free lane whatever its price says, and it fails the probe as `marked
 unavailable`.
@@ -109,9 +112,9 @@ reports every zero-priced id the catalog carries that `model_ids` does not, so a
 lane that grows is visible without anyone re-reading the catalog. Both are notes
 for a human and never repairs: an id is an exact string, and whether a new one
 belongs in the configs is a judgement about what the row is for. Record the ones
-you have read and left out — a router, a guardrail classifier, a speech model, a
-lane the row does not track — in `api.ignored_ids` with the reason in `api.note`,
-and they stop being reported.
+you have read and left out — an image generator, a row whose own description says
+it was removed, a lane the row does not track — in `api.ignored_ids` with the
+reason in `api.note`, and they stop being reported.
 
 ## How the pipeline works
 
