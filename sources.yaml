@@ -202,3 +202,28 @@ read:
     reopen_if: >-
       It starts committing again, or its locale files begin carrying a quota
       the curated feeds do not.
+
+  - url: https://github.com/codertesla/ai-coding-deals
+    name: codertesla/ai-coding-deals
+    checked_on: '2026-09-02'
+    reason: >-
+      A deals list, not a free-tier list, and it says so itself: "free tiers,
+      discounts, referral credits & open-source alternatives". Read whole on
+      2026-09-02, both READMEs, last pushed 2026-08-04. It links 35 hosts
+      outside GitHub, 14 of which had no verdict here, and only four of those
+      14 carry a free-tier claim at all: freebuff.com, which this read added to
+      the registry, plus qodo.ai (free Developer tier — 30 PR reviews/month and
+      250 IDE credits), codebuddy.ai (250 credits per 2 weeks) and
+      augmentcode.com (a Community tier it does not quantify). The other ten
+      are a card-required 7-day SuperGrok trial that bills $30/month if you
+      forget, a Kimi membership lottery drawn from an invite link, WeChat
+      signup credits, a 90-day 1M-token Tencent trial grant and outright paid
+      tools. Most rows carry the maintainer's own referral code — the Freebuff,
+      Kimi, Tencent and WorkBuddy links all do — which is a standing reason to
+      read the vendor rather than the row. Its promo-expiry checker
+      (scripts/check_promo_expiry.py, run weekly) is the one piece of
+      machinery here worth borrowing: it is a deadline sweep, which is what a
+      list of dated offers needs and a list of standing free tiers does not.
+    reopen_if: >-
+      It separates free tiers from discounts into their own table, or its
+      free-tier rows start naming quotas and model lists instead of savings.

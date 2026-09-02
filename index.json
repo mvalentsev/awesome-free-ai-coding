@@ -375,7 +375,7 @@
       ],
       "card_required": false,
       "offering": "Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog",
-      "limits": "The $0 plan was rewritten between the 2026-08-27 and 2026-08-31 runs, and it is now a wallet rather than a lane: it reads \"Starter usage credits included\" and \"Includes access to starter models\", with \"Add credits to unlock all models\" under them. Neither figure is published — the page names no credit amount and no starter model list, and the cloud-model list it links (ollama.com/search?c=cloud) marks none of them starter. Every cloud model now carries a per-million-token price on that same page: gpt-oss:20b $0.07 in / $0.30 out, minimax-m3 $0.60 / $2.40, kimi-k3 $3.00 / $15.00. Free gets 1 concurrent request against Pro's 3, and the included usage \"resets monthly from the date you signed up\" and does not roll over. Gone with the rewrite: the $0 \"Access cloud models\" line this row was probed on, and the per-model usage level 1-4 that stood in for a free-model list. Read 2026-09-02. A key on this plan answered 402 Payment Required for minimax-m3 on 2026-08-31 after working all month, which is what a spent starter balance looks like; the page does not say whether a starter model would still have answered",
+      "limits": "The $0 plan was rewritten between the 2026-08-27 and 2026-08-31 runs, and it is now a wallet rather than a lane: it reads \"Starter usage credits included\" and \"Includes access to starter models\", with \"Add credits to unlock all models\" under them. Neither figure is published — the page names no credit amount and no starter model list, and the cloud-model list it links (ollama.com/search?c=cloud) marks none of them starter. Every cloud model now carries a per-million-token price on that same page: gpt-oss:20b $0.07 in / $0.30 out, minimax-m3 $0.60 / $2.40, kimi-k3 $3.00 / $15.00. Free gets 1 concurrent request against Pro's 3, and the included usage \"resets monthly from the date you signed up\" and does not roll over. Gone with the rewrite: the $0 \"Access cloud models\" line this row was probed on, and the per-model usage level 1-4 that stood in for a free-model list. Read 2026-09-02, with the starter set mapped by calling it, since nothing publishes it: from one key on the $0 plan, gpt-oss:120b answered in 1-11s, gemma4:31b in 1-5s and nemotron-3-ultra in 50-279s, all on 2026-09-02, while minimax-m3 answered 402 Payment Required on both 2026-08-31 and 2026-09-02 after serving all month. The 402 is the edge of the starter set rather than a spent balance, and that edge is not the price: nemotron-3-ultra is inside it at $0.10/$3.00 while minimax-m3 is outside it at $0.60/$2.40",
       "models": [],
       "api": {
         "base_url": "https://ollama.com/v1",
@@ -383,12 +383,11 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "nemotron-3-ultra",
-          "minimax-m3",
           "gpt-oss:120b",
-          "gemma4:31b"
+          "gemma4:31b",
+          "nemotron-3-ultra"
         ],
-        "note": "the four ids are cloud model names the catalog still serves, and on 2026-08-03 they answered on the free plan — but that plan is now a starter wallet, so what they cost is credits at the published per-token rate rather than nothing. Ollama publishes no list of the models the starter credits reach. /v1/models lists the whole catalog, starter and metered alike"
+        "note": "the three ids left are the ones a key on the $0 plan actually answered on 2026-09-02, in that order of speed; minimax-m3 was dropped from this list because the same key gets 402 Payment Required for it. Which models the starter credits reach is published nowhere, so this list is measured rather than read, and /v1/models still lists the whole catalog, starter and metered alike"
       },
       "probe": {
         "type": "page-keywords",
@@ -2215,6 +2214,58 @@
       "provisional": false,
       "rank": 75,
       "archived": false
+    },
+    {
+      "id": "freebuff",
+      "name": "Freebuff",
+      "category": "agent-cli",
+      "url": "https://freebuff.com",
+      "source_urls": [
+        "https://freebuff.com/cli",
+        "https://freebuff.com/terms-of-service"
+      ],
+      "card_required": false,
+      "offering": "Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker",
+      "limits": "How it can be free is answered by the vendor in five words — \"Freebuff is supported by text ads\" — and the CLI asks for nothing to prove it: \"npm install -g freebuff\", then \"No API key and no credit card. It just runs.\" What it costs instead is geography and sessions. Full mode is restricted to 25 named countries (US, Canada, UK, Australia, New Zealand, Norway, Sweden, Netherlands, Denmark, Germany, France, Italy, Spain, Portugal, Finland, Belgium, Luxembourg, Liechtenstein, Switzerland, Austria, Singapore, Malta, Israel, Ireland, Iceland); \"if you are outside those countries or using a VPN, Freebuff still works in limited mode\", and limited mode is MiMo 2.5 alone. The quota is counted in sessions and no free figure is published: the Terms sell paid plans as adding \"session capacity on top of the free service\" and say each plan carries \"daily, rolling five-day, and monthly session limits, per-model limits\" without naming the free ones, while \"referrals and bounties earn extra sessions on top\". Solar Pro 4 sits in the picker as a \"limited-time trial\" and is left out of the models column for that reason, as is the Gemini 3.1 Flash Lite that runs file-finding and research behind the scenes. On data the FAQ is narrow and specific: \"we do not collect your traces or files unless the model provider does. Currently, this applies only to DeepSeek models\", and the picker marks DeepSeek V4 Flash \"may use data for AI training\". Read 2026-09-02",
+      "models": [
+        {
+          "family": "glm-5.3-flash",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "gpt-5.6-luna",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "deepseek-v4-flash",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "mimo-v2.5",
+          "tier": "strong",
+          "released": ""
+        }
+      ],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://freebuff.com/cli",
+        "keywords": [
+          "Freebuff is supported by text ads",
+          "No API key and no credit card"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-09-02",
+      "last_verified": "2026-09-02",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 28,
+      "archived": false
     }
   ],
   "watchlist": [
@@ -2918,6 +2969,16 @@
       "checked_on": "2026-08-30",
       "reason": "Moved off the blocklist because the fact it rested on is not what the catalog says. The reason read \"163 models, 77 of them paid frontier ids — claude-opus-5, claude-opus-4.8, the gpt-5.6 line, o3 — offered on a free plan of 150K tokens/day\", and api.navy/v1/models carries a `premium` flag per row: 50 rows are premium and they are precisely that frontier line (gpt-5.6-sol/terra/luna, 5.5, 5.4, 5.3-codex), while the frontier-named rows that are NOT premium are the mini, nano and lite tiers. There is also a `token_multiplier` per row — 20 for claude-opus-5, 16 for gpt-5.6-sol, 1 for the ordinary rows — so the quota is spent at a rate that matches the model's cost. That is the shape of a metered plan, not of capacity given away. Not listed because nothing here can be read: api.navy and its docs answer a Cloudflare challenge to every non-browser client, so the free plan's terms cannot be verified from outside a browser.",
       "reopen_if": "NavyAI serves a pricing or docs page to an ordinary HTTP client, and that page states what the free plan grants and which models it covers.",
+      "current": true
+    },
+    {
+      "domains": [
+        "cto.new"
+      ],
+      "name": "cto.new",
+      "checked_on": "2026-09-02",
+      "reason": "Moved off the blocklist, for the reason five other domains were on 2026-08-30: the verdict was a statement about the offer on a date, filed where nothing expires. It read \"free models are chat-only: no API endpoint and no free agent runs ... so no probe on this domain can verify anything\", and the second half is simply not true — docs.cto.new answers an ordinary client with HTTP 200 and carries the free tier's terms in the vendor's own words. The first half is a scope judgement, which is what this file is for. Out of scope rather than out of free tier, then, which is the rarer of the two answers here. cto.new is an AI business builder — its own documentation is Headquarters, Website, Tasks, Finance, Ads, Inbox, Files and a Marketplace — and the coding surface a developer would point at a repository is not among them. The free tier itself is real and unquantified: \"Use cto completely free. Access to the best value models with generous usage limits that reset every day\", carrying its own caveat that \"access to the free tier may be restricted in some locations and on some networks\". Which models it reaches is not stated; the models page names Claude Opus 5, Claude Fable 5, Kimi K3, GPT-5.6, DeepSeek V4 Pro, Gemini 3.1 Pro and GLM 5.3 Flash for the product as a whole, and the free page says only \"the best value models\". Note for a re-read: cto.new answers a Vercel Security Checkpoint with HTTP 429 to any ordinary client, and docs.cto.new is the readable surface — its Mintlify .md forms (docs.cto.new/fair-use.md, /pricing.md) are the machine-readable one, and the llms.txt beside them lists every page.",
+      "reopen_if": "It ships a surface a developer uses on code directly — a CLI, an IDE extension or an OpenAI-compatible endpoint — reachable on the free tier.",
       "current": true
     }
   ]

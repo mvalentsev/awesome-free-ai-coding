@@ -614,17 +614,14 @@
         "apiKey": "{env:OLLAMA_CLOUD_API_KEY}"
       },
       "models": {
-        "nemotron-3-ultra": {
-          "name": "nemotron-3-ultra"
-        },
-        "minimax-m3": {
-          "name": "minimax-m3"
-        },
         "gpt-oss:120b": {
           "name": "gpt-oss:120b"
         },
         "gemma4:31b": {
           "name": "gemma4:31b"
+        },
+        "nemotron-3-ultra": {
+          "name": "nemotron-3-ultra"
         }
       }
     },

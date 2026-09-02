@@ -1168,3 +1168,35 @@ watched:
     reopen_if: >-
       NavyAI serves a pricing or docs page to an ordinary HTTP client, and that
       page states what the free plan grants and which models it covers.
+
+  - domains: [cto.new]
+    name: cto.new
+    checked_on: '2026-09-02'
+    reason: >-
+      Moved off the blocklist, for the reason five other domains were on
+      2026-08-30: the verdict was a statement about the offer on a date, filed
+      where nothing expires. It read "free models are chat-only: no API endpoint
+      and no free agent runs ... so no probe on this domain can verify
+      anything", and the second half is simply not true — docs.cto.new answers
+      an ordinary client with HTTP 200 and carries the free tier's terms in the
+      vendor's own words. The first half is a scope judgement, which is what
+      this file is for. Out of scope rather than out of free tier, then, which
+      is the rarer of the two answers here. cto.new is an AI business builder —
+      its own
+      documentation is Headquarters, Website, Tasks, Finance, Ads, Inbox, Files
+      and a Marketplace — and the coding surface a developer would point at a
+      repository is not among them. The free tier itself is real and
+      unquantified: "Use cto completely free. Access to the best value models
+      with generous usage limits that reset every day", carrying its own caveat
+      that "access to the free tier may be restricted in some locations and on
+      some networks". Which models it reaches is not stated; the models page
+      names Claude Opus 5, Claude Fable 5, Kimi K3, GPT-5.6, DeepSeek V4 Pro,
+      Gemini 3.1 Pro and GLM 5.3 Flash for the product as a whole, and the free
+      page says only "the best value models". Note for a re-read: cto.new
+      answers a Vercel Security Checkpoint with HTTP 429 to any ordinary client,
+      and docs.cto.new is the readable surface — its Mintlify .md forms
+      (docs.cto.new/fair-use.md, /pricing.md) are the machine-readable one, and
+      the llms.txt beside them lists every page.
+    reopen_if: >-
+      It ships a surface a developer uses on code directly — a CLI, an IDE
+      extension or an OpenAI-compatible endpoint — reachable on the free tier.

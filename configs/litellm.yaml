@@ -568,16 +568,6 @@ model_list:
     model: openai/gpt-oss
     api_base: https://text.pollinations.ai/openai
     api_key: none
-- model_name: ollama-cloud/nemotron-3-ultra
-  litellm_params:
-    model: openai/nemotron-3-ultra
-    api_base: https://ollama.com/v1
-    api_key: os.environ/OLLAMA_CLOUD_API_KEY
-- model_name: ollama-cloud/minimax-m3
-  litellm_params:
-    model: openai/minimax-m3
-    api_base: https://ollama.com/v1
-    api_key: os.environ/OLLAMA_CLOUD_API_KEY
 - model_name: ollama-cloud/gpt-oss:120b
   litellm_params:
     model: openai/gpt-oss:120b
@@ -586,6 +576,11 @@ model_list:
 - model_name: ollama-cloud/gemma4:31b
   litellm_params:
     model: openai/gemma4:31b
+    api_base: https://ollama.com/v1
+    api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: ollama-cloud/nemotron-3-ultra
+  litellm_params:
+    model: openai/nemotron-3-ultra
     api_base: https://ollama.com/v1
     api_key: os.environ/OLLAMA_CLOUD_API_KEY
 - model_name: poolside/poolside/laguna-s-2.1

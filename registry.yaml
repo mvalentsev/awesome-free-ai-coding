@@ -360,9 +360,13 @@ entries:
     and the included usage "resets monthly from the date you signed up" and does not
     roll over. Gone with the rewrite: the $0 "Access cloud models" line this row was
     probed on, and the per-model usage level 1-4 that stood in for a free-model list.
-    Read 2026-09-02. A key on this plan answered 402 Payment Required for minimax-m3
-    on 2026-08-31 after working all month, which is what a spent starter balance looks
-    like; the page does not say whether a starter model would still have answered'
+    Read 2026-09-02, with the starter set mapped by calling it, since nothing publishes
+    it: from one key on the $0 plan, gpt-oss:120b answered in 1-11s, gemma4:31b in
+    1-5s and nemotron-3-ultra in 50-279s, all on 2026-09-02, while minimax-m3 answered
+    402 Payment Required on both 2026-08-31 and 2026-09-02 after serving all month.
+    The 402 is the edge of the starter set rather than a spent balance, and that edge
+    is not the price: nemotron-3-ultra is inside it at $0.10/$3.00 while minimax-m3
+    is outside it at $0.60/$2.40'
   models: []
   api:
     base_url: https://ollama.com/v1
@@ -370,15 +374,14 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - nemotron-3-ultra
-    - minimax-m3
     - gpt-oss:120b
     - gemma4:31b
-    note: the four ids are cloud model names the catalog still serves, and on 2026-08-03
-      they answered on the free plan — but that plan is now a starter wallet, so what
-      they cost is credits at the published per-token rate rather than nothing. Ollama
-      publishes no list of the models the starter credits reach. /v1/models lists
-      the whole catalog, starter and metered alike
+    - nemotron-3-ultra
+    note: the three ids left are the ones a key on the $0 plan actually answered on
+      2026-09-02, in that order of speed; minimax-m3 was dropped from this list because
+      the same key gets 402 Payment Required for it. Which models the starter credits
+      reach is published nowhere, so this list is measured rather than read, and /v1/models
+      still lists the whole catalog, starter and metered alike
   probe:
     type: page-keywords
     endpoint: https://ollama.com/cloud
@@ -2141,3 +2144,61 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 75
+- id: freebuff
+  name: Freebuff
+  category: agent-cli
+  url: https://freebuff.com
+  source_urls:
+  - https://freebuff.com/cli
+  - https://freebuff.com/terms-of-service
+  card_required: false
+  offering: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder,
+    cloud sandbox on any GitHub repo, and chat — with no account, no API key and no
+    card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo
+    2.5 in the picker
+  limits: 'How it can be free is answered by the vendor in five words — "Freebuff
+    is supported by text ads" — and the CLI asks for nothing to prove it: "npm install
+    -g freebuff", then "No API key and no credit card. It just runs." What it costs
+    instead is geography and sessions. Full mode is restricted to 25 named countries
+    (US, Canada, UK, Australia, New Zealand, Norway, Sweden, Netherlands, Denmark,
+    Germany, France, Italy, Spain, Portugal, Finland, Belgium, Luxembourg, Liechtenstein,
+    Switzerland, Austria, Singapore, Malta, Israel, Ireland, Iceland); "if you are
+    outside those countries or using a VPN, Freebuff still works in limited mode",
+    and limited mode is MiMo 2.5 alone. The quota is counted in sessions and no free
+    figure is published: the Terms sell paid plans as adding "session capacity on
+    top of the free service" and say each plan carries "daily, rolling five-day, and
+    monthly session limits, per-model limits" without naming the free ones, while
+    "referrals and bounties earn extra sessions on top". Solar Pro 4 sits in the picker
+    as a "limited-time trial" and is left out of the models column for that reason,
+    as is the Gemini 3.1 Flash Lite that runs file-finding and research behind the
+    scenes. On data the FAQ is narrow and specific: "we do not collect your traces
+    or files unless the model provider does. Currently, this applies only to DeepSeek
+    models", and the picker marks DeepSeek V4 Flash "may use data for AI training".
+    Read 2026-09-02'
+  models:
+  - family: glm-5.3-flash
+    tier: strong
+    released: ''
+  - family: gpt-5.6-luna
+    tier: strong
+    released: ''
+  - family: deepseek-v4-flash
+    tier: strong
+    released: ''
+  - family: mimo-v2.5
+    tier: strong
+    released: ''
+  probe:
+    type: page-keywords
+    endpoint: https://freebuff.com/cli
+    keywords:
+    - Freebuff is supported by text ads
+    - No API key and no credit card
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-02'
+  probe_failures: 0
+  provisional: true
+  rank: 28
