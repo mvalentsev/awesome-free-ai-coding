@@ -201,9 +201,6 @@
         },
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
-        },
-        "meituan/longcat-2.0-free": {
-          "name": "meituan/longcat-2.0-free"
         }
       }
     },
@@ -244,6 +241,12 @@
         },
         "mistral/leanstral-1-5": {
           "name": "mistral/leanstral-1-5"
+        },
+        "nvidia/muse-glimmer-30b": {
+          "name": "nvidia/muse-glimmer-30b"
+        },
+        "nvidia/nemotron-3.5-lightning-30b-a3b": {
+          "name": "nvidia/nemotron-3.5-lightning-30b-a3b"
         }
       }
     },
@@ -284,6 +287,132 @@
         },
         "gemma-4-31b-it-free": {
           "name": "gemma-4-31b-it-free"
+        },
+        "coding-glm-4.6-free": {
+          "name": "coding-glm-4.6-free"
+        },
+        "coding-glm-4.7-free": {
+          "name": "coding-glm-4.7-free"
+        },
+        "coding-glm-5-free": {
+          "name": "coding-glm-5-free"
+        },
+        "coding-glm-5-turbo-free": {
+          "name": "coding-glm-5-turbo-free"
+        },
+        "coding-glm-5.3-flash-free": {
+          "name": "coding-glm-5.3-flash-free"
+        },
+        "coding-glm-5.3-free": {
+          "name": "coding-glm-5.3-free"
+        },
+        "coding-minimax-m2-free": {
+          "name": "coding-minimax-m2-free"
+        },
+        "coding-minimax-m2.1-free": {
+          "name": "coding-minimax-m2.1-free"
+        },
+        "coding-minimax-m2.5-free": {
+          "name": "coding-minimax-m2.5-free"
+        },
+        "coding-minimax-m2.7-free": {
+          "name": "coding-minimax-m2.7-free"
+        },
+        "coding-minimax-m3-free": {
+          "name": "coding-minimax-m3-free"
+        },
+        "dots-3-note-preview-free": {
+          "name": "dots-3-note-preview-free"
+        },
+        "gemini-3-flash-preview-free": {
+          "name": "gemini-3-flash-preview-free"
+        },
+        "gemini-3.5-flash-lite-free": {
+          "name": "gemini-3.5-flash-lite-free"
+        },
+        "gemini-3.6-flash-free": {
+          "name": "gemini-3.6-flash-free"
+        },
+        "gemini-3.7-flash-free": {
+          "name": "gemini-3.7-flash-free"
+        },
+        "gemma-4-26b-a4b-it-free": {
+          "name": "gemma-4-26b-a4b-it-free"
+        },
+        "glm-4.7-flash-free": {
+          "name": "glm-4.7-flash-free"
+        },
+        "gpt-4.1-free": {
+          "name": "gpt-4.1-free"
+        },
+        "gpt-4.1-mini-free": {
+          "name": "gpt-4.1-mini-free"
+        },
+        "gpt-4.1-nano-free": {
+          "name": "gpt-4.1-nano-free"
+        },
+        "gpt-4o-free": {
+          "name": "gpt-4o-free"
+        },
+        "gpt-5.5-free": {
+          "name": "gpt-5.5-free"
+        },
+        "hy3-free": {
+          "name": "hy3-free"
+        },
+        "k2.6-code-preview-free": {
+          "name": "k2.6-code-preview-free"
+        },
+        "laguna-s-2.1-free": {
+          "name": "laguna-s-2.1-free"
+        },
+        "laguna-xs-2.1-free": {
+          "name": "laguna-xs-2.1-free"
+        },
+        "lfm-2.5-2.6b-free": {
+          "name": "lfm-2.5-2.6b-free"
+        },
+        "ling-3.0-flash-free": {
+          "name": "ling-3.0-flash-free"
+        },
+        "mimo-v2-flash-free": {
+          "name": "mimo-v2-flash-free"
+        },
+        "minimax-m2.7-free": {
+          "name": "minimax-m2.7-free"
+        },
+        "minimax-m3-free": {
+          "name": "minimax-m3-free"
+        },
+        "nemotron-3-nano-30b-a3b-free": {
+          "name": "nemotron-3-nano-30b-a3b-free"
+        },
+        "nemotron-3-nano-omni-30b-a3b-reasoning-free": {
+          "name": "nemotron-3-nano-omni-30b-a3b-reasoning-free"
+        },
+        "nemotron-3-super-120b-a12b-free": {
+          "name": "nemotron-3-super-120b-a12b-free"
+        },
+        "nemotron-3.5-content-safety-free": {
+          "name": "nemotron-3.5-content-safety-free"
+        },
+        "nemotron-3.5-lightning-free": {
+          "name": "nemotron-3.5-lightning-free"
+        },
+        "nemotron-nano-12b-v2-vl-free": {
+          "name": "nemotron-nano-12b-v2-vl-free"
+        },
+        "nemotron-nano-9b-v2-free": {
+          "name": "nemotron-nano-9b-v2-free"
+        },
+        "xiaomi-mimo-v2-omni-free": {
+          "name": "xiaomi-mimo-v2-omni-free"
+        },
+        "xiaomi-mimo-v2-pro-free": {
+          "name": "xiaomi-mimo-v2-pro-free"
+        },
+        "xiaomi-mimo-v2.5-pro-free": {
+          "name": "xiaomi-mimo-v2.5-pro-free"
         }
       }
     },
@@ -351,6 +480,15 @@
         },
         "muse-glimmer-30b:free": {
           "name": "muse-glimmer-30b:free"
+        },
+        "deepseek-v4-flash:free": {
+          "name": "deepseek-v4-flash:free"
+        },
+        "kimi-k2.6:free": {
+          "name": "kimi-k2.6:free"
+        },
+        "minimax-m2.7:free": {
+          "name": "minimax-m2.7:free"
         }
       }
     },
@@ -383,6 +521,18 @@
       "models": {
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
+        },
+        "minimax/minimax-m3-free": {
+          "name": "minimax/minimax-m3-free"
+        },
+        "minimax/minimax-m2.7-free": {
+          "name": "minimax/minimax-m2.7-free"
+        },
+        "inclusionai/ling-3.0-flash-fin": {
+          "name": "inclusionai/ling-3.0-flash-fin"
+        },
+        "inclusionai/ling-3.0-flash-fin-free": {
+          "name": "inclusionai/ling-3.0-flash-fin-free"
         }
       }
     },
@@ -463,6 +613,9 @@
       "models": {
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+        },
+        "z-ai/glm-5.3-free": {
+          "name": "z-ai/glm-5.3-free"
         }
       }
     },

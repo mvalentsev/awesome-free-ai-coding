@@ -496,7 +496,7 @@
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent; its $0 plan routes \"Auto Free\" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside",
-      "limits": "$0/mo, no hosted credit required — the free lane is a rotating set of the ids the gateway itself marks isFree, 19 of them on 2026-09-02 against 13 on 2026-08-14, with Nemotron 3 Ultra and MiniMax M3 among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription. The lane costs something other than money: all 19 carry mayTrainOnYourPrompts, while 341 of the 346 metered ids do not — the five exceptions are stealth/* models struck under the same bargain. Two metered rows are priced 0 and marked isFree false, Google's Lyria 3 music previews, so a price of zero is not the lane here either. The rotation is quick: Ling 3.0 Flash left in 2026-08, ling-3.0-tiny:free stood in for three days and was gone by 2026-08-14, liquid/lfm-2.5-2.6b:free arrived instead, and by 2026-09-02 tencent/hy3:free had been demoted to the metered tencent/hy3 while MiniMax M3 and M2.7, Ling 3.0 Flash Fin, Dots3-Note, LongCat 2.0 and both Inkling sizes had arrived",
+      "limits": "$0/mo, no hosted credit required — the free lane is a rotating set of the ids the gateway itself marks isFree, 18 of them by the evening of 2026-09-02 (19 that morning, 13 on 2026-08-14), with Nemotron 3 Ultra and MiniMax M3 among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription. The lane costs something other than money: all 18 carry mayTrainOnYourPrompts, while 341 of the 346 metered ids do not — the five exceptions are stealth/* models struck under the same bargain. Two metered rows are priced 0 and marked isFree false, Google's Lyria 3 music previews, so a price of zero is not the lane here either. The rotation is quick: Ling 3.0 Flash left in 2026-08, ling-3.0-tiny:free stood in for three days and was gone by 2026-08-14, liquid/lfm-2.5-2.6b:free arrived instead, and by 2026-09-02 tencent/hy3:free had been demoted to the metered tencent/hy3 while MiniMax M3 and M2.7, Ling 3.0 Flash Fin, Dots3-Note and both Inkling sizes had arrived, and LongCat 2.0 came and went inside 2026-09-02 itself",
       "models": [
         {
           "family": "nemotron-3-ultra",
@@ -552,10 +552,9 @@
           "inclusionai/ling-3.0-flash-fin:free",
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling:free",
-          "thinkingmachines/inkling-small:free",
-          "meituan/longcat-2.0-free"
+          "thinkingmachines/inkling-small:free"
         ],
-        "note": "every id listed is one the catalog marks isFree — the same catalog meters 346 more. kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column"
+        "note": "every id listed is one the catalog marks isFree — the same catalog meters 346 more. kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column — meituan/longcat-2.0-free was marked isFree on the morning of 2026-09-02 and had left the catalog by a second read that evening"
       },
       "probe": {
         "type": "api-models",
@@ -1364,8 +1363,8 @@
         "https://vercel.com/docs/ai-gateway/openai-compat"
       ],
       "card_required": false,
-      "offering": "One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month and one model that never touches the credit",
-      "limits": "$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Exactly one of the 350 catalogued models is a chat model priced 0 in and 0 out — poolside's Laguna S 2.1 Free — and it does not draw the credit down; the only other zero row is xai/grok-stt, which is speech-to-text. z.ai's GLM-4.6V-Flash, free here until it left the catalog by the 2026-08-20 read, is gone: the 14 GLM rows that remain are all priced. Mind the suffix, since the same catalog carries poolside/laguna-s-2.1 without it at $0.10/$0.20 per 1M tokens (read 2026-08-20). Buying credits ends the monthly free credit",
+      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit",
+      "limits": "$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Five of the 364 catalogued models are language models priced 0 in and 0 out on 2026-09-02 — poolside's Laguna S 2.1 Free, MiniMax M3 (Free) and M2.7 (Free), and Ling 3.0 Flash Fin with and without its -free suffix — against exactly one on 2026-08-20, and none of them draws the credit down; the only other zero row is spacexai/grok-stt, speech-to-text billed per second of audio. z.ai's GLM-4.6V-Flash, free here until it left the catalog by the 2026-08-20 read, is gone: the 14 GLM rows that remain are all priced. Mind the suffix, since the same catalog carries poolside/laguna-s-2.1 without it at $0.10/$0.20 per 1M tokens (read 2026-08-20). Buying credits ends the monthly free credit",
       "models": [
         {
           "family": "laguna-s-2.1",
@@ -1379,9 +1378,16 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "poolside/laguna-s-2.1-free"
+          "poolside/laguna-s-2.1-free",
+          "minimax/minimax-m3-free",
+          "minimax/minimax-m2.7-free",
+          "inclusionai/ling-3.0-flash-fin",
+          "inclusionai/ling-3.0-flash-fin-free"
         ],
-        "note": "this id costs nothing; any other Free-Tier-eligible model spends the $5 monthly credit. zai/glm-4.6v-flash was the second one until it left the catalog by the 2026-08-20 read. inclusionai/ling-3.0-flash-free left in 2026-08 too, and the ling-3.0-tiny-free standing where it was publishes an empty pricing object, so nothing there says it is free"
+        "ignored_ids": [
+          "spacexai/grok-stt"
+        ],
+        "note": "every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20, five on 2026-09-02: MiniMax M3 (Free) and M2.7 (Free) arrived beside metered twins at $0.30/$1.20 per 1M, and Ling 3.0 Flash Fin is priced 0 with and without its -free suffix. They stay out of the Models column until they have stood a while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20. spacexai/grok-stt, the sixth zero row, is ignored on purpose: speech-to-text, billed at $0.000028 per second of audio in the same row"
       },
       "probe": {
         "type": "api-models",
@@ -1452,8 +1458,8 @@
         "https://api.tokenrouter.com/api/pricing"
       ],
       "card_required": false,
-      "offering": "One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 127-model catalog metered at list rates",
-      "limits": "the free id sits in the default group and publishes no request cap; the other 126 models are metered at list rates. The zero-priced Kimi K3 this entry was registered for is gone — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains",
+      "offering": "Two zero-priced ids — Nemotron 3 Nano Omni and GLM 5.3, in the default group — inside a 134-row catalog metered at list rates",
+      "limits": "both free ids sit in the default group and publish no request cap; of the other 132 rows on 2026-09-02, 131 are metered at list rates and stealth/ox-alpha is priced 0 without the free marker the lane is read by. The zero-priced Kimi K3 this entry was registered for is gone — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains",
       "models": [
         {
           "family": "nemotron-3-nano-omni",
@@ -1467,9 +1473,10 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+          "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+          "z-ai/glm-5.3-free"
         ],
-        "note": "one id in the catalog is priced 0 and it is the whole free lane here. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here"
+        "note": "two ids in the catalog are priced 0 and they are the whole free lane here — nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free alone on 2026-08-14, z-ai/glm-5.3-free beside it by 2026-09-02. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here"
       },
       "probe": {
         "type": "api-models",
@@ -1556,8 +1563,8 @@
         "https://docs.routeway.ai/getting-started/rate-limits"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway carrying three live zero-priced :free ids — Gemma 4 31B, gpt-oss-120b and Meta's Muse Glimmer 30B — beside 238 metered rows in the same catalog",
-      "limits": "Free models, meaning every id ending :free, are capped at 5 requests per minute and 200 requests per day and return 429 past either; on the pay-as-you-go ids beside them Routeway \"does not enforce API-level rate limits\", only edge DDoS protection (docs.routeway.ai rate-limits, re-read 2026-08-30). What churns here is the lane rather than the caps: ten zero-priced ids on 2026-08-14, six on 2026-08-28 and three on 2026-08-30 — gemma-4-31b-it, gpt-oss-120b and muse-glimmer-30b — with step-3.7-flash and the whole Llama 3.x line gone in the last two days. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
+      "offering": "OpenAI-compatible gateway carrying six live zero-priced :free ids — Gemma 4 31B, gpt-oss-120b and Meta's Muse Glimmer 30B, joined on 2026-08-31 by DeepSeek V4 Flash, Kimi K2.6 and MiniMax M2.7 — beside 241 metered rows in the same catalog",
+      "limits": "Free models, meaning every id ending :free, are capped at 5 requests per minute and 200 requests per day and return 429 past either; on the pay-as-you-go ids beside them Routeway \"does not enforce API-level rate limits\", only edge DDoS protection (docs.routeway.ai rate-limits, re-read 2026-08-30). What churns here is the lane rather than the caps: ten zero-priced ids on 2026-08-14, six on 2026-08-28, three on 2026-08-30 — gemma-4-31b-it, gpt-oss-120b and muse-glimmer-30b, with step-3.7-flash and the whole Llama 3.x line gone in the two days before — and six again on 2026-09-02, when deepseek-v4-flash, kimi-k2.6 and minimax-m2.7 arrived as :free ids created 2026-08-31. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
       "models": [
         {
           "family": "gpt-oss",
@@ -1578,9 +1585,12 @@
         "model_ids": [
           "gemma-4-31b-it:free",
           "gpt-oss-120b:free",
-          "muse-glimmer-30b:free"
+          "muse-glimmer-30b:free",
+          "deepseek-v4-flash:free",
+          "kimi-k2.6:free",
+          "minimax-m2.7:free"
         ],
-        "note": "all three are priced 0 and marked available in the catalog the probe reads (2026-08-30), and only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. muse-glimmer-30b is carried here and not in the Models column: it arrived two days ago, and every family in that column is a tripwire the api-models probe re-checks on every run"
+        "note": "all six are priced 0 and marked available in the catalog the probe reads (2026-09-02), and only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. deepseek-v4-flash, kimi-k2.6 and minimax-m2.7 were created on 2026-08-31 with a 42,000-token context on the free lane, and like muse-glimmer-30b (arrived 2026-08-28) they stay out of the Models column until they have stood a while: every family in that column is a tripwire the api-models probe re-checks on every run"
       },
       "probe": {
         "type": "api-models",
@@ -1608,7 +1618,7 @@
         "https://router.requesty.ai/v1/models"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those",
+      "offering": "OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those",
       "limits": "Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go",
       "models": [
         {
@@ -1647,9 +1657,11 @@
           "google/gemma-4-31b-it",
           "poolside/laguna-xs.2",
           "poolside/laguna-m.1",
-          "mistral/leanstral-1-5"
+          "mistral/leanstral-1-5",
+          "nvidia/muse-glimmer-30b",
+          "nvidia/nemotron-3.5-lightning-30b-a3b"
         ],
-        "note": "the ten ids listed are every row the catalog prices at 0, and the free plan serves those alone — ids here carry no :free suffix, so the price is the only thing separating them from the 585 metered rows beside them. nemotron-3.5-content-safety is a guardrail classifier rather than a coding model"
+        "note": "the twelve ids listed are every row the catalog prices at 0, and the free plan serves those alone — ten on 2026-08-11, twelve on 2026-09-02 after nvidia/muse-glimmer-30b and nvidia/nemotron-3.5-lightning-30b-a3b joined (both updated 2026-08-23). Ids here carry no :free suffix, so the price is the only thing separating them from the 686 metered rows beside them. Nine of the twelve — every NVIDIA row and both Poolside ones — are marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety is a guardrail classifier rather than a coding model"
       },
       "probe": {
         "type": "api-models",
@@ -1862,8 +1874,8 @@
         "https://aihubmix.com/api/v1/models"
       ],
       "card_required": false,
-      "offering": "One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly",
-      "limits": "per-model RPM and daily token caps, published on each model's own page rather than in one table; the vendor states the quotas reset daily with no trial expiry and no payment method on file. Every free id carries a -free suffix and the paid twin beside it is metered at list rates",
+      "offering": "One OpenAI-compatible gateway over 800+ models, 55 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly",
+      "limits": "per-model caps, spelled out in each model's catalog description: \"each account is limited to 5 requests per minute, 500 requests per day, and 1 million tokens per day\" on the GPT and coding routes (read 2026-09-02); the vendor states the quotas reset daily with no trial expiry and no payment method on file. The caveats differ by half of the lane — the GPT rows are \"the OpenAI model deployed on Azure\" behind Azure's content filter, the Gemini rows are \"provided only for trial use; stability cannot be guaranteed, and you may encounter 429 errors\", and nemotron-3.5-content-safety-free is a guardrail classifier. Every free id carries a -free suffix and the paid twin beside it is metered at list rates",
       "models": [
         {
           "family": "glm-5",
@@ -1901,9 +1913,56 @@
           "gpt-oss-20b-free",
           "ling-3.0-tiny-free",
           "nemotron-3-ultra-550b-a55b-free",
-          "gemma-4-31b-it-free"
+          "gemma-4-31b-it-free",
+          "coding-glm-4.6-free",
+          "coding-glm-4.7-free",
+          "coding-glm-5-free",
+          "coding-glm-5-turbo-free",
+          "coding-glm-5.3-flash-free",
+          "coding-glm-5.3-free",
+          "coding-minimax-m2-free",
+          "coding-minimax-m2.1-free",
+          "coding-minimax-m2.5-free",
+          "coding-minimax-m2.7-free",
+          "coding-minimax-m3-free",
+          "dots-3-note-preview-free",
+          "gemini-3-flash-preview-free",
+          "gemini-3.5-flash-lite-free",
+          "gemini-3.6-flash-free",
+          "gemini-3.7-flash-free",
+          "gemma-4-26b-a4b-it-free",
+          "glm-4.7-flash-free",
+          "gpt-4.1-free",
+          "gpt-4.1-mini-free",
+          "gpt-4.1-nano-free",
+          "gpt-4o-free",
+          "gpt-5.5-free",
+          "hy3-free",
+          "k2.6-code-preview-free",
+          "laguna-s-2.1-free",
+          "laguna-xs-2.1-free",
+          "lfm-2.5-2.6b-free",
+          "ling-3.0-flash-free",
+          "mimo-v2-flash-free",
+          "minimax-m2.7-free",
+          "minimax-m3-free",
+          "nemotron-3-nano-30b-a3b-free",
+          "nemotron-3-nano-omni-30b-a3b-reasoning-free",
+          "nemotron-3-super-120b-a12b-free",
+          "nemotron-3.5-content-safety-free",
+          "nemotron-3.5-lightning-free",
+          "nemotron-nano-12b-v2-vl-free",
+          "nemotron-nano-9b-v2-free",
+          "xiaomi-mimo-v2-omni-free",
+          "xiaomi-mimo-v2-pro-free",
+          "xiaomi-mimo-v2.5-pro-free"
         ],
-        "note": "the ten ids listed are the coding-relevant half of the 49 rows the catalog priced at 0 on 2026-08-14. The proprietary ones beside them (gpt-5.5-free, gpt-4.1-free, gemini-3.7-flash-free) are the platform paying for inference it resells, so they rotate faster than the open-weight rows and are deliberately not listed here. `model_id` is the callable string; `model_name` in the same catalog is a display title"
+        "ignored_ids": [
+          "gpt-image-2-free",
+          "gemini-3.1-flash-image-preview-free",
+          "qwen3.6-plus-preview-free"
+        ],
+        "note": "every -free id the catalog prices at 0 is listed: 52 on 2026-09-02, against ten picked as the coding-relevant half of 49 on 2026-08-14 with the proprietary rows left out as likely to rotate — gpt-5.5-free, gpt-4.1-free and gemini-3.7-flash-free, the three named then, all stood nineteen days later, so the list is now the lane and the probe reports whatever joins or leaves it. Ignored on purpose: gpt-image-2-free and gemini-3.1-flash-image-preview-free generate images, and qwen3.6-plus-preview-free describes itself as \"removed from the platform\". `model_id` is the callable string; `model_name` beside it is a display title"
       },
       "probe": {
         "type": "api-models",
@@ -2977,7 +3036,7 @@
       ],
       "name": "cto.new",
       "checked_on": "2026-09-02",
-      "reason": "Moved off the blocklist, for the reason five other domains were on 2026-08-30: the verdict was a statement about the offer on a date, filed where nothing expires. It read \"free models are chat-only: no API endpoint and no free agent runs ... so no probe on this domain can verify anything\", and the second half is simply not true — docs.cto.new answers an ordinary client with HTTP 200 and carries the free tier's terms in the vendor's own words. The first half is a scope judgement, which is what this file is for. Out of scope rather than out of free tier, then, which is the rarer of the two answers here. cto.new is an AI business builder — its own documentation is Headquarters, Website, Tasks, Finance, Ads, Inbox, Files and a Marketplace — and the coding surface a developer would point at a repository is not among them. The free tier itself is real and unquantified: \"Use cto completely free. Access to the best value models with generous usage limits that reset every day\", carrying its own caveat that \"access to the free tier may be restricted in some locations and on some networks\". Which models it reaches is not stated; the models page names Claude Opus 5, Claude Fable 5, Kimi K3, GPT-5.6, DeepSeek V4 Pro, Gemini 3.1 Pro and GLM 5.3 Flash for the product as a whole, and the free page says only \"the best value models\". Note for a re-read: cto.new answers a Vercel Security Checkpoint with HTTP 429 to any ordinary client, and docs.cto.new is the readable surface — its Mintlify .md forms (docs.cto.new/fair-use.md, /pricing.md) are the machine-readable one, and the llms.txt beside them lists every page.",
+      "reason": "Moved off the blocklist, for the reason five other domains were on 2026-08-30: the verdict was a statement about the offer on a date, filed where nothing expires. It read \"free models are chat-only: no API endpoint and no free agent runs ... so no probe on this domain can verify anything\", and the second half is simply not true — docs.cto.new answers an ordinary client with HTTP 200 and carries the free tier's terms in the vendor's own words. The first half is a scope judgement, which is what this file is for. Out of scope rather than out of free tier, then, which is the rarer of the two answers here. cto.new is an AI business builder — its own documentation is Headquarters, Website, Tasks, Finance, Ads, Inbox, Files and a Marketplace — and the coding surface a developer would point at a repository is not among them. It is Engine Labs' product, which the documentation gives away without saying so: every asset on docs.cto.new is served from mintcdn.com/enginelabs/. The free tier itself is real and unquantified: \"Use cto completely free. Access to the best value models with generous usage limits that reset every day\", carrying its own caveat that \"access to the free tier may be restricted in some locations and on some networks\". Which models it reaches is not stated; the models page names Claude Opus 5, Claude Fable 5, Kimi K3, GPT-5.6, DeepSeek V4 Pro, Gemini 3.1 Pro and GLM 5.3 Flash for the product as a whole, and the free page says only \"the best value models\". Note for a re-read: cto.new answers a Vercel Security Checkpoint with HTTP 429 to any ordinary client, and docs.cto.new is the readable surface — its Mintlify .md forms (docs.cto.new/fair-use.md, /pricing.md) are the machine-readable one, and the llms.txt beside them lists every page.",
       "reopen_if": "It ships a surface a developer uses on code directly — a CLI, an IDE extension or an OpenAI-compatible endpoint — reachable on the free tier.",
       "current": true
     }
