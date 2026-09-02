@@ -1786,12 +1786,13 @@
       "url": "https://www.ai21.com",
       "source_urls": [
         "https://www.ai21.com/pricing/",
+        "https://docs.ai21.com/august-deprecation-notice",
         "https://docs.ai21.com/docs/jamba-foundation-models.md",
         "https://docs.ai21.com/docs/create-api-key.md"
       ],
       "card_required": false,
       "offering": "AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat",
-      "limits": "$10 of credits for 7 days, stated on AI21's own pricing page, with no card asked for; sign-in is email, Google, GitHub or SSO. The shortest trial window on this page — after it, Jamba Mini is $0.2/$0.4 and Jamba Large $2/$8 per 1M tokens",
+      "limits": "$10 of credits for 7 days, stated on AI21's own pricing page, with no card asked for; sign-in is email, Google, GitHub or SSO. The shortest trial window on this page — after it, Jamba Mini is $0.2/$0.4 and Jamba Large $2/$8 per 1M tokens. What the credits buy is in transition: AI21's own deprecation notice says \"On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library\" and promises that \"in the coming weeks, we will share documentation and access details for our new platform, which you will be able to use instantly with your existing account\". On 2026-09-02 the pricing page still advertised the trial and the Jamba prices, the docs index still listed only the Jamba pages, and the retired catalog route answered 410 with \"The AI21 Gateway is available at https://app.ai21.com\" — a client-rendered app with nothing readable behind it yet",
       "models": [
         {
           "family": "jamba-mini",
@@ -1813,7 +1814,7 @@
           "jamba-mini",
           "jamba-large"
         ],
-        "note": "POST /studio/v1/chat/completions is live and takes a Bearer key, but AI21 documents its own SDK and claims OpenAI compatibility nowhere, so this one is left out of the generated configs rather than promised to work with an OpenAI client. The older /studio/v1/models catalog answers HTTP 410 — that route is retired, the chat route is not"
+        "note": "POST /studio/v1/chat/completions still routes — it answers 400 \"bad or missing authentication\" to a keyless call on 2026-09-02 — but the vendor has declared the Jamba API sunset as of 2026-08-09 and names an AI21 Gateway at app.ai21.com in its place, with no base url or model list published for it yet. AI21 documents its own SDK and claims OpenAI compatibility nowhere, so this row stays out of the generated configs; the two ids are the Jamba API's and are kept until the gateway publishes its own"
       },
       "probe": {
         "type": "page-keywords",
@@ -2562,6 +2563,37 @@
         "keywords": [
           "One million free credits",
           "A credit card is required to start using the API"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false
+      },
+      "first_seen": "2026-09-02",
+      "last_verified": "2026-09-02",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 85,
+      "archived": false
+    },
+    {
+      "id": "qodo",
+      "name": "Qodo",
+      "category": "trial",
+      "url": "https://www.qodo.ai",
+      "source_urls": [
+        "https://www.qodo.ai/pricing/"
+      ],
+      "card_required": false,
+      "offering": "Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card",
+      "limits": "\"Free 14 Day Trial no credit card — Unlimited reviews, Unlimited credits\" is the whole free offer on the pricing page (read 2026-09-02); the plan it trials is \"Pro Team $30\", billed at \"$.012/credit, pooled across the team\" with packs from 2,500 credits (\"~18 Reviews/Mo\") to 20,000, \"Designed for up to 30 users\", \"Monthly billing • no commitment\". The page's own metadata still says \"You can start for free as an individual Developer\", but no Developer plan is on the page any more — the deals list that led here credits it with 30 PR reviews and 250 IDE credits a month, and the vendor no longer does. Which models the trial runs on is not stated",
+      "models": [],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.qodo.ai/pricing/",
+        "keywords": [
+          "Free 14 Day Trial",
+          "Pro Team $30",
+          "Unlimited credits"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -3367,6 +3399,28 @@
       "checked_on": "2026-09-02",
       "reason": "Reached through the models.dev digest (3/56 rows at cost 0). The keyless catalog at api.empiriolabs.ai/v1/models prices 78 of 177 rows at 0 per token, and almost all of them charge by another unit — video, music, image, speech, search — while two chat rows, gemma-3-27b and mistral-small-3-1, print \"$0.0040 Per Message\" beside their zero token price. Three GLM Flash rows (glm-4-7-flash, glm-4-5-flash, glm-4-6v-flash) are the only ones whose pricing rows read \"Input Free / Output Free\", with the note \"Base token use is free\" — the same models Z.ai serves free from its own gateway, which this list already carries. Getting Started lists \"prepaid credits on your account (top up via the dashboard Billing page)\" among the prerequisites, Billing says \"EmpirioLabs AI uses a prepaid balance system\", and nothing read says a zero-balance account can call the Free rows. Limits are 50 RPM and 2M TPM per account.",
       "reopen_if": "The docs say the Free rows run on an account with no top-up, or a sign-up credit is named.",
+      "current": true
+    },
+    {
+      "domains": [
+        "augmentcode.com"
+      ],
+      "name": "Augment Code",
+      "checked_on": "2026-09-02",
+      "reason": "Reached through the codertesla/ai-coding-deals list, which credits it with an unquantified Community tier. The vendor's pricing page carries two plans and neither is it: \"BUSINESS $100 /month flat — no per-seat charge\" with \"$100/mo of usage included\" for \"up to 50 seats\", and \"ENTERPRISE Custom\". The only trial on the page is a line in the SLA FAQ — \"Trials and beta use: Community support only; our SLA does not apply to trials or beta usage\" — with no terms, quota or sign-up path beside it, and the docs' token-based pricing page prices every model at public API list price plus a 40% service fee from the first token. The home page names nothing free either.",
+      "reopen_if": "A free or community plan with a stated quota appears on the pricing page.",
+      "current": true
+    },
+    {
+      "domains": [
+        "codebuddy.ai",
+        "codebuddy.cn",
+        "copilot.tencent.com"
+      ],
+      "name": "CodeBuddy (Tencent)",
+      "checked_on": "2026-09-02",
+      "reason": "Reached through the codertesla/ai-coding-deals list, which credits it with 250 credits every two weeks. Nothing here can be read: www.codebuddy.ai/pricing and the home page are 7-kilobyte JavaScript shells with one character of text, every docs path under www.codebuddy.ai/docs serves the same 3.2-kilobyte shell with 57 characters, copilot.tencent.com/pricing and www.codebuddy.cn/pricing serve 31, /llms.txt answers 404 and docs.codebuddy.ai does not resolve. Whatever the product grants, no page states it to an ordinary HTTP client — the ModelScope bar.",
+      "reopen_if": "A server-rendered page, an llms.txt or a Markdown docs form states the free quota and what models it reaches.",
       "current": true
     }
   ]
