@@ -877,7 +877,9 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         result["llm_outages"].append(phase)
 
     # A stale-ids row is flagged and deliberately not sent. What it needs is an
-    # exact model id copied out of a vendor catalog; `api` is not a key this
+    # exact model id copied out of a vendor catalog — taken out of
+    # `api.model_ids`, put into it, or recorded in `api.ignored_ids` as read
+    # and left out; `api` is not a key this
     # prompt may write, and every key it may write — probe, models, limits — is
     # still correct on that row, so anything the model returned would change
     # something that is not broken. It falls through to `unfixed` below and

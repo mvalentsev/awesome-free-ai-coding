@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import yaml
-from pydantic import BaseModel, model_validator
+from pydantic import BaseModel, Field, model_validator
 
 # Words every vendor keeps on the page long after the offer is gone. A probe
 # built out of these alone verifies that the page loads, nothing more.
@@ -195,6 +195,14 @@ class ApiInfo(BaseModel):
     auth: str = "api-key"  # "api-key" | "none"
     openai_compatible: bool = True
     model_ids: list[str] = []  # exact callable ids for generated configs
+    # Zero-priced ids the catalog carries that are deliberately not in
+    # model_ids — a router, a guardrail classifier, a speech model, a lane the
+    # row does not track — with the reason in `note`. The probe reports every
+    # free id it finds outside model_ids, and this is where a decision about
+    # one of them is recorded so it is not reported again. Written only where
+    # set: every api block already carries model_ids and note, and this list
+    # means something only on the rows whose catalog prices are read.
+    ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
     note: str = ""
 
 
@@ -216,6 +224,27 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+    @model_validator(mode="after")
+    def _ignored_ids_need_a_price_list(self) -> Entry:
+        """`api.ignored_ids` is read where the probe compares a catalog's
+        zero-priced rows with `api.model_ids` — an api-models probe with
+        require_zero_price set — and nowhere else. Anywhere else it would sit
+        in the registry recording a decision nothing acts on, the silence
+        _zero_price_needs_a_price_list refuses for the same reason. And an id
+        in both lists is two decisions about one id."""
+        if self.api is None or not self.api.ignored_ids:
+            return self
+        if not (self.probe.type is ProbeType.API_MODELS and self.probe.require_zero_price):
+            raise ValueError(
+                f"{self.id}: api.ignored_ids needs an api-models probe with "
+                "require_zero_price — nothing reads it anywhere else")
+        both = sorted(set(self.api.ignored_ids) & set(self.api.model_ids))
+        if both:
+            raise ValueError(
+                f"{self.id}: {', '.join(both)} cannot sit in both api.model_ids and "
+                "api.ignored_ids")
+        return self
 
 
 def live_families(entry: Entry) -> list[str]:

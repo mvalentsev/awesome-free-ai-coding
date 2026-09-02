@@ -29,7 +29,7 @@ class ProbeStatus(str, Enum):
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
     STALE_MODELS = "stale-models"  # offer verified, but every listed family is superseded
-    STALE_IDS = "stale-ids"  # offer and families verified, but api.model_ids has dead ids
+    STALE_IDS = "stale-ids"  # offer and families verified, but api.model_ids and the catalog disagree
 
 
 @dataclass
@@ -67,14 +67,15 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                                    "listed families the page does not name: "
                                    + ", ".join(unevidenced))
             # A third question about the same fetched bytes, and the last field
-            # here that nothing read back. Only one of these two checks can fire
-            # on any given entry: each is guarded on the probe type the other
-            # cannot read.
+            # here that nothing read back — asked in both directions, since a
+            # config that hands out a dead id and a config that misses a live
+            # one are the same list being out of date. Only one of these two
+            # checks can fire on any given entry: each is guarded on the probe
+            # type the other cannot read.
             dead = dead_model_ids(resp, entry)
-            if dead:
-                return ProbeResult(ProbeStatus.STALE_IDS,
-                                   "api.model_ids the catalog no longer answers for: "
-                                   + "; ".join(dead))
+            unlisted = unlisted_free_ids(resp, entry)
+            if dead or unlisted:
+                return ProbeResult(ProbeStatus.STALE_IDS, _stale_ids_detail(dead, unlisted))
             return ProbeResult(ProbeStatus.PASS)
         # Only asked once the content check has already failed. Plenty of live
         # pages carry a <noscript> asking for JavaScript while serving the offer
@@ -434,6 +435,66 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
         elif entry.probe.require_zero_price and not _is_free(model):
             dead.append(_price_note(model))
     return dead
+
+
+def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
+    """Ids the catalog prices at zero that `api.model_ids` does not carry.
+
+    The other direction of dead_model_ids, and the one that stayed invisible
+    after it was written: a check that reads only the ids the registry already
+    has cannot see a lane grow. Measured 2026-09-02 across the eight live
+    api-models rows whose prices the probe reads, eleven zero-priced ids sat
+    unlisted on four rows whose probes were passing — Vercel 5, Routeway 3,
+    Requesty 2, TokenRouter 1 — and the six Kilo had added that week had been
+    found by hand. Each is a model a reader could have been calling.
+
+    The lane is the row's own definition of it, not a bare zero. An id is in
+    it when it carries `probe.free_marker` where the row sets one, is priced 0
+    on ordinary tokens, and is not marked unavailable — the three tests the
+    offer check and dead_model_ids already apply. The marker matters:
+    OpenRouter and Kilo both price Google's Lyria music previews at 0 with no
+    :free suffix, and Kilo marks them isFree: false; TokenRouter's
+    stealth/ox-alpha is a zero-priced preview outside its lane. The check is
+    asked only where prices are read, because on a catalog that publishes
+    none — NVIDIA NIM, OVHcloud — every id would be free and the report would
+    be the catalog.
+
+    Ids in `api.ignored_ids` are left out: a zero somebody has read and left
+    unlisted, with the reason in `api.note`. Vercel's spacexai/grok-stt costs
+    0 per token and 0.000028 per second of audio; Kilo marks its two routers
+    isFree. Without the list those would print on every run, and a report
+    that always prints is a report nobody reads.
+
+    Like dead_model_ids it never fails a row and is never handed to the
+    scout: an id to add is an exact string copied out of a catalog, and
+    whether to add it — or to record it as ignored — is a judgement about what
+    the row is for.
+    """
+    if (entry.probe.type is not ProbeType.API_MODELS or entry.api is None
+            or not entry.probe.require_zero_price):
+        return []
+    marker = entry.probe.free_marker.lower()
+    known = set(entry.api.model_ids) | set(entry.api.ignored_ids)
+    lane = set()
+    for model in _catalog_items(resp) or []:
+        mid = _model_id(model)
+        if (mid and mid not in known and (not marker or marker in mid.lower())
+                and _is_free(model) and not _is_withdrawn(model)):
+            lane.add(mid)
+    return sorted(lane)
+
+
+def _stale_ids_detail(dead: list[str], unlisted: list[str]) -> str:
+    """One line for a human with both directions on it. A rename that changed
+    the words of an id — the case _successor_hint cannot see — is a dead id on
+    one side and an unlisted one on the other, and they belong together."""
+    parts = []
+    if dead:
+        parts.append("api.model_ids the catalog no longer answers for: " + "; ".join(dead))
+    if unlisted:
+        parts.append("zero-priced ids in the catalog that api.model_ids does not list "
+                     "(add them, or record them in api.ignored_ids): " + ", ".join(unlisted))
+    return " | ".join(parts)
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

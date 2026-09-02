@@ -101,6 +101,18 @@ that carries both, or list fewer families: an id that belongs to the free lane b
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
 configs without making a claim on the page.
 
+**`api.model_ids` is checked against the catalog in both directions.** On an
+`api-models` probe every id there must still be in the catalog, callable and —
+where `require_zero_price` is set — priced 0; a dead id is reported as
+`stale-ids`, with any catalog id that reads like its successor. The same run
+reports every zero-priced id the catalog carries that `model_ids` does not, so a
+lane that grows is visible without anyone re-reading the catalog. Both are notes
+for a human and never repairs: an id is an exact string, and whether a new one
+belongs in the configs is a judgement about what the row is for. Record the ones
+you have read and left out — a router, a guardrail classifier, a speech model, a
+lane the row does not track — in `api.ignored_ids` with the reason in `api.note`,
+and they stop being reported.
+
 ## How the pipeline works
 
 `registry.yaml` is the single source of truth. `README.md` is **generated** — never

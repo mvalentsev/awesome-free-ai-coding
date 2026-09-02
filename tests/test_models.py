@@ -117,6 +117,54 @@ def test_zero_price_flag_belongs_to_a_models_api():
     assert Entry.model_validate(on_the_api).probe.require_zero_price
 
 
+def test_ignored_ids_belong_beside_a_price_list():
+    """Same reasoning as require_zero_price: the list is read where the probe
+    compares a catalog's zero-priced rows with api.model_ids and nowhere else.
+    On a page probe, or on a catalog whose prices are not read, it would sit in
+    the registry recording a decision nothing ever acts on."""
+    on_a_page = {**sample_entry(),
+                 "probe": {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
+                           "keywords": ["solar-mini", "free"]},
+                 "api": {"base_url": "https://api.x.ai/v1", "ignored_ids": ["vendor/router"]}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(on_a_page)
+
+    prices_unread = {**sample_entry(),
+                     "api": {"base_url": "https://api.x.ai/v1", "ignored_ids": ["vendor/router"]}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(prices_unread)
+
+    prices_read = {**prices_unread,
+                   "probe": {**sample_entry()["probe"], "require_zero_price": True}}
+    assert Entry.model_validate(prices_read).api.ignored_ids == ["vendor/router"]
+
+
+def test_an_id_is_listed_or_ignored_never_both():
+    both = {**sample_entry(),
+            "probe": {**sample_entry()["probe"], "require_zero_price": True},
+            "api": {"base_url": "https://api.x.ai/v1", "model_ids": ["vendor/a:free"],
+                    "ignored_ids": ["vendor/a:free"]}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(both)
+
+
+def test_ignored_ids_are_written_only_where_set(tmp_path: Path):
+    """Every api block in the registry already carries model_ids and note, empty
+    or not. A list that means something on eight rows should not add a blank
+    line to the other twenty-six."""
+    p = tmp_path / "registry.yaml"
+    plain = Entry.model_validate({**sample_entry(), "api": {"base_url": "https://api.x.ai/v1"}})
+    save_registry(p, [plain])
+    assert "ignored_ids" not in p.read_text(encoding="utf-8")
+
+    ignoring = Entry.model_validate({
+        **sample_entry(),
+        "probe": {**sample_entry()["probe"], "require_zero_price": True},
+        "api": {"base_url": "https://api.x.ai/v1", "ignored_ids": ["vendor/router"]}})
+    save_registry(p, [ignoring])
+    assert load_registry(p)[0].api.ignored_ids == ["vendor/router"]
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

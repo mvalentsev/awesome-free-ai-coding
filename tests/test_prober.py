@@ -857,6 +857,114 @@ async def test_config_ids_are_never_read_off_a_page():
     assert result.status is ProbeStatus.PASS
 
 
+@respx.mock
+async def test_a_free_id_the_catalog_carries_and_the_config_does_not_is_reported():
+    """The other half of the same defect. STALE_IDS read only the ids the
+    registry already had, so a lane that grew was invisible: measured
+    2026-09-02, eleven zero-priced ids sat unlisted across four rows whose
+    probes were passing — Vercel 5, Routeway 3, Requesty 2, TokenRouter 1 —
+    and Kilo's six new free models had been found by hand that morning."""
+    entry = config_entry("qwen/qwen3-coder:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "google/gemma-4:free",
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "api.model_ids does not list" in result.detail
+    assert "google/gemma-4:free" in result.detail
+    assert "qwen/qwen3-coder:free" not in result.detail
+
+
+@respx.mock
+async def test_growth_is_read_with_the_row_s_own_lane_definition():
+    """A zero price alone is not the lane. OpenRouter and Kilo both price
+    Google's Lyria music previews at 0 with no :free suffix (Kilo marks them
+    isFree: false), and TokenRouter carries a zero-priced stealth preview
+    outside its free lane. The marker the offer check matches families with
+    draws the same line here; a metered :free id and a withdrawn one stay out
+    for the reasons dead_model_ids would report them."""
+    entry = config_entry("qwen/qwen3-coder:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane(
+            {"id": "google/lyria-3-pro-preview", "pricing": {"prompt": "0", "completion": "0"}},
+            {"id": "vendor/metered:free",
+             "pricing": {"prompt": "0.000001", "completion": "0.000003"}},
+            {"id": "vendor/paused:free", "available": False,
+             "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_where_no_marker_names_the_lane_every_zero_is_in_it():
+    """Vercel and Requesty suffix nothing: on those rows the price is the only
+    thing separating a free id from the metered rows beside it, and the
+    registry says so with an empty free_marker."""
+    entry = config_entry("qwen/qwen3-coder:free")
+    entry.probe.free_marker = ""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane(
+            {"id": "minimax/minimax-m3-free", "pricing": {"input": "0", "output": "0"}},
+            {"id": "vendor/metered", "pricing": {"input": "0.000015", "output": "0.000075"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "minimax/minimax-m3-free" in result.detail
+    assert "vendor/metered" not in result.detail
+
+
+@respx.mock
+async def test_an_ignored_id_is_seen_and_not_reported():
+    """Vercel prices spacexai/grok-stt at 0 per token and 0.000028 per second
+    of audio; Kilo marks its two routers isFree. A zero the registry has looked
+    at and left out is recorded in api.ignored_ids, with the reason beside it
+    in api.note, so the report only ever shows ids nobody has judged yet."""
+    entry = config_entry("qwen/qwen3-coder:free")
+    entry.api.ignored_ids = ["spacexai/grok-stt:free"]
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "spacexai/grok-stt:free",
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_rename_that_changed_words_shows_both_halves_in_one_verdict():
+    """_successor_hint sees an id that extends the missing one or reorders its
+    words, and nothing else. A vendor that bumps the version inside the name —
+    llama-4-maverick to llama-4.1-maverick — leaves a dead id on one side and
+    an unlisted one on the other, and only a verdict that carries both puts
+    them on the same line of the pull request."""
+    entry = config_entry("qwen/qwen3-coder:free", "meta/llama-4-maverick:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "meta/llama-4.1-maverick:free",
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "no longer answers for: meta/llama-4-maverick:free" in result.detail
+    assert "carries" not in result.detail
+    assert "api.model_ids does not list" in result.detail
+    assert "meta/llama-4.1-maverick:free" in result.detail
+
+
+@respx.mock
+async def test_growth_is_not_read_where_prices_are_not():
+    """NVIDIA NIM lists every model it hosts with no price field and hands out
+    the free tier as a quota. On a row that does not read prices a zero is not
+    an offer, and a report built on one would be the whole catalog."""
+    entry = config_entry("qwen/qwen3-coder:free", zero_price=False)
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "vendor/another:free",
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 def test_stale_ids_verifies_the_entry_like_a_pass():
     """Same reasoning as stale-models one test below: the offer was confirmed,
     only a field beside it is in doubt, and freezing last_verified would archive
