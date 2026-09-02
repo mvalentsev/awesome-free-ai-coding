@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-31",
+  "generated": "2026-09-02",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -374,8 +374,8 @@
         "https://ollama.com/cloud"
       ],
       "card_required": false,
-      "offering": "Cloud-hosted open models with free usage tier",
-      "limits": "The $0 plan reads \"Access cloud models\" and nothing more: which models it reaches is not published anywhere on ollama.com, only implied by a per-model \"usage level\" from 1 (gpt-oss:20b) to 4 (deepseek-v4-pro), while Pro is sold as \"Access larger, more powerful cloud models\". Tested by hand rather than read: nemotron-3 ultra/super/nano, gpt-oss 120b/20b, gemma4:31b and minimax-m3 answered on the free plan on 2026-08-03, and every flagship (DeepSeek V4, GLM-5.x, Kimi K2.x, Qwen3.5, Mistral Large 3) returned 403 subscription-required",
+      "offering": "Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog",
+      "limits": "The $0 plan was rewritten between the 2026-08-27 and 2026-08-31 runs, and it is now a wallet rather than a lane: it reads \"Starter usage credits included\" and \"Includes access to starter models\", with \"Add credits to unlock all models\" under them. Neither figure is published — the page names no credit amount and no starter model list, and the cloud-model list it links (ollama.com/search?c=cloud) marks none of them starter. Every cloud model now carries a per-million-token price on that same page: gpt-oss:20b $0.07 in / $0.30 out, minimax-m3 $0.60 / $2.40, kimi-k3 $3.00 / $15.00. Free gets 1 concurrent request against Pro's 3, and the included usage \"resets monthly from the date you signed up\" and does not roll over. Gone with the rewrite: the $0 \"Access cloud models\" line this row was probed on, and the per-model usage level 1-4 that stood in for a free-model list. Read 2026-09-02. A key on this plan answered 402 Payment Required for minimax-m3 on 2026-08-31 after working all month, which is what a spent starter balance looks like; the page does not say whether a starter model would still have answered",
       "models": [],
       "api": {
         "base_url": "https://ollama.com/v1",
@@ -388,14 +388,14 @@
           "gpt-oss:120b",
           "gemma4:31b"
         ],
-        "note": "Free-tier model set verified live 2026-08-03 by calling them; /v1/models lists the full catalog including subscription-only models"
+        "note": "the four ids are cloud model names the catalog still serves, and on 2026-08-03 they answered on the free plan — but that plan is now a starter wallet, so what they cost is credits at the published per-token rate rather than nothing. Ollama publishes no list of the models the starter credits reach. /v1/models lists the whole catalog, starter and metered alike"
       },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://ollama.com/cloud",
         "keywords": [
-          "$0",
-          "Access cloud models"
+          "Starter usage credits included",
+          "Includes access to starter models"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -497,7 +497,7 @@
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent; its $0 plan routes \"Auto Free\" to the zero-priced models the Kilo Gateway carries, and the same gateway answers any OpenAI client directly, with BYOK and local models (Ollama, LM Studio) alongside",
-      "limits": "$0/mo, no hosted credit required — the free lane is a rotating set of zero-priced ids, 13 of them on 2026-08-14 with Nemotron 3 Ultra among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription",
+      "limits": "$0/mo, no hosted credit required — the free lane is a rotating set of the ids the gateway itself marks isFree, 19 of them on 2026-09-02 against 13 on 2026-08-14, with Nemotron 3 Ultra and MiniMax M3 among them; everything else runs on pay-as-you-go credits or a Kilo Pass subscription. The lane costs something other than money: all 19 carry mayTrainOnYourPrompts, while 341 of the 346 metered ids do not — the five exceptions are stealth/* models struck under the same bargain. Two metered rows are priced 0 and marked isFree false, Google's Lyria 3 music previews, so a price of zero is not the lane here either. The rotation is quick: Ling 3.0 Flash left in 2026-08, ling-3.0-tiny:free stood in for three days and was gone by 2026-08-14, liquid/lfm-2.5-2.6b:free arrived instead, and by 2026-09-02 tencent/hy3:free had been demoted to the metered tencent/hy3 while MiniMax M3 and M2.7, Ling 3.0 Flash Fin, Dots3-Note, LongCat 2.0 and both Inkling sizes had arrived",
       "models": [
         {
           "family": "nemotron-3-ultra",
@@ -548,9 +548,15 @@
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
           "liquid/lfm-2.5-2.6b:free",
-          "tencent/hy3:free"
+          "minimax/minimax-m3:free",
+          "minimax/minimax-m2.7:free",
+          "inclusionai/ling-3.0-flash-fin:free",
+          "dots-studio/dots-3-note-preview:free",
+          "thinkingmachines/inkling:free",
+          "thinkingmachines/inkling-small:free",
+          "meituan/longcat-2.0-free"
         ],
-        "note": "every id listed is priced 0 — the same catalog meters 346 more. kilo-auto/free and openrouter/free are routers, and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. The lane rotates fast — Ling 3.0 Flash left it in 2026-08, ling-3.0-tiny:free stood in its place for three days and was gone by 2026-08-14, with liquid/lfm-2.5-2.6b:free arriving instead — which is why the ids that come and go stay here and out of the Models column"
+        "note": "every id listed is one the catalog marks isFree — the same catalog meters 346 more. kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column"
       },
       "probe": {
         "type": "api-models",
@@ -869,7 +875,7 @@
       ],
       "card_required": false,
       "offering": "Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1)",
-      "limits": "Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as \"a trial experience of NVIDIA NIM limited to 5000 free API credits\", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way",
+      "limits": "Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as \"a trial experience of NVIDIA NIM limited to 5000 free API credits\", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way. The ids move under the row without the offer changing: deepseek-v4-flash was re-dated deepseek-v4-flash-0731 and meta/llama-4-maverick-17b-128e-instruct left with every other Llama 4 (read 2026-08-28 — muse-glimmer-30b is the open Meta row hosted in their place), and on 2026-09-02 nemotron-3-nano-30b-a3b had become nemotron-nano-3-30b-a3b, the same model with the version moved into the middle of its name rather than the nemotron-3-nano-omni-30b-a3b-reasoning the catalog carries beside it",
       "models": [
         {
           "family": "nemotron",
@@ -884,10 +890,10 @@
         "openai_compatible": true,
         "model_ids": [
           "deepseek-ai/deepseek-v4-flash-0731",
-          "nvidia/nemotron-3-nano-30b-a3b",
+          "nvidia/nemotron-nano-3-30b-a3b",
           "meta/muse-glimmer-30b"
         ],
-        "note": "the catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your account still has credits to call them with, and it publishes no price field at all, so hosting is the only question it can answer. Read 2026-08-28: deepseek-v4-flash is now dated deepseek-v4-flash-0731, and meta/llama-4-maverick-17b-128e-instruct went with every other Llama 4 — the open Meta row NVIDIA hosts in their place is muse-glimmer-30b"
+        "note": "the catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your account still has credits to call them with, and it publishes no price field at all, so hosting is the only question it can answer"
       },
       "probe": {
         "type": "api-models",

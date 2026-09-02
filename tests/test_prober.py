@@ -771,10 +771,27 @@ async def test_a_reversioned_config_id_is_reported_with_its_successor():
 
 
 @respx.mock
+async def test_a_renamed_config_id_is_reported_though_no_prefix_matches():
+    """NVIDIA moved the version into the middle of the name: on 2026-09-02
+    nvidia/nemotron-3-nano-30b-a3b had left that catalog while
+    nvidia/nemotron-nano-3-30b-a3b sat in it. Same model, same words, no shared
+    prefix — and the repair is still a rename."""
+    entry = config_entry("nvidia/nemotron-3-nano-30b-a3b")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json=_lane({"id": "nvidia/nemotron-nano-3-30b-a3b",
+                         "pricing": {"prompt": "0", "completion": "0"}})))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "carries nvidia/nemotron-nano-3-30b-a3b" in result.detail
+
+
+@respx.mock
 async def test_a_free_id_that_left_the_lane_does_not_name_its_metered_twin():
     """Routeway's llama-3.1-8b-instruct:free left the free lane while
-    llama-3.1-8b-instruct went on being metered beside it. Only a prefix counts
-    as a successor, so the metered twin is never offered as one."""
+    llama-3.1-8b-instruct went on being metered beside it. A successor has to
+    extend the missing id or be built from the same words, and the metered twin
+    is neither — it is the missing id with the word `free` taken off."""
     entry = config_entry("llama-3.1-8b-instruct:free")
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
         200, json=_lane({"id": "llama-3.1-8b-instruct",

@@ -228,9 +228,39 @@ model_list:
     model: openai/liquid/lfm-2.5-2.6b:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
-- model_name: kilo-code/tencent/hy3:free
+- model_name: kilo-code/minimax/minimax-m3:free
   litellm_params:
-    model: openai/tencent/hy3:free
+    model: openai/minimax/minimax-m3:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/minimax/minimax-m2.7:free
+  litellm_params:
+    model: openai/minimax/minimax-m2.7:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/inclusionai/ling-3.0-flash-fin:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-fin:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/dots-studio/dots-3-note-preview:free
+  litellm_params:
+    model: openai/dots-studio/dots-3-note-preview:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/thinkingmachines/inkling:free
+  litellm_params:
+    model: openai/thinkingmachines/inkling:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/thinkingmachines/inkling-small:free
+  litellm_params:
+    model: openai/thinkingmachines/inkling-small:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/meituan/longcat-2.0-free
+  litellm_params:
+    model: openai/meituan/longcat-2.0-free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: requesty/nvidia/nemotron-3-ultra-550b-a55b
@@ -433,9 +463,9 @@ model_list:
     model: openai/deepseek-ai/deepseek-v4-flash-0731
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
-- model_name: nvidia-nim/nvidia/nemotron-3-nano-30b-a3b
+- model_name: nvidia-nim/nvidia/nemotron-nano-3-30b-a3b
   litellm_params:
-    model: openai/nvidia/nemotron-3-nano-30b-a3b
+    model: openai/nvidia/nemotron-nano-3-30b-a3b
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
 - model_name: nvidia-nim/meta/muse-glimmer-30b

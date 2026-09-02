@@ -437,14 +437,31 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:
-    """The catalog ids that extend a missing one, when a vendor re-versioned the
-    row instead of withdrawing it. Only a prefix counts, which is what keeps the
-    hint honest in the opposite case: Routeway's `llama-3.1-8b-instruct:free`
-    left its free lane while `llama-3.1-8b-instruct` went on being metered, and
-    naming the metered twin as the successor is exactly the confusion
-    `require_zero_price` was added to stop."""
-    heirs = sorted(mid for mid in catalog if mid != wanted and mid.startswith(wanted))
+    """The catalog ids a missing one may have turned into, when a vendor
+    re-versioned or renamed the row instead of withdrawing it. A withdrawal and
+    a rename want opposite edits, and they are indistinguishable without this.
+
+    Two shapes count and nothing else. An id that *extends* the missing one:
+    NVIDIA re-dated `deepseek-ai/deepseek-v4-flash` as
+    `deepseek-ai/deepseek-v4-flash-0731`. And an id built from exactly the same
+    words in a different order: on 2026-09-02 `nvidia/nemotron-3-nano-30b-a3b`
+    left that same catalog while `nvidia/nemotron-nano-3-30b-a3b` sat in it,
+    which no prefix test can see because the vendor moved the version into the
+    middle of the name. Both stay honest in the case that matters — Routeway's
+    `llama-3.1-8b-instruct:free` left its free lane while the metered
+    `llama-3.1-8b-instruct` went on being served, and calling that twin the
+    successor is exactly the confusion `require_zero_price` was added to stop.
+    It neither extends the missing id nor carries the same words."""
+    words = _id_words(wanted)
+    heirs = sorted(mid for mid in catalog
+                   if mid != wanted and (mid.startswith(wanted) or _id_words(mid) == words))
     return f" (catalog carries {', '.join(heirs[:2])})" if heirs else ""
+
+
+def _id_words(model_id: str) -> tuple[str, ...]:
+    """A model id as the sorted bag of words a vendor built it from — the unit
+    that survives a rename which only reorders them."""
+    return tuple(sorted(w for w in re.split(r"[^a-z0-9]+", model_id.lower()) if w))
 
 
 def _squash(s: str) -> str:
