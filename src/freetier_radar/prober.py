@@ -66,16 +66,30 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 return ProbeResult(ProbeStatus.STALE_MODELS,
                                    "listed families the page does not name: "
                                    + ", ".join(unevidenced))
-            # A third question about the same fetched bytes, and the last field
-            # here that nothing read back — asked in both directions, since a
-            # config that hands out a dead id and a config that misses a live
-            # one are the same list being out of date. Only one of these two
-            # checks can fire on any given entry: each is guarded on the probe
-            # type the other cannot read.
-            dead = dead_model_ids(resp, entry)
-            unlisted = unlisted_free_ids(resp, entry)
-            if dead or unlisted:
-                return ProbeResult(ProbeStatus.STALE_IDS, _stale_ids_detail(dead, unlisted))
+            # A third question, and the last field here that nothing read back
+            # — asked in both directions, since a config that hands out a dead
+            # id and a config that misses a live one are the same list being
+            # out of date. An api-models probe asks it of the bytes it already
+            # has; a page-keywords row asks it of the catalog it names, if any,
+            # fetched now. A catalog that does not answer is said so, not
+            # skipped: the row stays verified by its page, and the line in the
+            # pull request is the whole difference between a check that ran
+            # and one that quietly did not.
+            if entry.probe.type is ProbeType.API_MODELS:
+                catalog = resp
+            elif entry.probe.catalog:
+                catalog, failure = await _fetch_catalog(client, entry.probe.catalog, attempts, backoff)
+                if catalog is None:
+                    return ProbeResult(ProbeStatus.STALE_IDS,
+                                       f"api.model_ids could not be checked: catalog "
+                                       f"{entry.probe.catalog} {failure}")
+            else:
+                catalog = None
+            if catalog is not None:
+                dead = dead_model_ids(catalog, entry)
+                unlisted = unlisted_free_ids(catalog, entry)
+                if dead or unlisted:
+                    return ProbeResult(ProbeStatus.STALE_IDS, _stale_ids_detail(dead, unlisted))
             return ProbeResult(ProbeStatus.PASS)
         # Only asked once the content check has already failed. Plenty of live
         # pages carry a <noscript> asking for JavaScript while serving the offer
@@ -87,6 +101,34 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
         return ProbeResult(ProbeStatus.FAIL, detail)
     return ProbeResult(ProbeStatus.INCONCLUSIVE, f"unreachable after {attempts} attempts: {last}")
+
+
+async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
+                         backoff: float) -> tuple[httpx.Response | None, str]:
+    """The catalog a page-keywords row names, or why it could not be read. The
+    same patience as the page itself: a 5xx or a network error is retried, and
+    anything that is not a JSON list of models — a 401, a bot wall, an HTML
+    shell — is reported rather than read as an empty catalog, which would call
+    every id dead."""
+    last = ""
+    for i in range(attempts):
+        if i:
+            await asyncio.sleep(backoff * i)
+        try:
+            resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
+        except httpx.HTTPError as exc:
+            last = f"network error: {exc}"
+            continue
+        if resp.status_code >= 500:
+            last = f"answered HTTP {resp.status_code}"
+            continue
+        if resp.status_code != 200:
+            return None, f"answered HTTP {resp.status_code}"
+        items = _catalog_items(resp)
+        if not items or not any(_model_id(m) for m in items):
+            return None, "answered no model ids" if items is not None else "answered something other than JSON"
+        return resp, ""
+    return None, f"unreachable after {attempts} attempts: {last}"
 
 
 def check_content(resp: httpx.Response, entry: Entry) -> str | None:
@@ -461,10 +503,16 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     the ten live api-models entries: 7 of their 72 ids were already dead, spread
     over two rows whose probes were passing that morning.
 
-    Only an api-models entry can be asked, for the reason `unevidenced_families`
-    is deliberately weak: a page-keywords probe reads prose, and a name missing
+    It is never asked of a page, for the reason `unevidenced_families` is
+    deliberately weak: a page-keywords probe reads prose, and a name missing
     from prose is not a withdrawal. Here the consequence would be worse — a
-    deletion from a config file rather than a flag on a column.
+    deletion from a config file rather than a flag on a column. A page row
+    that names a keyless catalog in `probe.catalog` is asked of that catalog
+    instead: on 2026-09-02 four of the twelve page rows carrying ids had one
+    (Ollama, opencode Zen, SambaNova, Regolo), 18 of their 37 ids between them.
+    Inception is deliberately not among them — mercury-edit-2 answers
+    /v1/edit/completions and is absent from /v1/models by design, and a check
+    that cannot tell that apart would call it dead on every run.
 
     The match is exact, because `api.model_ids` holds what goes in the request
     body. `deepseek-ai/deepseek-v4-flash` and its live successor
@@ -481,7 +529,7 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     thing to let an LLM guess at: the scout is told to leave these rows for a
     human rather than sent off to fix them.
     """
-    if entry.probe.type is not ProbeType.API_MODELS or entry.api is None:
+    if entry.api is None:
         return []
     catalog: dict[str, dict] = {}
     for model in _catalog_items(resp) or []:

@@ -1033,6 +1033,74 @@ async def test_growth_is_not_read_where_prices_are_not():
     assert result.status is ProbeStatus.PASS
 
 
+def catalog_entry(*ids: str) -> Entry:
+    """A page-keywords entry whose offer lives on a pricing page and whose ids
+    live in a keyless catalog at another url — Ollama, opencode Zen,
+    SambaNova, Inception and Regolo on 2026-09-02, 20 of the 37 ids that
+    nothing had read back."""
+    e = page_entry()
+    e.probe.catalog = "https://api.x.ai/v1/models"
+    e.api = ApiInfo(base_url="https://api.x.ai/v1", model_ids=list(ids))
+    return e
+
+
+PAGE_OK = "qwen3-coder on the free tier, no credit card"
+
+
+@respx.mock
+async def test_a_page_row_checks_its_ids_against_the_catalog_it_names():
+    entry = catalog_entry("qwen/qwen3-coder", "qwen/qwen3-coder-legacy")
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=PAGE_OK))
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "qwen/qwen3-coder-legacy is not in the catalog" in result.detail
+    assert "qwen/qwen3-coder " not in result.detail
+
+
+@respx.mock
+async def test_a_page_row_whose_catalog_answers_for_every_id_passes():
+    entry = catalog_entry("qwen/qwen3-coder")
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=PAGE_OK))
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder"}, {"id": "other/paid"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_catalog_that_stops_answering_is_said_out_loud():
+    """The offer is still on the page, so the row is verified; but a check that
+    silently did not run is the INCONCLUSIVE silence again, one field down.
+    A line in the pull request costs nothing and a dead id in the configs
+    costs a reader."""
+    entry = catalog_entry("qwen/qwen3-coder")
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=PAGE_OK))
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        401, json={"error": "unauthorized"}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "could not be checked" in result.detail and "401" in result.detail
+
+
+@respx.mock
+async def test_a_dead_offer_outranks_a_catalog_check():
+    """The catalog is a second question about the ids; the first question is
+    the page, and a page that no longer carries the offer fails the row before
+    the catalog is fetched at all."""
+    entry = catalog_entry("qwen/qwen3-coder")
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="pricing: pay as you go"))
+    route = respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(200, json={"data": []}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert not route.called
+
+
 def test_stale_ids_verifies_the_entry_like_a_pass():
     """Same reasoning as stale-models one test below: the offer was confirmed,
     only a field beside it is in doubt, and freezing last_verified would archive

@@ -398,7 +398,8 @@
         ],
         "free_marker": "",
         "dead_markers": [],
-        "require_zero_price": false
+        "require_zero_price": false,
+        "catalog": "https://ollama.com/v1/models"
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-31",
@@ -475,7 +476,8 @@
         ],
         "free_marker": "",
         "dead_markers": [],
-        "require_zero_price": false
+        "require_zero_price": false,
+        "catalog": "https://opencode.ai/zen/v1/models"
       },
       "first_seen": "2026-07-19",
       "last_verified": "2026-08-31",
@@ -1540,7 +1542,8 @@
         ],
         "free_marker": "",
         "dead_markers": [],
-        "require_zero_price": false
+        "require_zero_price": false,
+        "catalog": "https://api.sambanova.ai/v1/models"
       },
       "first_seen": "2026-08-06",
       "last_verified": "2026-08-31",
@@ -2263,7 +2266,8 @@
         ],
         "free_marker": "",
         "dead_markers": [],
-        "require_zero_price": false
+        "require_zero_price": false,
+        "catalog": "https://api.regolo.ai/v1/models"
       },
       "first_seen": "2026-08-30",
       "last_verified": "2026-08-31",

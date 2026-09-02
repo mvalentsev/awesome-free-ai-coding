@@ -165,6 +165,27 @@ def test_ignored_ids_are_written_only_where_set(tmp_path: Path):
     assert load_registry(p)[0].api.ignored_ids == ["vendor/router"]
 
 
+def test_a_catalog_url_belongs_to_a_page_probe_with_ids_to_check():
+    """An api-models probe already reads its endpoint as the catalog, so a
+    second one there would be two answers to one question; and a page probe
+    with no api.model_ids has nothing for the catalog to check — either way
+    the field would sit in the registry doing nothing."""
+    on_the_api = {**sample_entry(),
+                  "probe": {**sample_entry()["probe"], "catalog": "https://api.x.ai/v1/models"}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(on_the_api)
+
+    page = {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
+            "keywords": ["solar-mini", "free"], "catalog": "https://api.x.ai/v1/models"}
+    nothing_to_check = {**sample_entry(), "probe": page, "api": {"base_url": "https://api.x.ai/v1"}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(nothing_to_check)
+
+    checked = {**sample_entry(), "probe": page,
+               "api": {"base_url": "https://api.x.ai/v1", "model_ids": ["solar-mini"]}}
+    assert Entry.model_validate(checked).probe.catalog == "https://api.x.ai/v1/models"
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

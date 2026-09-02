@@ -155,6 +155,9 @@ class Probe(BaseModel):
     # api-models: the matched id must still be free by the catalog's own account —
     # its free flag where it has one, else every price it publishes at zero
     require_zero_price: bool = False
+    # page-keywords: a keyless JSON catalog to check api.model_ids against, for a
+    # vendor that keeps its offer on one page and its ids at another url
+    catalog: str | None = None
 
     @model_validator(mode="after")
     def _zero_price_needs_a_price_list(self) -> Probe:
@@ -246,6 +249,24 @@ class Entry(BaseModel):
             raise ValueError(
                 f"{self.id}: {', '.join(both)} cannot sit in both api.model_ids and "
                 "api.ignored_ids")
+        return self
+
+    @model_validator(mode="after")
+    def _catalog_needs_ids_to_check(self) -> Entry:
+        """`probe.catalog` is read once, to check `api.model_ids` on a row whose
+        probe reads prose. An api-models probe already reads its endpoint as
+        the catalog, so a second one there is two answers to one question; and
+        a page row with no ids has nothing for the catalog to check. Either way
+        the field would sit in the registry doing nothing."""
+        if self.probe.catalog is None:
+            return self
+        if self.probe.type is not ProbeType.PAGE_KEYWORDS:
+            raise ValueError(
+                f"{self.id}: probe.catalog belongs on a page-keywords probe — an "
+                "api-models probe reads its endpoint as the catalog")
+        if self.api is None or not self.api.model_ids:
+            raise ValueError(
+                f"{self.id}: probe.catalog has nothing to check without api.model_ids")
         return self
 
 

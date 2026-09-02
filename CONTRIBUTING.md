@@ -114,7 +114,11 @@ for a human and never repairs: an id is an exact string, and whether a new one
 belongs in the configs is a judgement about what the row is for. Record the ones
 you have read and left out — an image generator, a row whose own description says
 it was removed, a lane the row does not track — in `api.ignored_ids` with the
-reason in `api.note`, and they stop being reported.
+reason in `api.note`, and they stop being reported. A `page-keywords` row whose
+vendor keeps its ids in a keyless catalog at another url names it in
+`probe.catalog`, and its ids are checked there for the dead direction; a
+catalog that stops answering is reported as `stale-ids` too, since a check that
+quietly did not run is the silence this whole mechanism exists to end.
 
 ## How the pipeline works
 
