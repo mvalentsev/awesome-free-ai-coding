@@ -42,6 +42,14 @@ README_LIMITS_TEASER = 150
 README_LIMITS_COLLAPSE = 260
 README_OFFERING_TEASER = 130
 README_OFFERING_COLLAPSE = 200
+# The connection table's note sits in the same cell as the vendor's name, and is
+# the cell that grows: a rotating lane, an id spelling, a caveat about which of
+# two endpoints the probe reads. Kenari's reached 1,364 characters against a
+# median of 280, four times the width of the median row. Folded a little later
+# than `limits`, because half of these notes are one sentence and a fold that
+# hides a single line is worse than the line.
+README_NOTE_TEASER = 150
+README_NOTE_COLLAPSE = 300
 # How many agents the page answers "what do I code with, then?" by name before
 # the reference table starts. Four is what fits above the fold beside the
 # quickstart; the fifth-ranked agent is one section down either way.
@@ -318,7 +326,9 @@ def build_context(entries: list[Entry], today: date,
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "auth": "—" if e.api.auth == "none" else f"`{env_var(e.id)}`",
-         "key_url": e.api.key_url or "", "note": e.api.note}
+         "key_url": e.api.key_url or "",
+         "note": (_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True)
+                  if e.api.note else "")}
         for e in connectable
     ]
     return {"date": today.isoformat(), "sections": sections,

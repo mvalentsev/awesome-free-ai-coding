@@ -6,6 +6,7 @@ from freetier_radar.history import Event
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
     ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, README_LIMITS_TEASER,
+    README_NOTE_TEASER,
     build_context, build_env_example, build_feed, build_index, build_litellm_config,
     build_opencode_config, env_var, is_archived, render_artifacts, render_readme,
 )
@@ -320,6 +321,23 @@ def test_context_connections():
     assert ctx["connections"] == [{"name": "Groq", "base_url": "https://api.x.ai/v1",
                                    "auth": "`GROQ_API_KEY`", "key_url": "https://x.ai/keys",
                                    "note": ""}]
+
+
+def test_a_long_connection_note_folds_like_the_prose_columns():
+    """The one table `_fold` never reached, and the one cell that keeps growing:
+    the note is where a rotating lane, an id spelling or a caveat gets explained.
+    Kenari's reached 1,364 characters against a median of 280 and made its row
+    four times the width of the table's median."""
+    long = ("Every :free id the catalog carries is listed, and the vendor's own flag "
+            "is what the probe reads. " * 5).strip()
+    ctx = build_context([api_entry(id="long", name="L", api={
+        "base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",
+        "auth": "api-key", "note": long})], TODAY)
+    note = ctx["connections"][0]["note"]
+    assert note.startswith("<details><summary>") and note.endswith("</details>")
+    assert long in note                        # every character survives the fold
+    teaser = note.split("<sub>")[1].split("</sub>")[0]
+    assert teaser.endswith(" …") and len(teaser) <= README_NOTE_TEASER + 2
 
 
 def test_render_readme(tmp_path: Path):

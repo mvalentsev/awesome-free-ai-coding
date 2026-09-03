@@ -142,7 +142,7 @@ Connection details for every live OpenAI-compatible API above — paste the base
 
 | Provider | Base URL | Key env var | Get a key |
 |---|---|---|---|
-{% for c in connections %}| **{{ c.name }}**{% if c.note %}<br><sub>{{ c.note }}</sub>{% endif %} | `{{ c.base_url }}` | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
+{% for c in connections %}| **{{ c.name }}**{% if c.note %}<br>{{ c.note }}{% endif %} | `{{ c.base_url }}` | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
 {% endfor %}
 
 Ready-made artifacts, regenerated on every update:
