@@ -5,8 +5,57 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-08-31T11:39:39Z</updated>
+  <updated>2026-09-03T09:55:24Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codebuddy/20260903T095524Z</id>
+    <title>New: CodeBuddy (Tencent)</title>
+    <link rel="alternate" href="https://www.codebuddy.ai"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/freebuff/20260903T095524Z</id>
+    <title>New: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker · free models: glm-5.3-flash, gpt-5.6-luna, deepseek-v4-flash, mimo-v2.5</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/infomaniak-ai/20260903T095524Z</id>
+    <title>New: Infomaniak AI Services</title>
+    <link rel="alternate" href="https://www.infomaniak.com/en/hosting/ai-services"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/kenari/20260903T095524Z</id>
+    <title>New: Kenari</title>
+    <link rel="alternate" href="https://kenari.id"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — twelve on 2026-09-02, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them · free models: glm-4.7-flash, nemotron-3-ultra, nemotron-3-super, step-3.7-flash, laguna-s-2.1</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llmtr/20260903T095524Z</id>
+    <title>New: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them · free models: nemotron-3-ultra, minimax-m3, qwen3.6, mercury-2</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/meganova/20260903T095524Z</id>
+    <title>New: MegaNova</title>
+    <link rel="alternate" href="https://meganova.ai"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">OpenAI-compatible gateway whose no-card Tier 1 account gets a daily free quota on Mistral Small 3.2 and the house Manta routers — 50 a day per model, 550 across the lane · free models: mistral-small-3.2</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/qodo/20260903T095524Z</id>
+    <title>New: Qodo</title>
+    <link rel="alternate" href="https://www.qodo.ai"/>
+    <updated>2026-09-03T09:55:24Z</updated>
+    <summary type="text">Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/hetzner-inference/20260831T113939Z</id>
     <title>New: Hetzner Inference API</title>
@@ -307,54 +356,5 @@
     <link rel="alternate" href="https://www.requesty.ai"/>
     <updated>2026-08-11T14:40:45Z</updated>
     <summary type="text">OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those · free models: nemotron-3-ultra, nemotron-3-super, gemma-4, ling-3.0-tiny</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260811T143121Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-08-11T14:31:21Z</updated>
-    <summary type="text">added laguna-xs-2.1, ling-3.0-tiny, nemotron-3-super · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, ling-3.0-tiny</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260811T125941Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-08-11T12:59:41Z</updated>
-    <summary type="text">added laguna-s-2.1, step-3.7-flash; dropped ling-3.0-flash · free models: nemotron-3-ultra, north-mini-code, step-3.7-flash, laguna-s-2.1</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/routeway/20260805T231407Z</id>
-    <title>Free models changed: Routeway</title>
-    <link rel="alternate" href="https://routeway.ai"/>
-    <updated>2026-08-05T23:14:07Z</updated>
-    <summary type="text">added gemma-4, llama-3.3 · free models: gpt-oss, ling-3.0-flash, step-3.7-flash, gemma-4, llama-3.3</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260805T230830Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-08-05T23:08:30Z</updated>
-    <summary type="text">added ling-3.0-flash, nemotron-3-ultra, north-mini-code · free models: nemotron-3-ultra, north-mini-code, ling-3.0-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/routeway/20260805T230830Z</id>
-    <title>New: Routeway</title>
-    <link rel="alternate" href="https://routeway.ai"/>
-    <updated>2026-08-05T23:08:30Z</updated>
-    <summary type="text">OpenAI-compatible gateway whose catalog carries eleven live :free ids priced at zero — gpt-oss-120b, Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 and the Llama 3.x line — beside a metered 100+ model catalog · free models: gpt-oss, ling-3.0-flash, step-3.7-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sambanova-cloud/20260805T230830Z</id>
-    <title>New: SambaNova Cloud</title>
-    <link rel="alternate" href="https://cloud.sambanova.ai"/>
-    <updated>2026-08-05T23:08:30Z</updated>
-    <summary type="text">Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it · free models: deepseek, gpt-oss, gemma-4</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/tokenrouter/20260805T182607Z</id>
-    <title>New: TokenRouter (PaleBlueDot)</title>
-    <link rel="alternate" href="https://www.tokenrouter.com"/>
-    <updated>2026-08-05T18:26:07Z</updated>
-    <summary type="text">Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron lane, inside a 121-model paid catalog · free models: kimi-k3, nemotron-3-nano-omni</summary>
   </entry>
 </feed>
