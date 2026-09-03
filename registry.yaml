@@ -1666,9 +1666,6 @@ entries:
   - family: gemini-3.1-pro
     tier: frontier
     released: ''
-  - family: gemini-3.5-flash
-    tier: strong
-    released: ''
   - family: claude-opus-4.6
     tier: frontier
     released: ''
@@ -2470,21 +2467,30 @@ entries:
     terms forbid reselling access. Docs are Indonesian with a full English mirror
     under /en/docs'
   models:
-  - family: glm-4.7-flash
+  - family: agnes-2-0-flash
     tier: strong
-    released: 2026-01
-  - family: nemotron-3-ultra
-    tier: frontier
-    released: 2026-03
-  - family: nemotron-3-super
+    released: ''
+  - family: agnes-2-5-flash
     tier: strong
-    released: 2026-03
-  - family: step-3.7-flash
+    released: ''
+  - family: claude-fable-5
     tier: strong
-    released: 2026-07
-  - family: laguna-s-2.1
+    released: ''
+  - family: claude-opus-4-7
     tier: strong
-    released: 2026-07
+    released: ''
+  - family: claude-opus-4-8
+    tier: strong
+    released: ''
+  - family: claude-opus-5
+    tier: strong
+    released: ''
+  - family: claude-sonnet-4-6
+    tier: strong
+    released: ''
+  - family: gemini-3-8-flash
+    tier: strong
+    released: ''
   api:
     base_url: https://kenari.id/v1
     key_url: https://kenari.id/keys

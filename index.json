@@ -1698,11 +1698,6 @@
           "released": ""
         },
         {
-          "family": "gemini-3.5-flash",
-          "tier": "strong",
-          "released": ""
-        },
-        {
           "family": "claude-opus-4.6",
           "tier": "frontier",
           "released": ""
@@ -2475,29 +2470,44 @@
       "limits": "\"Models with the :free suffix, for example step-3-7-flash:free, are billed at Rp 0. In exchange, there is a per-account request limit per minute\", and \"Besides the per-minute limit, :free models also carry a daily request allowance with three tiers, based on account status\". The figures live in the public pricing endpoint the docs point at, kenari.id/api/public/pricing (read 2026-09-02): a new account gets 50 requests a day at 5 per minute, an account whose top-ups pass Rp 10,000 gets 1,000 a day at 10 per minute, and a subscription lifts the per-minute cap to 15. \"Running out of daily quota returns HTTP 429 with a Retry-After header and reason free_quota_daily\", and \"The free lane is best-effort: capacity is kept lean, with no guarantee of the same speed or availability as paid models\". Sign-up asks for no card — top-ups are QRIS, \"tanpa kartu kredit internasional\", without an international credit card — and the privacy policy says \"Kami tidak menyimpan isi prompt maupun isi respons\", prompt and response content are not stored; the terms forbid reselling access. Docs are Indonesian with a full English mirror under /en/docs",
       "models": [
         {
-          "family": "glm-4.7-flash",
+          "family": "agnes-2-0-flash",
           "tier": "strong",
-          "released": "2026-01"
+          "released": ""
         },
         {
-          "family": "nemotron-3-ultra",
-          "tier": "frontier",
-          "released": "2026-03"
+          "family": "agnes-2-5-flash",
+          "tier": "strong",
+          "released": ""
         },
         {
-          "family": "nemotron-3-super",
+          "family": "claude-fable-5",
           "tier": "strong",
-          "released": "2026-03"
+          "released": ""
         },
         {
-          "family": "step-3.7-flash",
+          "family": "claude-opus-4-7",
           "tier": "strong",
-          "released": "2026-07"
+          "released": ""
         },
         {
-          "family": "laguna-s-2.1",
+          "family": "claude-opus-4-8",
           "tier": "strong",
-          "released": "2026-07"
+          "released": ""
+        },
+        {
+          "family": "claude-opus-5",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "claude-sonnet-4-6",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "gemini-3-8-flash",
+          "tier": "strong",
+          "released": ""
         }
       ],
       "api": {
