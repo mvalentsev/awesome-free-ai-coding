@@ -98,6 +98,34 @@ def test_apply_updates_rejects_an_invalid_update_instead_of_raising():
     assert entries[0].probe.endpoint == "https://x.ai"  # left as it was
 
 
+def test_apply_updates_refuses_a_fix_that_leaves_the_row_failing():
+    """The shape of a correction was all anything checked, so a fix that made a
+    row worse was written and reported as a repair. On 2026-09-03 kenari failed
+    on one family its catalog had momentarily stopped serving, and the answer
+    named six the same catalog prices in the thousands — every one of them a
+    family the probe then could not find in the free lane."""
+    entries = [make()]
+    applied, rejected = apply_updates(
+        entries, [{"id": "x", "models": [{"family": "y-pro-1"}]}],
+        verifier=lambda e: "missing families: y-pro-1",
+    )
+    assert applied == []
+    assert rejected == ["x: update to models still fails the probe — missing families: y-pro-1"]
+    assert entries[0].models == []  # left as it was
+
+
+def test_apply_updates_verifies_the_corrected_entry_and_not_the_old_one():
+    seen = []
+    entries = [make()]
+    applied, rejected = apply_updates(
+        entries, [{"id": "x", "limits": "new limits"}],
+        verifier=lambda e: seen.append(e.limits),  # append returns None: verified
+    )
+    assert applied == ["x"] and rejected == []
+    assert seen == ["new limits"]
+    assert entries[0].limits == "new limits"
+
+
 def test_apply_new_skips_duplicates_and_invalid():
     entries = [make()]
     added, rejected = apply_new(entries, [
@@ -373,6 +401,22 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
                                   "'api-models' or 'page-keywords'; probe.endpoint: Field required",
                                   "broken: invalid (ValidationError)"]
     # The row the scout could not repair is still failing, and says so.
+    assert result["unfixed"] == ["x: fail — boom"]
+
+
+def test_a_fix_the_probe_rejects_leaves_the_row_on_the_unfixed_list():
+    """A repair the run cannot stand behind must not read as a repair. `updates`
+    is what the pull request calls fixed and what drops off `unfixed`, so an
+    unverified correction there hides a failing row twice over."""
+    llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    limits: guessed\n```"})
+    entries = [make()]
+    result = run_scout(llm, entries, [{"id": "x", "status": "fail", "detail": "boom"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=None, verifier=lambda e: "missing keywords: x-mini-2")
+    assert result["updates"] == []
+    assert entries[0].limits == "old limits"
+    assert result["rejected"] == ["x: update to limits still fails the probe — "
+                                  "missing keywords: x-mini-2"]
     assert result["unfixed"] == ["x: fail — boom"]
 
 

@@ -125,6 +125,16 @@ entry's model list is in doubt — either every family listed for it was marked
 superseded, or the page no longer names a family the entry lists. The failure
 detail says which. Reply with a models list naming only families the page text
 below names itself, and leave the probe alone.
+A "missing families" detail, on that verdict or on a plain failure, names
+families the entry lists and the evidence no longer backs. The list you reply
+with replaces the old one whole: keep the families that still stand, drop the
+one that went, and add the ones that replaced it where the page names them in
+its place — a reply that only deletes turns a swapped generation into a model
+the readers lose. Where the probe type is api-models the page text IS the
+vendor's catalog, and a family counts only where the catalog still carries a
+FREE id for it: an id matching the entry's free marker, and free by the
+catalog's own flag or by a zero price where it publishes one. A family whose
+only ids are metered is not a free model and fails the same probe next run.
 A corrected page-keywords probe needs at least one keyword that dies with the
 offer — a quota or price figure, a model id or JSON field, or a sentence of four
 or more words quoted verbatim from the page below. Words like "free", "hobby",
@@ -651,16 +661,27 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
     return f'bot challenge: page says "{challenge}"' if challenge else problem
 
 
-def apply_updates(entries: list[Entry], updates: list[dict]) -> tuple[list[str], list[str]]:
+def apply_updates(entries: list[Entry], updates: list[dict],
+                  verifier: Callable[[Entry], str | None] | None = None,
+                  ) -> tuple[list[str], list[str]]:
     """Apply the LLM's corrections to flagged entries.
 
     Returns (applied ids, rejected "id: reason" strings). One bad update must
     not sink the run: by the time the scout speaks, the verification commit is
     already pushed, and a failed run cannot be rerun (it checks out the old SHA
-    and its push is refused as non-fast-forward). Two ways the model gets an
-    update wrong, both seen live: a null where the prompt told it to leave a
+    and its push is refused as non-fast-forward). Three ways the model gets an
+    update wrong, all seen live: a null where the prompt told it to leave a
     key alone (`probe: null` for the retired github-models entry, run
-    30798513182, 2026-08-03) and a corrected value that does not validate."""
+    30798513182, 2026-08-03), a corrected value that does not validate, and a
+    value that validates and is still wrong.
+
+    Only the third one needed the verifier. A proposal has been probe-checked
+    before it could enter since bazaarlink arrived naming families no id backed;
+    an edit to a row already in the file was written on the model's word alone,
+    which is how kenari came out of run 33741484383 listing claude-opus-5 as a
+    free model. The check is the same one, run on the corrected entry: a fix
+    that leaves the row failing is refused, the row keeps the values a human
+    last stood behind, and the reason goes to the pull request."""
     applied, rejected = [], []
     for i, e in enumerate(entries):
         upd = next((u for u in updates if isinstance(u, dict) and u.get("id") == e.id), None)
@@ -672,12 +693,19 @@ def apply_updates(entries: list[Entry], updates: list[dict]) -> tuple[list[str],
         if not changed:
             continue
         try:
-            entries[i] = Entry.model_validate({**e.model_dump(mode="json"), **changed})
+            fixed = Entry.model_validate({**e.model_dump(mode="json"), **changed})
         except Exception as exc:
             print(f"update for {e.id} rejected: {exc}")
             rejected.append(f"{e.id}: invalid update to {', '.join(sorted(changed))}"
                             f" — {_why(exc)}")
             continue
+        problem = verifier(fixed) if verifier is not None else None
+        if problem:
+            print(f"update for {e.id} rejected: {problem}")
+            rejected.append(f"{e.id}: update to {', '.join(sorted(changed))}"
+                            f" still fails the probe — {problem}")
+            continue
+        entries[i] = fixed
         applied.append(e.id)
     return applied, rejected
 
@@ -911,7 +939,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             for e in ctx_entries
         )
         data = _ask(llm, FIX_PROMPT.format(context=context))
-        result["updates"], rejected = apply_updates(entries, data.get("updates") or [])
+        result["updates"], rejected = apply_updates(entries, data.get("updates") or [], verifier)
         result["rejected"] += rejected
 
     # Everything the probe flagged that the run did not repair, carried into the
