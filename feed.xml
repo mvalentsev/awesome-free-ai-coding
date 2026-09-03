@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-03T09:55:24Z</updated>
+  <updated>2026-09-03T21:38:08Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cerebras-free/20260903T213808Z</id>
+    <title>Free models changed: Cerebras Inference</title>
+    <link rel="alternate" href="https://www.cerebras.ai"/>
+    <updated>2026-09-03T21:38:08Z</updated>
+    <summary type="text">added qwen3.8; dropped gemma-4 · free models: gpt-oss, qwen3.8</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/antigravity/20260903T213517Z</id>
+    <title>Free models changed: Google Antigravity</title>
+    <link rel="alternate" href="https://antigravity.google"/>
+    <updated>2026-09-03T21:35:17Z</updated>
+    <summary type="text">added gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash; dropped gemini-3.5-flash · free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kenari/20260903T213517Z</id>
+    <title>Free models changed: Kenari</title>
+    <link rel="alternate" href="https://kenari.id"/>
+    <updated>2026-09-03T21:35:17Z</updated>
+    <summary type="text">dropped glm-4.7-flash · free models: nemotron-3-ultra, nemotron-3-super, step-3.7-flash, laguna-s-2.1</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codebuddy/20260903T095524Z</id>
     <title>New: CodeBuddy (Tencent)</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://routeway.ai"/>
     <updated>2026-08-11T15:30:32Z</updated>
     <summary type="text">dropped ling-3.0-flash · free models: gpt-oss, step-3.7-flash, gemma-4, llama-3.3</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260811T153032Z</id>
-    <title>Free models changed: Vercel AI Gateway</title>
-    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
-    <updated>2026-08-11T15:30:32Z</updated>
-    <summary type="text">dropped ling-3.0-flash-free · free models: laguna-s-2.1-free</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/antigravity/20260811T152806Z</id>
-    <title>New: Google Antigravity</title>
-    <link rel="alternate" href="https://antigravity.google"/>
-    <updated>2026-08-11T15:28:06Z</updated>
-    <summary type="text">Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do · free models: gemini-3.1-pro, gemini-3.5-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/requesty/20260811T144045Z</id>
-    <title>New: Requesty</title>
-    <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-08-11T14:40:45Z</updated>
-    <summary type="text">OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those · free models: nemotron-3-ultra, nemotron-3-super, gemma-4, ling-3.0-tiny</summary>
   </entry>
 </feed>
