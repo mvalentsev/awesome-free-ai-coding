@@ -336,6 +336,9 @@
         "gemini-3.7-flash-free": {
           "name": "gemini-3.7-flash-free"
         },
+        "gemini-3.8-flash-free": {
+          "name": "gemini-3.8-flash-free"
+        },
         "gemma-4-26b-a4b-it-free": {
           "name": "gemma-4-26b-a4b-it-free"
         },
@@ -446,8 +449,8 @@
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
         },
-        "gemma-4-31b": {
-          "name": "gemma-4-31b"
+        "qwen-3.8-27b": {
+          "name": "qwen-3.8-27b"
         }
       }
     },
@@ -627,14 +630,17 @@
         "mimo-v2-5:free": {
           "name": "mimo-v2-5:free"
         },
-        "qwen3-8-27b:free": {
-          "name": "qwen3-8-27b:free"
-        },
         "agnes-2-0-flash:free": {
           "name": "agnes-2-0-flash:free"
         },
+        "agnes-2-5-flash:free": {
+          "name": "agnes-2-5-flash:free"
+        },
         "muse-spark-1-2-contributor:free": {
           "name": "muse-spark-1-2-contributor:free"
+        },
+        "muse-spark-1-3-contributor:free": {
+          "name": "muse-spark-1-3-contributor:free"
         }
       }
     },
