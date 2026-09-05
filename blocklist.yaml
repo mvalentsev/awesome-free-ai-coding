@@ -159,3 +159,26 @@
     OpenAI's ordinary public API ids, and its free plan is "$5 in API credits on
     signup" rather than free frontier access — a first read of this domain
     blocked it on that catalog alone, which was wrong twice over.
+
+- domain: jiekou.ai
+  reason: >-
+    Reached through the models.dev digest on 2026-09-05 (1/61 rows at cost 0,
+    xiaomimimo/mimo-v2-flash — which the vendor's own keyless catalog at
+    api.jiekou.ai/openai/models prices at 1000/3000 in its units). The home page
+    calls the service "一站式多模型 API 中转平台", a one-stop multi-model API relay,
+    and its pricing page sorts every row under two labels of its own: 官方资源
+    (official resource, 49 rows) and 低价专区 (low-price zone, 19 rows). In the
+    low-price zone claude-opus-4-8-r, claude-opus-4-7-r and claude-opus-4-6-r are
+    $1/$5 per 1M against the $5/$25 the same page prints for the official rows
+    (20%), claude-sonnet-4-6-r is $0.6/$3 against $3/$15 (20%), and the -dd
+    variants sit at 55%. A reseller's discount is 15-25% off; a fifth of list,
+    sold under a label that separates it from the vendor's official supply, is
+    the different-supply case llm7.io is here for — stated by the operator. The
+    free question never arose: the catalog prices three chat rows at 0
+    (qwen/qwen3.8-27b, qwen/qwen3.5-plus, slow-mock) while the pricing page
+    prices Qwen3.5-Plus at $0.4/$2.4, and the quickstart's signup voucher —
+    "我们为新用户提供了一些信用额度的代金券" — carries no figure.
+- domain: highwayapi.ai
+  reason: >-
+    The "国内直连" (mainland direct) base URL jiekou.ai names on its own home page
+    — one operator, one verdict.
