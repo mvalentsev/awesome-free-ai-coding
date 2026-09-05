@@ -40,6 +40,21 @@
 <sub>Every model name above is read back from the vendor's own API or pricing page twice a week, and the quota that comes with it is in the [table below](#-coding-agents--clis).</sub>
 
 {% endif %}
+{% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials %}
+**Or pick by what you need.** Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the same run it leaves the list:
+
+| I want… | Start with |
+|---|---|
+{% if picks.frontier %}| **Frontier-tier models on a $0 plan** | {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %} · {% endif %}{% endfor %} |
+{% endif %}{% if picks.apis %}| **An API key that gets the most done for free** | {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
+{% endif %}{% if picks.aggregators %}| **One key, many free models** | {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
+{% endif %}{% if picks.keyless %}| **No account at all** | {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
+{% endif %}{% if picks.trials %}| **A trial that asks for no card** | {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
+{% endif %}
+
+<sub>"Frontier" is the tier the registry marks on a model family — one tier per family, checked in CI — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered).</sub>
+
+{% endif %}
 {% if quickstart %}
 **No account at all?** [{{ quickstart.name }}]({{ quickstart.url }}) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 

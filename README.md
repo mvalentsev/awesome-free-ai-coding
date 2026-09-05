@@ -40,6 +40,18 @@
 
 <sub>Every model name above is read back from the vendor's own API or pricing page twice a week, and the quota that comes with it is in the [table below](#-coding-agents--clis).</sub>
 
+**Or pick by what you need.** Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the same run it leaves the list:
+
+| I want… | Start with |
+|---|---|
+| **Frontier-tier models on a $0 plan** | [Google Antigravity](https://antigravity.google) `gemini-3.1-pro` `gemini-3.8-flash` `gemini-3.7-flash` `claude-opus-4.6` `claude-sonnet-4.6` · [Google AI Studio (Gemini API)](https://aistudio.google.com) `gemini-3.7-flash` `gemini-2.5-pro` · [opencode](https://opencode.ai) `nemotron-3-ultra` |
+| **An API key that gets the most done for free** | [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Groq](https://groq.com) · [Z.ai (Zhipu GLM)](https://z.ai) |
+| **One key, many free models** | [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com) |
+| **No account at all** | [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [Pollinations.AI](https://pollinations.ai) · [uncloseai (unturf)](https://uncloseai.com) |
+| **A trial that asks for no card** | [GitHub Copilot Free](https://github.com/features/copilot) · [Kiro](https://kiro.dev/) · [Google Jules](https://jules.google/) |
+
+<sub>"Frontier" is the tier the registry marks on a model family — one tier per family, checked in CI — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered).</sub>
+
 **No account at all?** [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 
 ```bash

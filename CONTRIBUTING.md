@@ -67,7 +67,12 @@ no-card rows it ties with.
 The first four no-card agents are also the top of the README, with the models
 they hand you, so this ordering is the page's answer to "what do I use, then?"
 Nothing about it is typed by hand: change `rank` and both the section and that
-block follow.
+block follow. The "pick by what you need" table under it is the same ordering
+read three names deep per section, card-required rows left out; its frontier
+line is the one answer that crosses sections, and it is ordered by how many
+families a row marks `tier: frontier`, then by `rank` — so a tier is a claim
+that reaches the top of the page, and `freetier-check` refuses a family carrying
+two of them.
 
 ## Probes must anchor on the offer
 

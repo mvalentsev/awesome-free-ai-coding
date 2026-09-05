@@ -512,3 +512,77 @@ def test_a_departing_entry_is_not_summarised_by_the_models_it_no_longer_serves()
 def test_an_event_with_nothing_to_say_renders_a_dash_like_every_other_empty_cell():
     rows = build_context([make()], TODAY, history=[ev(event="removed", detail="")])["changes"]
     assert rows[0]["detail"] == "—"
+
+
+def test_picks_answer_by_need_from_the_registry():
+    """The question a reader arrives with is rarely "what is on the list" and
+    usually "which one, for me" — the strongest models, the key that gets the
+    most done, no account at all. Other lists type that table by hand and it
+    rots; here every cell is the top of a section in the registry's own order,
+    so a row that dies takes its recommendation with it."""
+    entries = [
+        make(id="api-1", name="Api1", rank=10, models=[{"family": "f-1", "tier": "frontier"}]),
+        # rank orders a row inside its section only; across sections the
+        # frontier answer leads with whoever hands over the most such families
+        make(id="api-2", name="Api2", rank=20,
+             models=[{"family": "f-4", "tier": "frontier"}, {"family": "f-5", "tier": "frontier"}]),
+        make(id="api-3", name="Api3", rank=30),
+        make(id="api-4", name="Api4", rank=40),
+        # a card is the one thing this block promises nobody needs
+        make(id="api-card", name="ApiCard", rank=1, card_required=True,
+             models=[{"family": "f-2", "tier": "frontier"}]),
+        make(id="agent", name="Agent", rank=5, category="agent-cli",
+             models=[{"family": "f-3", "tier": "frontier"}, {"family": "s-1"}]),
+        # a superseded family is no longer what the row hands you
+        make(id="old", name="Old", rank=99, category="agent-cli",
+             models=[{"family": "f-old", "tier": "frontier", "superseded_by": "f-new"}]),
+        make(id="agg", name="Agg", rank=1, category="aggregator"),
+        make(id="trial", name="Trial", rank=1, category="trial"),
+        make(id="trial-card", name="TrialCard", rank=0, category="trial", card_required=True),
+        make(id="keyless", name="Keyless", rank=50,
+             api={"base_url": "https://k.example/v1", "auth": "none", "model_ids": ["m"]}),
+    ]
+    picks = build_context(entries, TODAY)["picks"]
+    # capped, ranked, and never a row that asks for a card
+    assert [p["name"] for p in picks["apis"]] == ["Api1", "Api2", "Api3"]
+    # the frontier answer names the families that earn it, across sections
+    assert [(p["name"], p["families"]) for p in picks["frontier"]] == [
+        ("Api2", ["f-4", "f-5"]), ("Agent", ["f-3"]), ("Api1", ["f-1"])]
+    assert [p["name"] for p in picks["aggregators"]] == ["Agg"]
+    assert [p["name"] for p in picks["keyless"]] == ["Keyless"]
+    assert [p["name"] for p in picks["trials"]] == ["Trial"]
+
+
+def test_picks_are_capped_at_the_same_three_per_need():
+    entries = [make(id=f"a{i}", name=f"A{i}", rank=i) for i in range(6, 0, -1)]
+    picks = build_context(entries, TODAY)["picks"]
+    assert [p["name"] for p in picks["apis"]] == ["A1", "A2", "A3"]
+    assert picks["frontier"] == [] and picks["keyless"] == []
+
+
+def test_picks_render_between_the_starters_and_the_list(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    entries = [
+        make(id="agent", name="Agent", rank=5, category="agent-cli",
+             models=[{"family": "f-3", "tier": "frontier"}]),
+        make(id="api-1", name="Api1", rank=10),
+        make(id="agg", name="Agg", rank=1, category="aggregator"),
+    ]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
+    assert "| I want… |" in hero
+    assert "[Agent](https://x.ai) `f-3`" in hero
+    assert "[Api1](https://x.ai)" in hero and "[Agg](https://x.ai)" in hero
+    # a need nobody on the registry answers is not a row that says so
+    assert "No account at all" not in hero.split("| I want… |")[1]
+    assert "asks for no card" not in hero.split("| I want… |")[1]
+
+
+def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="paid", name="Paid", card_required=True)])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "| I want… |" not in text

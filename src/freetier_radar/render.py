@@ -11,10 +11,11 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .history import Event, EventType, load_history
 from .models import (ARCHIVE_AFTER_DAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category,
-                     Entry, Watched, is_archived, is_watch_current, live_families,
+                     Entry, Tier, Watched, is_archived, is_watch_current, live_families,
                      load_registry, load_watchlist)
 
-__all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "README_STARTERS",
+__all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "README_PICKS",
+           "README_STARTERS",
            "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "env_var",
            "render_readme", "render_artifacts", "main"]
@@ -54,6 +55,9 @@ README_NOTE_COLLAPSE = 300
 # the reference table starts. Four is what fits above the fold beside the
 # quickstart; the fifth-ranked agent is one section down either way.
 README_STARTERS = 4
+# How many names answer each "I want…" line of the picks table. Three reads as
+# a choice; a fourth is the section itself, which starts one heading down.
+README_PICKS = 3
 
 # What each event is called where a human reads it. The feed titles stand alone
 # in a reader's inbox, so they name the thing that happened; the README labels
@@ -178,6 +182,56 @@ def _starters(active: list[Entry]) -> list[dict]:
             if e.category is Category.AGENT_CLI and not e.card_required and live_families(e)]
     return [{"name": e.name, "url": e.url, "families": live_families(e)}
             for e in sorted(rows, key=lambda e: (e.rank, e.name.lower()))[:README_STARTERS]]
+
+
+def _pick(e: Entry, families: list[str] | None = None) -> dict:
+    return {"name": e.name, "url": e.url, "families": families or []}
+
+
+def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict]]:
+    """The answers to "which one, for me", each the top of a section.
+
+    A reader arrives with a need, not with time to read fifty rows: the
+    strongest models for nothing, the key that gets the most work done, no
+    account at all, a trial that will not ask for a card. Every list in this
+    space answers that with a table someone typed once, and it is the first
+    thing on those pages to rot — a recommendation outlives the offer behind it
+    by months. Here each cell is derived: the section's own `rank` order with
+    the card-required rows removed, capped at README_PICKS, so a row that stops
+    verifying leaves the table on the same run it leaves the list.
+
+    "Frontier" is the one answer that crosses sections. It is the registry's own
+    tier mark on a family — one tier per family, enforced by freetier-check —
+    and the row carries the families that earned it, because "frontier models
+    free" is only an answer if it says which. Across sections `rank` compares
+    nothing (it orders a row within its own category), so this row is ordered
+    by how many frontier families the entry hands over, and only then by rank:
+    an agent bundling five is a better answer than a gateway bundling one.
+
+    Keyless rows come from the connection table's order rather than a category:
+    "no account" is a property of the endpoint, and it is the same property the
+    quickstart curl below the table is chosen by.
+    """
+    ranked = [e for e in sorted(active, key=lambda e: (e.rank, e.name.lower()))
+              if not e.card_required]
+
+    def top(category: Category) -> list[dict]:
+        return [_pick(e) for e in ranked if e.category is category][:README_PICKS]
+
+    frontier = []
+    for e in ranked:
+        families = [m.family for m in e.models
+                    if m.superseded_by is None and m.tier is Tier.FRONTIER]
+        if families:
+            frontier.append((len(families), e.rank, e.name.lower(), _pick(e, families)))
+    frontier.sort(key=lambda row: (-row[0], row[1], row[2]))
+    return {
+        "frontier": [row[3] for row in frontier[:README_PICKS]],
+        "apis": top(Category.API_FREE_TIER),
+        "aggregators": top(Category.AGGREGATOR),
+        "keyless": [_pick(e) for e in connectable if e.api.auth == "none"][:README_PICKS],
+        "trials": top(Category.TRIAL),
+    }
 
 
 def _quickstart(connectable: list[Entry]) -> dict | None:
@@ -350,6 +404,7 @@ def build_context(entries: list[Entry], today: date,
             "endpoint_count": len(connections),
             "model_index": _model_index(active),
             "starters": _starters(active),
+            "picks": _picks(active, connectable),
             "quickstart": _quickstart(connectable),
             # The answer to "why isn't X here?", which a list like this is asked
             # more often than anything else. Rendered from the same file the
