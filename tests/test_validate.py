@@ -201,3 +201,16 @@ def test_text_that_reads_as_liquid_would_break_the_published_page(tmp_path: Path
     deploy without anything on this page saying so."""
     root = build(tmp_path, entries=[{**ENTRY, "limits": "1000 req/day, {{ per key }}"}])
     assert any("Liquid" in p and "limits" in p for p in check(root, TODAY))
+
+
+def test_the_announcement_ledger_is_checked_like_the_history(tmp_path: Path):
+    """The ledger is the only thing standing between a retried run and a
+    double post; a line without its key is a line that protects nothing."""
+    root = build(tmp_path)
+    (root / "announced.jsonl").write_text(
+        '{"key": "2026-09-06T05:30:00+00:00|added|x", "channel": "bluesky", "ts": "2026-09-06T05:31:00Z"}\n'
+        '{"channel": "mastodon"}\n'
+        'not json\n', encoding="utf-8")
+    problems = check(root, today=date(2026, 9, 6))
+    assert any("line 2 lacks key, ts" in p for p in problems)
+    assert any("line 3 is not JSON" in p for p in problems)

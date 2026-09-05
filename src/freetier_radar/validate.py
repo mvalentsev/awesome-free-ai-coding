@@ -20,6 +20,7 @@ part of its meaning.
 from __future__ import annotations
 
 import argparse
+import json
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
@@ -215,6 +216,28 @@ def check(root: Path, today: date | None = None) -> list[str]:
             live_ids.add(ev.id)
         else:
             live_ids.add(ev.id)
+
+    # ---- announced.jsonl
+    # The announcer's ledger: append-only like the history, and read every run
+    # to decide what has already been said. A line that will not parse would
+    # stop the announce step; a line missing its key or channel would let the
+    # same post go out again. Checked here for the same reason history is —
+    # nothing regenerates it.
+    ledger = root / "announced.jsonl"
+    if ledger.exists():
+        for number, line in enumerate(ledger.read_text(encoding="utf-8").splitlines(), start=1):
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except ValueError:
+                problems.append(f"announced: line {number} is not JSON")
+                continue
+            missing = [k for k in ("key", "channel", "ts") if not row.get(k)]
+            if missing:
+                problems.append(
+                    f"announced: line {number} lacks {', '.join(missing)} — a post with no key "
+                    f"or channel would be sent again")
 
     # ---- dismissed.yaml against the registry
     ids = {e.id for e in entries}

@@ -163,6 +163,31 @@ Archive, being delisted, or changing its free models — is appended to
 registry rather than against the previous run, so a row you add by hand is
 reported by the next scheduled run rather than going unrecorded.
 
+## How the list announces itself
+
+`freetier-announce` runs in the same workflow, after the verification commit:
+every event the run appended to `history.jsonl` — a row arriving, dropping to
+the Archive, being delisted, changing its free models — becomes one post from
+the project's own accounts, labelled as a bot, linking the row's page. It posts
+only events from the last 14 days, at most five per channel per run, oldest
+first, and only what a channel has not posted before: `announced.jsonl` is the
+append-only ledger, keyed by event and channel, so a retried run cannot post a
+line twice and a channel that failed is simply retried next time. `--dry-run`
+prints every due post and sends nothing.
+
+Channels come from the repository's settings, and until they exist the step
+prints "no channel configured" and exits 0:
+
+| Channel | Variable (Settings → Variables) | Secret (Settings → Secrets) |
+|---|---|---|
+| Bluesky | `BLUESKY_HANDLE` — the account, e.g. `freetier-radar.bsky.social` | `BLUESKY_APP_PASSWORD` — an app password, not the account password |
+| Mastodon | `MASTODON_BASE_URL` — the instance, e.g. `https://fosstodon.org` | `MASTODON_ACCESS_TOKEN` — an application token with `write:statuses` |
+
+Mark the accounts as automated (Mastodon's "This is a bot account", Bluesky's
+profile text) and link the repository from them. Nothing here posts to Hacker
+News, Reddit or anyone else's list: those forbid or punish automated
+submissions, and a post there is a person's decision every time.
+
 ## Development
 
 ```bash
@@ -171,6 +196,7 @@ uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
 uv run freetier-render            # regenerate README.md + index.json + feed.xml + configs/
 uv run freetier-check             # validate the curated files against each other
+uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
