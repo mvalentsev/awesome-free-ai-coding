@@ -69,9 +69,12 @@ jobs:
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           MASTODON_BASE_URL: ${{ vars.MASTODON_BASE_URL }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
         run: |
           uv run freetier-announce --history history.jsonl --registry registry.yaml --ledger announced.jsonl
-          git add announced.jsonl
+          # The ledger exists only once something was posted; `git add` on a
+          # missing path is an error, and an empty ledger is not worth a commit.
+          [ -f announced.jsonl ] && git add announced.jsonl
           git diff --staged --quiet || git commit -m "chore: announcements $(date -u +%F)"
           git push
 

@@ -19,6 +19,7 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "
            "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
+           "picks",
            "render_readme", "render_artifacts", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
@@ -250,6 +251,12 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
         "claude_code": [_pick(e) for e in ranked
                         if e.api and e.api.anthropic_base_url][:README_PICKS],
     }
+
+
+def picks(entries: list[Entry], today: date) -> dict[str, list[dict]]:
+    """The README's "I want…" answers, for anything else that publishes them."""
+    active = [e for e in entries if not is_archived(e, today)]
+    return _picks(active, _connectable(entries, today))
 
 
 def _quickstart(connectable: list[Entry]) -> dict | None:

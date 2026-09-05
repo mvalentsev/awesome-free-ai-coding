@@ -182,6 +182,7 @@ prints "no channel configured" and exits 0:
 |---|---|---|
 | Bluesky | `BLUESKY_HANDLE` — the account, e.g. `freetier-radar.bsky.social` | `BLUESKY_APP_PASSWORD` — an app password, not the account password |
 | Mastodon | `MASTODON_BASE_URL` — the instance, e.g. `https://fosstodon.org` | `MASTODON_ACCESS_TOKEN` — an application token with `write:statuses` |
+| Dev.to | — | `DEVTO_API_KEY` — from Settings → Extensions; publishes **one article a month**, the whole list plus what changed last month, on the first run of each month |
 
 Mark the accounts as automated (Mastodon's "This is a bot account", Bluesky's
 profile text) and link the repository from them. Nothing here posts to Hacker

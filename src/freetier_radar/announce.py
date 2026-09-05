@@ -30,12 +30,12 @@ from pathlib import Path
 import httpx
 
 from .history import Event, EventType, load_history
-from .models import Entry, load_registry
-from .render import REPO_URL, provider_page_url
+from .models import Entry, is_archived, live_families, load_registry
+from .render import CATEGORY_TITLES, PAGES_URL, REPO_URL, picks, provider_page_url
 
-__all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon",
-           "channels_from_env", "compose", "event_key", "link_facets", "load_ledger",
-           "append_ledger", "select", "run", "main"]
+__all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
+           "channels_from_env", "devto_from_env", "compose", "event_key", "link_facets",
+           "load_ledger", "append_ledger", "select", "build_digest", "digest_key", "run", "main"]
 
 # Older than this and an event is news to nobody: a channel switched on late
 # starts from the last two runs, not from the first line of the log.
@@ -156,6 +156,113 @@ class Mastodon:
         return data.get("url") or data.get("uri") or ""
 
 
+DEVTO_API = "https://dev.to/api/articles"
+# Dev.to takes four tags at most; these are the ones its readers follow.
+DIGEST_TAGS = ["ai", "llm", "opensource", "free"]
+PAGE_LABELS_PLAIN: dict[EventType, str] = {
+    EventType.ADDED: "Added", EventType.ARCHIVED: "Archived", EventType.RESTORED: "Restored",
+    EventType.REMOVED: "Delisted", EventType.MODELS: "Free models changed",
+}
+
+
+@dataclass
+class DevTo:
+    """One article a month, not one per event: Dev.to is read as a blog, and a
+    blog that posts a line every time a model rotates is one nobody follows.
+    The article is the whole list in the registry's own words plus what changed
+    last month, which is what a search for "free llm api <month> <year>" wants."""
+    api_key: str
+    name: str = "devto"
+
+    def publish(self, client: httpx.Client, title: str, body_markdown: str) -> str:
+        r = client.post(DEVTO_API,
+                        headers={"api-key": self.api_key, "Content-Type": "application/json"},
+                        json={"article": {"title": title, "body_markdown": body_markdown,
+                                          "published": True, "tags": DIGEST_TAGS,
+                                          "series": "Free LLM radar"}},
+                        timeout=TIMEOUT)
+        r.raise_for_status()
+        return r.json().get("url", "")
+
+
+def devto_from_env(env: dict) -> DevTo | None:
+    return DevTo(env["DEVTO_API_KEY"]) if env.get("DEVTO_API_KEY") else None
+
+
+def digest_key(today) -> str:
+    return f"digest|{today:%Y-%m}"
+
+
+def _previous_month(today):
+    first = today.replace(day=1)
+    return (first - timedelta(days=1)).replace(day=1), first
+
+
+def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str, str]:
+    """Title and Markdown for the month: the state of the list, what changed
+    last month, every live row with its page. Generated, like the README it
+    summarises, so it never names an offer the list stopped backing."""
+    active = [e for e in entries if not is_archived(e, today)]
+    start, end = _previous_month(today)
+    changed = [ev for ev in events if start <= ev.ts.date() < end]
+    no_card = sum(1 for e in active if not e.card_required)
+    title = (f"Free LLM APIs and coding agents, {today:%B %Y}: {len(active)} verified offers, "
+             f"{no_card} without a card")
+    out = [
+        f"*Generated on {today.isoformat()} from [a registry]({REPO_URL}) that a live probe "
+        f"re-verifies twice a week. Every offer below passed its probe; the ones that stopped "
+        f"passing are in the archive, not here. Each name links to the row's own page with the "
+        f"vendor's words, the connection details and the evidence.*",
+        "",
+        f"**{len(active)} live offers · {no_card} ask for no card · one page each at "
+        f"{PAGES_URL}/providers/**",
+        "",
+        "## Pick by what you need", "",
+        "| I want… | Start with |", "|---|---|",
+    ]
+    by_name = {e.name: provider_page_url(e.id) for e in entries}
+    def names(rows):
+        return " · ".join(f"[{r['name']}]({by_name.get(r['name'], r['url'])})"
+                          + ("".join(f" `{f}`" for f in r["families"]) if r.get("families") else "")
+                          for r in rows)
+    p = picks(entries, today)
+    for label, key in (("Frontier-tier models on a $0 plan", "frontier"),
+                       ("An API key that gets the most done for free", "apis"),
+                       ("One key, many free models", "aggregators"),
+                       ("No account at all", "keyless"),
+                       ("A trial that asks for no card", "trials"),
+                       ("Claude Code on a free lane", "claude_code")):
+        if p.get(key):
+            out.append(f"| **{label}** | {names(p[key])} |")
+    out += ["", f"## What changed in {start:%B}", ""]
+    if changed:
+        for ev in changed:
+            line = f"- `{ev.ts.date().isoformat()}` — {PAGE_LABELS_PLAIN[ev.event]}: **{ev.name}**"
+            if ev.detail:
+                line += f" — {ev.detail}"
+            elif ev.models:
+                line += " — " + ", ".join(ev.models)
+            out.append(line)
+    else:
+        out.append("Nothing moved: every row that was live is still live, and none changed its models.")
+    out += ["", "## Every live offer", ""]
+    for cat, cat_title in CATEGORY_TITLES.items():
+        rows = sorted((e for e in active if e.category is cat), key=lambda e: (e.rank, e.name.lower()))
+        if not rows:
+            continue
+        out += [f"### {cat_title}", "", "| Offer | Free models | Card | Verified |", "|---|---|---|---|"]
+        for e in rows:
+            fams = ", ".join(f"`{f}`" for f in live_families(e)) or "—"
+            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {fams} | "
+                       f"{'yes' if e.card_required else 'no'} | {e.last_verified.isoformat()} |")
+        out.append("")
+    out += ["---", "",
+            f"The list, the probes, the Atom feed and the generated configs (opencode, LiteLLM, "
+            f"Claude Code) are at {REPO_URL}. Know a legal free tier that is missing? Open an issue "
+            f"there — it will be probed like everything else.", ""]
+    return title, "\n".join(out)
+
+
 def channels_from_env(env: dict) -> list:
     """A channel exists when both halves of its credentials do; half a
     credential is a typo, and a typo must not read as "nothing configured"
@@ -209,18 +316,33 @@ def run(history_path: Path, registry_path: Path, ledger_path: Path, env: dict,
         client: httpx.Client | None = None) -> list[dict]:
     """Post what is due on every configured channel; return the ledger rows written."""
     now = now or datetime.now(timezone.utc)
-    channels = channels_from_env(env)
-    if not channels:
+    channels, devto = channels_from_env(env), devto_from_env(env)
+    if not channels and devto is None:
         print("announce: no channel configured (BLUESKY_HANDLE + BLUESKY_APP_PASSWORD, "
-              "MASTODON_BASE_URL + MASTODON_ACCESS_TOKEN) — nothing to post")
+              "MASTODON_BASE_URL + MASTODON_ACCESS_TOKEN, DEVTO_API_KEY) — nothing to post")
         return []
     events = load_history(history_path)
-    entries_by_id = {e.id: e for e in load_registry(registry_path)}
+    entries = load_registry(registry_path)
+    entries_by_id = {e.id: e for e in entries}
     done = load_ledger(ledger_path)
+    stamp = now.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
     own = client is None
     client = client or httpx.Client(headers=UA)
     rows: list[dict] = []
     try:
+        today = now.astimezone(timezone.utc).date()
+        if devto is not None and (digest_key(today), devto.name) not in done:
+            title, body = build_digest(entries, events, today)
+            if dry_run:
+                print(f"announce [devto] would publish: {title}\n{body[:600]}\n")
+            else:
+                try:
+                    where = devto.publish(client, title, body)
+                    rows.append({"key": digest_key(today), "channel": devto.name, "ts": stamp,
+                                 "where": where})
+                    print(f"announce [devto] published: {where}")
+                except httpx.HTTPError as exc:
+                    print(f"::warning::announce [devto] failed: {exc}")
         for channel in channels:
             for ev in select(events, done, channel.name, now):
                 key, text = event_key(ev), compose(ev, entries_by_id)
@@ -235,9 +357,7 @@ def run(history_path: Path, registry_path: Path, ledger_path: Path, env: dict,
                     # for as long as it is recent enough to be worth saying.
                     print(f"::warning::announce [{channel.name}] failed for {ev.id}: {exc}")
                     continue
-                row = {"key": key, "channel": channel.name,
-                       "ts": now.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
-                       "where": where}
+                row = {"key": key, "channel": channel.name, "ts": stamp, "where": where}
                 rows.append(row)
                 print(f"announce [{channel.name}] posted {ev.event.value} {ev.id}: {where}")
     finally:

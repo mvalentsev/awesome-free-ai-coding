@@ -156,3 +156,66 @@ def test_channels_need_both_halves_of_their_credentials():
     assert [c.name for c in channels_from_env({"MASTODON_BASE_URL": "https://m.example", "MASTODON_ACCESS_TOKEN": "t"})] == ["mastodon"]
     assert isinstance(channels_from_env({"BLUESKY_HANDLE": "h", "BLUESKY_APP_PASSWORD": "p"})[0], Bluesky)
     assert isinstance(channels_from_env({"MASTODON_BASE_URL": "https://m.example", "MASTODON_ACCESS_TOKEN": "t"})[0], Mastodon)
+
+
+def _digest_fixture(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg, hist, ledger = tmp_path / "registry.yaml", tmp_path / "history.jsonl", tmp_path / "announced.jsonl"
+    save_registry(reg, [entry(rank=1), entry(id="y", name="Y", category="aggregator", rank=2),
+                        entry(id="dead", name="Dead", probe_failures=3)])
+    append_history(hist, [
+        event(EventType.ADDED, ts=datetime(2026, 8, 20, tzinfo=timezone.utc)),
+        event(EventType.ARCHIVED, ts=datetime(2026, 8, 28, tzinfo=timezone.utc), id="dead",
+              name="Dead", detail="3 failed probes"),
+        # July is not "last month" on a September run
+        event(EventType.ADDED, ts=datetime(2026, 7, 3, tzinfo=timezone.utc), id="y", name="Y"),
+    ])
+    return reg, hist, ledger
+
+
+def test_the_monthly_digest_is_the_list_in_one_article(tmp_path: Path):
+    """One article a month on a site with readers and a search rank: the state
+    of the list, what changed last month, every live row with its page. Built
+    from the registry, so it can never name an offer the list stopped backing."""
+    from freetier_radar.announce import build_digest
+    from freetier_radar.history import load_history
+    from freetier_radar.models import load_registry
+    reg, hist, _ = _digest_fixture(tmp_path)
+    title, body = build_digest(load_registry(reg), load_history(hist), TODAY)
+    assert "September 2026" in title and "2 verified" in title
+    assert "## What changed in August" in body
+    assert "Archived" in body and "Dead" in body and "3 failed probes" in body
+    assert body.index("## What changed in August") < body.index("## Every live offer")
+    assert PAGE + "x/" in body and PAGE + "y/" in body
+    # the archived row is history, not an offer
+    live = body.split("## Every live offer")[1]
+    assert "Dead" not in live
+    assert "github.com/mvalentsev/awesome-free-ai-coding" in body
+
+
+@respx.mock
+def test_the_digest_goes_out_once_a_month_and_the_ledger_remembers(tmp_path: Path):
+    from freetier_radar.announce import digest_key
+    reg, hist, ledger = _digest_fixture(tmp_path)
+    article = respx.post("https://dev.to/api/articles").mock(
+        return_value=httpx.Response(201, json={"url": "https://dev.to/radar/free-llm-apis-sept-2026"}))
+    env = {"DEVTO_API_KEY": "k"}
+    posted = run(hist, reg, ledger, env=env, now=NOW)
+    assert [p["channel"] for p in posted] == ["devto"] and posted[0]["key"] == digest_key(TODAY)
+    import json
+    sent = json.loads(article.calls[0].request.content)["article"]
+    assert sent["published"] is True and "September 2026" in sent["title"] and sent["tags"]
+    assert article.calls[0].request.headers["api-key"] == "k"
+    # same month, nothing more; next month, a new one
+    assert run(hist, reg, ledger, env=env, now=NOW) == []
+    october = datetime(2026, 10, 5, tzinfo=timezone.utc)
+    assert [p["key"] for p in run(hist, reg, ledger, env=env, now=october)] == ["digest|2026-10"]
+
+
+@respx.mock
+def test_a_dry_run_prints_the_digest_and_sends_nothing(tmp_path: Path, capsys):
+    reg, hist, ledger = _digest_fixture(tmp_path)
+    route = respx.post(url__regex=r".*").mock(return_value=httpx.Response(201, json={}))
+    assert run(hist, reg, ledger, env={"DEVTO_API_KEY": "k"}, now=NOW, dry_run=True) == []
+    assert not route.called and not ledger.exists()
+    assert "September 2026" in capsys.readouterr().out
