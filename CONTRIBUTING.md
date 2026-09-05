@@ -146,6 +146,15 @@ News, GitHub search, curated feeds, and a digest of every models.dev provider th
 publishes a zero-cost model → LLM extraction → live probe gate) proposes new entries
 via pull request. Humans review the PR; robots do everything else.
 
+`providers/` is generated with it: one page per row on the GitHub Pages site,
+in the row's own words, with the evidence the probe reads and the row's history,
+plus an index — the "Last verified" date in every README row links to it. The
+pages exist for the reader who arrives from a search about one vendor, so their
+titles name the vendor, the tier and the date; `_config.yml` names the site so
+Jekyll writes canonical URLs and a sitemap. **Never edit them by hand** — the
+render deletes the page of a row that leaves and rewrites the rest, and the body
+sits inside `{% raw %}` so a vendor's own sentence can never break the build.
+
 Every change to what the list publishes — a row arriving, dropping to the
 Archive, being delisted, or changing its free models — is appended to
 [`history.jsonl`](history.jsonl) by those same two commands and published as an

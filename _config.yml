@@ -1,0 +1,24 @@
+# GitHub Pages builds this repository with Jekyll (the README is served at the
+# root by jekyll-readme-index). This file names the site so jekyll-seo-tag can
+# write canonical URLs and jekyll-sitemap a sitemap, gives every generated
+# provider page the theme's layout, and keeps the source tree off the site.
+title: awesome-free-ai-coding
+description: "Legal free LLM APIs & coding agents — self-updating, probe-verified twice a week. Free tiers, no-card trials, free models, one page per provider."
+url: https://mvalentsev.github.io
+baseurl: /awesome-free-ai-coding
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-readme-index
+  - jekyll-optional-front-matter
+  - jekyll-relative-links
+exclude:
+  - src
+  - tests
+  - templates
+  - pyproject.toml
+  - uv.lock
+  - assets/README.md
+  - .github
+  - .gitignore

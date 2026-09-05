@@ -9,15 +9,16 @@ from xml.sax.saxutils import escape, quoteattr
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-from .history import Event, EventType, load_history
+from .history import Event, EventType, archive_reason, load_history
 from .models import (ARCHIVE_AFTER_DAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category,
-                     Entry, Tier, Watched, is_archived, is_watch_current, live_families,
-                     load_registry, load_watchlist)
+                     Entry, ProbeType, Tier, Watched, domain_of, is_archived, is_watch_current,
+                     live_families, load_registry, load_watchlist)
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "README_PICKS",
            "README_STARTERS",
            "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
+           "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
            "render_readme", "render_artifacts", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
@@ -34,6 +35,12 @@ REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
 # baked into the feed's own <id> and <link rel="self">, so it cannot be changed
 # later without breaking every subscription that ever read it.
 FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
+# The Pages site the feed lives on, and where each row gets a page of its own.
+# A reader arrives from a search with a question about one vendor — "groq free
+# tier limits" — and a README row is not a URL. The pages are generated from the
+# same registry, so a page can never outlive its row or say what the row does not.
+PAGES_URL = "https://mvalentsev.github.io/awesome-free-ai-coding"
+PROVIDERS_DIR = "providers"
 FEED_ENTRIES = 50
 README_CHANGES = 10
 # Where a prose cell stops showing and starts folding. The teaser is a cut at a
@@ -106,11 +113,16 @@ def _fold(text: str, teaser_at: int, collapse_over: int, small: bool = False) ->
             f"{open_}{text}{close}</details>")
 
 
+def provider_page_url(entry_id: str) -> str:
+    return f"{PAGES_URL}/{PROVIDERS_DIR}/{entry_id}/"
+
+
 def _row(e: Entry) -> dict[str, str]:
     fams = _families(e)
     return {
         "name": e.name,
         "url": e.url,
+        "page": provider_page_url(e.id),
         "offering": _fold(e.offering, README_OFFERING_TEASER, README_OFFERING_COLLAPSE),
         "limits": (_fold(e.limits, README_LIMITS_TEASER, README_LIMITS_COLLAPSE, small=True)
                    if e.limits else "<sub>—</sub>"),
@@ -428,7 +440,8 @@ def build_context(entries: list[Entry], today: date,
             # nothing, which left "did anything change?" answerable only from
             # git log.
             "changes": _change_rows(history or []),
-            "feed_url": FEED_URL}
+            "feed_url": FEED_URL,
+            "pages_url": PAGES_URL}
 
 
 def build_index(entries: list[Entry], today: date,
@@ -438,7 +451,8 @@ def build_index(entries: list[Entry], today: date,
         "source": REPO_URL,
         "feed": FEED_URL,
         "entries": [
-            {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today)}
+            {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today),
+             "page": provider_page_url(e.id)}
             for e in entries
         ],
         # Additive: a consumer reading .entries is unaffected. Here because
@@ -571,6 +585,160 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
     return "\n".join(lines)
 
 
+PAGE_LABELS: dict[EventType, str] = {
+    EventType.ADDED: "Added to the list",
+    EventType.ARCHIVED: "Archived",
+    EventType.RESTORED: "Restored",
+    EventType.REMOVED: "Delisted",
+    EventType.MODELS: "Free models changed",
+}
+
+
+def _front_matter(fields: dict) -> str:
+    """Jekyll front matter, dumped rather than typed: a title with a colon or a
+    quote in it is the normal case for a vendor name."""
+    return "---\n" + yaml.safe_dump(fields, allow_unicode=True, sort_keys=False,
+                                    width=10000).rstrip() + "\n---\n"
+
+
+def _page_description(e: Entry) -> str:
+    """The <meta> description: the offer first, then the figures, cut at a word."""
+    offer = e.offering.strip()
+    if offer and offer[-1] not in ".!?":
+        offer += "."
+    text = " ".join(f"{offer} {e.limits}".split())
+    return text if len(text) <= 300 else text[:297].rsplit(" ", 1)[0] + "…"
+
+
+def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
+    """One page per row on the Pages site, in the row's own words.
+
+    It exists for the reader who arrives with a question about one vendor and
+    for the crawler that indexes that question: a title that names the vendor,
+    the tier and the date, a description that carries the figures, and a body
+    that is the row — offer, models, limits quoted from the vendor, connection
+    details, the evidence the probe reads, the row's history. Nothing here is
+    typed; it is rendered from the registry and the history on every run, and
+    `render_artifacts` deletes the page of a row that leaves.
+
+    The body sits inside {% raw %}: GitHub Pages builds this with Jekyll, and
+    a vendor sentence with two braces in it would otherwise fail the whole
+    site's build, quietly, with the previous deploy still serving.
+    """
+    archived = is_archived(e, today)
+    verified = e.last_verified.isoformat()
+    if archived:
+        title = f"{e.name} free tier (archived): what it offered, and when it stopped verifying"
+    else:
+        title = f"{e.name} free tier: limits, free models, verified {verified}"
+    out = [_front_matter({"layout": "default", "title": title,
+                          "description": _page_description(e),
+                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/"}),
+           "{% raw %}", "", f"# {e.name}", ""]
+    flags = [CATEGORY_TITLES[e.category]]
+    flags.append("card required" if e.card_required else "no card")
+    if e.provisional:
+        flags.append("provisional — added recently, two weeks of probes still to pass")
+    if archived:
+        flags.append(f"**archived** — {archive_reason(e, today)}")
+    else:
+        flags.append(f"**live** — last verified by a probe on {verified}")
+    out.append(" · ".join(flags) + f" · [{domain_of(e.url)}]({e.url}) · "
+               f"[back to the whole list]({PAGES_URL}/)")
+    out += ["", "## What you get", "", e.offering, ""]
+    fams = live_families(e)
+    out += ["## Free models", "",
+            (", ".join(f"`{f}`" for f in fams) if fams
+             else "The page this row is verified against names no free model, so the column stays "
+                  "empty; callable ids, where the row has them, are under Connect."), ""]
+    out += ["## Limits, in the vendor's words", "",
+            e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
+    out += ["## Connect", ""]
+    if e.api and e.api.base_url:
+        out.append(f"- Base URL: `{e.api.base_url}`"
+                   + ("" if e.api.openai_compatible else " (not OpenAI-shaped)"))
+        if e.api.auth == "none":
+            out.append("- Key: none — the lane is anonymous")
+        else:
+            key = f"- Key: `{env_var(e.id)}`"
+            if e.api.key_url:
+                key += f" — get one at <{e.api.key_url}>"
+            out.append(key)
+        if e.api.anthropic_base_url:
+            out.append(f"- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): "
+                       f"`{e.api.anthropic_base_url}`")
+        if e.api.model_ids:
+            out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in e.api.model_ids))
+        if e.api.note:
+            out.append(f"- Note: {e.api.note}")
+    else:
+        out.append("No API endpoint to paste: this row is a tool you install or sign in to.")
+    out += ["", "## Evidence", ""]
+    probe = e.probe
+    if probe.type is ProbeType.API_MODELS:
+        how = f"- Probe: the models catalog at <{probe.endpoint}>"
+        if probe.free_marker:
+            how += f", free rows carrying `{probe.free_marker}`"
+        if probe.require_zero_price:
+            how += ", every listed family required at a zero price"
+    else:
+        how = f"- Probe: the page at <{probe.endpoint}>, anchored on " + ", ".join(
+            f"`{k}`" for k in probe.keywords)
+        if probe.catalog:
+            how += f"; ids checked in <{probe.catalog}>"
+    out.append(how)
+    for u in e.source_urls:
+        out.append(f"- Source: <{u}>")
+    out += ["", "## History", ""]
+    own = [ev for ev in events if ev.id == e.id]
+    if own:
+        for ev in reversed(own):
+            line = f"- `{ev.ts.date().isoformat()}` — {PAGE_LABELS[ev.event]}"
+            if ev.detail:
+                line += f": {ev.detail}"
+            elif ev.models:
+                line += ": " + ", ".join(ev.models)
+            out.append(line)
+    else:
+        out.append("No recorded event yet — the first scheduled run after a row lands writes its "
+                   "`added` line.")
+    out += ["", "---", "",
+            f"Generated from `registry.yaml` on {today.isoformat()} and re-verified twice a week; "
+            f"the full list, the Atom feed and the machinery are at <{REPO_URL}>.",
+            "", "{% endraw %}", ""]
+    return "\n".join(out)
+
+
+def build_providers_index(entries: list[Entry], today: date) -> str:
+    """The page that links every provider page — live rows first, in section
+    order, the archive after — so a crawler that lands anywhere finds the rest."""
+    out = [_front_matter({"layout": "default",
+                          "title": "Every free LLM API and coding agent on the list, with its evidence",
+                          "description": "One page per provider: the free tier in the vendor's own "
+                                         "words, connection details, the evidence a live probe reads "
+                                         "twice a week, and the row's history.",
+                          "permalink": f"/{PROVIDERS_DIR}/"}),
+           "{% raw %}", "", "# Every provider, one page each", "",
+           f"Each page is generated from the same registry as [the list]({PAGES_URL}/) and "
+           "re-verified twice a week.", ""]
+    live = [e for e in entries if not is_archived(e, today)]
+    archived = [e for e in entries if is_archived(e, today)]
+    out += ["| Provider | Section | Free models | Last verified |", "|---|---|---|---|"]
+    for cat, title in CATEGORY_TITLES.items():
+        for e in sorted((e for e in live if e.category is cat),
+                        key=lambda e: (e.rank, e.name.lower())):
+            fams = ", ".join(f"`{f}`" for f in live_families(e)) or "—"
+            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {title} | {fams} "
+                       f"| `{e.last_verified.isoformat()}` |")
+    if archived:
+        out += ["", "## Archived", "", "| Provider | Last verified | Why |", "|---|---|---|"]
+        for e in sorted(archived, key=lambda e: e.name.lower()):
+            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | `{e.last_verified.isoformat()}` "
+                       f"| {archive_reason(e, today)} |")
+    out += ["", "{% endraw %}", ""]
+    return "\n".join(out)
+
+
 def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[Watched]:
     """The watchlist that belongs to this registry — its sibling unless told
     otherwise. Missing file means an empty list, so a caller that has no
@@ -609,8 +777,22 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     today = today or date.today()
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
-    (root / "feed.xml").write_text(
-        build_feed(_history_beside(registry_path), today), encoding="utf-8")
+    history = _history_beside(registry_path)
+    (root / "feed.xml").write_text(build_feed(history, today), encoding="utf-8")
+    # A page per row, and the page of a row that left goes with it: only the
+    # .md files this function wrote are ever removed, so a stray file someone
+    # drops in the directory is not this function's to delete.
+    providers = root / PROVIDERS_DIR
+    providers.mkdir(parents=True, exist_ok=True)
+    wanted = {"index.md"}
+    for e in entries:
+        (providers / f"{e.id}.md").write_text(build_provider_page(e, history, today),
+                                              encoding="utf-8")
+        wanted.add(f"{e.id}.md")
+    (providers / "index.md").write_text(build_providers_index(entries, today), encoding="utf-8")
+    for stale in providers.glob("*.md"):
+        if stale.name not in wanted:
+            stale.unlink()
     (root / "index.json").write_text(
         json.dumps(build_index(entries, today, watchlist), indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
@@ -644,4 +826,4 @@ def main() -> None:
     render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
     render_artifacts(args.registry, args.out.parent if args.out.parent != Path("") else Path("."),
                      watchlist_path=args.watchlist)
-    print(f"rendered {args.out}, index.json, feed.xml, configs/")
+    print(f"rendered {args.out}, index.json, feed.xml, configs/, {PROVIDERS_DIR}/")

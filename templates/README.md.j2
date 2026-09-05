@@ -73,7 +73,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links to the row's own page with the evidence and its history.</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
@@ -82,7 +82,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 
 | Tool | What you get | Free models | Limits | Last verified |
 |---|---|---|---|---|
-{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | `{{ r.verified }}` |
+{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | [`{{ r.verified }}`]({{ r.page }}) |
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}
@@ -125,7 +125,7 @@ _Nothing verified right now._
 
 | Tool | Last verified |
 |---|---|
-{% for r in archived %}| [{{ r.name }}]({{ r.url }}) | `{{ r.verified }}` |
+{% for r in archived %}| [{{ r.name }}]({{ r.url }}) | [`{{ r.verified }}`]({{ r.page }}) |
 {% endfor %}
 
 {% else %}
@@ -171,6 +171,7 @@ Ready-made artifacts, regenerated on every update:
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint |
 | [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
 | [`history.jsonl`](history.jsonl) · [feed]({{ feed_url }}) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |
+| [provider pages]({{ pages_url }}/providers/) | One page per row — the free tier in the vendor's own words, the connection details, the evidence the probe reads and the row's history — regenerated with this README |
 
 ## 📡 How this list stays fresh
 

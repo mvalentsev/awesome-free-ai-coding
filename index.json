@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-05",
+  "generated": "2026-09-06",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -71,7 +71,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/"
     },
     {
       "id": "google-ai-studio",
@@ -126,7 +127,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/"
     },
     {
       "id": "groq-free",
@@ -186,7 +188,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"
     },
     {
       "id": "cerebras-free",
@@ -240,7 +243,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 35,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/"
     },
     {
       "id": "mistral-free",
@@ -278,7 +282,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/"
     },
     {
       "id": "github-models",
@@ -322,7 +327,8 @@
       "probe_failures": 1,
       "provisional": false,
       "rank": 80,
-      "archived": true
+      "archived": true,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/"
     },
     {
       "id": "cloudflare-workers-ai",
@@ -367,7 +373,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/"
     },
     {
       "id": "ollama-cloud",
@@ -410,7 +417,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/"
     },
     {
       "id": "opencode",
@@ -488,7 +496,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/"
     },
     {
       "id": "kilo-code",
@@ -576,7 +585,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
     },
     {
       "id": "trae",
@@ -606,7 +616,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/"
     },
     {
       "id": "windsurf",
@@ -641,7 +652,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/"
     },
     {
       "id": "mimo-code",
@@ -680,7 +692,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": true
+      "archived": true,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/"
     },
     {
       "id": "github-copilot-free",
@@ -711,7 +724,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/"
     },
     {
       "id": "google-jules",
@@ -747,7 +761,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/"
     },
     {
       "id": "kiro",
@@ -799,7 +814,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/"
     },
     {
       "id": "cursor-hobby",
@@ -831,7 +847,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/"
     },
     {
       "id": "openai-codex-cli",
@@ -867,7 +884,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/"
     },
     {
       "id": "nvidia-nim",
@@ -913,7 +931,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/"
     },
     {
       "id": "zai-glm",
@@ -970,7 +989,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/"
     },
     {
       "id": "ovh-ai-endpoints",
@@ -1026,7 +1046,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/"
     },
     {
       "id": "pollinations",
@@ -1070,7 +1091,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/"
     },
     {
       "id": "alibaba-model-studio",
@@ -1119,7 +1141,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/"
     },
     {
       "id": "scaleway-generative",
@@ -1157,7 +1180,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/"
     },
     {
       "id": "huggingface-inference",
@@ -1195,7 +1219,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/"
     },
     {
       "id": "upstage",
@@ -1244,7 +1269,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/"
     },
     {
       "id": "cohere",
@@ -1299,7 +1325,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 75,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/"
     },
     {
       "id": "qoder",
@@ -1329,7 +1356,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/"
     },
     {
       "id": "charm-hyper",
@@ -1360,7 +1388,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/"
     },
     {
       "id": "vercel-ai-gateway",
@@ -1412,7 +1441,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/"
     },
     {
       "id": "bazaarlink",
@@ -1457,7 +1487,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/"
     },
     {
       "id": "tokenrouter",
@@ -1501,7 +1532,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 70,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/"
     },
     {
       "id": "sambanova-cloud",
@@ -1561,7 +1593,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/"
     },
     {
       "id": "routeway",
@@ -1603,7 +1636,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/"
     },
     {
       "id": "requesty",
@@ -1676,7 +1710,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/"
     },
     {
       "id": "antigravity",
@@ -1746,7 +1781,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 25,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/"
     },
     {
       "id": "sea-lion",
@@ -1788,7 +1824,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/"
     },
     {
       "id": "ai21-labs",
@@ -1847,7 +1884,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
-      "archived": true
+      "archived": true,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/"
     },
     {
       "id": "codegpt",
@@ -1877,7 +1915,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/"
     },
     {
       "id": "aihubmix",
@@ -1995,7 +2034,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/"
     },
     {
       "id": "inception-labs",
@@ -2049,7 +2089,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/"
     },
     {
       "id": "poolside",
@@ -2091,7 +2132,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/"
     },
     {
       "id": "sensenova",
@@ -2129,7 +2171,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/"
     },
     {
       "id": "hetzner-inference",
@@ -2183,7 +2226,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/"
     },
     {
       "id": "uncloseai",
@@ -2219,7 +2263,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 97,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/"
     },
     {
       "id": "regolo",
@@ -2292,7 +2337,8 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 75,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/"
     },
     {
       "id": "freebuff",
@@ -2344,7 +2390,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 28,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"
     },
     {
       "id": "meganova",
@@ -2403,7 +2450,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 85,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/"
     },
     {
       "id": "llmtr",
@@ -2476,7 +2524,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 45,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
     },
     {
       "id": "kenari",
@@ -2550,7 +2599,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 55,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/"
     },
     {
       "id": "infomaniak-ai",
@@ -2589,7 +2639,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 85,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/"
     },
     {
       "id": "qodo",
@@ -2619,7 +2670,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 85,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/"
     },
     {
       "id": "codebuddy",
@@ -2652,7 +2704,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 65,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/"
     },
     {
       "id": "freeinference",
@@ -2724,7 +2777,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 91,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/"
     },
     {
       "id": "opentyphoon",
@@ -2767,7 +2821,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 86,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/"
     },
     {
       "id": "ibm-watsonx-ai",
@@ -2807,7 +2862,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 98,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"
     },
     {
       "id": "sarvam",
@@ -2866,7 +2922,8 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 88,
-      "archived": false
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/"
     }
   ],
   "watchlist": [

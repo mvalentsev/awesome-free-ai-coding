@@ -2,7 +2,9 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from xml.etree import ElementTree
 
-from freetier_radar.history import Event
+import yaml
+
+from freetier_radar.history import Event, EventType
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
     ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, README_LIMITS_TEASER,
@@ -635,3 +637,73 @@ def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_pat
     assert "`https://one.example`" in plug and "claude-code.sh" in plug
     render_artifacts(reg, tmp_path, today=TODAY)
     assert "claude-gw-one()" in (tmp_path / "configs" / "claude-code.sh").read_text(encoding="utf-8")
+
+
+def test_a_provider_page_carries_the_evidence_and_the_history():
+    """Search lands on a question — "groq free tier limits" — not on a list of
+    fifty rows. A page per provider answers it with the row's own fields, the
+    evidence the probe reads and the row's history, and it is generated, so it
+    can never say something the registry stopped backing."""
+    from freetier_radar.render import build_provider_page, provider_page_url
+    e = make(id="groq-free", name="Groq", limits="30 req/min on the free plan",
+             source_urls=["https://x.ai/docs/limits"],
+             models=[{"family": "llama-3.3"}, {"family": "old", "superseded_by": "new"}],
+             api={"base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",
+                  "model_ids": ["llama-3.3-70b"], "anthropic_base_url": "https://x.ai/anthropic",
+                  "note": "ids are case-sensitive"})
+    events = [Event(ts=datetime(2026, 7, 1, tzinfo=timezone.utc), event=EventType.ADDED,
+                    id="groq-free", name="Groq", url="https://x.ai", models=["llama-3.3"],
+                    detail="stuff"),
+              Event(ts=datetime(2026, 7, 2, tzinfo=timezone.utc), event=EventType.ADDED,
+                    id="other", name="Other", url="https://o.ai")]
+    page = build_provider_page(e, events, TODAY)
+    front = yaml.safe_load(page.split("---\n")[1])
+    assert front["permalink"] == "/providers/groq-free/"
+    assert "Groq" in front["title"] and "2026-07-19" in front["title"]
+    assert "30 req/min" in front["description"]
+    # Liquid never sees the vendor's words: a "{{" in a quote cannot break the build
+    body = page.split("{% raw %}")[1].split("{% endraw %}")[0]
+    assert "30 req/min on the free plan" in body
+    assert "`llama-3.3`" in body and "`old`" not in body
+    assert "https://api.x.ai/v1" in body and "GROQ_API_KEY" in body and "https://x.ai/keys" in body
+    assert "https://x.ai/anthropic" in body and "llama-3.3-70b" in body and "case-sensitive" in body
+    assert "https://x.ai/docs/limits" in body and "https://x.ai" in body
+    assert "2026-07-01" in body and "stuff" in body and "Other" not in body
+    assert provider_page_url("groq-free") == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"
+
+
+def test_an_archived_provider_page_says_so_and_why():
+    from freetier_radar.render import build_provider_page
+    page = build_provider_page(make(id="dead", name="Dead", probe_failures=3), [], TODAY)
+    front = yaml.safe_load(page.split("---\n")[1])
+    assert "archived" in front["title"].lower()
+    assert "3 failed probes" in page
+
+
+def test_render_writes_a_page_per_entry_and_removes_the_stale_ones(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="b", name="B"), make(id="a", name="A", probe_failures=3)])
+    providers = tmp_path / "providers"
+    providers.mkdir()
+    (providers / "gone.md").write_text("a row that left the registry", encoding="utf-8")
+    (providers / "notes.txt").write_text("not ours", encoding="utf-8")
+    render_artifacts(reg, tmp_path, today=TODAY)
+    assert sorted(p.name for p in providers.iterdir()) == ["a.md", "b.md", "index.md", "notes.txt"]
+    index = (providers / "index.md").read_text(encoding="utf-8")
+    assert yaml.safe_load(index.split("---\n")[1])["permalink"] == "/providers/"
+    assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/b/" in index
+    # live rows first, the archive after
+    assert index.index("[B]") < index.index("[A]")
+
+
+def test_the_readme_dates_link_to_the_provider_pages(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="x", name="X"), make(id="gone", name="Gone", probe_failures=3)])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "[`2026-07-19`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/)" in text
+    assert "[`2026-07-19`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in text
+    assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/" in text
+    index = build_index([make()], TODAY)
+    assert index["entries"][0]["page"] == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/"
