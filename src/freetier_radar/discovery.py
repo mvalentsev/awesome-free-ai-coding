@@ -108,7 +108,8 @@ MODELS_DEV_URL = "https://models.dev/api.json"
 MODELS_DEV_MAX_PROVIDERS = 50
 MODELS_DEV_CAVEAT = (
     "PROVIDERS ON models.dev PUBLISHING AT LEAST ONE MODEL AT COST 0, excluding every domain "
-    "already carried in the registry. A zero in this catalog is a lead and not evidence of a "
+    "the registry, the watchlist or the blocklist already answers. A zero in this catalog is a "
+    "lead and not evidence of a "
     "free tier: it also reads zero when the usage is included in a paid subscription (which is "
     "what every *-coding-plan and *-token-plan row is) and when the vendor quotes a currency "
     "the catalog could not parse (kenari publishes IDR and reads 38/38 free). Confirm on the "
@@ -118,6 +119,14 @@ MODELS_DEV_CAVEAT = (
 # Every catalog entry pointing at one of these is a runtime the user hosts, and
 # its models are priced 0 because there is no vendor in the transaction.
 LOCAL_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0", "[::1]", "::1"}
+
+# A catalog entry whose only URL is a package page or a repository names a
+# client, not a vendor: nothing on these hosts can be matched to a registry
+# domain or probed as an offer. Measured 2026-09-05 over the 72 providers with
+# a zero-cost row: two — qvac, an npm package that spawns a local `qvac serve`,
+# and vercel, whose doc URL is a GitHub repo while the gateway itself is a row
+# this registry already carries and kept being proposed back.
+CODE_HOSTS = {"github.com", "npmjs.com", "pypi.org"}
 
 NOISE_DOMAINS = {
     "reddit.com", "x.com", "twitter.com", "facebook.com", "youtube.com",
@@ -334,7 +343,7 @@ def models_dev_digest(client: httpx.Client, known_domains: set[str],
             continue
         endpoint = p.get("api") or p.get("doc") or ""
         host = domain_of(endpoint).split(":")[0]
-        if not host or host in LOCAL_HOSTS:
+        if not host or host in LOCAL_HOSTS or host in CODE_HOSTS:
             continue
         if any(host == k or host.endswith("." + k) for k in known_domains if k):
             continue
@@ -371,8 +380,18 @@ def _searchers(client: httpx.Client, env: Mapping[str, str]) -> list[tuple[str, 
 
 def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[str, str],
                     http: httpx.Client | None = None, max_pages: int = 10,
-                    time_left: Callable[[], float] | None = None) -> Evidence:
+                    time_left: Callable[[], float] | None = None,
+                    answered_domains: set[str] | frozenset[str] = frozenset()) -> Evidence:
     """Run every available source over the queries and assemble deduplicated evidence.
+
+    `known_domains` is the registry's: a hit or a digest line about a listed
+    vendor is noise. `answered_domains` is the watchlist's current verdicts and
+    the blocklist, and they leave only the models.dev digest — a zero there is a
+    lead, and these are leads a human already followed to a written answer.
+    Measured 2026-09-05: 27 of the digest's 44 lines were such, 8,820 characters
+    of prompt down to 3,976 without them, and at fifty lines the cut would have
+    fallen on an unanswered provider first. Search hits about the same vendors
+    stay in, because a `reopen_if` waits on exactly that kind of fresh evidence.
 
     `time_left` returns the seconds this phase may still spend. It exists because
     the phase runs before the first LLM call and used to be bounded only by the
@@ -434,7 +453,7 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
             ev.providers.append("curated-feeds")
 
         if not spent():
-            digest = models_dev_digest(client, known_domains)
+            digest = models_dev_digest(client, known_domains | set(answered_domains))
             if digest:
                 ev.digests[MODELS_DEV_URL] = digest
                 ev.providers.append("models.dev")

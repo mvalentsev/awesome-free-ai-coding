@@ -616,6 +616,17 @@ def _ask(llm, prompt: str, attempts: int = 2) -> dict:
     return {}
 
 
+def answered_domains(watchlist: list[Watched], blocklist: dict[str, str], today: date) -> set[str]:
+    """Domains the curated files have already answered for, as the models.dev
+    digest should leave them out: the watchlist's current verdicts and the
+    whole blocklist. An expired watchlist line is left in on purpose — it has
+    stopped answering for its service, by the same rule format_watchlist
+    applies, so its zero-cost rows go back into the digest and the question
+    comes round again instead of hardening into a verdict nobody revisits."""
+    watched = {d.lower() for w in watchlist if is_watch_current(w, today) for d in w.domains}
+    return watched | {b.lower() for b in blocklist}
+
+
 def format_watchlist(watchlist: list[Watched], today: date) -> str:
     """The current verdicts, for the discovery prompt.
 
@@ -1081,7 +1092,8 @@ def main() -> None:
     )
 
     evidence = gather_evidence(DISCOVERY_QUERIES, known_domains(entries), os.environ,
-                               time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining)
+                               time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining,
+                               answered_domains=answered_domains(watchlist, blocklist, date.today()))
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
           f"providers: {', '.join(evidence.providers) or 'none'}")
 

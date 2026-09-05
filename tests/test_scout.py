@@ -1006,3 +1006,21 @@ def test_a_dry_run_scout_records_no_history(tmp_path, monkeypatch):
     scout.main()
 
     assert not (tmp_path / "history.jsonl").exists()
+
+
+def test_answered_domains_are_the_current_watchlist_and_the_whole_blocklist():
+    """What leaves the models.dev digest: verdicts the curated files still
+    stand behind. An expired watchlist line has stopped answering for its
+    service — the same rule format_watchlist applies — so its domain goes back
+    into the digest and the question comes round again."""
+    today = date(2026, 9, 5)
+    watchlist = [
+        Watched(domains=["current.ai", "api.current.ai"], name="Current", checked_on=today,
+                reason="nothing free", reopen_if="a free lane"),
+        Watched(domains=["expired.ai"], name="Expired",
+                checked_on=today - timedelta(days=WATCH_RECHECK_DAYS + 1),
+                reason="nothing free", reopen_if="a free lane"),
+    ]
+    blocklist = {"relay.example": "pooled access"}
+    assert scout.answered_domains(watchlist, blocklist, today) == {
+        "current.ai", "api.current.ai", "relay.example"}

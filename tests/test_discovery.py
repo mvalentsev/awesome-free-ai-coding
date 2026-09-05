@@ -330,3 +330,42 @@ def test_format_evidence_and_is_empty():
     assert "PAGE https://a.dev:\ntext" in text
     assert "https://empty.dev" not in text
     assert "CURATED FEED https://feed.md" in text
+
+
+@respx.mock
+def test_the_digest_leaves_out_a_provider_whose_only_url_is_a_code_host():
+    """qvac's one URL is an npm package that spawns a local `qvac serve`, and
+    models.dev's vercel entry points at a GitHub repo — a package page or a
+    repository names a client, not a vendor, so nothing on it can be matched to
+    the registry or probed as an offer. Measured 2026-09-05: the two were the
+    only providers on such hosts, and one of them is a listed row the digest
+    kept proposing back."""
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "pkg": provider("pkg", None, (0, 0), doc="https://www.npmjs.com/package/@pkg/provider"),
+        "repo": provider("repo", None, (0, 0), doc="https://github.com/org/repo"),
+    }))
+    with httpx.Client() as c:
+        assert models_dev_digest(c, known_domains=set()) == ""
+
+
+@respx.mock
+def test_gather_evidence_keeps_an_answered_domain_out_of_the_digest_but_in_the_hits(monkeypatch):
+    """A watchlist verdict is a zero somebody already followed, so its digest
+    line is prompt spent twice; a search hit about the same vendor is the fresh
+    evidence a reopen_if is waiting for, so it stays."""
+    import freetier_radar.discovery as disc
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [])
+    respx.get("https://hn.algolia.com/api/v1/search").mock(
+        return_value=httpx.Response(200, json={"hits": [
+            {"url": "https://watched.ai/blog/free-lane", "title": "Watched opens a free lane"}]}))
+    respx.get("https://api.github.com/search/repositories").mock(
+        return_value=httpx.Response(200, json={"items": []}))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
+        "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0)),
+        "watched": provider("watched", "https://api.watched.ai/v1", (0, 0)),
+    }))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c, max_pages=0,
+                             answered_domains={"watched.ai"})
+    assert "newgw" in ev.digests[MODELS_DEV] and "watched" not in ev.digests[MODELS_DEV]
+    assert [h.url for h in ev.hits] == ["https://watched.ai/blog/free-lane"]
