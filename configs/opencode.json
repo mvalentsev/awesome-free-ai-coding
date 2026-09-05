@@ -110,6 +110,9 @@
         "inclusionai/ling-3.0-flash-fin:free": {
           "name": "inclusionai/ling-3.0-flash-fin:free"
         },
+        "inclusionai/ling-3.0-flash-sante:free": {
+          "name": "inclusionai/ling-3.0-flash-sante:free"
+        },
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         }
@@ -192,6 +195,9 @@
         },
         "inclusionai/ling-3.0-flash-fin:free": {
           "name": "inclusionai/ling-3.0-flash-fin:free"
+        },
+        "inclusionai/ling-3.0-flash-sante:free": {
+          "name": "inclusionai/ling-3.0-flash-sante:free"
         },
         "dots-studio/dots-3-note-preview:free": {
           "name": "dots-studio/dots-3-note-preview:free"
@@ -475,12 +481,6 @@
         "apiKey": "{env:ROUTEWAY_API_KEY}"
       },
       "models": {
-        "gemma-4-31b-it:free": {
-          "name": "gemma-4-31b-it:free"
-        },
-        "gpt-oss-120b:free": {
-          "name": "gpt-oss-120b:free"
-        },
         "muse-glimmer-30b:free": {
           "name": "muse-glimmer-30b:free"
         },
@@ -532,6 +532,9 @@
         },
         "openai/gpt-oss-safeguard-20b": {
           "name": "openai/gpt-oss-safeguard-20b"
+        },
+        "openai/gpt-6-astra-free": {
+          "name": "openai/gpt-6-astra-free"
         }
       }
     },
@@ -576,6 +579,12 @@
         },
         "inclusionai/ling-3.0-flash-fin-free": {
           "name": "inclusionai/ling-3.0-flash-fin-free"
+        },
+        "inclusionai/ling-3.0-flash-sante": {
+          "name": "inclusionai/ling-3.0-flash-sante"
+        },
+        "inclusionai/ling-3.0-flash-sante-free": {
+          "name": "inclusionai/ling-3.0-flash-sante-free"
         }
       }
     },

@@ -138,6 +138,11 @@ model_list:
     model: openai/inclusionai/ling-3.0-flash-fin:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/inclusionai/ling-3.0-flash-sante:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-sante:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/liquid/lfm-2.5-2.6b:free
   litellm_params:
     model: openai/liquid/lfm-2.5-2.6b:free
@@ -241,6 +246,11 @@ model_list:
 - model_name: kilo-code/inclusionai/ling-3.0-flash-fin:free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-fin:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/inclusionai/ling-3.0-flash-sante:free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-sante:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: kilo-code/dots-studio/dots-3-note-preview:free
@@ -613,16 +623,6 @@ model_list:
     model: openai/llama-4
     api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
     api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
-- model_name: routeway/gemma-4-31b-it:free
-  litellm_params:
-    model: openai/gemma-4-31b-it:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: routeway/gpt-oss-120b:free
-  litellm_params:
-    model: openai/gpt-oss-120b:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
 - model_name: routeway/muse-glimmer-30b:free
   litellm_params:
     model: openai/muse-glimmer-30b:free
@@ -693,6 +693,11 @@ model_list:
     model: openai/openai/gpt-oss-safeguard-20b
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/openai/gpt-6-astra-free
+  litellm_params:
+    model: openai/openai/gpt-6-astra-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
   litellm_params:
     model: openai/DeepSeek-V3.1
@@ -731,6 +736,16 @@ model_list:
 - model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-fin-free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-fin-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-sante
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante-free
+  litellm_params:
+    model: openai/inclusionai/ling-3.0-flash-sante-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
 - model_name: hetzner-inference/Qwen/Qwen3.6-35B-A3B-FP8
