@@ -244,3 +244,434 @@ read:
     reopen_if: >-
       It separates free tiers from discounts into their own table, or its
       free-tier rows start naming quotas and model lists instead of savings.
+
+  # ---- 2026-09-05: a sweep of GitHub for every list competing for the same
+  # reader — twelve search phrasings, 70 repositories by stars, the 36 not yet
+  # answered here read by host: every URL in the README extracted and matched
+  # against the registry, the watchlist, the blocklist and this file. The
+  # numbers below are that measurement. The yield was four registry rows
+  # (FreeInference, OpenTyphoon, IBM watsonx.ai Lite, Sarvam), twenty-one
+  # watchlist verdicts and one blocklist line; most lists carry the same forty
+  # vendors, and the hosts they add are audio, OCR, image and vector-store
+  # products this registry does not cover by category.
+
+  - url: https://github.com/pacocartones/free-llm-api-hub
+    name: pacocartones/free-llm-api-hub
+    checked_on: '2026-09-05'
+    reason: >-
+      The most like-minded list read: "A continuously-verified dataset", every
+      row dated and sourced to the vendor's docs, data/providers.json validated
+      against a schema, a freshness badge computed from the oldest
+      re-verification, and a "pick by what you actually need" table at the top
+      of the README. 41 stars, pushed 2026-09-02. Read whole: 69 rows, all
+      marked verified between 2026-08-02 and 2026-08-14, 40 of them on hosts
+      with no verdict here — and 33 of those 40 are speech, OCR, embeddings,
+      rerank and image products (Deepgram, ElevenLabs, OCR.space, Jina, Voyage,
+      Pinecone) that this registry leaves out by category. The seven text-LLM
+      rows became rows or verdicts the same day: IBM watsonx.ai Lite, Typhoon
+      and Sarvam are registry rows, Arli AI, W&B Inference and Tencent Hunyuan
+      are on the watchlist, and Clarifai could not be reached from here (DNS
+      and connection timeouts on every fetch). One of its readings did not
+      survive the vendor's page — the "$100/month of Serverless Inference
+      credits" it gives W&B is the Free plan's spending cap, and the credits
+      themselves are "for a limited time" with no figure. Not a feed, because
+      the scout reads a 20,000-character excerpt and the JSON's first twenty
+      rows are the vendors every list carries.
+    reopen_if: >-
+      data/providers.json gains a row with "text" in its modalities on a host
+      this registry has no verdict on — filter on modalities before reading
+      the rest.
+
+  - url: https://github.com/YoannDev90/awesome-free-ai-api
+    name: YoannDev90/awesome-free-ai-api
+    checked_on: '2026-09-05'
+    reason: >-
+      90 stars, pushed 2026-09-05, "78 APIs". 85 hosts, 51 with no verdict
+      here, and the 51 are the relay and pool ecosystem — A4F, AI Pooled,
+      AIchixia, AnyAPI, Apertis, AquaDevs, Atessa, naga.ac, voidai.app,
+      zenllm.org, electronhub.ai, gpt.crax.lol, mnnai.ru, ohmygpt.com and the
+      rest — fronted by Gratisfy (gratisfy.xyz), the maintainer's own
+      aggregator, which every Models, Requirements and Status column links to
+      instead of a vendor page. The list therefore carries no vendor terms of
+      its own. The hosts among the 51 that are vendors rather than gateways
+      got their own verdicts (AwanLLM, freeinference.org, cloud.ibm.com); the
+      gateways did not, because a blocklist line needs the operator's own
+      words or a measured price gap, and a directory that links to another
+      directory supplies neither.
+    reopen_if: >-
+      It starts linking vendor terms pages, or names a first-party vendor with
+      a free tier this registry has no verdict on.
+
+  - url: https://github.com/Joe-Huber/AI-For-Brokies
+    name: Joe-Huber/AI-For-Brokies
+    checked_on: '2026-09-05'
+    reason: >-
+      "Free AI coding tools for developers who refuse to pay", 50 stars,
+      pushed 2026-08-11 — the same reader this registry is for. 13 hosts, 3
+      with no verdict here (chatgpt.com, codeassist.google,
+      developers.openai.com), and its rows are a hand-typed score out of ten
+      plus student deals: Codex's $100 student credit, Cursor's free Pro year
+      for students. A proof of enrolment is a wall this registry does not
+      list behind, and the table still sells Gemini Code Assist at "1000 max
+      requests per day", a free tier recorded here as closed on 2026-06-18.
+    reopen_if: >-
+      It adds a tool with a non-student free tier this registry does not
+      carry.
+
+  - url: https://github.com/hakilee/oh-my-free-models
+    name: hakilee/oh-my-free-models
+    checked_on: '2026-09-05'
+    reason: >-
+      Software, not a list: "Route your coding agent to the fastest free LLM
+      in real time", 59 stars, pushed 2026-09-05. Its README links two hosts,
+      both carried here; the provider set it routes over lives in code.
+    reopen_if: >-
+      It publishes the provider table it measures, with base URLs and terms.
+
+  - url: https://github.com/abbosaliboev/free-ai-bible
+    name: abbosaliboev/free-ai-bible
+    checked_on: '2026-09-05'
+    reason: >-
+      "The Ultimate Directory of Free AI APIs & Tools", 144 stars, pushed
+      2026-08-31. 35 hosts, 25 with no verdict here, all of them image, audio,
+      vector-store and hosting products (Craiyon, Ideogram, Pika, Suno, Udio,
+      ElevenLabs, Pinecone, Weaviate, Render, Railway) plus local runtimes
+      (LM Studio, Jan, LocalAI). The LLM rows are the ten already carried.
+    reopen_if: >-
+      An LLM-API row with a free tier this registry has no verdict on.
+
+  - url: https://github.com/peter123023/awesome-free-llm-api
+    name: peter123023/awesome-free-llm-api
+    checked_on: '2026-09-05'
+    reason: >-
+      A Chinese table worth reading: 86 stars, pushed 2026-09-04, rows sorted
+      by model with an "API 质量" column that records observed behaviour (NVIDIA
+      NIM "经常超时", AMD Token Factory "TTFT 偏高"). 33 hosts, 12 with no verdict
+      here, and every one of the 12 got one the same day: the mainland
+      consoles it quotes quotas for (Baidu Qianfan, Volcengine Ark, Tencent,
+      BigModel) are on the watchlist with those quotas and the real-name wall,
+      AMD Token Factory and B.AI are on it as unreadable, free.empero.org and
+      tokenharbor.ai as unquantified. Its figures for carried rows agree with
+      the registry (SenseNova "每 5 小时 1500 次", Ollama Cloud's unpublished
+      starter credit, OpenRouter's 50-a-day-then-1,000).
+    reopen_if: >-
+      A row outside the mainland consoles that links a vendor page this
+      registry has no verdict on.
+
+  - url: https://github.com/CYBIRD-D/FREE-LLM-API-Provider
+    name: CYBIRD-D/FREE-LLM-API-Provider
+    checked_on: '2026-09-05'
+    reason: >-
+      100 stars, pushed 2026-09-05, "free LLM provider resources accessible
+      via API. Including some cn platform". 30 hosts, 5 with no verdict here
+      (cloud.tencent.com, ibm.com, streamlake.com, volcengine.com, and
+      api.cohere.ai as a second host of a carried vendor), all answered that
+      day.
+    reopen_if: >-
+      A vendor row this registry has no verdict on.
+
+  - url: https://github.com/amardeeplakshkar/awesome-free-llm-apis
+    name: amardeeplakshkar/awesome-free-llm-apis
+    checked_on: '2026-09-05'
+    reason: >-
+      158 stars, pushed 2026-08-16, "permanently free LLM APIs — with rate
+      limits, OpenAI SDK compatibility, available SDKs, speed tiers". 24
+      hosts, 4 with no verdict here: GitHub Models' old Azure host (retired
+      2026-07-30), kluster.ai (does not resolve), open.bigmodel.cn, and
+      stillworks.supercapybara.com, a directory with its own entry below.
+    reopen_if: >-
+      A vendor row this registry has no verdict on.
+
+  - url: https://github.com/OuterSpacee/free-ai-apis
+    name: OuterSpacee/free-ai-apis
+    checked_on: '2026-09-05'
+    reason: >-
+      "100+ APIs, 15 categories. No credit card required", 140 stars, last
+      pushed 2026-03-30. 83 hosts, 56 with no verdict here — search (Brave,
+      Exa, Tavily, SerpAPI), OCR, translation (DeepL, LibreTranslate), speech
+      (Deepgram, AssemblyAI), image (Stability, Leonardo, Kling), vector and
+      guardrail tools. The LLM category is the 27 already carried.
+    reopen_if: >-
+      An LLM-API row with a free tier this registry has no verdict on.
+
+  - url: https://github.com/guihuashaoxiang/FreeLLM-API-KeyHub
+    name: guihuashaoxiang/FreeLLM-API-KeyHub
+    checked_on: '2026-09-05'
+    reason: >-
+      A mainland-China guide, 223 stars, pushed 2026-07-19: 50 hosts, 32 with
+      no verdict here, almost all consoles behind a real-name sign-up
+      (百度千帆, 火山方舟, 腾讯混元, 智谱 BigModel, 天工, 中国移动 ecloud, 360, 云知声,
+      摩尔线程, 天翼云). The ones with an API and a stated quota got watchlist
+      verdicts on 2026-09-05 — Baidu, Volcengine, Tencent, BigModel, MiniMax,
+      Moonshot, PPIO, StreamLake, Relace, nCompass, Mancer — and the rest are
+      consoles this list cannot read a sign-up for. Its international names
+      (inceptionlabs.ai, jina.ai, ibm.com, console.anthropic.com) are all
+      answered.
+    reopen_if: >-
+      A mainland console publishes a sign-up readable outside the mainland,
+      or a non-mainland vendor row appears that this registry has no verdict
+      on.
+
+  - url: https://github.com/freellms/awesome-freellm-apis
+    name: freellms/awesome-freellm-apis
+    checked_on: '2026-09-05'
+    reason: >-
+      A README mirror of freellms.org, 11 stars, pushed 2026-08-10. 50 hosts,
+      45 carried; the five others are GitHub Models' retired Azure host,
+      kluster.ai (does not resolve), and three local runtimes (GPT4All, Jan,
+      LM Studio).
+    reopen_if: >-
+      A vendor row this registry has no verdict on.
+
+  - url: https://github.com/freellms/free-llm-api-keys
+    name: freellms/free-llm-api-keys
+    checked_on: '2026-09-05'
+    reason: >-
+      A 4KB stub for the same site, 7 stars, two hosts, one of them
+      freellms.org.
+    reopen_if: >-
+      It grows a provider table of its own.
+
+  - url: https://github.com/0xzr/freellmpool
+    name: 0xzr/freellmpool
+    checked_on: '2026-09-05'
+    reason: >-
+      Gateway software — "22 LLM providers, 178 enabled chat routes, 431
+      cataloged chat models; keyless start when available", 95 stars, pushed
+      2026-09-04. Its README links seven hosts, and the five with no verdict
+      here are benchmarks and registries (artificialanalysis.ai, lmarena.ai,
+      mcpmarket.com, the MCP registry); the provider set lives in code.
+    reopen_if: >-
+      It publishes its provider table with base URLs and terms.
+
+  - url: https://github.com/GoDiao/Free-Way
+    name: GoDiao/Free-Way
+    checked_on: '2026-09-05'
+    reason: >-
+      "Use Claude Code, Codex, OpenCode, Cline for free — one local gateway to
+      14+ free LLM providers", 35 stars, pushed 2026-08-18. Self-hosted and
+      BYOK-shaped like MrFadiAi/free-llm-gateway above; the README links one
+      host, its own Pages site.
+    reopen_if: >-
+      It publishes free-tier terms it verified itself.
+
+  - url: https://github.com/BraxisAI/braxis-blueprint
+    name: BraxisAI/braxis-blueprint
+    checked_on: '2026-09-05'
+    reason: >-
+      "The $0 AI Empire Playbook — 140+ agents, 20+ free LLM lanes", 89
+      stars, a 4KB README linking one host. A pitch, not a list.
+    reopen_if: >-
+      It publishes the twenty free lanes as a table with vendor pages.
+
+  - url: https://github.com/xinrui-z/free-llm
+    name: xinrui-z/free-llm
+    checked_on: '2026-09-05'
+    reason: >-
+      25 stars, last pushed 2026-05-20; four hosts, all its own Pages site and
+      template placeholders (free-llm-checker.your, tailwindcss.com).
+    reopen_if: >-
+      It starts carrying vendor rows.
+
+  - url: https://github.com/jackccrawford/token-scout
+    name: jackccrawford/token-scout
+    checked_on: '2026-09-05'
+    reason: >-
+      A CLI for OpenClaw and Hermes that "finds free and low-cost inference",
+      10 stars, last pushed 2026-04-06; five hosts, four carried, the fifth
+      its own site.
+    reopen_if: >-
+      It publishes its provider table as data.
+
+  - url: https://github.com/decolua/9router
+    name: decolua/9router
+    checked_on: '2026-09-05'
+    reason: >-
+      The largest repository the sweep found, 27,143 stars, pushed
+      2026-09-03, and software rather than a list: a local gateway that
+      re-exposes paid CLI subscriptions through an "OAuth Providers" section
+      and round-robins accounts, which put 9router.com on the blocklist the
+      same day. Its "Free Providers" panel names Kiro, OpenCode Free and a
+      $300 Vertex trial, all answered here, and its one line of news agrees
+      with this registry: "iFlow, Qwen Code and Gemini CLI free tiers were
+      discontinued in 2026". Seven hosts, none a vendor this list lacks.
+    reopen_if: >-
+      It names a first-party free tier this registry has no verdict on.
+
+  - url: https://github.com/herliansyah/9router-auto-free
+    name: herliansyah/9router-auto-free
+    checked_on: '2026-09-05'
+    reason: >-
+      A scraper that feeds 9router, 14 stars; its README links no host at
+      all, and it ranks models "by coding benchmark", the self-reported score
+      this registry declines.
+    reopen_if: >-
+      It publishes the provider set it scrapes, with vendor pages.
+
+  - url: https://github.com/azurejoga/ClaudeZen
+    name: azurejoga/ClaudeZen
+    checked_on: '2026-09-05'
+    reason: >-
+      A how-to — "Use DeepSeek V4 Flash Free in Claude Code with OpenCode
+      Zen", 37 stars, pushed 2026-08-05 — for a lane this registry already
+      carries under opencode; its four hosts are that vendor, Anthropic's
+      platform docs and OpenAI's.
+    reopen_if: >-
+      It starts carrying a provider table.
+
+  - url: https://github.com/mlvoca/free-llm-api
+    name: mlvoca/free-llm-api
+    checked_on: '2026-09-05'
+    reason: >-
+      "Provides a free llm api to access specific large language models", 19
+      stars; one host, mlvoca.com, which answers 403 to every fetch and is on
+      the watchlist for that reason.
+    reopen_if: >-
+      mlvoca.com becomes readable.
+
+  - url: https://github.com/kkkunny/free-llm-collect
+    name: kkkunny/free-llm-collect
+    checked_on: '2026-09-05'
+    reason: >-
+      506 stars and dead: last pushed 2025-11-11. 11 hosts, 3 with no verdict
+      here (cloud.infini-ai.com, open.bigmodel.cn, poixe.com), and the third
+      is a relay whose page was not read because nothing that stopped ten
+      months ago is proposing it.
+    reopen_if: >-
+      It commits again.
+
+  - url: https://github.com/bbylw/free-llm-api-cn
+    name: bbylw/free-llm-api-cn
+    checked_on: '2026-09-05'
+    reason: >-
+      29 stars, last pushed 2026-03-03; 26 hosts, 25 carried, the odd one
+      studio.nebius.ai — Nebius, on the watchlist under its current name.
+    reopen_if: >-
+      A vendor row this registry has no verdict on.
+
+  - url: https://github.com/Devansh-365/freellm
+    name: Devansh-365/freellm
+    checked_on: '2026-09-05'
+    reason: >-
+      Gateway software over "8 free LLM providers", 60 stars, pushed
+      2026-05-29; eight hosts, and the four with no verdict here are esm.sh,
+      Railway, Render and a yoursite.com placeholder.
+    reopen_if: >-
+      It publishes free-tier terms it verified itself.
+
+  - url: https://github.com/Arnav8452/Freeloader
+    name: Arnav8452/Freeloader
+    checked_on: '2026-09-05'
+    reason: >-
+      Gateway software that "cascades requests across free tiers", 9 stars;
+      seven hosts, the unknown ones Node.js, pnpm, Railway and Render.
+    reopen_if: >-
+      It publishes free-tier terms it verified itself.
+
+  - url: https://github.com/piyush-tyagi-13/llm-keypool
+    name: piyush-tyagi-13/llm-keypool
+    checked_on: '2026-09-05'
+    reason: >-
+      A key-pool proxy with rotation and cooldowns, 63 stars, pushed
+      2026-05-05; five hosts, all carried. Key pooling across accounts is the
+      pattern CONTRIBUTING excludes, but the repository lists nothing of its
+      own.
+    reopen_if: >-
+      It starts carrying a provider table with terms.
+
+  - url: https://github.com/setan21/free-llm-api-router
+    name: setan21/free-llm-api-router
+    checked_on: '2026-09-05'
+    reason: >-
+      Router software, 13 stars, a 3KB README; three hosts, all carried.
+    reopen_if: >-
+      It starts carrying a provider table with terms.
+
+  - url: https://github.com/Abrar-Akhunji/FreeLLMAPI-For-FixO_CLI
+    name: Abrar-Akhunji/FreeLLMAPI-For-FixO_CLI
+    checked_on: '2026-09-05'
+    reason: >-
+      A gateway for one CLI over "Eleven free LLM providers", 6 stars; ten
+      hosts, nine carried, the tenth an image proxy.
+    reopen_if: >-
+      It starts carrying a provider table with terms.
+
+  - url: https://github.com/msmarkgu/RelayFreeLLM
+    name: msmarkgu/RelayFreeLLM
+    checked_on: '2026-09-05'
+    reason: >-
+      Relay software, 180 stars, pushed 2026-08-31; nine hosts, six carried,
+      the rest the docs of pydantic, FastAPI and httpx.
+    reopen_if: >-
+      It publishes free-tier terms it verified itself.
+
+  - url: https://github.com/Drvivek34/Free-API-Bazaar
+    name: Drvivek34/Free-API-Bazaar
+    checked_on: '2026-09-05'
+    reason: >-
+      5 stars, a 3KB README linking one host, its own Pages site.
+    reopen_if: >-
+      It starts carrying vendor rows.
+
+  - url: https://github.com/mrshivamgiri/free-ai-apis
+    name: mrshivamgiri/free-ai-apis
+    checked_on: '2026-09-05'
+    reason: >-
+      5 stars, pushed 2026-07-20; 26 hosts, every one carried — a copy of the
+      cheahjs table.
+    reopen_if: >-
+      It diverges from the table it copied.
+
+  - url: https://github.com/EasyChris/freeaihunter
+    name: EasyChris/freeaihunter
+    checked_on: '2026-09-05'
+    reason: >-
+      47 stars, last pushed 2024-07-01; the README is a link to its own site
+      and nothing else.
+    reopen_if: >-
+      It commits again with a provider table.
+
+  - url: https://github.com/Krushnaapatil/free-llm-api-resources
+    name: Krushnaapatil/free-llm-api-resources
+    checked_on: '2026-09-05'
+    reason: >-
+      15 stars, last pushed 2026-05-21; 26 hosts, every one carried — the
+      cheahjs table under another name.
+    reopen_if: >-
+      It diverges from the table it copied.
+
+  - url: https://github.com/jtig37/free-llm-api-resources
+    name: jtig37/free-llm-api-resources
+    checked_on: '2026-09-05'
+    reason: >-
+      35 stars, last pushed 2024-08-21; 18 hosts, 6 with no verdict here, all
+      of them 2024's vendors — Lambda, OctoAI, Unify, OVHcloud's old endpoint
+      host, Anthropic's console.
+    reopen_if: >-
+      It commits again.
+
+  - url: https://github.com/moha700m/free-llm-api-resources-ar
+    name: moha700m/free-llm-api-resources-ar
+    checked_on: '2026-09-05'
+    reason: >-
+      An Arabic translation of the cheahjs table, 4 stars, pushed 2026-08-10;
+      24 hosts, every one carried.
+    reopen_if: >-
+      It diverges from the table it translated.
+
+  - url: https://stillworks.supercapybara.com/
+    name: stillworks (keyless endpoint directory)
+    checked_on: '2026-09-05'
+    reason: >-
+      A directory of keyless endpoints that probes rather than reads — "We
+      don't read docs, we call the endpoint and publish what came back,
+      including the 402s" — with a JSON API at /api/llm/up: 25 rows on
+      2026-09-05, each a base URL, a model id, an auth mode, a last-ok
+      timestamp and per-capability results (tools, JSON mode, vision) from
+      real calls. Every host in it is answered here — OVHcloud's anonymous
+      lane, Pollinations, uncloseai, and llm7.io, which is on the blocklist —
+      and its own disclaimer is the right one: "These are other people's free
+      services and can add a key requirement or disappear at any moment." Not
+      a feed because its whole set is carried; the right re-read is one GET.
+    reopen_if: >-
+      A base_url in /api/llm/up this registry has no verdict on.

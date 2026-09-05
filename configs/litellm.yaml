@@ -958,6 +958,26 @@ model_list:
     model: openai/aisingapore/Llama-SEA-LION-v3.5-70B-R
     api_base: https://api.sea-lion.ai/v1
     api_key: os.environ/SEA_LION_API_KEY
+- model_name: opentyphoon/typhoon-v2.5-30b-a3b-instruct
+  litellm_params:
+    model: openai/typhoon-v2.5-30b-a3b-instruct
+    api_base: https://api.opentyphoon.ai/v1
+    api_key: os.environ/OPENTYPHOON_API_KEY
+- model_name: sarvam/sarvam-105b
+  litellm_params:
+    model: openai/sarvam-105b
+    api_base: https://api.sarvam.ai/v1
+    api_key: os.environ/SARVAM_API_KEY
+- model_name: sarvam/deepseekv4-flash
+  litellm_params:
+    model: openai/deepseekv4-flash
+    api_base: https://api.sarvam.ai/v1
+    api_key: os.environ/SARVAM_API_KEY
+- model_name: sarvam/glm5.3-flash
+  litellm_params:
+    model: openai/glm5.3-flash
+    api_base: https://api.sarvam.ai/v1
+    api_key: os.environ/SARVAM_API_KEY
 - model_name: inception-labs/mercury-2
   litellm_params:
     model: openai/mercury-2
@@ -973,6 +993,21 @@ model_list:
     model: openai/gpt-oss
     api_base: https://text.pollinations.ai/openai
     api_key: none
+- model_name: freeinference/deepseek-v4-flash
+  litellm_params:
+    model: openai/deepseek-v4-flash
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
+- model_name: freeinference/qwen3.6-35b
+  litellm_params:
+    model: openai/qwen3.6-35b
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
+- model_name: freeinference/diffusiongemma
+  litellm_params:
+    model: openai/diffusiongemma
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
 - model_name: ollama-cloud/gpt-oss:120b
   litellm_params:
     model: openai/gpt-oss:120b

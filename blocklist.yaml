@@ -182,3 +182,16 @@
   reason: >-
     The "国内直连" (mainland direct) base URL jiekou.ai names on its own home page
     — one operator, one verdict.
+- domain: 9router.com
+  reason: >-
+    9Router (github.com/decolua/9router, 27k stars on 2026-09-05) is the
+    router-for.me shape at scale: a local gateway whose README connects "Claude
+    Code, Cursor, Antigravity, Copilot, Codex, Gemini, OpenCode, Cline,
+    OpenClaw" to "40+ AI Providers" through an "OAuth Providers" section — Claude
+    Code, Antigravity, Codex, GitHub, Cursor, Kimchi — that re-exposes a paid
+    subscription's session as an API, plus "Multi-account - Round-robin between
+    accounts per provider", which is account pooling. It issues no keys and
+    bundles no model usage of its own; its "Free Providers" panel names Kiro,
+    OpenCode Free and a $300 Vertex trial, all of which this registry already
+    answers for. The tagline "Unlimited FREE AI coding" is the reverse-proxy
+    line CONTRIBUTING excludes, stated by the operator.

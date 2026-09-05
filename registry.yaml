@@ -279,6 +279,7 @@ entries:
   source_urls:
   - https://docs.github.com/en/github-models
   - https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/
+  - https://models.inference.ai.azure.com
   card_required: false
   offering: Free playground+API for catalog models with GitHub account
   limits: Per-model rate limits, free tier; closed to new customers on 2026-06-16
@@ -2705,3 +2706,245 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 65
+- id: freeinference
+  name: FreeInference (Harvard SEAS)
+  category: api-free-tier
+  url: https://freeinference.org
+  source_urls:
+  - https://doc.freeinference.org/models
+  - https://doc.freeinference.org/claude-code.html
+  - https://freeinference.org/terms
+  - https://freeinference.org/v1/models
+  card_required: false
+  offering: Harvard SEAS's MadSys Lab serving frontier open models — DeepSeek V4 Flash,
+    GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind
+    both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude
+    Code setup
+  limits: 'No quota figure is published: the landing page says "Free to use. No credit
+    card required. Generous quota for research and prototyping", and the terms (last
+    updated 2026-06-20) say "Quotas, rate limits, model access, and usage limits may
+    change based on usage, demand, infrastructure capacity, abuse prevention, operational
+    needs, and individual or aggregate activity"; a 429 is the rate limit and a 503
+    means "The upstream pool is temporarily exhausted". The framing is the restriction:
+    "FreeInference for open-source, research and education ... free for the research
+    community", and the terms call it "an experimental research service that provides
+    access to hosted and routed large language model inference for experimentation
+    and related development work". Prompts are not private — "All prompts and responses
+    may be logged for research purposes" and "sanitized prompts and responses, usage
+    statistics, and routing metrics — may be published or open-sourced". The models
+    page splits the catalog in two: "Free accounts can use models marked Free. Models
+    marked Pro require a Pro-enabled key" — seven chat ids Free (glm-5.1, glm-5.3-flash,
+    deepseek-v4-flash, minimax-m3, minimax-m2.5, qwen3.6-35b, diffusiongemma) and
+    three Pro (glm-5.2, glm-5.3, kimi-k2.7-code), read 2026-09-05'
+  models:
+  - family: deepseek-v4-flash
+    tier: strong
+    released: ''
+  - family: glm-5.1
+    tier: strong
+    released: ''
+  - family: glm-5.3-flash
+    tier: strong
+    released: ''
+  - family: minimax-m3
+    tier: strong
+    released: ''
+  - family: qwen3.6
+    tier: strong
+    released: ''
+  api:
+    base_url: https://freeinference.org/v1
+    key_url: https://freeinference.org
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-v4-flash
+    - qwen3.6-35b
+    - diffusiongemma
+    note: 'the three ids are the chat rows the keyless catalog at freeinference.org/v1/models
+      returned on 2026-09-05 (bge-m3, the fourth, is an embedding model); the docs
+      mark four more chat ids Free — glm-5.1, glm-5.3-flash, minimax-m3, minimax-m2.5
+      — and say the full list is what an authenticated GET /v1/models returns, so
+      those stay out of the generated configs until a keyed read confirms them. The
+      catalog prints upstream reference prices beside every row ($0.44/$1.32 per 1M
+      on deepseek-v4-flash), which the docs describe as accounting, "not fees charged
+      by FreeInference to users". The same key serves an Anthropic-format endpoint
+      at https://freeinference.org/anthropic — the docs set ANTHROPIC_BASE_URL to
+      it for Claude Code, with deepseek-v4-flash behind the Opus and Sonnet aliases
+      and qwen3.6-35b behind Haiku. The terms say requests "may route across local
+      inference servers and remote model providers": by the catalog''s owned_by field
+      the listed ids run on the lab''s own sglang and vllm servers, while DeepSeek
+      calls are accounted at DeepSeek''s upstream rate'
+  probe:
+    type: page-keywords
+    endpoint: https://doc.freeinference.org/models
+    keywords:
+    - free accounts can use models marked
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    catalog: https://freeinference.org/v1/models
+  first_seen: '2026-09-05'
+  last_verified: '2026-09-05'
+  probe_failures: 0
+  provisional: true
+  rank: 91
+- id: opentyphoon
+  name: OpenTyphoon (SCB 10X)
+  category: api-free-tier
+  url: https://opentyphoon.ai
+  source_urls:
+  - https://docs.opentyphoon.ai/en/faq/
+  - https://docs.opentyphoon.ai/en/rate-limits/
+  - https://api.opentyphoon.ai/v1/models
+  card_required: false
+  offering: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial
+    Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and
+    free to use
+  limits: 'Rate limits are the published ceiling — 5 requests per second and 200 per
+    minute on typhoon-v2.5-30b-a3b-instruct, 2 and 20 on typhoon-ocr — with no token,
+    daily or monthly cap stated; higher limits are by email "with details about your
+    use case, expected volume, and requirements". The FAQ answers the price in one
+    sentence, "The Typhoon API is a research showcase and free to use", and names
+    the trade in the next: "Yes, we are collecting usage data from the Typhoon API",
+    used "to improve the model and the API" and, it says, never shared with third
+    parties. Production use is pointed elsewhere — "please support us by using the
+    API through Together AI" — and the paid API Pro that ran there sunset on 2025-12-31
+    with an AWS successor announced for Q1 2026 that had not appeared by this read
+    (2026-09-05). A key is minted in the playground after signing up; no card is mentioned
+    on any page read'
+  models: []
+  api:
+    base_url: https://api.opentyphoon.ai/v1
+    key_url: https://playground.opentyphoon.ai/api-key
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - typhoon-v2.5-30b-a3b-instruct
+    note: the one chat id in the keyless catalog on 2026-09-05; the other five rows
+      are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime,
+      typhoon-isan-asr-realtime). typhoon-v2.1-12b-instruct keeps a line in the rate-limit
+      table but has left the catalog. Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for
+      Thai, so it is a Qwen-class coder that also reads Thai; the Free models column
+      stays empty because the FAQ the probe reads names no model
+  probe:
+    type: page-keywords
+    endpoint: https://docs.opentyphoon.ai/en/faq/
+    keywords:
+    - the typhoon api is a research showcase and
+    - free to use
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    catalog: https://api.opentyphoon.ai/v1/models
+  first_seen: '2026-09-05'
+  last_verified: '2026-09-05'
+  probe_failures: 0
+  provisional: true
+  rank: 86
+- id: ibm-watsonx-ai
+  name: IBM watsonx.ai (Lite plan)
+  category: api-free-tier
+  url: https://www.ibm.com/products/watsonx-ai
+  source_urls:
+  - https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans
+  - https://www.ibm.com/docs/en/watsonx/saas?topic=tutorials-signing-up-watsonx
+  - https://www.ibm.com/products/watsonx-ai/pricing
+  card_required: true
+  offering: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of
+    foundation-model inference (Granite, Llama, Mistral and other hosted models) on
+    IBM Cloud, a plan IBM's own docs call free and never bill
+  limits: '"300,000 tokens per month", "20 CUH per month" of compute and "2 inference
+    requests per second", on "A free plan with limited capacity" that "does not support
+    running a foundation model tuning experiment" — the Lite plan of watsonx.ai Runtime
+    as its service-plans page reads on 2026-09-05, with no expiry named. The card
+    is taken at the door and not charged: the sign-up doc says "For your IBM Cloud
+    account, you enter your email address, personal information, and credit card information,
+    which is used to verify your identity" and "Lite plans do not incur charges".
+    Which foundation models the 300,000 tokens reach is on a separate docs page the
+    probe does not read, which is why the Free models column is empty'
+  models: []
+  api:
+    base_url: https://us-south.ml.cloud.ibm.com/ml/v1
+    key_url: https://cloud.ibm.com/iam/apikeys
+    auth: api-key
+    openai_compatible: false
+    model_ids: []
+    note: 'not OpenAI-shaped: the API key is exchanged for an IAM bearer token, chat
+      is POST /ml/v1/text/chat with a project_id in the body and a version date in
+      the query, and the host is per region (us-south.ml.cloud.ibm.com is Dallas).
+      LiteLLM''s watsonx provider and the ibm-watsonx-ai SDK wrap it; a plain OpenAI
+      client cannot'
+  probe:
+    type: page-keywords
+    endpoint: https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans
+    keywords:
+    - 300,000 tokens per month
+    - 2 inference requests per second
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-09-05'
+  last_verified: '2026-09-05'
+  probe_failures: 0
+  provisional: true
+  rank: 98
+- id: sarvam
+  name: Sarvam AI
+  category: trial
+  url: https://www.sarvam.ai
+  source_urls:
+  - https://docs.sarvam.ai/api/getting-started/pricing.md
+  - https://docs.sarvam.ai/api/getting-started/ratelimits.md
+  - https://docs.sarvam.ai/api-reference/authentication.md
+  card_required: false
+  offering: India's Sarvam AI credits every new account ₹100 to spend on any of its
+    APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3
+    Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
+  limits: '"Every new user receives ₹100 worth of free credits to explore all our
+    APIs" — about $1.15 — and the credits page adds that they "are universal and never
+    expire". Per-million-token prices on the same pricing page (read 2026-09-05):
+    sarvam-105b ₹29.28 in / ₹73.2 out, deepseekv4-flash ₹19.8 / ₹59.4, glm5.3-flash
+    ₹13.5 / ₹45, gemma4 ₹36.6 / ₹91.5, glm5.2 and glm5.3 around ₹127 / ₹400 — so the
+    grant is roughly 3 million input tokens of the flagship or 7 million of GLM 5.3
+    Flash. The Starter plan is rate-limited to 60 chat requests a minute on the default
+    models and 40 on sarvam-105b. Sign-up is an account on the dashboard; no card
+    is mentioned on any page read'
+  models:
+  - family: sarvam-105b
+    tier: strong
+    released: ''
+  - family: deepseek-v4-flash
+    tier: strong
+    released: ''
+  - family: glm-5.3-flash
+    tier: strong
+    released: ''
+  api:
+    base_url: https://api.sarvam.ai/v1
+    key_url: https://dashboard.sarvam.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - sarvam-105b
+    - deepseekv4-flash
+    - glm5.3-flash
+    note: 'the vendor''s own header is api-subscription-key, and the same key is accepted
+      as "Authorization: Bearer" on every endpoint — the docs name that form as the
+      one for "OpenAI-compatible tooling pointed at the Chat Completions endpoint".
+      Ids write the version without its hyphen (deepseekv4-flash, glm5.3-flash); a
+      newer /v2/chat/completions adds 512K context and tool calling on GLM-5.2 and
+      image input on Gemma 4 31B. Prices are in rupees'
+  probe:
+    type: page-keywords
+    endpoint: https://docs.sarvam.ai/api/getting-started/pricing.md
+    keywords:
+    - ₹100 worth of free credits
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+  first_seen: '2026-09-05'
+  last_verified: '2026-09-05'
+  probe_failures: 0
+  provisional: true
+  rank: 88

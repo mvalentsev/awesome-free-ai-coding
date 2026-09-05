@@ -1418,8 +1418,8 @@ watched:
       A chat model priced 0 in api.cortecs.ai/v1/models, or a signup credit with
       a figure on cortecs.ai/pricing.
 
-  - domains: [tokenhub.tencentmaas.com]
-    name: Tencent Cloud TokenHub
+  - domains: [tokenhub.tencentmaas.com, cloud.tencent.com, hunyuan.tencent.com]
+    name: Tencent Cloud TokenHub (and the Hunyuan console)
     checked_on: '2026-09-05'
     reason: >-
       Reached through the models.dev digest (hy3 and hy3-preview at cost 0). The
@@ -1434,7 +1434,16 @@ watched:
       Cloud's China site, its catalog answers 401 keyless, and the sign-up
       prerequisites are not on the page the package is documented on. It sits
       here beside ModelScope for the same reason — a mainland cloud account whose
-      sign-up this list cannot read.
+      sign-up this list cannot read. Re-read 2026-09-05 after three of the lists
+      read that day named cloud.tencent.com: the Hunyuan console is the same
+      question one product over. Its billing page
+      (cloud.tencent.com/document/product/1729/97731) says the vendor is folding
+      it into TokenHub — "腾讯混元大模型相关功能将逐步迁移至 TokenHub" — and states the
+      account prerequisite the package page left out:
+      "腾讯混元大模型的开通使用需要先通过 腾讯云企业实名认证 或者 腾讯云个人实名认证", enterprise or
+      personal real-name verification on Tencent Cloud before the service can be
+      opened at all. Both domains are here so neither console is proposed again
+      while that wall stands.
     reopen_if: >-
       A readable Tencent Cloud page says TokenHub can be activated on an account
       opened without mainland real-name verification, or the catalog opens
@@ -1553,3 +1562,309 @@ watched:
       A readable vendor page says an aliyun.com account can be opened with a
       non-mainland phone number and Model Studio activated without real-name
       verification — the quota itself is documented and large.
+
+  - domains: [openai.com]
+    name: OpenAI API (complimentary tokens for data sharing)
+    checked_on: '2026-09-05'
+    reason: >-
+      Named by every list read on 2026-09-05, usually as "$50,000 in free
+      credits". The pricing page (developers.openai.com/api/docs/pricing) prices
+      every model per token, marks one row Free — omni-moderation-latest — and
+      carries no signup credit and no free tier. The one free thing is the
+      help-center article "Sharing feedback, evaluation and fine-tuning data,
+      and API inputs and outputs with OpenAI", which answers 403 to this
+      repository's fetches and, as quoted by the developer forum and the
+      third-party guides that cite it, says some organizations may qualify for
+      daily complimentary tokens on traffic shared with OpenAI, that
+      eligibility is shown only inside the organization's data-sharing settings,
+      that the tokens are usable only with a positive account balance, and that
+      the shared prompts and outputs are used for training. An offer decided
+      per account on a page no probe can read, unlocked by a prepaid balance
+      and paid for with the prompts, is not a quota this list can publish.
+    reopen_if: >-
+      OpenAI states the eligibility rule and the daily amounts on a public page,
+      or opens a free tier that needs no balance.
+
+  - domains: [anthropic.com, claude.com]
+    name: Anthropic Claude API
+    checked_on: '2026-09-05'
+    reason: >-
+      claude.com/pricing (read 2026-09-05) prices the API per token from "$1 /
+      MTok" on Haiku 4.5 to "$10 / MTok" on Fable 5.1 and names no free tier,
+      trial credit or free model; the only free line is operational — code
+      execution has "50 free hours of usage daily per organization" — and "Save
+      50% with batch processing" is a discount. Two of the lists read still
+      link console.anthropic.com as a source of trial credits; the page no
+      longer carries one.
+    reopen_if: >-
+      A free tier, free model or signup credit on the pricing page.
+
+  - domains: [kimi.ai, moonshot.ai, moonshot.cn]
+    name: Kimi Open Platform (Moonshot AI)
+    checked_on: '2026-09-05'
+    reason: >-
+      The API platform behind the Kimi models, one row over from the Kimi For
+      Coding membership already here. Its recharge-and-limits page
+      (platform.kimi.ai/docs/pricing/limits, read 2026-09-05) opens with "you
+      need to recharge at least $1 to start using, and when your cumulative
+      recharge reaches $5, you will receive a" voucher, and adds that
+      "Vouchers do not count towards the cumulative recharge total"; Tier0, the
+      $1 tier, is 1 concurrent request, 3 RPM, 500,000 TPM and 1,500,000 TPD.
+      No free balance, no free model, and the China platform
+      (platform.moonshot.cn) is the same shape in yuan. platform.moonshot.ai
+      now redirects to platform.kimi.ai, so all three apexes are here.
+    reopen_if: >-
+      A signup balance or a free tier with a figure on the pricing page.
+
+  - domains: [minimax.io, minimaxi.com]
+    name: MiniMax Open Platform
+    checked_on: '2026-09-05'
+    reason: >-
+      minimax.io/price and platform.minimax.io/docs (read 2026-09-05) price
+      MiniMax M3, M2.7 and M2.5 per token and sell Token Plans from $10 a
+      month; no free tier or signup grant is on any vendor page read, while
+      the third-party guides that credit new accounts with trial credits also
+      say the amount has shifted across promotions and is only visible on the
+      dashboard after activation. An amount the vendor does not print is not a
+      quota this list can carry. The free music APIs (Music-3.0-free,
+      Music-2.6-free, music-cover-free) were discontinued from 2026-08-20 by
+      the vendor's own notice.
+    reopen_if: >-
+      A signup grant or free lane with a figure on a vendor page.
+
+  - domains: [relace.ai]
+    name: Relace
+    checked_on: '2026-09-05'
+    reason: >-
+      Code-edit models (apply, merge, search, rerank) that a Chinese list carries
+      as a free API. relace.ai/pricing (read 2026-09-05) prices every one per
+      million tokens — $1.00 / $3.00 on Repos, Jacq and relace-search, $0.80 /
+      $1.20 on relace-apply-3, $0.05 in on relace-rank — and names no free tier,
+      credit or plan.
+    reopen_if: >-
+      A free plan or signup credit with a figure on the pricing page.
+
+  - domains: [ppio.com, ppinfra.com]
+    name: PPIO (PPInfra)
+    checked_on: '2026-09-05'
+    reason: >-
+      ppio.com/pricing (read 2026-09-05) is a metered rate card in yuan —
+      DeepSeek V3.2 ¥2 / ¥3 per million tokens, Qwen3.8 Flash ¥0.8 / ¥2.7, GLM
+      5.3 Flash ¥0.8 / ¥2.8, Kimi K2 ¥4 / ¥16 — with GPU spot discounts and a
+      50% batch-inference offer; no free quota, signup grant or free model is on
+      it, and the sign-up is a mainland flow.
+    reopen_if: >-
+      A free quota with a figure on a vendor page.
+
+  - domains: [ncompass.tech]
+    name: nCompass
+    checked_on: '2026-09-05'
+    reason: >-
+      A Chinese list carries it as a free LLM API. On 2026-09-05 the site
+      renders as "nCompass — GPU performance engineering for opencode" and its
+      pricing page carries no API rate card and no free tier — the inference
+      product the list remembers is not what the site sells now.
+    reopen_if: >-
+      An inference API with a free tier appears on the site.
+
+  - domains: [streamlake.com]
+    name: StreamLake (Kuaishou 万擎)
+    checked_on: '2026-09-05'
+    reason: >-
+      Kuaishou's AI cloud, named by two Chinese lists. The home page (read
+      2026-09-05) sells KAT-Coder-Pro V2.5 and DeepSeek V4 Flash 0731 behind
+      API/SDK access and offers only a student discount campaign — "高校师生专属｜模型定制低至5折",
+      to 2026-09-15, for mainland, Hong Kong, Macau and Taiwan faculty and
+      students — with no free quota anywhere on it; the console is a login
+      page.
+    reopen_if: >-
+      A free quota with a figure on a readable page.
+
+  - domains: [mancer.tech]
+    name: Mancer
+    checked_on: '2026-09-05'
+    reason: >-
+      Honest and OpenAI-compatible by URL swap — its FAQ says "We offer free
+      models, use them to test before making a purchase" — and the models page
+      (read 2026-09-05) marks exactly one row FREE: MythoLite, a LLaMA-2 13B
+      roleplay tune with a 2,560-token context and a 150-token output cap.
+      Every coding-tagged row beside it (DeepSeek V4 Flash, GLM 4.7, GPT OSS
+      120B and 20B) is metered in credits. A free lane that cannot finish a
+      function is not one a coding agent can use.
+    reopen_if: >-
+      A coding-capable model marked FREE on the models page.
+
+  - domains: [empero.org]
+    name: Empero (free.empero.org)
+    checked_on: '2026-09-05'
+    reason: >-
+      "A free community endpoint" for GLM 5.3 Flash from an "Independent AI
+      research lab" that says it is "built in Germany", with weights on Hugging
+      Face under empero-ai. On 2026-09-05 free.empero.org is a maintenance
+      page — "We are switching the free endpoint to new models" and "We are
+      preparing the free endpoint for Qwen3.8-Flash-Next" — and no terms, rate
+      limit, sign-up or catalog page could be read. Nothing here says how it
+      is hosted or funded.
+    reopen_if: >-
+      The endpoint answers and a page states its limits and terms.
+
+  - domains: [awanllm.com]
+    name: AwanLLM
+    checked_on: '2026-09-05'
+    reason: >-
+      The pricing page (read 2026-09-05) still sells a Lite plan "Free
+      forever" — "20 req/minute", "200 req/day" on small models, "10 req/day"
+      on large ones, "Unlimited Tokens!" — over a catalog that stopped in 2024
+      (Llama 3 and 3.1, 8B and 70B). api.awanllm.com timed out on every call
+      that day, catalog and chat alike, at 40 seconds, so the offer cannot be
+      shown to answer, and a plan whose API does not respond is not one this
+      list can verify twice a week.
+    reopen_if: >-
+      api.awanllm.com answers a request.
+
+  - domains: [tokenharbor.ai]
+    name: Token Harbor
+    checked_on: '2026-09-05'
+    reason: >-
+      A gateway with a free pass — "$0/ month", "Try Token Harbor with a free
+      allowance and a rotating model lineup", DeepSeek V4 Flash and MiMo V2.5,
+      "No card required" — and paid passes from $0.99 a month that resell
+      Claude Fable 5.1 at $10.00 / $50.00 and Opus 5 at $5.00 / $25.00 per
+      million tokens, which is list price, so it is a reseller at list and not
+      the different-supply case the blocklist is for. What keeps it off the
+      list is the shape of the free lane: the allowance has no figure on any
+      page read (2026-09-05), the catalog needs a key (tokenharbor.ai/v1/models
+      answers 401), and the operator is unnamed.
+    reopen_if: >-
+      A figure for the free allowance, or a keyless catalog that marks the
+      free rows.
+
+  - domains: [kluster.ai]
+    name: kluster.ai
+    checked_on: '2026-09-05'
+    reason: >-
+      Still linked by two of the lists read on 2026-09-05. None of kluster.ai,
+      platform.kluster.ai or api.kluster.ai resolves in DNS that day, and the
+      last read of its successor lists recorded the API sunset as 2026-06-09.
+    reopen_if: >-
+      The domain resolves and a page carries a free tier.
+
+  - domains: [mlvoca.com]
+    name: mlvoca
+    checked_on: '2026-09-05'
+    reason: >-
+      A GitHub repository (mlvoca/free-llm-api) describes it as "a free llm api
+      to access specific large language models". The site answers 403
+      Forbidden to every fetch — this repository's user agent and a browser's
+      alike, read 2026-09-05 — so no page states who runs it, what it serves or
+      on what terms.
+    reopen_if: >-
+      A readable page naming the models and the terms.
+
+  - domains: [b.ai]
+    name: B.AI
+    checked_on: '2026-09-05'
+    reason: >-
+      A Chinese list credits it with an anonymous, limited-time free lane at
+      "0 Credits" with no end date. The site (b.ai and b.ai/pricing, read
+      2026-09-05) renders the word BAI and nothing else server-side, 2,841
+      bytes, so who operates it, what it serves and on what terms cannot be
+      read.
+    reopen_if: >-
+      A server-rendered page with the models, the limits and the operator.
+
+  - domains: [developer.amd.com.cn]
+    name: AMD Token Factory (China developer site)
+    checked_on: '2026-09-05'
+    reason: >-
+      A Chinese list credits it with a daily $10-equivalent quota on
+      AMD-hosted open models, OpenAI-compatible, no card, run with ZZ.ai and
+      limited-time. The page at /radeon/tokenfactory is client-rendered: the
+      readable part (2026-09-05) is a help notice for the "AMD AI 开发者计划",
+      the Developer Cloud and a joint ModelScope incentive program, with no
+      quota, model, endpoint or sign-up term in it. The domain is AMD's China
+      developer site.
+    reopen_if: >-
+      A server-rendered page with the quota and the sign-up terms.
+
+  - domains: [bigmodel.cn]
+    name: Zhipu BigModel (China console of Z.ai)
+    checked_on: '2026-09-05'
+    reason: >-
+      The mainland console of the vendor this list carries as Z.ai, named by
+      five of the lists read on 2026-09-05 (one of them: "永久免费, 仅限速" —
+      permanently free, rate-limited only — on the GLM Flash models). The same
+      Flash models are the listed row's free lane at api.z.ai, and what the
+      China console adds is a mainland account whose sign-up this list cannot
+      read. Here so the console stops being proposed as a second vendor.
+    reopen_if: >-
+      A readable sign-up page for non-mainland accounts, or a free model the
+      international site does not carry.
+
+  - domains: [qianfan.baidubce.com, cloud.baidu.com]
+    name: Baidu Qianfan (百度千帆)
+    checked_on: '2026-09-05'
+    reason: >-
+      The new-user quota is documented at cloud.baidu.com/doc/qianfan/s/Imi2rpirg
+      (updated 2025-11-17, read 2026-09-05): from 2025-10-24, a user who has
+      "阅读并同意用户协议" is granted "100万" tokens per model with "3个月" validity
+      on 17 models — ERNIE-4.5-Turbo and ERNIE-X1-Turbo, DeepSeek-R1 and V3.1,
+      Kimi-K2-Instruct, Qwen3-Coder-480B-A35B-Instruct among them — for online
+      inference only. A one-off three-month grant is a trial rather than a
+      standing lane, and the page says nothing about who may open the
+      account; Baidu AI Cloud's sign-up is the mainland real-name flow this
+      list cannot read, beside Alibaba's China site for the same reason.
+    reopen_if: >-
+      A readable page saying the console opens without mainland real-name
+      verification, or an international console carrying the grant.
+
+  - domains: [volcengine.com, volces.com]
+    name: Volcengine Ark (火山方舟)
+    checked_on: '2026-09-05'
+    reason: >-
+      Named by two Chinese lists for its 协作奖励计划, the data-collaboration
+      reward. The program page (docs.volcengine.com/docs/82379/1391869,
+      updated 2026-08-31) is client-rendered and came back empty to this
+      repository's fetch on 2026-09-05; what could be read is the vendor's
+      2025-11-20 notice as quoted by nodeseek and linux.do — the reward for
+      individual users rose "由原本每日每模型的50万免费tokens奖励提升至200万", granted as a
+      next-day rebate of what was consumed, for accounts that pass real-name
+      verification and authorize their prompts and outputs for model
+      training — and a 2026-09-01 notice that 38 models left the program. A
+      mainland real-name account and a training authorization are two walls
+      this list does not carry, and the page that would say so is unreadable.
+    reopen_if: >-
+      A server-rendered program page, and a sign-up readable outside the
+      mainland.
+
+  - domains: [wandb.ai]
+    name: W&B Inference (Weights & Biases)
+    checked_on: '2026-09-05'
+    reason: >-
+      A third-party dataset reports "$100/month of Serverless Inference
+      credits on the Free plan". The vendor's usage-limits page (read
+      2026-09-05) says instead that "Serverless Inference credits come with
+      Free, Pro, and Academic plans for a limited time" — no amount, no
+      expiry — and lists "$100/month" as the Free tier's default spending
+      cap on pay-as-you-go, which a free account must turn on once the
+      credits are gone. The per-model price list (DeepSeek V4 Flash $0.14 /
+      $0.28, Qwen3 Coder 480B $1.00 / $1.50 per million) carries no free row,
+      and the service is "only available from supported geographic
+      locations" under CoreWeave's terms.
+    reopen_if: >-
+      A stated credit amount, or a model priced 0.
+
+  - domains: [arliai.com]
+    name: Arli AI
+    checked_on: '2026-09-05'
+    reason: >-
+      The Free plan is real on the pricing page (read 2026-09-05) — "$0",
+      "1 request at a time", "Max 12K context tokens", "Delayed Response",
+      "5 times / 2 days trial of all models" — but which models it reaches
+      is stated nowhere: the page ties model sizes to paid plans only ("Access
+      Up to 31B Models" from $10 a month), /docs and /models answer 404, and
+      api.arliai.com/v1/models needs a key. A free plan whose model list
+      cannot be read is a row whose Models column this list cannot fill or
+      re-check.
+    reopen_if: >-
+      A page naming the models the Free plan can call.

@@ -851,6 +851,38 @@
         }
       }
     },
+    "opentyphoon": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenTyphoon (SCB 10X)",
+      "options": {
+        "baseURL": "https://api.opentyphoon.ai/v1",
+        "apiKey": "{env:OPENTYPHOON_API_KEY}"
+      },
+      "models": {
+        "typhoon-v2.5-30b-a3b-instruct": {
+          "name": "typhoon-v2.5-30b-a3b-instruct"
+        }
+      }
+    },
+    "sarvam": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Sarvam AI",
+      "options": {
+        "baseURL": "https://api.sarvam.ai/v1",
+        "apiKey": "{env:SARVAM_API_KEY}"
+      },
+      "models": {
+        "sarvam-105b": {
+          "name": "sarvam-105b"
+        },
+        "deepseekv4-flash": {
+          "name": "deepseekv4-flash"
+        },
+        "glm5.3-flash": {
+          "name": "glm5.3-flash"
+        }
+      }
+    },
     "sensenova": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "SenseNova (SenseTime 商汤)",
@@ -885,6 +917,25 @@
       "models": {
         "gpt-oss": {
           "name": "gpt-oss"
+        }
+      }
+    },
+    "freeinference": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "FreeInference (Harvard SEAS)",
+      "options": {
+        "baseURL": "https://freeinference.org/v1",
+        "apiKey": "{env:FREEINFERENCE_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "name": "deepseek-v4-flash"
+        },
+        "qwen3.6-35b": {
+          "name": "qwen3.6-35b"
+        },
+        "diffusiongemma": {
+          "name": "diffusiongemma"
         }
       }
     },
