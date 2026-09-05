@@ -29,7 +29,7 @@ class ProbeStatus(str, Enum):
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
     STALE_MODELS = "stale-models"  # offer verified, but every listed family is superseded
-    STALE_IDS = "stale-ids"  # offer and families verified, but api.model_ids and the catalog disagree
+    STALE_IDS = "stale-ids"  # offer and families verified, but a published connection detail is not backed: api.model_ids against the catalog, or the Anthropic route
 
 
 @dataclass
@@ -90,6 +90,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 unlisted = unlisted_free_ids(catalog, entry)
                 if dead or unlisted:
                     return ProbeResult(ProbeStatus.STALE_IDS, _stale_ids_detail(dead, unlisted))
+            # The last published connection detail, and the only one a GET
+            # cannot see: the Anthropic-format route a row names for Claude
+            # Code. Asked keyless, so the answer is never a message — it is
+            # whether anything is listening at that path.
+            if entry.api and entry.api.anthropic_base_url:
+                missing = await anthropic_route_missing(client, entry, attempts, backoff)
+                if missing:
+                    return ProbeResult(ProbeStatus.STALE_IDS, missing)
             return ProbeResult(ProbeStatus.PASS)
         # Only asked once the content check has already failed. Plenty of live
         # pages carry a <noscript> asking for JavaScript while serving the offer
@@ -101,6 +109,47 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
         return ProbeResult(ProbeStatus.FAIL, detail)
     return ProbeResult(ProbeStatus.INCONCLUSIVE, f"unreachable after {attempts} attempts: {last}")
+
+
+# Never completes: no key, one token, a model id no vendor has. The only
+# answer it wants is the status line, and a route that exists says so before it
+# reads the body — 401 without a key, 400 or 422 on the model, 429 on a rate
+# limit — while a path nothing serves answers 404, 405 or 410.
+ANTHROPIC_PROBE_BODY = {"model": "freetier-radar", "max_tokens": 1,
+                        "messages": [{"role": "user", "content": "ping"}]}
+ANTHROPIC_GONE = (404, 405, 410)
+
+
+async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
+                                  backoff: float) -> str | None:
+    """Why the Anthropic-format route a row publishes is not to be trusted, or
+    None while it answers. Set beside `api.anthropic_base_url` only where the
+    vendor documents the route; this check is the twice-weekly half, and it is
+    deliberately shallow — a 401 from an auth wall is the same 401 a real route
+    gives — because the deep half already happened when the field was set.
+    A route that cannot be reached is said so rather than skipped, like a
+    catalog that stops answering: the row stays verified by its page, and the
+    line in the pull request is the difference between a check that ran and
+    one that quietly did not."""
+    url = entry.api.anthropic_base_url.rstrip("/") + "/v1/messages"
+    last = ""
+    for i in range(attempts):
+        if i:
+            await asyncio.sleep(backoff * i)
+        try:
+            resp = await client.post(url, json=ANTHROPIC_PROBE_BODY,
+                                     headers={"anthropic-version": "2023-06-01"},
+                                     timeout=TIMEOUT, follow_redirects=True)
+        except httpx.HTTPError as exc:
+            last = f"network error: {exc}"
+            continue
+        if resp.status_code >= 500:
+            last = f"HTTP {resp.status_code}"
+            continue
+        if resp.status_code in ANTHROPIC_GONE:
+            return f"anthropic route gone: POST {url} answered HTTP {resp.status_code}"
+        return None
+    return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,

@@ -279,3 +279,19 @@ def test_known_domains_covers_where_an_entry_is_actually_reached():
 def test_known_domains_of_an_entry_without_an_api_block():
     e = Entry.model_validate(sample_entry())
     assert known_domains([e]) == {"openrouter.ai"}
+
+
+def test_anthropic_base_url_is_the_base_claude_code_appends_to():
+    """The field is what ANTHROPIC_BASE_URL takes, and Claude Code appends
+    /v1/messages itself — so a value that already ends in the route would send
+    it to /v1/messages/v1/messages, and a trailing slash would double the one
+    in between."""
+    d = sample_entry()
+    d["api"] = {"base_url": "https://x.ai/v1", "anthropic_base_url": "https://x.ai/"}
+    assert Entry.model_validate(d).api.anthropic_base_url == "https://x.ai"
+    d["api"] = {"base_url": "https://x.ai/v1", "anthropic_base_url": "https://x.ai/v1/messages"}
+    with pytest.raises(ValidationError, match="appends /v1/messages"):
+        Entry.model_validate(d)
+    d["api"] = {"base_url": "https://x.ai/v1", "anthropic_base_url": "http://x.ai"}
+    with pytest.raises(ValidationError, match="https"):
+        Entry.model_validate(d)

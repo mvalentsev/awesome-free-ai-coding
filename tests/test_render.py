@@ -319,6 +319,7 @@ def test_context_connections():
     entries = [api_entry(id="groq-free", name="Groq"), make(id="plain")]
     ctx = build_context(entries, TODAY)
     assert ctx["connections"] == [{"name": "Groq", "base_url": "https://api.x.ai/v1",
+                                   "anthropic_base_url": "",
                                    "auth": "`GROQ_API_KEY`", "key_url": "https://x.ai/keys",
                                    "note": ""}]
 
@@ -586,3 +587,51 @@ def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
     save_registry(reg, [make(id="paid", name="Paid", card_required=True)])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     assert "| I want… |" not in text
+
+
+def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_path: Path):
+    """"Claude Code on a free lane" is the question the 27,000-star routers
+    answer by re-exposing paid sessions. The legal answer is a gateway whose
+    vendor documents an Anthropic-format route, and the registry now names it
+    per row — so the picks table, the connection table and the shell file all
+    read the same field, and a route the probe reports gone leaves all three."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import build_claude_code_sh
+    entries = [
+        make(id="gw-one", name="GwOne", rank=10, category="aggregator",
+             api={"base_url": "https://one.example/v1", "key_url": "https://one.example/keys",
+                  "anthropic_base_url": "https://one.example",
+                  "model_ids": ["vendor/model-a:free", "vendor/model-b:free"]}),
+        make(id="gw-card", name="GwCard", rank=1, category="aggregator", card_required=True,
+             api={"base_url": "https://card.example/v1", "anthropic_base_url": "https://card.example"}),
+        make(id="gw-plain", name="GwPlain", rank=5, category="aggregator",
+             api={"base_url": "https://plain.example/v1"}),
+        make(id="gw-noids", name="GwNoIds", rank=20,
+             api={"base_url": "https://noids.example/v1", "anthropic_base_url": "https://noids.example/anthropic"}),
+    ]
+    ctx = build_context(entries, TODAY)
+    assert [p["name"] for p in ctx["picks"]["claude_code"]] == ["GwOne", "GwNoIds"]
+    by_name = {c["name"]: c for c in ctx["connections"]}
+    assert by_name["GwOne"]["anthropic_base_url"] == "https://one.example"
+    assert by_name["GwPlain"]["anthropic_base_url"] == ""
+
+    sh = build_claude_code_sh(entries, TODAY)
+    assert "claude-gw-one()" in sh and "claude-gw-noids()" in sh and "claude-gw-card()" in sh
+    assert "claude-gw-plain" not in sh
+    block = sh.split("claude-gw-one()")[1].split("claude-gw-")[0]
+    assert 'ANTHROPIC_BASE_URL="https://one.example"' in block
+    assert 'ANTHROPIC_AUTH_TOKEN="$GW_ONE_API_KEY"' in block
+    assert 'ANTHROPIC_API_KEY=""' in block
+    assert 'ANTHROPIC_MODEL="vendor/model-a:free"' in block
+    noids = sh.split("claude-gw-noids()")[1]
+    assert "ANTHROPIC_MODEL=" not in noids.split("}")[0]
+
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
+    assert "**Claude Code on a free lane** | [GwOne](https://x.ai) · [GwNoIds](https://x.ai) |" in hero
+    plug = text.split("## 🔧 Plug it into your agent")[1]
+    assert "`https://one.example`" in plug and "claude-code.sh" in plug
+    render_artifacts(reg, tmp_path, today=TODAY)
+    assert "claude-gw-one()" in (tmp_path / "configs" / "claude-code.sh").read_text(encoding="utf-8")

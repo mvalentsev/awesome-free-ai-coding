@@ -125,6 +125,18 @@ vendor keeps its ids in a keyless catalog at another url names it in
 catalog that stops answering is reported as `stale-ids` too, since a check that
 quietly did not run is the silence this whole mechanism exists to end.
 
+**`api.anthropic_base_url` is the Claude Code answer.** Set it only where the
+vendor documents an Anthropic-format Messages route — a 401 alone proves
+nothing, since a gateway's auth wall answers 401 on any path. It is the value
+`ANTHROPIC_BASE_URL` takes, so it stops before `/v1/messages` (Claude Code
+appends that itself; validation refuses a value that already carries it). Every
+run then POSTs to the route keyless: a 401, 400 or 429 is a route, a 404 or 405
+is reported as `stale-ids` beside the row while the row stays verified by its
+page, and a route that cannot be reached is reported rather than skipped. The
+field feeds the Claude Code line of the picks table, the second URL in the
+connection table and [`configs/claude-code.sh`](configs/claude-code.sh), and
+`index.json` carries it as written.
+
 ## How the pipeline works
 
 `registry.yaml` is the single source of truth. `README.md` is **generated** — never

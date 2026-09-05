@@ -48,11 +48,6 @@ model_list:
     model: openai/muse-spark-1.2-contributor-free
     api_base: https://opencode.ai/zen/v1
     api_key: os.environ/OPENCODE_API_KEY
-- model_name: openrouter-free/openrouter/free
-  litellm_params:
-    model: openai/openrouter/free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/nvidia/nemotron-3-ultra-550b-a55b:free
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
@@ -146,6 +141,11 @@ model_list:
 - model_name: openrouter-free/liquid/lfm-2.5-2.6b:free
   litellm_params:
     model: openai/liquid/lfm-2.5-2.6b:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/openrouter/free
+  litellm_params:
+    model: openai/openrouter/free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
 - model_name: groq-free/llama-3.3-70b-versatile

@@ -6,6 +6,7 @@ entries:
   source_urls:
   - https://openrouter.ai/docs/faq
   - https://openrouter.ai/docs/api_reference/limits
+  - https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration
   card_required: false
   offering: One API key for rotating :free variants of frontier models
   limits: 20 requests per minute on any :free id, 50 requests per day, and 1,000 per
@@ -29,7 +30,6 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - openrouter/free
     - nvidia/nemotron-3-ultra-550b-a55b:free
     - nvidia/nemotron-3-super-120b-a12b:free
     - nvidia/nemotron-3.5-lightning:free
@@ -49,6 +49,8 @@ entries:
     - inclusionai/ling-3.0-flash-fin:free
     - inclusionai/ling-3.0-flash-sante:free
     - liquid/lfm-2.5-2.6b:free
+    - openrouter/free
+    anthropic_base_url: https://openrouter.ai/api
     note: 'pick models with the :free suffix; all nineteen ids carrying it are priced
       0/0 and the other 409 rows are metered, bar Google''s two Lyria 3 music previews
       at 0 without the suffix (read 2026-09-05; eighteen :free ids and 354 metered
@@ -59,7 +61,14 @@ entries:
       model is up and the id that survives this lane rotating; nemotron-3.5-content-safety
       is a guardrail, ling-3.0-flash-fin finance-tuned and ling-3.0-flash-sante health-tuned,
       nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b
-      off agentic coding'
+      off agentic coding The Claude Code cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api
+      — the "Anthropic Skin", which "behaves exactly like the Anthropic API" and maps
+      model names — with ANTHROPIC_API_KEY explicitly empty; a :free id in ANTHROPIC_MODEL
+      keeps the session on the free lane, and the page warns Claude Code "may not
+      work correctly with other providers" openrouter/free is the vendor''s own router
+      over the :free set rather than a model, so it sits last: the first id is the
+      one the generated Claude Code function leads with, and a router can land on
+      a free model without tool use'
   probe:
     type: api-models
     endpoint: https://openrouter.ai/api/v1/models
@@ -931,6 +940,7 @@ entries:
   url: https://z.ai
   source_urls:
   - https://docs.z.ai/guides/overview/pricing
+  - https://docs.z.ai/devpack/tool/claude
   card_required: false
   offering: GLM Flash models free on the API, vision included (OpenAI-compatible at
     api.z.ai/api/paas/v4)
@@ -954,7 +964,12 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids: []
-    note: Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead
+    anthropic_base_url: https://api.z.ai/api/anthropic
+    note: Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead. The Claude
+      Code guide sets ANTHROPIC_BASE_URL to https://api.z.ai/api/anthropic with "your_zai_api_key"
+      as the token and names Coding-Plan ids (glm-5.3, glm-5.3-flash); whether the
+      free Flash ids answer on that route is not stated, and the route answers 401
+      keyless (2026-09-05)
   probe:
     type: page-keywords
     endpoint: https://docs.z.ai/guides/overview/pricing
@@ -1345,6 +1360,7 @@ entries:
   source_urls:
   - https://vercel.com/docs/ai-gateway/pricing
   - https://vercel.com/docs/ai-gateway/openai-compat
+  - https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api
   card_required: false
   offering: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits
     included every month and seven language models that never touch the credit
@@ -1376,6 +1392,7 @@ entries:
     - inclusionai/ling-3.0-flash-fin-free
     - inclusionai/ling-3.0-flash-sante
     - inclusionai/ling-3.0-flash-sante-free
+    anthropic_base_url: https://ai-gateway.vercel.sh
     note: 'every id listed is priced 0 in and 0 out and draws nothing from the $5
       credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20,
       five on 2026-09-02, seven on 2026-09-05: MiniMax M3 (Free) and M2.7 (Free) arrived
@@ -1384,7 +1401,10 @@ entries:
       the -free suffix. They stay out of the Models column until they have stood a
       while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20.
       spacexai/grok-stt, the sixth row at 0 per token, is speech-to-text billed per
-      second of audio, which the probe reads as a price'
+      second of audio, which the probe reads as a price The same key serves the Anthropic
+      Messages format at https://ai-gateway.vercel.sh — the docs (updated 2026-08-11)
+      set ANTHROPIC_BASE_URL to it for Claude Code with ANTHROPIC_API_KEY left empty,
+      and the zero-priced ids here are what to name in ANTHROPIC_MODEL'
   probe:
     type: api-models
     endpoint: https://ai-gateway.vercel.sh/v1/models
@@ -1603,6 +1623,7 @@ entries:
   - https://www.requesty.ai/pricing
   - https://docs.requesty.ai/quickstart
   - https://router.requesty.ai/v1/models
+  - https://docs.requesty.ai/integrations/claude-code
   card_required: false
   offering: OpenAI-compatible router over a 690+ model catalog with routing, caching
     and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway
@@ -1641,6 +1662,7 @@ entries:
     - mistral/leanstral-1-5
     - nvidia/muse-glimmer-30b
     - nvidia/nemotron-3.5-lightning-30b-a3b
+    anthropic_base_url: https://router.requesty.ai
     note: the twelve ids listed are every row the catalog prices at 0, and the free
       plan serves those alone — ten on 2026-08-11, twelve on 2026-09-02 after nvidia/muse-glimmer-30b
       and nvidia/nemotron-3.5-lightning-30b-a3b joined (both updated 2026-08-23).
@@ -1648,6 +1670,10 @@ entries:
       from the 686 metered rows beside them. Nine of the twelve — every NVIDIA row
       and both Poolside ones — are marked data_used_for_training with 30-day retention;
       nemotron-3.5-content-safety is a guardrail classifier rather than a coding model
+      The Claude Code guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai
+      (router.eu.requesty.ai for EU residency) and recommends ANTHROPIC_MODEL over
+      the /model directive; the SDK page's /anthropic/v1/messages path answers 404,
+      the base above answers 401 keyless (2026-09-05)
   probe:
     type: api-models
     endpoint: https://router.requesty.ai/v1/models
@@ -1869,6 +1895,7 @@ entries:
   source_urls:
   - https://docs.aihubmix.com/en/blogs/free-ai-models
   - https://aihubmix.com/api/v1/models
+  - https://docs.aihubmix.com/en/api/Claude-Code
   card_required: false
   offering: One OpenAI-compatible gateway over 800+ models, 56 of which the platform
     prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format
@@ -1958,6 +1985,7 @@ entries:
     - gpt-image-2-free
     - gemini-3.1-flash-image-preview-free
     - qwen3.6-plus-preview-free
+    anthropic_base_url: https://aihubmix.com
     note: 'every -free id the catalog prices at 0 is listed: 53 on 2026-09-03, 52
       the day before — gemini-3.8-flash-free is the one that joined, priced 0 in and
       out and carrying the same trial-use caveat as the two Gemini Flash rows already
@@ -1968,7 +1996,9 @@ entries:
       Ignored on purpose: gpt-image-2-free and gemini-3.1-flash-image-preview-free
       generate images, and qwen3.6-plus-preview-free describes itself as "removed
       from the platform". `model_id` is the callable string; `model_name` beside it
-      is a display title'
+      is a display title The Claude Code guide verifies the setup with a curl to https://aihubmix.com/v1/messages
+      carrying x-api-key and anthropic-version, so ANTHROPIC_BASE_URL is https://aihubmix.com
+      — a -free id there backs Claude Code on the subsidised lane'
   probe:
     type: api-models
     endpoint: https://aihubmix.com/api/v1/models
@@ -2494,6 +2524,7 @@ entries:
   - https://kenari.id/en/docs/billing
   - https://kenari.id/api/public/pricing
   - https://kenari.id/v1/models
+  - https://kenari.id/docs/messages
   card_required: false
   offering: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are
     billed Rp 0 behind a per-minute and a daily cap — thirteen on 2026-09-03, GLM-4.7-Flash,
@@ -2545,6 +2576,7 @@ entries:
     - agnes-2-5-flash:free
     - muse-spark-1-2-contributor:free
     - muse-spark-1-3-contributor:free
+    anthropic_base_url: https://kenari.id
     note: 'every :free id the catalog carries is listed — thirteen on 2026-09-03,
       twelve the day before. The catalog marks each one `free: true` inside its pricing
       object and prints the metered Rupiah rate beside it, which is what the same
@@ -2562,7 +2594,11 @@ entries:
       and muse-spark-1-2-contributor:free, which /api/public/pricing has already dropped
       — and both stay listed here because the probe reads the catalog, which still
       answers for them. The same key serves /v1/chat/completions and an Anthropic-format
-      /v1/messages'
+      /v1/messages The Messages doc says "Arahkan SDK Anthropic ke https://kenari.id/v1"
+      and documents POST /v1/messages with the same kn- key as Bearer; the route that
+      answers is https://kenari.id/v1/messages (401 keyless), so ANTHROPIC_BASE_URL
+      is https://kenari.id — with the docs'' /v1 appended it lands on /v1/v1/messages,
+      which answers 405 (2026-09-05)'
   probe:
     type: api-models
     endpoint: https://kenari.id/v1/models
@@ -2761,6 +2797,7 @@ entries:
     - deepseek-v4-flash
     - qwen3.6-35b
     - diffusiongemma
+    anthropic_base_url: https://freeinference.org/anthropic
     note: 'the three ids are the chat rows the keyless catalog at freeinference.org/v1/models
       returned on 2026-09-05 (bge-m3, the fourth, is an embedding model); the docs
       mark four more chat ids Free — glm-5.1, glm-5.3-flash, minimax-m3, minimax-m2.5

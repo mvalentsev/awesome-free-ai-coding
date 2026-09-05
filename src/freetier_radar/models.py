@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import yaml
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 # Words every vendor keeps on the page long after the offer is gone. A probe
 # built out of these alone verifies that the page loads, nothing more.
@@ -208,7 +208,32 @@ class ApiInfo(BaseModel):
     # set: every api block already carries model_ids and note, and this list
     # means something only on the rows whose catalog prices are read.
     ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
+    # The base of the vendor's Anthropic-format Messages API — the value Claude
+    # Code's ANTHROPIC_BASE_URL takes, the client appending /v1/messages itself.
+    # Set only where the vendor documents the route, never from a 401 alone:
+    # a gateway's auth wall answers 401 on any path. The probe then POSTs to it
+    # keyless on every run, and a 404 is reported beside a dead model id — the
+    # same kind of fact, a connection detail this list publishes and the world
+    # stopped backing.
+    anthropic_base_url: str | None = None
     note: str = ""
+
+    @field_validator("anthropic_base_url")
+    @classmethod
+    def _anthropic_base_is_a_base(cls, value: str | None) -> str | None:
+        """Claude Code appends /v1/messages; a value that already carries the
+        route would be sent to /v1/messages/v1/messages, and a trailing slash
+        would double the one the client adds."""
+        if value is None:
+            return value
+        value = value.rstrip("/")
+        if not value.startswith("https://"):
+            raise ValueError("anthropic_base_url must be an https URL")
+        if value.endswith("/messages"):
+            raise ValueError(
+                "anthropic_base_url is the base Claude Code appends /v1/messages to — "
+                "drop the route from it")
+        return value
 
 
 class Entry(BaseModel):

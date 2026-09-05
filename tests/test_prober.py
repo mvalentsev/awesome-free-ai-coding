@@ -1319,3 +1319,62 @@ async def test_a_dry_run_records_no_history(tmp_path):
     await _amain(registry, tmp_path / "failures", dry_run=True)
 
     assert not (tmp_path / "history.jsonl").exists()
+
+
+def anthropic_entry() -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "anth",
+        "api": {"base_url": "https://x.ai/v1", "anthropic_base_url": "https://x.ai/anthropic"},
+        "probe": {
+            "type": "page-keywords",
+            "endpoint": "https://x.ai/pricing",
+            "keywords": ["qwen3-coder"],
+        },
+    })
+
+
+@respx.mock
+async def test_a_published_anthropic_route_that_answers_is_a_pass():
+    """A keyless POST cannot complete a message, and does not try to: a 401 is
+    the route saying it exists, which is the whole question."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    route = respx.post("https://x.ai/anthropic/v1/messages").mock(
+        return_value=httpx.Response(401, json={"type": "error", "error": {"type": "authentication_error"}}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, anthropic_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert route.called
+
+
+@respx.mock
+async def test_an_anthropic_route_that_is_gone_is_a_note_not_a_failure():
+    """The offer is still evidenced by its page; what died is a connection
+    detail this list publishes. Same shape as a dead id in api.model_ids: the
+    row stays verified and the run says what to fix."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    respx.post("https://x.ai/anthropic/v1/messages").mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, anthropic_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "anthropic route gone" in result.detail and "HTTP 404" in result.detail
+
+
+@respx.mock
+async def test_an_anthropic_route_that_cannot_be_checked_is_said_so():
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    respx.post("https://x.ai/anthropic/v1/messages").mock(side_effect=httpx.ConnectError("boom"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, anthropic_entry(), backoff=0, attempts=2)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "could not be checked" in result.detail
+
+
+@respx.mock
+async def test_a_row_without_an_anthropic_route_never_posts_anywhere():
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder free tier no credit card"))
+    route = respx.post(url__regex=r".*").mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert not route.called

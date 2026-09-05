@@ -17,7 +17,7 @@ from .models import (ARCHIVE_AFTER_DAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS
 __all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "README_PICKS",
            "README_STARTERS",
            "is_archived", "build_context", "build_feed", "build_index",
-           "build_opencode_config", "build_env_example", "env_var",
+           "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "render_readme", "render_artifacts", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
@@ -231,6 +231,12 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
         "aggregators": top(Category.AGGREGATOR),
         "keyless": [_pick(e) for e in connectable if e.api.auth == "none"][:README_PICKS],
         "trials": top(Category.TRIAL),
+        # The question the 27,000-star routers answer by re-exposing paid
+        # sessions. The legal answer is a gateway whose vendor documents an
+        # Anthropic-format route, and the row names it — across sections, in
+        # rank order, since a free lane behind that route is what matters.
+        "claude_code": [_pick(e) for e in ranked
+                        if e.api and e.api.anthropic_base_url][:README_PICKS],
     }
 
 
@@ -379,6 +385,7 @@ def build_context(entries: list[Entry], today: date,
     connectable = _connectable(entries, today)
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
+         "anthropic_base_url": e.api.anthropic_base_url or "",
          "auth": "—" if e.api.auth == "none" else f"`{env_var(e.id)}`",
          "key_url": e.api.key_url or "",
          "note": (_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True)
@@ -506,6 +513,64 @@ def build_env_example(entries: list[Entry], today: date) -> str:
     return "\n".join(lines)
 
 
+def _anthropic_ready(entries: list[Entry], today: date) -> list[Entry]:
+    """Every live row that publishes an Anthropic-format route, in rank order —
+    card-required rows included, since the file is a menu rather than a
+    recommendation and the card is stated beside the name."""
+    return sorted(
+        (e for e in entries
+         if not is_archived(e, today) and e.api and e.api.anthropic_base_url),
+        key=lambda e: (e.rank, e.name.lower()),
+    )
+
+
+def build_claude_code_sh(entries: list[Entry], today: date) -> str:
+    """One shell function per gateway that serves the Anthropic Messages
+    format, so `source configs/claude-code.sh` and `claude-<id>` runs Claude
+    Code on that lane. Functions rather than exports because only one gateway
+    can be current: a file of exports would leave the last block winning
+    silently, while a function scopes the four variables to one invocation —
+    the shape Vercel's own docs recommend. ANTHROPIC_API_KEY is emptied on
+    purpose in every block: Claude Code reads it before ANTHROPIC_AUTH_TOKEN,
+    and a stale value there wins. The key comes from the same variable
+    free-llm.env.example declares, so the two files are one setup.
+
+    The model is the first id the row lists, which on a rotating lane is the
+    registry's own order; a row that lists none leaves ANTHROPIC_MODEL to the
+    reader and says so."""
+    lines = [
+        "# Claude Code on a free lane — generated from registry.yaml, do not edit by hand.",
+        "# Each function points Claude Code at a gateway this list verifies twice a week:",
+        "# the vendor documents the Anthropic-format route, and the probe confirms it still",
+        "# answers. Usage:  source configs/free-llm.env.example  (fill the key you use),",
+        "# then  source configs/claude-code.sh  and run the function named after the row,",
+        "# e.g. claude-openrouter-free. Works in bash and zsh.",
+        "",
+    ]
+    for e in _anthropic_ready(entries, today):
+        card = " · card required" if e.card_required else ""
+        key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
+        lines.append(f"# ── {e.name}{card}{key_hint}")
+        if not e.api.model_ids:
+            lines.append("#    the row lists no callable id: pass ANTHROPIC_MODEL=<a free id> "
+                         "before the function, or set it inside")
+        else:
+            lines.append(f"#    free ids: {', '.join(e.api.model_ids)}")
+        lines.append(f"claude-{e.id}() {{")
+        lines.append(f'  ANTHROPIC_BASE_URL="{e.api.anthropic_base_url}" \\')
+        if e.api.auth == "none":
+            lines.append('  ANTHROPIC_AUTH_TOKEN="none" \\')
+        else:
+            lines.append(f'  ANTHROPIC_AUTH_TOKEN="${env_var(e.id)}" \\')
+        lines.append('  ANTHROPIC_API_KEY="" \\')
+        if e.api.model_ids:
+            lines.append(f'  ANTHROPIC_MODEL="{e.api.model_ids[0]}" \\')
+        lines.append('  claude "$@"')
+        lines.append("}")
+        lines.append("")
+    return "\n".join(lines)
+
+
 def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[Watched]:
     """The watchlist that belongs to this registry — its sibling unless told
     otherwise. Missing file means an empty list, so a caller that has no
@@ -556,6 +621,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         encoding="utf-8")
     (configs / "free-llm.env.example").write_text(
         build_env_example(entries, today) + "\n", encoding="utf-8")
+    (configs / "claude-code.sh").write_text(
+        build_claude_code_sh(entries, today) + "\n", encoding="utf-8")
     (configs / "litellm.yaml").write_text(
         "# Free LLM providers as a LiteLLM proxy config — generated from\n"
         "# registry.yaml, do not edit by hand. Run: litellm --config litellm.yaml\n"

@@ -56,9 +56,6 @@
         "apiKey": "{env:OPENROUTER_API_KEY}"
       },
       "models": {
-        "openrouter/free": {
-          "name": "openrouter/free"
-        },
         "nvidia/nemotron-3-ultra-550b-a55b:free": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free"
         },
@@ -115,6 +112,9 @@
         },
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
+        },
+        "openrouter/free": {
+          "name": "openrouter/free"
         }
       }
     },

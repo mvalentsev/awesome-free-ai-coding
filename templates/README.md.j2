@@ -40,7 +40,7 @@
 <sub>Every model name above is read back from the vendor's own API or pricing page twice a week, and the quota that comes with it is in the [table below](#-coding-agents--clis).</sub>
 
 {% endif %}
-{% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials %}
+{% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
 **Or pick by what you need.** Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the same run it leaves the list:
 
 | I want… | Start with |
@@ -50,9 +50,10 @@
 {% endif %}{% if picks.aggregators %}| **One key, many free models** | {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
 {% endif %}{% if picks.keyless %}| **No account at all** | {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
 {% endif %}{% if picks.trials %}| **A trial that asks for no card** | {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
+{% endif %}{% if picks.claude_code %}| **Claude Code on a free lane** | {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
 {% endif %}
 
-<sub>"Frontier" is the tier the registry marks on a model family — one tier per family, checked in CI — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered).</sub>
+<sub>"Frontier" is the tier the registry marks on a model family — one tier per family, checked in CI — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route and whose route answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
 
 {% endif %}
 {% if quickstart %}
@@ -153,11 +154,11 @@ _Empty — the radar is clean._
 
 ## 🔧 Plug it into your agent
 
-Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK:
+Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK. Where a second URL is shown, the same key also serves the Anthropic Messages format: that one is Claude Code's `ANTHROPIC_BASE_URL`, and the probe checks it answers.
 
 | Provider | Base URL | Key env var | Get a key |
 |---|---|---|---|
-{% for c in connections %}| **{{ c.name }}**{% if c.note %}<br>{{ c.note }}{% endif %} | `{{ c.base_url }}` | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
+{% for c in connections %}| **{{ c.name }}**{% if c.note %}<br>{{ c.note }}{% endif %} | `{{ c.base_url }}`{% if c.anthropic_base_url %}<br><sub>Anthropic format: `{{ c.anthropic_base_url }}`</sub>{% endif %} | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
 {% endfor %}
 
 Ready-made artifacts, regenerated on every update:
@@ -166,6 +167,7 @@ Ready-made artifacts, regenerated on every update:
 |---|---|
 | [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
+| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and `claude-openrouter-free` runs [Claude Code](https://code.claude.com/docs) on that lane, key and model filled in |
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint |
 | [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
 | [`history.jsonl`](history.jsonl) · [feed]({{ feed_url }}) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |
