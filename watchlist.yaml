@@ -374,7 +374,7 @@ watched:
       fireworks.ai/pricing offers "Get started with $1 in free credits" against
       serverless inference with "postpaid billing" — a grant that sits on top of
       a billing relationship rather than instead of one, and a fortieth of what
-      the trials listed here carry ($10 at Upstage and AI21). Every model on the
+      the trials listed here carry ($10 at Upstage). Every model on the
       page is priced per token.
     reopen_if: >-
       Fireworks publishes a recurring free tier, or a signup grant reachable
@@ -1362,3 +1362,24 @@ watched:
     reopen_if: >-
       A free or community plan with a stated quota appears on the pricing
       page.
+
+  - domains: [app.ai21.com]
+    name: AI21 Gateway (Tokenwise)
+    checked_on: '2026-09-05'
+    reason: >-
+      A separate surface from the archived AI21 Labs (Jamba) entry. The 410
+      that retired AI21 Studio's catalog route points here — "The AI21 Gateway
+      is available at https://app.ai21.com" — and what is here is a
+      bring-your-own-key gateway, not a model API: the app's own env file
+      names it ai21-intelligent-gateway-webapp with a base of
+      api.ai21.com/gateway, its code snippets pass "your own OpenAI key" or
+      "your own Anthropic key" upstream, and the only "Free trial" in it is a
+      Stigg-billed "Tokenwise" plan trial counted in days.
+      api.ai21.com/gateway/v1/chat/completions answers 400 "bad or missing
+      authentication" keyless, so the route exists; no page, docs entry or
+      llms.txt line describes it, and the docs index still lists only the
+      Jamba, Maestro and Studio pages. Studio itself — where the $10 no-card
+      trial lived — redirects every route to the www.ai21.com homepage.
+    reopen_if: >-
+      AI21 documents the Gateway with a model AI21 hosts itself and a free
+      quota or credit on it that needs no card.
