@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-09-05'
+title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-09-07'
 description: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use. Rate limits are the published ceiling — 5 requests per second and 200 per minute on typhoon-v2.5-30b-a3b-instruct, 2 and 20 on…
 permalink: /providers/opentyphoon/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/opentyphoon/
 
 # OpenTyphoon (SCB 10X)
 
-🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-05 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-07 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,10 +39,10 @@ Rate limits are the published ceiling — 5 requests per second and 200 per minu
 
 ## History
 
-No recorded event yet — the first scheduled run after a row lands writes its `added` line.
+- `2026-09-07` — Added to the list: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

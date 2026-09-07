@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'SambaNova Cloud free tier: limits, free models, verified 2026-09-03'
+title: 'SambaNova Cloud free tier: limits, free models, verified 2026-09-07'
 description: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it. 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3…
 permalink: /providers/sambanova-cloud/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sambanova-cloud/
 
 # SambaNova Cloud
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-03 · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-07 · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,6 +41,6 @@ Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

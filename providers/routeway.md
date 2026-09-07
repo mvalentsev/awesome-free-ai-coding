@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Routeway free tier: limits, free models, verified 2026-09-03'
+title: 'Routeway free tier: limits, free models, verified 2026-09-07'
 description: OpenAI-compatible gateway whose :free lane rotates — four zero-priced ids on 2026-09-05, Meta's Muse Glimmer 30B, DeepSeek V4 Flash, Kimi K2.6 and MiniMax M2.7 — beside 241 metered rows in the same catalog. Free models, meaning every id ending :free, are capped at 5 requests per minute and 200…
 permalink: /providers/routeway/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/routeway/
 
 # Routeway
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-03 · [routeway.ai](https://routeway.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-07 · [routeway.ai](https://routeway.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,6 +39,7 @@ Free models, meaning every id ending :free, are capped at 5 requests per minute 
 
 ## History
 
+- `2026-09-07` — Free models changed: dropped gemma-4, gpt-oss
 - `2026-08-31` — Free models changed: dropped llama-3.3, step-3.7-flash
 - `2026-08-11` — Free models changed: dropped ling-3.0-flash
 - `2026-08-05` — Free models changed: added gemma-4, llama-3.3
@@ -46,6 +47,6 @@ Free models, meaning every id ending :free, are capped at 5 requests per minute 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

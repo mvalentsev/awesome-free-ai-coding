@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Infomaniak AI Services free tier: limits, free models, verified 2026-09-03'
+title: 'Infomaniak AI Services free tier: limits, free models, verified 2026-09-07'
 description: Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token. "One million free credits allow you to test the service without commitment for one month" and "The API is billed on a credit basis. Each request consumes one credit…
 permalink: /providers/infomaniak-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/infomaniak-ai/
 
 # Infomaniak AI Services
 
-🎁 Trials (no card when possible) · card required · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-03 · [infomaniak.com](https://www.infomaniak.com/en/hosting/ai-services) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · card required · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-07 · [infomaniak.com](https://www.infomaniak.com/en/hosting/ai-services) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,6 +41,6 @@ The page this row is verified against names no free model, so the column stays e
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Trae free tier: limits, free models, verified 2026-09-03'
+title: 'Trae free tier: limits, free models, verified 2026-09-07'
 description: 'Free access to frontier models in IDE. Trae publishes the free plan as words in its comparison table — "Limited usage", "Standard queue", "Autocompletion 5000 / month", "Concurrent Cloud Tasks 2" — and as numbers in the payload that table is rendered from: the same basic_usage_limit field that…'
 permalink: /providers/trae/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/trae/
 
 # Trae
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-03 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-07 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -38,6 +38,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

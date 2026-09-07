@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Groq free tier: limits, free models, verified 2026-09-03'
+title: 'Groq free tier: limits, free models, verified 2026-09-07'
 description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 14.4K / 6K / 500K on llama-3.1-8b-instant, 30 / 1K / 12K / 100K on llama-3.3-70b-versatile, 30 / 1K / 8K / 200K on…'
 permalink: /providers/groq-free/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/groq-free/
 
 # Groq
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-03 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-07 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,6 +42,6 @@ Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM /
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

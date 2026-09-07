@@ -5,8 +5,50 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-03T21:38:08Z</updated>
+  <updated>2026-09-07T10:28:10Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/ai21-labs/20260907T102810Z</id>
+    <title>Archived: AI21 Labs (Jamba)</title>
+    <link rel="alternate" href="https://www.ai21.com"/>
+    <updated>2026-09-07T10:28:10Z</updated>
+    <summary type="text">vendor-announced shutdown on 2026-08-09</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/freeinference/20260907T102810Z</id>
+    <title>New: FreeInference (Harvard SEAS)</title>
+    <link rel="alternate" href="https://freeinference.org"/>
+    <updated>2026-09-07T10:28:10Z</updated>
+    <summary type="text">Harvard SEAS's MadSys Lab serving frontier open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup · free models: deepseek-v4-flash, glm-5.1, glm-5.3-flash, minimax-m3, qwen3.6</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/ibm-watsonx-ai/20260907T102810Z</id>
+    <title>New: IBM watsonx.ai (Lite plan)</title>
+    <link rel="alternate" href="https://www.ibm.com/products/watsonx-ai"/>
+    <updated>2026-09-07T10:28:10Z</updated>
+    <summary type="text">IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/opentyphoon/20260907T102810Z</id>
+    <title>New: OpenTyphoon (SCB 10X)</title>
+    <link rel="alternate" href="https://opentyphoon.ai"/>
+    <updated>2026-09-07T10:28:10Z</updated>
+    <summary type="text">Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/routeway/20260907T102810Z</id>
+    <title>Free models changed: Routeway</title>
+    <link rel="alternate" href="https://routeway.ai"/>
+    <updated>2026-09-07T10:28:10Z</updated>
+    <summary type="text">dropped gemma-4, gpt-oss</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sarvam/20260907T102810Z</id>
+    <title>New: Sarvam AI</title>
+    <link rel="alternate" href="https://www.sarvam.ai"/>
+    <updated>2026-09-07T10:28:10Z</updated>
+    <summary type="text">India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint · free models: sarvam-105b, deepseek-v4-flash, glm-5.3-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cerebras-free/20260903T213808Z</id>
     <title>Free models changed: Cerebras Inference</title>
@@ -314,47 +356,5 @@
     <link rel="alternate" href="https://vercel.com/ai-gateway"/>
     <updated>2026-08-14T09:12:34Z</updated>
     <summary type="text">added glm-4.6v-flash · free models: laguna-s-2.1-free, glm-4.6v-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/zai-glm/20260814T091234Z</id>
-    <title>Free models changed: Z.ai (Zhipu GLM)</title>
-    <link rel="alternate" href="https://z.ai"/>
-    <updated>2026-08-14T09:12:34Z</updated>
-    <summary type="text">added glm-4.5-flash, glm-4.6v-flash · free models: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260814T083524Z</id>
-    <title>Free models changed: Kilo Code</title>
-    <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-08-14T08:35:24Z</updated>
-    <summary type="text">dropped ling-3.0-tiny · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/tokenrouter/20260814T083524Z</id>
-    <title>Free models changed: TokenRouter (PaleBlueDot)</title>
-    <link rel="alternate" href="https://www.tokenrouter.com"/>
-    <updated>2026-08-14T08:35:24Z</updated>
-    <summary type="text">dropped kimi-k3 · free models: nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/reka/20260811T180100Z</id>
-    <title>Delisted: Reka AI</title>
-    <link rel="alternate" href="https://platform.reka.ai"/>
-    <updated>2026-08-11T18:01:00Z</updated>
-    <summary type="text">Delisted: Reka AI</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sea-lion/20260811T173730Z</id>
-    <title>New: SEA-LION (AI Singapore)</title>
-    <link rel="alternate" href="https://sea-lion.ai"/>
-    <updated>2026-08-11T17:37:30Z</updated>
-    <summary type="text">AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's · free models: qwen-sea-lion-v4.5, llama-sea-lion-v3.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/routeway/20260811T153032Z</id>
-    <title>Free models changed: Routeway</title>
-    <link rel="alternate" href="https://routeway.ai"/>
-    <updated>2026-08-11T15:30:32Z</updated>
-    <summary type="text">dropped ling-3.0-flash · free models: gpt-oss, step-3.7-flash, gemma-4, llama-3.3</summary>
   </entry>
 </feed>

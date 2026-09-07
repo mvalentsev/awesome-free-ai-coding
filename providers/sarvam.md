@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Sarvam AI free tier: limits, free models, verified 2026-09-05'
+title: 'Sarvam AI free tier: limits, free models, verified 2026-09-07'
 description: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint. "Every new user receives ₹100 worth of free credits to explore all our APIs" — about…
 permalink: /providers/sarvam/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sarvam/
 
 # Sarvam AI
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-05 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-07 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,10 +39,10 @@ India's Sarvam AI credits every new account ₹100 to spend on any of its APIs �
 
 ## History
 
-No recorded event yet — the first scheduled run after a row lands writes its `added` line.
+- `2026-09-07` — Added to the list: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

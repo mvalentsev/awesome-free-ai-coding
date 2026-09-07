@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'BazaarLink free tier: limits, free models, verified 2026-09-03'
+title: 'BazaarLink free tier: limits, free models, verified 2026-09-07'
 description: 'OpenAI-compatible gateway to a 183-id catalog with exactly two zero-priced rows — Qwen3.7 Flash and the auto:free router. BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the single…'
 permalink: /providers/bazaarlink/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/bazaarlink/
 
 # BazaarLink
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-03 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-07 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -43,6 +43,6 @@ BazaarLink prints the figures on its free page: 10 requests per minute and 50 pe
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

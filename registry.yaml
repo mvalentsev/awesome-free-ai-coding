@@ -77,7 +77,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -128,7 +128,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -181,7 +181,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -240,7 +240,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 35
@@ -277,7 +277,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 94
@@ -355,7 +355,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -412,7 +412,7 @@ entries:
     require_zero_price: false
     catalog: https://ollama.com/v1/models
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 92
@@ -497,7 +497,7 @@ entries:
     require_zero_price: false
     catalog: https://opencode.ai/zen/v1/models
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -586,7 +586,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -617,7 +617,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -662,7 +662,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -734,7 +734,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -768,7 +768,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -814,7 +814,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -850,7 +850,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -879,7 +879,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -930,7 +930,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -981,7 +981,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -1039,7 +1039,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -1080,7 +1080,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -1125,7 +1125,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1161,7 +1161,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 98
@@ -1196,7 +1196,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-20'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -1233,7 +1233,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-19'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -1289,7 +1289,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 75
@@ -1322,7 +1322,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1349,7 +1349,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-07-22'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1413,7 +1413,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-03'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1460,7 +1460,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-03'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1503,7 +1503,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-05'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -1552,7 +1552,7 @@ entries:
     require_zero_price: false
     catalog: https://api.sambanova.ai/v1/models
   first_seen: '2026-08-06'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1611,7 +1611,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-06'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -1682,7 +1682,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-11'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -1742,7 +1742,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-11'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 25
@@ -1785,7 +1785,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-11'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 85
@@ -1884,7 +1884,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-14'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -2007,7 +2007,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-08-14'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -2056,7 +2056,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-14'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -2100,7 +2100,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-14'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 96
@@ -2145,7 +2145,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-14'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 88
@@ -2199,7 +2199,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-30'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 55
@@ -2239,7 +2239,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-08-30'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 97
@@ -2302,7 +2302,7 @@ entries:
     require_zero_price: false
     catalog: https://api.regolo.ai/v1/models
   first_seen: '2026-08-30'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: false
   rank: 75
@@ -2360,7 +2360,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-09-02'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 28
@@ -2429,7 +2429,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-09-02'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 85
@@ -2513,7 +2513,7 @@ entries:
     require_zero_price: true
   first_seen: '2026-09-02'
   last_verified: '2026-09-03'
-  probe_failures: 0
+  probe_failures: 1
   provisional: true
   rank: 45
 - id: kenari
@@ -2607,7 +2607,7 @@ entries:
     dead_markers: []
     require_zero_price: true
   first_seen: '2026-09-02'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 55
@@ -2652,7 +2652,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-09-02'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 85
@@ -2692,7 +2692,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-09-02'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 85
@@ -2738,7 +2738,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-09-02'
-  last_verified: '2026-09-03'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 65
@@ -2822,7 +2822,7 @@ entries:
     require_zero_price: false
     catalog: https://freeinference.org/v1/models
   first_seen: '2026-09-05'
-  last_verified: '2026-09-05'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 91
@@ -2875,7 +2875,7 @@ entries:
     require_zero_price: false
     catalog: https://api.opentyphoon.ai/v1/models
   first_seen: '2026-09-05'
-  last_verified: '2026-09-05'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 86
@@ -2922,7 +2922,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-09-05'
-  last_verified: '2026-09-05'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 98
@@ -2981,7 +2981,7 @@ entries:
     dead_markers: []
     require_zero_price: false
   first_seen: '2026-09-05'
-  last_verified: '2026-09-05'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 88

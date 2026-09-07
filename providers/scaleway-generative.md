@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Scaleway Generative APIs free tier: limits, free models, verified 2026-09-03'
+title: 'Scaleway Generative APIs free tier: limits, free models, verified 2026-09-07'
 description: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer. 1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — "The Free Tier is applied to the most expensive tokens first", across the whole serverless…
 permalink: /providers/scaleway-generative/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/scaleway-generative/
 
 # Scaleway Generative APIs
 
-🔌 LLM APIs with free tier · card required · **live** — last verified by a probe on 2026-09-03 · [scaleway.com](https://www.scaleway.com/en/generative-apis/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · **live** — last verified by a probe on 2026-09-07 · [scaleway.com](https://www.scaleway.com/en/generative-apis/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,6 +41,6 @@ The page this row is verified against names no free model, so the column stays e
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

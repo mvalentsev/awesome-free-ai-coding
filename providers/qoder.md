@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Qoder free tier: limits, free models, verified 2026-09-03'
+title: 'Qoder free tier: limits, free models, verified 2026-09-07'
 description: 'Alibaba''s agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models. The free plan is "basic models for limited user messages" plus limited completions and next edits and BYOK, and the daily cap on those basic models carries no published number: "basic models…'
 permalink: /providers/qoder/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/qoder/
 
 # Qoder
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-03 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-07 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -38,6 +38,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

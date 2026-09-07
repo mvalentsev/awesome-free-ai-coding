@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Pollinations.AI free tier: limits, free models, verified 2026-09-03'
+title: 'Pollinations.AI free tier: limits, free models, verified 2026-09-07'
 description: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai). Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous",…
 permalink: /providers/pollinations/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/pollinations/
 
 # Pollinations.AI
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-03 · [pollinations.ai](https://pollinations.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-07 · [pollinations.ai](https://pollinations.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,6 +41,6 @@ Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

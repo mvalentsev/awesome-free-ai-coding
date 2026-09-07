@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Google Jules free tier: limits, free models, verified 2026-09-03'
+title: 'Google Jules free tier: limits, free models, verified 2026-09-07'
 description: Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously. 15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table pins the free plan to Gemini 2.5…
 permalink: /providers/google-jules/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/google-jules/
 
 # Google Jules
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-03 · [jules.google](https://jules.google/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-07 · [jules.google](https://jules.google/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,6 +39,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

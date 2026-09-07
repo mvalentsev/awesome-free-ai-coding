@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-03'
+title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-07'
 description: Two zero-priced ids — Nemotron 3 Nano Omni and GLM 5.3, in the default group — inside a 134-row catalog metered at list rates. both free ids sit in the default group and publish no request cap; of the other 132 rows on 2026-09-02, 131 are metered at list rates and stealth/ox-alpha is priced 0…
 permalink: /providers/tokenrouter/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/tokenrouter/
 
 # TokenRouter (PaleBlueDot)
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-03 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-07 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,6 +42,6 @@ both free ids sit in the default group and publish no request cap; of the other 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
