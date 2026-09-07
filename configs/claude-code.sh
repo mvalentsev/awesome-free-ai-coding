@@ -74,3 +74,13 @@ claude-freeinference() {
   claude "$@"
 }
 
+# ── Standard Compute · get a key: https://standardcompute.com/signup
+#    free ids: anthropic/claude-standardcompute, StandardCompute
+claude-standardcompute() {
+  ANTHROPIC_BASE_URL="https://api.stdcmpt.com" \
+  ANTHROPIC_AUTH_TOKEN="$STANDARDCOMPUTE_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="anthropic/claude-standardcompute" \
+  claude "$@"
+}
+

@@ -1468,24 +1468,6 @@ watched:
       BotHub's API docs say the :free ids cost 0 CAPS through the API, or the
       catalog opens keyless with those rows priced 0.
 
-  - domains: [standardcompute.com, stdcmpt.com]
-    name: Standard Compute
-    checked_on: '2026-09-05'
-    reason: >-
-      Reached through the models.dev digest (1/1 row at cost 0, an id named after
-      the vendor). A flat-rate router for agents rather than a metered API: plans
-      from "$19 /mo" with a "$20 monthly compute budget" up to $499, all drawing
-      on "the same top-tier model pool — reasoning models from OpenAI, Anthropic,
-      and xAI, selected per request by our routing algorithm", and the keyless
-      catalog at api.stdcmpt.com/v1/models is six aliases
-      (anthropic/claude-fable-5, claude-opus-5, claude-sonnet-5 and three router
-      ids) with no prices. The free tier is a trial with no figure: "Signup gives
-      you free usage with no credit card" and "sign up and the free trial starts
-      right on your dashboard" — no tokens, dollars or days, and the "$ 20
-      monthly compute budget" is the paid Starter plan's.
-    reopen_if: >-
-      The trial's size is published in words a probe can hold — tokens, dollars
-      or days.
 
   - domains: [merge.dev]
     name: Merge Gateway

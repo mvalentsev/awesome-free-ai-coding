@@ -56,6 +56,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-07` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b`, `deepseek-v4-flash`, `glm-5.3-flash` | `2026-09-07` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2`, `mercury-edit-2` | `2026-09-07` |
+| [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-08` |
 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `gemma-4` | `2026-09-07` |
 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | `2026-09-07` |
 | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | `2026-09-07` |

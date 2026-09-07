@@ -2972,6 +2972,52 @@
       "rank": 88,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/"
+    },
+    {
+      "id": "standardcompute",
+      "name": "Standard Compute",
+      "category": "trial",
+      "url": "https://standardcompute.com",
+      "source_urls": [
+        "https://standardcompute.com/free-trial",
+        "https://standardcompute.com/pricing",
+        "https://standardcompute.com/integrations/claude-code"
+      ],
+      "card_required": false,
+      "offering": "A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is",
+      "limits": "\"Eligible new accounts receive $0.25 of trial compute after activation. This is a finite platform compute allowance. It is not a recurring free tier, a fixed token count, or a value measured at another provider's prices\" — the sentence sits on the free-trial page and in the pricing FAQ, both dated \"Updated September 5, 2026\" by the vendor and read here 2026-09-08. It does not refill, no card is asked for, and it is discretionary: \"Access is subject to eligibility and availability\", with a support address for accounts whose dashboard does not offer it. What the quarter buys is on no page — a flat-rate router publishes no per-token price, and the only conversion the site offers is its own marketing arithmetic, a paid \"$20 monthly compute budget\" claimed to do \"the work of up to $60/mo\" at list prices. The vendor sets the expectation itself: \"Start with one small request that lets you check the connection and response\", while \"a longer coding-quality comparison may need a paid allowance\". It is the smallest offer on this list — a connection test, not a working allowance",
+      "models": [],
+      "api": {
+        "base_url": "https://api.stdcmpt.com/v1",
+        "key_url": "https://standardcompute.com/signup",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "anthropic/claude-standardcompute",
+          "StandardCompute"
+        ],
+        "anthropic_base_url": "https://api.stdcmpt.com",
+        "note": "one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code, which appends /v1/messages itself — the vendor spells the difference out, \"For Claude Code, use https://api.stdcmpt.com without /v1\". /v1/models is keyless and listed 40 ids on 2026-09-08, anthropic/claude-opus-5, openai/gpt-6-astra, x-ai/grok-4.3 and five :eu-suffixed EU-region variants among them, none of them priced; requests are smart-routed across that pool unless a call pins one id. The two ids here are the router's own, read off that catalog rather than off the Claude Code page, which sets the model through the vendor's launcher instead"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://standardcompute.com/free-trial",
+        "keywords": [
+          "$0.25 of trial compute",
+          "no card required"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-08",
+      "last_verified": "2026-09-08",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 95,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/"
     }
   ],
   "watchlist": [
@@ -3828,17 +3874,6 @@
       "checked_on": "2026-09-05",
       "reason": "Reached through the models.dev digest (2/2 rows at cost 0, nemotron-3-ultra-550b-a55b:free and gemma-4-31b-it:free). bothub.ru/models lists nine :free ids with no price where every other row carries rubles per 1M tokens, and its FAQ says where they are free: \"Есть бесплатные модели с постфиксом ':free' и '-exp', которые можно использовать бесплатно через мини-окно на главной странице, а также странице модели\" — through the mini-window on the home page and the model page, which is the web chat. The API documentation at bothub.ru/api/documentation/ru says \"вы оплачиваете только фактическое использование API и моделей\" and names no free tier, the model pages count a CAPS balance, and the catalog at openai.bothub.ru/v1/models answers 401 keyless.",
       "reopen_if": "BotHub's API docs say the :free ids cost 0 CAPS through the API, or the catalog opens keyless with those rows priced 0.",
-      "current": true
-    },
-    {
-      "domains": [
-        "standardcompute.com",
-        "stdcmpt.com"
-      ],
-      "name": "Standard Compute",
-      "checked_on": "2026-09-05",
-      "reason": "Reached through the models.dev digest (1/1 row at cost 0, an id named after the vendor). A flat-rate router for agents rather than a metered API: plans from \"$19 /mo\" with a \"$20 monthly compute budget\" up to $499, all drawing on \"the same top-tier model pool — reasoning models from OpenAI, Anthropic, and xAI, selected per request by our routing algorithm\", and the keyless catalog at api.stdcmpt.com/v1/models is six aliases (anthropic/claude-fable-5, claude-opus-5, claude-sonnet-5 and three router ids) with no prices. The free tier is a trial with no figure: \"Signup gives you free usage with no credit card\" and \"sign up and the free trial starts right on your dashboard\" — no tokens, dollars or days, and the \"$ 20 monthly compute budget\" is the paid Starter plan's.",
-      "reopen_if": "The trial's size is published in words a probe can hold — tokens, dollars or days.",
       "current": true
     },
     {

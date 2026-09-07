@@ -937,6 +937,22 @@
       },
       "models": {}
     },
+    "standardcompute": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Standard Compute",
+      "options": {
+        "baseURL": "https://api.stdcmpt.com/v1",
+        "apiKey": "{env:STANDARDCOMPUTE_API_KEY}"
+      },
+      "models": {
+        "anthropic/claude-standardcompute": {
+          "name": "anthropic/claude-standardcompute"
+        },
+        "StandardCompute": {
+          "name": "StandardCompute"
+        }
+      }
+    },
     "poolside": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Poolside Platform",
