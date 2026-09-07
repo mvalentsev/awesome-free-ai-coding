@@ -40,6 +40,6 @@ The plan page still says 公测期完全免费开放，付费档位即将上线 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

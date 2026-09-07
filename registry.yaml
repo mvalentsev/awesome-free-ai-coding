@@ -2519,7 +2519,7 @@ entries:
   - https://llmtr.com/v1/models
   card_required: false
   offering: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers
-    on a zero balance — eight zero-priced ids on 2026-09-08, Nemotron 3 Ultra, Qwen3.6
+    on a zero balance — eight zero-priced ids on 2026-09-07, Nemotron 3 Ultra, Qwen3.6
     27B and Ling 3.0 Flash among them
   limits: 'The migration guide has a new account send its first request on a free
     model before any top-up: "Model kataloğunda ücretsiz olarak işaretlenen bir chat
@@ -2560,14 +2560,14 @@ entries:
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     note: 'the seven ids listed are every chat row the public catalog prices at 0
-      on 2026-09-08, against eleven on 2026-09-05. Four went in the three days between:
+      on 2026-09-07, against eleven on 2026-09-05. Four went in the two days between:
       minimax/minimax-m3-free and minimax/minimax-m2.7-free left the catalog outright
       while the metered minimax/minimax-m3 and minimax/minimax-m2.7 stayed at $0.30/$1.20
       per 1M; openai/gpt-6-astra-free went two days before the end date its own description
       carried, "10 Eylül 2026''ya kadar günlük kotayla ücretsiz" (free with a daily
       quota until 10 September 2026) — a dated lane can close early, so the date is
       a promise about the ceiling and not the floor; and inception/mercury-2-free
-      went between two reads on 2026-09-08 itself, leaving inception/mercury-2 metered
+      went between two reads on 2026-09-07 itself, leaving inception/mercury-2 metered
       at $0.25/$0.75 per 1M beside a newly listed inception/mercury-2.5-preview at
       $0.04/$0.15 — the free lane closed here as Inception''s next generation arrived,
       and Mercury 2 stays on this list through Inception''s own row, whose 100M-token
@@ -3083,7 +3083,7 @@ entries:
     This is a finite platform compute allowance. It is not a recurring free tier,
     a fixed token count, or a value measured at another provider''s prices" — the
     sentence sits on the free-trial page and in the pricing FAQ, both dated "Updated
-    September 5, 2026" by the vendor and read here 2026-09-08. It does not refill,
+    September 5, 2026" by the vendor and read here 2026-09-07. It does not refill,
     no card is asked for, and it is discretionary: "Access is subject to eligibility
     and availability", with a support address for accounts whose dashboard does not
     offer it. What the quarter buys is on no page — a flat-rate router publishes no
@@ -3106,7 +3106,7 @@ entries:
     note: 'one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients
       and https://api.stdcmpt.com for Claude Code, which appends /v1/messages itself
       — the vendor spells the difference out, "For Claude Code, use https://api.stdcmpt.com
-      without /v1". /v1/models is keyless and listed 40 ids on 2026-09-08, anthropic/claude-opus-5,
+      without /v1". /v1/models is keyless and listed 40 ids on 2026-09-07, anthropic/claude-opus-5,
       openai/gpt-6-astra, x-ai/grok-4.3 and five :eu-suffixed EU-region variants among
       them, none of them priced; requests are smart-routed across that pool unless
       a call pins one id. The two ids here are the router''s own, read off that catalog
@@ -3122,8 +3122,8 @@ entries:
     dead_markers: []
     require_zero_price: false
     machinery_keywords: []
-  first_seen: '2026-09-08'
-  last_verified: '2026-09-08'
+  first_seen: '2026-09-07'
+  last_verified: '2026-09-07'
   probe_failures: 0
   provisional: true
   rank: 95

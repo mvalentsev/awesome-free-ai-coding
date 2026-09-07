@@ -46,6 +46,6 @@ Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed R
 
 ---
 
-Generated from `registry.yaml` on 2026-09-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
