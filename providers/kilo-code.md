@@ -27,8 +27,8 @@ $0/mo, no hosted credit required — the free lane is a rotating set of the ids 
 
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: `KILO_CODE_API_KEY` — get one at <https://app.kilo.ai/profile>
-- Callable ids: `kilo-auto/free`, `openrouter/free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3-super-120b-a12b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `nvidia/nemotron-3.5-content-safety:free`, `cohere/north-mini-code:free`, `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `liquid/lfm-2.5-2.6b:free`, `minimax/minimax-m3:free`, `minimax/minimax-m2.7:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `dots-studio/dots-3-note-preview:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`
-- Note: every id listed is one the catalog marks isFree — the same catalog meters 352 more (2026-09-05). kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column — meituan/longcat-2.0-free was marked isFree on the morning of 2026-09-02 and had left the catalog by a second read that evening
+- Callable ids: `kilo-auto/free`, `openrouter/free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3-super-120b-a12b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `nvidia/nemotron-3.5-content-safety:free`, `cohere/north-mini-code:free`, `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `liquid/lfm-2.5-2.6b:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `dots-studio/dots-3-note-preview:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`
+- Note: every id listed is one the catalog marks isFree — seventeen of them against the 352 the same catalog meters (2026-09-08). minimax/minimax-m3:free and minimax/minimax-m2.7:free left it between the 2026-09-05 and 2026-09-08 reads, the read that took the pair off OpenRouter, LLMTR and Vercel too. kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column — meituan/longcat-2.0-free was marked isFree on the morning of 2026-09-02 and had left the catalog by a second read that evening
 
 ## Evidence
 
@@ -49,6 +49,6 @@ $0/mo, no hosted credit required — the free lane is a rotating set of the ids 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

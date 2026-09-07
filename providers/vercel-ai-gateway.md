@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-07'
-description: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and seven language models that never touch the credit. $5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Seven of the 373 catalogued models are language…
+description: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit. $5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Seven of the 373 catalogued models are language…
 permalink: /providers/vercel-ai-gateway/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/vercel-ai-gateway/
 
 ## What you get
 
-One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and seven language models that never touch the credit
+One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit
 
 ## Free models
 
@@ -28,8 +28,8 @@ $5/month credit at provider list rates, renewed monthly; lower per-model rate li
 - Base URL: `https://ai-gateway.vercel.sh/v1`
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
-- Callable ids: `poolside/laguna-s-2.1-free`, `minimax/minimax-m3-free`, `minimax/minimax-m2.7-free`, `inclusionai/ling-3.0-flash-fin`, `inclusionai/ling-3.0-flash-fin-free`, `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`
-- Note: every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20, five on 2026-09-02, seven on 2026-09-05: MiniMax M3 (Free) and M2.7 (Free) arrived beside metered twins at $0.30/$1.20 per 1M, and Ling 3.0 Flash Fin and then its health-tuned sibling Ling 3.0 Flash Sante are priced 0 with and without the -free suffix. They stay out of the Models column until they have stood a while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20. spacexai/grok-stt, the sixth row at 0 per token, is speech-to-text billed per second of audio, which the probe reads as a price The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh — the docs (updated 2026-08-11) set ANTHROPIC_BASE_URL to it for Claude Code with ANTHROPIC_API_KEY left empty, and the zero-priced ids here are what to name in ANTHROPIC_MODEL
+- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.0-flash-fin`, `inclusionai/ling-3.0-flash-fin-free`, `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`
+- Note: every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20, five on 2026-09-02, seven on 2026-09-05 and five again on 2026-09-08: MiniMax M3 (Free) and M2.7 (Free) arrived beside metered twins at $0.30/$1.20 per 1M and left three days later, the same read that took the pair off OpenRouter, Kilo and LLMTR, while Ling 3.0 Flash Fin and its health-tuned sibling Ling 3.0 Flash Sante stay priced 0 with and without the -free suffix. They stay out of the Models column until they have stood a while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20. spacexai/grok-stt, the sixth row at 0 per token, is speech-to-text billed per second of audio, which the probe reads as a price The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh — the docs (updated 2026-08-11) set ANTHROPIC_BASE_URL to it for Claude Code with ANTHROPIC_API_KEY left empty, and the zero-priced ids here are what to name in ANTHROPIC_MODEL
 
 ## Evidence
 
@@ -48,6 +48,6 @@ $5/month credit at provider list rates, renewed monthly; lower per-model rate li
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
