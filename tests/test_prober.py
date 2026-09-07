@@ -1102,6 +1102,50 @@ async def test_a_dead_offer_outranks_a_catalog_check():
 
 
 @respx.mock
+async def test_a_failed_family_still_reports_the_ids_beside_it():
+    """The blind spot the 2026-09-07 run walked into. LLMTR failed on
+    minimax-m3 — the free id had left the catalog and the metered twin stayed —
+    and the same read had taken two more ids out of `api.model_ids`, which
+    nothing said: this function returned on the offer check, above the id
+    check. The scout dropped the family, the pull request read as a whole
+    repair, and the dead ids stayed in configs/claude-code.sh, opencode.json,
+    litellm.yaml and free-llm.env.example, which is what a reader pastes.
+
+    Only on an api-models row, where the catalog that failed the family is the
+    object already in hand — a page row keeps the behaviour above it, because
+    there the failure IS the offer and the row is repaired or archived whole.
+    """
+    entry = config_entry("qwen/qwen3-coder:free", "vendor/gone")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(200, json={"data": [
+        {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0.0000003", "completion": "0.0000012"}},
+        {"id": "vendor/arrived:free", "pricing": {"prompt": "0", "completion": "0"}},
+    ]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail
+    assert "vendor/gone is not in the catalog" in result.detail
+    # Both directions, as on a passing row: a lane that swapped one id for
+    # another is a dead id and an unlisted one, and the repair needs both.
+    assert "vendor/arrived:free" in result.detail
+
+
+@respx.mock
+async def test_a_failed_row_whose_ids_are_intact_says_only_what_failed():
+    """The other half of the same rule: the offer check's own words are the
+    report, and nothing is appended where there is nothing to append."""
+    entry = config_entry("vendor/still-free:free")
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(200, json={"data": [
+        {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0.0000003", "completion": "0.0000012"}},
+        {"id": "vendor/still-free:free", "pricing": {"prompt": "0", "completion": "0"}},
+    ]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "api.model_ids" not in result.detail
+
+
+@respx.mock
 async def test_a_dry_run_counts_its_failures_so_a_shell_chain_can_stop(tmp_path):
     """The dry run printed "1 need attention" and exited 0, and the `&&` after
     it committed a row whose keyword its page did not carry. A count of FAILs

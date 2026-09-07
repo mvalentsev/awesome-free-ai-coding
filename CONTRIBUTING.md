@@ -123,7 +123,14 @@ reason in `api.note`, and they stop being reported. A `page-keywords` row whose
 vendor keeps its ids in a keyless catalog at another url names it in
 `probe.catalog`, and its ids are checked there for the dead direction; a
 catalog that stops answering is reported as `stale-ids` too, since a check that
-quietly did not run is the silence this whole mechanism exists to end.
+quietly did not run is the silence this whole mechanism exists to end. A failing
+`api-models` row is asked the same question and carries the answer after a `|` in
+its own failure line: the catalog that failed the family is the response already
+in hand, and the run that fails a row over one model is the run most likely to
+have lost ids beside it — on 2026-09-07 LLMTR failed on `minimax-m3` while three
+of its ids went unreported and stayed in the generated configs. A failing
+`page-keywords` row is not: there the failure is the offer itself, and the row is
+repaired or archived whole.
 
 **`api.anthropic_base_url` is the Claude Code answer.** Set it only where the
 vendor documents an Anthropic-format Messages route — a 401 alone proves

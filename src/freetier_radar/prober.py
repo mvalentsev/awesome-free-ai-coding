@@ -86,10 +86,9 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             else:
                 catalog = None
             if catalog is not None:
-                dead = dead_model_ids(catalog, entry)
-                unlisted = unlisted_free_ids(catalog, entry)
-                if dead or unlisted:
-                    return ProbeResult(ProbeStatus.STALE_IDS, _stale_ids_detail(dead, unlisted))
+                stale = stale_ids(catalog, entry)
+                if stale:
+                    return ProbeResult(ProbeStatus.STALE_IDS, stale)
             # The last published connection detail, and the only one a GET
             # cannot see: the Anthropic-format route a row names for Claude
             # Code. Asked keyless, so the answer is never a message — it is
@@ -107,6 +106,25 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         challenge = challenge_marker_hit(resp.text)
         if challenge is not None:
             return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
+        # A failing api-models row is where a dead id hides best, and until
+        # 2026-09-08 this return was the reason: the id check lives above, on
+        # the path a passing row takes. On 2026-09-07 LLMTR failed because
+        # minimax/minimax-m3-free had left its catalog and only the metered
+        # minimax/minimax-m3 answered for the family — and the same read had
+        # taken three ids out of `api.model_ids`, which the report never said.
+        # The scout dropped the family, the pull request read as a whole
+        # repair, and all three ids stayed in the generated configs.
+        #
+        # The catalog that failed the family is this same response, so asking
+        # costs nothing and the answer belongs beside the failure: one lane
+        # moved, and a human is about to edit that row. Deliberately not asked
+        # of a page row — see test_a_dead_offer_outranks_a_catalog_check. There
+        # the failure IS the offer, the catalog is a second fetch, and the row
+        # is repaired or archived whole rather than field by field.
+        if entry.probe.type is ProbeType.API_MODELS:
+            beside = stale_ids(resp, entry)
+            if beside:
+                detail = f"{detail} | {beside}"
         return ProbeResult(ProbeStatus.FAIL, detail)
     return ProbeResult(ProbeStatus.INCONCLUSIVE, f"unreachable after {attempts} attempts: {last}")
 
@@ -655,6 +673,20 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str]) -> str:
         parts.append("zero-priced ids in the catalog that api.model_ids does not list "
                      "(add them, or record them in api.ignored_ids): " + ", ".join(unlisted))
     return " | ".join(parts)
+
+
+def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
+    """What the catalog says about this row's published ids, in both
+    directions, or "" while they are all backed.
+
+    The verdict a passing row gets and the sentence a failing one carries
+    beside its own failure are the same question asked of the same bytes, so
+    they are the same call: whether the row is being verified or repaired says
+    nothing about whether `api.model_ids` is still true.
+    """
+    dead = dead_model_ids(catalog, entry)
+    unlisted = unlisted_free_ids(catalog, entry)
+    return _stale_ids_detail(dead, unlisted) if dead or unlisted else ""
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

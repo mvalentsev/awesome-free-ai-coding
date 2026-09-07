@@ -135,6 +135,11 @@ vendor's catalog, and a family counts only where the catalog still carries a
 FREE id for it: an id matching the entry's free marker, and free by the
 catalog's own flag or by a zero price where it publishes one. A family whose
 only ids are metered is not a free model and fails the same probe next run.
+A failure detail can carry a second sentence after " | " about api.model_ids or
+about zero-priced ids the catalog lists — that half is addressed to a human and
+is not yours to repair: `api` is not a key you may write, and an exact id copied
+out of a catalog is not something to reproduce from memory. Read it as evidence
+about which way the lane moved, and answer only with the keys you are allowed.
 A corrected page-keywords probe needs at least one keyword that dies with the
 offer — a quota or price figure, a model id or JSON field, or a sentence of four
 or more words quoted verbatim from the page below. Words like "free", "hobby",
