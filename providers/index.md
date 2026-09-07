@@ -60,7 +60,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | `2026-09-07` |
 | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | `2026-09-07` |
 | [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-07` |
-| [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6`, `mercury-2` | `2026-09-03` |
+| [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6` | `2026-09-03` |
 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1` | `2026-09-07` |
 | [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `step-3.7-flash`, `laguna-s-2.1` | `2026-09-07` |
 | [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) | 🧭 Aggregators (one key, many providers) | `qwen3.7-flash` | `2026-09-07` |

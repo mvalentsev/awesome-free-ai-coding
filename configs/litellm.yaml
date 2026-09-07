@@ -638,11 +638,6 @@ model_list:
     model: openai/qwen/qwen3.6-27b-free
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/inception/mercury-2-free
-  litellm_params:
-    model: openai/inception/mercury-2-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
 - model_name: llmtr/poolside/laguna-xs-2.1
   litellm_params:
     model: openai/poolside/laguna-xs-2.1

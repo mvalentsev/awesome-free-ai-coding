@@ -500,9 +500,6 @@
         "qwen/qwen3.6-27b-free": {
           "name": "qwen/qwen3.6-27b-free"
         },
-        "inception/mercury-2-free": {
-          "name": "inception/mercury-2-free"
-        },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
         },
