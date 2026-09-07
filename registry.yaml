@@ -77,6 +77,7 @@ entries:
     free_marker: :free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -135,6 +136,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -192,6 +194,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -251,6 +254,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -288,6 +292,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -323,6 +328,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-07-30'
   retired_on: '2026-06-16'
@@ -366,6 +372,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -423,6 +430,7 @@ entries:
     dead_markers: []
     require_zero_price: false
     catalog: https://ollama.com/v1/models
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -508,6 +516,7 @@ entries:
     dead_markers: []
     require_zero_price: false
     catalog: https://opencode.ai/zen/v1/models
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -598,6 +607,7 @@ entries:
     free_marker: :free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -618,17 +628,23 @@ entries:
     advanced_model_request_limit 1000, premium_model_fast_request_limit 10, premium_model_slow_request_limit
     50 and no_bonus_quota true. So the free plan is $3 of monthly Basic usage with
     no bonus quota, and the FAQ entry that would define Basic usage is collapsed with
-    its answer absent from the page (read 2026-08-14)'
+    its answer absent from the page (read 2026-08-14). The probe reads both halves
+    where each lives: "Autocompletion 5000 / month" is the Free column of the rendered
+    comparison table, and "name":"free" with advanced_model_request_limit are the
+    payload behind it, declared as machinery_keywords because a name in a state blob
+    outlives the plan it describes'
   models: []
   probe:
     type: page-keywords
     endpoint: https://www.trae.ai/pricing
     keywords:
-    - '"name":"free"'
-    - advanced_model_request_limit
+    - 5000 / month
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords:
+    - '"name":"free"'
+    - advanced_model_request_limit
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -674,6 +690,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -707,6 +724,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-08-03'
   retired_on: '2026-07-26'
@@ -746,6 +764,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -780,6 +799,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -826,6 +846,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -862,6 +883,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -891,6 +913,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -942,6 +965,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -993,6 +1017,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1056,6 +1081,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1097,6 +1123,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1142,6 +1169,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1178,6 +1206,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1213,6 +1242,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-20'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1227,7 +1257,12 @@ entries:
   - https://console.upstage.ai/
   card_required: false
   offering: Upstage Solar LLM API; $10 free credit on signup, no card
-  limits: $10 signup credit (see console for validity); pay-as-you-go after
+  limits: $10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai
+    is a client-rendered docs site — 535 characters of text survive with its scripts
+    removed — so "$10 in free credit" is read out of the payload the page ships rather
+    than out of anything a reader sees, and it is declared as a machinery keyword
+    to say so. Neither upstage.ai/pricing nor the Solar Pro product page carries the
+    phrase at all (all three read 2026-09-08)
   models:
   - family: solar-pro-3
     tier: strong
@@ -1245,11 +1280,12 @@ entries:
   probe:
     type: page-keywords
     endpoint: https://console.upstage.ai/docs/getting-started
-    keywords:
-    - $10 in free credit
+    keywords: []
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords:
+    - $10 in free credit
   first_seen: '2026-07-19'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1306,6 +1342,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-22'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1339,6 +1376,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-22'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1366,6 +1404,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-07-22'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1430,6 +1469,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-08-03'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1477,6 +1517,7 @@ entries:
     free_marker: :free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-08-03'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1520,6 +1561,7 @@ entries:
     free_marker: free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-08-05'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1569,6 +1611,7 @@ entries:
     dead_markers: []
     require_zero_price: false
     catalog: https://api.sambanova.ai/v1/models
+    machinery_keywords: []
   first_seen: '2026-08-06'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1628,6 +1671,7 @@ entries:
     free_marker: :free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-08-06'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1699,6 +1743,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-08-11'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1759,6 +1804,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-11'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1802,6 +1848,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-11'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -1870,6 +1917,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-03'
   retired_on: '2026-08-09'
@@ -1901,6 +1949,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2024,6 +2073,7 @@ entries:
     free_marker: free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2073,6 +2123,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2117,6 +2168,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2162,6 +2214,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2216,6 +2269,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-30'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2256,6 +2310,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-08-30'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2319,6 +2374,7 @@ entries:
     dead_markers: []
     require_zero_price: false
     catalog: https://api.regolo.ai/v1/models
+    machinery_keywords: []
   first_seen: '2026-08-30'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2377,6 +2433,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2446,6 +2503,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2526,6 +2584,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-03'
   probe_failures: 1
@@ -2621,6 +2680,7 @@ entries:
     free_marker: :free
     dead_markers: []
     require_zero_price: true
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2666,6 +2726,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2706,6 +2767,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2752,6 +2814,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-09-02'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2836,6 +2899,7 @@ entries:
     dead_markers: []
     require_zero_price: false
     catalog: https://freeinference.org/v1/models
+    machinery_keywords: []
   first_seen: '2026-09-05'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2889,6 +2953,7 @@ entries:
     dead_markers: []
     require_zero_price: false
     catalog: https://api.opentyphoon.ai/v1/models
+    machinery_keywords: []
   first_seen: '2026-09-05'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2936,6 +3001,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-09-05'
   last_verified: '2026-09-07'
   probe_failures: 0
@@ -2995,6 +3061,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    machinery_keywords: []
   first_seen: '2026-09-05'
   last_verified: '2026-09-07'
   probe_failures: 0

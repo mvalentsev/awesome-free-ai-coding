@@ -500,14 +500,49 @@ def _plain_spaces(text: str) -> str:
     return text.translate(_SPACE_LOOKALIKES)
 
 
+_SCRIPT_OR_STYLE = re.compile(
+    r"<script\b([^>]*)>.*?</script\s*>|<style\b[^>]*>.*?</style\s*>", re.S | re.I)
+
+
+def _rendered(text: str) -> str:
+    """The page with its machinery taken out: framework state blobs, OpenAPI
+    enums, response samples, i18n bundles — everything a vendor ships to the
+    browser that a reader never sees.
+
+    An anchor keyword is a promise that the string dies with the offer, and a
+    script tag is exactly where a string does not. Groq's Free Plan Limits table
+    lost llama-3.3-70b-versatile and llama-3.1-8b-instant somewhere between
+    2026-08-14 and 2026-09-08, and the id this list anchored on went on matching
+    ten times over, in an OpenAPI enum and a set of response samples; the probe
+    passed every run while the README published a model the vendor had stopped
+    giving away. The same shape had already been found twice by hand — Groq's
+    llama-4 and Mistral's i18n bundle, both fixed in the registry because
+    nothing here could tell them apart from the page.
+
+    JSON-LD is kept. It sits in a script tag like the rest, but structured data
+    is the vendor answering a question — Freebuff's whole offer is a JSON-LD FAQ
+    block and nothing else — so stripping script tags by their name alone would
+    take a real page's only evidence with it.
+    """
+    def cut(match: re.Match[str]) -> str:
+        attrs = (match.group(1) or "").lower()
+        return match.group(0) if "ld+json" in attrs else " "
+    return _SCRIPT_OR_STYLE.sub(cut, text)
+
+
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
-    text = _plain_spaces(resp.text.lower())
+    rendered = _plain_spaces(_rendered(resp.text).lower())
     # An explicit withdrawal outranks the keywords: vendors leave the free tier
-    # described on the page and add the bad news next to it.
-    dead = dead_marker_hit(text, entry.probe)
+    # described on the page and add the bad news next to it. Read against the
+    # rendered page for the same reason the keywords are: the sentence that
+    # announces the end is one a reader is meant to see.
+    dead = dead_marker_hit(rendered, entry.probe)
     if dead is not None:
         return f'offer withdrawn: page says "{dead}"'
-    missing = [k for k in entry.probe.keywords if k.lower() not in text]
+    missing = [k for k in entry.probe.keywords if k.lower() not in rendered]
+    if entry.probe.machinery_keywords:
+        whole = _plain_spaces(resp.text.lower())
+        missing += [k for k in entry.probe.machinery_keywords if k.lower() not in whole]
     return f"missing keywords: {', '.join(missing)}" if missing else None
 
 

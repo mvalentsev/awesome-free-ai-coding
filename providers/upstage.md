@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-09-07'
-description: Upstage Solar LLM API; $10 free credit on signup, no card. $10 signup credit (see console for validity); pay-as-you-go after
+description: Upstage Solar LLM API; $10 free credit on signup, no card. $10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai is a client-rendered docs site — 535 characters of text survive with its scripts removed — so "$10 in free credit" is read out of the payload the page…
 permalink: /providers/upstage/
 ---
 
@@ -21,7 +21,7 @@ Upstage Solar LLM API; $10 free credit on signup, no card
 
 ## Limits, in the vendor's words
 
-$10 signup credit (see console for validity); pay-as-you-go after
+$10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai is a client-rendered docs site — 535 characters of text survive with its scripts removed — so "$10 in free credit" is read out of the payload the page ships rather than out of anything a reader sees, and it is declared as a machinery keyword to say so. Neither upstage.ai/pricing nor the Solar Pro product page carries the phrase at all (all three read 2026-09-08)
 
 ## Connect
 
@@ -30,7 +30,7 @@ $10 signup credit (see console for validity); pay-as-you-go after
 
 ## Evidence
 
-- Probe: the page at <https://console.upstage.ai/docs/getting-started>, anchored on `$10 in free credit`
+- Probe: the page at <https://console.upstage.ai/docs/getting-started>, anchored on 
 - Source: <https://console.upstage.ai/docs/getting-started>
 - Source: <https://console.upstage.ai/>
 

@@ -141,9 +141,12 @@ is not yours to repair: `api` is not a key you may write, and an exact id copied
 out of a catalog is not something to reproduce from memory. Read it as evidence
 about which way the lane moved, and answer only with the keys you are allowed.
 A corrected page-keywords probe needs at least one keyword that dies with the
-offer — a quota or price figure, a model id or JSON field, or a sentence of four
-or more words quoted verbatim from the page below. Words like "free", "hobby",
-"free quota" or "no credit card required" are rejected: they outlive the offer.
+offer — a quota or price figure, a model id, or a sentence of four or more words
+quoted verbatim from the page below — and it must be in what the page renders:
+keywords are matched with script and style tags stripped out, so a string that
+lives only in a state blob or an OpenAPI enum passes every run and proves
+nothing. Words like "free", "hobby", "free quota" or "no credit card required"
+are rejected for the same reason: they outlive the offer.
 Output only the keys you are actually changing — never a null value, and skip an
 entry entirely when you have nothing to correct for it.
 Output format:
@@ -177,10 +180,15 @@ without a key. At least one keyword must anchor on something that disappears
 together with the offer, in one of these three shapes:
   - a figure: a quota, a price or a grant — "$0.10, subject to change",
     "anonymous users get one request every 15 seconds";
-  - an id: the free model's id or a JSON field of the vendor's own API —
-    "mistral-medium", "advanced_model_request_limit", '"name":"free"';
+  - an id: the free model's id as the page prints it — "mistral-medium",
+    "qwen/qwen3.8-27b";
   - a sentence of four or more words quoted verbatim from the page and specific
     to this offer — "free models through kilo gateway".
+Keywords are matched against what the page renders, with its script and style
+tags removed (JSON-LD excepted). A string that occurs only inside a state blob,
+an OpenAPI enum, a response sample or an i18n bundle goes on matching long after
+the offer it names is gone, so it anchors nothing and the proposal fails
+verification.
 Anything else is rejected outright, including "free", "hobby", "free quota",
 "monthly credits", "no signup" and "no credit card required": those sit on a
 vendor page for months after the free tier is withdrawn, so a probe built out of

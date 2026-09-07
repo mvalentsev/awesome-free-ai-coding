@@ -82,8 +82,22 @@ free tier does. Three shapes qualify:
 | Anchor | Example |
 |---|---|
 | a figure — quota, price, grant | `$0.10, subject to change` · `anonymous users get one request every 15 seconds` |
-| an id — model id or JSON field | `mistral-medium` · `advanced_model_request_limit` · `"name":"free"` |
+| an id — the free model's, as the page prints it | `mistral-medium` · `qwen/qwen3.8-27b` |
 | a sentence of 4+ words quoted from the page | `free models through kilo gateway` |
+
+**Keywords are matched against what the page renders**, with `<script>` and
+`<style>` removed — JSON-LD excepted, because structured data is the vendor
+answering a question and one row's whole offer is a JSON-LD FAQ block. A string
+that lives only in a state blob, an OpenAPI enum, a response sample or an i18n
+bundle keeps matching after the offer is gone: Groq's Free Plan Limits table
+lost `llama-3.3-70b-versatile` some time before 2026-09-08 while the id went on
+matching ten times over from the schema and samples beside it, and the list
+published a withdrawn free model until someone read the table by hand. Where the
+page's data genuinely is the evidence — a client-rendered docs site, a plan name
+that exists only in the payload a framework ships — put those strings in
+`probe.machinery_keywords`, which is searched against the whole response. Two
+rows use it (`trae`, `upstage`), each saying in `limits` where its evidence
+lives.
 
 Words that outlive the offer are rejected by validation, so CI fails on them:
 `free`, `hobby`, `free quota`, `monthly credits`, `no signup`, `no credit card

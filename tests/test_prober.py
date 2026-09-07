@@ -685,12 +685,17 @@ async def test_a_letter_never_carries_a_bare_version_number():
 
 @respx.mock
 async def test_a_family_named_only_in_the_page_data_is_evidenced():
-    """Read against the same bytes the keywords are: a name the vendor serves
-    inside its page data is served. Whether it is named AS FREE is a stronger
-    question, and the one an anchor keyword exists to answer."""
+    """A name the vendor serves inside its page data is served, so the Models
+    column is not flagged over it. Whether it is named AS FREE is the stronger
+    question, and the one an anchor keyword exists to answer — which is why the
+    keywords here are read against the rendered page while this check is not:
+    an unevidenced family is a note on a live row, and a missing keyword ends
+    it."""
     entry = listing_entry()
+    entry.models = [ModelFamily(family="mercury-2")]
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
-        200, text='free tier, no credit card<script>{"id":"vendor/qwen3-coder"}</script>'))
+        200, text='qwen3-coder on the free tier, no credit card'
+                  '<script>{"id":"vendor/mercury-2"}</script>'))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.PASS
@@ -1422,3 +1427,62 @@ async def test_a_row_without_an_anthropic_route_never_posts_anywhere():
         result = await probe_entry(client, page_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
     assert not route.called
+
+
+@respx.mock
+async def test_a_keyword_that_lives_only_in_the_page_machinery_no_longer_passes():
+    """Groq, 2026-09-08. Its Free Plan Limits table had thirteen rows and no
+    Llama in any of them, but llama-3.3-70b-versatile — the id this row anchored
+    on — still occurred ten times in the bytes: an OpenAPI enum and a set of
+    response samples, every hit inside a <script>. The probe passed, and the
+    list went on publishing a model the vendor had stopped giving away.
+
+    An anchor has to die with the offer. A script tag is where an id outlives
+    it, so keywords are read against what the page renders."""
+    entry = page_entry()
+    entry.probe.keywords = ["free plan limits", "llama-3.3-70b-versatile"]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=(
+        '<h1>Free Plan Limits</h1><table><tr><td>qwen/qwen3.8-27b</td></tr></table>'
+        '<script>{"enum":["llama-3.3-70b-versatile","qwen/qwen3.8-27b"]}</script>'
+    )))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "llama-3.3-70b-versatile" in result.detail
+
+
+@respx.mock
+async def test_a_keyword_the_vendor_only_serves_as_page_data_is_declared():
+    """Four of the live page rows match only in bytes a reader never sees, and
+    each is deliberate — trae's `"name":"free"`, cursor's
+    `"name":"hobby","price":"0"`, z.ai's ids glued to their price cells, and
+    Upstage's own heading inside a client-rendered payload. Those are still
+    evidence; they are just evidence about the page's data rather than its
+    prose, and saying so in the registry is the difference between a considered
+    anchor and the Groq accident above."""
+    entry = page_entry()
+    entry.probe.keywords = ["free tier"]
+    entry.probe.machinery_keywords = ['"name":"hobby","price":"0"']
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=(
+        '<p>Free tier</p><script>{"name":"hobby","price":"0"}</script>'
+    )))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_json_ld_is_the_page_speaking_and_stays_readable():
+    """Freebuff's offer is in a JSON-LD FAQ block and nowhere else — structured
+    data is the vendor answering a question, not the framework's state. It sits
+    in a script tag like everything else, so stripping script tags by their name
+    would take a real page's only evidence with it."""
+    entry = page_entry()
+    entry.probe.keywords = ["25 free requests per day"]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=(
+        '<p>Pricing</p><script type="application/ld+json">'
+        '{"@type":"Question","acceptedAnswer":{"text":"25 free requests per day"}}</script>'
+    )))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS

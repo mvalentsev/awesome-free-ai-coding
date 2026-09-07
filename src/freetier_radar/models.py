@@ -158,6 +158,12 @@ class Probe(BaseModel):
     # page-keywords: a keyless JSON catalog to check api.model_ids against, for a
     # vendor that keeps its offer on one page and its ids at another url
     catalog: str | None = None
+    # page-keywords: keywords the vendor serves only inside the page's machinery
+    # — a framework state blob, an OpenAPI enum, an i18n bundle. `keywords` is
+    # read against what the page renders, because an id left behind in a script
+    # tag outlives the offer it was anchoring (Groq, 2026-09-08). Where the data
+    # blob IS the evidence, say so here and the whole response is searched.
+    machinery_keywords: list[str] = []
 
     @model_validator(mode="after")
     def _zero_price_needs_a_price_list(self) -> Probe:
@@ -184,12 +190,18 @@ class Probe(BaseModel):
         cannot: would this string still be there once the free tier is gone?
         """
         if self.type is ProbeType.PAGE_KEYWORDS:
-            if not any(is_anchor(k) for k in self.keywords):
+            every = [*self.keywords, *self.machinery_keywords]
+            if not any(is_anchor(k) for k in every):
                 raise ValueError(
-                    f"probe {self.endpoint}: none of the keywords {self.keywords} anchors on "
+                    f"probe {self.endpoint}: none of the keywords {every} anchors on "
                     "the offer — use a free model id, a quota or price figure, or a phrase "
                     "of four or more words quoted from the page"
                 )
+        elif self.machinery_keywords:
+            raise ValueError(
+                f"probe {self.endpoint}: machinery_keywords is a page-keywords field — "
+                "a models API has no machinery to tell apart from its answer"
+            )
         return self
 
 
