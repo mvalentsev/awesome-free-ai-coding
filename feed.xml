@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-07T10:28:10Z</updated>
+  <updated>2026-09-07T10:29:03Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260907T102903Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-09-07T10:29:03Z</updated>
+    <summary type="text">dropped minimax-m3 · free models: nemotron-3-ultra, qwen3.6, mercury-2</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/ai21-labs/20260907T102810Z</id>
     <title>Archived: AI21 Labs (Jamba)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://www.ai21.com"/>
     <updated>2026-08-14T09:12:34Z</updated>
     <summary type="text">AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat · free models: jamba-mini, jamba-large</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260814T091234Z</id>
-    <title>Free models changed: Vercel AI Gateway</title>
-    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
-    <updated>2026-08-14T09:12:34Z</updated>
-    <summary type="text">added glm-4.6v-flash · free models: laguna-s-2.1-free, glm-4.6v-flash</summary>
   </entry>
 </feed>

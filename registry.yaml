@@ -2465,9 +2465,6 @@ entries:
   - family: nemotron-3-ultra
     tier: frontier
     released: 2026-03
-  - family: minimax-m3
-    tier: strong
-    released: 2026-05
   - family: qwen3.6
     tier: strong
     released: 2026-04

@@ -17,7 +17,7 @@ Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a
 
 ## Free models
 
-`nemotron-3-ultra`, `minimax-m3`, `qwen3.6`, `mercury-2`
+`nemotron-3-ultra`, `qwen3.6`, `mercury-2`
 
 ## Limits, in the vendor's words
 
@@ -39,6 +39,7 @@ The migration guide has a new account send its first request on a free model bef
 
 ## History
 
+- `2026-09-07` — Free models changed: dropped minimax-m3
 - `2026-09-03` — Added to the list: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them
 
 ---
