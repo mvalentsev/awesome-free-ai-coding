@@ -17,11 +17,11 @@ EU-hosted serverless open-model API — 24 models, and the anonymous lane needs 
 
 ## Free models
 
-`gpt-oss`, `qwen3.6`, `qwen3-coder`
+`gpt-oss`, `qwen3.6`, `qwen3.8`, `qwen3-coder`
 
 ## Limits, in the vendor's words
 
-OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model" (help.ovhcloud.com, read 2026-08-19), and its own product page invites you to "Try all our models for free". The keyless calls really do answer — gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B and Qwen3-Coder-30B returned 200 with no Authorization header on 2026-08-19, while Qwen3.5-397B-A17B answered 429 on every attempt — so a 429 here is the quota, not a refusal. The per-token prices in the catalog are what an authenticated project pays: 15 of the 24 models carry one, gpt-oss-120b at $0.00000047 per completion token, and the rows priced zero on both sides are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl. None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes
+OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model" (help.ovhcloud.com, read 2026-08-19), and its own product page invites you to "Try all our models for free". The keyless calls really do answer — gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B and Qwen3-Coder-30B returned 200 with no Authorization header on 2026-08-19, and Qwen3.8-27B did the same on 2026-09-08, while Qwen3.5-397B-A17B answered 429 on every attempt — so a 429 here is the quota, not a refusal. The per-token prices in the catalog are what an authenticated project pays: 15 of the 25 models carry one — Qwen3.8-27B, the newest Qwen here, is priced 0 on both sides while Qwen3.6-27B beside it is metered, and both answer the same anonymous lane — gpt-oss-120b at $0.00000047 per completion token, and the other rows priced zero on both sides are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl. None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes
 
 ## Connect
 

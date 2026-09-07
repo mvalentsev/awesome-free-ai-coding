@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Groq free tier: limits, free models, verified 2026-09-07'
-description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 14.4K / 6K / 500K on llama-3.1-8b-instant, 30 / 1K / 12K / 100K on llama-3.3-70b-versatile, 30 / 1K / 8K / 200K on…'
+description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K /…'
 permalink: /providers/groq-free/
 ---
 
@@ -17,11 +17,11 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ## Free models
 
-`llama-3.3`, `gpt-oss`, `qwen3.6`
+`gpt-oss`, `qwen3.6`, `qwen3.8`
 
 ## Limits, in the vendor's words
 
-Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 14.4K / 6K / 500K on llama-3.1-8b-instant, 30 / 1K / 12K / 100K on llama-3.3-70b-versatile, 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b and qwen/qwen3.6-27b, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models (read 2026-08-14). Those thirteen rows are the whole free plan — no llama-4 among them, though the page carries the id in the API schema it embeds. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
+Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, and no Llama is among them any more: llama-3.3-70b-versatile and llama-3.1-8b-instant were both in the table on 2026-08-14 and are gone from it now, surviving only inside the OpenAPI schema and the response samples the page embeds — where llama-4 has always been, and where this row's old anchor keyword was matching. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
 
 ## Connect
 
@@ -32,7 +32,7 @@ Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM /
 
 ## Evidence
 
-- Probe: the page at <https://console.groq.com/docs/rate-limits>, anchored on `free plan limits`, `llama-3.3-70b-versatile`
+- Probe: the page at <https://console.groq.com/docs/rate-limits>, anchored on `free plan limits`, `qwen/qwen3.8-27b`
 - Source: <https://console.groq.com/docs/rate-limits>
 
 ## History

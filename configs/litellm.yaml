@@ -3,6 +3,11 @@
 # Keys come from the environment (see free-llm.env.example); entries
 # marked `api_key: none` need no account at all.
 model_list:
+- model_name: google-ai-studio/gemini-3.8-flash
+  litellm_params:
+    model: openai/gemini-3.8-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
 - model_name: google-ai-studio/gemini-3.7-flash
   litellm_params:
     model: openai/gemini-3.7-flash

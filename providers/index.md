@@ -20,8 +20,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-07` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-07` |
 | [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) | 🤖 Coding agents & CLIs | — | `2026-09-07` |
-| [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro` | `2026-09-07` |
-| [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) | 🔌 LLM APIs with free tier | `llama-3.3`, `gpt-oss`, `qwen3.6` | `2026-09-07` |
+| [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro` | `2026-09-07` |
+| [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8` | `2026-09-07` |
 | [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) | 🔌 LLM APIs with free tier | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | `2026-09-07` |
 | [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) | 🔌 LLM APIs with free tier | `llama-4` | `2026-09-07` |
 | [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) | 🔌 LLM APIs with free tier | `deepseek`, `gpt-oss`, `gemma-4` | `2026-09-07` |
@@ -29,7 +29,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3-max`, `qwen3-coder` | `2026-09-07` |
 | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | 🔌 LLM APIs with free tier | `nemotron` | `2026-09-07` |
 | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a`, `north-mini-code` | `2026-09-07` |
-| [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3-coder` | `2026-09-07` |
+| [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8`, `qwen3-coder` | `2026-09-07` |
 | [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) | 🔌 LLM APIs with free tier | — | `2026-09-07` |
 | [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) | 🔌 LLM APIs with free tier | — | `2026-09-07` |
 | [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) | 🔌 LLM APIs with free tier | — | `2026-09-07` |

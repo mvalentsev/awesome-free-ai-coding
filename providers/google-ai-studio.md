@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-09-07'
-description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview,…'
+description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash — the newest of them, "our most intelligent Flash model, engineered for…'
 permalink: /providers/google-ai-studio/
 ---
 
@@ -17,11 +17,11 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ## Free models
 
-`gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro`
+`gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro`
 
 ## Limits, in the vendor's words
 
-Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview, 2.5 Pro and 2.5 Flash, and "Not available" in the same column for Gemini 3.1 Pro Preview, Omni Flash Preview and the Live previews. What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published anywhere a probe can read — as of its own "Last updated 2026-08-13" the rate-limits page keeps only the usage-tier table ("Free — Active project or free trial") and sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)
+Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash — the newest of them, "our most intelligent Flash model, engineered for long-horizon software engineering", free in the same column that prices it at $0.75/$3.75 per 1M on the paid tier (read 2026-09-08) — and on 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview, 2.5 Pro and 2.5 Flash, with "Not available" in the same column for Gemini 3.1 Pro Preview, Omni Flash Preview and the Live previews. A new generation arrives here as an addition: every Flash before it kept its free column when 3.8 landed. What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published anywhere a probe can read — as of its own "Last updated 2026-08-13" the rate-limits page keeps only the usage-tier table ("Free — Active project or free trial") and sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)
 
 ## Connect
 

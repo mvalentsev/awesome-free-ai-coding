@@ -90,14 +90,17 @@ dismissed:
       its FAQ prose says Sonnet 4.6 — so this bump will be proposed again from
       that page every run, which is what this file is for.
 
-  # Two of the six bumps the 2026-08-14 rehearsal on b4e0b3b offered, each
-  # checked against the vendor rather than against the proposal. A third,
-  # vercel-ai-gateway glm-4.6v-flash → glm-4.7, stood here until the model it
-  # protected left Vercel's catalog by 2026-08-20. The other three were left
-  # standing because nobody has read their pages today:
-  # zai-glm glm-4.5-flash → glm-4.6v-flash and glm-4.6v-flash → glm-4.7, both
-  # inside z.ai's own Flash line, and upstage solar-mini → solar-pro-3, where
-  # the row already lists both families.
+  # One of the six bumps the 2026-08-14 rehearsal on b4e0b3b offered, checked
+  # against the vendor rather than against the proposal. Two others stood here
+  # until the model they protected went: vercel-ai-gateway glm-4.6v-flash →
+  # glm-4.7, gone from Vercel's catalog by 2026-08-20, and groq-free llama-3.3 →
+  # llama-4, whose own reason said "the id is in the page and the offer is not"
+  # — on 2026-09-08 that became true of llama-3.3 itself, which left Groq's Free
+  # Plan Limits table for the OpenAPI schema beside it, so the family left the
+  # row and took this line with it. The other three were left standing because
+  # nobody had read their pages: zai-glm glm-4.5-flash → glm-4.6v-flash and
+  # glm-4.6v-flash → glm-4.7, both inside z.ai's own Flash line, and upstage
+  # solar-mini → solar-pro-3, read and dismissed on 2026-09-08 below.
   - entry: google-jules
     family: gemini-2.5
     superseded_by: gemini-3.1-pro
@@ -108,16 +111,6 @@ dismissed:
       "Higher access to the latest model (starting with Gemini 3 Pro)" on
       Jules in Pro and "Priority access" on Ultra. The free row is pinned to
       2.5 deliberately, and gemini-3.1-pro is not a name that page uses at all.
-  - entry: groq-free
-    family: llama-3.3
-    superseded_by: llama-4
-    dismissed_on: 2026-08-14
-    reason: >-
-      The bump 9c92a9b removed, arriving again from the same bytes that caused
-      it: console.groq.com/docs/rate-limits carries llama-4 only inside the
-      OpenAPI schema it embeds, while the Free Plan Limits table it renders has
-      thirteen rows and no Llama 4 among them. Expect this one every run — the
-      id is in the page and the offer is not.
 
   # Both bumps PR #12 reported, each read off the vendor's own free/paid column
   # on 2026-08-28. They fail the same way from opposite directions: Google
@@ -147,3 +140,341 @@ dismissed:
       say ("DeepSeek V3.1/V3.2"). Applying the mark would hide the only
       DeepSeek in the row and pin what it names to the Preview lane the same
       page says "may be removed at short notice".
+
+  # Nemotron 3.5 Lightning against the Nemotron 3 line — eleven of the thirty-six
+  # bumps the 2026-09-07 run offered, one for every Nemotron family this list
+  # carries. It is not a generation replacing another. NVIDIA's own catalog
+  # description sells 3.5 Lightning as a 30B-total / 3B-active hybrid for
+  # "long-running autonomous agents, sub-agent workhorse deployments", against
+  # the 550B Ultra and the 120B-A12B Super it was offered against: a smaller
+  # sibling shipped beside them, not after them. Every catalog below was read on
+  # 2026-09-08 and not one of them supports the swap — where a gateway serves
+  # Lightning free it serves the others free in the same response, and where it
+  # does not serve them free it does not carry Lightning at all.
+  - entry: openrouter-free
+    family: nemotron-3-ultra
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      openrouter.ai/api/v1/models prices nvidia/nemotron-3-ultra-550b-a55b:free,
+      nvidia/nemotron-3-super-120b-a12b:free and nvidia/nemotron-3.5-lightning:free
+      at 0/0 in the same read, among sixteen :free ids against 409 metered rows.
+      Lightning is already in api.model_ids and in the generated configs; the bump
+      would drop the frontier model this row is ranked for in order to name one the
+      row already hands out.
+  - entry: opencode
+    family: nemotron-3-ultra
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      The row lists both families already, and opencode.ai/zen/v1/models carries
+      nemotron-3-ultra-free and nemotron-3.5-lightning-free side by side. The bump
+      would delete one of this row's own free models to name the other.
+  - entry: kilo-code
+    family: nemotron-3-ultra
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      Kilo's catalog marks nvidia/nemotron-3-ultra-550b-a55b:free,
+      nvidia/nemotron-3-super-120b-a12b:free and nvidia/nemotron-3.5-lightning:free
+      isFree in the same read — seventeen free rows against 352 metered. All three
+      are in api.model_ids, where this row keeps the ids that come and go.
+  - entry: kilo-code
+    family: nemotron-3-super
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      The same read, the same catalog: Super is free here beside Lightning, not
+      replaced by it.
+  - entry: requesty
+    family: nemotron-3-ultra
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      router.requesty.ai/v1/models prices nvidia/nemotron-3-ultra-550b-a55b,
+      nvidia/nemotron-3-super-120b-a12b and nvidia/nemotron-3.5-lightning-30b-a3b
+      at 0/0 among the twelve free rows the free plan is restricted to. Lightning
+      is a candidate for this row's Models column on its own merits once it has
+      stood two weeks in that lane — it is not a reason to remove Ultra.
+  - entry: requesty
+    family: nemotron-3-super
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      The same read, the same twelve free rows: Super is one of them.
+  - entry: llmtr
+    family: nemotron-3-ultra
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      LLMTR's catalog carries no Lightning row at all. Its only Nemotrons are
+      nvidia/nemotron-3-ultra-550b-a55b (free, daily quota), its metered -262k twin
+      and nvidia/nemotron-3-super-120b-a12b (free). The target does not exist on
+      this vendor, so the bump could only empty the column.
+  - entry: kenari
+    family: nemotron-3-ultra
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      kenari.id/v1/models has thirteen free rows and no Lightning among them.
+      nemotron-3-ultra-550b-a55b:free and nemotron-3-super-120b-a12b:free are both
+      there, each beside the metered twin it is billed Rp 0 against.
+  - entry: kenari
+    family: nemotron-3-super
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      The same read of the same catalog, for the row's other Nemotron family.
+  - entry: nvidia-nim
+    family: nemotron
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      The family here is unversioned on purpose: build.nvidia.com serves the whole
+      Nemotron line, and integrate.api.nvidia.com/v1/models carries nemotron-3-ultra,
+      -super, -nano, 3.5 Lightning, 3.5 content-safety and nemotron-parse at once
+      while publishing no prices at all. Narrowing `nemotron` to one checkpoint
+      would claim less than the row grants — the sambanova-cloud deepseek
+      dismissal above, for the same reason.
+  - entry: tokenrouter
+    family: nemotron-3-nano-omni
+    superseded_by: nemotron-3.5-lightning
+    dismissed_on: 2026-09-08
+    reason: >-
+      api.tokenrouter.com/api/pricing has three free rows, and
+      nvidia/nemotron-3.5-lightning is not one of them — it is metered here, while
+      nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, the family this bump
+      would remove, is. The swap would trade a free model for a paid one, which is
+      what this file exists to stop.
+
+  # Six more of the same run's bumps name a family the row already lists, and
+  # three name one the vendor serves free beside the old one rather than instead
+  # of it. Both shapes are the blind spot this file opens with, seen from a new
+  # angle: the scout is handed family names and cannot see which lane they sit
+  # in — not even when both names are already in the column it is proposing to
+  # edit. Read 2026-09-08.
+  - entry: antigravity
+    family: gemini-3.1-pro
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      The row already lists gemini-3.8-flash — added on 2026-09-03 beside
+      3.6-flash and 3.7-flash, from antigravity.google/pricing's own $0 bullet.
+      This bump would delete the frontier Pro model the same free plan grants in
+      order to name a Flash the row already carries: less claimed, nothing
+      updated.
+  - entry: antigravity
+    family: gemini-3.6-flash
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      Same row, same read: both families are in the column, and the vendor's free
+      bullet names the Flash generations together rather than one replacing the
+      last.
+  - entry: antigravity
+    family: gemini-3.7-flash
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      Same row, same read, the third of the trio.
+  - entry: upstage
+    family: solar-mini
+    superseded_by: solar-pro-3
+    dismissed_on: 2026-09-08
+    reason: >-
+      The comment above the google-jules block listed this one as left standing
+      because nobody had read the page. Read now: the row lists solar-pro-3 and
+      solar-mini both, so the target is already in the column and the bump can
+      only remove the smaller model beside it.
+  - entry: freeinference
+    family: glm-5.1
+    superseded_by: glm-5.3-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      doc.freeinference.org/models — the page this row's probe reads — names
+      GLM-5.1 and GLM 5.3 Flash both, and the row lists both families. A lab
+      serving open weights adds checkpoints; it does not retire one to add
+      another.
+  - entry: hetzner-inference
+    family: qwen3.6
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      The row lists qwen3.6 and qwen3.8 both, from the same docs.hetzner.com
+      page. Nothing to bump.
+  - entry: aihubmix
+    family: glm-5
+    superseded_by: glm-5.3-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      aihubmix.com/api/v1/models prices coding-glm-5-free, coding-glm-5-turbo-free,
+      coding-glm-5.3-free and coding-glm-5.3-flash-free all at 0 in the same read
+      — 57 free rows against 795 metered. AIHubMix subsidises the whole GLM line,
+      which is why this list carries glm-5 as free here and nowhere else; a newer
+      generation arriving on a subsidised lane is an addition, not a supersession.
+  - entry: bazaarlink
+    family: qwen3.7-flash
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      api.bazaarlink.ai/v1/models has exactly two free rows, and
+      qwen/qwen3.7-flash:free is one of them, while every Qwen3.8 the same catalog
+      carries — qwen3.8-max, qwen3.8-2.4t-a95b, qwen3.8-27b — is metered. The bump
+      would empty this row's Models column of its only free model.
+  - entry: llmtr
+    family: qwen3.6
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      LLMTR meters qwen/qwen3.8-max, qwen/qwen3.8-2.4t-a95b and qwen/qwen3.8-flash.
+      The one free Qwen in its catalog is qwen/qwen3.6-27b-free, which is the
+      family this bump would remove.
+  - entry: ovh-ai-endpoints
+    family: qwen3.6
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      OVHcloud's free lane is the anonymous one — "2 requests per minute, per IP
+      and per model" — and it covers the catalog rather than a zero-priced subset,
+      so a newer generation here is never a replacement. Qwen3.8-27B answered
+      keyless with HTTP 200 on 2026-09-08 and joined this row's Models column in
+      the same read; Qwen3.6-27B is still in the catalog and still on that lane.
+  - entry: ovh-ai-endpoints
+    family: qwen3-coder
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      Same lane, same read: Qwen3-Coder-30B-A3B-Instruct is in the catalog and
+      answers anonymously, and a coder-tuned checkpoint is not superseded by a
+      general one in any case.
+
+  # The fourteen bumps of the 2026-09-07 run that needed a vendor page rather
+  # than a catalog, all read on 2026-09-08. Three of them are the file's oldest
+  # lesson arriving under a new name — on z.ai the free lane is not "the Flash
+  # models", it is the rows the price table prints as Free, and GLM-5.3-Flash is
+  # not one of them. The rest are additions read as replacements, and two of the
+  # readings changed the registry instead: Gemini 3.8 Flash is free of charge in
+  # Google's own Free Tier column and joined google-ai-studio's Models column,
+  # and Groq's Free Plan Limits table now carries qwen/qwen3.8-27b — while the
+  # Llamas it used to carry are gone from it entirely.
+  - entry: zai-glm
+    family: glm-4.7-flash
+    superseded_by: glm-5.3-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      docs.z.ai/guides/overview/pricing prices GLM-5.3-Flash at $0.15 in and
+      $0.50 out per 1M — a 50% promotional discount off $0.30/$1.00 that "ends at
+      24:00 on September 9, 2026" — while GLM-4.7-Flash and GLM-4.5-Flash are the
+      two rows the same table prints as "Free Free Free Free". The Flash suffix
+      is not the lane here; the word Free in the price cell is.
+  - entry: zai-glm
+    family: glm-4.5-flash
+    superseded_by: glm-5.3-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      The same table, the row below: GLM-4.5-Flash is free and GLM-5.3-Flash is
+      priced.
+  - entry: zai-glm
+    family: glm-4.6v-flash
+    superseded_by: glm-5.3-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      The same table's Vision section, and the same answer. A discounted price is
+      still a price — and this one has an end date on it.
+  - entry: google-ai-studio
+    family: gemini-3.7-flash
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      ai.google.dev/gemini-api/docs/pricing gives Gemini 3.8 Flash "Free of
+      charge" for input, output and context caching, and gives Gemini 3.7 Flash
+      exactly the same. Google adds a generation to the free column rather than
+      moving it: the row now lists both, and the bump would have traded one free
+      model for another.
+  - entry: google-ai-studio
+    family: gemini-3.5-flash-lite
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      Same page, same read: Flash-Lite's input and output are "Free of charge"
+      too, and it is the cheap high-volume model rather than an older 3.8.
+  - entry: google-ai-studio
+    family: gemini-2.5-pro
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      The 2026-08-28 dismissal of gemini-2.5-pro → gemini-3.1-pro, retargeted at
+      a Flash. 2.5 Pro is still "Free of charge" on that page and is this row's
+      only free Pro model; swapping it for a Flash would drop the reasoning tier
+      the row is ranked for.
+  - entry: google-jules
+    family: gemini-2.5
+    superseded_by: gemini-3.8-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      The 2026-08-14 dismissal on this row, retargeted from gemini-3.1-pro to
+      gemini-3.8-flash. jules.google/docs/usage-limits does not contain the
+      string "3.8" at all (read 2026-09-08): the free Jules row is still pinned
+      to "Gemini 2.5 Pro", with "the latest model" reserved for Pro and Ultra.
+  - entry: kiro
+    family: qwen3-coder
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      kiro.dev/pricing does not name Qwen3.8 anywhere (0 hits, read 2026-09-08).
+      Its free-tier footnote still grants "open weight models such as Qwen3 Coder
+      Next, DeepSeek 3.2, and MiniMax M2.1" — the third dismissal on this row for
+      a generation the vendor does not carry.
+  - entry: freeinference
+    family: qwen3.6
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      doc.freeinference.org/models does not name Qwen3.8 (0 hits, read
+      2026-09-08). The Qwen this lab serves is Qwen3.6 35B, which is what the row
+      lists.
+  - entry: regolo
+    family: glm-5
+    superseded_by: glm-5.3-flash
+    dismissed_on: 2026-09-08
+    reason: >-
+      regolo.ai/pricing names GLM-5.3-Flash once, inside a blog headline in its
+      sidebar — "DeepSeek V4 Flash vs Qwen3.8-Flash-Next vs GLM-5.3-Flash: the
+      real leader in quality-to-price in 2026". The price table itself does not
+      carry the model, and a link to an article about a model is not an offer of
+      it.
+  - entry: regolo
+    family: llama-3.3
+    superseded_by: llama-4
+    dismissed_on: 2026-09-08
+    reason: >-
+      regolo.ai/pricing contains neither "llama 4" nor "llama-4" (read
+      2026-09-08). The routeway dismissal this file's header describes, on a
+      second vendor: a newer generation the page does not carry cannot supersede
+      one it does.
+  - entry: groq-free
+    family: qwen3.6
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      Both are in Groq's Free Plan Limits table on 2026-09-08, at the same
+      30 RPM / 1K RPD / 8K TPM / 200K TPD — qwen/qwen3.6-27b and qwen/qwen3.8-27b,
+      two rows apart. Qwen3.8 joined this row's Models column on that read; 3.6
+      did not leave it.
+  - entry: alibaba-model-studio
+    family: qwen3-max
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      alibabacloud.com/help/en/model-studio/model-pricing gives qwen3-max,
+      qwen3-coder-plus, qwen3-coder-flash, qwen3.8-max and qwen3.8-27b the same
+      free quota of 1 million tokens, valid 90 days from activation or model
+      release. The newer generation arrives with the same grant rather than
+      taking the older one's.
+  - entry: alibaba-model-studio
+    family: qwen3-coder
+    superseded_by: qwen3.8
+    dismissed_on: 2026-09-08
+    reason: >-
+      The same table and the same grant, and a coder-tuned line is not superseded
+      by a general one in any case.

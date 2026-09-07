@@ -82,8 +82,13 @@
       ],
       "card_required": false,
       "offering": "Free tier on the Gemini API, priced model by model rather than as one account quota",
-      "limits": "Google prices the free tier per model: its pricing page reads \"Free of charge\" for input, output and context caching on Gemini 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview, 2.5 Pro and 2.5 Flash, and \"Not available\" in the same column for Gemini 3.1 Pro Preview, Omni Flash Preview and the Live previews. What the free tier costs instead is one row lower in each table: \"Used to improve our products\" is Yes on the free tier and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published anywhere a probe can read — as of its own \"Last updated 2026-08-13\" the rate-limits page keeps only the usage-tier table (\"Free — Active project or free trial\") and sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)",
+      "limits": "Google prices the free tier per model: its pricing page reads \"Free of charge\" for input, output and context caching on Gemini 3.8 Flash — the newest of them, \"our most intelligent Flash model, engineered for long-horizon software engineering\", free in the same column that prices it at $0.75/$3.75 per 1M on the paid tier (read 2026-09-08) — and on 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview, 2.5 Pro and 2.5 Flash, with \"Not available\" in the same column for Gemini 3.1 Pro Preview, Omni Flash Preview and the Live previews. A new generation arrives here as an addition: every Flash before it kept its free column when 3.8 landed. What the free tier costs instead is one row lower in each table: \"Used to improve our products\" is Yes on the free tier and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published anywhere a probe can read — as of its own \"Last updated 2026-08-13\" the rate-limits page keeps only the usage-tier table (\"Free — Active project or free trial\") and sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)",
       "models": [
+        {
+          "family": "gemini-3.8-flash",
+          "tier": "frontier",
+          "released": ""
+        },
         {
           "family": "gemini-3.7-flash",
           "tier": "frontier",
@@ -137,13 +142,8 @@
       ],
       "card_required": false,
       "offering": "Fast inference against a free plan Groq publishes as a per-model rate table",
-      "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 14.4K / 6K / 500K on llama-3.1-8b-instant, 30 / 1K / 12K / 100K on llama-3.3-70b-versatile, 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b and qwen/qwen3.6-27b, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models (read 2026-08-14). Those thirteen rows are the whole free plan — no llama-4 among them, though the page carries the id in the API schema it embeds. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
+      "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, and no Llama is among them any more: llama-3.3-70b-versatile and llama-3.1-8b-instant were both in the table on 2026-08-14 and are gone from it now, surviving only inside the OpenAPI schema and the response samples the page embeds — where llama-4 has always been, and where this row's old anchor keyword was matching. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
       "models": [
-        {
-          "family": "llama-3.3",
-          "tier": "strong",
-          "released": "2024-12"
-        },
         {
           "family": "gpt-oss",
           "tier": "strong",
@@ -151,6 +151,11 @@
         },
         {
           "family": "qwen3.6",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "qwen3.8",
           "tier": "strong",
           "released": ""
         }
@@ -174,7 +179,7 @@
         "endpoint": "https://console.groq.com/docs/rate-limits",
         "keywords": [
           "free plan limits",
-          "llama-3.3-70b-versatile"
+          "qwen/qwen3.8-27b"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -999,7 +1004,7 @@
       ],
       "card_required": false,
       "offering": "EU-hosted serverless open-model API — 24 models, and the anonymous lane needs no signup, no key and no card (OpenAI-compatible)",
-      "limits": "OVHcloud documents the anonymous lane rather than leaving it to be inferred: \"Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model\" (help.ovhcloud.com, read 2026-08-19), and its own product page invites you to \"Try all our models for free\". The keyless calls really do answer — gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B and Qwen3-Coder-30B returned 200 with no Authorization header on 2026-08-19, while Qwen3.5-397B-A17B answered 429 on every attempt — so a 429 here is the quota, not a refusal. The per-token prices in the catalog are what an authenticated project pays: 15 of the 24 models carry one, gpt-oss-120b at $0.00000047 per completion token, and the rows priced zero on both sides are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl. None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes",
+      "limits": "OVHcloud documents the anonymous lane rather than leaving it to be inferred: \"Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model\" (help.ovhcloud.com, read 2026-08-19), and its own product page invites you to \"Try all our models for free\". The keyless calls really do answer — gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B and Qwen3-Coder-30B returned 200 with no Authorization header on 2026-08-19, and Qwen3.8-27B did the same on 2026-09-08, while Qwen3.5-397B-A17B answered 429 on every attempt — so a 429 here is the quota, not a refusal. The per-token prices in the catalog are what an authenticated project pays: 15 of the 25 models carry one — Qwen3.8-27B, the newest Qwen here, is priced 0 on both sides while Qwen3.6-27B beside it is metered, and both answer the same anonymous lane — gpt-oss-120b at $0.00000047 per completion token, and the other rows priced zero on both sides are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl. None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes",
       "models": [
         {
           "family": "gpt-oss",
@@ -1008,6 +1013,11 @@
         },
         {
           "family": "qwen3.6",
+          "tier": "strong",
+          "released": ""
+        },
+        {
+          "family": "qwen3.8",
           "tier": "strong",
           "released": ""
         },
