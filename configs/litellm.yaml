@@ -98,21 +98,6 @@ model_list:
     model: openai/poolside/laguna-xs-2.1:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/z-ai/glm-5.2:free
-  litellm_params:
-    model: openai/z-ai/glm-5.2:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/minimax/minimax-m3:free
-  litellm_params:
-    model: openai/minimax/minimax-m3:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/minimax/minimax-m2.7:free
-  litellm_params:
-    model: openai/minimax/minimax-m2.7:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/thinkingmachines/inkling:free
   litellm_params:
     model: openai/thinkingmachines/inkling:free
@@ -231,16 +216,6 @@ model_list:
 - model_name: kilo-code/liquid/lfm-2.5-2.6b:free
   litellm_params:
     model: openai/liquid/lfm-2.5-2.6b:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
-- model_name: kilo-code/minimax/minimax-m3:free
-  litellm_params:
-    model: openai/minimax/minimax-m3:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
-- model_name: kilo-code/minimax/minimax-m2.7:free
-  litellm_params:
-    model: openai/minimax/minimax-m2.7:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: kilo-code/inclusionai/ling-3.0-flash-fin:free
@@ -643,16 +618,6 @@ model_list:
     model: openai/minimax-m2.7:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
-- model_name: llmtr/minimax/minimax-m3-free
-  litellm_params:
-    model: openai/minimax/minimax-m3-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/minimax/minimax-m2.7-free
-  litellm_params:
-    model: openai/minimax/minimax-m2.7-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
 - model_name: llmtr/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b
@@ -693,11 +658,6 @@ model_list:
     model: openai/openai/gpt-oss-safeguard-20b
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/openai/gpt-6-astra-free
-  litellm_params:
-    model: openai/openai/gpt-6-astra-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
   litellm_params:
     model: openai/DeepSeek-V3.1
@@ -716,16 +676,6 @@ model_list:
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-- model_name: vercel-ai-gateway/minimax/minimax-m3-free
-  litellm_params:
-    model: openai/minimax/minimax-m3-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-- model_name: vercel-ai-gateway/minimax/minimax-m2.7-free
-  litellm_params:
-    model: openai/minimax/minimax-m2.7-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
 - model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-fin

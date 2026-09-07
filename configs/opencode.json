@@ -86,15 +86,6 @@
         "poolside/laguna-xs-2.1:free": {
           "name": "poolside/laguna-xs-2.1:free"
         },
-        "z-ai/glm-5.2:free": {
-          "name": "z-ai/glm-5.2:free"
-        },
-        "minimax/minimax-m3:free": {
-          "name": "minimax/minimax-m3:free"
-        },
-        "minimax/minimax-m2.7:free": {
-          "name": "minimax/minimax-m2.7:free"
-        },
         "thinkingmachines/inkling:free": {
           "name": "thinkingmachines/inkling:free"
         },
@@ -186,12 +177,6 @@
         },
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
-        },
-        "minimax/minimax-m3:free": {
-          "name": "minimax/minimax-m3:free"
-        },
-        "minimax/minimax-m2.7:free": {
-          "name": "minimax/minimax-m2.7:free"
         },
         "inclusionai/ling-3.0-flash-fin:free": {
           "name": "inclusionai/ling-3.0-flash-fin:free"
@@ -503,12 +488,6 @@
         "apiKey": "{env:LLMTR_API_KEY}"
       },
       "models": {
-        "minimax/minimax-m3-free": {
-          "name": "minimax/minimax-m3-free"
-        },
-        "minimax/minimax-m2.7-free": {
-          "name": "minimax/minimax-m2.7-free"
-        },
         "nvidia/nemotron-3-ultra-550b-a55b": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b"
         },
@@ -532,9 +511,6 @@
         },
         "openai/gpt-oss-safeguard-20b": {
           "name": "openai/gpt-oss-safeguard-20b"
-        },
-        "openai/gpt-6-astra-free": {
-          "name": "openai/gpt-6-astra-free"
         }
       }
     },
@@ -567,12 +543,6 @@
       "models": {
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
-        },
-        "minimax/minimax-m3-free": {
-          "name": "minimax/minimax-m3-free"
-        },
-        "minimax/minimax-m2.7-free": {
-          "name": "minimax/minimax-m2.7-free"
         },
         "inclusionai/ling-3.0-flash-fin": {
           "name": "inclusionai/ling-3.0-flash-fin"

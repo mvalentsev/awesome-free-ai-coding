@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-07",
+  "generated": "2026-09-08",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -44,9 +44,6 @@
           "cohere/north-mini-code:free",
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
-          "z-ai/glm-5.2:free",
-          "minimax/minimax-m3:free",
-          "minimax/minimax-m2.7:free",
           "thinkingmachines/inkling:free",
           "thinkingmachines/inkling-small:free",
           "dots-studio/dots-3-note-preview:free",
@@ -56,7 +53,7 @@
           "openrouter/free"
         ],
         "anthropic_base_url": "https://openrouter.ai/api",
-        "note": "pick models with the :free suffix; all nineteen ids carrying it are priced 0/0 and the other 409 rows are metered, bar Google's two Lyria 3 music previews at 0 without the suffix (read 2026-09-05; eighteen :free ids and 354 metered on 2026-08-28, inclusionai/ling-3.0-flash-sante:free the arrival since). openai/gpt-oss-20b:free left that set between the 2026-08-20 and 2026-08-24 probes, leaving its metered twin behind and taking gpt-oss out of the column. Six are not coding models: openrouter/free is the Free Models Router, priced 0/0, picking whichever free model is up and the id that survives this lane rotating; nemotron-3.5-content-safety is a guardrail, ling-3.0-flash-fin finance-tuned and ling-3.0-flash-sante health-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding The Claude Code cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api — the \"Anthropic Skin\", which \"behaves exactly like the Anthropic API\" and maps model names — with ANTHROPIC_API_KEY explicitly empty; a :free id in ANTHROPIC_MODEL keeps the session on the free lane, and the page warns Claude Code \"may not work correctly with other providers\" openrouter/free is the vendor's own router over the :free set rather than a model, so it sits last: the first id is the one the generated Claude Code function leads with, and a router can land on a free model without tool use"
+        "note": "pick models with the :free suffix; all sixteen ids carrying it are priced 0/0 and the other 409 rows are metered, bar Google's two Lyria 3 music previews at 0 without the suffix (read 2026-09-08; nineteen :free ids on 2026-09-05, eighteen and 354 metered on 2026-08-28). Three left that set between the last two reads: z-ai/glm-5.2:free, whose metered twin is $0.97/$3.04 per 1M, and minimax/minimax-m3:free and minimax/minimax-m2.7:free, whose twins are $0.30/$1.20 — the same two MiniMax ids left Kilo, LLMTR and Vercel on the same read, which puts that withdrawal upstream of any one gateway. openai/gpt-oss-20b:free left the same way between the 2026-08-20 and 2026-08-24 probes, leaving its metered twin behind and taking gpt-oss out of the column. Six are not coding models: openrouter/free is the Free Models Router, priced 0/0, picking whichever free model is up and the id that survives this lane rotating; nemotron-3.5-content-safety is a guardrail, ling-3.0-flash-fin finance-tuned and ling-3.0-flash-sante health-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding The Claude Code cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api — the \"Anthropic Skin\", which \"behaves exactly like the Anthropic API\" and maps model names — with ANTHROPIC_API_KEY explicitly empty; a :free id in ANTHROPIC_MODEL keeps the session on the free lane, and the page warns Claude Code \"may not work correctly with other providers\" openrouter/free is the vendor's own router over the :free set rather than a model, so it sits last: the first id is the one the generated Claude Code function leads with, and a router can land on a free model without tool use"
       },
       "probe": {
         "type": "api-models",
@@ -562,15 +559,13 @@
           "poolside/laguna-s-2.1:free",
           "poolside/laguna-xs-2.1:free",
           "liquid/lfm-2.5-2.6b:free",
-          "minimax/minimax-m3:free",
-          "minimax/minimax-m2.7:free",
           "inclusionai/ling-3.0-flash-fin:free",
           "inclusionai/ling-3.0-flash-sante:free",
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling:free",
           "thinkingmachines/inkling-small:free"
         ],
-        "note": "every id listed is one the catalog marks isFree — the same catalog meters 352 more (2026-09-05). kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column — meituan/longcat-2.0-free was marked isFree on the morning of 2026-09-02 and had left the catalog by a second read that evening"
+        "note": "every id listed is one the catalog marks isFree — seventeen of them against the 352 the same catalog meters (2026-09-08). minimax/minimax-m3:free and minimax/minimax-m2.7:free left it between the 2026-09-05 and 2026-09-08 reads, the read that took the pair off OpenRouter, LLMTR and Vercel too. kilo-auto/free and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model. These ids come and go faster than the offer does, which is why they stay here and out of the Models column — meituan/longcat-2.0-free was marked isFree on the morning of 2026-09-02 and had left the catalog by a second read that evening"
       },
       "probe": {
         "type": "api-models",
@@ -1402,7 +1397,7 @@
         "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api"
       ],
       "card_required": false,
-      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and seven language models that never touch the credit",
+      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit",
       "limits": "$5/month credit at provider list rates, renewed monthly; lower per-model rate limits, no BYOK. Seven of the 373 catalogued models are language models priced 0 in and 0 out on 2026-09-05 — poolside's Laguna S 2.1 Free, MiniMax M3 (Free) and M2.7 (Free), and Ling 3.0 Flash Fin and Ling 3.0 Flash Sante each with and without its -free suffix — against five on 2026-09-02 and exactly one on 2026-08-20, and none of them draws the credit down; the only other zero row is spacexai/grok-stt, speech-to-text billed per second of audio. z.ai's GLM-4.6V-Flash, free here until it left the catalog by the 2026-08-20 read, is gone: the 14 GLM rows that remain are all priced. Mind the suffix, since the same catalog carries poolside/laguna-s-2.1 without it at $0.10/$0.20 per 1M tokens (read 2026-08-20). Buying credits ends the monthly free credit",
       "models": [
         {
@@ -1418,15 +1413,13 @@
         "openai_compatible": true,
         "model_ids": [
           "poolside/laguna-s-2.1-free",
-          "minimax/minimax-m3-free",
-          "minimax/minimax-m2.7-free",
           "inclusionai/ling-3.0-flash-fin",
           "inclusionai/ling-3.0-flash-fin-free",
           "inclusionai/ling-3.0-flash-sante",
           "inclusionai/ling-3.0-flash-sante-free"
         ],
         "anthropic_base_url": "https://ai-gateway.vercel.sh",
-        "note": "every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20, five on 2026-09-02, seven on 2026-09-05: MiniMax M3 (Free) and M2.7 (Free) arrived beside metered twins at $0.30/$1.20 per 1M, and Ling 3.0 Flash Fin and then its health-tuned sibling Ling 3.0 Flash Sante are priced 0 with and without the -free suffix. They stay out of the Models column until they have stood a while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20. spacexai/grok-stt, the sixth row at 0 per token, is speech-to-text billed per second of audio, which the probe reads as a price The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh — the docs (updated 2026-08-11) set ANTHROPIC_BASE_URL to it for Claude Code with ANTHROPIC_API_KEY left empty, and the zero-priced ids here are what to name in ANTHROPIC_MODEL"
+        "note": "every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. One such id on 2026-08-20, five on 2026-09-02, seven on 2026-09-05 and five again on 2026-09-08: MiniMax M3 (Free) and M2.7 (Free) arrived beside metered twins at $0.30/$1.20 per 1M and left three days later, the same read that took the pair off OpenRouter, Kilo and LLMTR, while Ling 3.0 Flash Fin and its health-tuned sibling Ling 3.0 Flash Sante stay priced 0 with and without the -free suffix. They stay out of the Models column until they have stood a while — zai/glm-4.6v-flash was free here from 2026-08-14 and gone by 2026-08-20. spacexai/grok-stt, the sixth row at 0 per token, is speech-to-text billed per second of audio, which the probe reads as a price The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh — the docs (updated 2026-08-11) set ANTHROPIC_BASE_URL to it for Claude Code with ANTHROPIC_API_KEY left empty, and the zero-priced ids here are what to name in ANTHROPIC_MODEL"
       },
       "probe": {
         "type": "api-models",
@@ -2464,18 +2457,13 @@
         "https://llmtr.com/v1/models"
       ],
       "card_required": false,
-      "offering": "Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — twelve zero-priced ids on 2026-09-05, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them",
+      "offering": "Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — nine zero-priced ids on 2026-09-08, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them",
       "limits": "The migration guide has a new account send its first request on a free model before any top-up: \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin … Bu adım, sıfır bakiye ile gateway akışının çalıştığını doğrular\" — pick a chat model marked free in the catalog; this step verifies the gateway flow works with a zero balance. Every free row's own description says it is free with a daily quota (\"günlük kotayla ücretsiz\"), and the figure is published nowhere the docs reach: the Nemotron page sets \"nvidia/nemotron-3-ultra-550b-a55b — Ücretsiz, günlük kota\" against the metered -262k twin and says only that when the quota is full the free row limits requests. The lane churns and the vendor writes it down — the provider \"removed the free tier behind openai/gpt-oss-20b on 24 August 2026 and that model id was retired\", and dots-3-note-preview's row says it closes on 30 September 2026. Paid use is a credit balance: \"An 8% platform margin is added on top of the requested top-up amount\", \"We never modify model prices\". \"Prompt ve yanıt içeriği saklanmaz\" — prompt and response content are not stored. Docs are Turkish with an English subset (quickstart, billing, authentication); /v1/models is public and cached (read 2026-09-02)",
       "models": [
         {
           "family": "nemotron-3-ultra",
           "tier": "frontier",
           "released": "2026-03"
-        },
-        {
-          "family": "minimax-m3",
-          "tier": "strong",
-          "released": "2026-05"
         },
         {
           "family": "qwen3.6",
@@ -2494,8 +2482,6 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "minimax/minimax-m3-free",
-          "minimax/minimax-m2.7-free",
           "nvidia/nemotron-3-ultra-550b-a55b",
           "nvidia/nemotron-3-super-120b-a12b",
           "qwen/qwen3.6-27b-free",
@@ -2503,13 +2489,12 @@
           "poolside/laguna-xs-2.1",
           "inclusionai/ling-3.0-flash-fin",
           "dots-studio/dots-3-note-preview",
-          "openai/gpt-oss-safeguard-20b",
-          "openai/gpt-6-astra-free"
+          "openai/gpt-oss-safeguard-20b"
         ],
         "ignored_ids": [
           "liquid/lfm-2.5-embedding-350m-free"
         ],
-        "note": "the eleven ids listed are every chat row the public catalog prices at 0 on 2026-09-05: the ten of 2026-09-02 — eight described as free with a daily quota, plus poolside/laguna-xs-2.1 and openai/gpt-oss-safeguard-20b, a content classifier — and openai/gpt-6-astra-free, which arrived by 2026-09-05 carrying its own end date, \"10 Eylül 2026'ya kadar günlük kotayla ücretsiz\" (free with a daily quota until 10 September 2026), beside the metered openai/gpt-6-astra at $10/$50 per 1M, the price OpenRouter lists it at too. It is listed for the days it has, and the stale-ids check reports it the run after it goes; liquid/lfm-2.5-embedding-350m-free is ignored on purpose as an embeddings row. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and nvidia/nemotron-3-ultra-550b-a55b-262k the metered one — same checkpoint, different products, the vendor's own page says"
+        "note": "the eight ids listed are every chat row the public catalog prices at 0 on 2026-09-08, against eleven on 2026-09-05. Three went in the three days between: minimax/minimax-m3-free and minimax/minimax-m2.7-free left the catalog outright while the metered minimax/minimax-m3 and minimax/minimax-m2.7 stayed at $0.30/$1.20 per 1M, and openai/gpt-6-astra-free went two days before the end date its own description carried, \"10 Eylül 2026'ya kadar günlük kotayla ücretsiz\" (free with a daily quota until 10 September 2026) — a dated lane can close early, so the date is a promise about the ceiling and not the floor. The same two MiniMax ids left OpenRouter, Kilo and Vercel on the same read, which puts that withdrawal upstream of any one gateway; AIHubMix, which subsidises its own copies, still prices them 0. liquid/lfm-2.5-embedding-350m-free is ignored on purpose as an embeddings row. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and nvidia/nemotron-3-ultra-550b-a55b-262k the metered one — same checkpoint, different products, the vendor's own page says"
       },
       "probe": {
         "type": "api-models",
