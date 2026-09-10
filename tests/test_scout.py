@@ -397,9 +397,13 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
                        lambda urls: {u: "page text" for u in urls}, TODAY,
                        evidence=evidence, verifier=lambda e: None)
     assert result["updates"] == []
+    # Both halves name the field that failed. A proposal used to reach the PR as
+    # "invalid (ValidationError)", which is the exception's class name and not a
+    # reason: on 2026-09-10 that was the whole public account of a rejected llm7.
     assert result["rejected"] == ["x: invalid update to probe — probe.type: Input should be "
                                   "'api-models' or 'page-keywords'; probe.endpoint: Field required",
-                                  "broken: invalid (ValidationError)"]
+                                  "broken: invalid — name: Field required; "
+                                  "category: Field required; url: Field required"]
     # The row the scout could not repair is still failing, and says so.
     assert result["unfixed"] == ["x: fail — boom"]
 

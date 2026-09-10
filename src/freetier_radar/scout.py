@@ -778,7 +778,11 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
             e = Entry.model_validate({**raw, "first_seen": today, "last_verified": today,
                                       "provisional": True, "probe_failures": 0})
         except Exception as exc:
-            rejected.append(f"{rid}: invalid ({type(exc).__name__})")
+            # The same one-line reason the rejected-fix path gives, and for the
+            # same reason: on 2026-09-10 a proposal for the blocklisted llm7.io
+            # reached the run log as "llm7: invalid (ValidationError)", which
+            # says only that something was wrong somewhere in it.
+            rejected.append(f"{rid}: invalid — {_why(exc)}")
             continue
         if blocklist and is_blocked(domain_of(e.url), blocklist):
             rejected.append(f"{e.id}: blocklisted domain")
