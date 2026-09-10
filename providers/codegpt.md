@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-10 free interactions a day on Economy models, described as free forever, plus a one-off $1.50 welcome credit for the premium ones; the pricing page says plainly "No credit card required". Unlimited use of the same Economy models is the paid Professional plan at $9-10/mo. CodeGPT does not publish which models the Economy tier routes to, so this row names none
+10 free interactions a day on Economy models, described as free forever, plus a one-off $1.00 welcome credit for the premium ones, cut from $1.50 between the scheduled run of 2026-09-10 and a second read that evening; the pricing page says plainly "No credit card required". Unlimited use of the same Economy models is the paid Professional plan at $9-10/mo. CodeGPT does not publish which models the Economy tier routes to, so this row names none
 
 ## Connect
 
@@ -29,7 +29,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://www.codegpt.co/pricing>, anchored on `10 free interactions every day on Economy models`, `$1.50 welcome credit for premium models`
+- Probe: the page at <https://www.codegpt.co/pricing>, anchored on `10 free interactions every day on Economy models`, `$1.00 welcome credit for premium models`
 - Source: <https://www.codegpt.co/pricing>
 
 ## History
