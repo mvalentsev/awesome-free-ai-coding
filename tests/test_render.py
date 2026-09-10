@@ -707,3 +707,16 @@ def test_the_readme_dates_link_to_the_provider_pages(tmp_path: Path):
     assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/" in text
     index = build_index([make()], TODAY)
     assert index["entries"][0]["page"] == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/"
+
+
+def test_the_evidence_line_names_the_keywords_that_live_in_the_page_data():
+    """Upstage and trae anchor entirely on bytes a reader never sees, and the
+    evidence line rendered "anchored on " and stopped there."""
+    from freetier_radar.render import build_provider_page
+    probe = {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": [],
+             "machinery_keywords": ['"name":"free"', '"basic_usage_limit":3']}
+    page = build_provider_page(make(probe=probe), [], TODAY)
+    assert 'anchored on `"name":"free"`, `"basic_usage_limit":3` in the page\'s own data' in page
+    both = build_provider_page(make(probe={**probe, "keywords": ["5000 / month"]}), [], TODAY)
+    assert 'anchored on `5000 / month` and `"name":"free"`, ' \
+           '`"basic_usage_limit":3` in the page\'s own data' in both

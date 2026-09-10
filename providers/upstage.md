@@ -30,7 +30,7 @@ $10 signup credit (see console for validity); pay-as-you-go after. console.upsta
 
 ## Evidence
 
-- Probe: the page at <https://console.upstage.ai/docs/getting-started>, anchored on 
+- Probe: the page at <https://console.upstage.ai/docs/getting-started>, anchored on `$10 in free credit` in the page's own data
 - Source: <https://console.upstage.ai/docs/getting-started>
 - Source: <https://console.upstage.ai/>
 

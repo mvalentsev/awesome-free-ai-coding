@@ -29,7 +29,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://www.trae.ai/pricing>, anchored on `5000 / month`
+- Probe: the page at <https://www.trae.ai/pricing>, anchored on `5000 / month` and `"name":"free"`, `advanced_model_request_limit` in the page's own data
 - Source: <https://www.trae.ai/pricing>
 
 ## History

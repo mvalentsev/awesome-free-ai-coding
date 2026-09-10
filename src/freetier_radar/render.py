@@ -689,8 +689,17 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
         if probe.require_zero_price:
             how += ", every listed family required at a zero price"
     else:
-        how = f"- Probe: the page at <{probe.endpoint}>, anchored on " + ", ".join(
-            f"`{k}`" for k in probe.keywords)
+        # A page-keywords row can carry its whole anchor in the page's data —
+        # trae's plan blob, Upstage's client-rendered heading — and this line
+        # named `keywords` alone, so those two rows published "anchored on "
+        # and stopped. Where the evidence lives is part of the evidence.
+        shown = []
+        if probe.keywords:
+            shown.append(", ".join(f"`{k}`" for k in probe.keywords))
+        if probe.machinery_keywords:
+            shown.append(", ".join(f"`{k}`" for k in probe.machinery_keywords)
+                         + " in the page's own data")
+        how = f"- Probe: the page at <{probe.endpoint}>, anchored on " + " and ".join(shown)
         if probe.catalog:
             how += f"; ids checked in <{probe.catalog}>"
     out.append(how)
