@@ -539,11 +539,24 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     dead = dead_marker_hit(rendered, entry.probe)
     if dead is not None:
         return f'offer withdrawn: page says "{dead}"'
-    missing = [k for k in entry.probe.keywords if k.lower() not in rendered]
+    absent = [k for k in entry.probe.keywords if k.lower() not in rendered]
+    whole = (_plain_spaces(resp.text.lower())
+             if absent or entry.probe.machinery_keywords else "")
+    # Which half of the response was missing it is the question a runner-only
+    # failure turns on, and the one nothing can answer afterwards: no copy of
+    # the page survives the run. A keyword the bytes still carry means our own
+    # stripping ate it and the row wants machinery_keywords; a keyword absent
+    # from the bytes means the origin served something else, which is what trae
+    # did on 2026-09-10 while passing from every other address.
+    missing = [k if k.lower() not in whole else f"{k} (in the page's machinery only)"
+               for k in absent]
     if entry.probe.machinery_keywords:
-        whole = _plain_spaces(resp.text.lower())
         missing += [k for k in entry.probe.machinery_keywords if k.lower() not in whole]
-    return f"missing keywords: {', '.join(missing)}" if missing else None
+    if not missing:
+        return None
+    # And the size, because a page that answers 200 with a shell or a variant is
+    # a different size, and that is the only trace of it left in the log.
+    return f"missing keywords: {', '.join(missing)} — {len(resp.text):,} bytes read"
 
 
 def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:

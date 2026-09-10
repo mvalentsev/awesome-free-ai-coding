@@ -1486,3 +1486,26 @@ async def test_json_ld_is_the_page_speaking_and_stays_readable():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_missing_keyword_says_whether_the_bytes_had_it_at_all():
+    """trae, 2026-09-10: the row failed from CI on `5000 / month` and passed from
+    a laptop minutes later, and the failure line said only which keyword was
+    missing. Whether the string was absent from the response or merely absent
+    from the rendered half is the difference between "the origin served us
+    something else" and "our own stripping ate it", and it is the one question
+    that cannot be answered afterwards — the runner keeps no copy of the page.
+
+    The byte count rides along for the same reason: a page that answers 200 with
+    a shell is a different size, and the size is the only trace left of it."""
+    entry = page_entry()
+    entry.probe.keywords = ["free tier", "qwen3-coder"]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=(
+        '<p>nothing on offer</p><script>{"model":"qwen3-coder"}</script>'
+    )))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert result.detail == ("missing keywords: free tier, "
+                             "qwen3-coder (in the page's machinery only) — 63 bytes read")
