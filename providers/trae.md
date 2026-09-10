@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-Trae publishes the free plan as words in its comparison table — "Limited usage", "Standard queue", "Autocompletion 5000 / month", "Concurrent Cloud Tasks 2" — and as numbers in the payload that table is rendered from: the same basic_usage_limit field that prints "$5 Basic usage" on Lite and "$20" on Pro reads 3 on Free, alongside advanced_model_request_limit 1000, premium_model_fast_request_limit 10, premium_model_slow_request_limit 50 and no_bonus_quota true. So the free plan is $3 of monthly Basic usage with no bonus quota, and the FAQ entry that would define Basic usage is collapsed with its answer absent from the page (read 2026-08-14). The probe reads both halves where each lives: "Autocompletion 5000 / month" is the Free column of the rendered comparison table, and "name":"free" with advanced_model_request_limit are the payload behind it, declared as machinery_keywords because a name in a state blob outlives the plan it describes
+Trae publishes the free plan as words in its comparison table — "Limited usage", "Standard queue", "Autocompletion 5000 / month", "Concurrent Cloud Tasks 2" — and as numbers in the payload that table is rendered from: the same basic_usage_limit field that prints "$5 Basic usage" on Lite and "$20" on Pro reads 3 on Free, alongside auto_completion_limit 5000, advanced_model_request_limit 1000, premium_model_fast_request_limit 10, premium_model_slow_request_limit 50 and no_bonus_quota true. So the free plan is $3 of monthly Basic usage with no bonus quota, and the FAQ entry that would define Basic usage is still collapsed with its answer absent from the page (read 2026-08-14, unchanged 2026-09-10). The probe reads the payload rather than the table: the scheduled run of 2026-09-10 got a page whose payload carried the Free plan intact while the rendered table carried no "5000 / month" at all, and trae.ai answers no-store and renders per request, so the table is the half that can arrive missing. The figures are declared as machinery_keywords with their values attached, because a field name on its own outlives the plan it describes and the number the site renders from does not
 
 ## Connect
 
@@ -29,7 +29,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://www.trae.ai/pricing>, anchored on `5000 / month` and `"name":"free"`, `advanced_model_request_limit` in the page's own data
+- Probe: the page at <https://www.trae.ai/pricing>, anchored on `"name":"Free"`, `"basic_usage_limit":3`, `"auto_completion_limit":5000` in the page's own data
 - Source: <https://www.trae.ai/pricing>
 
 ## History
