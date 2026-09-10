@@ -649,6 +649,9 @@
         "apiKey": "{env:ALIBABA_MODEL_STUDIO_API_KEY}"
       },
       "models": {
+        "qwen3.8-max": {
+          "name": "qwen3.8-max"
+        },
         "qwen3-max": {
           "name": "qwen3-max"
         },

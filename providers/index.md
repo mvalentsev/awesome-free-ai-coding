@@ -26,7 +26,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) | 🔌 LLM APIs with free tier | `llama-4` | `2026-09-10` |
 | [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) | 🔌 LLM APIs with free tier | `deepseek`, `gpt-oss`, `gemma-4` | `2026-09-10` |
 | [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) | 🔌 LLM APIs with free tier | `qwen3.6`, `qwen3.8` | `2026-09-10` |
-| [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3-max`, `qwen3-coder` | `2026-09-10` |
+| [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | `2026-09-10` |
 | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | 🔌 LLM APIs with free tier | `nemotron` | `2026-09-10` |
 | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a`, `north-mini-code` | `2026-09-10` |
 | [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8`, `qwen3-coder` | `2026-09-10` |
