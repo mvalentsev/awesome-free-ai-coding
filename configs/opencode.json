@@ -870,6 +870,9 @@
         "apiKey": "{env:INCEPTION_LABS_API_KEY}"
       },
       "models": {
+        "mercury-2.5": {
+          "name": "mercury-2.5"
+        },
         "mercury-2": {
           "name": "mercury-2"
         },

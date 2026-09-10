@@ -2084,18 +2084,27 @@ entries:
   category: trial
   url: https://platform.inceptionlabs.ai
   source_urls:
+  - https://docs.inceptionlabs.ai/get-started
+  - https://docs.inceptionlabs.ai/resources/faq
   - https://docs.inceptionlabs.ai/get-started/models
   - https://docs.inceptionlabs.ai/get-started/rate-limits
   card_required: false
-  offering: A signup grant on the Mercury diffusion models, one for chat and one built
-    for fill-in-the-middle and code edits — the second is the reason this row is here,
-    since an FIM endpoint is what an IDE completion plugin actually calls
-  limits: 100 million tokens on every new account, no payment details required, and
-    the grant does not refill — past it the account moves to pay-as-you-go at $0.25
-    per 1M input and $0.75 per 1M output. The Free tier is rate-limited separately
-    at 100-1,000 requests, 100,000-1,000,000 input tokens and 10,000-100,000 output
-    tokens per minute
+  offering: A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury
+    2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is
+    the reason this row is here, since an FIM endpoint is what an IDE completion plugin
+    actually calls
+  limits: '100 million tokens on every new account, no payment details required, and
+    the grant does not refill. The FAQ calls it a one-time credit "shared across all
+    models rather than granted per model", so Mercury 2.5 spends the same balance
+    as Mercury 2. Past it the account moves to pay-as-you-go: $0.25 per 1M input and
+    $0.75 per 1M output on Mercury 2 and Mercury Edit 2, a list $0.20/$0.75 on Mercury
+    2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10).
+    The Free tier''s own ceiling is per minute rather than per month — 1,000 requests,
+    1,000,000 input tokens and 100,000 output tokens'
   models:
+  - family: mercury-2.5
+    tier: strong
+    released: 2026-09
   - family: mercury-2
     tier: strong
     released: ''
@@ -2108,18 +2117,19 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
+    - mercury-2.5
     - mercury-2
     - mercury-edit-2
-    note: mercury-2 answers /v1/chat/completions; mercury-edit-2 answers /v1/fim/completions
-      and /v1/edit/completions instead, so an OpenAI-shaped chat client cannot call
-      it — point an autocomplete plugin at it, not a chat agent
+    note: mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids
+      /v1/models lists; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions
+      instead and is absent from that catalog by design, so an OpenAI-shaped chat
+      client cannot call it — point an autocomplete plugin at it, not a chat agent
   probe:
     type: page-keywords
-    endpoint: https://docs.inceptionlabs.ai/get-started/models
+    endpoint: https://docs.inceptionlabs.ai/get-started
     keywords:
     - 100 million free tokens
-    - mercury-2
-    - mercury-edit-2
+    - no payment details required
     free_marker: ''
     dead_markers: []
     require_zero_price: false
