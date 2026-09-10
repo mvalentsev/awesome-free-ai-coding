@@ -107,6 +107,15 @@
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         },
+        "inclusionai/ling-3.0-flash-vl:free": {
+          "name": "inclusionai/ling-3.0-flash-vl:free"
+        },
+        "nex-agi/nex-n2.5-pro:free": {
+          "name": "nex-agi/nex-n2.5-pro:free"
+        },
+        "nex-agi/nex-n2.5-mini:free": {
+          "name": "nex-agi/nex-n2.5-mini:free"
+        },
         "openrouter/free": {
           "name": "openrouter/free"
         }
@@ -195,6 +204,15 @@
         },
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
+        },
+        "inclusionai/ling-3.0-flash-vl:free": {
+          "name": "inclusionai/ling-3.0-flash-vl:free"
+        },
+        "nex-agi/nex-n2.5-pro:free": {
+          "name": "nex-agi/nex-n2.5-pro:free"
+        },
+        "nex-agi/nex-n2.5-mini:free": {
+          "name": "nex-agi/nex-n2.5-mini:free"
         }
       }
     },
@@ -378,9 +396,6 @@
         "minimax-m2.7-free": {
           "name": "minimax-m2.7-free"
         },
-        "minimax-m3-free": {
-          "name": "minimax-m3-free"
-        },
         "nemotron-3-nano-30b-a3b-free": {
           "name": "nemotron-3-nano-30b-a3b-free"
         },
@@ -410,6 +425,9 @@
         },
         "xiaomi-mimo-v2.5-pro-free": {
           "name": "xiaomi-mimo-v2.5-pro-free"
+        },
+        "ox-alpha": {
+          "name": "ox-alpha"
         }
       }
     },
