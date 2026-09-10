@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-07'
+title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-10'
 description: 'One OpenAI-compatible gateway over 800+ models, 56 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly. per-model caps, spelled out in each model''s catalog description: "each…'
 permalink: /providers/aihubmix/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/aihubmix/
 
 # AIHubMix (free models)
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-07 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-10 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -44,6 +44,6 @@ per-model caps, spelled out in each model's catalog description: "each account i
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

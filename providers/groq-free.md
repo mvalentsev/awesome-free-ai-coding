@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Groq free tier: limits, free models, verified 2026-09-07'
+title: 'Groq free tier: limits, free models, verified 2026-09-10'
 description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K /…'
 permalink: /providers/groq-free/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/groq-free/
 
 # Groq
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-07 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -37,11 +37,12 @@ Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM /
 
 ## History
 
+- `2026-09-10` — Free models changed: added qwen3.8; dropped llama-3.3
 - `2026-08-17` — Free models changed: added gpt-oss, llama-3.3, qwen3.6; dropped llama-4, qwen3
 - `2026-07-19` — Added to the list: Fast inference free tier
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

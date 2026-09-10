@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'LLMTR free tier: limits, free models, verified 2026-09-03'
+title: 'LLMTR free tier: limits, free models, verified 2026-09-10'
 description: 'Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eight zero-priced ids on 2026-09-07, Nemotron 3 Ultra, Qwen3.6 27B and Ling 3.0 Flash among them. The migration guide has a new account send its first request on a free model before any top-up: "Model…'
 permalink: /providers/llmtr/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/llmtr/
 
 # LLMTR
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-03 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-10 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,11 +39,12 @@ The migration guide has a new account send its first request on a free model bef
 
 ## History
 
+- `2026-09-10` — Free models changed: dropped mercury-2
 - `2026-09-07` — Free models changed: dropped minimax-m3
 - `2026-09-03` — Added to the list: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

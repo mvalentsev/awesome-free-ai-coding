@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Regolo AI free tier: limits, free models, verified 2026-09-07'
+title: 'Regolo AI free tier: limits, free models, verified 2026-09-10'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. "Start free for one month ... No credit card, no commitment": the trial card names 1 month duration, "1M tokens per day" and "Stricter rate limits — fair usage throttling applies", against…'
 permalink: /providers/regolo/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/regolo/
 
 # Regolo AI
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-07 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-10 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,6 +42,6 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OpenAI Codex CLI free tier: limits, free models, verified 2026-09-07'
+title: 'OpenAI Codex CLI free tier: limits, free models, verified 2026-09-10'
 description: Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans. Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only
 permalink: /providers/openai-codex-cli/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/openai-codex-cli/
 
 # OpenAI Codex CLI
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-07 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-10 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,6 +40,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

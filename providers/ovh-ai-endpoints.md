@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-07'
+title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-10'
 description: 'EU-hosted serverless open-model API — 24 models, and the anonymous lane needs no signup, no key and no card (OpenAI-compatible). OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access…'
 permalink: /providers/ovh-ai-endpoints/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/ovh-ai-endpoints/
 
 # OVHcloud AI Endpoints
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-07 · [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,11 +39,12 @@ OVHcloud documents the anonymous lane rather than leaving it to be inferred: "An
 
 ## History
 
+- `2026-09-10` — Free models changed: added qwen3.8
 - `2026-08-20` — Free models changed: added qwen3-coder, qwen3.6; dropped qwen3
 - `2026-07-19` — Added to the list: EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible)
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

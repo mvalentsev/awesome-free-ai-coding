@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'CodeGPT free tier: limits, free models, verified 2026-09-07'
+title: 'CodeGPT free tier: limits, free models, verified 2026-09-10'
 description: VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it. 10 free interactions a day on Economy models, described as free forever,…
 permalink: /providers/codegpt/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/codegpt/
 
 # CodeGPT
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-07 · [codegpt.co](https://www.codegpt.co) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-10 · [codegpt.co](https://www.codegpt.co) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -38,6 +38,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

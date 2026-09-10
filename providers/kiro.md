@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Kiro free tier: limits, free models, verified 2026-09-07'
+title: 'Kiro free tier: limits, free models, verified 2026-09-10'
 description: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models. 50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from…
 permalink: /providers/kiro/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/kiro/
 
 # Kiro
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-07 · [kiro.dev](https://kiro.dev/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-10 · [kiro.dev](https://kiro.dev/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,6 +42,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

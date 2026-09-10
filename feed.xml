@@ -5,8 +5,43 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-07T10:29:03Z</updated>
+  <updated>2026-09-10T09:50:08Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260910T095008Z</id>
+    <title>Free models changed: Google AI Studio (Gemini API)</title>
+    <link rel="alternate" href="https://aistudio.google.com"/>
+    <updated>2026-09-10T09:50:08Z</updated>
+    <summary type="text">added gemini-3.8-flash · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.5-flash-lite, gemini-2.5-pro</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260910T095008Z</id>
+    <title>Free models changed: Groq</title>
+    <link rel="alternate" href="https://groq.com"/>
+    <updated>2026-09-10T09:50:08Z</updated>
+    <summary type="text">added qwen3.8; dropped llama-3.3 · free models: gpt-oss, qwen3.6, qwen3.8</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260910T095008Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-09-10T09:50:08Z</updated>
+    <summary type="text">dropped mercury-2 · free models: nemotron-3-ultra, qwen3.6</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260910T095008Z</id>
+    <title>Free models changed: OVHcloud AI Endpoints</title>
+    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
+    <updated>2026-09-10T09:50:08Z</updated>
+    <summary type="text">added qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8, qwen3-coder</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/standardcompute/20260910T095008Z</id>
+    <title>New: Standard Compute</title>
+    <link rel="alternate" href="https://standardcompute.com"/>
+    <updated>2026-09-10T09:50:08Z</updated>
+    <summary type="text">A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260907T102903Z</id>
     <title>Free models changed: LLMTR</title>
@@ -321,40 +356,5 @@
     <link rel="alternate" href="https://www.sensenova.cn"/>
     <updated>2026-08-17T05:53:53Z</updated>
     <summary type="text">SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible url, free for everyone while the token plan is in public beta</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260817T055353Z</id>
-    <title>Free models changed: Vercel AI Gateway</title>
-    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">added laguna-s-2.1; dropped laguna-s-2.1-free · free models: laguna-s-2.1, glm-4.6v-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20260817T055353Z</id>
-    <title>Free models changed: Devin Desktop (formerly Windsurf)</title>
-    <link rel="alternate" href="https://devin.ai/desktop"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">dropped claude-haiku, gpt-5.2-mini, kimi-k2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/novita/20260814T102130Z</id>
-    <title>Delisted: Novita AI</title>
-    <link rel="alternate" href="https://novita.ai/"/>
-    <updated>2026-08-14T10:21:30Z</updated>
-    <summary type="text">Delisted: Novita AI</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/codegpt/20260814T091938Z</id>
-    <title>New: CodeGPT</title>
-    <link rel="alternate" href="https://www.codegpt.co"/>
-    <updated>2026-08-14T09:19:38Z</updated>
-    <summary type="text">VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/ai21-labs/20260814T091234Z</id>
-    <title>New: AI21 Labs (Jamba)</title>
-    <link rel="alternate" href="https://www.ai21.com"/>
-    <updated>2026-08-14T09:12:34Z</updated>
-    <summary type="text">AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat · free models: jamba-mini, jamba-large</summary>
   </entry>
 </feed>

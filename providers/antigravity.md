@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Google Antigravity free tier: limits, free models, verified 2026-09-07'
+title: 'Google Antigravity free tier: limits, free models, verified 2026-09-10'
 description: Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do. $0/month, no subscription. The plan's own…
 permalink: /providers/antigravity/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/antigravity/
 
 # Google Antigravity
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-07 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-10 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,6 +42,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-10 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
