@@ -49,13 +49,28 @@ jobs:
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
       - name: Commit verification results to main
+        id: commit
         if: ${{ !inputs.dry_run }}
         run: |
           git config user.name "freetier-bot"
           git config user.email "freetier-bot@users.noreply.github.com"
-          git add registry.yaml README.md index.json feed.xml history.jsonl configs providers
-          git diff --staged --quiet || git commit -m "chore: verification $(date -u +%F)"
-          git push
+          git add registry.yaml README.md index.json feed.xml llms.txt history.jsonl configs providers
+          if git diff --staged --quiet; then
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore: verification $(date -u +%F)"
+            git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Bing, Yandex and the engines sharing their index recrawl a site this
+      # size every few weeks on their own; a ping after a push has the pages
+      # that changed read the same day. Best effort: an engine being down is
+      # not a reason to fail a run that has already published.
+      - name: Tell search engines what changed (IndexNow)
+        if: ${{ !inputs.dry_run && steps.commit.outputs.pushed == 'true' }}
+        continue-on-error: true
+        run: uv run freetier-indexnow --index index.json
 
       # Says what the history just recorded, from the project's own accounts,
       # once per event and channel (announced.jsonl is the ledger). With no
