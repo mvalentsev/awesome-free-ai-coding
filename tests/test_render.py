@@ -720,3 +720,62 @@ def test_the_evidence_line_names_the_keywords_that_live_in_the_page_data():
     both = build_provider_page(make(probe={**probe, "keywords": ["5000 / month"]}), [], TODAY)
     assert 'anchored on `5000 / month` and `"name":"free"`, ' \
            '`"basic_usage_limit":3` in the page\'s own data' in both
+
+
+# ---- llms.txt: the whole list as one text file an LLM search can read
+
+
+def _api(**kw) -> dict:
+    return {"base_url": "https://x.ai/v1", "auth": "none", "openai_compatible": True, **kw}
+
+
+def test_llms_txt_opens_with_the_title_and_links_the_machine_readable_files():
+    from freetier_radar.render import build_llms_txt
+    text = build_llms_txt([make()], TODAY)
+    assert text.startswith("# awesome-free-ai-coding\n\n> ")
+    assert "2026-07-19" in text.split("\n\n")[1]
+    assert "https://mvalentsev.github.io/awesome-free-ai-coding/index.json" in text
+    assert FEED_URL in text
+    assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/" in text
+
+
+def test_llms_txt_lists_live_rows_under_their_section_and_archived_rows_apart():
+    from freetier_radar.render import build_llms_txt
+    live = make(id="x", name="X", offering="stuff", api=_api(),
+                models=[{"family": "a"}, {"family": "old", "superseded_by": "a"}])
+    gone = make(id="gone", name="Gone", probe_failures=3)
+    text = build_llms_txt([live, gone], TODAY)
+    assert "## LLM APIs with free tier" in text
+    line = next(l for l in text.splitlines() if l.startswith("- [X]"))
+    assert line.startswith("- [X](https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/): stuff")
+    assert "no card" in line and "no key" in line and "https://x.ai/v1" in line
+    assert "`a`" in line and "old" not in line
+    archived = text.split("## Archived")[1]
+    assert "- [Gone](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in archived
+    assert "[X]" not in archived
+
+
+def test_llms_txt_says_when_a_row_wants_a_card_or_a_key():
+    from freetier_radar.render import build_llms_txt
+    row = make(card_required=True, api=_api(auth="api-key", key_url="https://x.ai/keys"))
+    line = next(l for l in build_llms_txt([row], TODAY).splitlines() if l.startswith("- [X]"))
+    assert "card required" in line
+    assert "key from https://x.ai/keys" in line
+    assert "no key" not in line
+
+
+def test_render_artifacts_writes_llms_txt(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make()])
+    render_artifacts(reg, tmp_path, today=TODAY)
+    assert (tmp_path / "llms.txt").read_text(encoding="utf-8").startswith("# awesome-free-ai-coding")
+
+
+def test_the_readme_links_the_browse_page_and_llms_txt(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make()])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "https://mvalentsev.github.io/awesome-free-ai-coding/browse.html" in text
+    assert "[`llms.txt`](llms.txt)" in text

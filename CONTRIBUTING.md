@@ -176,6 +176,15 @@ Jekyll writes canonical URLs and a sitemap. **Never edit them by hand** — the
 render deletes the page of a row that leaves and rewrites the rest, and the body
 sits inside `{% raw %}` so a vendor's own sentence can never break the build.
 
+`llms.txt` is generated with them — the whole list as one text file, in the
+shape LLM search and agents read — and `browse.html` is a hand-written static
+page that reads `index.json` in the browser, so it changes only when a field
+does; `tests/test_browse.py` holds the two to the same field names. After the
+scheduled run pushes, `freetier-indexnow` submits the site's URLs to IndexNow
+(Bing, Yandex and the engines that share their index); the key it proves
+ownership with is the file named after it at the repository root, and it is
+not a secret.
+
 Every change to what the list publishes — a row arriving, dropping to the
 Archive, being delisted, or changing its free models — is appended to
 [`history.jsonl`](history.jsonl) by those same two commands and published as an
@@ -216,7 +225,7 @@ submissions, and a post there is a person's decision every time.
 uv sync
 uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
-uv run freetier-render            # regenerate README.md + index.json + feed.xml + configs/
+uv run freetier-render            # regenerate README.md + index.json + feed.xml + llms.txt + configs/ + providers/
 uv run freetier-check             # validate the curated files against each other
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```

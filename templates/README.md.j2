@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
+**[🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔎 Filter the list]({{ pages_url }}/browse.html) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 </div>
 
@@ -169,6 +169,8 @@ Ready-made artifacts, regenerated on every update:
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and `claude-openrouter-free` runs [Claude Code](https://code.claude.com/docs) on that lane, key and model filled in |
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml` puts every free model behind one local endpoint |
+| [`llms.txt`](llms.txt) | The whole list as one text file for LLM search and agents — every live offer with its page, what it needs (card, key) and where it answers — [served on the site]({{ pages_url }}/llms.txt) |
+| [`browse.html`]({{ pages_url }}/browse.html) | The list as a filterable table — category, no card, no key, OpenAI-compatible, Claude Code route, frontier models — reading `index.json` in the browser |
 | [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
 | [`history.jsonl`](history.jsonl) · [feed]({{ feed_url }}) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |
 | [provider pages]({{ pages_url }}/providers/) | One page per row — the free tier in the vendor's own words, the connection details, the evidence the probe reads and the row's history — regenerated with this README |

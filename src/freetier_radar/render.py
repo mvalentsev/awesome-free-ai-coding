@@ -19,6 +19,7 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "
            "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
+           "build_llms_txt",
            "picks",
            "render_readme", "render_artifacts", "main"]
 
@@ -472,6 +473,97 @@ def build_index(entries: list[Entry], today: date,
     }
 
 
+def _plain_title(title: str) -> str:
+    """The README's section titles lead with an emoji; a text file does not."""
+    head, _, rest = title.partition(" ")
+    return rest if rest and not head[:1].isalnum() else title
+
+
+def _llms_line(e: Entry) -> str:
+    parts = [e.offering.strip().rstrip(".")]
+    parts.append("card required" if e.card_required else "no card")
+    api = e.api
+    if api and api.base_url:
+        if api.auth == "none":
+            parts.append("no key")
+        elif api.key_url:
+            parts.append(f"key from {api.key_url}")
+        else:
+            parts.append("key required")
+        parts.append(f"{'OpenAI-compatible' if api.openai_compatible else 'API'} at {api.base_url}")
+        if api.anthropic_base_url:
+            parts.append(f"Anthropic Messages at {api.anthropic_base_url}")
+    fams = _families(e)
+    if fams:
+        parts.append("free models: " + ", ".join(f"`{f}`" for f in fams))
+    if e.provisional:
+        parts.append(f"provisional since {e.first_seen.isoformat()}")
+    return f"- [{e.name}]({provider_page_url(e.id)}): " + "; ".join(parts)
+
+
+def build_llms_txt(entries: list[Entry], today: date) -> str:
+    """The list as one text file in the llms.txt shape — a title, a summary in a
+    blockquote, then sections of links with a note each.
+
+    An LLM answering "is there a free API for X" reads a page the way a
+    crawler does, and the README is 60 KB of tables built for eyes; this is
+    the same registry in the form that reads best as text, one line per
+    offer with what it needs (card, key) and where it answers. Search that
+    runs on a model already sends readers here, and this is the page to
+    hand it.
+    """
+    live = [e for e in entries if not is_archived(e, today)]
+    gone = sorted((e for e in entries if is_archived(e, today)), key=lambda e: e.name.lower())
+    lines = [
+        "# awesome-free-ai-coding",
+        "",
+        "> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials "
+        "and free models, probe-verified twice a week against live model catalogs and "
+        f"pricing pages. Generated {today.isoformat()} from the registry; every offer under "
+        "the first four headings answered its last probe.",
+        "",
+        "Each offer links to a page with the free tier in the vendor's own words, the "
+        "connection details (base URL, where to get a key, model ids, an Anthropic-format "
+        "URL where the vendor documents one), the evidence the probe reads and the row's "
+        "history. \"No card\" means the vendor asks for no payment method; \"no key\" means "
+        "the endpoint answers without an account. Offers that stopped answering their probe "
+        "are listed last, under Archived.",
+    ]
+    for category, title in CATEGORY_TITLES.items():
+        rows = sorted((e for e in live if e.category == category),
+                      key=lambda e: (e.rank, e.name.lower()))
+        if not rows:
+            continue
+        lines += ["", f"## {_plain_title(title)}", ""]
+        lines += [_llms_line(e) for e in rows]
+    if gone:
+        lines += ["", "## Archived", ""]
+        for e in gone:
+            note = (f"retired {e.retired_on.isoformat()}" if e.retired_on
+                    else f"last verified {e.last_verified.isoformat()}")
+            lines.append(f"- [{e.name}]({provider_page_url(e.id)}): no longer listed — {note}")
+    lines += [
+        "", "## Machine-readable", "",
+        f"- [index.json]({PAGES_URL}/index.json): every row with its connection details and "
+        "probe, plus the watchlist of services considered and not listed",
+        f"- [feed.xml]({FEED_URL}): Atom feed of every change — rows arriving, leaving and "
+        "changing their free models",
+        f"- [Provider pages]({PAGES_URL}/{PROVIDERS_DIR}/): one page per row, live and archived",
+        f"- [Filterable table]({PAGES_URL}/browse.html): the same rows filtered by category, "
+        "card, key and API format",
+        f"- [configs/opencode.json]({REPO_URL}/blob/main/configs/opencode.json): opencode "
+        "config with every OpenAI-compatible row wired up",
+        f"- [configs/claude-code.sh]({REPO_URL}/blob/main/configs/claude-code.sh): one shell "
+        "function per gateway that serves the Anthropic Messages format, for Claude Code",
+        f"- [configs/litellm.yaml]({REPO_URL}/blob/main/configs/litellm.yaml): LiteLLM proxy "
+        "config over the same rows",
+        f"- [README]({REPO_URL}): the list itself, with the picks table and how it stays fresh",
+        f"- [CONTRIBUTING]({REPO_URL}/blob/main/CONTRIBUTING.md): what qualifies, how rows are "
+        "ranked, how the probes work",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def build_opencode_config(entries: list[Entry], today: date) -> dict:
     providers = {}
     for e in _connectable(entries, today):
@@ -812,6 +904,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     (root / "index.json").write_text(
         json.dumps(build_index(entries, today, watchlist), indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
+    (root / "llms.txt").write_text(build_llms_txt(entries, today), encoding="utf-8")
     configs = root / "configs"
     configs.mkdir(parents=True, exist_ok=True)
     (configs / "opencode.json").write_text(
@@ -842,4 +935,4 @@ def main() -> None:
     render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
     render_artifacts(args.registry, args.out.parent if args.out.parent != Path("") else Path("."),
                      watchlist_path=args.watchlist)
-    print(f"rendered {args.out}, index.json, feed.xml, configs/, {PROVIDERS_DIR}/")
+    print(f"rendered {args.out}, index.json, feed.xml, llms.txt, configs/, {PROVIDERS_DIR}/")

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Browse free LLM APIs &amp; coding agents — awesome-free-ai-coding</title>
+<meta name="description" content="Every legal free LLM API, no-card trial and coding agent from awesome-free-ai-coding as one filterable table: by category, no card, no key, OpenAI-compatible, Claude Code route, frontier models.">
+<link rel="canonical" href="https://mvalentsev.github.io/awesome-free-ai-coding/browse.html">
+<link rel="icon" href="data:,">
+<link rel="alternate" type="application/atom+xml" title="awesome-free-ai-coding changes" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">
+<style>
+:root { color-scheme: light dark; --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: #d1d9e0; --accent: #0969da; --chip: #f6f8fa; --ok: #1a7f37; --warn: #9a6700; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --line: #3d444d; --accent: #4493f8; --chip: #161b22; --ok: #3fb950; --warn: #d29922; } }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px 16px 48px; font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); }
+main { max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+.sub { color: var(--muted); margin: 0 0 16px; }
+a { color: var(--accent); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 12px 0; }
+.controls input[type=search] { flex: 1 1 240px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); font: inherit; }
+.controls select { padding: 7px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); font: inherit; }
+label.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--chip); cursor: pointer; white-space: nowrap; }
+.count { color: var(--muted); margin: 6px 0 10px; }
+.wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 900px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-top: 1px solid var(--line); }
+th { position: sticky; top: 0; background: var(--chip); border-top: 0; font-weight: 600; white-space: nowrap; }
+td.offer { max-width: 440px; }
+code { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--chip); padding: 1px 5px; border-radius: 4px; word-break: break-all; }
+.tag { display: inline-block; font-size: 12px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); margin-right: 4px; white-space: nowrap; }
+.ok { color: var(--ok); }
+.warn { color: var(--warn); }
+.muted { color: var(--muted); }
+.frontier { font-weight: 600; }
+tr.archived td { opacity: .6; }
+footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
+@media (max-width: 600px) { body { padding: 16px 12px 32px; } table { min-width: 720px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Free LLM APIs &amp; coding agents, filtered</h1>
+<p class="sub">Every row of <a href="./">awesome-free-ai-coding</a>, read live from <a href="index.json">index.json</a> — legal free tiers, no-card trials and free models, probe-verified twice a week. Narrow it to what you need; each row's page has the vendor's own words, the limits and the history.</p>
+<div class="controls">
+  <input type="search" id="q" placeholder="Search names, offers, models…" aria-label="Search">
+  <select id="cat" aria-label="Category">
+    <option value="">All categories</option>
+    <option value="agent-cli">Coding agents &amp; CLIs</option>
+    <option value="api-free-tier">LLM APIs with free tier</option>
+    <option value="trial">Trials</option>
+    <option value="aggregator">Aggregators</option>
+  </select>
+  <label class="chip"><input type="checkbox" id="nocard"> No card</label>
+  <label class="chip"><input type="checkbox" id="nokey"> No key needed</label>
+  <label class="chip"><input type="checkbox" id="openai"> OpenAI-compatible</label>
+  <label class="chip"><input type="checkbox" id="claude"> Claude Code route</label>
+  <label class="chip"><input type="checkbox" id="frontier"> Frontier models</label>
+  <label class="chip"><input type="checkbox" id="archived"> Show archived</label>
+</div>
+<p class="count" id="count">Loading index.json…</p>
+<div class="wrap"><table>
+<thead><tr><th>Provider</th><th>Category</th><th>Free offer</th><th>Free models</th><th>Connect</th><th>Verified</th></tr></thead>
+<tbody id="rows"></tbody>
+</table></div>
+<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · "Verified" is the day the row last answered its probe; 🧪 marks a row listed for less than two weeks; bold model families are frontier-tier.</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var ORDER = { "agent-cli": 0, "api-free-tier": 1, "trial": 2, "aggregator": 3 };
+  var LABEL = { "agent-cli": "Agent / CLI", "api-free-tier": "API free tier", "trial": "Trial", "aggregator": "Aggregator" };
+  var FILTERS = ["nocard", "nokey", "openai", "claude", "frontier", "archived"];
+  var els = {};
+  ["q", "cat", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
+  var entries = [];
+
+  function families(e) {
+    return (e.models || []).filter(function (m) { return !m.superseded_by; });
+  }
+  function keyless(e) { return !!(e.api && e.api.auth === "none"); }
+  function openaiCompatible(e) { return !!(e.api && e.api.base_url && e.api.openai_compatible); }
+  function claudeRoute(e) { return !!(e.api && e.api.anthropic_base_url); }
+  function hasFrontier(e) { return families(e).some(function (m) { return m.tier === "frontier"; }); }
+  function haystack(e) {
+    var names = families(e).map(function (m) { return m.family; }).join(" ");
+    return [e.name, e.offering, e.category, names].join(" ").toLowerCase();
+  }
+
+  function readState() {
+    var params = new URLSearchParams(location.search);
+    els.q.value = params.get("q") || "";
+    els.cat.value = params.get("cat") || "";
+    FILTERS.forEach(function (id) { els[id].checked = params.get(id) === "1"; });
+  }
+  function writeState() {
+    var params = new URLSearchParams();
+    if (els.q.value) params.set("q", els.q.value);
+    if (els.cat.value) params.set("cat", els.cat.value);
+    FILTERS.forEach(function (id) { if (els[id].checked) params.set(id, "1"); });
+    var qs = params.toString();
+    history.replaceState(null, "", qs ? "?" + qs : location.pathname);
+  }
+
+  function el(tag, cls, content) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (content !== undefined) node.textContent = content;
+    return node;
+  }
+  function link(href, label, cls) {
+    var a = el("a", cls, label);
+    a.href = href;
+    a.rel = "noopener";
+    return a;
+  }
+  function text(s) { return document.createTextNode(s); }
+
+  function row(e) {
+    var tr = el("tr", e.archived ? "archived" : "");
+
+    var name = el("td");
+    name.appendChild(link(e.page, e.name));
+    if (e.provisional) name.appendChild(text(" 🧪"));
+    name.appendChild(el("br"));
+    name.appendChild(link(e.url, e.url.replace(/^https?:\/\//, ""), "muted"));
+    tr.appendChild(name);
+
+    var cat = el("td");
+    cat.appendChild(el("span", "tag", LABEL[e.category] || e.category));
+    if (e.archived) cat.appendChild(el("span", "tag warn", "archived"));
+    tr.appendChild(cat);
+
+    var offer = el("td", "offer");
+    offer.appendChild(text(e.offering));
+    offer.appendChild(el("br"));
+    offer.appendChild(el("span", e.card_required ? "warn" : "ok", e.card_required ? "card required" : "no card"));
+    if (keyless(e)) { offer.appendChild(text(" · ")); offer.appendChild(el("span", "ok", "no key")); }
+    tr.appendChild(offer);
+
+    var models = el("td");
+    var fams = families(e);
+    fams.forEach(function (m, i) {
+      models.appendChild(el("span", m.tier === "frontier" ? "frontier" : "", m.family));
+      if (i < fams.length - 1) models.appendChild(text(", "));
+    });
+    if (!fams.length) models.appendChild(el("span", "muted", "—"));
+    tr.appendChild(models);
+
+    var connect = el("td");
+    if (e.api && e.api.base_url) {
+      connect.appendChild(el("code", "", e.api.base_url));
+      if (e.api.anthropic_base_url) {
+        connect.appendChild(el("br"));
+        connect.appendChild(el("span", "muted", "Anthropic format: "));
+        connect.appendChild(el("code", "", e.api.anthropic_base_url));
+      }
+      connect.appendChild(el("br"));
+      if (keyless(e)) connect.appendChild(el("span", "ok", "no key needed"));
+      else if (e.api.key_url) connect.appendChild(link(e.api.key_url, "get a key"));
+      else connect.appendChild(el("span", "muted", "key required"));
+    } else {
+      connect.appendChild(el("span", "muted", "not an API endpoint — see the page"));
+    }
+    tr.appendChild(connect);
+
+    tr.appendChild(el("td", "", e.last_verified));
+    return tr;
+  }
+
+  function render() {
+    var q = els.q.value.trim().toLowerCase();
+    var cat = els.cat.value;
+    var shown = entries.filter(function (e) {
+      if (e.archived && !els.archived.checked) return false;
+      if (cat && e.category !== cat) return false;
+      if (els.nocard.checked && e.card_required) return false;
+      if (els.nokey.checked && !keyless(e)) return false;
+      if (els.openai.checked && !openaiCompatible(e)) return false;
+      if (els.claude.checked && !claudeRoute(e)) return false;
+      if (els.frontier.checked && !hasFrontier(e)) return false;
+      if (q && haystack(e).indexOf(q) === -1) return false;
+      return true;
+    });
+    els.rows.textContent = "";
+    shown.forEach(function (e) { els.rows.appendChild(row(e)); });
+    var live = entries.filter(function (e) { return !e.archived; }).length;
+    els.count.textContent = shown.length + " of " + live + " live offers shown" +
+      (els.archived.checked ? " (archive included)" : "");
+    writeState();
+  }
+
+  function sortKey(e) {
+    return [ORDER[e.category] === undefined ? 9 : ORDER[e.category], e.archived ? 1 : 0, e.rank, e.name.toLowerCase()];
+  }
+
+  fetch("index.json", { cache: "no-cache" }).then(function (response) {
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    return response.json();
+  }).then(function (data) {
+    entries = data.entries.slice().sort(function (a, b) {
+      var ka = sortKey(a), kb = sortKey(b);
+      for (var i = 0; i < ka.length; i++) {
+        if (ka[i] < kb[i]) return -1;
+        if (ka[i] > kb[i]) return 1;
+      }
+      return 0;
+    });
+    readState();
+    ["q", "cat"].concat(FILTERS).forEach(function (id) { els[id].addEventListener("input", render); });
+    render();
+    els.count.textContent += " · index generated " + data.generated;
+  }).catch(function (err) {
+    els.count.textContent = "Could not load index.json (" + err.message + ") — the table lives at https://mvalentsev.github.io/awesome-free-ai-coding/browse.html";
+  });
+})();
+</script>
+</body>
+</html>
