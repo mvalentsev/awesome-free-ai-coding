@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-10",
+  "generated": "2026-09-11",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -3035,6 +3035,54 @@
       "rank": 95,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/"
+    },
+    {
+      "id": "routerplex",
+      "name": "RouterPlex",
+      "category": "trial",
+      "url": "https://routerplex.com",
+      "source_urls": [
+        "https://routerplex.com/",
+        "https://docs.routerplex.com/",
+        "https://routerplex.com/terms",
+        "https://docs.routerplex.com/claude-code"
+      ],
+      "card_required": false,
+      "offering": "A one-time $1 of test credit on a prepaid reseller that bills 54 chat models at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is",
+      "limits": "\"$1 test credit for your first integration after email verification. No card required\" on the home page, and the docs quickstart: \"Eligible verified accounts receive $1 in test credit once\" — read 2026-09-11. What the dollar buys is the list price of whatever it is spent on: the catalog page states \"vendor list prices with 0% markup, pulled from the live catalog on 11 September 2026\", so at deepseek-v4-flash it is an afternoon of work and at claude-opus-5 a handful of turns. The terms (last updated July 13, 2026) narrow it: \"Until an account makes its first paid top-up, promotional credit may be usable only with a subset of models and at reduced rate limits\", \"no promotional credit is guaranteed\", and one account per person. Which models the subset holds is on no page. Continuing costs a top-up \"from $5 by card or $12 by crypto\"; purchased credit does not expire. No legal entity is named on /terms or /about — the terms speak of \"upstream providers\" whose \"own usage policies\" apply — and /v1/models answers 403 without a key, so nothing here is read off the catalog. A connection test with a little work in it, one step above the smallest trial on this list",
+      "models": [],
+      "api": {
+        "base_url": "https://api.routerplex.com/v1",
+        "key_url": "https://routerplex.com/sign-up",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "deepseek-v4-flash",
+          "glm-5.3-flash",
+          "claude-opus-4-8"
+        ],
+        "anthropic_base_url": "https://api.routerplex.com",
+        "note": "ids are the catalog page's own spellings (routerplex.com/models, 54 chat ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com and ANTHROPIC_MODEL=claude-opus-4-8, the Anthropic SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids is checked against a catalog, and which of them the promotional credit can call is not published"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://routerplex.com/",
+        "keywords": [
+          "$1 test credit",
+          "No card required"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-11",
+      "last_verified": "2026-09-11",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 93,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/"
     }
   ],
   "watchlist": [
@@ -4149,6 +4197,56 @@
       "checked_on": "2026-09-05",
       "reason": "The Free plan is real on the pricing page (read 2026-09-05) — \"$0\", \"1 request at a time\", \"Max 12K context tokens\", \"Delayed Response\", \"5 times / 2 days trial of all models\" — but which models it reaches is stated nowhere: the page ties model sizes to paid plans only (\"Access Up to 31B Models\" from $10 a month), /docs and /models answer 404, and api.arliai.com/v1/models needs a key. A free plan whose model list cannot be read is a row whose Models column this list cannot fill or re-check.",
       "reopen_if": "A page naming the models the Free plan can call.",
+      "current": true
+    },
+    {
+      "domains": [
+        "pioneer.ai"
+      ],
+      "name": "Pioneer (Fastino Labs)",
+      "checked_on": "2026-09-11",
+      "reason": "\"An inference API built by Fastino Labs\", surfaced by the provider table of mnfst/llm-gateway. Every model on the home page is priced per token — Claude Sonnet 5 at $2.00 / $10.00, GPT-5.5 at $5.00 / $30.00, Gemma 4 12B at $0.25 / $0.25, GLiNER2 Large at $0.20 / $0.20 per 1M — and pioneer.ai/pricing sells seats: \"PRO $20/seat/month, $40/seat/month in platform credits included\", Enterprise $50/seat. No signup credit and no free lane on either page as rendered here on 2026-09-11; the only \"trial\" in the page text is the name of its web font.",
+      "reopen_if": "pioneer.ai/pricing states a free tier or a signup credit.",
+      "current": true
+    },
+    {
+      "domains": [
+        "zerolimitai.com"
+      ],
+      "name": "ZeroLimitAI",
+      "checked_on": "2026-09-11",
+      "reason": "The product behind ClawLabsAI/free-ai-models, whose README funnels readers to \"one OpenAI-compatible endpoint that auto-routes every request to whichever free model is answering best\". zerolimitai.com/developers does hand out a key — \"OpenAI-compatible · Free tier\", base URL https://www.zerolimitai.com/api/v1, model \"auto\" — but the free key \"expires after 7 days\" and carries no stated quota; the paid tiers are \"Lifetime Core $49 one-time … 2,000 API calls/day\" and \"Lifetime Pro $99 … 10,000 API calls/day\", sold beside \"Unlimited chat\". What the key routes to is \"the best free AI model available — Llama 4 Scout, DeepSeek R1, Qwen3 235B\", the models other vendors serve on their own free lanes, and neither /terms nor /about says where those requests go or under what licence; /docs answers 404. A relay reselling lifetime access to upstream free lanes is the provenance question llm7.io was blocked over, but the models here are open-weight and the operator publishes terms and a named team, so it stays a verdict rather than a block. Read 2026-09-11.",
+      "reopen_if": "It publishes the free key's quota and where its \"free models\" are served from.",
+      "current": true
+    },
+    {
+      "domains": [
+        "allrouter.ai"
+      ],
+      "name": "AllRouter",
+      "checked_on": "2026-09-11",
+      "reason": "Named by cuihuan/awesome-ai-gateway's relay watch-list as carrying \"a free GLM/Gemma tier\". allrouter.ai and /pricing are a 2 KB client-rendered shell, /docs is readable (23 KB) and holds no \"free\" wording at all, and api.allrouter.ai does not resolve (2026-09-11). Unreadable rather than absent.",
+      "reopen_if": "A page this repository can read states the free tier.",
+      "current": true
+    },
+    {
+      "domains": [
+        "aimlapi.com"
+      ],
+      "name": "AIMLAPI",
+      "checked_on": "2026-09-11",
+      "reason": "A prepaid aggregator \"fronting 400+ models\". Its home page's JSON-LD lists an offer \"Free Trial — Free credits on signup to explore 1000+ AI models and test the API\", aimlapi.com/best-ai-apis-for-free repeats \"Try 1000+ AI models for free with one API key. No credit card\" and then, under every model, \"Access to these models is provided with limited usage on the Free Plan\", and /ai-ml-api-pricing (961 KB rendered) says \"free playground tier\" once and gives no figure; the docs site's sitemap holds a single URL. OmniRoute's FREE_TIERS.md removed aimlapi from its free list. A free plan with no published quota, read 2026-09-11.",
+      "reopen_if": "A page states what the Free Plan's \"limited usage\" is.",
+      "current": true
+    },
+    {
+      "domains": [
+        "byteplus.com"
+      ],
+      "name": "BytePlus ModelArk",
+      "checked_on": "2026-09-11",
+      "reason": "ByteDance's international cloud; ModelArk is the overseas face of Volcengine Ark, which has its own row here. mnfst/llm-gateway lists it for the paid \"ModelArk Coding Plan\". The site's nav links a \"BytePlus Free Tier\" page, byteplus.com/activity/free, which is a React app that renders \"You need to enable JavaScript to run this app\" and nothing else; /en/pricing/modelark and the ModelArk docs (docs.byteplus.com/en/docs/ModelArk/1544106) carry no free-quota wording in their rendered text. Same shape as the mainland consoles: an offer that may exist on a page no probe can read. Read 2026-09-11.",
+      "reopen_if": "A readable page states ModelArk's free quota per model.",
       "current": true
     }
   ]

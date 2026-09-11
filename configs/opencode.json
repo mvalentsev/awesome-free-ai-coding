@@ -952,6 +952,25 @@
         }
       }
     },
+    "routerplex": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "RouterPlex",
+      "options": {
+        "baseURL": "https://api.routerplex.com/v1",
+        "apiKey": "{env:ROUTERPLEX_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "name": "deepseek-v4-flash"
+        },
+        "glm-5.3-flash": {
+          "name": "glm-5.3-flash"
+        },
+        "claude-opus-4-8": {
+          "name": "claude-opus-4-8"
+        }
+      }
+    },
     "mistral-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Mistral La Plateforme",

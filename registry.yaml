@@ -3182,3 +3182,66 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 95
+- id: routerplex
+  name: RouterPlex
+  category: trial
+  url: https://routerplex.com
+  source_urls:
+  - https://routerplex.com/
+  - https://docs.routerplex.com/
+  - https://routerplex.com/terms
+  - https://docs.routerplex.com/claude-code
+  card_required: false
+  offering: A one-time $1 of test credit on a prepaid reseller that bills 54 chat
+    models at vendor list prices with 0% markup, no card — one key on both wires,
+    OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code
+    takes as it is
+  limits: >-
+    "$1 test credit for your first integration after email verification. No card
+    required" on the home page, and the docs quickstart: "Eligible verified accounts
+    receive $1 in test credit once" — read 2026-09-11. What the dollar buys is the
+    list price of whatever it is spent on: the catalog page states "vendor list
+    prices with 0% markup, pulled from the live catalog on 11 September 2026", so
+    at deepseek-v4-flash it is an afternoon of work and at claude-opus-5 a handful
+    of turns. The terms (last updated July 13, 2026) narrow it: "Until an account
+    makes its first paid top-up, promotional credit may be usable only with a subset
+    of models and at reduced rate limits", "no promotional credit is guaranteed",
+    and one account per person. Which models the subset holds is on no page.
+    Continuing costs a top-up "from $5 by card or $12 by crypto"; purchased credit
+    does not expire. No legal entity is named on /terms or /about — the terms speak
+    of "upstream providers" whose "own usage policies" apply — and /v1/models answers
+    403 without a key, so nothing here is read off the catalog. A connection test
+    with a little work in it, one step above the smallest trial on this list
+  models: []
+  api:
+    base_url: https://api.routerplex.com/v1
+    key_url: https://routerplex.com/sign-up
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-v4-flash
+    - glm-5.3-flash
+    - claude-opus-4-8
+    anthropic_base_url: https://api.routerplex.com
+    note: >-
+      ids are the catalog page's own spellings (routerplex.com/models, 54 chat ids
+      on 2026-09-11); the vendor's Claude Code page sets
+      ANTHROPIC_BASE_URL=https://api.routerplex.com and ANTHROPIC_MODEL=claude-opus-4-8,
+      the Anthropic SDK appending /v1/messages itself. /v1/models is keyed, so none
+      of these ids is checked against a catalog, and which of them the promotional
+      credit can call is not published
+  probe:
+    type: page-keywords
+    endpoint: https://routerplex.com/
+    keywords:
+    - $1 test credit
+    - No card required
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-11'
+  last_verified: '2026-09-11'
+  probe_failures: 0
+  provisional: true
+  rank: 93

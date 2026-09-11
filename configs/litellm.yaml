@@ -1013,6 +1013,21 @@ model_list:
     model: openai/nemotron-3-ultra
     api_base: https://ollama.com/v1
     api_key: os.environ/OLLAMA_CLOUD_API_KEY
+- model_name: routerplex/deepseek-v4-flash
+  litellm_params:
+    model: openai/deepseek-v4-flash
+    api_base: https://api.routerplex.com/v1
+    api_key: os.environ/ROUTERPLEX_API_KEY
+- model_name: routerplex/glm-5.3-flash
+  litellm_params:
+    model: openai/glm-5.3-flash
+    api_base: https://api.routerplex.com/v1
+    api_key: os.environ/ROUTERPLEX_API_KEY
+- model_name: routerplex/claude-opus-4-8
+  litellm_params:
+    model: openai/claude-opus-4-8
+    api_base: https://api.routerplex.com/v1
+    api_key: os.environ/ROUTERPLEX_API_KEY
 - model_name: standardcompute/anthropic/claude-standardcompute
   litellm_params:
     model: openai/anthropic/claude-standardcompute

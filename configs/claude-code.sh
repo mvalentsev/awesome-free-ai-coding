@@ -74,6 +74,16 @@ claude-freeinference() {
   claude "$@"
 }
 
+# ── RouterPlex · get a key: https://routerplex.com/sign-up
+#    free ids: deepseek-v4-flash, glm-5.3-flash, claude-opus-4-8
+claude-routerplex() {
+  ANTHROPIC_BASE_URL="https://api.routerplex.com" \
+  ANTHROPIC_AUTH_TOKEN="$ROUTERPLEX_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="deepseek-v4-flash" \
+  claude "$@"
+}
+
 # ── Standard Compute · get a key: https://standardcompute.com/signup
 #    free ids: anthropic/claude-standardcompute, StandardCompute
 claude-standardcompute() {
