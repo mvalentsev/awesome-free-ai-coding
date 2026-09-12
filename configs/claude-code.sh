@@ -45,7 +45,7 @@ claude-zai-glm() {
 }
 
 # ── Vercel AI Gateway · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
-#    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-fin, inclusionai/ling-3.0-flash-fin-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free
+#    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-fin, inclusionai/ling-3.0-flash-fin-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free, inclusionai/ling-3.0-flash-vl, inclusionai/ling-3.0-flash-vl-free
 claude-vercel-ai-gateway() {
   ANTHROPIC_BASE_URL="https://ai-gateway.vercel.sh" \
   ANTHROPIC_AUTH_TOKEN="$VERCEL_AI_GATEWAY_API_KEY" \
@@ -55,7 +55,7 @@ claude-vercel-ai-gateway() {
 }
 
 # ── Kenari · get a key: https://kenari.id/keys
-#    free ids: glm-4-7-flash:free, nemotron-3-ultra-550b-a55b:free, nemotron-3-super-120b-a12b:free, step-3-7-flash:free, laguna-s-2-1:free, laguna-xs-2-1:free, hy3:free, mistral-medium-3-5:free, mimo-v2-5:free, agnes-2-0-flash:free, agnes-2-5-flash:free, muse-spark-1-2-contributor:free, muse-spark-1-3-contributor:free
+#    free ids: glm-4-7-flash:free, nemotron-3-ultra-550b-a55b:free, nemotron-3-super-120b-a12b:free, step-3-7-flash:free, laguna-s-2-1:free, laguna-xs-2-1:free, hy3:free, mistral-medium-3-5:free, mimo-v2-5:free, agnes-2-0-flash:free, agnes-2-5-flash:free, muse-spark-1-2-contributor:free, muse-spark-1-3-contributor:free, nex-n2-5-pro:free, north-mini-code:free
 claude-kenari() {
   ANTHROPIC_BASE_URL="https://kenari.id" \
   ANTHROPIC_AUTH_TOKEN="$KENARI_API_KEY" \
