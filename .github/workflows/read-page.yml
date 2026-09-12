@@ -1,0 +1,118 @@
+name: read-page
+
+# A page this machine cannot reach is not a verdict. clarifai.com answered
+# nothing but connect timeouts and NXDOMAIN from the maintainer's network on
+# 2026-09-05, 2026-09-11 and 2026-09-12, and the free tier behind it has been
+# sitting in sources.yaml without one ever since. A runner reaches the open
+# internet from a different address, so the read moves here.
+#
+# It reads with the prober's own client, User-Agent and stripping, which is the
+# point: `curl -o` saves a gzip body that looks exactly like an empty SPA shell
+# and once nearly cost a live free tier its listing. What this prints is what a
+# probe would match against — the rendered text and the raw bytes reported
+# separately, because a keyword can live in only one of them.
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Pages to read — whitespace- or comma-separated"
+        required: true
+        type: string
+      keywords:
+        description: "Optional. Comma-separated; each is reported against the rendered text and the raw bytes, with the text around every hit"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  read:
+    runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      # Exact by necessity — see the note in ci.yml.
+      - uses: astral-sh/setup-uv@v10.0.1
+        with:
+          python-version: "3.12"
+
+      - run: uv sync
+
+      # The inputs travel as environment variables and never as text spliced
+      # into this script: a workflow_dispatch input is still a string somebody
+      # typed.
+      - name: Read the pages
+        shell: bash
+        env:
+          URLS: ${{ inputs.urls }}
+          KEYWORDS: ${{ inputs.keywords }}
+        run: |
+          mkdir -p pages
+          uv run python - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import asyncio, os, re, sys
+          from pathlib import Path
+
+          import httpx
+
+          from freetier_radar.prober import UA, _rendered, challenge_marker_hit
+
+          urls = [u for u in re.split(r"[\s,]+", os.environ["URLS"]) if u]
+          keywords = [k.strip() for k in os.environ.get("KEYWORDS", "").split(",") if k.strip()]
+          out = Path("pages")
+
+          def excerpt(text: str, needle: str, span: int = 160) -> str:
+              i = text.lower().find(needle.lower())
+              return "…" + " ".join(text[max(0, i - span):i + span * 2].split()) + "…"
+
+          async def main() -> int:
+              bad = 0
+              async with httpx.AsyncClient(headers=UA, timeout=40, follow_redirects=True) as client:
+                  for url in urls:
+                      print(f"\n## {url}\n")
+                      try:
+                          resp = await client.get(url)
+                      except Exception as exc:
+                          print(f"- **unreachable from the runner too**: {type(exc).__name__}: {exc}")
+                          bad += 1
+                          continue
+                      raw, text = resp.text, _rendered(resp.text)
+                      name = re.sub(r"[^A-Za-z0-9._-]+", "_", url)[:120]
+                      (out / f"{name}.html").write_text(raw, encoding="utf-8")
+                      # .txt is what a page-keywords probe matches against —
+                      # scripts and styles gone, tags still in. .read.txt is the
+                      # same thing with the tags taken out, which is unusable as
+                      # evidence and the only one a person can read.
+                      (out / f"{name}.txt").write_text(text, encoding="utf-8")
+                      plain = re.sub(r"<[^>]+>", "\n", text)
+                      (out / f"{name}.read.txt").write_text(
+                          "\n".join(filter(None, (ln.strip() for ln in plain.splitlines()))),
+                          encoding="utf-8")
+                      print(f"- HTTP **{resp.status_code}** · final url `{resp.url}` · "
+                            f"`{resp.headers.get('content-type', '?')}`")
+                      print(f"- {len(raw):,} bytes, {len(text):,} chars rendered")
+                      challenge = challenge_marker_hit(text)
+                      if challenge:
+                          print(f"- ⚠ **bot wall**: the page carries `{challenge}`, so this is the "
+                                f"challenge and not the vendor's words")
+                      for kw in keywords:
+                          in_text, in_raw = kw.lower() in text.lower(), kw.lower() in raw.lower()
+                          where = ("rendered text" if in_text else
+                                   "**raw bytes only** — a machinery_keywords candidate" if in_raw
+                                   else "**absent from both halves**")
+                          print(f"- `{kw}` — {where}")
+                          if in_text or in_raw:
+                              print(f"  - {excerpt(text if in_text else raw, kw)}")
+              return bad
+
+          sys.exit(asyncio.run(main()))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pages
+          path: pages/
+          if-no-files-found: ignore
