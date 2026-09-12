@@ -207,6 +207,37 @@ def test_the_badge_says_the_date_is_a_floor_and_colours_itself_by_its_age(tmp_pa
     assert badge(ARCHIVE_AFTER_DAYS - 1).endswith(f"-{BADGE_RED})")
 
 
+def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(tmp_path: Path):
+    """Every file this repository publishes is generated, and all of them are
+    committed: a registry edit that skipped the render leaves the README, the
+    index, the configs and the provider pages advertising what the registry
+    stopped saying, until the next scheduled run happens to fix it. CI rendered
+    to /tmp to prove rendering works and compared nothing."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import check_rendered
+
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="x", name="X"), make(id="gone", name="Gone")])
+    render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    render_artifacts(reg, tmp_path, today=TODAY)
+    assert check_rendered(reg, Path("templates"), tmp_path) == []
+
+    # The date the artifacts carry is what the check renders against, so a
+    # repository nobody has touched does not go red on the calendar alone.
+    assert check_rendered(reg, Path("templates"), tmp_path, today=TODAY + timedelta(days=30)) == []
+
+    # A row renamed in the registry and nowhere else.
+    save_registry(reg, [make(id="x", name="Renamed"), make(id="gone", name="Gone")])
+    stale = check_rendered(reg, Path("templates"), tmp_path)
+    assert "README.md" in stale and "index.json" in stale and "providers/x.md" in stale
+
+    # A row dropped from the registry leaves its page behind, and the page is
+    # served: the check has to see a file the render no longer makes, not only
+    # the ones whose bytes moved.
+    save_registry(reg, [make(id="x", name="X")])
+    assert "providers/gone.md" in check_rendered(reg, Path("templates"), tmp_path)
+
+
 def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path):
     """The date alone made a row mid-failure look merely unlucky in the
     scheduling. trae and inception-labs read 2026-09-07 beside rows reading

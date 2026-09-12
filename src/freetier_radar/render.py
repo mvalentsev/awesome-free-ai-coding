@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import tempfile
 from datetime import date, datetime, time, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
@@ -17,7 +18,7 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
-           "is_archived", "build_context", "build_feed", "build_index",
+           "is_archived", "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
            "build_llms_txt",
@@ -965,6 +966,58 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         encoding="utf-8")
 
 
+def _generated_on(root: Path, today: date) -> date:
+    """The day the committed artifacts were rendered on, read back off them.
+
+    Rendering stamps the day into index.json, the feed and every provider
+    page's footer, so a straight re-render-and-diff would disagree on the date
+    alone — every day, on a repository nobody had touched. Pinning the
+    comparison to the date the artifacts themselves carry asks the only
+    question worth asking: given the registry as it stands now, is this what
+    that day's render produced?
+    """
+    try:
+        stamped = json.loads((root / "index.json").read_text(encoding="utf-8"))["generated"]
+        return date.fromisoformat(stamped)
+    except (OSError, ValueError, KeyError, TypeError):
+        return today
+
+
+def check_rendered(registry_path: Path, template_dir: Path, root: Path,
+                   readme_name: str = "README.md", today: date | None = None,
+                   watchlist_path: Path | None = None) -> list[str]:
+    """Paths under `root` the registry no longer renders to what is committed.
+
+    Every published file here is generated and every one of them is committed:
+    the README, index.json, the feed, llms.txt, the four configs and a page per
+    row. The workflow renders after it probes, so a scheduled run heals a
+    forgotten render within three days — and for those three days the page, the
+    JSON an LLM reads and the config a reader pastes all advertise a registry
+    that has moved on. CI rendered to /tmp, which proved the templates parse
+    and compared nothing.
+    """
+    today = today or date.today()
+    with tempfile.TemporaryDirectory() as tmp_name:
+        tmp = Path(tmp_name)
+        pinned = _generated_on(root, today)
+        # Only the outputs move: the registry, its watchlist and its history are
+        # read from where they live, so this is the committed files against the
+        # curated ones and not against a copy of them.
+        render_readme(registry_path, template_dir, tmp / readme_name, today=pinned,
+                      watchlist_path=watchlist_path)
+        render_artifacts(registry_path, tmp, today=pinned, watchlist_path=watchlist_path)
+        fresh = {p.relative_to(tmp).as_posix(): p.read_bytes()
+                 for p in tmp.rglob("*") if p.is_file()}
+    stale = [rel for rel, data in fresh.items()
+             if not (root / rel).is_file() or (root / rel).read_bytes() != data]
+    # render_artifacts deletes the page of a row that left, but only in the
+    # directory it wrote; a page left behind in the repository is still served,
+    # so the absent half of the comparison counts too.
+    stale += [p.relative_to(root).as_posix() for p in (root / PROVIDERS_DIR).glob("*.md")
+              if p.relative_to(root).as_posix() not in fresh]
+    return sorted(stale)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
@@ -972,8 +1025,25 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=Path("README.md"))
     parser.add_argument("--watchlist", type=Path, default=None,
                         help="defaults to watchlist.yaml beside the registry")
+    parser.add_argument("--check", action="store_true",
+                        help="write nothing; report the generated files that no longer "
+                             "match the registry, and exit 1 if any do")
     args = parser.parse_args()
+    root = args.out.parent if args.out.parent != Path("") else Path(".")
+    if args.check:
+        stale = check_rendered(args.registry, args.templates, root, args.out.name,
+                               watchlist_path=args.watchlist)
+        for rel in stale:
+            print(f"stale: {rel}")
+        print(f"checked {args.out}, index.json, feed.xml, llms.txt, configs/, "
+              f"{PROVIDERS_DIR}/ — {len(stale)} out of date")
+        if stale:
+            # The remedy is one command and it is the same one every time, so
+            # the failure says it rather than leaving a contributor to find it
+            # in CONTRIBUTING.
+            print("run `uv run freetier-render` and commit what it writes")
+            raise SystemExit(1)
+        return
     render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
-    render_artifacts(args.registry, args.out.parent if args.out.parent != Path("") else Path("."),
-                     watchlist_path=args.watchlist)
+    render_artifacts(args.registry, root, watchlist_path=args.watchlist)
     print(f"rendered {args.out}, index.json, feed.xml, llms.txt, configs/, {PROVIDERS_DIR}/")

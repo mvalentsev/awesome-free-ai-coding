@@ -244,4 +244,11 @@ and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.
 
 Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI runs
-it on every push and pull request, plus a registry validation / render smoke check.
+it on every push and pull request, together with `freetier-check` and
+`freetier-render --check`. The second one re-renders everything and compares it
+with what is committed, so an edit to `registry.yaml` that never reached
+`README.md`, `index.json`, the configs or the provider pages is a red run and
+not a page that quietly disagrees with the registry for three days until the
+next scheduled run heals it. It pins the comparison to the date the committed
+`index.json` carries, so an untouched repository does not go red on the
+calendar alone.

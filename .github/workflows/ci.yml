@@ -28,10 +28,16 @@ jobs:
       - run: uv run pytest -q
 
       # Validates registry.yaml (pydantic) and the templates on every PR —
-      # including scout PRs, which only touch the registry. Renders outside
-      # the repo so CI never mutates tracked files.
-      - name: Registry + render smoke check
-        run: uv run freetier-render --registry registry.yaml --templates templates --out /tmp/README.md
+      # including scout PRs, which only touch the registry — and then compares
+      # every generated file with what is committed. Everything this repository
+      # publishes is rendered from the registry and all of it is checked in, so
+      # a registry edit that skipped the render leaves the README, the JSON an
+      # LLM reads, the configs a reader pastes and a page per row advertising a
+      # registry that has moved on, until a scheduled run happens to fix it.
+      # --check writes nothing: it renders into a temporary directory and
+      # reports, so CI still never mutates tracked files.
+      - name: Registry renders, and the committed files are that render
+        run: uv run freetier-render --registry registry.yaml --templates templates --check
 
       # The four curated files beside the registry are read only by the scout,
       # which runs behind a catch-all — so a malformed one used to reach main and
