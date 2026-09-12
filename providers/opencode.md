@@ -47,6 +47,6 @@ Zen prices six ids at zero — big-pickle, mimo-v2.5-free, ling-3.0-flash-fin-fr
 
 ---
 
-Generated from `registry.yaml` on 2026-09-11 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-12 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

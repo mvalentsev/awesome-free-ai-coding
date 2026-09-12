@@ -183,6 +183,48 @@ def test_the_badge_dates_the_evidence_not_the_render():
     assert ctx["date"] == TODAY.isoformat()
 
 
+def test_the_badge_says_the_date_is_a_floor_and_colours_itself_by_its_age(tmp_path: Path):
+    """`min` over the live rows is a floor, and the badge read as a single check
+    date: on 2026-09-12 it said "all entries verified 2026-09-07" while all but
+    two rows had passed a probe two days earlier. "or later" is the whole fix to
+    the reading; the colour is the fix to the other half, a hard-coded green
+    that called a floor of any age fresh."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import BADGE_AMBER, BADGE_FRESH_DAYS, BADGE_GREEN, BADGE_RED
+
+    def badge(days_behind: int) -> str:
+        reg = tmp_path / f"registry-{days_behind}.yaml"
+        save_registry(reg, [make(id="fresh"),
+                            make(id="lagging", last_verified=TODAY - timedelta(days=days_behind))])
+        text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+        return next(ln for ln in text.splitlines() if "every%20row%20verified" in ln)
+
+    line = badge(BADGE_FRESH_DAYS)
+    # The floor, not the newest row, and never today's render date.
+    assert f"{(TODAY - timedelta(days=BADGE_FRESH_DAYS)).isoformat().replace('-', '--')}%20or%20later" in line
+    assert line.endswith(f"-{BADGE_GREEN})")
+    assert badge(BADGE_FRESH_DAYS + 1).endswith(f"-{BADGE_AMBER})")
+    assert badge(ARCHIVE_AFTER_DAYS - 1).endswith(f"-{BADGE_RED})")
+
+
+def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path):
+    """The date alone made a row mid-failure look merely unlucky in the
+    scheduling. trae and inception-labs read 2026-09-07 beside rows reading
+    2026-09-10 for two days with nothing saying why."""
+    from freetier_radar.models import ARCHIVE_AFTER_FAILURES
+    from freetier_radar.render import build_provider_page
+
+    healthy = build_provider_page(make(id="ok"), [], TODAY)
+    assert "**live** — last verified by a probe on 2026-07-19 ·" in healthy
+
+    once = build_provider_page(make(id="slipping", probe_failures=1), [], TODAY)
+    assert "the probe since has not found that evidence" in once
+    assert f"{ARCHIVE_AFTER_FAILURES} misses in a row archive the row" in once
+
+    twice = build_provider_page(make(id="slipping", probe_failures=2), [], TODAY)
+    assert "the 2 probes since have not found that evidence" in twice
+
+
 def test_litellm_config_names_every_free_model_of_every_connectable_entry():
     entries = [api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}]),
                api_entry(id="keyless", name="NoKey", api={
@@ -349,7 +391,7 @@ def test_render_readme(tmp_path: Path):
     save_registry(reg, [make(), make(id="dead", name="Dead Tool", probe_failures=5)])
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
-    assert "all%20entries%20verified-2026--07--19" in text
+    assert "every%20row%20verified-2026--07--19%20or%20later" in text
     assert "live%20entries-1-58a6ff" in text
     assert "Coding agents & CLIs" in text
     assert "LLM APIs with free tier" in text

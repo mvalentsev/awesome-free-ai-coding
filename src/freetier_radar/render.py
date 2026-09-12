@@ -10,12 +10,13 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .history import Event, EventType, archive_reason, load_history
-from .models import (ARCHIVE_AFTER_DAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category,
-                     Entry, ProbeType, Tier, Watched, domain_of, is_archived, is_watch_current,
-                     live_families, load_registry, load_watchlist)
+from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_DAYS,
+                     WATCH_RECHECK_DAYS, Category, Entry, ProbeType, Tier, Watched,
+                     domain_of, is_archived, is_watch_current, live_families,
+                     load_registry, load_watchlist)
 
-__all__ = ["ARCHIVE_AFTER_DAYS", "FEED_ENTRIES", "FEED_URL", "README_CHANGES", "README_PICKS",
-           "README_STARTERS",
+__all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
+           "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
            "is_archived", "build_context", "build_feed", "build_index",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
@@ -67,6 +68,29 @@ README_STARTERS = 4
 # How many names answer each "I want…" line of the picks table. Three reads as
 # a choice; a fourth is the section itself, which starts one heading down.
 README_PICKS = 3
+
+# The freshness badge carries the age of the *oldest* live verification, and
+# its colour has to be able to disagree with it. Probes run Mondays and
+# Thursdays, so a healthy floor is three or four days old and one missed run
+# puts it at a week; three consecutive FAILs bury a row, which caps a failing
+# row's drag at about ten days. A floor older than that is being held back by
+# something no probe result clears on its own — a row answering INCONCLUSIVE
+# run after run keeps its date frozen for the full sixty days before staleness
+# archives it, and a workflow that stopped firing looks exactly the same. A
+# hard-coded green read "fresh" for a floor of any age, which is the one thing
+# a freshness badge must never do.
+BADGE_FRESH_DAYS = 11
+BADGE_AGEING_DAYS = 30
+BADGE_GREEN, BADGE_AMBER, BADGE_RED = "3fb950", "d29922", "f85149"
+
+
+def badge_colour(verified_through: date, today: date) -> str:
+    """GitHub's own green/yellow/red, so the badge sits with the workflow ones."""
+    age = (today - verified_through).days
+    if age <= BADGE_FRESH_DAYS:
+        return BADGE_GREEN
+    return BADGE_AMBER if age <= BADGE_AGEING_DAYS else BADGE_RED
+
 
 # What each event is called where a human reads it. The feed titles stand alone
 # in a reader's inbox, so they name the thing that happened; the README labels
@@ -412,14 +436,19 @@ def build_context(entries: list[Entry], today: date,
                   if e.api.note else "")}
         for e in connectable
     ]
+    # The badge dates the evidence, not the render. Using today's date moved it
+    # forward whenever the README was regenerated without a probe run —
+    # claiming a freshness no entry had. The oldest passing probe among live
+    # entries is the honest reading: everything on this page has been confirmed
+    # at least this recently. It is a floor, and the badge has to say so — read
+    # as a single check date it understates the page badly, because one lagging
+    # row drags the whole claim back. On 2026-09-12 it read 2026-09-07 while
+    # fifty-four of fifty-six rows had passed a probe two days earlier and only
+    # trae and inception-labs, both mid-re-anchor, were holding it there.
+    verified_through = min((e.last_verified for e in active), default=today)
     return {"date": today.isoformat(), "sections": sections,
-            # The badge dates the evidence, not the render. Using today's date
-            # moved it forward whenever the README was regenerated without a
-            # probe run — claiming a freshness no entry had. The oldest passing
-            # probe among live entries is the honest reading: everything on this
-            # page has been confirmed at least this recently.
-            "verified_through": min((e.last_verified for e in active),
-                                    default=today).isoformat(),
+            "verified_through": verified_through.isoformat(),
+            "verified_colour": badge_colour(verified_through, today),
             "archived": [_row(e) for e in archived], "active_count": len(active),
             "has_provisional": any(e.provisional for e in active),
             "connections": connections,
@@ -741,7 +770,19 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
     if archived:
         flags.append(f"**archived** — {archive_reason(e, today)}")
     else:
-        flags.append(f"**live** — last verified by a probe on {verified}")
+        live = f"**live** — last verified by a probe on {verified}"
+        if e.probe_failures:
+            # A row mid-failure used to be indistinguishable from a row the
+            # scheduler happened to reach later: trae and inception-labs sat on
+            # the front page reading 2026-09-07 beside rows reading 2026-09-10,
+            # with nothing anywhere saying their probe had stopped finding the
+            # evidence. The count is the part a reader cannot infer from the
+            # date, and it is also the countdown.
+            n = e.probe_failures
+            misses = ("the probe since has not found that evidence" if n == 1
+                      else f"the {n} probes since have not found that evidence")
+            live += f"; {misses}, and {ARCHIVE_AFTER_FAILURES} misses in a row archive the row"
+        flags.append(live)
     out.append(" · ".join(flags) + f" · [{domain_of(e.url)}]({e.url}) · "
                f"[back to the whole list]({PAGES_URL}/)")
     out += ["", "## What you get", "", e.offering, ""]

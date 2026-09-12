@@ -8,7 +8,7 @@
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
-![Verified through](https://img.shields.io/badge/all%20entries%20verified-2026--09--07-3fb950)
+![Every row verified](https://img.shields.io/badge/every%20row%20verified-2026--09--07%20or%20later-3fb950)
 ![Live entries](https://img.shields.io/badge/live%20entries-56-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)

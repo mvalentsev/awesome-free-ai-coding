@@ -338,6 +338,11 @@ def known_domains(entries: list[Entry]) -> set[str]:
 
 
 ARCHIVE_AFTER_DAYS = 60
+# Consecutive FAILs before a row is buried. Two is a vendor reshuffling a
+# page between Monday and Thursday; three is the offer being gone. The
+# provider page quotes it, so the countdown a reader is shown and the rule
+# that ends it are the same number.
+ARCHIVE_AFTER_FAILURES = 3
 
 
 def is_archived(entry: Entry, today: date) -> bool:
@@ -351,7 +356,7 @@ def is_archived(entry: Entry, today: date) -> bool:
     """
     if entry.retired_on and today >= entry.retired_on:
         return True
-    if entry.probe_failures >= 3:
+    if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
         return True
     if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
         return True
