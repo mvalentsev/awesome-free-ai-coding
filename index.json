@@ -4251,6 +4251,16 @@
       "reason": "ByteDance's international cloud; ModelArk is the overseas face of Volcengine Ark, which has its own row here. mnfst/llm-gateway lists it for the paid \"ModelArk Coding Plan\". The site's nav links a \"BytePlus Free Tier\" page, byteplus.com/activity/free, which is a React app that renders \"You need to enable JavaScript to run this app\" and nothing else; /en/pricing/modelark and the ModelArk docs (docs.byteplus.com/en/docs/ModelArk/1544106) carry no free-quota wording in their rendered text. Same shape as the mainland consoles: an offer that may exist on a page no probe can read. Read 2026-09-11.",
       "reopen_if": "A readable page states ModelArk's free quota per model.",
       "current": true
+    },
+    {
+      "domains": [
+        "clarifai.com"
+      ],
+      "name": "Clarifai",
+      "checked_on": "2026-09-12",
+      "reason": "The one text-LLM row of pacocartones/free-llm-api-hub left without a verdict here, because nothing under the domain answers. clarifai.com and www.clarifai.com time out on 443 and on 80 alike — from this network on 2026-09-05, 2026-09-11 and 2026-09-12, and from a GitHub runner on 2026-09-12, which is what takes a local block off the table — while api.clarifai.com, docs.clarifai.com, status.clarifai.com and portal.clarifai.com every one answer NXDOMAIN on Google's public resolver. The domain's nameservers are dns1 and dns2 at registrar-servers.com, the registrar's own default pair, and www resolves into static.rcn.com. A platform whose API subdomain does not exist in DNS cannot be verified to offer anything, which is the rule that settled Coze and Morph LLM. It is here and not on the blocklist because none of this is a verdict on the company.",
+      "reopen_if": "clarifai.com or api.clarifai.com answers an ordinary HTTP client again, and the page it serves states the free tier.",
+      "current": true
     }
   ]
 }

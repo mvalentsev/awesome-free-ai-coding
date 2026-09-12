@@ -271,7 +271,8 @@ read:
       rows became rows or verdicts the same day: IBM watsonx.ai Lite, Typhoon
       and Sarvam are registry rows, Arli AI, W&B Inference and Tencent Hunyuan
       are on the watchlist, and Clarifai could not be reached from here (DNS
-      and connection timeouts on every fetch). One of its readings did not
+      and connection timeouts on every fetch) — it went to the watchlist on
+      2026-09-12, once a GitHub runner could not reach it either. One of its readings did not
       survive the vendor's page — the "$100/month of Serverless Inference
       credits" it gives W&B is the Free plan's spending cap, and the credits
       themselves are "for a limited time" with no figure. Not a feed, because
