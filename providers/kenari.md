@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Kenari free tier: limits, free models, verified 2026-09-10'
+title: 'Kenari free tier: limits, free models, verified 2026-09-12'
 description: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — thirteen on 2026-09-03, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them. "Models with the :free suffix, for example step-3-7-flash:free, are billed at…
 permalink: /providers/kenari/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/kenari/
 
 # Kenari
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-10 · [kenari.id](https://kenari.id) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-12 · [kenari.id](https://kenari.id) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

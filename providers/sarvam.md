@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Sarvam AI free tier: limits, free models, verified 2026-09-10'
+title: 'Sarvam AI free tier: limits, free models, verified 2026-09-12'
 description: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint. "Every new user receives ₹100 worth of free credits to explore all our APIs" — about…
 permalink: /providers/sarvam/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sarvam/
 
 # Sarvam AI
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-10 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-12 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

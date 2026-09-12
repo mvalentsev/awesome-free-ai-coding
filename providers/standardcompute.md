@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Standard Compute free tier: limits, free models, verified 2026-09-10'
+title: 'Standard Compute free tier: limits, free models, verified 2026-09-12'
 description: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. "Eligible new accounts receive $0.25 of trial compute after activation. This is a finite…
 permalink: /providers/standardcompute/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/standardcompute/
 
 # Standard Compute
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-10 · [standardcompute.com](https://standardcompute.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-12 · [standardcompute.com](https://standardcompute.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

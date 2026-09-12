@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-09-10'
+title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-09-12'
 description: Upstage Solar LLM API; $10 free credit on signup, no card. $10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai is a client-rendered docs site — 535 characters of text survive with its scripts removed — so "$10 in free credit" is read out of the payload the page…
 permalink: /providers/upstage/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/upstage/
 
 # Upstage (Solar API)
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-10 · [console.upstage.ai](https://console.upstage.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-12 · [console.upstage.ai](https://console.upstage.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

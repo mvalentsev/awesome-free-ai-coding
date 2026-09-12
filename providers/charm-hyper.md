@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Crush + Charm Hyper free tier: limits, free models, verified 2026-09-10'
+title: 'Crush + Charm Hyper free tier: limits, free models, verified 2026-09-12'
 description: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention. 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)
 permalink: /providers/charm-hyper/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/charm-hyper/
 
 # Crush + Charm Hyper
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-10 · [hyper.charm.land](https://hyper.charm.land) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-12 · [hyper.charm.land](https://hyper.charm.land) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

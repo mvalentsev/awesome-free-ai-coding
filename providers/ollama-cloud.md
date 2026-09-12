@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Ollama Cloud free tier: limits, free models, verified 2026-09-10'
+title: 'Ollama Cloud free tier: limits, free models, verified 2026-09-12'
 description: 'Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The $0 plan was rewritten between the 2026-08-27 and 2026-08-31 runs, and it is now a wallet rather than a lane: it reads "Starter usage credits included" and "Includes access to starter…'
 permalink: /providers/ollama-cloud/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/ollama-cloud/
 
 # Ollama Cloud
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-12 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-09-10'
+title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-09-12'
 description: 10k neurons/day free. Cloudflare's free allocation "allows anyone to use a total of 10,000 Neurons per day at no charge", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. "All limits reset daily at 00:00 UTC", and past the cap "further operations will fail with an…
 permalink: /providers/cloudflare-workers-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/cloudflare-workers-ai/
 
 # Cloudflare Workers AI
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [workers.cloudflare.com](https://workers.cloudflare.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-12 · [workers.cloudflare.com](https://workers.cloudflare.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

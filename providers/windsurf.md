@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-10'
+title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-12'
 description: Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf. The $0 plan is "Light quota to code with agents", "Limited model availability", unlimited inline edits and unlimited Tab completions. Which models that quota reaches is published nowhere. "Access to OpenAI, Claude,…
 permalink: /providers/windsurf/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/windsurf/
 
 # Devin Desktop (formerly Windsurf)
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-10 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-12 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-09-10'
+title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-09-12'
 description: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's. Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and…
 permalink: /providers/sea-lion/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sea-lion/
 
 # SEA-LION (AI Singapore)
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [sea-lion.ai](https://sea-lion.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-12 · [sea-lion.ai](https://sea-lion.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

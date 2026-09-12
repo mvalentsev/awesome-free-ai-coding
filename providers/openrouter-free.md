@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-09-10'
+title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-09-12'
 description: One API key for rotating :free variants of frontier models. 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM,…
 permalink: /providers/openrouter-free/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/openrouter-free/
 
 # OpenRouter (free models)
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-10 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-12 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

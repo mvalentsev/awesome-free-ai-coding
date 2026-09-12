@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Cerebras Inference free tier: limits, free models, verified 2026-09-10'
+title: 'Cerebras Inference free tier: limits, free models, verified 2026-09-12'
 description: 'Very fast inference; $5 in trial credits that expire in 30 days, card required before the API answers at all. Cerebras'' own docs: "New accounts receive $5 in free credits after adding a verified payment method", credits "expire 30 days after they''re granted", and "If you skip adding a payment…'
 permalink: /providers/cerebras-free/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/cerebras-free/
 
 # Cerebras Inference
 
-🎁 Trials (no card when possible) · card required · **live** — last verified by a probe on 2026-09-10 · [cerebras.ai](https://www.cerebras.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · card required · **live** — last verified by a probe on 2026-09-12 · [cerebras.ai](https://www.cerebras.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'RouterPlex free tier: limits, free models, verified 2026-09-11'
+title: 'RouterPlex free tier: limits, free models, verified 2026-09-12'
 description: A one-time $1 of test credit on a prepaid reseller that bills 54 chat models at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. "$1 test credit for your first integration after email…
 permalink: /providers/routerplex/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/routerplex/
 
 # RouterPlex
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-11 · [routerplex.com](https://routerplex.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-12 · [routerplex.com](https://routerplex.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,7 +41,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## History
 
-No recorded event yet — the first scheduled run after a row lands writes its `added` line.
+- `2026-09-12` — Added to the list: A one-time $1 of test credit on a prepaid reseller that bills 54 chat models at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is
 
 ---
 

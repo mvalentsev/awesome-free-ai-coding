@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-09-07'
+title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-09-12'
 description: A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls. 100 million tokens on every new account, no…
 permalink: /providers/inception-labs/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/inception-labs/
 
 # Inception Labs (Mercury)
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-07; the probe since has not found that evidence, and 3 misses in a row archive the row · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-12 · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,6 +40,7 @@ A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for
 
 ## History
 
+- `2026-09-12` — Free models changed: added mercury-2.5
 - `2026-08-17` — Added to the list: A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls
 
 ---

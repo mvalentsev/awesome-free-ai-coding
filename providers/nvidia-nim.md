@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-10'
+title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-12'
 description: 'Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1). Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff…'
 permalink: /providers/nvidia-nim/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/nvidia-nim/
 
 # NVIDIA NIM (build.nvidia.com)
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-12 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

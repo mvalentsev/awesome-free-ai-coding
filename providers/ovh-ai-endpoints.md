@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-10'
+title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-12'
 description: 'EU-hosted serverless open-model API — 24 models, and the anonymous lane needs no signup, no key and no card (OpenAI-compatible). OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access…'
 permalink: /providers/ovh-ai-endpoints/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/ovh-ai-endpoints/
 
 # OVHcloud AI Endpoints
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-12 · [ovhcloud.com](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

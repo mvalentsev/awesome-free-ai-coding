@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-09-10'
+title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-09-12'
 description: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill. "300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per…
 permalink: /providers/ibm-watsonx-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/ibm-watsonx-ai/
 
 # IBM watsonx.ai (Lite plan)
 
-🔌 LLM APIs with free tier · card required · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-10 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-12 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

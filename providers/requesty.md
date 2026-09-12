@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Requesty free tier: limits, free models, verified 2026-09-10'
+title: 'Requesty free tier: limits, free models, verified 2026-09-12'
 description: OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those. Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend…
 permalink: /providers/requesty/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/requesty/
 
 # Requesty
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-10 · [requesty.ai](https://www.requesty.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-12 · [requesty.ai](https://www.requesty.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

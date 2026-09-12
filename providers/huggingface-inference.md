@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Hugging Face Inference Providers free tier: limits, free models, verified 2026-09-10'
+title: 'Hugging Face Inference Providers free tier: limits, free models, verified 2026-09-12'
 description: Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account. Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across…
 permalink: /providers/huggingface-inference/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/huggingface-inference/
 
 # Hugging Face Inference Providers
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-10 · [huggingface.co](https://huggingface.co/docs/inference-providers) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-12 · [huggingface.co](https://huggingface.co/docs/inference-providers) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

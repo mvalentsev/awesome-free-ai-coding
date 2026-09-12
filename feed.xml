@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-10T09:50:08Z</updated>
+  <updated>2026-09-12T08:03:34Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/alibaba-model-studio/20260912T080334Z</id>
+    <title>Free models changed: Alibaba Cloud Model Studio (DashScope, international)</title>
+    <link rel="alternate" href="https://www.alibabacloud.com/en/product/modelstudio"/>
+    <updated>2026-09-12T08:03:34Z</updated>
+    <summary type="text">added qwen3.8-max · free models: qwen3.8-max, qwen3-max, qwen3-coder</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/inception-labs/20260912T080334Z</id>
+    <title>Free models changed: Inception Labs (Mercury)</title>
+    <link rel="alternate" href="https://platform.inceptionlabs.ai"/>
+    <updated>2026-09-12T08:03:34Z</updated>
+    <summary type="text">added mercury-2.5 · free models: mercury-2.5, mercury-2, mercury-edit-2</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/routerplex/20260912T080334Z</id>
+    <title>New: RouterPlex</title>
+    <link rel="alternate" href="https://routerplex.com"/>
+    <updated>2026-09-12T08:03:34Z</updated>
+    <summary type="text">A one-time $1 of test credit on a prepaid reseller that bills 54 chat models at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260910T095008Z</id>
     <title>Free models changed: Google AI Studio (Gemini API)</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://poolside.ai"/>
     <updated>2026-08-17T05:53:53Z</updated>
     <summary type="text">Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/scaleway-generative/20260817T055353Z</id>
-    <title>Free models changed: Scaleway Generative APIs</title>
-    <link rel="alternate" href="https://www.scaleway.com/en/generative-apis/"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">dropped glm-5.2, qwen3</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/sea-lion/20260817T055353Z</id>
-    <title>Free models changed: SEA-LION (AI Singapore)</title>
-    <link rel="alternate" href="https://sea-lion.ai"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">dropped llama-sea-lion-v3.5, qwen-sea-lion-v4.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sensenova/20260817T055353Z</id>
-    <title>New: SenseNova (SenseTime 商汤)</title>
-    <link rel="alternate" href="https://www.sensenova.cn"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible url, free for everyone while the token plan is in public beta</summary>
   </entry>
 </feed>

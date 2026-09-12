@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Mistral La Plateforme free tier: limits, free models, verified 2026-09-10'
+title: 'Mistral La Plateforme free tier: limits, free models, verified 2026-09-12'
 description: 'Free mode on La Plateforme — API keys plus an included monthly usage allowance. Mistral states the offer in one sentence and publishes no figure for it: "Free mode lets you create API keys and use included monthly usage within the limits shown on the Limits page". The limits it describes are per…'
 permalink: /providers/mistral-free/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/mistral-free/
 
 # Mistral La Plateforme
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-10 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-12 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
