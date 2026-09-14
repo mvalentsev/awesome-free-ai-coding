@@ -172,6 +172,18 @@ field feeds the Claude Code line of the picks table, the second URL in the
 connection table and [`configs/claude-code.sh`](configs/claude-code.sh), and
 `index.json` carries it as written.
 
+**`api.auth: none` is checked by calling the lane without a key.** On a row that
+sets it, the missing key is the offer: the README's zero-signup curl and its "No
+account at all" answer are both built from that field, with the first id in
+`api.model_ids`. So every run sends that id one chat completion — one token, no
+`Authorization` header — to `<base_url>/chat/completions`. Any 2xx is the lane,
+and so is a 429, because an anonymous lane is rate-limited rather than keyed. A
+401 or 403 is the vendor asking for a key and fails the row, which after three
+runs takes it and its command off the page; a bot wall there is `inconclusive`,
+not a refusal. Any other 4xx — vLLM's 404 for a model id that rotated out — and a
+lane that cannot be reached are reported as `stale-ids` beside a row that stays
+verified. Put the id most likely to answer first: that is the one a reader runs.
+
 ## How the pipeline works
 
 `registry.yaml` is the single source of truth. `README.md` is **generated** — never

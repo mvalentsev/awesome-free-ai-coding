@@ -1,3 +1,4 @@
+import json
 from datetime import date
 
 import httpx
@@ -1504,6 +1505,100 @@ async def test_an_anthropic_route_that_cannot_be_checked_is_said_so():
         result = await probe_entry(client, anthropic_entry(), backoff=0, attempts=2)
     assert result.status is ProbeStatus.STALE_IDS
     assert "could not be checked" in result.detail
+
+
+def keyless_entry() -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "keyless",
+        "models": [{"family": "gpt-oss", "tier": "strong"}],
+        "api": {"base_url": "https://open.x.ai/v1", "auth": "none",
+                "model_ids": ["gpt-oss-120b", "qwen3-coder-30b"]},
+        "probe": {"type": "api-models", "endpoint": "https://open.x.ai/v1/models"},
+    })
+
+
+KEYLESS_CATALOG = {"data": [{"id": "gpt-oss-120b"}, {"id": "qwen3-coder-30b"}]}
+
+
+@respx.mock
+async def test_a_keyless_lane_that_answers_or_rate_limits_is_a_pass():
+    """The catalog saying a model exists is not the lane letting anyone call it,
+    so a row published as keyless is called, keylessly. A 429 is the lane too:
+    an anonymous lane is rate-limited instead of keyed, and OVHcloud documents
+    two requests a minute per IP."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    for status in (200, 429):
+        call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+            return_value=httpx.Response(status, json={}))
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, keyless_entry(), backoff=0)
+        assert result.status is ProbeStatus.PASS
+        sent = call.calls.last.request
+        assert "authorization" not in sent.headers
+        assert json.loads(sent.content)["model"] == "gpt-oss-120b"
+
+
+@respx.mock
+async def test_a_keyless_lane_that_asks_for_a_key_fails():
+    """For a row published as keyless the missing key is the offer — the
+    README's zero-signup curl and its "No account at all" answer are built from
+    that one field — so a vendor asking for a key is the offer ending, and
+    three runs of it archive the row and take the command off the page."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    for status, body in ((401, {"error": "missing api key"}),
+                         (403, {"message": "Forbidden: Authentication Failed"})):
+        respx.post("https://open.x.ai/v1/chat/completions").mock(
+            return_value=httpx.Response(status, json=body))
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, keyless_entry(), backoff=0)
+        assert result.status is ProbeStatus.FAIL
+        assert f"HTTP {status}" in result.detail
+
+
+@respx.mock
+async def test_a_bot_wall_on_the_keyless_call_is_not_a_refusal():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(
+        403, text="<html><title>Just a moment...</title>Enable JavaScript and cookies to continue</html>"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+
+
+@respx.mock
+async def test_a_keyless_call_refused_for_its_model_id_is_a_note():
+    """Any other 4xx is about the request rather than the lane: vLLM answers
+    404 for a model id that has rotated out, and uncloseai serves one id at a
+    time. The row stays verified and the run says which id to look at."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(
+        404, json={"error": {"message": "The model `gpt-oss-120b` does not exist."}}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gpt-oss-120b" in result.detail and "HTTP 404" in result.detail
+
+
+@respx.mock
+async def test_a_keyless_lane_that_cannot_be_checked_is_said_so():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=httpx.ConnectError("boom"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0, attempts=2)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "could not be checked" in result.detail
+
+
+@respx.mock
+async def test_a_row_that_needs_a_key_is_never_called_without_one():
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}}]}))
+    call = respx.post(url__regex=r".*").mock(return_value=httpx.Response(401))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, config_entry("qwen/qwen3-coder:free"), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert not call.called
 
 
 @respx.mock

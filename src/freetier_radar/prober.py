@@ -58,6 +58,15 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             return ProbeResult(ProbeStatus.FAIL, f"page gone: HTTP {resp.status_code}")
         detail = check_content(resp, entry)
         if detail is None:
+            # A row published as keyless is only as live as a call without a
+            # key: its catalog answering says the models exist, not that anyone
+            # may call them. A refusal is the offer itself, so it outranks every
+            # note below; a note of its own waits for them.
+            keyless = None
+            if entry.api and entry.api.auth == "none" and entry.api.model_ids:
+                keyless = await keyless_lane_verdict(client, entry, attempts, backoff)
+                if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
+                    return keyless
             # The offer is evidenced. Whether the models the README hangs off it
             # still are is a second question, and only a page-keywords probe
             # leaves it open — see unevidenced_families.
@@ -88,6 +97,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             if catalog is not None:
                 stale = stale_ids(catalog, entry)
                 if stale:
+                    if keyless is not None:
+                        stale = f"{stale} | {keyless.detail}"
                     return ProbeResult(ProbeStatus.STALE_IDS, stale)
             # The last published connection detail, and the only one a GET
             # cannot see: the Anthropic-format route a row names for Claude
@@ -97,6 +108,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 missing = await anthropic_route_missing(client, entry, attempts, backoff)
                 if missing:
                     return ProbeResult(ProbeStatus.STALE_IDS, missing)
+            if keyless is not None:
+                return keyless
             return ProbeResult(ProbeStatus.PASS)
         # Only asked once the content check has already failed. Plenty of live
         # pages carry a <noscript> asking for JavaScript while serving the offer
@@ -168,6 +181,67 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
             return f"anthropic route gone: POST {url} answered HTTP {resp.status_code}"
         return None
     return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
+
+
+# The smallest chat call there is. Its answer is the status line, never the
+# message, and one token is all it costs the vendor.
+KEYLESS_PROBE_BODY = {"max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
+KEYLESS_REFUSED = (401, 403)
+
+
+async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
+                               backoff: float) -> ProbeResult | None:
+    """Whether a lane this list publishes as keyless still answers without a key,
+    or None while it does.
+
+    `api.auth: none` is not a connection detail like the rest of the api block;
+    on a row that sets it, it is the offer. OVHcloud is listed for its anonymous
+    lane, and the README's zero-signup curl and its "No account at all" answer
+    are both built from that one field. Until 2026-09-14 nothing called it: the
+    probe read the keyless /v1/models, which says the models exist and not that
+    anyone may call them, so a vendor closing its anonymous lane would have left
+    the first command on the page answering 401 behind a green run.
+
+    So the first id in `api.model_ids` gets one completion, one token, no
+    Authorization header. Any 2xx is the lane, and so is a 429 — an anonymous
+    lane is rate-limited instead of keyed, and OVHcloud documents two requests
+    a minute per IP. A 401 or 403 is the vendor asking for a key, which FAILs
+    the row, and three runs of it archive the row and take the command off the
+    page — unless the body is a bot wall, which is no answer at all. Any other
+    4xx is about the request rather than the lane: vLLM answers 404 for a model
+    id that has rotated out, and uncloseai serves one id at a time. That, and a
+    lane that could not be reached, is reported beside a row that stays
+    verified, the way a dead id or a missing Anthropic route is."""
+    url = entry.api.base_url.rstrip("/") + "/chat/completions"
+    model = entry.api.model_ids[0]
+    last = ""
+    for i in range(attempts):
+        if i:
+            await asyncio.sleep(backoff * i)
+        try:
+            resp = await client.post(url, json={"model": model, **KEYLESS_PROBE_BODY},
+                                     timeout=TIMEOUT, follow_redirects=True)
+        except httpx.HTTPError as exc:
+            last = f"network error: {exc}"
+            continue
+        if resp.status_code >= 500:
+            last = f"HTTP {resp.status_code}"
+            continue
+        if resp.status_code < 300 or resp.status_code == 429:
+            return None
+        if resp.status_code in KEYLESS_REFUSED:
+            challenge = challenge_marker_hit(resp.text)
+            if challenge is not None:
+                return ProbeResult(ProbeStatus.INCONCLUSIVE,
+                                   f'bot challenge on the keyless call: page says "{challenge}"')
+            return ProbeResult(ProbeStatus.FAIL,
+                               f"keyless lane refused: POST {url} with no key answered "
+                               f"HTTP {resp.status_code}")
+        said = " ".join(resp.text.split())[:160]
+        return ProbeResult(ProbeStatus.STALE_IDS,
+                           f"keyless call to {model} answered HTTP {resp.status_code}: {said}")
+    return ProbeResult(ProbeStatus.STALE_IDS,
+                       f"keyless lane could not be checked: POST {url} {last or 'did not answer'}")
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
