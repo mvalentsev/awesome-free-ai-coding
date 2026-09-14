@@ -13,7 +13,8 @@ import httpx
 
 from .history import record_changes
 from .models import (
-    CHALLENGE_MARKERS, DEAD_MARKERS, Entry, Probe, ProbeType, load_registry, save_registry,
+    CHALLENGE_MARKERS, DEAD_MARKERS, Entry, ModelFamily, Probe, ProbeType, load_registry,
+    save_registry,
 )
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
@@ -695,6 +696,24 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     squashed, text = _squash(resp.text), resp.text.lower()
     return [m.family for m in entry.models
             if _squash(m.family) not in squashed and not _named_in_parts(m.family, text)]
+
+
+def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None:
+    """Whether what a row's probe reads names `family` the way the row's own
+    families are held to: named on the page, or served free in the catalog lane.
+    None when the response cannot answer — not JSON, or no rows to look in.
+
+    What a generation bump is measured against before a human reads it: a newer
+    generation this vendor does not serve cannot supersede one it does. On
+    2026-09-14 the scout pointed Groq, Hetzner, OVH, LLMTR and FreeInference at
+    qwen3.7-flash, which none of their pages or catalogs names."""
+    asked = entry.model_copy(update={"models": [ModelFamily(family=family)]})
+    if entry.probe.type is ProbeType.API_MODELS:
+        items = _catalog_items(resp, entry.probe.lane)
+        if items is None or not any(_model_id(m) for m in items):
+            return None
+        return _check_api_models(resp, asked) is None
+    return not unevidenced_families(resp, asked)
 
 
 def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:

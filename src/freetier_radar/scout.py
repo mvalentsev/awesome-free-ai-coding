@@ -19,10 +19,12 @@ from .history import record_changes
 # The curated-file loaders live in models.py; re-exported here because this is
 # where callers and tests have always reached for them.
 from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Watched,
-                     is_archived, is_blocked, is_source_current, is_watch_current,
-                     known_domains, load_blocklist, load_dismissed, load_registry,
-                     load_sources, load_watchlist, save_registry, watch_match)
-from .prober import ProbeStatus, challenge_marker_hit, check_content, unevidenced_families
+                     is_archived, is_blocked, is_covered, is_source_current,
+                     is_watch_current, known_domains, load_blocklist, load_dismissed,
+                     load_registry, load_sources, load_watchlist, save_registry, site_of,
+                     watch_match)
+from .prober import (ProbeStatus, challenge_marker_hit, check_content, family_named,
+                     unevidenced_families)
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -266,6 +268,8 @@ Phases that asked and got nothing — every backend in the chain failed: {llm_ou
 Generation bumps suggested — **not applied**, edit registry.yaml yourself if a
 free tier really moved on: {supersede}
 Already dismissed in dismissed.yaml, not proposed again: {suppressed}
+Ruled out by the scout itself — a model of the same family, a family the row
+already lists, or one the row's own probe page or catalog does not name: {supersede_filtered}
 
 Watchlist verdicts due for a re-check (older than {recheck_days} days, and no
 longer suppressing anything): {stale_watch}
@@ -755,8 +759,8 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
               blocklist: dict[str, str] | None = None,
               watchlist: list[Watched] | None = None,
               ) -> tuple[list[str], list[str]]:
-    """Validate, dedupe (by id and domain), blocklist- and watchlist-filter, and
-    probe-verify proposals.
+    """Validate, dedupe (by id and by every site the registry reaches a row at —
+    see `is_covered`), blocklist- and watchlist-filter, and probe-verify proposals.
 
     Returns (added ids, rejected "id: reason" strings). With no verifier the
     probe check is skipped (tests, offline runs).
@@ -766,7 +770,7 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
     burn a live probe on a question a human already answered. An expired verdict
     filters nothing on purpose — that is what makes it a watchlist."""
     existing_ids = {e.id for e in entries}
-    existing_domains = {domain_of(e.url) for e in entries}
+    existing_sites = known_domains(entries)
     added, rejected = [], []
     for raw in new_entries:
         if not isinstance(raw, dict):
@@ -787,7 +791,7 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
         if blocklist and is_blocked(domain_of(e.url), blocklist):
             rejected.append(f"{e.id}: blocklisted domain")
             continue
-        if domain_of(e.url) in existing_domains:
+        if is_covered(e.url, existing_sites):
             rejected.append(f"{e.id}: domain already covered")
             continue
         watched = watch_match(domain_of(e.url), watchlist or [], today)
@@ -808,14 +812,15 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
                 continue
         entries.append(e)
         existing_ids.add(e.id)
-        existing_domains.add(domain_of(e.url))
+        existing_sites |= known_domains([e])
         added.append(e.id)
     return added, rejected
 
 
 def supersede_proposals(entries: list[Entry], supersede: list[dict],
                         dismissed: set[tuple[str, str, str]] | None = None,
-                        ) -> tuple[list[str], list[str]]:
+                        named: Callable[[Entry, str], bool | None] | None = None,
+                        ) -> tuple[list[str], list[str], list[str]]:
     """Describe generation bumps for a human to accept — never write them.
 
     The scout used to apply these straight to the registry, and three times
@@ -826,12 +831,23 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict],
     limits, no page. So it cannot answer the question that matters, which is
     not "what is newer" but "what does this free tier serve today".
 
-    Returns (proposed, suppressed). Only bumps that would change something are
-    reported, and a bump listed in dismissed.yaml is reported as suppressed
-    rather than silently dropped — a filter nobody can see is a filter nobody
-    can correct."""
+    Returns (proposed, suppressed, filtered). Only bumps that would change
+    something are reported, and a bump listed in dismissed.yaml is reported as
+    suppressed rather than silently dropped — a filter nobody can see is a
+    filter nobody can correct.
+
+    `filtered` is the same courtesy for what the scout can rule out itself, and
+    every rule is one a reviewer had already applied by hand; replayed over the
+    thirty bumps offered on 2026-09-14, they leave three for a human. A target
+    of the same family ("nemotron is not superseded by nemotron-3-ultra", the
+    prompt says, and the model did it eight times), a target the row already
+    lists (a mark would only hide a model the row still hands out), and a target
+    `named` says the row's own probe page or catalog lane does not name — a
+    generation the vendor does not serve cannot supersede one it does. `named`
+    answering None means the page could not be read, and the bump goes through
+    as it always did."""
     dismissed = dismissed or set()
-    proposed, suppressed = [], []
+    proposed, suppressed, filtered = [], [], []
     for s in supersede:
         family, target = s.get("family"), s.get("superseded_by")
         if not family or not target:
@@ -842,9 +858,38 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict],
                     line = f"{e.id}: {family} → {target}"
                     if (e.id, family, target) in dismissed:
                         suppressed.append(line)
+                    elif target.startswith(family + "-"):
+                        filtered.append(f"{line} (a model of the same family)")
+                    elif any(other.family == target for other in e.models):
+                        filtered.append(f"{line} (the row already lists it)")
+                    elif named is not None and named(e, target) is False:
+                        filtered.append(f"{line} (not named where the row's probe reads)")
                     else:
                         proposed.append(line)
-    return proposed, suppressed
+    return proposed, suppressed, filtered
+
+
+def named_by_row(client: httpx.Client, time_left: Callable[[], float] | None = None,
+                 ) -> Callable[[Entry, str], bool | None]:
+    """`family_named` against each row's own probe endpoint, read once a row
+    however many bumps name it. None — nothing known — when the endpoint cannot
+    be read or the run's budget is spent, so an unchecked bump still reaches a
+    human."""
+    responses: dict[str, httpx.Response | None] = {}
+
+    def named(entry: Entry, family: str) -> bool | None:
+        if entry.id not in responses:
+            if time_left is not None and time_left() <= 0:
+                return None
+            try:
+                resp = client.get(entry.probe.endpoint, follow_redirects=True)
+            except httpx.HTTPError:
+                resp = None
+            responses[entry.id] = resp if resp is not None and resp.status_code < 400 else None
+        resp = responses[entry.id]
+        return None if resp is None else family_named(resp, entry, family)
+
+    return named
 
 
 def _flatten(text: str) -> str:
@@ -904,8 +949,10 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
               dismissed: set[tuple[str, str, str]] | None = None,
               watchlist: list[Watched] | None = None,
               sources: list[Source] | None = None,
-              deadline: Deadline | None = None) -> dict:
+              deadline: Deadline | None = None,
+              named: Callable[[Entry, str], bool | None] | None = None) -> dict:
     result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
+              "supersede_filtered": [],
               "retired": [], "skipped": [],
               # Phases that had budget, asked, and got nothing back because every
               # backend in the chain failed. Without this a run that could not
@@ -987,7 +1034,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         try:
             data = _ask(llm, DISCOVER_PROMPT.format(
                 existing=", ".join(e.id for e in entries),
-                domains=", ".join(sorted({domain_of(e.url) for e in entries})),
+                domains=", ".join(sorted({site_of(e.url) for e in entries})),
                 blocked=", ".join(sorted(blocklist)) if blocklist else "none",
                 watched=format_watchlist(watchlist or [], today),
                 evidence=format_evidence(evidence),
@@ -1032,8 +1079,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         # lose, and it runs last, so it must never discard what came before it.
         try:
             data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
-            result["supersede"], result["suppressed"] = supersede_proposals(
-                entries, data.get("supersede") or [], dismissed)
+            result["supersede"], result["suppressed"], result["supersede_filtered"] = \
+                supersede_proposals(entries, data.get("supersede") or [], dismissed, named)
         except RuntimeError as exc:
             lost_to_backends("generation check", exc)
 
@@ -1112,7 +1159,7 @@ def main() -> None:
                                time_left=deadline.share(EVIDENCE_BUDGET_FRACTION).remaining,
                                answered_domains=answered_domains(watchlist, blocklist, date.today()))
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
-          f"providers: {', '.join(evidence.providers) or 'none'}")
+          f"providers: {evidence.describe_providers() or 'none'}")
 
     try:
         with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
@@ -1130,7 +1177,8 @@ def main() -> None:
                                dismissed=dismissed,
                                watchlist=watchlist,
                                sources=sources,
-                               deadline=deadline)
+                               deadline=deadline,
+                               named=named_by_row(probe_client, time_left=deadline.remaining))
     except Exception as exc:
         # Last line of defence, and deliberately catch-all. The scout is the
         # optional half of the run: by the time it speaks, the verification
@@ -1161,7 +1209,7 @@ def main() -> None:
                                  date.today(), datetime.now(timezone.utc)):
             print(f"history: {ev.event.value} {ev.id}")
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
-        providers=", ".join(result["providers"]) or "none",
+        providers=evidence.describe_providers() or "none",
         backend=llm.describe(),
         unlisted_pins="; ".join(llm.unlisted_pins) or "—",
         updates=", ".join(result["updates"]) or "—",
@@ -1170,6 +1218,7 @@ def main() -> None:
         unfixed="; ".join(result["unfixed"]) or "—",
         supersede=", ".join(result["supersede"]) or "—",
         suppressed=", ".join(result["suppressed"]) or "—",
+        supersede_filtered=", ".join(result["supersede_filtered"]) or "—",
         stale_watch=", ".join(result["stale_watch"]) or "—",
         recheck_days=WATCH_RECHECK_DAYS,
         stale_sources=", ".join(result["stale_sources"]) or "—",

@@ -5,6 +5,7 @@ from freetier_radar.discovery import (
     Evidence, Hit, _feed_excerpt, domain_of, fetch_page_texts, format_evidence,
     gather_evidence, github_search, hn_search, models_dev_digest, tavily_search,
 )
+from freetier_radar.models import Entry, known_domains
 
 MODELS_DEV = "https://models.dev/api.json"
 
@@ -85,6 +86,50 @@ def test_gather_evidence_keyless_dedup_and_filters(monkeypatch):
     assert ev.pages["https://newtool.dev/pricing"].strip() == "Generous free tier"
     assert ev.feeds == {"https://raw.example.com/list.md": "- curated"}
     assert ev.providers == ["hn", "curated-feeds"]
+
+
+@respx.mock
+def test_a_repository_hit_survives_when_the_registry_cites_other_repositories(monkeypatch):
+    """What the GitHub search is for: an open-source gateway nobody has listed.
+    Copilot's row and the Codex row both sit on github.com, and until 2026-09-14
+    that made every repository hit read as a vendor this list already carries."""
+    import freetier_radar.discovery as disc
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [])
+    respx.get("https://hn.algolia.com/api/v1/search").mock(
+        return_value=httpx.Response(200, json={"hits": []}))
+    respx.get("https://api.github.com/search/repositories").mock(return_value=httpx.Response(
+        200, json={"items": [
+            {"html_url": "https://github.com/newvendor/free-llm-gateway",
+             "full_name": "newvendor/free-llm-gateway", "description": "free tier",
+             "stargazers_count": 90},
+            {"html_url": "https://github.com/openai/codex", "full_name": "openai/codex",
+             "description": "", "stargazers_count": 90000},
+        ]}))
+    respx.get("https://github.com/newvendor/free-llm-gateway").mock(
+        return_value=httpx.Response(200, text="<html><body>readme</body></html>"))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={}))
+    listed = [Entry.model_validate({
+        "id": i, "name": i, "category": "agent-cli", "url": url, "source_urls": sources,
+        "offering": "o", "probe": {"type": "page-keywords", "endpoint": url,
+                                   "keywords": ["free for every signed-in user"]},
+        "first_seen": "2026-07-19", "last_verified": "2026-07-19",
+    }) for i, url, sources in [
+        ("github-copilot-free", "https://github.com/features/copilot", []),
+        ("openai-codex-cli", "https://developers.openai.com/codex",
+         ["https://github.com/openai/codex"]),
+    ]]
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], known_domains(listed), env={}, http=c)
+    assert [h.url for h in ev.hits] == ["https://github.com/newvendor/free-llm-gateway"]
+
+
+def test_a_search_whose_every_hit_was_filtered_is_reported_with_zero_kept():
+    """"providers: tavily, hn, github" read as three searches feeding the model
+    while one of them had fed it nothing for two months: a source is listed
+    when it answers, before the filter decides what to keep."""
+    ev = Evidence(hits=[Hit("https://n.dev", "N", "", "hn"), Hit("https://m.dev", "M", "", "hn")],
+                  providers=["hn", "github", "curated-feeds"])
+    assert ev.describe_providers() == "hn (2 hits kept), github (0 hits kept), curated-feeds"
 
 
 def test_a_feed_that_fits_the_limit_is_read_whole():

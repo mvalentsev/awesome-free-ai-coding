@@ -342,8 +342,53 @@ def domain_of(url: str) -> str:
     return urlparse(url).netloc.lower().removeprefix("www.")
 
 
+# Hosts that serve anyone's repository, where the path names the publisher and
+# the host names nobody. Each maps to the host its owners are counted under, so
+# a raw file and the repository it came from are the same owner.
+SHARED_HOSTS = {
+    "github.com": "github.com",
+    "raw.githubusercontent.com": "github.com",
+    "gist.github.com": "github.com",
+    "huggingface.co": "huggingface.co",
+}
+# On huggingface.co these lead the path and the owner follows them.
+_HF_KINDS = {"spaces", "datasets", "models"}
+
+
+def site_of(url: str) -> str:
+    """Who publishes a URL: its host, or on a shared host, host and owner."""
+    host = domain_of(url)
+    if host not in SHARED_HOSTS:
+        return host
+    parts = [p for p in urlparse(url).path.lower().split("/") if p]
+    if host == "huggingface.co" and parts and parts[0] in _HF_KINDS:
+        parts = parts[1:]
+    return f"{SHARED_HOSTS[host]}/{parts[0]}" if parts else host
+
+
+def is_covered(url: str, known: set[str]) -> bool:
+    """Whether a URL belongs to a vendor `known` already names.
+
+    A host is covered by itself, by any host it is a subdomain of and by any it
+    is the parent of: api.z.ai and nvidia.com are Z.ai and NVIDIA, both of which
+    the scout proposed back on 2026-09-14 while their rows were listed at z.ai
+    and build.nvidia.com. A sibling is not covered — docs.api.nvidia.com is not
+    integrate.api.nvidia.com — and on a shared host only the same owner is,
+    since github.com is the parent of docs.github.com and of every repository.
+    """
+    site = site_of(url)
+    if site in known:
+        return True
+    host = domain_of(url)
+    if not host or host in SHARED_HOSTS:
+        return False
+    return any(host.endswith("." + k) or k.endswith("." + host)
+               for k in known if "/" not in k)
+
+
 def known_domains(entries: list[Entry]) -> set[str]:
-    """Every host the registry already reaches an entry at.
+    """Every site the registry already reaches an entry at — a host, or an
+    owner on a shared host (see `site_of`).
 
     All three matter, which is what makes this a function rather than a set
     comprehension at the call site: NVIDIA is listed at build.nvidia.com,
@@ -351,10 +396,9 @@ def known_domains(entries: list[Entry]) -> set[str]:
     and a set built from the url alone reported our own entry back to us as an
     undiscovered provider.
     """
-    domains = {domain_of(e.url) for e in entries}
-    domains |= {domain_of(u) for e in entries for u in e.source_urls}
-    domains |= {domain_of(e.api.base_url) for e in entries if e.api and e.api.base_url}
-    return {d for d in domains if d}
+    urls = [e.url for e in entries] + [u for e in entries for u in e.source_urls]
+    urls += [e.api.base_url for e in entries if e.api and e.api.base_url]
+    return {s for s in map(site_of, urls) if s}
 
 
 ARCHIVE_AFTER_DAYS = 60

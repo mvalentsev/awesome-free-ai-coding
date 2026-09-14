@@ -22,7 +22,7 @@ import httpx
 # Lives with the model layer, which is where the registry's own idea of "a host
 # we already carry" belongs; re-exported here because every caller and test has
 # always reached for it through this module.
-from .models import domain_of  # noqa: F401
+from .models import domain_of, is_covered  # noqa: F401
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
@@ -172,6 +172,21 @@ class Evidence:
 
     def is_empty(self) -> bool:
         return not (self.hits or self.pages or self.feeds or self.digests)
+
+    def describe_providers(self) -> str:
+        """Every source that answered, a search with the hits it kept.
+
+        A source is listed when it answers, before the filter decides what to
+        keep, so on its own the list read "tavily, hn, github" for two months in
+        which the GitHub search had given the model nothing."""
+        kept: dict[str, int] = {}
+        for h in self.hits:
+            kept[h.source] = kept.get(h.source, 0) + 1
+        searches = set(SEARCH_SOURCES)
+        return ", ".join(
+            f"{p} ({kept.get(p, 0)} hit{'' if kept.get(p, 0) == 1 else 's'} kept)"
+            if p in searches else p
+            for p in self.providers)
 
 
 def tavily_search(client: httpx.Client, key: str, query: str, count: int = 6) -> list[Hit]:
@@ -403,6 +418,10 @@ def _is_zero_cost(model: dict) -> bool:
     return cost.get("input") == 0 and cost.get("output") == 0
 
 
+# The names _searchers gives its sources, which are also every Hit.source.
+SEARCH_SOURCES = ("tavily", "hn", "github")
+
+
 def _searchers(client: httpx.Client, env: Mapping[str, str]) -> list[tuple[str, Callable[[str], list[Hit]]]]:
     searchers: list[tuple[str, Callable[[str], list[Hit]]]] = []
     if env.get("TAVILY_API_KEY"):
@@ -465,7 +484,7 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
         kept: list[Hit] = []
         for h in ev.hits:
             d = domain_of(h.url)
-            if h.url in seen or d in NOISE_DOMAINS or d in known_domains:
+            if h.url in seen or d in NOISE_DOMAINS or is_covered(h.url, known_domains):
                 continue
             seen.add(h.url)
             kept.append(h)

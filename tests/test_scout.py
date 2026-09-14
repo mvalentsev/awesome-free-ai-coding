@@ -155,6 +155,42 @@ def test_apply_new_rejects_covered_domain():
     assert rejected == ["clone: domain already covered"]
 
 
+def test_apply_new_rejects_a_listed_vendor_proposed_at_another_of_its_hosts():
+    """On 2026-09-14 the scout proposed nvidia-nim-free and zai-free, two vendors
+    this list already carries, and both reached a live probe: the check compared
+    the proposal's host with each row's url and nothing else, so a subdomain, a
+    parent or the api host of a listed row read as a new vendor. Both probes
+    failed, which is the only reason neither became a duplicate row."""
+    entries = [make(url="https://z.ai", source_urls=["https://docs.z.ai/guides/overview/pricing"]),
+               make(id="nvidia-nim", url="https://build.nvidia.com",
+                    api={"base_url": "https://integrate.api.nvidia.com/v1"})]
+    probed = []
+    added, rejected = apply_new(entries, [proposal(id="zai-free", url="https://api.z.ai/api/paas/v4"),
+                                          proposal(id="nvidia-nim-free", url="https://nvidia.com")],
+                                TODAY, verifier=lambda e: probed.append(e.id))
+    assert added == [] and probed == []
+    assert rejected == ["zai-free: domain already covered", "nvidia-nim-free: domain already covered"]
+
+
+def test_the_discovery_prompt_names_a_listed_repository_owner_and_not_the_whole_host():
+    """Told "github.com" is covered, the model is told every repository is."""
+    llm = StubLLM({})
+    evidence = Evidence(hits=[Hit("https://n.ai", "New tool", "free plan", "hn")], providers=["hn"])
+    run_scout(llm, [make(url="https://github.com/features/copilot")], [], lambda urls: {}, TODAY,
+              evidence=evidence)
+    prompt = next(p for p in llm.prompts if "DISCOVER-NEW" in p)
+    assert "Domains already covered (do not repeat): github.com/features\n" in prompt
+
+
+def test_apply_new_lets_a_new_repository_through_on_the_host_a_listed_row_uses():
+    """Copilot's row lives at github.com/features/copilot, so an open-source agent
+    proposed at its own repository was "domain already covered"."""
+    entries = [make(url="https://github.com/features/copilot")]
+    added, rejected = apply_new(entries, [proposal(id="agent", url="https://github.com/newvendor/agent")],
+                                TODAY)
+    assert added == ["agent"] and rejected == []
+
+
 @respx.mock
 def test_probe_check_rejects_a_proposal_naming_a_family_the_page_does_not():
     """bazaarlink's proposal invented two families that matched no id the vendor
@@ -193,9 +229,9 @@ def test_supersede_is_proposed_never_written():
     only family names. z.ai's free glm-4.7-flash got buried behind paid glm-5.2
     that way, so the registry is left alone and a human decides."""
     entries = [make(models=[{"family": "old"}, {"family": "cur"}])]
-    proposed, suppressed = supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"},
-                                                         {"family": "nope", "superseded_by": "cur"}])
-    assert proposed == ["x: old → cur"] and suppressed == []
+    proposed, suppressed, filtered = supersede_proposals(
+        entries, [{"family": "old", "superseded_by": "new"}, {"family": "nope", "superseded_by": "new"}])
+    assert proposed == ["x: old → new"] and suppressed == [] and filtered == []
     assert entries[0].models[0].superseded_by is None
     assert entries[0].models[1].superseded_by is None
 
@@ -203,9 +239,9 @@ def test_supersede_is_proposed_never_written():
 def test_supersede_proposals_skip_marks_already_in_place():
     """PR #4 claimed four superseded families while its diff touched two."""
     entries = [make(models=[{"family": "old", "superseded_by": "cur"}, {"family": "cur"}])]
-    assert supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"}]) == ([], [])
+    assert supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"}]) == ([], [], [])
     assert supersede_proposals(entries, [{"family": "cur", "superseded_by": "next"}]) \
-        == (["x: cur → next"], [])
+        == (["x: cur → next"], [], [])
 
 
 def test_a_dismissed_bump_is_reported_as_suppressed_not_proposed():
@@ -214,14 +250,93 @@ def test_a_dismissed_bump_is_reported_as_suppressed_not_proposed():
     and the suppression is printed, because a filter nobody sees is a filter
     nobody can correct."""
     entries = [make(models=[{"family": "old"}])]
-    proposed, suppressed = supersede_proposals(
+    proposed, suppressed, _ = supersede_proposals(
         entries, [{"family": "old", "superseded_by": "cur"}], {("x", "old", "cur")})
     assert proposed == [] and suppressed == ["x: old → cur"]
     # Dismissing one target does not dismiss the family: a later generation is
     # a different question.
-    proposed, suppressed = supersede_proposals(
+    proposed, suppressed, _ = supersede_proposals(
         entries, [{"family": "old", "superseded_by": "later"}], {("x", "old", "cur")})
     assert proposed == ["x: old → later"] and suppressed == []
+
+
+def test_a_bump_to_a_family_the_row_already_lists_is_filtered_out():
+    """Nine of the thirty bumps on 2026-09-14 named a family already on the same
+    row — kilo-code, requesty and kenari each told to trade nemotron-3-super for
+    the nemotron-3-ultra they list beside it. A mark would only hide a model the
+    row still hands out, and 2026-09-08's reviewer dismissed that shape each time."""
+    entries = [make(models=[{"family": "nemotron-3-super"}, {"family": "nemotron-3-ultra"}])]
+    proposed, suppressed, filtered = supersede_proposals(
+        entries, [{"family": "nemotron-3-super", "superseded_by": "nemotron-3-ultra"}])
+    assert proposed == [] and suppressed == []
+    assert filtered == ["x: nemotron-3-super → nemotron-3-ultra (the row already lists it)"]
+
+
+def test_a_bump_to_a_model_of_the_same_family_is_filtered_out():
+    """The prompt forbids it in so many words — "nemotron is not superseded by
+    nemotron-3-ultra" — and the model did it eight times on 2026-09-14, six of them
+    qwen3.8 → qwen3.8-max on rows that serve only the 27B."""
+    entries = [make(models=[{"family": "qwen3.8"}, {"family": "nemotron"}])]
+    proposed, _, filtered = supersede_proposals(
+        entries, [{"family": "qwen3.8", "superseded_by": "qwen3.8-max"},
+                  {"family": "nemotron", "superseded_by": "nemotron-3-nano-omni"},
+                  {"family": "qwen3.8", "superseded_by": "qwen3.9"}])
+    assert filtered == ["x: qwen3.8 → qwen3.8-max (a model of the same family)",
+                        "x: nemotron → nemotron-3-nano-omni (a model of the same family)"]
+    assert proposed == ["x: qwen3.8 → qwen3.9"]
+
+
+def test_a_bump_the_rows_own_probe_does_not_name_is_filtered_out_and_an_unread_one_is_not():
+    """A newer generation this vendor does not serve cannot supersede one it
+    does. Where the row's page could not be read, nothing is known, and the
+    bump reaches a human as before."""
+    entries = [make(models=[{"family": "qwen3.6"}]), make(id="y", models=[{"family": "qwen3.6"}])]
+    asked = []
+
+    def named(entry, family):
+        asked.append((entry.id, family))
+        return {"x": False, "y": None}[entry.id]
+
+    proposed, _, filtered = supersede_proposals(
+        entries, [{"family": "qwen3.6", "superseded_by": "qwen3.7-flash"}], named=named)
+    assert filtered == ["x: qwen3.6 → qwen3.7-flash (not named where the row's probe reads)"]
+    assert proposed == ["y: qwen3.6 → qwen3.7-flash"]
+    assert asked == [("x", "qwen3.7-flash"), ("y", "qwen3.7-flash")]
+
+
+def test_a_dismissed_or_already_listed_bump_costs_no_page_read():
+    entries = [make(models=[{"family": "old"}, {"family": "cur"}])]
+    asked = []
+    supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"},
+                                  {"family": "old", "superseded_by": "gone"}],
+                        {("x", "old", "gone")}, named=lambda e, f: asked.append(f))
+    assert asked == []
+
+
+@respx.mock
+def test_the_rows_page_is_read_once_however_many_bumps_name_it():
+    route = respx.get("https://x.ai").mock(return_value=httpx.Response(
+        200, text="qwen3.7-flash and qwen3.9 are both free here"))
+    respx.get("https://y.ai").mock(return_value=httpx.Response(403, text="denied"))
+    x, y = make(), make(id="y", url="https://y.ai",
+                        probe={"type": "page-keywords", "endpoint": "https://y.ai",
+                               "keywords": ["y-mini-2", "free"]})
+    with httpx.Client() as client:
+        named = scout.named_by_row(client)
+        assert named(x, "qwen3.7-flash") is True
+        assert named(x, "qwen3.9") is True
+        assert named(x, "qwen4") is False
+        assert named(y, "qwen3.9") is None
+    assert route.call_count == 1
+
+
+@respx.mock
+def test_a_row_is_not_read_once_the_runs_budget_is_spent():
+    """The generation check runs last, on whatever the run has left."""
+    route = respx.get("https://x.ai").mock(return_value=httpx.Response(200, text="qwen3.9"))
+    with httpx.Client() as client:
+        assert scout.named_by_row(client, time_left=lambda: 0)(make(), "qwen3.9") is None
+    assert route.call_count == 0
 
 
 def test_load_dismissed_reads_triples_and_ignores_junk(tmp_path):
@@ -918,8 +1033,8 @@ def test_run_scout_reports_sources_due_for_a_re_read():
 
 
 EMPTY_RUN = {"providers": [], "updates": [], "new": [], "rejected": [], "supersede": [],
-             "suppressed": [], "stale_watch": [], "stale_sources": [], "retired": [],
-             "skipped": [], "unfixed": [], "llm_outages": []}
+             "suppressed": [], "supersede_filtered": [], "stale_watch": [], "stale_sources": [],
+             "retired": [], "skipped": [], "unfixed": [], "llm_outages": []}
 
 
 class DeadChainLLM:
@@ -983,6 +1098,42 @@ def test_the_pr_body_carries_every_line_the_template_promises(tmp_path, monkeypa
     body = (tmp_path / "scout-pr.md").read_text()
     assert "someone/a-list (read 2026-01-01)" in body
     assert f"older than {SOURCE_RECHECK_DAYS} days" in body
+
+
+def test_the_pr_body_shows_the_bumps_it_filtered_out(tmp_path, monkeypatch):
+    """A filter nobody can see is a filter nobody can correct."""
+    save_registry(tmp_path / "registry.yaml", [make()])
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
+    monkeypatch.setattr(scout, "run_scout", lambda *a, **k: {
+        **EMPTY_RUN, "supersede_filtered": ["x: qwen3.8 → qwen3.8-max (a model of the same family)"]})
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+
+    scout.main()
+
+    assert "x: qwen3.8 → qwen3.8-max (a model of the same family)" in (
+        tmp_path / "scout-pr.md").read_text()
+
+
+def test_run_scout_hands_the_generation_check_its_page_reader():
+    llm = StubLLM({"MODEL-GENERATIONS":
+                   "```yaml\nsupersede:\n  - family: old\n    superseded_by: newer\n```"})
+    result = run_scout(llm, [make(models=[{"family": "old"}])], [], lambda urls: {}, TODAY,
+                       named=lambda e, f: False)
+    assert result["supersede"] == []
+    assert result["supersede_filtered"] == ["x: old → newer (not named where the row's probe reads)"]
+
+
+def test_the_pr_body_says_how_many_hits_each_search_kept(tmp_path, monkeypatch):
+    save_registry(tmp_path / "registry.yaml", [make()])
+    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence(
+        hits=[Hit("https://n.dev", "N", "", "hn")], providers=["hn", "github"]))
+    monkeypatch.setattr(scout, "run_scout", lambda *a, **k: {**EMPTY_RUN, "providers": ["hn", "github"]})
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+
+    scout.main()
+
+    assert "Discovery sources used: hn (1 hit kept), github (0 hits kept)" in (
+        tmp_path / "scout-pr.md").read_text()
 
 
 def test_main_records_what_the_scout_changed_in_the_history(tmp_path, monkeypatch):

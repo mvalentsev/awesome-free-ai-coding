@@ -7,8 +7,9 @@ from pydantic import ValidationError
 import yaml
 
 from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Watched,
-                                    is_anchor, is_source_current, known_domains, load_registry,
-                                    load_sources, load_watchlist, save_registry, watch_match)
+                                    is_anchor, is_covered, is_source_current, known_domains,
+                                    load_registry, load_sources, load_watchlist, save_registry,
+                                    watch_match)
 
 
 def save_yaml(path: Path, data: dict) -> None:
@@ -295,6 +296,45 @@ def test_known_domains_covers_where_an_entry_is_actually_reached():
 def test_known_domains_of_an_entry_without_an_api_block():
     e = Entry.model_validate(sample_entry())
     assert known_domains([e]) == {"openrouter.ai"}
+
+
+def test_known_domains_names_the_owner_on_a_host_many_owners_share():
+    """Copilot's row lives at github.com/features/copilot, so github.com was a
+    known domain — and every hit the scout's GitHub search returns is a
+    repository on github.com. Measured 2026-09-14: five repository hits for the
+    five discovery queries, none of them kept. On a host that serves anyone's
+    repository, what the registry knows is the owner, and a raw file is the
+    same owner's."""
+    e = Entry.model_validate({
+        **sample_entry(),
+        "url": "https://github.com/features/copilot",
+        "source_urls": ["https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md",
+                        "https://huggingface.co/docs/inference-providers"],
+    })
+    assert known_domains([e]) == {
+        "github.com/features", "github.com/xiaomimimo", "huggingface.co/docs",
+    }
+
+
+@pytest.mark.parametrize("url, known, covered", [
+    # A vendor proposed back at another of its own hosts: nvidia-nim-free and
+    # zai-free reached a live probe on 2026-09-14 that way.
+    ("https://api.z.ai/api/paas/v4", {"z.ai"}, True),
+    ("https://nvidia.com/en-us/ai/", {"build.nvidia.com"}, True),
+    ("https://www.x.ai/pricing", {"x.ai"}, True),
+    # A sibling is another product, and a shared suffix is not a shared label.
+    ("https://docs.api.nvidia.com/nim", {"integrate.api.nvidia.com"}, False),
+    ("https://notz.ai", {"z.ai"}, False),
+    # On a shared host only the owner counts, and the host is nobody's parent.
+    ("https://github.com/openai/codex-universal", {"github.com/openai"}, True),
+    ("https://raw.githubusercontent.com/OpenAI/codex/main/README.md", {"github.com/openai"}, True),
+    ("https://github.com/HenriGrimm/Minnow", {"github.com/openai"}, False),
+    ("https://github.com/someone/agent", {"docs.github.com"}, False),
+    ("https://huggingface.co/spaces/someone/free-llm", {"router.huggingface.co"}, False),
+    ("https://huggingface.co/spaces/someone/free-llm", {"huggingface.co/docs"}, False),
+])
+def test_a_url_is_covered_by_the_vendor_whose_host_or_repository_it_is(url, known, covered):
+    assert is_covered(url, known) is covered
 
 
 def test_anthropic_base_url_is_the_base_claude_code_appends_to():

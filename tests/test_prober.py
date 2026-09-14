@@ -7,7 +7,7 @@ import respx
 from freetier_radar.history import load_history
 from freetier_radar.models import ApiInfo, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
-    ProbeResult, ProbeStatus, _amain, apply_results, is_model_stale, probe_entry,
+    ProbeResult, ProbeStatus, _amain, apply_results, family_named, is_model_stale, probe_entry,
 )
 
 BASE = {
@@ -400,6 +400,45 @@ async def test_config_ids_are_read_from_the_lane_too():
     assert result.status is ProbeStatus.STALE_IDS
     assert "z-ai/glm-5.3-flash" in result.detail
     assert "deepseek/deepseek-v4-flash" not in result.detail
+
+
+def _read(url: str, **body) -> httpx.Response:
+    return httpx.Response(200, request=httpx.Request("GET", url), **body)
+
+
+def test_a_newer_family_is_named_only_where_the_rows_own_page_names_it():
+    """The question a generation bump has to clear before a human reads it. On
+    2026-09-14 the scout pointed Groq, Hetzner, OVH and three more rows at
+    qwen3.7-flash, a model none of their pages names."""
+    page = _read("https://x.ai/pricing", text="qwen/qwen3.8-27b at 30 RPM. Gemini 3.6 Flash is free.")
+    assert family_named(page, page_entry(), "gemini-3.6-flash") is True
+    assert family_named(page, page_entry(), "qwen3.7-flash") is False
+
+
+def test_a_family_served_in_another_lane_or_at_a_price_is_not_named_free():
+    """Routeway carried Llama 4 at a price beside a free lane whose only Llama
+    was 3.3, and the bump was dismissed on exactly that: a catalog a row can
+    reach is not the lane the row is listed for."""
+    lanes = _read(LANES_URL, json=keyed_lanes(free=["cline-free/deepseek-v4.1-flash"],
+                                             cline_pass=["cline-pass/glm-5.2"]))
+    assert family_named(lanes, lane_entry(), "deepseek-v4.1-flash") is True
+    assert family_named(lanes, lane_entry(), "glm-5.2") is False
+
+    priced = Entry.model_validate({**BASE, "probe": {
+        "type": "api-models", "endpoint": "https://api.x.ai/v1/models", "require_zero_price": True}})
+    catalog = _read("https://api.x.ai/v1/models", json={"data": [
+        {"id": "vendor/llama-3.3-70b:free", "pricing": {"prompt": "0", "completion": "0"}},
+        {"id": "vendor/llama-4-maverick", "pricing": {"prompt": "0.00000011", "completion": "0.00000044"}},
+    ]})
+    assert family_named(catalog, priced, "llama-3.3") is True
+    assert family_named(catalog, priced, "llama-4") is False
+
+
+def test_a_catalog_that_cannot_be_read_names_no_family_either_way():
+    maintenance = _read("https://api.x.ai/v1/models", text="<html>back soon</html>")
+    assert family_named(maintenance, api_entry(), "qwen3.8") is None
+    empty_lane = _read(LANES_URL, json=keyed_lanes(free=[]))
+    assert family_named(empty_lane, lane_entry(), "deepseek-v4.1-flash") is None
 
 
 def new_api_entry() -> Entry:
