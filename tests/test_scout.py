@@ -301,7 +301,25 @@ def test_a_bump_the_rows_own_probe_does_not_name_is_filtered_out_and_an_unread_o
         entries, [{"family": "qwen3.6", "superseded_by": "qwen3.7-flash"}], named=named)
     assert filtered == ["x: qwen3.6 → qwen3.7-flash (not named where the row's probe reads)"]
     assert proposed == ["y: qwen3.6 → qwen3.7-flash"]
-    assert asked == [("x", "qwen3.7-flash"), ("y", "qwen3.7-flash")]
+    assert asked == [("x", "qwen3.7-flash"), ("y", "qwen3.7-flash"), ("y", "qwen3.6")]
+
+
+def test_a_bump_is_ruled_out_while_the_row_still_serves_the_family_it_would_hide():
+    """Every Flash Google has made free kept its free column when the next one
+    arrived, and AIHubMix lists coding-glm-5-free beside coding-glm-5.1-free: a
+    mark there hides a model the vendor still hands out. The three bumps the
+    other rules left on 2026-09-14 were all this shape, and so were the 2026-09-08
+    dismissals they would have joined. What is left to propose is the bump that
+    means something — the old family gone from the row's evidence, the new one
+    there."""
+    entries = [make(models=[{"family": "glm-5"}]), make(id="y", models=[{"family": "glm-5"}]),
+               make(id="z", models=[{"family": "glm-5"}])]
+    served = {("x", "glm-5"): True, ("y", "glm-5"): False, ("z", "glm-5"): None}
+    proposed, _, filtered = supersede_proposals(
+        entries, [{"family": "glm-5", "superseded_by": "glm-5.1"}],
+        named=lambda e, f: True if f == "glm-5.1" else served[(e.id, f)])
+    assert filtered == ["x: glm-5 → glm-5.1 (the row's probe still names glm-5 too)"]
+    assert proposed == ["y: glm-5 → glm-5.1", "z: glm-5 → glm-5.1"]
 
 
 def test_a_dismissed_or_already_listed_bump_costs_no_page_read():

@@ -30,8 +30,9 @@ will not re-propose them, nor a vendor this list already reaches at another of i
 hosts. Model-generation bumps a reviewer has already declined
 live in [`dismissed.yaml`](dismissed.yaml), so the same suggestion stops coming
 back in every pull request; the ones the scout can rule out on its own — a model
-of the same family, a family the row already lists, or one the row's own page or
-catalog does not name — are listed apart in the pull request instead of proposed.
+of the same family, a family the row already lists, one the row's own page or
+catalog does not name, or a bump that would hide a family the row still serves —
+are listed apart in the pull request instead of proposed.
 
 **If your suggestion is declined, it probably lands in
 [`watchlist.yaml`](watchlist.yaml), not the blocklist.** Most services checked

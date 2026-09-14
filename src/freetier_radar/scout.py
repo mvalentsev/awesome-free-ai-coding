@@ -269,7 +269,8 @@ Generation bumps suggested — **not applied**, edit registry.yaml yourself if a
 free tier really moved on: {supersede}
 Already dismissed in dismissed.yaml, not proposed again: {suppressed}
 Ruled out by the scout itself — a model of the same family, a family the row
-already lists, or one the row's own probe page or catalog does not name: {supersede_filtered}
+already lists, one the row's own probe page or catalog does not name, or a bump
+that would hide a family the row still serves: {supersede_filtered}
 
 Watchlist verdicts due for a re-check (older than {recheck_days} days, and no
 longer suppressing anything): {stale_watch}
@@ -838,14 +839,17 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict],
 
     `filtered` is the same courtesy for what the scout can rule out itself, and
     every rule is one a reviewer had already applied by hand; replayed over the
-    thirty bumps offered on 2026-09-14, they leave three for a human. A target
+    thirty bumps offered on 2026-09-14, they leave none for a human. A target
     of the same family ("nemotron is not superseded by nemotron-3-ultra", the
     prompt says, and the model did it eight times), a target the row already
-    lists (a mark would only hide a model the row still hands out), and a target
+    lists (a mark would only hide a model the row still hands out), a target
     `named` says the row's own probe page or catalog lane does not name — a
-    generation the vendor does not serve cannot supersede one it does. `named`
-    answering None means the page could not be read, and the bump goes through
-    as it always did."""
+    generation the vendor does not serve cannot supersede one it does — and a
+    family `named` still finds there, which a mark would hide while the vendor
+    hands it out. What is left is the bump that means something: the old family
+    gone from the row's evidence and the new one in it. `named` answering None
+    means the page could not be read, and the bump goes through as it always
+    did."""
     dismissed = dismissed or set()
     proposed, suppressed, filtered = [], [], []
     for s in supersede:
@@ -864,6 +868,8 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict],
                         filtered.append(f"{line} (the row already lists it)")
                     elif named is not None and named(e, target) is False:
                         filtered.append(f"{line} (not named where the row's probe reads)")
+                    elif named is not None and named(e, family) is True:
+                        filtered.append(f"{line} (the row's probe still names {family} too)")
                     else:
                         proposed.append(line)
     return proposed, suppressed, filtered
