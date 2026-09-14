@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'LLMTR free tier: limits, free models, verified 2026-09-12'
+title: 'LLMTR free tier: limits, free models, verified 2026-09-14'
 description: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — ten zero-priced chat ids on 2026-09-14, Nemotron 3 Ultra, Qwen3.6 27B and Ling 3.0 Flash among them. The migration guide has a new account send its first request on a free model before any top-up:…
 permalink: /providers/llmtr/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/llmtr/
 
 # LLMTR
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-12 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-14 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

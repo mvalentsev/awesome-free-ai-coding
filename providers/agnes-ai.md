@@ -39,7 +39,7 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 
 ## History
 
-- *next scheduled run* — Added to the list: Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
+- `2026-09-14` — Added to the list: Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
 
 ---
 

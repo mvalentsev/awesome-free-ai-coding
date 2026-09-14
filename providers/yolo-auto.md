@@ -39,7 +39,7 @@ One model, Qwen3.8-27B in FP8, served on the vendor's own flat-rate API for codi
 
 ## History
 
-- *next scheduled run* — Added to the list: One model, Qwen3.8-27B in FP8, served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card
+- `2026-09-14` — Added to the list: One model, Qwen3.8-27B in FP8, served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card
 
 ---
 

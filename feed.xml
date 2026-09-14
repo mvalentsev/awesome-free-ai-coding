@@ -5,8 +5,43 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-12T08:03:34Z</updated>
+  <updated>2026-09-14T10:46:39Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/agnes-ai/20260914T104639Z</id>
+    <title>New: Agnes AI</title>
+    <link rel="alternate" href="https://agnes-ai.com"/>
+    <updated>2026-09-14T10:46:39Z</updated>
+    <summary type="text">Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them · free models: agnes-3.0-flash, agnes-2.5-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/cline/20260914T104639Z</id>
+    <title>New: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-09-14T10:46:39Z</updated>
+    <summary type="text">Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK · free models: deepseek-v4-flash, laguna-s-2.1</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/jetbrains-ai/20260914T104639Z</id>
+    <title>New: JetBrains AI (AI Free)</title>
+    <link rel="alternate" href="https://www.jetbrains.com/ai/"/>
+    <updated>2026-09-14T10:46:39Z</updated>
+    <summary type="text">AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/routeway/20260914T104639Z</id>
+    <title>Free models changed: Routeway</title>
+    <link rel="alternate" href="https://routeway.ai"/>
+    <updated>2026-09-14T10:46:39Z</updated>
+    <summary type="text">added muse-glimmer-30b · free models: muse-glimmer-30b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/yolo-auto/20260914T104639Z</id>
+    <title>New: Yolo-Auto</title>
+    <link rel="alternate" href="https://yolo-auto.com"/>
+    <updated>2026-09-14T10:46:39Z</updated>
+    <summary type="text">One model, Qwen3.8-27B in FP8, served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card · free models: qwen3.8</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/alibaba-model-studio/20260912T080334Z</id>
     <title>Free models changed: Alibaba Cloud Model Studio (DashScope, international)</title>
@@ -321,40 +356,5 @@
     <link rel="alternate" href="https://platform.inceptionlabs.ai"/>
     <updated>2026-08-17T05:53:53Z</updated>
     <summary type="text">A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls · free models: mercury-2, mercury-edit-2</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/longcat/20260817T055353Z</id>
-    <title>Delisted: LongCat API Platform</title>
-    <link rel="alternate" href="https://longcat.chat/platform"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">Delisted: LongCat API Platform</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/mistral-free/20260817T055353Z</id>
-    <title>Free models changed: Mistral La Plateforme</title>
-    <link rel="alternate" href="https://mistral.ai"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">dropped mistral-medium</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ollama-cloud/20260817T055353Z</id>
-    <title>Free models changed: Ollama Cloud</title>
-    <link rel="alternate" href="https://ollama.com/cloud"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">dropped gpt-oss, minimax-3, nemotron</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20260817T055353Z</id>
-    <title>Free models changed: opencode</title>
-    <link rel="alternate" href="https://opencode.ai"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">added hy3, laguna-s-2.1, nemotron-3.5-lightning · free models: big-pickle, deepseek-v4-flash, mimo-v2.5, hy3, laguna-s-2.1, nemotron-3-ultra, nemotron-3.5-lightning</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/poolside/20260817T055353Z</id>
-    <title>New: Poolside Platform</title>
-    <link rel="alternate" href="https://poolside.ai"/>
-    <updated>2026-08-17T05:53:53Z</updated>
-    <summary type="text">Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway</summary>
   </entry>
 </feed>
