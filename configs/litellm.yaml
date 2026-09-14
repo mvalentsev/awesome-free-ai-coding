@@ -986,6 +986,16 @@ model_list:
     model: openai/typhoon-v2.5-30b-a3b-instruct
     api_base: https://api.opentyphoon.ai/v1
     api_key: os.environ/OPENTYPHOON_API_KEY
+- model_name: agnes-ai/agnes-3.0-flash
+  litellm_params:
+    model: openai/agnes-3.0-flash
+    api_base: https://apihub.agnes-ai.com/v1
+    api_key: os.environ/AGNES_AI_API_KEY
+- model_name: agnes-ai/agnes-2.5-flash
+  litellm_params:
+    model: openai/agnes-2.5-flash
+    api_base: https://apihub.agnes-ai.com/v1
+    api_key: os.environ/AGNES_AI_API_KEY
 - model_name: sarvam/sarvam-105b
   litellm_params:
     model: openai/sarvam-105b
@@ -1091,3 +1101,8 @@ model_list:
     model: openai/Lorbus/Qwen3.6-27B-int4-AutoRound
     api_base: https://hermes.ai.unturf.com/v1
     api_key: none
+- model_name: yolo-auto/qwen3.8-27b
+  litellm_params:
+    model: openai/qwen3.8-27b
+    api_base: https://yolo-auto.com/v1
+    api_key: os.environ/YOLO_AUTO_API_KEY

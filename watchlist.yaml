@@ -52,7 +52,7 @@ watched:
       A zero-priced model appears in the served catalog, or the free grant
       becomes a recurring quota rather than a one-off dollar.
 
-  - domains: [nebius.com]
+  - domains: [nebius.com, nebius.ai]
     name: Nebius Token Factory
     checked_on: '2026-08-14'
     reason: >-
@@ -116,19 +116,6 @@ watched:
       only ever reported by third parties and appears on no official page.
     reopen_if: >-
       An official DeepSeek page states a free grant or a zero-priced model.
-
-  - domains: [agnes-ai.com]
-    name: Agnes AI
-    checked_on: '2026-08-14'
-    reason: >-
-      The site titles itself "Free Omni-Modal AI API" and then publishes
-      nothing to back it — /pricing and /docs both 404, the pages are a
-      client-rendered shell, and api.agnes-ai.com answers its own JSON 404 for
-      /v1/models, so no catalog, no prices and no quota are public. A free
-      claim with no page behind it is exactly what this list refuses to repeat.
-    reopen_if: >-
-      Public docs or a keyless catalog appear that state what is free and on
-      what terms.
 
   - domains: [iflow.cn]
     name: iFlow
@@ -432,18 +419,6 @@ watched:
     reopen_if: >-
       Chutes publishes a zero-priced model or a no-card trial quota.
 
-  - domains: [nlpcloud.com]
-    name: NLP Cloud
-    checked_on: '2026-08-14'
-    reason: >-
-      Unprobeable from here rather than judged: nlpcloud.com/pricing.html
-      answers HTTP 403 to a request carrying a normal browser User-Agent, so
-      there is no served page to read the offer off — the x.ai case. Nothing is
-      claimed about the offer itself.
-    reopen_if: >-
-      The pricing page answers a plain HTTP request, and what it then says about
-      a free tier.
-
   - domains: [tabnine.com]
     name: Tabnine
     checked_on: '2026-08-14'
@@ -606,7 +581,7 @@ watched:
       AI Horde publishes an OpenAI-compatible chat endpoint with tool calling,
       or a stable set of models it guarantees.
 
-  - domains: [together.ai]
+  - domains: [together.ai, together.xyz]
     name: Together AI
     checked_on: '2026-08-14'
     reason: >-
@@ -1028,18 +1003,26 @@ watched:
 
   - domains: [bynara.id]
     name: Nara / NaraRouter
-    checked_on: '2026-08-30'
+    checked_on: '2026-09-14'
     reason: >-
-      An Indonesian startup's product page, not an offer. bynara.id describes
-      NaraRouter as "one OpenAI-compatible gateway to route, track, and control
-      AI usage across providers" and says nothing about price, quota or a free
-      lane anywhere in its 3,362 characters; router.bynara.id/v1/models answers
-      401 "A valid API key is required", so the catalog cannot be read either.
-      The three free models OmniRoute lists for it are a third party's claim
-      with no vendor page behind them.
+      The free plan is real now and published, and what it serves is the
+      reason it stays here. The keyless router.bynara.id/api/plans reads
+      "Free tier with a daily token quota. No card required", token_cap_daily
+      7,000,000 at 15 requests a minute, over four models — agnes-2.5-flash,
+      laguna-s-2.1, stepfun-3.7-flash and tencent-hy3-free — which are other
+      vendors' free lanes: Agnes prices its Flash at zero itself, Laguna S 2.1
+      is free on OpenRouter, Kilo and Kenari, and Step 3.7 Flash on Kilo and
+      Kenari. The paid
+      day passes beside it (Freemium at Rp 5,000 a day, FreeMium Max, FreeMium
+      Ultra) sell glm-5.3-free, mimo-v2.5-free, qwen3.8-flash-free,
+      deepseek-v4.1-flash-free and muse-spark-1.3-contributor-free — ids named
+      for free lanes, sold by the day. OmniRoute also reports that a key
+      requires linking Telegram. The 2026-08-30 reading here found no pricing
+      and a 401 catalog; this one was prompted by OmniRoute citing the plans
+      endpoint.
     reopen_if: >-
-      Nara publishes pricing or docs naming a free allowance, or its catalog
-      becomes readable and carries a model at zero.
+      Nara's free plan serves a model it hosts or licenses itself, rather than
+      another gateway's free lane.
 
   - domains: [bytez.com]
     name: Bytez
@@ -1918,7 +1901,7 @@ watched:
     reopen_if: >-
       A page states what the Free Plan's "limited usage" is.
 
-  - domains: [byteplus.com]
+  - domains: [byteplus.com, bytepluses.com]
     name: BytePlus ModelArk
     checked_on: '2026-09-11'
     reason: >-
@@ -2031,3 +2014,263 @@ watched:
       Zoo's docs or terms state that an account without purchased credits can
       call Zoo Gateway models, or MiniMax-M3 appears at zero in its public
       catalog.
+
+  - domains: [fastrouter.ai]
+    name: FastRouter
+    checked_on: '2026-09-14'
+    reason: >-
+      Operated by AI.tech Ltd under New York law, with a real :free lane in a
+      keyless catalog — openai/gpt-oss-120b:free, openai/gpt-oss-20b:free,
+      google/gemma4-26b:free, nvidia/nemotron-3-nano-30b:free,
+      nvidia/nemotron-3-super:free and sarvam/sarvam-105b:free, all priced 0 —
+      that a new account cannot use. Its own docs set the gate:
+      "up to 10 requests per org per day, with no payment required for
+      organizations having paid credit balance >$1", and "Free models cannot
+      be used when your organization's paid credit balance is <= $1". The
+      signup grant the site advertises — "Get Millions Of Tokens To Start.
+      Free Credits On Us" — carries no figure, and the $0 Starter plan is a
+      gateway plan for your own keys ("1 BYOK key · 1M requests / month").
+    reopen_if: >-
+      The :free models answer an account that has never paid, or the signup
+      credit is published as a figure.
+
+  - domains: [naga.ac]
+    name: NagaAI
+    checked_on: '2026-09-14'
+    reason: >-
+      The free tier is published — "Start free on zero-cost models", 15+
+      models at 10 RPM and 100 RPD — and what it serves is other gateways'
+      free lanes: the :free ids in its keyless catalog are
+      ling-3.0-flash-vl:free, ling-3.0-flash-sante:free,
+      ling-3.0-flash-fin:free, nex-n2.5-pro:free, nex-n2.5-mini:free,
+      dots-3-note-preview:free, lfm-2.5-2.6b:free and
+      nemotron-3.5-lightning:free, the lane OpenRouter and Kilo already carry
+      here. The paid catalog prices frontier models well under their makers'
+      rates — gpt-5.6-sol at $1/$5 per 1M against OpenAI's $4/$20,
+      claude-sonnet-5 at $1/$5 — with no statement of where they are served
+      from.
+    reopen_if: >-
+      NagaAI's free lane carries a model it serves itself, or it states where
+      its below-list frontier capacity comes from.
+
+  - domains: [commandcode.ai]
+    name: Command Code
+    checked_on: '2026-09-14'
+    reason: >-
+      A coding agent for open models whose cheapest plan is paid. The home
+      page FAQ says "Free tier for solo developers", but the pricing page
+      starts at "Go $1 /month + processing fee" with $10 of credits, then
+      GOAT at $10/mo with $70. The free models it advertises — "Free on Laguna
+      S 2.1 Free on Ling 3.0 Flash Free on LongCat 2.0 Free on Ling 3.0 Flash
+      Sante", "Requests cost no credits while capacity lasts" — are listed
+      inside those plans, not beside them.
+    reopen_if: >-
+      Command Code offers a $0 plan with model usage included.
+
+  - domains: [kimchi.dev]
+    name: Kimchi (CAST AI)
+    checked_on: '2026-09-14'
+    reason: >-
+      CAST AI's open-source coding agent. The $0 Community tier is the
+      harness alone — "Bring your own inference - Kimchi's managed API, an
+      OpenAI-compatible endpoint, or any LLM provider. No hosted inference" —
+      and model usage starts on Coder at $20/mo, which "Includes $25 monthly
+      credits". The "no credit card" on the home page is about installing the
+      CLI.
+    reopen_if: >-
+      The Community tier includes hosted inference or credits.
+
+  - domains: [eurouter.ai]
+    name: EUrouter
+    checked_on: '2026-09-14'
+    reason: >-
+      An EU-compliance routing gateway whose Free plan prices the routing, not
+      the tokens: "Free €0 /mo Pay for what you use Monthly limit: 10K
+      requests/month Rate limit: 60 RPM 15% markup", and its keyless catalog
+      prices every one of its 147 rows.
+    reopen_if: >-
+      A model in the eurouter.ai catalog is priced at zero, or the Free plan
+      includes token usage.
+
+  - domains: [featherless.ai]
+    name: Featherless AI
+    checked_on: '2026-09-14'
+    reason: >-
+      Subscriptions only: "Chat For roleplay, stories and long conversations
+      ... $25 /month" and "Developer For coding agents and API traffic ... $50
+      /credits per month", over a catalog of 40,000+ open models every row of
+      which is priced. OmniRoute lists it with a free tier and then corrects
+      itself — the only free access is an application-gated builder programme.
+    reopen_if: >-
+      Featherless publishes a free plan or a free model lane.
+
+  - domains: [stepfun.com, stepfun.ai]
+    name: StepFun (阶跃星辰)
+    checked_on: '2026-09-14'
+    reason: >-
+      Every model on platform.stepfun.com/docs/zh/guides/pricing/details is
+      priced, and the page records its free lanes ending rather than starting:
+      "Step Audio R1.1 已升级为 Step Audio R1.5。该模型已结束限时免费" (the
+      limited-time free period is over) and "step-2x-large 已于 2026 年 06 月 12 日
+      结束限时免费" (ended on 2026-06-12). The home page sells the Step Plan
+      coding subscription. Step 3.7 Flash is free through Kilo and Kenari,
+      which this list carries.
+    reopen_if: >-
+      StepFun's pricing page shows a zero-priced model or a signup grant.
+
+  - domains: [zyloai.net]
+    name: Zylo AI
+    checked_on: '2026-09-14'
+    reason: >-
+      The Basic plan is real — "$0 /mo 7.2k req/day · 10/min 200k Daily Tokens
+      Basic models only ... No credits", no card — and it can only reach the
+      rows priced at zero, since Basic carries no credits. Those rows, in the
+      keyless catalog's BASIC tier, are nemotron-3-ultra, mistral-large-3 (675B),
+      qwen-3.5 (397B), qwen-3.5-flash, mistral-small-4, gpt-oss-20b, step-3.7,
+      diffusiongemma and llama-3.2-3b, plus Zylo's own routers — the models
+      NVIDIA's API catalog serves free for development, handed out here under a
+      gateway's free plan without a word on where they run. Terms on
+      zyloai.net/terms cover only linked-account enforcement.
+    reopen_if: >-
+      Zylo states where its zero-priced Basic models are served from, or the
+      Basic plan covers a model it serves itself.
+
+  - domains: [speka.me]
+    name: Speka
+    checked_on: '2026-09-14'
+    reason: >-
+      A $1 monthly allowance with no card — "Free $0.00 /mo ... $1 of model
+      usage / month 10 requests / minute 1 API key Access to all open models" —
+      on a gateway that markets "27 frontier models" and serves seven from its
+      keyless catalog: nemotron-3-ultra, nemotron-3-super, gpt-oss-20b,
+      laguna-xs-2.1, llama-3.2-11b-vision, flux.1-dev and an embedder, ids
+      spelled the way NVIDIA's API catalog spells them. Prices sit above the
+      makers' (DeepSeek V4 Flash at $0.27/$1.10), which is not the relay
+      pattern, but the terms (June 2026) name no company and nothing says
+      whose capacity the allowance spends.
+    reopen_if: >-
+      Speka names its operator and where its models are served, and the
+      catalog carries what the home page claims.
+
+  - domains: [logfare.ai]
+    name: Logfare
+    checked_on: '2026-09-14'
+    reason: >-
+      "Free LLM Inference. No Limits", with the price stated plainly — "In
+      exchange for free inference, we log every request — prompts,
+      completions, and metadata. After PII scrubbing this may be used in our
+      private, internal evaluation datasets" — and an operator described only
+      as "an independent research and engineering group"; /terms and /about
+      answer 404, and the privacy policy names no company. The keyless catalog
+      is 19 ids, and 14 of them — glm-5.3, kimi-k2.6, qwen-3.8-27b,
+      gemma-4-26b, melotts, aura-2-en, nova-3, lucid-origin, phoenix-1.0 and
+      the flux and whisper builds — are Cloudflare Workers AI's names, whose
+      free allocation is 10,000 neurons a day per account. Unlimited free use
+      of it is either paid for by someone unnamed or pooled.
+    reopen_if: >-
+      Logfare publishes terms naming its operator and a stated quota, or says
+      how the inference is paid for.
+
+  - domains: [openadapter.dev, openadapter.in]
+    name: OpenAdapter
+    checked_on: '2026-09-14'
+    reason: >-
+      OpenAdapter, Inc. sells a coding subscription — "4x Cheaper than Claude
+      Code", Lite at $9/mo for "~400 requests over 5h" — across 72+ open
+      models, and does have a free plan: "Try OpenAdapter Strict daily quota
+      across the full catalog. No credit card." The quota is never given a
+      number, and the pitch is resale on its own words: "Same models.
+      Fraction of the price. One subscription replaces 3+ separate provider
+      plans", beside an "0G Network" section of privately hosted models.
+      Nothing says which provider plans are being replaced, or under what
+      licence.
+    reopen_if: >-
+      OpenAdapter publishes the free plan's daily quota and where its models
+      are served from.
+
+  - domains: [free.ai]
+    name: Free.ai
+    checked_on: '2026-09-14'
+    reason: >-
+      A consumer suite of 477+ tools whose free allowance is real and small in
+      the way that matters here: "Anonymous users get 6,000 tokens/day. Sign up
+      free for 30,000 tokens/day", spent on "Qwen 2.5 for chat" — 2024-era 7B
+      to 72B models on its own GPUs — while "GPT-6, Claude, Veo + 584 premium
+      models" start at $5. The API sits at api.free.ai/v1/chat/ with ids like
+      qwen7b rather than a model a coding agent would be pointed at.
+    reopen_if: >-
+      The free daily allowance covers a current coding model on the API.
+
+  - domains: [greenpt.com, greenpt.ai]
+    name: GreenPT
+    checked_on: '2026-09-14'
+    reason: >-
+      EU-hosted chat on renewable energy, where the free part is a trial and
+      the API is paid: "All API usage requires an active Pro, Teams, or
+      API-only subscription", every plan comes "with a 14-day free trial
+      included", and the entry plan is €4,50/month for 15 prompts a day.
+    reopen_if: >-
+      GreenPT's API gets a free allowance outside the subscription trial.
+
+  - domains: [synthetic.new]
+    name: Synthetic
+    checked_on: '2026-09-14'
+    reason: >-
+      A flat subscription for open models — "Subscription Packs ... $1 /day $30
+      /mo Rate Limit 500 requests/5hr" — with the alternative "All models are
+      pay-per-token". No free plan or grant on the pricing page.
+    reopen_if: >-
+      Synthetic offers a free plan or signup allowance.
+
+  - domains: [nlpcloud.com, nlpcloud.io]
+    name: NLP Cloud
+    checked_on: '2026-09-14'
+    reason: >-
+      OmniRoute's changelog says the free tier "is a recurring monthly free
+      plan (10,000 requests/month)", and nothing on the vendor's side can be
+      read to confirm it: nlpcloud.com/pricing answers a Cloudflare "Just a
+      moment... Enable JavaScript and cookies to continue" challenge from this
+      network and from a GitHub runner alike (2026-09-14), and
+      api.nlpcloud.io/v1/models is a 404. The same OmniRoute file marks its
+      terms "avoid" for proxy use.
+    reopen_if: >-
+      A pricing or docs page an ordinary HTTP client can read states the free
+      plan.
+
+  - domains: [baichuan-ai.com]
+    name: Baichuan (百川)
+    checked_on: '2026-09-14'
+    reason: >-
+      A mainland console with nothing readable: platform.baichuan-ai.com renders
+      108 characters, and api.baichuan-ai.com/v1/models answers api_key_empty.
+      OmniRoute's own correction is that "current reality is only a one-time 80
+      CNY trial credit for new users (valid 3 months)" — a trial, and on the
+      same mainland-registration terms that keep the other Chinese consoles off
+      this list.
+    reopen_if: >-
+      A readable page states the grant and a registration open outside the
+      mainland.
+
+  - domains: [gitlawb.com]
+    name: gitlawb
+    checked_on: '2026-09-14'
+    reason: >-
+      A crypto-native agent platform — "Sponsored tips funded with USDC",
+      spending permissions "on a Base wallet" — whose opengateway catalog
+      prices 13 of its 14 ids and zeroes one, nvidia/nemotron-3-ultra-550b-a55b:free,
+      a model this list already carries free on five rows. OmniRoute's note is
+      that its free MiMo access "was removed in May 2026" and the Nemotron row
+      is "a temporary promotional model".
+    reopen_if: >-
+      gitlawb publishes a free lane of its own beyond one promotional id.
+
+  - domains: [monsterapi.ai]
+    name: MonsterAPI
+    checked_on: '2026-09-14'
+    reason: >-
+      Unreachable: monsterapi.ai and api.monsterapi.ai both answer SERVFAIL on
+      Google's public resolver (2026-09-14), so no page or catalog can be
+      read. The free tier OmniRoute last described was one-time trial credits
+      with "0 credits/month" recurring.
+    reopen_if: >-
+      The domain resolves again and a readable page states a free allowance.

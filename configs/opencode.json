@@ -876,6 +876,22 @@
         }
       }
     },
+    "agnes-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Agnes AI",
+      "options": {
+        "baseURL": "https://apihub.agnes-ai.com/v1",
+        "apiKey": "{env:AGNES_AI_API_KEY}"
+      },
+      "models": {
+        "agnes-3.0-flash": {
+          "name": "agnes-3.0-flash"
+        },
+        "agnes-2.5-flash": {
+          "name": "agnes-2.5-flash"
+        }
+      }
+    },
     "sarvam": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Sarvam AI",
@@ -1053,6 +1069,19 @@
         "apiKey": "{env:SCALEWAY_GENERATIVE_API_KEY}"
       },
       "models": {}
+    },
+    "yolo-auto": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Yolo-Auto",
+      "options": {
+        "baseURL": "https://yolo-auto.com/v1",
+        "apiKey": "{env:YOLO_AUTO_API_KEY}"
+      },
+      "models": {
+        "qwen3.8-27b": {
+          "name": "qwen3.8-27b"
+        }
+      }
     }
   }
 }

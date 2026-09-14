@@ -3332,3 +3332,110 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 29
+- id: agnes-ai
+  name: Agnes AI
+  category: api-free-tier
+  url: https://agnes-ai.com
+  source_urls:
+  - https://wiki.agnes-ai.com/en/docs/pricing
+  - https://wiki.agnes-ai.com/en/docs/faqs
+  - https://wiki.agnes-ai.com/en/docs/tokenplan
+  card_required: false
+  offering: Agnes AI's own models behind an OpenAI-compatible API, with its Flash
+    text models charged at zero today and image generation free beside them
+  limits: '"Is the API free to use? Yes. Our core AI models are free to use indefinitely",
+    the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash and agnes-3.0-flash
+    list at $0.05 in / $0.15 out per 1M and are charged $0 — "Cached input, input
+    tokens, and output tokens are currently free for agnes-2.5-flash and agnes-3.0-flash"
+    — while agnes-2.5-pro bills $0.45/$0.90 and the pro beta $0.10/$0.30. The page
+    is candid that the zero is a current price rather than a contract: "Promotional
+    end dates are subject to Agnes AI platform announcements and your account bill".
+    The ceiling is a rate, not a quota: a key that is neither on a paid Token Plan
+    nor enterprise-verified gets 30 requests a minute allowed and 20 effective on
+    text models (Token Plan FAQ, effective 2026-06-22), and no daily figure is published.
+    Image models are free at every resolution too. The terms are governed by Singapore
+    law. Read 2026-09-14; this list had Agnes on its watchlist until then, because
+    agnes-ai.com/pricing and /docs answered 404 — the docs had moved to wiki.agnes-ai.com'
+  models:
+  - family: agnes-3.0-flash
+    tier: strong
+    released: ''
+  - family: agnes-2.5-flash
+    tier: strong
+    released: ''
+  api:
+    base_url: https://apihub.agnes-ai.com/v1
+    key_url: https://platform.agnes-ai.com
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - agnes-3.0-flash
+    - agnes-2.5-flash
+    note: the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions
+      with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan
+      keys draw on separate limit pools, and creating more keys of one type does not
+      stack RPM
+  probe:
+    type: page-keywords
+    endpoint: https://wiki.agnes-ai.com/en/docs/pricing
+    keywords:
+    - Cached input, input tokens, and output tokens are currently free for
+    - agnes-3.0-flash
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-14'
+  last_verified: '2026-09-14'
+  probe_failures: 0
+  provisional: true
+  rank: 87
+- id: yolo-auto
+  name: Yolo-Auto
+  category: api-free-tier
+  url: https://yolo-auto.com
+  source_urls:
+  - https://yolo-auto.com/
+  - https://yolo-auto.com/pricing
+  - https://yolo-auto.com/terms
+  card_required: false
+  offering: One model, Qwen3.8-27B in FP8, served on the vendor's own flat-rate API
+    for coding agents; the free plan is a small daily allowance with no card
+  limits: '"Start free → 15 requests/day · no card required" on the home page, and
+    on the plan card "No card required, free forever" and "Free forever. No card required
+    and no trial period" — at 128K context and "Designed for 1 coding agent", against
+    $19/mo Builder and $39/mo Pro. Fifteen requests is a handful of agent turns, which
+    is why this row sits at the bottom of its section: the same model answers keyless
+    on OVHcloud and on Hetzner''s free lane with more headroom. The terms (last updated
+    2026-08-22) close the obvious workaround — "You may not create, control, fund,
+    coordinate, or use multiple accounts ... to combine capacity" — and sign-in is
+    through Google, GitHub or Discord. Prompt and response bodies are "not routinely
+    retained", the home page says. Read 2026-09-14'
+  models:
+  - family: qwen3.8
+    tier: strong
+    released: ''
+  api:
+    base_url: https://yolo-auto.com/v1
+    key_url: https://yolo-auto.com/app
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - qwen3.8-27b
+    note: qwen3.8-27b is the only model id; /v1/models and /v1/usage answer 401 without
+      a key, and the free plan's context is 128K where Pro's is 256K
+  probe:
+    type: page-keywords
+    endpoint: https://yolo-auto.com/
+    keywords:
+    - 15 requests/day
+    - No card required, free forever
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-14'
+  last_verified: '2026-09-14'
+  probe_failures: 0
+  provisional: true
+  rank: 99

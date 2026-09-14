@@ -486,18 +486,46 @@ read:
 
   - url: https://github.com/decolua/9router
     name: decolua/9router
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-14'
     reason: >-
-      The largest repository the sweep found, 27,143 stars, pushed
-      2026-09-03, and software rather than a list: a local gateway that
-      re-exposes paid CLI subscriptions through an "OAuth Providers" section
-      and round-robins accounts, which put 9router.com on the blocklist the
-      same day. Its "Free Providers" panel names Kiro, OpenCode Free and a
-      $300 Vertex trial, all answered here, and its one line of news agrees
-      with this registry: "iFlow, Qwen Code and Gemini CLI free tiers were
-      discontinued in 2026". Seven hosts, none a vendor this list lacks.
+      Software rather than a list — a local gateway that re-exposes paid CLI
+      subscriptions through an "OAuth Providers" section and round-robins
+      accounts, which put 9router.com on the blocklist on 2026-09-05. Re-read
+      whole on 2026-09-14 (28,671 stars, pushed 2026-09-10): its code names 160
+      registrable domains and 74 without a verdict here, almost all of them
+      speech, image, video and search APIs, tunnels and its own promotions.
+      The language-model vendors among them got verdicts the same day — Command
+      Code and Kimchi (CAST AI) on the watchlist, and the API hosts
+      bytepluses.com, together.xyz and nebius.ai added to the BytePlus,
+      Together and Nebius verdicts they belong to. Its "Free Providers" panel
+      still names Kiro, OpenCode Free and a $300 Vertex trial, all answered.
     reopen_if: >-
       It names a first-party free tier this registry has no verdict on.
+
+  - url: https://github.com/router-for-me/CLIProxyAPI
+    name: router-for-me/CLIProxyAPI
+    checked_on: '2026-09-14'
+    reason: >-
+      Software whose providers are other people's subscriptions: 51,689 stars,
+      pushed 2026-09-14, a local endpoint over the OAuth sessions of Codex,
+      Claude Code, Antigravity, Grok, Kimi Code and Devin, which is why
+      router-for.me is on the blocklist. Read whole, the repository names 50
+      registrable domains and 29 without a verdict here, and none is a
+      first-party free tier. The README's sponsor block is the relay trade
+      describing itself: PackyCode and Cubence offer "relay services for Claude
+      Code, Codex, Gemini", FennoAI is "currently focused on Codex relay
+      services", APIKEY.FUN is "a professional enterprise-grade AI relay
+      platform", FastAIToken sells at "¥1 = $1 in API credits", AICodeMirror
+      prices "Claude Code / Codex / Gemini official channels at 38% / 2% / 9%
+      of original price" and Aiberm "85–90% off Claude, 90% off GPT" — the last
+      two now blocklisted on those figures — beside CyberPay, which takes
+      payments "for selling GPT, Gemini, Claude, and Codex accounts", and three
+      residential-proxy sellers built "for automation and multi-account
+      operations". The rest are Qiniu Cloud's MaaS platform, a CDN, APIMart's
+      image API, projects built on CLIProxyAPI itself and IP-echo services in
+      its code. A list to read for what the relay trade sells, not for offers.
+    reopen_if: >-
+      Its README starts naming first-party free tiers rather than relays.
 
   - url: https://github.com/herliansyah/9router-auto-free
     name: herliansyah/9router-auto-free

@@ -33,6 +33,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8`, `qwen3-coder` | `2026-09-12` |
 | [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
+| [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) | 🔌 LLM APIs with free tier | `agnes-3.0-flash`, `agnes-2.5-flash` | `2026-09-14` |
 | [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) | 🔌 LLM APIs with free tier | `gpt-oss` | `2026-09-12` |
 | [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) | 🔌 LLM APIs with free tier | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | `2026-09-12` |
@@ -42,6 +43,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
+| [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) | 🔌 LLM APIs with free tier | `qwen3.8` | `2026-09-14` |
 | [GitHub Copilot Free](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) | 🎁 Trials (no card when possible) | — | `2026-09-12` |
 | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) | 🎁 Trials (no card when possible) | `claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-2.1` | `2026-09-12` |
 | [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) | 🎁 Trials (no card when possible) | `gemini-2.5` | `2026-09-12` |

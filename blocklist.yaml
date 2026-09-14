@@ -211,3 +211,45 @@
     OpenCode Free and a $300 Vertex trial, all of which this registry already
     answers for. The tagline "Unlimited FREE AI coding" is the reverse-proxy
     line CONTRIBUTING excludes, stated by the operator.
+- domain: agentrouter.org
+  reason: >-
+    A relay that accepts only traffic dressed as Claude Code. A plain client
+    gets 401 "unauthorized client detected, contact support", the site answers
+    an Alibaba Cloud WAF challenge to this network and to a GitHub runner alike,
+    and OmniRoute — whose adapter has to reproduce "the Claude Code wire image
+    (specific User-Agent, anthropic-beta flags, Stainless SDK headers)" to reach
+    it — describes it as "an Anthropic-compatible relay that resells Claude and
+    other models, often at lower prices than the direct Anthropic API", with a
+    $100 signup credit ($200 by referral) on claude-opus-5 and gpt-5.6-sol. A
+    gateway that only answers a spoofed first-party client is the
+    omniroute.online and router-for.me pattern from the other side (read
+    2026-09-14).
+- domain: lingyiwanwu.com
+  reason: >-
+    The product is gone. 01.AI's API host answers GET /v1/models with HTTP 410
+    {"error":{"code":"model_service_closed","message":"Model service has been
+    discontinued"}} (2026-09-14), and platform.lingyiwanwu.com is an empty
+    shell. OmniRoute's feed still names its "Yi-Light" free models, which is
+    why the domain is recorded.
+- domain: predibase.com
+  reason: >-
+    The product is gone: predibase.com and its pricing page now redirect to
+    rubrik.com/products/rubrik-agent-cloud after Rubrik's acquisition, and the
+    serverless inference host serving.app.predibase.com has no DNS answer on
+    Google's resolver (2026-09-14). OmniRoute's feed still credits it with $25
+    of trial credits.
+- domain: aicodemirror.ai
+  reason: >-
+    A Claude Code and Codex relay that states the supply in its own sponsor
+    blurb on CLIProxyAPI's README: "official high-stability relay services for
+    Claude Code / Codex / Gemini ... official channels at 38% / 2% / 9% of
+    original price". Codex at 2% of its price is not a discount, it is a
+    different supply — the llm7.io measure, stated by the operator (read
+    2026-09-14).
+- domain: aiberm.com
+  reason: >-
+    A relay pricing itself below what its upstreams charge by an order of
+    magnitude, in its own words on CLIProxyAPI's README: "One endpoint for
+    Claude, GPT, Grok, DeepSeek, GLM, Kimi, and MiniMax: 85–90% off Claude, 90%
+    off GPT, and 80% off Grok". A tenth of list is the different-supply case
+    llm7.io and aicodemirror.ai are here for (read 2026-09-14).
