@@ -355,24 +355,44 @@ def _price_note(model: dict) -> str:
     return note + (" plus " + ", ".join(extra) if extra else "")
 
 
-def _catalog_items(resp: httpx.Response) -> list[dict] | None:
+def _catalog_items(resp: httpx.Response, lane: str | None = None) -> list[dict] | None:
     """Every model row of an OpenAI-shaped catalog, however the vendor wraps it,
     or None when the body is not JSON at all — the one case a caller has to tell
-    apart from an empty catalog."""
+    apart from an empty catalog.
+
+    Where the row names a `probe.lane`, the rows are that key's array and
+    nothing else in the document: the other lanes list the same models on
+    other terms, and a family found there is not a family found free."""
     try:
         data = resp.json()
     except json.JSONDecodeError:
         return None
-    rows = (data if isinstance(data, list)
-            else data.get("data", []) if isinstance(data, dict) else [])
+    if lane is not None:
+        rows = data.get(lane) if isinstance(data, dict) else None
+        rows = rows if isinstance(rows, list) else []
+    else:
+        rows = (data if isinstance(data, list)
+                else data.get("data", []) if isinstance(data, dict) else [])
     return [m for m in rows if isinstance(m, dict)]
 
 
+def _empty_lane(resp: httpx.Response, lane: str) -> str:
+    """Why a lane gave no rows. An empty array is the vendor's own word that
+    nothing is on offer; a document without the key has changed shape, and
+    the probe is what wants repairing. Opposite fixes, one failure each."""
+    data = resp.json()
+    if isinstance(data, dict) and isinstance(data.get(lane), list):
+        return f"the {lane!r} lane lists no model ids"
+    return f"response has no {lane!r} lane"
+
+
 def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
-    items = _catalog_items(resp)
+    items = _catalog_items(resp, entry.probe.lane)
     if items is None:
         return "response is not JSON"
     if not any(_model_id(m) for m in items):
+        if entry.probe.lane is not None:
+            return _empty_lane(resp, entry.probe.lane)
         return "no model ids in response"
     marker = entry.probe.free_marker.lower()
     missing, withdrawn, priced = [], [], []
@@ -647,7 +667,7 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     if entry.api is None:
         return []
     catalog: dict[str, dict] = {}
-    for model in _catalog_items(resp) or []:
+    for model in _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
         if mid:
             catalog.setdefault(mid, model)
@@ -702,7 +722,7 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     marker = entry.probe.free_marker.lower()
     known = set(entry.api.model_ids) | set(entry.api.ignored_ids)
     lane = set()
-    for model in _catalog_items(resp) or []:
+    for model in _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
         if (mid and mid not in known and (not marker or marker in mid.lower())
                 and _is_free(model) and not _is_withdrawn(model)):

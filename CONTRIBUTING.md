@@ -111,6 +111,17 @@ it too, with no setting to turn on: a row the vendor marks uncallable is not a
 free lane whatever its price says, and it fails the probe as `marked
 unavailable`.
 
+**A vendor can list its free lane under a key of its own.** Cline's
+recommended-models document carries no price and no free flag: it lists
+`recommended`, `free`, `clinePass` and `clineCloud` side by side, and one model
+can sit in the free lane and in the paid plan at the same time. Set
+`probe.lane: free` on the `api-models` probe and the rows are that array and
+nothing else in the document — every family in `models[]` has to be in it,
+`api.model_ids` is checked against it, and an empty lane fails the way an empty
+catalog does. The two ways a lane comes back empty are reported apart, `the
+'free' lane lists no model ids` and `response has no 'free' lane`, because a
+promotion that ended and a key the vendor renamed want opposite repairs.
+
 **Every family in `models[]` must be named on the page the probe reads.** The
 Free models column is a claim, and it needs to be re-checkable by the same run
 that re-checks the offer: an `api-models` probe demands each family back from the

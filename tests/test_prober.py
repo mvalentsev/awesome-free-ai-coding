@@ -314,6 +314,93 @@ async def test_availability_is_checked_without_a_price_requirement():
     assert result.status is ProbeStatus.FAIL and "marked unavailable" in result.detail
 
 
+LANES_URL = "https://api.x.ai/api/v1/ai/recommended-models"
+
+
+def keyed_lanes(free: list[str], cline_pass: list[str] = (), recommended: list[str] = ()) -> dict:
+    """The shape Cline serves at api.cline.bot/api/v1/ai/cline/recommended-models
+    (read 2026-09-14): lanes side by side under keys of their own, one object per
+    model, and no price or free flag anywhere — the lane a model sits in is the
+    vendor's whole account of what it costs."""
+    def rows(ids):
+        return [{"id": i, "name": i.split("/")[-1], "description": "", "tags": []} for i in ids]
+    return {"recommended": rows(recommended), "free": rows(free),
+            "clinePass": rows(cline_pass), "clineCloud": rows(["cline-cloud/glm-5.2"])}
+
+
+def lane_entry() -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "laney",
+        "category": "agent-cli",
+        "models": [{"family": "deepseek-v4-flash", "tier": "strong"}],
+        "probe": {"type": "api-models", "endpoint": LANES_URL, "lane": "free"},
+    })
+
+
+@respx.mock
+async def test_a_family_is_read_from_the_lane_its_vendor_names():
+    """Read as an OpenAI catalog this document holds no model rows at all: there
+    is no `data`, only lanes, and the `free` one is the offer."""
+    respx.get(LANES_URL).mock(return_value=httpx.Response(200, json=keyed_lanes(
+        free=["deepseek/deepseek-v4-flash", "poolside/laguna-s-2.1:free"],
+        cline_pass=["cline-pass/glm-5.2"])))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, lane_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_family_only_a_paid_lane_names_is_not_free():
+    """Why the lane is named instead of every array being read: DeepSeek V4 Flash
+    is in ClinePass, the $9.99 plan, whether or not it is also in the free lane,
+    so a family matched anywhere in the document would outlive its promotion in
+    the Models column."""
+    respx.get(LANES_URL).mock(return_value=httpx.Response(200, json=keyed_lanes(
+        free=["poolside/laguna-s-2.1:free"],
+        cline_pass=["cline-pass/deepseek-v4-flash"],
+        recommended=["deepseek/deepseek-v4-flash"])))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, lane_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "deepseek-v4-flash" in result.detail
+
+
+@respx.mock
+async def test_an_empty_or_missing_lane_fails_and_says_which_lane():
+    """An empty `free` array is the vendor saying no promotion is running, so it
+    fails like a catalog without rows. Both failures name the lane — "no model
+    ids in response" reads as a broken endpoint, and this endpoint answered —
+    and they say different things, because a promotion that ended and a key
+    the vendor renamed want opposite repairs."""
+    details = []
+    for body in (keyed_lanes(free=[], cline_pass=["cline-pass/deepseek-v4-flash"]),
+                 {"recommended": [], "clinePass": []}):
+        respx.get(LANES_URL).mock(return_value=httpx.Response(200, json=body))
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, lane_entry(), backoff=0)
+        assert result.status is ProbeStatus.FAIL
+        assert "lane" in result.detail and "free" in result.detail
+        details.append(result.detail)
+    assert details[0] != details[1]
+
+
+@respx.mock
+async def test_config_ids_are_read_from_the_lane_too():
+    """`api.model_ids` makes the Models column's claim in config form, so it is
+    checked against the same lane: an id the document still names elsewhere, but
+    no longer lists as free, is a dead config line."""
+    entry = lane_entry()
+    entry.api = ApiInfo(base_url="https://api.x.ai/v1",
+                        model_ids=["deepseek/deepseek-v4-flash", "z-ai/glm-5.3-flash"])
+    respx.get(LANES_URL).mock(return_value=httpx.Response(200, json=keyed_lanes(
+        free=["deepseek/deepseek-v4-flash"], recommended=["z-ai/glm-5.3-flash"])))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "z-ai/glm-5.3-flash" in result.detail
+    assert "deepseek/deepseek-v4-flash" not in result.detail
+
+
 def new_api_entry() -> Entry:
     """A catalog shaped the way the new-api family of gateways ships it:
     `model_name` for the id, and multipliers instead of a pricing object."""

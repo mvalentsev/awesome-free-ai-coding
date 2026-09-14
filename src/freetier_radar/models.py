@@ -164,6 +164,26 @@ class Probe(BaseModel):
     # tag outlives the offer it was anchoring (Groq, 2026-09-08). Where the data
     # blob IS the evidence, say so here and the whole response is searched.
     machinery_keywords: list[str] = []
+    # api-models: the key a vendor lists its free lane under, for a document
+    # that publishes lanes side by side instead of flagging rows. Cline's
+    # recommended-models answers `recommended`, `free`, `clinePass` and
+    # `clineCloud` with no price anywhere, and one model can sit in two of them
+    # — DeepSeek V4 Flash was in the free lane and in the $9.99 plan on
+    # 2026-09-14 — so the lane is named rather than every array read. Unset,
+    # the rows are the document itself or its `data`, as in an OpenAI catalog.
+    lane: str | None = None
+
+    @model_validator(mode="after")
+    def _lane_needs_a_catalog(self) -> Probe:
+        """A lane is a key of the JSON document an api-models probe parses. A
+        page-keywords probe reads the response as text, so the field would sit
+        there changing nothing — which lane a model is in is exactly the
+        question a substring cannot answer."""
+        if self.lane is not None and self.type is not ProbeType.API_MODELS:
+            raise ValueError(
+                f"probe {self.endpoint}: lane is an api-models field — a page-keywords "
+                "probe reads text, not the arrays of a JSON document")
+        return self
 
     @model_validator(mode="after")
     def _zero_price_needs_a_price_list(self) -> Probe:

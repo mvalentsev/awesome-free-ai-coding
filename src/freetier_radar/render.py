@@ -817,7 +817,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
     out += ["", "## Evidence", ""]
     probe = e.probe
     if probe.type is ProbeType.API_MODELS:
-        how = f"- Probe: the models catalog at <{probe.endpoint}>"
+        if probe.lane:
+            # The document lists paid lanes beside the free one, so naming only
+            # the URL would present every model in it as the evidence.
+            how = (f"- Probe: the `{probe.lane}` lane of the models document at "
+                   f"<{probe.endpoint}>, every listed family required in that lane")
+        else:
+            how = f"- Probe: the models catalog at <{probe.endpoint}>"
         if probe.free_marker:
             how += f", free rows carrying `{probe.free_marker}`"
         if probe.require_zero_price:

@@ -186,6 +186,22 @@ def test_a_catalog_url_belongs_to_a_page_probe_with_ids_to_check():
     assert Entry.model_validate(checked).probe.catalog == "https://api.x.ai/v1/models"
 
 
+def test_a_lane_belongs_to_an_api_models_probe():
+    """A lane is the key of a JSON document whose array is read as the catalog. A
+    page-keywords probe reads the response as text, so there the field would sit
+    in the registry doing nothing — the silence the other probe validators
+    refuse."""
+    on_a_page = {**sample_entry(), "probe": {"type": "page-keywords",
+                                             "endpoint": "https://x.ai/pricing",
+                                             "keywords": ["solar-mini", "free"],
+                                             "lane": "free"}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(on_a_page)
+
+    on_the_api = {**sample_entry(), "probe": {**sample_entry()["probe"], "lane": "free"}}
+    assert Entry.model_validate(on_the_api).probe.lane == "free"
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

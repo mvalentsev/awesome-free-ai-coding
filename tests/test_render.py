@@ -795,6 +795,17 @@ def test_the_evidence_line_names_the_keywords_that_live_in_the_page_data():
            '`"basic_usage_limit":3` in the page\'s own data' in both
 
 
+def test_the_evidence_line_names_the_lane_a_family_must_sit_in():
+    """A lane document lists paid models too — Cline's names the ClinePass plan
+    beside the free lane — so "the models catalog at" that URL would tell a
+    reader every model in it is the evidence."""
+    from freetier_radar.render import build_provider_page
+    probe = {"type": "api-models", "endpoint": "https://x.ai/recommended-models", "lane": "free"}
+    page = build_provider_page(make(probe=probe), [], TODAY)
+    evidence = next(line for line in page.splitlines() if line.startswith("- Probe:"))
+    assert "`free`" in evidence and "<https://x.ai/recommended-models>" in evidence
+
+
 # ---- llms.txt: the whole list as one text file an LLM search can read
 
 
