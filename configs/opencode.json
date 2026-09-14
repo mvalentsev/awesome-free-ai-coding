@@ -490,9 +490,6 @@
         "deepseek-v4-flash:free": {
           "name": "deepseek-v4-flash:free"
         },
-        "kimi-k2.6:free": {
-          "name": "kimi-k2.6:free"
-        },
         "minimax-m2.7:free": {
           "name": "minimax-m2.7:free"
         }
@@ -526,6 +523,15 @@
         },
         "openai/gpt-oss-safeguard-20b": {
           "name": "openai/gpt-oss-safeguard-20b"
+        },
+        "qwen/qwen3.8-flash-free": {
+          "name": "qwen/qwen3.8-flash-free"
+        },
+        "inclusionai/ling-3.0-flash-vl": {
+          "name": "inclusionai/ling-3.0-flash-vl"
+        },
+        "inclusionai/ling-3.0-flash-sante": {
+          "name": "inclusionai/ling-3.0-flash-sante"
         }
       }
     },
@@ -680,6 +686,9 @@
         "qwen/qwen3.7-flash:free": {
           "name": "qwen/qwen3.7-flash:free"
         },
+        "deepseek/deepseek-v4-flash-0731free:free": {
+          "name": "deepseek/deepseek-v4-flash-0731free:free"
+        },
         "auto:free": {
           "name": "auto:free"
         }
@@ -780,6 +789,9 @@
         "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
       },
       "models": {
+        "Qwen3.8-27B": {
+          "name": "Qwen3.8-27B"
+        },
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
         },

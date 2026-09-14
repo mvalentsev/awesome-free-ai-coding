@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-09-12'
-description: 'OpenAI-compatible gateway to a 183-id catalog with exactly two zero-priced rows — Qwen3.7 Flash and the auto:free router. BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the single…'
+description: 'OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14 — Qwen3.7 Flash and DeepSeek V4 Flash 0731 — beside the auto:free router. BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2…'
 permalink: /providers/bazaarlink/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/bazaarlink/
 
 ## What you get
 
-OpenAI-compatible gateway to a 183-id catalog with exactly two zero-priced rows — Qwen3.7 Flash and the auto:free router
+OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14 — Qwen3.7 Flash and DeepSeek V4 Flash 0731 — beside the auto:free router
 
 ## Free models
 
@@ -21,14 +21,14 @@ OpenAI-compatible gateway to a 183-id catalog with exactly two zero-priced rows 
 
 ## Limits, in the vendor's words
 
-BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the single model it counts as free ("Free Models Right Now: 1", read 2026-08-19). Past the quota "requests on free-quota models continue at the normal paid rate if you have credit; otherwise they are rate-limited until the quota resets"; everything else in the catalog is metered at list rates. The second free id this entry was registered for is gone — deepseek/deepseek-v4-flash:free left between the 2026-08-13 and 2026-08-17 probes, and only the metered deepseek-v4-flash remains
+BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the models it counts as free — "Free Models Right Now 2" on 2026-09-14, one on 2026-08-19. Past the quota "requests on free-quota models continue at the normal paid rate if you have credit; otherwise they are rate-limited until the quota resets"; everything else in the catalog is metered at list rates. The second free id this entry was registered for is gone — deepseek/deepseek-v4-flash:free left between the 2026-08-13 and 2026-08-17 probes, and only the metered deepseek-v4-flash remains. A DeepSeek lane came back by 2026-09-14 under the catalog's own awkward id, deepseek/deepseek-v4-flash-0731free:free — the re-post-trained 0731 revision, priced 0 and described as "Rate-limited free tier.", which the free page lists as "Deepseek V4 Flash 0731free" at $0 against $0.20/$0.40 — beside a metered deepseek-v4-flash-0731free twin at those rates
 
 ## Connect
 
 - Base URL: `https://api.bazaarlink.ai/v1`
 - Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
-- Callable ids: `qwen/qwen3.7-flash:free`, `auto:free`
-- Note: only the :free id and auto:free cost nothing — the plain qwen3.7-flash beside it in the catalog is the metered twin ($0.03/$0.13 per 1M). auto:free picks a free model for you, and on a funded account it can fall through to the paid routing table "unless paid fallback is disabled"
+- Callable ids: `qwen/qwen3.7-flash:free`, `deepseek/deepseek-v4-flash-0731free:free`, `auto:free`
+- Note: only the two :free ids and auto:free cost nothing — the plain qwen3.7-flash beside the first is the metered twin ($0.03/$0.13 per 1M), and deepseek-v4-flash-0731free without the suffix is metered at $0.20/$0.40. auto:free picks a free model for you, and on a funded account it can fall through to the paid routing table "unless paid fallback is disabled"
 
 ## Evidence
 

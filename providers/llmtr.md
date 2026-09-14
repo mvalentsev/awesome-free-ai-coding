@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-12'
-description: 'Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eight zero-priced ids on 2026-09-07, Nemotron 3 Ultra, Qwen3.6 27B and Ling 3.0 Flash among them. The migration guide has a new account send its first request on a free model before any top-up: "Model…'
+description: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — ten zero-priced chat ids on 2026-09-14, Nemotron 3 Ultra, Qwen3.6 27B and Ling 3.0 Flash among them. The migration guide has a new account send its first request on a free model before any top-up:…
 permalink: /providers/llmtr/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/llmtr/
 
 ## What you get
 
-Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eight zero-priced ids on 2026-09-07, Nemotron 3 Ultra, Qwen3.6 27B and Ling 3.0 Flash among them
+Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — ten zero-priced chat ids on 2026-09-14, Nemotron 3 Ultra, Qwen3.6 27B and Ling 3.0 Flash among them
 
 ## Free models
 
@@ -27,8 +27,8 @@ The migration guide has a new account send its first request on a free model bef
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.6-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`
-- Note: the seven ids listed are every chat row the public catalog prices at 0 on 2026-09-07, against eleven on 2026-09-05. Four went in the two days between: minimax/minimax-m3-free and minimax/minimax-m2.7-free left the catalog outright while the metered minimax/minimax-m3 and minimax/minimax-m2.7 stayed at $0.30/$1.20 per 1M; openai/gpt-6-astra-free went two days before the end date its own description carried, "10 Eylül 2026'ya kadar günlük kotayla ücretsiz" (free with a daily quota until 10 September 2026) — a dated lane can close early, so the date is a promise about the ceiling and not the floor; and inception/mercury-2-free went between two reads on 2026-09-07 itself, leaving inception/mercury-2 metered at $0.25/$0.75 per 1M beside a newly listed inception/mercury-2.5-preview at $0.04/$0.15 — the free lane closed here as Inception's next generation arrived, and Mercury 2 stays on this list through Inception's own row, whose 100M-token grant is untouched. The same two MiniMax ids left OpenRouter, Kilo and Vercel on the same read, which puts that withdrawal upstream of any one gateway; AIHubMix, which subsidises its own copies, still prices them 0. liquid/lfm-2.5-embedding-350m-free is ignored on purpose as an embeddings row. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and nvidia/nemotron-3-ultra-550b-a55b-262k the metered one — same checkpoint, different products, the vendor's own page says
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.6-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-flash-free`, `inclusionai/ling-3.0-flash-vl`, `inclusionai/ling-3.0-flash-sante`
+- Note: the ten ids listed are every chat row the public catalog prices at 0 on 2026-09-14, against seven on 2026-09-07 and eleven on 2026-09-05. The three that arrived in between all carry the same end date — qwen/qwen3.8-flash-free ("22 Eylul 2026'ya kadar", until 22 September 2026, and "dakikada birkac istekle sinirli", a few requests a minute), inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante ("22 Eylul 2026'ya kadar ucretsiz", free until 22 September 2026) — and a dated lane here has closed early before. Four had gone between 2026-09-05 and 2026-09-07: minimax/minimax-m3-free and minimax/minimax-m2.7-free left the catalog outright while the metered minimax/minimax-m3 and minimax/minimax-m2.7 stayed at $0.30/$1.20 per 1M; openai/gpt-6-astra-free went two days before the end date its own description carried, "10 Eylül 2026'ya kadar günlük kotayla ücretsiz" (free with a daily quota until 10 September 2026) — a dated lane can close early, so the date is a promise about the ceiling and not the floor; and inception/mercury-2-free went between two reads on 2026-09-07 itself, leaving inception/mercury-2 metered at $0.25/$0.75 per 1M beside a newly listed inception/mercury-2.5-preview at $0.04/$0.15 — the free lane closed here as Inception's next generation arrived, and Mercury 2 stays on this list through Inception's own row, whose 100M-token grant is untouched. The same two MiniMax ids left OpenRouter, Kilo and Vercel on the same read, which puts that withdrawal upstream of any one gateway; AIHubMix, which subsidises its own copies, still prices them 0. liquid/lfm-2.5-embedding-350m-free is ignored on purpose as an embeddings row. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and nvidia/nemotron-3-ultra-550b-a55b-262k the metered one — same checkpoint, different products, the vendor's own page says
 
 ## Evidence
 
