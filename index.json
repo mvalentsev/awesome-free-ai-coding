@@ -257,15 +257,18 @@
     },
     {
       "id": "mistral-free",
-      "name": "Mistral La Plateforme",
+      "name": "Mistral AI Studio",
       "category": "api-free-tier",
       "url": "https://mistral.ai",
       "source_urls": [
-        "https://docs.mistral.ai/admin/user-management-finops/tier"
+        "https://mistral.ai/pricing",
+        "https://docs.mistral.ai/admin/billing-usage/subscriptions",
+        "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
+        "https://docs.mistral.ai/admin/billing-usage/usage-limits"
       ],
       "card_required": false,
-      "offering": "Free mode on La Plateforme — API keys plus an included monthly usage allowance",
-      "limits": "Mistral states the offer in one sentence and publishes no figure for it: \"Free mode lets you create API keys and use included monthly usage within the limits shown on the Limits page\". The limits it describes are per model — tokens per minute, requests per second, audio seconds per month — and are shown only inside an account, and paid use is documented as an extension of the same plan rather than a second one (\"It is not a separate plan for the API\"). The page names no model, which is why the Free models column here is empty (read 2026-08-14)",
+      "offering": "Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card",
+      "limits": "The Free card on mistral.ai/pricing lists \"Limited coding sessions\", \"Test Mistral models in Studio\" and \"$10 /mo in API credits\", where Pro's card says $30. The docs say where the allowance goes: \"Mistral plans are global: the same plan applies across Vibe, Studio, and API usage\", \"Free mode is the default state for new accounts\", and \"Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code. Usage consumes this monthly allowance first\" — past it, usage \"can stop until the next billing period\" unless pay-as-you-go is switched on. The quickstart asks for nothing more: \"Free mode: API access is enabled by default with no credit card required.\" What $10 buys is on the same page: \"For example, Mistral Large costs $0.5 /M tokens in and $1.5 /M tokens out.\" Free mode also has the lowest rate limits — requests per second, tokens per minute and tokens per month, shown only inside the account — and API calls may be used to improve Mistral's services unless the Admin panel's \"Anonymous improvement data\" toggle is off. The credit line appeared on the pricing page between 2026-08-11 and 2026-08-14, when Le Chat became Vibe; this row, written from the docs alone, said no figure was published until 2026-09-14",
       "models": [],
       "api": {
         "base_url": "https://api.mistral.ai/v1",
@@ -273,14 +276,14 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [],
-        "note": "Experiment tier needs account activation"
+        "note": "Free mode is on by default for a new account; create the key under Studio › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's Vibe budget, which Mistral tells API users to avoid"
       },
       "probe": {
         "type": "page-keywords",
-        "endpoint": "https://docs.mistral.ai/admin/user-management-finops/tier",
+        "endpoint": "https://mistral.ai/pricing",
         "keywords": [
-          "free mode",
-          "included monthly usage within the limits shown on the Limits page"
+          "$10 /mo in API credits",
+          "Test Mistral models in Studio"
         ],
         "free_marker": "",
         "dead_markers": [],
@@ -291,7 +294,7 @@
       "last_verified": "2026-09-12",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 94,
+      "rank": 78,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/"
     },
@@ -3245,6 +3248,40 @@
       "rank": 99,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/"
+    },
+    {
+      "id": "jetbrains-ai",
+      "name": "JetBrains AI (AI Free)",
+      "category": "trial",
+      "url": "https://www.jetbrains.com/ai/",
+      "source_urls": [
+        "https://www.jetbrains.com/help/ai-assistant/licensing-and-subscriptions.html",
+        "https://lp.jetbrains.com/ai-ides-faq/",
+        "https://www.jetbrains.com/help/ai-assistant/jetbrains-ai-subscription.html"
+      ],
+      "card_required": false,
+      "offering": "AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents",
+      "limits": "JetBrains' plans table lists \"AI Free Free 3 AI Credits per 30-days\" beside AI Pro's 10 for $10, and \"Each AI Credit equals $1 USD\"; one credit is \"about: ~10 requests to generate code in AI Chat. ~40 requests to generate code in the editor\", and \"The quota reset occurs every 30 days from the date when you first used your JetBrains AI license\". The FAQ lists what else AI Free carries: \"Unlimited code completion (powered by JetBrains’ Mellum model)\", unlimited local models through Ollama or LM Studio, and \"A limited cloud quota for third-party models\". It rides on an IDE licence: \"AI Free is available to all users with active JetBrains IDE licenses, including educational licenses, classroom licenses, open source licenses, IDE trial licenses\", but \"not available in IntelliJ IDEA without an Ultimate subscription, PyCharm without a Pro subscription, and Android Studio\" — for someone paying for nothing that means an educational or open-source licence, or the free non-commercial licence JetBrains names for RustRover, WebStorm and Rider. The optional 30-day AI Pro trial is the one step that asks for a card — to start it \"you will need to link a payment card\", and \"the trial remains free\" — and when it ends an account is \"automatically moved to the AI Free tier\"; nothing JetBrains publishes ties AI Free itself to a card. Next edit suggestions and the experimental features are not on AI Free, and the tier is \"only available in the serviceable territories, with the exception of Mainland China\". Read 2026-09-14 off the documentation, dated 22 July 2026; this list had JetBrains AI on its watchlist from 2026-08-14 as unreadable, because jetbrains.com/ai and the buy page render in the browser only",
+      "models": [],
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://lp.jetbrains.com/ai-ides-faq/",
+        "keywords": [
+          "Unlimited code completion (powered by JetBrains’ Mellum model)",
+          "A limited cloud quota for third-party models"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-14",
+      "last_verified": "2026-09-14",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 55,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/"
     }
   ],
   "watchlist": [
@@ -3531,16 +3568,6 @@
       "checked_on": "2026-08-14",
       "reason": "tabnine.com/pricing serves 187 characters of text — a client-rendered shell with the plan table assembled in the browser. Whatever its free tier is today, there is nothing in the HTML for a probe to anchor on, which is the same reason Morph is not listed.",
       "reopen_if": "Tabnine's pricing page carries its plan limits in server-rendered HTML.",
-      "current": true
-    },
-    {
-      "domains": [
-        "jetbrains.com"
-      ],
-      "name": "JetBrains AI Assistant",
-      "checked_on": "2026-08-14",
-      "reason": "jetbrains.com/ai serves 71 characters of text and the buy page is the same, so the AI Free quota cannot be read off anything this project can fetch. Recorded as unreadable rather than as absent.",
-      "reopen_if": "JetBrains publishes the AI Free quota in server-rendered HTML.",
       "current": true
     },
     {
@@ -4626,6 +4653,69 @@
       "checked_on": "2026-09-14",
       "reason": "Unreachable: monsterapi.ai and api.monsterapi.ai both answer SERVFAIL on Google's public resolver (2026-09-14), so no page or catalog can be read. The free tier OmniRoute last described was one-time trial credits with \"0 credits/month\" recurring.",
       "reopen_if": "The domain resolves again and a readable page states a free allowance.",
+      "current": true
+    },
+    {
+      "domains": [
+        "ampcode.com"
+      ],
+      "name": "Amp",
+      "checked_on": "2026-09-14",
+      "reason": "Free today only with inference you bring. The Hobby tier announced on 2026-09-13 is \"Free\" with \"Use your ChatGPT sub & other subs\", \"Bring your own keys (BYOK)\" and \"Pay-as-you-go for orbs\", and the announcement says it outright: \"Amp is now free to use when you bring your own compute and model subscriptions/keys ... You can still pay for model inference through Amp if you want, with no markup.\" The bundled lane Amp was known for is gone: its 2025-10-15 Amp Free post now opens \"Update 4: Amp Free is paused. We don't intend to bring it back\", after the ad-funded $10 a day of 2026-01-08 and \"Amp Free Is Full (For Now)\" on 2026-02-10.",
+      "reopen_if": "Amp brings back a free credit grant or a free mode that needs no subscription or key of your own.",
+      "current": true
+    },
+    {
+      "domains": [
+        "factory.ai"
+      ],
+      "name": "Factory (Droid)",
+      "checked_on": "2026-09-14",
+      "reason": "No free plan. Individual plans start at \"Pro $20 / mo\", then Plus at $100 and Max at $200, and the free-sounding parts are inside them: \"Droid Core: free open-weight model pool with separate Rate Limits after Standard Usage runs out\" and \"BYOK is free up to an allowance on all Individual plans\" both describe what a subscription includes (docs.factory.ai/pricing/individuals).",
+      "reopen_if": "Factory offers a $0 plan whose Droid Core or other model usage needs no subscription.",
+      "current": true
+    },
+    {
+      "domains": [
+        "openhands.dev",
+        "all-hands.dev"
+      ],
+      "name": "OpenHands Cloud",
+      "checked_on": "2026-09-14",
+      "reason": "The free hosted tier bundles no model usage: \"Individual Free — Bring your own key or use our providers at-cost\", ten conversations a day, and the FAQ spells out the second half — \"the OpenHands LLM provider (available within the Individual Tier), which provides multiple model options at cost, with no markup on a pay-as-you-go basis\". The agent is hosted free; the inference is yours to pay for or bring, the aider case.",
+      "reopen_if": "OpenHands Cloud includes model credits or a free model on its Individual tier.",
+      "current": true
+    },
+    {
+      "domains": [
+        "dev.meta.ai",
+        "api.meta.ai",
+        "developer.meta.com"
+      ],
+      "name": "Meta Model API (Muse Spark, Muse Code)",
+      "checked_on": "2026-09-14",
+      "reason": "Pay-as-you-go behind a card. dev.meta.ai/docs/pricing-rate-limits.md prices muse-spark-1.3 at $1.25/$4.25 per 1M and its Contributor tier — the model Cline's free lane carries as cline-free/muse-spark-1.3-contributor — at $0.10/$0.20, \"Heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models\". The help center's sign-up article: \"To start making requests, set up two more things: Add a payment method ... Create an API key.\" The docs mention \"platform free-tier credits\" with no figure; the only figure is in the site config shipped with every docs page for the dashboard's welcome dialog, \"You have $20 in free credits to start building right away\" — a one-off grant on the far side of that card. Meta's own cookbook README still says \"the preview is free\", the pricing page being the later word. Muse Code, the terminal agent on the same account, is billed per token or sold as monthly subscriptions. The help center renders only in a browser; the docs are readable as Markdown.",
+      "reopen_if": "An account can make requests without a payment method, or a docs page states the free-tier credit as a figure.",
+      "current": true
+    },
+    {
+      "domains": [
+        "qwenlm.github.io"
+      ],
+      "name": "Qwen Code (Qwen OAuth)",
+      "checked_on": "2026-09-14",
+      "reason": "The sign-in that made Qwen Code a free agent is gone, in its own docs: \"The Qwen OAuth free tier was discontinued on 2026-04-15. Existing cached tokens may continue working briefly, but new requests will be rejected.\" The /auth menu now offers Alibaba Cloud's Coding Plan (\"weekly quota included\", for a fixed monthly fee), a Token Plan, a Model Studio API key or a third-party key, which leaves a BYOK agent. Alibaba's free Model Studio quota is carried here as a row of its own.",
+      "reopen_if": "Qwen Code's auth menu offers a sign-in with a free quota again.",
+      "current": true
+    },
+    {
+      "domains": [
+        "sweep.dev"
+      ],
+      "name": "Sweep (JetBrains plugin)",
+      "checked_on": "2026-09-14",
+      "reason": "A one-off trial on Sweep's own models with nothing readable about its terms. sweep.dev/pricing offers \"Free Trial Free Try Sweep risk-free 1,000 Autocompletes $5 API credits included\", then Basic at $10 a month for unlimited autocomplete, Pro at $20 and Ultra at $60. The documentation it links answers HTTP 402 (docs.sweep.dev, 2026-09-14) and its terms and blog URLs serve the home page, so neither the trial's conditions nor whether it takes a card can be read.",
+      "reopen_if": "Sweep publishes the trial's terms on a page that answers, card or no card, or adds a recurring free allowance.",
       "current": true
     }
   ]

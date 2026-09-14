@@ -30,6 +30,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | `2026-09-12` |
 | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | 🔌 LLM APIs with free tier | `nemotron` | `2026-09-12` |
 | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a`, `north-mini-code` | `2026-09-12` |
+| [Mistral AI Studio](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8`, `qwen3-coder` | `2026-09-12` |
 | [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
@@ -38,7 +39,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) | 🔌 LLM APIs with free tier | `gpt-oss` | `2026-09-12` |
 | [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) | 🔌 LLM APIs with free tier | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | `2026-09-12` |
 | [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
-| [Mistral La Plateforme](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
 | [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-12` |
@@ -50,6 +50,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Cerebras Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/) | 🎁 Trials (no card when possible) | `gpt-oss`, `qwen3.8` | `2026-09-12` |
 | [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) | 🎁 Trials (no card when possible) | — | `2026-09-12` |
 | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) | 🎁 Trials (no card when possible) | — | `2026-09-12` |
+| [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
 | [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) | 🎁 Trials (no card when possible) | — | `2026-09-12` |
 | [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) | 🎁 Trials (no card when possible) | — | `2026-09-12` |
 | [Trae](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) | 🎁 Trials (no card when possible) | — | `2026-09-12` |

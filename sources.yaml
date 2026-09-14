@@ -939,3 +939,25 @@ read:
       2025-05-16; four hosts in the README, none a provider.
     reopen_if: >-
       It commits again with a providers table.
+
+  - url: https://github.com/tysoncung/awesome-vibe-coding
+    name: tysoncung/awesome-vibe-coding
+    checked_on: '2026-09-14'
+    reason: >-
+      A directory of AI coding tools, 19 stars, pushed 2026-09-14: about 250
+      entries across IDEs, CLIs, agents, code review, documentation, testing,
+      learning and benchmarks, and automation that only refreshes a date, a
+      tool count and broken links. Of its 114 non-GitHub domains 31 already had
+      a verdict here; almost all of the other 78 are review, analysis,
+      documentation, learning and benchmark sites outside this list's scope.
+      Its "Free Tier Options" section is nine lines, several stale against the
+      vendors' own pages — Copilot Free's "50 chat requests per month", a
+      Gemini CLI free tier, Warp's "limited credits". The yield came from
+      following its entries rather than from its claims: Mistral Vibe led to
+      Mistral's Free plan carrying "$10 /mo in API credits" since mid-August,
+      its JetBrains AI line to the AI Free quota in JetBrains' documentation —
+      both now rows — and Muse Code to Meta Model API; Amp, Factory, OpenHands
+      Cloud, Qwen Code and Sweep got verdicts the same day.
+    reopen_if: >-
+      It starts recording what each tool gives away free, with figures, rather
+      than listing tools.

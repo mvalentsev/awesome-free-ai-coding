@@ -430,16 +430,6 @@ watched:
     reopen_if: >-
       Tabnine's pricing page carries its plan limits in server-rendered HTML.
 
-  - domains: [jetbrains.com]
-    name: JetBrains AI Assistant
-    checked_on: '2026-08-14'
-    reason: >-
-      jetbrains.com/ai serves 71 characters of text and the buy page is the
-      same, so the AI Free quota cannot be read off anything this project can
-      fetch. Recorded as unreadable rather than as absent.
-    reopen_if: >-
-      JetBrains publishes the AI Free quota in server-rendered HTML.
-
   - domains: [bolt.new]
     name: Bolt.new
     checked_on: '2026-08-14'
@@ -2274,3 +2264,101 @@ watched:
       with "0 credits/month" recurring.
     reopen_if: >-
       The domain resolves again and a readable page states a free allowance.
+
+  - domains: [ampcode.com]
+    name: Amp
+    checked_on: '2026-09-14'
+    reason: >-
+      Free today only with inference you bring. The Hobby tier announced on
+      2026-09-13 is "Free" with "Use your ChatGPT sub & other subs", "Bring
+      your own keys (BYOK)" and "Pay-as-you-go for orbs", and the announcement
+      says it outright: "Amp is now free to use when you bring your own compute
+      and model subscriptions/keys ... You can still pay for model inference
+      through Amp if you want, with no markup." The bundled lane Amp was known
+      for is gone: its 2025-10-15 Amp Free post now opens "Update 4: Amp Free
+      is paused. We don't intend to bring it back", after the ad-funded $10 a
+      day of 2026-01-08 and "Amp Free Is Full (For Now)" on 2026-02-10.
+    reopen_if: >-
+      Amp brings back a free credit grant or a free mode that needs no
+      subscription or key of your own.
+
+  - domains: [factory.ai]
+    name: Factory (Droid)
+    checked_on: '2026-09-14'
+    reason: >-
+      No free plan. Individual plans start at "Pro $20 / mo", then Plus at
+      $100 and Max at $200, and the free-sounding parts are inside them:
+      "Droid Core: free open-weight model pool with separate Rate Limits after
+      Standard Usage runs out" and "BYOK is free up to an allowance on all
+      Individual plans" both describe what a subscription includes
+      (docs.factory.ai/pricing/individuals).
+    reopen_if: >-
+      Factory offers a $0 plan whose Droid Core or other model usage needs no
+      subscription.
+
+  - domains: [openhands.dev, all-hands.dev]
+    name: OpenHands Cloud
+    checked_on: '2026-09-14'
+    reason: >-
+      The free hosted tier bundles no model usage: "Individual Free — Bring
+      your own key or use our providers at-cost", ten conversations a day, and
+      the FAQ spells out the second half — "the OpenHands LLM provider
+      (available within the Individual Tier), which provides multiple model
+      options at cost, with no markup on a pay-as-you-go basis". The agent is
+      hosted free; the inference is yours to pay for or bring, the aider case.
+    reopen_if: >-
+      OpenHands Cloud includes model credits or a free model on its Individual
+      tier.
+
+  - domains: [dev.meta.ai, api.meta.ai, developer.meta.com]
+    name: Meta Model API (Muse Spark, Muse Code)
+    checked_on: '2026-09-14'
+    reason: >-
+      Pay-as-you-go behind a card. dev.meta.ai/docs/pricing-rate-limits.md
+      prices muse-spark-1.3 at $1.25/$4.25 per 1M and its Contributor tier —
+      the model Cline's free lane carries as
+      cline-free/muse-spark-1.3-contributor — at $0.10/$0.20, "Heavily
+      discounted token pricing in exchange for permission to use your prompts
+      and completions to train future Meta models". The help center's sign-up
+      article: "To start making
+      requests, set up two more things: Add a payment method ... Create an API
+      key." The docs mention "platform free-tier credits" with no figure; the
+      only figure is in the site config shipped with every docs page for the
+      dashboard's welcome dialog, "You have $20 in free credits to start
+      building right away" — a one-off grant on the far side of that card.
+      Meta's own cookbook README still says "the preview is free", the pricing
+      page being the later word. Muse Code, the terminal agent on the same
+      account, is billed per token or sold as monthly subscriptions. The help
+      center renders only in a browser; the docs are readable as Markdown.
+    reopen_if: >-
+      An account can make requests without a payment method, or a docs page
+      states the free-tier credit as a figure.
+
+  - domains: [qwenlm.github.io]
+    name: Qwen Code (Qwen OAuth)
+    checked_on: '2026-09-14'
+    reason: >-
+      The sign-in that made Qwen Code a free agent is gone, in its own docs:
+      "The Qwen OAuth free tier was discontinued on 2026-04-15. Existing cached
+      tokens may continue working briefly, but new requests will be
+      rejected." The /auth menu now offers Alibaba Cloud's Coding Plan ("weekly
+      quota included", for a fixed monthly fee), a Token Plan, a Model Studio
+      API key or a third-party key, which leaves a BYOK agent. Alibaba's free
+      Model Studio quota is carried here as a row of its own.
+    reopen_if: >-
+      Qwen Code's auth menu offers a sign-in with a free quota again.
+
+  - domains: [sweep.dev]
+    name: Sweep (JetBrains plugin)
+    checked_on: '2026-09-14'
+    reason: >-
+      A one-off trial on Sweep's own models with nothing readable about its
+      terms. sweep.dev/pricing offers "Free Trial Free Try Sweep risk-free
+      1,000 Autocompletes $5 API credits included", then Basic at $10 a month
+      for unlimited autocomplete, Pro at $20 and Ultra at $60. The
+      documentation it links answers HTTP 402 (docs.sweep.dev, 2026-09-14) and
+      its terms and blog URLs serve the home page, so neither the trial's
+      conditions nor whether it takes a card can be read.
+    reopen_if: >-
+      Sweep publishes the trial's terms on a page that answers, card or no
+      card, or adds a recurring free allowance.

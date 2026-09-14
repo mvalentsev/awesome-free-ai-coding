@@ -773,6 +773,15 @@
         }
       }
     },
+    "mistral-free": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Mistral AI Studio",
+      "options": {
+        "baseURL": "https://api.mistral.ai/v1",
+        "apiKey": "{env:MISTRAL_API_KEY}"
+      },
+      "models": {}
+    },
     "huggingface-inference": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Hugging Face Inference Providers",
@@ -1007,15 +1016,6 @@
           "name": "claude-opus-4-8"
         }
       }
-    },
-    "mistral-free": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Mistral La Plateforme",
-      "options": {
-        "baseURL": "https://api.mistral.ai/v1",
-        "apiKey": "{env:MISTRAL_API_KEY}"
-      },
-      "models": {}
     },
     "standardcompute": {
       "npm": "@ai-sdk/openai-compatible",

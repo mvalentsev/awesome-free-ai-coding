@@ -270,20 +270,33 @@ entries:
   provisional: false
   rank: 35
 - id: mistral-free
-  name: Mistral La Plateforme
+  name: Mistral AI Studio
   category: api-free-tier
   url: https://mistral.ai
   source_urls:
-  - https://docs.mistral.ai/admin/user-management-finops/tier
+  - https://mistral.ai/pricing
+  - https://docs.mistral.ai/admin/billing-usage/subscriptions
+  - https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key
+  - https://docs.mistral.ai/admin/billing-usage/usage-limits
   card_required: false
-  offering: Free mode on La Plateforme — API keys plus an included monthly usage allowance
-  limits: 'Mistral states the offer in one sentence and publishes no figure for it:
-    "Free mode lets you create API keys and use included monthly usage within the
-    limits shown on the Limits page". The limits it describes are per model — tokens
-    per minute, requests per second, audio seconds per month — and are shown only
-    inside an account, and paid use is documented as an extension of the same plan
-    rather than a second one ("It is not a separate plan for the API"). The page names
-    no model, which is why the Free models column here is empty (read 2026-08-14)'
+  offering: Mistral's Free plan — API keys with $10 a month of included usage, shared
+    by the API, Studio and the Vibe coding CLI, no card
+  limits: 'The Free card on mistral.ai/pricing lists "Limited coding sessions", "Test
+    Mistral models in Studio" and "$10 /mo in API credits", where Pro''s card says
+    $30. The docs say where the allowance goes: "Mistral plans are global: the same
+    plan applies across Vibe, Studio, and API usage", "Free mode is the default state
+    for new accounts", and "Each Mistral plan includes monthly usage that is shared
+    across Studio, the API, and Vibe Code. Usage consumes this monthly allowance first"
+    — past it, usage "can stop until the next billing period" unless pay-as-you-go
+    is switched on. The quickstart asks for nothing more: "Free mode: API access is
+    enabled by default with no credit card required." What $10 buys is on the same
+    page: "For example, Mistral Large costs $0.5 /M tokens in and $1.5 /M tokens out."
+    Free mode also has the lowest rate limits — requests per second, tokens per minute
+    and tokens per month, shown only inside the account — and API calls may be used
+    to improve Mistral''s services unless the Admin panel''s "Anonymous improvement
+    data" toggle is off. The credit line appeared on the pricing page between 2026-08-11
+    and 2026-08-14, when Le Chat became Vibe; this row, written from the docs alone,
+    said no figure was published until 2026-09-14'
   models: []
   api:
     base_url: https://api.mistral.ai/v1
@@ -291,13 +304,15 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids: []
-    note: Experiment tier needs account activation
+    note: Free mode is on by default for a new account; create the key under Studio
+      › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's
+      Vibe budget, which Mistral tells API users to avoid
   probe:
     type: page-keywords
-    endpoint: https://docs.mistral.ai/admin/user-management-finops/tier
+    endpoint: https://mistral.ai/pricing
     keywords:
-    - free mode
-    - included monthly usage within the limits shown on the Limits page
+    - $10 /mo in API credits
+    - Test Mistral models in Studio
     free_marker: ''
     dead_markers: []
     require_zero_price: false
@@ -306,7 +321,7 @@ entries:
   last_verified: '2026-09-12'
   probe_failures: 0
   provisional: false
-  rank: 94
+  rank: 78
 - id: github-models
   name: GitHub Models
   category: api-free-tier
@@ -3439,3 +3454,52 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 99
+- id: jetbrains-ai
+  name: JetBrains AI (AI Free)
+  category: trial
+  url: https://www.jetbrains.com/ai/
+  source_urls:
+  - https://www.jetbrains.com/help/ai-assistant/licensing-and-subscriptions.html
+  - https://lp.jetbrains.com/ai-ides-faq/
+  - https://www.jetbrains.com/help/ai-assistant/jetbrains-ai-subscription.html
+  card_required: false
+  offering: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum
+    model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents
+  limits: 'JetBrains'' plans table lists "AI Free Free 3 AI Credits per 30-days" beside
+    AI Pro''s 10 for $10, and "Each AI Credit equals $1 USD"; one credit is "about:
+    ~10 requests to generate code in AI Chat. ~40 requests to generate code in the
+    editor", and "The quota reset occurs every 30 days from the date when you first
+    used your JetBrains AI license". The FAQ lists what else AI Free carries: "Unlimited
+    code completion (powered by JetBrains’ Mellum model)", unlimited local models
+    through Ollama or LM Studio, and "A limited cloud quota for third-party models".
+    It rides on an IDE licence: "AI Free is available to all users with active JetBrains
+    IDE licenses, including educational licenses, classroom licenses, open source
+    licenses, IDE trial licenses", but "not available in IntelliJ IDEA without an
+    Ultimate subscription, PyCharm without a Pro subscription, and Android Studio"
+    — for someone paying for nothing that means an educational or open-source licence,
+    or the free non-commercial licence JetBrains names for RustRover, WebStorm and
+    Rider. The optional 30-day AI Pro trial is the one step that asks for a card —
+    to start it "you will need to link a payment card", and "the trial remains free"
+    — and when it ends an account is "automatically moved to the AI Free tier"; nothing
+    JetBrains publishes ties AI Free itself to a card. Next edit suggestions and the
+    experimental features are not on AI Free, and the tier is "only available in the
+    serviceable territories, with the exception of Mainland China". Read 2026-09-14
+    off the documentation, dated 22 July 2026; this list had JetBrains AI on its watchlist
+    from 2026-08-14 as unreadable, because jetbrains.com/ai and the buy page render
+    in the browser only'
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://lp.jetbrains.com/ai-ides-faq/
+    keywords:
+    - Unlimited code completion (powered by JetBrains’ Mellum model)
+    - A limited cloud quota for third-party models
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-14'
+  last_verified: '2026-09-14'
+  probe_failures: 0
+  provisional: true
+  rank: 55
