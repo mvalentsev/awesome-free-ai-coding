@@ -529,6 +529,12 @@
         },
         "inclusionai/ling-3.0-flash-sante": {
           "name": "inclusionai/ling-3.0-flash-sante"
+        },
+        "agnes/agnes-3.0-flash": {
+          "name": "agnes/agnes-3.0-flash"
+        },
+        "agnes/agnes-2.5-flash": {
+          "name": "agnes/agnes-2.5-flash"
         }
       }
     },

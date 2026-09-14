@@ -691,6 +691,16 @@ model_list:
     model: openai/inclusionai/ling-3.0-flash-sante
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/agnes/agnes-3.0-flash
+  litellm_params:
+    model: openai/agnes/agnes-3.0-flash
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/agnes/agnes-2.5-flash
+  litellm_params:
+    model: openai/agnes/agnes-2.5-flash
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
   litellm_params:
     model: openai/DeepSeek-V3.1
