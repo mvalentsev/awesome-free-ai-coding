@@ -2,8 +2,6 @@
 # Matching is by domain suffix: "puter.com" also blocks developer.puter.com.
 - domain: puter.com
   reason: browser-only SDK (User-Pays model), not an HTTP endpoint usable from coding agents
-- domain: cline.bot
-  reason: free tool but BYOK-only, no bundled free model usage
 - domain: aider.chat
   reason: free tool but BYOK-only, no bundled free model usage
 - domain: gonka-api.org
@@ -37,7 +35,7 @@
     re-exposes the OAuth session of a paid CLI subscription — Codex, Claude Code,
     Antigravity, Grok, Kimi Code — as a local OpenAI/Anthropic endpoint. It issues
     no keys and bundles no model usage, so it fails the registry bar the same way
-    cline and aider do, and its whole ecosystem sells that on the tagline "no API
+    aider does, and its whole ecosystem sells that on the tagline "no API
     keys needed", which is the client-identity pattern omniroute.online is already
     here for. Its README is also the wrong place to read for leads — the provider
     table is five vendor blurbs behind affiliate links, and the sponsor block is
@@ -46,13 +44,13 @@
     Its own "More choices" section links OmniRoute
 - domain: voideditor.com
   reason: >-
-    BYOK-only by design, the zed.dev case — Void's own home page sells it as
+    BYOK-only by design, the aider.chat case — Void's own home page sells it as
     "Void doesn't send your messages through a private backend like Cursor or
     Windsurf. Cut out the middleman and connect directly", so there is no
     backend that could bundle model usage and the free editor grants none.
 - domain: roocode.com
   reason: >-
-    BYOK-only, the cline.bot case. Every path on roocode.com 301s to
+    BYOK-only, the aider.chat case. Every path on roocode.com 301s to
     roomote.dev, the same team's cloud agent, whose split of the work is
     "Us. Hosting, networking, sandboxes, upgrades / You. Inference key" beside
     a 7-day trial and then $49/mo. Kilo Code, which forked Roo Code, is listed
@@ -141,7 +139,7 @@
     Cursor … Continue was acquired by Cursor", continue.dev/pricing is a GitHub
     Pages 404 and hub.continue.dev no longer resolves (measured 2026-08-14).
     The open-source extension "remains freely available" and was BYOK-only
-    anyway, the cline.bot case, so nothing here bundles model usage.
+    anyway, the aider.chat case, so nothing here bundles model usage.
 - domain: hub.continue.dev
   reason: >-
     Continue's model hub, listed separately because third-party lists still

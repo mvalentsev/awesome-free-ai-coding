@@ -17,6 +17,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) | 🤖 Coding agents & CLIs | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1` | `2026-09-12` |
 | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) | 🤖 Coding agents & CLIs | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | `2026-09-12` |
 | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `gpt-5.6-luna`, `deepseek-v4-flash`, `mimo-v2.5` | `2026-09-12` |
+| [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | `deepseek-v4-flash`, `laguna-s-2.1` | `2026-09-14` |
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-12` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-12` |
 | [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) | 🤖 Coding agents & CLIs | — | `2026-09-12` |

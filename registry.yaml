@@ -3256,3 +3256,56 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 93
+- id: cline
+  name: Cline
+  category: agent-cli
+  url: https://cline.bot
+  source_urls:
+  - https://docs.cline.bot/getting-started/free-models
+  - https://api.cline.bot/api/v1/ai/cline/recommended-models
+  - https://docs.cline.bot/getting-started/cline-provider
+  card_required: false
+  offering: Open-source coding agent for VS Code, JetBrains and the terminal; signing
+    in to its own Cline provider unlocks a rotating set of free models, each with
+    a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and
+    BYOK
+  limits: '"Cline periodically offers free model promotions that let you try select
+    models at no cost, up to a limited usage quota", and "Free models are available
+    to any user with a Cline account" — a sign-in with Google, GitHub or email; the
+    docs ask for no card. No figure is published for the quota. It is counted per
+    model and per day, which is how Cline''s own clients word the stop — "You''ve
+    reached today''s free usage limit for this model". The lane is the free list the
+    model picker reads, keyless at api.cline.bot, and on 2026-09-14 it held six ids:
+    cline-free/muse-spark-1.3-contributor, deepseek/deepseek-v4-flash, z-ai/glm-5.3-flash,
+    cline-free/solar-pro4, cline-free/longcat-2.0 and poolside/laguna-s-2.1:free.
+    It turns over, "on a rotating, limited-time basis": the screenshots Cline committed
+    to its docs on 2026-07-29 show GLM-5.2, Laguna S 2.1, DeepSeek V4 Flash and Step
+    3.7 Flash, and its 2026-08-11 post put Nemotron 3.5 Lightning in the FREE dropdown,
+    yet by 2026-09-14 only DeepSeek V4 Flash and Laguna S 2.1 were still in the lane,
+    and only those two are in the Models column. Two limits the free-models page states
+    outright: "Free model usage is not supported through the Cline API. Free models
+    are only available in the Cline IDE Extension and CLI" — the API guide''s own
+    "Try a Free Model" example, minimax/minimax-m2.5, is a metered row in the provider''s
+    catalog — and "Free model usage may be used to help improve model performance
+    and quality"'
+  models:
+  - family: deepseek-v4-flash
+    tier: strong
+    released: ''
+  - family: laguna-s-2.1
+    tier: strong
+    released: 2026-07
+  probe:
+    type: api-models
+    endpoint: https://api.cline.bot/api/v1/ai/cline/recommended-models
+    keywords: []
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+    lane: free
+  first_seen: '2026-09-14'
+  last_verified: '2026-09-14'
+  probe_failures: 0
+  provisional: true
+  rank: 29

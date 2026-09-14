@@ -306,8 +306,8 @@ watched:
       "Bring your own AI inference", while the 1,500 included credits begin on
       the $20 Build plan. Third-party lists still credit the free plan with 150
       then 75 AI credits a month; that allowance is no longer on the vendor's
-      own page. A terminal that asks for your own key is the cline and aider
-      case, not the opencode one.
+      own page. A terminal that asks for your own key is the aider case, not
+      the opencode one.
     reopen_if: >-
       The Free plan on warp.dev/pricing lists an included monthly credit or
       token allowance instead of pay-as-you-go reloads.
