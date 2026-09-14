@@ -974,9 +974,12 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         build_claude_code_sh(entries, today) + "\n", encoding="utf-8")
     (configs / "litellm.yaml").write_text(
         "# Free LLM providers as a LiteLLM proxy config — generated from\n"
-        "# registry.yaml, do not edit by hand. Run: litellm --config litellm.yaml\n"
-        "# Keys come from the environment (see free-llm.env.example); entries\n"
-        "# marked `api_key: none` need no account at all.\n"
+        "# registry.yaml, do not edit by hand.\n"
+        "# Run: litellm --config litellm.yaml --host 127.0.0.1\n"
+        "# The proxy listens on 0.0.0.0 unless --host says otherwise, and this file\n"
+        "# sets no master_key, so without that flag anyone on your network can spend\n"
+        "# the keys it reads from the environment (see free-llm.env.example).\n"
+        "# Entries marked `api_key: none` need no account at all.\n"
         + yaml.safe_dump(build_litellm_config(entries, today), sort_keys=False,
                          allow_unicode=True),
         encoding="utf-8")

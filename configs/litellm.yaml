@@ -1,7 +1,10 @@
 # Free LLM providers as a LiteLLM proxy config — generated from
-# registry.yaml, do not edit by hand. Run: litellm --config litellm.yaml
-# Keys come from the environment (see free-llm.env.example); entries
-# marked `api_key: none` need no account at all.
+# registry.yaml, do not edit by hand.
+# Run: litellm --config litellm.yaml --host 127.0.0.1
+# The proxy listens on 0.0.0.0 unless --host says otherwise, and this file
+# sets no master_key, so without that flag anyone on your network can spend
+# the keys it reads from the environment (see free-llm.env.example).
+# Entries marked `api_key: none` need no account at all.
 model_list:
 - model_name: google-ai-studio/gemini-3.8-flash
   litellm_params:

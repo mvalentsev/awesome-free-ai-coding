@@ -786,6 +786,24 @@ def test_an_archived_provider_page_says_so_and_why():
     assert "3 failed probes" in page
 
 
+def test_the_litellm_command_this_repo_prints_listens_on_localhost_only(tmp_path: Path):
+    """LiteLLM's proxy binds 0.0.0.0 unless told otherwise (`--host` defaults to
+    it in proxy_cli.py), and the config this repo generates sets no master key —
+    the reader's own provider keys ride in from the environment. Run as printed,
+    it put every one of those keys in front of the whole network the laptop was
+    on. Both places the command is printed name the loopback address."""
+    import re
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(api={"base_url": "https://api.x.ai/v1", "model_ids": ["m"]})])
+    render_artifacts(reg, tmp_path, today=TODAY)
+    readme = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    header = (tmp_path / "configs" / "litellm.yaml").read_text(encoding="utf-8")
+    for text in (header, readme):
+        commands = re.findall(r"litellm --config \S+[^`\n]*", text)
+        assert commands and all("--host 127.0.0.1" in c for c in commands), commands
+
+
 def test_render_writes_a_page_per_entry_and_removes_the_stale_ones(tmp_path: Path):
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
