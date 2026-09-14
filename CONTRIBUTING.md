@@ -33,7 +33,10 @@ back in every pull request.
 **If your suggestion is declined, it probably lands in
 [`watchlist.yaml`](watchlist.yaml), not the blocklist.** Most services checked
 here are legitimate and simply have nothing free today, or publish their offer
-only on a page no probe can read. That verdict is recorded with its date, its
+only on a page no probe can read. A BYOK-only tool is one of those: it can grow a
+free lane of its own, and Cline did — it sat on the blocklist for two months as
+"BYOK-only" while its sign-in provider was handing out free models, because a
+blocklist verdict never expires and so is never checked again. That verdict is recorded with its date, its
 reason and a `reopen_if` naming the evidence that would change it — and it
 expires after 90 days, at which point the scout is free to raise the service
 again. If you can supply what `reopen_if` asks for, open the issue again; if the

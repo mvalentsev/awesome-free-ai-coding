@@ -428,11 +428,15 @@ class Watched(BaseModel):
     tier a developer can reach today.
 
     The registry had two states and needed three. `blocklist.yaml` is a verdict
-    on the *service* — BYOK-only, pooled piracy, hostile to agents — and it is
-    meant to be permanent, so putting a legitimate vendor there buries it on the
-    day it opens a free lane. Leaving it in neither file is what actually
-    happened to tokenrouter.io and LLM7: nothing recorded the decision, so the
-    scout re-proposed them and a reviewer re-derived the same "no" from scratch.
+    on the *service* — pooled piracy, spoofed clients, hostile to agents, a
+    product that is gone — and it is meant to be permanent, so putting a
+    legitimate vendor there buries it on the day it opens a free lane. BYOK-only
+    was on that list once and is the proof: Cline sat on the blocklist as a tool
+    with no bundled usage for two months while its own provider handed out free
+    models, because a permanent verdict is never read again. Leaving it in
+    neither file is what actually happened to tokenrouter.io and LLM7: nothing
+    recorded the decision, so the scout re-proposed them and a reviewer
+    re-derived the same "no" from scratch.
 
     This is a verdict on the *offer, on a date*. `checked_on` is what makes it
     different from a quiet blocklist — it expires. `reopen_if` names the evidence

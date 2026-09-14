@@ -1,19 +1,35 @@
 # Domains the scout must never propose (and reviewers rejected for cause).
-# Matching is by domain suffix: "puter.com" also blocks developer.puter.com.
-- domain: puter.com
-  reason: browser-only SDK (User-Pays model), not an HTTP endpoint usable from coding agents
-- domain: aider.chat
-  reason: free tool but BYOK-only, no bundled free model usage
+# Matching is by domain suffix: "llm7.io" also blocks api.llm7.io.
+#
+# A cause is something about the service that no new offer changes: reverse
+# engineering, pooled accounts, spoofed clients, hostility to agents, a product
+# that is gone. "Nothing free today" is not one — that verdict goes to
+# watchlist.yaml, which expires and gets looked at again. BYOK-only tools used
+# to be filed here, and Cline sat on this list for two months as one while its
+# own provider was handing out free models (moved 2026-09-14, with aider,
+# Roomote and Puter going to the watchlist the same day).
 - domain: gonka-api.org
   reason: hostile to AI agents — /for-agents page carries prompt-injection instructing
     secret exfiltration and referral spam; do not list, do not fetch
 - domain: omniroute.online
   reason: self-hosted BYOK router (localhost endpoint, no bundled credits or hosted
     free tier); ships client-identity spoofing for proprietary CLI channels, so its
-    free-access claims are not evidence of official free tiers
+    free-access claims are not evidence of official free tiers. Since 2026-09 the
+    site reads "OmniRoute has joined Cheaper Inference" and offers
+    cheaperinference.com as the hosted route — a prepaid marketplace ("Fund from
+    $5") selling "discounted AI models" at 30-60% off and asking providers to
+    "turn unused inference capacity into revenue", with no free lane (read
+    2026-09-14)
 - domain: g4f.space
   reason: gpt4free-style pooled/reverse-engineered access to paid models, not an
     official free tier
+- domain: g4f.dev
+  reason: >-
+    Where g4f.space redirects now — gpt4free's own site under a new name, and
+    it states the case for the verdict above itself: "Free & Unlimited Next
+    Generation AI Access", "No paywalls, no rate limits, no hidden fees. Get
+    full access to premium AI capabilities completely free, forever" (read
+    2026-09-14).
 - domain: api.airforce
   reason: pooled/reverse-engineered gateway of the g4f family — no official free offer
 - domain: theoldllm.vercel.app
@@ -44,21 +60,23 @@
     Its own "More choices" section links OmniRoute
 - domain: voideditor.com
   reason: >-
-    BYOK-only by design, the aider.chat case — Void's own home page sells it as
-    "Void doesn't send your messages through a private backend like Cursor or
-    Windsurf. Cut out the middleman and connect directly", so there is no
-    backend that could bundle model usage and the free editor grants none.
+    The product has stopped: github.com/voideditor/void was archived after its
+    last push on 2026-06-02, and it was BYOK-only by design before that — the
+    home page still sells it as "Void doesn't send your messages through a
+    private backend like Cursor or Windsurf. Cut out the middleman and connect
+    directly", so there was never a backend that could bundle model usage, and
+    there is nobody left to add one.
 - domain: roocode.com
   reason: >-
-    BYOK-only, the aider.chat case. Every path on roocode.com 301s to
-    roomote.dev, the same team's cloud agent, whose split of the work is
-    "Us. Hosting, networking, sandboxes, upgrades / You. Inference key" beside
-    a 7-day trial and then $49/mo. Kilo Code, which forked Roo Code, is listed
-    here instead precisely because it ships model usage of its own.
-- domain: roomote.dev
-  reason: >-
-    Where roocode.com now points — model-agnostic BYOK by its own home page,
-    so the free trial buys hosting and never inference.
+    The product is gone. docs.roocode.com (now roocodeinc.github.io/Roo-Code)
+    opens with "The Roo Code Extension was shut down on May 15th",
+    github.com/RooCodeInc/Roo-Code is archived, api.roocode.com answers "Roo
+    Code Cloud is shutting down ... unused account balances are being refunded
+    automatically", and every path on roocode.com redirects to roomote.dev, the
+    team's cloud agent, which has a watchlist verdict of its own. The shutdown
+    notice sends users to Zoo Code, the community fork, watchlisted the same
+    day (2026-09-14). Kilo Code, an earlier fork, is listed because it ships
+    model usage of its own.
 - domain: chatanywhere.tech
   reason: >-
     Its own README (chatanywhere/GPT_API_free, 40k stars) admits the method in

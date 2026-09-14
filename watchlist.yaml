@@ -1954,3 +1954,80 @@ watched:
     reopen_if: >-
       clarifai.com or api.clarifai.com answers an ordinary HTTP client again,
       and the page it serves states the free tier.
+
+  - domains: [aider.chat]
+    name: aider
+    checked_on: '2026-09-14'
+    reason: >-
+      Moved here from the blocklist, where it sat as "BYOK-only, no bundled
+      free model usage". That is true of aider and it is still a verdict on an
+      offer, not on the tool — Cline sat on the blocklist under the same words
+      for two months while its own provider handed out free models, because
+      nothing on that list ever comes up for a re-check. aider ships no provider of its
+      own: its model docs send readers to other vendors' free tiers — "Aider
+      works with a number of free API providers: OpenRouter offers free access
+      to many models, with limitations on daily usage", Gemini beside it — which
+      this list carries directly. The repository was last pushed on 2026-05-22.
+    reopen_if: >-
+      aider ships a hosted provider or a sign-in of its own that includes model
+      usage.
+
+  - domains: [roomote.dev]
+    name: Roomote
+    checked_on: '2026-09-14'
+    reason: >-
+      Moved here from the blocklist for the reason aider was: BYOK-only
+      describes what is offered today, not the company. Roomote is the cloud
+      coding agent the Roo Code team shut Roo Code down to build, and it
+      bundles no inference — "Every plan includes app hosting and a sandbox
+      provider — you just bring an inference key from any provider we
+      support". What is free is the hosting: "a free 7-day trial, no credit
+      card" on Roomote Cloud, then from $49/mo, and self-hosting that "is free
+      for up to 10 users". Neither buys a token.
+    reopen_if: >-
+      A Roomote plan, trial or self-hosted tier includes model usage instead of
+      asking for an inference key.
+
+  - domains: [puter.com]
+    name: Puter
+    checked_on: '2026-09-14'
+    reason: >-
+      Moved here from the blocklist, where it sat as a browser-only SDK with no
+      HTTP endpoint a coding agent could use. That stopped being true: Puter now
+      serves an OpenAI-compatible endpoint at api.puter.com/puterai/openai/v1
+      and an Anthropic-compatible one at api.puter.com/puterai/anthropic, with
+      its own tutorials for Claude Code, Cline and Kilo Code, and "every Puter
+      account includes an allowance of storage, database, and AI usage at no
+      charge". The two do not meet. Its rate-limits page says the compatible
+      endpoints "additionally require a paid plan — a free account calling
+      them gets 402 subscription_required", while the free allowance runs
+      through puter.ai.* and /drivers/call, which no coding agent speaks, and
+      the size of that allowance is shown only in the dashboard. The site's
+      "Free, Unlimited Claude API" tutorials are the marketing half of the same
+      site, not what its docs describe.
+    reopen_if: >-
+      A free Puter account can call the OpenAI- or Anthropic-compatible
+      endpoint without a paid plan.
+
+  - domains: [zoocode.dev]
+    name: Zoo Code
+    checked_on: '2026-09-14'
+    reason: >-
+      The community fork that carried on when Roo Code shut down, and the one
+      Roo Code's own shutdown notice recommends. Its release notes invite users
+      to take the Zoo Gateway key "to any OpenAI-compatible client or
+      workflow", but the gateway is prepaid — the terms
+      read "Zoo Code credits are prepaid units" and "Minimum purchase amount is
+      $5 USD", non-refundable, and name no company. The public catalog behind
+      zoocode.dev/models serves 251 models at Vercel AI Gateway's own rates
+      plus a ninth (minimax/minimax-m3 at $0.3333/$1.3333 against Vercel's
+      $0.30/$1.20), and the seven it prices at zero are exactly Vercel's seven
+      — the Ling 3.0 Flash Fin, Sante and VL ids and laguna-s-2.1-free —
+      already on this list under Vercel AI Gateway. The v3.82.0 release notes
+      promise "free access to MiniMax-M3 through Zoo Gateway" for a limited
+      time while the same catalog prices it, and no page says an account
+      without credits can call anything. Read 2026-09-14.
+    reopen_if: >-
+      Zoo's docs or terms state that an account without purchased credits can
+      call Zoo Gateway models, or MiniMax-M3 appears at zero in its public
+      catalog.
