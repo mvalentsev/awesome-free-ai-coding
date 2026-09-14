@@ -124,6 +124,39 @@ def test_gather_evidence_stores_the_excerpt_not_the_whole_feed(monkeypatch):
 
 
 @respx.mock
+def test_a_feed_url_fragment_starts_the_read_at_that_heading(monkeypatch):
+    """OmniRoute's FREE_TIERS.md, measured 2026-09-14: 55,699 characters, the
+    per-provider table at character 31,042 and its changelog after it — and
+    both ends of the budget are prose, so the scout had read the methodology
+    twice a week and the table never. A fragment names the heading the read
+    starts from; a heading the file no longer carries falls back to the whole
+    file rather than to nothing."""
+    import freetier_radar.discovery as disc
+    feed = "https://raw.example.com/FREE_TIERS.md#per-provider-free-tier"
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [feed])
+    monkeypatch.setattr(disc, "FEED_TEXT_LIMIT", 120)
+    respx.get("https://hn.algolia.com/api/v1/search").mock(
+        return_value=httpx.Response(200, json={"hits": []}))
+    respx.get("https://api.github.com/search/repositories").mock(
+        return_value=httpx.Response(200, json={"items": []}))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={}))
+    page = ("# Free Tiers\n" + "methodology prose. " * 40 +
+            "\n## Per-provider free-tier (refreshed 2026-09-02)\n| `nara` | recurring |\n")
+    route = respx.get("https://raw.example.com/FREE_TIERS.md").mock(
+        return_value=httpx.Response(200, text=page))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c)
+    assert route.called
+    assert ev.feeds[feed].startswith("## Per-provider free-tier")
+    assert "`nara`" in ev.feeds[feed] and "methodology prose" not in ev.feeds[feed]
+
+    route.mock(return_value=httpx.Response(200, text="# Renamed\n| `nara` | recurring |\n"))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c)
+    assert ev.feeds[feed] == "# Renamed\n| `nara` | recurring |\n"
+
+
+@respx.mock
 def test_gather_evidence_collects_the_models_dev_digest(monkeypatch):
     import freetier_radar.discovery as disc
     monkeypatch.setattr(disc, "CURATED_FEEDS", [])

@@ -15,6 +15,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from typing import Callable, Mapping
+from urllib.parse import urlparse
 
 import httpx
 
@@ -52,7 +53,13 @@ CURATED_FEEDS = [
     # half is the useful half twice over: it names what it has just REMOVED
     # (chutes, phind, kluster, aimlapi, yi) as well as what it has just added,
     # which is the half a list normally leaves out.
-    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/reference/FREE_TIERS.md",
+    # Read from its per-provider table on since 2026-09-14. By then the served file
+    # was 48,843 characters and both ends of the excerpt were prose — TL;DR and
+    # methodology at the head, the changelog's tail and a glossary at the end —
+    # while the table (from character 24,368) sat in the elided middle, so the
+    # scout had never seen the rows that made this a feed. The LLM vendors those
+    # rows and the changelog name without a verdict here got one the same day.
+    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/reference/FREE_TIERS.md#per-provider-free-tier",
     # A directory rather than a router: 30 providers in one table with a free-model
     # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
     # The card column is the only machine-readable answer to that question anywhere
@@ -233,6 +240,33 @@ def _feed_excerpt(text: str, limit: int = FEED_TEXT_LIMIT) -> str:
         return text
     head = int(limit * 0.75)
     return f"{text[:head]}\n… {len(text) - limit} characters elided …\n{text[head - limit:]}"
+
+
+def _slug(heading: str) -> str:
+    """A Markdown heading the way GitHub anchors it: lowercase, punctuation
+    dropped, spaces as hyphens."""
+    return re.sub(r"\s+", "-", re.sub(r"[^\w\s-]", "", heading.lower()).strip())
+
+
+def _feed_section(text: str, url: str) -> str:
+    """The part of a feed its URL's fragment points at, from that heading on.
+
+    Both ends of a long file are not always where its leads are. OmniRoute's
+    FREE_TIERS.md opens with fifteen thousand characters of methodology and
+    closes on a glossary, and the per-provider table sat at character 31,042 of
+    55,699 — inside the elided middle on every run until 2026-09-14. A fragment
+    is how a feed says which section is the data, and it costs nothing: the
+    fetch drops it, and `_source_key` never read it. The heading is matched as a
+    prefix of its anchor, so a date the project appends to the title does not
+    break the match; a heading that is gone falls back to the whole file.
+    """
+    fragment = urlparse(url).fragment.lower()
+    if not fragment:
+        return text
+    for m in re.finditer(r"^#{1,6}\s+(.+?)\s*$", text, re.M):
+        if _slug(m.group(1)).startswith(fragment):
+            return text[m.start():]
+    return text
 
 
 def _timeout_within(left: float | None) -> httpx.Timeout:
@@ -446,7 +480,7 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
             try:
                 r = client.get(feed)
                 r.raise_for_status()
-                ev.feeds[feed] = _feed_excerpt(r.text, FEED_TEXT_LIMIT)
+                ev.feeds[feed] = _feed_excerpt(_feed_section(r.text, feed), FEED_TEXT_LIMIT)
             except httpx.HTTPError:
                 continue
         if ev.feeds:
