@@ -36,6 +36,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+- *next scheduled run* — Added to the list: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 - `2026-07-19` — Delisted
 - `2026-07-19` — Added to the list: Open-source (Apache-2.0) autonomous coding agent for VS Code, JetBrains and CLI; BYOK — pair with free-tier provider keys or local models for zero model cost
 

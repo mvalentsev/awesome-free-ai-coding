@@ -10,7 +10,8 @@ from xml.sax.saxutils import escape, quoteattr
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-from .history import Event, EventType, archive_reason, load_history
+from .history import (Event, EventType, archive_reason, diff_state, load_history,
+                      registry_state, replay)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_DAYS,
                      WATCH_RECHECK_DAYS, Category, Entry, ProbeType, Tier, Watched,
                      domain_of, is_archived, is_watch_current, live_families,
@@ -723,6 +724,15 @@ PAGE_LABELS: dict[EventType, str] = {
 }
 
 
+def _event_text(ev: Event) -> str:
+    """What a provider page says about one event, after its date."""
+    if ev.detail:
+        return f"{PAGE_LABELS[ev.event]}: {ev.detail}"
+    if ev.models:
+        return f"{PAGE_LABELS[ev.event]}: " + ", ".join(ev.models)
+    return PAGE_LABELS[ev.event]
+
+
 def _front_matter(fields: dict) -> str:
     """Jekyll front matter, dumped rather than typed: a title with a colon or a
     quote in it is the normal case for a vendor name."""
@@ -847,17 +857,17 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
         out.append(f"- Source: <{u}>")
     out += ["", "## History", ""]
     own = [ev for ev in events if ev.id == e.id]
-    if own:
-        for ev in reversed(own):
-            line = f"- `{ev.ts.date().isoformat()}` — {PAGE_LABELS[ev.event]}"
-            if ev.detail:
-                line += f": {ev.detail}"
-            elif ev.models:
-                line += ": " + ", ".join(ev.models)
-            out.append(line)
-    else:
-        out.append("No recorded event yet — the first scheduled run after a row lands writes its "
-                   "`added` line.")
+    # history.jsonl is written by the probe run alone, so between a hand edit
+    # and the next scheduled run the log still describes the row as it was:
+    # Cline, back on the list on 2026-09-14, read "Delisted" as its newest
+    # event under a header that said live. The line that run will write comes
+    # from the same diff and heads the list without a date, since nothing has
+    # recorded one yet — which also covers a row with no history at all.
+    stamp = datetime.combine(today, time(), tzinfo=timezone.utc)
+    for ev in diff_state(replay(own), registry_state([e], today), stamp):
+        out.append(f"- *next scheduled run* — {_event_text(ev)}")
+    for ev in reversed(own):
+        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev)}")
     out += ["", "---", "",
             f"Generated from `registry.yaml` on {today.isoformat()} and re-verified twice a week; "
             f"the full list, the Atom feed and the machinery are at <{REPO_URL}>.",

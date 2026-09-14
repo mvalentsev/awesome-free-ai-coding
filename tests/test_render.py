@@ -745,6 +745,39 @@ def test_a_provider_page_carries_the_evidence_and_the_history():
     assert provider_page_url("groq-free") == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"
 
 
+def test_a_change_the_history_has_not_recorded_yet_heads_the_page_history():
+    """history.jsonl is written by the probe run alone, so a row edited by hand
+    keeps its old history until the next scheduled run. Cline came back on
+    2026-09-14 and its page read "Delisted" as the newest event under a header
+    that said live. The page shows the line that run will write — the same
+    label and detail, from the same diff — without a date, since nothing has
+    recorded one yet."""
+    from freetier_radar.render import build_provider_page
+
+    def at(day: int, event: EventType, detail: str = "") -> Event:
+        return Event(ts=datetime(2026, 7, day, tzinfo=timezone.utc), event=event,
+                     id="back", name="Back", url="https://x.ai", detail=detail)
+
+    def history_lines(page: str) -> list[str]:
+        block = page.split("## History")[1].split("\n---\n")[0]
+        return [line for line in block.splitlines() if line.startswith("- ")]
+
+    e = make(id="back", name="Back", offering="free models after all")
+    delisted = [at(1, EventType.ADDED, "byok only"), at(2, EventType.REMOVED)]
+    lines = history_lines(build_provider_page(e, delisted, TODAY))
+    assert len(lines) == 3
+    assert "Added to the list: free models after all" in lines[0]
+    assert not lines[0].startswith("- `")
+    assert lines[1] == "- `2026-07-02` — Delisted"
+
+    recorded = delisted + [at(19, EventType.ADDED, "free models after all")]
+    lines = history_lines(build_provider_page(e, recorded, TODAY))
+    assert len(lines) == 3 and lines[0].startswith("- `2026-07-19` — Added to the list")
+
+    unseen = history_lines(build_provider_page(make(id="new"), [], TODAY))
+    assert len(unseen) == 1 and "Added to the list: stuff" in unseen[0]
+
+
 def test_an_archived_provider_page_says_so_and_why():
     from freetier_radar.render import build_provider_page
     page = build_provider_page(make(id="dead", name="Dead", probe_failures=3), [], TODAY)
