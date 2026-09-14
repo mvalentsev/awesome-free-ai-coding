@@ -13,7 +13,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 
 | Provider | Section | Free models | Last verified |
 |---|---|---|---|
-| [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) | 🤖 Coding agents & CLIs | `big-pickle`, `mimo-v2.5`, `ling-3.0-flash-fin`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `muse-spark-1.2` | `2026-09-14` |
+| [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) | 🤖 Coding agents & CLIs | `big-pickle`, `mimo-v2.5`, `ling-3.0-flash-fin`, `nemotron-3-ultra`, `nemotron-3.5-lightning` | `2026-09-14` |
 | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) | 🤖 Coding agents & CLIs | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1` | `2026-09-14` |
 | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) | 🤖 Coding agents & CLIs | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | `2026-09-14` |
 | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `gpt-5.6-luna`, `deepseek-v4-flash`, `mimo-v2.5` | `2026-09-14` |

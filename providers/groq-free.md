@@ -27,8 +27,8 @@ Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM /
 
 - Base URL: `https://api.groq.com/openai/v1`
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
-- Callable ids: `llama-3.3-70b-versatile`, `llama-3.1-8b-instant`, `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.6-27b`
-- Note: the ids Groq's own Free Plan Limits table names
+- Callable ids: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.6-27b`, `qwen/qwen3.8-27b`
+- Note: the chat models Groq's own Free Plan Limits table names; its safeguard and prompt-guard classifiers, compound systems, whisper and orpheus rows are left out
 
 ## Evidence
 

@@ -46,8 +46,8 @@
         "nemotron-3.5-lightning-free": {
           "name": "nemotron-3.5-lightning-free"
         },
-        "muse-spark-1.2-contributor-free": {
-          "name": "muse-spark-1.2-contributor-free"
+        "muse-spark-1.3-contributor-free": {
+          "name": "muse-spark-1.3-contributor-free"
         }
       }
     },
@@ -129,12 +129,6 @@
         "apiKey": "{env:GROQ_API_KEY}"
       },
       "models": {
-        "llama-3.3-70b-versatile": {
-          "name": "llama-3.3-70b-versatile"
-        },
-        "llama-3.1-8b-instant": {
-          "name": "llama-3.1-8b-instant"
-        },
         "openai/gpt-oss-120b": {
           "name": "openai/gpt-oss-120b"
         },
@@ -143,6 +137,9 @@
         },
         "qwen/qwen3.6-27b": {
           "name": "qwen/qwen3.6-27b"
+        },
+        "qwen/qwen3.8-27b": {
+          "name": "qwen/qwen3.8-27b"
         }
       }
     },
