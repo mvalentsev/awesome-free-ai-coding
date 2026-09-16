@@ -1081,8 +1081,8 @@
         "apiKey": "{env:YOLO_AUTO_API_KEY}"
       },
       "models": {
-        "qwen3.8-27b": {
-          "name": "qwen3.8-27b"
+        "qwen3.8-flash": {
+          "name": "qwen3.8-flash"
         }
       }
     }

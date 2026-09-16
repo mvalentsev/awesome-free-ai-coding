@@ -1,6 +1,6 @@
 # awesome-free-ai-coding
 
-> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-09-14 from the registry; every offer under the first four headings answered its last probe.
+> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-09-16 from the registry; every offer under the first four headings answered its last probe.
 
 Each offer links to a page with the free tier in the vendor's own words, the connection details (base URL, where to get a key, model ids, an Anthropic-format URL where the vendor documents one), the evidence the probe reads and the row's history. "No card" means the vendor asks for no payment method; "no key" means the endpoint answers without an account. Offers that stopped answering their probe are listed last, under Archived.
 
@@ -39,7 +39,7 @@ Each offer links to a page with the free tier in the vendor's own words, the con
 - [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/): Keyless OpenAI-compatible chat endpoint — no signup, no key, no account; no card; no key; OpenAI-compatible at https://hermes.ai.unturf.com/v1
 - [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/): IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill; card required; key from https://cloud.ibm.com/iam/apikeys; API at https://us-south.ml.cloud.ibm.com/ml/v1; provisional since 2026-09-05
 - [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/): EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer; card required; key from https://console.scaleway.com; OpenAI-compatible at https://api.scaleway.ai/v1
-- [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/): One model, Qwen3.8-27B in FP8, served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card; no card; key from https://yolo-auto.com/app; OpenAI-compatible at https://yolo-auto.com/v1; free models: `qwen3.8`; provisional since 2026-09-14
+- [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/): One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card; no card; key from https://yolo-auto.com/app; OpenAI-compatible at https://yolo-auto.com/v1; free models: `qwen3.8-flash`; provisional since 2026-09-14
 
 ## Trials (no card when possible)
 
