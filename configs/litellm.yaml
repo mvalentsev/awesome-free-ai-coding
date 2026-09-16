@@ -155,102 +155,102 @@ model_list:
   litellm_params:
     model: openai/kilo-auto/free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/openrouter/free
   litellm_params:
     model: openai/openrouter/free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nvidia/nemotron-3-ultra-550b-a55b:free
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nvidia/nemotron-3-super-120b-a12b:free
   litellm_params:
     model: openai/nvidia/nemotron-3-super-120b-a12b:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nvidia/nemotron-3.5-lightning:free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-lightning:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nvidia/nemotron-3.5-content-safety:free
   litellm_params:
     model: openai/nvidia/nemotron-3.5-content-safety:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/cohere/north-mini-code:free
   litellm_params:
     model: openai/cohere/north-mini-code:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/stepfun/step-3.7-flash:free
   litellm_params:
     model: openai/stepfun/step-3.7-flash:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/poolside/laguna-s-2.1:free
   litellm_params:
     model: openai/poolside/laguna-s-2.1:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/poolside/laguna-xs-2.1:free
   litellm_params:
     model: openai/poolside/laguna-xs-2.1:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/liquid/lfm-2.5-2.6b:free
   litellm_params:
     model: openai/liquid/lfm-2.5-2.6b:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/inclusionai/ling-3.0-flash-fin:free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-fin:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/inclusionai/ling-3.0-flash-sante:free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-sante:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/dots-studio/dots-3-note-preview:free
   litellm_params:
     model: openai/dots-studio/dots-3-note-preview:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/thinkingmachines/inkling-small:free
   litellm_params:
     model: openai/thinkingmachines/inkling-small:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/inclusionai/ling-3.0-flash-vl:free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-vl:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nex-agi/nex-n2.5-pro:free
   litellm_params:
     model: openai/nex-agi/nex-n2.5-pro:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/nex-agi/nex-n2.5-mini:free
   litellm_params:
     model: openai/nex-agi/nex-n2.5-mini:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: kilo-code/z-ai/glm-5.2:free
   litellm_params:
     model: openai/z-ai/glm-5.2:free
     api_base: https://api.kilo.ai/api/gateway
-    api_key: os.environ/KILO_CODE_API_KEY
+    api_key: none
 - model_name: requesty/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b

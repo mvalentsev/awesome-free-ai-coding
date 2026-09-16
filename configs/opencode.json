@@ -122,8 +122,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Kilo Code",
       "options": {
-        "baseURL": "https://api.kilo.ai/api/gateway",
-        "apiKey": "{env:KILO_CODE_API_KEY}"
+        "baseURL": "https://api.kilo.ai/api/gateway"
       },
       "models": {
         "kilo-auto/free": {
