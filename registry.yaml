@@ -3256,3 +3256,54 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 45
+- id: llm7
+  name: LLM7.io
+  category: api-free-tier
+  url: https://llm7.io
+  source_urls:
+  - https://docs.llm7.io/limits.md
+  - https://docs.llm7.io/guides/models.md
+  - https://docs.llm7.io/quickstart.md
+  - https://github.com/chigwell/llm7.io/blob/main/TERMS.md
+  card_required: false
+  offering: OpenAI-compatible API with an anonymous tier — no account, no key — of
+    500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral
+    among them; a free token doubles it
+  limits: The limits page gives anonymous callers 1 request a second, 10 a minute
+    and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io
+    raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and
+    Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models
+    are fast models available to anonymous and free-token users" — though two turbo
+    rows marked usage_based_only, DeepSeek V4 Flash and Gemini 3.1 Flash Lite, answered
+    a keyless call with 401 `Missing API key.` The operator publishes terms, last
+    updated 9 August 2026, and names no upstream for any model. Read 2026-09-16
+  models: []
+  api:
+    base_url: https://api.llm7.io/v1
+    key_url: https://dash.llm7.io
+    auth: none
+    openai_compatible: true
+    model_ids:
+    - GLM-5.3-Flash
+    - minimax-m2.7
+    - codestral-latest
+    - mistral-Nemo-Instruct-2407
+    note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart
+      passes `unused`. The ids listed are the turbo rows that answered a keyless call
+      on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite need a token
+  probe:
+    type: page-keywords
+    endpoint: https://docs.llm7.io/limits.md
+    keywords:
+    - 500,000 tokens per 24 hours
+    - 1,000,000 tokens per 24 hours
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    catalog: https://api.llm7.io/v1/models
+    machinery_keywords: []
+  first_seen: '2026-09-16'
+  last_verified: '2026-09-16'
+  probe_failures: 0
+  provisional: true
+  rank: 45

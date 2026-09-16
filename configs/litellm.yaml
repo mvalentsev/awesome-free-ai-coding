@@ -612,6 +612,26 @@ model_list:
     model: openai/minimax-m2.7:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
+- model_name: llm7/GLM-5.3-Flash
+  litellm_params:
+    model: openai/GLM-5.3-Flash
+    api_base: https://api.llm7.io/v1
+    api_key: none
+- model_name: llm7/minimax-m2.7
+  litellm_params:
+    model: openai/minimax-m2.7
+    api_base: https://api.llm7.io/v1
+    api_key: none
+- model_name: llm7/codestral-latest
+  litellm_params:
+    model: openai/codestral-latest
+    api_base: https://api.llm7.io/v1
+    api_key: none
+- model_name: llm7/mistral-Nemo-Instruct-2407
+  litellm_params:
+    model: openai/mistral-Nemo-Instruct-2407
+    api_base: https://api.llm7.io/v1
+    api_key: none
 - model_name: llmtr/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b

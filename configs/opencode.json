@@ -453,6 +453,27 @@
         }
       }
     },
+    "llm7": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LLM7.io",
+      "options": {
+        "baseURL": "https://api.llm7.io/v1"
+      },
+      "models": {
+        "GLM-5.3-Flash": {
+          "name": "GLM-5.3-Flash"
+        },
+        "minimax-m2.7": {
+          "name": "minimax-m2.7"
+        },
+        "codestral-latest": {
+          "name": "codestral-latest"
+        },
+        "mistral-Nemo-Instruct-2407": {
+          "name": "mistral-Nemo-Instruct-2407"
+        }
+      }
+    },
     "llmtr": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LLMTR",

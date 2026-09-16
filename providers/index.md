@@ -26,6 +26,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8` | `2026-09-14` |
 | [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) | 🔌 LLM APIs with free tier | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | `2026-09-14` |
 | [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) | 🔌 LLM APIs with free tier | `llama-4` | `2026-09-14` |
+| [LLM7.io](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) | 🔌 LLM APIs with free tier | — | `2026-09-16` |
 | [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) | 🔌 LLM APIs with free tier | `deepseek`, `gpt-oss`, `gemma-4` | `2026-09-14` |
 | [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) | 🔌 LLM APIs with free tier | `qwen3.6`, `qwen3.8` | `2026-09-14` |
 | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | `2026-09-14` |
