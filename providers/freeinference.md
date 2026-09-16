@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-09-14'
-description: 'Harvard SEAS''s MadSys Lab serving frontier open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. No quota figure is published: the landing page…'
+description: 'Harvard SEAS''s MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. No quota figure is published: the landing page says "Free…'
 permalink: /providers/freeinference/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/freeinference/
 
 ## What you get
 
-Harvard SEAS's MadSys Lab serving frontier open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
+Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 
 ## Free models
 

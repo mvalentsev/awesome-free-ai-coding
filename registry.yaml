@@ -8,7 +8,8 @@ entries:
   - https://openrouter.ai/docs/api_reference/limits
   - https://openrouter.ai/docs/cookbook/coding-agents/claude-code-integration
   card_required: false
-  offering: One API key for rotating :free variants of frontier models
+  offering: One API key for a rotating set of :free model variants, open-weight and
+    stealth models among them
   limits: 20 requests per minute on any :free id, 50 requests per day, and 1,000 per
     day once the account has purchased at least 10 credits all-time. Those four figures
     are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD,
@@ -19,7 +20,7 @@ entries:
     may come from the upstream provider rather than the platform (read 2026-08-14)
   models:
   - family: nemotron-3-ultra
-    tier: frontier
+    tier: strong
     released: 2026-03
   - family: gemma-4
     tier: strong
@@ -122,16 +123,16 @@ entries:
     sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)'
   models:
   - family: gemini-3.8-flash
-    tier: frontier
+    tier: strong
     released: ''
   - family: gemini-3.7-flash
-    tier: frontier
+    tier: strong
     released: ''
   - family: gemini-3.5-flash-lite
     tier: strong
     released: ''
   - family: gemini-2.5-pro
-    tier: frontier
+    tier: strong
     released: ''
   api:
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
@@ -494,38 +495,40 @@ entries:
     which is why the Models column names muse-spark-1.3-contributor — a bare muse-spark-1.3
     would stay named on this page after the free row left it. It joined the column
     on 2026-09-16, two weeks after Zen added it, and Artificial Analysis scores Muse
-    Spark 1.3 at max effort 48 on its Intelligence Index, level with Claude Opus 5
-    at high. That Muse Spark row is a version newer than it was: Zen''s own commits
-    to these docs added muse-spark-1.3-contributor-free on 2026-09-02 and took muse-spark-1.2-contributor-free
-    off the page on 2026-09-05, though the catalog still returns the 1.2 id. deepseek-v4-flash
-    left the free table by the 2026-08-20 read and has been metered at a flat $0.14/$0.28
-    since the same 2026-09-05 commit dropped peak pricing; its -free id is still in
-    the catalog, while laguna-s-2.1 is off the page and, by 2026-09-14, out of the
-    catalog as well. Since 2026-09-07 every request for them has to carry a stable
-    id for its conversation in the x-opencode-session header: without one Zen answers
-    HTTP 400 MissingSessionID with "OpenCode''s free tier can only be used in OpenCode"
-    (read again 2026-09-16). The Zen docs never mention the header — they print every
-    model''s endpoint under "You can also access our models through the following
-    API endpoints" — and the rule is written down in OpenCode Go''s "Where can I use
-    it?": a client should "Identify itself with its own user agent" and "Send a stable
-    session ID in x-opencode-session for each conversation", with Hermes, Claude Code,
-    Codex, ZCode, Pi, jcode and Kilo Code CLI listed as validated for Go. OpenCode''s
-    team asked Kilo Code for the same header on 2026-09-03 ("Any stable UUID per conversation
-    works"), and a Pi report of 2026-09-08 has big-pickle answering 200 with an account
-    key once the header is added. OpenCode sends it for its own provider, where the
-    ids are written opencode/<model-id>. No key is needed either: on 2026-09-16 a
-    keyless request carrying this project''s own user agent got 400 MissingSessionID
-    without the header and HTTP 200 from big-pickle with a session id of its own,
-    where a report of 2026-08-14 had the keyless lane answering OpenCode''s own user
-    agent alone. Zen documents signup as "sign in to OpenCode Zen, add your billing
-    details, and copy your API key", but the free ids answer without payment details
-    on file — tested by hand rather than read, 2026-08-15. Billing is what the metered
-    ids want, and once it is on, auto-reload tops the balance up by $20 whenever it
-    falls below $5 (read 2026-09-14). The lane has counted six since 2026-08-30, but
-    not always the same six: that day hy3-free was gone from the page altogether —
-    no row in the pricing table, no id in the endpoints table, and not listed under
-    Deprecated models either — while ling-3.0-flash-fin-free had arrived priced Free
-    in, Free out'
+    Spark 1.3 at xhigh — the highest effort Meta''s contributor tier allows, since
+    max is "Standard-tier muse-spark-1.3 only" — at 45 on its Intelligence Index,
+    level with Claude Opus 5 at medium. That Muse Spark row is a version newer than
+    it was: Zen''s own commits to these docs added muse-spark-1.3-contributor-free
+    on 2026-09-02 and took muse-spark-1.2-contributor-free off the page on 2026-09-05,
+    though the catalog still returns the 1.2 id. deepseek-v4-flash left the free table
+    by the 2026-08-20 read and has been metered at a flat $0.14/$0.28 since the same
+    2026-09-05 commit dropped peak pricing; its -free id is still in the catalog,
+    while laguna-s-2.1 is off the page and, by 2026-09-14, out of the catalog as well.
+    Since 2026-09-07 every request for them has to carry a stable id for its conversation
+    in the x-opencode-session header: without one Zen answers HTTP 400 MissingSessionID
+    with "OpenCode''s free tier can only be used in OpenCode" (read again 2026-09-16).
+    The Zen docs never mention the header — they print every model''s endpoint under
+    "You can also access our models through the following API endpoints" — and the
+    rule is written down in OpenCode Go''s "Where can I use it?": a client should
+    "Identify itself with its own user agent" and "Send a stable session ID in x-opencode-session
+    for each conversation", with Hermes, Claude Code, Codex, ZCode, Pi, jcode and
+    Kilo Code CLI listed as validated for Go. OpenCode''s team asked Kilo Code for
+    the same header on 2026-09-03 ("Any stable UUID per conversation works"), and
+    a Pi report of 2026-09-08 has big-pickle answering 200 with an account key once
+    the header is added. OpenCode sends it for its own provider, where the ids are
+    written opencode/<model-id>. No key is needed either: on 2026-09-16 a keyless
+    request carrying this project''s own user agent got 400 MissingSessionID without
+    the header and HTTP 200 from big-pickle with a session id of its own, where a
+    report of 2026-08-14 had the keyless lane answering OpenCode''s own user agent
+    alone. Zen documents signup as "sign in to OpenCode Zen, add your billing details,
+    and copy your API key", but the free ids answer without payment details on file
+    — tested by hand rather than read, 2026-08-15. Billing is what the metered ids
+    want, and once it is on, auto-reload tops the balance up by $20 whenever it falls
+    below $5 (read 2026-09-14). The lane has counted six since 2026-08-30, but not
+    always the same six: that day hy3-free was gone from the page altogether — no
+    row in the pricing table, no id in the endpoints table, and not listed under Deprecated
+    models either — while ling-3.0-flash-fin-free had arrived priced Free in, Free
+    out'
   models:
   - family: big-pickle
     tier: strong
@@ -537,7 +540,7 @@ entries:
     tier: strong
     released: ''
   - family: nemotron-3-ultra
-    tier: frontier
+    tier: strong
     released: ''
   - family: nemotron-3.5-lightning
     tier: strong
@@ -633,7 +636,7 @@ entries:
     bar for a column'
   models:
   - family: nemotron-3-ultra
-    tier: frontier
+    tier: strong
     released: 2026-03
   - family: nemotron-3-super
     tier: strong
@@ -879,7 +882,7 @@ entries:
     how people are using the product" (read 2026-08-14)
   models:
   - family: gemini-2.5
-    tier: frontier
+    tier: strong
     released: ''
   probe:
     type: page-keywords
@@ -994,7 +997,7 @@ entries:
     + weekly rate limits; local tasks only
   models:
   - family: gpt-5.6
-    tier: frontier
+    tier: strong
     released: ''
   probe:
     type: page-keywords
@@ -1034,7 +1037,7 @@ entries:
     nemotron-3-nano-omni-30b-a3b-reasoning the catalog carries beside it'
   models:
   - family: nemotron
-    tier: frontier
+    tier: strong
     released: 2026-03
   api:
     base_url: https://integrate.api.nvidia.com/v1
@@ -1257,7 +1260,7 @@ entries:
     tier: frontier
     released: 2026-09
   - family: qwen3-max
-    tier: frontier
+    tier: strong
     released: 2026-04
   - family: qwen3-coder
     tier: strong
@@ -1832,7 +1835,7 @@ entries:
     past that the same key moves to pay-as-you-go
   models:
   - family: nemotron-3-ultra
-    tier: frontier
+    tier: strong
     released: 2026-03
   - family: nemotron-3-super
     tier: strong
@@ -1911,22 +1914,22 @@ entries:
     determined to the degree we have capacity, and exist to prevent abuse"'
   models:
   - family: gemini-3.1-pro
-    tier: frontier
+    tier: strong
     released: ''
   - family: gemini-3.8-flash
-    tier: frontier
+    tier: strong
     released: ''
   - family: gemini-3.7-flash
-    tier: frontier
+    tier: strong
     released: ''
   - family: gemini-3.6-flash
     tier: strong
     released: ''
   - family: claude-opus-4.6
-    tier: frontier
+    tier: strong
     released: ''
   - family: claude-sonnet-4.6
-    tier: frontier
+    tier: strong
     released: ''
   - family: gpt-oss
     tier: strong
@@ -2115,8 +2118,14 @@ entries:
     and nemotron-3.5-content-safety-free is a guardrail classifier. Every free id
     carries a -free suffix and the paid twin beside it is metered at list rates'
   models:
-  - family: glm-5
+  - family: glm-5.3
     tier: frontier
+    released: ''
+  - family: kimi-k3
+    tier: frontier
+    released: ''
+  - family: glm-5
+    tier: strong
     released: 2026-02
   - family: mimo-v2.5
     tier: strong
@@ -2496,7 +2505,7 @@ entries:
     trial, the in-house brick-v1-beta (read 2026-09-16)'
   models:
   - family: glm-5
-    tier: frontier
+    tier: strong
     released: ''
   - family: gpt-oss
     tier: strong
@@ -2687,7 +2696,7 @@ entries:
     its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-16'
   models:
   - family: nemotron-3-ultra
-    tier: frontier
+    tier: strong
     released: 2026-03
   - family: qwen3.6
     tier: strong
@@ -2876,10 +2885,10 @@ entries:
   - https://freeinference.org/terms
   - https://freeinference.org/v1/models
   card_required: false
-  offering: Harvard SEAS's MadSys Lab serving frontier open models — DeepSeek V4 Flash,
-    GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind
-    both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude
-    Code setup
+  offering: Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1,
+    GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an
+    OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code
+    setup
   limits: 'No quota figure is published: the landing page says "Free to use. No credit
     card required. Generous quota for research and prototyping", and the terms (last
     updated 2026-06-20) say "Quotas, rate limits, model access, and usage limits may

@@ -64,7 +64,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `gemma-4` | `2026-09-14` |
 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | `2026-09-14` |
-| [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | `2026-09-14` |
+| [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | `2026-09-14` |
 | [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b` | `2026-09-14` |
 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6` | `2026-09-14` |
 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1` | `2026-09-14` |

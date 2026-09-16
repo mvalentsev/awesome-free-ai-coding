@@ -81,6 +81,18 @@ families a row marks `tier: frontier`, then by `rank` — so a tier is a claim
 that reaches the top of the page, and `freetier-check` refuses a family carrying
 two of them.
 
+**`tier: frontier` is a measurement, not a reputation.** A family is `frontier`
+when the model its free lane serves scores within 10 points of the top of the
+[Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models),
+counting current models only and reading the variant the lane actually allows:
+Meta's contributor tier has no max effort, so Muse Spark 1.3 Contributor is read
+at xhigh. Everything else is `strong`. On 2026-09-16 the top was 53.4 and the bar
+43.4, and nineteen of the twenty-two marks set before then no longer met it —
+Nemotron 3 Ultra scores 23, Gemini 2.5 Pro 17, Claude Opus 4.6 32 — because a tier
+written once never decays by itself. Re-read the marks whenever a new model
+takes the top of the index, and give a family the most specific name the lane
+serves, since `glm-5.3` is also matched by a `glm-5.3-flash` id.
+
 ## Probes must anchor on the offer
 
 Every `page-keywords` probe needs at least one keyword that disappears when the
