@@ -21,14 +21,14 @@ AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models 
 
 ## Limits, in the vendor's words
 
-Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route — the pricing page's own "Start Now for FREE" link to studio.ai21.com/sign-up, the login, the account pages the docs still point at — lands on the www.ai21.com homepage, and the catalog route answers 410 "This API has been retired. The AI21 Gateway is available at https://app.ai21.com". The vendor's notice named the day: "On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library". What stands at app.ai21.com is not a model API: its own env file names it ai21-intelligent-gateway-webapp with a base of api.ai21.com/gateway, its code snippets take "your own OpenAI key" or "your own Anthropic key", and its billing is a "Tokenwise" plan with a trial counted in days — nothing AI21-hosted, nothing free to call. The pricing page, last modified 2026-05-06, still prints "$10 credits for 7 days. No credit card needed" beside the Jamba prices, and docs.ai21.com/docs/usage-cost still says "New accounts are given a $10 credit good for three months": two figures for one trial whose sign-up no longer exists
+Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: "On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call
 
 ## Connect
 
 - Base URL: `https://api.ai21.com/studio/v1` (not OpenAI-shaped)
 - Key: `AI21_LABS_API_KEY` — get one at <https://studio.ai21.com/sign-up>
 - Callable ids: `jamba-mini`, `jamba-large`
-- Note: The Jamba API these ids belong to was sunset by the vendor on 2026-08-09: /studio/v1/models answers 410 "This API has been retired", while /studio/v1/chat/completions still returns 400 "bad or missing authentication" to a keyless POST on 2026-09-05 — the route exists, which says nothing about whether a key still gets an answer. The replacement at api.ai21.com/gateway/v1 gives the same 400 keyless, and it is a bring-your-own-key proxy in front of OpenAI and Anthropic, not a Jamba endpoint. key_url is the one the vendor published and now redirects to the homepage. Never OpenAI-compatible, so it never entered the generated configs
+- Note: the Jamba API these ids belong to was sunset by the vendor on 2026-08-09; on 2026-09-05 /studio/v1/models answered 410 and the replacement at api.ai21.com/gateway/v1 is a bring-your-own-key proxy, not a Jamba endpoint. Never OpenAI-compatible, so it never entered the generated configs
 
 ## Evidence
 

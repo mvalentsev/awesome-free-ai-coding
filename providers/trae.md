@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Trae free tier: limits, free models, verified 2026-09-14'
-description: AI IDE whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions. Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and in its comparison table "Standard queue",…
+description: AI IDE whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions. Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", "Autocompletion 5000 / month", "Concurrent Cloud Tasks…
 permalink: /providers/trae/
 ---
 
@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and in its comparison table "Standard queue", "Autocompletion 5000 / month" and "Concurrent Cloud Tasks 2" — and as numbers in the payload those words are rendered from, where basic_usage_limit is the field the paid plans print as "$20 usage / month". That figure is not the same on every read: on 2026-09-16 a GitHub runner's read carried 3 on Free beside Pro 20, Pro+ 90 and Ultra 400, and a read from another network carried 1 beside 20, 60 and 200, at different prices, so the Free plan is $1 to $3 of Basic usage a month depending on where the page is served. Both carried auto_completion_limit 5000, advanced_model_request_limit 1000, premium_model_fast_request_limit 10, premium_model_slow_request_limit 50 and no_bonus_quota true, and neither still has the $5 Lite plan that stood beside Pro on 2026-09-10. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload rather than the table: trae.ai answers no-store and renders per request — the scheduled run of 2026-09-10 got a rendered table with no "5000 / month" while the payload carried the Free plan intact, and the runner's page of 2026-09-16 was rendered with an error flag set — so the figures are machinery_keywords with their values attached, and only the ones both served versions carry
+Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", "Autocompletion 5000 / month", "Concurrent Cloud Tasks 2" — and as numbers in the page payload, where basic_usage_limit is the dollar figure the paid plans print as "$20 usage / month". That figure depends on where the page is served: on 2026-09-16 a GitHub runner read $3 of Basic usage on Free and another network $1, with different paid-plan figures and prices too. Both versions carry 5,000 autocompletions and 1,000 advanced-model requests on Free. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload because trae.ai renders per request and its table can arrive without the Free column
 
 ## Connect
 

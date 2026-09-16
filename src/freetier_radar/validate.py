@@ -32,6 +32,10 @@ from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismis
 
 __all__ = ["check", "main"]
 
+# The most a row's prose may run to, in characters: a README cell and a provider
+# page, not a research log.
+PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600}
+
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
 
 
@@ -114,6 +118,20 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(
                     f"registry: {e.id} has Liquid delimiters in {field} — GitHub Pages "
                     f"renders README.md with Jekyll and would fail to build it")
+
+    # A row's prose is for the reader deciding whether to use the offer: the
+    # quota, the conditions, what happens to the data. By 2026-09-16 it had become
+    # the maintainer's log — the median `limits` grew from 87 characters in July
+    # to 813, the longest to 3,712, dated lane counts and which id left when —
+    # and README.md reached 260 KB. History lives in history.jsonl and git log.
+    for e in entries:
+        for field, text, limit in (("offering", e.offering, PROSE_LIMITS["offering"]),
+                                   ("limits", e.limits, PROSE_LIMITS["limits"]),
+                                   ("api.note", e.api.note if e.api else "", PROSE_LIMITS["api.note"])):
+            if len(text) > limit:
+                problems.append(
+                    f"registry: {e.id} {field} is {len(text)} characters, over {limit} — "
+                    f"keep what a reader needs to use the offer, and leave its history to history.jsonl")
 
     # ---- registry against blocklist.yaml
     # We list it and we say it must never be proposed. One of the two is wrong.

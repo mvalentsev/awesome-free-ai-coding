@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Alibaba Cloud Model Studio (DashScope, international) free tier: limits, free models, verified 2026-09-14'
-description: 'Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible. 1,000,000 free tokens per model, on the Singapore (international) region alone, as the page says over every table: "the following models offer a free quota only in Singapore. No free quota is available…'
+description: 'Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible. 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions". The grant is…'
 permalink: /providers/alibaba-model-studio/
 ---
 
@@ -21,7 +21,7 @@ Free quota for Qwen models on DashScope, international (Singapore) region; OpenA
 
 ## Limits, in the vendor's words
 
-1,000,000 free tokens per model, on the Singapore (international) region alone, as the page says over every table: "the following models offer a free quota only in Singapore. No free quota is available in other regions". The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later" (read 2026-09-16). The quota is per model id, and the read of 2026-09-10 settles which ids carry it by reading the column header rather than the cell: the last column of every International table is "Free quota (Note) Valid for 90 days …", and it is the only place on that page where "1 million tokens" is a grant rather than the unit the price beside it is quoted in — the phrase occurs 377 times. The whole qwen3.8 generation is in that column: qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash at $0.15/$0.47, qwen3.8-27b and qwen3.8-2.4t-a95b. So is qwen3-coder-next, beside the coder-plus and coder-flash ids already covered, and so is qwen3-max, which keeps its own grant rather than handing it on. The same column is what rules a model out: qwen-long reads "No free quota", the Global tables carry no such column at all, and the media models are quoted in images, characters or seconds instead
+1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions". The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later" (read 2026-09-16). Which ids carry it is read off the last column of each International table, "Free quota": the qwen3.8 generation — qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash, qwen3.8-27b — qwen3-max, and the qwen3-coder line. qwen-long reads "No free quota", and the Global tables carry no free-quota column at all (ids read 2026-09-10)
 
 ## Connect
 

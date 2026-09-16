@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-14'
-description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible). OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400…'
+description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible). OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per…'
 permalink: /providers/ovh-ai-endpoints/
 ---
 
@@ -21,7 +21,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Limits, in the vendor's words
 
-OVHcloud documents the anonymous lane rather than leaving it to be inferred: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model" (docs.ovhcloud.com, read 2026-09-14), and its product page says "Test all our models for free in a sandbox or via the API". The keyless calls really do answer, and every probe run now makes one itself: gpt-oss-120b, gpt-oss-20b, Qwen3.6-27B, Qwen3-Coder-30B and Qwen3.8-27B all returned 200 with no Authorization header on 2026-09-14. The limit is tighter in practice than that sentence reads: at one call a minute per model from a single address, Qwen3.8-27B answered five times out of six and the gpt-oss and older Qwen ids once or twice, the rest 429 — so a 429 here is the quota, not a refusal, and Qwen3.8-27B leads the ids for that reason. It is also the one coding model the catalog prices at 0 on both sides: 15 of its 25 models carry a price, gpt-oss-120b at $0.00000047 per completion token, and the other zeros are the two Qwen3Guard safety classifiers, the two whisper models, four TTS voices and stable-diffusion-xl (read 2026-09-14). None of those is a coding model, which is why this row names what the anonymous lane serves instead of what the price column zeroes
+OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model", and its product page says "Test all our models for free in a sandbox or via the API". The limit is tighter in practice: at one call a minute per model from one address, Qwen3.8-27B answered five times out of six on 2026-09-14 and the gpt-oss and older Qwen ids once or twice, and on 2026-09-16 every id answered 429 from another network — a 429 is the quota, not a refusal. Qwen3.8-27B is also the one coding model the catalog prices at zero for keyed use; the others are billed per token once a key is in play. Read 2026-09-14
 
 ## Connect
 

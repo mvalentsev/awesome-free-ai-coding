@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-09-14'
-description: 'Tencent''s VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs. The docs price table (last updated 2026-08-07, read 2026-09-02): "Plan Free Pro", "Monthly…'
+description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs. The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time…
 permalink: /providers/codebuddy/
 ---
 
@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The docs price table (last updated 2026-08-07, read 2026-09-02): "Plan Free Pro", "Monthly Subscription Free $10.00 / month", "Base Credits / Month 100 1,000", "Promotional Bonus (Limited-Time Offer) 30 credits / day 50 credits / day", "Real-Time Code Completion 5,000 completions / month (unlimited during the promotional period)", "Automated Tasks 3 (99 during the promotional period)", "Model Routing Auto routing (all models available during the promotional period)". "Standard quotas resume when the promotion ends", and "The end date of this promotion will be announced separately". "Base and bonus credits are issued monthly and are valid for that month; they do not roll over"; "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days". No card for Free — the only card is the 7-day Pro trial, "after linking a credit card and enabling auto-renewal". The docs name no model for the plan. The terms are Tencent Cloud International Pte. Ltd.'s, require users "at least 18 years old" and bar any "Sanctioned Jurisdiction"; the DPSA says code is processed only to provide the feature. The China edition (codebuddy.cn, 体验版, 500 积分 a month, a real-name Tencent Cloud account) is a separate product whose agreement licenses free-edition inputs and outputs "用于模型服务优化及本服务的改进" — to optimise the model service — which the international terms do not
+The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time Offer)" of 30 credits a day, 5,000 completions a month ("unlimited during the promotional period") and auto routing ("all models available during the promotional period"); "Standard quotas resume when the promotion ends", and "The end date of this promotion will be announced separately". "Base and bonus credits are issued monthly and are valid for that month; they do not roll over", and "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days". No card for Free — only the 7-day Pro trial asks for one. The docs name no model for the plan. The terms are Tencent Cloud International Pte. Ltd.'s and require users "at least 18 years old". Read 2026-09-02
 
 ## Connect
 

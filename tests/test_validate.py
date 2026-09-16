@@ -53,6 +53,19 @@ def test_a_consistent_repository_reports_nothing(tmp_path: Path):
     assert check(build(tmp_path, watched=[WATCHED]), TODAY) == []
 
 
+def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
+    """The median `limits` went from 87 characters in July to 813 by 2026-09-16,
+    the longest 3,712 — a research log in a README cell. The history belongs to
+    history.jsonl; the row keeps what a reader needs to use the offer."""
+    from freetier_radar.validate import PROSE_LIMITS
+    long = {**ENTRY, "limits": "x" * (PROSE_LIMITS["limits"] + 1),
+            "offering": "y" * PROSE_LIMITS["offering"]}
+    problems = check(build(tmp_path, entries=[long]), TODAY)
+    assert [p for p in problems if "characters" in p] == [
+        f"registry: x limits is {PROSE_LIMITS['limits'] + 1} characters, over {PROSE_LIMITS['limits']} — "
+        "keep what a reader needs to use the offer, and leave its history to history.jsonl"]
+
+
 def test_a_listed_entry_may_not_sit_on_a_blocklisted_domain(tmp_path: Path):
     root = build(tmp_path, blocklist=[{"domain": "x.ai", "reason": "rejected"}])
     assert any("blocklisted domain" in p for p in check(root, TODAY))

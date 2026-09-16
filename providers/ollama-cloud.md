@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Ollama Cloud free tier: limits, free models, verified 2026-09-14'
-description: 'Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The $0 plan was rewritten between the 2026-08-27 and 2026-08-31 runs, and it is now a wallet rather than a lane: it reads "Starter usage credits included" and "Includes access to starter…'
+description: 'Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is…'
 permalink: /providers/ollama-cloud/
 ---
 
@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The $0 plan was rewritten between the 2026-08-27 and 2026-08-31 runs, and it is now a wallet rather than a lane: it reads "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is published — the page names no credit amount and no starter model list, and the cloud-model list it links (ollama.com/search?c=cloud) marks none of them starter. Every cloud model now carries a per-million-token price on that same page: gpt-oss:20b $0.07 in / $0.30 out, minimax-m3 $0.60 / $2.40, kimi-k3 $3.00 / $15.00. Free gets 1 concurrent request against Pro's 3, and the included usage "resets monthly from the date you signed up" and does not roll over. Gone with the rewrite: the $0 line about cloud-model access this row was first probed on, and the per-model usage level 1-4 that stood in for a free-model list. Read 2026-09-02, with the starter set mapped by calling it, since nothing publishes it: from one key on the $0 plan, gpt-oss:120b answered in 1-11s, gemma4:31b in 1-5s and nemotron-3-ultra in 50-279s, all on 2026-09-02, while minimax-m3 answered 402 Payment Required on both 2026-08-31 and 2026-09-02 after serving all month. The 402 is the edge of the starter set rather than a spent balance, and that edge is not the price: nemotron-3-ultra is inside it at $0.10/$3.00 while minimax-m3 is outside it at $0.60/$2.40
+The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is published — no credit amount and no starter-model list — and every cloud model carries a per-million-token price on the same page (gpt-oss:20b $0.07 in / $0.30 out, kimi-k3 $3.00 / $15.00). Free gets 1 concurrent request against Pro's 3, and the included usage "resets monthly from the date you signed up" without rolling over. The starter set can only be measured: on 2026-09-02 a key on the $0 plan got answers from gpt-oss:120b, gemma4:31b and nemotron-3-ultra and 402 Payment Required from minimax-m3, so the edge of the set is not the price — nemotron-3-ultra is inside at $0.10/$3.00, minimax-m3 outside at $0.60/$2.40. Read 2026-09-02
 
 ## Connect
 

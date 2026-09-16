@@ -29,7 +29,7 @@ The page this row is verified against names no free model, so the column stays e
 - Key: `STANDARDCOMPUTE_API_KEY` — get one at <https://standardcompute.com/signup>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.stdcmpt.com`
 - Callable ids: `anthropic/claude-standardcompute`, `StandardCompute`
-- Note: one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code, which appends /v1/messages itself — the vendor spells the difference out, "For Claude Code, use https://api.stdcmpt.com without /v1". /v1/models is keyless and listed 40 ids on 2026-09-07, anthropic/claude-opus-5, openai/gpt-6-astra, x-ai/grok-4.3 and five :eu-suffixed EU-region variants among them, none of them priced; requests are smart-routed across that pool unless a call pins one id. The two ids here are the router's own, read off that catalog rather than off the Claude Code page, which sets the model through the vendor's launcher instead
+- Note: one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — "For Claude Code, use https://api.stdcmpt.com without /v1". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own
 
 ## Evidence
 

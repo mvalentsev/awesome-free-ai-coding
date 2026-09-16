@@ -294,6 +294,15 @@ uv run freetier-quotes [ids…]     # read every quoted phrase back against the 
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
 
+**A row's prose is for the reader deciding whether to use the offer.** `offering` says
+what it is, `limits` the quota, the conditions and what happens to the data, and
+`api.note` what a client needs to connect — in the vendor's words where they
+decide something. What changed and when belongs to `history.jsonl` and the commit
+log, not to the row: by 2026-09-16 the median `limits` had grown from 87
+characters to 813, most of it dated lane counts, and the README to 260 KB.
+`freetier-check` holds `offering` to 300 characters, `limits` to 1,200 and
+`api.note` to 600.
+
 **A phrase in quotation marks is a claim that the vendor published those words.**
 `freetier-quotes` fetches a row's `source_urls`, its probe endpoint and its
 catalog, and reports every quote of three words or more that none of them
