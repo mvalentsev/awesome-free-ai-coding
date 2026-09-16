@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-09-14'
-description: OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-14, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog. Free models, meaning every id ending :free, are capped at 5 requests per minute and 200 requests…
+description: OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog. Free models, meaning every id ending :free, are capped at 5 requests per minute and 200 requests…
 permalink: /providers/routeway/
 ---
 
@@ -13,11 +13,11 @@ permalink: /providers/routeway/
 
 ## What you get
 
-OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-14, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog
+OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog
 
 ## Free models
 
-`muse-glimmer-30b`
+`deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b`
 
 ## Limits, in the vendor's words
 
@@ -28,7 +28,7 @@ Free models, meaning every id ending :free, are capped at 5 requests per minute 
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Callable ids: `muse-glimmer-30b:free`, `deepseek-v4-flash:free`, `minimax-m2.7:free`
-- Note: the three :free ids are every zero-priced row in the catalog the probe reads (2026-09-14), all marked available, and only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. deepseek-v4-flash and minimax-m2.7 were created on 2026-09-01 with a 42,000-token context on the free lane, as was kimi-k2.6, the one of the three that left; muse-glimmer-30b:free, created 2026-08-11, was first read here on 2026-08-28 with 131,072 and has held through every change since, which is what put it in the Models column on 2026-09-14 — Requesty serves the same model free. The other two stay out of it until they have stood the two weeks the column asks for: every family there is a tripwire the api-models probe re-checks on every run, three misses archive the row, and this lane has changed on five of its last seven reads
+- Note: the three :free ids are every zero-priced row in the catalog the probe reads (2026-09-16, the same three as on 2026-09-14), all marked available, and only the :free suffix is zero-priced — the same catalog meters Claude and GPT at list rates. deepseek-v4-flash and minimax-m2.7 were created on 2026-09-01 with a 42,000-token context on the free lane, as was kimi-k2.6, the one of the three that left; muse-glimmer-30b:free, created 2026-08-11, was first read here on 2026-08-28 with 131,072 and has held through every change since, which is what put it in the Models column on 2026-09-14 — Requesty serves the same model free. The other two joined it on 2026-09-16, two weeks after the 2026-09-02 read that first found them, and each is free on another row here too — DeepSeek V4 Flash on Freebuff and FreeInference, MiniMax M2.7 on AIHubMix. The column waits those two weeks because every family in it is a tripwire the api-models probe re-checks on every run, three misses archive the row, and this lane has changed on five of its last seven reads
 
 ## Evidence
 
@@ -39,6 +39,7 @@ Free models, meaning every id ending :free, are capped at 5 requests per minute 
 
 ## History
 
+- *next scheduled run* — Free models changed: added deepseek-v4-flash, minimax-m2.7
 - `2026-09-14` — Free models changed: added muse-glimmer-30b
 - `2026-09-07` — Free models changed: dropped gemma-4, gpt-oss
 - `2026-08-31` — Free models changed: dropped llama-3.3, step-3.7-flash

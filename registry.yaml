@@ -488,9 +488,13 @@ entries:
     buys its zero with training rights — "heavily discounted token pricing in exchange
     for permission to use your prompts and completions to train future Meta models",
     on a row the pricing table still prints as Free in and Free out. Mind the suffix:
-    plain muse-spark-1.3 and muse-spark-1.2 are paid rows at $1.25/$4.25 per 1M tokens.
-    That Muse Spark row is a version newer than it was: Zen''s own commits to these
-    docs added muse-spark-1.3-contributor-free on 2026-09-02 and took muse-spark-1.2-contributor-free
+    plain muse-spark-1.3 and muse-spark-1.2 are paid rows at $1.25/$4.25 per 1M tokens,
+    which is why the Models column names muse-spark-1.3-contributor — a bare muse-spark-1.3
+    would stay named on this page after the free row left it. It joined the column
+    on 2026-09-16, two weeks after Zen added it, and Artificial Analysis scores Muse
+    Spark 1.3 at max effort 48 on its Intelligence Index, level with Claude Opus 5
+    at high. That Muse Spark row is a version newer than it was: Zen''s own commits
+    to these docs added muse-spark-1.3-contributor-free on 2026-09-02 and took muse-spark-1.2-contributor-free
     off the page on 2026-09-05, though the catalog still returns the 1.2 id. deepseek-v4-flash
     left the free table by the 2026-08-20 read and has been metered at a flat $0.14/$0.28
     since the same 2026-09-05 commit dropped peak pricing; its -free id is still in
@@ -527,6 +531,9 @@ entries:
   - family: nemotron-3.5-lightning
     tier: strong
     released: ''
+  - family: muse-spark-1.3-contributor
+    tier: frontier
+    released: 2026-09
   probe:
     type: page-keywords
     endpoint: https://opencode.ai/docs/zen/
@@ -1701,7 +1708,7 @@ entries:
   - https://docs.routeway.ai/getting-started/rate-limits
   card_required: false
   offering: OpenAI-compatible gateway whose :free lane rotates — three zero-priced
-    ids on 2026-09-14, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7
+    ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7
     — beside 257 metered rows in the same catalog
   limits: 'Free models, meaning every id ending :free, are capped at 5 requests per
     minute and 200 requests per day and return 429 past either; on the pay-as-you-go
@@ -1719,6 +1726,12 @@ entries:
     no legal entity or terms of service and is supported through Discord alone: a
     fallback lane, not a dependency'
   models:
+  - family: deepseek-v4-flash
+    tier: strong
+    released: 2026-04
+  - family: minimax-m2.7
+    tier: strong
+    released: 2026-03
   - family: muse-glimmer-30b
     tier: strong
     released: 2026-08
@@ -1731,17 +1744,20 @@ entries:
     - muse-glimmer-30b:free
     - deepseek-v4-flash:free
     - minimax-m2.7:free
-    note: 'the three :free ids are every zero-priced row in the catalog the probe
-      reads (2026-09-14), all marked available, and only the :free suffix is zero-priced
-      — the same catalog meters Claude and GPT at list rates. deepseek-v4-flash and
-      minimax-m2.7 were created on 2026-09-01 with a 42,000-token context on the free
-      lane, as was kimi-k2.6, the one of the three that left; muse-glimmer-30b:free,
-      created 2026-08-11, was first read here on 2026-08-28 with 131,072 and has held
-      through every change since, which is what put it in the Models column on 2026-09-14
-      — Requesty serves the same model free. The other two stay out of it until they
-      have stood the two weeks the column asks for: every family there is a tripwire
-      the api-models probe re-checks on every run, three misses archive the row, and
-      this lane has changed on five of its last seven reads'
+    note: the three :free ids are every zero-priced row in the catalog the probe reads
+      (2026-09-16, the same three as on 2026-09-14), all marked available, and only
+      the :free suffix is zero-priced — the same catalog meters Claude and GPT at
+      list rates. deepseek-v4-flash and minimax-m2.7 were created on 2026-09-01 with
+      a 42,000-token context on the free lane, as was kimi-k2.6, the one of the three
+      that left; muse-glimmer-30b:free, created 2026-08-11, was first read here on
+      2026-08-28 with 131,072 and has held through every change since, which is what
+      put it in the Models column on 2026-09-14 — Requesty serves the same model free.
+      The other two joined it on 2026-09-16, two weeks after the 2026-09-02 read that
+      first found them, and each is free on another row here too — DeepSeek V4 Flash
+      on Freebuff and FreeInference, MiniMax M2.7 on AIHubMix. The column waits those
+      two weeks because every family in it is a tripwire the api-models probe re-checks
+      on every run, three misses archive the row, and this lane has changed on five
+      of its last seven reads
   probe:
     type: api-models
     endpoint: https://api.routeway.ai/v1/models
