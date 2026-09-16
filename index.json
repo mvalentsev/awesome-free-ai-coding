@@ -3287,9 +3287,9 @@
         "modelscope.ai"
       ],
       "name": "ModelScope (Alibaba)",
-      "checked_on": "2026-08-14",
-      "reason": "The free tier is real and large — 2,000 API calls a day across a catalog whose keyless api-inference.modelscope.cn/v1/models lists 43 served ids, DeepSeek V4 Flash/Pro, Qwen3.5-397B, Qwen3-Coder, GLM-5.2, MiniMax M3 and Step-3.7-Flash among them. Two things keep it off the list. Registration binds an Alibaba Cloud account and requires real-name verification, which is not something a developer outside mainland China can simply complete, so the offer is not directly usable the way this list means it. And there is nothing to probe — every docs page under /docs/model-service is a client-rendered shell (the served HTML carries 15 characters of text and an empty window.__detail_data__), while the models endpoint publishes no prices and no quota, so a probe there could only ever confirm that ids exist. A row this list cannot verify is a row it will not carry.",
-      "reopen_if": "ModelScope publishes a server-rendered quota page, or the free tier becomes reachable without real-name verification.",
+      "checked_on": "2026-09-16",
+      "reason": "The API-Inference free quota is real and readable now, in the markdown the docs load from resouces.modelscope.cn: calls are paid in 魔粒 — \"轻量模型（0.5 魔粒/次），主流模型（1 魔粒/次），旗舰模型（2 魔粒/次）\" (0.5, 1 or 2 per call by model size) — and an account gets \"200 魔粒/日\" for signing in and 50 more a day for binding an Alibaba Cloud account, both marked 短期 (short-term). The keyless catalog at api-inference.modelscope.cn/v1/models lists 37 ids. API-Inference needs that Alibaba Cloud account to have passed real-name verification (\"对应云账号需已通过实名认证后，才可正常使用API-Inference\"), which CONTRIBUTING counts against a row's rank rather than its place on the list. What keeps it off is the probe: the docs sit under a dated release path (2026-9-10_15-4-CN) that the site replaces, while old paths keep answering, so a keyword read there would outlive the offer.",
+      "reopen_if": "A stable URL carries the 魔粒 quota, or the probe learns to follow the current path from www.modelscope.cn/api/v1/document/main_doc_CN_prod.",
       "current": true
     },
     {
@@ -3298,9 +3298,9 @@
         "siliconflow.cn"
       ],
       "name": "SiliconFlow",
-      "checked_on": "2026-08-14",
-      "reason": "siliconflow.com/pricing is server-rendered and states the whole offer in one sentence — \"postpaid billing—plus $1 in free credits to get you started\". One dollar is a sign-up courtesy, not a free tier: the same reasoning that kept Nous Portal off this list. No model in the pricing tables is priced at zero, and the catalog endpoint answers 401 on both the .com and .cn hosts, so there is no free lane to point an agent at.",
-      "reopen_if": "A zero-priced model appears in the served catalog, or the free grant becomes a recurring quota rather than a one-off dollar.",
+      "checked_on": "2026-09-16",
+      "reason": "siliconflow.com/pricing states the offer as \"postpaid billing—plus $1 in free credits to get you started!\", a one-off grant, and siliconflow.cn/pricing marks only non-coding rows 免费 (free), Hunyuan-MT-7B translation among them. A one-off dollar is listed here when it asks for no card, as RouterPlex's does, so the open question is the card: no page read says whether the credit can be spent before a payment method is added (2026-09-16).",
+      "reopen_if": "A page says the $1 needs no payment method, or a zero-priced coding model appears.",
       "current": true
     },
     {
@@ -3319,9 +3319,9 @@
         "nscale.com"
       ],
       "name": "Nscale",
-      "checked_on": "2026-08-14",
-      "reason": "The serverless inference API exists — inference.api.nscale.com/v1/models answers 401 rather than 404 — but the company's public site is now enterprise AI-cloud marketing with no pricing page (/pricing and /serverless both 404) and the documentation redirects to a login wall. There is no public page stating a free tier and no public page a probe could read, which is two independent reasons the row cannot exist.",
-      "reopen_if": "Nscale puts its serverless pricing or free credits back on a public, server-rendered page.",
+      "checked_on": "2026-09-16",
+      "reason": "Paid from the first call: docs.nscale.com, readable again on 2026-09-16, opens with \"Add credit to your account From the dashboard, add a minimum of $5 of credit to start using our service\", and no page names a free grant.",
+      "reopen_if": "Nscale publishes free credits or a free serverless allowance.",
       "current": true
     },
     {
@@ -3359,9 +3359,9 @@
         "iflow.cn"
       ],
       "name": "iFlow",
-      "checked_on": "2026-08-14",
-      "reason": "Reached through the models.dev digest, which lists iflowcn with 14 of 14 models at cost 0 — and a rival list that says iFlow shut down on 2026-04-17, which is wrong. The service is alive: iflow.cn serves 67k characters of a Chinese consumer assistant, and apis.iflow.cn answers 405 Method Not Allowed on /v1/chat/completions, so the route exists and only rejects a GET. What is missing is anything to verify. The catalog path /v1/models answers 404, platform.iflow.cn is a client-rendered shell (3446 characters of text inside 35262 bytes, all of it login config), and the only prices served anywhere are the consumer packages on iflow.cn, whose free column lists its features at \"0 次/月\" and disabled. A row this list cannot probe is a row it will not carry — the ModelScope bar.",
-      "reopen_if": "apis.iflow.cn serves a model catalog, or iFlow publishes a server-rendered page stating the free quota of its developer platform.",
+      "checked_on": "2026-09-16",
+      "reason": "iFlow stopped its developer service on 2026-04-17. Its own forum announcement that day reads \"今日11点 iFlow CLI 将停止各项服务，除仅支持使用自定义模型外相关的模型调用、搜索服务都不可用\" (from 11:00 today iFlow CLI stops its services; model calls and search are unavailable, only custom models remain). This record used to call a rival list's report of that shutdown wrong; the report was right.",
+      "reopen_if": "iFlow reopens model calls with a free quota.",
       "current": true
     },
     {
@@ -3369,9 +3369,9 @@
         "supermaven.com"
       ],
       "name": "Supermaven",
-      "checked_on": "2026-08-14",
-      "reason": "The free tier is real, recurring and cardless — supermaven.com/pricing is server-rendered and states \"Free Tier $0 /month\", \"Fast, high-quality code suggestions\", \"Works with large codebases\". It is completions and nothing else: the same page marks \"Adapts to your coding style\", the 1M-token context, the largest model and the \"$5/month in Supermaven Chat credits\" as Pro only, and there is no API. So the free plan hands a developer no model access to point a coding tool at, which is the bar that keeps BYOK-only tools off this list. Copilot Free is listed and this is not for exactly that reason: its free plan carries chat and agent use, not only inline completions.",
-      "reopen_if": "Supermaven's free plan gains chat credits, agent use, or an API endpoint.",
+      "checked_on": "2026-09-16",
+      "reason": "Being wound down. \"Sunsetting Supermaven\" (supermaven.com/blog, Nov 21, 2025): \"We will provide free autocomplete inference for existing customers for the foreseeable future.\" The pricing page still shows \"Free Tier $0 /month\", but the free promise covers existing customers, and it was completions only — no chat, agent use or API.",
+      "reopen_if": "Supermaven takes new users again with a free plan that includes chat, agent use or an API.",
       "current": true
     },
     {
@@ -3409,9 +3409,9 @@
         "morphllm.com"
       ],
       "name": "Morph (fast-apply)",
-      "checked_on": "2026-07-22",
-      "reason": "The one entry here with a free tier that is probably real — roughly 200 requests a month on the fast-apply model — and no way to verify it: morphllm.com/pricing is client-rendered, so the figure appears in no served HTML. Kept out on the verification rule alone, not on the offer.",
-      "reopen_if": "Morph's docs or pricing become server-rendered with the quota in them.",
+      "checked_on": "2026-09-16",
+      "reason": "A free tier of roughly 200 requests a month on the fast-apply model is reported by third parties, and nothing readable confirms it: morphllm.com/pricing answers HTTP 429 with a Vercel Security Checkpoint, and docs.morphllm.com/llms.txt carries no prices and no free tier (2026-09-16).",
+      "reopen_if": "Morph states its free quota on a page an ordinary client can read.",
       "current": true
     },
     {
@@ -3460,9 +3460,9 @@
         "atlassian.com"
       ],
       "name": "Atlassian Rovo Dev",
-      "checked_on": "2026-08-14",
-      "reason": "The free beta that third-party lists still quote at 5M tokens a day is over. atlassian.com/software/rovo-dev now says Rovo Dev is generally available and that \"limited monthly Rovo Dev credits per developer will be gradually rolled out to customers with a Standard, Premium, or Enterprise Cloud plan of Jira\" — an allowance that rides on a paid subscription, which is the same reason Copilot's paid tiers are not entries here.",
-      "reopen_if": "Atlassian publishes a Rovo Dev allowance reachable without a paid Jira Cloud plan.",
+      "checked_on": "2026-09-16",
+      "reason": "Its own FAQ answers the question: \"There is no free tier for Rovo Dev\", and \"Rovo Dev Standard is available with a free 30-day trial\" (atlassian.com/software/rovo-dev/pricing, 2026-09-16). The limited monthly credits Atlassian extends to Jira Cloud customers ride on a paid subscription, and neither page says whether the trial takes a card.",
+      "reopen_if": "Rovo Dev gains an allowance reachable without a paid plan, or a trial page states it needs no card.",
       "current": true
     },
     {
@@ -3541,9 +3541,9 @@
         "tabnine.com"
       ],
       "name": "Tabnine",
-      "checked_on": "2026-08-14",
-      "reason": "tabnine.com/pricing serves 187 characters of text — a client-rendered shell with the plan table assembled in the browser. Whatever its free tier is today, there is nothing in the HTML for a probe to anchor on, which is the same reason Morph is not listed.",
-      "reopen_if": "Tabnine's pricing page carries its plan limits in server-rendered HTML.",
+      "checked_on": "2026-09-16",
+      "reason": "No free plan to read any more: \"Tabnine has been acquired by Tricentis\" (tabnine.com/pricing), and the subscription docs list only \"Enterprise (SaaS)\" and \"Enterprise (private installation)\" (2026-09-16).",
+      "reopen_if": "A free or individual plan returns.",
       "current": true
     },
     {
@@ -3612,9 +3612,9 @@
         "aihorde.net"
       ],
       "name": "AI Horde",
-      "checked_on": "2026-08-14",
-      "reason": "Genuinely free and genuinely legitimate — \"A free, community-powered generation service: volunteers share spare computer power so anyone can generate images and text\", open source, kudos-priority rather than payment, and its status endpoints answer keyless. It fails this list's bar on shape, not on honesty. There is no OpenAI-compatible route to point a coding agent at: generation goes through /api/v2/generate/text/async as a queued job, and the client that added it to a proxy had to write a dedicated adapter because max_tokens must be >=16, stop must be an array, there is no tool calling and no upstream streaming. Nor is there a model set to publish: /api/v2/status/models?type=text is a live census of whichever volunteers are online, today mostly roleplay fine-tunes (aphrodite/TheDrummer/Cydonia-24B, koboldcpp/Angelic_Eclipse-12B) beside one google/gemma-4-31b, each row carrying its own queue and ETA.",
-      "reopen_if": "AI Horde publishes an OpenAI-compatible chat endpoint with tool calling, or a stable set of models it guarantees.",
+      "checked_on": "2026-09-16",
+      "reason": "Genuinely free and legitimate — \"A free, community-powered generation service: volunteers share spare computer power so anyone can generate images and text\" — and no longer the wrong shape: oai.aihorde.net/v1/models answers an OpenAI-style model list (2026-09-16). What it serves is a live census of whichever volunteers are online, mostly small roleplay fine-tunes beside builds of Llama 3.2 3B and Gemma 4 31B, with no model a coding agent can count on being there tomorrow and no tool calling documented.",
+      "reopen_if": "AI Horde documents tool calling on its OpenAI route, or publishes a set of models it keeps available.",
       "current": true
     },
     {
@@ -3869,9 +3869,9 @@
         "bytez.com"
       ],
       "name": "Bytez",
-      "checked_on": "2026-08-30",
-      "reason": "Nothing on this domain can be read by a probe. bytez.com serves a 63KB shell that renders 22 characters of text, docs.bytez.com renders 900 from half a megabyte, /pricing 404s into a client-side not-found, and api.bytez.com/models/v2/list/models answers {\"error\":\"Unauthorized\"}. The free claim carried by OmniRoute is a ~1M-token signup credit — a one-time grant even as reported — and no page here states it. The verification rule settles it the way it settled Coze and Morph.",
-      "reopen_if": "Bytez serves a pricing or docs page to an ordinary HTTP client and that page names a recurring free allowance rather than signup credits.",
+      "checked_on": "2026-09-16",
+      "reason": "Readable now: docs.bytez.com/model-api/docs/billing.md lists \"$0 / month - Get $1 in free credits\", \"Run open models up to 7B parameters\" and \"Credits refresh every 4 weeks\" — a recurring dollar that reaches open models of 7B parameters or fewer. Whether an allowance that small, on models that small, belongs on the list is a scope question this list has not settled; it stays here until it is (2026-09-16).",
+      "reopen_if": "The free credits reach larger open models, or the list settles how small an allowance it carries.",
       "current": true
     },
     {
@@ -3889,9 +3889,9 @@
         "xkiro.com"
       ],
       "name": "xKiro",
-      "checked_on": "2026-08-30",
-      "reason": "Blocked on 2026-08-30 and un-blocked the same day: the reason given — \"sells a 5,000,000 free tokens/day plan over models it does not own\" — confused the catalog with the free lane, which is the mistake this repository has a written rule against. api.xkiro.com/v1/models carries an `access_tier` field per row, and every one of the 17 `:free` ids is Qwen at `access_tier: free` with pricing 0/0, while claude-opus-5, the gpt-5.6 line and grok-4.6 are all `access_tier: paid`. The paid prices are not relay-shaped either: measured against each vendor's list, gpt-5.6-sol is sold ABOVE list ($4.50/$27 against $4/$20), claude-opus-5 at 85% and grok-4.6 at 75% — ordinary markup and discount, not the order of magnitude that disqualified llm7.io. It publishes terms, privacy, about, contact, docs and a status page, all served. Its own plan card reads \"Free — $0/month — Free forever — Free tokens 100K / day — Access to 35+ free models — no card required\". Not listed only because nothing here has called that lane, and because the page's \"35+ free models\" overstates its own catalog by double.",
-      "reopen_if": "Anyone verifies a keyless-of-charge call on the free lane, or the catalog's `:free` set stops matching what the pricing page promises.",
+      "checked_on": "2026-09-16",
+      "reason": "api.xkiro.com/v1/models now marks 42 rows access_tier free at 0/0, no longer only Qwen: openai/gpt-5.3-codex-spark, mistralai/mistral-large-2512 and mistralai/codestral-2508 are among them, and the site's own JSON-LD featureList includes \"Claude and GPT proxy\". Free closed models prove nothing about where the capacity comes from, and no page states it either — no upstream provider is named anywhere read — so it stays unlisted until that is known (2026-09-16).",
+      "reopen_if": "xKiro names where its free models are served from, or a provider confirms the arrangement.",
       "current": true
     },
     {
@@ -3930,9 +3930,9 @@
         "cto.new"
       ],
       "name": "cto.new",
-      "checked_on": "2026-09-02",
-      "reason": "Moved off the blocklist, for the reason five other domains were on 2026-08-30: the verdict was a statement about the offer on a date, filed where nothing expires. It read \"free models are chat-only: no API endpoint and no free agent runs ... so no probe on this domain can verify anything\", and the second half is simply not true — docs.cto.new answers an ordinary client with HTTP 200 and carries the free tier's terms in the vendor's own words. The first half is a scope judgement, which is what this file is for. Out of scope rather than out of free tier, then, which is the rarer of the two answers here. cto.new is an AI business builder — its own documentation is Headquarters, Website, Tasks, Finance, Ads, Inbox, Files and a Marketplace — and the coding surface a developer would point at a repository is not among them. It is Engine Labs' product, which the documentation gives away without saying so: every asset on docs.cto.new is served from mintcdn.com/enginelabs/. The free tier itself is real and unquantified: \"Use cto completely free. Access to the best value models with generous usage limits that reset every day\", carrying its own caveat that \"access to the free tier may be restricted in some locations and on some networks\". Which models it reaches is not stated; the models page names Claude Opus 5, Claude Fable 5, Kimi K3, GPT-5.6, DeepSeek V4 Pro, Gemini 3.1 Pro and GLM 5.3 Flash for the product as a whole, and the free page says only \"the best value models\". Note for a re-read: cto.new answers a Vercel Security Checkpoint with HTTP 429 to any ordinary client, and docs.cto.new is the readable surface — its Mintlify .md forms (docs.cto.new/fair-use.md, /pricing.md) are the machine-readable one, and the llms.txt beside them lists every page.",
-      "reopen_if": "It ships a surface a developer uses on code directly — a CLI, an IDE extension or an OpenAI-compatible endpoint — reachable on the free tier.",
+      "checked_on": "2026-09-16",
+      "reason": "cto.new has a coding surface now: its changelog reads \"Launched the first version of the CTO CLI\" (June 5th 2026), and the free tier stands in the fair-use doc: \"Use cto completely free. Access to the best value models with generous usage limits that reset every day\". No page read says whether the CLI runs on that free tier, and cto.new itself answers ordinary clients with a Vercel Security Checkpoint, so docs.cto.new is the readable surface. It is Engine Labs' product (every docs asset is served from mintcdn.com/enginelabs/).",
+      "reopen_if": "A cto.new page says the CLI works on the free tier.",
       "current": true
     },
     {
@@ -3981,8 +3981,8 @@
         "api.llama.com"
       ],
       "name": "Meta Llama API",
-      "checked_on": "2026-09-02",
-      "reason": "Reached through the models.dev digest (7/7 rows at cost 0). The developer site is a client-rendered shell — llama.developer.meta.com/, /docs/overview and /docs/models are each 330 to 460 kilobytes of HTML carrying 8 to 11 characters of text, /llms.txt answers 404 — and api.llama.com/compat/v1/models answers 401 to a keyless GET. Meta may well be serving these models at no charge; nothing it publishes to an ordinary client says so, and a row this list cannot probe is a row it will not carry.",
+      "checked_on": "2026-09-16",
+      "reason": "llama.developer.meta.com now redirects to ai.developer.meta.com, which renders nine characters of text to an ordinary client, and api.llama.com/compat/v1/models answered 401 to a keyless GET (2026-09-02). Meta may serve these models at no charge; nothing it publishes to an ordinary client says so.",
       "reopen_if": "A readable pricing or rate-limits page for the Llama API states the free allowance.",
       "current": true
     },
@@ -4321,9 +4321,9 @@
         "arliai.com"
       ],
       "name": "Arli AI",
-      "checked_on": "2026-09-05",
-      "reason": "The Free plan is real on the pricing page (read 2026-09-05) — \"$0\", \"1 request at a time\", \"Max 12K context tokens\", \"Delayed Response\", \"5 times / 2 days trial of all models\" — but which models it reaches is stated nowhere: the page ties model sizes to paid plans only (\"Access Up to 31B Models\" from $10 a month), /docs and /models answer 404, and api.arliai.com/v1/models needs a key. A free plan whose model list cannot be read is a row whose Models column this list cannot fill or re-check.",
-      "reopen_if": "A page naming the models the Free plan can call.",
+      "checked_on": "2026-09-16",
+      "reason": "The Free plan is real on the pricing page — \"Max 12K context tokens\", \"1 request at a time\", \"5 times / 2 days trial of all models\" — but which models it reaches is stated nowhere an ordinary client can read: arliai.com/models/textgen-models answers 200 with no model names in its HTML, and api.arliai.com/v1/models needs a key (2026-09-16).",
+      "reopen_if": "A readable page names the models the Free plan can call.",
       "current": true
     },
     {
@@ -4361,9 +4361,9 @@
         "aimlapi.com"
       ],
       "name": "AIMLAPI",
-      "checked_on": "2026-09-11",
-      "reason": "A prepaid aggregator \"fronting 400+ models\". Its home page's JSON-LD lists an offer \"Free Trial — Free credits on signup to explore 1000+ AI models and test the API\", aimlapi.com/best-ai-apis-for-free repeats \"Try 1000+ AI models for free with one API key. No credit card\" and then, under every model, \"Access to these models is provided with limited usage on the Free Plan\", and /ai-ml-api-pricing (961 KB rendered) says \"free playground tier\" once and gives no figure; the docs site's sitemap holds a single URL. OmniRoute's FREE_TIERS.md removed aimlapi from its free list. A free plan with no published quota, read 2026-09-11.",
-      "reopen_if": "A page states what the Free Plan's \"limited usage\" is.",
+      "checked_on": "2026-09-16",
+      "reason": "\"The Free Tier is currently paused\" (docs.aimlapi.com/faq/free-tier, 2026-09-16), though the marketing pages still offer \"Free credits on signup\".",
+      "reopen_if": "The free tier resumes, with its quota stated.",
       "current": true
     },
     {
@@ -4372,9 +4372,9 @@
         "bytepluses.com"
       ],
       "name": "BytePlus ModelArk",
-      "checked_on": "2026-09-11",
-      "reason": "ByteDance's international cloud; ModelArk is the overseas face of Volcengine Ark, which has its own row here. mnfst/llm-gateway lists it for the paid \"ModelArk Coding Plan\". The site's nav links a \"BytePlus Free Tier\" page, byteplus.com/activity/free, which is a React app that renders \"You need to enable JavaScript to run this app\" and nothing else; /en/pricing/modelark and the ModelArk docs (docs.byteplus.com/en/docs/ModelArk/1544106) carry no free-quota wording in their rendered text. Same shape as the mainland consoles: an offer that may exist on a page no probe can read. Read 2026-09-11.",
-      "reopen_if": "A readable page states ModelArk's free quota per model.",
+      "checked_on": "2026-09-16",
+      "reason": "A one-off trial, readable now in the docs' page data: ModelArk has a mode in which \"calls to the inference API consume only the 500k free tokens granted by the platform\", and the campaign terms grant \"500,000 (Five Hundred Thousand) tokens per Model\", \"redeemable only once per BytePlus account\", after \"BytePlus account registration and enterprise information submission\". Sign-up has you \"select one of the options as your payment method\", and no page read says the tokens can be spent before one is added (2026-09-16).",
+      "reopen_if": "A page says the free tokens need no payment method, or the grant recurs.",
       "current": true
     },
     {
