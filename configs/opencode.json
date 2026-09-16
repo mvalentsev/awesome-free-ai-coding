@@ -23,34 +23,6 @@
         }
       }
     },
-    "opencode": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "opencode",
-      "options": {
-        "baseURL": "https://opencode.ai/zen/v1",
-        "apiKey": "{env:OPENCODE_API_KEY}"
-      },
-      "models": {
-        "big-pickle": {
-          "name": "big-pickle"
-        },
-        "mimo-v2.5-free": {
-          "name": "mimo-v2.5-free"
-        },
-        "ling-3.0-flash-fin-free": {
-          "name": "ling-3.0-flash-fin-free"
-        },
-        "nemotron-3-ultra-free": {
-          "name": "nemotron-3-ultra-free"
-        },
-        "nemotron-3.5-lightning-free": {
-          "name": "nemotron-3.5-lightning-free"
-        },
-        "muse-spark-1.3-contributor-free": {
-          "name": "muse-spark-1.3-contributor-free"
-        }
-      }
-    },
     "openrouter-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "OpenRouter (free models)",
