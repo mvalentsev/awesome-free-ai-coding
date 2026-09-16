@@ -4718,6 +4718,17 @@
       "reason": "Listed from 2026-07-20 to 2026-09-16 as a free tier marked with a card, and taken off because CONTRIBUTING excludes one-off credits that require one. \"Every new customer gets 1,000,000 free tokens—start paying only from the 1,000,001st token\" is a once-per-customer grant, and Scaleway's account docs say \"Ordering Scaleway resources requires a valid credit card\".",
       "reopen_if": "The free tokens stop requiring a card, or become a recurring allowance.",
       "current": true
+    },
+    {
+      "domains": [
+        "aiberm.com",
+        "aiberm.org"
+      ],
+      "name": "Aiberm",
+      "checked_on": "2026-09-16",
+      "reason": "A paid relay with nothing free found and no cause shown. It sat on the blocklist from 2026-09-14 on its own discount claim (\"85–90% off Claude, 90% off GPT\"), and a price is not provenance. Its FAQ separates \"claude-\" models, discounted and \"best suited for coding scenarios\", from \"anthropic/\" models \"Routed through AWS\", without saying where the first kind come from. aiberm.org is its mainland mirror.",
+      "reopen_if": "Aiberm offers a free allowance, or states where its discounted Claude capacity comes from.",
+      "current": true
     }
   ]
 }

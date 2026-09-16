@@ -31,19 +31,27 @@
     full access to premium AI capabilities completely free, forever" (read
     2026-09-14).
 - domain: api.airforce
-  reason: pooled/reverse-engineered gateway of the g4f family — no official free offer
+  reason: >-
+    Sells what its upstream forbids selling. Its model list prices Midjourney
+    actions — mj_imagine, mj_blend, mj_describe, mj_pan, mj_high_variation — and
+    its structured data advertises "Free Claude API access" and "Free
+    Midjourney", while Midjourney's help center says "With a few rare exceptions
+    that are explicitly granted, Midjourney does not provide an API, nor provide
+    third-party apps or scripts, and automating interactions with Midjourney
+    service is strictly prohibited according to our Terms of Service". Automated
+    resale of subscription accounts is the pooled-account case (read
+    2026-09-16).
 - domain: theoldllm.vercel.app
   reason: frontier-model access via browser-automation token harvesting — unofficial,
     unstable, likely ToS-violating
 - domain: tokenrouter.me
-  reason: shares the name of the listed tokenrouter.com gateway — registered
-    2026-04-28, a week after that brand launched — and is pushed by the same posts
-    that advertise the other one's free Kimi lane. Sells flat plans ($4.40 for 30
-    days, "no request limits") over Kimi K2.7 Code and DeepSeek V4 Pro, whose
-    metered price on the gateway it imitates is $0.93/$3.86 and $0.43/$0.87 per 1M
-    tokens; a month of unmetered agent use cannot be licensed capacity at that
-    price. No legal entity, terms of service headings with empty bodies,
-    Telegram-only support, single Contabo VPS
+  reason: >-
+    Gone, and a look-alike while it lasted: the domain resolves nothing (no
+    address on the apex, NXDOMAIN on www and api, 2026-09-16), and archived
+    copies of 2026-07-31 show a flat-plan gateway under the name of the
+    tokenrouter.com row this list carries, with terms of service whose sections
+    are empty and support through Telegram alone. Kept here for the phindai.org
+    reason — a reader could take it for the vendor it imitates.
 
 - domain: router-for.me
   reason: >-
@@ -93,42 +101,19 @@
     mainland China. Same service as chatanywhere.tech.
 - domain: supxh.xin
   reason: >-
-    肖恩AI, a new-api instance on a personal domain handing out claude-opus-4-5,
-    claude-sonnet-4-5 and gemini-3.1-pro for a daily check-in and a referral
-    bonus, alongside "无限额度全模型卡" — unlimited-quota all-model cards — sold with
-    coupons. No legal entity, no terms of service, no claim of authorisation
-    from any of the vendors whose flagship models it serves. The capacity it
-    gives away is not capacity anyone licenses to give away. The operator named
-    the instance himself: speed.toter.me/api/status answers
-    "system_name":"api中转" — API relay — and points its documentation at
-    docs.newapi.pro.
+    肖恩AI, a new-api relay ("api中转" in its own status) that resells other
+    services' free lanes under prefixes of its own: its public pricing catalog
+    lists zen/big-pickle and zen/mimo-v2.5 (opencode Zen's free models),
+    kilo/kilo-auto (Kilo's free router), nousfree/laguna-s-2.1 and six more ids
+    of Nous Portal's free plan, and yingweida/ ids copied from NVIDIA's trial
+    catalog, beside gem2api/gemini-3.5-flash — the naming of wrappers that turn
+    gemini.google.com sessions into an API — and a daily check-in that hands out
+    flagship models. Free allowances meant for one developer resold to strangers
+    are the key sharing CONTRIBUTING excludes (read 2026-09-16).
 - domain: toter.me
   reason: >-
     The API host 肖恩AI publishes for itself (speed.toter.me). Same service as
     supxh.xin.
-- domain: llm7.io
-  reason: >-
-    Moved here from the watchlist on 2026-08-14, and the record it replaces was
-    wrong on the facts: LLM7 does have a recurring free lane. docs.llm7.io says
-    "turbo models are fast models available to anonymous and free-token users",
-    five of its 36 rows carry that tier, and docs.llm7.io/limits grants
-    anonymous callers 500,000 tokens per 24 hours with no signup at all. The
-    disqualifier is provenance, not absence. `owned_by` is empty on all 36 rows;
-    the paid 31 include claude-opus-5, claude-fable-5, gpt-5.6-sol, grok-4.6 and
-    gemini-omni-flash at a fraction of their list price; and llm7.io/terms,
-    /privacy and /about all answer 404, so the service publishes no legal entity
-    and no terms of any kind. Serving four vendors' flagship models with no
-    stated provenance and no legal pages is the unofficial-gateway case that
-    api.airforce and tokenrouter.me are already here for. Measured on 2026-08-30,
-    because "a fraction of list price" is the kind of phrase that needs a number:
-    against each vendor's own published price, LLM7 sells claude-sonnet-4-6 at
-    $0.12/$0.45 where Anthropic lists $3/$15 (4% and 3%), claude-haiku-4-5 at 4%,
-    gpt-5.4 at 6%/5%, gemini-3.7-flash at 8%, gpt-5.5 at 11%. A reseller's volume
-    discount is 15-25% off; an order of magnitude is not a discount but a
-    different supply. Its free lane is not the issue and never was — the six
-    turbo ids are open-weight (gpt-oss, gemma4:31b, codestral, Llama-3.1-8B,
-    mistral-Nemo, minimax-m2.7).
-
 - domain: phindai.org
   reason: >-
     An unofficial clone trading on a real vendor's name: the page titles itself
@@ -175,26 +160,16 @@
 
 - domain: jiekou.ai
   reason: >-
-    Reached through the models.dev digest on 2026-09-05 (1/61 rows at cost 0,
-    xiaomimimo/mimo-v2-flash — which the vendor's own keyless catalog at
-    api.jiekou.ai/openai/models prices at 1000/3000 in its units). The home page
-    calls the service "一站式多模型 API 中转平台", a one-stop multi-model API relay,
-    and its pricing page sorts every row under two labels of its own: 官方资源
-    (official resource, 49 rows) and 低价专区 (low-price zone, 19 rows). In the
-    low-price zone claude-opus-4-8-r, claude-opus-4-7-r and claude-opus-4-6-r are
-    $1/$5 per 1M against the $5/$25 the same page prints for the official rows
-    (20%), claude-sonnet-4-6-r is $0.6/$3 against $3/$15 (20%), and the -dd
-    variants sit at 55%. A reseller's discount is 15-25% off; a fifth of list,
-    sold under a label that separates it from the vendor's official supply, is
-    the different-supply case llm7.io is here for — stated by the operator. The
-    free question never arose: the catalog prices three chat rows at 0
-    (qwen/qwen3.8-27b, qwen/qwen3.5-plus, slow-mock) while the pricing page
-    prices Qwen3.5-Plus at $0.4/$2.4, and the quickstart's signup voucher —
-    "我们为新用户提供了一些信用额度的代金券" — carries no figure.
+    The operator says it sells reverse-engineered access. Its image FAQ: "Nano
+    Banana Pro Light：逆向/破解版本，价格便宜，但稳定性较差" (Nano Banana Pro Light: a
+    reverse-engineered/cracked version, cheap but less stable), and its API
+    reference serves "Nano Banana Pro Reverse 文生图" at api.highwayapi.ai. It
+    calls itself "一站式多模型 API 中转平台", a one-stop multi-model API relay (read
+    2026-09-16).
 - domain: highwayapi.ai
   reason: >-
-    The "国内直连" (mainland direct) base URL jiekou.ai names on its own home page
-    — one operator, one verdict.
+    jiekou.ai's "国内直连" (mainland direct) base URL, and the host its "Nano Banana
+    Pro Reverse" endpoints are served from — one operator, one verdict.
 - domain: 9router.com
   reason: >-
     9Router (github.com/decolua/9router, 27k stars on 2026-09-05) is the
@@ -230,19 +205,14 @@
     of trial credits.
 - domain: aicodemirror.ai
   reason: >-
-    A Claude Code and Codex relay that states the supply in its own sponsor
-    blurb on CLIProxyAPI's README: "official high-stability relay services for
-    Claude Code / Codex / Gemini ... official channels at 38% / 2% / 9% of
-    original price". Codex at 2% of its price is not a discount, it is a
-    different supply — the llm7.io measure, stated by the operator (read
-    2026-09-14).
-- domain: aiberm.com
-  reason: >-
-    A relay pricing itself below what its upstreams charge by an order of
-    magnitude, in its own words on CLIProxyAPI's README: "One endpoint for
-    Claude, GPT, Grok, DeepSeek, GLM, Kimi, and MiniMax: 85–90% off Claude, 90%
-    off GPT, and 80% off Grok". A tenth of list is the different-supply case
-    llm7.io and aicodemirror.ai are here for (read 2026-09-14).
+    A relay of subscription coding agents, by its own description and by its
+    routes. Its sponsor blurb on CLIProxyAPI's README: "AICodeMirror 提供 Claude
+    Code / Codex / Gemini 官方高稳定中转服务" (AICodeMirror provides high-stability relay
+    service for Claude Code / Codex / Gemini). Its API host answers
+    /api/codex/backend-api/codex with 401 AUTH_MISSING, where a made-up path
+    answers 404 — the chatgpt.com/backend-api/codex route Codex uses when signed
+    in with a ChatGPT subscription rather than an API key. Re-exposing
+    subscription sessions is the router-for.me case (read 2026-09-16).
 - domain: kenari.id
   reason: >-
     Listed here as a gateway for its :free ids from 2026-09-02, and taken off
@@ -271,3 +241,22 @@
     to you and pay you a share of what they earn" (read 2026-09-16). Accounts
     rented out to strangers through a router are the key sharing CONTRIBUTING
     excludes.
+- domain: jiekou.vip
+  reason: >-
+    The same 接口AI site under another domain — "接口AI 一站式多模型 API 中转平台" — which
+    jiekou.ai's own docs send sign-ins to. Same verdict.
+- domain: aicodemirror.com
+  reason: >-
+    Redirects to aicodemirror.ai's site and serves the same /api/claudecode
+    route. Same verdict.
+- domain: ps.air-outer.com
+  reason: >-
+    AgentRouter's backup domain, named in its own announcement; its /api/status
+    answers "system_name":"Agent Router" with
+    "server_address":"https://agentrouter.org". Only this host — the
+    air-outer.com apex is an unrelated business.
+- domain: aichatos68.com
+  reason: >-
+    Where AIchatOS, the yqcloud.top frontend, says it lives now: its notice file
+    reads "最新网站存活（勿在公开平台分享） : https://chat18.aichatos68.com/" (latest live site
+    — do not share publicly). Same verdict.
