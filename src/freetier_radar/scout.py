@@ -95,6 +95,12 @@ MODELS_LIST_TIMEOUT = 30.0
 # which is why they cost a candidate rather than the whole backend.
 BAD_MODEL_STATUS = (400, 404)
 
+# How much of a refusal's body is read, and how much of the vendor's sentence
+# reaches the log. A refusal is a short JSON error; the cap is for the backend
+# that answers a status with a whole HTML page.
+REFUSAL_BODY_LIMIT = 4096
+REFUSAL_REASON_CHARS = 200
+
 # Retirement sweep: one page per live entry, trimmed so the prompt stays small.
 # A quote shorter than this is too weak to verify against a page.
 RETIREMENT_PAGE_CHARS = 2500
@@ -335,6 +341,29 @@ def published_model_ids(entries: list[Entry]) -> dict[str, list[str]]:
     return pools
 
 
+def refusal_reason(body: bytes) -> str:
+    """What a refused call's body says, on one line: the `error.message` of an
+    OpenAI-style error, a bare `error` or `message` string, or the text itself.
+    An HTML page says nothing a log line can use, so it reads as no reason."""
+    text = body.decode("utf-8", "replace").strip()
+    if not text or text.startswith("<"):
+        return ""
+    try:
+        data = json.loads(text)
+    except ValueError:
+        data = None
+    message: object = text
+    if isinstance(data, dict):
+        error = data.get("error")
+        if isinstance(error, dict) and isinstance(error.get("message"), str):
+            message = error["message"]
+        elif isinstance(error, str):
+            message = error
+        elif isinstance(data.get("message"), str):
+            message = data["message"]
+    return " ".join(str(message).split())[:REFUSAL_REASON_CHARS]
+
+
 class LLMClient:
     """Ordered backend chain, first success wins:
 
@@ -513,7 +542,8 @@ class LLMClient:
                                timeout=timeout) as r:
             if r.status_code == 429:
                 return r.status_code, b""
-            r.raise_for_status()
+            if r.is_error:
+                raise self._refusal(r, end)
             chunks = []
             for chunk in r.iter_bytes():
                 chunks.append(chunk)
@@ -521,6 +551,28 @@ class LLMClient:
                     raise DeadlineExceeded(
                         f"{url} was still streaming after {budget:.0f}s")
         return r.status_code, b"".join(chunks)
+
+    def _refusal(self, r: httpx.Response, end: float) -> httpx.HTTPStatusError:
+        """The error for a refused call, carrying the start of the vendor's body.
+
+        httpx raises on a streamed response before a byte of it is read, so the
+        one sentence that says why never reached the log: on 2026-09-16 a forced
+        run reported a 400 from opencode Zen as a retired model id while the
+        body said the free tier had been locked to OpenCode's own client. Read
+        against the same clock as a success, and capped, since a refusal can be
+        a whole HTML page. The message leaves the url out: Gemini's carries the
+        key."""
+        body = b""
+        for chunk in r.iter_bytes():
+            body += chunk
+            if len(body) >= REFUSAL_BODY_LIMIT or self._clock() > end:
+                break
+        reason = refusal_reason(body)
+        kept = httpx.Response(r.status_code, content=body[:REFUSAL_BODY_LIMIT],
+                              request=r.request)
+        return httpx.HTTPStatusError(
+            f"HTTP {r.status_code}" + (f": {reason}" if reason else ""),
+            request=r.request, response=kept)
 
     def _chat_any(self, base_url: str, candidates: list[str], key: str | None,
                   prompt: str) -> str:
@@ -546,7 +598,9 @@ class LLMClient:
                 if exc.response.status_code not in BAD_MODEL_STATUS:
                     raise
                 self._dead_models.add((base_url, model))
-                rejected.append(f"{model} ({exc.response.status_code})")
+                reason = refusal_reason(exc.response.content)
+                rejected.append(f"{model} ({exc.response.status_code}"
+                                + (f": {reason})" if reason else ")"))
         raise RuntimeError(
             "no model this endpoint still serves"
             + (f": {', '.join(rejected)}" if rejected else ""))

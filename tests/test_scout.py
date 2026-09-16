@@ -760,6 +760,45 @@ def test_a_retired_pin_costs_a_candidate_and_not_the_endpoint():
 
 
 @respx.mock
+def test_a_disowned_model_is_reported_with_the_vendor_s_reason():
+    """A 400 is read as news about the model, and on 2026-09-16 that reading
+    was wrong. The forced fallback run printed "no model this endpoint still
+    serves: nemotron-3-ultra-free (400)", which sends a reader to retype the
+    variable, while opencode Zen's body said why: the whole free tier had been
+    locked to OpenCode's own client since 2026-09-07. The status is the same
+    for both repairs; only the vendor's sentence tells them apart."""
+    respx.post("https://zen.example/v1/chat/completions").mock(return_value=httpx.Response(
+        400, json={"type": "error", "error": {
+            "type": "MissingSessionID",
+            "message": "Error from provider (Console): OpenCode's free tier can only "
+                       "be used in OpenCode"}}))
+    with httpx.Client() as http:
+        llm = LLMClient(custom_base_url="https://zen.example/v1", custom_model="gone-free",
+                        custom_key="k", http=http, force="custom")
+        with pytest.raises(RuntimeError) as failed:
+            llm.complete("hi")
+    assert ("gone-free (400: Error from provider (Console): OpenCode's free tier can only "
+            "be used in OpenCode)") in str(failed.value)
+
+
+@pytest.mark.parametrize(("body", "reason"), [
+    (b'{"error": {"message": "Model  gone-free\\n is not supported"}}',
+     "Model gone-free is not supported"),
+    (b'{"error": "payment required"}', "payment required"),
+    (b'{"message": "unknown model"}', "unknown model"),
+    (b"upstream said no", "upstream said no"),
+    (b"<!DOCTYPE html><html><body>400 Bad Request</body></html>", ""),
+    (b"", ""),
+])
+def test_a_refusal_reads_as_the_vendor_s_own_sentence(body, reason):
+    assert scout.refusal_reason(body) == reason
+
+
+def test_a_refusal_reason_fits_a_log_line():
+    assert len(scout.refusal_reason(b"x" * 10_000)) == scout.REFUSAL_REASON_CHARS
+
+
+@respx.mock
 def test_a_spent_wallet_fails_the_backend_and_not_one_model():
     """Ollama's $0 plan became a starter wallet between the 2026-08-27 and
     2026-08-31 runs and answered 402 for a model that had worked all month.
