@@ -19,6 +19,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna`, `mimo-v2.5` | `2026-09-14` |
 | [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | `laguna-s-2.1` | `2026-09-14` |
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-14` |
+| [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | 🤖 Coding agents & CLIs | — | `2026-09-16` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-14` |
 | [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) | 🤖 Coding agents & CLIs | — | `2026-09-14` |
 | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro` | `2026-09-14` |
@@ -54,6 +55,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Trae](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
 | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) | 🎁 Trials (no card when possible) | `glm-5`, `gpt-oss`, `qwen3.8`, `llama-3.3`, `apertus-70b` | `2026-09-14` |
 | [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | `solar-pro-3`, `solar-mini` | `2026-09-14` |
+| [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) | 🎁 Trials (no card when possible) | `gpt-5.6-luna` | `2026-09-16` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-14` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-14` |
@@ -66,7 +68,9 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6` | `2026-09-14` |
 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1` | `2026-09-14` |
 | [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) | 🧭 Aggregators (one key, many providers) | `qwen3.7-flash` | `2026-09-14` |
+| [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) | 🧭 Aggregators (one key, many providers) | `step-3.7-flash`, `laguna-s-2.1` | `2026-09-16` |
 | [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-nano-omni` | `2026-09-14` |
+| [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4.1-flash`, `mimo-v2.5` | `2026-09-16` |
 | [Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-14` |
 | [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) | 🧭 Aggregators (one key, many providers) | `mistral-small-3.2` | `2026-09-14` |
 

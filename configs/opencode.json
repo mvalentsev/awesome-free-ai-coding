@@ -603,6 +603,40 @@
         }
       }
     },
+    "nous-portal": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Nous Portal (Hermes Agent)",
+      "options": {
+        "baseURL": "https://inference-api.nousresearch.com/v1",
+        "apiKey": "{env:NOUS_PORTAL_API_KEY}"
+      },
+      "models": {
+        "stepfun/step-3.7-flash:free": {
+          "name": "stepfun/step-3.7-flash:free"
+        },
+        "poolside/laguna-s-2.1:free": {
+          "name": "poolside/laguna-s-2.1:free"
+        },
+        "poolside/laguna-xs-2.1:free": {
+          "name": "poolside/laguna-xs-2.1:free"
+        },
+        "inclusionai/ling-3.0-flash-fin:free": {
+          "name": "inclusionai/ling-3.0-flash-fin:free"
+        },
+        "inclusionai/ling-3.0-flash-sante:free": {
+          "name": "inclusionai/ling-3.0-flash-sante:free"
+        },
+        "upstage/solar-pro4:free": {
+          "name": "upstage/solar-pro4:free"
+        },
+        "meituan/longcat-2.0:free": {
+          "name": "meituan/longcat-2.0:free"
+        },
+        "stealth/union-alpha": {
+          "name": "stealth/union-alpha"
+        }
+      }
+    },
     "nvidia-nim": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "NVIDIA NIM (build.nvidia.com)",
@@ -676,6 +710,25 @@
         },
         "brick-v1-beta": {
           "name": "brick-v1-beta"
+        }
+      }
+    },
+    "token-harbor": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Token Harbor",
+      "options": {
+        "baseURL": "https://tokenharbor.ai/v1",
+        "apiKey": "{env:TOKEN_HARBOR_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4.1-flash:free": {
+          "name": "deepseek-v4.1-flash:free"
+        },
+        "deepseek-v4-flash:free": {
+          "name": "deepseek-v4-flash:free"
+        },
+        "mimo-v2.5:free": {
+          "name": "mimo-v2.5:free"
         }
       }
     },

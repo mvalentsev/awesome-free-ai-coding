@@ -153,28 +153,6 @@ watched:
     reopen_if: >-
       Supermaven's free plan gains chat credits, agent use, or an API endpoint.
 
-  - domains: [aws.amazon.com]
-    name: Amazon Q Developer
-    checked_on: '2026-08-14'
-    reason: >-
-      The free tier is real — aws.amazon.com/q/developer/pricing is
-      server-rendered and says "Amazon Q Developer offers a perpetual Free Tier
-      with monthly limits", 50 agentic requests a month, "Access latest Claude
-      models", "Use in the IDE or CLI", with IDE limits reserved for AWS Builder
-      ID users. It is not listed because it is the predecessor of an entry this
-      list already carries. AWS has folded both of its surfaces into Kiro: the
-      product page runs an End of support notice reading "On April 30, 2027, AWS
-      will discontinue support for Amazon Q Developer IDE plugins. For
-      capabilities similar to Amazon Q Developer IDE plugins, explore Kiro", and
-      the user guide is blunter about the other half — "The Q CLI has become the
-      Kiro CLI." Kiro is listed with its own perpetual free tier, so carrying
-      both would be one offer twice, the second copy with a shutdown date on it.
-      Recorded because the pricing page still advertises the tier and keeps
-      reaching us through curated feeds.
-    reopen_if: >-
-      Amazon Q Developer outlives the 2027-04-30 plugin end-of-support as a
-      product with a free tier of its own rather than as a route into Kiro.
-
   - domains: [novita.ai]
     name: Novita AI
     checked_on: '2026-08-14'
@@ -241,20 +219,6 @@ watched:
       served HTML. Kept out on the verification rule alone, not on the offer.
     reopen_if: >-
       Morph's docs or pricing become server-rendered with the quota in them.
-
-  - domains: [nousresearch.com]
-    name: Nous Portal
-    checked_on: '2026-07-22'
-    reason: >-
-      The free tier is $0.10 a month of credit — decorative rather than usable,
-      and far below what the third-party claim of "50 RPM free" suggested.
-      The date stays at the July reading on purpose: re-asked on 2026-08-14
-      after a list credited it with a no-card free tier, portal.nousresearch.com
-      answered 429 "Vercel Security Checkpoint" to every client tried, home page
-      and pricing alike, so nothing there could be re-read either way.
-    reopen_if: >-
-      The monthly grant becomes large enough to run an agent session on, on a
-      page the portal serves to an ordinary HTTP client.
 
   - domains: [arcee.ai]
     name: Arcee (Trinity)
@@ -1091,26 +1055,6 @@ watched:
       Its catalog starts publishing per-model prices, or a page states what the
       free lane grants and where the `[1m]` ids come from.
 
-  - domains: [zed.dev]
-    name: Zed (Personal plan)
-    checked_on: '2026-08-30'
-    reason: >-
-      The blocklist said "free plan is BYOK / external agents only, no bundled
-      model usage", and zed.dev/pricing contradicts it: the Personal plan is
-      "$0 forever" and lists "2,000 accepted edit predictions" beside "Unlimited
-      use with your API keys or external agents". Those predictions run on Zed's
-      own hosted model, which is bundled usage in exactly the shape that keeps
-      GitHub Copilot Free on this list at 2,000 completions a month. Two things
-      stop it short of a row rather than of a re-check: the number carries no
-      period anywhere on the page, and Zed's own FAQ describes Personal as being
-      "for users who want a best-in-class code editor without AI capabilities",
-      so the vendor's two statements about its own free plan disagree. Edit
-      predictions are also completions and nothing else — no chat, no agent, no
-      model you can aim at a task.
-    reopen_if: >-
-      Zed states the period on the 2,000 predictions, or the Personal plan gains
-      any chat or agent usage of its own.
-
   - domains: [reka.ai]
     name: Reka AI
     checked_on: '2026-08-30'
@@ -1675,23 +1619,6 @@ watched:
       list can verify twice a week.
     reopen_if: >-
       api.awanllm.com answers a request.
-
-  - domains: [tokenharbor.ai]
-    name: Token Harbor
-    checked_on: '2026-09-05'
-    reason: >-
-      A gateway with a free pass — "$0/ month", "Try Token Harbor with a free
-      allowance and a rotating model lineup", DeepSeek V4 Flash and MiMo V2.5,
-      "No card required" — and paid passes from $0.99 a month that resell
-      Claude Fable 5.1 at $10.00 / $50.00 and Opus 5 at $5.00 / $25.00 per
-      million tokens, which is list price, so it is a reseller at list and not
-      the different-supply case the blocklist is for. What keeps it off the
-      list is the shape of the free lane: the allowance has no figure on any
-      page read (2026-09-05), the catalog needs a key (tokenharbor.ai/v1/models
-      answers 401), and the operator is unnamed.
-    reopen_if: >-
-      A figure for the free allowance, or a keyless catalog that marks the
-      free rows.
 
   - domains: [kluster.ai]
     name: kluster.ai

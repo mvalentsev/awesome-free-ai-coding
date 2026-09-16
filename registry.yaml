@@ -3315,3 +3315,186 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 55
+- id: zed
+  name: Zed
+  category: trial
+  url: https://zed.dev
+  source_urls:
+  - https://zed.dev/pricing
+  - https://zed.dev/docs/account/plans-and-pricing
+  card_required: false
+  offering: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with
+    $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted
+    edit predictions on the $0 Personal plan'
+  limits: '"We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and
+    unlimited accepted edit predictions. No credit card is required. The trial ends
+    when you use the $5 balance or 14 days pass, whichever comes first." "GPT-5.6
+    Luna is the only hosted model available during the free trial", and the balance
+    is shared with Delta, Zed''s other app. Trials "automatically convert to Zed Free"
+    — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period
+    on the page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-16'
+  models:
+  - family: gpt-5.6-luna
+    tier: strong
+    released: ''
+  probe:
+    type: page-keywords
+    endpoint: https://zed.dev/pricing
+    keywords:
+    - 14-day free trial of Pro with $5 of GPT-5.6 Luna usage
+    - 2,000 accepted edit predictions
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-16'
+  last_verified: '2026-09-16'
+  probe_failures: 0
+  provisional: true
+  rank: 80
+- id: token-harbor
+  name: Token Harbor
+  category: aggregator
+  url: https://tokenharbor.ai
+  source_urls:
+  - https://tokenharbor.ai/pricing
+  - https://tokenharbor.ai/faq
+  - https://tokenharbor.ai/terms
+  - https://tokenharbor.ai/models
+  card_required: false
+  offering: 'OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek
+    V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card'
+  limits: '"Free $0 / month — Try Token Harbor with a free allowance and a rotating
+    model lineup … No card required", and the FAQ: "Token Harbor provides free access
+    to selected models through explicit :free model IDs. Your first free request starts
+    a personal rolling 7-day period. The allowance is value-based rather than a fixed
+    request count" — no figure is published, and the pricing card calls the same allowance
+    "Included every month (4 weeks)". "Free routes are disabled by default" until
+    you consent to them, and "Token Harbor may retain prompts and responses sent through
+    explicit free routes after you opt in". The operator is Token Harbor PTE. LTD.
+    Read 2026-09-16'
+  models:
+  - family: deepseek-v4.1-flash
+    tier: strong
+    released: ''
+  - family: mimo-v2.5
+    tier: strong
+    released: ''
+  api:
+    base_url: https://tokenharbor.ai/v1
+    key_url: https://tokenharbor.ai/dashboard/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-v4.1-flash:free
+    - deepseek-v4-flash:free
+    - mimo-v2.5:free
+    note: the :free suffix selects the free route, which has to be switched on in
+      the dashboard first; /v1/models needs a key, so the ids are the free rows the
+      models page publishes (2026-09-16)
+  probe:
+    type: page-keywords
+    endpoint: https://tokenharbor.ai/pricing
+    keywords:
+    - Try Token Harbor with a free allowance and a rotating model lineup
+    - Included every month (4 weeks)
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-16'
+  last_verified: '2026-09-16'
+  probe_failures: 0
+  provisional: true
+  rank: 75
+- id: nous-portal
+  name: Nous Portal (Hermes Agent)
+  category: aggregator
+  url: https://portal.nousresearch.com
+  source_urls:
+  - https://portal.nousresearch.com/
+  - https://hermes-agent.nousresearch.com/docs/guides/run-nemotron-3-ultra-free
+  - https://inference-api.nousresearch.com/v1/models
+  card_required: false
+  offering: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free
+    plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash
+    and Laguna S 2.1 among them — on an OpenAI-compatible API'
+  limits: The portal's plan table reads "Free $0 Free models only Standard rate limits
+    $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous
+    Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The
+    :free tag is what keeps it on the no-cost plan". No rate-limit figure is published
+    and no page read mentions a card. The keyless catalog prices eight rows at zero;
+    a call without a key answers HTTP 402 with a payment offer, so the free models
+    want the portal's key. Read 2026-09-16
+  models:
+  - family: step-3.7-flash
+    tier: strong
+    released: ''
+  - family: laguna-s-2.1
+    tier: strong
+    released: ''
+  api:
+    base_url: https://inference-api.nousresearch.com/v1
+    key_url: https://portal.nousresearch.com
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - stepfun/step-3.7-flash:free
+    - poolside/laguna-s-2.1:free
+    - poolside/laguna-xs-2.1:free
+    - inclusionai/ling-3.0-flash-fin:free
+    - inclusionai/ling-3.0-flash-sante:free
+    - upstage/solar-pro4:free
+    - meituan/longcat-2.0:free
+    - stealth/union-alpha
+    note: every id the keyless catalog prices at 0 on 2026-09-16; stealth/union-alpha
+      is a stealth model without the :free suffix, and solar-pro4 is a limited-time
+      trial on other gateways
+  probe:
+    type: api-models
+    endpoint: https://inference-api.nousresearch.com/v1/models
+    keywords: []
+    free_marker: :free
+    dead_markers: []
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-09-16'
+  last_verified: '2026-09-16'
+  probe_failures: 0
+  provisional: true
+  rank: 65
+- id: amazon-q-developer
+  name: Amazon Q Developer
+  category: agent-cli
+  url: https://aws.amazon.com/q/developer/
+  source_urls:
+  - https://aws.amazon.com/q/developer/pricing/
+  - https://aws.amazon.com/q/developer/
+  card_required: false
+  offering: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier
+    gives a Builder ID user 50 agentic requests a month
+  limits: '"Amazon Q Developer offers a perpetual Free Tier with monthly limits available
+    to users logged in as an AWS Identity and Access Management (IAM) user or AWS
+    Builder ID user", and "Free Tier limits in the IDE are available only to Builder
+    ID users". The Free column reads "50 agentic requests per month" for Q&A chat
+    and agentic coding in the IDE plugins and CLI, plus 1,000 lines of code a month
+    of Java upgrade transformation; the plan summary says "Access latest Claude models"
+    without naming them. Pro is $19 a month per user. The end is scheduled: "On April
+    30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins", pointing
+    to Kiro, which this list carries separately. Read 2026-09-16'
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://aws.amazon.com/q/developer/pricing/
+    keywords:
+    - 50 agentic requests per month
+    - perpetual Free Tier with monthly limits
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-16'
+  last_verified: '2026-09-16'
+  probe_failures: 0
+  provisional: true
+  rank: 45
