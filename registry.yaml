@@ -513,17 +513,20 @@ entries:
     team asked Kilo Code for the same header on 2026-09-03 ("Any stable UUID per conversation
     works"), and a Pi report of 2026-09-08 has big-pickle answering 200 with an account
     key once the header is added. OpenCode sends it for its own provider, where the
-    ids are written opencode/<model-id>. The anonymous public key some clients ship
-    is a different lane: it answered only OpenCode''s own user agent well before the
-    header rule (reported 2026-08-14, closed as not planned). Zen documents signup
-    as "sign in to OpenCode Zen, add your billing details, and copy your API key",
-    but the free ids answer without payment details on file — tested by hand rather
-    than read, 2026-08-15. Billing is what the metered ids want, and once it is on,
-    auto-reload tops the balance up by $20 whenever it falls below $5 (read 2026-09-14).
-    The lane has counted six since 2026-08-30, but not always the same six: that day
-    hy3-free was gone from the page altogether — no row in the pricing table, no id
-    in the endpoints table, and not listed under Deprecated models either — while
-    ling-3.0-flash-fin-free had arrived priced Free in, Free out'
+    ids are written opencode/<model-id>. Without a key the lane answers too: on 2026-09-16
+    a keyless request carrying this project''s own user agent got 400 MissingSessionID
+    without the header and HTTP 200 from big-pickle with a session id of its own,
+    though Zen documents only keyed access for other clients, and a report of 2026-08-14
+    had the keyless lane answering OpenCode''s own user agent alone at the time. Zen
+    documents signup as "sign in to OpenCode Zen, add your billing details, and copy
+    your API key", but the free ids answer without payment details on file — tested
+    by hand rather than read, 2026-08-15. Billing is what the metered ids want, and
+    once it is on, auto-reload tops the balance up by $20 whenever it falls below
+    $5 (read 2026-09-14). The lane has counted six since 2026-08-30, but not always
+    the same six: that day hy3-free was gone from the page altogether — no row in
+    the pricing table, no id in the endpoints table, and not listed under Deprecated
+    models either — while ling-3.0-flash-fin-free had arrived priced Free in, Free
+    out'
   models:
   - family: big-pickle
     tier: strong
