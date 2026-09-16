@@ -189,38 +189,16 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
 # message, and one token is all it costs the vendor.
 KEYLESS_PROBE_BODY = {"max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
 KEYLESS_REFUSED = (401, 403)
+# How many of a keyless row's ids are tried before the run says none answered.
+# The first is the README's curl; the next two tell a rate-limited first id from
+# a rate-limited lane.
+KEYLESS_IDS_TRIED = 3
 
 
-async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
-                               backoff: float) -> ProbeResult | None:
-    """Whether a lane this list publishes as keyless still answers without a key,
-    or None while it does.
-
-    `api.auth: none` is not a connection detail like the rest of the api block;
-    on a row that sets it, it is the offer. OVHcloud is listed for its anonymous
-    lane, and the README's zero-signup curl and its "No account at all" answer
-    are both built from that one field. Until 2026-09-14 nothing called it: the
-    probe read the keyless /v1/models, which says the models exist and not that
-    anyone may call them, so a vendor closing its anonymous lane would have left
-    the first command on the page answering 401 behind a green run.
-
-    So the first id in `api.model_ids` gets one completion, one token, no
-    Authorization header. Any 2xx is the lane, and so is a 429 — an anonymous
-    lane is rate-limited instead of keyed, and OVHcloud documents two requests
-    a minute per IP. A 401 or 403 is the vendor asking for a key, which FAILs
-    the row, and three runs of it archive the row and take the command off the
-    page — unless the body is a bot wall, which is no answer at all. Any other
-    4xx is about the request rather than the lane: vLLM answers 404 for a model
-    id that has rotated out, and uncloseai serves one id at a time. That, and a
-    lane that could not be reached, is reported beside a row that stays
-    verified, the way a dead id or a missing Anthropic route is."""
-    url = entry.api.base_url.rstrip("/") + "/chat/completions"
-    model = entry.api.model_ids[0]
-    # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
-    # answers a call without one with 400, so the call carries a fresh id of its own
-    # under this project's user agent, as the vendor asks any client to.
-    headers = ({entry.api.session_header: str(uuid.uuid4())}
-               if entry.api.session_header else {})
+async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers: dict,
+                        attempts: int, backoff: float) -> httpx.Response | str:
+    """One keyless completion for `model`: the response, or why there was none.
+    A 5xx and a network error are retried; every other answer is final."""
     last = ""
     for i in range(attempts):
         if i:
@@ -234,21 +212,85 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
         if resp.status_code >= 500:
             last = f"HTTP {resp.status_code}"
             continue
-        if resp.status_code < 300 or resp.status_code == 429:
-            return None
-        if resp.status_code in KEYLESS_REFUSED:
-            challenge = challenge_marker_hit(resp.text)
-            if challenge is not None:
-                return ProbeResult(ProbeStatus.INCONCLUSIVE,
-                                   f'bot challenge on the keyless call: page says "{challenge}"')
-            return ProbeResult(ProbeStatus.FAIL,
-                               f"keyless lane refused: POST {url} with no key answered "
-                               f"HTTP {resp.status_code}")
-        said = " ".join(resp.text.split())[:160]
+        return resp
+    return last or "did not answer"
+
+
+async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
+                               backoff: float) -> ProbeResult | None:
+    """Whether a lane this list publishes as keyless still answers without a key,
+    or None while its first id does.
+
+    `api.auth: none` is not a connection detail like the rest of the api block;
+    on a row that sets it, it is the offer. OVHcloud is listed for its anonymous
+    lane, and the README's zero-signup curl and its "No account at all" answer
+    are both built from that one field. Until 2026-09-14 nothing called it: the
+    probe read the keyless /v1/models, which says the models exist and not that
+    anyone may call them, so a vendor closing its anonymous lane would have left
+    the first command on the page answering 401 behind a green run.
+
+    So the first id in `api.model_ids` gets one completion, one token, no
+    Authorization header, and a 2xx is the only answer that leaves nothing to
+    say. A 429 used to count as one too — an anonymous lane is rate-limited
+    instead of keyed — and that is how the README's first command sat on
+    opencode's big-pickle while it answered 429 FreeUsageLimitError to every
+    call, from here and from readers, and ling-3.0-flash-fin-free beside it
+    answered 200 three times out of three (2026-09-16). A rate limit does not end
+    the offer, but it does end the command, so any answer other than a 2xx sends
+    the check on to the next id, up to KEYLESS_IDS_TRIED:
+
+    - a later id answering is a note naming it, since the fix is to put it first;
+    - every id answering 429 is a note that the lane is rate-limited from here;
+    - with no id answering, a 401 or 403 on the first is the vendor asking for a
+      key, which FAILs the row, and three runs of it archive the row and take the
+      command off the page — unless the body is a bot wall, which is no answer at
+      all. Any other 4xx is about the request rather than the lane: vLLM answers
+      404 for a model id that has rotated out, and uncloseai serves one id at a
+      time. That, and a lane that could not be reached, is a note beside a row
+      that stays verified, the way a dead id or a missing Anthropic route is."""
+    url = entry.api.base_url.rstrip("/") + "/chat/completions"
+    # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
+    # answers a call without one with 400, so the call carries a fresh id of its own
+    # under this project's user agent, as the vendor asks any client to.
+    headers = ({entry.api.session_header: str(uuid.uuid4())}
+               if entry.api.session_header else {})
+    tried: list[tuple[str, httpx.Response | str]] = []
+    for model in entry.api.model_ids[:KEYLESS_IDS_TRIED]:
+        answer = await _keyless_call(client, url, model, headers, attempts, backoff)
+        if not isinstance(answer, str) and answer.status_code < 300:
+            if not tried:
+                return None
+            first, first_answer = tried[0]
+            return ProbeResult(ProbeStatus.STALE_IDS,
+                               f"keyless call to {first} answered {_keyless_said(first_answer)} while "
+                               f"{model} answered HTTP {answer.status_code} — the README's curl uses "
+                               f"the first id in api.model_ids, so put {model} first")
+        tried.append((model, answer))
+    first, first_answer = tried[0]
+    if isinstance(first_answer, str):
         return ProbeResult(ProbeStatus.STALE_IDS,
-                           f"keyless call to {model} answered HTTP {resp.status_code}: {said}")
+                           f"keyless lane could not be checked: POST {url} {first_answer}")
+    if first_answer.status_code in KEYLESS_REFUSED:
+        challenge = challenge_marker_hit(first_answer.text)
+        if challenge is not None:
+            return ProbeResult(ProbeStatus.INCONCLUSIVE,
+                               f'bot challenge on the keyless call: page says "{challenge}"')
+        return ProbeResult(ProbeStatus.FAIL,
+                           f"keyless lane refused: POST {url} with no key answered "
+                           f"HTTP {first_answer.status_code}")
+    if all(not isinstance(a, str) and a.status_code == 429 for _, a in tried):
+        return ProbeResult(ProbeStatus.STALE_IDS,
+                           "keyless lane rate-limited: " + ", ".join(m for m, _ in tried)
+                           + " answered HTTP 429 — the README's curl on this row answers 429 too")
     return ProbeResult(ProbeStatus.STALE_IDS,
-                       f"keyless lane could not be checked: POST {url} {last or 'did not answer'}")
+                       f"keyless call to {first} answered {_keyless_said(first_answer)}")
+
+
+def _keyless_said(answer: httpx.Response | str) -> str:
+    if isinstance(answer, str):
+        return answer
+    said = " ".join(answer.text.split())[:160]
+    return f"HTTP {answer.status_code}" + (f": {said}" if said else "")
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,

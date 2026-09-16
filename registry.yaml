@@ -551,9 +551,9 @@ entries:
     auth: none
     openai_compatible: true
     model_ids:
+    - ling-3.0-flash-fin-free
     - big-pickle
     - mimo-v2.5-free
-    - ling-3.0-flash-fin-free
     - nemotron-3-ultra-free
     - nemotron-3.5-lightning-free
     - muse-spark-1.3-contributor-free
@@ -561,12 +561,14 @@ entries:
     note: 'no key needed for the six ids Zen prices at zero, as long as every request
       carries a stable id per conversation in x-opencode-session: without one Zen
       answers 400 MissingSessionID ("OpenCode''s free tier can only be used in OpenCode"),
-      with one big-pickle answered keyless on 2026-09-16. The client sends the header
-      itself, so the generated LiteLLM and opencode configs leave this row out; inside
-      OpenCode the ids are opencode/<model-id> and the header is sent for you. muse-spark-1.3-contributor-free
-      is served on /v1/responses only (500 on /v1/chat/completions), and the catalog
-      still returns deepseek-v4-flash-free and muse-spark-1.2-contributor-free, which
-      the pricing table no longer lists at zero'
+      with one ling-3.0-flash-fin-free answered keyless three times out of three on
+      2026-09-16, while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError
+      every time. The client sends the header itself, so the generated LiteLLM and
+      opencode configs leave this row out; inside OpenCode the ids are opencode/<model-id>
+      and the header is sent for you. muse-spark-1.3-contributor-free is served on
+      /v1/responses only (500 on /v1/chat/completions), and the catalog still returns
+      deepseek-v4-flash-free and muse-spark-1.2-contributor-free, which the pricing
+      table no longer lists at zero'
   probe:
     type: page-keywords
     endpoint: https://opencode.ai/docs/zen/

@@ -195,13 +195,19 @@ sets it, the missing key is the offer: the README's zero-signup curl and its "No
 account at all" answer are both built from that field, with the first id in
 `api.model_ids`. So every run sends that id one chat completion — one token, no
 `Authorization` header, and a fresh id in the row's `api.session_header` when it
-names one — to `<base_url>/chat/completions`. Any 2xx is the lane,
-and so is a 429, because an anonymous lane is rate-limited rather than keyed. A
-401 or 403 is the vendor asking for a key and fails the row, which after three
-runs takes it and its command off the page; a bot wall there is `inconclusive`,
-not a refusal. Any other 4xx — vLLM's 404 for a model id that rotated out — and a
-lane that cannot be reached are reported as `stale-ids` beside a row that stays
-verified. Put the id most likely to answer first: that is the one a reader runs.
+names one — to `<base_url>/chat/completions`. A 2xx is the only answer that
+leaves nothing to say. Anything else sends the check on to the next id, up to
+three, because a rate limit does not end the offer but does end the command: on
+2026-09-16 opencode's `big-pickle` answered 429 to every keyless call while
+`ling-3.0-flash-fin-free` beside it answered 200, and the README's first command
+was the one that never worked. A later id answering is reported as `stale-ids`
+naming it, since the fix is to put it first; every id answering 429 is reported
+as a rate-limited lane. With no id answering, a 401 or 403 on the first is the
+vendor asking for a key and fails the row, which after three runs takes it and
+its command off the page; a bot wall there is `inconclusive`, not a refusal. Any
+other 4xx — vLLM's 404 for a model id that rotated out — and a lane that cannot be
+reached are reported as `stale-ids` beside a row that stays verified. Put the id
+that answers first: that is the one a reader runs.
 
 ## How the pipeline works
 

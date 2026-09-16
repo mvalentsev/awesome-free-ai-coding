@@ -1562,21 +1562,72 @@ KEYLESS_CATALOG = {"data": [{"id": "gpt-oss-120b"}, {"id": "qwen3-coder-30b"}]}
 
 
 @respx.mock
-async def test_a_keyless_lane_that_answers_or_rate_limits_is_a_pass():
+async def test_a_keyless_lane_that_answers_is_a_pass():
     """The catalog saying a model exists is not the lane letting anyone call it,
-    so a row published as keyless is called, keylessly. A 429 is the lane too:
-    an anonymous lane is rate-limited instead of keyed, and OVHcloud documents
-    two requests a minute per IP."""
+    so a row published as keyless is called, keylessly, on its first id."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
-    for status in (200, 429):
-        call = respx.post("https://open.x.ai/v1/chat/completions").mock(
-            return_value=httpx.Response(status, json={}))
-        async with httpx.AsyncClient() as client:
-            result = await probe_entry(client, keyless_entry(), backoff=0)
-        assert result.status is ProbeStatus.PASS
-        sent = call.calls.last.request
-        assert "authorization" not in sent.headers
-        assert json.loads(sent.content)["model"] == "gpt-oss-120b"
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert call.call_count == 1
+    sent = call.calls.last.request
+    assert "authorization" not in sent.headers
+    assert json.loads(sent.content)["model"] == "gpt-oss-120b"
+
+
+def _answer_by_model(statuses: dict[str, int]):
+    def answer(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(statuses[json.loads(request.content)["model"]], json={})
+    return answer
+
+
+@respx.mock
+async def test_a_first_id_that_is_rate_limited_while_another_answers_is_a_note_naming_it():
+    """opencode's big-pickle answered 429 FreeUsageLimitError to every keyless
+    call on 2026-09-16 while ling-3.0-flash-fin-free answered 200 three times out
+    of three, and the README's first command was the one that never worked. A
+    rate limit does not end the offer, so the row stays verified; it does end the
+    command, so the run says which id to put first."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=_answer_by_model({"gpt-oss-120b": 429, "qwen3-coder-30b": 200}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gpt-oss-120b answered HTTP 429" in result.detail
+    assert "put qwen3-coder-30b first" in result.detail
+    assert call.call_count == 2
+
+
+@respx.mock
+async def test_a_lane_rate_limited_on_every_id_is_a_note_and_not_a_failure():
+    """Every id answering 429 is a lane rate-limited from where the run stands —
+    OVHcloud documents two anonymous requests a minute per IP — so it is said
+    beside a row that stays verified, never counted towards archiving it."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(429, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "rate-limited" in result.detail
+    assert "gpt-oss-120b, qwen3-coder-30b" in result.detail
+    assert call.call_count == 2
+
+
+@respx.mock
+async def test_a_refused_first_id_beside_one_that_answers_is_a_note_not_a_failure():
+    """A key asked for on one id while another answers keyless is a row that
+    lists a metered id first, not a lane that closed."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=_answer_by_model({"gpt-oss-120b": 401, "qwen3-coder-30b": 200}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "put qwen3-coder-30b first" in result.detail
 
 
 @respx.mock
