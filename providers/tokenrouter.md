@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-14'
-description: Two zero-priced ids — Nemotron 3 Nano Omni and GLM 5.3, in the default group — inside a 134-row catalog metered at list rates. both free ids sit in the default group and publish no request cap; of the other 132 rows on 2026-09-02, 131 are metered at list rates and stealth/ox-alpha is priced 0…
+description: One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the…
 permalink: /providers/tokenrouter/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/tokenrouter/
 
 ## What you get
 
-Two zero-priced ids — Nemotron 3 Nano Omni and GLM 5.3, in the default group — inside a 134-row catalog metered at list rates
+One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest
 
 ## Free models
 
@@ -21,14 +21,14 @@ Two zero-priced ids — Nemotron 3 Nano Omni and GLM 5.3, in the default group �
 
 ## Limits, in the vendor's words
 
-both free ids sit in the default group and publish no request cap; of the other 132 rows on 2026-09-02, 131 are metered at list rates and stealth/ox-alpha is priced 0 without the free marker the lane is read by. The zero-priced Kimi K3 this entry was registered for is gone — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains
+the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free ids have come and gone beside it: the zero-priced Kimi K3 this entry was registered for — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered
 
 ## Connect
 
 - Base URL: `https://api.tokenrouter.com/v1`
 - Key: `TOKENROUTER_API_KEY` — get one at <https://www.tokenrouter.com/console/token>
-- Callable ids: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `z-ai/glm-5.3-free`
-- Note: two ids in the catalog are priced 0 and they are the whole free lane here — nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free alone on 2026-08-14, z-ai/glm-5.3-free beside it by 2026-09-02. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here
+- Callable ids: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`
+- Note: one id in the catalog is priced 0 under the free marker, and it is the whole free lane here — nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, alone on 2026-08-14 and again on 2026-09-16; z-ai/glm-5.3-free stood beside it from 2026-09-02 until it left the catalog between the 2026-09-14 and 2026-09-16 reads. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here
 
 ## Evidence
 

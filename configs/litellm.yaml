@@ -121,6 +121,11 @@ model_list:
     model: openai/nex-agi/nex-n2.5-mini:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
+- model_name: openrouter-free/z-ai/glm-5.2:free
+  litellm_params:
+    model: openai/z-ai/glm-5.2:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/openrouter/free
   litellm_params:
     model: openai/openrouter/free
@@ -239,6 +244,11 @@ model_list:
 - model_name: kilo-code/nex-agi/nex-n2.5-mini:free
   litellm_params:
     model: openai/nex-agi/nex-n2.5-mini:free
+    api_base: https://api.kilo.ai/api/gateway
+    api_key: os.environ/KILO_CODE_API_KEY
+- model_name: kilo-code/z-ai/glm-5.2:free
+  litellm_params:
+    model: openai/z-ai/glm-5.2:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: os.environ/KILO_CODE_API_KEY
 - model_name: requesty/nvidia/nemotron-3-ultra-550b-a55b
@@ -786,6 +796,11 @@ model_list:
     model: openai/agnes-2-5-flash:free
     api_base: https://kenari.id/v1
     api_key: os.environ/KENARI_API_KEY
+- model_name: kenari/agnes-3-0-flash:free
+  litellm_params:
+    model: openai/agnes-3-0-flash:free
+    api_base: https://kenari.id/v1
+    api_key: os.environ/KENARI_API_KEY
 - model_name: kenari/muse-spark-1-2-contributor:free
   litellm_params:
     model: openai/muse-spark-1-2-contributor:free
@@ -854,11 +869,6 @@ model_list:
 - model_name: tokenrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
-    api_base: https://api.tokenrouter.com/v1
-    api_key: os.environ/TOKENROUTER_API_KEY
-- model_name: tokenrouter/z-ai/glm-5.3-free
-  litellm_params:
-    model: openai/z-ai/glm-5.3-free
     api_base: https://api.tokenrouter.com/v1
     api_key: os.environ/TOKENROUTER_API_KEY
 - model_name: cohere/north-mini-code-1-0

@@ -6,7 +6,7 @@
 # e.g. claude-openrouter-free. Works in bash and zsh.
 
 # ── OpenRouter (free models) · get a key: https://openrouter.ai/settings/keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, nvidia/nemotron-3.5-content-safety:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, inclusionai/ling-3.0-flash-fin:free, inclusionai/ling-3.0-flash-sante:free, liquid/lfm-2.5-2.6b:free, inclusionai/ling-3.0-flash-vl:free, nex-agi/nex-n2.5-pro:free, nex-agi/nex-n2.5-mini:free, openrouter/free
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, nvidia/nemotron-3.5-content-safety:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, inclusionai/ling-3.0-flash-fin:free, inclusionai/ling-3.0-flash-sante:free, liquid/lfm-2.5-2.6b:free, inclusionai/ling-3.0-flash-vl:free, nex-agi/nex-n2.5-pro:free, nex-agi/nex-n2.5-mini:free, z-ai/glm-5.2:free, openrouter/free
 claude-openrouter-free() {
   ANTHROPIC_BASE_URL="https://openrouter.ai/api" \
   ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY" \
@@ -55,7 +55,7 @@ claude-vercel-ai-gateway() {
 }
 
 # ── Kenari · get a key: https://kenari.id/keys
-#    free ids: glm-4-7-flash:free, nemotron-3-ultra-550b-a55b:free, nemotron-3-super-120b-a12b:free, step-3-7-flash:free, laguna-s-2-1:free, laguna-xs-2-1:free, hy3:free, mistral-medium-3-5:free, mimo-v2-5:free, agnes-2-0-flash:free, agnes-2-5-flash:free, muse-spark-1-2-contributor:free, muse-spark-1-3-contributor:free, nex-n2-5-pro:free, north-mini-code:free
+#    free ids: glm-4-7-flash:free, nemotron-3-ultra-550b-a55b:free, nemotron-3-super-120b-a12b:free, step-3-7-flash:free, laguna-s-2-1:free, laguna-xs-2-1:free, hy3:free, mistral-medium-3-5:free, mimo-v2-5:free, agnes-2-0-flash:free, agnes-2-5-flash:free, agnes-3-0-flash:free, muse-spark-1-2-contributor:free, muse-spark-1-3-contributor:free, nex-n2-5-pro:free, north-mini-code:free
 claude-kenari() {
   ANTHROPIC_BASE_URL="https://kenari.id" \
   ANTHROPIC_AUTH_TOKEN="$KENARI_API_KEY" \

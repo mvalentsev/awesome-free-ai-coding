@@ -88,6 +88,9 @@
         "nex-agi/nex-n2.5-mini:free": {
           "name": "nex-agi/nex-n2.5-mini:free"
         },
+        "z-ai/glm-5.2:free": {
+          "name": "z-ai/glm-5.2:free"
+        },
         "openrouter/free": {
           "name": "openrouter/free"
         }
@@ -179,6 +182,9 @@
         },
         "nex-agi/nex-n2.5-mini:free": {
           "name": "nex-agi/nex-n2.5-mini:free"
+        },
+        "z-ai/glm-5.2:free": {
+          "name": "z-ai/glm-5.2:free"
         }
       }
     },
@@ -617,6 +623,9 @@
         "agnes-2-5-flash:free": {
           "name": "agnes-2-5-flash:free"
         },
+        "agnes-3-0-flash:free": {
+          "name": "agnes-3-0-flash:free"
+        },
         "muse-spark-1-2-contributor:free": {
           "name": "muse-spark-1-2-contributor:free"
         },
@@ -698,9 +707,6 @@
       "models": {
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
-        },
-        "z-ai/glm-5.3-free": {
-          "name": "z-ai/glm-5.3-free"
         }
       }
     },
