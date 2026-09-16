@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Sarvam AI free tier: limits, free models, verified 2026-09-14'
-description: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint. "Every new user receives ₹100 worth of free credits to explore all our APIs" — about…
+description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. "Every new user receives ₹100 worth of free credits to explore all our APIs", and the credits "are universal and never…
 permalink: /providers/sarvam/
 ---
 
@@ -13,22 +13,22 @@ permalink: /providers/sarvam/
 
 ## What you get
 
-India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
+India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint
 
 ## Free models
 
-`sarvam-105b`, `deepseek-v4-flash`, `glm-5.3-flash`
+`sarvam-105b`
 
 ## Limits, in the vendor's words
 
-"Every new user receives ₹100 worth of free credits to explore all our APIs" — about $1.15 — and the credits page adds that they "are universal and never expire". Per-million-token prices on the same pricing page (read 2026-09-05): sarvam-105b ₹29.28 in / ₹73.2 out, deepseekv4-flash ₹19.8 / ₹59.4, glm5.3-flash ₹13.5 / ₹45, gemma4 ₹36.6 / ₹91.5, glm5.2 and glm5.3 around ₹127 / ₹400 — so the grant is roughly 3 million input tokens of the flagship or 7 million of GLM 5.3 Flash. The Starter plan is rate-limited to 60 chat requests a minute on the default models and 40 on sarvam-105b. Sign-up is an account on the dashboard; no card is mentioned on any page read
+"Every new user receives ₹100 worth of free credits to explore all our APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28 in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled by default with standard API subscription keys" and is granted per key on request. No page read mentions a card (2026-09-16)
 
 ## Connect
 
 - Base URL: `https://api.sarvam.ai/v1`
 - Key: `SARVAM_API_KEY` — get one at <https://dashboard.sarvam.ai>
-- Callable ids: `sarvam-105b`, `deepseekv4-flash`, `glm5.3-flash`
-- Note: the vendor's own header is api-subscription-key, and the same key is accepted as "Authorization: Bearer" on every endpoint — the docs name that form as the one for "OpenAI-compatible tooling pointed at the Chat Completions endpoint". Ids write the version without its hyphen (deepseekv4-flash, glm5.3-flash); a newer /v2/chat/completions adds 512K context and tool calling on GLM-5.2 and image input on Gemma 4 31B. Prices are in rupees
+- Callable ids: `sarvam-105b`, `sarvam-105b-conversations`
+- Note: the vendor's own header is api-subscription-key, and the same key is accepted as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only sarvam-105b and sarvam-105b-conversations; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees
 
 ## Evidence
 
@@ -36,9 +36,11 @@ India's Sarvam AI credits every new account ₹100 to spend on any of its APIs �
 - Source: <https://docs.sarvam.ai/api/getting-started/pricing.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/ratelimits.md>
 - Source: <https://docs.sarvam.ai/api-reference/authentication.md>
+- Source: <https://docs.sarvam.ai/api-reference/beta-apis.md>
 
 ## History
 
+- *next scheduled run* — Free models changed: dropped deepseek-v4-flash, glm-5.3-flash
 - `2026-09-07` — Added to the list: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
 
 ---

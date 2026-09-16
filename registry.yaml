@@ -2544,40 +2544,32 @@ entries:
   category: agent-cli
   url: https://freebuff.com
   source_urls:
+  - https://freebuff.com/
   - https://freebuff.com/cli
   - https://freebuff.com/terms-of-service
   card_required: false
-  offering: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder,
-    cloud sandbox on any GitHub repo, and chat — with no account, no API key and no
-    card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo
-    2.5 in the picker
-  limits: 'How it can be free is answered by the vendor in five words — "Freebuff
-    is supported by text ads" — and the CLI asks for nothing to prove it: "npm install
-    -g freebuff", then "No API key and no credit card. It just runs." What it costs
-    instead is geography and sessions. Full mode is restricted to 25 named countries
-    (US, Canada, UK, Australia, New Zealand, Norway, Sweden, Netherlands, Denmark,
-    Germany, France, Italy, Spain, Portugal, Finland, Belgium, Luxembourg, Liechtenstein,
-    Switzerland, Austria, Singapore, Malta, Israel, Ireland, Iceland); "if you are
-    outside those countries or using a VPN, Freebuff still works in limited mode",
-    and limited mode is MiMo 2.5 alone. The quota is counted in sessions and no free
-    figure is published: the Terms sell paid plans as adding "session capacity on
-    top of the free service" and say each plan carries "daily, rolling five-day, and
-    monthly session limits, per-model limits" without naming the free ones, while
-    "referrals and bounties earn extra sessions on top". Solar Pro 4 sits in the picker
-    as a "limited-time trial" and is left out of the models column for that reason,
-    as is the Gemini 3.1 Flash Lite that runs file-finding and research behind the
-    scenes. On data the FAQ is narrow and specific: "we do not collect your traces
-    or files unless the model provider does. Currently, this applies only to DeepSeek
-    models", and the picker marks DeepSeek V4 Flash "may use data for AI training".
-    Read 2026-09-02'
+  offering: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API
+    key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna
+    and MiMo 2.5 in the picker
+  limits: '"Freebuff is supported by text ads." The free allowance is a daily budget
+    of Freebucks spent on one-hour model sessions, set by where you connect from:
+    100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland,
+    Australia, New Zealand, South Korea and much of Western and Northern Europe),
+    and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks
+    buy 20 hours of GLM 5.3 Flash, 10 of MiMo 2.5, 6 of DeepSeek V4.1 Flash or 5 of
+    GPT-5.6 Luna; they refill at midnight Pacific and do not carry over. "Freebuff
+    collects prompts, messages, code, files, repository data, and agent traces when
+    you use features that need them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are
+    marked "May use data for AI training". Solar Pro 4 ("Limited-time trial") and
+    the queued Muse Spark 1.2 stay out of the models column. Read 2026-09-16'
   models:
   - family: glm-5.3-flash
     tier: strong
     released: ''
-  - family: gpt-5.6-luna
+  - family: deepseek-v4.1-flash
     tier: strong
     released: ''
-  - family: deepseek-v4-flash
+  - family: gpt-5.6-luna
     tier: strong
     released: ''
   - family: mimo-v2.5
@@ -2585,10 +2577,10 @@ entries:
     released: ''
   probe:
     type: page-keywords
-    endpoint: https://freebuff.com/cli
+    endpoint: https://freebuff.com/
     keywords:
     - Freebuff is supported by text ads
-    - No API key and no credit card
+    - Freebucks every day
     free_marker: ''
     dead_markers: []
     require_zero_price: false
@@ -2604,26 +2596,22 @@ entries:
   url: https://meganova.ai
   source_urls:
   - https://docs.meganova.ai/free-model-quota
-  - https://docs.meganova.ai/tiers
+  - https://docs.meganova.ai/tiers/tier-1.md
+  - https://docs.meganova.ai/legal-docs/terms-of-service.md
   - https://api.meganova.ai/v1/models
   card_required: false
-  offering: OpenAI-compatible gateway whose no-card Tier 1 account gets a daily free
-    quota on Mistral Small 3.2 and the house Manta routers — 50 a day per model, 550
-    across the lane
-  limits: 'Tier 1 is "Free, no credit card required" with "Free Models: <100B parameters
-    (including Manta Mini)" and "Limited free model access"; the Free Model Quota
-    page grants it per account with a "daily reset at 00:00 UTC": 50 a day each on
-    Mistral-Small-3.2-24B, Manta-Mini, Manta-Flash, five community Llama fine-tunes,
-    Qwen3-Embedding-8B and BGE-Reranker, "Total Free Quota per day 550", and 0 on
-    GLM-4.7-Flash and Manta-Pro until Tier 2 ("$1 deposit to unlock"). The page never
-    names the unit; its nearest sentence is "Each request reports: Remaining free
-    quota". Past the quota "usage continues based on the account''s billing configuration
-    (if the charge switch is turned on)". Mistral Small 3.2 is served at 8,192 tokens
-    of context here, Manta Flash at 16,384. The Website Terms say the Service Terms
-    "typically prohibit production or high-throughput use of free modules", against
-    the quota page''s own "lightweight production use"; the operator is Nebula Nova
-    Inc., a Delaware corporation, and its privacy policy lists prompts among the content
-    it collects (read 2026-09-02)'
+  offering: OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests
+    a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across
+    its free rows
+  limits: Tier 1 is "Free registration — no credit card required", with "Free Access
+    Models (<100B), including Manta Mini". The Free Model Quota table gives a Tier
+    1 account 50 requests a day ("50 RPD (Requests Per Day)") on each of Mistral-Small-3.2-24B,
+    Manta Mini and Manta Flash, and on several roleplay fine-tunes, an embedding model
+    and a reranker — "Total Free Quota per day 550", with a "daily reset at 00:00
+    UTC" — and 0 on GLM-4.7-Flash and Manta Pro until a "$1 deposit" moves the account
+    to Tier 2. The terms say "Free modules are for evaluation and interactive use
+    only and are not designed for production or unattended batch workloads". The operator
+    is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16
   models:
   - family: mistral-small-3.2
     tier: strong
@@ -2651,10 +2639,10 @@ entries:
     note: the three ids listed are the chat rows a Tier 1 account can call for free;
       ten more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash and
       manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B and
-      bge-reranker-v2-m3 are not chat models, and five are roleplay fine-tunes of
-      Llama (Sapphira, Violet Lotus, Nevoria, Euryale, Stheno). Manta Mini and Manta
-      Flash are MegaNova's own routers over open models, tagged best_role_play in
-      the catalog, so Mistral Small 3.2 is the one named coding model on the lane
+      bge-reranker-v2-m3 are not chat models, and five are roleplay fine-tunes (four
+      of Llama, one of Mistral NeMo). Manta Mini and Manta Flash are MegaNova's own
+      routers, tagged best_role_play in the catalog, so Mistral Small 3.2, at 8,192
+      tokens of context, is the one named coding model on the lane
   probe:
     type: api-models
     endpoint: https://api.meganova.ai/v1/models
@@ -2675,27 +2663,26 @@ entries:
   source_urls:
   - https://llmtr.com/docs/migration/openai-openrouter/
   - https://llmtr.com/docs/en/billing/
+  - https://llmtr.com/docs/en/gateway/poolside-laguna/
+  - https://llmtr.com/privacy
   - https://llmtr.com/v1/models
   card_required: false
-  offering: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers
-    on a zero balance — twelve zero-priced chat ids on 2026-09-14, Nemotron 3 Ultra,
-    Qwen3.6 27B and Ling 3.0 Flash among them
-  limits: 'The migration guide has a new account send its first request on a free
-    model before any top-up: "Model kataloğunda ücretsiz olarak işaretlenen bir chat
-    modelini seçin … Bu adım, sıfır bakiye ile gateway akışının çalıştığını doğrular"
-    — pick a chat model marked free in the catalog; this step verifies the gateway
-    flow works with a zero balance. Every free row''s own description says it is free
-    with a daily quota ("günlük kotayla ücretsiz"), and the figure is published nowhere
-    the docs reach: the Nemotron page sets "nvidia/nemotron-3-ultra-550b-a55b — Ücretsiz,
-    günlük kota" against the metered -262k twin and says only that when the quota
-    is full the free row limits requests. The lane churns and the vendor writes it
-    down — the provider "removed the free tier behind openai/gpt-oss-20b on 24 August
-    2026 and that model id was retired", and dots-3-note-preview''s row says it closes
-    on 30 September 2026. Paid use is a credit balance: "An 8% platform margin is
-    added on top of the requested top-up amount", "We never modify model prices".
-    "Prompt ve yanıt içeriği saklanmaz" — prompt and response content are not stored.
-    Docs are Turkish with an English subset (quickstart, billing, authentication);
-    /v1/models is public and cached (read 2026-09-02)'
+  offering: Turkish OpenAI-compatible gateway whose free rows answer on a zero balance
+    — twelve zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and
+    Agnes 3.0 Flash among them
+  limits: 'A new account calls the free rows before any top-up: the migration guide
+    says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick
+    a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway
+    ve kullanım kaydı akışının çalıştığını doğrular" (this step checks that the gateway
+    and usage logging work on a zero balance). Four free rows carry a daily quota
+    whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.6 27B, Ling
+    3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free
+    on its own inference API", with "no extra token allowance to track"; three rows
+    are free "22 Eylul 2026''ya kadar" (until 22 September 2026), and dots-3-note-preview
+    closes on 30 September 2026. Paid use is prepaid credit: "An 8% platform margin
+    is added on top of the requested top-up amount" and "We never modify model prices".
+    The privacy page says prompt and response bodies are not written permanently to
+    its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-16'
   models:
   - family: nemotron-3-ultra
     tier: frontier
@@ -2723,33 +2710,13 @@ entries:
     - agnes/agnes-2.5-flash
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
-    note: 'the twelve ids listed are every chat row the public catalog prices at 0
-      on 2026-09-14, against seven on 2026-09-07 and eleven on 2026-09-05. The newest
-      two are Agnes AI''s own Flash models, both created at 19:32 UTC on 2026-09-14
-      and described simply as free ("ücretsiz"), with no daily quota and no end date
-      in either row — Agnes charges $0 for both on its own API as well, a price its
-      pricing page ties to promotional end dates. The three that arrived on 2026-09-12
-      all carry the same end date — qwen/qwen3.8-flash-free ("22 Eylul 2026''ya kadar",
-      until 22 September 2026, and "dakikada birkac istekle sinirli", a few requests
-      a minute), inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante
-      ("22 Eylul 2026''ya kadar ucretsiz", free until 22 September 2026) — and a dated
-      lane here has closed early before. Four had gone between 2026-09-05 and 2026-09-07:
-      minimax/minimax-m3-free and minimax/minimax-m2.7-free left the catalog outright
-      while the metered minimax/minimax-m3 and minimax/minimax-m2.7 stayed at $0.30/$1.20
-      per 1M; openai/gpt-6-astra-free went two days before the end date its own description
-      carried, "10 Eylül 2026''ya kadar günlük kotayla ücretsiz" (free with a daily
-      quota until 10 September 2026) — a dated lane can close early, so the date is
-      a promise about the ceiling and not the floor; and inception/mercury-2-free
-      went between two reads on 2026-09-07 itself, leaving inception/mercury-2 metered
-      at $0.25/$0.75 per 1M beside a newly listed inception/mercury-2.5-preview at
-      $0.04/$0.15 — the free lane closed here as Inception''s next generation arrived,
-      and Mercury 2 stays on this list through Inception''s own row, whose 100M-token
-      grant is untouched. The same two MiniMax ids left OpenRouter, Kilo and Vercel
-      on the same read, which puts that withdrawal upstream of any one gateway; AIHubMix,
-      which subsidises its own copies, still prices them 0. liquid/lfm-2.5-embedding-350m-free
-      is ignored on purpose as an embeddings row. nvidia/nemotron-3-ultra-550b-a55b
-      is the free daily-quota row and nvidia/nemotron-3-ultra-550b-a55b-262k the metered
-      one — same checkpoint, different products, the vendor''s own page says'
+    note: the twelve ids are every chat row the public catalog prices at 0 on 2026-09-16.
+      qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante
+      are free only until 22 September 2026, and dots-studio/dots-3-note-preview closes
+      on 30 September 2026. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota
+      row and its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content
+      classifier rather than a coding model. liquid/lfm-2.5-embedding-350m-free is
+      ignored as an embeddings row
   probe:
     type: api-models
     endpoint: https://llmtr.com/v1/models
@@ -2962,8 +2929,8 @@ entries:
       on deepseek-v4-flash), which the docs describe as accounting, "not fees charged
       by FreeInference to users". The same key serves an Anthropic-format endpoint
       at https://freeinference.org/anthropic — the docs set ANTHROPIC_BASE_URL to
-      it for Claude Code, with deepseek-v4-flash behind the Opus and Sonnet aliases
-      and qwen3.6-35b behind Haiku. The terms say requests "may route across local
+      it for Claude Code, with minimax-m3 behind the Opus and Sonnet aliases and qwen3.6-35b
+      behind Haiku (read 2026-09-16). The terms say requests "may route across local
       inference servers and remote model providers": by the catalog''s owned_by field
       the listed ids run on the lab''s own sglang and vllm servers, while DeepSeek
       calls are accounted at DeepSeek''s upstream rate'
@@ -3049,14 +3016,14 @@ entries:
     foundation-model inference (Granite, Llama, Mistral and other hosted models) on
     IBM Cloud, a plan IBM's own docs call free and never bill
   limits: '"300,000 tokens per month", "20 CUH per month" of compute and "2 inference
-    requests per second", on "A free plan with limited capacity" that "does not support
-    running a foundation model tuning experiment" — the Lite plan of watsonx.ai Runtime
-    as its service-plans page reads on 2026-09-05, with no expiry named. The card
-    is taken at the door and not charged: the sign-up doc says "For your IBM Cloud
-    account, you enter your email address, personal information, and credit card information,
-    which is used to verify your identity" and "Lite plans do not incur charges".
-    Which foundation models the 300,000 tokens reach is on a separate docs page the
-    probe does not read, which is why the Free models column is empty'
+    requests per second", on "A free plan with limited capacity" — the Lite plan of
+    watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry
+    named. The card is taken at the door and not charged: the sign-up doc says "For
+    your IBM Cloud account, you enter your email address, personal information, and
+    credit card information, which is used to verify your identity" and "Lite plans
+    do not incur charges". Which foundation models the 300,000 tokens reach is on
+    a separate docs page the probe does not read, which is why the Free models column
+    is empty'
   models: []
   api:
     base_url: https://us-south.ml.cloud.ibm.com/ml/v1
@@ -3092,27 +3059,20 @@ entries:
   - https://docs.sarvam.ai/api/getting-started/pricing.md
   - https://docs.sarvam.ai/api/getting-started/ratelimits.md
   - https://docs.sarvam.ai/api-reference/authentication.md
+  - https://docs.sarvam.ai/api-reference/beta-apis.md
   card_required: false
-  offering: India's Sarvam AI credits every new account ₹100 to spend on any of its
-    APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3
-    Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
+  offering: India's Sarvam AI credits every new account ₹100 that never expire, spendable
+    on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped
+    endpoint
   limits: '"Every new user receives ₹100 worth of free credits to explore all our
-    APIs" — about $1.15 — and the credits page adds that they "are universal and never
-    expire". Per-million-token prices on the same pricing page (read 2026-09-05):
-    sarvam-105b ₹29.28 in / ₹73.2 out, deepseekv4-flash ₹19.8 / ₹59.4, glm5.3-flash
-    ₹13.5 / ₹45, gemma4 ₹36.6 / ₹91.5, glm5.2 and glm5.3 around ₹127 / ₹400 — so the
-    grant is roughly 3 million input tokens of the flagship or 7 million of GLM 5.3
-    Flash. The Starter plan is rate-limited to 60 chat requests a minute on the default
-    models and 40 on sarvam-105b. Sign-up is an account on the dashboard; no card
-    is mentioned on any page read'
+    APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28
+    in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens,
+    and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM
+    5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not
+    enabled by default with standard API subscription keys" and is granted per key
+    on request. No page read mentions a card (2026-09-16)'
   models:
   - family: sarvam-105b
-    tier: strong
-    released: ''
-  - family: deepseek-v4-flash
-    tier: strong
-    released: ''
-  - family: glm-5.3-flash
     tier: strong
     released: ''
   api:
@@ -3122,14 +3082,11 @@ entries:
     openai_compatible: true
     model_ids:
     - sarvam-105b
-    - deepseekv4-flash
-    - glm5.3-flash
+    - sarvam-105b-conversations
     note: 'the vendor''s own header is api-subscription-key, and the same key is accepted
-      as "Authorization: Bearer" on every endpoint — the docs name that form as the
-      one for "OpenAI-compatible tooling pointed at the Chat Completions endpoint".
-      Ids write the version without its hyphen (deepseekv4-flash, glm5.3-flash); a
-      newer /v2/chat/completions adds 512K context and tool calling on GLM-5.2 and
-      image input on Gemma 4 31B. Prices are in rupees'
+      as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only
+      sarvam-105b and sarvam-105b-conversations; the open models are on the /v2 beta,
+      whitelisted per key. Prices are in rupees'
   probe:
     type: page-keywords
     endpoint: https://docs.sarvam.ai/api/getting-started/pricing.md
@@ -3159,17 +3116,17 @@ entries:
   limits: '"Eligible new accounts receive $0.25 of trial compute after activation.
     This is a finite platform compute allowance. It is not a recurring free tier,
     a fixed token count, or a value measured at another provider''s prices" — the
-    sentence sits on the free-trial page and in the pricing FAQ, both dated "Updated
-    September 5, 2026" by the vendor and read here 2026-09-07. It does not refill,
-    no card is asked for, and it is discretionary: "Access is subject to eligibility
-    and availability", with a support address for accounts whose dashboard does not
-    offer it. What the quarter buys is on no page — a flat-rate router publishes no
-    per-token price, and the only conversion the site offers is its own marketing
-    arithmetic, a paid "$20 monthly compute budget" claimed to do "the work of up
-    to $60/mo" at list prices. The vendor sets the expectation itself: "Start with
-    one small request that lets you check the connection and response", while "a longer
-    coding-quality comparison may need a paid allowance". It is the smallest offer
-    on this list — a connection test, not a working allowance'
+    free-trial page, "Updated September 5, 2026", read here 2026-09-16; the pricing
+    FAQ adds "with no card required". It does not refill, no card is asked for, and
+    it is discretionary: "Access is subject to eligibility and availability", with
+    a support address for accounts whose dashboard does not offer it. What the quarter
+    buys is on no page — a flat-rate router publishes no per-token price, and the
+    only conversion the site offers is its own marketing arithmetic, a $20 monthly
+    compute budget on the paid Starter plan that its pricing table says does the work
+    of up to $60 a month of direct API use. The vendor sets the expectation itself:
+    "Start with one small request that lets you check the connection and response",
+    while "a longer coding-quality comparison may need a paid allowance". It is the
+    smallest offer on this list — a connection test, not a working allowance'
   models: []
   api:
     base_url: https://api.stdcmpt.com/v1
@@ -3242,13 +3199,14 @@ entries:
     model_ids:
     - deepseek-v4-flash
     - glm-5.3-flash
-    - claude-opus-4-8
+    - claude-sonnet-4-6
     anthropic_base_url: https://api.routerplex.com
     note: ids are the catalog page's own spellings (routerplex.com/models, 54 chat
       ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com
-      and ANTHROPIC_MODEL=claude-opus-4-8, the Anthropic SDK appending /v1/messages
-      itself. /v1/models is keyed, so none of these ids is checked against a catalog,
-      and which of them the promotional credit can call is not published
+      and ANTHROPIC_MODEL=claude-sonnet-4-6 (guide reviewed 2026-09-13), the Anthropic
+      SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids
+      is checked against a catalog, and which of them the promotional credit can call
+      is not published
   probe:
     type: page-keywords
     endpoint: https://routerplex.com/

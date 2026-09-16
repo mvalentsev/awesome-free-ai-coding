@@ -65,7 +65,7 @@ claude-freeinference() {
 }
 
 # ── RouterPlex · get a key: https://routerplex.com/sign-up
-#    free ids: deepseek-v4-flash, glm-5.3-flash, claude-opus-4-8
+#    free ids: deepseek-v4-flash, glm-5.3-flash, claude-sonnet-4-6
 claude-routerplex() {
   ANTHROPIC_BASE_URL="https://api.routerplex.com" \
   ANTHROPIC_AUTH_TOKEN="$ROUTERPLEX_API_KEY" \

@@ -907,14 +907,9 @@ model_list:
     model: openai/sarvam-105b
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
-- model_name: sarvam/deepseekv4-flash
+- model_name: sarvam/sarvam-105b-conversations
   litellm_params:
-    model: openai/deepseekv4-flash
-    api_base: https://api.sarvam.ai/v1
-    api_key: os.environ/SARVAM_API_KEY
-- model_name: sarvam/glm5.3-flash
-  litellm_params:
-    model: openai/glm5.3-flash
+    model: openai/sarvam-105b-conversations
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
 - model_name: inception-labs/mercury-2.5
@@ -977,9 +972,9 @@ model_list:
     model: openai/glm-5.3-flash
     api_base: https://api.routerplex.com/v1
     api_key: os.environ/ROUTERPLEX_API_KEY
-- model_name: routerplex/claude-opus-4-8
+- model_name: routerplex/claude-sonnet-4-6
   litellm_params:
-    model: openai/claude-opus-4-8
+    model: openai/claude-sonnet-4-6
     api_base: https://api.routerplex.com/v1
     api_key: os.environ/ROUTERPLEX_API_KEY
 - model_name: standardcompute/anthropic/claude-standardcompute

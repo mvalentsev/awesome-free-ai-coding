@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-09-14'
-description: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker. How it can be free is answered by the…
+description: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna and MiMo 2.5 in the picker. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model…
 permalink: /providers/freebuff/
 ---
 
@@ -13,15 +13,15 @@ permalink: /providers/freebuff/
 
 ## What you get
 
-Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker
+Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna and MiMo 2.5 in the picker
 
 ## Free models
 
-`glm-5.3-flash`, `gpt-5.6-luna`, `deepseek-v4-flash`, `mimo-v2.5`
+`glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna`, `mimo-v2.5`
 
 ## Limits, in the vendor's words
 
-How it can be free is answered by the vendor in five words — "Freebuff is supported by text ads" — and the CLI asks for nothing to prove it: "npm install -g freebuff", then "No API key and no credit card. It just runs." What it costs instead is geography and sessions. Full mode is restricted to 25 named countries (US, Canada, UK, Australia, New Zealand, Norway, Sweden, Netherlands, Denmark, Germany, France, Italy, Spain, Portugal, Finland, Belgium, Luxembourg, Liechtenstein, Switzerland, Austria, Singapore, Malta, Israel, Ireland, Iceland); "if you are outside those countries or using a VPN, Freebuff still works in limited mode", and limited mode is MiMo 2.5 alone. The quota is counted in sessions and no free figure is published: the Terms sell paid plans as adding "session capacity on top of the free service" and say each plan carries "daily, rolling five-day, and monthly session limits, per-model limits" without naming the free ones, while "referrals and bounties earn extra sessions on top". Solar Pro 4 sits in the picker as a "limited-time trial" and is left out of the models column for that reason, as is the Gemini 3.1 Flash Lite that runs file-finding and research behind the scenes. On data the FAQ is narrow and specific: "we do not collect your traces or files unless the model provider does. Currently, this applies only to DeepSeek models", and the picker marks DeepSeek V4 Flash "may use data for AI training". Read 2026-09-02
+"Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash, 10 of MiMo 2.5, 6 of DeepSeek V4.1 Flash or 5 of GPT-5.6 Luna; they refill at midnight Pacific and do not carry over. "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Solar Pro 4 ("Limited-time trial") and the queued Muse Spark 1.2 stay out of the models column. Read 2026-09-16
 
 ## Connect
 
@@ -29,12 +29,14 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://freebuff.com/cli>, anchored on `Freebuff is supported by text ads`, `No API key and no credit card`
+- Probe: the page at <https://freebuff.com/>, anchored on `Freebuff is supported by text ads`, `Freebucks every day`
+- Source: <https://freebuff.com/>
 - Source: <https://freebuff.com/cli>
 - Source: <https://freebuff.com/terms-of-service>
 
 ## History
 
+- *next scheduled run* — Free models changed: added deepseek-v4.1-flash; dropped deepseek-v4-flash
 - `2026-09-03` — Added to the list: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker
 
 ---

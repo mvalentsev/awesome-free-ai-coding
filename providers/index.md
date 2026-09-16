@@ -16,7 +16,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) | 🤖 Coding agents & CLIs | `big-pickle`, `mimo-v2.5`, `ling-3.0-flash-fin`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `muse-spark-1.3-contributor` | `2026-09-14` |
 | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) | 🤖 Coding agents & CLIs | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1` | `2026-09-14` |
 | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) | 🤖 Coding agents & CLIs | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | `2026-09-14` |
-| [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `gpt-5.6-luna`, `deepseek-v4-flash`, `mimo-v2.5` | `2026-09-14` |
+| [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna`, `mimo-v2.5` | `2026-09-14` |
 | [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | `laguna-s-2.1` | `2026-09-14` |
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-14` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-14` |
@@ -58,7 +58,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | `solar-pro-3`, `solar-mini` | `2026-09-14` |
 | [Infomaniak AI Services](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
-| [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b`, `deepseek-v4-flash`, `glm-5.3-flash` | `2026-09-14` |
+| [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-14` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-14` |
 | [RouterPlex](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |
 | [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-14` |

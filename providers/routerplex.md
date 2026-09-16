@@ -28,8 +28,8 @@ The page this row is verified against names no free model, so the column stays e
 - Base URL: `https://api.routerplex.com/v1`
 - Key: `ROUTERPLEX_API_KEY` — get one at <https://routerplex.com/sign-up>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.routerplex.com`
-- Callable ids: `deepseek-v4-flash`, `glm-5.3-flash`, `claude-opus-4-8`
-- Note: ids are the catalog page's own spellings (routerplex.com/models, 54 chat ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com and ANTHROPIC_MODEL=claude-opus-4-8, the Anthropic SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids is checked against a catalog, and which of them the promotional credit can call is not published
+- Callable ids: `deepseek-v4-flash`, `glm-5.3-flash`, `claude-sonnet-4-6`
+- Note: ids are the catalog page's own spellings (routerplex.com/models, 54 chat ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com and ANTHROPIC_MODEL=claude-sonnet-4-6 (guide reviewed 2026-09-13), the Anthropic SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids is checked against a catalog, and which of them the promotional credit can call is not published
 
 ## Evidence
 

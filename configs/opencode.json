@@ -834,11 +834,8 @@
         "sarvam-105b": {
           "name": "sarvam-105b"
         },
-        "deepseekv4-flash": {
-          "name": "deepseekv4-flash"
-        },
-        "glm5.3-flash": {
-          "name": "glm5.3-flash"
+        "sarvam-105b-conversations": {
+          "name": "sarvam-105b-conversations"
         }
       }
     },
@@ -934,8 +931,8 @@
         "glm-5.3-flash": {
           "name": "glm-5.3-flash"
         },
-        "claude-opus-4-8": {
-          "name": "claude-opus-4-8"
+        "claude-sonnet-4-6": {
+          "name": "claude-sonnet-4-6"
         }
       }
     },
