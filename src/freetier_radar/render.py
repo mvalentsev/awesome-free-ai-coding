@@ -494,6 +494,7 @@ def build_context(entries: list[Entry], today: date,
             # never drift apart.
             "watchlist": _watch_rows(watchlist or [], today),
             "watch_recheck_days": WATCH_RECHECK_DAYS,
+            "checked_url": checked_page_url(),
             # sources.yaml itself is not rendered — the page says how the
             # verdicts work and the file holds them, the way it does for
             # dismissed.yaml.
@@ -938,6 +939,44 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
     return "\n".join(out)
 
 
+CHECKED_PAGE = "checked"
+
+
+def checked_page_url() -> str:
+    return f"{PAGES_URL}/{PROVIDERS_DIR}/{CHECKED_PAGE}/"
+
+
+def build_checked_page(watchlist: list[Watched], today: date) -> str:
+    """Every service checked and not listed, with its reason and what would
+    change the answer — the watchlist as a page of its own.
+
+    It used to be a collapsed table at the foot of the README, and by 2026-09-16
+    it was 108 KB of that page's 260 KB: 140 verdicts under a list of 60 offers,
+    loaded by everyone who opened the README for the list. A reader who wants to
+    know why a service is missing follows one link to it; the README stays the
+    list."""
+    rows = _watch_rows(watchlist, today)
+    out = [_front_matter({"layout": "default",
+                          "title": "Services checked and not listed on the free AI coding list",
+                          "description": "Every service this list checked and did not list, with the "
+                                         "reason on the date it was read and what would change the answer.",
+                          "permalink": f"/{PROVIDERS_DIR}/{CHECKED_PAGE}/"}),
+           "{% raw %}", "", "# Checked and not listed", "",
+           f"{len(rows)} services whose free tier [the list]({PAGES_URL}/) could not find or could not "
+           "verify on the date checked. Nothing here is disqualified — domains rejected for cause are "
+           f"in [`blocklist.yaml`]({REPO_URL}/blob/main/blocklist.yaml) — and each verdict expires after "
+           f"{WATCH_RECHECK_DAYS} days and is asked again. The records live in "
+           f"[`watchlist.yaml`]({REPO_URL}/blob/main/watchlist.yaml).", "",
+           "| Service | Why it is not on the list | Checked |", "|---|---|---|"]
+    for w in rows:
+        reopen = f" <sub>**Reopens if:** {w['reopen_if']}</sub>" if w["reopen_if"] else ""
+        stale = "" if w["current"] else " ⏰"
+        out.append(f"| **{w['name']}** | {w['reason']}{reopen} | `{w['checked_on']}`{stale} |")
+    out += ["", f"<sub>⏰ — the verdict is older than {WATCH_RECHECK_DAYS} days, no longer suppresses "
+                "anything, and is due for a fresh look.</sub>", "", "{% endraw %}", ""]
+    return "\n".join(out)
+
+
 def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[Watched]:
     """The watchlist that belongs to this registry — its sibling unless told
     otherwise. Missing file means an empty list, so a caller that has no
@@ -983,7 +1022,9 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     # drops in the directory is not this function's to delete.
     providers = root / PROVIDERS_DIR
     providers.mkdir(parents=True, exist_ok=True)
-    wanted = {"index.md"}
+    wanted = {"index.md", f"{CHECKED_PAGE}.md"}
+    (providers / f"{CHECKED_PAGE}.md").write_text(build_checked_page(watchlist, today),
+                                                  encoding="utf-8")
     for e in entries:
         (providers / f"{e.id}.md").write_text(build_provider_page(e, history, today),
                                               encoding="utf-8")

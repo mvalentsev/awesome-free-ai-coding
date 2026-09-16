@@ -467,6 +467,28 @@ def test_watchlist_rows_are_newest_first_and_carry_their_own_freshness():
     assert ctx["watch_recheck_days"] == WATCH_RECHECK_DAYS
 
 
+def test_the_watchlist_is_a_page_of_its_own_and_the_readme_links_it(tmp_path: Path):
+    """140 verdicts were 108 KB of a 260 KB README on 2026-09-16, loaded by every
+    reader who came for the list above them. They live on one page now, with the
+    reason, what would reopen it and whether the verdict is still current."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import build_checked_page
+    old = watched("Old", (TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat())
+    page = build_checked_page([old, watched("New", TODAY.isoformat())], TODAY)
+    assert yaml.safe_load(page.split("---\n")[1])["permalink"] == "/providers/checked/"
+    assert page.index("**New**") < page.index("**Old**")
+    assert "no free tier today <sub>**Reopens if:** they publish one</sub>" in page
+    assert f"`{(TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat()}` ⏰" in page
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make()])
+    (tmp_path / "watchlist.yaml").write_text(yaml.safe_dump({"watched": [
+        {"domains": ["example.ai"], "name": "Example", "checked_on": TODAY.isoformat(),
+         "reason": "a reason only the page carries", "reopen_if": "they publish one"}]}), encoding="utf-8")
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/checked/" in text
+    assert "a reason only the page carries" not in text
+
+
 def test_a_registry_with_no_watchlist_renders_exactly_as_before():
     assert build_context([make()], TODAY)["watchlist"] == []
 
@@ -872,7 +894,7 @@ def test_render_writes_a_page_per_entry_and_removes_the_stale_ones(tmp_path: Pat
     (providers / "gone.md").write_text("a row that left the registry", encoding="utf-8")
     (providers / "notes.txt").write_text("not ours", encoding="utf-8")
     render_artifacts(reg, tmp_path, today=TODAY)
-    assert sorted(p.name for p in providers.iterdir()) == ["a.md", "b.md", "index.md", "notes.txt"]
+    assert sorted(p.name for p in providers.iterdir()) == ["a.md", "b.md", "checked.md", "index.md", "notes.txt"]
     index = (providers / "index.md").read_text(encoding="utf-8")
     assert yaml.safe_load(index.split("---\n")[1])["permalink"] == "/providers/"
     assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/b/" in index

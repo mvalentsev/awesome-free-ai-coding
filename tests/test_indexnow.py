@@ -20,7 +20,8 @@ def test_site_urls_cover_what_a_search_engine_should_recrawl():
     index = build_index([make(id="x"), make(id="y", probe_failures=3)], TODAY)
     urls = site_urls(index)
     assert urls[0] == PAGES_URL + "/"
-    for path in ("providers/", "providers/x/", "providers/y/", "feed.xml", "llms.txt", "browse.html"):
+    for path in ("providers/", "providers/checked/", "providers/x/", "providers/y/", "feed.xml", "llms.txt",
+                 "browse.html"):
         assert f"{PAGES_URL}/{path}" in urls, path
     assert len(urls) == len(set(urls))
 
