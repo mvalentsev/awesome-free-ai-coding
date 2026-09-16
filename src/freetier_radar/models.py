@@ -248,7 +248,28 @@ class ApiInfo(BaseModel):
     # same kind of fact, a connection detail this list publishes and the world
     # stopped backing.
     anthropic_base_url: str | None = None
+    # The header in which the vendor wants a stable id for each conversation.
+    # opencode Zen has answered a free id without x-opencode-session with 400
+    # MissingSessionID since 2026-09-07, and the rule OpenCode's team gives
+    # other clients is "any stable UUID per conversation". A generated config
+    # is written once and cannot mint one, so a row that sets this stays out of
+    # litellm.yaml and opencode.json, and every place that tells a reader how
+    # to connect names the header instead.
+    session_header: str | None = None
     note: str = ""
+
+    @field_validator("session_header")
+    @classmethod
+    def _session_header_is_a_header_name(cls, value: str | None) -> str | None:
+        if value is not None and not re.fullmatch(r"[A-Za-z0-9!#$%&'*+.^_`|~-]+", value):
+            raise ValueError(f"session_header {value!r} is not an HTTP header name")
+        return value
+
+    @model_validator(mode="after")
+    def _session_header_needs_an_endpoint(self) -> ApiInfo:
+        if self.session_header and not self.base_url:
+            raise ValueError("session_header says how to call base_url, and there is no base_url")
+        return self
 
     @field_validator("anthropic_base_url")
     @classmethod

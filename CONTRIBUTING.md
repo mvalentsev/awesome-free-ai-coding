@@ -176,6 +176,18 @@ field feeds the Claude Code line of the picks table, the second URL in the
 connection table and [`configs/claude-code.sh`](configs/claude-code.sh), and
 `index.json` carries it as written.
 
+**`api.session_header` is for a lane that wants an id per conversation.** Set it
+to the header name when the vendor requires every request to carry a stable id
+for its conversation: opencode Zen has answered a free id without
+`x-opencode-session` with HTTP 400 MissingSessionID since 2026-09-07. The error
+reads "OpenCode's free tier can only be used in OpenCode", but the rule
+OpenCode's team gives other clients is "any stable UUID per conversation", and
+with an account key a request that carries the header is answered. A
+generated config is written once and cannot mint an id per conversation, so a
+row that sets the field is left out of `litellm.yaml` and `opencode.json`, and
+the connection table, the provider page, the env example and `llms.txt` name
+the header instead.
+
 **`api.auth: none` is checked by calling the lane without a key.** On a row that
 sets it, the missing key is the offer: the README's zero-signup curl and its "No
 account at all" answer are both built from that field, with the first id in

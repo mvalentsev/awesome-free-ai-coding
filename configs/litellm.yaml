@@ -5,6 +5,7 @@
 # sets no master_key, so without that flag anyone on your network can spend
 # the keys it reads from the environment (see free-llm.env.example).
 # Entries marked `api_key: none` need no account at all.
+# Left out: opencode — every request needs a stable id per conversation in x-opencode-session, which a static config cannot supply.
 model_list:
 - model_name: google-ai-studio/gemini-3.8-flash
   litellm_params:

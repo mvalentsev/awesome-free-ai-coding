@@ -183,6 +183,23 @@ def _connectable(entries: list[Entry], today: date) -> list[Entry]:
     )
 
 
+def _configurable(entries: list[Entry], today: date) -> list[Entry]:
+    """The connectable rows a config written once can actually call.
+
+    A lane that wants a stable id per conversation in a header of its own
+    (`api.session_header`) is not one of them: litellm.yaml and opencode.json
+    are static, and a static entry either omits the header — opencode Zen's
+    free ids answer that with 400 MissingSessionID — or pins one id for every
+    conversation, which is not what the vendor asked for. Those rows are
+    connected by a client that sends the header, and the connection table,
+    the provider page, the env example and llms.txt say which header."""
+    return [e for e in _connectable(entries, today) if not e.api.session_header]
+
+
+def _session_note(header: str) -> str:
+    return f"`{header}` per conversation"
+
+
 def _model_index(active: list[Entry]) -> list[dict]:
     """Model family → everyone who serves it free, most-served first.
 
@@ -432,7 +449,9 @@ def build_context(entries: list[Entry], today: date,
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "anthropic_base_url": e.api.anthropic_base_url or "",
-         "auth": "—" if e.api.auth == "none" else f"`{env_var(e.id)}`",
+         "auth": ("—" if e.api.auth == "none" else f"`{env_var(e.id)}`")
+                 + (f"<br><sub>and {_session_note(e.api.session_header)}</sub>"
+                    if e.api.session_header else ""),
          "key_url": e.api.key_url or "",
          "note": (_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True)
                   if e.api.note else "")}
@@ -522,6 +541,8 @@ def _llms_line(e: Entry) -> str:
         else:
             parts.append("key required")
         parts.append(f"{'OpenAI-compatible' if api.openai_compatible else 'API'} at {api.base_url}")
+        if api.session_header:
+            parts.append(f"every request needs a stable id per conversation in `{api.session_header}`")
         if api.anthropic_base_url:
             parts.append(f"Anthropic Messages at {api.anthropic_base_url}")
     fams = _families(e)
@@ -597,7 +618,7 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
 
 def build_opencode_config(entries: list[Entry], today: date) -> dict:
     providers = {}
-    for e in _connectable(entries, today):
+    for e in _configurable(entries, today):
         options: dict = {"baseURL": e.api.base_url}
         if e.api.auth != "none":
             options["apiKey"] = "{env:" + env_var(e.id) + "}"
@@ -622,7 +643,7 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
     with the entry id because two providers routinely serve the same model id.
     """
     models = []
-    for e in _connectable(entries, today):
+    for e in _configurable(entries, today):
         ids = e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
         for model_id in ids:
             models.append({
@@ -651,6 +672,9 @@ def build_env_example(entries: list[Entry], today: date) -> str:
             key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
             lines.append(f"# ── {e.name} — base: {e.api.base_url}{key_hint}")
             lines.append(f'export {env_var(e.id)}=""')
+        if e.api.session_header:
+            lines.append(f"#    header: every request needs a stable id per conversation in "
+                         f"{e.api.session_header} — send it from your client")
         if e.api.note:
             lines.append(f"#    note: {e.api.note}")
         lines.append("")
@@ -815,6 +839,10 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
             if e.api.key_url:
                 key += f" — get one at <{e.api.key_url}>"
             out.append(key)
+        if e.api.session_header:
+            out.append(f"- Session header: `{e.api.session_header}` — a stable id per "
+                       "conversation on every request; the generated configs leave this row "
+                       "out, since an entry written once cannot supply one")
         if e.api.anthropic_base_url:
             out.append(f"- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): "
                        f"`{e.api.anthropic_base_url}`")
@@ -980,6 +1008,9 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# sets no master_key, so without that flag anyone on your network can spend\n"
         "# the keys it reads from the environment (see free-llm.env.example).\n"
         "# Entries marked `api_key: none` need no account at all.\n"
+        + "".join(f"# Left out: {e.name} — every request needs a stable id per conversation "
+                  f"in {e.api.session_header}, which a static config cannot supply.\n"
+                  for e in _connectable(entries, today) if e.api.session_header)
         + yaml.safe_dump(build_litellm_config(entries, today), sort_keys=False,
                          allow_unicode=True),
         encoding="utf-8")

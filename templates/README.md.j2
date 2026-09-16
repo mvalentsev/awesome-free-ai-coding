@@ -165,7 +165,7 @@ Ready-made artifacts, regenerated on every update:
 
 | File | What it gives you |
 |---|---|
-| [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
+| [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately; a lane that wants a session header per conversation is left out of both generated configs, and its row in the table above names the header |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and `claude-openrouter-free` runs [Claude Code](https://code.claude.com/docs) on that lane, key and model filled in |
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint — without `--host` the proxy listens on every interface, and the file sets no master key |

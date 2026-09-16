@@ -664,6 +664,46 @@ def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
     assert "| I want… |" not in text
 
 
+def test_a_lane_that_wants_a_session_id_per_conversation_stays_out_of_the_static_configs(
+        tmp_path: Path):
+    """opencode Zen has answered a free id without x-opencode-session with 400
+    MissingSessionID since 2026-09-07, and the rule OpenCode's team gives other
+    clients is a stable id per conversation. A LiteLLM or opencode.json entry is
+    written once and cannot mint one, so either would hand a reader a model
+    that fails on its first call. The row is left out of both, and everything
+    that tells a reader how to connect names the header instead."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import build_llms_txt, build_provider_page
+    zen = api_entry(id="zen", name="Zen", api={
+        "base_url": "https://zen.example/v1", "key_url": "https://zen.example/auth",
+        "model_ids": ["free-a"], "session_header": "x-zen-session"})
+    plain = api_entry(id="plain", name="Plain", models=[{"family": "m"}])
+    entries = [zen, plain]
+
+    assert [m["model_name"] for m in build_litellm_config(entries, TODAY)["model_list"]] == [
+        "plain/m"]
+    assert set(build_opencode_config(entries, TODAY)["provider"]) == {"plain"}
+
+    env = build_env_example(entries, TODAY)
+    assert 'export ZEN_API_KEY=""' in env
+    assert "x-zen-session" in env.split("# ── Zen")[1].split("# ──")[0]
+
+    by_name = {c["name"]: c for c in build_context(entries, TODAY)["connections"]}
+    assert "`x-zen-session`" in by_name["Zen"]["auth"]
+    assert "session" not in by_name["Plain"]["auth"]
+
+    assert "- Session header: `x-zen-session`" in build_provider_page(zen, [], TODAY)
+    assert "x-zen-session" in build_llms_txt(entries, TODAY)
+
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    render_artifacts(reg, tmp_path, today=TODAY)
+    litellm = (tmp_path / "configs" / "litellm.yaml").read_text(encoding="utf-8")
+    assert "zen/free-a" not in litellm
+    assert "# Left out: Zen" in litellm and "x-zen-session" in litellm
+    assert "plain/m" in litellm
+
+
 def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_path: Path):
     """"Claude Code on a free lane" is the question the 27,000-star routers
     answer by re-exposing paid sessions. The legal answer is a gateway whose

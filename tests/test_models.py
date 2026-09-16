@@ -337,6 +337,23 @@ def test_a_url_is_covered_by_the_vendor_whose_host_or_repository_it_is(url, know
     assert is_covered(url, known) is covered
 
 
+def test_a_session_header_is_a_header_name_on_a_row_with_an_endpoint():
+    """`api.session_header` names the header in which a vendor wants a stable id
+    for each conversation — opencode Zen's x-opencode-session, without which
+    its free ids have answered 400 MissingSessionID since 2026-09-07. It is
+    read as a header name wherever the list tells a reader how to connect, so
+    it has to be one, and it says how to call a base URL, so the row needs one."""
+    d = sample_entry()
+    d["api"] = {"base_url": "https://x.ai/v1", "session_header": "x-opencode-session"}
+    assert Entry.model_validate(d).api.session_header == "x-opencode-session"
+    d["api"] = {"base_url": "https://x.ai/v1", "session_header": "x opencode session"}
+    with pytest.raises(ValidationError, match="header name"):
+        Entry.model_validate(d)
+    d["api"] = {"session_header": "x-opencode-session"}
+    with pytest.raises(ValidationError, match="base_url"):
+        Entry.model_validate(d)
+
+
 def test_anthropic_base_url_is_the_base_claude_code_appends_to():
     """The field is what ANTHROPIC_BASE_URL takes, and Claude Code appends
     /v1/messages itself — so a value that already ends in the route would send
