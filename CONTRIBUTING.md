@@ -181,18 +181,21 @@ to the header name when the vendor requires every request to carry a stable id
 for its conversation: opencode Zen has answered a free id without
 `x-opencode-session` with HTTP 400 MissingSessionID since 2026-09-07. The error
 reads "OpenCode's free tier can only be used in OpenCode", but the rule
-OpenCode's team gives other clients is "any stable UUID per conversation", and
-with an account key a request that carries the header is answered. A
-generated config is written once and cannot mint an id per conversation, so a
-row that sets the field is left out of `litellm.yaml` and `opencode.json`, and
-the connection table, the provider page, the env example and `llms.txt` name
-the header instead.
+OpenCode's team gives other clients is "any stable UUID per conversation", and a
+request that carries the header is answered — with a key, and on 2026-09-16
+without one. A `litellm.yaml` entry is written once and cannot mint an id per
+conversation, and OpenCode sends such a header only for its own built-in
+provider, so a row that sets the field is left out of `litellm.yaml` and
+`opencode.json`; the connection table, the provider page, the env example and
+`llms.txt` name the header, and the keyless check below and the README's
+quickstart curl send a fresh id in it.
 
 **`api.auth: none` is checked by calling the lane without a key.** On a row that
 sets it, the missing key is the offer: the README's zero-signup curl and its "No
 account at all" answer are both built from that field, with the first id in
 `api.model_ids`. So every run sends that id one chat completion — one token, no
-`Authorization` header — to `<base_url>/chat/completions`. Any 2xx is the lane,
+`Authorization` header, and a fresh id in the row's `api.session_header` when it
+names one — to `<base_url>/chat/completions`. Any 2xx is the lane,
 and so is a 429, because an anonymous lane is rate-limited rather than keyed. A
 401 or 403 is the vendor asking for a key and fails the row, which after three
 runs takes it and its command off the page; a bot wall there is `inconclusive`,

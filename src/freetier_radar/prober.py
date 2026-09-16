@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import json
 import re
+import uuid
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from enum import Enum
@@ -215,13 +216,18 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     verified, the way a dead id or a missing Anthropic route is."""
     url = entry.api.base_url.rstrip("/") + "/chat/completions"
     model = entry.api.model_ids[0]
+    # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
+    # answers a call without one with 400, so the call carries a fresh id of its own
+    # under this project's user agent, as the vendor asks any client to.
+    headers = ({entry.api.session_header: str(uuid.uuid4())}
+               if entry.api.session_header else {})
     last = ""
     for i in range(attempts):
         if i:
             await asyncio.sleep(backoff * i)
         try:
             resp = await client.post(url, json={"model": model, **KEYLESS_PROBE_BODY},
-                                     timeout=TIMEOUT, follow_redirects=True)
+                                     headers=headers, timeout=TIMEOUT, follow_redirects=True)
         except httpx.HTTPError as exc:
             last = f"network error: {exc}"
             continue

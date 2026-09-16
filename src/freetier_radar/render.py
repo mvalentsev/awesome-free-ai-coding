@@ -187,12 +187,14 @@ def _configurable(entries: list[Entry], today: date) -> list[Entry]:
     """The connectable rows a config written once can actually call.
 
     A lane that wants a stable id per conversation in a header of its own
-    (`api.session_header`) is not one of them: litellm.yaml and opencode.json
-    are static, and a static entry either omits the header — opencode Zen's
-    free ids answer that with 400 MissingSessionID — or pins one id for every
-    conversation, which is not what the vendor asked for. Those rows are
-    connected by a client that sends the header, and the connection table,
-    the provider page, the env example and llms.txt say which header."""
+    (`api.session_header`) is not one of them. A litellm.yaml entry is static:
+    it either omits the header — opencode Zen's free ids answer that with 400
+    MissingSessionID — or pins one id for every conversation, which is not what
+    the vendor asked for. OpenCode does send x-opencode-session, but only for
+    its own built-in provider, which a reader of opencode.json already has, and
+    it sends no other vendor's header. Those rows are connected by a client that
+    sends the header, and the connection table, the provider page, the env
+    example and llms.txt say which header."""
     return [e for e in _connectable(entries, today) if not e.api.session_header]
 
 
@@ -322,7 +324,8 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
             return {"name": e.name, "url": e.url,
                     "base_url": e.api.base_url.rstrip("/"),
                     "model_id": e.api.model_ids[0],
-                    "note": e.api.note}
+                    "note": e.api.note,
+                    "session_header": e.api.session_header or ""}
     return None
 
 
@@ -450,7 +453,9 @@ def build_context(entries: list[Entry], today: date,
         {"name": e.name, "base_url": e.api.base_url,
          "anthropic_base_url": e.api.anthropic_base_url or "",
          "auth": ("—" if e.api.auth == "none" else f"`{env_var(e.id)}`")
-                 + (f"<br><sub>and {_session_note(e.api.session_header)}</sub>"
+                 + ((f"<br><sub>{_session_note(e.api.session_header)}</sub>"
+                     if e.api.auth == "none"
+                     else f"<br><sub>and {_session_note(e.api.session_header)}</sub>")
                     if e.api.session_header else ""),
          "key_url": e.api.key_url or "",
          "note": (_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True)
@@ -841,8 +846,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
             out.append(key)
         if e.api.session_header:
             out.append(f"- Session header: `{e.api.session_header}` — a stable id per "
-                       "conversation on every request; the generated configs leave this row "
-                       "out, since an entry written once cannot supply one")
+                       "conversation on every request, which the calling client sends itself; "
+                       "the generated LiteLLM and opencode configs leave this row out")
         if e.api.anthropic_base_url:
             out.append(f"- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): "
                        f"`{e.api.anthropic_base_url}`")

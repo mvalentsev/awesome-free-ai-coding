@@ -1,4 +1,5 @@
 import json
+import uuid
 from datetime import date
 
 import httpx
@@ -1576,6 +1577,27 @@ async def test_a_keyless_lane_that_answers_or_rate_limits_is_a_pass():
         sent = call.calls.last.request
         assert "authorization" not in sent.headers
         assert json.loads(sent.content)["model"] == "gpt-oss-120b"
+
+
+@respx.mock
+async def test_a_keyless_lane_that_wants_a_session_header_is_called_with_one():
+    """opencode Zen's free ids answer a keyless call only when it carries
+    x-opencode-session: 400 MissingSessionID without it, 200 with a UUID of the
+    caller's own (measured 2026-09-16). A row that names the header is called
+    with a fresh id under this project's own user agent, the way the vendor asks
+    any client to call it; without one every run would report a live lane as a
+    note."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={}))
+    entry = keyless_entry()
+    entry.api.session_header = "x-open-session"
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+    sent = call.calls.last.request
+    assert "authorization" not in sent.headers
+    uuid.UUID(sent.headers["x-open-session"])
 
 
 @respx.mock

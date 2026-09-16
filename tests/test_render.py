@@ -332,7 +332,26 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
                           "model_id": "gpt-oss-120b",
                           # the rate limit that pays for the missing key travels
                           # with the snippet: the reader meets it on this call
-                          "note": "2 requests per minute, per IP and per model"}
+                          "note": "2 requests per minute, per IP and per model",
+                          "session_header": ""}
+
+
+def test_the_quickstart_curl_sends_the_session_header_its_lane_asks_for(tmp_path: Path):
+    """A keyless lane that wants an id per conversation — opencode Zen answers
+    400 MissingSessionID without x-opencode-session — would make the README's
+    first command fail as printed. The curl carries the header, and the id is
+    made in the reader's shell, so every reader sends their own and the page
+    renders the same twice."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="zen", name="Zen", rank=1, api={
+        "base_url": "https://zen.example/v1", "auth": "none", "model_ids": ["free-a"],
+        "session_header": "x-zen-session"})])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    quickstart = text.split("No account at all?")[1].split("Liked it?")[0]
+    assert '  -H "x-zen-session: quickstart-$RANDOM$RANDOM" \\\n' in quickstart
+    assert "curl -s https://zen.example/v1/chat/completions \\\n" in quickstart
+    assert render_readme(reg, Path("templates"), tmp_path / "README2.md", today=TODAY) == text
 
 
 def test_quickstart_note_reaches_the_page(tmp_path: Path):

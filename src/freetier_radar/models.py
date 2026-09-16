@@ -251,10 +251,12 @@ class ApiInfo(BaseModel):
     # The header in which the vendor wants a stable id for each conversation.
     # opencode Zen has answered a free id without x-opencode-session with 400
     # MissingSessionID since 2026-09-07, and the rule OpenCode's team gives
-    # other clients is "any stable UUID per conversation". A generated config
-    # is written once and cannot mint one, so a row that sets this stays out of
-    # litellm.yaml and opencode.json, and every place that tells a reader how
-    # to connect names the header instead.
+    # other clients is "any stable UUID per conversation". A LiteLLM entry is
+    # written once and cannot mint one, and OpenCode sends such a header only
+    # for its own built-in provider, so a row that sets this stays out of
+    # litellm.yaml and opencode.json; every place that tells a reader how to
+    # connect names the header, and the keyless probe and the README's
+    # quickstart curl send a fresh id.
     session_header: str | None = None
     note: str = ""
 
