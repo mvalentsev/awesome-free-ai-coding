@@ -421,22 +421,6 @@
         }
       }
     },
-    "cerebras-free": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Cerebras Inference",
-      "options": {
-        "baseURL": "https://api.cerebras.ai/v1",
-        "apiKey": "{env:CEREBRAS_API_KEY}"
-      },
-      "models": {
-        "gpt-oss-120b": {
-          "name": "gpt-oss-120b"
-        },
-        "qwen-3.8-27b": {
-          "name": "qwen-3.8-27b"
-        }
-      }
-    },
     "cloudflare-workers-ai": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Cloudflare Workers AI",
@@ -750,15 +734,6 @@
         }
       }
     },
-    "infomaniak-ai": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Infomaniak AI Services",
-      "options": {
-        "baseURL": "https://api.infomaniak.com/2/ai/{product_id}/openai/v1",
-        "apiKey": "{env:INFOMANIAK_AI_API_KEY}"
-      },
-      "models": {}
-    },
     "meganova": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "MegaNova",
@@ -979,15 +954,6 @@
           "name": "Lorbus/Qwen3.6-27B-int4-AutoRound"
         }
       }
-    },
-    "scaleway-generative": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Scaleway Generative APIs",
-      "options": {
-        "baseURL": "https://api.scaleway.ai/v1",
-        "apiKey": "{env:SCALEWAY_GENERATIVE_API_KEY}"
-      },
-      "models": {}
     },
     "yolo-auto": {
       "npm": "@ai-sdk/openai-compatible",

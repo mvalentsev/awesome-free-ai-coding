@@ -2377,3 +2377,43 @@ watched:
     reopen_if: >-
       api.lingyiwanwu.com/v1/models serves models again, or 01.AI publishes API
       pricing with a free allowance.
+
+  - domains: [cerebras.ai]
+    name: Cerebras Inference
+    checked_on: '2026-09-16'
+    reason: >-
+      Listed from 2026-07-19 to 2026-09-16 as a trial marked with a card, and
+      taken off because CONTRIBUTING excludes one-off credits that require one.
+      inference-docs.cerebras.ai/support/rate-limits: "New accounts receive $5 in
+      free credits after adding a verified payment method. These credits expire
+      30 days after they’re granted", "If you skip adding a payment method at
+      sign-up, Playground and API access remain inactive until you do", and "Is
+      there a permanently free tier? No."
+    reopen_if: >-
+      Cerebras grants credits without a payment method, or a free allowance that
+      recurs.
+
+  - domains: [infomaniak.com]
+    name: Infomaniak AI Services
+    checked_on: '2026-09-16'
+    reason: >-
+      Listed from 2026-09-02 to 2026-09-16 as a trial marked with a card, and
+      taken off because CONTRIBUTING excludes one-off credits that require one:
+      "One million free credits allow you to test the service without commitment
+      for one month" and "A credit card is required to start using the API"
+      (support guide 2845).
+    reopen_if: >-
+      The trial credits stop requiring a card, or a free allowance recurs.
+
+  - domains: [scaleway.com]
+    name: Scaleway Generative APIs
+    checked_on: '2026-09-16'
+    reason: >-
+      Listed from 2026-07-20 to 2026-09-16 as a free tier marked with a card, and
+      taken off because CONTRIBUTING excludes one-off credits that require one.
+      "Every new customer gets 1,000,000 free tokens—start paying only from the
+      1,000,001st token" is a once-per-customer grant, and Scaleway's account
+      docs say "Ordering Scaleway resources requires a valid credit card".
+    reopen_if: >-
+      The free tokens stop requiring a card, or become a recurring allowance.
+

@@ -592,16 +592,6 @@ model_list:
     model: openai/glm-4.6v-flash
     api_base: https://api.z.ai/api/paas/v4
     api_key: os.environ/ZAI_GLM_API_KEY
-- model_name: cerebras-free/gpt-oss-120b
-  litellm_params:
-    model: openai/gpt-oss-120b
-    api_base: https://api.cerebras.ai/v1
-    api_key: os.environ/CEREBRAS_API_KEY
-- model_name: cerebras-free/qwen-3.8-27b
-  litellm_params:
-    model: openai/qwen-3.8-27b
-    api_base: https://api.cerebras.ai/v1
-    api_key: os.environ/CEREBRAS_API_KEY
 - model_name: cloudflare-workers-ai/llama-4
   litellm_params:
     model: openai/llama-4

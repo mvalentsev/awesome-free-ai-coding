@@ -215,66 +215,6 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 20
-- id: cerebras-free
-  name: Cerebras Inference
-  category: trial
-  url: https://www.cerebras.ai
-  source_urls:
-  - https://inference-docs.cerebras.ai/support/rate-limits
-  - https://www.cerebras.ai/pricing
-  - https://inference-docs.cerebras.ai/models
-  card_required: true
-  offering: Very fast inference; $5 in trial credits that expire in 30 days, card
-    required before the API answers at all
-  limits: 'Cerebras'' own docs: "New accounts receive $5 in free credits after adding
-    a verified payment method", credits "expire 30 days after they''re granted", and
-    "If you skip adding a payment method at sign-up, Playground and API access remain
-    inactive until you do". Asked "Is there a permanently free tier?" the same page
-    answers "No". Free Trial rate limits are per model and the same on both the public
-    catalog now lists — 5 RPM, 30K uncached TPM, 90K total TPM, 1M TPH, 1M TPD each
-    (read 2026-09-03), the two TPM figures being the dual bucket the page describes.
-    That catalog has turned over twice: GLM 4.7 was deprecated on 2026-08-17 exactly
-    as it announced, and Gemma 4 31B left between the 09:55 UTC probe on 2026-09-03,
-    which still found it named, and a re-read eleven hours later — replaced by Qwen
-    3.8 27B, the one model here that reads images, 2 per request on this tier. The
-    marketing pricing page still promises the credits "after making an account" and
-    mentions no card — that was the old API tier, which accounts opened before the
-    change kept until 2026-08-17 and which is now gone'
-  models:
-  - family: gpt-oss
-    tier: strong
-    released: 2025-08
-  - family: qwen3.8
-    tier: strong
-    released: ''
-  api:
-    base_url: https://api.cerebras.ai/v1
-    key_url: https://cloud.cerebras.ai
-    auth: api-key
-    openai_compatible: true
-    model_ids:
-    - gpt-oss-120b
-    - qwen-3.8-27b
-    note: 'the Free Trial tier reaches every model in the public catalog, which is
-      these two: "Every model on the public Model Catalog is available on the Free
-      Trial tier, subject to the per-model Free Trial rate limits". The pair turns
-      over: gemma-4-31b was in it on the morning of 2026-09-03 and gone by that evening,
-      with qwen-3.8-27b in its place'
-  probe:
-    type: page-keywords
-    endpoint: https://inference-docs.cerebras.ai/support/rate-limits
-    keywords:
-    - after adding a verified payment method
-    - credits expire 30 days after
-    free_marker: ''
-    dead_markers: []
-    require_zero_price: false
-    machinery_keywords: []
-  first_seen: '2026-07-19'
-  last_verified: '2026-09-14'
-  probe_failures: 0
-  provisional: false
-  rank: 35
 - id: mistral-free
   name: Mistral AI Studio
   category: api-free-tier
@@ -1289,43 +1229,6 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 60
-- id: scaleway-generative
-  name: Scaleway Generative APIs
-  category: api-free-tier
-  url: https://www.scaleway.com/en/generative-apis/
-  source_urls:
-  - https://www.scaleway.com/en/docs/generative-apis/faq/
-  card_required: true
-  offering: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every
-    new customer
-  limits: 1,000,000 free tokens then pay-per-token; a valid payment method is required.
-    The allowance is not a model lane — "The Free Tier is applied to the most expensive
-    tokens first", across the whole serverless catalog, which on 2026-08-14 read glm-5.2,
-    deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b
-    and the Mistral line
-  models: []
-  api:
-    base_url: https://api.scaleway.ai/v1
-    key_url: https://console.scaleway.com
-    auth: api-key
-    openai_compatible: true
-    model_ids: []
-    note: 'non-default project: https://api.scaleway.ai/{project_id}/v1'
-  probe:
-    type: page-keywords
-    endpoint: https://www.scaleway.com/en/docs/generative-apis/faq/
-    keywords:
-    - 1,000,000 tokens
-    - free tier
-    free_marker: ''
-    dead_markers: []
-    require_zero_price: false
-    machinery_keywords: []
-  first_seen: '2026-07-20'
-  last_verified: '2026-09-14'
-  probe_failures: 0
-  provisional: false
-  rank: 98
 - id: huggingface-inference
   name: Hugging Face Inference Providers
   category: aggregator
@@ -2743,52 +2646,6 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 45
-- id: infomaniak-ai
-  name: Infomaniak AI Services
-  category: trial
-  url: https://www.infomaniak.com/en/hosting/ai-services
-  source_urls:
-  - https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services
-  - https://www.infomaniak.com/en/hosting/ai-services/prices
-  card_required: true
-  offering: Swiss sovereign-cloud API over open-weight models with a one-month trial
-    wallet of one million credits, one credit per LLM token
-  limits: '"One million free credits allow you to test the service without commitment
-    for one month" and "The API is billed on a credit basis. Each request consumes
-    one credit or LLM token" (support guide 2845, read 2026-09-02). The card is the
-    gate: "A credit card is required to start using the API. An unpaid invoice will
-    result in service suspension", and the sales FAQ adds that at account creation
-    "we''ll ask you to confirm your identity by registering a valid payment card".
-    After the wallet, list rates in CHF per 1M tokens — Gemma 4 31B at CHF 0.20/0.40,
-    Kimi K2.6 at CHF 0.60/3.00, Qwen3.5-122B at CHF 0.40/3.20 — billed at the end
-    of the month, with a spending limit settable in the Manager. Models are hosted
-    in Switzerland, and "We don''t currently offer the option of training our AI Services
-    using custom data"'
-  models: []
-  api:
-    base_url: https://api.infomaniak.com/2/ai/{product_id}/openai/v1
-    key_url: https://manager.infomaniak.com
-    auth: api-key
-    openai_compatible: true
-    model_ids: []
-    note: '{product_id} is the AI Services product id shown in the Infomaniak Manager,
-      where the API token is created too; the million credits are a one-month trial
-      rather than a standing lane, which is why the Free models column stays empty'
-  probe:
-    type: page-keywords
-    endpoint: https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services
-    keywords:
-    - One million free credits
-    - A credit card is required to start using the API
-    free_marker: ''
-    dead_markers: []
-    require_zero_price: false
-    machinery_keywords: []
-  first_seen: '2026-09-02'
-  last_verified: '2026-09-14'
-  probe_failures: 0
-  provisional: true
-  rank: 85
 - id: qodo
   name: Qodo
   category: trial
