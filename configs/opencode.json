@@ -496,6 +496,9 @@
         },
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
+        },
+        "motif/motif-3": {
+          "name": "motif/motif-3"
         }
       }
     },

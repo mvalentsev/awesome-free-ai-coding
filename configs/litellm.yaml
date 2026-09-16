@@ -672,6 +672,11 @@ model_list:
     model: openai/agnes/agnes-2.5-flash
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtr/motif/motif-3
+  litellm_params:
+    model: openai/motif/motif-3
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
   litellm_params:
     model: openai/DeepSeek-V3.1

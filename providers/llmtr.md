@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-14'
-description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — twelve zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
+description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — thirteen zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/llmtr/
 
 ## What you get
 
-Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — twelve zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them
+Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — thirteen zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them
 
 ## Free models
 
@@ -27,8 +27,8 @@ A new account calls the free rows before any top-up: the migration guide says "M
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.6-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-flash-free`, `inclusionai/ling-3.0-flash-vl`, `inclusionai/ling-3.0-flash-sante`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`
-- Note: the twelve ids are every chat row the public catalog prices at 0 on 2026-09-16. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free only until 22 September 2026, and dots-studio/dots-3-note-preview closes on 30 September 2026. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier rather than a coding model. liquid/lfm-2.5-embedding-350m-free is ignored as an embeddings row
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.6-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-flash-free`, `inclusionai/ling-3.0-flash-vl`, `inclusionai/ling-3.0-flash-sante`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`
+- Note: the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-16, motif/motif-3 created that evening. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free only until 22 September 2026, and dots-studio/dots-3-note-preview closes on 30 September 2026. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier rather than a coding model. liquid/lfm-2.5-embedding-350m-free is ignored as an embeddings row
 
 ## Evidence
 
