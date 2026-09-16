@@ -781,6 +781,38 @@ def test_a_disowned_model_is_reported_with_the_vendor_s_reason():
             "be used in OpenCode)") in str(failed.value)
 
 
+@respx.mock
+def test_an_upstream_error_answered_as_200_costs_a_candidate_and_says_why():
+    """Kilo's gateway answers an overloaded upstream with HTTP 200 and an error
+    object instead of choices. On 2026-09-16 the forced fallback run read that
+    as "KeyError: 'choices'" and dropped the whole backend for the phase, while
+    the registry lists nineteen other free ids on the same base url. The error
+    is about the model it names, so it costs that candidate, and the vendor's
+    sentence is what the log keeps."""
+    route = respx.post("https://gw.example/v1/chat/completions")
+    route.side_effect = [
+        httpx.Response(200, json={"error": {
+            "message": "Upstream error from Nvidia: Service temporarily overloaded", "code": 502}}),
+        httpx.Response(200, json={"choices": [{"message": {"content": "routed"}}]}),
+    ]
+    with httpx.Client() as http:
+        llm = LLMClient(fallback_base_url="https://gw.example/v1", fallback_model="big-model:free",
+                        models_by_base_url={"https://gw.example/v1": ["big-model:free", "router/free"]},
+                        http=http, force="custom-fallback")
+        assert llm.complete("hi") == "routed"
+    assert llm.answered_model == "router/free"
+
+    route.side_effect = [httpx.Response(200, json={"error": {"message": "overloaded"}})] * 2
+    with httpx.Client() as http:
+        llm = LLMClient(fallback_base_url="https://gw.example/v1", fallback_model="big-model:free",
+                        models_by_base_url={"https://gw.example/v1": ["big-model:free", "router/free"]},
+                        http=http, force="custom-fallback")
+        with pytest.raises(RuntimeError) as failed:
+            llm.complete("hi")
+    assert "big-model:free (no completion: overloaded)" in str(failed.value)
+    assert "KeyError" not in str(failed.value)
+
+
 @pytest.mark.parametrize(("body", "reason"), [
     (b'{"error": {"message": "Model  gone-free\\n is not supported"}}',
      "Model gone-free is not supported"),

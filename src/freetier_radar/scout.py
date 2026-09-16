@@ -341,6 +341,12 @@ def published_model_ids(entries: list[Entry]) -> dict[str, list[str]]:
     return pools
 
 
+class NoCompletion(RuntimeError):
+    """An HTTP 200 whose body carries no choices — a gateway reporting an
+    upstream failure inside a success status, the way Kilo's does for an
+    overloaded model. The message is the vendor's own sentence."""
+
+
 def refusal_reason(body: bytes) -> str:
     """What a refused call's body says, on one line: the `error.message` of an
     OpenAI-style error, a bare `error` or `message` string, or the text itself.
@@ -582,7 +588,9 @@ class LLMClient:
         touching anything else: the endpoint is up, the key is good, and the
         call comes back 400 for a name that used to work. Treating that as a
         dead backend walks away from a working provider, so it costs a
-        candidate instead. Every other answer — 401, the 402 of a spent
+        candidate instead. So does an HTTP 200 with no choices in it, which is
+        how a gateway reports that the upstream behind one model failed. Every
+        other answer — 401, the 402 of a spent
         wallet, 429, 5xx, a trickle — is the backend's own problem and belongs
         to the chain above, which already knows how to step over it.
         """
@@ -601,6 +609,12 @@ class LLMClient:
                 reason = refusal_reason(exc.response.content)
                 rejected.append(f"{model} ({exc.response.status_code}"
                                 + (f": {reason})" if reason else ")"))
+            except NoCompletion as exc:
+                # A gateway's upstream failing for one model says nothing about
+                # the others behind it, and it may recover by the next phase,
+                # so the candidate is skipped for this call rather than for the
+                # run.
+                rejected.append(f"{model} (no completion: {exc})")
         raise RuntimeError(
             "no model this endpoint still serves"
             + (f": {', '.join(rejected)}" if rejected else ""))
@@ -613,8 +627,12 @@ class LLMClient:
                 {"model": model, "messages": [{"role": "user", "content": prompt}]},
             )
             if status != 429:
+                data = json.loads(body)
+                choices = data.get("choices") if isinstance(data, dict) else None
+                if not choices:
+                    raise NoCompletion(refusal_reason(body) or "an answer without choices")
                 self.answered_model = model
-                return json.loads(body)["choices"][0]["message"]["content"]
+                return choices[0]["message"]["content"]
             if attempt + 1 < RETRY_429_ATTEMPTS:
                 time.sleep(RETRY_429_SLEEP)
         raise RuntimeError("rate-limited on every attempt")
