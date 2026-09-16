@@ -14,10 +14,11 @@ entries:
     day once the account has purchased at least 10 credits all-time. Those four figures
     are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD,
     FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that
-    should show them serves empty cells to anything reading the HTML. OpenRouter describes
-    :free as "always provided for free and has low rate limits", warns that a negative
-    credit balance can produce errors "including for free models", and notes a 429
-    may come from the upstream provider rather than the platform (read 2026-08-14)
+    should show them serves empty cells to anything reading the HTML. OpenRouter's
+    FAQ says its free models "have low rate limits" and "are usually not suitable
+    for production use", warns that a negative credit balance can produce errors "including
+    for free models", and notes a 429 may come from the upstream provider rather than
+    the platform (read 2026-08-14)
   models:
   - family: nemotron-3-ultra
     tier: strong
@@ -118,9 +119,9 @@ entries:
     it kept its free column when 3.8 landed. What the free tier costs instead is one
     row lower in each table: "Used to improve our products" is Yes on the free tier
     and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published
-    anywhere a probe can read — as of its own "Last updated 2026-08-13" the rate-limits
-    page keeps only the usage-tier table ("Free — Active project or free trial") and
-    sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)'
+    anywhere a probe can read — the rate-limits page keeps only the usage-tier table,
+    whose free row reads "Active project or free trial", and sends you to aistudio.google.com/rate-limit,
+    which needs a sign-in (read 2026-08-14)'
   models:
   - family: gemini-3.8-flash
     tier: strong
@@ -239,8 +240,8 @@ entries:
     page: "For example, Mistral Large costs $0.5 /M tokens in and $1.5 /M tokens out."
     Free mode also has the lowest rate limits — requests per second, tokens per minute
     and tokens per month, shown only inside the account — and API calls may be used
-    to improve Mistral''s services unless the Admin panel''s "Anonymous improvement
-    data" toggle is off. The credit line appeared on the pricing page between 2026-08-11
+    to improve Mistral''s services unless the Admin panel''s `Anonymous improvement
+    data` toggle is off. The credit line appeared on the pricing page between 2026-08-11
     and 2026-08-14, when Le Chat became Vibe; this row, written from the docs alone,
     said no figure was published until 2026-09-14'
   models: []
@@ -366,11 +367,11 @@ entries:
     price on that same page: gpt-oss:20b $0.07 in / $0.30 out, minimax-m3 $0.60 /
     $2.40, kimi-k3 $3.00 / $15.00. Free gets 1 concurrent request against Pro''s 3,
     and the included usage "resets monthly from the date you signed up" and does not
-    roll over. Gone with the rewrite: the $0 "Access cloud models" line this row was
-    probed on, and the per-model usage level 1-4 that stood in for a free-model list.
-    Read 2026-09-02, with the starter set mapped by calling it, since nothing publishes
-    it: from one key on the $0 plan, gpt-oss:120b answered in 1-11s, gemma4:31b in
-    1-5s and nemotron-3-ultra in 50-279s, all on 2026-09-02, while minimax-m3 answered
+    roll over. Gone with the rewrite: the $0 line about cloud-model access this row
+    was first probed on, and the per-model usage level 1-4 that stood in for a free-model
+    list. Read 2026-09-02, with the starter set mapped by calling it, since nothing
+    publishes it: from one key on the $0 plan, gpt-oss:120b answered in 1-11s, gemma4:31b
+    in 1-5s and nemotron-3-ultra in 50-279s, all on 2026-09-02, while minimax-m3 answered
     402 Payment Required on both 2026-08-31 and 2026-09-02 after serving all month.
     The 402 is the edge of the starter set rather than a spent balance, and that edge
     is not the price: nemotron-3-ultra is inside it at $0.10/$3.00 while minimax-m3
@@ -416,6 +417,7 @@ entries:
   - https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/session/llm/request.ts
   - https://opencode.ai/docs/go/
   - https://github.com/Kilo-Org/kilocode/issues/13723
+  - https://dev.meta.ai/docs/reasoning.md
   card_required: false
   offering: Open-source TUI/desktop coding agent with zero-priced models included
     via the opencode Zen gateway (Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron
@@ -437,9 +439,9 @@ entries:
     — a bare muse-spark-1.3 would stay named on this page after the free row left
     it. It joined the column on 2026-09-16, two weeks after Zen added it, and Artificial
     Analysis scores Muse Spark 1.3 at xhigh — the highest effort Meta''s contributor
-    tier allows, since max is "Standard-tier muse-spark-1.3 only" — at 45 on its Intelligence
-    Index, level with Claude Opus 5 at medium. That Muse Spark row is a version newer
-    than it was: Zen''s own commits to these docs added muse-spark-1.3-contributor-free
+    tier allows, since max is "Standard-tier `muse-spark-1.3` only" — at 45 on its
+    Intelligence Index, level with Claude Opus 5 at medium. That Muse Spark row is
+    a version newer than it was: Zen''s own commits to these docs added muse-spark-1.3-contributor-free
     on 2026-09-02 and took muse-spark-1.2-contributor-free off the page on 2026-09-05,
     though the catalog still returns the 1.2 id. deepseek-v4-flash left the free table
     by the 2026-08-20 read and has been metered at a flat $0.14/$0.28 since the same
@@ -447,7 +449,7 @@ entries:
     while laguna-s-2.1 is off the page and, by 2026-09-14, out of the catalog as well.
     Since 2026-09-07 every request for them has to carry a stable id for its conversation
     in the x-opencode-session header: without one Zen answers HTTP 400 MissingSessionID
-    with "OpenCode''s free tier can only be used in OpenCode" (read again 2026-09-16).
+    with `OpenCode''s free tier can only be used in OpenCode` (read again 2026-09-16).
     The Zen docs never mention the header — they print every model''s endpoint under
     "You can also access our models through the following API endpoints" — and the
     rule OpenCode writes down for other clients is on the page of OpenCode Go, its
@@ -505,7 +507,7 @@ entries:
     session_header: x-opencode-session
     note: 'no key needed for the ids Zen prices at zero, as long as every request
       carries a stable id per conversation in x-opencode-session: without one Zen
-      answers 400 MissingSessionID ("OpenCode''s free tier can only be used in OpenCode"),
+      answers 400 MissingSessionID (`OpenCode''s free tier can only be used in OpenCode`),
       with one ling-3.0-flash-fin-free answered keyless three times out of three on
       2026-09-16, while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError
       every time. The client sends the header itself, so the generated LiteLLM and
@@ -623,8 +625,8 @@ entries:
     - z-ai/glm-5.2:free
     note: no key at all for the free ids — "The gateway allows unauthenticated access
       for free models only", identified by IP address and capped at 200 requests per
-      hour per IP, while a metered id answers 401 "You need to sign in to use this
-      model". Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts,
+      hour per IP, while a metered id answers 401 `You need to sign in to use this
+      model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts,
       twenty against 358 metered on 2026-09-16. kilo-auto/free leads because it routes
       over the five free models the catalog's autoRouting list names; it and openrouter/free
       are routers and nemotron-3.5-content-safety is a guardrail classifier, so none
@@ -700,22 +702,16 @@ entries:
   card_required: false
   offering: Free plan of Cognition's desktop coding agent — the IDE that shipped as
     Windsurf
-  limits: 'The $0 plan is "Light quota to code with agents", "Limited model availability",
-    unlimited inline edits and unlimited Tab completions. Which models that quota
-    reaches is published nowhere. "Access to OpenAI, Claude, and Gemini frontier models"
-    is what the $20 Pro plan adds; the only mention of a small model on the whole
-    page is a tip about making a quota last; and the one tier-tagged catalogue Cognition
-    serves, docs.devin.ai/desktop/models, carries TEAMS_TIER_PRO and TEAMS_TIER_ENTERPRISE_SAAS
-    and no free tier at all, pricing Claude Haiku 4.5 under Enterprise. The product
-    was renamed on 2 June 2026 — "Windsurf is now Devin Desktop" — and windsurf.com,
-    windsurf.com/pricing and docs.windsurf.com all 308 to devin.ai, where the word
-    Windsurf no longer appears on the pricing page (read 2026-08-14). That pricing
-    page has since gone behind a Vercel Security Checkpoint — every devin.ai path
-    answers HTTP 429 and "Enable JavaScript to continue", from CI and from a laptop
-    alike — so the probe reads Cognition''s docs instead, which are open and still
-    describe the plan: a "daily and weekly usage allowance that refreshes automatically",
-    where Free means "Wait until your next daily or weekly reset" and only the paid
-    plans can buy their way past it (read 2026-08-19)'
+  limits: 'Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com,
+    windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path
+    now answers HTTP 429 with a Vercel Security Checkpoint (`Enable JavaScript to
+    continue`), from CI and from a laptop alike, so the pricing page cannot be read.
+    Cognition''s docs are open and describe the $0 plan: a "daily and weekly usage
+    allowance that refreshes automatically", where Free means "Wait until your next
+    daily or weekly reset" and only the paid plans can buy their way past it. Which
+    models that allowance reaches is published nowhere readable; the one tier-tagged
+    model catalogue, docs.devin.ai/desktop/models, carried only Pro and Enterprise
+    tiers when it was read (2026-08-19). Read 2026-09-16'
   models: []
   probe:
     type: page-keywords
@@ -907,8 +903,7 @@ entries:
     Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with
     your billing cycle" and "does not roll over"; at the cap Cursor shows a notification
     and offers on-demand billing or an upgrade. Which models Hobby reaches is never
-    enumerated — "Hobby users have access to a smaller set" — and Cursor Router has
-    not reached individual plans yet (read 2026-08-14)
+    enumerated, and Cursor Router has not reached individual plans yet (read 2026-08-14)
   models: []
   probe:
     type: page-keywords
@@ -1179,19 +1174,16 @@ entries:
   offering: Free quota for Qwen models on DashScope, international (Singapore) region;
     OpenAI-compatible
   limits: '1,000,000 free tokens per model, on the Singapore (international) region
-    alone — the newer of the two versions the CDN serves says so outright, over every
-    table: "the following models offer a free quota only in Singapore. No free quota
-    is available in other regions". That same rollout rewords the validity, from "valid
-    for 90 days after you activate Alibaba Cloud Model Studio" to "valid for 90 days
-    from the date of Model Studio activation, model release, or application approval,
-    whichever is later", and both versions were being served minutes apart, so the
-    probe anchors on the half they share (read 2026-08-28). The quota is per model
-    id, and the read of 2026-09-10 settles which ids carry it by reading the column
-    header rather than the cell: the last column of every International table is "Free
-    quota (Note) Valid for 90 days …", and it is the only place on that page where
-    "1 million tokens" is a grant rather than the unit the price beside it is quoted
-    in — the phrase occurs 377 times. The whole qwen3.8 generation is in that column:
-    qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash at $0.15/$0.47,
+    alone, as the page says over every table: "the following models offer a free quota
+    only in Singapore. No free quota is available in other regions". The grant is
+    "valid for 90 days from the date of Model Studio activation, model release, or
+    application approval, whichever is later" (read 2026-09-16). The quota is per
+    model id, and the read of 2026-09-10 settles which ids carry it by reading the
+    column header rather than the cell: the last column of every International table
+    is "Free quota (Note) Valid for 90 days …", and it is the only place on that page
+    where "1 million tokens" is a grant rather than the unit the price beside it is
+    quoted in — the phrase occurs 377 times. The whole qwen3.8 generation is in that
+    column: qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash at $0.15/$0.47,
     qwen3.8-27b and qwen3.8-2.4t-a95b. So is qwen3-coder-next, beside the coder-plus
     and coder-flash ids already covered, and so is qwen3-max, which keeps its own
     grant rather than handing it on. The same column is what rules a model out: qwen-long
@@ -2272,7 +2264,7 @@ entries:
     model_ids: []
     note: the base url is not printed on any server-rendered page — it is taken from
       the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models
-      answers 401 "Authorization Not Found" in an OpenAI-shaped envelope. The callable
+      answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable
       ids live only in that JavaScript console, which no probe here can read, so none
       are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone.
       Beware sensenova-6.7-flash-lite, which third-party lists still carry — the vendor
@@ -2309,7 +2301,7 @@ entries:
     key: 4M input and 100k output tokens per 60s, plus 10 requests per 60s, HTTP 429
     over either. No daily, monthly or lifetime cap is published and no end date is
     named — the same page calls the service experimental, "provided for experimental
-    purposes only and offered as is", with performance and availability not guaranteed
+    purposes only" and offered as is, with performance and availability not guaranteed
     and no backups. A Hetzner account is needed to mint a token and the docs do not
     say whether a payment method is required; Hetzner''s own fraud-prevention page
     offers a card charge as one of several verification routes (read 2026-08-30)'
@@ -2352,18 +2344,19 @@ entries:
   category: api-free-tier
   url: https://uncloseai.com
   source_urls:
+  - https://uncloseai.com/
   - https://hermes.ai.unturf.com/v1/models
   card_required: false
   offering: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account
   limits: 'No quota is published anywhere on the site. The offer is a sentence — "we
-    offer free AI services powered by multiple AI models and a TTS endpoint ... embodying
-    the principles of both free as in beer & free as in freedom" — and the page names
-    three endpoints, of which one serves text today: hermes.ai.unturf.com/v1 answered
-    a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1 answers 403
-    "Access denied - This endpoint is closed". The served id is not the one the page''s
-    own examples call, and the vendor says so — "See our Model Discovery docs to query
-    the current model IDs being hosted" — so the id lives in api.model_ids and the
-    Free models column stays empty'
+    offer free AI services powered by multiple AI models and a TTS (text-to-speech)
+    endpoint … embodying the principles of both free as in beer & free as in freedom"
+    — and the page names three endpoints, of which one serves text today: hermes.ai.unturf.com/v1
+    answered a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1
+    answers 403 `Access denied - This endpoint is closed`. The served id is not the
+    one the page''s own examples call, and the vendor says so — "See our Model Discovery
+    docs to query the current model IDs being hosted" — so the id lives in api.model_ids
+    and the Free models column stays empty'
   models: []
   api:
     base_url: https://hermes.ai.unturf.com/v1
@@ -2400,14 +2393,12 @@ entries:
     a daily token allowance, no card
   limits: '"Start your 30-day free trial ... No credit card required, no commitment":
     the trial card names "1 month duration" ("Full access for 30 days, then choose
-    a plan"), "1M tokens per day" and "Stricter rate limits — Fair usage throttling
+    a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling
     applies", against "All Core Models", which on the same page is every chat model
     in the library table (each marked Included under Core). Nothing survives the 30
     days — the page names no grant after it, only paid plans — and the daily figure
-    is the only number the trial publishes. The card was reworded between the 2026-09-14
-    and 2026-09-16 reads, from "Start free for one month ... No credit card, no commitment",
-    with every term the same. One model is priced at €0.00 in and out outside any
-    trial, the in-house brick-v1-beta (read 2026-09-16)'
+    is the only number the trial publishes. One model is priced at €0.00 in and out
+    outside any trial, the in-house brick-v1-beta (read 2026-09-16)'
   models:
   - family: glm-5
     tier: strong
@@ -2652,25 +2643,21 @@ entries:
   url: https://www.qodo.ai
   source_urls:
   - https://www.qodo.ai/pricing/
+  - https://www.qodo.ai/terms-of-use/
   card_required: false
   offering: Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team
     trial with unlimited reviews and credits and no card
-  limits: '"Free 14 Day Trial no credit card — Unlimited reviews, Unlimited credits"
-    is the whole free offer on the pricing page (read 2026-09-02), and the FAQ beside
-    it says so: "Is there a free plan? We don''t offer a permanent free tier. After
-    your trial, pick a paid plan to keep reviewing." The docs put it as "The trial
-    is the initial state of every workspace, not a separate plan or tier" and "When
-    the trial ends, usage stops unless a paid billing setup is active". The plan it
-    trials is "Pro Team $30", "$.012/credit, pooled across the team", "Designed for
-    up to 30 users", "Monthly billing • no commitment". Two caveats the page does
-    not carry: the troubleshooting docs log "above trial max invokes of 30" for an
-    organisation on trial, and the Terms grant Qodo a licence "to train and improve
-    the Platform''s, the Qodo Models and Services'' performance" while the pricing
-    FAQ says "Qodo does not train models on your code". A standing free lane exists
-    for one audience: "Qualified open source projects can apply to the Qodo for Open
-    Source program for free access", which the Marketplace listing gates at "200+
-    GitHub stars". The Developer plan the deals list credits it with survives only
-    in the page''s metadata. Which models the trial runs on is not stated'
+  limits: '"Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited
+    credits" is the whole free offer on the pricing page, and the FAQ beside it says
+    so: "Is there a free plan? We don''t offer a permanent free tier. After your trial,
+    pick a paid plan to keep reviewing." The plan it trials is "Pro Team $30", "$.012/credit,
+    pooled across the team", "Designed for up to 30 users", "Monthly billing • no
+    commitment". The Terms grant Qodo a licence to use customer data "to train and
+    improve the Platform''s, the Qodo Models and Services'' performance", while the
+    pricing FAQ says "Qodo does not train models on your code". A standing free lane
+    exists for one audience: "Qualified open source projects can apply to the Qodo
+    for Open Source program for free access". Which models the trial runs on is not
+    stated. Read 2026-09-16'
   models: []
   probe:
     type: page-keywords
@@ -2710,13 +2697,13 @@ entries:
     are valid for that month; they do not roll over"; "New users receive 250 credits
     immediately upon their first sign-in. The credits are valid for 14 days". No card
     for Free — the only card is the 7-day Pro trial, "after linking a credit card
-    and enabling auto-renewal". The docs name no model for the plan beyond "Hunyuan,
-    DeepSeek, and more". The terms are Tencent Cloud International Pte. Ltd.''s, require
-    users "at least 18 years old" and bar any "Sanctioned Jurisdiction"; the DPSA
-    says code is processed only to provide the feature. The China edition (codebuddy.cn,
-    体验版, 500 积分 a month, a real-name Tencent Cloud account) is a separate product
-    whose agreement licenses free-edition inputs and outputs "用于模型服务优化及本服务的改进" — to
-    optimise the model service — which the international terms do not'
+    and enabling auto-renewal". The docs name no model for the plan. The terms are
+    Tencent Cloud International Pte. Ltd.''s, require users "at least 18 years old"
+    and bar any "Sanctioned Jurisdiction"; the DPSA says code is processed only to
+    provide the feature. The China edition (codebuddy.cn, 体验版, 500 积分 a month, a real-name
+    Tencent Cloud account) is a separate product whose agreement licenses free-edition
+    inputs and outputs "用于模型服务优化及本服务的改进" — to optimise the model service — which the
+    international terms do not'
   models: []
   probe:
     type: page-keywords
@@ -2739,6 +2726,7 @@ entries:
   category: api-free-tier
   url: https://freeinference.org
   source_urls:
+  - https://freeinference.org/
   - https://doc.freeinference.org/models
   - https://doc.freeinference.org/claude-code.html
   - https://freeinference.org/terms
@@ -2748,15 +2736,15 @@ entries:
     GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an
     OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code
     setup
-  limits: 'No quota figure is published: the landing page says "Free to use. No credit
-    card required. Generous quota for research and prototyping", and the terms (last
-    updated 2026-06-20) say "Quotas, rate limits, model access, and usage limits may
-    change based on usage, demand, infrastructure capacity, abuse prevention, operational
-    needs, and individual or aggregate activity"; a 429 is the rate limit and a 503
-    means "The upstream pool is temporarily exhausted". The framing is the restriction:
-    "FreeInference for open-source, research and education ... free for the research
-    community", and the terms call it "an experimental research service that provides
-    access to hosted and routed large language model inference for experimentation
+  limits: 'No quota figure is published: the landing page says "Free to use", "No
+    credit card required" and "Generous quota for research and prototyping", and the
+    terms (last updated 2026-06-20) say "Quotas, rate limits, model access, and usage
+    limits may change based on usage, demand, infrastructure capacity, abuse prevention,
+    operational needs, and individual or aggregate activity"; a 429 is the rate limit
+    and a 503 means "The upstream pool is temporarily exhausted". The framing is the
+    restriction: "FreeInference for open-source, research and education ... free for
+    the research community", and the terms call it "an experimental research service
+    that provides access to hosted and routed large language model inference for experimentation
     and related development work". Prompts are not private — "All prompts and responses
     may be logged for research purposes" and "sanitized prompts and responses, usage
     statistics, and routing metrics — may be published or open-sourced". The models
@@ -2800,10 +2788,10 @@ entries:
       by FreeInference to users". The same key serves an Anthropic-format endpoint
       at https://freeinference.org/anthropic — the docs set ANTHROPIC_BASE_URL to
       it for Claude Code, with minimax-m3 behind the Opus and Sonnet aliases and qwen3.6-35b
-      behind Haiku (read 2026-09-16). The terms say requests "may route across local
-      inference servers and remote model providers": by the catalog''s owned_by field
-      the listed ids run on the lab''s own sglang and vllm servers, while DeepSeek
-      calls are accounted at DeepSeek''s upstream rate'
+      behind Haiku (read 2026-09-16). The terms say FreeInference may "route requests
+      across local inference servers and remote model providers": by the catalog''s
+      owned_by field the listed ids run on the lab''s own sglang and vllm servers,
+      while DeepSeek calls are accounted at DeepSeek''s upstream rate'
   probe:
     type: page-keywords
     endpoint: https://doc.freeinference.org/models
@@ -3048,18 +3036,17 @@ entries:
   limits: '"$1 test credit for your first integration after email verification. No
     card required" on the home page, and the docs quickstart: "Eligible verified accounts
     receive $1 in test credit once" — read 2026-09-11. What the dollar buys is the
-    list price of whatever it is spent on: the catalog page states "vendor list prices
-    with 0% markup, pulled from the live catalog on 11 September 2026", so at deepseek-v4-flash
-    it is an afternoon of work and at claude-opus-5 a handful of turns. The terms
-    (last updated July 13, 2026) narrow it: "Until an account makes its first paid
-    top-up, promotional credit may be usable only with a subset of models and at reduced
-    rate limits", "no promotional credit is guaranteed", and one account per person.
-    Which models the subset holds is on no page. Continuing costs a top-up "from $5
-    by card or $12 by crypto"; purchased credit does not expire. No legal entity is
-    named on /terms or /about — the terms speak of "upstream providers" whose "own
-    usage policies" apply — and /v1/models answers 403 without a key, so nothing here
-    is read off the catalog. A connection test with a little work in it, one step
-    above the smallest trial on this list'
+    list price of whatever it is spent on: the home page states "vendor list prices
+    with 0% markup", so at deepseek-v4-flash it is an afternoon of work and at claude-opus-5
+    a handful of turns. The terms (last updated July 13, 2026) narrow it: "Until an
+    account makes its first paid top-up, promotional credit may be usable only with
+    a subset of models and at reduced rate limits", "no promotional credit is guaranteed",
+    and one account per person. Which models the subset holds is on no page. Continuing
+    costs a top-up "from $5 by card or $12 by crypto"; purchased credit does not expire.
+    No legal entity is named on /terms or /about — the terms speak of "upstream providers"
+    whose "own usage policies" apply — and /v1/models answers 403 without a key, so
+    nothing here is read off the catalog. A connection test with a little work in
+    it, one step above the smallest trial on this list'
   models: []
   api:
     base_url: https://api.routerplex.com/v1
@@ -3109,8 +3096,8 @@ entries:
     models at no cost, up to a limited usage quota", and "Free models are available
     to any user with a Cline account" — a sign-in with Google, GitHub or email; the
     docs ask for no card. No figure is published for the quota. It is counted per
-    model and per day, which is how Cline''s own clients word the stop — "You''ve
-    reached today''s free usage limit for this model". The lane is the free list the
+    model and per day, which is how Cline''s own clients word the stop — `You''ve
+    reached today''s free usage limit for this model`. The lane is the free list the
     model picker reads, keyless at api.cline.bot. Early on 2026-09-14 it held six
     ids: cline-free/muse-spark-1.3-contributor, deepseek/deepseek-v4-flash, z-ai/glm-5.3-flash,
     cline-free/solar-pro4, cline-free/longcat-2.0 and poolside/laguna-s-2.1:free;
@@ -3122,7 +3109,7 @@ entries:
     Laguna S 2.1 was the only one of them still in the lane, and it is the only family
     in the Models column. Two limits the free-models page states outright: "Free model
     usage is not supported through the Cline API. Free models are only available in
-    the Cline IDE Extension and CLI" — the API guide''s own "Try a Free Model" example,
+    the Cline IDE Extension and CLI" — the API guide''s own `Try a Free Model` example,
     minimax/minimax-m2.5, is a metered row in the provider''s catalog — and "Free
     model usage may be used to help improve model performance and quality"'
   models:
@@ -3364,15 +3351,15 @@ entries:
   card_required: false
   offering: 'OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek
     V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card'
-  limits: '"Free $0 / month — Try Token Harbor with a free allowance and a rotating
-    model lineup … No card required", and the FAQ: "Token Harbor provides free access
-    to selected models through explicit :free model IDs. Your first free request starts
-    a personal rolling 7-day period. The allowance is value-based rather than a fixed
-    request count" — no figure is published, and the pricing card calls the same allowance
-    "Included every month (4 weeks)". "Free routes are disabled by default" until
-    you consent to them, and "Token Harbor may retain prompts and responses sent through
-    explicit free routes after you opt in". The operator is Token Harbor PTE. LTD.
-    Read 2026-09-16'
+  limits: '"Free $0 / month Try Token Harbor with a free allowance and a rotating
+    model lineup" and "No card required", and the FAQ: "Token Harbor provides free
+    access to selected models through explicit :free model IDs. Your first free request
+    starts a personal rolling 7-day period. The allowance is value-based rather than
+    a fixed request count" — no figure is published, and the pricing card calls the
+    same allowance "Included every month (4 weeks)". "Free routes are disabled by
+    default" until you consent to them, and "Token Harbor may retain prompts and responses
+    sent through explicit free routes after you opt in". The operator is Token Harbor
+    PTE. LTD. Read 2026-09-16'
   models:
   - family: deepseek-v4.1-flash
     tier: strong

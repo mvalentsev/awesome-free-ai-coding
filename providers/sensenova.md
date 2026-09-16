@@ -27,7 +27,7 @@ The plan page still says 公测期完全免费开放，付费档位即将上线 
 
 - Base URL: `https://token.sensenova.cn/v1`
 - Key: `SENSENOVA_API_KEY` — get one at <https://platform.sensenova.cn>
-- Note: the base url is not printed on any server-rendered page — it is taken from the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models answers 401 "Authorization Not Found" in an OpenAI-shaped envelope. The callable ids live only in that JavaScript console, which no probe here can read, so none are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone. Beware sensenova-6.7-flash-lite, which third-party lists still carry — the vendor routes it to 6.8 and retires the alias on 2026-08-31
+- Note: the base url is not printed on any server-rendered page — it is taken from the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable ids live only in that JavaScript console, which no probe here can read, so none are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone. Beware sensenova-6.7-flash-lite, which third-party lists still carry — the vendor routes it to 6.8 and retires the alias on 2026-08-31
 
 ## Evidence
 

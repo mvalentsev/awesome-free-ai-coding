@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-09-16'
-description: 'OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card. "Free $0 / month — Try Token Harbor with a free allowance and a rotating model lineup … No card required", and the FAQ: "Token Harbor…'
+description: 'OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card. "Free $0 / month Try Token Harbor with a free allowance and a rotating model lineup" and "No card required", and the FAQ: "Token Harbor…'
 permalink: /providers/token-harbor/
 ---
 
@@ -21,7 +21,7 @@ OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 F
 
 ## Limits, in the vendor's words
 
-"Free $0 / month — Try Token Harbor with a free allowance and a rotating model lineup … No card required", and the FAQ: "Token Harbor provides free access to selected models through explicit :free model IDs. Your first free request starts a personal rolling 7-day period. The allowance is value-based rather than a fixed request count" — no figure is published, and the pricing card calls the same allowance "Included every month (4 weeks)". "Free routes are disabled by default" until you consent to them, and "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in". The operator is Token Harbor PTE. LTD. Read 2026-09-16
+"Free $0 / month Try Token Harbor with a free allowance and a rotating model lineup" and "No card required", and the FAQ: "Token Harbor provides free access to selected models through explicit :free model IDs. Your first free request starts a personal rolling 7-day period. The allowance is value-based rather than a fixed request count" — no figure is published, and the pricing card calls the same allowance "Included every month (4 weeks)". "Free routes are disabled by default" until you consent to them, and "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in". The operator is Token Harbor PTE. LTD. Read 2026-09-16
 
 ## Connect
 

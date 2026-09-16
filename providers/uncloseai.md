@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-09-14'
-description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS endpoint ... embodying the principles of both free as in beer & free as in freedom" —…
+description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as…
 permalink: /providers/uncloseai/
 ---
 
@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS endpoint ... embodying the principles of both free as in beer & free as in freedom" — and the page names three endpoints, of which one serves text today: hermes.ai.unturf.com/v1 answered a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1 answers 403 "Access denied - This endpoint is closed". The served id is not the one the page's own examples call, and the vendor says so — "See our Model Discovery docs to query the current model IDs being hosted" — so the id lives in api.model_ids and the Free models column stays empty
+No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the page names three endpoints, of which one serves text today: hermes.ai.unturf.com/v1 answered a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1 answers 403 `Access denied - This endpoint is closed`. The served id is not the one the page's own examples call, and the vendor says so — "See our Model Discovery docs to query the current model IDs being hosted" — so the id lives in api.model_ids and the Free models column stays empty
 
 ## Connect
 
@@ -33,6 +33,7 @@ No quota is published anywhere on the site. The offer is a sentence — "we offe
 ## Evidence
 
 - Probe: the models catalog at <https://hermes.ai.unturf.com/v1/models>
+- Source: <https://uncloseai.com/>
 - Source: <https://hermes.ai.unturf.com/v1/models>
 
 ## History

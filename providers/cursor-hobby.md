@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer"; the plan table in its own help centre prints "Limited" in the included-usage column where Pro reads $20 and Ultra $400; and the help page adds only that "the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with your billing cycle" and "does not roll over"; at the cap Cursor shows a notification and offers on-demand billing or an upgrade. Which models Hobby reaches is never enumerated — "Hobby users have access to a smaller set" — and Cursor Router has not reached individual plans yet (read 2026-08-14)
+Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer"; the plan table in its own help centre prints "Limited" in the included-usage column where Pro reads $20 and Ultra $400; and the help page adds only that "the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with your billing cycle" and "does not roll over"; at the cap Cursor shows a notification and offers on-demand billing or an upgrade. Which models Hobby reaches is never enumerated, and Cursor Router has not reached individual plans yet (read 2026-08-14)
 
 ## Connect
 
