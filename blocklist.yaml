@@ -48,16 +48,15 @@
 - domain: router-for.me
   reason: >-
     CLIProxyAPI (github.com/router-for-me/CLIProxyAPI, docs at help.router-for.me)
-    re-exposes the OAuth session of a paid CLI subscription — Codex, Claude Code,
-    Antigravity, Grok, Kimi Code — as a local OpenAI/Anthropic endpoint. It issues
-    no keys and bundles no model usage, so it fails the registry bar the same way
-    aider does, and its whole ecosystem sells that on the tagline "no API
-    keys needed", which is the client-identity pattern omniroute.online is already
-    here for. Its README is also the wrong place to read for leads — the provider
-    table is five vendor blurbs behind affiliate links, and the sponsor block is
-    fourteen relay resellers, several of them selling accounts outright ("Premium
-    AI Accounts & Top-ups", ChatGPT at "10% of the official subscription price").
-    Its own "More choices" section links OmniRoute
+    re-exposes the session of a paid subscription as a local OpenAI or Anthropic
+    endpoint, and pools accounts on top: its README lists "OpenAI Codex support
+    (GPT models) via OAuth login", "Claude Code support via OAuth login" and
+    "Multiple accounts with round-robin load balancing (Gemini, OpenAI, Claude,
+    Grok)". That is the client-identity pattern omniroute.online is here for.
+    The same README's sponsor table carries account sellers, CyberPay among
+    them: "We support business cooperation for selling GPT, Gemini, Claude, and
+    Codex accounts, relay platforms, and other related services" (read
+    2026-09-16).
 - domain: voideditor.com
   reason: >-
     The product has stopped: github.com/voideditor/void was archived after its
@@ -155,13 +154,11 @@
   reason: >-
     The product is gone: continue.dev now serves one page, "Continue has joined
     Cursor … Continue was acquired by Cursor", continue.dev/pricing is a GitHub
-    Pages 404 and hub.continue.dev no longer resolves (measured 2026-08-14).
-    The open-source extension "remains freely available" and was BYOK-only
-    anyway, the aider.chat case, so nothing here bundles model usage.
-- domain: hub.continue.dev
-  reason: >-
-    Continue's model hub, listed separately because third-party lists still
-    link it — the host stopped resolving when Cursor absorbed the company.
+    Pages 404 and hub.continue.dev no longer resolves (measured 2026-08-14, and
+    again 2026-09-16). The hosted side went with it — Continue's own SDK still
+    lists "Get free trial status for user" and "Get Stripe checkout URL for
+    models add-on" — so there is no longer anyone to bundle model usage with
+    the extension.
 - domain: freemodel.dev
   reason: >-
     The operator describes the method in its own billing UI. freemodel.dev
@@ -224,13 +221,6 @@
     gateway that only answers a spoofed first-party client is the
     omniroute.online and router-for.me pattern from the other side (read
     2026-09-14).
-- domain: lingyiwanwu.com
-  reason: >-
-    The product is gone. 01.AI's API host answers GET /v1/models with HTTP 410
-    {"error":{"code":"model_service_closed","message":"Model service has been
-    discontinued"}} (2026-09-14), and platform.lingyiwanwu.com is an empty
-    shell. OmniRoute's feed still names its "Yi-Light" free models, which is
-    why the domain is recorded.
 - domain: predibase.com
   reason: >-
     The product is gone: predibase.com and its pricing page now redirect to
@@ -271,3 +261,13 @@
     never exposed to the caller". Pooled consumer subscriptions, captcha solving
     and proxy pools against quotas, stated in the operator's own bundle — the
     freemodel.dev case (read 2026-09-16).
+- domain: cheaperinference.com
+  reason: >-
+    Where omniroute.online now sends its hosted route, and a marketplace for
+    capacity on other people's provider accounts. Its sellers page reads "If
+    you hold capacity on Venice, Amazon Bedrock, Microsoft Foundry, Anthropic,
+    Google AI Studio, OpenAI, DeepInfra or another network, you can supply it
+    here. You keep your own account and your own credentials; we route requests
+    to you and pay you a share of what they earn" (read 2026-09-16). Accounts
+    rented out to strangers through a router are the key sharing CONTRIBUTING
+    excludes.

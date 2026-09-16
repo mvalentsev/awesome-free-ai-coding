@@ -4661,6 +4661,16 @@
       "reason": "A one-off trial on Sweep's own models with nothing readable about its terms. sweep.dev/pricing offers \"Free Trial Free Try Sweep risk-free 1,000 Autocompletes $5 API credits included\", then Basic at $10 a month for unlimited autocomplete, Pro at $20 and Ultra at $60. The documentation it links answers HTTP 402 (docs.sweep.dev, 2026-09-14) and its terms and blog URLs serve the home page, so neither the trial's conditions nor whether it takes a card can be read.",
       "reopen_if": "Sweep publishes the trial's terms on a page that answers, card or no card, or adds a recurring free allowance.",
       "current": true
+    },
+    {
+      "domains": [
+        "lingyiwanwu.com"
+      ],
+      "name": "01.AI (Yi API)",
+      "checked_on": "2026-09-16",
+      "reason": "01.AI closed its model API: api.lingyiwanwu.com answers GET /v1/models with HTTP 410 {\"error\":{\"code\":\"model_service_closed\",\"message\":\"Model service has been discontinued\"}}. The company is alive on the same domain — www.lingyiwanwu.com announces \"2026.07 万策平台发布\", an enterprise decision platform — so the offer ended, not the service. It sat on the blocklist from 2026-09-14 as a product that was gone, which would have buried a vendor that can reopen an API. OmniRoute's feed still names its \"Yi-Light\" free models.",
+      "reopen_if": "api.lingyiwanwu.com/v1/models serves models again, or 01.AI publishes API pricing with a free allowance.",
+      "current": true
     }
   ]
 }
