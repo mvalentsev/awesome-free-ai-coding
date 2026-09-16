@@ -253,3 +253,21 @@
     Claude, GPT, Grok, DeepSeek, GLM, Kimi, and MiniMax: 85–90% off Claude, 90%
     off GPT, and 80% off Grok". A tenth of list is the different-supply case
     llm7.io and aicodemirror.ai are here for (read 2026-09-14).
+- domain: kenari.id
+  reason: >-
+    Listed here as a gateway for its :free ids from 2026-09-02, and taken off
+    the list on 2026-09-16 when its own code showed where the metered capacity
+    comes from. The one JavaScript bundle kenari.id serves carries the
+    operator's admin screens: Codex supply limited "per kredensial codex-oauth"
+    (per Codex OAuth credential), a limit reset that "akan memakai satu kredit
+    reset dari akun ChatGPT ini" (will spend one reset credit of this ChatGPT
+    account), X search "lewat pool token OAuth grok-plan" (through the pool of
+    Grok plan OAuth tokens), "Kesehatan akun Google Flow" (Google Flow account
+    health) with captcha solvers to add "saat Google menolak token" (for when
+    Google rejects a token), and Exa search through a "pool proxy Webshare untuk
+    memperbanyak kuota gratis per-IP" (a Webshare proxy pool to multiply the
+    free per-IP quota). Its routing docs add that provider keys are rotated "to
+    spread load and avoid limits" and that "Upstream provider identities are
+    never exposed to the caller". Pooled consumer subscriptions, captcha solving
+    and proxy pools against quotas, stated in the operator's own bundle — the
+    freemodel.dev case (read 2026-09-16).

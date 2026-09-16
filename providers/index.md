@@ -68,7 +68,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b` | `2026-09-14` |
 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6` | `2026-09-14` |
 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1` | `2026-09-14` |
-| [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `step-3.7-flash`, `laguna-s-2.1` | `2026-09-14` |
 | [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) | 🧭 Aggregators (one key, many providers) | `qwen3.7-flash` | `2026-09-14` |
 | [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-nano-omni` | `2026-09-14` |
 | [Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-14` |

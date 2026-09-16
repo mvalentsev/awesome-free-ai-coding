@@ -1001,8 +1001,7 @@ watched:
       7,000,000 at 15 requests a minute, over four models — agnes-2.5-flash,
       laguna-s-2.1, stepfun-3.7-flash and tencent-hy3-free — which are other
       vendors' free lanes: Agnes prices its Flash at zero itself, Laguna S 2.1
-      is free on OpenRouter, Kilo and Kenari, and Step 3.7 Flash on Kilo and
-      Kenari. The paid
+      is free on OpenRouter and Kilo, and Step 3.7 Flash on Kilo. The paid
       day passes beside it (Freemium at Rp 5,000 a day, FreeMium Max, FreeMium
       Ultra) sell glm-5.3-free, mimo-v2.5-free, qwen3.8-flash-free,
       deepseek-v4.1-flash-free and muse-spark-1.3-contributor-free — ids named
@@ -2103,8 +2102,8 @@ watched:
       "Step Audio R1.1 已升级为 Step Audio R1.5。该模型已结束限时免费" (the
       limited-time free period is over) and "step-2x-large 已于 2026 年 06 月 12 日
       结束限时免费" (ended on 2026-06-12). The home page sells the Step Plan
-      coding subscription. Step 3.7 Flash is free through Kilo and Kenari,
-      which this list carries.
+      coding subscription. Step 3.7 Flash is free through Kilo, which this list
+      carries.
     reopen_if: >-
       StepFun's pricing page shows a zero-priced model or a signup grant.
 

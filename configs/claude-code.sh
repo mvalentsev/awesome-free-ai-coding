@@ -54,16 +54,6 @@ claude-vercel-ai-gateway() {
   claude "$@"
 }
 
-# ── Kenari · get a key: https://kenari.id/keys
-#    free ids: glm-4-7-flash:free, nemotron-3-ultra-550b-a55b:free, nemotron-3-super-120b-a12b:free, step-3-7-flash:free, laguna-s-2-1:free, laguna-xs-2-1:free, hy3:free, mistral-medium-3-5:free, mimo-v2-5:free, agnes-2-0-flash:free, agnes-2-5-flash:free, agnes-3-0-flash:free, muse-spark-1-2-contributor:free, muse-spark-1-3-contributor:free, nex-n2-5-pro:free, north-mini-code:free
-claude-kenari() {
-  ANTHROPIC_BASE_URL="https://kenari.id" \
-  ANTHROPIC_AUTH_TOKEN="$KENARI_API_KEY" \
-  ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="glm-4-7-flash:free" \
-  claude "$@"
-}
-
 # ── FreeInference (Harvard SEAS) · get a key: https://freeinference.org
 #    free ids: deepseek-v4-flash, qwen3.6-35b, diffusiongemma
 claude-freeinference() {

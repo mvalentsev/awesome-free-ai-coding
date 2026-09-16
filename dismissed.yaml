@@ -211,20 +211,6 @@ dismissed:
       nvidia/nemotron-3-ultra-550b-a55b (free, daily quota), its metered -262k twin
       and nvidia/nemotron-3-super-120b-a12b (free). The target does not exist on
       this vendor, so the bump could only empty the column.
-  - entry: kenari
-    family: nemotron-3-ultra
-    superseded_by: nemotron-3.5-lightning
-    dismissed_on: 2026-09-08
-    reason: >-
-      kenari.id/v1/models has thirteen free rows and no Lightning among them.
-      nemotron-3-ultra-550b-a55b:free and nemotron-3-super-120b-a12b:free are both
-      there, each beside the metered twin it is billed Rp 0 against.
-  - entry: kenari
-    family: nemotron-3-super
-    superseded_by: nemotron-3.5-lightning
-    dismissed_on: 2026-09-08
-    reason: >-
-      The same read of the same catalog, for the row's other Nemotron family.
   - entry: nvidia-nim
     family: nemotron
     superseded_by: nemotron-3.5-lightning
