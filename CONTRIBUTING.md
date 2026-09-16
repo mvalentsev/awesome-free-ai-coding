@@ -290,8 +290,18 @@ uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
 uv run freetier-render            # regenerate README.md + index.json + feed.xml + llms.txt + configs/ + providers/
 uv run freetier-check             # validate the curated files against each other
+uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
+
+**A phrase in quotation marks is a claim that the vendor published those words.**
+`freetier-quotes` fetches a row's `source_urls`, its probe endpoint and its
+catalog, and reports every quote of three words or more that none of them
+carries; the fix is the vendor's exact words or a source URL that has them. On
+2026-09-16 it found MegaNova quoting a sign-up line its pages never had and
+LLMTR promising a privacy guarantee its policy does not make. What an endpoint
+or a client answered — an error body, a refusal, a status line — is not a
+published sentence: write it in backticks, which the check does not read.
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
 `blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Four of

@@ -23,6 +23,7 @@ freetier-render = "freetier_radar.render:main"
 freetier-check = "freetier_radar.validate:main"
 freetier-announce = "freetier_radar.announce:main"
 freetier-indexnow = "freetier_radar.indexnow:main"
+freetier-quotes = "freetier_radar.quotes:main"
 
 [build-system]
 requires = ["hatchling"]
