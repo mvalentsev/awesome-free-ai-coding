@@ -212,7 +212,11 @@ leaves nothing to say. Anything else sends the check on to the next id, up to
 three, because a rate limit does not end the offer but does end the command: on
 2026-09-16 opencode's `big-pickle` answered 429 to every keyless call while
 `ling-3.0-flash-fin-free` beside it answered 200, and the README's first command
-was the one that never worked. A later id answering is reported as `stale-ids`
+was the one that never worked. The first id is asked again after a 429 with the
+patience a 5xx gets, unless the vendor's `Retry-After` names a longer wait: a
+rate limit of the moment moved between kilo-auto/free and LLM7's first id from
+one network to the other within the hour on 2026-09-17, and is no reason to
+reorder a row. A later id answering is reported as `stale-ids`
 naming it, since the fix is to put it first; every id answering 429 is reported
 as a rate-limited lane. With no id answering, a 401 or 403 on the first is the
 vendor asking for a key and fails the row, which after three runs takes it and

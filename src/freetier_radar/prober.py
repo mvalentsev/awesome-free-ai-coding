@@ -198,9 +198,12 @@ KEYLESS_IDS_TRIED = 3
 
 
 async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers: dict,
-                        attempts: int, backoff: float) -> httpx.Response | str:
+                        attempts: int, backoff: float,
+                        patient_with_429: bool = False) -> httpx.Response | str:
     """One keyless completion for `model`: the response, or why there was none.
-    A 5xx and a network error are retried; every other answer is final."""
+    A 5xx and a network error are retried; so is a 429 when the caller is
+    patient with one and the vendor names no longer wait than the pause before
+    the next try; every other answer is final."""
     last = ""
     for i in range(attempts):
         if i:
@@ -214,8 +217,24 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
         if resp.status_code >= 500:
             last = f"HTTP {resp.status_code}"
             continue
+        if (resp.status_code == 429 and patient_with_429 and i + 1 < attempts
+                and _asks_to_wait_at_most(resp, backoff * (i + 1))):
+            continue
         return resp
     return last or "did not answer"
+
+
+def _asks_to_wait_at_most(resp: httpx.Response, seconds: float) -> bool:
+    """Whether a 429's Retry-After, if it sends one, is over by `seconds` — the
+    pause before the next try. A date, or anything else that is not a number of
+    seconds, is read as a wait the run does not make."""
+    value = resp.headers.get("retry-after")
+    if value is None:
+        return True
+    try:
+        return float(value) <= seconds
+    except ValueError:
+        return False
 
 
 async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
@@ -268,7 +287,13 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     notice = entry.api.notice
     tried: list[tuple[str, httpx.Response | str]] = []
     for model in entry.api.model_ids[:KEYLESS_IDS_TRIED]:
-        answer = await _keyless_call(client, url, model, headers, attempts, backoff)
+        # The README's id is asked again after a 429 the way it would be after a
+        # 5xx: on 2026-09-17 kilo-auto/free answered 429 from its upstream to the
+        # runner and 200 elsewhere within the hour, LLM7's first id the reverse,
+        # and each run named a different id to put first. The ids after it only
+        # tell a rate-limited first id from a rate-limited lane, and are asked once.
+        answer = await _keyless_call(client, url, model, headers, attempts, backoff,
+                                     patient_with_429=not tried)
         if not isinstance(answer, str) and answer.status_code < 300:
             take_down = (f"take down api.notice of {notice.since.isoformat()}, which tells readers "
                          "the lane does not work") if notice else ""

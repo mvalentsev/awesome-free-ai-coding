@@ -1598,7 +1598,38 @@ async def test_a_first_id_that_is_rate_limited_while_another_answers_is_a_note_n
     assert result.status is ProbeStatus.STALE_IDS
     assert "gpt-oss-120b answered HTTP 429" in result.detail
     assert "put qwen3-coder-30b first" in result.detail
+    assert call.call_count == 3 + 1  # the first id asked three times, then the next once
+
+
+@respx.mock
+async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_another_is_named():
+    """A 429 is often the moment and not the lane. On 2026-09-17 kilo-auto/free
+    answered 429 from its upstream to the runner and 200 from elsewhere within
+    the hour, LLM7's GLM-5.3-Flash did the reverse, and each run told a reader to
+    reorder the row the other run had just passed. The README's id gets the
+    patience a 5xx gets before the check walks on to name another."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=[httpx.Response(429, json={}), httpx.Response(200, json={})])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
     assert call.call_count == 2
+    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b"] * 2
+
+
+@respx.mock
+async def test_a_rate_limit_that_names_a_long_wait_is_not_asked_again():
+    """Asking again inside a window the vendor has named only spends an anonymous
+    lane's allowance — OVHcloud gives two requests a minute per IP. A Retry-After
+    longer than the pause the check would take is a wait the run does not make."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=[
+        httpx.Response(429, headers={"Retry-After": "60"}, json={}), httpx.Response(200, json={})])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS and "put qwen3-coder-30b first" in result.detail
+    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b", "qwen3-coder-30b"]
 
 
 @respx.mock
@@ -1614,7 +1645,7 @@ async def test_a_lane_rate_limited_on_every_id_is_a_note_and_not_a_failure():
     assert result.status is ProbeStatus.STALE_IDS
     assert "rate-limited" in result.detail
     assert "gpt-oss-120b, qwen3-coder-30b" in result.detail
-    assert call.call_count == 2
+    assert call.call_count == 3 + 1
 
 
 @respx.mock
