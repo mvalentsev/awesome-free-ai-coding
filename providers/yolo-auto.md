@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Yolo-Auto free tier: limits, free models, verified 2026-09-17'
-description: One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card. "15 free requests a day. No card required." on the home page and "No card required, free forever" on the plan…
+description: One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card. "15 free requests a day. No card required." on the home page and "No card required, free forever" on the Free plan…
 permalink: /providers/yolo-auto/
 ---
 
@@ -21,7 +21,7 @@ One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on
 
 ## Limits, in the vendor's words
 
-"15 free requests a day. No card required." on the home page and "No card required, free forever" on the plan card, at 128K context and "Designed for 1 coding agent", against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active); it replaced Qwen3.8-27B on every plan between the 2026-09-14 and 2026-09-16 reads. Yolo-Auto "runs the model-serving stack rather than reselling a third-party model API". The FAQ calls the free tier "for testing" where the plan card says "free forever", and the terms forbid using "multiple accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are "not routinely retained". Read 2026-09-16
+"15 free requests a day. No card required." on the home page and "No card required, free forever" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto "runs the model-serving stack rather than reselling a third-party model API". The FAQ calls the free tier "for testing" where the plan card says "free forever", and the terms forbid using "multiple accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are "not routinely retained". Read 2026-09-17
 
 ## Connect
 
