@@ -1100,6 +1100,28 @@
         }
       }
     },
+    "arli-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Arli AI",
+      "options": {
+        "baseURL": "https://api.arliai.com/v1",
+        "apiKey": "{env:ARLI_AI_API_KEY}"
+      },
+      "models": {}
+    },
+    "bytez": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Bytez",
+      "options": {
+        "baseURL": "https://api.bytez.com/models/v2/openai/v1",
+        "apiKey": "{env:BYTEZ_API_KEY}"
+      },
+      "models": {
+        "Qwen/Qwen3-4B": {
+          "name": "Qwen/Qwen3-4B"
+        }
+      }
+    },
     "yolo-auto": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Yolo-Auto",

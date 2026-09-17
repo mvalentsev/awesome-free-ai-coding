@@ -46,6 +46,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
+| [Arli AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
+| [Bytez](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) | 🔌 LLM APIs with free tier | `qwen3.8-flash` | `2026-09-17` |
 | [GitHub Copilot Free](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) | 🎁 Trials (no card when possible) | `claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-2.1` | `2026-09-17` |

@@ -3467,3 +3467,99 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 89
+- id: bytez
+  name: Bytez
+  category: api-free-tier
+  url: https://bytez.com
+  source_urls:
+  - https://docs.bytez.com/model-api/docs/billing.md
+  - https://docs.bytez.com/model-api/docs/billing
+  - https://docs.bytez.com/model-api/docs/get-started.md
+  card_required: false
+  offering: Serverless API over open models, whose Free plan grants $1 of credit every
+    four weeks for open models of up to 7B parameters, one request at a time, with
+    no billing
+  limits: The billing page's Free card reads "$0 / month - Get $1 in free credits",
+    "Run open models up to 7B parameters", "1 concurrent request (open models)" and
+    "Credits refresh every 4 weeks", and the billing cycle adds that "Credits expire
+    4 weeks after grant", with no billing on the plan. The card also lists "Access
+    all closed model providers", but the get-started guide says a closed-source model
+    needs "an account with the model provider" and is "billed directly by the provider",
+    so the free dollar reaches only the open models of 7B parameters or fewer — Qwen3
+    4B, the docs' own example, is one. An open model above 7B needs at least $10 of
+    credit bought in the last four weeks, on the $3 a month plan. Read 2026-09-17
+  models: []
+  api:
+    base_url: https://api.bytez.com/models/v2/openai/v1
+    key_url: https://bytez.com/api
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - Qwen/Qwen3-4B
+    note: model ids are Hugging Face ids, Qwen/Qwen3-4B being the docs' example; the
+      OpenAI SDK examples pass the key as the api key and the docs' curl sends it
+      bare in Authorization. /v1/models answers 401 without a key, and closed-source
+      models need a provider key of your own
+  probe:
+    type: page-keywords
+    endpoint: https://docs.bytez.com/model-api/docs/billing.md
+    keywords:
+    - $0 / month - Get $1 in free credits
+    - Run open models up to 7B parameters
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-17'
+  last_verified: '2026-09-17'
+  probe_failures: 0
+  provisional: true
+  rank: 99
+- id: arli-ai
+  name: Arli AI
+  category: api-free-tier
+  url: https://www.arliai.com
+  source_urls:
+  - https://www.arliai.com/pricing
+  - https://www.arliai.com/docs/textgen
+  - https://www.arliai.com/quick-start
+  - https://api.arliai.com/model/all
+  card_required: false
+  offering: OpenAI-compatible inference on open models and their fine-tunes, whose
+    Free plan tries each model five times every two days at 12K tokens of context,
+    one request at a time
+  limits: 'The pricing page''s Free plan, "Test out the Arli platform" at $0, lists
+    "Delayed Response", "Max 12K context tokens", "1 request at a time" and "5 times
+    / 2 days trial of all models", and the text generation docs say the allowance
+    recurs: "Free accounts are able to use each model for a maximum of 5 requests
+    every 2 days for testing purposes". The keyless catalog at api.arliai.com/model/all
+    listed 92 models on 2026-09-17 — DeepSeek-V4-Flash-0731, MiMo-V2.5, GLM-4.7 and
+    Gemma-4-31B-it among them, most of the rest Qwen3.5 27B and Gemma 4 31B fine-tunes
+    recommended for writing and roleplay. Past the trial the Personal Starter plan
+    is $10 a month. Read 2026-09-17'
+  models: []
+  api:
+    base_url: https://api.arliai.com/v1
+    key_url: https://www.arliai.com/account
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses
+      a placeholder model id; the catalog's names are the models page's, and the coding
+      quick-start connects Roo Code and Kilo Code with a context window set to the
+      model picked. /v1/chat/completions answers 401 without a key
+  probe:
+    type: page-keywords
+    endpoint: https://www.arliai.com/pricing
+    keywords:
+    - 5 times / 2 days trial of all models
+    - Max 12K context tokens
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-17'
+  last_verified: '2026-09-17'
+  probe_failures: 0
+  provisional: true
+  rank: 99

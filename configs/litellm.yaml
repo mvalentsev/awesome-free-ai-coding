@@ -1137,6 +1137,11 @@ model_list:
     model: openai/Lorbus/Qwen3.6-27B-int4-AutoRound
     api_base: https://hermes.ai.unturf.com/v1
     api_key: none
+- model_name: bytez/Qwen/Qwen3-4B
+  litellm_params:
+    model: openai/Qwen/Qwen3-4B
+    api_base: https://api.bytez.com/models/v2/openai/v1
+    api_key: os.environ/BYTEZ_API_KEY
 - model_name: yolo-auto/qwen3.8-flash
   litellm_params:
     model: openai/qwen3.8-flash

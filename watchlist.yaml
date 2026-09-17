@@ -946,20 +946,6 @@ watched:
       Nara's free plan serves a model it hosts or licenses itself, rather than
       another gateway's free lane.
 
-  - domains: [bytez.com]
-    name: Bytez
-    checked_on: '2026-09-16'
-    reason: >-
-      Readable now: docs.bytez.com/model-api/docs/billing.md lists "$0 / month -
-      Get $1 in free credits", "Run open models up to 7B parameters" and
-      "Credits refresh every 4 weeks" — a recurring dollar that reaches open
-      models of 7B parameters or fewer. Whether an allowance that small, on
-      models that small, belongs on the list is a scope question this list has
-      not settled; it stays here until it is (2026-09-16).
-    reopen_if: >-
-      The free credits reach larger open models, or the list settles how small
-      an allowance it carries.
-
   - domains: [liquid.ai]
     name: Liquid AI (LFM / LEAP)
     checked_on: '2026-08-30'
@@ -1640,18 +1626,6 @@ watched:
       locations" under CoreWeave's terms.
     reopen_if: >-
       A stated credit amount, or a model priced 0.
-
-  - domains: [arliai.com]
-    name: Arli AI
-    checked_on: '2026-09-16'
-    reason: >-
-      The Free plan is real on the pricing page — "Max 12K context tokens", "1
-      request at a time", "5 times / 2 days trial of all models" — but which
-      models it reaches is stated nowhere an ordinary client can read:
-      arliai.com/models/textgen-models answers 200 with no model names in its
-      HTML, and api.arliai.com/v1/models needs a key (2026-09-16).
-    reopen_if: >-
-      A readable page names the models the Free plan can call.
 
   - domains: [pioneer.ai]
     name: Pioneer (Fastino Labs)
