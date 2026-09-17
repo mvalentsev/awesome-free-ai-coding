@@ -4263,8 +4263,8 @@
         "v0.app"
       ],
       "name": "v0 (Vercel)",
-      "checked_on": "2026-08-14",
-      "reason": "The closest of the three to qualifying and still out. Its free plan is \"$5 of included monthly credits\" with a \"7 message/day limit\", and it does have an API — api.v0.dev/v1, keyed by V0_API_KEY — but that API is /chats/:id/messages, a product endpoint for driving v0's own builder, not a model endpoint. The credit buys v0 messages, not tokens you can spend on your own codebase. Vercel's model credits that can be spent that way are already listed here as Vercel AI Gateway.",
+      "checked_on": "2026-09-17",
+      "reason": "The closest of the three to qualifying and still out. Its free plan is \"$5 of included monthly credits\" with a \"7 message/day limit\", and it does have an API — api.v0.dev/v1, keyed by V0_API_KEY — but that API is /chats/:id/messages, a product endpoint for driving v0's own builder, not a model endpoint. The credit buys v0 messages, not tokens you can spend on your own codebase. Vercel's model credits that can be spent that way are already listed here as Vercel AI Gateway. Re-read 2026-09-17: a keyless POST to api.v0.dev/v1/chat/completions answers 404, while /v1/chats answers 401.",
       "reopen_if": "The v0 free plan's credits become spendable through an OpenAI-compatible or otherwise general model endpoint.",
       "current": true
     },
@@ -5720,6 +5720,372 @@
       "checked_on": "2026-09-17",
       "reason": "A membership router: \"Basic is $10/month and includes $10 in routing credit. Add more whenever you need it.\", and the API quick start requires \"An active Basic membership with a positive Routing balance\". Every row in the keyless catalog is priced.",
       "reopen_if": "A free tier or signup credit usable without the Basic membership.",
+      "current": true
+    },
+    {
+      "domains": [
+        "302.ai"
+      ],
+      "name": "302.AI",
+      "checked_on": "2026-09-17",
+      "reason": "A pay-as-you-go aggregator — 302.AI采用0月费和按用量付费模式，先充值，后扣费 (no monthly fee, pay by usage: top up first, then it is deducted) — and \"The minimum recharge is $5 to use all AI products.\" A $1 test credit exists on paper with changing conditions: a help FAQ last modified 2024-11-07 gives it to every user who binds a phone, and a changelog entry of 2025-03-03 narrows it to 新用户只有填写邀请码才可以获得1美金测试额度 — only new users who enter an invite code; the referral-code page that entry links to answers 404.",
+      "reopen_if": "A current 302.AI page grants new accounts API credit without an invite code or a top-up.",
+      "current": true
+    },
+    {
+      "domains": [
+        "abacus.ai"
+      ],
+      "name": "Abacus.AI RouteLLM API",
+      "checked_on": "2026-09-17",
+      "reason": "The RouteLLM API comes with a subscription: \"Sign up as a ChatLLM subscriber to access RouteLLM API\", and \"A ChatLLM subscription is $10 per user per month. You will be billed $10 when you sign up.\" No free API access is named.",
+      "reopen_if": "A RouteLLM API key is available to an unsubscribed account.",
+      "current": true
+    },
+    {
+      "domains": [
+        "above.dev"
+      ],
+      "name": "above.dev",
+      "checked_on": "2026-09-17",
+      "reason": "A router sold in prepaid packs, with no account before payment: \"Buy a credit pack at https://above.dev/pricing ($10, $20 or $50). Checkout creates your account, emails your API key, and opens the dashboard for usage and balance history.\"",
+      "reopen_if": "An account or key obtainable before checkout, with a stated free credit.",
+      "current": true
+    },
+    {
+      "domains": [
+        "aiand.com"
+      ],
+      "name": "ai&",
+      "checked_on": "2026-09-17",
+      "reason": "Open models hosted in Japan on prepaid credit: \"ai& uses a prepaid credit model. You add credits to your organization, and inference requests deduct from that balance as they complete.\" Redemption codes add credit without a card, but \"Redemption codes are handed out at events, hackathons and workshops\". A cookbook page calls qwen/qwen3.6-27b \"free for prototyping\", while the keyless catalog prices it at $0.32 in and $3.20 out per million tokens (2026-09-17).",
+      "reopen_if": "A zero-priced model in the keyless catalog, or a public signup credit.",
+      "current": true
+    },
+    {
+      "domains": [
+        "aixy-gateway.com"
+      ],
+      "name": "Aixy",
+      "checked_on": "2026-09-17",
+      "reason": "A governance gateway over the customer's own provider credentials — \"Connect a provider, create a project API key, and call the gateway.\" — selling paid plans of its own, billed apart from inference: \"This page describes inference cost attribution, not the price of an Aixy subscription.\" It hosts no capacity to give away. The site answers 403 to scripts; its llms-full.txt is readable.",
+      "reopen_if": "Aixy-hosted model capacity with a free allowance that needs no provider key of your own.",
+      "current": true
+    },
+    {
+      "domains": [
+        "ambient.xyz"
+      ],
+      "name": "Ambient",
+      "checked_on": "2026-09-17",
+      "reason": "A verified-inference network whose API needs paid credit: \"The Anthropic-compatible endpoint requires paid credits, like the OpenAI-compatible one: on the free tier requests return `402`.\" Its cheapest plan is $1 a month — \"A small paid tier for trying Ambient.\" — and the keyless catalog prices all four models.",
+      "reopen_if": "Ambient's free tier or its drops can make API calls that do not return 402.",
+      "current": true
+    },
+    {
+      "domains": [
+        "auriko.ai"
+      ],
+      "name": "Auriko",
+      "checked_on": "2026-09-17",
+      "reason": "A router whose Free plan and \"14-day free trial. No credit card required.\" are platform tiers, with inference bought separately: \"Pro is a flat $89/mo subscription billed separately from inference costs. You purchase credits at provider token prices with zero markup. Credits work the same on Free and Pro.\" The keyless directory at api.auriko.ai/v1/directory/models prices five routes at 0, three to Z.ai and two to Google AI Studio, and no page says whether they answer an account with no credit.",
+      "reopen_if": "Auriko documents its zero-priced routes answering an account with no purchased credit.",
+      "current": true
+    },
+    {
+      "domains": [
+        "ant-ling.com",
+        "tbox.cn"
+      ],
+      "name": "Ant Ling (Ant Group)",
+      "checked_on": "2026-09-17",
+      "reason": "A real daily quota behind an Alipay payment agreement. The pricing page: \"Each account receives 500,000 free tokens per day (shared across input and output). The quota resets daily at 2:00 AM UTC+8 and does not roll over.\", on Ling-3.0-flash, Ling-2.6-1T, Ling-2.6-flash and Ring-2.6-1T at 2 QPS. But \"Before your first API call, bind an Alipay account and activate the Ling service\", the FAQ adds \"You need to sign the Mini Program Cloud auto-debit agreement and activate the Ling model service\", and \"Only personal Alipay accounts are supported for payment.\" An auto-debit agreement is a payment method on file, and whether an Alipay account opened outside mainland China can sign it is stated on no page read. Ling 3.0 Flash variants are already free on rows this list carries. models.dev still lists the service as Bailing at api.tbox.cn.",
+      "reopen_if": "The daily quota works without the auto-debit agreement, or a page says an Alipay account from outside mainland China can sign it.",
+      "current": true
+    },
+    {
+      "domains": [
+        "claudin.io"
+      ],
+      "name": "Claudinio",
+      "checked_on": "2026-09-17",
+      "reason": "Flat-rate subscriptions for coding agents. The account docs say \"The first time you sign in, your account is created automatically on the Free plan, so you can try it before paying anything\", but no page gives the Free plan an allowance, and the API reference lists `402` \"No active subscription\". The site's source carries promotional strings for a signup credit and daily free credits that no rendered page shows.",
+      "reopen_if": "A page states the Free plan's API allowance, or a signup or daily credit usable without a subscription.",
+      "current": true
+    },
+    {
+      "domains": [
+        "coralbricks.ai"
+      ],
+      "name": "CoralBricks",
+      "checked_on": "2026-09-17",
+      "reason": "Gated by request: \"Coral Inference is currently a design-partner program. To get access, contact hello@coralbricks.ai.\", and ungranted accounts get `403 access_denied`. Usage is billed from a prepaid balance.",
+      "reopen_if": "Open self-serve access with a stated free credit or free model.",
+      "current": true
+    },
+    {
+      "domains": [
+        "crossmodel.ai"
+      ],
+      "name": "CrossModel",
+      "checked_on": "2026-09-17",
+      "reason": "\"Usage-based pricing, one unified bill, no subscriptions.\", funded by Stripe top-ups with a 5.5% service fee — \"There is no minimum fee — but the minimum top-up is $10.\" No signup credit or zero-priced model is named.",
+      "reopen_if": "A signup credit or a zero-priced model on CrossModel's own pages.",
+      "current": true
+    },
+    {
+      "domains": [
+        "dinference.com"
+      ],
+      "name": "DInference",
+      "checked_on": "2026-09-17",
+      "reason": "Open models hosted in Tokyo at per-token prices, with direct keys handed out on request and aimed at high-volume users; the site renders only in a browser, and no page names a free tier or credit (2026-09-17).",
+      "reopen_if": "A self-serve key with a stated free allowance.",
+      "current": true
+    },
+    {
+      "domains": [
+        "d.run"
+      ],
+      "name": "d.run (DaoCloud)",
+      "checked_on": "2026-09-17",
+      "reason": "A mainland platform whose token API is pay-as-you-go — MaaS by Token：使用 Token 计费，共享资源 — on an account that must pass real-name verification: 根据适用法律要求，您需要进行实名认证以使用我们的产品或服务。 The docs home still shows an undated \"DeepSeek free for two weeks\" banner with no terms behind it.",
+      "reopen_if": "A dated, current page grants free token usage or a signup voucher without mainland real-name verification.",
+      "current": true
+    },
+    {
+      "domains": [
+        "frogbot.ai"
+      ],
+      "name": "FrogBot",
+      "checked_on": "2026-09-17",
+      "reason": "API usage draws on a paid balance — \"Your subscription payments and added funds become a USD balance.\" — and in the plan table API access belongs to the $25 Pro plan; the Free plan's 300 credits a month cover the vendor's own agents and flows.",
+      "reopen_if": "Free-plan credits can be spent through an API key.",
+      "current": true
+    },
+    {
+      "domains": [
+        "infer.flow7.org"
+      ],
+      "name": "Infer by Flow7",
+      "checked_on": "2026-09-17",
+      "reason": "\"Infer by Flow7 provides public paid access. Anyone can create an account; email verification and wallet funding are required before metered API use.\" Accounts start at $0, every selector in the keyless catalog is priced, and \"Serving suppliers remain private.\"",
+      "reopen_if": "A free wallet credit, or a zero-priced selector in the public catalog.",
+      "current": true
+    },
+    {
+      "domains": [
+        "qhaigc.net"
+      ],
+      "name": "QuanHex (QiHang)",
+      "checked_on": "2026-09-17",
+      "reason": "A reseller gateway paid by Alipay top-ups from ¥10, with email verification; the only zero-priced entry in its pricing data is an internal test model (启航测试模型，不计费，仅用于测试 — a test model, not billed, for testing only). No registration bonus is named.",
+      "reopen_if": "A registration bonus, or a zero-priced production model.",
+      "current": true
+    },
+    {
+      "domains": [
+        "vancine.com"
+      ],
+      "name": "Vancine",
+      "checked_on": "2026-09-17",
+      "reason": "Free credit for new accounts ended on 2026-09-02: \"Effective immediately, newly registered users will no longer automatically receive complimentary API credits.\" Since then the only credit is a one-time bonus after a first top-up of at least $5, and no model is priced at 0.",
+      "reopen_if": "The revised trial the 2026-09-02 announcement promises grants credit without a top-up.",
+      "current": true
+    },
+    {
+      "domains": [
+        "salad.com",
+        "salad.cloud"
+      ],
+      "name": "SaladCloud AI Gateway",
+      "checked_on": "2026-09-17",
+      "reason": "A gateway in early access, paid per token from a credit balance or by a monthly subscription arranged with support: \"The organization must have a positive credit balance before it can process AI Gateway requests.\" The pricing FAQ answers its own question about a free trial: \"No. SaladCloud and the Transcription API are pay-as-you-go with no minimum commitment\".",
+      "reopen_if": "Salad grants new organizations credit, without a card, that the AI Gateway accepts.",
+      "current": true
+    },
+    {
+      "domains": [
+        "sakana.ai"
+      ],
+      "name": "Sakana AI (Fugu)",
+      "checked_on": "2026-09-17",
+      "reason": "Paid subscriptions from $20 a month or pay-as-you-go credits — the terms read \"To use the Service, You must purchase credits that may be used within the Service\" — and \"we do not provide services to users in EU (European Union) or EEA (European Economic Area) member states\". The console's pricing page ships interface strings for a free usage allowance that no public page describes.",
+      "reopen_if": "A public Sakana page states a free API allowance for accounts without a subscription.",
+      "current": true
+    },
+    {
+      "domains": [
+        "scnet.cn"
+      ],
+      "name": "SCNet (超算互联网)",
+      "checked_on": "2026-09-17",
+      "reason": "China's national supercomputing marketplace runs a promotion from 2026-08-13 to 2026-10-13 whose new-user package is 1000万 token 量包 — ten million tokens of GLM-5-Base, valid 30 days — under 仅限活动期间新注册用户，每个账号限领1次。福利总量有限，先到先得 (new accounts only, once each, while supplies last). A base model is not what a coding agent runs, new accounts are told apart by phone number, ID-card number and payment account, and the API docs say API access may have to be opened through a business advisor (如有需要，可联系您的专属业务顾问或平台客服开通调用 API 权限). The Token Plan itself is a paid subscription for AI tools only.",
+      "reopen_if": "A recurring or chat-model allowance that opens without mainland real-name verification.",
+      "current": true
+    },
+    {
+      "domains": [
+        "kuaecloud.net",
+        "mthreads.com"
+      ],
+      "name": "KUAE Cloud Coding Plan (Moore Threads)",
+      "checked_on": "2026-09-17",
+      "reason": "A GLM-4.7 coding plan with a 30-day free trial described as a promotion — 用户在推广活动期间可申请30天免费试用 — at about 40 prompts per five hours, and 套餐仅限于指定的编程工具中使用 (usable only in the listed coding tools). The claim page is client-rendered and answers \"please log in first\" to a script, and the launch page's own bundle limits the trial to 100 developers a day, so whether it can be claimed today, and with what account, cannot be read.",
+      "reopen_if": "A readable page shows the trial open now, with a sign-up a reader outside mainland China can complete.",
+      "current": true
+    },
+    {
+      "domains": [
+        "scx.ai"
+      ],
+      "name": "SCX.ai",
+      "checked_on": "2026-09-17",
+      "reason": "An Australian sovereign inference provider priced per token, with monthly plans in compute units from A$500; the site answers 403 to scripts and its rendered pricing and plan pages name no free tier, trial or credit (2026-09-17).",
+      "reopen_if": "A sign-up credit or trial for new accounts on an SCX page.",
+      "current": true
+    },
+    {
+      "domains": [
+        "stackit.com",
+        "stackit.cloud",
+        "onstackit.cloud"
+      ],
+      "name": "STACKIT AI Model Serving",
+      "checked_on": "2026-09-17",
+      "reason": "A free 30-day test by application, for companies: \"All registrations are manually checked by us. If you qualify, you will receive your personal token to use STACKIT AI Model Serving within 24 hours. The trial period ends automatically after 30 days.\" The request form requires a company name, and a customer account needs to \"Provide the company’s VAT ID and Commercial Register number.\"",
+      "reopen_if": "Self-serve sign-up, without approval or a company, that grants a free token or credit.",
+      "current": true
+    },
+    {
+      "domains": [
+        "subconscious.dev"
+      ],
+      "name": "Subconscious",
+      "checked_on": "2026-09-17",
+      "reason": "\"Usage based pricing or monthly plans to power your agents efficiently.\" — per-token credits from the dashboard or plans from $100 a month; no free plan or trial is named.",
+      "reopen_if": "Free starting credits or a free plan on the pricing page or in the docs.",
+      "current": true
+    },
+    {
+      "domains": [
+        "submodel.ai"
+      ],
+      "name": "Submodel (InstaGen)",
+      "checked_on": "2026-09-17",
+      "reason": "Per-token open models from a funded balance, and the FAQ rules out a trial in so many words: \"We don't currently offer refunds or trial credits due to the overhead of processing these requests.\"",
+      "reopen_if": "Trial credits or zero-priced models in the InstaGen docs.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tensorx.ai"
+      ],
+      "name": "TensorX",
+      "checked_on": "2026-09-17",
+      "reason": "EU inference on prepaid credits bought by card, with no free tier: \"When your balance falls below $0.05, your account and API keys will be disabled.\"",
+      "reopen_if": "A starting credit without payment, or a zero-priced model.",
+      "current": true
+    },
+    {
+      "domains": [
+        "thinkingmachines.ai",
+        "thinkingmachines.dev"
+      ],
+      "name": "Tinker (Thinking Machines)",
+      "checked_on": "2026-09-17",
+      "reason": "A fine-tuning API with sampling endpoints, billed by use — \"Tinker uses a pricing plan that reflects usage. All prices are in USD per million tokens.\" — whose serverless inference is a beta for Thinking Machines' own Inkling models; research grants are the only credit mentioned.",
+      "reopen_if": "Free credits for new accounts without an application.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tinfoil.sh"
+      ],
+      "name": "Tinfoil",
+      "checked_on": "2026-09-17",
+      "reason": "Confidential inference whose API key comes after checkout: \"Complete the checkout by entering your payment details. You're only charged based on usage.\" Every model in the keyless catalog is priced.",
+      "reopen_if": "A starting credit without payment details, or a zero-priced model.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tokengo.com"
+      ],
+      "name": "TokenGo",
+      "checked_on": "2026-09-17",
+      "reason": "\"TokenGO uses a pay-as-you-go model. You only pay for the tokens you actually consume, priced per million tokens.\", funded through Stripe before the first request; the \"Free\" row in its rate-limit table is a speed tier, not a balance.",
+      "reopen_if": "A free balance at sign-up, or a public code that grants credit without payment.",
+      "current": true
+    },
+    {
+      "domains": [
+        "vispark.in"
+      ],
+      "name": "Vispark Lab",
+      "checked_on": "2026-09-17",
+      "reason": "Three vision models paid in units bought in rupees — the app's own text is \"Buy units to continue — you'll return here after payment.\" — and priced in the keyless catalog; no free units are named.",
+      "reopen_if": "Free units at sign-up, or a zero-priced model.",
+      "current": true
+    },
+    {
+      "domains": [
+        "wafer.ai"
+      ],
+      "name": "Wafer",
+      "checked_on": "2026-09-17",
+      "reason": "\"Access Wafer models through an OpenAI-compatible API. Add credits, create an API key, and pay per token.\", or a paid Wafer Pass subscription. Its $500 of free credits belong to a startup program that begins with \"a 25-minute conversation with our team\".",
+      "reopen_if": "Credits for any new account without an application, or a free Wafer Pass tier.",
+      "current": true
+    },
+    {
+      "domains": [
+        "xpersona.co"
+      ],
+      "name": "Xpersona",
+      "checked_on": "2026-09-17",
+      "reason": "Paid entry only: \"Choose monthly capacity from $20—or try the API with $2 prepaid credits.\" Every priced model in the catalog is paid.",
+      "reopen_if": "Credits granted without payment.",
+      "current": true
+    },
+    {
+      "domains": [
+        "zenifra.com"
+      ],
+      "name": "Zenifra",
+      "checked_on": "2026-09-17",
+      "reason": "A Brazilian platform whose sign-up credit reaches its AI API with no card — \"Ao criar sua conta, você ganha R$30,00 em créditos automaticamente\" and \"Você não precisa ter cartão de crédito para começar\" (a new account gets R$30 of credit automatically; no credit card is needed to start), usable on AI (\"Os R$30,00 recebidos ao criar a conta também podem ser usados com a oferta de IA\") — but registration asks for a \"CPF ou CNPJ válido\" and \"residência no Brasil\", a Brazilian tax ID and residence: a national identity wall, like the mainland real-name accounts recorded above.",
+      "reopen_if": "Zenifra opens registration without a Brazilian tax ID and residence.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tracerml.ai"
+      ],
+      "name": "Echo by Tracer",
+      "checked_on": "2026-09-17",
+      "reason": "A workspace API for agent runs rather than a chat endpoint — \"The workspace API has a saved-run contract; OpenAI Chat Completions SDK request fields do not apply.\" — paid from workspace credit or with your own provider key: \"No Tracer fee on the first $30,000/month in eligible usage per workspace with your own API key.\" One model in its public library, the anonymous Union Alpha preview, is flagged free, with its availability unstated.",
+      "reopen_if": "A free credit for new workspaces, or a free model callable through the API without payment.",
+      "current": true
+    },
+    {
+      "domains": [
+        "helicone.ai"
+      ],
+      "name": "Helicone AI Gateway",
+      "checked_on": "2026-09-17",
+      "reason": "The free Hobby plan's \"10,000 free requests\" are observability logs, not inference; the gateway serves models from bought credits or your own provider keys, and a call with neither fails — the error guide's case is \"No Helicone credits, no BYOK\".",
+      "reopen_if": "Free inference credit for new accounts.",
+      "current": true
+    },
+    {
+      "domains": [
+        "near.ai"
+      ],
+      "name": "NEAR AI Cloud",
+      "checked_on": "2026-09-17",
+      "reason": "Confidential inference on purchased credits (\"purchase credits based on your needs\"), every model in the keyless catalog priced. The one way in without a card is a stake: \"Stake NEAR to fund private inference and deploy always-on IronClaw agents. Credits scale with your stake. No credit card required.\" — credits paid by the staking rewards on tokens the reader must own.",
+      "reopen_if": "Starting credits for new accounts without a purchase or a stake.",
       "current": true
     }
   ]

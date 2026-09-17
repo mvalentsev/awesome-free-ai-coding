@@ -273,3 +273,14 @@
     relay that sells routes under those names is the aicodemirror.ai case,
     subscription sessions re-exposed as an API, stated in the operator's own
     catalog.
+- domain: daoxe.com
+  reason: >-
+    A reseller gateway whose pricing data (daoxe.com/api/pricing, read
+    2026-09-17) describes its own capacity groups as pooled consumer accounts
+    and reverse-engineered clients: 自建Max号池 质量有保障 (a self-built pool of Max
+    accounts, quality guaranteed), gpt pro号池 (a GPT Pro account pool), Gork
+    官方heavy 号池分组 (a pool group of official Grok Heavy accounts), claude-kiro-逆向
+    (Claude through a reverse-engineered Kiro client) and 官方Gemini中转 (an
+    official Gemini relay). Its "free models" group is billed at 0.001× until
+    a subscription makes it 0× (Daoxe-免费模型,订阅后会变成0倍率). Account pools and
+    reverse engineering, in the operator's own labels — the kenari.id case.
