@@ -3677,3 +3677,50 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 88
+- id: mixlayer
+  name: Mixlayer
+  category: api-free-tier
+  url: https://www.mixlayer.com
+  source_urls:
+  - https://www.mixlayer.com/pricing
+  - https://docs.mixlayer.com/credits-and-limits.md
+  - https://docs.mixlayer.com/introduction.md
+  card_required: false
+  offering: Serverless open models priced per token, with one of them at $0 — Qwen3.5
+    4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit
+  limits: 'The pricing page says "Free models stay free; pay-as-you-go for everything
+    else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out,
+    131K context, vision and text. The billing docs: "Free models do not require prepaid
+    credit." — a paid model on an empty prepaid balance answers `402`. Rate limits
+    are set per organization and per model, and "Mixlayer does not publish fixed limit
+    values because limits can differ by organization and model". The docs'' introduction
+    sends its first request to the free model. The operator is Mixlayer Labs Inc.
+    Read 2026-09-17'
+  models:
+  - family: qwen3.5-4b
+    released: ''
+    aa_model: qwen3-5-4b
+  api:
+    base_url: https://models.mixlayer.ai/v1
+    key_url: https://console.mixlayer.com/app/api-keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - qwen/qwen3.5-4b-free
+    note: the id is the pricing page's and the docs' own example; /v1/models answers
+      401 without a key, so it is not read off a catalog
+  probe:
+    type: page-keywords
+    endpoint: https://www.mixlayer.com/pricing
+    keywords:
+    - qwen/qwen3.5-4b-free
+    - Free models stay free
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-17'
+  last_verified: '2026-09-17'
+  probe_failures: 0
+  provisional: true
+  rank: 99

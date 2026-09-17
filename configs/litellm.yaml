@@ -1167,6 +1167,11 @@ model_list:
     model: openai/Qwen/Qwen3-4B
     api_base: https://api.bytez.com/models/v2/openai/v1
     api_key: os.environ/BYTEZ_API_KEY
+- model_name: mixlayer/qwen/qwen3.5-4b-free
+  litellm_params:
+    model: openai/qwen/qwen3.5-4b-free
+    api_base: https://models.mixlayer.ai/v1
+    api_key: os.environ/MIXLAYER_API_KEY
 - model_name: yolo-auto/qwen3.8-flash
   litellm_params:
     model: openai/qwen3.8-flash

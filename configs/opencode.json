@@ -1157,6 +1157,19 @@
         }
       }
     },
+    "mixlayer": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Mixlayer",
+      "options": {
+        "baseURL": "https://models.mixlayer.ai/v1",
+        "apiKey": "{env:MIXLAYER_API_KEY}"
+      },
+      "models": {
+        "qwen/qwen3.5-4b-free": {
+          "name": "qwen/qwen3.5-4b-free"
+        }
+      }
+    },
     "yolo-auto": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Yolo-Auto",
