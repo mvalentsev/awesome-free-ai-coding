@@ -1002,6 +1002,21 @@ model_list:
     model: openai/typhoon-v2.5-30b-a3b-instruct
     api_base: https://api.opentyphoon.ai/v1
     api_key: os.environ/OPENTYPHOON_API_KEY
+- model_name: the-grid/agent-prime
+  litellm_params:
+    model: openai/agent-prime
+    api_base: https://api.thegrid.ai/v1
+    api_key: os.environ/THE_GRID_API_KEY
+- model_name: the-grid/code-prime
+  litellm_params:
+    model: openai/code-prime
+    api_base: https://api.thegrid.ai/v1
+    api_key: os.environ/THE_GRID_API_KEY
+- model_name: the-grid/agent-max
+  litellm_params:
+    model: openai/agent-max
+    api_base: https://api.thegrid.ai/v1
+    api_key: os.environ/THE_GRID_API_KEY
 - model_name: agnes-ai/agnes-3.0-flash
   litellm_params:
     model: openai/agnes-3.0-flash
@@ -1067,6 +1082,11 @@ model_list:
     model: openai/gpt-oss
     api_base: https://text.pollinations.ai/openai
     api_key: none
+- model_name: blue-claw/auto
+  litellm_params:
+    model: openai/auto
+    api_base: https://openai.blueclaw.network/v1
+    api_key: os.environ/BLUE_CLAW_API_KEY
 - model_name: freeinference/deepseek-v4-flash
   litellm_params:
     model: openai/deepseek-v4-flash
@@ -1137,6 +1157,31 @@ model_list:
     model: openai/claude-sonnet-4-6
     api_base: https://api.routerplex.com/v1
     api_key: os.environ/ROUTERPLEX_API_KEY
+- model_name: abliteration-ai/abliterated-model-large-v2
+  litellm_params:
+    model: openai/abliterated-model-large-v2
+    api_base: https://api.abliteration.ai/v1
+    api_key: os.environ/ABLITERATION_AI_API_KEY
+- model_name: abliteration-ai/abliterated-model
+  litellm_params:
+    model: openai/abliterated-model
+    api_base: https://api.abliteration.ai/v1
+    api_key: os.environ/ABLITERATION_AI_API_KEY
+- model_name: impossibl/zai/glm-5.3-flash
+  litellm_params:
+    model: openai/zai/glm-5.3-flash
+    api_base: https://api.impossibl.com/v1
+    api_key: os.environ/IMPOSSIBL_API_KEY
+- model_name: impossibl/deepseek/deepseek-v4.1-flash
+  litellm_params:
+    model: openai/deepseek/deepseek-v4.1-flash
+    api_base: https://api.impossibl.com/v1
+    api_key: os.environ/IMPOSSIBL_API_KEY
+- model_name: impossibl/qwen/qwen3.8-27b
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b
+    api_base: https://api.impossibl.com/v1
+    api_key: os.environ/IMPOSSIBL_API_KEY
 - model_name: standardcompute/anthropic/claude-standardcompute
   litellm_params:
     model: openai/anthropic/claude-standardcompute

@@ -902,6 +902,25 @@
         }
       }
     },
+    "the-grid": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "The Grid",
+      "options": {
+        "baseURL": "https://api.thegrid.ai/v1",
+        "apiKey": "{env:THE_GRID_API_KEY}"
+      },
+      "models": {
+        "agent-prime": {
+          "name": "agent-prime"
+        },
+        "code-prime": {
+          "name": "code-prime"
+        },
+        "agent-max": {
+          "name": "agent-max"
+        }
+      }
+    },
     "agnes-ai": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Agnes AI",
@@ -1009,6 +1028,19 @@
         }
       }
     },
+    "blue-claw": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Blue Claw Network",
+      "options": {
+        "baseURL": "https://openai.blueclaw.network/v1",
+        "apiKey": "{env:BLUE_CLAW_API_KEY}"
+      },
+      "models": {
+        "auto": {
+          "name": "auto"
+        }
+      }
+    },
     "freeinference": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "FreeInference (Harvard SEAS)",
@@ -1088,6 +1120,41 @@
         },
         "claude-sonnet-4-6": {
           "name": "claude-sonnet-4-6"
+        }
+      }
+    },
+    "abliteration-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "abliteration.ai",
+      "options": {
+        "baseURL": "https://api.abliteration.ai/v1",
+        "apiKey": "{env:ABLITERATION_AI_API_KEY}"
+      },
+      "models": {
+        "abliterated-model-large-v2": {
+          "name": "abliterated-model-large-v2"
+        },
+        "abliterated-model": {
+          "name": "abliterated-model"
+        }
+      }
+    },
+    "impossibl": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Impossibl",
+      "options": {
+        "baseURL": "https://api.impossibl.com/v1",
+        "apiKey": "{env:IMPOSSIBL_API_KEY}"
+      },
+      "models": {
+        "zai/glm-5.3-flash": {
+          "name": "zai/glm-5.3-flash"
+        },
+        "deepseek/deepseek-v4.1-flash": {
+          "name": "deepseek/deepseek-v4.1-flash"
+        },
+        "qwen/qwen3.8-27b": {
+          "name": "qwen/qwen3.8-27b"
         }
       }
     },

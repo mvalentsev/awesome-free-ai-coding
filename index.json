@@ -3740,6 +3740,196 @@
       "rank": 99,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/"
+    },
+    {
+      "id": "blue-claw",
+      "name": "Blue Claw Network",
+      "category": "trial",
+      "url": "https://blueclaw.network",
+      "source_urls": [
+        "https://blueclaw.network/",
+        "https://blueclaw.network/quickstart",
+        "https://blueclaw.network/how-it-works",
+        "https://blueclaw.network/operators"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start",
+      "limits": "The home page: \"Every new account starts with a $5 welcome credit. After that, you run on prepaid USD credits — buy what you use, no subscriptions.\" and \"No credit card required to start.\" Sign-in is a six-digit code sent by email. No public page names the models or their prices — \"Live per-model pricing is on the Models page in the console\" — and the quick start calls the model auto. Calls go to \"a network of independent GPU operators\", partners running Livepeer orchestrators among them; Blue Claw \"does not log prompts, inputs, or outputs by default\" and offers \"No TEE, E2EE, or confidential-compute guarantee yet\". No page gives the credit an expiry. Read 2026-09-17",
+      "models": [],
+      "api": {
+        "base_url": "https://openai.blueclaw.network/v1",
+        "key_url": "https://portal.blueclaw.network/",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "auto"
+        ],
+        "note": "auto is the quick start's model and keys start with bc_; /v1/models answers 401 without a key, and the models behind auto are listed only in the console"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://blueclaw.network/",
+        "keywords": [
+          "Every new account starts with a $5 welcome credit",
+          "No credit card required to start"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-17",
+      "last_verified": "2026-09-17",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 91,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/"
+    },
+    {
+      "id": "abliteration-ai",
+      "name": "abliteration.ai",
+      "category": "trial",
+      "url": "https://abliteration.ai",
+      "source_urls": [
+        "https://abliteration.ai/pricing",
+        "https://docs.abliteration.ai/models.md",
+        "https://docs.abliteration.ai/pricing.md",
+        "https://docs.abliteration.ai/api-reference/credits/get-the-credit-balance-for-the-api-keys-organization.md",
+        "https://docs.abliteration.ai/integrations/claude-code.md"
+      ],
+      "card_required": false,
+      "offering": "OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card",
+      "limits": "The pricing FAQ: \"You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect the available models, and add prepaid credit or a monthly plan when you are ready.\" No page says what a credit is worth; the credits endpoint reports the balance as \"Total credits available to the organization, in USD\". Usage is billed per token — abliterated-model $1.00 in and $3.00 out per million, abliterated-model-large-v2 and abliterated-model-large $3.00 and $5.00 — and plans start at $20 a month. The models \"think before answering by default\", stream and call tools, and abliterated-model-large-v2 is \"Derived from the open-weight GLM-5.3 model, further abliterated and fine-tuned by Abliteration AI\". The operator is Abliteration AI, Inc. Read 2026-09-17",
+      "models": [],
+      "api": {
+        "base_url": "https://api.abliteration.ai/v1",
+        "key_url": "https://abliteration.ai/console",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "abliterated-model-large-v2",
+          "abliterated-model"
+        ],
+        "anthropic_base_url": "https://api.abliteration.ai",
+        "note": "ids are the docs' models page, read 2026-09-17; /v1/models answers 401 without a key. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://abliteration.ai/pricing",
+        "keywords": [
+          "You can start with a one-credit free preview and no credit card"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-17",
+      "last_verified": "2026-09-17",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 94,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/"
+    },
+    {
+      "id": "impossibl",
+      "name": "Impossibl",
+      "category": "trial",
+      "url": "https://impossibl.com",
+      "source_urls": [
+        "https://impossibl.com/llms.txt",
+        "https://api.impossibl.com/auth.md",
+        "https://impossibl.com/docs/billing",
+        "https://impossibl.com/docs/integrations"
+      ],
+      "card_required": false,
+      "offering": "Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card",
+      "limits": "An account is one POST with no key, and the llms.txt says what it carries: \"an agent-created account has $0.05; claiming adds an extra $1\" — the claim is an email sign-in, the dollar \"granted once per human\". The billing page narrows it: \"Some models require a completed credit purchase and return 403 billing_required without one. Saving a card or having promotional credits does not satisfy that requirement.\" Which models those are is not published. What the credit buys is list price — \"Provider usage is billed at provider list prices with no usage markup\" — GLM-5.3-Flash at $0.15 in and $0.50 out per million tokens, Claude Opus 5 at $5 and $25 — and a top-up starts at $5 plus a 5% platform fee. Read 2026-09-17",
+      "models": [],
+      "api": {
+        "base_url": "https://api.impossibl.com/v1",
+        "key_url": "https://impossibl.com/dashboard",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "zai/glm-5.3-flash",
+          "deepseek/deepseek-v4.1-flash",
+          "qwen/qwen3.8-27b"
+        ],
+        "anthropic_base_url": "https://api.impossibl.com",
+        "note": "ids are the keyless catalog's at api.impossibl.com/v1/models, 2026-09-17; which of them the promotional credit can call is not published. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.impossibl.com and clears ANTHROPIC_API_KEY so the bearer token is used"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://impossibl.com/llms.txt",
+        "keywords": [
+          "claiming adds an extra $1",
+          "a $0.05 signup bonus"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "catalog": "https://api.impossibl.com/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-17",
+      "last_verified": "2026-09-17",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 94,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/"
+    },
+    {
+      "id": "the-grid",
+      "name": "The Grid",
+      "category": "trial",
+      "url": "https://thegrid.ai",
+      "source_urls": [
+        "https://thegrid.ai/docs/start-here/quickstart.md",
+        "https://thegrid.ai/llms.txt",
+        "https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md",
+        "https://thegrid.ai/docs/instrument-specifications/current-instruments.md",
+        "https://thegrid.ai/docs/integrations-and-best-practices/integrations/claude-code.md"
+      ],
+      "card_required": false,
+      "offering": "OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time",
+      "limits": "The quick start: \"New accounts get a $25 signup credit (limited time), enough for millions of test calls on\" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Concurrency counts deposits only, \"a signup bonus of $25 and a deposit of $20 only counts as $20\", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: \"The specific model behind any given call can change between calls.\" The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-17",
+      "models": [],
+      "api": {
+        "base_url": "https://api.thegrid.ai/v1",
+        "key_url": "https://app.thegrid.ai/profile",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "agent-prime",
+          "code-prime",
+          "agent-max"
+        ],
+        "anthropic_base_url": "https://messages-beta.api.thegrid.ai",
+        "note": "the ids are instruments from the keyless catalog at api.thegrid.ai/v1/models, where each carries the models it delivered; the Claude Code guide sets ANTHROPIC_BASE_URL=https://messages-beta.api.thegrid.ai, the Messages API in beta"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://thegrid.ai/docs/start-here/quickstart.md",
+        "keywords": [
+          "New accounts get a $25 signup credit"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "catalog": "https://api.thegrid.ai/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-17",
+      "last_verified": "2026-09-17",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 86,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/"
     }
   ],
   "watchlist": [

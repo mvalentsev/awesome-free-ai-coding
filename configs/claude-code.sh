@@ -65,6 +65,16 @@ claude-opper() {
   claude "$@"
 }
 
+# ── The Grid · get a key: https://app.thegrid.ai/profile
+#    free ids: agent-prime, code-prime, agent-max
+claude-the-grid() {
+  ANTHROPIC_BASE_URL="https://messages-beta.api.thegrid.ai" \
+  ANTHROPIC_AUTH_TOKEN="$THE_GRID_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="agent-prime" \
+  claude "$@"
+}
+
 # ── Moark (Gitee AI) · get a key: https://moark.com/dashboard/tokens
 #    free ids: deepseek-v4-flash-0731
 claude-moark() {
@@ -112,6 +122,26 @@ claude-routerplex() {
   ANTHROPIC_AUTH_TOKEN="$ROUTERPLEX_API_KEY" \
   ANTHROPIC_API_KEY="" \
   ANTHROPIC_MODEL="deepseek-v4-flash" \
+  claude "$@"
+}
+
+# ── abliteration.ai · get a key: https://abliteration.ai/console
+#    free ids: abliterated-model-large-v2, abliterated-model
+claude-abliteration-ai() {
+  ANTHROPIC_BASE_URL="https://api.abliteration.ai" \
+  ANTHROPIC_AUTH_TOKEN="$ABLITERATION_AI_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="abliterated-model-large-v2" \
+  claude "$@"
+}
+
+# ── Impossibl · get a key: https://impossibl.com/dashboard
+#    free ids: zai/glm-5.3-flash, deepseek/deepseek-v4.1-flash, qwen/qwen3.8-27b
+claude-impossibl() {
+  ANTHROPIC_BASE_URL="https://api.impossibl.com" \
+  ANTHROPIC_AUTH_TOKEN="$IMPOSSIBL_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="zai/glm-5.3-flash" \
   claude "$@"
 }
 

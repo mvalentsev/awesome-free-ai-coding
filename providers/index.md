@@ -63,10 +63,14 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | `solar-pro-3`, `solar-mini` | `2026-09-17` |
 | [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) | 🎁 Trials (no card when possible) | `gpt-5.6-luna` | `2026-09-17` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
+| [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-17` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-17` |
+| [Blue Claw Network](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Fireworks AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [RouterPlex](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
+| [abliteration.ai](https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
+| [Impossibl](https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `gemma-4` | `2026-09-17` |
 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny`, `muse-glimmer-30b`, `nemotron-3.5-lightning` | `2026-09-17` |
