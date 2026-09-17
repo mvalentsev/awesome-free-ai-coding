@@ -21,7 +21,7 @@ Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program 
 
 ## Limits, in the vendor's words
 
-Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000 free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way. The ids move under the row without the offer changing: deepseek-v4-flash was re-dated deepseek-v4-flash-0731 and meta/llama-4-maverick-17b-128e-instruct left with every other Llama 4 (read 2026-08-28 — muse-glimmer-30b is the open Meta row hosted in their place), and on 2026-09-02 nemotron-3-nano-30b-a3b had become nemotron-nano-3-30b-a3b, the same model with the version moved into the middle of its name rather than the nemotron-3-nano-omni-30b-a3b-reasoning the catalog carries beside it
+Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000 free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way. The catalog renames ids without notice, so copy them from it rather than from an older guide
 
 ## Connect
 

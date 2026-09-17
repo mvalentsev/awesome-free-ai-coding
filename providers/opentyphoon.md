@@ -28,7 +28,7 @@ Rate limits are the published ceiling — 5 requests per second and 200 per minu
 - Base URL: `https://api.opentyphoon.ai/v1`
 - Key: `OPENTYPHOON_API_KEY` — get one at <https://playground.opentyphoon.ai/api-key>
 - Callable ids: `typhoon-v2.5-30b-a3b-instruct`
-- Note: the one chat id in the keyless catalog on 2026-09-05; the other five rows are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime, typhoon-isan-asr-realtime). typhoon-v2.1-12b-instruct keeps a line in the rate-limit table but has left the catalog. Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai, so it is a Qwen-class coder that also reads Thai; the Free models column stays empty because the FAQ the probe reads names no model
+- Note: the one chat id in the keyless catalog on 2026-09-05; the other five rows are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime, typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai, so it is a Qwen-class coder that also reads Thai; the Free models column stays empty because the FAQ the probe reads names no model
 
 ## Evidence
 

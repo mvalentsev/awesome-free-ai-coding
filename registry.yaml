@@ -149,13 +149,10 @@ entries:
     qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard
     classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the
     two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices
-    (read 2026-09-08). Those thirteen rows are the whole free plan, and no Llama is
-    among them any more: llama-3.3-70b-versatile and llama-3.1-8b-instant were both
-    in the table on 2026-08-14 and are gone from it now, surviving only inside the
-    OpenAPI schema and the response samples the page embeds — where llama-4 has always
-    been, and where this row''s old anchor keyword was matching. Groq calls the table
-    "a high level summary and there may be exceptions", and points at the limits page
-    in an account for the exact figures'
+    (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama
+    among them — the Llama ids in the page''s API samples are not on it. Groq calls
+    the table "a high level summary and there may be exceptions", and points at the
+    limits page in an account for the exact figures'
   models:
   - family: gpt-oss
     released: 2025-08
@@ -861,13 +858,8 @@ entries:
     staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000
     free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA
     publishes no current figure; reports since put the ceiling at a ~40 req/min rate
-    limit instead. Production use needs NVIDIA AI Enterprise either way. The ids move
-    under the row without the offer changing: deepseek-v4-flash was re-dated deepseek-v4-flash-0731
-    and meta/llama-4-maverick-17b-128e-instruct left with every other Llama 4 (read
-    2026-08-28 — muse-glimmer-30b is the open Meta row hosted in their place), and
-    on 2026-09-02 nemotron-3-nano-30b-a3b had become nemotron-nano-3-30b-a3b, the
-    same model with the version moved into the middle of its name rather than the
-    nemotron-3-nano-omni-30b-a3b-reasoning the catalog carries beside it'
+    limit instead. Production use needs NVIDIA AI Enterprise either way. The catalog
+    renames ids without notice, so copy them from it rather than from an older guide'
   models:
   - family: nemotron
     released: 2026-03
@@ -1362,16 +1354,13 @@ entries:
     router
   limits: 'BazaarLink prints the figures on its free page: 10 requests per minute
     and 50 per day, ×1 for an account without credit and ×2 for one that has topped
-    up, against the models it counts as free — "Free Models Right Now 2" on 2026-09-14,
-    one on 2026-08-19. Past the quota "requests on free-quota models continue at the
-    normal paid rate if you have credit; otherwise they are rate-limited until the
-    quota resets"; everything else in the catalog is metered at list rates. The second
-    free id this entry was registered for is gone — deepseek/deepseek-v4-flash:free
-    left between the 2026-08-13 and 2026-08-17 probes, and only the metered deepseek-v4-flash
-    remains. A DeepSeek lane came back by 2026-09-14 under the catalog''s own awkward
-    id, deepseek/deepseek-v4-flash-0731free:free — the re-post-trained 0731 revision,
-    priced 0 and described as "Rate-limited free tier.", which the free page lists
-    as "Deepseek V4 Flash 0731free" at $0 against $0.20/$0.40 — beside a metered deepseek-v4-flash-0731free
+    up, against the models it counts as free. Past the quota "requests on free-quota
+    models continue at the normal paid rate if you have credit; otherwise they are
+    rate-limited until the quota resets"; everything else in the catalog is metered
+    at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek
+    V4 Flash, under the catalog''s own id deepseek/deepseek-v4-flash-0731free:free,
+    described as "Rate-limited free tier." and listed on the free page as "Deepseek
+    V4 Flash 0731free" at $0 against $0.20/$0.40, beside a metered deepseek-v4-flash-0731free
     twin at those rates'
   models:
   - family: qwen3.7-flash
@@ -2063,14 +2052,12 @@ entries:
   card_required: false
   offering: SenseTime's own SenseNova models behind an OpenAI-compatible url, free
     for everyone while the token plan is in public beta
-  limits: 'The plan page still says 公测期完全免费开放，付费档位即将上线 — free during the public beta,
-    paid tiers coming — at ¥0/month, but the unit under it changed between the 2026-08-27
-    probe and the 2026-08-28 one: 每模型 1,500 次调用 / 5 小时 became 60,000 积分 / 5 小时, a
-    rolling 60,000 credits per five hours, still 特殊模型除外, with 最多 20 个 API Key and
-    the tier marked 限时放量. The Free card now names the two models it covers, SenseNova
-    6.8 Flash Lite and SenseNova U1 Fast; the DeepSeek and GLM this row used to claim
-    are on neither the plan page nor sensenova.cn/models. Signup needs a phone number;
-    whether a non-mainland one is accepted could not be verified from any served page'
+  limits: 'The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid
+    tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five
+    hours, 特殊模型除外, with 最多 20 个 API Key and the tier marked 限时放量. The Free card names
+    the two models it covers, SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Signup
+    needs a phone number; whether a non-mainland one is accepted could not be verified
+    from any served page'
   models: []
   api:
     base_url: https://token.sensenova.cn/v1
@@ -2083,8 +2070,6 @@ entries:
       answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable
       ids live only in that JavaScript console, which no probe here can read, so none
       are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone.
-      Beware sensenova-6.7-flash-lite, which third-party lists still carry — the vendor
-      routes it to 6.8 and retires the alias on 2026-08-31
   probe:
     type: page-keywords
     endpoint: https://www.sensenova.cn/token-plan
@@ -2637,10 +2622,9 @@ entries:
     - typhoon-v2.5-30b-a3b-instruct
     note: the one chat id in the keyless catalog on 2026-09-05; the other five rows
       are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime,
-      typhoon-isan-asr-realtime). typhoon-v2.1-12b-instruct keeps a line in the rate-limit
-      table but has left the catalog. Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for
-      Thai, so it is a Qwen-class coder that also reads Thai; the Free models column
-      stays empty because the FAQ the probe reads names no model
+      typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai,
+      so it is a Qwen-class coder that also reads Thai; the Free models column stays
+      empty because the FAQ the probe reads names no model
   probe:
     type: page-keywords
     endpoint: https://docs.opentyphoon.ai/en/faq/
@@ -2936,8 +2920,7 @@ entries:
     nor enterprise-verified gets 30 requests a minute allowed and 20 effective on
     text models (Token Plan FAQ, effective 2026-06-22), and no daily figure is published.
     Image models are free at every resolution too. The terms are governed by Singapore
-    law. Read 2026-09-14; this list had Agnes on its watchlist until then, because
-    agnes-ai.com/pricing and /docs answered 404 — the docs had moved to wiki.agnes-ai.com'
+    law. The docs live on wiki.agnes-ai.com. Read 2026-09-14'
   models:
   - family: agnes-3.0-flash
     tier: strong

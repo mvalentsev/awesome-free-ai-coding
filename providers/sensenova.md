@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-09-17'
-description: SenseTime's own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page still says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month, but the unit under it changed between the 2026-08-27 probe and…
+description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外,…'
 permalink: /providers/sensenova/
 ---
 
@@ -21,13 +21,13 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The plan page still says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month, but the unit under it changed between the 2026-08-27 probe and the 2026-08-28 one: 每模型 1,500 次调用 / 5 小时 became 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, still 特殊模型除外, with 最多 20 个 API Key and the tier marked 限时放量. The Free card now names the two models it covers, SenseNova 6.8 Flash Lite and SenseNova U1 Fast; the DeepSeek and GLM this row used to claim are on neither the plan page nor sensenova.cn/models. Signup needs a phone number; whether a non-mainland one is accepted could not be verified from any served page
+The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外, with 最多 20 个 API Key and the tier marked 限时放量. The Free card names the two models it covers, SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Signup needs a phone number; whether a non-mainland one is accepted could not be verified from any served page
 
 ## Connect
 
 - Base URL: `https://token.sensenova.cn/v1`
 - Key: `SENSENOVA_API_KEY` — get one at <https://platform.sensenova.cn>
-- Note: the base url is not printed on any server-rendered page — it is taken from the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable ids live only in that JavaScript console, which no probe here can read, so none are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone. Beware sensenova-6.7-flash-lite, which third-party lists still carry — the vendor routes it to 6.8 and retires the alias on 2026-08-31
+- Note: the base url is not printed on any server-rendered page — it is taken from the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable ids live only in that JavaScript console, which no probe here can read, so none are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone.
 
 ## Evidence
 
