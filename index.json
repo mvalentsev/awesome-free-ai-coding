@@ -1374,6 +1374,11 @@
           "family": "laguna-s-2.1",
           "tier": "strong",
           "released": "2026-07"
+        },
+        {
+          "family": "ling-3.0-flash-fin",
+          "tier": "strong",
+          "released": "2026-09"
         }
       ],
       "api": {
@@ -1656,6 +1661,16 @@
         },
         {
           "family": "ling-3.0-tiny",
+          "tier": "strong",
+          "released": "2026-08"
+        },
+        {
+          "family": "muse-glimmer-30b",
+          "tier": "strong",
+          "released": "2026-08"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
           "tier": "strong",
           "released": "2026-08"
         }
@@ -1969,6 +1984,7 @@
           "ling-3.0-tiny-free",
           "nemotron-3-ultra-550b-a55b-free",
           "gemma-4-31b-it-free",
+          "agents-a1-free",
           "coding-glm-4.6-free",
           "coding-glm-4.7-free",
           "coding-glm-5-free",
@@ -1994,6 +2010,7 @@
           "gpt-4o-free",
           "gpt-5.5-free",
           "hy3-free",
+          "intern-s2-free",
           "k2.6-code-preview-free",
           "laguna-s-2.1-free",
           "laguna-xs-2.1-free",
@@ -2008,6 +2025,7 @@
           "nemotron-3.5-lightning-free",
           "nemotron-nano-12b-v2-vl-free",
           "nemotron-nano-9b-v2-free",
+          "union-alpha-free",
           "xiaomi-mimo-v2-omni-free",
           "xiaomi-mimo-v2-pro-free",
           "xiaomi-mimo-v2.5-pro-free",
@@ -2020,7 +2038,7 @@
           "gpt-live-transcribe"
         ],
         "anthropic_base_url": "https://aihubmix.com",
-        "note": "every id the catalog prices at 0 is listed or ignored on purpose, 57 rows on 2026-09-16; free ids carry a -free suffix beside a metered twin. ox-alpha is a codename the catalog resolves: \"This model actually points to glm-5.3-flash\". Ignored: gpt-image-2-free and gemini-3.1-flash-image-preview-free generate images, qwen3.6-plus-preview-free says it was \"removed from the platform\", and gpt-live-transcribe is speech-to-text. For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it"
+        "note": "every id the catalog prices at 0 is listed or ignored on purpose, 60 rows on 2026-09-17; free ids carry a -free suffix beside a metered twin. ox-alpha is a codename the catalog resolves: \"This model actually points to glm-5.3-flash\". Ignored: gpt-image-2-free and gemini-3.1-flash-image-preview-free generate images, qwen3.6-plus-preview-free says it was \"removed from the platform\", and gpt-live-transcribe is speech-to-text. For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it"
       },
       "probe": {
         "type": "api-models",

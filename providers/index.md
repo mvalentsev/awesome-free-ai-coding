@@ -63,11 +63,11 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [RouterPlex](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `gemma-4` | `2026-09-17` |
-| [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny` | `2026-09-17` |
+| [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny`, `muse-glimmer-30b`, `nemotron-3.5-lightning` | `2026-09-17` |
 | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | `2026-09-17` |
 | [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b` | `2026-09-17` |
 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6` | `2026-09-17` |
-| [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1` | `2026-09-17` |
+| [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1`, `ling-3.0-flash-fin` | `2026-09-17` |
 | [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) | 🧭 Aggregators (one key, many providers) | `qwen3.7-flash` | `2026-09-17` |
 | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) | 🧭 Aggregators (one key, many providers) | `step-3.7-flash`, `laguna-s-2.1` | `2026-09-17` |
 | [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-nano-omni` | `2026-09-17` |

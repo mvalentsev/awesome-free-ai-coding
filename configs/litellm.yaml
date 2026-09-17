@@ -362,6 +362,11 @@ model_list:
     model: openai/gemma-4-31b-it-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/agents-a1-free
+  litellm_params:
+    model: openai/agents-a1-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: aihubmix/coding-glm-4.6-free
   litellm_params:
     model: openai/coding-glm-4.6-free
@@ -487,6 +492,11 @@ model_list:
     model: openai/hy3-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/intern-s2-free
+  litellm_params:
+    model: openai/intern-s2-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: aihubmix/k2.6-code-preview-free
   litellm_params:
     model: openai/k2.6-code-preview-free
@@ -555,6 +565,11 @@ model_list:
 - model_name: aihubmix/nemotron-nano-9b-v2-free
   litellm_params:
     model: openai/nemotron-nano-9b-v2-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/union-alpha-free
+  litellm_params:
+    model: openai/union-alpha-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: aihubmix/xiaomi-mimo-v2-omni-free

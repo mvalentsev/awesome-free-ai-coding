@@ -271,6 +271,9 @@
         "gemma-4-31b-it-free": {
           "name": "gemma-4-31b-it-free"
         },
+        "agents-a1-free": {
+          "name": "agents-a1-free"
+        },
         "coding-glm-4.6-free": {
           "name": "coding-glm-4.6-free"
         },
@@ -346,6 +349,9 @@
         "hy3-free": {
           "name": "hy3-free"
         },
+        "intern-s2-free": {
+          "name": "intern-s2-free"
+        },
         "k2.6-code-preview-free": {
           "name": "k2.6-code-preview-free"
         },
@@ -387,6 +393,9 @@
         },
         "nemotron-nano-9b-v2-free": {
           "name": "nemotron-nano-9b-v2-free"
+        },
+        "union-alpha-free": {
+          "name": "union-alpha-free"
         },
         "xiaomi-mimo-v2-omni-free": {
           "name": "xiaomi-mimo-v2-omni-free"
