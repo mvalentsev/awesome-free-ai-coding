@@ -1668,6 +1668,65 @@ async def test_a_keyless_lane_that_asks_for_a_key_fails():
         assert f"HTTP {status}" in result.detail
 
 
+def noticed_keyless_entry(since: date) -> Entry:
+    data = keyless_entry().model_dump()
+    data["api"]["notice"] = {"since": since, "text": "Every client but the vendor's own is refused.",
+                             "url": "https://github.com/x/x/issues/1"}
+    return Entry.model_validate(data)
+
+
+@respx.mock
+async def test_a_refusal_the_list_has_put_a_notice_on_is_a_note_while_the_notice_holds():
+    """opencode Zen began refusing every client but OpenCode on 2026-09-17, and
+    OpenCode said nothing. The maintainer chose to wait for its word with a
+    notice on the page, and three runs of FAIL would have archived the row on
+    the Thursday after — overruling that choice by calendar. So a refusal on a
+    lane whose notice still holds is reported beside a row that stays verified
+    by its own page, saying which notice holds it and until when."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(
+        403, json={"type": "error", "error": {"type": "FreeTierError"}}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, noticed_keyless_entry(date(2026, 9, 17)), backoff=0,
+                                   today=date(2026, 9, 21))
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "keyless lane refused" in result.detail and "HTTP 403" in result.detail
+    assert "api.notice of 2026-09-17 holds the row until 2026-10-17" in result.detail
+    entry = noticed_keyless_entry(date(2026, 9, 17))
+    flagged = apply_results([entry], {"keyless": result}, date(2026, 9, 21))
+    assert entry.probe_failures == 0 and entry.last_verified == date(2026, 9, 21)
+    assert [(x.id, r.status) for x, r in flagged] == [("keyless", ProbeStatus.STALE_IDS)]
+
+
+@respx.mock
+async def test_a_notice_past_its_hold_lets_the_refusal_count_again():
+    """A month of silence from a vendor that broke every other client is its
+    answer. Past NOTICE_HOLD_DAYS the refusal fails the row as it would have
+    without the notice, and the failure says the notice has stopped holding."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(403, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, noticed_keyless_entry(date(2026, 9, 17)), backoff=0,
+                                   today=date(2026, 10, 18))
+    assert result.status is ProbeStatus.FAIL
+    assert "api.notice of 2026-09-17 stopped holding on 2026-10-17" in result.detail
+
+
+@respx.mock
+async def test_a_lane_that_answers_again_under_a_notice_asks_for_the_notice_to_come_down():
+    """The notice tells readers the command does not work. The day the lane
+    answers again that sentence is the stale thing on the page, so the run says
+    so instead of passing quietly beside it."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, noticed_keyless_entry(date(2026, 9, 17)), backoff=0,
+                                   today=date(2026, 9, 21))
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gpt-oss-120b answered HTTP 200" in result.detail
+    assert "take down api.notice of 2026-09-17" in result.detail
+
+
 @respx.mock
 async def test_a_bot_wall_on_the_keyless_call_is_not_a_refusal():
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))

@@ -368,3 +368,56 @@ def test_anthropic_base_url_is_the_base_claude_code_appends_to():
     d["api"] = {"base_url": "https://x.ai/v1", "anthropic_base_url": "http://x.ai"}
     with pytest.raises(ValidationError, match="https"):
         Entry.model_validate(d)
+
+
+def test_a_notice_is_a_dated_word_to_readers_about_a_lane():
+    """`api.notice` is the list saying, in its own voice, that a lane it publishes
+    does not work as published right now while it waits for the vendor to say
+    why — opencode Zen started refusing every client but OpenCode on 2026-09-17
+    with no word from OpenCode. It is dated, because a note like this must be
+    able to go stale; it links where the problem is followed, and a link a reader
+    clicks from the README has to be https; and it speaks about a base URL, so
+    the row needs one."""
+    d = sample_entry()
+    d["api"] = {"base_url": "https://x.ai/v1", "auth": "none", "notice": {
+        "since": "2026-09-17", "text": "Every client but the vendor's own is refused.",
+        "url": "https://github.com/x/x/issues/1"}}
+    notice = Entry.model_validate(d).api.notice
+    assert notice.since == date(2026, 9, 17)
+    assert notice.url == "https://github.com/x/x/issues/1"
+    d["api"]["notice"] = {"since": "2026-09-17", "text": "  "}
+    with pytest.raises(ValidationError, match="text"):
+        Entry.model_validate(d)
+    d["api"]["notice"] = {"since": "2026-09-17", "text": "Refused.", "url": "http://x.ai/status"}
+    with pytest.raises(ValidationError, match="https"):
+        Entry.model_validate(d)
+    d["api"] = {"notice": {"since": "2026-09-17", "text": "Refused."}}
+    with pytest.raises(ValidationError, match="base_url"):
+        Entry.model_validate(d)
+
+
+def test_a_notice_holds_for_a_bounded_time_and_then_stops():
+    """A notice that never expires is a dead lane kept on the page by a note
+    nobody revisits. It holds for NOTICE_HOLD_DAYS from its date and not a day
+    longer, and an absent notice holds nothing."""
+    from freetier_radar.models import NOTICE_HOLD_DAYS, Notice, notice_holds
+    notice = Notice(since=date(2026, 9, 17), text="Refused.")
+    assert notice_holds(notice, date(2026, 9, 17))
+    assert notice_holds(notice, date(2026, 9, 17) + timedelta(days=NOTICE_HOLD_DAYS))
+    assert not notice_holds(notice, date(2026, 9, 17) + timedelta(days=NOTICE_HOLD_DAYS + 1))
+    assert not notice_holds(None, date(2026, 9, 17))
+
+
+def test_a_notice_survives_a_registry_round_trip_and_an_absent_one_writes_nothing(tmp_path: Path):
+    d = sample_entry()
+    d["api"] = {"base_url": "https://x.ai/v1", "auth": "none", "notice": {
+        "since": "2026-09-17", "text": "Refused."}}
+    plain = sample_entry()
+    plain["id"], plain["url"] = "plain", "https://plain.ai"
+    plain["api"] = {"base_url": "https://plain.ai/v1"}
+    path = tmp_path / "registry.yaml"
+    save_registry(path, [Entry.model_validate(d), Entry.model_validate(plain)])
+    written = path.read_text(encoding="utf-8")
+    assert written.count("notice:") == 1 and "url: null" not in written
+    loaded = load_registry(path)
+    assert loaded[0].api.notice.text == "Refused." and loaded[1].api.notice is None

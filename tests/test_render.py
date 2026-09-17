@@ -333,7 +333,8 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
                           # the rate limit that pays for the missing key travels
                           # with the snippet: the reader meets it on this call
                           "note": "2 requests per minute, per IP and per model",
-                          "session_header": ""}
+                          "session_header": "",
+                          "notice": None}
 
 
 def test_the_quickstart_curl_sends_the_session_header_its_lane_asks_for(tmp_path: Path):
@@ -995,3 +996,66 @@ def test_the_readme_links_the_browse_page_and_llms_txt(tmp_path: Path):
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     assert "https://mvalentsev.github.io/awesome-free-ai-coding/browse.html" in text
     assert "[`llms.txt`](llms.txt)" in text
+
+
+NOTICE = {"since": "2026-07-18", "text": "The vendor refuses every client but its own.",
+          "url": "https://github.com/zen/zen/issues/1"}
+
+
+def _noticed(**api) -> Entry:
+    return make(id="zen", name="Zen", rank=1, api={
+        "base_url": "https://zen.example/v1", "auth": "none", "model_ids": ["free-a"],
+        "note": "rate-limited per IP", "notice": NOTICE, **api})
+
+
+def test_a_notice_on_the_quickstart_lane_is_a_warning_right_under_the_curl(tmp_path: Path):
+    """The README's first command is where a reader finds out a lane stopped
+    working. When the list knows — opencode Zen refusing every client but
+    OpenCode from 2026-09-17, with the vendor silent — the page says so in a
+    callout directly under the command, dated and linked, above the lane's
+    usual caveat; and a lane with nothing to own up to renders no callout."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [_noticed()])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    quickstart = text.split("No account at all?")[1].split("Liked it?")[0]
+    after_curl = quickstart.split("```bash\n")[1].split("```\n", 1)[1]
+    assert after_curl.startswith(
+        "> [!WARNING]\n"
+        "> **This command does not work right now** — [since 2026-07-18]"
+        "(https://github.com/zen/zen/issues/1). The vendor refuses every client but its own.\n")
+    assert after_curl.index("[!WARNING]") < after_curl.index("rate-limited per IP")
+
+    save_registry(reg, [_noticed(notice=None)])
+    plain = render_readme(reg, Path("templates"), tmp_path / "README2.md", today=TODAY)
+    assert "[!WARNING]" not in plain
+
+
+def test_a_notice_reaches_every_place_that_tells_a_reader_how_to_connect(tmp_path: Path):
+    """A reader copying the base URL from the connection table, landing on the
+    provider page from a search, or asking a model that read llms.txt meets the
+    same lane — so each of them carries the notice, not only the quickstart."""
+    from freetier_radar.render import build_llms_txt, build_provider_page
+    row = _noticed()
+    note = build_context([row], TODAY)["connections"][0]["note"]
+    assert note.startswith("⚠️ <sub>**Does not work as published since "
+                           "[2026-07-18](https://github.com/zen/zen/issues/1).**</sub><br>")
+    assert "The vendor refuses every client but its own." in note
+    assert note.index("refuses every client") < note.index("rate-limited per IP")
+
+    page = build_provider_page(row, [], TODAY)
+    body = page.split("{% raw %}")[1].split("## What you get")[0]
+    assert ("> ⚠️ **Does not work as published since [2026-07-18]"
+            "(https://github.com/zen/zen/issues/1).** The vendor refuses every client but its own."
+            ) in body
+
+    line = next(l for l in build_llms_txt([row], TODAY).splitlines() if l.startswith("- [Zen]"))
+    assert ("no key; does not work as published since 2026-07-18: "
+            "The vendor refuses every client but its own") in line
+
+
+def test_the_quickstart_context_carries_its_notice():
+    quickstart = build_context([_noticed()], TODAY)["quickstart"]
+    assert quickstart["notice"] == {"since": "2026-07-18",
+                                    "text": "The vendor refuses every client but its own.",
+                                    "url": "https://github.com/zen/zen/issues/1"}

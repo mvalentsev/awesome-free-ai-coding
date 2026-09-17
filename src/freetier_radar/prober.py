@@ -6,7 +6,7 @@ import json
 import re
 import uuid
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
 
@@ -14,8 +14,8 @@ import httpx
 
 from .history import record_changes
 from .models import (
-    CHALLENGE_MARKERS, DEAD_MARKERS, Entry, ModelFamily, Probe, ProbeType, load_registry,
-    save_registry,
+    CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, ModelFamily, Probe, ProbeType,
+    load_registry, notice_holds, save_registry,
 )
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
@@ -41,7 +41,8 @@ class ProbeResult:
 
 
 async def probe_entry(client: httpx.AsyncClient, entry: Entry,
-                      attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS) -> ProbeResult:
+                      attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS,
+                      today: date | None = None) -> ProbeResult:
     last = ""
     for i in range(attempts):
         if i:
@@ -66,7 +67,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             # note below; a note of its own waits for them.
             keyless = None
             if entry.api and entry.api.auth == "none" and entry.api.model_ids:
-                keyless = await keyless_lane_verdict(client, entry, attempts, backoff)
+                keyless = await keyless_lane_verdict(client, entry, attempts, backoff,
+                                                     today or date.today())
                 if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
                     return keyless
             # The offer is evidenced. Whether the models the README hangs off it
@@ -217,7 +219,7 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
 
 
 async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts: int,
-                               backoff: float) -> ProbeResult | None:
+                               backoff: float, today: date) -> ProbeResult | None:
     """Whether a lane this list publishes as keyless still answers without a key,
     or None while its first id does.
 
@@ -247,24 +249,41 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
       all. Any other 4xx is about the request rather than the lane: vLLM answers
       404 for a model id that has rotated out, and uncloseai serves one id at a
       time. That, and a lane that could not be reached, is a note beside a row
-      that stays verified, the way a dead id or a missing Anthropic route is."""
+      that stays verified, the way a dead id or a missing Anthropic route is.
+
+    A refusal the list has already owned up to is the one exception. Where the
+    row carries an `api.notice` that still holds, the maintainer has chosen to
+    wait for the vendor's word with a warning on the page — opencode Zen refused
+    every client but OpenCode from 2026-09-17 and said nothing — and three runs
+    of FAIL would overrule that choice by calendar in ten days. So the refusal is
+    a note naming the notice and the day it stops holding, and past that day it
+    fails the row as before. The day a noticed lane answers again the notice is
+    the stale sentence on the page, and the run says to take it down."""
     url = entry.api.base_url.rstrip("/") + "/chat/completions"
     # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
     # answers a call without one with 400, so the call carries a fresh id of its own
     # under this project's user agent, as the vendor asks any client to.
     headers = ({entry.api.session_header: str(uuid.uuid4())}
                if entry.api.session_header else {})
+    notice = entry.api.notice
     tried: list[tuple[str, httpx.Response | str]] = []
     for model in entry.api.model_ids[:KEYLESS_IDS_TRIED]:
         answer = await _keyless_call(client, url, model, headers, attempts, backoff)
         if not isinstance(answer, str) and answer.status_code < 300:
+            take_down = (f"take down api.notice of {notice.since.isoformat()}, which tells readers "
+                         "the lane does not work") if notice else ""
             if not tried:
-                return None
+                if not take_down:
+                    return None
+                return ProbeResult(ProbeStatus.STALE_IDS,
+                                   f"keyless call to {model} answered HTTP {answer.status_code} — "
+                                   + take_down)
             first, first_answer = tried[0]
             return ProbeResult(ProbeStatus.STALE_IDS,
                                f"keyless call to {first} answered {_keyless_said(first_answer)} while "
                                f"{model} answered HTTP {answer.status_code} — the README's curl uses "
-                               f"the first id in api.model_ids, so put {model} first")
+                               f"the first id in api.model_ids, so put {model} first"
+                               + (f", and {take_down}" if take_down else ""))
         tried.append((model, answer))
     first, first_answer = tried[0]
     if isinstance(first_answer, str):
@@ -275,9 +294,18 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
         if challenge is not None:
             return ProbeResult(ProbeStatus.INCONCLUSIVE,
                                f'bot challenge on the keyless call: page says "{challenge}"')
+        refused = (f"keyless lane refused: POST {url} with no key answered "
+                   f"HTTP {first_answer.status_code}")
+        if notice is None:
+            return ProbeResult(ProbeStatus.FAIL, refused)
+        ends = (notice.since + timedelta(days=NOTICE_HOLD_DAYS)).isoformat()
+        if notice_holds(notice, today):
+            return ProbeResult(ProbeStatus.STALE_IDS,
+                               f"{refused} — api.notice of {notice.since.isoformat()} holds the "
+                               f"row until {ends}")
         return ProbeResult(ProbeStatus.FAIL,
-                           f"keyless lane refused: POST {url} with no key answered "
-                           f"HTTP {first_answer.status_code}")
+                           f"{refused} — api.notice of {notice.since.isoformat()} stopped holding "
+                           f"on {ends}")
     if all(not isinstance(a, str) and a.status_code == 429 for _, a in tried):
         return ProbeResult(ProbeStatus.STALE_IDS,
                            "keyless lane rate-limited: " + ", ".join(m for m, _ in tried)
@@ -1072,14 +1100,19 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     entries = load_registry(registry_path)
     sem = asyncio.Semaphore(CONCURRENCY)
 
+    # One date for the whole run: a notice's hold is read against it by the probe
+    # and the verification it earns is stamped with it, and a run that crosses
+    # midnight must not do the two on different days.
+    today = date.today()
+
     async def bounded(entry: Entry) -> ProbeResult:
         async with sem:
-            return await probe_entry(client, entry)
+            return await probe_entry(client, entry, today=today)
 
     async with httpx.AsyncClient(headers=UA) as client:
         outcomes = await asyncio.gather(*(bounded(e) for e in entries))
     results = {e.id: r for e, r in zip(entries, outcomes)}
-    flagged = apply_results(entries, results, date.today())
+    flagged = apply_results(entries, results, today)
     if dry_run:
         # Verification dates are earned in CI, where the probes run from a known
         # address. A local check is for reading, not for recording.

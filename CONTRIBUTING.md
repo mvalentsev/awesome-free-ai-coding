@@ -216,10 +216,31 @@ was the one that never worked. A later id answering is reported as `stale-ids`
 naming it, since the fix is to put it first; every id answering 429 is reported
 as a rate-limited lane. With no id answering, a 401 or 403 on the first is the
 vendor asking for a key and fails the row, which after three runs takes it and
-its command off the page; a bot wall there is `inconclusive`, not a refusal. Any
+its command off the page — unless an `api.notice` holds it, below; a bot wall
+there is `inconclusive`, not a refusal. Any
 other 4xx — vLLM's 404 for a model id that rotated out — and a lane that cannot be
 reached are reported as `stale-ids` beside a row that stays verified. Put the id
 that answers first: that is the one a reader runs.
+
+**`api.notice` is the list owning up to a lane that does not work as
+published.** When a lane breaks in a way its vendor has not explained, and the
+maintainer chooses to wait for the vendor's word rather than take the lane off,
+the row says so to its readers. opencode Zen began answering every free-model
+call that does not come from OpenCode's own app with `403 FreeTierError` on
+2026-09-17, with no docs change and no answer on its issues, while its lane led
+the README. A notice has `since` (the day it started), `text` (what a reader
+runs into, in this list's own words, vendor output in backticks, 500 characters
+at most) and `url` (where the problem is followed). It is printed as a warning
+right under the quickstart curl when the row is the quickstart, first in the
+row's cell of the connection table, above the offer on the provider page and in
+`llms.txt`, and `index.json` carries it as written. On a keyless row it also
+holds a refusal off the failure count for 30 days from `since`: the run reports
+the refusal as `stale-ids` beside a row its own page keeps verified, naming the
+notice and the day it stops holding, and past that day the refusal fails the row
+as it would have without one — a vendor that has said nothing for a month about
+breaking every other client has answered. The day the lane answers again, the
+run asks for the notice to come down. A notice is temporary by construction:
+when the vendor speaks, delete it and change the row to match what it said.
 
 ## How the pipeline works
 

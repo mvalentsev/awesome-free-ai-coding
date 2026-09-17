@@ -13,7 +13,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from .history import (Event, EventType, archive_reason, diff_state, load_history,
                       registry_state, replay)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_DAYS,
-                     WATCH_RECHECK_DAYS, Category, Entry, ProbeType, Tier, Watched,
+                     WATCH_RECHECK_DAYS, Category, Entry, Notice, ProbeType, Tier, Watched,
                      domain_of, is_archived, is_watch_current, live_families,
                      load_registry, load_watchlist)
 
@@ -202,6 +202,14 @@ def _session_note(header: str) -> str:
     return f"`{header}` per conversation"
 
 
+def _notice_since(notice: Notice) -> str:
+    """The notice's date, linked to where the problem is followed when the row
+    names a place — the same idiom as the README's verified dates, which link
+    to their evidence."""
+    since = notice.since.isoformat()
+    return f"[{since}]({notice.url})" if notice.url else since
+
+
 def _model_index(active: list[Entry]) -> list[dict]:
     """Model family → everyone who serves it free, most-served first.
 
@@ -321,11 +329,17 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
     """
     for e in connectable:
         if e.api.auth == "none" and e.api.model_ids:
+            notice = e.api.notice
             return {"name": e.name, "url": e.url,
                     "base_url": e.api.base_url.rstrip("/"),
                     "model_id": e.api.model_ids[0],
                     "note": e.api.note,
-                    "session_header": e.api.session_header or ""}
+                    "session_header": e.api.session_header or "",
+                    # The command stays on the page while the list waits for the
+                    # vendor, so the page says, right under it, that it does not
+                    # work and since when.
+                    "notice": ({"since": notice.since.isoformat(), "text": notice.text,
+                                "url": notice.url or ""} if notice else None)}
     return None
 
 
@@ -427,6 +441,20 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES) -> s
     return "\n".join(out) + "\n"
 
 
+def _connection_note(e: Entry) -> str:
+    """The cell under a provider's name in the connection table: a notice first,
+    since it is what a reader copying the base URL most needs to know, then the
+    note, each folded like the prose columns."""
+    parts = []
+    if e.api.notice:
+        parts.append(f"⚠️ <sub>**Does not work as published since {_notice_since(e.api.notice)}.**</sub>"
+                     "<br>" + _fold(e.api.notice.text, README_NOTE_TEASER, README_NOTE_COLLAPSE,
+                                    small=True))
+    if e.api.note:
+        parts.append(_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True))
+    return "<br>".join(parts)
+
+
 def build_context(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
                   history: list[Event] | None = None) -> dict:
@@ -458,8 +486,7 @@ def build_context(entries: list[Entry], today: date,
                      else f"<br><sub>and {_session_note(e.api.session_header)}</sub>")
                     if e.api.session_header else ""),
          "key_url": e.api.key_url or "",
-         "note": (_fold(e.api.note, README_NOTE_TEASER, README_NOTE_COLLAPSE, small=True)
-                  if e.api.note else "")}
+         "note": _connection_note(e)}
         for e in connectable
     ]
     # The badge dates the evidence, not the render. Using today's date moved it
@@ -546,6 +573,9 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"key from {api.key_url}")
         else:
             parts.append("key required")
+        if api.notice:
+            parts.append(f"does not work as published since {api.notice.since.isoformat()}: "
+                         f"{api.notice.text.rstrip('.')}")
         parts.append(f"{'OpenAI-compatible' if api.openai_compatible else 'API'} at {api.base_url}")
         if api.session_header:
             parts.append(f"every request needs a stable id per conversation in `{api.session_header}`")
@@ -826,6 +856,12 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
         flags.append(live)
     out.append(" · ".join(flags) + f" · [{domain_of(e.url)}]({e.url}) · "
                f"[back to the whole list]({PAGES_URL}/)")
+    if e.api and e.api.notice:
+        # Above the offer, not under Connect: a reader who arrives from a search
+        # about this vendor should not have to scroll to find out the lane the
+        # list publishes does not work right now.
+        out += ["", f"> ⚠️ **Does not work as published since {_notice_since(e.api.notice)}.** "
+                    f"{e.api.notice.text}"]
     out += ["", "## What you get", "", e.offering, ""]
     fams = live_families(e)
     out += ["## Free models", "",

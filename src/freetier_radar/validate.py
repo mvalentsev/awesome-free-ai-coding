@@ -34,7 +34,7 @@ __all__ = ["check", "main"]
 
 # The most a row's prose may run to, in characters: a README cell and a provider
 # page, not a research log.
-PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600}
+PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "api.notice": 500}
 
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
 
@@ -113,7 +113,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
         # build is the quiet kind: the previous deploy keeps serving, so the
         # Atom feed simply stops moving with nothing on the page to say why.
         for field, text in (("offering", e.offering), ("limits", e.limits),
-                            ("name", e.name), ("api.note", e.api.note if e.api else "")):
+                            ("name", e.name), ("api.note", e.api.note if e.api else ""),
+                            ("api.notice", e.api.notice.text if e.api and e.api.notice else "")):
             if "{{" in text or "{%" in text:
                 problems.append(
                     f"registry: {e.id} has Liquid delimiters in {field} — GitHub Pages "
@@ -127,11 +128,18 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for e in entries:
         for field, text, limit in (("offering", e.offering, PROSE_LIMITS["offering"]),
                                    ("limits", e.limits, PROSE_LIMITS["limits"]),
-                                   ("api.note", e.api.note if e.api else "", PROSE_LIMITS["api.note"])):
+                                   ("api.note", e.api.note if e.api else "", PROSE_LIMITS["api.note"]),
+                                   ("api.notice", e.api.notice.text if e.api and e.api.notice else "",
+                                    PROSE_LIMITS["api.notice"])):
             if len(text) > limit:
                 problems.append(
                     f"registry: {e.id} {field} is {len(text)} characters, over {limit} — "
                     f"keep what a reader needs to use the offer, and leave its history to history.jsonl")
+        # A notice records a problem that has started; one dated after today is a
+        # typo, and it would hold a refusal for longer than NOTICE_HOLD_DAYS.
+        if e.api and e.api.notice and e.api.notice.since > today:
+            problems.append(f"registry: {e.id} api.notice is dated {e.api.notice.since.isoformat()}, "
+                            f"after today ({today.isoformat()})")
 
     # ---- registry against blocklist.yaml
     # We list it and we say it must never be proposed. One of the two is wrong.

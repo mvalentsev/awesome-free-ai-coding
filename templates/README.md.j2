@@ -67,6 +67,11 @@ curl -s {{ quickstart.base_url }}/chat/completions \
 {% endif %}
   -d '{"model":"{{ quickstart.model_id }}","messages":[{"role":"user","content":"2+2?"}]}'
 ```
+{% if quickstart.notice %}
+> [!WARNING]
+> **This command does not work right now** — {% if quickstart.notice.url %}[since {{ quickstart.notice.since }}]({{ quickstart.notice.url }}){% else %}since {{ quickstart.notice.since }}{% endif %}. {{ quickstart.notice.text }}
+
+{% endif %}
 {% if quickstart.note %}
 <sub>{{ quickstart.note }}</sub>
 {% endif %}

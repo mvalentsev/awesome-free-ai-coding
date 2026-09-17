@@ -225,6 +225,48 @@ class Probe(BaseModel):
         return self
 
 
+# How long an `api.notice` holds a refused keyless lane off the failure count.
+# Three FAILs archive a row in about ten days; a maintainer who has chosen to wait
+# for a vendor's word needs longer than that, and a vendor that has said nothing
+# for a month about breaking every other client has answered by its silence.
+NOTICE_HOLD_DAYS = 30
+
+
+class Notice(BaseModel):
+    """The list owning up, in its own voice, to a lane that does not work as
+    published while it waits for the vendor to say why.
+
+    opencode Zen began refusing every client but OpenCode itself on 2026-09-17
+    with `403 FreeTierError`, and OpenCode said nothing: no docs change, no
+    answer on the issues. The row could not honestly go on printing its curl as
+    the page's first command without a word, and removing a lane on a change the
+    vendor may yet walk back was a call the maintainer chose to wait on. This is
+    that word — dated, because it must be able to go stale, and linked to where
+    the problem is followed."""
+    since: date
+    text: str
+    url: str | None = None
+
+    @field_validator("text")
+    @classmethod
+    def _text_says_something(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("notice text is empty — say what a reader will run into")
+        return value.strip()
+
+    @field_validator("url")
+    @classmethod
+    def _url_is_https(cls, value: str | None) -> str | None:
+        if value is not None and not value.startswith("https://"):
+            raise ValueError("notice url must be an https URL — a reader clicks it from the README")
+        return value
+
+
+def notice_holds(notice: Notice | None, today: date) -> bool:
+    """Whether a notice still holds a refused lane's row off the failure count."""
+    return notice is not None and (today - notice.since).days <= NOTICE_HOLD_DAYS
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -259,6 +301,19 @@ class ApiInfo(BaseModel):
     # quickstart curl send a fresh id.
     session_header: str | None = None
     note: str = ""
+    # A lane that does not work as published right now, owned up to while the
+    # list waits for the vendor (see Notice). Rendered under the README's
+    # quickstart curl, in the connection table, on the provider page and in
+    # llms.txt; on a keyless row it also holds a refusal off the failure count
+    # for NOTICE_HOLD_DAYS, and the run asks for it to come down the day the
+    # lane answers again.
+    notice: Notice | None = None
+
+    @model_validator(mode="after")
+    def _notice_needs_an_endpoint(self) -> ApiInfo:
+        if self.notice and not self.base_url:
+            raise ValueError("notice speaks about calling base_url, and there is no base_url")
+        return self
 
     @field_validator("session_header")
     @classmethod

@@ -11,6 +11,8 @@ permalink: /providers/opencode/
 
 🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-14; the probe since has not found that evidence, and 3 misses in a row archive the row · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
+> ⚠️ **Does not work as published since [2026-09-17](https://github.com/anomalyco/opencode/issues/49433).** opencode Zen answers every call for a free model that does not come from OpenCode's own app with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`, while OpenCode itself still gets them. OpenCode has not said anything about it yet, so this list keeps the row as it was and waits for its word.
+
 ## What you get
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — callable from other clients too, keyless, with a session header; any provider via BYOK

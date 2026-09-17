@@ -227,3 +227,26 @@ def test_the_announcement_ledger_is_checked_like_the_history(tmp_path: Path):
     problems = check(root, today=date(2026, 9, 6))
     assert any("line 2 lacks key, ts" in p for p in problems)
     assert any("line 3 is not JSON" in p for p in problems)
+
+
+def test_a_notice_is_short_and_not_dated_in_the_future(tmp_path: Path):
+    """A notice sits in a callout under the README's first command and in a
+    table cell: a reader's paragraph, not an incident log. And it records a
+    problem that has started, so a date after today is a typo."""
+    from freetier_radar.validate import PROSE_LIMITS
+    api = {"base_url": "https://x.ai/v1", "auth": "none",
+           "notice": {"since": "2026-08-15", "text": "z" * (PROSE_LIMITS["api.notice"] + 1)}}
+    problems = check(build(tmp_path, entries=[{**ENTRY, "api": api}]), TODAY)
+    assert f"registry: x api.notice is {PROSE_LIMITS['api.notice'] + 1} characters, over " \
+           f"{PROSE_LIMITS['api.notice']} — keep what a reader needs to use the offer, and leave " \
+           "its history to history.jsonl" in problems
+    assert "registry: x api.notice is dated 2026-08-15, after today (2026-08-14)" in problems
+
+
+def test_a_notice_carries_no_liquid_delimiters(tmp_path: Path):
+    """The notice is printed into README.md, which GitHub Pages builds with Jekyll."""
+    api = {"base_url": "https://x.ai/v1", "auth": "none",
+           "notice": {"since": "2026-08-14", "text": "The answer is `{{ error }}`."}}
+    problems = check(build(tmp_path, entries=[{**ENTRY, "api": api}]), TODAY)
+    assert ("registry: x has Liquid delimiters in api.notice — GitHub Pages renders README.md "
+            "with Jekyll and would fail to build it") in problems
