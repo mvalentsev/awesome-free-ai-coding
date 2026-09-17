@@ -20,20 +20,23 @@
 watched:
   - domains: [modelscope.cn, modelscope.ai]
     name: ModelScope (Alibaba)
-    checked_on: '2026-09-16'
+    checked_on: '2026-09-17'
     reason: >-
-      The API-Inference free quota is real and readable now, in the markdown the
-      docs load from resouces.modelscope.cn: calls are paid in 魔粒 — "轻量模型（0.5
-      魔粒/次），主流模型（1 魔粒/次），旗舰模型（2 魔粒/次）" (0.5, 1 or 2 per call by model size) —
-      and an account gets "200 魔粒/日" for signing in and 50 more a day for
-      binding an Alibaba Cloud account, both marked 短期 (short-term). The keyless
-      catalog at api-inference.modelscope.cn/v1/models lists 37 ids.
-      API-Inference needs that Alibaba Cloud account to have passed real-name
-      verification ("对应云账号需已通过实名认证后，才可正常使用API-Inference"), which CONTRIBUTING
-      counts against a row's rank rather than its place on the list. What keeps
-      it off is the probe: the docs sit under a dated release path
-      (2026-9-10_15-4-CN) that the site replaces, while old paths keep
-      answering, so a keyword read there would outlive the offer.
+      The API-Inference free quota is real and readable now, in the markdown
+      the docs load from resouces.modelscope.cn: calls are paid in 魔粒 —
+      "轻量模型（0.5 魔粒/次），主流模型（1 魔粒/次），旗舰模型（2 魔粒/次）" (0.5, 1 or 2 per call by
+      model size) — and an account gets "200 魔粒/日" for signing in and 50
+      more a day for binding an Alibaba Cloud account, both marked 短期
+      (short-term). The grant comes with each day's login (每日登录即可获取，当日有效),
+      and spending 魔粒 first needs a verified personal email
+      (魔粒使用前置要求：完善个人信息，包括提供验证通过的个人邮箱). The keyless catalog at
+      api-inference.modelscope.cn/v1/models lists 35 ids (2026-09-17).
+      API-Inference needs that Alibaba Cloud account to have passed
+      real-name verification ("对应云账号需已通过实名认证后，才可正常使用API-Inference"), which
+      CONTRIBUTING counts against a row's rank rather than its place on the
+      list. What keeps it off is the probe: the docs sit under a dated
+      release path (2026-9-10_15-4-CN) that the site replaces, while old
+      paths keep answering, so a keyword read there would outlive the offer.
     reopen_if: >-
       A stable URL carries the 魔粒 quota, or the probe learns to follow the
       current path from www.modelscope.cn/api/v1/document/main_doc_CN_prod.
@@ -490,19 +493,21 @@ watched:
       the models it covers.
   - domains: [aihorde.net]
     name: AI Horde
-    checked_on: '2026-09-16'
+    checked_on: '2026-09-17'
     reason: >-
       Genuinely free and legitimate — "A free, community-powered generation
       service: volunteers share spare computer power so anyone can generate
-      images and text" — and no longer the wrong shape:
-      oai.aihorde.net/v1/models answers an OpenAI-style model list (2026-09-16).
-      What it serves is a live census of whichever volunteers are online, mostly
-      small roleplay fine-tunes beside builds of Llama 3.2 3B and Gemma 4 31B,
-      with no model a coding agent can count on being there tomorrow and no tool
-      calling documented.
+      images and text" — and OpenAI-shaped at oai.aihorde.net, where anyone
+      may "use the anonymous API key 0000000000 at the lowest priority" (a
+      call with no key at all answers 401). It cannot drive a coding agent:
+      the route's ChatCompletionRequest schema has no tools field, and what
+      it serves is a live census of whichever volunteers are online, mostly
+      small roleplay fine-tunes, with no model an agent can count on being
+      there tomorrow. The route calls itself "a pilot and might be
+      restricted or expanded in the future" (2026-09-17).
     reopen_if: >-
-      AI Horde documents tool calling on its OpenAI route, or publishes a set of
-      models it keeps available.
+      AI Horde's OpenAI route accepts tool definitions, or it publishes a
+      set of models it keeps available.
 
   - domains: [together.ai, together.xyz]
     name: Together AI
@@ -1524,15 +1529,21 @@ watched:
 
   - domains: [mlvoca.com]
     name: mlvoca
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-17'
     reason: >-
-      A GitHub repository (mlvoca/free-llm-api) describes it as "a free llm api
-      to access specific large language models". The site answers 403
-      Forbidden to every fetch — this repository's user agent and a browser's
-      alike, read 2026-09-05 — so no page states who runs it, what it serves or
-      on what terms.
+      The vendor's own repository, github.com/mlvoca/free-llm-api, now names
+      the models and the terms: "a publicly hosted /api/generate endpoint
+      based on the Ollama API" serving TinyLlama and DeepSeek R1 (1.5b),
+      which "currently works without any kind of rate limit or API key", and
+      "Commercial use of this api is not allowed". It names no operator
+      beyond a Proton Mail address, and mlvoca.com still answers 403 to
+      every fetch (2026-09-17). There is nothing here a probe can anchor on
+      that dies with the offer — a README outlives the endpoint it describes
+      — and the endpoint speaks Ollama's generate route rather than chat
+      completions, so the keyless check cannot call it either.
     reopen_if: >-
-      A readable page naming the models and the terms.
+      mlvoca.com serves a readable page about the endpoint, or the service
+      answers an OpenAI-compatible chat completions route.
 
   - domains: [b.ai]
     name: B.AI
