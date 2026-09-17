@@ -31,7 +31,7 @@ Zen prices its free ids at zero and calls each one "available on OpenCode for a 
 - Key: none — the lane is anonymous
 - Session header: `x-opencode-session` — a stable id per conversation on every request, which the calling client sends itself; the generated LiteLLM and opencode configs leave this row out
 - Callable ids: `ling-3.0-flash-fin-free`, `big-pickle`, `mimo-v2.5-free`, `nemotron-3-ultra-free`, `nemotron-3.5-lightning-free`, `muse-spark-1.3-contributor-free`
-- Note: no key needed for the free ids as long as every request carries a stable id per conversation in x-opencode-session; ling-3.0-flash-fin-free answered keyless three times out of three on 2026-09-16 while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError every time. Clients send the header themselves, so the generated LiteLLM and opencode configs leave this row out; inside OpenCode the ids are opencode/<model-id>. muse-spark-1.3-contributor-free is served on /v1/responses only
+- Note: no key needed for the free ids as long as every request carries a stable id per conversation in x-opencode-session; ling-3.0-flash-fin-free answered keyless three times out of three on 2026-09-16 while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError every time. Clients send the header themselves, so the generated LiteLLM and opencode configs leave this row out; inside OpenCode the ids are `opencode/<model-id>`. muse-spark-1.3-contributor-free is served on /v1/responses only
 
 ## Evidence
 

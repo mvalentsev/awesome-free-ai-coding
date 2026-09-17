@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
@@ -37,6 +38,10 @@ __all__ = ["check", "main"]
 PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "api.notice": 500}
 
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
+
+# Text a Markdown renderer takes for an HTML tag: `<` straight into a letter, a
+# slash or a bang. "a < b" is left alone.
+_TAG = re.compile(r"<[A-Za-z/!][^<>]*>")
 
 
 def _domain(url: str) -> str:
@@ -119,6 +124,19 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(
                     f"registry: {e.id} has Liquid delimiters in {field} — GitHub Pages "
                     f"renders README.md with Jekyll and would fail to build it")
+
+    # GitHub's sanitizer drops anything shaped like an HTML tag from README.md, and
+    # Jekyll passes it through to the provider page as markup nobody sees. opencode's
+    # note read "inside OpenCode the ids are opencode/<model-id>" in the registry and
+    # "opencode/." on the page for a week. Inside backticks it is code and survives.
+    for e in entries:
+        for field, text in (("offering", e.offering), ("limits", e.limits), ("name", e.name),
+                            ("api.note", e.api.note if e.api else ""),
+                            ("api.notice", e.api.notice.text if e.api and e.api.notice else "")):
+            for tag in _TAG.findall(re.sub(r"`[^`]*`", "", text)):
+                problems.append(
+                    f"registry: {e.id} {field} has {tag} outside backticks — GitHub drops it from "
+                    f"the page as an HTML tag; put it in backticks")
 
     # A row's prose is for the reader deciding whether to use the offer: the
     # quota, the conditions, what happens to the data. By 2026-09-16 it had become

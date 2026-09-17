@@ -250,3 +250,15 @@ def test_a_notice_carries_no_liquid_delimiters(tmp_path: Path):
     problems = check(build(tmp_path, entries=[{**ENTRY, "api": api}]), TODAY)
     assert ("registry: x has Liquid delimiters in api.notice — GitHub Pages renders README.md "
             "with Jekyll and would fail to build it") in problems
+
+
+def test_prose_keeps_angle_brackets_inside_backticks(tmp_path: Path):
+    """GitHub strips anything shaped like an HTML tag from a README, so opencode's
+    note told readers for a week that its ids inside OpenCode are `opencode/` —
+    the `<model-id>` after the slash was never shown. In backticks it survives."""
+    entry = {**ENTRY, "limits": "ids are opencode/<model-id> inside the app",
+             "api": {"base_url": "https://x.ai/v1", "note": "call `vendor/<model-id>` here"}}
+    problems = check(build(tmp_path, entries=[entry]), TODAY)
+    assert [p for p in problems if "HTML tag" in p] == [
+        "registry: x limits has <model-id> outside backticks — GitHub drops it from the page "
+        "as an HTML tag; put it in backticks"]
