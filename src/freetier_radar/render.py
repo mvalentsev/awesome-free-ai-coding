@@ -24,6 +24,7 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED
            "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
            "build_llms_txt",
            "picks",
+           "SITE_PAGE", "build_site_context", "render_site",
            "render_readme", "render_artifacts", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
@@ -139,10 +140,14 @@ def _fold(text: str, teaser_at: int, collapse_over: int, small: bool = False) ->
     open_, close = ("<sub>", "</sub>") if small else ("", "")
     if len(text) <= collapse_over:
         return f"{open_}{text}{close}"
-    cut = text.rfind(" ", 0, teaser_at)
-    teaser = text[:cut if cut > 0 else teaser_at].rstrip(" ,;:.—-")
-    return (f"<details><summary>{open_}{teaser} …{close}</summary>"
+    return (f"<details><summary>{open_}{_cut(text, teaser_at)} …{close}</summary>"
             f"{open_}{text}{close}</details>")
+
+
+def _cut(text: str, at: int) -> str:
+    """The teaser: a cut at the last word boundary before `at`, never a summary."""
+    cut = text.rfind(" ", 0, at)
+    return text[:cut if cut > 0 else at].rstrip(" ,;:.—-")
 
 
 def provider_page_url(entry_id: str) -> str:
@@ -617,6 +622,254 @@ def build_index(entries: list[Entry], today: date,
             {**w.model_dump(mode="json"), "current": is_watch_current(w, today)}
             for w in (watchlist or [])
         ],
+    }
+
+
+# The site's own front page. GitHub renders README.md with its own Markdown
+# parser; GitHub Pages renders it with kramdown, which does not read Markdown
+# inside a block-level <div>, does not know GitHub's alert syntax, and escapes a
+# <summary> it meets inside a table cell. The README is written for GitHub and
+# stays that way — which is why, served through Jekyll, its whole hero (banner,
+# badges, nav, the counters) arrived as literal `[![pipeline](…)]` text, its
+# warning as the word "[!WARNING]", and every one of its 117 folded cells as a
+# wall of prose.
+#
+# So the site gets a page of its own: index.html at the repository root, which
+# Pages serves in place of the README (jekyll-readme-index only steps in where
+# no index exists). It is rendered from the same registry on the same run as
+# everything else published here and held to it by `freetier-render --check`, so
+# nothing on it is typed by hand and no claim on it can outlive a row.
+SITE_TEMPLATE = "index.html.j2"
+SITE_PAGE = "index.html"
+# What the page's nav bar calls each section. The bar is one line at every width
+# — the tables' sticky headers are positioned under it, and a bar that wrapped
+# would cover the first row of every table — so it carries the short name and
+# the heading it jumps to carries the full one. Beside CATEGORY_TITLES rather
+# than in the template, so a new category is one edit and a test can hold the
+# two dicts to the same keys.
+SITE_NAV_LABELS: dict[Category, str] = {
+    Category.AGENT_CLI: "Agents",
+    Category.API_FREE_TIER: "APIs",
+    Category.TRIAL: "Trials",
+    Category.AGGREGATOR: "Aggregators",
+}
+# Shorter than the README's ten: the page shows the changes as cards rather than
+# table rows, and the feed is one click away under them.
+SITE_CHANGES = 8
+# How fresh the floor date reads in words, beside the colour badge_colour gives
+# it — a colour alone is not an answer for a reader who cannot see it.
+BADGE_WORDS = {BADGE_GREEN: "fresh", BADGE_AMBER: "ageing", BADGE_RED: "stale"}
+
+
+def _site_fold(text: str) -> dict[str, str]:
+    """A long cell as data, not as markup: what the page shows first, and all of
+    it. The template decides the markup and escapes both halves, so a vendor's
+    own sentence — angle brackets, ampersands and all — is data here, the way it
+    is inside the provider pages' `{% raw %}`."""
+    if len(text) <= README_LIMITS_COLLAPSE:
+        return {"text": text, "teaser": ""}
+    return {"text": text, "teaser": f"{_cut(text, README_LIMITS_TEASER)} …"}
+
+
+def _site_row(e: Entry) -> dict:
+    """A row of a section table: the facts, with every judgement already made.
+
+    The same five answers browse.html filters on — card, key, OpenAI-compatible,
+    an Anthropic route, a frontier family — because a reader who narrows the
+    filterable table and a reader who scans this page are asking one question.
+    """
+    families = [m for m in e.models if m.superseded_by is None]
+    api = e.api
+    return {
+        "id": e.id,
+        "name": e.name,
+        "url": e.url,
+        "page": provider_page_url(e.id),
+        "offering": _site_fold(e.offering),
+        "limits": _site_fold(e.limits) if e.limits else None,
+        "models": [{"family": m.family, "tier": m.tier.value if m.tier else ""}
+                   for m in families],
+        "verified": e.last_verified.isoformat(),
+        "card": e.card_required,
+        "provisional": e.provisional,
+        "no_key": bool(api and api.base_url and api.auth == "none"),
+        "openai": bool(api and api.base_url and api.openai_compatible),
+        "claude_code": bool(api and api.anthropic_base_url),
+        "frontier": any(m.tier is Tier.FRONTIER for m in families),
+        # A row whose published lane is known not to work says so where it is
+        # read, not only on its own page: the notice is the one thing a reader
+        # about to copy a base URL needs before the base URL.
+        "notice": ({"since": api.notice.since.isoformat(), "text": api.notice.text,
+                    "url": api.notice.url or ""} if api and api.notice else None),
+    }
+
+
+def _site_sections(active: list[Entry]) -> list[dict]:
+    sections = []
+    for cat, title in CATEGORY_TITLES.items():
+        rows = sorted((e for e in active if e.category is cat),
+                      key=lambda e: (e.rank, e.name.lower()))
+        emoji, _, name = title.partition(" ")
+        no_card = sum(1 for e in rows if not e.card_required)
+        sections.append({
+            "id": cat.value, "emoji": emoji, "title": name, "short": SITE_NAV_LABELS[cat],
+            "rows": [_site_row(e) for e in rows], "count": len(rows),
+            "no_card": no_card, "all_no_card": bool(rows) and no_card == len(rows),
+        })
+    return sections
+
+
+def _site_connections(connectable: list[Entry]) -> list[dict]:
+    """The connection table as data: what to paste, and what the vendor asks
+    every request to carry beside it."""
+    rows = []
+    for e in connectable:
+        asks = []
+        if e.api.client_user_agent:
+            asks.append("your client's own User-Agent")
+        if e.api.session_header:
+            asks.append(f"{e.api.session_header} per conversation")
+        rows.append({
+            "name": e.name, "page": provider_page_url(e.id),
+            "base_url": e.api.base_url, "anthropic_base_url": e.api.anthropic_base_url or "",
+            "keyless": e.api.auth == "none", "env_var": env_var(e.id),
+            "key_url": e.api.key_url or "", "asks": asks,
+            "note": _site_fold(e.api.note) if e.api.note else None,
+            "notice": ({"since": e.api.notice.since.isoformat(), "text": e.api.notice.text,
+                        "url": e.api.notice.url or ""} if e.api.notice else None),
+        })
+    return rows
+
+
+def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
+    gone = sorted((e for e in entries if is_archived(e, today)),
+                  key=lambda e: (_departure(e), e.name.lower()), reverse=True)
+    return [{"name": e.name, "page": provider_page_url(e.id),
+             "when": _departure(e).isoformat(), "why": _site_fold(archive_reason(e, today))}
+            for e in gone]
+
+
+def _site_changes(events: list[Event], entries: list[Entry] | None,
+                  today: date, limit: int = SITE_CHANGES) -> list[dict]:
+    """The same events as the README's table, without its pipe escaping: HTML
+    has no cell separator to protect a vendor's sentence from."""
+    return [{"date": ev.ts.date().isoformat(), "label": CHANGE_LABELS[ev.event],
+             "name": ev.name, "url": _event_link(ev, entries, today),
+             "detail": _event_detail(ev, entries)}
+            for ev in _newest_first(events, limit)]
+
+
+def _site_quickstart(connectable: list[Entry]) -> dict | None:
+    """The README's quickstart with the command itself built here.
+
+    The page shows the curl twice — in the <pre> and in the copy button's
+    attribute — and an attribute is the one place a shell command must not be
+    assembled by a template: this one carries both quote characters, and a
+    fragment Jinja had already marked safe would close the attribute on the
+    first of them. Built as one string, it is escaped correctly in both places.
+    """
+    start = _quickstart(connectable)
+    if start is None:
+        return None
+    lines = [f"curl -s {start['base_url']}/chat/completions \\",
+             "  -H 'Content-Type: application/json' \\"]
+    if start["user_agent"]:
+        lines.append(f"  -H 'User-Agent: {start['user_agent']}' \\")
+    if start["session_header"]:
+        lines.append(f'  -H "{start["session_header"]}: quickstart-$RANDOM$RANDOM" \\')
+    lines.append(f"""  -d '{{"model":"{start['model_id']}","messages":"""
+                 """[{"role":"user","content":"2+2?"}]}'""")
+    return {**start, "curl": "\n".join(lines)}
+
+
+def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
+    """What the page is, for the engines that read structured data rather than
+    prose: a site, and the dataset behind it with the three files it publishes.
+
+    Serialised here instead of in the template because Jinja's autoescaping —
+    which every other value on that page needs — would turn the quotes of a
+    JSON document into entities. `<` is escaped the way JSON allows so the
+    string cannot close the script element that carries it.
+    """
+    graph = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "WebSite", "@id": f"{PAGES_URL}/#website", "url": f"{PAGES_URL}/",
+             "name": "awesome-free-ai-coding", "inLanguage": "en",
+             "description": "Legal free LLM APIs, coding agents and no-card trials for AI "
+                            "coding, machine-verified twice a week."},
+            {"@type": "Dataset", "@id": f"{PAGES_URL}/#dataset",
+             "name": "awesome-free-ai-coding registry",
+             "description": f"{active_count} legal free LLM APIs, coding agents and no-card "
+                            f"trials, each with the free models it serves ({family_count} "
+                            "families), the limits in the vendor's own words and the day a "
+                            "live probe last confirmed it.",
+             "url": f"{PAGES_URL}/", "isAccessibleForFree": True,
+             "license": "https://opensource.org/licenses/MIT",
+             "dateModified": today.isoformat(),
+             "creator": {"@type": "Person", "name": "mvalentsev",
+                         "url": "https://github.com/mvalentsev"},
+             "keywords": ["free LLM API", "free tier", "AI coding agent", "no credit card",
+                          "OpenAI-compatible", "Claude Code", "free models"],
+             "distribution": [
+                 {"@type": "DataDownload", "encodingFormat": "application/json",
+                  "contentUrl": f"{PAGES_URL}/index.json"},
+                 {"@type": "DataDownload", "encodingFormat": "text/plain",
+                  "contentUrl": f"{PAGES_URL}/llms.txt"},
+                 {"@type": "DataDownload", "encodingFormat": "application/atom+xml",
+                  "contentUrl": FEED_URL},
+             ]},
+        ],
+    }
+    return json.dumps(graph, ensure_ascii=False, indent=2).replace("<", "\\u003c")
+
+
+def build_site_context(entries: list[Entry], today: date,
+                       watchlist: list[Watched] | None = None,
+                       history: list[Event] | None = None) -> dict:
+    """Everything index.html shows, derived from the registry the README is.
+
+    Deliberately a second reading of the same entries rather than a reshaping of
+    `build_context`: that context is Markdown — folded cells, backticked ids,
+    escaped pipes — and an HTML page that unpicked it would be one renderer's
+    output squeezed through another's, which is the very failure this page
+    exists to end.
+    """
+    active = [e for e in entries if not is_archived(e, today)]
+    connectable = _connectable(entries, today)
+    verified_through = min((e.last_verified for e in active), default=today)
+    colour = badge_colour(verified_through, today)
+    model_index = _model_index(active)
+    return {
+        "date": today.isoformat(),
+        "sections": _site_sections(active),
+        "verified_through": verified_through.isoformat(),
+        "verified_colour": colour,
+        "verified_word": BADGE_WORDS[colour],
+        "active_count": len(active),
+        "no_card_count": sum(1 for e in active if not e.card_required),
+        "card_count": sum(1 for e in active if e.card_required),
+        "no_signup_count": sum(1 for e in connectable if e.api.auth == "none"),
+        "endpoint_count": len(connectable),
+        "family_count": len(model_index),
+        "jsonld": _site_jsonld(len(active), len(model_index), today),
+        "model_index": model_index,
+        "starters": _starters(active),
+        "picks": _picks(active, connectable),
+        "quickstart": _site_quickstart(connectable),
+        "connections": _site_connections(connectable),
+        "archived": _site_archived_rows(entries, today),
+        "changes": _site_changes(history or [], entries, today),
+        "watch_count": sum(1 for w in (watchlist or []) if is_watch_current(w, today)),
+        "checked_url": checked_page_url(),
+        "providers_url": f"{PAGES_URL}/{PROVIDERS_DIR}/",
+        "archive_after_failures": ARCHIVE_AFTER_FAILURES,
+        "archive_after_days": ARCHIVE_AFTER_DAYS,
+        "watch_recheck_days": WATCH_RECHECK_DAYS,
+        "has_provisional": any(e.provisional for e in active),
+        "feed_url": FEED_URL,
+        "pages_url": PAGES_URL,
+        "repo_url": REPO_URL,
     }
 
 
@@ -1152,6 +1405,34 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
     return text
 
 
+def render_site(registry_path: Path, template_dir: Path, out_path: Path,
+                today: date | None = None, watchlist_path: Path | None = None) -> str:
+    """index.html — what the Pages site serves at its root.
+
+    Autoescaping is the whole difference from the README's environment: every
+    string on this page is a vendor's own sentence, a model id or a URL read out
+    of the registry, and the one thing an HTML page must never do is hand a
+    reader markup a vendor wrote. The provider pages get the same guarantee from
+    `{% raw %}`; here Jinja gives it.
+    """
+    today = today or date.today()
+    env = Environment(
+        loader=FileSystemLoader(template_dir),
+        undefined=StrictUndefined,
+        autoescape=True,
+        keep_trailing_newline=True,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    entries, history = load_registry(registry_path), _history_beside(registry_path)
+    refuse_deleted_rows(entries, history)
+    context = build_site_context(entries, today,
+                                 _watchlist_beside(registry_path, watchlist_path), history)
+    text = env.get_template(SITE_TEMPLATE).render(**context)
+    out_path.write_text(text, encoding="utf-8")
+    return text
+
+
 def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                      watchlist_path: Path | None = None) -> None:
     """index.json + configs/ + feed.xml — the machine-usable outputs, regenerated
@@ -1248,6 +1529,8 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
         # curated ones and not against a copy of them.
         render_readme(registry_path, template_dir, tmp / readme_name, today=pinned,
                       watchlist_path=watchlist_path)
+        render_site(registry_path, template_dir, tmp / SITE_PAGE, today=pinned,
+                    watchlist_path=watchlist_path)
         render_artifacts(registry_path, tmp, today=pinned, watchlist_path=watchlist_path)
         fresh = {p.relative_to(tmp).as_posix(): p.read_bytes()
                  for p in tmp.rglob("*") if p.is_file()}
@@ -1278,7 +1561,7 @@ def main() -> None:
                                watchlist_path=args.watchlist)
         for rel in stale:
             print(f"stale: {rel}")
-        print(f"checked {args.out}, index.json, feed.xml, llms.txt, configs/, "
+        print(f"checked {args.out}, {SITE_PAGE}, index.json, feed.xml, llms.txt, configs/, "
               f"{PROVIDERS_DIR}/ — {len(stale)} out of date")
         if stale:
             # The remedy is one command and it is the same one every time, so
@@ -1288,5 +1571,7 @@ def main() -> None:
             raise SystemExit(1)
         return
     render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
+    render_site(args.registry, args.templates, root / SITE_PAGE, watchlist_path=args.watchlist)
     render_artifacts(args.registry, root, watchlist_path=args.watchlist)
-    print(f"rendered {args.out}, index.json, feed.xml, llms.txt, configs/, {PROVIDERS_DIR}/")
+    print(f"rendered {args.out}, {SITE_PAGE}, index.json, feed.xml, llms.txt, configs/, "
+          f"{PROVIDERS_DIR}/")

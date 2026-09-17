@@ -13,6 +13,10 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
+### **[🌐 Read this list as a website →]({{ pages_url }}/)**
+
+<sub>The same rows, rendered for a browser: folded cells that fold, a filter box, dark mode, and a page of its own for every provider.</sub>
+
 **[🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔎 Filter the list]({{ pages_url }}/browse.html) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 </div>
@@ -169,6 +173,7 @@ Ready-made artifacts, regenerated on every update:
 | [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and `claude-openrouter-free` runs [Claude Code](https://code.claude.com/docs) on that lane, key and model filled in |
 | [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint — without `--host` the proxy listens on every interface, and the file sets no master key |
 | [`llms.txt`](llms.txt) | The whole list as one text file for LLM search and agents — every live offer with its page, what it needs (card, key) and where it answers — [served on the site]({{ pages_url }}/llms.txt) |
+| [the website]({{ pages_url }}/) | This page as a web page — rendered from the same registry on the same run, with the folds working, a filter box and a link to every provider's page |
 | [`browse.html`]({{ pages_url }}/browse.html) | The list as a filterable table — category, no card, no key, OpenAI-compatible, Claude Code route, frontier models — reading `index.json` in the browser |
 | [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
 | [`history.jsonl`](history.jsonl) · [feed]({{ feed_url }}) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |

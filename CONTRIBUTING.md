@@ -320,6 +320,17 @@ Jekyll writes canonical URLs and a sitemap. **Never edit them by hand** — the
 render rewrites every one, an archived row's included, and the body sits inside
 `{% raw %}` so a vendor's own sentence can never break the build.
 
+[`index.html`](index.html) is the site's own front page, rendered from the
+registry by the same command from [`templates/index.html.j2`](templates/index.html.j2)
+— **never edit it by hand.** It exists because GitHub Pages renders Markdown
+with kramdown, which does not read Markdown inside a block-level `<div>`, does
+not know GitHub's alert syntax and escapes a `<summary>` inside a table cell: the
+README is written for GitHub's own renderer, so served through Jekyll its whole
+hero arrived as literal `[![badge](…)]` text and every folded cell as a wall of
+prose. The README keeps its GitHub features, the site gets HTML, and
+`freetier-render --check` holds both to the same registry. `_config.yml` leaves
+`README.md` out of the site for the same reason.
+
 `llms.txt` is generated with them — the whole list as one text file, in the
 shape LLM search and agents read — and `browse.html` is a hand-written static
 page that reads `index.json` in the browser, so it changes only when a field

@@ -63,7 +63,7 @@ jobs:
         run: |
           git config user.name "freetier-bot"
           git config user.email "freetier-bot@users.noreply.github.com"
-          git add registry.yaml README.md index.json feed.xml llms.txt history.jsonl configs providers
+          git add registry.yaml README.md index.html index.json feed.xml llms.txt history.jsonl configs providers
           if git diff --staged --quiet; then
             echo "pushed=false" >> "$GITHUB_OUTPUT"
           else

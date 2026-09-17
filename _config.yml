@@ -1,7 +1,10 @@
-# GitHub Pages builds this repository with Jekyll (the README is served at the
-# root by jekyll-readme-index). This file names the site so jekyll-seo-tag can
-# write canonical URLs and jekyll-sitemap a sitemap, gives every generated
-# provider page the theme's layout, and keeps the source tree off the site.
+# GitHub Pages builds this repository with Jekyll. The root is index.html,
+# rendered from the registry by `freetier-render` — the README is written for
+# GitHub's own Markdown renderer, and kramdown serves it with its hero as raw
+# text and every folded cell unfolded, so it is excluded here rather than
+# published half-rendered. This file names the site so jekyll-seo-tag can write
+# canonical URLs and jekyll-sitemap a sitemap, gives every generated provider
+# page the theme's layout, and keeps the source tree off the site.
 title: awesome-free-ai-coding
 description: "Legal free LLM APIs & coding agents — self-updating, probe-verified twice a week. Free tiers, no-card trials, free models, one page per provider."
 url: https://mvalentsev.github.io
@@ -10,10 +13,11 @@ theme: jekyll-theme-primer
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-readme-index
   - jekyll-optional-front-matter
   - jekyll-relative-links
 exclude:
+  # Served as index.html instead — see the note at the top of this file.
+  - README.md
   - src
   - tests
   - templates

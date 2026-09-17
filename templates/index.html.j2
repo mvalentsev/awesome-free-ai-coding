@@ -1,0 +1,718 @@
+{# index.html — the front page of the Pages site, rendered from registry.yaml by
+   `freetier-render` and compared with the committed file by `--check`. The
+   README is the same registry written for GitHub's own Markdown renderer; this
+   is it written for a browser, with the folds, the dark theme and the structured
+   data that a Markdown file served through kramdown cannot carry. Nothing here
+   is typed by hand: every figure, row and model id comes out of the registry on
+   the run that renders it. #}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free LLM APIs &amp; AI coding agents — {{ active_count }} verified free tiers</title>
+<meta name="description" content="{{ active_count }} legal free LLM APIs, coding agents and no-card trials for AI coding — {{ no_card_count }} need no card, {{ no_signup_count }} need no signup. Machine-verified twice a week against live APIs and pricing pages, with the limits in each vendor's own words.">
+<link rel="canonical" href="{{ pages_url }}/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="awesome-free-ai-coding">
+<meta property="og:title" content="Free LLM APIs &amp; AI coding agents — {{ active_count }} verified free tiers">
+<meta property="og:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified twice a week. {{ no_card_count }} of {{ active_count }} rows need no card; {{ no_signup_count }} need no signup at all.">
+<meta property="og:url" content="{{ pages_url }}/">
+<meta property="og:image" content="{{ pages_url }}/assets/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free LLM APIs &amp; AI coding agents — {{ active_count }} verified free tiers">
+<meta name="twitter:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified twice a week.">
+<meta name="twitter:image" content="{{ pages_url }}/assets/social-preview.png">
+<link rel="alternate" type="application/atom+xml" title="awesome-free-ai-coding changes" href="{{ feed_url }}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{{ jsonld | safe }}
+</script>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff; --surface: #f6f8fa; --raised: #ffffff; --fg: #1f2328; --muted: #59636e;
+  --line: #d1d9e0; --line-soft: #e4e8ed; --accent: #0969da; --accent-2: #8250df;
+  --ok: #1a7f37; --ok-bg: #dafbe1; --warn: #9a6700; --warn-bg: #fff8c5; --danger: #cf222e;
+  --chip: #eef2f6; --shadow: 0 1px 2px rgba(31,35,40,.08), 0 3px 12px rgba(31,35,40,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117; --surface: #161b22; --raised: #12171e; --fg: #e6edf3; --muted: #9198a1;
+    --line: #3d444d; --line-soft: #272c33; --accent: #4493f8; --accent-2: #ab7df8;
+    --ok: #3fb950; --ok-bg: #12261e; --warn: #d29922; --warn-bg: #272115; --danger: #f85149;
+    --chip: #1c2229; --shadow: 0 1px 2px rgba(1,4,9,.5), 0 4px 16px rgba(1,4,9,.4);
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+}
+code, kbd { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  overflow-wrap: anywhere; }
+h2 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 6px; letter-spacing: -.01em; }
+h3 { font-size: 1.05rem; margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--bg); padding: 10px 14px; }
+.skip:focus { left: 8px; top: 8px; z-index: 50; box-shadow: var(--shadow); }
+
+/* ── hero ─────────────────────────────────────────────────────────────── */
+.hero { padding: 40px 0 24px; background:
+  radial-gradient(1100px 380px at 50% -140px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
+  border-bottom: 1px solid var(--line-soft); text-align: center; }
+.hero img.banner { width: min(100%, 720px); height: auto; }
+.lede { font-size: 1.15rem; color: var(--fg); max-width: 760px; margin: 18px auto 14px; }
+.lede b { font-weight: 650; }
+.meta { color: var(--muted); font-size: .9rem; margin: 0 0 18px; }
+.dot { display: inline-block; width: .6em; height: .6em; border-radius: 50%; vertical-align: baseline; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 26px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--raised); color: var(--fg); font-weight: 550;
+  font-size: .94rem; box-shadow: var(--shadow); cursor: pointer;
+}
+.btn:hover { text-decoration: none; border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { color: #fff; filter: brightness(1.08); }
+.stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; list-style: none;
+  margin: 0; padding: 0; }
+.stats li { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 12px;
+  padding: 14px 8px; }
+.stats b { display: block; font-size: 1.7rem; line-height: 1.1; letter-spacing: -.02em; }
+.stats span { color: var(--muted); font-size: .8rem; }
+
+/* ── sticky nav ───────────────────────────────────────────────────────── */
+.nav { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--line-soft); }
+/* One line at every width: it is what a section anchor is offset against
+   (scroll-padding-top), and a bar that wrapped to two rows would land every
+   jump on top of the section it jumped to. Too many links to fit scroll. */
+.nav .wrap { display: flex; align-items: center; gap: 16px; flex-wrap: nowrap; overflow-x: auto;
+  min-height: 52px; scrollbar-width: none; }
+.nav .wrap::-webkit-scrollbar { display: none; }
+.nav a { color: var(--fg); font-size: .92rem; font-weight: 500; white-space: nowrap; }
+.nav a:hover { color: var(--accent); text-decoration: none; }
+.nav a .n { color: var(--muted); font-size: .8rem; }
+.nav form { margin-left: auto; display: none; }
+.nav input { width: 210px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--fg); font: inherit; font-size: .88rem; }
+
+/* ── sections ─────────────────────────────────────────────────────────── */
+section { padding: 44px 0 4px; }
+section > .wrap > header { margin-bottom: 18px; }
+.sub { color: var(--muted); font-size: .92rem; margin: 0; }
+.grid { display: grid; gap: 14px; }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 14px;
+  padding: 16px 18px; }
+.card h3 { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  font-weight: 600; margin-bottom: 10px; }
+.card .who { font-weight: 600; }
+.card ul { margin: 0; padding: 0; list-style: none; }
+.card li + li { margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line-soft); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+.chip { font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--chip); border: 1px solid var(--line-soft); border-radius: 6px; padding: 1px 6px;
+  color: var(--fg); }
+.chip.top { border-color: color-mix(in srgb, var(--accent-2) 55%, var(--line));
+  color: var(--accent-2); }
+
+/* ── tables ───────────────────────────────────────────────────────────── */
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--raised); }
+table.rows { border-collapse: collapse; width: 100%; min-width: 940px; font-size: .93rem; }
+table.rows th, table.rows td { text-align: left; vertical-align: top; padding: 11px 13px;
+  border-top: 1px solid var(--line-soft); }
+/* Not sticky, deliberately. Inside a horizontally scrollable wrapper a sticky
+   header resolves against that wrapper rather than the viewport — it leaves its
+   own height as a blank strip at the top of the table — and where it does
+   resolve against the viewport it rides the bottom edge of a table that has
+   scrolled past, leaving a header floating over an empty box at every section
+   boundary. The narrow view carries the column names on the cells instead. */
+table.rows thead th { background: var(--surface); border-top: 0;
+  border-bottom: 1px solid var(--line); font-size: .78rem; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--muted); white-space: nowrap; }
+table.rows tbody tr:hover { background: color-mix(in srgb, var(--accent) 5%, transparent); }
+th.who { width: 20%; font-weight: 600; }
+th.who a.name { font-size: 1rem; }
+td.what { width: 30%; }
+td.models { width: 19%; }
+td.limits { width: 25%; font-size: .86rem; color: var(--muted); }
+td.when { width: 6%; white-space: nowrap; font-size: .86rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.tag { font-size: 11.5px; line-height: 1.6; padding: 0 7px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.tag.card { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, var(--line)); }
+.tag.nokey { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.tag.new { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.tag.front { color: var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 45%, var(--line)); }
+details > summary { cursor: pointer; list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::after { content: " ▸"; color: var(--muted); font-size: .8em; }
+details[open] > summary::after { content: " ▾"; }
+details > summary:hover { color: var(--accent); }
+details .full { display: block; margin-top: 6px; }
+.notice { display: block; margin-top: 6px; padding: 6px 9px; border-radius: 8px;
+  background: var(--warn-bg); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent);
+  color: var(--fg); font-size: .84rem; }
+.notice b { color: var(--warn); }
+
+/* ── code, callouts, footer ───────────────────────────────────────────── */
+.code { position: relative; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px 16px; overflow-x: auto; }
+.code pre { margin: 0; font: 13.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.copy { position: absolute; top: 8px; right: 8px; font-size: 12px; padding: 4px 9px;
+  border-radius: 6px; border: 1px solid var(--line); background: var(--raised); color: var(--muted); }
+.copy:hover { color: var(--accent); border-color: var(--accent); cursor: pointer; }
+.callout { border-left: 3px solid var(--warn); background: var(--warn-bg); padding: 12px 14px;
+  border-radius: 0 10px 10px 0; margin: 14px 0; font-size: .92rem; }
+.files { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.files th, .files td { text-align: left; vertical-align: top; padding: 10px 12px;
+  border-top: 1px solid var(--line-soft); }
+.files th { width: 26%; white-space: nowrap; font-weight: 600; }
+.changes { list-style: none; margin: 0; padding: 0; }
+.changes li { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line-soft);
+  font-size: .93rem; }
+.changes time { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.changes .label { white-space: nowrap; }
+footer { margin-top: 56px; padding: 28px 0 40px; border-top: 1px solid var(--line-soft);
+  color: var(--muted); font-size: .9rem; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: space-between; }
+.empty { color: var(--muted); font-style: italic; }
+.hidden { display: none !important; }
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .cols-3, .cols-2 { grid-template-columns: 1fr; }
+  h2 { font-size: 1.35rem; }
+}
+@media (max-width: 760px) {
+  .scroll { border: 0; border-radius: 0; overflow: visible; }
+  table.rows { min-width: 0; display: block; }
+  table.rows thead { display: none; }
+  table.rows tbody, table.rows tr, table.rows th, table.rows td { display: block; width: auto; }
+  table.rows tr { border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+    margin-bottom: 12px; background: var(--raised); }
+  table.rows th, table.rows td { border-top: 0; padding: 7px 0 0; }
+  table.rows td::before { content: attr(data-label); display: block; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
+  td.what, td.models, td.limits, td.when, th.who { width: auto; }
+  /* The two-column tables (the files, the model index) stack the same way: a
+     26% column of file names never survives a phone, and `nowrap` on it pushed
+     the whole page sideways. */
+  .files, .files tbody, .files tr, .files th, .files td { display: block; width: auto; }
+  .files tr { border-top: 1px solid var(--line-soft); padding: 10px 0; }
+  .files th, .files td { border-top: 0; padding: 0; white-space: normal; }
+  .files td { color: var(--muted); font-size: .88rem; margin-top: 2px; }
+  .nav form { display: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#start">Skip to the list</a>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+      <img class="banner" src="assets/banner-light.svg" width="1160" height="300"
+           alt="awesome-free-ai-coding — legal free LLM APIs and coding agents, probe-verified">
+    </picture>
+    <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
+      free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages;
+      an offer that dies drops to the <a href="#archive">Archive</a> on the run that finds it gone.</p>
+    <p class="meta">
+      <span class="dot" style="background:#{{ verified_colour }}"></span>
+      every row verified <b>{{ verified_through }}</b> or later ({{ verified_word }})
+      · {{ active_count }} live offers · MIT · no tracking, no ads, no affiliate links
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#start">Start here</a>
+      <a class="btn" href="browse.html">🔎 Filter the list</a>
+      <a class="btn" href="{{ repo_url }}">★ GitHub</a>
+      <a class="btn" href="{{ feed_url }}">📡 Atom feed</a>
+      <a class="btn" href="llms.txt">🤖 llms.txt</a>
+    </div>
+    <ul class="stats">
+      <li><b>{{ active_count }}</b><span>live offers</span></li>
+      <li><b>{{ no_card_count }}</b><span>need no card</span></li>
+      <li><b>{{ no_signup_count }}</b><span>need no signup</span></li>
+      <li><b>{{ endpoint_count }}</b><span>OpenAI-compatible</span></li>
+      <li><b>{{ family_count }}</b><span>free model families</span></li>
+    </ul>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a href="#start">🚀 Start</a>
+    {# Short labels: the bar is one line by design (the sticky table headers are
+       positioned under it), and the section's own heading carries its full name. #}
+    {% for s in sections %}
+    <a href="#{{ s.id }}">{{ s.emoji }} {{ s.short }} <span class="n">{{ s.count }}</span></a>
+    {% endfor %}
+    <a href="#plug">🔧 Plug it in</a>
+    <a href="#machinery">📡 How it works</a>
+    <a href="#archive">📦 Archive</a>
+    <form id="findform" role="search" onsubmit="return false">
+      <input id="find" type="search" placeholder="Filter rows…" aria-label="Filter rows on this page">
+    </form>
+  </div>
+</nav>
+
+<main>
+
+<section id="start">
+  <div class="wrap">
+    <header>
+      <h2>🚀 Start here</h2>
+      <p class="sub">Free is not the same as weak. Everything below runs on a $0 plan.</p>
+    </header>
+
+    {% if starters %}
+    <div class="grid cols-2">
+      {% for s in starters %}
+      <div class="card">
+        <h3>Agent · no card</h3>
+        <div class="who"><a href="{{ s.url }}">{{ s.name }}</a></div>
+        <div class="chips">
+          {% for f in s.families %}<span class="chip">{{ f }}</span>{% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="sub" style="margin-top:12px">Every model name here is read back from the vendor's own
+      API or pricing page twice a week, and the quota that comes with it is in
+      <a href="#agent-cli">the agents table</a>.</p>
+    {% endif %}
+
+    <div class="grid cols-3" style="margin-top:22px">
+      {% if picks.frontier %}
+      <div class="card">
+        <h3>Frontier models, $0</h3>
+        <ul>
+          {% for p in picks.frontier %}
+          <li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span>
+            <div class="chips">{% for f in p.families %}<span class="chip top">{{ f }}</span>{% endfor %}</div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% if picks.apis %}
+      <div class="card">
+        <h3>An API key that gets the most done</h3>
+        <ul>{% for p in picks.apis %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+      {% if picks.aggregators %}
+      <div class="card">
+        <h3>One key, many free models</h3>
+        <ul>{% for p in picks.aggregators %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+      {% if picks.keyless %}
+      <div class="card">
+        <h3>No account at all</h3>
+        <ul>{% for p in picks.keyless %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+      {% if picks.trials %}
+      <div class="card">
+        <h3>A trial that asks for no card</h3>
+        <ul>{% for p in picks.trials %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+      {% if picks.claude_code %}
+      <div class="card">
+        <h3>Claude Code on a free lane</h3>
+        <ul>{% for p in picks.claude_code %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
+      </div>
+      {% endif %}
+    </div>
+    <p class="sub" style="margin-top:12px">“Frontier” is a tier measured on the
+      <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
+      Index</a> — the model a row's free lane serves scores within 10 points of its top, re-read
+      twice a week. Every other answer is the section's own ranking,
+      <a href="{{ repo_url }}/blob/main/CONTRIBUTING.md#how-rows-are-ordered">explained in
+      CONTRIBUTING</a>; each list is the top of its section, so a row that stops verifying leaves
+      these cards on the same run it leaves the list.</p>
+
+    {% if quickstart %}
+    <h3 style="margin-top:26px">No account at all? Paste this.</h3>
+    <p class="sub" style="margin-bottom:10px"><a href="{{ quickstart.url }}">{{ quickstart.name }}</a>
+      answers in the terminal you already have open — a rate-limited lane to prove this page is live,
+      not a setup to write code on.</p>
+    <div class="code">
+      <button class="copy" type="button" data-copy="{{ quickstart.curl }}" hidden>Copy</button>
+      <pre>{{ quickstart.curl }}</pre>
+    </div>
+    {% if quickstart.notice %}
+    <div class="callout"><b>⚠️ This command does not work right now</b> —
+      {% if quickstart.notice.url %}<a href="{{ quickstart.notice.url }}">since {{ quickstart.notice.since }}</a>{% else %}since {{ quickstart.notice.since }}{% endif %}.
+      {{ quickstart.notice.text }}</div>
+    {% endif %}
+    {% if quickstart.note %}
+    <p class="sub" style="margin-top:10px">{{ quickstart.note }}</p>
+    {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{% for s in sections %}
+<section id="{{ s.id }}" class="listing">
+  <div class="wrap">
+    <header>
+      <h2>{{ s.emoji }} {{ s.title }}</h2>
+      {% if s.rows %}
+      <p class="sub"><b>{{ s.count }}</b> live ·
+        {% if s.all_no_card %}not one of them asks for a card{% else %}<b>{{ s.no_card }}</b> of them ask for no card{% endif %}
+        · sorted by how much work you can get done for free<span class="shown"></span></p>
+      {% endif %}
+    </header>
+    {% if s.rows %}
+    <div class="scroll">
+      <table class="rows">
+        <thead>
+          <tr>
+            <th scope="col">Tool</th>
+            <th scope="col">What you get</th>
+            <th scope="col">Free models</th>
+            <th scope="col">Limits, in the vendor's words</th>
+            <th scope="col">Verified</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in s.rows %}
+          <tr>
+            <th class="who" scope="row">
+              <a class="name" href="{{ r.url }}">{{ r.name }}</a>
+              <div class="tags">
+                {% if r.card %}<span class="tag card">💳 card</span>{% endif %}
+                {% if r.no_key %}<span class="tag nokey">no key</span>{% endif %}
+                {% if r.provisional %}<span class="tag new">🧪 new</span>{% endif %}
+                {% if r.frontier %}<span class="tag front">frontier</span>{% endif %}
+                {% if r.claude_code %}<span class="tag">Claude Code</span>{% endif %}
+              </div>
+              {% if r.notice %}
+              <span class="notice"><b>Does not work as published</b> since
+                {% if r.notice.url %}<a href="{{ r.notice.url }}">{{ r.notice.since }}</a>{% else %}{{ r.notice.since }}{% endif %}.</span>
+              {% endif %}
+            </th>
+            <td class="what" data-label="What you get">
+              {% if r.offering.teaser %}
+              <details><summary>{{ r.offering.teaser }}</summary><span class="full">{{ r.offering.text }}</span></details>
+              {% else %}{{ r.offering.text }}{% endif %}
+            </td>
+            <td class="models" data-label="Free models">
+              {% if r.models %}
+              <div class="chips">
+                {% for m in r.models %}<span class="chip{{ ' top' if m.tier == 'frontier' }}">{{ m.family }}</span>{% endfor %}
+              </div>
+              {% else %}<span class="empty">—</span>{% endif %}
+            </td>
+            <td class="limits" data-label="Limits, in the vendor's words">
+              {% if r.limits %}
+                {% if r.limits.teaser %}
+                <details><summary>{{ r.limits.teaser }}</summary><span class="full">{{ r.limits.text }}</span></details>
+                {% else %}{{ r.limits.text }}{% endif %}
+              {% else %}<span class="empty">—</span>{% endif %}
+            </td>
+            <td class="when" data-label="Verified">
+              <a href="{{ r.page }}"><time datetime="{{ r.verified }}">{{ r.verified }}</time></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="empty">Nothing verified right now.</p>
+    {% endif %}
+  </div>
+</section>
+{% endfor %}
+
+{% if model_index %}
+<section id="models">
+  <div class="wrap">
+    <header>
+      <h2>🧠 Looking for one model in particular?</h2>
+      <p class="sub">{{ family_count }} model families, and everyone who serves each one free.</p>
+    </header>
+    <div class="scroll" style="padding: 4px 16px">
+      <details>
+        <summary>Show the model index</summary>
+        <table class="files" style="margin-top:8px">
+          <tbody>
+            {% for m in model_index %}
+            <tr>
+              <th scope="row"><code>{{ m.family }}</code></th>
+              <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ ", " if not loop.last }}{% endfor %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="plug">
+  <div class="wrap">
+    <header>
+      <h2>🔧 Plug it into your agent</h2>
+      <p class="sub">Connection details for every live OpenAI-compatible API above — paste the base
+        URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK. Where a second URL is shown,
+        the same key also serves the Anthropic Messages format: that one is Claude Code's
+        <code>ANTHROPIC_BASE_URL</code>, and the probe checks it answers.</p>
+    </header>
+    <div class="scroll">
+      <table class="rows">
+        <thead>
+          <tr>
+            <th scope="col">Provider</th>
+            <th scope="col">Base URL</th>
+            <th scope="col">Key</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in connections %}
+          <tr>
+            <th class="who" scope="row"><a class="name" href="{{ c.page }}">{{ c.name }}</a></th>
+            <td class="what" data-label="Base URL">
+              <code>{{ c.base_url }}</code>
+              <button class="copy" type="button" data-copy="{{ c.base_url }}" hidden
+                      style="position:static;margin-left:6px">Copy</button>
+              {% if c.anthropic_base_url %}
+              <div class="sub" style="margin-top:6px">Anthropic format: <code>{{ c.anthropic_base_url }}</code></div>
+              {% endif %}
+            </td>
+            <td class="models" data-label="Key">
+              {% if c.keyless %}<span class="tag nokey">none — the lane is anonymous</span>
+              {% else %}<code>{{ c.env_var }}</code>
+                {% if c.key_url %}<div class="sub" style="margin-top:6px"><a href="{{ c.key_url }}">get a key</a></div>{% endif %}
+              {% endif %}
+              {% if c.asks %}
+              <div class="sub" style="margin-top:6px">also sends {% for a in c.asks %}{{ a }}{{ " and " if not loop.last }}{% endfor %}</div>
+              {% endif %}
+            </td>
+            <td class="limits" data-label="Notes">
+              {% if c.notice %}
+              <span class="notice"><b>Does not work as published</b> since
+                {% if c.notice.url %}<a href="{{ c.notice.url }}">{{ c.notice.since }}</a>{% else %}{{ c.notice.since }}{% endif %}.
+                {{ c.notice.text }}</span>
+              {% endif %}
+              {% if c.note %}
+                {% if c.note.teaser %}
+                <details><summary>{{ c.note.teaser }}</summary><span class="full">{{ c.note.text }}</span></details>
+                {% else %}{{ c.note.text }}{% endif %}
+              {% elif not c.notice %}<span class="empty">—</span>{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:26px">Ready-made files, regenerated on every update</h3>
+    <table class="files">
+      <tbody>
+        <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/opencode.json">configs/opencode.json</a></th>
+          <td>Drop-in <a href="https://opencode.ai">opencode</a> config with every provider wired up — keys via <code>{env:…}</code>, keyless endpoints work immediately.</td></tr>
+        <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/free-llm.env.example">configs/free-llm.env.example</a></th>
+          <td>Commented env exports for any OpenAI-compatible tool.</td></tr>
+        <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
+          <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and <code>claude-openrouter-free</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane.</td></tr>
+        <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model behind one local endpoint. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
+        <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
+          <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
+        <tr><th scope="row"><a href="index.json">index.json</a></th>
+          <td>The machine-readable registry: every row with its connection details, models, limits and verdicts.</td></tr>
+        <tr><th scope="row"><a href="browse.html">browse.html</a></th>
+          <td>The same rows as a filterable table — category, no card, no key, OpenAI-compatible, Claude Code route, frontier models.</td></tr>
+        <tr><th scope="row"><a href="{{ feed_url }}">feed.xml</a></th>
+          <td>Atom feed of every change: rows arriving, rows leaving, free-model lists moving.</td></tr>
+        <tr><th scope="row"><a href="{{ providers_url }}">providers/</a></th>
+          <td>One page per row — the offer in the vendor's own words, the connection details, the evidence the probe reads and the row's history.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="machinery">
+  <div class="wrap">
+    <header>
+      <h2>📡 How this list stays fresh</h2>
+      <p class="sub">A scheduled job calls every provider twice a week and rewrites this page from
+        what it finds — there is no hand-maintained copy of any figure on it.</p>
+    </header>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Probed, not remembered</h3>
+        <p class="sub">Every row anchors on something that dies with the offer: a model id in the
+          vendor's own <code>/models</code>, or wording on the page that states the free tier. A row
+          that fails {{ archive_after_failures }} probes in a row, or goes {{ archive_after_days }}
+          days without a pass, drops to the Archive.</p>
+      </div>
+      <div class="card">
+        <h3>The vendor's own words</h3>
+        <p class="sub">The limits column quotes the page it was read from, with the date. No figure
+          here is a summary of a summary, and a quote that stops matching its source is re-read
+          before it is edited.</p>
+      </div>
+      <div class="card">
+        <h3>Legal free only</h3>
+        <p class="sub">Free is by the vendor's own account — a catalog flag or a published price of
+          zero. Anything running on pooled consumer accounts, reverse-engineered clients or spoofed
+          apps is refused, and the reason is published with it.</p>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:14px">
+      {% if watch_count %}<b>{{ watch_count }}</b> services were checked and are not listed — each
+      with the reason on the day it was read and what would change the answer:
+      <a href="{{ checked_url }}">the whole list of them</a>. Nothing there is disqualified, and
+      every verdict expires after {{ watch_recheck_days }} days. {% endif %}
+      Rules, ordering and how to send a row: <a href="{{ repo_url }}/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>.
+      {% if has_provisional %}A <span class="tag new">🧪 new</span> row was added recently on fresh
+      evidence and is provisional until two weeks of probes confirm it.{% endif %}
+    </p>
+  </div>
+</section>
+
+<section id="archive">
+  <div class="wrap">
+    <header>
+      <h2>📦 Archive</h2>
+      <p class="sub">Rows this list carried and carries no more, each with why it left — kept so a
+        dead tier is never silently forgotten. A row is never deleted from the registry.</p>
+    </header>
+    {% if archived %}
+    <div class="scroll">
+      <table class="rows">
+        <thead>
+          <tr><th scope="col">Tool</th><th scope="col">Why it left</th><th scope="col">Left</th></tr>
+        </thead>
+        <tbody>
+          {% for r in archived %}
+          <tr>
+            <th class="who" scope="row"><a class="name" href="{{ r.page }}">{{ r.name }}</a></th>
+            <td class="what" data-label="Why it left" style="width:auto">
+              {% if r.why.teaser %}
+              <details><summary>{{ r.why.teaser }}</summary><span class="full">{{ r.why.text }}</span></details>
+              {% else %}{{ r.why.text }}{% endif %}
+            </td>
+            <td class="when" data-label="Left"><time datetime="{{ r.when }}">{{ r.when }}</time></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="empty">Empty — the radar is clean.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% if changes %}
+<section id="changes">
+  <div class="wrap">
+    <header>
+      <h2>🕰 What changed</h2>
+      <p class="sub">The last {{ changes | length }} registry events. The rest is an
+        <a href="{{ feed_url }}">Atom feed</a> and an append-only
+        <a href="{{ repo_url }}/blob/main/history.jsonl">history.jsonl</a>.</p>
+    </header>
+    <ul class="changes">
+      {% for c in changes %}
+      <li>
+        <time datetime="{{ c.date }}">{{ c.date }}</time>
+        <span class="label">{{ c.label }}</span>
+        <span><a href="{{ c.url }}">{{ c.name }}</a>{% if c.detail %} — {{ c.detail }}{% endif %}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Rendered from <a href="{{ repo_url }}/blob/main/registry.yaml">registry.yaml</a> on
+      <time datetime="{{ date }}">{{ date }}</time> · MIT</span>
+    <span><a href="{{ repo_url }}">GitHub</a> · <a href="{{ repo_url }}/blob/main/CONTRIBUTING.md">Contribute a row</a>
+      · <a href="{{ feed_url }}">Atom</a> · <a href="browse.html">Filterable table</a>
+      · <a href="#top">Back to top</a></span>
+  </div>
+</footer>
+
+<script>
+// Progressive enhancement only: the page is complete without a line of this.
+(function () {
+  "use strict";
+  // Copy buttons — hidden in the markup so a browser without the clipboard API
+  // never shows a control that does nothing.
+  if (navigator.clipboard) {
+    document.querySelectorAll("button.copy").forEach(function (button) {
+      button.hidden = false;
+      button.addEventListener("click", function () {
+        navigator.clipboard.writeText(button.dataset.copy).then(function () {
+          var was = button.textContent;
+          button.textContent = "Copied";
+          setTimeout(function () { button.textContent = was; }, 1200);
+        });
+      });
+    });
+  }
+  // Type-to-narrow over the rows already in the page. browse.html is the full
+  // filter (category, card, key, wire format); this is the one-box version for
+  // a reader who arrived knowing the name or the model they want.
+  var find = document.getElementById("find");
+  if (!find) { return; }
+  document.getElementById("findform").style.display = "block";
+  var listings = [].map.call(document.querySelectorAll("section.listing"), function (section) {
+    return {
+      section: section,
+      shown: section.querySelector(".shown"),
+      rows: [].map.call(section.querySelectorAll("tbody tr"), function (row) {
+        return { row: row, text: row.textContent.toLowerCase() };
+      })
+    };
+  });
+  function narrow() {
+    var needle = find.value.trim().toLowerCase();
+    listings.forEach(function (listing) {
+      var kept = 0;
+      listing.rows.forEach(function (entry) {
+        var match = !needle || entry.text.indexOf(needle) !== -1;
+        entry.row.classList.toggle("hidden", !match);
+        if (match) { kept += 1; }
+      });
+      if (listing.shown) {
+        listing.shown.textContent = needle
+          ? " · " + kept + " of " + listing.rows.length + " match “" + needle + "”"
+          : "";
+      }
+      listing.section.classList.toggle("hidden", needle !== "" && kept === 0);
+    });
+  }
+  find.addEventListener("input", narrow);
+  narrow();
+})();
+</script>
+</body>
+</html>

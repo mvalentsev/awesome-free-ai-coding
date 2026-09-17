@@ -216,11 +216,12 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     stopped saying, until the next scheduled run happens to fix it. CI rendered
     to /tmp to prove rendering works and compared nothing."""
     from freetier_radar.models import save_registry
-    from freetier_radar.render import check_rendered
+    from freetier_radar.render import SITE_PAGE, check_rendered, render_site
 
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="x", name="X"), make(id="gone", name="Gone")])
     render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    render_site(reg, Path("templates"), tmp_path / SITE_PAGE, today=TODAY)
     render_artifacts(reg, tmp_path, today=TODAY)
     assert check_rendered(reg, Path("templates"), tmp_path) == []
 
@@ -232,6 +233,8 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     save_registry(reg, [make(id="x", name="Renamed"), make(id="gone", name="Gone")])
     stale = check_rendered(reg, Path("templates"), tmp_path)
     assert "README.md" in stale and "index.json" in stale and "providers/x.md" in stale
+    # The site's front page is generated and committed like the rest of them.
+    assert SITE_PAGE in stale
 
     # A row dropped from the registry leaves its page behind, and the page is
     # served: the check has to see a file the render no longer makes, not only
