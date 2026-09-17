@@ -55,6 +55,10 @@ class Missing:
     entry_id: str
     field: str
     quote: str
+    # Not on the pages that answered, while another of the row's sources did not
+    # answer at all. Qodo's terms page refuses some reads with 403 and serves the
+    # next, and a refused read made its quote look like a vendor rewording.
+    unverified: bool = False
 
 
 def flatten(text: str) -> str:
@@ -146,7 +150,7 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient
             unread[entry.id] = failed
         for field, quote in quotes:
             if not quote_found(quote, pages):
-                missing.append(Missing(entry.id, field, quote))
+                missing.append(Missing(entry.id, field, quote, unverified=bool(failed)))
     return missing, unread
 
 
@@ -160,11 +164,19 @@ async def _amain(registry: Path, ids: list[str]) -> int:
         for line in lines:
             print(f"  {entry_id}: source not read — {line}")
     for m in missing:
-        print(f"  {m.entry_id} {m.field}: not on its sources — \"{m.quote}\"")
+        if m.unverified:
+            print(f"  {m.entry_id} {m.field}: unverified — not on the sources that answered, and "
+                  f"{'; '.join(unread[m.entry_id])} — \"{m.quote}\"")
+        else:
+            print(f"  {m.entry_id} {m.field}: not on its sources — \"{m.quote}\"")
     checked = sum(len(row_quotes(e)) for e in entries
                   if e.retired_on is None and not is_archived(e, date.today()))
-    print(f"checked {checked} quotes in {len(entries)} rows — {len(missing)} not found on the rows' own sources")
-    return len(missing)
+    confirmed = [m for m in missing if not m.unverified]
+    unverified = len(missing) - len(confirmed)
+    print(f"checked {checked} quotes in {len(entries)} rows — {len(confirmed)} not found on the rows' own sources"
+          + (f", {unverified} unverified because a source did not answer" if unverified else ""))
+    # A refused read is a reason to read again, not a quote to rewrite.
+    return len(confirmed)
 
 
 def main() -> None:

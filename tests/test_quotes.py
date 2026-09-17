@@ -89,3 +89,32 @@ async def test_a_source_that_does_not_answer_is_said_so_beside_the_quotes_it_cou
     assert [m.quote for m in missing] == ["one million free tokens a day"]
     assert sorted(unread["vendor"]) == ["https://vendor.example/docs: ConnectError",
                                         "https://vendor.example/pricing: HTTP 404"]
+
+
+@respx.mock
+async def test_a_quote_missing_while_a_source_did_not_answer_is_unverified_not_missing(tmp_path, capsys):
+    """Qodo's terms page answers some reads with 403 and the next with 200. On
+    2026-09-17 a full run happened to be refused and counted the terms quote as
+    "not on its sources", which reads as the vendor having changed its words — a
+    row edit — when nothing had changed but which read got through. A quote the
+    pages that answered do not carry is unverified while another source of the
+    row did not answer, and the run says which of the two it is."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.quotes import _amain
+    respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(403))
+    respx.get("https://vendor.example/docs").mock(
+        return_value=httpx.Response(200, text="one million free tokens a day"))
+    entry = quoted_entry('"one million free tokens a day" and "a sentence only the pricing page has"')
+    async with httpx.AsyncClient() as client:
+        missing, unread = await check_entries([entry], client)
+    assert [(m.quote, m.unverified) for m in missing] == [
+        ("a sentence only the pricing page has", True)]
+
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [entry])
+    assert await _amain(registry, []) == 0
+    out = capsys.readouterr().out
+    assert ('  vendor limits: unverified — not on the sources that answered, and '
+            'https://vendor.example/pricing: HTTP 403 — "a sentence only the pricing page has"') in out
+    assert out.rstrip().endswith("checked 2 quotes in 1 rows — 0 not found on the rows' own sources, "
+                                 "1 unverified because a source did not answer")

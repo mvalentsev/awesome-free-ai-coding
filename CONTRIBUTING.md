@@ -327,7 +327,10 @@ characters to 813, most of it dated lane counts, and the README to 260 KB.
 **A phrase in quotation marks is a claim that the vendor published those words.**
 `freetier-quotes` fetches a row's `source_urls`, its probe endpoint and its
 catalog, and reports every quote of three words or more that none of them
-carries; the fix is the vendor's exact words or a source URL that has them. On
+carries; the fix is the vendor's exact words or a source URL that has them. A
+quote the pages that answered do not carry, while another of the row's sources
+did not answer, is reported as unverified rather than missing — Qodo's terms
+page refuses some reads with 403 and serves the next — and read again later. On
 2026-09-16 it found MegaNova quoting a sign-up line its pages never had and
 LLMTR promising a privacy guarantee its policy does not make. What an endpoint
 or a client answered — an error body, a refusal, a status line — is not a
