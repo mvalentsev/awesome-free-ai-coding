@@ -334,6 +334,7 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
                           # with the snippet: the reader meets it on this call
                           "note": "2 requests per minute, per IP and per model",
                           "session_header": "",
+                          "user_agent": "",
                           "notice": None}
 
 
@@ -1059,3 +1060,43 @@ def test_the_quickstart_context_carries_its_notice():
     assert quickstart["notice"] == {"since": "2026-07-18",
                                     "text": "The vendor refuses every client but its own.",
                                     "url": "https://github.com/zen/zen/issues/1"}
+
+
+def _own_ua(**api) -> Entry:
+    return make(id="zen", name="Zen", rank=1, api={
+        "base_url": "https://zen.example/v1", "auth": "none", "model_ids": ["free-a"],
+        "session_header": "x-zen-session", "client_user_agent": True, **api})
+
+
+def test_the_quickstart_curl_names_its_own_user_agent_where_the_lane_asks_for_one(tmp_path: Path):
+    """curl sends `curl/8.x` unless told otherwise — exactly the "generic SDK or
+    HTTP-library name" OpenCode's client rules exclude — so a README command for
+    such a lane would break the vendor's rules as printed. It names itself, and a
+    lane that does not ask for it keeps the shorter command."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import QUICKSTART_USER_AGENT
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [_own_ua()])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    curl = text.split("```bash\n")[1].split("```")[0]
+    assert f"  -H 'User-Agent: {QUICKSTART_USER_AGENT}' \\\n" in curl
+    assert curl.index("User-Agent") < curl.index("x-zen-session")
+    assert QUICKSTART_USER_AGENT.split("/")[0] and "/" in QUICKSTART_USER_AGENT
+
+    save_registry(reg, [_own_ua(client_user_agent=False)])
+    plain = render_readme(reg, Path("templates"), tmp_path / "README2.md", today=TODAY)
+    assert "User-Agent" not in plain.split("```bash\n")[1].split("```")[0]
+
+
+def test_every_place_that_tells_a_reader_how_to_connect_names_both_headers():
+    from freetier_radar.render import build_llms_txt, build_provider_page
+    row = _own_ua()
+    auth = build_context([row], TODAY)["connections"][0]["auth"]
+    assert "your client's own `User-Agent`" in auth and "`x-zen-session` per conversation" in auth
+
+    page = build_provider_page(row, [], TODAY)
+    assert ("- User-Agent: your client's own name and version, such as `my-coding-agent/1.0` — not an "
+            "SDK's or an HTTP library's") in page
+
+    line = next(l for l in build_llms_txt([row], TODAY).splitlines() if l.startswith("- [Zen]"))
+    assert "every request names its client in its own User-Agent" in line

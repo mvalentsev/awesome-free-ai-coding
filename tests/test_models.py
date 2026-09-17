@@ -421,3 +421,16 @@ def test_a_notice_survives_a_registry_round_trip_and_an_absent_one_writes_nothin
     assert written.count("notice:") == 1 and "url: null" not in written
     loaded = load_registry(path)
     assert loaded[0].api.notice.text == "Refused." and loaded[1].api.notice is None
+
+
+def test_a_lane_that_wants_the_client_s_own_user_agent_says_so_on_a_row_with_an_endpoint():
+    """OpenCode's client rules ask for two headers, not one: "Identify itself
+    with its own user agent, such as my-coding-agent/1.0, rather than a generic
+    SDK or HTTP-library name" beside the stable session id. The field says a lane
+    asks for that, and it says how to call a base URL, so the row needs one."""
+    d = sample_entry()
+    d["api"] = {"base_url": "https://x.ai/v1", "client_user_agent": True}
+    assert Entry.model_validate(d).api.client_user_agent is True
+    d["api"] = {"client_user_agent": True}
+    with pytest.raises(ValidationError, match="base_url"):
+        Entry.model_validate(d)

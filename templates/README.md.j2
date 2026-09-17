@@ -62,6 +62,9 @@
 ```bash
 curl -s {{ quickstart.base_url }}/chat/completions \
   -H 'Content-Type: application/json' \
+{% if quickstart.user_agent %}
+  -H 'User-Agent: {{ quickstart.user_agent }}' \
+{% endif %}
 {% if quickstart.session_header %}
   -H "{{ quickstart.session_header }}: quickstart-$RANDOM$RANDOM" \
 {% endif %}

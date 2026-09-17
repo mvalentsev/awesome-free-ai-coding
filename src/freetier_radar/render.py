@@ -70,6 +70,10 @@ README_STARTERS = 4
 # How many names answer each "I want…" line of the picks table. Three reads as
 # a choice; a fourth is the section itself, which starts one heading down.
 README_PICKS = 3
+# What the README's quickstart curl calls itself on a lane that asks every client
+# for a User-Agent of its own: the command is this page's, so it says so, in the
+# name/version shape the vendors' own example uses.
+QUICKSTART_USER_AGENT = "awesome-free-ai-coding-quickstart/1.0"
 
 # The freshness badge carries the age of the *oldest* live verification, and
 # its colour has to be able to disagree with it. Probes run Mondays and
@@ -335,6 +339,7 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
                     "model_id": e.api.model_ids[0],
                     "note": e.api.note,
                     "session_header": e.api.session_header or "",
+                    "user_agent": QUICKSTART_USER_AGENT if e.api.client_user_agent else "",
                     # The command stays on the page while the list waits for the
                     # vendor, so the page says, right under it, that it does not
                     # work and since when.
@@ -441,6 +446,20 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES) -> s
     return "\n".join(out) + "\n"
 
 
+def _auth_cell(e: Entry) -> str:
+    """What a client sends to be let in: the key, or none, and whatever else the
+    vendor asks every request to carry."""
+    cell = "—" if e.api.auth == "none" else f"`{env_var(e.id)}`"
+    asks = []
+    if e.api.client_user_agent:
+        asks.append("your client's own `User-Agent`")
+    if e.api.session_header:
+        asks.append(_session_note(e.api.session_header))
+    if not asks:
+        return cell
+    return cell + "<br><sub>" + ("" if e.api.auth == "none" else "and ") + " and ".join(asks) + "</sub>"
+
+
 def _connection_note(e: Entry) -> str:
     """The cell under a provider's name in the connection table: a notice first,
     since it is what a reader copying the base URL most needs to know, then the
@@ -480,11 +499,7 @@ def build_context(entries: list[Entry], today: date,
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "anthropic_base_url": e.api.anthropic_base_url or "",
-         "auth": ("—" if e.api.auth == "none" else f"`{env_var(e.id)}`")
-                 + ((f"<br><sub>{_session_note(e.api.session_header)}</sub>"
-                     if e.api.auth == "none"
-                     else f"<br><sub>and {_session_note(e.api.session_header)}</sub>")
-                    if e.api.session_header else ""),
+         "auth": _auth_cell(e),
          "key_url": e.api.key_url or "",
          "note": _connection_note(e)}
         for e in connectable
@@ -577,6 +592,8 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"does not work as published since {api.notice.since.isoformat()}: "
                          f"{api.notice.text.rstrip('.')}")
         parts.append(f"{'OpenAI-compatible' if api.openai_compatible else 'API'} at {api.base_url}")
+        if api.client_user_agent:
+            parts.append("every request names its client in its own User-Agent")
         if api.session_header:
             parts.append(f"every request needs a stable id per conversation in `{api.session_header}`")
         if api.anthropic_base_url:
@@ -881,6 +898,9 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
             if e.api.key_url:
                 key += f" — get one at <{e.api.key_url}>"
             out.append(key)
+        if e.api.client_user_agent:
+            out.append("- User-Agent: your client's own name and version, such as `my-coding-agent/1.0` — not an "
+                       "SDK's or an HTTP library's, which the vendor asks clients not to send")
         if e.api.session_header:
             out.append(f"- Session header: `{e.api.session_header}` — a stable id per "
                        "conversation on every request, which the calling client sends itself; "

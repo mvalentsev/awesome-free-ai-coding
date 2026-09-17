@@ -317,6 +317,13 @@ class ApiInfo(BaseModel):
     # connect names the header, and the keyless probe and the README's
     # quickstart curl send a fresh id.
     session_header: str | None = None
+    # The vendor asks every client to name itself in the User-Agent. OpenCode's
+    # client rules read "Identify itself with its own user agent, such as
+    # my-coding-agent/1.0, rather than a generic SDK or HTTP-library name" beside
+    # the session id, and curl left to itself sends curl/8.x — so the README's
+    # command names itself, and every place that tells a reader how to connect
+    # says their client must too. Written only where set.
+    client_user_agent: bool = Field(default=False, exclude_if=lambda v: not v)
     note: str = ""
     # A lane that does not work as published right now, owned up to while the
     # list waits for the vendor (see Notice). Rendered under the README's
@@ -325,6 +332,12 @@ class ApiInfo(BaseModel):
     # for NOTICE_HOLD_DAYS, and the run asks for it to come down the day the
     # lane answers again.
     notice: Notice | None = None
+
+    @model_validator(mode="after")
+    def _client_user_agent_needs_an_endpoint(self) -> ApiInfo:
+        if self.client_user_agent and not self.base_url:
+            raise ValueError("client_user_agent says how to call base_url, and there is no base_url")
+        return self
 
     @model_validator(mode="after")
     def _notice_needs_an_endpoint(self) -> ApiInfo:

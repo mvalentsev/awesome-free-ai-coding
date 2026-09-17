@@ -214,6 +214,16 @@ provider, so a row that sets the field is left out of `litellm.yaml` and
 `llms.txt` name the header, and the keyless check below and the README's
 quickstart curl send a fresh id in it.
 
+**`api.client_user_agent` is for a lane that asks every client to name itself.**
+OpenCode's client rules ask for two headers, not one: "Identify itself with its
+own user agent, such as my-coding-agent/1.0, rather than a generic SDK or
+HTTP-library name", beside the session id above. curl left to itself sends
+`curl/8.x`, exactly the name those rules exclude, so on a row that sets the field
+the README's quickstart curl sends `User-Agent: awesome-free-ai-coding-quickstart/1.0`,
+and the connection table, the provider page and `llms.txt` tell the reader their
+client must send one of its own. The keyless check always calls under this
+project's own `freetier-radar/0.2`.
+
 **`api.auth: none` is checked by calling the lane without a key.** On a row that
 sets it, the missing key is the offer: the README's zero-signup curl and its "No
 account at all" answer are both built from that field, with the first id in
