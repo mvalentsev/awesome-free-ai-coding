@@ -65,6 +65,16 @@ claude-opper() {
   claude "$@"
 }
 
+# ── Moark (Gitee AI) · get a key: https://moark.com/dashboard/tokens
+#    free ids: deepseek-v4-flash-0731
+claude-moark() {
+  ANTHROPIC_BASE_URL="https://moark.com/anthropic" \
+  ANTHROPIC_AUTH_TOKEN="$MOARK_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="deepseek-v4-flash-0731" \
+  claude "$@"
+}
+
 # ── Tencent Cloud TokenHub · get a key: https://console.cloud.tencent.com/tokenhub/apikey
 #    free ids: kimi-k3, glm-5.3, hy3, minimax-m3
 claude-tencent-tokenhub() {

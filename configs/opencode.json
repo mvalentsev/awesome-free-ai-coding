@@ -918,6 +918,19 @@
         }
       }
     },
+    "moark": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Moark (Gitee AI)",
+      "options": {
+        "baseURL": "https://api.moark.com/v1",
+        "apiKey": "{env:MOARK_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-flash-0731": {
+          "name": "deepseek-v4-flash-0731"
+        }
+      }
+    },
     "sarvam": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Sarvam AI",

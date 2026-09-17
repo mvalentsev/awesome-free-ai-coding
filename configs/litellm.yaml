@@ -1012,6 +1012,11 @@ model_list:
     model: openai/agnes-2.5-flash
     api_base: https://apihub.agnes-ai.com/v1
     api_key: os.environ/AGNES_AI_API_KEY
+- model_name: moark/deepseek-v4-flash-0731
+  litellm_params:
+    model: openai/deepseek-v4-flash-0731
+    api_base: https://api.moark.com/v1
+    api_key: os.environ/MOARK_API_KEY
 - model_name: sarvam/sarvam-105b
   litellm_params:
     model: openai/sarvam-105b
