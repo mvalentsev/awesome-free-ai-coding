@@ -917,6 +917,11 @@ model_list:
     model: openai/mimo-v2.5:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
+- model_name: vlm-run-gateway/qwen/qwen3.8-27b
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b
+    api_base: https://gateway.vlm.run/v1/openai
+    api_key: none
 - model_name: ovh-ai-endpoints/Qwen3.8-27B
   litellm_params:
     model: openai/Qwen3.8-27B

@@ -774,6 +774,18 @@
       },
       "models": {}
     },
+    "vlm-run-gateway": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "VLM Run Gateway",
+      "options": {
+        "baseURL": "https://gateway.vlm.run/v1/openai"
+      },
+      "models": {
+        "qwen/qwen3.8-27b": {
+          "name": "qwen/qwen3.8-27b"
+        }
+      }
+    },
     "huggingface-inference": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Hugging Face Inference Providers",
