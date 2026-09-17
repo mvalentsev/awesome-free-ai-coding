@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-14'
+title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-17'
 description: One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code. per-model caps, spelled out in each model's catalog…
 permalink: /providers/aihubmix/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/aihubmix/
 
 # AIHubMix (free models)
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-14 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-17 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,11 +40,11 @@ per-model caps, spelled out in each model's catalog description: "each account i
 
 ## History
 
-- *next scheduled run* — Free models changed: added glm-5.3, kimi-k3
+- `2026-09-17` — Free models changed: added glm-5.3, kimi-k3
 - `2026-08-17` — Added to the list: One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

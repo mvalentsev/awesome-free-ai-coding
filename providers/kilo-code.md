@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Kilo Code free tier: limits, free models, verified 2026-09-14'
+title: 'Kilo Code free tier: limits, free models, verified 2026-09-17'
 description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. $0 a month, and no account for the free lane: "The gateway allows…'
 permalink: /providers/kilo-code/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/kilo-code/
 
 # Kilo Code
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-14 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-17 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -50,6 +50,6 @@ $0 a month, and no account for the free lane: "The gateway allows unauthenticate
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

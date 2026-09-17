@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Cline free tier: limits, free models, verified 2026-09-14'
+title: 'Cline free tier: limits, free models, verified 2026-09-17'
 description: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. "Cline periodically offers free model promotions that let…
 permalink: /providers/cline/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/cline/
 
 # Cline
 
-🤖 Coding agents & CLIs · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-14 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -36,13 +36,13 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Free models changed: dropped deepseek-v4-flash
+- `2026-09-17` — Free models changed: dropped deepseek-v4-flash
 - `2026-09-14` — Added to the list: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 - `2026-07-19` — Delisted
 - `2026-07-19` — Added to the list: Open-source (Apache-2.0) autonomous coding agent for VS Code, JetBrains and CLI; BYOK — pair with free-tier provider keys or local models for zero model cost
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

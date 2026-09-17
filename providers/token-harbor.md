@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Token Harbor free tier: limits, free models, verified 2026-09-16'
+title: 'Token Harbor free tier: limits, free models, verified 2026-09-17'
 description: 'OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card. "Free $0 / month Try Token Harbor with a free allowance and a rotating model lineup" and "No card required", and the FAQ: "Token Harbor…'
 permalink: /providers/token-harbor/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/token-harbor/
 
 # Token Harbor
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-16 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,10 +40,10 @@ OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 F
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card
+- `2026-09-17` — Added to the list: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

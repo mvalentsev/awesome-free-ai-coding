@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Sarvam AI free tier: limits, free models, verified 2026-09-14'
+title: 'Sarvam AI free tier: limits, free models, verified 2026-09-17'
 description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. "Every new user receives ₹100 worth of free credits to explore all our APIs", and the credits "are universal and never…
 permalink: /providers/sarvam/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sarvam/
 
 # Sarvam AI
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-14 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,11 +40,11 @@ India's Sarvam AI credits every new account ₹100 that never expire, spendable 
 
 ## History
 
-- *next scheduled run* — Free models changed: dropped deepseek-v4-flash, glm-5.3-flash
+- `2026-09-17` — Free models changed: dropped deepseek-v4-flash, glm-5.3-flash
 - `2026-09-07` — Added to the list: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

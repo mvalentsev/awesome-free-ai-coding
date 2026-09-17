@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Zed free tier: limits, free models, verified 2026-09-16'
+title: 'Zed free tier: limits, free models, verified 2026-09-17'
 description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit…'
 permalink: /providers/zed/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/zed/
 
 # Zed
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-16 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -35,12 +35,12 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Added to the list: Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
+- `2026-09-17` — Added to the list: Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
 - `2026-07-19` — Delisted
 - `2026-07-19` — Added to the list: Free plan with AI features
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

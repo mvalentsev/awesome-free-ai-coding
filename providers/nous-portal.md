@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-09-16'
+title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-09-17'
 description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API. The portal''s plan table reads "Free $0 Free models only Standard rate limits $0…'
 permalink: /providers/nous-portal/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/nous-portal/
 
 # Nous Portal (Hermes Agent)
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-16 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,10 +39,10 @@ The portal's plan table reads "Free $0 Free models only Standard rate limits $0 
 
 ## History
 
-- *next scheduled run* — Added to the list: Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API
+- `2026-09-17` — Added to the list: Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

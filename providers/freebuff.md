@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Freebuff free tier: limits, free models, verified 2026-09-14'
+title: 'Freebuff free tier: limits, free models, verified 2026-09-17'
 description: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna and MiMo 2.5 in the picker. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model…
 permalink: /providers/freebuff/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/freebuff/
 
 # Freebuff
 
-🤖 Coding agents & CLIs · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-14 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-17 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -36,11 +36,11 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Free models changed: added deepseek-v4.1-flash; dropped deepseek-v4-flash
+- `2026-09-17` — Free models changed: added deepseek-v4.1-flash; dropped deepseek-v4-flash
 - `2026-09-03` — Added to the list: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

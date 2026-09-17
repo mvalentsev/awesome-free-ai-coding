@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Amazon Q Developer free tier: limits, free models, verified 2026-09-16'
+title: 'Amazon Q Developer free tier: limits, free models, verified 2026-09-17'
 description: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month. "Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID…
 permalink: /providers/amazon-q-developer/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/amazon-q-developer/
 
 # Amazon Q Developer
 
-🤖 Coding agents & CLIs · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-16 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -35,10 +35,10 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Added to the list: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month
+- `2026-09-17` — Added to the list: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

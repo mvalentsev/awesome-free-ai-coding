@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-14'
+title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-17'
 description: Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint…
 permalink: /providers/windsurf/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/windsurf/
 
 # Devin Desktop (formerly Windsurf)
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-14 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-17 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -45,6 +45,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

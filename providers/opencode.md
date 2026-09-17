@@ -9,7 +9,7 @@ permalink: /providers/opencode/
 
 # opencode
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-14 · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-14; the probe since has not found that evidence, and 3 misses in a row archive the row · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -43,7 +43,7 @@ Zen prices its free ids at zero and calls each one "available on OpenCode for a 
 
 ## History
 
-- *next scheduled run* — Free models changed: added muse-spark-1.3-contributor; dropped muse-spark-1.2
+- `2026-09-17` — Free models changed: added muse-spark-1.3-contributor; dropped muse-spark-1.2
 - `2026-08-31` — Free models changed: added ling-3.0-flash-fin; dropped hy3
 - `2026-08-24` — Free models changed: added muse-spark-1.2; dropped deepseek-v4-flash
 - `2026-08-20` — Free models changed: dropped laguna-s-2.1
@@ -53,6 +53,6 @@ Zen prices its free ids at zero and calls each one "available on OpenCode for a 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-16 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
