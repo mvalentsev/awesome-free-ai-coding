@@ -260,3 +260,16 @@
     Where AIchatOS, the yqcloud.top frontend, says it lives now: its notice file
     reads "最新网站存活（勿在公开平台分享） : https://chat18.aichatos68.com/" (latest live site
     — do not share publicly). Same verdict.
+- domain: ai-router.dev
+  reason: >-
+    A gateway whose own price list names consumer subscriptions as the routes
+    it sells. The machine-readable pricing at api.ai-router.dev/pricing.md
+    (generated 2026-09-17) lists "Fuel Packages" billed against a balance —
+    "Anthropic Claude Code Max Unlimited Duration" (platform anthropic),
+    "ChatGPT Pro – Higher Stability" (platform openai), "Kiro Claude - High
+    Cache" and "Grok Free" — beside day, week and month "ChatGPT-Compatible
+    API" quota plans from $1.63. Claude Max and ChatGPT Pro are consumer
+    subscriptions, Kiro is AWS's IDE and Grok Free is xAI's free chat tier; a
+    relay that sells routes under those names is the aicodemirror.ai case,
+    subscription sessions re-exposed as an API, stated in the operator's own
+    catalog.

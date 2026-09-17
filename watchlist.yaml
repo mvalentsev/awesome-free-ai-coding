@@ -1281,7 +1281,6 @@ watched:
       BotHub's API docs say the :free ids cost 0 CAPS through the API, or the
       catalog opens keyless with those rows priced 0.
 
-
   - domains: [merge.dev]
     name: Merge Gateway
     checked_on: '2026-09-05'
@@ -2238,3 +2237,443 @@ watched:
       Aiberm offers a free allowance, or states where its discounted Claude
       capacity comes from.
 
+  - domains: [aki.io]
+    name: AKI.IO
+    checked_on: '2026-09-17'
+    reason: >-
+      A European inference API hosted in Germany whose free user account gets
+      trial credit with no card — "Business and professional users can create a
+      free user account and receive trial credit for API evaluation. Depending on
+      the models used, this covers millions of tokens. No credit card is
+      required, and the trial does not automatically convert into a paid
+      service." — but no page gives the credit a figure or the trial a length.
+      The terms say only that "The trial period ends as specified on the website
+      when applying for the trial period", and that the service "is reserved for
+      entrepreneurs" acting in a trade, business or profession, with a company
+      account (register number and VAT ID) needed once the trial ends. A credit
+      with no figure gives a probe nothing that ends with it, the Baseten case.
+    reopen_if: >-
+      AKI.IO publishes the size or the length of the trial credit on a readable
+      page.
+
+  - domains: [runinfra.ai]
+    name: RunInfra
+    checked_on: '2026-09-17'
+    reason: >-
+      Hosted model APIs on a prepaid balance, with a one-off dollar: the docs say
+      "Signing up is free and grants $1 once per account" and the pricing page
+      "New accounts start with $1 free to test the Model APIs", top-ups starting
+      at $10 after that. A one-off credit is listed here when it asks for no
+      card, and neither page, nor the pricing FAQ, says whether this one can be
+      spent before a payment method is added (2026-09-17).
+    reopen_if: >-
+      A RunInfra page says the $1 is spent without a payment method on file.
+
+  - domains: [koscompute.com]
+    name: Kosmik Compute
+    checked_on: '2026-09-17'
+    reason: >-
+      A Prague-hosted API whose one chat model is Qwen3.8 27B, beside Whisper and
+      text-to-speech models, offering "€10 in free credits when you sign up to
+      try our API for free". Nothing on the home page or on any page its docs
+      index lists says whether a card is needed before the credit is spent — the
+      question that decides a one-off credit here, as it does on SiliconFlow.
+    reopen_if: >-
+      A Kosmik page says the €10 is spent without a payment method on file.
+
+  - domains: [modelishub.com]
+    name: Modelis
+    checked_on: '2026-09-17'
+    reason: >-
+      An OpenAI-compatible gateway whose free tier is a RapidAPI listing:
+      modelishub.com/pricing says "Subscribe on RapidAPI (free tier, no card to
+      start)", and the listing's BASIC plan is $0 with a hard limit of 100
+      requests a month. The same listing says tools and function calling are
+      not supported on current plans and "Output is capped at 1024 tokens" — a
+      lane that cannot call a tool cannot drive a coding agent, the AI Horde
+      case.
+    reopen_if: >-
+      The free plan accepts tool definitions and allows more than 100 requests
+      a month.
+
+  - domains: [trustedrouter.com]
+    name: TrustedRouter
+    checked_on: '2026-09-17'
+    reason: >-
+      The keyless catalog prices trustedrouter/free, a routing pool, at 0 —
+      beside orchestration aliases that also read 0 — but the pricing page bills
+      every route: "Pay the provider price plus 5.5%, with no monthly plan", and
+      "Prepaid text and embedding prices are provider cost + 5.5%, with a $0.01
+      per million token floor", paid from prepaid credits, BYOK or usage-based
+      billing. Its only credits are migration credits for "Teams already
+      spending more than $100/month on LLMs", by approval.
+    reopen_if: >-
+      TrustedRouter exempts trustedrouter/free from the floor or publishes a
+      free allowance.
+
+  - domains: [umans.ai]
+    name: Umans AI (Umans Code)
+    checked_on: '2026-09-17'
+    reason: >-
+      Open coding models on the vendor's own GPUs, paid from a wallet: "A wallet
+      with no credit at all — no paid top-up, no active promo grant — does not
+      serve until it has some", the first rate tier unlocks at "Your first
+      top-up", and promo credit such as the founders' bonus serves only while it
+      lasts. The keyless catalog prices one id at 0,
+      umans-deepseek-v4.1-flash-lab, which the docs never name; the one lab they
+      describe, DeepSeek V4 Pro, "served here as a seat-gated pre-release lab".
+      models.dev also lists an Umans AI Coding Plan at cost 0, and the docs speak
+      of plans only as archived plans.
+    reopen_if: >-
+      Umans serves an account with no top-up, or documents a zero-priced model
+      any account can call.
+
+  - domains: [intelligence.io.solutions, io.net]
+    name: IO Intelligence (io.net)
+    checked_on: '2026-09-17'
+    reason: >-
+      The plans page gives the default Standard plan "free, light daily access",
+      with pay-as-you-go beyond "the daily limit", and the table on the same page
+      describes Standard as "Continuous access with PAYG" with "No refreshes, pay
+      only for what you use". No figure for the free access appears on any page
+      read. The keyless catalog prices all 35 rows and opens four to the lowest
+      access tier — GLM-4.5-Air, Gemma 4 26B A4B, gpt-oss-20b and Llama 3.3 70B —
+      the rest needing a higher one.
+    reopen_if: >-
+      io.net publishes the Standard plan's daily free allowance with a figure.
+
+  - domains: [qiniu.com, qnaigc.com]
+    name: Qiniu AI inference (七牛云)
+    checked_on: '2026-09-17'
+    reason: >-
+      New AI-inference users get a one-time package — 注册有奖活动：现在注册 qiniu.com/ai
+      开发者账号，立即获得 300万免费 Token 资源包, three million tokens counted at
+      DeepSeek-V3.1's input price — issued after the first billed usage
+      (使用服务并产生计费后自动发放). Two walls keep it off. The API FAQ says
+      目前AI产品仅支持中国大陆账号使用，暂不支持海外账号 — the AI products take mainland-China
+      accounts only, not overseas ones — and a new user has a 24-hour grace
+      period (24 小时免认证体验期) before real-name verification is required: the
+      mainland real-name account this list does not carry, as for Baidu Qianfan
+      and Volcengine.
+    reopen_if: >-
+      Qiniu opens AI inference to accounts outside mainland China without
+      real-name verification.
+
+  - domains: [iteracompute.com]
+    name: IteraCompute
+    checked_on: '2026-09-17'
+    reason: >-
+      Nine chat models priced per token in a keyless catalog that marks every
+      row `is_free: false`; neither the home page nor the docs page names a free
+      allowance, a trial or a signup credit (2026-09-17).
+    reopen_if: >-
+      A row marked free in the catalog, or a signup credit with a figure on a
+      vendor page.
+
+  - domains: [edenai.co, edenai.run]
+    name: Eden AI
+    checked_on: '2026-09-17'
+    reason: >-
+      A unified API whose keyless catalog prices 1,064 rows, a handful at 0 —
+      google/gemma-4-31b-it, google/gemma-4-26b-a4b-it and
+      cohere/command-a-plus-05-2026 among them — while billing is a credit
+      system: "Eden AI uses a pay-per-use credit system", credits are bought with
+      a 5.5% platform fee, and the pricing page names no signup credit. Whether a
+      zero-priced row answers an account with no credit is stated on no page
+      read, the question NanoGPT's record turns on.
+    reopen_if: >-
+      Eden AI's docs say zero-priced models run on an empty balance, or a signup
+      credit is named.
+
+  - domains: [vultrinference.com]
+    name: Vultr Serverless Inference
+    checked_on: '2026-09-17'
+    reason: >-
+      A paid subscription: the docs provision "a Vultr Serverless Inference
+      subscription" before a key exists, and neither they nor the API reference
+      at api.vultrinference.com name a free allowance. vultr.com's pricing pages
+      answer 403 to a script (2026-09-17); the keyless catalog lists 16 models.
+    reopen_if: >-
+      Vultr publishes a free inference allowance that needs no subscription.
+
+  - domains: [wallabytoken.com]
+    name: Wallaby
+    checked_on: '2026-09-17'
+    reason: >-
+      Kimi K3 on a prepaid balance — "Top up — prepaid USD, from $20" — from
+      Wallaby Data Pty Ltd in Australia. The terms mention a trial no page
+      quantifies: "new accounts may receive promotional trial credit", which "may
+      be restricted to specific models and lower rate limits".
+    reopen_if: >-
+      Wallaby publishes a trial credit with a figure.
+
+  - domains: [vivgrid.com]
+    name: Vivgrid
+    checked_on: '2026-09-17'
+    reason: >-
+      The Free plan is a platform tier rather than an allowance — "$0 to start
+      Pay-as-you-go model usage" — and the credits on offer are the Growth
+      plan's "$25 in token credits included every month", at $25 a month, and
+      "$200/mo credits available to approved open-source maintainers on
+      request", a grant by approval rather than a tier anyone can use. The
+      operator is Allegro US, LLC.
+    reopen_if: >-
+      The Free plan includes model usage with a figure.
+
+  - domains: [nan.builders]
+    name: NaN (nan.builders)
+    checked_on: '2026-09-17'
+    reason: >-
+      A paid membership, not a free tier: "A closed community of builders
+      sharing dedicated GPUs to run open models. Every member pays to be here",
+      paid by "Credit or debit card", with a waitlist for spots. models.dev
+      lists its seven models at cost 0 because the price is the flat
+      subscription; the monthly token allowances per member are what it buys.
+    reopen_if: >-
+      NaN offers a membership or an allowance at no charge.
+
+  - domains: [ebcloud.com, ebtech.com]
+    name: EBCloud (英博云)
+    checked_on: '2026-09-17'
+    reason: >-
+      The model API spends purchased compute points —
+      在正式使用模型API服务前，需先购买算力点。算力点购买仅支持通过英博云账户现金余额进行支付 — bought before
+      the first call and only from cash balance, on an account that has done
+      注册和实名认证, registration and real-name verification. The ¥20 the home page gives for
+      registering and verifying (注册认证送20元无门槛代金券) is a voucher, where the points
+      are bought with cash balance only.
+    reopen_if: >-
+      The model API accepts vouchers or offers a free allowance, without
+      real-name verification.
+
+  - domains: [berget.ai]
+    name: Berget.AI
+    checked_on: '2026-09-17'
+    reason: >-
+      A Swedish inference API whose Trial plan has "€5 free starting credits",
+      but the pricing FAQ puts a card in front of them: "The Trial plan includes
+      €5 in starting credits so you can try the API without a subscription — a
+      card is required at signup to prevent abuse, but nothing is charged." After
+      the credit, "an active plan (from €25 / month in prepaid credits) is
+      required for continued API access". One-off credits behind a card are what
+      CONTRIBUTING excludes.
+    reopen_if: >-
+      The €5 is granted without a card, or a free allowance recurs without a
+      plan.
+
+  - domains: [cloudferro.com]
+    name: CloudFerro Sherlock
+    checked_on: '2026-09-17'
+    reason: >-
+      Sherlock, CloudFerro's model API, is billed per token — "Our pricing model
+      is based on token usage - both input (received) and output (generated)
+      tokens for each model" — and "To use Sherlock’s API, you have to be an
+      admin user of an Organization registered at CloudFerro", an organization
+      that needs an EU VAT number or tax ID. The cloud's free trial ("We grant up
+      to 250 EUR for testing purposes within our infrastructure") is not said on
+      any page read to reach Sherlock tokens.
+    reopen_if: >-
+      A CloudFerro page says the trial credits pay for Sherlock, without a card
+      or a company tax ID.
+
+  - domains: [crusoe.ai, crusoecloud.com]
+    name: Crusoe
+    checked_on: '2026-09-17'
+    reason: >-
+      The pricing page offers "$5 in free credits" to "Fine-tune and serve models
+      in Crusoe Intelligence Foundry", while managed inference is pay-as-you-go
+      per million tokens, and the account docs put a card in front of both: "To
+      provision resources or use the managed inference service, you must enable
+      billing on your account. You will need a valid, non-prepaid credit card to
+      proceed."
+    reopen_if: >-
+      The $5 can be spent on inference before a card is added.
+
+  - domains: [digitalocean.com, do-ai.run]
+    name: DigitalOcean Serverless Inference
+    checked_on: '2026-09-17'
+    reason: >-
+      A new team gets a signup credit — "When you create your first team,
+      DigitalOcean automatically applies a $5 signup credit" and "Signup credits
+      expire 90 days after signup" — but a payment method comes first ("You must
+      add a valid payment method before you can create Droplets or other
+      resources"), and "Serverless inference is prepaid only. You must maintain a
+      positive prepaid account balance to send serverless inference requests".
+      Whether the signup credit counts toward that balance is not stated.
+    reopen_if: >-
+      DigitalOcean documents the signup credit paying for serverless inference
+      with no payment method on file.
+
+  - domains: [evroc.com]
+    name: evroc Think
+    checked_on: '2026-09-17'
+    reason: >-
+      evroc's shared models are billed per token, and two posts from September
+      2026 offer a campaign: "For the first 100 signups, we are offering €300
+      credits to help you get a started building on evroc and using evroc
+      Think." The sign-up form's own script saves a card before the account
+      exists — "Save Payment Method (€0 charge)" — and the billing docs say "At
+      least one card must remain on your account". A first-100 grant behind a
+      card is excluded twice over.
+    reopen_if: >-
+      evroc offers credits that are claimed without saving a card.
+
+  - domains: [gmicloud.ai, gmi-serving.com]
+    name: GMI Cloud (Inference Engine)
+    checked_on: '2026-09-17'
+    reason: >-
+      Serverless models are paid from bought credit, their prices kept in the
+      console ("Rather than mirror prices here (where they would go stale), the
+      up-to-date rates live in the console"), and usage tiers follow purchases —
+      "Please note that voucher redemptions do not count towards purchase". No
+      page read names a signup credit or a zero-priced model; the GMI Router's
+      free model selection routes to paid models.
+    reopen_if: >-
+      GMI publishes a signup credit or a zero-priced serverless model.
+
+  - domains: [inceptron.io]
+    name: Inceptron
+    checked_on: '2026-09-17'
+    reason: >-
+      "Only pay for what you run. Simple, transparent, and built for real usage.
+      No hidden fees." — six serverless models, every one priced in the keyless
+      catalog, plus dedicated GPUs from $3 an hour with commitment discounts; no
+      free tier, trial credit or zero price on any page read.
+    reopen_if: >-
+      A signup credit or a zero-priced model on an Inceptron page or catalog.
+
+  - domains: [inco.ai]
+    name: Inco
+    checked_on: '2026-09-17'
+    reason: >-
+      A prepaid, per-token API behind a waitlist: "Access is prepaid. Credit is
+      consumed per token at the rates shown at the time of each request. Requests
+      are rejected when your balance reaches zero." The terms also say "Inco is
+      an experimental prototype." No starting credit is named.
+    reopen_if: >-
+      Inco grants starting credit at sign-up.
+
+  - domains: [jalapeno-cloud.ai]
+    name: Jalapeno Cloud
+    checked_on: '2026-09-17'
+    reason: >-
+      The offer exists only in the site's JavaScript, and the same scripts
+      disagree with it. The pricing page's script says "Flexible token pricing,
+      high usage limits, and postpaid billing—plus $1 in free credits to get you
+      started!", a partner campaign's says "Sign in to get $1 in free credits
+      instantly.", and the home page's quick start says "Top up your account with
+      credits to enable API calls." Every one of the 20 models in the keyless
+      catalog is priced. The operator named in the recharge agreement is Magik
+      Compute Technology (Shanghai) Co., Ltd.
+    reopen_if: >-
+      A server-rendered Jalapeno page states the $1 grant and that it is spent
+      without a top-up.
+
+  - domains: [klokintegration.se, ipaas.se]
+    name: Klok AI-API (klokintegration.se)
+    checked_on: '2026-09-17'
+    reason: >-
+      A Swedish integration company's model API, currently DeepSeek V4 Flash
+      behind the name Kloker: "Usage is billed per million tokens, excl. VAT.
+      Input is €0.20. Output is €1.", with keys by request — "Not on the platform
+      yet? Email klokintegration@integrera.com and ask for a token." The 30-day
+      free trial on the home page belongs to its chat assistant, not the API.
+    reopen_if: >-
+      Klok grants a free token allowance for the AI-API.
+
+  - domains: [getlilac.com]
+    name: Lilac
+    checked_on: '2026-09-17'
+    reason: >-
+      Four open models on idle enterprise GPUs, per token from prepaid credits:
+      "You need a positive credit balance before you can make API requests." The
+      personal subscriptions ($10, $30 and $100 a month) include usage worth $20,
+      $75 and $300, all paid; no starting credit is named.
+    reopen_if: >-
+      Lilac grants starting credit without a top-up.
+
+  - domains: [lucidquery.com]
+    name: LucidQuery
+    checked_on: '2026-09-17'
+    reason: >-
+      A French lab's own models, AGI 01 Swift and Frontier, on a metered API —
+      "Metered usage, no monthly minimum. Pay only for the tokens your app sends
+      and receives." Its $0 Free plan, "A restrained entry into AGI 01,
+      LucidArc, and LucidCode", covers the vendor's own chat, desktop and CLI
+      apps with unpublished limits (the CLI offers "Connect with /login: free,
+      subscription, or API key."), and nothing ties that plan to the API.
+    reopen_if: >-
+      LucidQuery says the Free plan's allowance works through
+      api.lucidquery.com with a key other clients can use.
+
+  - domains: [melious.ai]
+    name: Melious
+    checked_on: '2026-09-17'
+    reason: >-
+      "Access 60+ open-weight models on a pay-as-you-go basis. No commitments, no
+      minimums. Just top up credits and go." The free Explorer plan in the
+      pricing page's data carries a daily energy allowance for the vendor's
+      studio but not API usage, and for plans like it the docs say "API calls
+      are `credits_only`, even if you have energy left". The coding plans that do
+      include API usage are paid and "intended exclusively for businesses as
+      defined by § 14 BGB".
+    reopen_if: >-
+      Melious lets the Explorer plan or a signup grant pay for API calls.
+
+  - domains: [modeloracle.com]
+    name: Model Oracle AI
+    checked_on: '2026-09-17'
+    reason: >-
+      A gateway for coding agents billed from a balance: "Prepaid usage with no
+      subscription. Add prepaid usage balance with a card." Managed requests
+      deduct the catalog provider cost and BYOK requests a 5% fee; no free
+      allowance is named.
+    reopen_if: >-
+      Model Oracle grants balance at sign-up without a card.
+
+  - domains: [neosmith.ai]
+    name: NeoSmith
+    checked_on: '2026-09-17'
+    reason: >-
+      A router that distills small models from an agent's own traces, not an
+      open lane: "NeoSmith is currently free for design partners during early
+      access", and the self-serve route is a booked demo that ends with a pilot
+      key — "Walk away with a 14-day pilot key (no credit card)". A key issued
+      after a sales call is not an offer a reader can take.
+    reopen_if: >-
+      NeoSmith issues keys with a free allowance through self-serve sign-up.
+
+  - domains: [neuralwatt.com]
+    name: Neuralwatt
+    checked_on: '2026-09-17'
+    reason: >-
+      Energy-priced inference whose trial asks for a card first: the quick start
+      says "adding a payment method unlocks $1.00 in free trial credit (no charge
+      required; the credit is valid for 30 days)", and the pricing page "Add a
+      payment method to get $1.00 in free credits — no charge required — then add
+      more when you need them."
+    reopen_if: >-
+      The trial credit is granted without adding a payment method.
+
+  - domains: [openreason.app]
+    name: OpenReason
+    checked_on: '2026-09-17'
+    reason: >-
+      Company AI sold per person to businesses, with a price still unset — "We
+      are not going to invent one to fill this page" — and no plan for one
+      developer: "There is no single-seat plan and there will not be one." Its
+      "Free to try" has no published terms.
+    reopen_if: >-
+      Published trial terms that give an individual developer an API key with a
+      free allowance.
+
+  - domains: [routing.run]
+    name: routing.run
+    checked_on: '2026-09-17'
+    reason: >-
+      A membership router: "Basic is $10/month and includes $10 in routing
+      credit. Add more whenever you need it.", and the API quick start requires
+      "An active Basic membership with a positive Routing balance". Every row in
+      the keyless catalog is priced.
+    reopen_if: >-
+      A free tier or signup credit usable without the Basic membership.
