@@ -60,6 +60,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-17` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-17` |
+| [Fireworks AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [RouterPlex](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `gemma-4` | `2026-09-17` |

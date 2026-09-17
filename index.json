@@ -3337,6 +3337,56 @@
       "rank": 45,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/"
+    },
+    {
+      "id": "fireworks-ai",
+      "name": "Fireworks AI",
+      "category": "trial",
+      "url": "https://fireworks.ai",
+      "source_urls": [
+        "https://fireworks.ai/pricing",
+        "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
+        "https://docs.fireworks.ai/guides/quotas_usage/account-quotas",
+        "https://docs.fireworks.ai/serverless/pricing",
+        "https://docs.fireworks.ai/getting-started/quickstart"
+      ],
+      "card_required": false,
+      "offering": "Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added",
+      "limits": "The pricing page offers \"Get started with $1 in free credits\", and the billing FAQ says what happens to an account \"Without payment method\" when the dollar runs out: \"Your account will be suspended until you add a payment method\". Until then the account quotas put \"No payment method or no credits\" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks \"operates on a pre-paid credits billing system\". The dollar buys list prices, per 1M input and output tokens: DeepSeek V4.1 Flash $0.22 and $0.66, GLM 5.3 Flash $0.15 and $0.50, MiniMax M3 $0.30 and $1.20, Kimi K3 $3.00 and $15.00 — about 4.5M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-17",
+      "models": [],
+      "api": {
+        "base_url": "https://api.fireworks.ai/inference/v1",
+        "key_url": "https://app.fireworks.ai/settings/users/api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "accounts/fireworks/models/deepseek-v4p1-flash",
+          "accounts/fireworks/models/glm-5p3-flash",
+          "accounts/fireworks/models/minimax-m3",
+          "accounts/fireworks/models/glm-5p3",
+          "accounts/fireworks/models/kimi-k3"
+        ],
+        "anthropic_base_url": "https://api.fireworks.ai/inference",
+        "note": "ids are accounts/fireworks/models/ plus the slug the serverless pricing page links, read 2026-09-17; /inference/v1/models answers 401 without a key, so none is read off a catalog. The quickstart gives the Anthropic SDK base_url https://api.fireworks.ai/inference, which is Claude Code's ANTHROPIC_BASE_URL, the client appending /v1/messages"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://fireworks.ai/pricing",
+        "keywords": [
+          "Get started with $1 in free credits"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-17",
+      "last_verified": "2026-09-17",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 92,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/"
     }
   ],
   "watchlist": [
@@ -3542,16 +3592,6 @@
       "checked_on": "2026-08-14",
       "reason": "deepinfra.com/pricing serves 17,500 characters of text and not one of them is \"free\" or \"credit\" — the whole page is per-token rates for language models and per-execution-time rates for everything else. The signup credit it is still credited with elsewhere is not on the vendor's own page.",
       "reopen_if": "DeepInfra publishes a signup credit or a free model on its pricing page.",
-      "current": true
-    },
-    {
-      "domains": [
-        "fireworks.ai"
-      ],
-      "name": "Fireworks AI",
-      "checked_on": "2026-08-14",
-      "reason": "fireworks.ai/pricing offers \"Get started with $1 in free credits\" against serverless inference with \"postpaid billing\" — a grant that sits on top of a billing relationship rather than instead of one, and a fortieth of what the trials listed here carry ($10 at Upstage). Every model on the page is priced per token.",
-      "reopen_if": "Fireworks publishes a recurring free tier, or a signup grant reachable without postpaid billing that is worth an agent session.",
       "current": true
     },
     {

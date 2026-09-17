@@ -306,19 +306,6 @@ watched:
     reopen_if: >-
       DeepInfra publishes a signup credit or a free model on its pricing page.
 
-  - domains: [fireworks.ai]
-    name: Fireworks AI
-    checked_on: '2026-08-14'
-    reason: >-
-      fireworks.ai/pricing offers "Get started with $1 in free credits" against
-      serverless inference with "postpaid billing" — a grant that sits on top of
-      a billing relationship rather than instead of one, and a fortieth of what
-      the trials listed here carry ($10 at Upstage). Every model on the
-      page is priced per token.
-    reopen_if: >-
-      Fireworks publishes a recurring free tier, or a signup grant reachable
-      without postpaid billing that is worth an agent session.
-
   - domains: [baseten.co]
     name: Baseten
     checked_on: '2026-08-14'

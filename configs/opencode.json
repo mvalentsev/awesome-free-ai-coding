@@ -959,6 +959,31 @@
         }
       }
     },
+    "fireworks-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Fireworks AI",
+      "options": {
+        "baseURL": "https://api.fireworks.ai/inference/v1",
+        "apiKey": "{env:FIREWORKS_AI_API_KEY}"
+      },
+      "models": {
+        "accounts/fireworks/models/deepseek-v4p1-flash": {
+          "name": "accounts/fireworks/models/deepseek-v4p1-flash"
+        },
+        "accounts/fireworks/models/glm-5p3-flash": {
+          "name": "accounts/fireworks/models/glm-5p3-flash"
+        },
+        "accounts/fireworks/models/minimax-m3": {
+          "name": "accounts/fireworks/models/minimax-m3"
+        },
+        "accounts/fireworks/models/glm-5p3": {
+          "name": "accounts/fireworks/models/glm-5p3"
+        },
+        "accounts/fireworks/models/kimi-k3": {
+          "name": "accounts/fireworks/models/kimi-k3"
+        }
+      }
+    },
     "ollama-cloud": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama Cloud",

@@ -64,6 +64,16 @@ claude-freeinference() {
   claude "$@"
 }
 
+# ── Fireworks AI · get a key: https://app.fireworks.ai/settings/users/api-keys
+#    free ids: accounts/fireworks/models/deepseek-v4p1-flash, accounts/fireworks/models/glm-5p3-flash, accounts/fireworks/models/minimax-m3, accounts/fireworks/models/glm-5p3, accounts/fireworks/models/kimi-k3
+claude-fireworks-ai() {
+  ANTHROPIC_BASE_URL="https://api.fireworks.ai/inference" \
+  ANTHROPIC_AUTH_TOKEN="$FIREWORKS_AI_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="accounts/fireworks/models/deepseek-v4p1-flash" \
+  claude "$@"
+}
+
 # ── RouterPlex · get a key: https://routerplex.com/sign-up
 #    free ids: deepseek-v4-flash, glm-5.3-flash, claude-sonnet-4-6
 claude-routerplex() {

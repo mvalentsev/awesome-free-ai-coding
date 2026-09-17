@@ -1032,6 +1032,31 @@ model_list:
     model: openai/diffusiongemma
     api_base: https://freeinference.org/v1
     api_key: os.environ/FREEINFERENCE_API_KEY
+- model_name: fireworks-ai/accounts/fireworks/models/deepseek-v4p1-flash
+  litellm_params:
+    model: openai/accounts/fireworks/models/deepseek-v4p1-flash
+    api_base: https://api.fireworks.ai/inference/v1
+    api_key: os.environ/FIREWORKS_AI_API_KEY
+- model_name: fireworks-ai/accounts/fireworks/models/glm-5p3-flash
+  litellm_params:
+    model: openai/accounts/fireworks/models/glm-5p3-flash
+    api_base: https://api.fireworks.ai/inference/v1
+    api_key: os.environ/FIREWORKS_AI_API_KEY
+- model_name: fireworks-ai/accounts/fireworks/models/minimax-m3
+  litellm_params:
+    model: openai/accounts/fireworks/models/minimax-m3
+    api_base: https://api.fireworks.ai/inference/v1
+    api_key: os.environ/FIREWORKS_AI_API_KEY
+- model_name: fireworks-ai/accounts/fireworks/models/glm-5p3
+  litellm_params:
+    model: openai/accounts/fireworks/models/glm-5p3
+    api_base: https://api.fireworks.ai/inference/v1
+    api_key: os.environ/FIREWORKS_AI_API_KEY
+- model_name: fireworks-ai/accounts/fireworks/models/kimi-k3
+  litellm_params:
+    model: openai/accounts/fireworks/models/kimi-k3
+    api_base: https://api.fireworks.ai/inference/v1
+    api_key: os.environ/FIREWORKS_AI_API_KEY
 - model_name: ollama-cloud/gpt-oss:120b
   litellm_params:
     model: openai/gpt-oss:120b
