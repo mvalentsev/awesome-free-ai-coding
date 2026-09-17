@@ -3927,3 +3927,56 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 86
+- id: hpc-ai
+  name: HPC-AI Model APIs
+  category: trial
+  url: https://www.hpc-ai.com/model-apis
+  source_urls:
+  - https://www.hpc-ai.com/model-apis
+  - https://www.hpc-ai.com/doc/docs/Model-APIs/User-Guides/Rate-Limit/
+  - https://www.hpc-ai.com/doc/docs/Model-APIs/User-Guides/QuickStart/
+  - https://www.hpc-ai.com/api/maas/v1/models
+  card_required: false
+  offering: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax
+    M3 among them, with $2 of free credit for every user — $4 with the vendor's invite
+    code — at 5 requests a minute until a first deposit
+  limits: 'The Model APIs page answers its FAQ "Do you offer a free trial for users?"
+    in the page''s data rather than its text: every user receives $2 "in free credits.
+    New accounts using the invite code" HPCAI-MAPI get $4, and "Supplies are limited".
+    The console''s welcome message, shipped in the same page, reads "Free credits
+    have been added to your account — start calling open-source models right away."
+    and "Make your first deposit to unlock higher RPM limits." The keyless model list
+    gives the L0 tier, an account before its first deposit, 5 requests and 2M tokens
+    a minute on 23 of its 24 models (DeepSeek V4 Pro gets 0), and the rate-limit docs
+    say the move to L1 "is triggered by your first deposit rather than by spending".
+    The credit buys list prices, GLM 5.3 Flash at $0.15 in and $0.50 out per million
+    tokens and Kimi K3 at $3 and $15. No page read asks for a card before the credit
+    is spent, and none gives it an expiry. Read 2026-09-17'
+  models: []
+  api:
+    base_url: https://api.hpc-ai.com/inference/v1
+    key_url: https://www.hpc-ai.com/models-console/api-key
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - zai-org/glm-5.3-flash
+    - moonshotai/kimi-k2.7-code
+    - minimax/minimax-m3
+    note: ids are the keyless model list's at www.hpc-ai.com/api/maas/v1/models, 2026-09-17,
+      the quick start's own example being moonshotai/kimi-k2.7-code
+  probe:
+    type: page-keywords
+    endpoint: https://www.hpc-ai.com/model-apis
+    keywords:
+    - Do you offer a free trial for users?
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    catalog: https://www.hpc-ai.com/api/maas/v1/models
+    machinery_keywords:
+    - in free credits. New accounts using the invite code
+  first_seen: '2026-09-17'
+  last_verified: '2026-09-17'
+  probe_failures: 0
+  provisional: true
+  rank: 90

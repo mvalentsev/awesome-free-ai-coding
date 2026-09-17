@@ -1062,6 +1062,21 @@ model_list:
     model: openai/minimax-m3
     api_base: https://tokenhub.tencentmaas.com/v1
     api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: hpc-ai/zai-org/glm-5.3-flash
+  litellm_params:
+    model: openai/zai-org/glm-5.3-flash
+    api_base: https://api.hpc-ai.com/inference/v1
+    api_key: os.environ/HPC_AI_API_KEY
+- model_name: hpc-ai/moonshotai/kimi-k2.7-code
+  litellm_params:
+    model: openai/moonshotai/kimi-k2.7-code
+    api_base: https://api.hpc-ai.com/inference/v1
+    api_key: os.environ/HPC_AI_API_KEY
+- model_name: hpc-ai/minimax/minimax-m3
+  litellm_params:
+    model: openai/minimax/minimax-m3
+    api_base: https://api.hpc-ai.com/inference/v1
+    api_key: os.environ/HPC_AI_API_KEY
 - model_name: inception-labs/mercury-2.5
   litellm_params:
     model: openai/mercury-2.5

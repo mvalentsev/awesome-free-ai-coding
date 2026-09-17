@@ -65,6 +65,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-17` |
+| [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-17` |
 | [Blue Claw Network](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
 | [Fireworks AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-17` |
