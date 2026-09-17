@@ -544,7 +544,11 @@ def _catalog_items(resp: httpx.Response, lane: str | None = None) -> list[dict] 
 
     Where the row names a `probe.lane`, the rows are that key's array and
     nothing else in the document: the other lanes list the same models on
-    other terms, and a family found there is not a family found free."""
+    other terms, and a family found there is not a family found free.
+
+    Otherwise the rows are the document itself, its OpenAI `data`, or — where
+    there is no `data` — its `models`: Opper's keyless catalog answers
+    `{"models": [...]}`, and read as `data` alone it was an empty catalog."""
     try:
         data = resp.json()
     except json.JSONDecodeError:
@@ -552,9 +556,13 @@ def _catalog_items(resp: httpx.Response, lane: str | None = None) -> list[dict] 
     if lane is not None:
         rows = data.get(lane) if isinstance(data, dict) else None
         rows = rows if isinstance(rows, list) else []
+    elif isinstance(data, list):
+        rows = data
+    elif isinstance(data, dict):
+        rows = data.get("data", data.get("models", []))
+        rows = rows if isinstance(rows, list) else []
     else:
-        rows = (data if isinstance(data, list)
-                else data.get("data", []) if isinstance(data, dict) else [])
+        rows = []
     return [m for m in rows if isinstance(m, dict)]
 
 

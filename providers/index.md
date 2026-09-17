@@ -78,6 +78,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-nano-omni` | `2026-09-17` |
 | [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4.1-flash`, `mimo-v2.5` | `2026-09-17` |
 | [Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-17` |
+| [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) | 🧭 Aggregators (one key, many providers) | `gemma-4-31b` | `2026-09-17` |
 | [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) | 🧭 Aggregators (one key, many providers) | `mistral-small-3.2` | `2026-09-17` |
 
 ## Archived

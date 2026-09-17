@@ -3590,6 +3590,61 @@
       "rank": 99,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/"
+    },
+    {
+      "id": "opper",
+      "name": "Opper",
+      "category": "aggregator",
+      "url": "https://opper.ai",
+      "source_urls": [
+        "https://opper.ai/pricing.md",
+        "https://opper.ai/llms.txt",
+        "https://docs.opper.ai/guides/claude-code-router.md"
+      ],
+      "card_required": false,
+      "offering": "EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits",
+      "limits": "The pricing FAQ: \"Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum.\" The llms.txt names one of them — \"gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route.\" — and the model directory at opper.ai/models flags five rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1 and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with \"a 3% fee on credit purchases\". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-17",
+      "models": [
+        {
+          "family": "gemma-4-31b",
+          "released": "",
+          "aa_model": "gemma-4-31b"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.opper.ai/v3/compat",
+        "key_url": "https://platform.opper.ai/settings/api-keys",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "gemini/gemma-4-31b",
+          "gemini/gemma-4-26b-moe",
+          "poolside/laguna-s-2.1",
+          "poolside/laguna-xs-2.1"
+        ],
+        "anthropic_base_url": "https://api.opper.ai/v3/compat",
+        "note": "ids are four of the five rows the model directory flags free on 2026-09-17, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://opper.ai/llms.txt",
+        "keywords": [
+          "gemini/gemma-4-31b is a free model",
+          "the free models work in the playground and the API"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "catalog": "https://api.opper.ai/v3/models?limit=0",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-17",
+      "last_verified": "2026-09-17",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 82,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/"
     }
   ],
   "watchlist": [

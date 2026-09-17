@@ -952,6 +952,26 @@ model_list:
     model: openai/solar-mini
     api_base: https://api.upstage.ai/v1
     api_key: os.environ/UPSTAGE_API_KEY
+- model_name: opper/gemini/gemma-4-31b
+  litellm_params:
+    model: openai/gemini/gemma-4-31b
+    api_base: https://api.opper.ai/v3/compat
+    api_key: os.environ/OPPER_API_KEY
+- model_name: opper/gemini/gemma-4-26b-moe
+  litellm_params:
+    model: openai/gemini/gemma-4-26b-moe
+    api_base: https://api.opper.ai/v3/compat
+    api_key: os.environ/OPPER_API_KEY
+- model_name: opper/poolside/laguna-s-2.1
+  litellm_params:
+    model: openai/poolside/laguna-s-2.1
+    api_base: https://api.opper.ai/v3/compat
+    api_key: os.environ/OPPER_API_KEY
+- model_name: opper/poolside/laguna-xs-2.1
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1
+    api_base: https://api.opper.ai/v3/compat
+    api_key: os.environ/OPPER_API_KEY
 - model_name: meganova/mistralai/Mistral-Small-3.2-24B-Instruct-2506
   litellm_params:
     model: openai/mistralai/Mistral-Small-3.2-24B-Instruct-2506

@@ -1205,6 +1205,23 @@ async def test_a_page_row_whose_catalog_answers_for_every_id_passes():
 
 
 @respx.mock
+async def test_a_catalog_that_wraps_its_rows_in_models_is_read():
+    """Opper's keyless catalog answers `{"models": [...]}` rather than an
+    OpenAI `data` array (api.opper.ai/v3/models, 2026-09-17). Read as `data`
+    alone it would be an empty catalog, and the run would report a catalog
+    that answered no model ids for a row whose ids are all there."""
+    entry = catalog_entry("gemini/gemma-4-31b", "gemini/gemma-3-27b")
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=PAGE_OK))
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"models": [{"id": "gemini/gemma-4-31b"}, {"id": "other/paid"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gemini/gemma-3-27b is not in the catalog" in result.detail
+    assert "gemini/gemma-4-31b " not in result.detail
+
+
+@respx.mock
 async def test_a_catalog_that_stops_answering_is_said_out_loud():
     """The offer is still on the page, so the row is verified; but a check that
     silently did not run is the INCONCLUSIVE silence again, one field down.

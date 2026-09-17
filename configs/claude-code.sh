@@ -55,6 +55,16 @@ claude-vercel-ai-gateway() {
   claude "$@"
 }
 
+# ── Opper · get a key: https://platform.opper.ai/settings/api-keys
+#    free ids: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1
+claude-opper() {
+  ANTHROPIC_BASE_URL="https://api.opper.ai/v3/compat" \
+  ANTHROPIC_AUTH_TOKEN="$OPPER_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="gemini/gemma-4-31b" \
+  claude "$@"
+}
+
 # ── Tencent Cloud TokenHub · get a key: https://console.cloud.tencent.com/tokenhub/apikey
 #    free ids: kimi-k3, glm-5.3, hy3, minimax-m3
 claude-tencent-tokenhub() {

@@ -832,6 +832,28 @@
         }
       }
     },
+    "opper": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Opper",
+      "options": {
+        "baseURL": "https://api.opper.ai/v3/compat",
+        "apiKey": "{env:OPPER_API_KEY}"
+      },
+      "models": {
+        "gemini/gemma-4-31b": {
+          "name": "gemini/gemma-4-31b"
+        },
+        "gemini/gemma-4-26b-moe": {
+          "name": "gemini/gemma-4-26b-moe"
+        },
+        "poolside/laguna-s-2.1": {
+          "name": "poolside/laguna-s-2.1"
+        },
+        "poolside/laguna-xs-2.1": {
+          "name": "poolside/laguna-xs-2.1"
+        }
+      }
+    },
     "meganova": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "MegaNova",
