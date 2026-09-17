@@ -36,11 +36,12 @@ claude-aihubmix() {
 }
 
 # ── Z.ai (Zhipu GLM) · get a key: https://z.ai/manage-apikey/apikey-list
-#    the row lists no callable id: pass ANTHROPIC_MODEL=<a free id> before the function, or set it inside
+#    free ids: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash
 claude-zai-glm() {
   ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
   ANTHROPIC_AUTH_TOKEN="$ZAI_GLM_API_KEY" \
   ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="glm-4.7-flash" \
   claude "$@"
 }
 

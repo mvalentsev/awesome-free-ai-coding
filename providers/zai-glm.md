@@ -28,7 +28,8 @@ GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three r
 - Base URL: `https://api.z.ai/api/paas/v4`
 - Key: `ZAI_GLM_API_KEY` — get one at <https://z.ai/manage-apikey/apikey-list>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.z.ai/api/anthropic`
-- Note: Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead. The Claude Code guide sets ANTHROPIC_BASE_URL to https://api.z.ai/api/anthropic with "your_zai_api_key" as the token and names Coding-Plan ids (glm-5.3, glm-5.3-flash); whether the free Flash ids answer on that route is not stated, and the route answers 401 keyless (2026-09-05)
+- Callable ids: `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash`
+- Note: the ids are the chat completion reference's own, where glm-4.7-flash and glm-4.5-flash sit in its model enum; Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead. The Claude Code guide sets ANTHROPIC_BASE_URL to https://api.z.ai/api/anthropic with "your_zai_api_key" as the token and names Coding-Plan ids (glm-5.3, glm-5.3-flash); whether the free Flash ids answer on that route is not stated, and the route answers 401 keyless (2026-09-05)
 
 ## Evidence
 
