@@ -95,13 +95,36 @@ def check(root: Path, today: date | None = None) -> list[str]:
     tiers: dict[str, tuple[str, str]] = {}
     for e in entries:
         for m in e.models:
+            tier = m.tier.value if m.tier else "no tier"
             first = tiers.get(m.family)
             if first is None:
-                tiers[m.family] = (m.tier.value, e.id)
-            elif first[0] != m.tier.value:
+                tiers[m.family] = (tier, e.id)
+            elif first[0] != tier:
                 problems.append(
                     f"registry: family {m.family!r} is {first[0]} on {first[1]} and "
-                    f"{m.tier.value} on {e.id} — a family carries one tier")
+                    f"{tier} on {e.id} — a family carries one tier")
+
+    # And the tier is a measurement: nineteen of twenty-two frontier marks were
+    # below the bar by 2026-09-16, because nothing recorded what had been read.
+    # A family that carries a tier names the Artificial Analysis model it was
+    # read from, so `freetier-tiers` can read it again — and a family is one
+    # model, so every row names the same one.
+    measured_as: dict[str, tuple[str, str]] = {}
+    for e in entries:
+        for m in e.models:
+            if m.tier is not None and not m.aa_model:
+                problems.append(
+                    f"registry: family {m.family!r} on {e.id} is {m.tier.value} with no aa_model — "
+                    f"a tier is read from Artificial Analysis, so name the model it was read from")
+            if not m.aa_model:
+                continue
+            first = measured_as.get(m.family)
+            if first is None:
+                measured_as[m.family] = (m.aa_model, e.id)
+            elif first[0] != m.aa_model:
+                problems.append(
+                    f"registry: family {m.family!r} is measured as {first[0]} on {first[1]} and "
+                    f"{m.aa_model} on {e.id} — a family is one model")
 
     for e in entries:
         if e.last_verified > today:

@@ -51,7 +51,7 @@
 | **A trial that asks for no card** | [GitHub Copilot Free](https://github.com/features/copilot) · [Kiro](https://kiro.dev/) · [Google Jules](https://jules.google/) |
 | **Claude Code on a free lane** | [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com) |
 
-<sub>"Frontier" is the tier the registry marks on a model family — one tier per family, checked in CI — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route and whose route answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
+<sub>"Frontier" is a tier measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within 10 points of its top, re-read twice a week — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route and whose route answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
 
 **No account at all?** [opencode](https://opencode.ai) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 

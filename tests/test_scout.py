@@ -1268,3 +1268,29 @@ def test_answered_domains_are_the_current_watchlist_and_the_whole_blocklist():
     blocklist = {"relay.example": "pooled access"}
     assert scout.answered_domains(watchlist, blocklist, today) == {
         "current.ai", "api.current.ai", "relay.example"}
+
+
+def test_a_proposal_brings_no_tier_of_its_own():
+    """A tier is read from Artificial Analysis by freetier-tiers, never taken
+    from a model's say-so: a new family arrives without one, and a family the
+    registry has already measured arrives with the registry's marks, so the
+    pull request never contradicts one tier per family."""
+    measured = make(id="known", models=[{"family": "glm-5.3", "tier": "frontier", "aa_model": "glm-5-3"}])
+    entries = [measured]
+    added, rejected = apply_new(entries, [{**proposal(), "models": [
+        {"family": "glm-5.3", "tier": "strong"},
+        {"family": "n-flash-1", "tier": "frontier", "aa_model": "made-up"}]}], TODAY)
+    assert added == ["new1"] and rejected == []
+    new = next(e for e in entries if e.id == "new1")
+    assert [(m.family, m.tier, m.aa_model) for m in new.models] == [
+        ("glm-5.3", "frontier", "glm-5-3"), ("n-flash-1", None, None)]
+
+
+def test_an_update_keeps_the_marks_the_registry_measured():
+    e = make(models=[{"family": "x-mini-2", "tier": "strong", "aa_model": "x-mini-2"}])
+    entries = [e]
+    applied, rejected = apply_updates(entries, [{"id": "x", "models": [
+        {"family": "x-mini-2"}, {"family": "x-mini-3", "tier": "frontier"}]}])
+    assert applied == ["x"] and rejected == []
+    assert [(m.family, m.tier, m.aa_model) for m in entries[0].models] == [
+        ("x-mini-2", "strong", "x-mini-2"), ("x-mini-3", None, None)]

@@ -216,7 +216,8 @@ new_entries:
     limits: ...
     models:                # ONLY models actually usable for free on the free tier/plan,
                            # never the vendor's paid catalog; omit when the evidence is silent
-      - {{family: <substring of the vendor's API model ids>, tier: frontier | strong, released: 'YYYY-MM'}}
+      - {{family: <substring of the vendor's API model ids>, released: 'YYYY-MM'}}
+                           # no tier: tiers are measured on Artificial Analysis, never proposed
     probe: {{type: page-keywords, endpoint: <official url>,
              keywords: ["<free model id / quota figure / price row>", "free"]}}
            # or, when a keyless models API exists:
@@ -762,6 +763,32 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
     return f'bot challenge: page says "{challenge}"' if challenge else problem
 
 
+def _measured_marks(models: object, entries: list[Entry]) -> object:
+    """A proposal's models with the tiers the registry measured, and no others.
+
+    A tier is read from Artificial Analysis by freetier-tiers, never taken on a
+    model's word: the scout's proposals once put the same Nemotron at frontier on
+    one vendor and strong on the next. So whatever tier or aa_model a proposal
+    writes is dropped, and a family the registry has already measured gets the
+    registry's marks back — which also keeps one tier per family true of the pull
+    request. Anything that is not a list of mappings is passed through for
+    validation to refuse."""
+    if not isinstance(models, list):
+        return models
+    marks = {m.family: (m.tier, m.aa_model) for e in entries for m in e.models if m.aa_model}
+    out = []
+    for m in models:
+        if not isinstance(m, dict):
+            out.append(m)
+            continue
+        m = {k: v for k, v in m.items() if k not in ("tier", "aa_model")}
+        if m.get("family") in marks:
+            tier, aa_model = marks[m["family"]]
+            m.update(tier=tier.value if tier else None, aa_model=aa_model)
+        out.append(m)
+    return out
+
+
 def apply_updates(entries: list[Entry], updates: list[dict],
                   verifier: Callable[[Entry], str | None] | None = None,
                   ) -> tuple[list[str], list[str]]:
@@ -793,6 +820,8 @@ def apply_updates(entries: list[Entry], updates: list[dict],
         changed = {k: upd[k] for k in EDITABLE if upd.get(k) is not None}
         if not changed:
             continue
+        if "models" in changed:
+            changed["models"] = _measured_marks(changed["models"], entries)
         try:
             fixed = Entry.model_validate({**e.model_dump(mode="json"), **changed})
         except Exception as exc:
@@ -851,6 +880,8 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
         rid = raw.get("id", "<missing id>")
         if rid in existing_ids:
             continue
+        if "models" in raw:
+            raw = {**raw, "models": _measured_marks(raw["models"], entries)}
         try:
             e = Entry.model_validate({**raw, "first_seen": today, "last_verified": today,
                                       "provisional": True, "probe_failures": 0})

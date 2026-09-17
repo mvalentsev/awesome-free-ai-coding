@@ -118,17 +118,19 @@ def test_one_family_carries_one_tier(tmp_path: Path):
     """The scout assigns a tier per proposal, so the same model arrived frontier
     on one vendor and strong on the next — a judgement about the model recorded
     as a judgement about the vendor."""
+    measured = {"family": "nemotron-3-ultra", "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"}
     root = build(tmp_path, entries=[
-        {**ENTRY, "models": [{"family": "nemotron-3-ultra", "tier": "frontier"}]},
-        {**ENTRY, "id": "y", "url": "https://y.ai",
-         "models": [{"family": "nemotron-3-ultra", "tier": "strong"}]},
+        {**ENTRY, "models": [{**measured, "tier": "frontier"}]},
+        {**ENTRY, "id": "y", "url": "https://y.ai", "models": [{**measured, "tier": "strong"}]},
+        {**ENTRY, "id": "z", "url": "https://z.ai", "models": [measured]},
     ])
-    assert any("a family carries one tier" in p for p in check(root, TODAY))
+    problems = check(root, TODAY)
+    assert any("is frontier on x and strong on y — a family carries one tier" in p for p in problems)
+    assert any("is frontier on x and no tier on z — a family carries one tier" in p for p in problems)
 
     agreeing = build(tmp_path, entries=[
-        {**ENTRY, "models": [{"family": "nemotron-3-ultra", "tier": "frontier"}]},
-        {**ENTRY, "id": "y", "url": "https://y.ai",
-         "models": [{"family": "nemotron-3-ultra", "tier": "frontier"}]},
+        {**ENTRY, "models": [{**measured, "tier": "frontier"}]},
+        {**ENTRY, "id": "y", "url": "https://y.ai", "models": [{**measured, "tier": "frontier"}]},
     ])
     assert check(agreeing, TODAY) == []
 
@@ -262,3 +264,22 @@ def test_prose_keeps_angle_brackets_inside_backticks(tmp_path: Path):
     assert [p for p in problems if "HTML tag" in p] == [
         "registry: x limits has <model-id> outside backticks — GitHub drops it from the page "
         "as an HTML tag; put it in backticks"]
+
+
+def test_a_tier_names_the_artificial_analysis_model_it_was_read_from(tmp_path: Path):
+    """A tier is a measurement (CONTRIBUTING), and nineteen of twenty-two marks
+    were stale by 2026-09-16 because nothing recorded what had been measured.
+    A family with a tier carries the Artificial Analysis model it was read from,
+    and a family is one model, so every row agrees on it."""
+    root = build(tmp_path, entries=[
+        {**ENTRY, "models": [{"family": "glm-5.3", "tier": "frontier"}]},
+        {**ENTRY, "id": "y", "url": "https://y.ai",
+         "models": [{"family": "kimi-k3", "aa_model": "kimi-k3"}]},
+        {**ENTRY, "id": "z", "url": "https://z.ai",
+         "models": [{"family": "kimi-k3", "aa_model": "kimi-k3-low"}]},
+    ])
+    problems = check(root, TODAY)
+    assert ("registry: family 'glm-5.3' on x is frontier with no aa_model — a tier is read "
+            "from Artificial Analysis, so name the model it was read from") in problems
+    assert ("registry: family 'kimi-k3' is measured as kimi-k3 on y and kimi-k3-low on z — "
+            "a family is one model") in problems

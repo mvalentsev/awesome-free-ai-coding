@@ -21,10 +21,9 @@ entries:
     the platform (read 2026-08-14)
   models:
   - family: nemotron-3-ultra
-    tier: strong
     released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: gemma-4
-    tier: strong
     released: 2026-04
   api:
     base_url: https://openrouter.ai/api/v1
@@ -103,15 +102,17 @@ entries:
   - family: gemini-3.8-flash
     tier: strong
     released: ''
+    aa_model: gemini-3-8-flash
   - family: gemini-3.7-flash
     tier: strong
     released: ''
+    aa_model: gemini-3-7-flash
   - family: gemini-3.5-flash-lite
-    tier: strong
     released: ''
+    aa_model: gemini-3-5-flash-lite
   - family: gemini-2.5-pro
-    tier: strong
     released: ''
+    aa_model: gemini-2-5-pro
   api:
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     key_url: https://aistudio.google.com/apikey
@@ -157,13 +158,10 @@ entries:
     in an account for the exact figures'
   models:
   - family: gpt-oss
-    tier: strong
     released: 2025-08
   - family: qwen3.6
-    tier: strong
     released: ''
   - family: qwen3.8
-    tier: strong
     released: ''
   api:
     base_url: https://api.groq.com/openai/v1
@@ -258,8 +256,8 @@ entries:
     and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30
   models:
   - family: gpt-4.1
-    tier: strong
     released: 2025-04
+    aa_model: gpt-4-1
   api:
     base_url: https://models.github.ai/inference
     key_url: https://github.com/settings/personal-access-tokens
@@ -300,7 +298,6 @@ entries:
     "require a paid billing method" (read 2026-08-14)'
   models:
   - family: llama-4
-    tier: strong
     released: 2025-04
   api:
     base_url: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
@@ -407,23 +404,23 @@ entries:
     Read 2026-09-16'
   models:
   - family: big-pickle
-    tier: strong
     released: ''
   - family: mimo-v2.5
-    tier: strong
     released: ''
+    aa_model: mimo-v2-5-0424
   - family: ling-3.0-flash-fin
-    tier: strong
     released: ''
+    aa_model: ling-3-0-flash-fin
   - family: nemotron-3-ultra
-    tier: strong
     released: ''
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
-    tier: strong
     released: ''
+    aa_model: nemotron-3-5-lightning
   - family: muse-spark-1.3-contributor
     tier: frontier
     released: 2026-09
+    aa_model: muse-spark-1-3-xhigh
   api:
     base_url: https://opencode.ai/zen/v1
     key_url: https://opencode.ai/auth
@@ -492,22 +489,20 @@ entries:
     else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-16'
   models:
   - family: nemotron-3-ultra
-    tier: strong
     released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    tier: strong
     released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
-    tier: strong
     released: 2026-06
+    aa_model: north-mini-code
   - family: step-3.7-flash
-    tier: strong
     released: 2026-06
+    aa_model: step-3-7-flash
   - family: laguna-s-2.1
-    tier: strong
     released: 2026-07
   - family: laguna-xs-2.1
-    tier: strong
     released: 2026-07
   api:
     base_url: https://api.kilo.ai/api/gateway
@@ -647,8 +642,8 @@ entries:
     README still advertises the free channel'
   models:
   - family: mimo-v2.5
-    tier: strong
     released: ''
+    aa_model: mimo-v2-5-0424
   probe:
     type: page-keywords
     endpoint: https://raw.githubusercontent.com/XiaomiMiMo/MiMo-Code/main/README.md
@@ -722,7 +717,6 @@ entries:
     how people are using the product" (read 2026-08-14)
   models:
   - family: gemini-2.5
-    tier: strong
     released: ''
   probe:
     type: page-keywords
@@ -760,17 +754,16 @@ entries:
     2026-08-14)'
   models:
   - family: claude-sonnet-4.5
-    tier: strong
     released: ''
+    aa_model: claude-4-5-sonnet
   - family: qwen3-coder
-    tier: strong
     released: ''
   - family: deepseek-v3.2
-    tier: strong
     released: ''
+    aa_model: deepseek-v3-2
   - family: minimax-2.1
-    tier: strong
     released: ''
+    aa_model: minimax-m2-1
   probe:
     type: page-keywords
     endpoint: https://kiro.dev/pricing/
@@ -838,6 +831,7 @@ entries:
   - family: gpt-5.6
     tier: strong
     released: ''
+    aa_model: gpt-5-6-terra
   probe:
     type: page-keywords
     endpoint: https://learn.chatgpt.com/docs/pricing
@@ -876,7 +870,6 @@ entries:
     nemotron-3-nano-omni-30b-a3b-reasoning the catalog carries beside it'
   models:
   - family: nemotron
-    tier: strong
     released: 2026-03
   api:
     base_url: https://integrate.api.nvidia.com/v1
@@ -920,13 +913,11 @@ entries:
     Rate-limited
   models:
   - family: glm-4.7-flash
-    tier: strong
     released: 2026-01
+    aa_model: glm-4-7-flash
   - family: glm-4.5-flash
-    tier: strong
     released: 2025-07
   - family: glm-4.6v-flash
-    tier: strong
     released: 2026-01
   api:
     base_url: https://api.z.ai/api/paas/v4
@@ -978,16 +969,12 @@ entries:
     for keyed use; the others are billed per token once a key is in play. Read 2026-09-14'
   models:
   - family: gpt-oss
-    tier: strong
     released: 2025-08
   - family: qwen3.6
-    tier: strong
     released: ''
   - family: qwen3.8
-    tier: strong
     released: ''
   - family: qwen3-coder
-    tier: strong
     released: 2025-07
   api:
     base_url: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
@@ -1032,7 +1019,6 @@ entries:
     — its host stopped resolving on 2026-08-14
   models:
   - family: gpt-oss
-    tier: strong
     released: 2025-08
   api:
     base_url: https://text.pollinations.ai/openai
@@ -1080,11 +1066,11 @@ entries:
   - family: qwen3.8-max
     tier: frontier
     released: 2026-09
+    aa_model: qwen3-8-max
   - family: qwen3-max
-    tier: strong
     released: 2026-04
+    aa_model: qwen3-max
   - family: qwen3-coder
-    tier: strong
     released: 2025-07
   api:
     base_url: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
@@ -1161,11 +1147,11 @@ entries:
     phrase at all (all three read 2026-09-08)
   models:
   - family: solar-pro-3
-    tier: strong
     released: ''
+    aa_model: solar-pro-3
   - family: solar-mini
-    tier: strong
     released: ''
+    aa_model: solar-mini
   api:
     base_url: https://api.upstage.ai/v1
     key_url: https://console.upstage.ai/api-keys
@@ -1213,11 +1199,11 @@ entries:
     2026-08-14)
   models:
   - family: command-a
-    tier: strong
     released: ''
+    aa_model: command-a
   - family: north-mini-code
-    tier: strong
     released: ''
+    aa_model: north-mini-code
   api:
     base_url: https://api.cohere.com/compatibility/v1
     key_url: https://dashboard.cohere.com/api-keys
@@ -1325,11 +1311,10 @@ entries:
     without it costs $0.10/$0.20 per 1M tokens'
   models:
   - family: laguna-s-2.1
-    tier: strong
     released: 2026-07
   - family: ling-3.0-flash-fin
-    tier: strong
     released: 2026-09
+    aa_model: ling-3-0-flash-fin
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -1390,7 +1375,6 @@ entries:
     twin at those rates'
   models:
   - family: qwen3.7-flash
-    tier: strong
     released: 2026-07
   api:
     base_url: https://api.bazaarlink.ai/v1
@@ -1437,8 +1421,8 @@ entries:
     by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered'
   models:
   - family: nemotron-3-nano-omni
-    tier: strong
     released: 2026-04
+    aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://api.tokenrouter.com/v1
     key_url: https://www.tokenrouter.com/console/token
@@ -1479,13 +1463,10 @@ entries:
     five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)
   models:
   - family: deepseek
-    tier: strong
     released: 2025-12
   - family: gpt-oss
-    tier: strong
     released: 2025-08
   - family: gemma-4
-    tier: strong
     released: 2026-04
   api:
     base_url: https://api.sambanova.ai/v1
@@ -1538,12 +1519,13 @@ entries:
   - family: deepseek-v4-flash
     tier: strong
     released: 2026-04
+    aa_model: deepseek-v4-flash
   - family: minimax-m2.7
-    tier: strong
     released: 2026-03
+    aa_model: minimax-m2-7
   - family: muse-glimmer-30b
-    tier: strong
     released: 2026-08
+    aa_model: muse-glimmer
   api:
     base_url: https://api.routeway.ai/v1
     key_url: https://routeway.ai/dashboard/keys
@@ -1589,23 +1571,22 @@ entries:
     past that the same key moves to pay-as-you-go
   models:
   - family: nemotron-3-ultra
-    tier: strong
     released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    tier: strong
     released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4
-    tier: strong
     released: 2026-04
   - family: ling-3.0-tiny
-    tier: strong
     released: 2026-08
+    aa_model: ling-3-0-tiny
   - family: muse-glimmer-30b
-    tier: strong
     released: 2026-08
+    aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
-    tier: strong
     released: 2026-08
+    aa_model: nemotron-3-5-lightning
   api:
     base_url: https://router.requesty.ai/v1
     key_url: https://app.requesty.ai/api-keys
@@ -1671,23 +1652,26 @@ entries:
   - family: gemini-3.1-pro
     tier: strong
     released: ''
+    aa_model: gemini-3-1-pro-preview
   - family: gemini-3.8-flash
     tier: strong
     released: ''
+    aa_model: gemini-3-8-flash
   - family: gemini-3.7-flash
     tier: strong
     released: ''
+    aa_model: gemini-3-7-flash
   - family: gemini-3.6-flash
     tier: strong
     released: ''
+    aa_model: gemini-3-6-flash
   - family: claude-opus-4.6
-    tier: strong
     released: ''
+    aa_model: claude-opus-4-6
   - family: claude-sonnet-4.6
-    tier: strong
     released: ''
+    aa_model: claude-sonnet-4-6
   - family: gpt-oss
-    tier: strong
     released: 2025-08
   probe:
     type: page-keywords
@@ -1774,10 +1758,8 @@ entries:
     with nothing AI21-hosted or free to call'
   models:
   - family: jamba-mini
-    tier: strong
     released: 2026-01
   - family: jamba-large
-    tier: strong
     released: 2025-07
   api:
     base_url: https://api.ai21.com/studio/v1
@@ -1865,20 +1847,21 @@ entries:
   - family: glm-5.3
     tier: frontier
     released: ''
+    aa_model: glm-5-3
   - family: kimi-k3
     tier: frontier
     released: ''
+    aa_model: kimi-k3
   - family: glm-5
-    tier: strong
     released: 2026-02
+    aa_model: glm-5
   - family: mimo-v2.5
-    tier: strong
     released: ''
+    aa_model: mimo-v2-5-0424
   - family: north-mini-code
-    tier: strong
     released: 2026-06
+    aa_model: north-mini-code
   - family: gpt-oss
-    tier: strong
     released: 2025-08
   api:
     base_url: https://aihubmix.com/v1
@@ -1992,13 +1975,11 @@ entries:
     1,000,000 input tokens and 100,000 output tokens'
   models:
   - family: mercury-2.5
-    tier: strong
     released: 2026-09
   - family: mercury-2
-    tier: strong
     released: ''
+    aa_model: mercury-2
   - family: mercury-edit-2
-    tier: strong
     released: ''
   api:
     base_url: https://api.inceptionlabs.ai/v1
@@ -2142,10 +2123,8 @@ entries:
     offers a card charge as one of several verification routes (read 2026-08-30)'
   models:
   - family: qwen3.6
-    tier: strong
     released: ''
   - family: qwen3.8
-    tier: strong
     released: ''
   api:
     base_url: https://inference.hetzner.com/api/v1
@@ -2236,20 +2215,18 @@ entries:
     outside any trial, the in-house brick-v1-beta (read 2026-09-16)'
   models:
   - family: glm-5
-    tier: strong
     released: ''
+    aa_model: glm-5
   - family: gpt-oss
-    tier: strong
     released: ''
   - family: qwen3.8
-    tier: strong
     released: ''
   - family: llama-3.3
-    tier: strong
     released: ''
+    aa_model: llama-3-3-instruct-70b
   - family: apertus-70b
-    tier: strong
     released: ''
+    aa_model: apertus-70b-instruct
   api:
     base_url: https://api.regolo.ai/v1
     key_url: https://dashboard.regolo.ai
@@ -2308,15 +2285,18 @@ entries:
   - family: glm-5.3-flash
     tier: strong
     released: ''
+    aa_model: glm-5-3-flash
   - family: deepseek-v4.1-flash
     tier: strong
     released: ''
+    aa_model: deepseek-v4-1-flash
   - family: gpt-5.6-luna
     tier: strong
     released: ''
+    aa_model: gpt-5-6-luna
   - family: mimo-v2.5
-    tier: strong
     released: ''
+    aa_model: mimo-v2-5-0424
   probe:
     type: page-keywords
     endpoint: https://freebuff.com/
@@ -2356,8 +2336,8 @@ entries:
     is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16
   models:
   - family: mistral-small-3.2
-    tier: strong
     released: 2025-06
+    aa_model: mistral-small-3-2
   api:
     base_url: https://api.meganova.ai/v1
     key_url: https://www.meganova.ai/api-keys
@@ -2427,10 +2407,9 @@ entries:
     its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-16'
   models:
   - family: nemotron-3-ultra
-    tier: strong
     released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: qwen3.6
-    tier: strong
     released: 2026-04
   api:
     base_url: https://llmtr.com/v1
@@ -2579,17 +2558,19 @@ entries:
   - family: deepseek-v4-flash
     tier: strong
     released: ''
+    aa_model: deepseek-v4-flash
   - family: glm-5.1
-    tier: strong
     released: ''
+    aa_model: glm-5-1
   - family: glm-5.3-flash
     tier: strong
     released: ''
+    aa_model: glm-5-3-flash
   - family: minimax-m3
     tier: strong
     released: ''
+    aa_model: minimax-m3
   - family: qwen3.6
-    tier: strong
     released: ''
   api:
     base_url: https://freeinference.org/v1
@@ -2746,8 +2727,8 @@ entries:
     on request. No page read mentions a card (2026-09-16)'
   models:
   - family: sarvam-105b
-    tier: strong
     released: ''
+    aa_model: sarvam-105b
   api:
     base_url: https://api.sarvam.ai/v1
     key_url: https://dashboard.sarvam.ai
@@ -2918,7 +2899,6 @@ entries:
     and quality". Read 2026-09-14'
   models:
   - family: laguna-s-2.1
-    tier: strong
     released: 2026-07
   probe:
     type: api-models
@@ -2962,8 +2942,8 @@ entries:
   - family: agnes-3.0-flash
     tier: strong
     released: ''
+    aa_model: agnes-3-0-flash
   - family: agnes-2.5-flash
-    tier: strong
     released: ''
   api:
     base_url: https://apihub.agnes-ai.com/v1
@@ -3023,6 +3003,7 @@ entries:
   - family: qwen3.8-flash
     tier: strong
     released: 2026-08
+    aa_model: qwen3-8-flash-next
   api:
     base_url: https://yolo-auto.com/v1
     key_url: https://yolo-auto.com/app
@@ -3113,6 +3094,7 @@ entries:
   - family: gpt-5.6-luna
     tier: strong
     released: ''
+    aa_model: gpt-5-6-luna
   probe:
     type: page-keywords
     endpoint: https://zed.dev/pricing
@@ -3153,9 +3135,10 @@ entries:
   - family: deepseek-v4.1-flash
     tier: strong
     released: ''
+    aa_model: deepseek-v4-1-flash
   - family: mimo-v2.5
-    tier: strong
     released: ''
+    aa_model: mimo-v2-5-0424
   api:
     base_url: https://tokenharbor.ai/v1
     key_url: https://tokenharbor.ai/dashboard/api-keys
@@ -3204,10 +3187,9 @@ entries:
     want the portal's key. Read 2026-09-16
   models:
   - family: step-3.7-flash
-    tier: strong
     released: ''
+    aa_model: step-3-7-flash
   - family: laguna-s-2.1
-    tier: strong
     released: ''
   api:
     base_url: https://inference-api.nousresearch.com/v1

@@ -81,17 +81,27 @@ families a row marks `tier: frontier`, then by `rank` — so a tier is a claim
 that reaches the top of the page, and `freetier-check` refuses a family carrying
 two of them.
 
-**`tier: frontier` is a measurement, not a reputation.** A family is `frontier`
-when the model its free lane serves scores within 10 points of the top of the
-[Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models),
-counting current models only and reading the variant the lane actually allows:
-Meta's contributor tier has no max effort, so Muse Spark 1.3 Contributor is read
-at xhigh. Everything else is `strong`. On 2026-09-16 the top was 53.4 and the bar
-43.4, and nineteen of the twenty-two marks set before then no longer met it —
-Nemotron 3 Ultra scores 23, Gemini 2.5 Pro 17, Claude Opus 4.6 32 — because a tier
-written once never decays by itself. Re-read the marks whenever a new model
-takes the top of the index, and give a family the most specific name the lane
-serves, since `glm-5.3` is also matched by a `glm-5.3-flash` id.
+**A tier is a measurement, not a reputation.** A family's `tier` is read from
+the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models):
+`frontier` when the model its free lane serves scores within 10 points of the top
+of the index, counting current models only, `strong` within 25, and no tier below
+that or where nothing was measured. The family names what was read in `aa_model`,
+the slug of the model's page on artificialanalysis.ai, for the variant the lane
+serves: where the lane restricts it, that variant — Meta's contributor tier has no
+max effort, so Muse Spark 1.3 Contributor is read as `muse-spark-1-3-xhigh` — and
+where the lane does not say, the model's own page. A family that stands for no
+single model, such as `gpt-oss` on a lane serving both sizes or a bare
+`nemotron`, carries no tier. `freetier-check` refuses a tier without an
+`aa_model`, and two rows naming different models for one family; `uv run
+freetier-tiers` reads every score back off the leaderboard, prints the marks the
+index no longer backs, and with `--write` re-marks every row that carries the
+family — the scheduled run does that twice a week. On 2026-09-17 the top was 53.4
+(Claude Fable 5.1), frontier started at 43.4 and strong at 28.4. Until that day
+every family without a mark was `strong`, Apertus 70B at 5 points beside GLM 5.3
+Flash at 42, and nineteen of twenty-two frontier marks set by hand no longer met
+the bar, because a tier written once never decays by itself. Give a family the
+most specific name the lane serves, since `glm-5.3` is also matched by a
+`glm-5.3-flash` id.
 
 ## Probes must anchor on the offer
 

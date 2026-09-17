@@ -141,9 +141,26 @@ class ProbeType(str, Enum):
 
 class ModelFamily(BaseModel):
     family: str
-    tier: Tier = Tier.STRONG
+    # A measurement, never a reputation (CONTRIBUTING, "tier: frontier is a
+    # measurement"): how close the model this lane serves scores to the top of
+    # the Artificial Analysis Intelligence Index, read by `freetier-tiers`. No
+    # tier means not measured, or measured below the strong bar. Until
+    # 2026-09-17 every family defaulted to `strong`, so Apertus 70B at 5 points
+    # and GLM 5.3 Flash at 42 carried the same word.
+    tier: Tier | None = None
     released: str = ""
     superseded_by: str | None = None
+    # The Artificial Analysis model the tier was read from: the slug of its page
+    # on artificialanalysis.ai/models/, for the variant the lane actually serves.
+    aa_model: str | None = None
+
+    @field_validator("aa_model")
+    @classmethod
+    def _aa_model_is_a_slug(cls, value: str | None) -> str | None:
+        if value is not None and not re.fullmatch(r"[a-z0-9][a-z0-9-]*", value):
+            raise ValueError(f"aa_model {value!r} is not an Artificial Analysis model slug — "
+                             "the last part of its artificialanalysis.ai/models/ URL")
+        return value
 
 
 class Probe(BaseModel):

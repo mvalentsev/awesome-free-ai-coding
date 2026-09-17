@@ -45,6 +45,15 @@ jobs:
       - name: Probe all entries
         run: uv run freetier-probe --registry registry.yaml --failures failures ${{ inputs.dry_run && '--dry-run' || '' }}
 
+      # A tier is a measurement, and a measurement goes stale: the index moves as
+      # models ship. Re-read on every run, so the frontier answer at the top of the
+      # README follows the index instead of the day a mark was typed. Best effort:
+      # the leaderboard being down or reshaped is not a reason to stop a run that
+      # has probes to record, and the marks stay as they were.
+      - name: Re-read tier marks from the Artificial Analysis index
+        continue-on-error: true
+        run: uv run freetier-tiers --registry registry.yaml --write
+
       - name: Render README
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
