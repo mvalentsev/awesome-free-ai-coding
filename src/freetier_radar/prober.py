@@ -167,12 +167,18 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
     line in the pull request is the difference between a check that ran and
     one that quietly did not."""
     url = entry.api.anthropic_base_url.rstrip("/") + "/v1/messages"
+    # A model the row publishes, not a placeholder: Fireworks checks the model
+    # before the key and answered a made-up one with 404 "Model not found" on
+    # 2026-09-17 — the status this check reads as a route that is gone — and a
+    # model it serves with 401. Every other route answered both the same way.
+    body = ({**ANTHROPIC_PROBE_BODY, "model": entry.api.model_ids[0]}
+            if entry.api.model_ids else ANTHROPIC_PROBE_BODY)
     last = ""
     for i in range(attempts):
         if i:
             await asyncio.sleep(backoff * i)
         try:
-            resp = await client.post(url, json=ANTHROPIC_PROBE_BODY,
+            resp = await client.post(url, json=body,
                                      headers={"anthropic-version": "2023-06-01"},
                                      timeout=TIMEOUT, follow_redirects=True)
         except httpx.HTTPError as exc:

@@ -1512,6 +1512,28 @@ def anthropic_entry() -> Entry:
 
 
 @respx.mock
+async def test_an_anthropic_route_is_called_with_a_model_the_row_publishes():
+    """Fireworks checks the model before the key: its Anthropic route answered a
+    made-up model with 404 "Model not found" and a model it serves with 401 on
+    2026-09-17. A 404 is how this check tells a route that is gone, so the call
+    names the row's own first id, the way the keyless check does — and only a
+    row with no ids falls back to a placeholder."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        if json.loads(request.content)["model"] == "qwen3-coder-30b":
+            return httpx.Response(401, json={"error": {"message": "You must provide an API key."}})
+        return httpx.Response(404, json={"error": {"message": "Model not found", "param": "model"}})
+    route = respx.post("https://x.ai/anthropic/v1/messages").mock(side_effect=answer)
+    data = anthropic_entry().model_dump()
+    data["api"]["model_ids"] = ["qwen3-coder-30b"]
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(data), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert json.loads(route.calls.last.request.content)["model"] == "qwen3-coder-30b"
+
+
+@respx.mock
 async def test_a_published_anthropic_route_that_answers_is_a_pass():
     """A keyless POST cannot complete a message, and does not try to: a 401 is
     the route saying it exists, which is the whole question."""
