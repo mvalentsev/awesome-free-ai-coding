@@ -158,8 +158,10 @@ entries:
     released: 2025-08
   - family: qwen3.6
     released: ''
-  - family: qwen3.8
+  - family: qwen3.8-27b
+    tier: strong
     released: ''
+    aa_model: qwen3-8-27b
   api:
     base_url: https://api.groq.com/openai/v1
     key_url: https://console.groq.com/keys
@@ -964,8 +966,10 @@ entries:
     released: 2025-08
   - family: qwen3.6
     released: ''
-  - family: qwen3.8
+  - family: qwen3.8-27b
+    tier: strong
     released: ''
+    aa_model: qwen3-8-27b
   - family: qwen3-coder
     released: 2025-07
   api:
@@ -2109,8 +2113,10 @@ entries:
   models:
   - family: qwen3.6
     released: ''
-  - family: qwen3.8
+  - family: qwen3.8-27b
+    tier: strong
     released: ''
+    aa_model: qwen3-8-27b
   api:
     base_url: https://inference.hetzner.com/api/v1
     key_url: https://experiments.hetzner.com/inference
@@ -2204,8 +2210,10 @@ entries:
     aa_model: glm-5
   - family: gpt-oss
     released: ''
-  - family: qwen3.8
+  - family: qwen3.8-27b
+    tier: strong
     released: ''
+    aa_model: qwen3-8-27b
   - family: llama-3.3
     released: ''
     aa_model: llama-3-3-instruct-70b

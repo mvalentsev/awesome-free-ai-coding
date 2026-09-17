@@ -17,7 +17,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Free models
 
-`gpt-oss`, `qwen3.6`, `qwen3.8`, `qwen3-coder`
+`gpt-oss`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder`
 
 ## Limits, in the vendor's words
 
@@ -39,6 +39,7 @@ OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP
 
 ## History
 
+- *next scheduled run* — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-10` — Free models changed: added qwen3.8
 - `2026-08-20` — Free models changed: added qwen3-coder, qwen3.6; dropped qwen3
 - `2026-07-19` — Added to the list: EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible)

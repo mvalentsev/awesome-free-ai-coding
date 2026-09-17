@@ -17,7 +17,7 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 ## Free models
 
-`qwen3.6`, `qwen3.8`
+`qwen3.6`, `qwen3.8-27b`
 
 ## Limits, in the vendor's words
 
@@ -39,6 +39,7 @@ Hetzner answers it in its own FAQ: "As long as the Inference API remains in expe
 
 ## History
 
+- *next scheduled run* — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-08-31` — Added to the list: OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs
 
 ---

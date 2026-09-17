@@ -17,7 +17,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ## Free models
 
-`gpt-oss`, `qwen3.6`, `qwen3.8`
+`gpt-oss`, `qwen3.6`, `qwen3.8-27b`
 
 ## Limits, in the vendor's words
 
@@ -37,6 +37,7 @@ Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM /
 
 ## History
 
+- *next scheduled run* — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-10` — Free models changed: added qwen3.8; dropped llama-3.3
 - `2026-08-17` — Free models changed: added gpt-oss, llama-3.3, qwen3.6; dropped llama-4, qwen3
 - `2026-07-19` — Added to the list: Fast inference free tier

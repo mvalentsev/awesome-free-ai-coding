@@ -160,8 +160,10 @@
           "released": ""
         },
         {
-          "family": "qwen3.8",
-          "released": ""
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-27b"
         }
       ],
       "api": {
@@ -991,8 +993,10 @@
           "released": ""
         },
         {
-          "family": "qwen3.8",
-          "released": ""
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-27b"
         },
         {
           "family": "qwen3-coder",
@@ -2204,8 +2208,10 @@
           "released": ""
         },
         {
-          "family": "qwen3.8",
-          "released": ""
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-27b"
         }
       ],
       "api": {
@@ -2301,8 +2307,10 @@
           "released": ""
         },
         {
-          "family": "qwen3.8",
-          "released": ""
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-27b"
         },
         {
           "family": "llama-3.3",

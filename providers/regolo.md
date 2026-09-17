@@ -17,7 +17,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Free models
 
-`glm-5`, `gpt-oss`, `qwen3.8`, `llama-3.3`, `apertus-70b`
+`glm-5`, `gpt-oss`, `qwen3.8-27b`, `llama-3.3`, `apertus-70b`
 
 ## Limits, in the vendor's words
 
@@ -38,6 +38,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## History
 
+- *next scheduled run* — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-08-31` — Added to the list: EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
 ---
