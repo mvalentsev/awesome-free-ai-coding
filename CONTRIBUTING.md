@@ -191,7 +191,9 @@ vendor documents an Anthropic-format Messages route — a 401 alone proves
 nothing, since a gateway's auth wall answers 401 on any path. It is the value
 `ANTHROPIC_BASE_URL` takes, so it stops before `/v1/messages` (Claude Code
 appends that itself; validation refuses a value that already carries it). Every
-run then POSTs to the route keyless: a 401, 400 or 429 is a route, a 404 or 405
+run then POSTs to the route keyless, naming the row's first id in `api.model_ids`
+— Fireworks answers a model it does not serve with 404 before it asks for a key
+— and a 401, 400 or 429 is a route, a 404 or 405
 is reported as `stale-ids` beside the row while the row stays verified by its
 page, and a route that cannot be reached is reported rather than skipped. The
 field feeds the Claude Code line of the picks table, the second URL in the
