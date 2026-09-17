@@ -1,0 +1,51 @@
+---
+layout: default
+title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-09-17'
+description: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated 2026-09-04,…
+permalink: /providers/tencent-tokenhub/
+---
+
+{% raw %}
+
+# Tencent Cloud TokenHub
+
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+
+## What you get
+
+Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification
+
+## Free models
+
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+
+## Limits, in the vendor's words
+
+The free package page, updated 2026-09-04, gives each main account one grant while the promotion runs, 本期活动时间截至 2026 年 12 月 31 日 (until 31 December 2026): 所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年, a million tokens on every language model, valid a year from claiming. The same page says the grant works at main-account level with 同一账号下的所有模型共享额度 (all models on the account sharing it) beside 免费体验包每个账号每个模型仅可领取一次 (once per model per account), so whether the million is per model or shared is not settled there, and the figures are 以控制台显示为准 (as the console shows). When the grant is spent the service stops unless post-payment is switched on, so nothing is billed without it. The quickstart requires registering on Tencent Cloud and passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民 — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are sent to the international site. Read 2026-09-17
+
+## Connect
+
+- Base URL: `https://tokenhub.tencentmaas.com/v1`
+- Key: `TENCENT_TOKENHUB_API_KEY` — get one at <https://console.cloud.tencent.com/tokenhub/apikey>
+- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenhub.tencentmaas.com`
+- Callable ids: `kimi-k3`, `glm-5.3`, `hy3`, `minimax-m3`
+- Note: ids are the models page's model column (调用参数), read 2026-09-17; /v1/models answers 401 without a key, so none is read off a catalog. The Claude Code guide sets ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com with ANTHROPIC_MODEL=hy3
+
+## Evidence
+
+- Probe: the page at <https://cloud.tencent.com/document/product/1823/130053>, anchored on `100 万 Tokens 的免费体验额度`, `2026 年 12 月 31 日`
+- Source: <https://cloud.tencent.com/document/product/1823/130053>
+- Source: <https://cloud.tencent.com/document/product/1823/130058>
+- Source: <https://cloud.tencent.com/document/product/378/3629>
+- Source: <https://cloud.tencent.com/document/product/1823/130051>
+- Source: <https://cloud.tencent.com/document/product/1823/131903>
+
+## History
+
+- *next scheduled run* — Added to the list: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification
+
+---
+
+Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+
+{% endraw %}

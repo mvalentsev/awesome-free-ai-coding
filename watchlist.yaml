@@ -1271,37 +1271,6 @@ watched:
       A chat model priced 0 in api.cortecs.ai/v1/models, or a signup credit with
       a figure on cortecs.ai/pricing.
 
-  - domains: [tokenhub.tencentmaas.com, cloud.tencent.com, hunyuan.tencent.com]
-    name: Tencent Cloud TokenHub (and the Hunyuan console)
-    checked_on: '2026-09-05'
-    reason: >-
-      Reached through the models.dev digest (hy3 and hy3-preview at cost 0). The
-      offer is real and readable: cloud.tencent.com/document/product/1823/130053,
-      updated 2026-09-04, grants each main account a one-time 新人免费体验包 —
-      "所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年", one million tokens
-      on every language model, valid a year, the same for multimodal-understanding
-      models — claimed from the model square or on first call, once per model per
-      account, the promotion running to 2026-12-31, and the service stopping when
-      the quota is spent unless post-payment is switched on. What the package
-      page does not say is who can open the account: the platform is Tencent
-      Cloud's China site, its catalog answers 401 keyless, and the sign-up
-      prerequisites are not on the page the package is documented on. It sits
-      here beside ModelScope for the same reason — a mainland cloud account whose
-      sign-up this list cannot read. Re-read 2026-09-05 after three of the lists
-      read that day named cloud.tencent.com: the Hunyuan console is the same
-      question one product over. Its billing page
-      (cloud.tencent.com/document/product/1729/97731) says the vendor is folding
-      it into TokenHub — "腾讯混元大模型相关功能将逐步迁移至 TokenHub" — and states the
-      account prerequisite the package page left out:
-      "腾讯混元大模型的开通使用需要先通过 腾讯云企业实名认证 或者 腾讯云个人实名认证", enterprise or
-      personal real-name verification on Tencent Cloud before the service can be
-      opened at all. Both domains are here so neither console is proposed again
-      while that wall stands.
-    reopen_if: >-
-      A readable Tencent Cloud page says TokenHub can be activated on an account
-      opened without mainland real-name verification, or the catalog opens
-      keyless.
-
   - domains: [bothub.ru]
     name: BotHub
     checked_on: '2026-09-05'

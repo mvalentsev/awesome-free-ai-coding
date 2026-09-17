@@ -39,6 +39,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) | 🔌 LLM APIs with free tier | `agnes-3.0-flash`, `agnes-2.5-flash` | `2026-09-17` |
 | [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
+| [Tencent Cloud TokenHub](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) | 🔌 LLM APIs with free tier | `gpt-oss` | `2026-09-17` |
 | [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) | 🔌 LLM APIs with free tier | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | `2026-09-17` |
 | [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |

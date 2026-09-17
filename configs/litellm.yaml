@@ -1002,6 +1002,26 @@ model_list:
     model: openai/sarvam-105b-conversations
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
+- model_name: tencent-tokenhub/kimi-k3
+  litellm_params:
+    model: openai/kimi-k3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: tencent-tokenhub/glm-5.3
+  litellm_params:
+    model: openai/glm-5.3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: tencent-tokenhub/hy3
+  litellm_params:
+    model: openai/hy3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: tencent-tokenhub/minimax-m3
+  litellm_params:
+    model: openai/minimax-m3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
 - model_name: inception-labs/mercury-2.5
   litellm_params:
     model: openai/mercury-2.5

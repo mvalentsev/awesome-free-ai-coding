@@ -54,6 +54,16 @@ claude-vercel-ai-gateway() {
   claude "$@"
 }
 
+# ── Tencent Cloud TokenHub · get a key: https://console.cloud.tencent.com/tokenhub/apikey
+#    free ids: kimi-k3, glm-5.3, hy3, minimax-m3
+claude-tencent-tokenhub() {
+  ANTHROPIC_BASE_URL="https://tokenhub.tencentmaas.com" \
+  ANTHROPIC_AUTH_TOKEN="$TENCENT_TOKENHUB_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="kimi-k3" \
+  claude "$@"
+}
+
 # ── FreeInference (Harvard SEAS) · get a key: https://freeinference.org
 #    free ids: deepseek-v4-flash, qwen3.6-35b, diffusiongemma
 claude-freeinference() {

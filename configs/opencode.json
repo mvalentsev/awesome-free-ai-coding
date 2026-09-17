@@ -921,6 +921,28 @@
       },
       "models": {}
     },
+    "tencent-tokenhub": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Tencent Cloud TokenHub",
+      "options": {
+        "baseURL": "https://tokenhub.tencentmaas.com/v1",
+        "apiKey": "{env:TENCENT_TOKENHUB_API_KEY}"
+      },
+      "models": {
+        "kimi-k3": {
+          "name": "kimi-k3"
+        },
+        "glm-5.3": {
+          "name": "glm-5.3"
+        },
+        "hy3": {
+          "name": "hy3"
+        },
+        "minimax-m3": {
+          "name": "minimax-m3"
+        }
+      }
+    },
     "inception-labs": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Inception Labs (Mercury)",
