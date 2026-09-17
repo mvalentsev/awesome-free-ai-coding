@@ -209,6 +209,44 @@ def test_adding_something_the_history_already_has_is_a_contradiction(tmp_path: P
     assert any("added" in p and "already" in p for p in check(root, TODAY))
 
 
+def test_a_row_the_history_recorded_may_not_be_deleted_from_the_registry(tmp_path: Path):
+    """Twelve rows left the list by deletion before 2026-09-17 — Cerebras,
+    Novita, LongCat, Kenari among them — and none of them reached the Archive;
+    the page kept only a "Delisted" line with nothing after it. A row leaves
+    through the Archive, so a registry missing a row the history knows is refused."""
+    root = build(tmp_path, history=[event(), event(id="gone", name="Gone")])
+    assert ("registry: gone is in history.jsonl and missing from registry.yaml — a row leaves "
+            "the list through the Archive: give it `delisted` (or `retired_on`) instead of "
+            "deleting it") in check(root, TODAY)
+
+
+def test_an_archived_row_may_sit_on_a_blocklisted_domain(tmp_path: Path):
+    """Taking a row off the list and then rejecting its service for cause is the
+    intended sequence — Kenari's — and the row is the record of what was listed."""
+    kept = {**ENTRY, "delisted": {"on": "2026-08-10", "reason": "rejected for cause"}}
+    root = build(tmp_path, entries=[kept], blocklist=[{"domain": "x.ai", "reason": "rejected"}])
+    assert check(root, TODAY) == []
+
+
+def test_a_delisting_is_dated_between_the_rows_arrival_and_today(tmp_path: Path):
+    ahead = {**ENTRY, "delisted": {"on": "2026-08-15", "reason": "taken off"}}
+    before = {**ENTRY, "id": "y", "url": "https://y.ai",
+              "delisted": {"on": "2025-12-31", "reason": "taken off"}}
+    problems = check(build(tmp_path, entries=[ahead, before]), TODAY)
+    assert "registry: x delisted.on 2026-08-15 is in the future" in problems
+    assert "registry: y delisted.on 2025-12-31 is before first_seen 2026-01-01" in problems
+
+
+def test_a_delisting_reason_is_a_readers_length(tmp_path: Path):
+    """It is the sentence the Archive prints beside the row; the long account
+    belongs to the watchlist or the blocklist."""
+    from freetier_radar.validate import PROSE_LIMITS
+    long = {**ENTRY, "delisted": {"on": "2026-08-10",
+                                  "reason": "r" * (PROSE_LIMITS["delisted.reason"] + 1)}}
+    problems = check(build(tmp_path, entries=[long]), TODAY)
+    assert any("delisted.reason is" in p and "characters" in p for p in problems)
+
+
 def test_text_that_reads_as_liquid_would_break_the_published_page(tmp_path: Path):
     """README.md is served through GitHub Pages, which renders it with Jekyll.
     A vendor sentence carrying `{{` or `{%` is a Liquid tag to that build, and a

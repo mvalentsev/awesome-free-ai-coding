@@ -24,9 +24,9 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/cerebras-free/20260917T100542Z</id>
     <title>Delisted: Cerebras Inference</title>
-    <link rel="alternate" href="https://www.cerebras.ai"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/"/>
     <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">Delisted: Cerebras Inference</summary>
+    <summary type="text">its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260917T100542Z</id>
@@ -45,16 +45,16 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/infomaniak-ai/20260917T100542Z</id>
     <title>Delisted: Infomaniak AI Services</title>
-    <link rel="alternate" href="https://www.infomaniak.com/en/hosting/ai-services"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/"/>
     <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">Delisted: Infomaniak AI Services</summary>
+    <summary type="text">a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/kenari/20260917T100542Z</id>
     <title>Delisted: Kenari</title>
-    <link rel="alternate" href="https://kenari.id"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/"/>
     <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">Delisted: Kenari</summary>
+    <summary type="text">rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llm7/20260917T100542Z</id>
@@ -94,9 +94,9 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/scaleway-generative/20260917T100542Z</id>
     <title>Delisted: Scaleway Generative APIs</title>
-    <link rel="alternate" href="https://www.scaleway.com/en/generative-apis/"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/"/>
     <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">Delisted: Scaleway Generative APIs</summary>
+    <summary type="text">1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/token-harbor/20260917T100542Z</id>
@@ -220,7 +220,7 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/ai21-labs/20260907T102810Z</id>
     <title>Archived: AI21 Labs (Jamba)</title>
-    <link rel="alternate" href="https://www.ai21.com"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/"/>
     <updated>2026-09-07T10:28:10Z</updated>
     <summary type="text">vendor-announced shutdown on 2026-08-09</summary>
   </entry>
@@ -262,7 +262,7 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cerebras-free/20260903T213808Z</id>
     <title>Free models changed: Cerebras Inference</title>
-    <link rel="alternate" href="https://www.cerebras.ai"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/"/>
     <updated>2026-09-03T21:38:08Z</updated>
     <summary type="text">added qwen3.8; dropped gemma-4 · free models: gpt-oss, qwen3.8</summary>
   </entry>
@@ -276,7 +276,7 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kenari/20260903T213517Z</id>
     <title>Free models changed: Kenari</title>
-    <link rel="alternate" href="https://kenari.id"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/"/>
     <updated>2026-09-03T21:35:17Z</updated>
     <summary type="text">dropped glm-4.7-flash · free models: nemotron-3-ultra, nemotron-3-super, step-3.7-flash, laguna-s-2.1</summary>
   </entry>
@@ -297,14 +297,14 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/infomaniak-ai/20260903T095524Z</id>
     <title>New: Infomaniak AI Services</title>
-    <link rel="alternate" href="https://www.infomaniak.com/en/hosting/ai-services"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/"/>
     <updated>2026-09-03T09:55:24Z</updated>
     <summary type="text">Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/kenari/20260903T095524Z</id>
     <title>New: Kenari</title>
-    <link rel="alternate" href="https://kenari.id"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/"/>
     <updated>2026-09-03T09:55:24Z</updated>
     <summary type="text">Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — twelve on 2026-09-02, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them · free models: glm-4.7-flash, nemotron-3-ultra, nemotron-3-super, step-3.7-flash, laguna-s-2.1</summary>
   </entry>

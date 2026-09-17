@@ -103,6 +103,39 @@ the bar, because a tier written once never decays by itself. Give a family the
 most specific name the lane serves, since `glm-5.3` is also matched by a
 `glm-5.3-flash` id.
 
+## How a row leaves the list
+
+Through the Archive, and no other way: a row is never deleted from
+`registry.yaml`. It is archived on its own when its vendor's shutdown date
+arrives (`retired_on`, which also takes a date already past), after three failed
+probes in a row, or after 60 days without a passing probe, and a row its probe
+archived comes back the day it passes again. Anything else is a reviewer's call,
+recorded on the row:
+
+```yaml
+delisted:
+  on: 2026-09-16
+  reason: rejected for cause — the operator's own JavaScript bundle showed …
+```
+
+That covers an offer that ended without notice, a row that no longer meets
+[what qualifies](#what-qualifies) and a service rejected for cause. `on` is the
+day the row came off; `reason` is the sentence the Archive prints beside it —
+lower case, no full stop — while the long account goes to `watchlist.yaml`, or
+for cause to `blocklist.yaml`. A delisted row keeps what it was published with,
+probe included, and is never probed again. It drops its connection details only
+when its service is rejected for cause, and its page then names the service
+without linking it. Its id stays taken, since the id is its page's URL: a vendor
+that comes back is restored by removing `delisted`, and the scout reports a
+proposal under an archived row's id instead of dropping it.
+
+Deleting a row is refused three times over: `freetier-check` fails on a registry
+missing an id `history.jsonl` has recorded, the probe run stops before it can
+record the deletion, and the render will not build the page without the row.
+Before 2026-09-17 twelve rows left by deletion — Cerebras, Novita and Kenari
+among them — and the page said nothing about them but "Delisted —". They are
+back as delisted rows, with the reason.
+
 ## Probes must anchor on the offer
 
 Every `page-keywords` probe needs at least one keyword that disappears when the
@@ -279,12 +312,13 @@ via pull request. Humans review the PR; robots do everything else.
 
 `providers/` is generated with it: one page per row on the GitHub Pages site,
 in the row's own words, with the evidence the probe reads and the row's history,
-plus an index — the "Last verified" date in every README row links to it. The
+plus an index — the "Last verified" date of a live README row links to it, and
+so does the name of an archived one. The
 pages exist for the reader who arrives from a search about one vendor, so their
 titles name the vendor, the tier and the date; `_config.yml` names the site so
 Jekyll writes canonical URLs and a sitemap. **Never edit them by hand** — the
-render deletes the page of a row that leaves and rewrites the rest, and the body
-sits inside `{% raw %}` so a vendor's own sentence can never break the build.
+render rewrites every one, an archived row's included, and the body sits inside
+`{% raw %}` so a vendor's own sentence can never break the build.
 
 `llms.txt` is generated with them — the whole list as one text file, in the
 shape LLM search and agents read — and `browse.html` is a hand-written static
@@ -296,7 +330,7 @@ ownership with is the file named after it at the repository root, and it is
 not a secret.
 
 Every change to what the list publishes — a row arriving, dropping to the
-Archive, being delisted, or changing its free models — is appended to
+Archive, coming back, or changing its free models — is appended to
 [`history.jsonl`](history.jsonl) by those same two commands and published as an
 [Atom feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml).
 **Never edit it by hand.** It is append-only, and it is compared against the
@@ -307,7 +341,7 @@ reported by the next scheduled run rather than going unrecorded.
 
 `freetier-announce` runs in the same workflow, after the verification commit:
 every event the run appended to `history.jsonl` — a row arriving, dropping to
-the Archive, being delisted, changing its free models — becomes one post from
+the Archive, coming back, changing its free models — becomes one post from
 the project's own accounts, labelled as a bot, linking the row's page. It posts
 only events from the last 14 days, at most five per channel per run, oldest
 first, and only what a channel has not posted before: `announced.jsonl` is the

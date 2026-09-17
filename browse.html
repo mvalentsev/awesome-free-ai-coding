@@ -63,7 +63,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
 <thead><tr><th>Provider</th><th>Category</th><th>Free offer</th><th>Free models</th><th>Connect</th><th>Verified</th></tr></thead>
 <tbody id="rows"></tbody>
 </table></div>
-<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · "Verified" is the day the row last answered its probe; 🧪 marks a row listed for less than two weeks; bold model families are frontier-tier.</footer>
+<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · "Verified" is the day the row last answered its probe, and for an archived row why it left; 🧪 marks a row listed for less than two weeks; bold model families are frontier-tier.</footer>
 </main>
 <script>
 (function () {
@@ -123,7 +123,10 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     name.appendChild(link(e.page, e.name));
     if (e.provisional) name.appendChild(text(" 🧪"));
     name.appendChild(el("br"));
-    name.appendChild(link(e.url, e.url.replace(/^https?:\/\//, ""), "muted"));
+    // An archived row's service is named, not linked: it is dead, or for a row
+    // rejected for cause, somewhere this list will not send anyone.
+    var host = e.url.replace(/^https?:\/\//, "");
+    name.appendChild(e.archived ? el("span", "muted", host) : link(e.url, host, "muted"));
     tr.appendChild(name);
 
     var cat = el("td");
@@ -148,7 +151,9 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     tr.appendChild(models);
 
     var connect = el("td");
-    if (e.api && e.api.base_url) {
+    if (e.archived) {
+      connect.appendChild(el("span", "muted", "archived — nothing to connect to"));
+    } else if (e.api && e.api.base_url) {
       connect.appendChild(el("code", "", e.api.base_url));
       if (e.api.anthropic_base_url) {
         connect.appendChild(el("br"));
@@ -164,7 +169,10 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     }
     tr.appendChild(connect);
 
-    tr.appendChild(el("td", "", e.last_verified));
+    // Why an archived row left, not the last date its probe passed: on
+    // 2026-09-17 all three archived rows showed a pass later than the day their
+    // vendors ended the offers.
+    tr.appendChild(el("td", e.archived ? "muted" : "", e.archived ? e.archived_because : e.last_verified));
     return tr;
   }
 

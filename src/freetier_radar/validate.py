@@ -27,7 +27,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
-from .history import EventType, load_history
+from .history import EventType, deleted_row_problem, deleted_rows, load_history
 from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist)
 
@@ -35,7 +35,8 @@ __all__ = ["check", "main"]
 
 # The most a row's prose may run to, in characters: a README cell and a provider
 # page, not a research log.
-PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "api.notice": 500}
+PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "api.notice": 500,
+                "delisted.reason": 300}
 
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
 
@@ -142,7 +143,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
         # Atom feed simply stops moving with nothing on the page to say why.
         for field, text in (("offering", e.offering), ("limits", e.limits),
                             ("name", e.name), ("api.note", e.api.note if e.api else ""),
-                            ("api.notice", e.api.notice.text if e.api and e.api.notice else "")):
+                            ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
+                            ("delisted.reason", e.delisted.reason if e.delisted else "")):
             if "{{" in text or "{%" in text:
                 problems.append(
                     f"registry: {e.id} has Liquid delimiters in {field} — GitHub Pages "
@@ -155,7 +157,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for e in entries:
         for field, text in (("offering", e.offering), ("limits", e.limits), ("name", e.name),
                             ("api.note", e.api.note if e.api else ""),
-                            ("api.notice", e.api.notice.text if e.api and e.api.notice else "")):
+                            ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
+                            ("delisted.reason", e.delisted.reason if e.delisted else "")):
             for tag in _TAG.findall(re.sub(r"`[^`]*`", "", text)):
                 problems.append(
                     f"registry: {e.id} {field} has {tag} outside backticks — GitHub drops it from "
@@ -171,7 +174,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
                                    ("limits", e.limits, PROSE_LIMITS["limits"]),
                                    ("api.note", e.api.note if e.api else "", PROSE_LIMITS["api.note"]),
                                    ("api.notice", e.api.notice.text if e.api and e.api.notice else "",
-                                    PROSE_LIMITS["api.notice"])):
+                                    PROSE_LIMITS["api.notice"]),
+                                   ("delisted.reason", e.delisted.reason if e.delisted else "",
+                                    PROSE_LIMITS["delisted.reason"])):
             if len(text) > limit:
                 problems.append(
                     f"registry: {e.id} {field} is {len(text)} characters, over {limit} — "
@@ -181,10 +186,21 @@ def check(root: Path, today: date | None = None) -> list[str]:
         if e.api and e.api.notice and e.api.notice.since > today:
             problems.append(f"registry: {e.id} api.notice is dated {e.api.notice.since.isoformat()}, "
                             f"after today ({today.isoformat()})")
+        # The day a reviewer took the row off: not one that has not come, and
+        # not one before the list carried the row at all.
+        if e.delisted and e.delisted.on > today:
+            problems.append(f"registry: {e.id} delisted.on {e.delisted.on.isoformat()} is in the future")
+        if e.delisted and e.delisted.on < e.first_seen:
+            problems.append(f"registry: {e.id} delisted.on {e.delisted.on.isoformat()} is before "
+                            f"first_seen {e.first_seen.isoformat()}")
 
     # ---- registry against blocklist.yaml
     # We list it and we say it must never be proposed. One of the two is wrong.
+    # Archived rows are exempt for the watchlist's reason below: a row taken off
+    # the list and then rejected for cause — Kenari — is the intended sequence.
     for e in entries:
+        if is_archived(e, today):
+            continue
         if is_blocked(_domain(e.url), blocklist):
             problems.append(f"registry: {e.id} sits on blocklisted domain {_domain(e.url)}")
 
@@ -283,6 +299,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
             live_ids.add(ev.id)
         else:
             live_ids.add(ev.id)
+    # A row leaves the list through the Archive, never by leaving the registry.
+    for entry_id in deleted_rows(entries, history):
+        problems.append(f"registry: {deleted_row_problem(entry_id)}")
 
     # ---- announced.jsonl
     # The announcer's ledger: append-only like the history, and read every run

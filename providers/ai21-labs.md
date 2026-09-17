@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'AI21 Labs (Jamba) free tier (archived): what it offered, and when it stopped verifying'
+title: 'AI21 Labs (Jamba) free tier (archived): what it offered, and why it left the list'
 description: 'AI21''s Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio''s, and the vendor sunset Studio''s Jamba API on 2026-08-09. Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every…'
 permalink: /providers/ai21-labs/
 ---
@@ -11,24 +11,17 @@ permalink: /providers/ai21-labs/
 
 🎁 Trials (no card when possible) · no card · **archived** — vendor-announced shutdown on 2026-08-09 · [ai21.com](https://www.ai21.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## What you get
+## What it offered
 
 AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio's, and the vendor sunset Studio's Jamba API on 2026-08-09
 
-## Free models
+## Free models it listed
 
 `jamba-mini`, `jamba-large`
 
 ## Limits, in the vendor's words
 
 Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: "On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call
-
-## Connect
-
-- Base URL: `https://api.ai21.com/studio/v1` (not OpenAI-shaped)
-- Key: `AI21_LABS_API_KEY` — get one at <https://studio.ai21.com/sign-up>
-- Callable ids: `jamba-mini`, `jamba-large`
-- Note: the Jamba API these ids belong to was sunset by the vendor on 2026-08-09; on 2026-09-05 /studio/v1/models answered 410 and the replacement at api.ai21.com/gateway/v1 is a bring-your-own-key proxy, not a Jamba endpoint. Never OpenAI-compatible, so it never entered the generated configs
 
 ## Evidence
 
@@ -47,6 +40,6 @@ Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2
 
 ---
 
-Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-17. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

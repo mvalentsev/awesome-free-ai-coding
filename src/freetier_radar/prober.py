@@ -15,7 +15,7 @@ import httpx
 from .history import record_changes
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, ModelFamily, Probe, ProbeType,
-    load_registry, notice_holds, save_registry,
+    is_archived_for_good, load_registry, notice_holds, save_registry,
 )
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
@@ -1088,7 +1088,8 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     touches nothing — the staleness rule archives entries that stay unverifiable.
     A provisional entry that keeps passing probes for PROVISIONAL_PROMOTE_DAYS
     after first_seen is promoted to a regular entry. An entry past its
-    vendor-announced retirement date is left alone entirely.
+    vendor-announced retirement date, or delisted by a reviewer, is left alone
+    entirely.
     Returns (entry, result) pairs needing scout attention: FAIL, INCONCLUSIVE,
     passing entries whose model families are all superseded, and passing entries
     flagged for their Models column or their `api.model_ids`."""
@@ -1097,12 +1098,12 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
         result = results.get(e.id)
         if result is None:
             continue
-        # The vendor's own shutdown date has passed: the entry is archived and
-        # its endpoint is meant to be dead. Re-verifying it would keep moving
-        # last_verified forward on a service that is gone, and flagging it sends
-        # the scout off to "fix" the probe — which is how GitHub Models' HTTP
-        # 410 crashed the 2026-08-03 run.
-        if e.retired_on is not None and today >= e.retired_on:
+        # The vendor's own shutdown date has passed, or a reviewer took the row
+        # off: the entry is archived for good and its endpoint is meant to be
+        # dead. Re-verifying it would keep moving last_verified forward on a
+        # service that is gone, and flagging it sends the scout off to "fix" the
+        # probe — which is how GitHub Models' HTTP 410 crashed the 2026-08-03 run.
+        if is_archived_for_good(e, today):
             continue
         # STALE_MODELS and STALE_IDS are passes with a note: the probe reached
         # the page and the offer was evidenced there, so the liveness
@@ -1148,9 +1149,13 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
         async with sem:
             return await probe_entry(client, entry, today=today)
 
+    # A row archived for good is not even asked: no answer could bring it back,
+    # a retired endpoint is meant to be dead, and a delisted row can point at a
+    # service the blocklist says never to fetch.
+    probed = [e for e in entries if not is_archived_for_good(e, today)]
     async with httpx.AsyncClient(headers=UA) as client:
-        outcomes = await asyncio.gather(*(bounded(e) for e in entries))
-    results = {e.id: r for e, r in zip(entries, outcomes)}
+        outcomes = await asyncio.gather(*(bounded(e) for e in probed))
+    results = {e.id: r for e, r in zip(probed, outcomes)}
     flagged = apply_results(entries, results, today)
     if dry_run:
         # Verification dates are earned in CI, where the probes run from a known
@@ -1172,7 +1177,7 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
         for e, r in flagged
     ]
     (failures_dir / "failures.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False))
-    print(f"probed {len(entries)} entries, {len(flagged)} need attention")
+    print(f"probed {len(probed)} entries, {len(flagged)} need attention")
     # failures.json never leaves the runner, so the count alone was the whole
     # public account of a probe that fails from CI and passes from a laptop —
     # the one class of failure that cannot be reproduced locally.

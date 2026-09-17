@@ -130,20 +130,21 @@ _Nothing verified right now._
 ## 📦 Archive
 
 <details>
-<summary>Offers that stopped verifying — kept visible so a dead tier is never silently forgotten</summary>
+<summary>{% if archived %}{{ archived | length }} rows{% else %}Rows{% endif %} this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
 <br>
 {% if archived %}
 
-| Tool | Last verified |
+| Tool | Why it left |
 |---|---|
-{% for r in archived %}| [{{ r.name }}]({{ r.url }}) | [`{{ r.verified }}`]({{ r.page }}) |
+{% for r in archived %}| [{{ r.name }}]({{ r.page }}) | {{ r.why }} |
 {% endfor %}
-
 {% else %}
 
 _Empty — the radar is clean._
-
 {% endif %}
+
+<sub>A row leaves the list for this table and nowhere else: when its vendor's own shutdown date arrives, after {{ archive_after_failures }} failed probes in a row, after {{ archive_after_days }} days without a passing probe, or when a reviewer takes it off — an offer that ended without notice, a row that no longer meets the rules, a service rejected for cause. A row its probe put here comes back the day it passes again. Each name links the row's own page, with what it offered and the evidence; a row is never deleted from `registry.yaml`, and `freetier-check` refuses a registry that has lost one.</sub>
+
 </details>
 
 {% if watchlist %}
@@ -202,7 +203,7 @@ flowchart LR
 - **Anchored on the offer, not on the word "free".** Each probe anchors on something that dies with the offer — the free model's id, its quota figure, its price row, or a sentence quoted from the vendor's own page. The word "free" survives on a vendor's page for months after the free tier does not, and so do "hobby" and "monthly credits"; validation rejects all of them. Where a gateway publishes prices, the probe also demands that the free model still costs zero — an id can stay in the catalog long after it stops being free. Where this page says a lane needs no key, the probe calls it without one, so the command above is exercised on every run rather than inferred from a catalog. And a bot wall answering in place of a vendor's page counts as "could not check", never as "the offer is gone".
 - **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub, curated feeds and a digest of every models.dev provider publishing a zero-cost model; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
 - **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
-- **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
+- **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives, and an entry a reviewer takes off goes there too, with the reason — no row leaves the list any other way. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
 - **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after {{ watch_recheck_days }} days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on [a page of its own]({{ checked_url }}), with what would change the answer.
 - **The lists it reads, and the lists it read once.** Discovery draws on a handful of curated lists, and most lists offered to it turn out to carry nothing this registry can use — which costs a full read to find out, every time the link comes round again. Those verdicts go to [`sources.yaml`](sources.yaml) with the date, the overlap actually measured and what would change the answer, and they expire after {{ source_recheck_days }} days, so a directory that grows into a feed is still noticed without re-reading every list each quarter.
 - **Nothing changes silently.** Every arrival, archival, delisting and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed]({{ feed_url }}) — the log is compared against the list itself rather than against the previous run, so an entry that goes stale without a single field changing is still reported.

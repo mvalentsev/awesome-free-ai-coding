@@ -418,6 +418,19 @@ def test_run_scout_sweeps_live_entries_for_retirements():
     assert entries[0].retired_on == date(2026, 7, 30)
 
 
+def test_the_retirement_sweep_reads_no_page_of_a_delisted_row():
+    """A delisted row is off the list already; its pages are the ones whose
+    offer ended or never qualified, and some are on services the blocklist says
+    never to fetch."""
+    fetched: list[str] = []
+    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire: []\n```"})
+    entries = [make(source_urls=["https://x.ai/blog"]),
+               make(id="gone", url="https://n.ai", source_urls=["https://n.ai/blog"],
+                    delisted={"on": TODAY, "reason": "no free lane"})]
+    run_scout(llm, entries, [], lambda urls: fetched.extend(urls) or {u: "" for u in urls}, TODAY)
+    assert "https://n.ai/blog" not in fetched
+
+
 def test_run_scout_skips_the_llm_when_no_page_hints_at_a_retirement():
     """Almost every sweep answers "nothing retiring". Sending 30 unremarkable
     pages to the LLM cost ~20k tokens and risked blowing a backend's context."""
@@ -890,6 +903,8 @@ def test_published_model_ids_leaves_out_the_rows_a_vendor_has_retired():
         make(id="also-live", api={"base_url": "https://a.example/v1/", "model_ids": ["z"]}),
         make(id="gone", retired_on=date(2026, 6, 1),
              api={"base_url": "https://a.example/v1", "model_ids": ["dead"]}),
+        make(id="taken-off", url="https://b.example", delisted={"on": TODAY, "reason": "no free lane"},
+             api={"base_url": "https://a.example/v1", "model_ids": ["metered"]}),
         make(id="no-api"),
     ]
     assert published_model_ids(entries) == {"https://a.example/v1": ["x", "y", "z"]}
@@ -1084,6 +1099,28 @@ def test_a_long_watch_reason_is_cut_by_length_not_at_the_first_full_stop():
     quoted = rejected[0].split(" — ", 1)[1]
     assert quoted.startswith("api.llm7.io serves 35 models")
     assert quoted.endswith("…") and len(quoted) <= scout.WATCH_REASON_IN_PR + 1
+
+
+def test_a_delisted_row_leaves_its_domain_to_its_verdict():
+    """A delisted row is the record of a row, not coverage of a vendor. Its
+    verdict lives in the watchlist, which expires so the question comes back;
+    if the row itself counted as coverage the scout would never raise the
+    vendor again — nor see its evidence."""
+    entries = [make(), make(id="gone", url="https://n.ai",
+                            delisted={"on": TODAY, "reason": "no free lane"})]
+    added, rejected = apply_new(entries, [proposal(id="w", url="https://api.n.ai/v1")], TODAY)
+    assert added == ["w"] and rejected == []
+
+
+def test_a_proposal_that_reuses_an_archived_rows_id_is_reported_not_dropped():
+    """An id belongs to a published page for good. A vendor coming back under
+    the id its archived row holds is news for the reviewer, who restores the
+    row — silently skipping it as a duplicate would lose exactly that lead."""
+    entries = [make(id="gone", url="https://n.ai", delisted={"on": TODAY, "reason": "no free lane"})]
+    added, rejected = apply_new(entries, [proposal(id="gone", url="https://n.ai")], TODAY)
+    assert added == []
+    assert rejected == ["gone: an archived row holds this id — if the offer is back, "
+                        "restore that row instead of adding a second one"]
 
 
 def test_an_expired_watch_verdict_lets_the_proposal_through():

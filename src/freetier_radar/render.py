@@ -11,11 +11,11 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .history import (Event, EventType, archive_reason, diff_state, load_history,
-                      registry_state, replay)
+                      refuse_deleted_rows, registry_state, replay)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_DAYS,
                      WATCH_RECHECK_DAYS, Category, Entry, Notice, ProbeType, Tier, Watched,
-                     domain_of, is_archived, is_watch_current, live_families,
-                     load_registry, load_watchlist)
+                     domain_of, is_archived, is_archived_for_good, is_blocked, is_watch_current,
+                     live_families, load_blocklist, load_registry, load_watchlist)
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
@@ -173,6 +173,31 @@ def _row(e: Entry) -> dict[str, str]:
         # a config rather than read as prose.
         "models": ", ".join(f"`{f}`" for f in fams) if fams else "—",
     }
+
+
+def _departure(e: Entry) -> date:
+    """The day the reason a row is archived for names — what the Archive is
+    ordered by, latest first."""
+    if e.delisted is not None:
+        return e.delisted.on
+    return e.retired_on or e.last_verified
+
+
+def _archived_rows(entries: list[Entry], today: date) -> list[dict[str, str]]:
+    """The Archive: each row's name linking its own page, and why it left.
+
+    The name used to link the vendor and the second column showed the row's
+    last probe pass. On 2026-09-17 all three archived rows showed a pass later
+    than the day their vendors had ended the offers — probes anchored on pages
+    that outlived the offers — and two of the rows had been added after that
+    day. The page carries the evidence; a vendor link for a row that left is at
+    best dead and at worst, for a row rejected for cause, a referral."""
+    gone = sorted((e for e in entries if is_archived(e, today)),
+                  key=lambda e: (_departure(e), e.name.lower()), reverse=True)
+    return [{"name": e.name, "page": provider_page_url(e.id),
+             "why": _fold(archive_reason(e, today), README_LIMITS_TEASER,
+                          README_LIMITS_COLLAPSE, small=True)}
+            for e in gone]
 
 
 def env_var(entry_id: str) -> str:
@@ -361,7 +386,29 @@ def _newest_first(events: list[Event], limit: int) -> list[Event]:
     return sorted(events, key=lambda e: e.ts, reverse=True)[:limit]
 
 
-def _change_rows(events: list[Event], limit: int = README_CHANGES) -> list[dict]:
+def _event_link(ev: Event, entries: list[Entry] | None, today: date) -> str:
+    """Where an event sends a reader: the vendor while the row is live, the row's
+    own page once it is in the Archive — the vendor of a row that left is dead,
+    or for a row rejected for cause, somewhere this list sends no one."""
+    row = next((e for e in entries or [] if e.id == ev.id), None)
+    if row is not None and is_archived(row, today):
+        return provider_page_url(row.id)
+    return ev.url or REPO_URL
+
+
+def _event_detail(ev: Event, entries: list[Entry] | None) -> str:
+    """What an event says after its name. A row deleted before rows were
+    archived carries no detail in the history — "➖ Delisted Kenari —" was all
+    the page said about four rows on 2026-09-17 — and the row is back in the
+    registry as delisted, so the reason the Archive keeps answers for it."""
+    if ev.detail or ev.event is not EventType.REMOVED:
+        return ev.detail
+    row = next((e for e in entries or [] if e.id == ev.id), None)
+    return row.delisted.reason if row is not None and row.delisted is not None else ""
+
+
+def _change_rows(events: list[Event], entries: list[Entry] | None = None,
+                 today: date | None = None, limit: int = README_CHANGES) -> list[dict]:
     """The tail of the log, newest first, as Markdown table cells.
 
     Pipes are escaped here rather than rejected in `freetier-check`: an event's
@@ -372,8 +419,8 @@ def _change_rows(events: list[Event], limit: int = README_CHANGES) -> list[dict]
         {"date": ev.ts.date().isoformat(),
          "label": CHANGE_LABELS[ev.event],
          "name": ev.name,
-         "url": ev.url or REPO_URL,
-         "detail": ev.detail.replace("|", r"\|") or "—"}
+         "url": _event_link(ev, entries, today or date.today()),
+         "detail": _event_detail(ev, entries).replace("|", r"\|") or "—"}
         for ev in _newest_first(events, limit)
     ]
 
@@ -402,7 +449,8 @@ def _feed_entry_id(ev: Event) -> str:
     return f"tag:mvalentsev.github.io,2026:awesome-free-ai-coding/{ev.event.value}/{ev.id}/{when}"
 
 
-def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES) -> str:
+def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES,
+               entries: list[Entry] | None = None) -> str:
     """The change log as Atom.
 
     Hand-written rather than templated, because the escaping is the substance:
@@ -427,7 +475,7 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES) -> s
     ]
     for ev in recent:
         title = FEED_TITLES[ev.event].format(name=ev.name)
-        summary = ev.detail or title
+        summary = _event_detail(ev, entries) or title
         # Only where the list is what the event is about. An entry on its way
         # out carries its last known families too, and appending them to
         # "Delisted" reads as an offer rather than as an epitaph.
@@ -437,7 +485,7 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES) -> s
             "  <entry>",
             f"    <id>{escape(_feed_entry_id(ev))}</id>",
             f"    <title>{escape(title)}</title>",
-            f"    <link rel=\"alternate\" href={quoteattr(ev.url or REPO_URL)}/>",
+            f"    <link rel=\"alternate\" href={quoteattr(_event_link(ev, entries, today))}/>",
             f"    <updated>{_rfc3339(ev.ts)}</updated>",
             f"    <summary type=\"text\">{escape(summary)}</summary>",
             "  </entry>",
@@ -478,7 +526,6 @@ def build_context(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
                   history: list[Event] | None = None) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
-    archived = [e for e in entries if is_archived(e, today)]
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = sorted((e for e in active if e.category is cat),
@@ -517,7 +564,8 @@ def build_context(entries: list[Entry], today: date,
     return {"date": today.isoformat(), "sections": sections,
             "verified_through": verified_through.isoformat(),
             "verified_colour": badge_colour(verified_through, today),
-            "archived": [_row(e) for e in archived], "active_count": len(active),
+            "archived": _archived_rows(entries, today), "active_count": len(active),
+            "archive_after_failures": ARCHIVE_AFTER_FAILURES, "archive_after_days": ARCHIVE_AFTER_DAYS,
             "has_provisional": any(e.provisional for e in active),
             "connections": connections,
             # The headline counts. Every one of them is derived, so the page can
@@ -545,7 +593,7 @@ def build_context(entries: list[Entry], today: date,
             # Everything else is regenerated from scratch each run and remembers
             # nothing, which left "did anything change?" answerable only from
             # git log.
-            "changes": _change_rows(history or []),
+            "changes": _change_rows(history or [], entries, today),
             "feed_url": FEED_URL,
             "pages_url": PAGES_URL}
 
@@ -558,6 +606,7 @@ def build_index(entries: list[Entry], today: date,
         "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today),
+             **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
             for e in entries
         ],
@@ -631,8 +680,8 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         "connection details (base URL, where to get a key, model ids, an Anthropic-format "
         "URL where the vendor documents one), the evidence the probe reads and the row's "
         "history. \"No card\" means the vendor asks for no payment method; \"no key\" means "
-        "the endpoint answers without an account. Offers that stopped answering their probe "
-        "are listed last, under Archived.",
+        "the endpoint answers without an account. Offers the list carried and carries no more "
+        "are listed last, under Archived, each with why it left.",
     ]
     for category, title in CATEGORY_TITLES.items():
         rows = sorted((e for e in live if e.category == category),
@@ -644,9 +693,8 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
     if gone:
         lines += ["", "## Archived", ""]
         for e in gone:
-            note = (f"retired {e.retired_on.isoformat()}" if e.retired_on
-                    else f"last verified {e.last_verified.isoformat()}")
-            lines.append(f"- [{e.name}]({provider_page_url(e.id)}): no longer listed — {note}")
+            lines.append(f"- [{e.name}]({provider_page_url(e.id)}): no longer listed — "
+                         f"{archive_reason(e, today)}")
     lines += [
         "", "## Machine-readable", "",
         f"- [index.json]({PAGES_URL}/index.json): every row with its connection details and "
@@ -801,11 +849,14 @@ PAGE_LABELS: dict[EventType, str] = {
 }
 
 
-def _event_text(ev: Event) -> str:
-    """What a provider page says about one event, after its date."""
-    if ev.detail:
-        return f"{PAGE_LABELS[ev.event]}: {ev.detail}"
-    if ev.models:
+def _event_text(ev: Event, e: Entry | None = None) -> str:
+    """What a provider page says about one event, after its date. A delisting
+    says why, from the row the Archive keeps — never the families the row had,
+    which after "Delisted" read as the thing taken off."""
+    detail = _event_detail(ev, [e] if e is not None else None)
+    if detail:
+        return f"{PAGE_LABELS[ev.event]}: {detail}"
+    if ev.models and ev.event is not EventType.REMOVED:
         return f"{PAGE_LABELS[ev.event]}: " + ", ".join(ev.models)
     return PAGE_LABELS[ev.event]
 
@@ -826,68 +877,8 @@ def _page_description(e: Entry) -> str:
     return text if len(text) <= 300 else text[:297].rsplit(" ", 1)[0] + "…"
 
 
-def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
-    """One page per row on the Pages site, in the row's own words.
-
-    It exists for the reader who arrives with a question about one vendor and
-    for the crawler that indexes that question: a title that names the vendor,
-    the tier and the date, a description that carries the figures, and a body
-    that is the row — offer, models, limits quoted from the vendor, connection
-    details, the evidence the probe reads, the row's history. Nothing here is
-    typed; it is rendered from the registry and the history on every run, and
-    `render_artifacts` deletes the page of a row that leaves.
-
-    The body sits inside {% raw %}: GitHub Pages builds this with Jekyll, and
-    a vendor sentence with two braces in it would otherwise fail the whole
-    site's build, quietly, with the previous deploy still serving.
-    """
-    archived = is_archived(e, today)
-    verified = e.last_verified.isoformat()
-    if archived:
-        title = f"{e.name} free tier (archived): what it offered, and when it stopped verifying"
-    else:
-        title = f"{e.name} free tier: limits, free models, verified {verified}"
-    out = [_front_matter({"layout": "default", "title": title,
-                          "description": _page_description(e),
-                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/"}),
-           "{% raw %}", "", f"# {e.name}", ""]
-    flags = [CATEGORY_TITLES[e.category]]
-    flags.append("card required" if e.card_required else "no card")
-    if e.provisional:
-        flags.append("provisional — added recently, two weeks of probes still to pass")
-    if archived:
-        flags.append(f"**archived** — {archive_reason(e, today)}")
-    else:
-        live = f"**live** — last verified by a probe on {verified}"
-        if e.probe_failures:
-            # A row mid-failure used to be indistinguishable from a row the
-            # scheduler happened to reach later: trae and inception-labs sat on
-            # the front page reading 2026-09-07 beside rows reading 2026-09-10,
-            # with nothing anywhere saying their probe had stopped finding the
-            # evidence. The count is the part a reader cannot infer from the
-            # date, and it is also the countdown.
-            n = e.probe_failures
-            misses = ("the probe since has not found that evidence" if n == 1
-                      else f"the {n} probes since have not found that evidence")
-            live += f"; {misses}, and {ARCHIVE_AFTER_FAILURES} misses in a row archive the row"
-        flags.append(live)
-    out.append(" · ".join(flags) + f" · [{domain_of(e.url)}]({e.url}) · "
-               f"[back to the whole list]({PAGES_URL}/)")
-    if e.api and e.api.notice:
-        # Above the offer, not under Connect: a reader who arrives from a search
-        # about this vendor should not have to scroll to find out the lane the
-        # list publishes does not work right now.
-        out += ["", f"> ⚠️ **Does not work as published since {_notice_since(e.api.notice)}.** "
-                    f"{e.api.notice.text}"]
-    out += ["", "## What you get", "", e.offering, ""]
-    fams = live_families(e)
-    out += ["## Free models", "",
-            (", ".join(f"`{f}`" for f in fams) if fams
-             else "The page this row is verified against names no free model, so the column stays "
-                  "empty; callable ids, where the row has them, are under Connect."), ""]
-    out += ["## Limits, in the vendor's words", "",
-            e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
-    out += ["## Connect", ""]
+def _connect_section(e: Entry) -> list[str]:
+    out = ["## Connect", ""]
     if e.api and e.api.base_url:
         out.append(f"- Base URL: `{e.api.base_url}`"
                    + ("" if e.api.openai_compatible else " (not OpenAI-shaped)"))
@@ -914,16 +905,23 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
             out.append(f"- Note: {e.api.note}")
     else:
         out.append("No API endpoint to paste: this row is a tool you install or sign in to.")
-    out += ["", "## Evidence", ""]
+    return out + [""]
+
+
+def _evidence_section(e: Entry, blocked: bool) -> list[str]:
+    def at(url: str) -> str:
+        return f"`{url}`" if blocked else f"<{url}>"
+
+    out = ["## Evidence", ""]
     probe = e.probe
     if probe.type is ProbeType.API_MODELS:
         if probe.lane:
             # The document lists paid lanes beside the free one, so naming only
             # the URL would present every model in it as the evidence.
             how = (f"- Probe: the `{probe.lane}` lane of the models document at "
-                   f"<{probe.endpoint}>, every listed family required in that lane")
+                   f"{at(probe.endpoint)}, every listed family required in that lane")
         else:
-            how = f"- Probe: the models catalog at <{probe.endpoint}>"
+            how = f"- Probe: the models catalog at {at(probe.endpoint)}"
         if probe.free_marker:
             how += f", free rows carrying `{probe.free_marker}`"
         if probe.require_zero_price:
@@ -939,12 +937,88 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
         if probe.machinery_keywords:
             shown.append(", ".join(f"`{k}`" for k in probe.machinery_keywords)
                          + " in the page's own data")
-        how = f"- Probe: the page at <{probe.endpoint}>, anchored on " + " and ".join(shown)
+        how = f"- Probe: the page at {at(probe.endpoint)}, anchored on " + " and ".join(shown)
         if probe.catalog:
-            how += f"; ids checked in <{probe.catalog}>"
+            how += f"; ids checked in {at(probe.catalog)}"
     out.append(how)
     for u in e.source_urls:
-        out.append(f"- Source: <{u}>")
+        out.append(f"- Source: {at(u)}")
+    return out
+
+
+def build_provider_page(e: Entry, events: list[Event], today: date, blocked: bool = False) -> str:
+    """One page per row on the Pages site, in the row's own words.
+
+    It exists for the reader who arrives with a question about one vendor and
+    for the crawler that indexes that question: a title that names the vendor,
+    the tier and the date, a description that carries the figures, and a body
+    that is the row — offer, models, limits quoted from the vendor, connection
+    details, the evidence the probe reads, the row's history. Nothing here is
+    typed; it is rendered from the registry and the history on every run, and
+    since a row never leaves the registry its page stays too, as an archived one.
+
+    The body sits inside {% raw %}: GitHub Pages builds this with Jekyll, and
+    a vendor sentence with two braces in it would otherwise fail the whole
+    site's build, quietly, with the previous deploy still serving.
+
+    An archived row's page is an epitaph, not instructions: what it offered,
+    why it left, the evidence and the history — no connection details, no
+    provisional flag, no claim that a probe re-reads a row none reads. On a
+    blocklisted domain (`blocked`) it names the service as text and links
+    nowhere near it: one of those pages plants instructions for AI agents.
+    """
+    archived = is_archived(e, today)
+    verified = e.last_verified.isoformat()
+    if archived:
+        title = f"{e.name} free tier (archived): what it offered, and why it left the list"
+    else:
+        title = f"{e.name} free tier: limits, free models, verified {verified}"
+    out = [_front_matter({"layout": "default", "title": title,
+                          "description": _page_description(e),
+                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/"}),
+           "{% raw %}", "", f"# {e.name}", ""]
+    flags = [CATEGORY_TITLES[e.category]]
+    flags.append("card required" if e.card_required else "no card")
+    if e.provisional and not archived:
+        flags.append("provisional — added recently, two weeks of probes still to pass")
+    if archived:
+        flags.append(f"**archived** — {archive_reason(e, today)}")
+    else:
+        live = f"**live** — last verified by a probe on {verified}"
+        if e.probe_failures:
+            # A row mid-failure used to be indistinguishable from a row the
+            # scheduler happened to reach later: trae and inception-labs sat on
+            # the front page reading 2026-09-07 beside rows reading 2026-09-10,
+            # with nothing anywhere saying their probe had stopped finding the
+            # evidence. The count is the part a reader cannot infer from the
+            # date, and it is also the countdown.
+            n = e.probe_failures
+            misses = ("the probe since has not found that evidence" if n == 1
+                      else f"the {n} probes since have not found that evidence")
+            live += f"; {misses}, and {ARCHIVE_AFTER_FAILURES} misses in a row archive the row"
+        flags.append(live)
+    site = f"`{domain_of(e.url)}`" if blocked else f"[{domain_of(e.url)}]({e.url})"
+    out.append(" · ".join(flags) + f" · {site} · [back to the whole list]({PAGES_URL}/)")
+    if e.api and e.api.notice and not archived:
+        # Above the offer, not under Connect: a reader who arrives from a search
+        # about this vendor should not have to scroll to find out the lane the
+        # list publishes does not work right now.
+        out += ["", f"> ⚠️ **Does not work as published since {_notice_since(e.api.notice)}.** "
+                    f"{e.api.notice.text}"]
+    out += ["", "## What it offered" if archived else "## What you get", "", e.offering, ""]
+    fams = live_families(e)
+    if archived:
+        named = "The row named no free model."
+    else:
+        named = ("The page this row is verified against names no free model, so the column stays "
+                 "empty; callable ids, where the row has them, are under Connect.")
+    out += ["## Free models it listed" if archived else "## Free models", "",
+            ", ".join(f"`{f}`" for f in fams) if fams else named, ""]
+    out += ["## Limits, in the vendor's words", "",
+            e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
+    if not archived:
+        out += _connect_section(e)
+    out += _evidence_section(e, blocked)
     out += ["", "## History", ""]
     own = [ev for ev in events if ev.id == e.id]
     # history.jsonl is written by the probe run alone, so between a hand edit
@@ -955,12 +1029,20 @@ def build_provider_page(e: Entry, events: list[Event], today: date) -> str:
     # recorded one yet — which also covers a row with no history at all.
     stamp = datetime.combine(today, time(), tzinfo=timezone.utc)
     for ev in diff_state(replay(own), registry_state([e], today), stamp):
-        out.append(f"- *next scheduled run* — {_event_text(ev)}")
+        out.append(f"- *next scheduled run* — {_event_text(ev, e)}")
     for ev in reversed(own):
-        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev)}")
+        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev, e)}")
+    if not archived:
+        standing = (f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
+                    "twice a week")
+    elif is_archived_for_good(e, today):
+        standing = (f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row "
+                    "any more — it left the list for good unless a reviewer brings it back")
+    else:
+        standing = (f"Generated from `registry.yaml` on {today.isoformat()}. A probe still reads it "
+                    "twice a week, and the first probe it passes brings it back to the list")
     out += ["", "---", "",
-            f"Generated from `registry.yaml` on {today.isoformat()} and re-verified twice a week; "
-            f"the full list, the Atom feed and the machinery are at <{REPO_URL}>.",
+            f"{standing}; the full list, the Atom feed and the machinery are at <{REPO_URL}>.",
             "", "{% endraw %}", ""]
     return "\n".join(out)
 
@@ -975,8 +1057,8 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
                                          "twice a week, and the row's history.",
                           "permalink": f"/{PROVIDERS_DIR}/"}),
            "{% raw %}", "", "# Every provider, one page each", "",
-           f"Each page is generated from the same registry as [the list]({PAGES_URL}/) and "
-           "re-verified twice a week.", ""]
+           f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
+           "row is re-verified twice a week, and an archived one says why it left.", ""]
     live = [e for e in entries if not is_archived(e, today)]
     archived = [e for e in entries if is_archived(e, today)]
     out += ["| Provider | Section | Free models | Last verified |", "|---|---|---|---|"]
@@ -987,10 +1069,10 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
             out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {title} | {fams} "
                        f"| `{e.last_verified.isoformat()}` |")
     if archived:
-        out += ["", "## Archived", "", "| Provider | Last verified | Why |", "|---|---|---|"]
-        for e in sorted(archived, key=lambda e: e.name.lower()):
-            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | `{e.last_verified.isoformat()}` "
-                       f"| {archive_reason(e, today)} |")
+        out += ["", "## Archived", "", "| Provider | Why it left |", "|---|---|"]
+        for e in sorted(archived, key=lambda e: (_departure(e), e.name.lower()), reverse=True):
+            why = archive_reason(e, today).replace("|", r"\|")
+            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {why} |")
     out += ["", "{% endraw %}", ""]
     return "\n".join(out)
 
@@ -1040,6 +1122,10 @@ def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[
     return load_watchlist(watchlist_path or registry_path.parent / "watchlist.yaml")
 
 
+def _blocklist_beside(registry_path: Path) -> dict[str, str]:
+    return load_blocklist(registry_path.parent / "blocklist.yaml")
+
+
 def _history_beside(registry_path: Path) -> list[Event]:
     """The change log of this registry, read the same way — a sibling file, and
     missing means nothing has been recorded yet."""
@@ -1056,9 +1142,11 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
         trim_blocks=True,
         lstrip_blocks=True,
     )
-    context = build_context(load_registry(registry_path), today,
-                            _watchlist_beside(registry_path, watchlist_path),
-                            _history_beside(registry_path))
+    entries, history = load_registry(registry_path), _history_beside(registry_path)
+    # The page is where a deleted row would quietly disappear from.
+    refuse_deleted_rows(entries, history)
+    context = build_context(entries, today, _watchlist_beside(registry_path, watchlist_path),
+                            history)
     text = env.get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
     return text
@@ -1072,7 +1160,9 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
     history = _history_beside(registry_path)
-    (root / "feed.xml").write_text(build_feed(history, today), encoding="utf-8")
+    refuse_deleted_rows(entries, history)
+    blocklist = _blocklist_beside(registry_path)
+    (root / "feed.xml").write_text(build_feed(history, today, entries=entries), encoding="utf-8")
     # A page per row, and the page of a row that left goes with it: only the
     # .md files this function wrote are ever removed, so a stray file someone
     # drops in the directory is not this function's to delete.
@@ -1082,7 +1172,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     (providers / f"{CHECKED_PAGE}.md").write_text(build_checked_page(watchlist, today),
                                                   encoding="utf-8")
     for e in entries:
-        (providers / f"{e.id}.md").write_text(build_provider_page(e, history, today),
+        blocked = is_blocked(domain_of(e.url), blocklist)
+        (providers / f"{e.id}.md").write_text(build_provider_page(e, history, today, blocked),
                                               encoding="utf-8")
         wanted.add(f"{e.id}.md")
     (providers / "index.md").write_text(build_providers_index(entries, today), encoding="utf-8")

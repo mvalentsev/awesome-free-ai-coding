@@ -332,11 +332,12 @@ def _model_candidates(pinned: str | None, published: list[str]) -> list[str]:
 
 def published_model_ids(entries: list[Entry]) -> dict[str, list[str]]:
     """Every API base url this registry publishes, mapped to the model ids it
-    lists under it. Retired rows are left out: their ids are precisely the ones
-    a vendor has stopped serving."""
+    lists under it. Retired and delisted rows are left out: their ids are
+    precisely the ones a vendor stopped serving, or that stopped being free."""
     pools: dict[str, list[str]] = {}
     for entry in entries:
-        if entry.retired_on is not None or entry.api is None or not entry.api.base_url:
+        if (entry.retired_on is not None or entry.delisted is not None
+                or entry.api is None or not entry.api.base_url):
             continue
         pools.setdefault(entry.api.base_url.rstrip("/"), []).extend(entry.api.model_ids)
     return pools
@@ -872,12 +873,20 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
     burn a live probe on a question a human already answered. An expired verdict
     filters nothing on purpose — that is what makes it a watchlist."""
     existing_ids = {e.id for e in entries}
+    # An id is a published page for good. A proposal under the id an archived
+    # row holds is a vendor coming back, which a reviewer answers by restoring
+    # that row — dropped as a duplicate, the lead would never reach anyone.
+    archived_ids = {e.id for e in entries if is_archived(e, today)}
     existing_sites = known_domains(entries)
     added, rejected = [], []
     for raw in new_entries:
         if not isinstance(raw, dict):
             continue
         rid = raw.get("id", "<missing id>")
+        if rid in archived_ids:
+            rejected.append(f"{rid}: an archived row holds this id — if the offer is back, "
+                            "restore that row instead of adding a second one")
+            continue
         if rid in existing_ids:
             continue
         if "models" in raw:
@@ -1157,7 +1166,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     # Sweep every live entry for a shutdown announcement. Without this the scout
     # only ever looks at an entry after its probe fails, i.e. on the day the free
     # tier dies — a retirement announced weeks ahead goes unnoticed until then.
-    live = [e for e in entries if e.retired_on is None and e.source_urls]
+    live = [e for e in entries if e.retired_on is None and e.delisted is None and e.source_urls]
     if live and within_budget("retirement sweep"):
         pages = page_fetcher([e.source_urls[0] for e in live])
         candidates = [e for e in live if _has_retirement_signal(pages.get(e.source_urls[0], ""))]

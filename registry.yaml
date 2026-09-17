@@ -247,6 +247,7 @@ entries:
   url: https://github.com/marketplace/models
   source_urls:
   - https://docs.github.com/en/github-models
+  - https://github.blog/changelog/2026-06-16-github-models-is-no-longer-available-to-new-customers/
   - https://github.blog/changelog/2026-07-01-github-models-is-being-fully-retired-on-july-30-2026/
   - https://models.inference.ai.azure.com
   card_required: false
@@ -639,8 +640,9 @@ entries:
     channel used to run Xiaomi's MiMo models with no login, API key, or card
   limits: 'Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks
     it past that timestamp (FREE_API_SUNSET_AT) and prompts: "The free API service
-    has ended"; a paid Token Plan or a third-party API key is required now. The repo
-    README still advertises the free channel'
+    has ended"; a paid Token Plan or a third-party API key is required now. The README
+    stopped offering the channel; the landing page at mimo.xiaomi.com/coder still
+    read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17'
   models:
   - family: mimo-v2.5
     released: ''
@@ -3980,3 +3982,521 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 90
+- id: mimocode
+  name: MiMoCode
+  category: agent-cli
+  url: https://mimocode.ai
+  source_urls:
+  - https://mimocode.ai
+  card_required: false
+  offering: Coding agent with free tier
+  limits: TBD by scout
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://mimocode.ai
+    keywords:
+    - free
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  delisted:
+    'on': '2026-07-19'
+    reason: a placeholder from the list's first day — "Coding agent with free tier",
+      limits "TBD by scout" — with no page behind the claim, taken off the same day
+      as unverifiable
+  probe_failures: 0
+  provisional: true
+  rank: 100
+- id: aider
+  name: Aider
+  category: agent-cli
+  url: https://aider.chat/
+  source_urls:
+  - https://aider.chat/
+  - https://aider.chat/docs/faq.html
+  card_required: false
+  offering: Free, open-source terminal coding agent with tight git integration; BYOK
+    — works with free-tier provider keys or local models via Ollama
+  limits: Tool is free and open-source; model usage is BYOK (no bundled free-model
+    quota)
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://aider.chat/
+    keywords:
+    - open source
+    - free
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  delisted:
+    'on': '2026-07-19'
+    reason: BYOK only — the tool is free and open source but bundles no model access
+      of its own, and its docs send readers to other vendors' free tiers, which this
+      list carries directly
+  probe_failures: 0
+  provisional: false
+  rank: 100
+- id: puter-free
+  name: Puter.js (free LLM API)
+  category: api-free-tier
+  url: https://developer.puter.com/tutorials/free-llm-api/
+  source_urls:
+  - https://developer.puter.com/tutorials/free-llm-api/
+  card_required: false
+  offering: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at
+    no developer cost via Puter's User-Pays model
+  limits: No API key or developer cost; usage billed to each end user's Puter account;
+    per-model rate limits
+  models: []
+  probe:
+    type: page-keywords
+    endpoint: https://developer.puter.com/tutorials/free-llm-api/
+    keywords:
+    - free
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  delisted:
+    'on': '2026-07-19'
+    reason: a browser SDK billed to each end user's Puter account, with no HTTP endpoint
+      a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14
+      needs a paid plan
+  probe_failures: 0
+  provisional: true
+  rank: 100
+- id: easy-gonka-api
+  name: Easy GonkaAI API
+  category: trial
+  url: https://gonka-api.org/
+  source_urls:
+  - https://gonka-api.org/
+  card_required: false
+  offering: Third-party OpenAI-compatible broker to the permissionless Gonka decentralized
+    inference network (Qwen, Kimi and other open models)
+  limits: 10M free tokens on signup (one-time trial, no card); paid usage billed in
+    crypto
+  models:
+  - family: minimax-m2
+    released: ''
+  - family: kimi-k2
+    released: ''
+  probe:
+    type: page-keywords
+    endpoint: https://gonka-api.org/
+    keywords:
+    - free tokens
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-19'
+  last_verified: '2026-07-19'
+  delisted:
+    'on': '2026-07-19'
+    reason: rejected for cause — its /for-agents page carried a prompt injection aimed
+      at AI agents (auto-signup, credential exfiltration, referral spam)
+  probe_failures: 0
+  provisional: true
+  rank: 90
+- id: deepseek
+  name: DeepSeek Platform
+  category: trial
+  url: https://platform.deepseek.com
+  source_urls:
+  - https://api-docs.deepseek.com/quick_start/pricing/
+  - https://pricepertoken.com/endpoints/deepseek/free
+  card_required: false
+  offering: Official DeepSeek API; every new account gets a one-time free token grant,
+    no card required
+  limits: 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually
+    free models
+  models:
+  - family: deepseek-chat
+    released: ''
+  - family: deepseek-reasoner
+    released: ''
+  api:
+    base_url: https://api.deepseek.com
+    key_url: https://platform.deepseek.com/api_keys
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek-chat
+    - deepseek-reasoner
+    note: ''
+  probe:
+    type: page-keywords
+    endpoint: https://api-docs.deepseek.com/quick_start/pricing/
+    keywords:
+    - deepseek-chat
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-22'
+  last_verified: '2026-07-23'
+  delisted:
+    'on': '2026-07-27'
+    reason: the 5M-token signup grant was only ever reported by third parties, and
+      DeepSeek's own pricing page prices every model and names no free grant
+  probe_failures: 0
+  provisional: true
+  rank: 15
+- id: reka
+  name: Reka AI
+  category: api-free-tier
+  url: https://platform.reka.ai
+  source_urls:
+  - https://reka.ai/news/end-of-summer-updates
+  - https://docs.reka.ai/pricing
+  card_required: false
+  offering: Reka multimodal API (chat, research, vision) with free credits refreshed
+    automatically every month
+  limits: $10 free credits at the start of every month, usable on any API feature
+  models:
+  - family: reka-core
+    released: ''
+  - family: reka-flash
+    released: ''
+  api:
+    base_url: https://api.reka.ai/v1
+    key_url: https://platform.reka.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - reka-core
+    - reka-flash
+    note: OpenAI-style chat completions; research and vision endpoints go beyond the
+      OpenAI schema
+  probe:
+    type: page-keywords
+    endpoint: https://reka.ai/news/end-of-summer-updates
+    keywords:
+    - free tier
+    - $10 in free credits
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-22'
+  last_verified: '2026-08-10'
+  delisted:
+    'on': '2026-08-11'
+    reason: the $10 of free credits a month rested on one dated announcement post;
+      no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go
+      credits
+  probe_failures: 0
+  provisional: false
+  rank: 91
+- id: novita
+  name: Novita AI
+  category: api-free-tier
+  url: https://novita.ai/
+  source_urls:
+  - https://novita.ai/pricing
+  card_required: false
+  offering: Inference cloud for 200+ open models; selected models priced Free plus
+    a small signup trial credit
+  limits: Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron
+    V1 Venti); ~$0.5 trial credit valid 1 year
+  models: []
+  api:
+    base_url: https://api.novita.ai/openai
+    key_url: https://novita.ai/settings/key-management
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - deepseek/deepseek-v4-pro
+    - qwen/qwen3.7-max
+    - zai-org/glm-5.2
+    note: ''
+  probe:
+    type: page-keywords
+    endpoint: https://novita.ai/pricing
+    keywords:
+    - ling-3.0-flash
+    - free
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-19'
+  last_verified: '2026-08-13'
+  delisted:
+    'on': '2026-08-14'
+    reason: the free lane ended without an announcement — both models the row named
+      free were billed, and not one of the 102 prices on novita.ai/pricing was zero
+  probe_failures: 0
+  provisional: false
+  rank: 96
+- id: longcat
+  name: LongCat API Platform
+  category: api-free-tier
+  url: https://longcat.chat/platform
+  source_urls:
+  - https://longcat.chat/platform/docs/api-docs
+  - https://x.com/Meituan_LongCat/status/2019773072849637725
+  card_required: false
+  offering: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with
+    a recurring daily free token quota
+  limits: 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day)
+    is announced and the model is uncapped during rollout
+  models:
+  - family: longcat-2.0
+    released: 2026-06
+  - family: longcat-flash
+    released: 2025-09
+  api:
+    base_url: https://api.longcat.chat/openai/v1
+    key_url: https://longcat.chat/platform
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - LongCat-2.0
+    note: Anthropic-compatible sibling at /anthropic/v1/messages; docs include a Claude
+      Code setup guide (cc-switch)
+  probe:
+    type: page-keywords
+    endpoint: https://longcat.chat/platform/docs/api-docs
+    keywords:
+    - /openai/v1/chat/completions
+    - LongCat-2.0
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-22'
+  last_verified: '2026-08-13'
+  delisted:
+    'on': '2026-08-14'
+    reason: the daily free quota was gone before the row was listed — the change log
+      retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0
+      on 2026-06-30, and no LongCat page still published the 100K tokens a day
+  probe_failures: 0
+  provisional: false
+  rank: 55
+- id: cerebras-free
+  name: Cerebras Inference
+  category: trial
+  url: https://www.cerebras.ai
+  source_urls:
+  - https://inference-docs.cerebras.ai/support/rate-limits
+  - https://www.cerebras.ai/pricing
+  - https://inference-docs.cerebras.ai/models
+  card_required: true
+  offering: Very fast inference; $5 in trial credits that expire in 30 days, card
+    required before the API answers at all
+  limits: 'Cerebras'' own docs: "New accounts receive $5 in free credits after adding
+    a verified payment method", credits "expire 30 days after they''re granted", and
+    "If you skip adding a payment method at sign-up, Playground and API access remain
+    inactive until you do". Asked "Is there a permanently free tier?" the same page
+    answers "No". Free Trial rate limits are per model and the same on both the public
+    catalog now lists — 5 RPM, 30K uncached TPM, 90K total TPM, 1M TPH, 1M TPD each
+    (read 2026-09-03), the two TPM figures being the dual bucket the page describes.
+    That catalog has turned over twice: GLM 4.7 was deprecated on 2026-08-17 exactly
+    as it announced, and Gemma 4 31B left between the 09:55 UTC probe on 2026-09-03,
+    which still found it named, and a re-read eleven hours later — replaced by Qwen
+    3.8 27B, the one model here that reads images, 2 per request on this tier. The
+    marketing pricing page still promises the credits "after making an account" and
+    mentions no card — that was the old API tier, which accounts opened before the
+    change kept until 2026-08-17 and which is now gone'
+  models:
+  - family: gpt-oss
+    released: 2025-08
+  - family: qwen3.8
+    released: ''
+  api:
+    base_url: https://api.cerebras.ai/v1
+    key_url: https://cloud.cerebras.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - gpt-oss-120b
+    - qwen-3.8-27b
+    note: 'the Free Trial tier reaches every model in the public catalog, which is
+      these two: "Every model on the public Model Catalog is available on the Free
+      Trial tier, subject to the per-model Free Trial rate limits". The pair turns
+      over: gemma-4-31b was in it on the morning of 2026-09-03 and gone by that evening,
+      with qwen-3.8-27b in its place'
+  probe:
+    type: page-keywords
+    endpoint: https://inference-docs.cerebras.ai/support/rate-limits
+    keywords:
+    - after adding a verified payment method
+    - credits expire 30 days after
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-19'
+  last_verified: '2026-09-14'
+  delisted:
+    'on': '2026-09-16'
+    reason: its only free offer was $5 of credit granted after a verified payment
+      method is added, expiring in 30 days — a one-off credit behind a card, which
+      CONTRIBUTING does not admit
+  probe_failures: 0
+  provisional: false
+  rank: 35
+- id: infomaniak-ai
+  name: Infomaniak AI Services
+  category: trial
+  url: https://www.infomaniak.com/en/hosting/ai-services
+  source_urls:
+  - https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services
+  - https://www.infomaniak.com/en/hosting/ai-services/prices
+  card_required: true
+  offering: Swiss sovereign-cloud API over open-weight models with a one-month trial
+    wallet of one million credits, one credit per LLM token
+  limits: '"One million free credits allow you to test the service without commitment
+    for one month" and "The API is billed on a credit basis. Each request consumes
+    one credit or LLM token" (support guide 2845, read 2026-09-02). The card is the
+    gate: "A credit card is required to start using the API. An unpaid invoice will
+    result in service suspension", and the sales FAQ adds that at account creation
+    "we''ll ask you to confirm your identity by registering a valid payment card".
+    After the wallet, list rates in CHF per 1M tokens — Gemma 4 31B at CHF 0.20/0.40,
+    Kimi K2.6 at CHF 0.60/3.00, Qwen3.5-122B at CHF 0.40/3.20 — billed at the end
+    of the month, with a spending limit settable in the Manager. Models are hosted
+    in Switzerland, and "We don''t currently offer the option of training our AI Services
+    using custom data"'
+  models: []
+  api:
+    base_url: https://api.infomaniak.com/2/ai/{product_id}/openai/v1
+    key_url: https://manager.infomaniak.com
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: '{product_id} is the AI Services product id shown in the Infomaniak Manager,
+      where the API token is created too; the million credits are a one-month trial
+      rather than a standing lane, which is why the Free models column stays empty'
+  probe:
+    type: page-keywords
+    endpoint: https://www.infomaniak.com/en/support/faq/2845/getting-started-guide-ai-services-sovereign-ai-services
+    keywords:
+    - One million free credits
+    - A credit card is required to start using the API
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-14'
+  delisted:
+    'on': '2026-09-16'
+    reason: a one-month wallet of a million credits, and "A credit card is required
+      to start using the API" — a one-off credit behind a card, which CONTRIBUTING
+      does not admit
+  probe_failures: 0
+  provisional: true
+  rank: 85
+- id: kenari
+  name: Kenari
+  category: aggregator
+  url: https://kenari.id
+  source_urls:
+  - https://kenari.id/en/docs/billing
+  - https://kenari.id/api/public/pricing
+  - https://kenari.id/v1/models
+  - https://kenari.id/docs/messages
+  card_required: false
+  offering: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are
+    billed Rp 0 behind a per-minute and a daily cap — sixteen on 2026-09-16, GLM-4.7-Flash,
+    Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them
+  limits: '"Models with the :free suffix, for example step-3-7-flash:free, are billed
+    at Rp 0. In exchange, there is a per-account request limit per minute", and "Besides
+    the per-minute limit, :free models also carry a daily request allowance with three
+    tiers, based on account status". The figures live in the public pricing endpoint
+    the docs point at, kenari.id/api/public/pricing (re-read 2026-09-03, unchanged):
+    a new account gets 50 requests a day at 5 per minute, an account whose top-ups
+    pass Rp 10,000 gets 1,000 a day at 10 per minute, and a subscription lifts the
+    per-minute cap to 15. "Running out of daily quota returns HTTP 429 with a Retry-After
+    header and reason free_quota_daily", and "The free lane is best-effort: capacity
+    is kept lean, with no guarantee of the same speed or availability as paid models".
+    Sign-up asks for no card — top-ups are QRIS, "tanpa kartu kredit internasional",
+    without an international credit card — and the privacy policy says "Kami tidak
+    menyimpan isi prompt maupun isi respons", prompt and response content are not
+    stored; the terms forbid reselling access. Docs are Indonesian with a full English
+    mirror under /en/docs'
+  models:
+  - family: nemotron-3-ultra
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
+  - family: nemotron-3-super
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: step-3.7-flash
+    released: 2026-07
+    aa_model: step-3-7-flash
+  - family: laguna-s-2.1
+    released: 2026-07
+  probe:
+    type: api-models
+    endpoint: https://kenari.id/v1/models
+    keywords: []
+    free_marker: :free
+    dead_markers: []
+    require_zero_price: true
+    machinery_keywords: []
+  first_seen: '2026-09-02'
+  last_verified: '2026-09-14'
+  delisted:
+    'on': '2026-09-16'
+    reason: rejected for cause — the operator's own JavaScript bundle showed its capacity
+      coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and
+      a proxy pool that multiplies per-IP free quotas
+  probe_failures: 0
+  provisional: true
+  rank: 55
+- id: scaleway-generative
+  name: Scaleway Generative APIs
+  category: api-free-tier
+  url: https://www.scaleway.com/en/generative-apis/
+  source_urls:
+  - https://www.scaleway.com/en/docs/generative-apis/faq/
+  card_required: true
+  offering: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every
+    new customer
+  limits: 1,000,000 free tokens then pay-per-token; a valid payment method is required.
+    The allowance is not a model lane — "The Free Tier is applied to the most expensive
+    tokens first", across the whole serverless catalog, which on 2026-08-14 read glm-5.2,
+    deepseek-v4-flash-0731, gpt-oss-120b/20b, qwen3.5-397b-a17b, qwen3-235b, llama-3.3-70b
+    and the Mistral line
+  models: []
+  api:
+    base_url: https://api.scaleway.ai/v1
+    key_url: https://console.scaleway.com
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: 'non-default project: https://api.scaleway.ai/{project_id}/v1'
+  probe:
+    type: page-keywords
+    endpoint: https://www.scaleway.com/en/docs/generative-apis/faq/
+    keywords:
+    - 1,000,000 tokens
+    - free tier
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-07-20'
+  last_verified: '2026-09-14'
+  delisted:
+    'on': '2026-09-16'
+    reason: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources
+      requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING
+      does not admit
+  probe_failures: 0
+  provisional: false
+  rank: 98

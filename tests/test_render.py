@@ -2,6 +2,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from xml.etree import ElementTree
 
+import pytest
 import yaml
 
 from freetier_radar.history import Event, EventType
@@ -38,6 +39,7 @@ def test_archive_rules():
     assert is_archived(make(retired_on=TODAY), TODAY)
     assert is_archived(make(retired_on=TODAY - timedelta(days=1)), TODAY)
     assert not is_archived(make(retired_on=TODAY + timedelta(days=1)), TODAY)
+    assert is_archived(make(delisted={"on": TODAY, "reason": "taken off by a reviewer"}), TODAY)
 
 
 def test_superseded_models_never_archive():
@@ -633,6 +635,87 @@ def test_an_event_with_nothing_to_say_renders_a_dash_like_every_other_empty_cell
     assert rows[0]["detail"] == "—"
 
 
+def test_a_delisting_event_says_why_from_the_row_the_archive_keeps():
+    """"➖ Delisted Kenari —" was all the page said about four rows on
+    2026-09-17. The rows are in the Archive now, each with its reason, and the
+    events the history already holds read it from there."""
+    gone = make(id="gone", name="Gone", delisted={"on": TODAY, "reason": "the free lane is gone"})
+    delisting = ev(event="removed", id="gone", name="Gone", detail="")
+    rows = build_context([make(), gone], TODAY, history=[delisting])["changes"]
+    assert rows[0]["detail"] == "the free lane is gone"
+    ns = "{http://www.w3.org/2005/Atom}"
+    feed = ElementTree.fromstring(build_feed([delisting], TODAY, entries=[make(), gone]))
+    assert feed.find(f"{ns}entry").findtext(f"{ns}summary") == "the free lane is gone"
+
+
+def test_an_event_about_an_archived_row_links_its_page_not_the_vendor():
+    """Kenari is on the blocklist for pooled consumer accounts, and on 2026-09-17
+    "What changed" and three feed entries still linked kenari.id. An event about
+    a row in the Archive links the row's page, like the Archive does."""
+    gone = make(id="gone", name="Gone", url="https://gone.example",
+                delisted={"on": TODAY, "reason": "rejected for cause"})
+    events = [ev(id="gone", name="Gone", url="https://gone.example"),
+              ev(event="removed", id="gone", name="Gone", url="https://gone.example",
+                 ts="2026-07-19T05:23:00Z")]
+    page = "https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/"
+    rows = build_context([make(), gone], TODAY, history=events)["changes"]
+    assert [r["url"] for r in rows] == [page, page]
+    feed = build_feed(events, TODAY, entries=[make(), gone])
+    assert "https://gone.example" not in feed and page in feed
+
+
+def test_a_provider_page_says_why_a_row_was_delisted_not_which_models_it_had():
+    from freetier_radar.render import build_provider_page
+    gone = make(id="gone", name="Gone", models=[{"family": "a"}],
+                delisted={"on": TODAY, "reason": "the free lane is gone"})
+    page = build_provider_page(gone, [ev(id="gone", name="Gone"),
+                                      ev(event="removed", id="gone", name="Gone", models=["a"],
+                                         ts="2026-07-19T05:23:00Z")], TODAY)
+    assert "— Delisted: the free lane is gone" in page
+    assert "Delisted: a" not in page
+
+
+def test_the_archive_says_why_each_row_left_and_links_its_page_not_the_vendor(tmp_path: Path):
+    """On 2026-09-17 every row in the Archive showed a "Last verified" date later
+    than the day its vendor had ended the offer: the probes anchored on pages
+    that outlived the offers and kept passing until a reviewer entered the
+    vendor's date. And the heading said the rows had "stopped verifying" when
+    all three were archived by that date with their probes still passing. A row
+    in the Archive says why it left, and links the page carrying the evidence
+    rather than a vendor page that is dead, or worse."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    retired = make(id="gone", name="Gone", url="https://gone.example",
+                   retired_on=TODAY - timedelta(days=30), last_verified=TODAY - timedelta(days=10))
+    save_registry(reg, [make(), retired])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    archive = text.split("## 📦 Archive")[1].split("\n## ")[0]
+    assert "[Gone](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in archive
+    assert "vendor-announced shutdown on 2026-06-19" in archive
+    assert "https://gone.example" not in archive
+    assert "2026-07-09" not in archive
+    assert "stopped verifying" not in archive
+
+
+def test_the_archive_lists_the_latest_departure_first():
+    older = make(id="older", name="Older", retired_on=TODAY - timedelta(days=40))
+    newer = make(id="newer", name="Newer", delisted={"on": TODAY - timedelta(days=2), "reason": "taken off"})
+    assert [r["name"] for r in build_context([older, make(), newer], TODAY)["archived"]] == ["Newer", "Older"]
+
+
+def test_rendering_refuses_a_registry_that_lost_a_row_the_history_recorded(tmp_path: Path):
+    """The page is where a deleted row would silently disappear from, so the
+    render is the last place that can refuse it: a row leaves through the Archive."""
+    from freetier_radar.history import append_history
+    from freetier_radar.models import save_registry
+    save_registry(tmp_path / "registry.yaml", [make()])
+    append_history(tmp_path / "history.jsonl", [ev(), ev(id="gone", name="Gone")])
+    with pytest.raises(ValueError, match="gone"):
+        render_readme(tmp_path / "registry.yaml", Path("templates"), tmp_path / "README.md", today=TODAY)
+    with pytest.raises(ValueError, match="gone"):
+        render_artifacts(tmp_path / "registry.yaml", tmp_path, today=TODAY)
+
+
 def test_picks_answer_by_need_from_the_registry():
     """The question a reader arrives with is rarely "what is on the list" and
     usually "which one, for me" — the strongest models, the key that gets the
@@ -869,6 +952,53 @@ def test_an_archived_provider_page_says_so_and_why():
     assert "3 failed probes" in page
 
 
+def test_an_archived_page_is_an_epitaph_not_instructions():
+    """On 2026-09-17 an archived page still carried a Connect section — AI21's
+    sent a reader to a sign-up that now lands on a homepage — flagged a dead row
+    as provisional, and closed with "re-verified twice a week" about a row no
+    probe reads. The title said "when it stopped verifying" of three rows that
+    were still passing their probes when their vendors' dates archived them."""
+    from freetier_radar.render import build_provider_page
+    gone = make(id="gone", name="Gone", provisional=True, retired_on=TODAY,
+                api={"base_url": "https://api.gone.example/v1", "key_url": "https://gone.example/signup"})
+    page = build_provider_page(gone, [], TODAY)
+    front = yaml.safe_load(page.split("---\n")[1])
+    assert "stopped verifying" not in front["title"]
+    assert "## Connect" not in page and "https://gone.example/signup" not in page
+    assert "provisional" not in page
+    assert "re-verified twice a week" not in page
+    assert "No probe reads this row any more" in page
+
+
+def test_a_row_its_probe_archived_is_still_read_and_its_page_says_so():
+    from freetier_radar.render import build_provider_page
+    page = build_provider_page(make(id="failing", probe_failures=3), [], TODAY)
+    assert "the first probe it passes brings it back" in page
+
+
+def test_the_page_of_a_row_on_a_blocklisted_domain_links_nowhere_near_it():
+    """Two archived rows sit on the blocklist, one of them a page that plants
+    instructions for AI agents. The Archive keeps the record as text: no link on
+    this site sends a reader, or an agent reading along, to the service."""
+    from freetier_radar.render import build_provider_page
+    row = make(id="bad", name="Bad", url="https://bad.example", source_urls=["https://bad.example/docs"],
+               delisted={"on": TODAY, "reason": "rejected for cause"},
+               probe={"type": "page-keywords", "endpoint": "https://bad.example/pricing",
+                      "keywords": ["bad-mini-2"]})
+    page = build_provider_page(row, [], TODAY, blocked=True)
+    assert "](https://bad.example" not in page and "<https://bad.example" not in page
+    assert "bad.example" in page
+
+
+def test_the_providers_index_says_why_each_archived_row_left():
+    from freetier_radar.render import build_providers_index
+    gone = make(id="gone", name="Gone", retired_on=TODAY - timedelta(days=30),
+                last_verified=TODAY - timedelta(days=10))
+    archived = build_providers_index([make(), gone], TODAY).split("## Archived")[1]
+    assert "vendor-announced shutdown on 2026-06-19" in archived
+    assert "2026-07-09" not in archived
+
+
 def test_the_litellm_command_this_repo_prints_listens_on_localhost_only(tmp_path: Path):
     """LiteLLM's proxy binds 0.0.0.0 unless told otherwise (`--host` defaults to
     it in proxy_cli.py), and the config this repo generates sets no master key —
@@ -910,7 +1040,7 @@ def test_the_readme_dates_link_to_the_provider_pages(tmp_path: Path):
     save_registry(reg, [make(id="x", name="X"), make(id="gone", name="Gone", probe_failures=3)])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     assert "[`2026-07-19`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/)" in text
-    assert "[`2026-07-19`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in text
+    assert "[Gone](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in text
     assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/" in text
     index = build_index([make()], TODAY)
     assert index["entries"][0]["page"] == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/"
@@ -971,6 +1101,19 @@ def test_llms_txt_lists_live_rows_under_their_section_and_archived_rows_apart():
     archived = text.split("## Archived")[1]
     assert "- [Gone](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in archived
     assert "[X]" not in archived
+
+
+def test_llms_txt_says_why_an_archived_row_left():
+    from freetier_radar.render import build_llms_txt
+    text = build_llms_txt([make(), make(id="gone", name="Gone", probe_failures=3)], TODAY)
+    assert "stopped answering their probe" not in text
+    assert "no longer listed — 3 failed probes in a row, last passed 2026-07-19" in text
+
+
+def test_index_json_says_why_an_archived_row_left():
+    rows = build_index([make(), make(id="gone", retired_on=TODAY)], TODAY)["entries"]
+    assert "archived_because" not in rows[0]
+    assert rows[1]["archived_because"] == "vendor-announced shutdown on 2026-07-19"
 
 
 def test_llms_txt_says_when_a_row_wants_a_card_or_a_key():

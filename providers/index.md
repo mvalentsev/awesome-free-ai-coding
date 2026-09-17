@@ -9,7 +9,7 @@ permalink: /providers/
 
 # Every provider, one page each
 
-Each page is generated from the same registry as [the list](https://mvalentsev.github.io/awesome-free-ai-coding/) and re-verified twice a week.
+Each page is generated from the same registry as [the list](https://mvalentsev.github.io/awesome-free-ai-coding/); a live row is re-verified twice a week, and an archived one says why it left.
 
 | Provider | Section | Free models | Last verified |
 |---|---|---|---|
@@ -90,10 +90,22 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 
 ## Archived
 
-| Provider | Last verified | Why |
-|---|---|---|
-| [AI21 Labs (Jamba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/) | `2026-09-03` | vendor-announced shutdown on 2026-08-09 |
-| [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | `2026-07-30` | vendor-announced shutdown on 2026-06-16 |
-| [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/) | `2026-08-03` | vendor-announced shutdown on 2026-07-26 |
+| Provider | Why it left |
+|---|---|
+| [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) | delisted on 2026-09-16: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit |
+| [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) | delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas |
+| [Infomaniak AI Services](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/) | delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit |
+| [Cerebras Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/) | delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit |
+| [Novita AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/) | delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero |
+| [LongCat API Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/) | delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day |
+| [Reka AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/reka/) | delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits |
+| [AI21 Labs (Jamba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/) | vendor-announced shutdown on 2026-08-09 |
+| [DeepSeek Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/) | delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant |
+| [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/) | vendor-announced shutdown on 2026-07-26 |
+| [Puter.js (free LLM API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/) | delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan |
+| [MiMoCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimocode/) | delisted on 2026-07-19: a placeholder from the list's first day — "Coding agent with free tier", limits "TBD by scout" — with no page behind the claim, taken off the same day as unverifiable |
+| [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) | delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam) |
+| [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) | delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly |
+| [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | vendor-announced shutdown on 2026-06-16 |
 
 {% endraw %}

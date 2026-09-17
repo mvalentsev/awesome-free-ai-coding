@@ -1435,6 +1435,32 @@ def test_a_retired_entry_is_left_alone():
     assert e.probe_failures == 0 and e.last_verified == date(2026, 1, 1)
 
 
+def test_a_delisted_entry_is_left_alone():
+    e = Entry.model_validate({**api_entry().model_dump(),
+                              "delisted": {"on": date(2026, 7, 30), "reason": "taken off"}})
+    assert apply_results([e], {"x": ProbeResult(ProbeStatus.PASS)}, date(2026, 8, 3)) == []
+    assert e.probe_failures == 0 and e.last_verified == date(2026, 1, 1)
+
+
+@respx.mock
+async def test_a_row_archived_for_good_is_not_probed_at_all(tmp_path, capsys):
+    """A delisted row keeps the probe it was published with, and some of those
+    point at services the blocklist says never to fetch; a retired one points at
+    an endpoint that is meant to be dead, and GitHub Models' 410 once crashed a
+    run. Neither answer could change anything, so neither request is made —
+    respx fails the run on any route it was not told about."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder free tier no credit card"))
+    retired = api_entry().model_copy(update={"id": "retired", "retired_on": date(2026, 1, 2)})
+    delisted = Entry.model_validate({**api_entry().model_dump(), "id": "delisted",
+                                     "delisted": {"on": date(2026, 1, 2), "reason": "taken off"}})
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [page_entry(), retired, delisted])
+
+    assert await _amain(registry, tmp_path / "failures", dry_run=True) == 0
+    assert "probed 1 entries, 0 need attention" in capsys.readouterr().out
+
+
 def test_an_announced_retirement_still_in_the_future_is_probed_normally():
     e = api_entry()
     e.retired_on = date(2026, 8, 30)

@@ -32,9 +32,12 @@ def test_browse_page_reads_only_fields_index_json_publishes():
                 api={"base_url": "https://x.ai/v1", "auth": "api-key", "openai_compatible": True,
                      "key_url": "https://x.ai/keys", "model_ids": ["a"],
                      "anthropic_base_url": "https://x.ai", "note": "n"})
-    entry = build_index([full], TODAY)["entries"][0]
+    live, gone = build_index([full, make(id="gone", retired_on=TODAY)], TODAY)["entries"]
+    entry = live
     used = set(re.findall(r"\be\.([a-z_]+)\b", html))
-    assert used and used <= set(entry), used - set(entry)
+    assert used and used <= set(live) | set(gone), used - set(live) - set(gone)
+    # an archived row says why it left instead of a date no probe earned
+    assert "e.archived_because" in html
     api_used = set(re.findall(r"\be\.api\.([a-z_]+)\b", html))
     assert api_used and api_used <= set(entry["api"]), api_used - set(entry["api"])
     family_fields = {k for m in entry["models"] for k in m}

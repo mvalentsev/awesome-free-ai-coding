@@ -33,17 +33,21 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
-from .models import Entry, is_archived, live_families, load_registry
+from .models import ARCHIVE_AFTER_FAILURES, Entry, is_archived, live_families, load_registry
 
 __all__ = ["EventType", "Event", "State", "archive_reason", "registry_state", "replay",
-           "diff_state", "load_history", "append_history", "record_changes"]
+           "diff_state", "deleted_row_problem", "deleted_rows", "refuse_deleted_rows",
+           "load_history", "append_history", "record_changes"]
 
 
 class EventType(str, Enum):
     ADDED = "added"          # a row a reader could not see before
-    ARCHIVED = "archived"    # it stopped verifying, or its vendor announced the end
+    ARCHIVED = "archived"    # it moved to the Archive: its vendor's date, its probe, or a reviewer
     RESTORED = "restored"    # it started passing again
-    REMOVED = "removed"      # deleted from the registry by hand — usually to the watchlist
+    # Deleted from the registry by hand. Only ever read back: until 2026-09-17 a
+    # reviewer took a row off this way, and since then a row leaves through the
+    # Archive and a deletion is refused before it can be recorded.
+    REMOVED = "removed"
     MODELS = "models"        # the free-model list of a live row changed
 
 
@@ -66,6 +70,10 @@ class Event(BaseModel):
 class Status(str, Enum):
     LIVE = "live"
     ARCHIVED = "archived"
+    # The history's own word for a row it last saw deleted. Such a row is back in
+    # the registry as delisted, and its departure was announced when it happened,
+    # so the Archive taking it in is not news the second time.
+    DELETED = "deleted"
 
 
 @dataclass(frozen=True)
@@ -85,12 +93,15 @@ def archive_reason(entry: Entry, today: date) -> str:
     """Why this row is in the Archive — read off the same three rules that put
     it there, so the feed cannot describe an archival the renderer disagrees
     with."""
+    if entry.delisted is not None:
+        return f"delisted on {entry.delisted.on.isoformat()}: {entry.delisted.reason}"
     if entry.retired_on and today >= entry.retired_on:
         return f"vendor-announced shutdown on {entry.retired_on.isoformat()}"
-    if entry.probe_failures >= 3:
-        return f"{entry.probe_failures} failed probes"
-    return (f"unverified for {(today - entry.last_verified).days} days "
-            f"(last passed {entry.last_verified.isoformat()})")
+    if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
+        return (f"{entry.probe_failures} failed probes in a row, "
+                f"last passed {entry.last_verified.isoformat()}")
+    return (f"unverified for {(today - entry.last_verified).days} days, "
+            f"last passed {entry.last_verified.isoformat()}")
 
 
 def registry_state(entries: list[Entry], today: date) -> dict[str, State]:
@@ -113,9 +124,11 @@ def replay(events: list[Event]) -> dict[str, State]:
     state: dict[str, State] = {}
     for ev in events:
         if ev.event is EventType.REMOVED:
-            state.pop(ev.id, None)
-            continue
-        status = Status.ARCHIVED if ev.event is EventType.ARCHIVED else Status.LIVE
+            status = Status.DELETED
+        elif ev.event is EventType.ARCHIVED:
+            status = Status.ARCHIVED
+        else:
+            status = Status.LIVE
         state[ev.id] = State(status=status, name=ev.name, url=ev.url,
                              models=tuple(ev.models))
     return state
@@ -146,9 +159,14 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
         was, now_ = recorded.get(entry_id), current.get(entry_id)
 
         if now_ is None:
-            events.append(Event(ts=now, event=EventType.REMOVED, id=entry_id,
-                                name=was.name, url=was.url, models=list(was.models)))
-        elif was is None:
+            if was.status is not Status.DELETED:
+                events.append(Event(ts=now, event=EventType.REMOVED, id=entry_id,
+                                    name=was.name, url=was.url, models=list(was.models)))
+        elif was is not None and was.status is Status.DELETED and now_.status is Status.ARCHIVED:
+            # Deleted before rows were archived, and back as the record the
+            # Archive keeps: "Delisted" already said the row left.
+            continue
+        elif was is None or was.status is Status.DELETED:
             kind = EventType.ADDED if now_.status is Status.LIVE else EventType.ARCHIVED
             events.append(Event(ts=now, event=kind, id=entry_id, name=now_.name,
                                 url=now_.url, models=list(now_.models),
@@ -162,7 +180,7 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
         elif now_.status is Status.LIVE and set(was.models) != set(now_.models):
             # Set-compared: reordering a list nobody reads in order is not news.
             # Skipped entirely while a row is archived, where the Archive table
-            # shows a name and a date and no models at all.
+            # shows a name and why it left and no models at all.
             events.append(Event(ts=now, event=EventType.MODELS, id=entry_id,
                                 name=now_.name, url=now_.url, models=list(now_.models),
                                 detail=_model_delta(was.models, now_.models)))
@@ -199,6 +217,31 @@ def append_history(path: Path, events: list[Event]) -> None:
             fh.write(json.dumps(ev.model_dump(mode="json"), ensure_ascii=False) + "\n")
 
 
+def deleted_rows(entries: list[Entry], events: list[Event]) -> list[str]:
+    """Every id the history has recorded that the registry no longer holds.
+
+    A row leaves the list through the Archive — its vendor's date, its probe, or
+    a reviewer's `delisted` — and stays in the registry as the record of what
+    was published. Deleting it instead is how twelve rows left before
+    2026-09-17 with nothing on the page but "Delisted —", so a registry that
+    has lost a row is refused wherever it would be published: `freetier-check`,
+    the probe run's history and the render."""
+    held = {e.id for e in entries}
+    return sorted(set(replay(events)) - held)
+
+
+def deleted_row_problem(entry_id: str) -> str:
+    return (f"{entry_id} is in history.jsonl and missing from registry.yaml — a row leaves "
+            "the list through the Archive: give it `delisted` (or `retired_on`) instead of "
+            "deleting it")
+
+
+def refuse_deleted_rows(entries: list[Entry], events: list[Event]) -> None:
+    missing = deleted_rows(entries, events)
+    if missing:
+        raise ValueError("; ".join(deleted_row_problem(i) for i in missing))
+
+
 def record_changes(registry_path: Path, history_path: Path,
                    today: date, now: datetime) -> list[Event]:
     """Compare the registry against the history and write the difference.
@@ -207,8 +250,13 @@ def record_changes(registry_path: Path, history_path: Path,
     scout — rather than from `save_registry` itself, which is also called by
     tests and by anything that just wants the file on disk. A saver with a side
     effect is a saver that eventually writes history nobody asked for.
+
+    A deleted row stops the run here, before anything is appended: the history
+    would call it delisted and the page would lose it, and the run is where
+    that becomes public.
     """
-    events = diff_state(replay(load_history(history_path)),
-                        registry_state(load_registry(registry_path), today), now)
+    entries, recorded = load_registry(registry_path), load_history(history_path)
+    refuse_deleted_rows(entries, recorded)
+    events = diff_state(replay(recorded), registry_state(entries, today), now)
     append_history(history_path, events)
     return events

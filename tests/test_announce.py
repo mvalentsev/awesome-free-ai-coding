@@ -46,6 +46,18 @@ def test_every_kind_of_event_composes_a_post_that_fits_and_links_the_row():
     assert "Delisted" in gone and "github.com/mvalentsev/awesome-free-ai-coding" in gone
 
 
+def test_a_delisting_post_carries_the_reason_the_archive_keeps():
+    """A delisted row is in the Archive with its reason and its page, so the post
+    says why and links there instead of to the front of the list."""
+    by_id = {"gone": entry(id="gone", name="Gone",
+                           delisted={"on": TODAY, "reason": "the free lane is gone"})}
+    text = compose(event(EventType.REMOVED, id="gone", name="Gone"), by_id)
+    assert "the free lane is gone" in text and PAGE + "gone/" in text
+    archived = compose(event(EventType.ARCHIVED, detail="vendor-announced shutdown on 2026-09-01"),
+                       {"x": entry()})
+    assert "stops verifying" not in archived
+
+
 def test_a_long_offer_is_cut_at_a_word_and_the_link_always_survives():
     by_id = {"x": entry(offering="word " * 120)}
     text = compose(event(EventType.ADDED), by_id)

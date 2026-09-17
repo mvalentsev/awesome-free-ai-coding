@@ -77,6 +77,56 @@ def test_an_archived_entry_names_a_vendor_announced_shutdown_as_the_reason():
     assert "shutdown" in events[0].detail
 
 
+def test_a_row_its_probe_archived_says_when_it_last_passed():
+    """The Archive shows this sentence in place of a date column, and the count
+    alone leaves a reader guessing whether the offer died last week or in June."""
+    live = [make()]
+    recorded = replay(diff_state({}, registry_state(live, TODAY), NOW))
+
+    dead = [make(probe_failures=3, last_verified=date(2026, 8, 3))]
+    events = diff_state(recorded, registry_state(dead, TODAY), NOW)
+
+    assert events[0].detail == "3 failed probes in a row, last passed 2026-08-03"
+
+
+def test_a_delisted_row_says_the_day_and_the_reason_it_left():
+    live = [make()]
+    recorded = replay(diff_state({}, registry_state(live, TODAY), NOW))
+
+    delisted = [make(delisted={"on": TODAY, "reason": "the free lane is gone"})]
+    events = diff_state(recorded, registry_state(delisted, TODAY), NOW)
+
+    assert [(e.event, e.id) for e in events] == [(EventType.ARCHIVED, "example")]
+    assert events[0].detail == "delisted on 2026-08-14: the free lane is gone"
+
+
+def test_a_row_deleted_before_rows_were_archived_joins_the_archive_without_a_second_event():
+    """Until 2026-09-17 a reviewer took a row off by deleting it, and the history
+    said so as "removed". Those rows are back in the registry as delisted — the
+    Archive now holds them — and their departure was announced the day it
+    happened, so bringing them back must not announce it again."""
+    added = diff_state({}, registry_state([make()], TODAY), NOW)
+    removed = diff_state(replay(added), {}, NOW)
+    assert [e.event for e in removed] == [EventType.REMOVED]
+
+    restored = registry_state([make(delisted={"on": TODAY, "reason": "no free lane"})], TODAY)
+    assert diff_state(replay(added + removed), restored, NOW) == []
+
+
+def test_a_row_deleted_from_the_registry_is_refused_rather_than_recorded(tmp_path: Path):
+    """A row leaves the list through the Archive and nowhere else. The run that
+    finds one deleted stops before the history can call it "delisted", so the
+    deletion can never be published — only undone."""
+    registry, history = tmp_path / "registry.yaml", tmp_path / "history.jsonl"
+    save_registry(registry, [make(), make("second")])
+    record_changes(registry, history, TODAY, NOW)
+    save_registry(registry, [make()])
+
+    with pytest.raises(ValueError, match="second"):
+        record_changes(registry, history, TODAY, NOW)
+    assert [e.id for e in load_history(history)] == ["example", "second"]
+
+
 def test_an_entry_archived_by_the_calendar_alone_is_still_reported():
     """No byte of the registry changes — the entry simply goes unverified past
     the staleness limit. A before/after diff of the file would see nothing."""
@@ -151,7 +201,7 @@ def test_a_superseded_family_is_not_part_of_the_published_list():
 
 
 def test_the_model_list_of_an_archived_entry_is_not_announced():
-    """An archived row renders as a name and a date; its model list is off the page."""
+    """An archived row renders as a name and why it left; its model list is off the page."""
     recorded = replay(diff_state({}, registry_state(
         [make(probe_failures=3, models=[{"family": "a"}])], TODAY), NOW))
 

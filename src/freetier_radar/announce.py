@@ -82,13 +82,15 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
                             e.offering if e is not None else ev.detail,
                             "Verified by a live probe")
     elif ev.event is EventType.ARCHIVED:
-        lead, body, tail = (f"Archived: {ev.name}", ev.detail,
-                            "The list drops what stops verifying")
+        lead, body, tail = f"Archived: {ev.name}", ev.detail, "Moved to the list's Archive"
     elif ev.event is EventType.RESTORED:
         lead, body, tail = (f"Back: {ev.name}", ev.detail or "passing its probe again",
                             "Restored to the list")
     elif ev.event is EventType.REMOVED:
-        lead, body, tail = f"Delisted: {ev.name}", ev.detail, "Removed from the list by hand"
+        # A delisting recorded before rows were archived carries no detail; the
+        # row is back in the registry as delisted, with the reason.
+        reason = ev.detail or (e.delisted.reason if e is not None and e.delisted else "")
+        lead, body, tail = f"Delisted: {ev.name}", reason, "Taken off the list by a reviewer"
     else:
         lead = f"{ev.name}: free models changed"
         body = ev.detail
@@ -210,9 +212,9 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
              f"{no_card} without a card")
     out = [
         f"*Generated on {today.isoformat()} from [a registry]({REPO_URL}) that a live probe "
-        f"re-verifies twice a week. Every offer below passed its probe; the ones that stopped "
-        f"passing are in the archive, not here. Each name links to the row's own page with the "
-        f"vendor's words, the connection details and the evidence.*",
+        f"re-verifies twice a week. Every offer below passed its probe; the ones the list "
+        f"carries no more are in the archive, each with why it left. Each name links to the "
+        f"row's own page with the vendor's words, the connection details and the evidence.*",
         "",
         f"**{len(active)} live offers · {no_card} ask for no card · one page each at "
         f"{PAGES_URL}/providers/**",

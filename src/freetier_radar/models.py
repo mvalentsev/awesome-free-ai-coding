@@ -214,27 +214,8 @@ class Probe(BaseModel):
         return self
 
     @model_validator(mode="after")
-    def _keywords_must_anchor(self) -> Probe:
-        """A page-keywords probe needs at least one keyword that dies with the
-        offer — the free model's id, its quota figure, or the vendor's own
-        sentence about it. Generic words alone keep passing for months after a
-        free tier is withdrawn.
-
-        The first version of this rule only rejected keywords listed verbatim in
-        GENERIC_KEYWORDS, which let `hobby`, `free quota`, `no signup` and
-        `monthly credits` through — words that sit on a pricing page whatever
-        the page is currently offering. is_anchor() asks the question the list
-        cannot: would this string still be there once the free tier is gone?
-        """
-        if self.type is ProbeType.PAGE_KEYWORDS:
-            every = [*self.keywords, *self.machinery_keywords]
-            if not any(is_anchor(k) for k in every):
-                raise ValueError(
-                    f"probe {self.endpoint}: none of the keywords {every} anchors on "
-                    "the offer — use a free model id, a quota or price figure, or a phrase "
-                    "of four or more words quoted from the page"
-                )
-        elif self.machinery_keywords:
+    def _machinery_belongs_to_a_page(self) -> Probe:
+        if self.type is not ProbeType.PAGE_KEYWORDS and self.machinery_keywords:
             raise ValueError(
                 f"probe {self.endpoint}: machinery_keywords is a page-keywords field — "
                 "a models API has no machinery to tell apart from its answer"
@@ -376,6 +357,28 @@ class ApiInfo(BaseModel):
         return value
 
 
+class Delisting(BaseModel):
+    """A row a reviewer took off the list, kept in the registry as the record of
+    what the list published.
+
+    Before 2026-09-17 a row came off by being deleted: twelve of them — Cerebras,
+    Novita, LongCat and Kenari among them — left nothing on the page but a
+    "Delisted" line with a dash where the reason goes, while the Archive promised
+    that a dead tier is never silently forgotten. A row now leaves through the
+    Archive and nowhere else, with the day and the reason; `freetier-check`, the
+    probe run and the render all refuse a registry that has lost a row.
+    """
+    on: date
+    reason: str  # what the Archive prints beside the row; the long account is the verdict's
+
+    @field_validator("reason")
+    @classmethod
+    def _says_why(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("delisted.reason is empty — say why the row left the list")
+        return value
+
+
 class Entry(BaseModel):
     id: str
     name: str
@@ -391,9 +394,38 @@ class Entry(BaseModel):
     first_seen: date
     last_verified: date
     retired_on: date | None = None  # vendor-announced shutdown; archives the row on that day
+    delisted: Delisting | None = None  # taken off the list by a reviewer; archives the row
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+    @model_validator(mode="after")
+    def _keywords_must_anchor(self) -> Entry:
+        """A page-keywords probe needs at least one keyword that dies with the
+        offer — the free model's id, its quota figure, or the vendor's own
+        sentence about it. Generic words alone keep passing for months after a
+        free tier is withdrawn.
+
+        The first version of this rule only rejected keywords listed verbatim in
+        GENERIC_KEYWORDS, which let `hobby`, `free quota`, `no signup` and
+        `monthly credits` through — words that sit on a pricing page whatever
+        the page is currently offering. is_anchor() asks the question the list
+        cannot: would this string still be there once the free tier is gone?
+
+        A delisted row is exempt. No probe reads it again, and it keeps the probe
+        it was published with as part of the record — on the list's first day
+        that was the bare word "free", which is how aider and Puter got listed.
+        """
+        probe = self.probe
+        if self.delisted is None and probe.type is ProbeType.PAGE_KEYWORDS:
+            every = [*probe.keywords, *probe.machinery_keywords]
+            if not any(is_anchor(k) for k in every):
+                raise ValueError(
+                    f"probe {probe.endpoint}: none of the keywords {every} anchors on "
+                    "the offer — use a free model id, a quota or price figure, or a phrase "
+                    "of four or more words quoted from the page"
+                )
+        return self
 
     @model_validator(mode="after")
     def _ignored_ids_need_a_price_list(self) -> Entry:
@@ -503,7 +535,12 @@ def known_domains(entries: list[Entry]) -> set[str]:
     documented at docs.api.nvidia.com and served at integrate.api.nvidia.com,
     and a set built from the url alone reported our own entry back to us as an
     undiscovered provider.
+
+    A delisted row reaches nothing: it is the record of a row, and the verdict
+    that took it off lives in the watchlist or the blocklist, which answer for
+    the vendor — the watchlist's expiring so that the question comes back.
     """
+    entries = [e for e in entries if e.delisted is None]
     urls = [e.url for e in entries] + [u for e in entries for u in e.source_urls]
     urls += [e.api.base_url for e in entries if e.api and e.api.base_url]
     return {s for s in map(site_of, urls) if s}
@@ -518,21 +555,31 @@ ARCHIVE_AFTER_FAILURES = 3
 
 
 def is_archived(entry: Entry, today: date) -> bool:
-    """Liveness comes from probes, staleness and vendor-announced retirement —
-    never from model generations. A provider whose catalog moves on is still
-    free, so a superseded family means "bump the row", not "bury the entry".
+    """Liveness comes from probes, staleness, vendor-announced retirement and a
+    reviewer's delisting — never from model generations. A provider whose catalog
+    moves on is still free, so a superseded family means "bump the row", not
+    "bury the entry".
 
     Lives with the model rather than with the renderer because it answers a
     question about the entry, not about the README: the scout needs it too, to
     keep from proposing work on entries the registry has already buried.
     """
-    if entry.retired_on and today >= entry.retired_on:
+    if is_archived_for_good(entry, today):
         return True
     if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
         return True
     if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
         return True
     return False
+
+
+def is_archived_for_good(entry: Entry, today: date) -> bool:
+    """Archived by a date or by a reviewer rather than by the probe — so no probe
+    result can bring the row back, and none is asked for. A row the probe
+    archived stays probed, and the first pass restores it."""
+    if entry.delisted is not None:
+        return True
+    return entry.retired_on is not None and today >= entry.retired_on
 
 
 # ---- the files this repository curates by hand ----------------------------

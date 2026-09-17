@@ -104,6 +104,27 @@ def test_a_weak_anchor_is_rejected_even_when_it_is_not_a_listed_generic():
     assert Entry.model_validate(anchored).probe.keywords[1] == "limited agent requests"
 
 
+def test_a_delisted_row_keeps_the_probe_it_was_published_with():
+    """A row taken off the list stays in the registry as the record of what the
+    list once published, and on its first day the list published probes
+    anchored on the bare word "free". No probe reads a delisted row, so the
+    anchor rule — a rule about what may keep a live row live — has nothing
+    left to protect there; rewriting the old keywords would falsify the record."""
+    seed = {**sample_entry(), "probe": {"type": "page-keywords", "endpoint": "https://x.ai",
+                                        "keywords": ["free"]}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(seed)
+    delisted = {**seed, "delisted": {"on": date(2026, 7, 19), "reason": "nothing behind the claim"}}
+    assert Entry.model_validate(delisted).probe.keywords == ["free"]
+
+
+def test_a_delisting_says_why():
+    """The reason is what the Archive shows beside the row. A delisting without
+    one is a row that vanished with extra steps."""
+    with pytest.raises(ValidationError):
+        Entry.model_validate({**sample_entry(), "delisted": {"on": date(2026, 7, 19), "reason": "  "}})
+
+
 def test_zero_price_flag_belongs_to_a_models_api():
     """A pricing page publishes no machine-readable prices, so the flag would sit
     there doing nothing — silent for a check whose job is to catch a price."""

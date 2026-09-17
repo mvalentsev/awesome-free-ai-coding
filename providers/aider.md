@@ -1,0 +1,41 @@
+---
+layout: default
+title: 'Aider free tier (archived): what it offered, and why it left the list'
+description: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama. Tool is free and open-source; model usage is BYOK (no bundled free-model quota)
+permalink: /providers/aider/
+---
+
+{% raw %}
+
+# Aider
+
+🤖 Coding agents & CLIs · no card · **archived** — delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly · [aider.chat](https://aider.chat/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+
+## What it offered
+
+Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama
+
+## Free models it listed
+
+The row named no free model.
+
+## Limits, in the vendor's words
+
+Tool is free and open-source; model usage is BYOK (no bundled free-model quota)
+
+## Evidence
+
+- Probe: the page at <https://aider.chat/>, anchored on `open source`, `free`
+- Source: <https://aider.chat/>
+- Source: <https://aider.chat/docs/faq.html>
+
+## History
+
+- `2026-07-19` — Delisted: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly
+- `2026-07-19` — Added to the list: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama
+
+---
+
+Generated from `registry.yaml` on 2026-09-17. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+
+{% endraw %}
