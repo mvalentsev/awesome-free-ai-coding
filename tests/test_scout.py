@@ -1265,11 +1265,16 @@ def test_the_pr_body_says_how_many_hits_each_search_kept(tmp_path, monkeypatch):
 def test_main_records_what_the_scout_changed_in_the_history(tmp_path, monkeypatch):
     """The scout is the other command that writes registry.yaml, and the only
     one that ever adds a row."""
-    save_registry(tmp_path / "registry.yaml", [make()])
+    # main() records the history on the real clock, so the rows are verified on
+    # the real day: at TODAY they read as 60 days unverified from 2026-09-18 on,
+    # and the history called both of them archived.
+    verified = date.today()
+    save_registry(tmp_path / "registry.yaml", [make(last_verified=verified)])
     monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
     monkeypatch.setattr(scout, "run_scout",
                         lambda llm, entries, *a, **k: entries.append(
-                            make(id="newcomer", name="Newcomer")) or EMPTY_RUN)
+                            make(id="newcomer", name="Newcomer",
+                                 last_verified=verified)) or EMPTY_RUN)
     monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path))
 
     scout.main()
