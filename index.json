@@ -5552,9 +5552,9 @@
         "b.ai"
       ],
       "name": "B.AI",
-      "checked_on": "2026-09-05",
-      "reason": "A Chinese list credits it with an anonymous, limited-time free lane at \"0 Credits\" with no end date. The site (b.ai and b.ai/pricing, read 2026-09-05) renders the word BAI and nothing else server-side, 2,841 bytes, so who operates it, what it serves and on what terms cannot be read.",
-      "reopen_if": "A server-rendered page with the models, the limits and the operator.",
+      "checked_on": "2026-09-18",
+      "reason": "Nothing free is left. b.ai itself still renders the word BAI and nothing else, but docs.b.ai is server-rendered and its sitemap lists the LLM service's pages. \"Promotions and Pricing Updates\" ended the free models the Chinese list credited it with: for Qwen3.8-Flash, Hy3 and MiMo-V2.5 \"The current free offer changes to a limited-time discount at 17:00 on September 16, 2026 (Singapore Time, UTC+8)\", billed from then \"at 10% of the standard reference price\", and every model in \"Pricing and Usage\" carries a price. What remains is a referral gift, not a sign-up one: a friend who registers through an invitation link \"can claim a dedicated invitation registration gift of 300,000 Credits\" — $0.30 at 1,000,000 Credits to the dollar — valid 30 days. Login is by Web3 wallet or Google, and api.b.ai/v1/models answers 401 without a key (2026-09-18).",
+      "reopen_if": "A model priced at zero on the promotions page again, or a grant to anyone who signs up, without an invitation.",
       "current": true
     },
     {
