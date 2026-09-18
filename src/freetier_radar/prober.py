@@ -293,6 +293,12 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     notice = entry.api.notice
     tried: list[tuple[str, httpx.Response | str]] = []
     for model in entry.api.model_ids[:KEYLESS_IDS_TRIED]:
+        # LLM7 serves an anonymous caller one request a second, so an id asked
+        # the instant the one before it answered is refused for the rate, not for
+        # itself: the ids after the first wait the pause the probe takes between
+        # tries.
+        if tried:
+            await asyncio.sleep(backoff)
         # The README's id is asked again after a 429 the way it would be after a
         # 5xx: on 2026-09-17 kilo-auto/free answered 429 from its upstream to the
         # runner and 200 elsewhere within the hour, LLM7's first id the reverse,

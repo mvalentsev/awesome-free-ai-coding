@@ -1692,6 +1692,29 @@ async def test_a_first_id_that_is_rate_limited_while_another_answers_is_a_note_n
 
 
 @respx.mock
+async def test_the_next_id_is_asked_only_after_the_pause_the_probe_takes_between_tries(monkeypatch):
+    """LLM7 serves an anonymous caller one request a second, so an id asked the
+    instant the one before it answered is refused for the rate and not for
+    itself. On 2026-09-18 its first id answered 404 upstream_not_found, the next
+    two answered 429 within the same second, and the run named no id to put
+    first while minimax-m2.7 answered 200 two seconds later. The ids after the
+    first are spaced by the pause the probe already takes between tries."""
+    import freetier_radar.prober as prober
+    pauses: list[float] = []
+
+    async def pause(seconds: float) -> None:
+        pauses.append(seconds)
+    monkeypatch.setattr(prober.asyncio, "sleep", pause)
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=_answer_by_model({"gpt-oss-120b": 404, "qwen3-coder-30b": 200}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=1.5)
+    assert result.status is ProbeStatus.STALE_IDS and "put qwen3-coder-30b first" in result.detail
+    assert pauses == [1.5]
+
+
+@respx.mock
 async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_another_is_named():
     """A 429 is often the moment and not the lane. On 2026-09-17 kilo-auto/free
     answered 429 from its upstream to the runner and 200 from elsewhere within
