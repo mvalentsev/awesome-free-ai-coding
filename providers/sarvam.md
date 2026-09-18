@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Sarvam AI free tier: limits, free models, verified 2026-09-17'
-description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. "Every new user receives ₹100 worth of free credits to explore all our APIs", and the credits "are universal and never…
+description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. "Every new user receives ₹100 in credits", usable "across any of our APIs", and the credits "are universal and never expire".…
 permalink: /providers/sarvam/
 ---
 
@@ -21,7 +21,7 @@ India's Sarvam AI credits every new account ₹100 that never expire, spendable 
 
 ## Limits, in the vendor's words
 
-"Every new user receives ₹100 worth of free credits to explore all our APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28 in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled by default with standard API subscription keys" and is granted per key on request. No page read mentions a card (2026-09-16)
+"Every new user receives ₹100 in credits", usable "across any of our APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28 in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled by default with standard API subscription keys" and is granted per key on request. No page read mentions a card (2026-09-18)
 
 ## Connect
 
@@ -32,7 +32,7 @@ India's Sarvam AI credits every new account ₹100 that never expire, spendable 
 
 ## Evidence
 
-- Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `₹100 worth of free credits`
+- Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `Every new user receives ₹100 in credits`
 - Source: <https://docs.sarvam.ai/api/getting-started/pricing.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/ratelimits.md>
 - Source: <https://docs.sarvam.ai/api-reference/authentication.md>

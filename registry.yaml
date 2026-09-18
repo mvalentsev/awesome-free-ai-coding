@@ -2684,13 +2684,13 @@ entries:
   offering: India's Sarvam AI credits every new account ₹100 that never expire, spendable
     on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped
     endpoint
-  limits: '"Every new user receives ₹100 worth of free credits to explore all our
-    APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28
-    in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens,
-    and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM
-    5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not
-    enabled by default with standard API subscription keys" and is granted per key
-    on request. No page read mentions a card (2026-09-16)'
+  limits: '"Every new user receives ₹100 in credits", usable "across any of our APIs",
+    and the credits "are universal and never expire". Sarvam-105B costs ₹29.28 in
+    and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and
+    the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3
+    and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled
+    by default with standard API subscription keys" and is granted per key on request.
+    No page read mentions a card (2026-09-18)'
   models:
   - family: sarvam-105b
     released: ''
@@ -2711,7 +2711,7 @@ entries:
     type: page-keywords
     endpoint: https://docs.sarvam.ai/api/getting-started/pricing.md
     keywords:
-    - ₹100 worth of free credits
+    - Every new user receives ₹100 in credits
     free_marker: ''
     dead_markers: []
     require_zero_price: false
@@ -2784,28 +2784,29 @@ entries:
   url: https://routerplex.com
   source_urls:
   - https://routerplex.com/
+  - https://routerplex.com/pricing
   - https://docs.routerplex.com/
   - https://routerplex.com/terms
   - https://docs.routerplex.com/claude-code
   card_required: false
-  offering: A one-time $1 of test credit on a prepaid reseller that bills 54 chat
-    models at vendor list prices with 0% markup, no card — one key on both wires,
-    OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code
-    takes as it is
-  limits: '"$1 test credit for your first integration after email verification. No
-    card required" on the home page, and the docs quickstart: "Eligible verified accounts
-    receive $1 in test credit once" — read 2026-09-11. What the dollar buys is the
-    list price of whatever it is spent on: the home page states "vendor list prices
-    with 0% markup", so at deepseek-v4-flash it is an afternoon of work and at claude-opus-5
-    a handful of turns. The terms (last updated July 13, 2026) narrow it: "Until an
+  offering: A one-time $1 of free credit on a prepaid reseller that bills 56 models
+    at catalog rates with 0% markup, no card — one key on both wires, OpenAI-compatible
+    Chat Completions and an Anthropic Messages base Claude Code takes as it is
+  limits: 'The home page: "Get $1 in free credit", granted "once during key creation,
+    not immediately after signup" to an account with "no previous paid top-up, no
+    existing credit, and no previous setup-credit grant". "Trial traffic is limited
+    to 10 requests per minute, 250,000 tokens per minute, and four concurrent requests",
+    "Signup and guided setup have no payment step", and "The $1 credit does not expire".
+    What the dollar buys is the catalog rate of whatever it is spent on, with "0%
+    Token markup" on the pricing page, so at deepseek-v4-flash it is an afternoon
+    of work and at claude-opus-5 a handful of turns. The terms narrow it: "Until an
     account makes its first paid top-up, promotional credit may be usable only with
     a subset of models and at reduced rate limits", "no promotional credit is guaranteed",
     and one account per person. Which models the subset holds is on no page. Continuing
-    costs a top-up "from $5 by card or $12 by crypto"; purchased credit does not expire.
-    No legal entity is named on /terms or /about — the terms speak of "upstream providers"
-    whose "own usage policies" apply — and /v1/models answers 403 without a key, so
-    nothing here is read off the catalog. A connection test with a little work in
-    it, one step above the smallest trial on this list'
+    costs a top-up "from $5 by card or $12 by crypto". No legal entity is named on
+    /terms or /about, and /v1/models answers 403 without a key, so nothing here is
+    read off the catalog. A connection test with a little work in it, one step above
+    the smallest trial on this list. Read 2026-09-18'
   models: []
   api:
     base_url: https://api.routerplex.com/v1
@@ -2827,8 +2828,8 @@ entries:
     type: page-keywords
     endpoint: https://routerplex.com/
     keywords:
-    - $1 test credit
-    - No card required
+    - Get $1 in free credit
+    - Signup and guided setup have no payment step
     free_marker: ''
     dead_markers: []
     require_zero_price: false
