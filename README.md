@@ -62,7 +62,7 @@
 ```bash
 curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H 'Content-Type: application/json' \
-  -d '{"model":"kilo-auto/free","messages":[{"role":"user","content":"2+2?"}]}'
+  -d '{"model":"kilo-auto/free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 <sub>no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model</sub>
 

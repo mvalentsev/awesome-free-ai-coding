@@ -404,10 +404,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     <div class="code">
       <button class="copy" type="button" data-copy="curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H &#39;Content-Type: application/json&#39; \
-  -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2?&#34;}]}&#39;" hidden>Copy</button>
+  -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2? MAKE NO MISTAKES.&#34;}]}&#39;" hidden>Copy</button>
       <pre>curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H &#39;Content-Type: application/json&#39; \
-  -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2?&#34;}]}&#39;</pre>
+  -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2? MAKE NO MISTAKES.&#34;}]}&#39;</pre>
     </div>
     <p class="sub" style="margin-top:10px">no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog&#39;s autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model</p>
   </div>

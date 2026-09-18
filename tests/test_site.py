@@ -132,6 +132,19 @@ def test_the_quickstart_command_survives_both_places_it_is_printed(tmp_path):
     assert "&#39;Content-Type: application/json&#39;" in button.group(1)
 
 
+def test_the_readme_and_the_page_ask_the_quickstart_lane_the_same_question(tmp_path):
+    """The README template and `_site_quickstart` each write the command out in
+    full, so its question is typed in two places. A reader who copies it from
+    either one has to send the same prompt, the accuracy requirement included."""
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [make(api={"base_url": "https://x.ai/v1/", "auth": "none",
+                                       "model_ids": ["m-free"]})])
+    readme = render_readme(registry, TEMPLATES, tmp_path / "README.md", today=TODAY)
+    html = render_site(registry, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY)
+    assert '"content":"2+2? MAKE NO MISTAKES."' in readme
+    assert "&#34;content&#34;:&#34;2+2? MAKE NO MISTAKES.&#34;" in html
+
+
 def test_the_readme_and_the_page_are_rendered_from_one_registry(tmp_path):
     """Both are committed, both are compared with the registry by --check, and
     the numbers a reader is shown have to agree between them."""

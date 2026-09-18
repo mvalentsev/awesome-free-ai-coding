@@ -778,7 +778,7 @@ def _site_quickstart(connectable: list[Entry]) -> dict | None:
     if start["session_header"]:
         lines.append(f'  -H "{start["session_header"]}: quickstart-$RANDOM$RANDOM" \\')
     lines.append(f"""  -d '{{"model":"{start['model_id']}","messages":"""
-                 """[{"role":"user","content":"2+2?"}]}'""")
+                 """[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'""")
     return {**start, "curl": "\n".join(lines)}
 
 

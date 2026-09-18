@@ -72,7 +72,7 @@ curl -s {{ quickstart.base_url }}/chat/completions \
 {% if quickstart.session_header %}
   -H "{{ quickstart.session_header }}: quickstart-$RANDOM$RANDOM" \
 {% endif %}
-  -d '{"model":"{{ quickstart.model_id }}","messages":[{"role":"user","content":"2+2?"}]}'
+  -d '{"model":"{{ quickstart.model_id }}","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 {% if quickstart.notice %}
 > [!WARNING]
