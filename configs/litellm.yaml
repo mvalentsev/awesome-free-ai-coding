@@ -701,6 +701,11 @@ model_list:
     model: openai/motif/motif-3
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
+- model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
+  litellm_params:
+    model: openai/nvidia/Qwen3.8-27B-NVFP4
+    api_base: https://api.llmtech.eu/v1
+    api_key: os.environ/LLMTECH_API_KEY
 - model_name: sambanova-cloud/DeepSeek-V3.1
   litellm_params:
     model: openai/DeepSeek-V3.1

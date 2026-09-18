@@ -4478,3 +4478,59 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 98
+- id: llmtech
+  name: LLM Tech
+  category: api-free-tier
+  url: https://llmtech.eu
+  source_urls:
+  - https://llmtech.eu/docs/
+  - https://llmtech.eu/agents/
+  - https://llmtech.eu/security/
+  - https://llmtech.eu/about/
+  - https://api.llmtech.eu/v1/models
+  card_required: false
+  offering: 'EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared
+    trial key for anyone: 2M tokens a day per address and 2 concurrent requests, tool
+    calls included, no account'
+  limits: 'The quickstart prints the key itself: "Shared and rate-limited: 2 concurrent
+    requests and 2M tokens per day per address, counted across prompt and completion
+    and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal
+    key — "64 concurrent and no daily limit" — is paid per token and asked for by
+    email. The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context,
+    tool calling, structured outputs and image input. Prompts and completions are
+    held in "volatile memory only — never persisted" and never trained on; metadata,
+    the source IP among it, is kept 13 months as billing evidence. The operator is
+    one person, Artem Burei, trading as a sole proprietorship in Poland, serving since
+    22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-18'
+  models:
+  - family: qwen3.8-27b
+    tier: strong
+    released: ''
+    aa_model: qwen3-8-27b
+  api:
+    base_url: https://api.llmtech.eu/v1
+    key_url: https://llmtech.eu/docs/
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - nvidia/Qwen3.8-27B-NVFP4
+    public_key: lt-trial-ba1ef28c6d32ed6980678d8d
+    note: 'reasoning is adaptive: `chat_template_kwargs: {"enable_thinking": false}`
+      turns it off, and `reasoning_effort` takes low, medium or xhigh. Cline lists
+      LLM Tech among its built-in providers; Claude Code "needs a translating proxy",
+      LiteLLM in the vendor''s own example'
+  probe:
+    type: page-keywords
+    endpoint: https://llmtech.eu/docs/
+    keywords:
+    - 2 concurrent requests and 2M tokens per day per address
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    catalog: https://api.llmtech.eu/v1/models
+    machinery_keywords: []
+  first_seen: '2026-09-18'
+  last_verified: '2026-09-18'
+  probe_failures: 0
+  provisional: true
+  rank: 48

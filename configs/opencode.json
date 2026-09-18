@@ -526,6 +526,19 @@
         }
       }
     },
+    "llmtech": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LLM Tech",
+      "options": {
+        "baseURL": "https://api.llmtech.eu/v1",
+        "apiKey": "{env:LLMTECH_API_KEY}"
+      },
+      "models": {
+        "nvidia/Qwen3.8-27B-NVFP4": {
+          "name": "nvidia/Qwen3.8-27B-NVFP4"
+        }
+      }
+    },
     "sambanova-cloud": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "SambaNova Cloud",
