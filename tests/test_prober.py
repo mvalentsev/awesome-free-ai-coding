@@ -556,6 +556,31 @@ async def test_a_non_breaking_space_does_not_hide_the_keyword():
     assert result.status is ProbeStatus.PASS
 
 
+@respx.mock
+async def test_a_keyword_the_page_source_wraps_across_lines_still_matches():
+    """HTML renders any run of whitespace as one space, so a sentence a template
+    wraps at eighty columns reads whole in a browser. LLM Tech's quickstart
+    serves "2 concurrent requests and 2M tokens\\n    per day per address", and the
+    sentence a reader copies off the page failed a live offer on 2026-09-18.
+    freetier-quotes already read whitespace that way; the probe reads it the same,
+    for the offer's keywords and for the sentence announcing its end."""
+    wrapped = ("<p>Shared and rate-limited: 2 concurrent requests and 2M tokens\n"
+               "    per day per address. qwen3-coder free tier, no credit card</p>")
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=wrapped))
+    entry = page_entry()
+    entry.probe.keywords = ["2 concurrent requests and 2M tokens per day per address"]
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text=wrapped + "<p>The free tier has been\n  discontinued.</p>"))
+    entry.probe.dead_markers = ["free tier has been discontinued"]
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL and "offer withdrawn" in result.detail
+
+
 def titled_entry() -> Entry:
     """A catalog that publishes both field names with opposite meanings:
     `model_id` is what goes in the request body, `model_name` is the human

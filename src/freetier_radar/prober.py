@@ -692,7 +692,7 @@ def challenge_marker_hit(text: str) -> str | None:
 def dead_marker_hit(text: str, probe: Probe) -> str | None:
     """The phrase a vendor uses to announce the offer is over, if the page has one."""
     for marker in (*DEAD_MARKERS, *probe.dead_markers):
-        if marker.lower() in text:
+        if _as_read(marker) in text:
             return marker
     return None
 
@@ -708,6 +708,17 @@ def _plain_spaces(text: str) -> str:
     own page — simply never occurs in the bytes, and the probe reports a
     withdrawn offer over a non-breaking space."""
     return text.translate(_SPACE_LOOKALIKES)
+
+
+def _as_read(text: str) -> str:
+    """Text the way a reader meets it and a keyword is quoted from it: plain
+    spaces, every run of whitespace one space, case folded. HTML renders a line
+    break in the page's source as a space, so a sentence a template wraps at
+    eighty columns reads whole in a browser and in a copy-paste — and LLM Tech's
+    quickstart, serving "2M tokens" and "per day per address" on two source
+    lines, failed a keyword quoted straight off the page on 2026-09-18, while
+    freetier-quotes, which already read whitespace this way, found the quote."""
+    return " ".join(_plain_spaces(text).split()).lower()
 
 
 _SCRIPT_OR_STYLE = re.compile(
@@ -741,7 +752,7 @@ def _rendered(text: str) -> str:
 
 
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
-    rendered = _plain_spaces(_rendered(resp.text).lower())
+    rendered = _as_read(_rendered(resp.text))
     # An explicit withdrawal outranks the keywords: vendors leave the free tier
     # described on the page and add the bad news next to it. Read against the
     # rendered page for the same reason the keywords are: the sentence that
@@ -749,8 +760,8 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     dead = dead_marker_hit(rendered, entry.probe)
     if dead is not None:
         return f'offer withdrawn: page says "{dead}"'
-    absent = [k for k in entry.probe.keywords if k.lower() not in rendered]
-    whole = (_plain_spaces(resp.text.lower())
+    absent = [k for k in entry.probe.keywords if _as_read(k) not in rendered]
+    whole = (_as_read(resp.text)
              if absent or entry.probe.machinery_keywords else "")
     # Which half of the response was missing it is the question a runner-only
     # failure turns on, and the one nothing can answer afterwards: no copy of
@@ -758,10 +769,10 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     # stripping ate it and the row wants machinery_keywords; a keyword absent
     # from the bytes means the origin served something else, which is what trae
     # did on 2026-09-10 while passing from every other address.
-    missing = [k if k.lower() not in whole else f"{k} (in the page's machinery only)"
+    missing = [k if _as_read(k) not in whole else f"{k} (in the page's machinery only)"
                for k in absent]
     if entry.probe.machinery_keywords:
-        missing += [k for k in entry.probe.machinery_keywords if k.lower() not in whole]
+        missing += [k for k in entry.probe.machinery_keywords if _as_read(k) not in whole]
     if not missing:
         return None
     # And the size, because a page that answers 200 with a shell or a variant is
