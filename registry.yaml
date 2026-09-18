@@ -51,11 +51,13 @@ entries:
     - nex-agi/nex-n2.5-pro:free
     - nex-agi/nex-n2.5-mini:free
     - z-ai/glm-5.2:free
+    - deepseek/deepseek-v4-flash-0731:free
+    - qwen/qwen3.8-27b:free
     - openrouter/free
     anthropic_base_url: https://openrouter.ai/api
     note: 'pick models with the :free suffix: every id carrying it is priced 0/0,
-      twenty on 2026-09-16, and the lane rotates, so a new id waits two weeks for
-      the Models column. Six are not coding models: openrouter/free is the free-models
+      22 on 2026-09-18, and the lane rotates, so a new id waits two weeks for the
+      Models column. Six are not coding models: openrouter/free is the free-models
       router, nemotron-3.5-content-safety a guardrail, ling-3.0-flash-fin and ling-3.0-flash-sante
       finance- and health-tuned, nemotron-3-nano-omni a perception sub-agent, and
       LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter''s
@@ -451,12 +453,12 @@ entries:
   limits: '$0 a month, and no account for the free lane: "The gateway allows unauthenticated
     access for free models only. Anonymous requests are identified by IP address and
     are subject to rate limiting (200 requests per hour per IP)". The lane is whatever
-    the gateway marks isFree — 20 ids on 2026-09-16, Nemotron 3 Ultra, Step 3.7 Flash
+    the gateway marks isFree — 22 ids on 2026-09-18, Nemotron 3 Ultra, Step 3.7 Flash
     and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks
     before it joins the Models column. It costs something other than money: every
     free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free
     routes over the free models the catalog''s autoRouting list names. Everything
-    else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-16'
+    else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-18'
   models:
   - family: nemotron-3-ultra
     released: 2026-03
@@ -500,6 +502,8 @@ entries:
     - nex-agi/nex-n2.5-pro:free
     - nex-agi/nex-n2.5-mini:free
     - z-ai/glm-5.2:free
+    - deepseek/deepseek-v4-flash-0731:free
+    - qwen/qwen3.8-27b:free
     note: no key at all for the free ids, capped at 200 requests per hour per IP;
       a metered id answers 401 `You need to sign in to use this model`. Every id listed
       is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads
@@ -1847,7 +1851,6 @@ entries:
     - gpt-oss-20b-free
     - ling-3.0-tiny-free
     - nemotron-3-ultra-550b-a55b-free
-    - gemma-4-31b-it-free
     - agents-a1-free
     - coding-glm-4.6-free
     - coding-glm-4.7-free
@@ -1861,12 +1864,7 @@ entries:
     - coding-minimax-m2.7-free
     - coding-minimax-m3-free
     - dots-3-note-preview-free
-    - gemini-3-flash-preview-free
-    - gemini-3.5-flash-lite-free
-    - gemini-3.6-flash-free
-    - gemini-3.7-flash-free
     - gemini-3.8-flash-free
-    - gemma-4-26b-a4b-it-free
     - glm-4.7-flash-free
     - gpt-4.1-free
     - gpt-4.1-mini-free
@@ -1896,17 +1894,17 @@ entries:
     - ox-alpha
     ignored_ids:
     - gpt-image-2-free
-    - gemini-3.1-flash-image-preview-free
     - qwen3.6-plus-preview-free
     - gpt-live-transcribe
+    - jina-ocr-v1
     anthropic_base_url: https://aihubmix.com
-    note: 'every id the catalog prices at 0 is listed or ignored on purpose, 60 rows
-      on 2026-09-17; free ids carry a -free suffix beside a metered twin. ox-alpha
+    note: 'every id the catalog prices at 0 is listed or ignored on purpose, 54 rows
+      on 2026-09-18; free ids carry a -free suffix beside a metered twin. ox-alpha
       is a codename the catalog resolves: "This model actually points to glm-5.3-flash".
-      Ignored: gpt-image-2-free and gemini-3.1-flash-image-preview-free generate images,
-      qwen3.6-plus-preview-free says it was "removed from the platform", and gpt-live-transcribe
-      is speech-to-text. For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com,
-      as its Claude Code guide sets it'
+      Ignored: gpt-image-2-free generates images, jina-ocr-v1 parses page images into
+      Markdown, qwen3.6-plus-preview-free says it was "removed from the platform",
+      and gpt-live-transcribe is speech-to-text. For Claude Code, ANTHROPIC_BASE_URL
+      is https://aihubmix.com, as its Claude Code guide sets it'
   probe:
     type: api-models
     endpoint: https://aihubmix.com/api/v1/models
@@ -3156,15 +3154,15 @@ entries:
   - https://inference-api.nousresearch.com/v1/models
   card_required: false
   offering: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free
-    plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash
+    plan limited to the models it prices at zero — seven on 2026-09-18, Step 3.7 Flash
     and Laguna S 2.1 among them — on an OpenAI-compatible API'
   limits: The portal's plan table reads "Free $0 Free models only Standard rate limits
     $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous
     Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The
     :free tag is what keeps it on the no-cost plan". No rate-limit figure is published
-    and no page read mentions a card. The keyless catalog prices eight rows at zero;
+    and no page read mentions a card. The keyless catalog prices seven rows at zero;
     a call without a key answers HTTP 402 with a payment offer, so the free models
-    want the portal's key. Read 2026-09-16
+    want the portal's key. Read 2026-09-18
   models:
   - family: step-3.7-flash
     released: ''
@@ -3184,10 +3182,8 @@ entries:
     - inclusionai/ling-3.0-flash-sante:free
     - upstage/solar-pro4:free
     - meituan/longcat-2.0:free
-    - stealth/union-alpha
-    note: every id the keyless catalog prices at 0 on 2026-09-16; stealth/union-alpha
-      is a stealth model without the :free suffix, and solar-pro4 is a limited-time
-      trial on other gateways
+    note: every id the keyless catalog prices at 0 on 2026-09-18; solar-pro4 is a
+      limited-time trial on other gateways
   probe:
     type: api-models
     endpoint: https://inference-api.nousresearch.com/v1/models
