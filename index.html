@@ -1753,16 +1753,16 @@ One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 1
             <th class="who" scope="row">
               <a class="name" href="https://tokenharbor.ai">Token Harbor</a>
               <div class="tags">
-<span class="tag new">🧪 new</span>              </div>
+<span class="tag new">🧪 new</span><span class="tag">Claude Code</span>              </div>
             </th>
             <td class="what" data-label="What you get">
-OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card            </td>
+OpenAI- and Anthropic-compatible gateway with a standing $0 plan: :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance per rolling 7-day period, no card            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">deepseek-v4.1-flash</span><span class="chip">mimo-v2.5</span>              </div>
+<span class="chip">deepseek-v4.1-flash</span><span class="chip">deepseek-v4-flash</span><span class="chip">mimo-v2.5</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>&#34;Free $0 / month Try Token Harbor with a free allowance and a rotating model lineup&#34; and &#34;No card required&#34;, and the FAQ: &#34;Token Harbor provides free …</summary><span class="full">&#34;Free $0 / month Try Token Harbor with a free allowance and a rotating model lineup&#34; and &#34;No card required&#34;, and the FAQ: &#34;Token Harbor provides free access to selected models through explicit :free model IDs. Your first free request starts a personal rolling 7-day period. The allowance is value-based rather than a fixed request count&#34; — no figure is published, and the pricing card calls the same allowance &#34;Included every month (4 weeks)&#34;. &#34;Free routes are disabled by default&#34; until you consent to them, and &#34;Token Harbor may retain prompts and responses sent through explicit free routes after you opt in&#34;. The operator is Token Harbor PTE. LTD. Read 2026-09-16</span></details>
+                <details><summary>&#34;Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page&#34;, and &#34;That set changes as models are …</summary><span class="full">&#34;Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page&#34;, and &#34;That set changes as models are added or retired&#34;. &#34;Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests&#34; — no figure is published, and the dashboard shows only a percentage. &#34;No per-minute request cap&#34;; &#34;Free routes stop accepting new requests when the period allowance is exhausted&#34;, and &#34;Free routes never charge your balance&#34;. &#34;No card required&#34;. &#34;Free routes are disabled by default&#34; until you consent to them, &#34;Token Harbor may retain prompts and responses sent through explicit free routes after you opt in&#34;, and &#34;Upstream providers separately process free-route content under their own terms&#34;. The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-18</span></details>
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/"><time datetime="2026-09-17">2026-09-17</time></a>
@@ -1882,6 +1882,10 @@ Gitee&#39;s model platform, formerly Gitee AI — 200+ open models behind OpenAI
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://freebuff.com">Freebuff</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://tokenharbor.ai">Token Harbor</a></td>
             </tr>
             <tr>
+              <th scope="row"><code>deepseek-v4-flash</code></th>
+              <td><a href="https://routeway.ai">Routeway</a>, <a href="https://tokenharbor.ai">Token Harbor</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+            </tr>
+            <tr>
               <th scope="row"><code>gemma-4</code></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://cloud.sambanova.ai">SambaNova Cloud</a></td>
             </tr>
@@ -1892,10 +1896,6 @@ Gitee&#39;s model platform, formerly Gitee AI — 200+ open models behind OpenAI
             <tr>
               <th scope="row"><code>qwen3-coder</code></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
-            </tr>
-            <tr>
-              <th scope="row"><code>deepseek-v4-flash</code></th>
-              <td><a href="https://routeway.ai">Routeway</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>deepseek-v4.1-flash</code></th>
@@ -2444,12 +2444,14 @@ GET /v1/models is public and needs no key, but it publishes ids only — the pri
               <code>https://tokenharbor.ai/v1</code>
               <button class="copy" type="button" data-copy="https://tokenharbor.ai/v1" hidden
                       style="position:static;margin-left:6px">Copy</button>
+              <div class="sub" style="margin-top:6px">Anthropic format: <code>https://tokenharbor.ai</code></div>
             </td>
             <td class="models" data-label="Key">
 <code>TOKEN_HARBOR_API_KEY</code>
 <div class="sub" style="margin-top:6px"><a href="https://tokenharbor.ai/dashboard/api-keys">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
-the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the free rows the models page publishes (2026-09-16)            </td>
+                <details><summary>the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the …</summary><span class="full">the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free. For Claude Code the docs say &#34;a free account works&#34; and &#34;every gateway model works on both endpoints&#34;</span></details>
+            </td>
           </tr>
           <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/">Mistral AI Studio</a></th>

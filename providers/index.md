@@ -82,7 +82,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) | 🧭 Aggregators (one key, many providers) | `qwen3.7-flash` | `2026-09-17` |
 | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) | 🧭 Aggregators (one key, many providers) | `step-3.7-flash`, `laguna-s-2.1` | `2026-09-17` |
 | [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-nano-omni` | `2026-09-17` |
-| [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4.1-flash`, `mimo-v2.5` | `2026-09-17` |
+| [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4.1-flash`, `deepseek-v4-flash`, `mimo-v2.5` | `2026-09-17` |
 | [Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-17` |
 | [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) | 🧭 Aggregators (one key, many providers) | `gemma-4-31b` | `2026-09-17` |
 | [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) | 🧭 Aggregators (one key, many providers) | `mistral-small-3.2` | `2026-09-17` |

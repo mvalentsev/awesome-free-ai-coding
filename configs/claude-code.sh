@@ -55,6 +55,16 @@ claude-vercel-ai-gateway() {
   claude "$@"
 }
 
+# ── Token Harbor · get a key: https://tokenharbor.ai/dashboard/api-keys
+#    free ids: deepseek-v4.1-flash:free, deepseek-v4-flash:free, mimo-v2.5:free
+claude-token-harbor() {
+  ANTHROPIC_BASE_URL="https://tokenharbor.ai" \
+  ANTHROPIC_AUTH_TOKEN="$TOKEN_HARBOR_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="deepseek-v4.1-flash:free" \
+  claude "$@"
+}
+
 # ── Opper · get a key: https://platform.opper.ai/settings/api-keys
 #    free ids: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1
 claude-opper() {
