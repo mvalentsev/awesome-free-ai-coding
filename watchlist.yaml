@@ -43,18 +43,26 @@ watched:
 
   - domains: [siliconflow.com, siliconflow.cn]
     name: SiliconFlow
-    checked_on: '2026-09-16'
+    checked_on: '2026-09-18'
     reason: >-
-      siliconflow.com/pricing states the offer as "postpaid billing—plus $1 in
-      free credits to get you started!", a one-off grant, and
-      siliconflow.cn/pricing marks only non-coding rows 免费 (free), Hunyuan-MT-7B
-      translation among them. A one-off dollar is listed here when it asks for
-      no card, as RouterPlex's does, so the open question is the card: no page
-      read says whether the credit can be spent before a payment method is added
-      (2026-09-16).
+      siliconflow.cn has free chat models, behind an identity wall. The pricing
+      page's own data prices eight of them at ¥0 in and out — Qwen3-8B,
+      GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct "(Free)", Qwen3.5-4B,
+      DeepSeek-R1-0528-Qwen3-8B "(Free)", Hunyuan-MT-7B and the 29B
+      Xing4.0-29B, the last two also marked 免费 in the rendered table — and the
+      rate-limit FAQ opens them only after real-name verification:
+      "实名认证后使用全部的免费模型". Personal verification is an Alipay face scan
+      that takes a mainland ID card, a Hong Kong, Macau or Taiwan travel or
+      residence permit, or China's permanent-residence card for foreigners, and
+      "不具有以上证件的用户，暂时不支持线上个人认证" (no online verification without
+      one) — the Qiniu case, an account for residents of China. siliconflow.com
+      prices every model and offers "postpaid billing—plus $1 in free credits to
+      get you started!", and no page read there says whether the dollar can be
+      spent before a payment method is added (2026-09-18).
     reopen_if: >-
-      A page says the $1 needs no payment method, or a zero-priced coding model
-      appears.
+      siliconflow.cn's personal verification takes a passport, or its free
+      models open without 实名认证; or a siliconflow.com page says the $1 needs no
+      payment method.
 
   - domains: [nebius.com, nebius.ai]
     name: Nebius Token Factory
