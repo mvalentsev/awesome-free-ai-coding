@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'opencode free tier: limits, free models, verified 2026-09-14'
-description: Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — callable from other clients too, keyless, with a session header; any provider via BYOK.…
+description: Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK. The free ids work inside…
 permalink: /providers/opencode/
 ---
 
@@ -11,11 +11,9 @@ permalink: /providers/opencode/
 
 🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-14; the probe since has not found that evidence, and 3 misses in a row archive the row · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-> ⚠️ **Does not work as published since [2026-09-17](https://github.com/anomalyco/opencode/issues/49433).** opencode Zen answers every call for a free model that does not come from OpenCode's own app with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode` — calls that follow the client rules OpenCode publishes for Go, with their own user agent and a stable x-opencode-session, included — while OpenCode itself still gets them. OpenCode has not said anything about it yet, so this list keeps the row as it was and waits for its word.
-
 ## What you get
 
-Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — callable from other clients too, keyless, with a session header; any provider via BYOK
+Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK
 
 ## Free models
 
@@ -23,25 +21,18 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ## Limits, in the vendor's words
 
-Zen prices its free ids at zero and calls each one "available on OpenCode for a limited time". The price is data: the privacy section says of the free models that "collected data may be used to improve the model", the NVIDIA-backed ones are "Trial use only — do not submit personal or confidential data", and Muse Spark 1.3 Contributor trades "heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models". Mind the suffix: plain muse-spark-1.3 is a paid row, so the Models column names the contributor id, whose best allowed effort, xhigh, scores 45 on the Artificial Analysis Intelligence Index — max is "Standard-tier `muse-spark-1.3` only". The client rules OpenCode publishes on the page of OpenCode Go, its keyed subscription, ask for two headers: "Identify itself with its own user agent, such as my-coding-agent/1.0, rather than a generic SDK or HTTP-library name", and "Send a stable session ID in x-opencode-session for each conversation". The free ids need no key and no billing details; billing is for the metered ids. Read 2026-09-17
+The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer wrote "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)", so this row publishes no base URL. Inside OpenCode the ids are `opencode/<model-id>`, and all six answered the official 1.18.31 CLI, signed out, on 2026-09-18. Zen calls each one "available on OpenCode for a limited time", and the price is data: of the free models "collected data may be used to improve the model", the NVIDIA-backed ones are "Trial use only — do not submit personal or confidential data", and Muse Spark 1.3 Contributor trades "heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models". Mind the suffix: plain muse-spark-1.3 is a paid row; the contributor id's best allowed effort, xhigh, scores 45 on the Artificial Analysis Intelligence Index — max is "Standard-tier `muse-spark-1.3` only". Billing is for the metered ids. Read 2026-09-18
 
 ## Connect
 
-- Base URL: `https://opencode.ai/zen/v1`
-- Key: none — the lane is anonymous
-- User-Agent: your client's own name and version, such as `my-coding-agent/1.0` — not an SDK's or an HTTP library's, which the vendor asks clients not to send
-- Session header: `x-opencode-session` — a stable id per conversation on every request, which the calling client sends itself; the generated LiteLLM and opencode configs leave this row out
-- Callable ids: `ling-3.0-flash-fin-free`, `big-pickle`, `mimo-v2.5-free`, `nemotron-3-ultra-free`, `nemotron-3.5-lightning-free`, `muse-spark-1.3-contributor-free`
-- Note: no key needed for the free ids as long as every request names its client in its own User-Agent and carries a stable id per conversation in x-opencode-session; ling-3.0-flash-fin-free answered keyless three times out of three on 2026-09-16 while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError every time. Clients send both headers themselves, so the generated LiteLLM and opencode configs leave this row out; inside OpenCode the ids are `opencode/<model-id>`. muse-spark-1.3-contributor-free is served on /v1/responses only
+No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://opencode.ai/docs/zen/>, anchored on `big pickle`, `mimo-v2.5-free`; ids checked in <https://opencode.ai/zen/v1/models>
+- Probe: the page at <https://opencode.ai/docs/zen/>, anchored on `big pickle`, `mimo-v2.5-free`
 - Source: <https://opencode.ai/docs/zen/>
 - Source: <https://opencode.ai/docs/>
-- Source: <https://github.com/anomalyco/opencode/blob/dev/packages/opencode/src/session/llm/request.ts>
-- Source: <https://opencode.ai/docs/go/>
-- Source: <https://github.com/Kilo-Org/kilocode/issues/13723>
+- Source: <https://github.com/anomalyco/opencode/issues/49590#issuecomment-5723721001>
 - Source: <https://dev.meta.ai/docs/reasoning.md>
 
 ## History
@@ -56,6 +47,6 @@ Zen prices its free ids at zero and calls each one "available on OpenCode for a 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

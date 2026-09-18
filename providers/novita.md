@@ -35,6 +35,6 @@ Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Vent
 
 ---
 
-Generated from `registry.yaml` on 2026-09-17. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-18. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

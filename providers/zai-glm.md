@@ -45,6 +45,6 @@ GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three r
 
 ---
 
-Generated from `registry.yaml` on 2026-09-17 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-18 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

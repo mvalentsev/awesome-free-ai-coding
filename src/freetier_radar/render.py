@@ -222,7 +222,7 @@ def _configurable(entries: list[Entry], today: date) -> list[Entry]:
 
     A lane that wants a stable id per conversation in a header of its own
     (`api.session_header`) is not one of them. A litellm.yaml entry is static:
-    it either omits the header — opencode Zen's free ids answer that with 400
+    it either omits the header — opencode Zen's free ids answered that with 400
     MissingSessionID — or pins one id for every conversation, which is not what
     the vendor asked for. OpenCode does send x-opencode-session, but only for
     its own built-in provider, which a reader of opencode.json already has, and

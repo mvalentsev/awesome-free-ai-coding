@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free LLM APIs &amp; AI coding agents — 74 verified free tiers</title>
-<meta name="description" content="74 legal free LLM APIs, coding agents and no-card trials for AI coding — 73 need no card, 7 need no signup. Machine-verified twice a week against live APIs and pricing pages, with the limits in each vendor's own words.">
+<meta name="description" content="74 legal free LLM APIs, coding agents and no-card trials for AI coding — 73 need no card, 6 need no signup. Machine-verified twice a week against live APIs and pricing pages, with the limits in each vendor's own words.">
 <link rel="canonical" href="https://mvalentsev.github.io/awesome-free-ai-coding/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="awesome-free-ai-coding">
 <meta property="og:title" content="Free LLM APIs &amp; AI coding agents — 74 verified free tiers">
-<meta property="og:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified twice a week. 73 of 74 rows need no card; 7 need no signup at all.">
+<meta property="og:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified twice a week. 73 of 74 rows need no card; 6 need no signup at all.">
 <meta property="og:url" content="https://mvalentsev.github.io/awesome-free-ai-coding/">
 <meta property="og:image" content="https://mvalentsev.github.io/awesome-free-ai-coding/assets/social-preview.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,7 +38,7 @@
       "url": "https://mvalentsev.github.io/awesome-free-ai-coding/",
       "isAccessibleForFree": true,
       "license": "https://opensource.org/licenses/MIT",
-      "dateModified": "2026-09-17",
+      "dateModified": "2026-09-18",
       "creator": {
         "@type": "Person",
         "name": "mvalentsev",
@@ -291,8 +291,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     <ul class="stats">
       <li><b>74</b><span>live offers</span></li>
       <li><b>73</b><span>need no card</span></li>
-      <li><b>7</b><span>need no signup</span></li>
-      <li><b>55</b><span>OpenAI-compatible</span></li>
+      <li><b>6</b><span>need no signup</span></li>
+      <li><b>54</b><span>OpenAI-compatible</span></li>
       <li><b>66</b><span>free model families</span></li>
     </ul>
   </div>
@@ -378,7 +378,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       </div>
       <div class="card">
         <h3>No account at all</h3>
-        <ul><li><span class="who"><a href="https://opencode.ai">opencode</a></span></li><li><span class="who"><a href="https://kilo.ai">Kilo Code</a></span></li><li><span class="who"><a href="https://llm7.io">LLM7.io</a></span></li></ul>
+        <ul><li><span class="who"><a href="https://kilo.ai">Kilo Code</a></span></li><li><span class="who"><a href="https://llm7.io">LLM7.io</a></span></li><li><span class="who"><a href="https://vlm.run">VLM Run Gateway</a></span></li></ul>
       </div>
       <div class="card">
         <h3>A trial that asks for no card</h3>
@@ -398,25 +398,18 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       these cards on the same run it leaves the list.</p>
 
     <h3 style="margin-top:26px">No account at all? Paste this.</h3>
-    <p class="sub" style="margin-bottom:10px"><a href="https://opencode.ai">opencode</a>
+    <p class="sub" style="margin-bottom:10px"><a href="https://kilo.ai">Kilo Code</a>
       answers in the terminal you already have open — a rate-limited lane to prove this page is live,
       not a setup to write code on.</p>
     <div class="code">
-      <button class="copy" type="button" data-copy="curl -s https://opencode.ai/zen/v1/chat/completions \
+      <button class="copy" type="button" data-copy="curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H &#39;Content-Type: application/json&#39; \
-  -H &#39;User-Agent: awesome-free-ai-coding-quickstart/1.0&#39; \
-  -H &#34;x-opencode-session: quickstart-$RANDOM$RANDOM&#34; \
-  -d &#39;{&#34;model&#34;:&#34;ling-3.0-flash-fin-free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2?&#34;}]}&#39;" hidden>Copy</button>
-      <pre>curl -s https://opencode.ai/zen/v1/chat/completions \
+  -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2?&#34;}]}&#39;" hidden>Copy</button>
+      <pre>curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H &#39;Content-Type: application/json&#39; \
-  -H &#39;User-Agent: awesome-free-ai-coding-quickstart/1.0&#39; \
-  -H &#34;x-opencode-session: quickstart-$RANDOM$RANDOM&#34; \
-  -d &#39;{&#34;model&#34;:&#34;ling-3.0-flash-fin-free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2?&#34;}]}&#39;</pre>
+  -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2?&#34;}]}&#39;</pre>
     </div>
-    <div class="callout"><b>⚠️ This command does not work right now</b> —
-<a href="https://github.com/anomalyco/opencode/issues/49433">since 2026-09-17</a>.
-      opencode Zen answers every call for a free model that does not come from OpenCode&#39;s own app with `403 FreeTierError: OpenCode&#39;s free tier can only be used from within OpenCode` — calls that follow the client rules OpenCode publishes for Go, with their own user agent and a stable x-opencode-session, included — while OpenCode itself still gets them. OpenCode has not said anything about it yet, so this list keeps the row as it was and waits for its word.</div>
-    <p class="sub" style="margin-top:10px">no key needed for the free ids as long as every request names its client in its own User-Agent and carries a stable id per conversation in x-opencode-session; ling-3.0-flash-fin-free answered keyless three times out of three on 2026-09-16 while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError every time. Clients send both headers themselves, so the generated LiteLLM and opencode configs leave this row out; inside OpenCode the ids are `opencode/&lt;model-id&gt;`. muse-spark-1.3-contributor-free is served on /v1/responses only</p>
+    <p class="sub" style="margin-top:10px">no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog&#39;s autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model</p>
   </div>
 </section>
 
@@ -443,19 +436,17 @@ not one of them asks for a card        · sorted by how much work you can get do
             <th class="who" scope="row">
               <a class="name" href="https://opencode.ai">opencode</a>
               <div class="tags">
-<span class="tag nokey">no key</span><span class="tag front">frontier</span>              </div>
-              <span class="notice"><b>Does not work as published</b> since
-<a href="https://github.com/anomalyco/opencode/issues/49433">2026-09-17</a>.</span>
+<span class="tag front">frontier</span>              </div>
             </th>
             <td class="what" data-label="What you get">
-              <details><summary>Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 …</summary><span class="full">Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — callable from other clients too, keyless, with a session header; any provider via BYOK</span></details>
+              <details><summary>Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 …</summary><span class="full">Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK</span></details>
             </td>
             <td class="models" data-label="Free models">
               <div class="chips">
 <span class="chip">big-pickle</span><span class="chip">mimo-v2.5</span><span class="chip">ling-3.0-flash-fin</span><span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3.5-lightning</span><span class="chip top">muse-spark-1.3-contributor</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>Zen prices its free ids at zero and calls each one &#34;available on OpenCode for a limited time&#34;. The price is data: the privacy section says of the …</summary><span class="full">Zen prices its free ids at zero and calls each one &#34;available on OpenCode for a limited time&#34;. The price is data: the privacy section says of the free models that &#34;collected data may be used to improve the model&#34;, the NVIDIA-backed ones are &#34;Trial use only — do not submit personal or confidential data&#34;, and Muse Spark 1.3 Contributor trades &#34;heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models&#34;. Mind the suffix: plain muse-spark-1.3 is a paid row, so the Models column names the contributor id, whose best allowed effort, xhigh, scores 45 on the Artificial Analysis Intelligence Index — max is &#34;Standard-tier `muse-spark-1.3` only&#34;. The client rules OpenCode publishes on the page of OpenCode Go, its keyed subscription, ask for two headers: &#34;Identify itself with its own user agent, such as my-coding-agent/1.0, rather than a generic SDK or HTTP-library name&#34;, and &#34;Send a stable session ID in x-opencode-session for each conversation&#34;. The free ids need no key and no billing details; billing is for the metered ids. Read 2026-09-17</span></details>
+                <details><summary>The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode&#39;s free …</summary><span class="full">The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode&#39;s free tier can only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer wrote &#34;You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)&#34;, so this row publishes no base URL. Inside OpenCode the ids are `opencode/&lt;model-id&gt;`, and all six answered the official 1.18.31 CLI, signed out, on 2026-09-18. Zen calls each one &#34;available on OpenCode for a limited time&#34;, and the price is data: of the free models &#34;collected data may be used to improve the model&#34;, the NVIDIA-backed ones are &#34;Trial use only — do not submit personal or confidential data&#34;, and Muse Spark 1.3 Contributor trades &#34;heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models&#34;. Mind the suffix: plain muse-spark-1.3 is a paid row; the contributor id&#39;s best allowed effort, xhigh, scores 45 on the Artificial Analysis Intelligence Index — max is &#34;Standard-tier `muse-spark-1.3` only&#34;. Billing is for the metered ids. Read 2026-09-18</span></details>
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/"><time datetime="2026-09-14">2026-09-14</time></a>
@@ -2171,24 +2162,6 @@ Gitee&#39;s model platform, formerly Gitee AI — 200+ open models behind OpenAI
 pass the key as Bearer            </td>
           </tr>
           <tr>
-            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/">opencode</a></th>
-            <td class="what" data-label="Base URL">
-              <code>https://opencode.ai/zen/v1</code>
-              <button class="copy" type="button" data-copy="https://opencode.ai/zen/v1" hidden
-                      style="position:static;margin-left:6px">Copy</button>
-            </td>
-            <td class="models" data-label="Key">
-<span class="tag nokey">none — the lane is anonymous</span>
-              <div class="sub" style="margin-top:6px">also sends your client&#39;s own User-Agent and x-opencode-session per conversation</div>
-            </td>
-            <td class="limits" data-label="Notes">
-              <span class="notice"><b>Does not work as published</b> since
-<a href="https://github.com/anomalyco/opencode/issues/49433">2026-09-17</a>.
-                opencode Zen answers every call for a free model that does not come from OpenCode&#39;s own app with `403 FreeTierError: OpenCode&#39;s free tier can only be used from within OpenCode` — calls that follow the client rules OpenCode publishes for Go, with their own user agent and a stable x-opencode-session, included — while OpenCode itself still gets them. OpenCode has not said anything about it yet, so this list keeps the row as it was and waits for its word.</span>
-                <details><summary>no key needed for the free ids as long as every request names its client in its own User-Agent and carries a stable id per conversation in …</summary><span class="full">no key needed for the free ids as long as every request names its client in its own User-Agent and carries a stable id per conversation in x-opencode-session; ling-3.0-flash-fin-free answered keyless three times out of three on 2026-09-16 while big-pickle and mimo-v2.5-free answered 429 FreeUsageLimitError every time. Clients send both headers themselves, so the generated LiteLLM and opencode configs leave this row out; inside OpenCode the ids are `opencode/&lt;model-id&gt;`. muse-spark-1.3-contributor-free is served on /v1/responses only</span></details>
-            </td>
-          </tr>
-          <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/">OpenRouter (free models)</a></th>
             <td class="what" data-label="Base URL">
               <code>https://openrouter.ai/api/v1</code>
@@ -3159,7 +3132,7 @@ vendor-announced shutdown on 2026-06-16            </td>
 <footer>
   <div class="wrap">
     <span>Rendered from <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/registry.yaml">registry.yaml</a> on
-      <time datetime="2026-09-17">2026-09-17</time> · MIT</span>
+      <time datetime="2026-09-18">2026-09-18</time> · MIT</span>
     <span><a href="https://github.com/mvalentsev/awesome-free-ai-coding">GitHub</a> · <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md">Contribute a row</a>
       · <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom</a> · <a href="browse.html">Filterable table</a>
       · <a href="#top">Back to top</a></span>

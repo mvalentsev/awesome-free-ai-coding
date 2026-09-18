@@ -235,12 +235,12 @@ connection table and [`configs/claude-code.sh`](configs/claude-code.sh), and
 
 **`api.session_header` is for a lane that wants an id per conversation.** Set it
 to the header name when the vendor requires every request to carry a stable id
-for its conversation: opencode Zen has answered a free id without
-`x-opencode-session` with HTTP 400 MissingSessionID since 2026-09-07. The error
-reads "OpenCode's free tier can only be used in OpenCode", but the rule
-OpenCode's team gives other clients is "any stable UUID per conversation", and a
-request that carries the header is answered — with a key, and on 2026-09-16
-without one. A `litellm.yaml` entry is written once and cannot mint an id per
+for its conversation. opencode Zen was the case it was written for: from
+2026-09-07 its free ids answered a request without `x-opencode-session` with
+HTTP 400 MissingSessionID, and one carrying a stable UUID — what OpenCode's team
+asked of other clients for OpenCode Go — with 200, keyless on 2026-09-16, until
+Zen closed its free tier to every client but OpenCode on 2026-09-17. No row sets
+the field today. A `litellm.yaml` entry is written once and cannot mint an id per
 conversation, and OpenCode sends such a header only for its own built-in
 provider, so a row that sets the field is left out of `litellm.yaml` and
 `opencode.json`; the connection table, the provider page, the env example and
@@ -248,7 +248,7 @@ provider, so a row that sets the field is left out of `litellm.yaml` and
 quickstart curl send a fresh id in it.
 
 **`api.client_user_agent` is for a lane that asks every client to name itself.**
-OpenCode's client rules ask for two headers, not one: "Identify itself with its
+OpenCode's client rules for Go ask for two headers, not one: "Identify itself with its
 own user agent, such as my-coding-agent/1.0, rather than a generic SDK or
 HTTP-library name", beside the session id above. curl left to itself sends
 `curl/8.x`, exactly the name those rules exclude, so on a row that sets the field
@@ -300,6 +300,9 @@ as it would have without one — a vendor that has said nothing for a month abou
 breaking every other client has answered. The day the lane answers again, the
 run asks for the notice to come down. A notice is temporary by construction:
 when the vendor speaks, delete it and change the row to match what it said.
+opencode's came down on 2026-09-18, the day an OpenCode maintainer wrote that the
+free tier cannot be used in other harnesses: the row lost its api block and
+stayed on the list as the agent it is.
 
 ## How the pipeline works
 
