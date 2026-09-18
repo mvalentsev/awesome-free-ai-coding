@@ -305,6 +305,16 @@ class ApiInfo(BaseModel):
     # command names itself, and every place that tells a reader how to connect
     # says their client must too. Written only where set.
     client_user_agent: bool = Field(default=False, exclude_if=lambda v: not v)
+    # A key the vendor itself prints for anyone to call its lane with — LLM
+    # Tech's quickstart publishes "a shared free trial key" so that anyone can
+    # "try before you talk to anyone". A reader needs no account, so the row
+    # counts with the keyless ones wherever the list answers "no account at
+    # all", the env example carries the key filled in, and every run calls the
+    # lane with it the way it calls a keyless lane without one. It is the
+    # vendor's key only as long as the vendor's own page prints it: `key_url`
+    # names that page and the run reads it back. A key anyone else hands out —
+    # leaked, pooled, passed around — is key sharing, which does not qualify.
+    public_key: str | None = None
     note: str = ""
     # A lane that does not work as published right now, owned up to while the
     # list waits for the vendor (see Notice). Rendered under the README's
@@ -318,6 +328,26 @@ class ApiInfo(BaseModel):
     def _client_user_agent_needs_an_endpoint(self) -> ApiInfo:
         if self.client_user_agent and not self.base_url:
             raise ValueError("client_user_agent says how to call base_url, and there is no base_url")
+        return self
+
+    @model_validator(mode="after")
+    def _public_key_is_the_vendor_s_for_a_keyed_lane(self) -> ApiInfo:
+        """The key is sent as a bearer token on a lane that wants one; the page
+        that prints it is what makes it the vendor's; and the run calls the lane
+        with it on the first of model_ids."""
+        if self.public_key is None:
+            return self
+        if not self.public_key or re.search(r"\s", self.public_key):
+            raise ValueError("public_key is empty or holds whitespace — it is sent as a bearer token")
+        if self.auth == "none":
+            raise ValueError("public_key is the key a keyed lane is called with, and auth is none")
+        if not self.base_url:
+            raise ValueError("public_key says how to call base_url, and there is no base_url")
+        if not self.key_url:
+            raise ValueError("public_key needs key_url, the vendor's page that prints it")
+        if not self.model_ids:
+            raise ValueError("public_key is checked by a call on the first of model_ids, "
+                             "and there is none")
         return self
 
     @model_validator(mode="after")

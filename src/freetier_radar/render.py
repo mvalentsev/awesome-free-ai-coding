@@ -209,6 +209,12 @@ def env_var(entry_id: str) -> str:
     return entry_id.removesuffix("-free").replace("-", "_").replace(".", "_").upper() + "_API_KEY"
 
 
+def needs_no_account(e: Entry) -> bool:
+    """Whether a reader calls the lane without making an account: it takes no
+    key, or the vendor prints one for anyone (`api.public_key`)."""
+    return bool(e.api) and (e.api.auth == "none" or e.api.public_key is not None)
+
+
 def _connectable(entries: list[Entry], today: date) -> list[Entry]:
     return sorted(
         (e for e in entries
@@ -330,7 +336,7 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
         "frontier": [row[3] for row in frontier[:README_PICKS]],
         "apis": top(Category.API_FREE_TIER),
         "aggregators": top(Category.AGGREGATOR),
-        "keyless": [_pick(e) for e in connectable if e.api.auth == "none"][:README_PICKS],
+        "keyless": [_pick(e) for e in connectable if needs_no_account(e)][:README_PICKS],
         "trials": top(Category.TRIAL),
         # The question the 27,000-star routers answer by re-exposing paid
         # sessions. The legal answer is a gateway whose vendor documents an
@@ -500,17 +506,23 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES,
 
 
 def _auth_cell(e: Entry) -> str:
-    """What a client sends to be let in: the key, or none, and whatever else the
-    vendor asks every request to carry."""
+    """What a client sends to be let in: the key, or none, the key the vendor
+    prints for anyone where it prints one, and whatever else the vendor asks
+    every request to carry."""
     cell = "—" if e.api.auth == "none" else f"`{env_var(e.id)}`"
+    subs = []
+    if e.api.public_key:
+        subs.append(f"no account: the vendor prints one for anyone, `{e.api.public_key}`")
     asks = []
     if e.api.client_user_agent:
         asks.append("your client's own `User-Agent`")
     if e.api.session_header:
         asks.append(_session_note(e.api.session_header))
-    if not asks:
+    if asks:
+        subs.append(("" if e.api.auth == "none" else "and ") + " and ".join(asks))
+    if not subs:
         return cell
-    return cell + "<br><sub>" + ("" if e.api.auth == "none" else "and ") + " and ".join(asks) + "</sub>"
+    return cell + "<br><sub>" + "; ".join(subs) + "</sub>"
 
 
 def _connection_note(e: Entry) -> str:
@@ -577,7 +589,7 @@ def build_context(entries: list[Entry], today: date,
             # never advertise a number the registry stopped backing.
             "no_card_count": sum(1 for e in active if not e.card_required),
             "card_count": sum(1 for e in active if e.card_required),
-            "no_signup_count": sum(1 for e in connectable if e.api.auth == "none"),
+            "no_signup_count": sum(1 for e in connectable if needs_no_account(e)),
             "endpoint_count": len(connections),
             "model_index": _model_index(active),
             "starters": _starters(active),
@@ -693,6 +705,7 @@ def _site_row(e: Entry) -> dict:
         "card": e.card_required,
         "provisional": e.provisional,
         "no_key": bool(api and api.base_url and api.auth == "none"),
+        "public_key": bool(api and api.base_url and api.public_key),
         "openai": bool(api and api.base_url and api.openai_compatible),
         "claude_code": bool(api and api.anthropic_base_url),
         "frontier": any(m.tier is Tier.FRONTIER for m in families),
@@ -733,6 +746,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
             "name": e.name, "page": provider_page_url(e.id),
             "base_url": e.api.base_url, "anthropic_base_url": e.api.anthropic_base_url or "",
             "keyless": e.api.auth == "none", "env_var": env_var(e.id),
+            "public_key": e.api.public_key or "",
             "key_url": e.api.key_url or "", "asks": asks,
             "note": _site_fold(e.api.note) if e.api.note else None,
             "notice": ({"since": e.api.notice.since.isoformat(), "text": e.api.notice.text,
@@ -849,7 +863,7 @@ def build_site_context(entries: list[Entry], today: date,
         "active_count": len(active),
         "no_card_count": sum(1 for e in active if not e.card_required),
         "card_count": sum(1 for e in active if e.card_required),
-        "no_signup_count": sum(1 for e in connectable if e.api.auth == "none"),
+        "no_signup_count": sum(1 for e in connectable if needs_no_account(e)),
         "endpoint_count": len(connectable),
         "family_count": len(model_index),
         "jsonld": _site_jsonld(len(active), len(model_index), today),
@@ -886,6 +900,9 @@ def _llms_line(e: Entry) -> str:
     if api and api.base_url:
         if api.auth == "none":
             parts.append("no key")
+        elif api.public_key:
+            parts.append(f"no account: the vendor prints a key for anyone at {api.key_url}, "
+                         f"`{api.public_key}`")
         elif api.key_url:
             parts.append(f"key from {api.key_url}")
         else:
@@ -933,7 +950,8 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         "connection details (base URL, where to get a key, model ids, an Anthropic-format "
         "URL where the vendor documents one), the evidence the probe reads and the row's "
         "history. \"No card\" means the vendor asks for no payment method; \"no key\" means "
-        "the endpoint answers without an account. Offers the list carried and carries no more "
+        "the endpoint answers without an account; \"no account\" means the vendor prints a "
+        "key anyone may call it with. Offers the list carried and carries no more "
         "are listed last, under Archived, each with why it left.",
     ]
     for category, title in CATEGORY_TITLES.items():
@@ -1022,6 +1040,13 @@ def build_env_example(entries: list[Entry], today: date) -> str:
     for e in _connectable(entries, today):
         if e.api.auth == "none":
             lines.append(f"# ── {e.name} — no key needed · base: {e.api.base_url}")
+        elif e.api.public_key:
+            # Filled in: the vendor prints this key for anyone, so the lane works
+            # the moment the file is sourced, with no account behind it.
+            lines.append(f"# ── {e.name} — no account needed · base: {e.api.base_url}")
+            lines.append(f"#    the vendor prints this key for anyone at {e.api.key_url} — "
+                         "put your own in its place if you have one")
+            lines.append(f'export {env_var(e.id)}="{e.api.public_key}"')
         else:
             key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
             lines.append(f"# ── {e.name} — base: {e.api.base_url}{key_hint}")
@@ -1139,7 +1164,10 @@ def _connect_section(e: Entry) -> list[str]:
             out.append("- Key: none — the lane is anonymous")
         else:
             key = f"- Key: `{env_var(e.id)}`"
-            if e.api.key_url:
+            if e.api.public_key:
+                key += (f" — no account needed: the vendor prints one for anyone at "
+                        f"<{e.api.key_url}>, `{e.api.public_key}`")
+            elif e.api.key_url:
                 key += f" — get one at <{e.api.key_url}>"
             out.append(key)
         if e.api.client_user_agent:

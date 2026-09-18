@@ -281,6 +281,26 @@ other 4xx — vLLM's 404 for a model id that rotated out — and a lane that can
 reached are reported as `stale-ids` beside a row that stays verified. Put the id
 that answers first: that is the one a reader runs.
 
+**`api.public_key` is a key the vendor prints for anyone.** LLM Tech's
+quickstart publishes "a shared free trial key", with its limits beside it, so
+that anyone can "try before you talk to anyone": a reader calls the lane
+without opening an account, as on a keyless row, only with a key in the header.
+The field holds that key, on a row that is otherwise `auth: api-key`, and
+`key_url` names the vendor's page that prints it. The env example carries it
+filled in; the connection table, the provider page and `llms.txt` print it with
+that page; and the row counts towards "no signup" and answers "No account at
+all" beside the keyless rows. The README's first command stays a keyless one,
+since it is the curl with nothing to paste into it. Every run calls the lane
+with the key the way it calls a keyless lane without one, and a lane that
+refuses it fails the row the same way: that is the no-account offer ending, or a
+key the vendor has replaced, which only a person reading the page can copy. The
+run also reads `key_url` back for the key, because it is the vendor's key only
+while the vendor's page prints it, and a key that still works after its page
+stopped printing it is reported as `stale-ids`. A key anyone else hands out —
+leaked, pooled, passed around — is key sharing, and does not qualify at all.
+AI Horde's anonymous key `0000000000` is the same kind of key, on a route that
+takes no tools, which is why AI Horde is on the watchlist and not here.
+
 **`api.notice` is the list owning up to a lane that does not work as
 published.** When a lane breaks in a way its vendor has not explained, and the
 maintainer chooses to wait for the vendor's word rather than take the lane off,

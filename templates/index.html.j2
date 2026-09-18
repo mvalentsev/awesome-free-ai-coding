@@ -399,6 +399,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
               <div class="tags">
                 {% if r.card %}<span class="tag card">💳 card</span>{% endif %}
                 {% if r.no_key %}<span class="tag nokey">no key</span>{% endif %}
+                {% if r.public_key %}<span class="tag nokey">no account</span>{% endif %}
                 {% if r.provisional %}<span class="tag new">🧪 new</span>{% endif %}
                 {% if r.frontier %}<span class="tag front">frontier</span>{% endif %}
                 {% if r.claude_code %}<span class="tag">Claude Code</span>{% endif %}
@@ -502,7 +503,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
             <td class="models" data-label="Key">
               {% if c.keyless %}<span class="tag nokey">none — the lane is anonymous</span>
               {% else %}<code>{{ c.env_var }}</code>
-                {% if c.key_url %}<div class="sub" style="margin-top:6px"><a href="{{ c.key_url }}">get a key</a></div>{% endif %}
+                {% if c.public_key %}<div class="sub" style="margin-top:6px">no account: the vendor
+                  <a href="{{ c.key_url }}">prints one for anyone</a>, <code>{{ c.public_key }}</code></div>
+                {% elif c.key_url %}<div class="sub" style="margin-top:6px"><a href="{{ c.key_url }}">get a key</a></div>{% endif %}
               {% endif %}
               {% if c.asks %}
               <div class="sub" style="margin-top:6px">also sends {% for a in c.asks %}{{ a }}{{ " and " if not loop.last }}{% endfor %}</div>

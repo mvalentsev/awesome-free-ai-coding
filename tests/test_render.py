@@ -1246,3 +1246,45 @@ def test_every_place_that_tells_a_reader_how_to_connect_names_both_headers():
 
     line = next(l for l in build_llms_txt([row], TODAY).splitlines() if l.startswith("- [Zen]"))
     assert "every request names its client in its own User-Agent" in line
+
+
+def _trial(**api) -> Entry:
+    return make(id="trial", name="Trial", rank=5, api={
+        "base_url": "https://api.trial.example/v1", "key_url": "https://trial.example/docs",
+        "model_ids": ["qwen-27b"], "public_key": "lt-trial-abc", **api})
+
+
+def test_a_public_key_reaches_every_place_that_tells_a_reader_how_to_connect():
+    """A reader copying the base URL from the connection table, landing on the
+    provider page from a search, sourcing the env example or asking a model that
+    read llms.txt needs the key the vendor prints for anyone — and needs to know
+    it is the vendor's own, from the vendor's page, and not somebody's secret."""
+    from freetier_radar.render import build_llms_txt, build_provider_page
+    row = _trial()
+    auth = build_context([row], TODAY)["connections"][0]["auth"]
+    assert "`TRIAL_API_KEY`" in auth and "`lt-trial-abc`" in auth
+
+    env = build_env_example([row], TODAY)
+    assert 'export TRIAL_API_KEY="lt-trial-abc"' in env
+
+    page = build_provider_page(row, [], TODAY)
+    key_line = next(l for l in page.splitlines() if l.startswith("- Key:"))
+    assert "`lt-trial-abc`" in key_line and "https://trial.example/docs" in key_line
+
+    line = next(l for l in build_llms_txt([row], TODAY).splitlines() if l.startswith("- [Trial]"))
+    assert "no account" in line and "`lt-trial-abc`" in line and "https://trial.example/docs" in line
+    assert "no key" not in line
+
+
+def test_a_lane_the_vendor_prints_a_key_for_needs_no_account():
+    """An account is what a reader with the vendor's public key skips, so the
+    row answers "No account at all" beside the keyless ones and counts as
+    needing no signup. The README's first command stays a keyless one: it is the
+    curl with nothing to paste into it."""
+    rows = [_trial(), make(id="keyless", name="Keyless", rank=50,
+                             api={"base_url": "https://k.example/v1", "auth": "none",
+                                  "model_ids": ["m"]})]
+    ctx = build_context(rows, TODAY)
+    assert [p["name"] for p in ctx["picks"]["keyless"]] == ["Trial", "Keyless"]
+    assert ctx["no_signup_count"] == 2
+    assert ctx["quickstart"]["name"] == "Keyless"

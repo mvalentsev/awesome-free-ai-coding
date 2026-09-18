@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Browse free LLM APIs &amp; coding agents — awesome-free-ai-coding</title>
-<meta name="description" content="Every legal free LLM API, no-card trial and coding agent from awesome-free-ai-coding as one filterable table: by category, no card, no key, OpenAI-compatible, Claude Code route, frontier models.">
+<meta name="description" content="Every legal free LLM API, no-card trial and coding agent from awesome-free-ai-coding as one filterable table: by category, no card, no account, OpenAI-compatible, Claude Code route, frontier models.">
 <link rel="canonical" href="https://mvalentsev.github.io/awesome-free-ai-coding/browse.html">
 <link rel="icon" href="data:,">
 <link rel="alternate" type="application/atom+xml" title="awesome-free-ai-coding changes" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">
@@ -52,7 +52,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     <option value="aggregator">Aggregators</option>
   </select>
   <label class="chip"><input type="checkbox" id="nocard"> No card</label>
-  <label class="chip"><input type="checkbox" id="nokey"> No key needed</label>
+  <label class="chip"><input type="checkbox" id="nokey"> No account needed</label>
   <label class="chip"><input type="checkbox" id="openai"> OpenAI-compatible</label>
   <label class="chip"><input type="checkbox" id="claude"> Claude Code route</label>
   <label class="chip"><input type="checkbox" id="frontier"> Frontier models</label>
@@ -79,6 +79,9 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     return (e.models || []).filter(function (m) { return !m.superseded_by; });
   }
   function keyless(e) { return !!(e.api && e.api.auth === "none"); }
+  // A key the vendor prints for anyone is no account to open either.
+  function publicKey(e) { return !!(e.api && e.api.public_key); }
+  function noAccount(e) { return keyless(e) || publicKey(e); }
   function openaiCompatible(e) { return !!(e.api && e.api.base_url && e.api.openai_compatible); }
   function claudeRoute(e) { return !!(e.api && e.api.anthropic_base_url); }
   function hasFrontier(e) { return families(e).some(function (m) { return m.tier === "frontier"; }); }
@@ -139,6 +142,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     offer.appendChild(el("br"));
     offer.appendChild(el("span", e.card_required ? "warn" : "ok", e.card_required ? "card required" : "no card"));
     if (keyless(e)) { offer.appendChild(text(" · ")); offer.appendChild(el("span", "ok", "no key")); }
+    else if (publicKey(e)) { offer.appendChild(text(" · ")); offer.appendChild(el("span", "ok", "no account")); }
     tr.appendChild(offer);
 
     var models = el("td");
@@ -162,6 +166,11 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
       }
       connect.appendChild(el("br"));
       if (keyless(e)) connect.appendChild(el("span", "ok", "no key needed"));
+      else if (publicKey(e)) {
+        connect.appendChild(link(e.api.key_url, "the vendor's key for anyone", "ok"));
+        connect.appendChild(text(": "));
+        connect.appendChild(el("code", "", e.api.public_key));
+      }
       else if (e.api.key_url) connect.appendChild(link(e.api.key_url, "get a key"));
       else connect.appendChild(el("span", "muted", "key required"));
     } else {
@@ -183,7 +192,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
       if (e.archived && !els.archived.checked) return false;
       if (cat && e.category !== cat) return false;
       if (els.nocard.checked && e.card_required) return false;
-      if (els.nokey.checked && !keyless(e)) return false;
+      if (els.nokey.checked && !noAccount(e)) return false;
       if (els.openai.checked && !openaiCompatible(e)) return false;
       if (els.claude.checked && !claudeRoute(e)) return false;
       if (els.frontier.checked && !hasFrontier(e)) return false;

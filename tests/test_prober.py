@@ -1905,6 +1905,97 @@ async def test_a_keyless_lane_that_cannot_be_checked_is_said_so():
     assert "could not be checked" in result.detail
 
 
+def public_key_entry(key_url: str = "https://trial.x.ai/docs") -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "trial",
+        "models": [{"family": "qwen3.8-27b", "tier": "strong"}],
+        "api": {"base_url": "https://api.trial.x.ai/v1", "key_url": key_url,
+                "model_ids": ["qwen-27b"], "public_key": "lt-trial-abc"},
+        "probe": {"type": "page-keywords", "endpoint": "https://trial.x.ai/docs",
+                  "keywords": ["2M tokens per day per address"]},
+    })
+
+
+TRIAL_DOCS = ("<p>Shared trial key <code>lt-trial-abc</code>: 2M tokens per day per address "
+              "on Qwen3.8-27B.</p>")
+
+
+@respx.mock
+async def test_a_lane_the_vendor_prints_a_key_for_is_called_with_that_key():
+    """LLM Tech prints a shared trial key on its quickstart so that anyone can
+    call its lane without an account. A catalog or a page saying so is not the
+    lane letting anyone in, so the run calls it the way a reader is told to —
+    with that key, one token, on the first id."""
+    respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
+    call = respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, public_key_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    sent = call.calls.last.request
+    assert sent.headers["authorization"] == "Bearer lt-trial-abc"
+    assert json.loads(sent.content)["model"] == "qwen-27b"
+
+
+@respx.mock
+async def test_a_public_key_the_lane_refuses_fails_the_row():
+    """The key is what makes the row need no account, the way the missing key
+    does on a keyless row, so a lane that stops taking it is that offer ending —
+    or a key the vendor has replaced, which only a person reading the page can
+    copy. Either way the row fails until someone does."""
+    respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
+    respx.post("https://api.trial.x.ai/v1/chat/completions").mock(return_value=httpx.Response(
+        401, json={"error": {"message": "Invalid API key"}}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, public_key_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "public-key lane refused" in result.detail and "HTTP 401" in result.detail
+
+
+@respx.mock
+async def test_a_public_key_the_vendor_no_longer_prints_is_a_note():
+    """A key is the vendor's to hand out only while the vendor's page prints it.
+    One that still works after the page stopped printing it is a key the vendor
+    may revoke any day, or one it has replaced, so the run says so beside a row
+    its page keeps verified."""
+    respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(
+        200, text="<p>Shared trial key <code>lt-trial-new</code>: 2M tokens per day per address "
+                  "on Qwen3.8-27B.</p>"))
+    respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, public_key_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "api.public_key is no longer printed on https://trial.x.ai/docs" in result.detail
+
+
+@respx.mock
+async def test_a_public_key_is_read_back_off_its_own_page_when_the_probe_reads_another():
+    respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
+    keys = respx.get("https://trial.x.ai/keys").mock(return_value=httpx.Response(
+        200, text="<pre>Authorization: Bearer lt-trial-abc</pre>"))
+    respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, public_key_entry("https://trial.x.ai/keys"), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert keys.called
+
+
+@respx.mock
+async def test_a_public_key_whose_page_cannot_be_read_is_said_so():
+    respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
+    respx.get("https://trial.x.ai/keys").mock(return_value=httpx.Response(503))
+    respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, public_key_entry("https://trial.x.ai/keys"),
+                                   backoff=0, attempts=2)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "api.public_key could not be checked against https://trial.x.ai/keys" in result.detail
+
+
 @respx.mock
 async def test_a_row_that_needs_a_key_is_never_called_without_one():
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(

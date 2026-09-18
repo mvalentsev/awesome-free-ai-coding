@@ -31,7 +31,7 @@ class ProbeStatus(str, Enum):
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
     STALE_MODELS = "stale-models"  # offer verified, but every listed family is superseded
-    STALE_IDS = "stale-ids"  # offer and families verified, but a published connection detail is not backed: api.model_ids against the catalog, or the Anthropic route
+    STALE_IDS = "stale-ids"  # offer and families verified, but a published connection detail is not backed: api.model_ids against the catalog, the Anthropic route, or a public key its page stopped printing
 
 
 @dataclass
@@ -62,11 +62,13 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         detail = check_content(resp, entry)
         if detail is None:
             # A row published as keyless is only as live as a call without a
-            # key: its catalog answering says the models exist, not that anyone
-            # may call them. A refusal is the offer itself, so it outranks every
+            # key, and one the vendor prints a key for as a call with that key:
+            # its catalog answering says the models exist, not that anyone may
+            # call them. A refusal is the offer itself, so it outranks every
             # note below; a note of its own waits for them.
             keyless = None
-            if entry.api and entry.api.auth == "none" and entry.api.model_ids:
+            if (entry.api and (entry.api.auth == "none" or entry.api.public_key)
+                    and entry.api.model_ids):
                 keyless = await keyless_lane_verdict(client, entry, attempts, backoff,
                                                      today or date.today())
                 if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
@@ -112,6 +114,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 missing = await anthropic_route_missing(client, entry, attempts, backoff)
                 if missing:
                     return ProbeResult(ProbeStatus.STALE_IDS, missing)
+            # A key handed to everyone is the vendor's only while the vendor's
+            # page prints it — see public_key_unprinted.
+            if entry.api and entry.api.public_key:
+                unprinted = await public_key_unprinted(client, entry, resp, attempts, backoff)
+                if unprinted:
+                    if keyless is not None:
+                        unprinted = f"{unprinted} | {keyless.detail}"
+                    return ProbeResult(ProbeStatus.STALE_IDS, unprinted)
             if keyless is not None:
                 return keyless
             return ProbeResult(ProbeStatus.PASS)
@@ -283,13 +293,26 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     of FAIL would overrule that choice by calendar in ten days. So the refusal is
     a note naming the notice and the day it stops holding, and past that day it
     fails the row as before. The day a noticed lane answers again the notice is
-    the stale sentence on the page, and the run says to take it down."""
+    the stale sentence on the page, and the run says to take it down.
+
+    A lane the vendor prints a key for is the same question asked with that
+    key. LLM Tech's quickstart hands everyone "a shared free trial key", so the
+    row needs no account, and `api.public_key` is to it what the missing key is
+    to a keyless row: the call carries it as a bearer token, and a lane that
+    refuses it is the no-account offer ending — or a key the vendor replaced,
+    which only a person reading its page can copy — so it fails the same way."""
     url = entry.api.base_url.rstrip("/") + "/chat/completions"
     # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
     # answers a call without one with 400, so the call carries a fresh id of its own
     # under this project's user agent, as the vendor asks any client to.
     headers = ({entry.api.session_header: str(uuid.uuid4())}
                if entry.api.session_header else {})
+    public = entry.api.public_key is not None
+    if public:
+        headers["Authorization"] = f"Bearer {entry.api.public_key}"
+    lane = "public-key" if public else "keyless"
+    first_is_read = ("readers are pointed at the first id in api.model_ids" if public
+                     else "the README's curl uses the first id in api.model_ids")
     notice = entry.api.notice
     tried: list[tuple[str, httpx.Response | str]] = []
     for model in entry.api.model_ids[:KEYLESS_IDS_TRIED]:
@@ -313,25 +336,26 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                 if not take_down:
                     return None
                 return ProbeResult(ProbeStatus.STALE_IDS,
-                                   f"keyless call to {model} answered HTTP {answer.status_code} — "
+                                   f"{lane} call to {model} answered HTTP {answer.status_code} — "
                                    + take_down)
             first, first_answer = tried[0]
             return ProbeResult(ProbeStatus.STALE_IDS,
-                               f"keyless call to {first} answered {_keyless_said(first_answer)} while "
-                               f"{model} answered HTTP {answer.status_code} — the README's curl uses "
-                               f"the first id in api.model_ids, so put {model} first"
+                               f"{lane} call to {first} answered {_keyless_said(first_answer)} while "
+                               f"{model} answered HTTP {answer.status_code} — {first_is_read}, "
+                               f"so put {model} first"
                                + (f", and {take_down}" if take_down else ""))
         tried.append((model, answer))
     first, first_answer = tried[0]
     if isinstance(first_answer, str):
         return ProbeResult(ProbeStatus.STALE_IDS,
-                           f"keyless lane could not be checked: POST {url} {first_answer}")
+                           f"{lane} lane could not be checked: POST {url} {first_answer}")
     if first_answer.status_code in KEYLESS_REFUSED:
         challenge = challenge_marker_hit(first_answer.text)
         if challenge is not None:
             return ProbeResult(ProbeStatus.INCONCLUSIVE,
-                               f'bot challenge on the keyless call: page says "{challenge}"')
-        refused = (f"keyless lane refused: POST {url} with no key answered "
+                               f'bot challenge on the {lane} call: page says "{challenge}"')
+        refused = (f"{lane} lane refused: POST {url} "
+                   f"{'with api.public_key' if public else 'with no key'} answered "
                    f"HTTP {first_answer.status_code}")
         if notice is None:
             return ProbeResult(ProbeStatus.FAIL, refused)
@@ -345,10 +369,39 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                            f"on {ends}")
     if all(not isinstance(a, str) and a.status_code == 429 for _, a in tried):
         return ProbeResult(ProbeStatus.STALE_IDS,
-                           "keyless lane rate-limited: " + ", ".join(m for m, _ in tried)
-                           + " answered HTTP 429 — the README's curl on this row answers 429 too")
+                           f"{lane} lane rate-limited: " + ", ".join(m for m, _ in tried)
+                           + " answered HTTP 429 — "
+                           + ("a reader calling it with the key gets 429 too" if public
+                              else "the README's curl on this row answers 429 too"))
     return ProbeResult(ProbeStatus.STALE_IDS,
-                       f"keyless call to {first} answered {_keyless_said(first_answer)}")
+                       f"{lane} call to {first} answered {_keyless_said(first_answer)}")
+
+
+async def public_key_unprinted(client: httpx.AsyncClient, entry: Entry, probed: httpx.Response,
+                               attempts: int, backoff: float) -> str | None:
+    """Why the key a row publishes as the vendor's own is not to be trusted as
+    that, or None while the vendor's page still prints it.
+
+    `api.public_key` is the vendor's to hand out only as long as the vendor's
+    own page prints it: that page, `api.key_url`, is the whole difference
+    between a key the vendor gives everyone — LLM Tech's shared trial key — and
+    a key someone passed around, which is key sharing and does not qualify. A
+    key that still works after its page stopped printing it is one the vendor
+    may revoke any day or has already replaced, and either way the fix is a
+    person reading the page, so it is a note beside a row its page keeps
+    verified. Where the key's page is the page the probe reads it is read once.
+    """
+    url = entry.api.key_url
+    if url == entry.probe.endpoint:
+        page = probed
+    else:
+        page, failure = await _fetch_page(client, url, attempts, backoff)
+        if page is None:
+            return f"api.public_key could not be checked against {url}: {failure}"
+    if entry.api.public_key in page.text:
+        return None
+    return (f"api.public_key is no longer printed on {url} — read the page for the key it "
+            "publishes now")
 
 
 def _keyless_said(answer: httpx.Response | str) -> str:
@@ -358,13 +411,11 @@ def _keyless_said(answer: httpx.Response | str) -> str:
     return f"HTTP {answer.status_code}" + (f": {said}" if said else "")
 
 
-async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
-                         backoff: float) -> tuple[httpx.Response | None, str]:
-    """The catalog a page-keywords row names, or why it could not be read. The
-    same patience as the page itself: a 5xx or a network error is retried, and
-    anything that is not a JSON list of models — a 401, a bot wall, an HTML
-    shell — is reported rather than read as an empty catalog, which would call
-    every id dead."""
+async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
+                      backoff: float) -> tuple[httpx.Response | None, str]:
+    """A second page a row's checks read, or why it could not be read, with the
+    patience the probe gives its own endpoint: a 5xx or a network error is
+    retried, and any other answer but a 200 is reported."""
     last = ""
     for i in range(attempts):
         if i:
@@ -379,11 +430,23 @@ async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
             continue
         if resp.status_code != 200:
             return None, f"answered HTTP {resp.status_code}"
-        items = _catalog_items(resp)
-        if not items or not any(_model_id(m) for m in items):
-            return None, "answered no model ids" if items is not None else "answered something other than JSON"
         return resp, ""
     return None, f"unreachable after {attempts} attempts: {last}"
+
+
+async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
+                         backoff: float) -> tuple[httpx.Response | None, str]:
+    """The catalog a page-keywords row names, or why it could not be read. The
+    same patience as the page itself, and anything that is not a JSON list of
+    models — a 401, a bot wall, an HTML shell — is reported rather than read as
+    an empty catalog, which would call every id dead."""
+    resp, failure = await _fetch_page(client, url, attempts, backoff)
+    if resp is None:
+        return None, failure
+    items = _catalog_items(resp)
+    if not items or not any(_model_id(m) for m in items):
+        return None, "answered no model ids" if items is not None else "answered something other than JSON"
+    return resp, ""
 
 
 def check_content(resp: httpx.Response, entry: Entry) -> str | None:

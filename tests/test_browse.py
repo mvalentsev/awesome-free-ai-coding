@@ -31,7 +31,7 @@ def test_browse_page_reads_only_fields_index_json_publishes():
                         {"family": "old", "superseded_by": "a"}],
                 api={"base_url": "https://x.ai/v1", "auth": "api-key", "openai_compatible": True,
                      "key_url": "https://x.ai/keys", "model_ids": ["a"],
-                     "anthropic_base_url": "https://x.ai", "note": "n"})
+                     "anthropic_base_url": "https://x.ai", "note": "n", "public_key": "k"})
     live, gone = build_index([full, make(id="gone", retired_on=TODAY)], TODAY)["entries"]
     entry = live
     used = set(re.findall(r"\be\.([a-z_]+)\b", html))
@@ -50,6 +50,7 @@ def test_browse_page_filters_on_the_answers_a_reader_asks_for():
     # category, card, key, both wires, the Models column and the archive
     for field in ("category", "card_required", "archived", "provisional", "page", "offering"):
         assert f"e.{field}" in html
-    for field in ("auth", "openai_compatible", "anthropic_base_url", "base_url", "key_url"):
+    # a key the vendor prints for anyone answers "no account" as well as no key does
+    for field in ("auth", "public_key", "openai_compatible", "anthropic_base_url", "base_url", "key_url"):
         assert f"e.api.{field}" in html
     assert "m.superseded_by" in html

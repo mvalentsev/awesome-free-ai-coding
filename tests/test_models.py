@@ -455,3 +455,27 @@ def test_a_lane_that_wants_the_client_s_own_user_agent_says_so_on_a_row_with_an_
     d["api"] = {"client_user_agent": True}
     with pytest.raises(ValidationError, match="base_url"):
         Entry.model_validate(d)
+
+
+def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_prints_it():
+    """LLM Tech's quickstart prints "a shared free trial key" for anyone to call
+    its lane with, so a reader needs no account — only the key the vendor hands
+    everyone. It is sent as a bearer token, so the lane is a keyed one (a lane
+    with auth none has no key to publish); it needs key_url, the vendor's page
+    that prints it, because that page is what makes it the vendor's key and not
+    a shared one; and the run calls the lane with it on the first of model_ids,
+    so there has to be one."""
+    d = sample_entry()
+    api = {"base_url": "https://x.ai/v1", "key_url": "https://x.ai/docs",
+           "model_ids": ["m-1"], "public_key": "lt-trial-123"}
+    d["api"] = api
+    assert Entry.model_validate(d).api.public_key == "lt-trial-123"
+    for broken, match in (({"auth": "none"}, "auth"),
+                          ({"key_url": None}, "key_url"),
+                          ({"model_ids": []}, "model_ids"),
+                          ({"base_url": None}, "base_url"),
+                          ({"public_key": "lt trial 123"}, "whitespace"),
+                          ({"public_key": ""}, "whitespace")):
+        d["api"] = {**api, **broken}
+        with pytest.raises(ValidationError, match=match):
+            Entry.model_validate(d)

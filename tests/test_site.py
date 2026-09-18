@@ -110,6 +110,18 @@ def test_the_page_carries_the_answers_browse_html_filters_on(tmp_path):
         assert tag in html, tag
 
 
+def test_a_key_the_vendor_prints_for_anyone_is_shown_where_the_row_is_read(tmp_path):
+    """The site's rows and its connection table answer "can I use it without an
+    account" as the README does: a lane the vendor prints a key for needs none,
+    and the key is on the page with the vendor's page it comes from."""
+    html = _render([make(id="trial", name="Trial", api={
+        "base_url": "https://api.trial.example/v1", "key_url": "https://trial.example/docs",
+        "model_ids": ["qwen-27b"], "public_key": "lt-trial-abc"})], tmp_path)
+    assert '<span class="tag nokey">no account</span>' in html
+    assert "<code>lt-trial-abc</code>" in html
+    assert 'href="https://trial.example/docs"' in html
+
+
 def test_a_notice_is_shown_where_the_row_is_read(tmp_path):
     html = _render([make(
         api={"base_url": "https://x.ai/v1", "auth": "none", "model_ids": ["m"],
