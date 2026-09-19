@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import tempfile
 from datetime import date, datetime, time, timezone
 from pathlib import Path
@@ -56,6 +57,9 @@ README_LIMITS_TEASER = 150
 README_LIMITS_COLLAPSE = 260
 README_OFFERING_TEASER = 130
 README_OFFERING_COLLAPSE = 200
+# A code span as CommonMark reads one: a run of backticks, closed only by a run
+# of the same length.
+_CODE_SPAN = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.S)
 # The connection table's note sits in the same cell as the vendor's name, and is
 # the cell that grows: a rotating lane, an id spelling, a caveat about which of
 # two endpoints the probe reads. Kenari's reached 1,364 characters against a
@@ -145,9 +149,22 @@ def _fold(text: str, teaser_at: int, collapse_over: int, small: bool = False) ->
 
 
 def _cut(text: str, at: int) -> str:
-    """The teaser: a cut at the last word boundary before `at`, never a summary."""
-    cut = text.rfind(" ", 0, at)
-    return text[:cut if cut > 0 else at].rstrip(" ,;:.—-")
+    """The teaser: a cut at the last word boundary before `at`, never a summary.
+
+    A space inside a code span is not a word boundary. GitHub pairs a backtick
+    the teaser leaves open with the next one it meets — the same span's opening
+    backtick in the full text — and makes code of everything between them, the
+    `</sub></summary>` that closes the teaser included: the fold then prints the
+    whole cell, its tags as text. opencode's lane notice and then its limits
+    did that from 2026-09-17, both cut inside `403 FreeTierError: …`. A span
+    that runs past `at` with no word before it is kept whole, because a teaser
+    has to show something.
+    """
+    spans = [m.span() for m in _CODE_SPAN.finditer(text)]
+    words = [i for i, ch in enumerate(text[:at])
+             if ch == " " and i > 0 and not any(s < i < e for s, e in spans)]
+    cut = words[-1] if words else next((e for s, e in spans if s < at < e), at)
+    return text[:cut].rstrip(" ,;:.—-")
 
 
 def provider_page_url(entry_id: str) -> str:

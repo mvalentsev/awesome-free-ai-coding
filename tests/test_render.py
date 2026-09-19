@@ -103,6 +103,32 @@ def test_a_long_limits_cell_folds_without_losing_a_character():
     assert long.startswith(teaser[:-2])        # a cut on a word boundary, not a summary
 
 
+def test_a_teaser_is_never_cut_inside_a_code_span():
+    """GitHub pairs a backtick the teaser leaves open with the next one it meets,
+    which is the same span's opening backtick in the full text, and turns all
+    between them into code: `</sub></summary>` included. The fold then shows the
+    whole cell with its tags printed as text. opencode's lane notice from
+    2026-09-17 and its limits from 09-18 did that on the README, both cut inside
+    `403 FreeTierError: …`."""
+    long = ("The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has "
+            "answered every other client with `403 FreeTierError: OpenCode's free tier can "
+            "only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer "
+            "said the free tier is not for other harnesses. " * 2).strip()
+    opens = "`" + " ".join(["an error string that runs on and on"] * 5) + "`" + ", then prose" * 30
+
+    ctx = build_context([make(id="l", name="L", limits=long),
+                         make(id="o", name="O", limits=opens)], TODAY)
+    cells = {r["name"]: r["limits"] for s in ctx["sections"] for r in s["rows"]}
+
+    teaser = cells["L"].split("<summary><sub>")[1].split("</sub></summary>")[0]
+    assert teaser == ("The free ids work inside OpenCode and nowhere else. Since 2026-09-17 "
+                      "Zen has answered every other client with …")
+    assert long in cells["L"]
+    # a span that opens the cell is kept whole: a teaser has to show something
+    teaser = cells["O"].split("<summary><sub>")[1].split("</sub></summary>")[0]
+    assert teaser.startswith("`") and teaser.count("`") == 2
+
+
 def test_a_section_counts_itself_and_the_card_free_rows_in_it():
     entries = [make(id="a", name="A"), make(id="b", name="B"),
                make(id="c", name="C", card_required=True)]
