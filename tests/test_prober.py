@@ -1905,6 +1905,59 @@ async def test_a_keyless_lane_that_cannot_be_checked_is_said_so():
     assert "could not be checked" in result.detail
 
 
+def follow_entry() -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "indexed",
+        "models": [{"family": "qwen3.8-27b"}],
+        "probe": {"type": "page-keywords", "endpoint": "https://x.ai/api/doc-index",
+                  "keywords": ["200 credits a day"],
+                  "follow": {"field": "Data.TargetPrefix", "suffix": "/dist/limits.md"}},
+    })
+
+
+DOC_INDEX = {"Code": 200, "Data": {"TargetPrefix": "https://docs.x.ai/docdata/2026-9-10"}}
+
+
+@respx.mock
+async def test_a_probe_that_follows_an_index_reads_the_page_the_index_names():
+    """ModelScope's docs live under a dated release path, and the path of the
+    last release keeps answering after the next one ships — a probe pinned to
+    it would read an old page for as long as the old page is kept. The index
+    names today's path, so the probe reads the page it names and nothing
+    else."""
+    respx.get("https://x.ai/api/doc-index").mock(return_value=httpx.Response(200, json=DOC_INDEX))
+    page = respx.get("https://docs.x.ai/docdata/2026-9-10/dist/limits.md").mock(
+        return_value=httpx.Response(200, text="Sign in for 200 credits a day on Qwen3.8-27B."))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, follow_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert page.called
+
+
+@respx.mock
+async def test_an_index_that_names_no_page_is_inconclusive():
+    """An index that stopped naming the page says where the docs are no more
+    than a timeout does: the offer may be exactly where it was."""
+    respx.get("https://x.ai/api/doc-index").mock(return_value=httpx.Response(
+        200, json={"Code": 200, "Data": {}}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, follow_entry(), backoff=0)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert "Data.TargetPrefix" in result.detail
+
+
+@respx.mock
+async def test_a_page_the_index_names_that_is_gone_fails_as_a_page_would():
+    respx.get("https://x.ai/api/doc-index").mock(return_value=httpx.Response(200, json=DOC_INDEX))
+    respx.get("https://docs.x.ai/docdata/2026-9-10/dist/limits.md").mock(
+        return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, follow_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "page gone" in result.detail and "/dist/limits.md" in result.detail
+
+
 def public_key_entry(key_url: str = "https://trial.x.ai/docs") -> Entry:
     return Entry.model_validate({
         **BASE,

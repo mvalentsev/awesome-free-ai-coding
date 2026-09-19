@@ -14,7 +14,7 @@ import httpx
 
 from .history import record_changes
 from .models import (
-    CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, ModelFamily, Probe, ProbeType,
+    CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
     is_archived_for_good, load_registry, notice_holds, save_registry,
 )
 
@@ -43,117 +43,194 @@ class ProbeResult:
 async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                       attempts: int = ATTEMPTS, backoff: float = BACKOFF_SECONDS,
                       today: date | None = None) -> ProbeResult:
+    resp, stop = await _read(client, entry.probe.endpoint, attempts, backoff)
+    if stop is not None:
+        return stop
+    if entry.probe.follow is not None:
+        resp, stop = await _read_followed(client, entry, resp, attempts, backoff)
+        if stop is not None:
+            return stop
+    detail = check_content(resp, entry)
+    if detail is None:
+        # A row published as keyless is only as live as a call without a
+        # key, and one the vendor prints a key for as a call with that key:
+        # its catalog answering says the models exist, not that anyone may
+        # call them. A refusal is the offer itself, so it outranks every
+        # note below; a note of its own waits for them.
+        keyless = None
+        if (entry.api and (entry.api.auth == "none" or entry.api.public_key)
+                and entry.api.model_ids):
+            keyless = await keyless_lane_verdict(client, entry, attempts, backoff,
+                                                 today or date.today())
+            if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
+                return keyless
+        # The offer is evidenced. Whether the models the README hangs off it
+        # still are is a second question, and only a page-keywords probe
+        # leaves it open — see unevidenced_families.
+        unevidenced = unevidenced_families(resp, entry)
+        if unevidenced:
+            return ProbeResult(ProbeStatus.STALE_MODELS,
+                               "listed families the page does not name: "
+                               + ", ".join(unevidenced))
+        # A third question, and the last field here that nothing read back
+        # — asked in both directions, since a config that hands out a dead
+        # id and a config that misses a live one are the same list being
+        # out of date. An api-models probe asks it of the bytes it already
+        # has; a page-keywords row asks it of the catalog it names, if any,
+        # fetched now. A catalog that does not answer is said so, not
+        # skipped: the row stays verified by its page, and the line in the
+        # pull request is the whole difference between a check that ran
+        # and one that quietly did not.
+        if entry.probe.type is ProbeType.API_MODELS:
+            catalog = resp
+        elif entry.probe.catalog:
+            catalog, failure = await _fetch_catalog(client, entry.probe.catalog, attempts, backoff)
+            if catalog is None:
+                return ProbeResult(ProbeStatus.STALE_IDS,
+                                   f"api.model_ids could not be checked: catalog "
+                                   f"{entry.probe.catalog} {failure}")
+        else:
+            catalog = None
+        if catalog is not None:
+            stale = stale_ids(catalog, entry)
+            if stale:
+                if keyless is not None:
+                    stale = f"{stale} | {keyless.detail}"
+                return ProbeResult(ProbeStatus.STALE_IDS, stale)
+        # The last published connection detail, and the only one a GET
+        # cannot see: the Anthropic-format route a row names for Claude
+        # Code. Asked keyless, so the answer is never a message — it is
+        # whether anything is listening at that path.
+        if entry.api and entry.api.anthropic_base_url:
+            missing = await anthropic_route_missing(client, entry, attempts, backoff)
+            if missing:
+                return ProbeResult(ProbeStatus.STALE_IDS, missing)
+        # A key handed to everyone is the vendor's only while the vendor's
+        # page prints it — see public_key_unprinted.
+        if entry.api and entry.api.public_key:
+            unprinted = await public_key_unprinted(client, entry, resp, attempts, backoff)
+            if unprinted:
+                if keyless is not None:
+                    unprinted = f"{unprinted} | {keyless.detail}"
+                return ProbeResult(ProbeStatus.STALE_IDS, unprinted)
+        if keyless is not None:
+            return keyless
+        return ProbeResult(ProbeStatus.PASS)
+    # Only asked once the content check has already failed. Plenty of live
+    # pages carry a <noscript> asking for JavaScript while serving the offer
+    # perfectly well above it — on those the keywords match and this never
+    # runs. It is when they do NOT match that the wording matters: a bot wall
+    # means we did not see the vendor's page, not that the offer is gone.
+    challenge = challenge_marker_hit(resp.text)
+    if challenge is not None:
+        return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
+    # A failing api-models row is where a dead id hides best, and until
+    # 2026-09-08 this return was the reason: the id check lives above, on
+    # the path a passing row takes. On 2026-09-07 LLMTR failed because
+    # minimax/minimax-m3-free had left its catalog and only the metered
+    # minimax/minimax-m3 answered for the family — and the same read had
+    # taken three ids out of `api.model_ids`, which the report never said.
+    # The scout dropped the family, the pull request read as a whole
+    # repair, and all three ids stayed in the generated configs.
+    #
+    # The catalog that failed the family is this same response, so asking
+    # costs nothing and the answer belongs beside the failure: one lane
+    # moved, and a human is about to edit that row. Deliberately not asked
+    # of a page row — see test_a_dead_offer_outranks_a_catalog_check. There
+    # the failure IS the offer, the catalog is a second fetch, and the row
+    # is repaired or archived whole rather than field by field.
+    if entry.probe.type is ProbeType.API_MODELS:
+        beside = stale_ids(resp, entry)
+        if beside:
+            detail = f"{detail} | {beside}"
+    return ProbeResult(ProbeStatus.FAIL, detail)
+
+
+async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
+                named: bool = False) -> tuple[httpx.Response | None, ProbeResult | None]:
+    """The page at `url`, or the verdict that reading it already is: a 401, 403
+    or 429 is a wall rather than an answer, a 5xx or a network error is asked
+    again, and any other 4xx is the page gone. `named` puts the url in the
+    verdict, for a page the probe reached through another one."""
+    said = f"{url} answered " if named else ""
     last = ""
     for i in range(attempts):
         if i:
             await asyncio.sleep(backoff * i)
         try:
-            resp = await client.get(entry.probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
+            resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
         except httpx.HTTPError as exc:
             last = f"network error: {exc}"
             continue
         if resp.status_code in (401, 403, 429):
-            return ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: HTTP {resp.status_code}")
+            return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: {said}HTTP {resp.status_code}")
         if resp.status_code >= 500:
             last = f"HTTP {resp.status_code}"
             continue
         if resp.status_code >= 400:
-            return ProbeResult(ProbeStatus.FAIL, f"page gone: HTTP {resp.status_code}")
-        detail = check_content(resp, entry)
-        if detail is None:
-            # A row published as keyless is only as live as a call without a
-            # key, and one the vendor prints a key for as a call with that key:
-            # its catalog answering says the models exist, not that anyone may
-            # call them. A refusal is the offer itself, so it outranks every
-            # note below; a note of its own waits for them.
-            keyless = None
-            if (entry.api and (entry.api.auth == "none" or entry.api.public_key)
-                    and entry.api.model_ids):
-                keyless = await keyless_lane_verdict(client, entry, attempts, backoff,
-                                                     today or date.today())
-                if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
-                    return keyless
-            # The offer is evidenced. Whether the models the README hangs off it
-            # still are is a second question, and only a page-keywords probe
-            # leaves it open — see unevidenced_families.
-            unevidenced = unevidenced_families(resp, entry)
-            if unevidenced:
-                return ProbeResult(ProbeStatus.STALE_MODELS,
-                                   "listed families the page does not name: "
-                                   + ", ".join(unevidenced))
-            # A third question, and the last field here that nothing read back
-            # — asked in both directions, since a config that hands out a dead
-            # id and a config that misses a live one are the same list being
-            # out of date. An api-models probe asks it of the bytes it already
-            # has; a page-keywords row asks it of the catalog it names, if any,
-            # fetched now. A catalog that does not answer is said so, not
-            # skipped: the row stays verified by its page, and the line in the
-            # pull request is the whole difference between a check that ran
-            # and one that quietly did not.
-            if entry.probe.type is ProbeType.API_MODELS:
-                catalog = resp
-            elif entry.probe.catalog:
-                catalog, failure = await _fetch_catalog(client, entry.probe.catalog, attempts, backoff)
-                if catalog is None:
-                    return ProbeResult(ProbeStatus.STALE_IDS,
-                                       f"api.model_ids could not be checked: catalog "
-                                       f"{entry.probe.catalog} {failure}")
-            else:
-                catalog = None
-            if catalog is not None:
-                stale = stale_ids(catalog, entry)
-                if stale:
-                    if keyless is not None:
-                        stale = f"{stale} | {keyless.detail}"
-                    return ProbeResult(ProbeStatus.STALE_IDS, stale)
-            # The last published connection detail, and the only one a GET
-            # cannot see: the Anthropic-format route a row names for Claude
-            # Code. Asked keyless, so the answer is never a message — it is
-            # whether anything is listening at that path.
-            if entry.api and entry.api.anthropic_base_url:
-                missing = await anthropic_route_missing(client, entry, attempts, backoff)
-                if missing:
-                    return ProbeResult(ProbeStatus.STALE_IDS, missing)
-            # A key handed to everyone is the vendor's only while the vendor's
-            # page prints it — see public_key_unprinted.
-            if entry.api and entry.api.public_key:
-                unprinted = await public_key_unprinted(client, entry, resp, attempts, backoff)
-                if unprinted:
-                    if keyless is not None:
-                        unprinted = f"{unprinted} | {keyless.detail}"
-                    return ProbeResult(ProbeStatus.STALE_IDS, unprinted)
-            if keyless is not None:
-                return keyless
-            return ProbeResult(ProbeStatus.PASS)
-        # Only asked once the content check has already failed. Plenty of live
-        # pages carry a <noscript> asking for JavaScript while serving the offer
-        # perfectly well above it — on those the keywords match and this never
-        # runs. It is when they do NOT match that the wording matters: a bot wall
-        # means we did not see the vendor's page, not that the offer is gone.
-        challenge = challenge_marker_hit(resp.text)
-        if challenge is not None:
-            return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
-        # A failing api-models row is where a dead id hides best, and until
-        # 2026-09-08 this return was the reason: the id check lives above, on
-        # the path a passing row takes. On 2026-09-07 LLMTR failed because
-        # minimax/minimax-m3-free had left its catalog and only the metered
-        # minimax/minimax-m3 answered for the family — and the same read had
-        # taken three ids out of `api.model_ids`, which the report never said.
-        # The scout dropped the family, the pull request read as a whole
-        # repair, and all three ids stayed in the generated configs.
-        #
-        # The catalog that failed the family is this same response, so asking
-        # costs nothing and the answer belongs beside the failure: one lane
-        # moved, and a human is about to edit that row. Deliberately not asked
-        # of a page row — see test_a_dead_offer_outranks_a_catalog_check. There
-        # the failure IS the offer, the catalog is a second fetch, and the row
-        # is repaired or archived whole rather than field by field.
-        if entry.probe.type is ProbeType.API_MODELS:
-            beside = stale_ids(resp, entry)
-            if beside:
-                detail = f"{detail} | {beside}"
-        return ProbeResult(ProbeStatus.FAIL, detail)
-    return ProbeResult(ProbeStatus.INCONCLUSIVE, f"unreachable after {attempts} attempts: {last}")
+            return None, ProbeResult(ProbeStatus.FAIL, f"page gone: {said}HTTP {resp.status_code}")
+        return resp, None
+    where = f"{url} " if named else ""
+    return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
+                             f"{where}unreachable after {attempts} attempts: {last}")
+
+
+def followed_url(index: object, follow: Follow) -> str | None:
+    """The page a JSON index names at `follow.field`, with `follow.suffix` after
+    it, or None where the index names no https URL there."""
+    value = index
+    for part in follow.field.split("."):
+        if not isinstance(value, dict) or part not in value:
+            return None
+        value = value[part]
+    if not isinstance(value, str) or not value.startswith("https://"):
+        return None
+    return value.rstrip("/") + follow.suffix
+
+
+def _index_names(resp: httpx.Response, follow: Follow) -> str | None:
+    try:
+        return followed_url(resp.json(), follow)
+    except ValueError:
+        return None
+
+
+async def _read_followed(client: httpx.AsyncClient, entry: Entry, index: httpx.Response,
+                         attempts: int, backoff: float
+                         ) -> tuple[httpx.Response | None, ProbeResult | None]:
+    """The page the index at the probe's endpoint names today — see Follow. An
+    index that names none says where the docs are no more than a timeout does,
+    so it is inconclusive; the page it names is read like any endpoint."""
+    url = _index_names(index, entry.probe.follow)
+    if url is None:
+        return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
+                                 f"the index at {entry.probe.endpoint} names no page in "
+                                 f"{entry.probe.follow.field}")
+    return await _read(client, url, attempts, backoff, named=True)
+
+
+async def probe_page_url(client: httpx.AsyncClient, probe: Probe) -> str:
+    """The url whose page a probe's keywords are read against: its endpoint, or
+    the page a followed index names today, and the endpoint again where the
+    index cannot be read — whatever reads it then says what it found."""
+    if probe.follow is None:
+        return probe.endpoint
+    try:
+        resp = await client.get(probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
+    except httpx.HTTPError:
+        return probe.endpoint
+    return _index_names(resp, probe.follow) or probe.endpoint
+
+
+def probe_page_url_sync(client: httpx.Client, probe: Probe) -> str:
+    """probe_page_url for the scout's synchronous client."""
+    if probe.follow is None:
+        return probe.endpoint
+    try:
+        resp = client.get(probe.endpoint, follow_redirects=True)
+    except httpx.HTTPError:
+        return probe.endpoint
+    return _index_names(resp, probe.follow) or probe.endpoint
 
 
 # Never completes: no key, one token, a model id no vendor has. The only
@@ -392,7 +469,7 @@ async def public_key_unprinted(client: httpx.AsyncClient, entry: Entry, probed: 
     verified. Where the key's page is the page the probe reads it is read once.
     """
     url = entry.api.key_url
-    if url == entry.probe.endpoint:
+    if url == entry.probe.endpoint and entry.probe.follow is None:
         page = probed
     else:
         page, failure = await _fetch_page(client, url, attempts, backoff)

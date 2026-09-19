@@ -159,7 +159,22 @@ page's data genuinely is the evidence — a client-rendered docs site, a plan na
 that exists only in the payload a framework ships — put those strings in
 `probe.machinery_keywords`, which is searched against the whole response. Three
 rows use it (`trae`, `upstage`, `siliconflow-cn`), each saying in `limits`
-where its evidence lives.
+where its evidence lives. What a page renders is also what its whitespace
+renders as: a line break in the source is a space, so a sentence a template
+wraps across two lines is matched whole, as a reader copies it.
+
+**A page that moves with every release is read through the index that names
+it.** ModelScope serves its docs under a dated release path —
+`…/docdata/2026-9-10_15-4-CN/…` — and replaces it with each release while the
+old paths go on answering, so a probe pinned to one would read an outdated page
+for as long as the old release is kept. The site names the current prefix in a
+JSON index. `probe.follow` starts the probe there: the endpoint is the index,
+`follow.field` the dotted path to the value (`Data.TargetPrefix`) and
+`follow.suffix` the path after it, and the keywords are read on the page that
+builds. An index that names no page is `inconclusive`, and the page it names is
+read like any endpoint, a 404 failing the row. `freetier-quotes` and the scout
+read the same page, and the provider page says where the probe starts rather
+than printing a dated URL that the next release makes stale.
 
 Words that outlive the offer are rejected by validation, so CI fails on them:
 `free`, `hobby`, `free quota`, `monthly credits`, `no signup`, `no credit card

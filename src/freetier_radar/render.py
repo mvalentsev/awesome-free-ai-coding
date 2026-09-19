@@ -1218,7 +1218,14 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
         if probe.machinery_keywords:
             shown.append(", ".join(f"`{k}`" for k in probe.machinery_keywords)
                          + " in the page's own data")
-        how = f"- Probe: the page at {at(probe.endpoint)}, anchored on " + " and ".join(shown)
+        if probe.follow:
+            # The page moves to a new dated path each release; where the probe
+            # starts and what it follows is what stays true.
+            where = (f"the page the index at {at(probe.endpoint)} names in `{probe.follow.field}`"
+                     + (f", followed by `{probe.follow.suffix}`" if probe.follow.suffix else ""))
+        else:
+            where = f"the page at {at(probe.endpoint)}"
+        how = f"- Probe: {where}, anchored on " + " and ".join(shown)
         if probe.catalog:
             how += f"; ids checked in {at(probe.catalog)}"
     out.append(how)

@@ -163,6 +163,33 @@ class ModelFamily(BaseModel):
         return value
 
 
+class Follow(BaseModel):
+    """Where in a JSON index the page a probe reads is named today.
+
+    ModelScope serves its docs under a dated release path —
+    …/docdata/2026-9-10_15-4-CN/… — that the site replaces with each release,
+    while the old paths go on answering: a keyword read at a pinned path keeps
+    matching after the offer changed. The site names the current prefix in a
+    JSON index (`Data.TargetPrefix` of main_doc_CN_prod), so the probe starts
+    there and reads the page the index names."""
+    field: str  # dotted path to the value in the index's JSON
+    suffix: str = ""  # appended to that value
+
+    @field_validator("field")
+    @classmethod
+    def _field_is_a_dotted_path(cls, value: str) -> str:
+        if not re.fullmatch(r"[A-Za-z_][\w-]*(\.[A-Za-z_][\w-]*)*", value):
+            raise ValueError(f"follow.field {value!r} is not a dotted path such as Data.TargetPrefix")
+        return value
+
+    @field_validator("suffix")
+    @classmethod
+    def _suffix_is_a_path(cls, value: str) -> str:
+        if value and not value.startswith("/"):
+            raise ValueError(f"follow.suffix {value!r} is joined to a URL, so it starts with /")
+        return value
+
+
 class Probe(BaseModel):
     type: ProbeType
     endpoint: str
@@ -189,6 +216,17 @@ class Probe(BaseModel):
     # 2026-09-14 — so the lane is named rather than every array read. Unset,
     # the rows are the document itself or its `data`, as in an OpenAI catalog.
     lane: str | None = None
+    # page-keywords: the endpoint is a JSON index that names the page to read,
+    # for a vendor whose docs move to a new dated path each release (see Follow)
+    follow: Follow | None = None
+
+    @model_validator(mode="after")
+    def _follow_reads_a_page(self) -> Probe:
+        if self.follow is not None and self.type is not ProbeType.PAGE_KEYWORDS:
+            raise ValueError(
+                f"probe {self.endpoint}: follow names a page to read for keywords, so it "
+                "belongs on a page-keywords probe")
+        return self
 
     @model_validator(mode="after")
     def _lane_needs_a_catalog(self) -> Probe:

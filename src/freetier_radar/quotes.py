@@ -33,7 +33,7 @@ from pathlib import Path
 import httpx
 
 from .models import Entry, is_archived, load_registry
-from .prober import UA, _plain_spaces, _rendered
+from .prober import UA, _plain_spaces, _rendered, probe_page_url
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 CONCURRENCY = 8
@@ -101,8 +101,10 @@ def quote_found(quote: str, pages: list[str]) -> bool:
     return all(any(f in page for page in pages) for f in fragments)
 
 
-def row_urls(entry: Entry) -> list[str]:
-    urls = list(entry.source_urls) + [entry.probe.endpoint]
+def row_urls(entry: Entry, page: str | None = None) -> list[str]:
+    """The row's sources, its probe's page — `page` where the probe follows an
+    index to it, the endpoint otherwise — and its catalog."""
+    urls = list(entry.source_urls) + [page or entry.probe.endpoint]
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)
     return list(dict.fromkeys(urls))
@@ -145,7 +147,8 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient
         quotes = row_quotes(entry)
         if not quotes:
             continue
-        pages, failed = await fetch_pages(client, row_urls(entry))
+        page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
+        pages, failed = await fetch_pages(client, row_urls(entry, page))
         if failed:
             unread[entry.id] = failed
         for field, quote in quotes:

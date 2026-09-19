@@ -1288,3 +1288,16 @@ def test_a_lane_the_vendor_prints_a_key_for_needs_no_account():
     assert [p["name"] for p in ctx["picks"]["keyless"]] == ["Trial", "Keyless"]
     assert ctx["no_signup_count"] == 2
     assert ctx["quickstart"]["name"] == "Keyless"
+
+
+def test_the_evidence_line_names_the_index_a_probe_follows():
+    """The page a followed index names changes with each release, so the line
+    says where the probe starts and what it follows, not a dated URL that would
+    be the stale one by the next release."""
+    from freetier_radar.render import build_provider_page
+    row = make(probe={"type": "page-keywords", "endpoint": "https://x.ai/api/doc-index",
+                      "keywords": ["200 credits a day"],
+                      "follow": {"field": "Data.TargetPrefix", "suffix": "/dist/limits.md"}})
+    line = next(l for l in build_provider_page(row, [], TODAY).splitlines() if l.startswith("- Probe:"))
+    assert ("the page the index at <https://x.ai/api/doc-index> names in `Data.TargetPrefix`, "
+            "followed by `/dist/limits.md`, anchored on `200 credits a day`") in line

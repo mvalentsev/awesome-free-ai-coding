@@ -214,6 +214,24 @@ def test_probe_check_accepts_a_family_the_page_spells_differently():
         assert scout.probe_check_sync(e, client) is None
 
 
+@respx.mock
+def test_probe_check_reads_the_page_a_followed_index_names():
+    """A row whose probe starts at a docs index is vetted, and its families
+    looked for, on the page the index names — the index is a JSON blob that
+    names no model."""
+    e = make(id="indexed", models=[{"family": "x-mini-2", "tier": "strong"}],
+             probe={"type": "page-keywords", "endpoint": "https://x.ai/api/doc-index",
+                    "keywords": ["x-mini-2"],
+                    "follow": {"field": "Data.TargetPrefix", "suffix": "/limits.md"}})
+    respx.get("https://x.ai/api/doc-index").mock(return_value=httpx.Response(
+        200, json={"Data": {"TargetPrefix": "https://docs.x.ai/2026-9-10"}}))
+    respx.get("https://docs.x.ai/2026-9-10/limits.md").mock(return_value=httpx.Response(
+        200, text="x-mini-2 is free for everyone"))
+    with httpx.Client() as client:
+        assert scout.probe_check_sync(e, client) is None
+        assert scout.named_by_row(client)(e, "x-mini-2") is True
+
+
 def test_apply_new_uses_verifier():
     entries = [make()]
     added, rejected = apply_new(

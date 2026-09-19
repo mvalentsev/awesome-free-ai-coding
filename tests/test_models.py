@@ -479,3 +479,28 @@ def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_pr
         d["api"] = {**api, **broken}
         with pytest.raises(ValidationError, match=match):
             Entry.model_validate(d)
+
+
+def test_a_probe_that_follows_an_index_names_a_field_and_reads_a_page():
+    """ModelScope serves its docs under a dated release path that the site
+    replaces while old paths keep answering, and names the current one in a
+    JSON index. `probe.follow` is how a page-keywords probe starts there: the
+    endpoint is the index, `field` the dotted path to the value in it and
+    `suffix` what goes after it. It is a page the probe reads for keywords, so
+    an api-models probe has no use for it."""
+    d = sample_entry()
+    d["probe"] = {"type": "page-keywords", "endpoint": "https://x.ai/api/doc-index",
+                  "keywords": ["200 credits a day"],
+                  "follow": {"field": "Data.TargetPrefix", "suffix": "/dist/limits.md"}}
+    follow = Entry.model_validate(d).probe.follow
+    assert (follow.field, follow.suffix) == ("Data.TargetPrefix", "/dist/limits.md")
+    for broken, match in (({"field": "Data..Prefix"}, "dotted path"),
+                          ({"field": ""}, "dotted path"),
+                          ({"suffix": "dist/limits.md"}, "starts with /")):
+        d["probe"]["follow"] = {"field": "Data.TargetPrefix", "suffix": "/dist/limits.md", **broken}
+        with pytest.raises(ValidationError, match=match):
+            Entry.model_validate(d)
+    d = sample_entry()
+    d["probe"]["follow"] = {"field": "Data.TargetPrefix"}
+    with pytest.raises(ValidationError, match="page-keywords"):
+        Entry.model_validate(d)

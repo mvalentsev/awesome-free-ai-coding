@@ -118,3 +118,22 @@ async def test_a_quote_missing_while_a_source_did_not_answer_is_unverified_not_m
             'https://vendor.example/pricing: HTTP 403 — "a sentence only the pricing page has"') in out
     assert out.rstrip().endswith("checked 2 quotes in 1 rows — 0 not found on the rows' own sources, "
                                  "1 unverified because a source did not answer")
+
+
+@respx.mock
+async def test_a_probe_that_follows_an_index_has_its_quotes_read_on_the_page_the_index_names():
+    """ModelScope's quotes are on the page its docs index names today, not on the
+    index itself — a JSON blob — nor on the dated page of an older release."""
+    data = quoted_entry('"sign in for two hundred credits a day"').model_dump()
+    data["source_urls"] = []
+    data["probe"] = {"type": "page-keywords", "endpoint": "https://vendor.example/api/doc-index",
+                     "keywords": ["200 credits a day"],
+                     "follow": {"field": "Data.TargetPrefix", "suffix": "/limits.md"}}
+    entry = Entry.model_validate(data)
+    respx.get("https://vendor.example/api/doc-index").mock(return_value=httpx.Response(
+        200, json={"Data": {"TargetPrefix": "https://docs.vendor.example/2026-9-10"}}))
+    respx.get("https://docs.vendor.example/2026-9-10/limits.md").mock(return_value=httpx.Response(
+        200, text="Sign in for two hundred credits a day."))
+    async with httpx.AsyncClient() as client:
+        missing, unread = await check_entries([entry], client)
+    assert missing == [] and unread == {}

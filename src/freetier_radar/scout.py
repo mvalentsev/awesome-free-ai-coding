@@ -24,7 +24,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      watch_match)
 from .prober import (ProbeStatus, challenge_marker_hit, check_content, family_named,
-                     unevidenced_families)
+                     probe_page_url_sync, unevidenced_families)
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -742,7 +742,7 @@ def format_watchlist(watchlist: list[Watched], today: date) -> str:
 def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
     """Synchronous single-shot version of the weekly probe for vetting proposals."""
     try:
-        resp = client.get(entry.probe.endpoint, follow_redirects=True)
+        resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
     except httpx.HTTPError as exc:
         return f"unreachable: {exc}"
     if resp.status_code >= 400:
@@ -1000,7 +1000,7 @@ def named_by_row(client: httpx.Client, time_left: Callable[[], float] | None = N
             if time_left is not None and time_left() <= 0:
                 return None
             try:
-                resp = client.get(entry.probe.endpoint, follow_redirects=True)
+                resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
             except httpx.HTTPError:
                 resp = None
             responses[entry.id] = resp if resp is not None and resp.status_code < 400 else None
