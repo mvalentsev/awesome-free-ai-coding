@@ -858,6 +858,49 @@
         }
       }
     },
+    "modelscope": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "ModelScope API-Inference (Alibaba)",
+      "options": {
+        "baseURL": "https://api-inference.modelscope.cn/v1",
+        "apiKey": "{env:MODELSCOPE_API_KEY}"
+      },
+      "models": {
+        "deepseek-ai/DeepSeek-V4.1-Flash": {
+          "name": "deepseek-ai/DeepSeek-V4.1-Flash"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "deepseek-ai/DeepSeek-V4-Pro"
+        },
+        "ZhipuAI/GLM-5.2": {
+          "name": "ZhipuAI/GLM-5.2"
+        },
+        "MiniMax/MiniMax-M3": {
+          "name": "MiniMax/MiniMax-M3"
+        },
+        "Qwen/Qwen3.8-27B": {
+          "name": "Qwen/Qwen3.8-27B"
+        },
+        "Qwen/Qwen3.8-Flash-Next": {
+          "name": "Qwen/Qwen3.8-Flash-Next"
+        },
+        "stepfun-ai/Step-3.7-Flash": {
+          "name": "stepfun-ai/Step-3.7-Flash"
+        },
+        "Qwen/Qwen3.5-397B-A17B": {
+          "name": "Qwen/Qwen3.5-397B-A17B"
+        },
+        "nex-agi/Nex-N2.5-Pro": {
+          "name": "nex-agi/Nex-N2.5-Pro"
+        },
+        "deepseek-ai/DeepSeek-V4-Flash-0731": {
+          "name": "deepseek-ai/DeepSeek-V4-Flash-0731"
+        },
+        "ZhipuAI/GLM-4.7-Flash": {
+          "name": "ZhipuAI/GLM-4.7-Flash"
+        }
+      }
+    },
     "meganova": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "MegaNova",

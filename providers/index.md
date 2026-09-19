@@ -36,6 +36,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Mistral AI Studio](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) | 🔌 LLM APIs with free tier | `qwen3.8-27b` | `2026-09-17` |
 | [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder` | `2026-09-17` |
+| [ModelScope API-Inference (Alibaba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) | 🔌 LLM APIs with free tier | — | `2026-09-19` |
 | [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) | 🔌 LLM APIs with free tier | `agnes-3.0-flash`, `agnes-2.5-flash` | `2026-09-17` |

@@ -75,6 +75,16 @@ claude-opper() {
   claude "$@"
 }
 
+# ── ModelScope API-Inference (Alibaba) · get a key: https://modelscope.cn/my/myaccesstoken
+#    free ids: deepseek-ai/DeepSeek-V4.1-Flash, deepseek-ai/DeepSeek-V4-Pro, ZhipuAI/GLM-5.2, MiniMax/MiniMax-M3, Qwen/Qwen3.8-27B, Qwen/Qwen3.8-Flash-Next, stepfun-ai/Step-3.7-Flash, Qwen/Qwen3.5-397B-A17B, nex-agi/Nex-N2.5-Pro, deepseek-ai/DeepSeek-V4-Flash-0731, ZhipuAI/GLM-4.7-Flash
+claude-modelscope() {
+  ANTHROPIC_BASE_URL="https://api-inference.modelscope.cn" \
+  ANTHROPIC_AUTH_TOKEN="$MODELSCOPE_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="deepseek-ai/DeepSeek-V4.1-Flash" \
+  claude "$@"
+}
+
 # ── The Grid · get a key: https://app.thegrid.ai/profile
 #    free ids: agent-prime, code-prime, agent-max
 claude-the-grid() {

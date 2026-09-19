@@ -961,6 +961,61 @@ model_list:
     model: openai/poolside/laguna-xs-2.1
     api_base: https://api.opper.ai/v3/compat
     api_key: os.environ/OPPER_API_KEY
+- model_name: modelscope/deepseek-ai/DeepSeek-V4.1-Flash
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4.1-Flash
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/deepseek-ai/DeepSeek-V4-Pro
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Pro
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/ZhipuAI/GLM-5.2
+  litellm_params:
+    model: openai/ZhipuAI/GLM-5.2
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/MiniMax/MiniMax-M3
+  litellm_params:
+    model: openai/MiniMax/MiniMax-M3
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/Qwen/Qwen3.8-27B
+  litellm_params:
+    model: openai/Qwen/Qwen3.8-27B
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/Qwen/Qwen3.8-Flash-Next
+  litellm_params:
+    model: openai/Qwen/Qwen3.8-Flash-Next
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/stepfun-ai/Step-3.7-Flash
+  litellm_params:
+    model: openai/stepfun-ai/Step-3.7-Flash
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/Qwen/Qwen3.5-397B-A17B
+  litellm_params:
+    model: openai/Qwen/Qwen3.5-397B-A17B
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/nex-agi/Nex-N2.5-Pro
+  litellm_params:
+    model: openai/nex-agi/Nex-N2.5-Pro
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/deepseek-ai/DeepSeek-V4-Flash-0731
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/ZhipuAI/GLM-4.7-Flash
+  litellm_params:
+    model: openai/ZhipuAI/GLM-4.7-Flash
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
 - model_name: meganova/mistralai/Mistral-Small-3.2-24B-Instruct-2506
   litellm_params:
     model: openai/mistralai/Mistral-Small-3.2-24B-Instruct-2506

@@ -18,29 +18,6 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
-  - domains: [modelscope.cn, modelscope.ai]
-    name: ModelScope (Alibaba)
-    checked_on: '2026-09-17'
-    reason: >-
-      The API-Inference free quota is real and readable now, in the markdown
-      the docs load from resouces.modelscope.cn: calls are paid in 魔粒 —
-      "轻量模型（0.5 魔粒/次），主流模型（1 魔粒/次），旗舰模型（2 魔粒/次）" (0.5, 1 or 2 per call by
-      model size) — and an account gets "200 魔粒/日" for signing in and 50
-      more a day for binding an Alibaba Cloud account, both marked 短期
-      (short-term). The grant comes with each day's login (每日登录即可获取，当日有效),
-      and spending 魔粒 first needs a verified personal email
-      (魔粒使用前置要求：完善个人信息，包括提供验证通过的个人邮箱). The keyless catalog at
-      api-inference.modelscope.cn/v1/models lists 35 ids (2026-09-17).
-      API-Inference needs that Alibaba Cloud account to have passed
-      real-name verification ("对应云账号需已通过实名认证后，才可正常使用API-Inference"), which
-      CONTRIBUTING counts against a row's rank rather than its place on the
-      list. What keeps it off is the probe: the docs sit under a dated
-      release path (2026-9-10_15-4-CN) that the site replaces, while old
-      paths keep answering, so a keyword read there would outlive the offer.
-    reopen_if: >-
-      A stable URL carries the 魔粒 quota, or the probe learns to follow the
-      current path from www.modelscope.cn/api/v1/document/main_doc_CN_prod.
-
   - domains: [siliconflow.com]
     name: SiliconFlow (international)
     checked_on: '2026-09-18'
