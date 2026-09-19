@@ -4534,3 +4534,66 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 48
+- id: siliconflow-cn
+  name: SiliconFlow (China)
+  category: api-free-tier
+  url: https://siliconflow.cn
+  source_urls:
+  - https://siliconflow.cn/pricing
+  - https://docs.siliconflow.cn/docs/userguide/faqs/rate-limit-and-upgradation
+  - https://docs.siliconflow.cn/docs/userguide/faqs/authentication
+  - https://docs.siliconflow.cn/docs/userguide/quickstart
+  - https://docs.siliconflow.cn/docs/api/messages-post
+  card_required: false
+  offering: China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414
+    and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong,
+    Macau or Taiwan papers
+  limits: 'The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0),
+    their limits are fixed per model ("免费模型的 Rate Limits 固定", shown in the client-rendered
+    model square), and "实名认证后使用全部的免费模型" — they open only after real-name verification.
+    That is an Alipay face scan taking a mainland ID card, a Hong Kong, Macau or Taiwan
+    travel or residence permit, or China''s permanent-residence card for foreigners;
+    without one "暂时不支持线上个人认证", and the FAQ offers a form to the staff instead. Sign-in
+    is by SMS or email. The free rows are in the price list''s own data, each at ¥0
+    in and out: Qwen3-8B, GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct, Qwen3.5-4B,
+    DeepSeek-R1-0528-Qwen3-8B, Hunyuan-MT-7B and Xing4.0-29B, the last two also marked
+    免费 in the table the page renders. Read 2026-09-18'
+  models:
+  - family: xing4.0-29b
+    released: ''
+  - family: qwen3-8b
+    released: ''
+  - family: glm-4-9b-0414
+    released: ''
+  api:
+    base_url: https://api.siliconflow.cn/v1
+    key_url: https://cloud.siliconflow.cn/account/ak
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - XingChenAGI/Xing4.0-29B
+    - Qwen/Qwen3-8B
+    - THUDM/GLM-4-9B-0414
+    - THUDM/GLM-Z1-9B-0414
+    - deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+    - Qwen/Qwen3.5-4B
+    - Qwen/Qwen2.5-7B-Instruct
+    anthropic_base_url: https://api.siliconflow.cn
+    note: ids are the price list's own; Hunyuan-MT-7B, the other chat row at ¥0, is
+      a translation model. /v1/models needs a key, and the Messages route the API
+      reference documents is https://api.siliconflow.cn/v1/messages
+  probe:
+    type: page-keywords
+    endpoint: https://siliconflow.cn/pricing
+    keywords: []
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords:
+    - Qwen2.5-7B-Instruct (Free)
+    - DeepSeek-R1-0528-Qwen3-8B (Free)
+  first_seen: '2026-09-18'
+  last_verified: '2026-09-18'
+  probe_failures: 0
+  provisional: true
+  rank: 97

@@ -41,28 +41,20 @@ watched:
       A stable URL carries the 魔粒 quota, or the probe learns to follow the
       current path from www.modelscope.cn/api/v1/document/main_doc_CN_prod.
 
-  - domains: [siliconflow.com, siliconflow.cn]
-    name: SiliconFlow
+  - domains: [siliconflow.com]
+    name: SiliconFlow (international)
     checked_on: '2026-09-18'
     reason: >-
-      siliconflow.cn has free chat models, behind an identity wall. The pricing
-      page's own data prices eight of them at ¥0 in and out — Qwen3-8B,
-      GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct "(Free)", Qwen3.5-4B,
-      DeepSeek-R1-0528-Qwen3-8B "(Free)", Hunyuan-MT-7B and the 29B
-      Xing4.0-29B, the last two also marked 免费 in the rendered table — and the
-      rate-limit FAQ opens them only after real-name verification:
-      "实名认证后使用全部的免费模型". Personal verification is an Alipay face scan
-      that takes a mainland ID card, a Hong Kong, Macau or Taiwan travel or
-      residence permit, or China's permanent-residence card for foreigners, and
-      "不具有以上证件的用户，暂时不支持线上个人认证" (no online verification without
-      one) — the Qiniu case, an account for residents of China. siliconflow.com
-      prices every model and offers "postpaid billing—plus $1 in free credits to
-      get you started!", and no page read there says whether the dollar can be
-      spent before a payment method is added (2026-09-18).
+      The international site prices every model and offers "postpaid
+      billing—plus $1 in free credits to get you started!", a one-off grant,
+      and no page read says whether the dollar can be spent before a payment
+      method is added (2026-09-18). The Chinese site, siliconflow.cn, is a row:
+      its free chat models open to an account verified with Chinese, Hong Kong,
+      Macau or Taiwan papers, which is rank and not a reason to leave it off,
+      as for Tencent TokenHub.
     reopen_if: >-
-      siliconflow.cn's personal verification takes a passport, or its free
-      models open without 实名认证; or a siliconflow.com page says the $1 needs no
-      payment method.
+      A siliconflow.com page says the $1 needs no payment method, or a model
+      there is priced at zero.
 
   - domains: [nebius.com, nebius.ai]
     name: Nebius Token Factory

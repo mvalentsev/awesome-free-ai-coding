@@ -165,3 +165,13 @@ claude-standardcompute() {
   claude "$@"
 }
 
+# ── SiliconFlow (China) · get a key: https://cloud.siliconflow.cn/account/ak
+#    free ids: XingChenAGI/Xing4.0-29B, Qwen/Qwen3-8B, THUDM/GLM-4-9B-0414, THUDM/GLM-Z1-9B-0414, deepseek-ai/DeepSeek-R1-0528-Qwen3-8B, Qwen/Qwen3.5-4B, Qwen/Qwen2.5-7B-Instruct
+claude-siliconflow-cn() {
+  ANTHROPIC_BASE_URL="https://api.siliconflow.cn" \
+  ANTHROPIC_AUTH_TOKEN="$SILICONFLOW_CN_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="XingChenAGI/Xing4.0-29B" \
+  claude "$@"
+}
+

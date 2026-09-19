@@ -1206,6 +1206,41 @@ model_list:
     model: openai/poolside/laguna-xs-2.1
     api_base: https://inference.poolside.ai/v1
     api_key: os.environ/POOLSIDE_API_KEY
+- model_name: siliconflow-cn/XingChenAGI/Xing4.0-29B
+  litellm_params:
+    model: openai/XingChenAGI/Xing4.0-29B
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
+- model_name: siliconflow-cn/Qwen/Qwen3-8B
+  litellm_params:
+    model: openai/Qwen/Qwen3-8B
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
+- model_name: siliconflow-cn/THUDM/GLM-4-9B-0414
+  litellm_params:
+    model: openai/THUDM/GLM-4-9B-0414
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
+- model_name: siliconflow-cn/THUDM/GLM-Z1-9B-0414
+  litellm_params:
+    model: openai/THUDM/GLM-Z1-9B-0414
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
+- model_name: siliconflow-cn/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
+- model_name: siliconflow-cn/Qwen/Qwen3.5-4B
+  litellm_params:
+    model: openai/Qwen/Qwen3.5-4B
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
+- model_name: siliconflow-cn/Qwen/Qwen2.5-7B-Instruct
+  litellm_params:
+    model: openai/Qwen/Qwen2.5-7B-Instruct
+    api_base: https://api.siliconflow.cn/v1
+    api_key: os.environ/SILICONFLOW_CN_API_KEY
 - model_name: uncloseai/Lorbus/Qwen3.6-27B-int4-AutoRound
   litellm_params:
     model: openai/Lorbus/Qwen3.6-27B-int4-AutoRound

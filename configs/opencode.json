@@ -1213,6 +1213,37 @@
         }
       }
     },
+    "siliconflow-cn": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SiliconFlow (China)",
+      "options": {
+        "baseURL": "https://api.siliconflow.cn/v1",
+        "apiKey": "{env:SILICONFLOW_CN_API_KEY}"
+      },
+      "models": {
+        "XingChenAGI/Xing4.0-29B": {
+          "name": "XingChenAGI/Xing4.0-29B"
+        },
+        "Qwen/Qwen3-8B": {
+          "name": "Qwen/Qwen3-8B"
+        },
+        "THUDM/GLM-4-9B-0414": {
+          "name": "THUDM/GLM-4-9B-0414"
+        },
+        "THUDM/GLM-Z1-9B-0414": {
+          "name": "THUDM/GLM-Z1-9B-0414"
+        },
+        "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+          "name": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+        },
+        "Qwen/Qwen3.5-4B": {
+          "name": "Qwen/Qwen3.5-4B"
+        },
+        "Qwen/Qwen2.5-7B-Instruct": {
+          "name": "Qwen/Qwen2.5-7B-Instruct"
+        }
+      }
+    },
     "uncloseai": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "uncloseai (unturf)",

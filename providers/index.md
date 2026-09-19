@@ -45,6 +45,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) | 🔌 LLM APIs with free tier | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | `2026-09-17` |
 | [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
+| [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) | 🔌 LLM APIs with free tier | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | `2026-09-18` |
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
 | [Arli AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-17` |
