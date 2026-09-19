@@ -1291,6 +1291,8 @@ entries:
   - family: ling-3.0-flash-fin
     released: 2026-09
     aa_model: ling-3-0-flash-fin
+  - family: ling-3.0-flash-sante
+    released: 2026-09
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys

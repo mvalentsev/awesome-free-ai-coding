@@ -17,7 +17,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits inclu
 
 ## Free models
 
-`laguna-s-2.1`, `ling-3.0-flash-fin`
+`laguna-s-2.1`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante`
 
 ## Limits, in the vendor's words
 
@@ -40,7 +40,7 @@ $5 of gateway credit a month at provider list rates, renewed monthly, with lower
 
 ## History
 
-- *next scheduled run* — Free models changed: added ling-3.0-flash-fin
+- *next scheduled run* — Free models changed: added ling-3.0-flash-fin, ling-3.0-flash-sante
 - `2026-08-20` — Free models changed: dropped glm-4.6v-flash
 - `2026-08-17` — Free models changed: added laguna-s-2.1; dropped laguna-s-2.1-free
 - `2026-08-14` — Free models changed: added glm-4.6v-flash
