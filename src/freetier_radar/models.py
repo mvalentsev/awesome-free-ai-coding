@@ -463,6 +463,10 @@ class Entry(BaseModel):
     last_verified: date
     retired_on: date | None = None  # vendor-announced shutdown; archives the row on that day
     delisted: Delisting | None = None  # taken off the list by a reviewer; archives the row
+    # The row that holds this same service, where two rows named one: the id of
+    # the row that keeps the offer, the evidence and the history, and the reason
+    # this one is listed nowhere a reader counts services.
+    duplicate_of: str | None = None
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
@@ -493,6 +497,34 @@ class Entry(BaseModel):
                     "the offer — use a free model id, a quota or price figure, or a phrase "
                     "of four or more words quoted from the page"
                 )
+        return self
+
+    @model_validator(mode="after")
+    def _a_fold_is_a_reviewers_decision_about_another_row(self) -> Entry:
+        """`duplicate_of` is for two rows that named one service.
+
+        The list ran with two for two months: `mimocode`, a placeholder from
+        the first day's seed — "Coding agent with free tier", limits "TBD by
+        scout", at mimocode.ai, a domain that has never resolved — and
+        `mimo-code`, Xiaomi's agent, added that evening with its README, its
+        models and its shutdown date. Xiaomi's own README prints the name as
+        one word, so the Archive showed one project twice, two lines apart.
+
+        A row is never deleted, so the fold is recorded rather than applied:
+        the duplicate keeps its id, since the id is its page's URL, and names
+        the row that holds the service. That is a reviewer's reading of two
+        rows, not a probe result, so the row carries the `delisted` that says
+        so — and a row folded into itself would be a page pointing at itself.
+        """
+        if self.duplicate_of is None:
+            return self
+        if self.duplicate_of == self.id:
+            raise ValueError(f"{self.id}: duplicate_of names the row itself — it names the "
+                             "other row, the one that holds the service")
+        if self.delisted is None:
+            raise ValueError(
+                f"{self.id}: a row folded into {self.duplicate_of} leaves the list by a "
+                "reviewer's hand — give it `delisted` with the reason, or drop duplicate_of")
         return self
 
     @model_validator(mode="after")
@@ -639,6 +671,17 @@ def is_archived(entry: Entry, today: date) -> bool:
     if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
         return True
     return False
+
+
+def folded_into(entries: list[Entry], entry: Entry) -> Entry | None:
+    """The row this one was folded into, where the registry holds it.
+
+    None for a row of its own, and None for a fold whose target the registry
+    has lost — the renderer then has a page to build either way, and
+    `freetier-check` is where a dangling fold is reported."""
+    if entry.duplicate_of is None:
+        return None
+    return next((e for e in entries if e.id == entry.duplicate_of), None)
 
 
 def is_archived_for_good(entry: Entry, today: date) -> bool:

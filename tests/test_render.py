@@ -1327,3 +1327,50 @@ def test_the_evidence_line_names_the_index_a_probe_follows():
     line = next(l for l in build_provider_page(row, [], TODAY).splitlines() if l.startswith("- Probe:"))
     assert ("the page the index at <https://x.ai/api/doc-index> names in `Data.TargetPrefix`, "
             "followed by `/dist/limits.md`, anchored on `200 credits a day`") in line
+
+
+def _mimo_rows() -> list[Entry]:
+    """The two rows that named one project: Xiaomi's agent, archived on the day
+    its anonymous channel ended, and the placeholder from the list's first day
+    at a domain that has never resolved, folded into it."""
+    holder = make(id="mimo-code", name="MiMo Code", url="https://mimo.xiaomi.com/coder",
+                  offering="Xiaomi's terminal coding agent", retired_on=TODAY)
+    folded = make(id="mimocode", name="MiMoCode", url="https://mimocode.ai",
+                  offering="Coding agent with free tier", limits="TBD by scout",
+                  delisted={"on": TODAY, "reason": "the same project as MiMo Code"},
+                  duplicate_of="mimo-code")
+    return [holder, folded]
+
+
+def test_a_folded_row_is_not_a_second_line_in_the_archive():
+    """The Archive is what the list carried, one line per service. MiMo Code and
+    MiMoCode sat in it two lines apart for two months, and a reader counting
+    dead offers counted Xiaomi's agent twice."""
+    from freetier_radar.render import build_llms_txt, build_providers_index, build_site_context
+    entries = _mimo_rows()
+    assert [r["name"] for r in build_context(entries, TODAY)["archived"]] == ["MiMo Code"]
+    assert [r["name"] for r in build_site_context(entries, TODAY)["archived"]] == ["MiMo Code"]
+    assert "MiMoCode" not in build_llms_txt(entries, TODAY)
+    assert "MiMoCode" not in build_providers_index(entries, TODAY)
+
+
+def test_a_folded_rows_page_sends_the_reader_to_the_row_that_holds_the_service():
+    """Its id stays taken — the id is the page's URL — so the page stays, and
+    what it says is where the project is. What it must not do is publish the
+    claim that was never verified as though the list had carried it."""
+    from freetier_radar.render import build_provider_page, provider_page_url
+    holder, folded = _mimo_rows()
+    page = build_provider_page(folded, [], TODAY, registry=[holder, folded])
+    assert f"[MiMo Code]({provider_page_url('mimo-code')})" in page
+    assert "## What it offered" not in page and "TBD by scout" not in page
+    assert "Coding agent with free tier" not in page
+    assert "the same project as MiMo Code" in page
+
+
+def test_the_row_that_holds_the_service_names_the_id_folded_into_it():
+    """So nothing the list published disappears without a word: a reader who
+    followed the old link, or the old name, lands here and reads why."""
+    from freetier_radar.render import build_provider_page, provider_page_url
+    holder, folded = _mimo_rows()
+    page = build_provider_page(holder, [], TODAY, registry=[holder, folded])
+    assert f"[MiMoCode]({provider_page_url('mimocode')})" in page

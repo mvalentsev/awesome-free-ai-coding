@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-19",
+  "generated": "2026-09-20",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -3998,13 +3998,14 @@
       "last_verified": "2026-07-19",
       "delisted": {
         "on": "2026-07-19",
-        "reason": "a placeholder from the list's first day — \"Coding agent with free tier\", limits \"TBD by scout\" — with no page behind the claim, taken off the same day as unverifiable"
+        "reason": "the same project as MiMo Code, the name Xiaomi's own README prints — a placeholder from the list's first day at mimocode.ai, a domain that still publishes no site, taken off the same day as unverifiable and folded into that row on 2026-09-20"
       },
+      "duplicate_of": "mimo-code",
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
       "archived": true,
-      "archived_because": "delisted on 2026-07-19: a placeholder from the list's first day — \"Coding agent with free tier\", limits \"TBD by scout\" — with no page behind the claim, taken off the same day as unverifiable",
+      "archived_because": "delisted on 2026-07-19: the same project as MiMo Code, the name Xiaomi's own README prints — a placeholder from the list's first day at mimocode.ai, a domain that still publishes no site, taken off the same day as unverifiable and folded into that row on 2026-09-20",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimocode/"
     },
     {

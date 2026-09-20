@@ -504,3 +504,31 @@ def test_a_probe_that_follows_an_index_names_a_field_and_reads_a_page():
     d["probe"]["follow"] = {"field": "Data.TargetPrefix"}
     with pytest.raises(ValidationError, match="page-keywords"):
         Entry.model_validate(d)
+
+
+def test_a_row_folded_into_another_keeps_its_id_and_names_the_row_that_holds_it():
+    """Two rows named one project for two months: MiMoCode, a placeholder from
+    the list's first day at a domain that has never resolved, and MiMo Code,
+    Xiaomi's agent, whose own README prints the name as one word. A row is
+    never deleted, so the second one keeps its id — the id is its page's URL —
+    and `duplicate_of` names the row that holds the service. Folding is a
+    reviewer's decision, so the row carries the delisting that says why, and no
+    row is folded into itself."""
+    d = {**sample_entry(), "id": "mimocode", "duplicate_of": "mimo-code"}
+    with pytest.raises(ValidationError, match="delisted"):
+        Entry.model_validate(d)
+    d["delisted"] = {"on": date(2026, 7, 19), "reason": "the same project as MiMo Code"}
+    assert Entry.model_validate(d).duplicate_of == "mimo-code"
+    with pytest.raises(ValidationError, match="itself"):
+        Entry.model_validate({**d, "duplicate_of": "mimocode"})
+
+
+def test_folded_into_is_the_row_the_registry_holds_the_service_under():
+    from freetier_radar.models import folded_into
+    holder = Entry.model_validate({**sample_entry(), "id": "mimo-code", "name": "MiMo Code"})
+    folded = Entry.model_validate({
+        **sample_entry(), "id": "mimocode", "name": "MiMoCode", "duplicate_of": "mimo-code",
+        "delisted": {"on": date(2026, 7, 19), "reason": "the same project as MiMo Code"}})
+    assert folded_into([holder, folded], folded) is holder
+    assert folded_into([holder, folded], holder) is None
+    assert folded_into([folded], folded) is None

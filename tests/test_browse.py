@@ -32,10 +32,15 @@ def test_browse_page_reads_only_fields_index_json_publishes():
                 api={"base_url": "https://x.ai/v1", "auth": "api-key", "openai_compatible": True,
                      "key_url": "https://x.ai/keys", "model_ids": ["a"],
                      "anthropic_base_url": "https://x.ai", "note": "n", "public_key": "k"})
-    live, gone = build_index([full, make(id="gone", retired_on=TODAY)], TODAY)["entries"]
+    live, gone, folded = build_index(
+        [full, make(id="gone", retired_on=TODAY),
+         make(id="folded", url="https://folded.example", duplicate_of="gone",
+              delisted={"on": TODAY, "reason": "the same service as the row before it"})],
+        TODAY)["entries"]
     entry = live
     used = set(re.findall(r"\be\.([a-z_]+)\b", html))
-    assert used and used <= set(live) | set(gone), used - set(live) - set(gone)
+    published = set(live) | set(gone) | set(folded)
+    assert used and used <= published, used - published
     # an archived row says why it left instead of a date no probe earned
     assert "e.archived_because" in html
     api_used = set(re.findall(r"\be\.api\.([a-z_]+)\b", html))
@@ -54,3 +59,16 @@ def test_browse_page_filters_on_the_answers_a_reader_asks_for():
     for field in ("auth", "public_key", "openai_compatible", "anthropic_base_url", "base_url", "key_url"):
         assert f"e.api.{field}" in html
     assert "m.superseded_by" in html
+
+
+def test_browse_page_leaves_a_folded_row_to_the_row_that_holds_the_service():
+    """One service, one line — the same rule the README's Archive follows. A row
+    folded into another (`duplicate_of`) is published in index.json, so a
+    consumer can resolve the old id, and shown nowhere a reader counts offers."""
+    html = _html()
+    assert "e.duplicate_of" in html
+    folded = make(id="mimocode", name="MiMoCode", url="https://mimocode.ai",
+                  duplicate_of="mimo-code",
+                  delisted={"on": TODAY, "reason": "the same project as MiMo Code"})
+    row, = build_index([folded], TODAY)["entries"]
+    assert row["duplicate_of"] == "mimo-code"

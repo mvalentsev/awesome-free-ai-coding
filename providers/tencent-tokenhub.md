@@ -46,6 +46,6 @@ The free package page, updated 2026-09-04, gives each main account one grant whi
 
 ---
 
-Generated from `registry.yaml` on 2026-09-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

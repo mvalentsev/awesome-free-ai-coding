@@ -87,6 +87,41 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(f"registry: duplicate {field} {v!r}")
             seen.add(v)
 
+    # Two rows for one service. A row is never deleted, so the second one is
+    # folded instead: it keeps its id, which is its page's URL, and names the
+    # row that holds the offer, the evidence and the history. Pointed at an id
+    # the registry does not have, the fold sends a reader to a page that is not
+    # built; pointed at another fold, to a pointer.
+    held = {e.id: e for e in entries}
+    for e in entries:
+        if e.duplicate_of is None:
+            continue
+        target = held.get(e.duplicate_of)
+        if target is None:
+            problems.append(
+                f"registry: {e.id} is folded into {e.duplicate_of!r}, which the registry does "
+                f"not hold — duplicate_of names the row that keeps the service")
+        elif target.duplicate_of is not None:
+            problems.append(
+                f"registry: {e.id} is folded into {target.id}, itself folded into "
+                f"{target.duplicate_of} — duplicate_of names the row that keeps the service, "
+                f"not another pointer to it")
+
+    # And the way two rows for one service got here: MiMo Code and MiMoCode sat
+    # in the Archive two lines apart for two months — Xiaomi's agent, whose own
+    # README prints the name as one word, and a placeholder from the first day's
+    # seed at mimocode.ai, a domain that has never resolved. A spelling is not a
+    # service, and nothing compared the two names.
+    by_name: dict[str, Entry] = {}
+    for e in entries:
+        first = by_name.setdefault(re.sub(r"[^a-z0-9]", "", e.name.lower()), e)
+        if first is e or first.duplicate_of == e.id or e.duplicate_of == first.id:
+            continue
+        problems.append(
+            f"registry: {first.name!r} ({first.id}) and {e.name!r} ({e.id}) read as one name — if "
+            f"they are one service, fold one into the other with duplicate_of; if they are "
+            f"two, give them names a reader can tell apart")
+
     # One family, one tier. The scout assigns the tier per proposal and nothing
     # ever compared two rows, so the same model could be frontier on one vendor
     # and strong on the next — nemotron-3-ultra was, across four rows, until

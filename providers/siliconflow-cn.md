@@ -46,6 +46,6 @@ The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed
 
 ---
 
-Generated from `registry.yaml` on 2026-09-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

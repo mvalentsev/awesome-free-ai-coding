@@ -15,14 +15,16 @@ from .history import (Event, EventType, archive_reason, diff_state, load_history
                       refuse_deleted_rows, registry_state, replay)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_DAYS,
                      WATCH_RECHECK_DAYS, Category, Entry, Notice, ProbeType, Tier, Watched,
-                     domain_of, is_archived, is_archived_for_good, is_blocked, is_watch_current,
-                     live_families, load_blocklist, load_registry, load_watchlist)
+                     domain_of, folded_into, is_archived, is_archived_for_good, is_blocked,
+                     is_watch_current, live_families, load_blocklist, load_registry,
+                     load_watchlist)
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
            "is_archived", "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
-           "build_provider_page", "build_providers_index", "provider_page_url", "PAGES_URL",
+           "build_provider_page", "build_folded_page", "build_providers_index",
+           "provider_page_url", "PAGES_URL",
            "build_llms_txt",
            "picks",
            "SITE_PAGE", "build_site_context", "render_site",
@@ -205,6 +207,18 @@ def _departure(e: Entry) -> date:
     return e.retired_on or e.last_verified
 
 
+def _archive(entries: list[Entry], today: date) -> list[Entry]:
+    """The archived rows a reader is shown: one line per service.
+
+    A row folded into another (`duplicate_of`) named a service the Archive
+    already holds — MiMoCode and MiMo Code were Xiaomi's agent twice, two lines
+    apart, from the list's first day until 2026-09-20 — so it is left out of
+    every list that counts services. Nothing is lost by that: the row stays in
+    the registry, its page stays at its own URL pointing at the row that holds
+    the service, and that row names it back."""
+    return [e for e in entries if is_archived(e, today) and e.duplicate_of is None]
+
+
 def _archived_rows(entries: list[Entry], today: date) -> list[dict[str, str]]:
     """The Archive: each row's name linking its own page, and why it left.
 
@@ -214,7 +228,7 @@ def _archived_rows(entries: list[Entry], today: date) -> list[dict[str, str]]:
     that outlived the offers — and two of the rows had been added after that
     day. The page carries the evidence; a vendor link for a row that left is at
     best dead and at worst, for a row rejected for cause, a referral."""
-    gone = sorted((e for e in entries if is_archived(e, today)),
+    gone = sorted(_archive(entries, today),
                   key=lambda e: (_departure(e), e.name.lower()), reverse=True)
     return [{"name": e.name, "page": provider_page_url(e.id),
              "why": _fold(archive_reason(e, today), README_LIMITS_TEASER,
@@ -773,7 +787,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
 
 
 def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
-    gone = sorted((e for e in entries if is_archived(e, today)),
+    gone = sorted(_archive(entries, today),
                   key=lambda e: (_departure(e), e.name.lower()), reverse=True)
     return [{"name": e.name, "page": provider_page_url(e.id),
              "when": _departure(e).isoformat(), "why": _site_fold(archive_reason(e, today))}
@@ -954,7 +968,7 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
     hand it.
     """
     live = [e for e in entries if not is_archived(e, today)]
-    gone = sorted((e for e in entries if is_archived(e, today)), key=lambda e: e.name.lower())
+    gone = sorted(_archive(entries, today), key=lambda e: e.name.lower())
     lines = [
         "# awesome-free-ai-coding",
         "",
@@ -1251,7 +1265,66 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
     return out
 
 
-def build_provider_page(e: Entry, events: list[Event], today: date, blocked: bool = False) -> str:
+def _history_section(e: Entry, events: list[Event], today: date) -> list[str]:
+    """Every event this row has, newest first, and the one the next run will write.
+
+    history.jsonl is written by the probe run alone, so between a hand edit
+    and the next scheduled run the log still describes the row as it was:
+    Cline, back on the list on 2026-09-14, read "Delisted" as its newest
+    event under a header that said live. The line that run will write comes
+    from the same diff and heads the list without a date, since nothing has
+    recorded one yet — which also covers a row with no history at all.
+    """
+    out = ["", "## History", ""]
+    own = [ev for ev in events if ev.id == e.id]
+    stamp = datetime.combine(today, time(), tzinfo=timezone.utc)
+    for ev in diff_state(replay(own), registry_state([e], today), stamp):
+        out.append(f"- *next scheduled run* — {_event_text(ev, e)}")
+    for ev in reversed(own):
+        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev, e)}")
+    return out
+
+
+def build_folded_page(e: Entry, events: list[Event], today: date,
+                      holder: Entry | None) -> str:
+    """The page of a row folded into another: where the service is, and the
+    record of the name the list once used for it.
+
+    Two rows named Xiaomi's coding agent from the list's first day — `mimocode`,
+    a placeholder at a domain that publishes no site, and `mimo-code`, the row
+    with the README, the models and the shutdown date. A row is never deleted,
+    and this id is a published URL, so the page stays and says what it is. What
+    it does not do is repeat the offer, the limits or the evidence: one service
+    is described in one place, and a claim nothing ever verified is not
+    published a second time as though the list had stood behind it.
+    """
+    name = holder.name if holder else e.duplicate_of
+    page = provider_page_url(e.duplicate_of)
+    out = [_front_matter({"layout": "default",
+                          "title": f"{e.name}: the same project as {name}",
+                          "description": f"{e.name} and {name} are one project. The list carried "
+                                         f"it twice and now keeps one row: the free tier, the "
+                                         f"evidence and the history are on the {name} page.",
+                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/"}),
+           "{% raw %}", "", f"# {e.name}", "",
+           " · ".join([CATEGORY_TITLES[e.category],
+                       f"**folded into [{name}]({page})** — one project, one row",
+                       f"[back to the whole list]({PAGES_URL}/)"]),
+           "", f"## The same project as {name}", "",
+           f"This row was {archive_reason(e, today)}. The free tier it named, the evidence "
+           f"behind it and what became of it are on the [{name}]({page}) page — this id is kept "
+           f"because the list published it, and nothing the list published disappears without "
+           f"a word."]
+    out += _history_section(e, events, today)
+    out += ["", "---", "",
+            f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row any "
+            f"more — the list keeps one row per service; the full list, the Atom feed and the "
+            f"machinery are at <{REPO_URL}>.", "", "{% endraw %}", ""]
+    return "\n".join(out)
+
+
+def build_provider_page(e: Entry, events: list[Event], today: date, blocked: bool = False,
+                        registry: list[Entry] | None = None) -> str:
     """One page per row on the Pages site, in the row's own words.
 
     It exists for the reader who arrives with a question about one vendor and
@@ -1271,7 +1344,12 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     provisional flag, no claim that a probe re-reads a row none reads. On a
     blocklisted domain (`blocked`) it names the service as text and links
     nowhere near it: one of those pages plants instructions for AI agents.
+
+    A row folded into another is a page of its own kind, `build_folded_page`:
+    one service is described in one place, and this one points at it.
     """
+    if e.duplicate_of is not None:
+        return build_folded_page(e, events, today, folded_into(registry or [], e))
     archived = is_archived(e, today)
     verified = e.last_verified.isoformat()
     if archived:
@@ -1304,6 +1382,15 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         flags.append(live)
     site = f"`{domain_of(e.url)}`" if blocked else f"[{domain_of(e.url)}]({e.url})"
     out.append(" · ".join(flags) + f" · {site} · [back to the whole list]({PAGES_URL}/)")
+    # The name this service was also carried under, for the reader who arrives
+    # by the other one: a folded row keeps its page, and this is the page it
+    # points at.
+    folds = [o for o in (registry or []) if o.duplicate_of == e.id]
+    if folds:
+        names = ", ".join(f"[{o.name}]({provider_page_url(o.id)})" for o in folds)
+        which = "that row was" if len(folds) == 1 else "those rows were"
+        out += ["", f"Also carried as {names}, until {which} folded into this one — "
+                    f"one project, one row."]
     if e.api and e.api.notice and not archived:
         # Above the offer, not under Connect: a reader who arrives from a search
         # about this vendor should not have to scroll to find out the lane the
@@ -1324,19 +1411,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     if not archived:
         out += _connect_section(e)
     out += _evidence_section(e, blocked)
-    out += ["", "## History", ""]
-    own = [ev for ev in events if ev.id == e.id]
-    # history.jsonl is written by the probe run alone, so between a hand edit
-    # and the next scheduled run the log still describes the row as it was:
-    # Cline, back on the list on 2026-09-14, read "Delisted" as its newest
-    # event under a header that said live. The line that run will write comes
-    # from the same diff and heads the list without a date, since nothing has
-    # recorded one yet — which also covers a row with no history at all.
-    stamp = datetime.combine(today, time(), tzinfo=timezone.utc)
-    for ev in diff_state(replay(own), registry_state([e], today), stamp):
-        out.append(f"- *next scheduled run* — {_event_text(ev, e)}")
-    for ev in reversed(own):
-        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev, e)}")
+    out += _history_section(e, events, today)
     if not archived:
         standing = (f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
                     "twice a week")
@@ -1365,7 +1440,7 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
            f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
            "row is re-verified twice a week, and an archived one says why it left.", ""]
     live = [e for e in entries if not is_archived(e, today)]
-    archived = [e for e in entries if is_archived(e, today)]
+    archived = _archive(entries, today)
     out += ["| Provider | Section | Free models | Last verified |", "|---|---|---|---|"]
     for cat, title in CATEGORY_TITLES.items():
         for e in sorted((e for e in live if e.category is cat),
@@ -1506,8 +1581,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                                                   encoding="utf-8")
     for e in entries:
         blocked = is_blocked(domain_of(e.url), blocklist)
-        (providers / f"{e.id}.md").write_text(build_provider_page(e, history, today, blocked),
-                                              encoding="utf-8")
+        (providers / f"{e.id}.md").write_text(
+            build_provider_page(e, history, today, blocked, registry=entries), encoding="utf-8")
         wanted.add(f"{e.id}.md")
     (providers / "index.md").write_text(build_providers_index(entries, today), encoding="utf-8")
     for stale in providers.glob("*.md"):

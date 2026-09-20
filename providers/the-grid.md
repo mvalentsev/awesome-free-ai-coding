@@ -46,6 +46,6 @@ The quick start: "New accounts get a $25 signup credit (limited time), enough fo
 
 ---
 
-Generated from `registry.yaml` on 2026-09-19 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

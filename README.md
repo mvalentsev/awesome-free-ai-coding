@@ -276,7 +276,7 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 ## 📦 Archive
 
 <details>
-<summary>15 rows this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
+<summary>14 rows this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
 <br>
 
 | Tool | Why it left |
@@ -292,12 +292,11 @@ Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-
 | [DeepSeek Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/) | <sub>delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant</sub> |
 | [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/) | <sub>vendor-announced shutdown on 2026-07-26</sub> |
 | [Puter.js (free LLM API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/) | <sub>delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan</sub> |
-| [MiMoCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimocode/) | <sub>delisted on 2026-07-19: a placeholder from the list's first day — "Coding agent with free tier", limits "TBD by scout" — with no page behind the claim, taken off the same day as unverifiable</sub> |
 | [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) | <sub>delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)</sub> |
 | [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) | <sub>delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly</sub> |
 | [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | <sub>vendor-announced shutdown on 2026-06-16</sub> |
 
-<sub>A row leaves the list for this table and nowhere else: when its vendor's own shutdown date arrives, after 3 failed probes in a row, after 60 days without a passing probe, or when a reviewer takes it off — an offer that ended without notice, a row that no longer meets the rules, a service rejected for cause. A row its probe put here comes back the day it passes again. Each name links the row's own page, with what it offered and the evidence; a row is never deleted from `registry.yaml`, and `freetier-check` refuses a registry that has lost one.</sub>
+<sub>A row leaves the list for this table and nowhere else: when its vendor's own shutdown date arrives, after 3 failed probes in a row, after 60 days without a passing probe, or when a reviewer takes it off — an offer that ended without notice, a row that no longer meets the rules, a service rejected for cause. A row its probe put here comes back the day it passes again. Each name links the row's own page, with what it offered and the evidence; a row is never deleted from `registry.yaml`, and `freetier-check` refuses a registry that has lost one. Two rows that named one service are folded into one line, and the folded id keeps its own page, pointing here.</sub>
 
 </details>
 

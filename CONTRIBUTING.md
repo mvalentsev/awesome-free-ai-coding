@@ -129,6 +129,33 @@ without linking it. Its id stays taken, since the id is its page's URL: a vendor
 that comes back is restored by removing `delisted`, and the scout reports a
 proposal under an archived row's id instead of dropping it.
 
+### Two rows, one service
+
+A service the registry holds twice is folded, never deleted. The second row
+keeps its id, since the id is its page's URL, and names the row that holds the
+service:
+
+```yaml
+duplicate_of: mimo-code
+delisted:
+  on: 2026-07-19
+  reason: the same project as MiMo Code, the name Xiaomi's own README prints — …
+```
+
+That is a reviewer's reading of two rows rather than a probe result, so the row
+carries the `delisted` that says why. A folded row is then listed nowhere a
+reader counts services — not the Archive, the provider index, `llms.txt` or the
+filterable table — while `index.json` keeps it, with the field, so an old id
+still resolves. Its page stays at its own URL and points at the row that holds
+the service; that row names it back, so nothing the list published disappears
+without a word.
+
+`freetier-check` refuses a fold that names a row the registry does not hold or
+another fold, and reports two rows whose names read as one — MiMo Code and
+MiMoCode, Xiaomi's agent and a placeholder from the list's first day at a domain
+that publishes no site, sat in the Archive two lines apart from 2026-07-19 to
+2026-09-20, because nothing ever compared two names.
+
 Deleting a row is refused three times over: `freetier-check` fails on a registry
 missing an id `history.jsonl` has recorded, the probe run stops before it can
 record the deletion, and the render will not build the page without the row.

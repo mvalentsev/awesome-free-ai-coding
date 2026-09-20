@@ -121,8 +121,9 @@ def test_one_family_carries_one_tier(tmp_path: Path):
     measured = {"family": "nemotron-3-ultra", "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"}
     root = build(tmp_path, entries=[
         {**ENTRY, "models": [{**measured, "tier": "frontier"}]},
-        {**ENTRY, "id": "y", "url": "https://y.ai", "models": [{**measured, "tier": "strong"}]},
-        {**ENTRY, "id": "z", "url": "https://z.ai", "models": [measured]},
+        {**ENTRY, "id": "y", "name": "Y", "url": "https://y.ai",
+         "models": [{**measured, "tier": "strong"}]},
+        {**ENTRY, "id": "z", "name": "Z", "url": "https://z.ai", "models": [measured]},
     ])
     problems = check(root, TODAY)
     assert any("is frontier on x and strong on y — a family carries one tier" in p for p in problems)
@@ -130,7 +131,8 @@ def test_one_family_carries_one_tier(tmp_path: Path):
 
     agreeing = build(tmp_path, entries=[
         {**ENTRY, "models": [{**measured, "tier": "frontier"}]},
-        {**ENTRY, "id": "y", "url": "https://y.ai", "models": [{**measured, "tier": "frontier"}]},
+        {**ENTRY, "id": "y", "name": "Y", "url": "https://y.ai",
+         "models": [{**measured, "tier": "frontier"}]},
     ])
     assert check(agreeing, TODAY) == []
 
@@ -321,3 +323,37 @@ def test_a_tier_names_the_artificial_analysis_model_it_was_read_from(tmp_path: P
             "from Artificial Analysis, so name the model it was read from") in problems
     assert ("registry: family 'kimi-k3' is measured as kimi-k3 on y and kimi-k3-low on z — "
             "a family is one model") in problems
+
+
+def test_a_fold_names_a_row_the_registry_holds_and_never_another_fold(tmp_path: Path):
+    """`duplicate_of` is the pointer a reader follows from the id that was
+    published to the row that holds the service. Pointed at an id the registry
+    does not have, it sends them to a page that does not exist; pointed at
+    another fold, it sends them to a pointer."""
+    folded = {**ENTRY, "id": "mimocode", "name": "MiMoCode", "url": "https://mimocode.ai",
+              "duplicate_of": "mimo-code",
+              "delisted": {"on": "2026-07-19", "reason": "the same project as mimo code"}}
+    problems = check(build(tmp_path, entries=[ENTRY, folded]), TODAY)
+    assert any("mimocode" in p and "mimo-code" in p and "does not hold" in p for p in problems)
+
+    holder = {**ENTRY, "id": "mimo-code", "name": "MiMo Code", "url": "https://mimo.xiaomi.com/coder",
+              "duplicate_of": "x",
+              "delisted": {"on": "2026-07-19", "reason": "folded in turn"}}
+    problems = check(build(tmp_path, entries=[ENTRY, holder, folded]), TODAY)
+    assert any("mimocode" in p and "itself folded" in p for p in problems)
+
+
+def test_two_rows_under_one_name_are_one_service_or_two_names(tmp_path: Path):
+    """MiMo Code and MiMoCode sat in the Archive two lines apart for two
+    months, one project on two rows: Xiaomi's agent and a placeholder from the
+    first day's seed, at a domain that has never resolved. A spelling is not a
+    service, so two rows whose names differ only in spacing and punctuation are
+    reported until one is folded into the other — or renamed apart."""
+    holder = {**ENTRY, "id": "mimo-code", "name": "MiMo Code", "url": "https://mimo.xiaomi.com/coder"}
+    seed = {**ENTRY, "id": "mimocode", "name": "MiMoCode", "url": "https://mimocode.ai"}
+    problems = check(build(tmp_path, entries=[holder, seed]), TODAY)
+    assert any("MiMoCode" in p and "MiMo Code" in p and "duplicate_of" in p for p in problems)
+
+    folded = {**seed, "duplicate_of": "mimo-code",
+              "delisted": {"on": "2026-07-19", "reason": "the same project as mimo code"}}
+    assert check(build(tmp_path, entries=[holder, folded]), TODAY) == []

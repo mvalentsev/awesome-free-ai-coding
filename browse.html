@@ -189,6 +189,9 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     var q = els.q.value.trim().toLowerCase();
     var cat = els.cat.value;
     var shown = entries.filter(function (e) {
+      // One service, one line: a row folded into another named a service the
+      // table already has. index.json keeps it, so an old id still resolves.
+      if (e.duplicate_of) return false;
       if (e.archived && !els.archived.checked) return false;
       if (cat && e.category !== cat) return false;
       if (els.nocard.checked && e.card_required) return false;
