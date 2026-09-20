@@ -80,27 +80,54 @@ def test_rank_orders_rows_within_section():
     assert [r["name"] for r in section["rows"]] == ["Best", "Worst"]
 
 
-def test_a_long_limits_cell_folds_without_losing_a_character():
-    """`limits` carries the vendor's own figures and where they were read, which
-    is the value of the page and also 400 characters in the median row. Folding
-    the tail keeps the table scannable; dropping any of it would not."""
-    short = "20 requests per minute on any :free id, 50 per day."
-    long = ("1,000,000 free tokens per model, valid 90 days after activation. " * 6).strip()
+def test_the_readme_row_prints_what_you_get_whole_and_leaves_the_quota_to_the_row_page():
+    """The README is the landing page. On 2026-09-20 it was 161 KB, 83 KB of it
+    inside 93 <details> folds, and the median `limits` cell ran to 926
+    characters: sixteen desktop screens of tables, thirty-one on a phone with
+    the table scrolling sideways. A row on the README is one line — what the
+    offer is, the models, the date — and the quota in the vendor's words is on
+    the row's own page and the site, where a fold folds."""
+    long_offering = ("Open-source coding agent whose gateway prices a rotating set of "
+                     "models at zero — one, two, three, four, five and six of them — "
+                     "inside the tool only, no sign-in; any provider via BYOK, and a "
+                     "desktop app besides the terminal one")
+    assert len(long_offering) > 200
+    ctx = build_context([make(id="l", name="L", offering=long_offering,
+                              limits="1,000,000 free tokens per model, valid 90 days. " * 8)],
+                        TODAY)
+    row = next(r for s in ctx["sections"] for r in s["rows"])
+    assert row["offering"] == long_offering
+    assert "<details>" not in row["offering"]
+    assert "limits" not in row
+    assert row["page"] == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/l/"
 
-    ctx = build_context([make(id="s", name="S", limits=short),
-                         make(id="l", name="L", limits=long)], TODAY)
-    cells = {r["name"]: r["limits"]
-             for s in ctx["sections"] for r in s["rows"]}
 
-    assert cells["S"] == f"<sub>{short}</sub>"
-    assert "<details>" not in cells["S"]
+def test_the_list_is_one_line_per_row_with_no_fold_and_no_limits_column(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="l", name="L", limits="a quota figure, read on a date. " * 40)])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    listing = text.split("## 📋 The list")[1].split("## 📦 Archive")[0]
+    assert "| Tool | What you get | Free models | Last verified |" in listing
+    assert "| Limits |" not in listing and "a quota figure" not in listing
+    rows = [line for line in listing.splitlines() if line.startswith("| **[")]
+    assert rows and all("<details>" not in line for line in rows)
 
-    folded = cells["L"]
-    assert folded.startswith("<details><summary>") and folded.endswith("</details>")
-    assert long in folded                      # every character survives the fold
-    teaser = folded.split("<sub>")[1].split("</sub>")[0]
-    assert teaser.endswith(" …") and len(teaser) <= README_LIMITS_TEASER + 2
-    assert long.startswith(teaser[:-2])        # a cut on a word boundary, not a summary
+
+def test_the_readme_keeps_the_plug_it_in_heading_and_sends_the_reader_to_configs(tmp_path: Path):
+    """The heading stays — its anchor is what the nav and any link from outside
+    point at — and the connection table moved to configs/README.md, beside the
+    files it describes, so the README lists the files and nothing else."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import PAGES_URL
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [api_entry(id="groq-free", name="Groq")])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    plug = text.split("## 🔧 Plug it into your agent")[1].split("## 📡 How this list stays fresh")[0]
+    assert "[`configs/README.md`](configs/README.md)" in plug
+    assert "| Provider | Base URL |" not in plug and "https://api.x.ai/v1" not in plug
+    assert "[`llms.txt`](llms.txt)" in plug and "[`index.json`](index.json)" in plug
+    assert f"{PAGES_URL}/#plug" in plug
 
 
 def test_a_teaser_is_never_cut_inside_a_code_span():
@@ -109,16 +136,18 @@ def test_a_teaser_is_never_cut_inside_a_code_span():
     between them into code: `</sub></summary>` included. The fold then shows the
     whole cell with its tags printed as text. opencode's lane notice from
     2026-09-17 and its limits from 09-18 did that on the README, both cut inside
-    `403 FreeTierError: …`."""
+    `403 FreeTierError: …`. The README's rows fold nothing since 2026-09-21; the
+    connection notes beside the configs and the archive's reasons still do."""
     long = ("The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has "
             "answered every other client with `403 FreeTierError: OpenCode's free tier can "
             "only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer "
             "said the free tier is not for other harnesses. " * 2).strip()
     opens = "`" + " ".join(["an error string that runs on and on"] * 5) + "`" + ", then prose" * 30
 
-    ctx = build_context([make(id="l", name="L", limits=long),
-                         make(id="o", name="O", limits=opens)], TODAY)
-    cells = {r["name"]: r["limits"] for s in ctx["sections"] for r in s["rows"]}
+    ctx = build_context([make(id="l", name="L", api={"base_url": "https://l.example/v1", "note": long}),
+                         make(id="o", name="O", api={"base_url": "https://o.example/v1", "note": opens})],
+                        TODAY)
+    cells = {c["name"]: c["note"] for c in ctx["connections"]}
 
     teaser = cells["L"].split("<summary><sub>")[1].split("</sub></summary>")[0]
     assert teaser == ("The free ids work inside OpenCode and nowhere else. Since 2026-09-17 "
@@ -242,12 +271,15 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     stopped saying, until the next scheduled run happens to fix it. CI rendered
     to /tmp to prove rendering works and compared nothing."""
     from freetier_radar.models import save_registry
-    from freetier_radar.render import SITE_PAGE, check_rendered, render_site
+    from freetier_radar.render import (
+        CONFIGS_README, SITE_PAGE, check_rendered, render_configs_readme, render_site,
+    )
 
     reg = tmp_path / "registry.yaml"
-    save_registry(reg, [make(id="x", name="X"), make(id="gone", name="Gone")])
+    save_registry(reg, [api_entry(id="x", name="X"), make(id="gone", name="Gone")])
     render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     render_site(reg, Path("templates"), tmp_path / SITE_PAGE, today=TODAY)
+    render_configs_readme(reg, Path("templates"), tmp_path / CONFIGS_README, today=TODAY)
     render_artifacts(reg, tmp_path, today=TODAY)
     assert check_rendered(reg, Path("templates"), tmp_path) == []
 
@@ -256,16 +288,17 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     assert check_rendered(reg, Path("templates"), tmp_path, today=TODAY + timedelta(days=30)) == []
 
     # A row renamed in the registry and nowhere else.
-    save_registry(reg, [make(id="x", name="Renamed"), make(id="gone", name="Gone")])
+    save_registry(reg, [api_entry(id="x", name="Renamed"), make(id="gone", name="Gone")])
     stale = check_rendered(reg, Path("templates"), tmp_path)
     assert "README.md" in stale and "index.json" in stale and "providers/x.md" in stale
-    # The site's front page is generated and committed like the rest of them.
-    assert SITE_PAGE in stale
+    # The site's front page is generated and committed like the rest of them,
+    # and so is the connection table beside the configs.
+    assert SITE_PAGE in stale and CONFIGS_README in stale
 
     # A row dropped from the registry leaves its page behind, and the page is
     # served: the check has to see a file the render no longer makes, not only
     # the ones whose bytes moved.
-    save_registry(reg, [make(id="x", name="X")])
+    save_registry(reg, [api_entry(id="x", name="X")])
     assert "providers/gone.md" in check_rendered(reg, Path("templates"), tmp_path)
 
 
@@ -381,7 +414,7 @@ def test_the_quickstart_curl_sends_the_session_header_its_lane_asks_for(tmp_path
         "base_url": "https://zen.example/v1", "auth": "none", "model_ids": ["free-a"],
         "session_header": "x-zen-session"})])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("No account at all?")[1].split("Liked it?")[0]
+    quickstart = text.split("No account at all?")[1].split("## 📋 The list")[0]
     assert '  -H "x-zen-session: quickstart-$RANDOM$RANDOM" \\\n' in quickstart
     assert "curl -s https://zen.example/v1/chat/completions \\\n" in quickstart
     assert render_readme(reg, Path("templates"), tmp_path / "README2.md", today=TODAY) == text
@@ -398,7 +431,7 @@ def test_quickstart_note_reaches_the_page(tmp_path: Path):
                                   "model_ids": ["gpt-oss-120b"],
                                   "note": "2 requests per minute, per IP and per model"})])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("No account at all?")[1].split("Liked it?")[0]
+    quickstart = text.split("No account at all?")[1].split("## 📋 The list")[0]
     assert "2 requests per minute, per IP and per model" in quickstart
     # and it is framed as the demo it is, never as the way to work
     assert "not a setup to write code on" in quickstart
@@ -446,6 +479,7 @@ def test_context_connections():
     entries = [api_entry(id="groq-free", name="Groq"), make(id="plain")]
     ctx = build_context(entries, TODAY)
     assert ctx["connections"] == [{"name": "Groq", "base_url": "https://api.x.ai/v1",
+                                   "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/",
                                    "anthropic_base_url": "",
                                    "auth": "`GROQ_API_KEY`", "key_url": "https://x.ai/keys",
                                    "note": ""}]
@@ -901,7 +935,8 @@ def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_pat
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
     assert "**Claude Code on a free lane** | [GwOne](https://x.ai) · [GwNoIds](https://x.ai) |" in hero
-    plug = text.split("## 🔧 Plug it into your agent")[1]
+    from freetier_radar.render import CONFIGS_README, render_configs_readme
+    plug = render_configs_readme(reg, Path("templates"), tmp_path / CONFIGS_README, today=TODAY)
     assert "`https://one.example`" in plug and "claude-code.sh" in plug
     render_artifacts(reg, tmp_path, today=TODAY)
     assert "claude-gw-one()" in (tmp_path / "configs" / "claude-code.sh").read_text(encoding="utf-8")
@@ -1191,7 +1226,7 @@ def test_a_notice_on_the_quickstart_lane_is_a_warning_right_under_the_curl(tmp_p
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [_noticed()])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("No account at all?")[1].split("Liked it?")[0]
+    quickstart = text.split("No account at all?")[1].split("## 📋 The list")[0]
     after_curl = quickstart.split("```bash\n")[1].split("```\n", 1)[1]
     assert after_curl.startswith(
         "> [!WARNING]\n"
@@ -1374,3 +1409,49 @@ def test_the_row_that_holds_the_service_names_the_id_folded_into_it():
     holder, folded = _mimo_rows()
     page = build_provider_page(holder, [], TODAY, registry=[holder, folded])
     assert f"[MiMoCode]({provider_page_url('mimocode')})" in page
+
+
+def test_the_connection_table_is_a_readme_beside_the_configs(tmp_path: Path):
+    """Base URL, key name and the notes that matter, for every live
+    OpenAI-compatible API — the table the README carried as 34 KB of reference
+    for a reader who has already decided. GitHub renders a folder's README under
+    its file list, so it sits beside the four files it describes, and every
+    link in it is written from there."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import CONFIGS_README, PAGES_URL, render_configs_readme
+    assert CONFIGS_README == "configs/README.md"
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [api_entry(id="groq-free", name="Groq",
+                                  api={"base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",
+                                       "anthropic_base_url": "https://api.x.ai"}),
+                        make(id="plain", name="Plain")])
+    out = tmp_path / CONFIGS_README
+    text = render_configs_readme(reg, Path("templates"), out, today=TODAY)
+    assert out.read_text(encoding="utf-8") == text
+    assert "| Provider | Base URL | Key env var | Get a key |" in text
+    assert f"**[Groq]({PAGES_URL}/providers/groq-free/)**" in text
+    assert "`https://api.x.ai/v1`" in text and "Anthropic format: `https://api.x.ai`" in text
+    assert "`GROQ_API_KEY`" in text and "[key](https://x.ai/keys)" in text
+    assert "Plain" not in text
+    # written from configs/: the files beside it by name, the rest one level up
+    for link in ("[`opencode.json`](opencode.json)", "[`litellm.yaml`](litellm.yaml)",
+                 "[`claude-code.sh`](claude-code.sh)",
+                 "[`free-llm.env.example`](free-llm.env.example)",
+                 "[`../llms.txt`](../llms.txt)", "[`../index.json`](../index.json)",
+                 "(../README.md)", "(../registry.yaml)", f"{PAGES_URL}/#plug"):
+        assert link in text, link
+    assert "do not edit" in text.lower()
+
+
+def test_the_published_readme_stays_a_landing_page(tmp_path: Path):
+    """A visitor scrolls the README on GitHub; the site is where a row is read
+    whole. On 2026-09-20 the README ran to 161 KB and thirty-one desktop
+    screens, sixteen of them tables, and the file list above it was the first
+    thing on the page. The list grows a row at a time and a row is one line, so
+    the budget is what keeps the reference job from creeping back in."""
+    import json
+    from freetier_radar.render import README_BUDGET
+    pinned = date.fromisoformat(json.loads(Path("index.json").read_text(encoding="utf-8"))["generated"])
+    text = render_readme(Path("registry.yaml"), Path("templates"), tmp_path / "README.md",
+                         today=pinned)
+    assert len(text.encode("utf-8")) <= README_BUDGET

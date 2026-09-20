@@ -4,6 +4,8 @@ reason it exists: a vendor's sentence arrives as text and never as markup, the
 figures are the registry's own, and nothing on it was typed by hand."""
 import json
 import re
+
+import yaml
 from datetime import date
 from pathlib import Path
 
@@ -187,3 +189,13 @@ def test_the_committed_page_is_what_the_committed_registry_renders(tmp_path):
         (root / "index.json").read_text(encoding="utf-8"))["generated"])
     fresh = render_site(root / "registry.yaml", TEMPLATES, tmp_path / SITE_PAGE, today=generated)
     assert fresh == committed
+
+
+def test_jekyll_leaves_every_markdown_written_for_github_off_the_site():
+    """kramdown does not read Markdown inside a block-level <div>, does not know
+    GitHub's alert syntax and escapes a <summary> it meets inside a table cell:
+    the root README was served half-rendered until _config.yml excluded it, and
+    configs/README.md is written for GitHub's renderer the same way."""
+    config = yaml.safe_load((TEMPLATES.parent / "_config.yml").read_text(encoding="utf-8"))
+    assert "README.md" in config["exclude"]
+    assert "configs/README.md" in config["exclude"]

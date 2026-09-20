@@ -28,6 +28,7 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED
            "build_llms_txt",
            "picks",
            "SITE_PAGE", "build_site_context", "render_site",
+           "CONFIGS_README", "README_BUDGET", "render_configs_readme",
            "render_readme", "render_artifacts", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
@@ -54,11 +55,27 @@ FEED_ENTRIES = 50
 README_CHANGES = 10
 # Where a prose cell stops showing and starts folding. The teaser is a cut at a
 # word boundary, so the gap between the two is what keeps a row from folding away
-# a line and a half of text to save half a line.
+# a line and a half of text to save half a line. The README's own rows no longer
+# fold anything: `limits` left the page for the row's own page and the site on
+# 2026-09-21, and `offering` prints whole. The archive's reasons and the
+# connection notes still fold at these marks.
 README_LIMITS_TEASER = 150
 README_LIMITS_COLLAPSE = 260
-README_OFFERING_TEASER = 130
-README_OFFERING_COLLAPSE = 200
+# The README is the landing page and the site is the reference. On 2026-09-20
+# the README ran to 161 KB — 83 KB of it inside 93 <details> folds, the median
+# `limits` cell 926 characters — which was thirty-one desktop screens and
+# fifty-one on a phone, sixteen and thirty-one of them tables. A row is one line
+# now — 54 KB with 77 rows on 2026-09-21, about 400 bytes a row — so the page
+# grows a line per row, and the budget is what keeps the reference job from
+# creeping back: sixty rows of headroom, and less than the connection table
+# alone (38 KB) or the limits column (83 KB) would put back. A test renders the
+# committed registry against it.
+README_BUDGET = 80_000
+# The connection table lives beside the files it describes. GitHub renders a
+# folder's README under its file list, so a reader who opens configs/ for the
+# opencode config finds the base URLs and key names on the same screen.
+CONFIGS_README = "configs/README.md"
+CONFIGS_TEMPLATE = "configs-README.md.j2"
 # A code span as CommonMark reads one: a run of backticks, closed only by a run
 # of the same length.
 _CODE_SPAN = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.S)
@@ -179,9 +196,10 @@ def _row(e: Entry) -> dict[str, str]:
         "name": e.name,
         "url": e.url,
         "page": provider_page_url(e.id),
-        "offering": _fold(e.offering, README_OFFERING_TEASER, README_OFFERING_COLLAPSE),
-        "limits": (_fold(e.limits, README_LIMITS_TEASER, README_LIMITS_COLLAPSE, small=True)
-                   if e.limits else "<sub>—</sub>"),
+        # Whole, never folded: freetier-check holds it to 300 characters, and the
+        # README's row is this sentence, the models and the date. The quota is on
+        # the row's page, one click from the date.
+        "offering": e.offering,
         # The one column that was 39 identical ticks out of 41 rows. What a
         # reader needs from it is the exception, and an exception is easier to
         # see beside the name than in a column of agreement — the section
@@ -593,6 +611,7 @@ def build_context(entries: list[Entry], today: date,
     connectable = _connectable(entries, today)
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
+         "page": provider_page_url(e.id),
          "anthropic_base_url": e.api.anthropic_base_url or "",
          "auth": _auth_cell(e),
          "key_url": e.api.key_url or "",
@@ -1512,9 +1531,10 @@ def _history_beside(registry_path: Path) -> list[Event]:
     return load_history(registry_path.parent / "history.jsonl")
 
 
-def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
-                  today: date | None = None, watchlist_path: Path | None = None) -> str:
-    today = today or date.today()
+def _markdown_env(template_dir: Path) -> Environment:
+    """The environment of the pages GitHub renders: no autoescaping, because
+    every cell is Markdown the template composes from the registry, and a key
+    the context lacks is a render error rather than an empty cell."""
     env = Environment(
         loader=FileSystemLoader(template_dir),
         undefined=StrictUndefined,
@@ -1522,12 +1542,49 @@ def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
         trim_blocks=True,
         lstrip_blocks=True,
     )
+    # The quickstart's caveat is the lane's own api note, and Kilo's ran to 600
+    # characters under the curl. The site prints the note whole in a paragraph
+    # of its own; the README folds it like the connection notes, and keeps the
+    # sentence in the context so the two pages read the same registry field.
+    env.filters["fold_note"] = lambda text: _fold(text, README_NOTE_TEASER,
+                                                  README_NOTE_COLLAPSE, small=True)
+    return env
+
+
+def _github_page_context(registry_path: Path, today: date,
+                         watchlist_path: Path | None) -> dict:
     entries, history = load_registry(registry_path), _history_beside(registry_path)
     # The page is where a deleted row would quietly disappear from.
     refuse_deleted_rows(entries, history)
-    context = build_context(entries, today, _watchlist_beside(registry_path, watchlist_path),
-                            history)
-    text = env.get_template("README.md.j2").render(**context)
+    return build_context(entries, today, _watchlist_beside(registry_path, watchlist_path),
+                         history)
+
+
+def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
+                  today: date | None = None, watchlist_path: Path | None = None) -> str:
+    today = today or date.today()
+    context = _github_page_context(registry_path, today, watchlist_path)
+    text = _markdown_env(template_dir).get_template("README.md.j2").render(**context)
+    out_path.write_text(text, encoding="utf-8")
+    return text
+
+
+def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Path,
+                          today: date | None = None, watchlist_path: Path | None = None) -> str:
+    """configs/README.md — the connection table, beside the files it describes.
+
+    Base URL, key name and the notes that matter for every live OpenAI-compatible
+    API: 34 KB of the README's 161 on 2026-09-20, read by someone who has already
+    decided, while the README's job is the visitor who has not. GitHub renders a
+    folder's README under its file list, so the table now sits next to the four
+    configs generated from the same rows, and every link in it is written from
+    there. It is rendered from the README's own context, so the two pages cannot
+    disagree about a lane, and checked and committed like everything else.
+    """
+    today = today or date.today()
+    context = _github_page_context(registry_path, today, watchlist_path)
+    text = _markdown_env(template_dir).get_template(CONFIGS_TEMPLATE).render(**context)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(text, encoding="utf-8")
     return text
 
@@ -1640,12 +1697,12 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     """Paths under `root` the registry no longer renders to what is committed.
 
     Every published file here is generated and every one of them is committed:
-    the README, index.json, the feed, llms.txt, the four configs and a page per
-    row. The workflow renders after it probes, so a scheduled run heals a
-    forgotten render within three days — and for those three days the page, the
-    JSON an LLM reads and the config a reader pastes all advertise a registry
-    that has moved on. CI rendered to /tmp, which proved the templates parse
-    and compared nothing.
+    the README, the site's front page, index.json, the feed, llms.txt, the four
+    configs and the README beside them, and a page per row. The workflow
+    renders after it probes, so a scheduled run heals a forgotten render within
+    three days — and for those three days the page, the JSON an LLM reads and
+    the config a reader pastes all advertise a registry that has moved on. CI
+    rendered to /tmp, which proved the templates parse and compared nothing.
     """
     today = today or date.today()
     with tempfile.TemporaryDirectory() as tmp_name:
@@ -1658,6 +1715,8 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
                       watchlist_path=watchlist_path)
         render_site(registry_path, template_dir, tmp / SITE_PAGE, today=pinned,
                     watchlist_path=watchlist_path)
+        render_configs_readme(registry_path, template_dir, tmp / CONFIGS_README, today=pinned,
+                              watchlist_path=watchlist_path)
         render_artifacts(registry_path, tmp, today=pinned, watchlist_path=watchlist_path)
         fresh = {p.relative_to(tmp).as_posix(): p.read_bytes()
                  for p in tmp.rglob("*") if p.is_file()}
@@ -1688,8 +1747,8 @@ def main() -> None:
                                watchlist_path=args.watchlist)
         for rel in stale:
             print(f"stale: {rel}")
-        print(f"checked {args.out}, {SITE_PAGE}, index.json, feed.xml, llms.txt, configs/, "
-              f"{PROVIDERS_DIR}/ — {len(stale)} out of date")
+        print(f"checked {args.out}, {SITE_PAGE}, {CONFIGS_README}, index.json, feed.xml, "
+              f"llms.txt, configs/, {PROVIDERS_DIR}/ — {len(stale)} out of date")
         if stale:
             # The remedy is one command and it is the same one every time, so
             # the failure says it rather than leaving a contributor to find it
@@ -1699,6 +1758,8 @@ def main() -> None:
         return
     render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
     render_site(args.registry, args.templates, root / SITE_PAGE, watchlist_path=args.watchlist)
+    render_configs_readme(args.registry, args.templates, root / CONFIGS_README,
+                          watchlist_path=args.watchlist)
     render_artifacts(args.registry, root, watchlist_path=args.watchlist)
-    print(f"rendered {args.out}, {SITE_PAGE}, index.json, feed.xml, llms.txt, configs/, "
-          f"{PROVIDERS_DIR}/")
+    print(f"rendered {args.out}, {SITE_PAGE}, {CONFIGS_README}, index.json, feed.xml, llms.txt, "
+          f"configs/, {PROVIDERS_DIR}/")

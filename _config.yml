@@ -18,6 +18,10 @@ plugins:
 exclude:
   # Served as index.html instead — see the note at the top of this file.
   - README.md
+  # Written for GitHub's renderer like the root README: the connection table,
+  # rendered under configs/ on GitHub, would arrive here with every folded note
+  # unfolded. The site carries the same table on its own page.
+  - configs/README.md
   - src
   - tests
   - templates

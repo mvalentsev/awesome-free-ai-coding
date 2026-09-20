@@ -375,6 +375,16 @@ News, GitHub search, curated feeds, and a digest of every models.dev provider th
 publishes a zero-cost model → LLM extraction → live probe gate) proposes new entries
 via pull request. Humans review the PR; robots do everything else.
 
+The README is the landing page, and the site is the reference. A visitor scrolls
+the README on GitHub, under the file list, so it carries the hero, the picks, the
+quickstart and one line per live row — the name, `offering`, the models and the
+date — and folds nothing in its tables; the quota in the vendor's words is on the
+row's own page and on `index.html`, one click from the date. On 2026-09-20 it had
+grown to 161 KB, 83 KB of it inside folded cells, thirty-one desktop screens and
+fifty-one on a phone. `README_BUDGET` in `render.py` is the ceiling, and a test
+renders the committed registry against it, so the reference job cannot creep back
+a column at a time.
+
 `providers/` is generated with it: one page per row on the GitHub Pages site,
 in the row's own words, with the evidence the probe reads and the row's history,
 plus an index — the "Last verified" date of a live README row links to it, and
@@ -395,6 +405,16 @@ hero arrived as literal `[![badge](…)]` text and every folded cell as a wall o
 prose. The README keeps its GitHub features, the site gets HTML, and
 `freetier-render --check` holds both to the same registry. `_config.yml` leaves
 `README.md` out of the site for the same reason.
+
+[`configs/README.md`](configs/README.md) is generated with them, from
+[`templates/configs-README.md.j2`](templates/configs-README.md.j2) and the README's
+own context: the connection table — base URL, key env var, the note that matters,
+the Anthropic-format route where the vendor documents one — for every live
+OpenAI-compatible API, beside the four config files it describes. GitHub renders a
+folder's README under its file list, which is where a reader who came for
+`opencode.json` finds the base URLs. It is written for GitHub's renderer like the
+root README, so `_config.yml` leaves it off the site too; the site's own copy of the
+table is on `index.html`. **Never edit it by hand.**
 
 `llms.txt` is generated with them — the whole list as one text file, in the
 shape LLM search and agents read — and `browse.html` is a hand-written static
@@ -445,7 +465,7 @@ submissions, and a post there is a person's decision every time.
 uv sync
 uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
-uv run freetier-render            # regenerate README.md + index.json + feed.xml + llms.txt + configs/ + providers/
+uv run freetier-render            # regenerate README.md + index.html + configs/README.md + index.json + feed.xml + llms.txt + configs/ + providers/
 uv run freetier-check             # validate the curated files against each other
 uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
@@ -458,7 +478,9 @@ decide something. What changed and when belongs to `history.jsonl` and the commi
 log, not to the row: by 2026-09-16 the median `limits` had grown from 87
 characters to 813, most of it dated lane counts, and the README to 260 KB.
 `freetier-check` holds `offering` to 300 characters, `limits` to 1,200 and
-`api.note` to 600.
+`api.note` to 600. The README prints none of `limits`: since 2026-09-21 a row on it
+is `offering`, the models and the date, and the quota is on the row's own page and
+the site, one click from the date.
 
 **A phrase in quotation marks is a claim that the vendor published those words.**
 `freetier-quotes` fetches a row's `source_urls`, its probe endpoint and its
@@ -489,7 +511,8 @@ Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI run
 it on every push and pull request, together with `freetier-check` and
 `freetier-render --check`. The second one re-renders everything and compares it
 with what is committed, so an edit to `registry.yaml` that never reached
-`README.md`, `index.json`, the configs or the provider pages is a red run and
+`README.md`, `index.html`, `configs/README.md`, `index.json`, the configs or the
+provider pages is a red run and
 not a page that quietly disagrees with the registry for three days until the
 next scheduled run heals it. It pins the comparison to the date the committed
 `index.json` carries, so an untouched repository does not go red on the

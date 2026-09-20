@@ -13,23 +13,15 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-### **[🌐 Read this list as a website →]({{ pages_url }}/)**
-
-<sub>The same rows, rendered for a browser: folded cells that fold, a filter box, dark mode, and a page of its own for every provider.</sub>
-
-**[🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔎 Filter the list]({{ pages_url }}/browse.html) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
-
-</div>
-
-> **Every row on this page is machine-verified.** Legal free tiers, trials and free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages; dead offers drop to the [Archive](#-archive) automatically.
-
-<div align="center">
+**[🌐 Website]({{ pages_url }}/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 | **{{ active_count }}** | **{{ no_card_count }}** | **{{ no_signup_count }}** | **{{ endpoint_count }}** | **{{ model_index | length }}** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
 </div>
+
+> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) on the run that finds it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website]({{ pages_url }}/) has every row with a filter box and dark mode.
 
 ## 🚀 Start here
 
@@ -41,11 +33,11 @@
 {% for s in starters %}| **[{{ s.name }}]({{ s.url }})** | {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %} |
 {% endfor %}
 
-<sub>Every model name above is read back from the vendor's own API or pricing page twice a week, and the quota that comes with it is in the [table below](#-coding-agents--clis).</sub>
+<sub>Every model name above is read back from the vendor's own API or pricing page twice a week; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>
 
 {% endif %}
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
-**Or pick by what you need.** Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the same run it leaves the list:
+**Or pick by what you need:**
 
 | I want… | Start with |
 |---|---|
@@ -57,7 +49,7 @@
 {% endif %}{% if picks.claude_code %}| **Claude Code on a free lane** | {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
 {% endif %}
 
-<sub>"Frontier" is a tier measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within 10 points of its top, re-read twice a week — and every other answer is the section's own ranking, [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route and whose route answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
+<sub>Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the run it leaves the list. "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within 10 points of its top, re-read twice a week — and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route that answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
 
 {% endif %}
 {% if quickstart %}
@@ -80,24 +72,24 @@ curl -s {{ quickstart.base_url }}/chat/completions \
 
 {% endif %}
 {% if quickstart.note %}
-<sub>{{ quickstart.note }}</sub>
+{{ quickstart.note | fold_note }}
 {% endif %}
 
 {% endif %}
-Liked it? **[Wire every provider below into your agent ↓](#-plug-it-into-your-agent)** — the configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and plain OpenAI SDKs are generated from the same registry and regenerated on every update.
+**Ready to wire one in?** Base URL and key name for every API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and [Claude Code](https://code.claude.com/docs) — all generated from the same registry and regenerated on every update.
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links to the row's own page with the evidence and its history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
 {% if s.rows %}
 <sub>**{{ s.count }}** live · {% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %} · sorted by how much work you can get done for free</sub>
 
-| Tool | What you get | Free models | Limits | Last verified |
-|---|---|---|---|---|
-{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | {{ r.limits }} | [`{{ r.verified }}`]({{ r.page }}) |
+| Tool | What you get | Free models | Last verified |
+|---|---|---|---|
+{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | [`{{ r.verified }}`]({{ r.page }}) |
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}
@@ -157,27 +149,16 @@ _Empty — the radar is clean._
 
 ## 🔧 Plug it into your agent
 
-Connection details for every live OpenAI-compatible API above — paste the base URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK. Where a second URL is shown, the same key also serves the Anthropic Messages format: that one is Claude Code's `ANTHROPIC_BASE_URL`, and the probe checks it answers.
-
-| Provider | Base URL | Key env var | Get a key |
-|---|---|---|---|
-{% for c in connections %}| **{{ c.name }}**{% if c.note %}<br>{{ c.note }}{% endif %} | `{{ c.base_url }}`{% if c.anthropic_base_url %}<br><sub>Anthropic format: `{{ c.anthropic_base_url }}`</sub>{% endif %} | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% else %}not needed{% endif %} |
-{% endfor %}
-
-Ready-made artifacts, regenerated on every update:
+Base URL, key name and the notes that matter for every live OpenAI-compatible API on this page — {{ endpoint_count }} today, with Claude Code's Anthropic-format route wherever the vendor documents one — are in **[`configs/README.md`](configs/README.md)**, beside the files it describes; the same table with copy buttons is on [the website]({{ pages_url }}/#plug). Ready-made, regenerated on every update:
 
 | File | What it gives you |
 |---|---|
-| [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately; a lane that wants a session header per conversation is left out of both generated configs, and its row in the table above names the header |
+| [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
+| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint |
+| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
-| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and `claude-openrouter-free` runs [Claude Code](https://code.claude.com/docs) on that lane, key and model filled in |
-| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config: `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint — without `--host` the proxy listens on every interface, and the file sets no master key |
-| [`llms.txt`](llms.txt) | The whole list as one text file for LLM search and agents — every live offer with its page, what it needs (card, key) and where it answers — [served on the site]({{ pages_url }}/llms.txt) |
-| [the website]({{ pages_url }}/) | This page as a web page — rendered from the same registry on the same run, with the folds working, a filter box and a link to every provider's page |
-| [`browse.html`]({{ pages_url }}/browse.html) | The list as a filterable table — category, no card, no key, OpenAI-compatible, Claude Code route, frontier models — reading `index.json` in the browser |
-| [`index.json`](index.json) | Machine-readable registry: `curl -s https://raw.githubusercontent.com/mvalentsev/awesome-free-ai-coding/main/index.json \| jq '.entries[].id'` |
-| [`history.jsonl`](history.jsonl) · [feed]({{ feed_url }}) | Append-only log of every change to this list — one JSON object per line, and the same thing as an Atom feed your reader can subscribe to |
-| [provider pages]({{ pages_url }}/providers/) | One page per row — the free tier in the vendor's own words, the connection details, the evidence the probe reads and the row's history — regenerated with this README |
+| [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed]({{ feed_url }}) | The list for machines — one text file for LLM search and agents, the JSON registry, and an Atom feed of every change |
+| [`browse.html`]({{ pages_url }}/browse.html) · [provider pages]({{ pages_url }}/providers/) | The list as a filterable table, and one page per row — the offer in the vendor's own words, the connection details, the evidence and the history |
 
 ## 📡 How this list stays fresh
 
@@ -204,15 +185,11 @@ flowchart LR
     class R store
 ```
 
-- **Live probes, twice a week.** GitHub Actions hits every entry's public models API or pricing page and re-verifies the free offer. `Verified` dates are earned by passing a probe, never typed by hand.
-- **Anchored on the offer, not on the word "free".** Each probe anchors on something that dies with the offer — the free model's id, its quota figure, its price row, or a sentence quoted from the vendor's own page. The word "free" survives on a vendor's page for months after the free tier does not, and so do "hobby" and "monthly credits"; validation rejects all of them. Where a gateway publishes prices, the probe also demands that the free model still costs zero — an id can stay in the catalog long after it stops being free. Where this page says a lane needs no key, the probe calls it without one, so the command above is exercised on every run rather than inferred from a catalog. And a bot wall answering in place of a vendor's page counts as "could not check", never as "the offer is gone".
-- **Web-evidence scout.** A discovery layer sweeps Tavily search, Hacker News, GitHub, curated feeds and a digest of every models.dev provider publishing a zero-cost model; an LLM extracts candidates strictly from fetched page evidence — it has no authority to invent anything.
-- **Probe-gated proposals.** Every candidate must pass its own live probe before it is even proposed, and lands only through a reviewable pull request. The LLM never writes to this README or to `main`.
-- **Self-pruning.** Entries that keep failing probes or stay unverified for 60+ days move to the Archive automatically, as does any entry whose vendor has announced a shutdown date once that day arrives, and an entry a reviewer takes off goes there too, with the reason — no row leaves the list any other way. A newer model generation never archives a row — it just means the row's model list needs a bump, and one a reviewer has already declined is recorded in [`dismissed.yaml`](dismissed.yaml) instead of being proposed again. Rejected-for-cause domains live in [`blocklist.yaml`](blocklist.yaml).
-- **A "no" that expires.** Most services checked here are neither listed nor rejected: they are legitimate and simply have nothing free today. Those go to [`watchlist.yaml`](watchlist.yaml) with the date and the reason, which stops the scout re-proposing them and stops a reviewer re-deriving the same answer — and then stops suppressing anything after {{ watch_recheck_days }} days, so the question comes back around instead of hardening into a verdict nobody revisits. Every one of them is on [a page of its own]({{ checked_url }}), with what would change the answer.
-- **The lists it reads, and the lists it read once.** Discovery draws on a handful of curated lists, and most lists offered to it turn out to carry nothing this registry can use — which costs a full read to find out, every time the link comes round again. Those verdicts go to [`sources.yaml`](sources.yaml) with the date, the overlap actually measured and what would change the answer, and they expire after {{ source_recheck_days }} days, so a directory that grows into a feed is still noticed without re-reading every list each quarter.
-- **Nothing changes silently.** Every arrival, archival, delisting and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed]({{ feed_url }}) — the log is compared against the list itself rather than against the previous run, so an entry that goes stale without a single field changing is still reported.
-- **Zero-secret resilient.** The scout's LLM chain falls back across providers down to a keyless anonymous endpoint, so the pipeline keeps running even with no API keys configured.
+- **Live probes, twice a week.** GitHub Actions calls every row's models API or reads its pricing page and re-verifies the offer; a `Last verified` date is earned by passing, never typed. A probe anchors on something that dies with the offer — a model id, a quota figure, a price row, a sentence quoted from the vendor's own page — never on the word "free", which outlives most free tiers; where a lane needs no key, the probe calls it without one, and a bot wall answering for a vendor counts as "could not check", never as "gone".
+- **Probe-gated discovery.** A scout sweeps Tavily search, Hacker News, GitHub, curated feeds and every models.dev provider that publishes a zero-cost model; an LLM extracts candidates strictly from fetched evidence, and a candidate lands only through a pull request, after passing its own live probe. The LLM never writes to this README or to `main`.
+- **Self-pruning, never silent.** {{ archive_after_failures }} failed probes in a row, {{ archive_after_days }} days without a passing one, a vendor's announced shutdown date or a reviewer's delisting move a row to the [Archive](#-archive) with the reason — and no row is ever deleted. Every arrival, departure and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed]({{ feed_url }}). Services checked and found to have nothing free today are on [a page of their own]({{ checked_url }}), each verdict expiring after {{ watch_recheck_days }} days so the question comes back around.
+
+The whole mechanism, file by file — the scout's sources and their expiry, the blocklist's rules, what a row's prose may say — is in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 🤝 Contributing
 
