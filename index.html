@@ -986,25 +986,6 @@ Tencent Cloud&#39;s model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 amon
           </tr>
           <tr>
             <th class="who" scope="row">
-              <a class="name" href="https://pollinations.ai">Pollinations.AI</a>
-              <div class="tags">
-<span class="tag nokey">no key</span>              </div>
-            </th>
-            <td class="what" data-label="What you get">
-Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)            </td>
-            <td class="models" data-label="Free models">
-              <div class="chips">
-<span class="chip">gpt-oss</span>              </div>
-            </td>
-            <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model and tags it with the tier it belongs to — &#34;openai-fast&#34;, described …</summary><span class="full">Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model and tags it with the tier it belongs to — &#34;openai-fast&#34;, described as &#34;GPT-OSS 20B Reasoning LLM (OVH)&#34;, tier &#34;anonymous&#34;, aliased to openai / gpt-oss / gpt-oss-20b. The documented free registration that lifts the rate to 1 req/5s is unreachable — its host stopped resolving on 2026-08-14</span></details>
-            </td>
-            <td class="when" data-label="Verified">
-              <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/"><time datetime="2026-09-21">2026-09-21</time></a>
-            </td>
-          </tr>
-          <tr>
-            <th class="who" scope="row">
               <a class="name" href="https://freeinference.org">FreeInference (Harvard SEAS)</a>
               <div class="tags">
 <span class="tag">Claude Code</span>              </div>
@@ -1107,6 +1088,25 @@ IBM&#39;s watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foun
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"><time datetime="2026-09-21">2026-09-21</time></a>
+            </td>
+          </tr>
+          <tr>
+            <th class="who" scope="row">
+              <a class="name" href="https://pollinations.ai">Pollinations.AI</a>
+              <div class="tags">
+<span class="tag nokey">no key</span>              </div>
+            </th>
+            <td class="what" data-label="What you get">
+Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B            </td>
+            <td class="models" data-label="Free models">
+              <div class="chips">
+<span class="chip">gpt-oss</span>              </div>
+            </td>
+            <td class="limits" data-label="Limits, in the vendor's words">
+                <details><summary>The keyless catalog publishes exactly one model and tags it with the tier it belongs to — &#34;openai-fast&#34;, described as &#34;GPT-OSS 20B Reasoning LLM …</summary><span class="full">The keyless catalog publishes exactly one model and tags it with the tier it belongs to — &#34;openai-fast&#34;, described as &#34;GPT-OSS 20B Reasoning LLM (OVH)&#34;, tier &#34;anonymous&#34;, aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-09-21. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor&#39;s working branch describe gen.pollinations.ai alone — &#34;Get an API key&#34; at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate</span></details>
+            </td>
+            <td class="when" data-label="Verified">
+              <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/"><time datetime="2026-09-21">2026-09-21</time></a>
             </td>
           </tr>
           <tr>
@@ -2718,7 +2718,8 @@ the ids are instruments from the keyless catalog at api.thegrid.ai/v1/models, wh
 <code>AGNES_AI_API_KEY</code>
 <div class="sub" style="margin-top:6px"><a href="https://platform.agnes-ai.com">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
-the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM            </td>
+                <details><summary>the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and …</summary><span class="full">the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM. Agnes AI&#39;s China station (agnes-ai.cn) prices the same two Flash models at ¥0 (当前均免费, all currently free) and serves them from api.agnes-ai.cn/v1</span></details>
+            </td>
           </tr>
           <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/">Dahl Inference</a></th>
@@ -2815,20 +2816,6 @@ ids are the keyless model list&#39;s at www.hpc-ai.com/api/maas/v1/models, 2026-
 <div class="sub" style="margin-top:6px"><a href="https://platform.inceptionlabs.ai">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
                 <details><summary>mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids /v1/models lists; mercury-edit-2 answers /v1/fim/completions and …</summary><span class="full">mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids /v1/models lists; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions instead and is absent from that catalog by design, so an OpenAI-shaped chat client cannot call it — point an autocomplete plugin at it, not a chat agent</span></details>
-            </td>
-          </tr>
-          <tr>
-            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/">Pollinations.AI</a></th>
-            <td class="what" data-label="Base URL">
-              <code>https://text.pollinations.ai/openai</code>
-              <button class="copy" type="button" data-copy="https://text.pollinations.ai/openai" hidden
-                      style="position:static;margin-left:6px">Copy</button>
-            </td>
-            <td class="models" data-label="Key">
-<span class="tag nokey">none — the lane is anonymous</span>
-            </td>
-            <td class="limits" data-label="Notes">
-                <details><summary>anonymous works and needs no key. The optional token that raises the rate limit has no working signup — auth.pollinations.ai, the host the vendor&#39;s …</summary><span class="full">anonymous works and needs no key. The optional token that raises the rate limit has no working signup — auth.pollinations.ai, the host the vendor&#39;s own APIDOCS still sends you to, stopped resolving (NXDOMAIN from both Cloudflare and Google resolvers, 2026-08-14)</span></details>
             </td>
           </tr>
           <tr>
@@ -2987,6 +2974,20 @@ ids are the price list&#39;s own; Hunyuan-MT-7B, the other chat row at ¥0, is a
             </td>
             <td class="limits" data-label="Notes">
 anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week&#39;s, not the offer            </td>
+          </tr>
+          <tr>
+            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/">Pollinations.AI</a></th>
+            <td class="what" data-label="Base URL">
+              <code>https://text.pollinations.ai/openai</code>
+              <button class="copy" type="button" data-copy="https://text.pollinations.ai/openai" hidden
+                      style="position:static;margin-left:6px">Copy</button>
+            </td>
+            <td class="models" data-label="Key">
+<span class="tag nokey">none — the lane is anonymous</span>
+            </td>
+            <td class="limits" data-label="Notes">
+                <details><summary>no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai, answers a keyless call with `401` …</summary><span class="full">no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai, answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys` (2026-09-21); its keys spend Pollen, bought or earned from the site&#39;s Quests</span></details>
+            </td>
           </tr>
           <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/">Arli AI</a></th>

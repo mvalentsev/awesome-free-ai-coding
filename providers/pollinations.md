@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Pollinations.AI free tier: limits, free models, verified 2026-09-21'
-description: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai). Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous",…
+description: Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B. The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to…
 permalink: /providers/pollinations/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/pollinations/
 
 ## What you get
 
-Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)
+Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B
 
 ## Free models
 
@@ -21,19 +21,19 @@ Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/ope
 
 ## Limits, in the vendor's words
 
-Anonymous 1 req/15s (no signup). The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b. The documented free registration that lifts the rate to 1 req/5s is unreachable — its host stopped resolving on 2026-08-14
+The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-09-21. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — "Get an API key" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate
 
 ## Connect
 
 - Base URL: `https://text.pollinations.ai/openai`
 - Key: none — the lane is anonymous
-- Note: anonymous works and needs no key. The optional token that raises the rate limit has no working signup — auth.pollinations.ai, the host the vendor's own APIDOCS still sends you to, stopped resolving (NXDOMAIN from both Cloudflare and Google resolvers, 2026-08-14)
+- Note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai, answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys` (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
 
 ## Evidence
 
 - Probe: the page at <https://text.pollinations.ai/models>, anchored on `"tier":"anonymous"`, `GPT-OSS 20B`
 - Source: <https://text.pollinations.ai/models>
-- Source: <https://raw.githubusercontent.com/pollinations/pollinations/master/APIDOCS.md>
+- Source: <https://raw.githubusercontent.com/pollinations/pollinations/HEAD/APIDOCS.md>
 
 ## History
 

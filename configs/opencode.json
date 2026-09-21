@@ -1065,18 +1065,6 @@
         }
       }
     },
-    "pollinations": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Pollinations.AI",
-      "options": {
-        "baseURL": "https://text.pollinations.ai/openai"
-      },
-      "models": {
-        "gpt-oss": {
-          "name": "gpt-oss"
-        }
-      }
-    },
     "blue-claw": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Blue Claw Network",
@@ -1279,6 +1267,18 @@
       "models": {
         "RedHatAI/Qwen3.8-27B-INT4": {
           "name": "RedHatAI/Qwen3.8-27B-INT4"
+        }
+      }
+    },
+    "pollinations": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Pollinations.AI",
+      "options": {
+        "baseURL": "https://text.pollinations.ai/openai"
+      },
+      "models": {
+        "gpt-oss": {
+          "name": "gpt-oss"
         }
       }
     },

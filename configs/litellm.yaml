@@ -1091,11 +1091,6 @@ model_list:
     model: openai/mercury-edit-2
     api_base: https://api.inceptionlabs.ai/v1
     api_key: os.environ/INCEPTION_LABS_API_KEY
-- model_name: pollinations/gpt-oss
-  litellm_params:
-    model: openai/gpt-oss
-    api_base: https://text.pollinations.ai/openai
-    api_key: none
 - model_name: blue-claw/auto
   litellm_params:
     model: openai/auto
@@ -1255,6 +1250,11 @@ model_list:
   litellm_params:
     model: openai/RedHatAI/Qwen3.8-27B-INT4
     api_base: https://hermes.ai.unturf.com/v1
+    api_key: none
+- model_name: pollinations/gpt-oss
+  litellm_params:
+    model: openai/gpt-oss
+    api_base: https://text.pollinations.ai/openai
     api_key: none
 - model_name: bytez/Qwen/Qwen3-4B
   litellm_params:

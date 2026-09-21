@@ -28,7 +28,7 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 - Base URL: `https://apihub.agnes-ai.com/v1`
 - Key: `AGNES_AI_API_KEY` — get one at <https://platform.agnes-ai.com>
 - Callable ids: `agnes-3.0-flash`, `agnes-2.5-flash`
-- Note: the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM
+- Note: the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM. Agnes AI's China station (agnes-ai.cn) prices the same two Flash models at ¥0 (当前均免费, all currently free) and serves them from api.agnes-ai.cn/v1
 
 ## Evidence
 
@@ -36,6 +36,7 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 - Source: <https://wiki.agnes-ai.com/en/docs/pricing>
 - Source: <https://wiki.agnes-ai.com/en/docs/faqs>
 - Source: <https://wiki.agnes-ai.com/en/docs/tokenplan>
+- Source: <https://wiki.agnes-ai.cn/zh-Hans/docs/pricing>
 
 ## History
 
