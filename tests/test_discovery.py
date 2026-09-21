@@ -201,6 +201,21 @@ def test_a_feed_url_fragment_starts_the_read_at_that_heading(monkeypatch):
     assert ev.feeds[feed] == "# Renamed\n| `nara` | recurring |\n"
 
 
+def test_every_github_feed_is_read_at_the_branch_its_repository_works_on():
+    """OmniRoute moved its work to release/v3.8.x as the default branch and left
+    main standing: the feed named main, got a 200 on every run, and read the
+    copy of 2026-07-31 until 2026-09-21. A branch named in the URL fails
+    silently the day a project stops using it; HEAD follows the repository."""
+    from urllib.parse import urlparse
+
+    from freetier_radar.discovery import CURATED_FEEDS
+    github = [f for f in CURATED_FEEDS if urlparse(f).netloc == "raw.githubusercontent.com"]
+    assert github
+    for feed in github:
+        owner, repo, ref = urlparse(feed).path.split("/")[1:4]
+        assert ref == "HEAD", f"{owner}/{repo} is read at {ref!r}, not at HEAD"
+
+
 @respx.mock
 def test_gather_evidence_collects_the_models_dev_digest(monkeypatch):
     import freetier_radar.discovery as disc

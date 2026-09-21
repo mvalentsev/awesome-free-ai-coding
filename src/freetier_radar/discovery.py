@@ -30,18 +30,22 @@ UA = {"User-Agent": "freetier-radar/0.2"}
 # The lists read on every run. Their opposite is sources.yaml: lists read once
 # and put down, with the date and the reason. A candidate feed belongs in one
 # file or the other, never both — freetier-check enforces exactly that.
+# A feed on GitHub is read at HEAD, the branch its repository calls its own,
+# never at a branch named here: a project can move its work to another branch
+# and leave the named one standing, answering 200 with an old file (OmniRoute,
+# below).
 CURATED_FEEDS = [
     # cheahjs/free-llm-api-resources was here until 2026-08-11, when the repo
     # turned out to be gone — GitHub 404s it, so raise_for_status dropped the
     # feed on every run and nobody noticed. The one list still carrying that
     # name (nherx/free-llm-api-resources) is a 6KB stub whose only links are
     # "Download Latest Release" and "Report Issues", so it is not a successor.
-    "https://raw.githubusercontent.com/sourcegraph/awesome-code-ai/main/README.md",
+    "https://raw.githubusercontent.com/sourcegraph/awesome-code-ai/HEAD/README.md",
     # A catalog rather than a page: one object per provider, endpoint and model
     # ids included, so a new gateway arrives here as a base URL to probe instead
     # of a sentence to interpret. Leads only, like the rest — it carried
     # "1M tokens/day" for Cerebras while cerebras.ai/pricing said $5 in credits.
-    "https://raw.githubusercontent.com/vava-nessa/free-coding-models/main/sources.js",
+    "https://raw.githubusercontent.com/vava-nessa/free-coding-models/HEAD/sources.js",
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
     # This was docs/getting-started/PROVIDERS-GUIDE.md until 2026-08-30, when both
@@ -59,13 +63,19 @@ CURATED_FEEDS = [
     # while the table (from character 24,368) sat in the elided middle, so the
     # scout had never seen the rows that made this a feed. The LLM vendors those
     # rows and the changelog name without a verdict here got one the same day.
-    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/reference/FREE_TIERS.md#per-provider-free-tier",
+    # Read at HEAD since 2026-09-21. OmniRoute works on a release branch that is
+    # also its default (release/v3.8.51 that day), and the main this URL named
+    # had stopped at the copy dated 2026-07-31: 48,843 characters against the
+    # default branch's 56,556, so every run read July's table. The gap measured
+    # on 2026-09-14 — 48,843 served, 55,699 in a clone — was that branch, not
+    # the network: a clone checks out the default branch.
+    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/HEAD/docs/reference/FREE_TIERS.md#per-provider-free-tier",
     # A directory rather than a router: 30 providers in one table with a free-model
     # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
     # The card column is the only machine-readable answer to that question anywhere
     # in these feeds. Leads only — the same table still lists GitHub Models, retired
     # 2026-07-30, and credits LLM7 with 15 free models when its catalog has none.
-    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/main/README.md",
+    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/HEAD/README.md",
     # A router's provider table: base URL, auth shape and a dated live-probe note
     # per gateway, written by someone who had to make each one answer. That makes
     # it the densest lead source here and the most opinionated — it carries
@@ -76,7 +86,7 @@ CURATED_FEEDS = [
     # "no payment method linked with your account" (checked 2026-08-06 and again
     # 2026-08-14), and it credits AINative with "a recurring ~10M tokens/month free
     # allocation" that ainative.studio/pricing contradicts on its own page.
-    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/main/server/src/providers/index.ts",
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/server/src/providers/index.ts",
     # The only feed here that looks east: of the nine providers it carries that
     # nothing in this repository had a verdict on, seven appear in none of the
     # five feeds above — Intern AI, SenseNova, iFlytek Spark, Inception Labs and
@@ -93,7 +103,7 @@ CURATED_FEEDS = [
     # inference-docs.cerebras.ai/support/rate-limits, which on 2026-08-14 read
     # 5 RPM / 30K TPM for the same models and answered its own question with
     # "Is there a permanently free tier? No."
-    "https://raw.githubusercontent.com/for-the-zero/Free-LLM-Collection/main/README.md",
+    "https://raw.githubusercontent.com/for-the-zero/Free-LLM-Collection/HEAD/README.md",
     # Read once on 2026-08-14 and declined — sources.yaml carried the verdict, and
     # its reopen_if named the test it would have to pass: "its submissions start
     # surfacing providers the six curated feeds do not carry." On 2026-08-30 it
@@ -105,7 +115,7 @@ CURATED_FEEDS = [
     # was promoted for prints limits the vendor's own docs contradict — "3M input
     # / 60K output tokens per 60s" and a 24h row that does not exist, where
     # docs.hetzner.com reads 4M / 100k per 60s and 10 requests per 60s.
-    "https://raw.githubusercontent.com/nejib1/Free-LLM/main/README.md",
+    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md",
 ]
 
 # A machine catalog rather than a list: 185 providers, one object per model with
