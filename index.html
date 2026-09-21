@@ -248,7 +248,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   table.rows tbody, table.rows tr, table.rows th, table.rows td { display: block; width: auto; }
   table.rows tr { border: 1px solid var(--line); border-radius: 14px; padding: 14px;
     margin-bottom: 12px; background: var(--raised); }
-  table.rows th, table.rows td { border-top: 0; padding: 7px 0 0; }
+  /* A card cell breaks a token that has no space in it — a note's
+     `ANTHROPIC_BASE_URL=https://…` — or it pushes the whole page sideways. */
+  table.rows th, table.rows td { border-top: 0; padding: 7px 0 0; overflow-wrap: anywhere; }
   table.rows td::before { content: attr(data-label); display: block; font-size: 11px;
     text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
   td.what, td.models, td.limits, td.when, th.who { width: auto; }
@@ -1194,7 +1196,7 @@ One model, Qwen3.8 Flash — Qwen&#39;s open-weight Qwen3.8-Flash-Next — serve
 <span class="chip">qwen3.8-flash</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>&#34;15 free requests a day. No card required.&#34; on the home page and &#34;No card required, free forever&#34; on the Free plan card, at 128K context, against …</summary><span class="full">&#34;15 free requests a day. No card required.&#34; on the home page and &#34;No card required, free forever&#34; on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto &#34;runs the model-serving stack rather than reselling a third-party model API&#34;. The FAQ calls the free tier &#34;for testing&#34; where the plan card says &#34;free forever&#34;, and the terms forbid using &#34;multiple accounts ... to combine capacity&#34;. Sign-in is through Google, GitHub or Discord, and prompt and response bodies are &#34;not stored or retained&#34;. Read 2026-09-22</span></details>
+                <details><summary>&#34;15 free requests a day. No card required.&#34; on the home page and &#34;No card required, free forever&#34; on the Free plan card, at 128K context, against …</summary><span class="full">&#34;15 free requests a day. No card required.&#34; on the home page and &#34;No card required, free forever&#34; on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto &#34;runs the model-serving stack rather than reselling a third-party model API&#34;. The FAQ calls the free tier &#34;for testing&#34; where the plan card says &#34;free forever&#34;, and the terms forbid using &#34;multiple accounts ... to combine capacity&#34;. Sign-in is through Google, GitHub or Discord, and prompt and response bodies are &#34;not stored or retained&#34;. Read 2026-09-21</span></details>
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/"><time datetime="2026-09-21">2026-09-21</time></a>

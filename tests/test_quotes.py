@@ -4,7 +4,7 @@ import httpx
 import respx
 
 from freetier_radar.models import DataUse, Entry
-from freetier_radar.quotes import check_entries, flatten, quote_found, quotes_in, row_quotes
+from freetier_radar.quotes import check_entries, flatten, page_texts, quote_found, quotes_in, row_quotes
 
 
 def quoted_entry(limits: str, note: str | None = None) -> Entry:
@@ -54,6 +54,24 @@ def test_typography_does_not_hide_a_quote_that_is_there():
     page = flatten("**Free registration** — no credit card required. It&#39;s the account’s first step")
     assert quote_found("Free registration - no credit card required", [page])
     assert quote_found("It's the account's first step", [page])
+
+
+def test_a_chinese_quote_is_read_like_any_other():
+    """Chinese puts no space between words, so a whole sentence of it was one
+    word to the three-word rule, and quote_found passed it unread: the data-use
+    sentences of SiliconFlow, Moark and TokenHub were "checked" that way until
+    2026-09-22. Two characters now count as a word, and the spaces markup leaves
+    beside them — a link inside the sentence, a markdown source — count for
+    nothing."""
+    assert quotes_in('标着 "免费" 的模型，"实名认证后使用全部的免费模型"') == ["实名认证后使用全部的免费模型"]
+    page = page_texts('<p><a href="/auth">实名认证</a> 后使用全部的免费模型。</p>')
+    assert quote_found("实名认证后使用全部的免费模型", page)
+    assert not quote_found("实名认证后使用部分免费模型", page)
+    markdown = page_texts("- 免费推理API由阿里云提供算力支持， 要求您的ModelScope账号必须首先"
+                          "[绑定阿里云账号](../../account.md) 。")
+    assert quote_found("免费推理API由阿里云提供算力支持，要求您的ModelScope账号必须首先绑定阿里云账号", markdown)
+    data_use = "不会将您的业务数据用于任何大模型的预训练、微调或其他商业用途"
+    assert not quote_found(data_use, page_texts("<p>我们可能将您的数据用于模型训练。</p>"))
 
 
 def test_a_quote_joined_across_an_ellipsis_is_checked_fragment_by_fragment():

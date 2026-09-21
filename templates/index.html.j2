@@ -202,7 +202,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   table.rows tbody, table.rows tr, table.rows th, table.rows td { display: block; width: auto; }
   table.rows tr { border: 1px solid var(--line); border-radius: 14px; padding: 14px;
     margin-bottom: 12px; background: var(--raised); }
-  table.rows th, table.rows td { border-top: 0; padding: 7px 0 0; }
+  /* A card cell breaks a token that has no space in it — a note's
+     `ANTHROPIC_BASE_URL=https://…` — or it pushes the whole page sideways. */
+  table.rows th, table.rows td { border-top: 0; padding: 7px 0 0; overflow-wrap: anywhere; }
   table.rows td::before { content: attr(data-label); display: block; font-size: 11px;
     text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
   td.what, td.models, td.limits, td.when, th.who { width: auto; }

@@ -3370,7 +3370,7 @@ entries:
     reselling a third-party model API". The FAQ calls the free tier "for testing"
     where the plan card says "free forever", and the terms forbid using "multiple
     accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord,
-    and prompt and response bodies are "not stored or retained". Read 2026-09-22'
+    and prompt and response bodies are "not stored or retained". Read 2026-09-21'
   models:
   - family: qwen3.8-flash
     tier: strong

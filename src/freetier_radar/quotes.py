@@ -13,9 +13,10 @@ are the vendor's, and this checks that claim.
 For each row it reads the `source_urls` and the probe endpoint, keeps both the
 rendered text and the raw body — a quote can live in JSON-LD or a framework
 payload — and looks for every quote of three words or more in them, with the
-typography flattened: entities, tags, markdown emphasis, curly quotes and
-apostrophes, dashes and whitespace. A quote joined across an ellipsis is checked
-fragment by fragment. What is not found is printed with its row and field, and
+typography flattened: entities, tags, markdown emphasis and links, curly quotes
+and apostrophes, dashes and whitespace. Chinese and Japanese are written without
+spaces, so there two characters count as a word and no space beside them counts
+at all. A quote joined across an ellipsis is checked fragment by fragment. What is not found is printed with its row and field, and
 the fix is one of two things: the vendor's exact words, or a source URL that
 carries them.
 """
@@ -41,6 +42,14 @@ MIN_WORDS = 3
 
 _QUOTED = re.compile(r'"([^"]+)"|“([^”]+)”')
 _ELLIPSIS = re.compile(r"\s*(?:…|\.\.\.)\s*")
+_MARKDOWN_LINK = re.compile(r"\[([^\]\n]*)\]\([^)\s]*\)")
+# Han and kana make up the words of a Chinese or Japanese sentence, and CJK
+# punctuation and full-width forms sit between them. Neither script puts a space
+# between words, so a space beside any of them is what a stripped tag left.
+_HAN_OR_KANA = "぀-ヿ㐀-䶿一-鿿豈-﫿"
+_CJK = _HAN_OR_KANA + "、-〿＀-￯"
+_CJK_WORD_CHAR = re.compile(f"[{_HAN_OR_KANA}]")
+_SPACE_BESIDE_CJK = re.compile(f"\\s+(?=[{_CJK}])|(?<=[{_CJK}])\\s+")
 _TAG = re.compile(r"<[^>]+>")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:!?)])")
 _TYPOGRAPHY = str.maketrans({
@@ -62,18 +71,30 @@ class Missing:
 
 
 def flatten(text: str) -> str:
-    """Text reduced to what a reader would copy: no markup, one kind of quote,
-    apostrophe and dash, single spaces, no space a stripped tag left before
-    punctuation, lower case."""
+    """Text reduced to what a reader would copy: no markup, a markdown link read
+    as its text, one kind of quote, apostrophe and dash, single spaces, no space
+    a stripped tag left before punctuation or beside a Chinese or Japanese
+    character — a sentence there has none, and a link inside it leaves one —
+    lower case."""
     text = html.unescape(text.replace('\\"', '"').replace("\\n", " "))
-    text = _plain_spaces(text).translate(_TYPOGRAPHY)
-    return _SPACE_BEFORE_PUNCTUATION.sub(r"\1", " ".join(text.split())).lower()
+    text = _plain_spaces(_MARKDOWN_LINK.sub(r"\1", text)).translate(_TYPOGRAPHY)
+    text = _SPACE_BEFORE_PUNCTUATION.sub(r"\1", " ".join(text.split()))
+    return _SPACE_BESIDE_CJK.sub("", text).lower()
 
 
 def page_texts(body: str) -> list[str]:
     """What a quote is looked for in on one page: the rendered text and the raw
     body, both flattened — a quote can live in JSON-LD or a framework payload."""
     return [flatten(_TAG.sub(" ", _rendered(body))), flatten(_TAG.sub(" ", body))]
+
+
+def words(text: str) -> float:
+    """How many words a phrase holds. Chinese and Japanese put no space between
+    words, so `str.split()` counts a whole sentence of them as one: every Chinese
+    quote on the list went unread that way until 2026-09-22, the data-use
+    sentences of SiliconFlow, Moark and TokenHub among them. There, two
+    characters count as a word, about what one runs to."""
+    return len(_CJK_WORD_CHAR.sub(" ", text).split()) + len(_CJK_WORD_CHAR.findall(text)) / 2
 
 
 def quotes_in(text: str) -> list[str]:
@@ -85,7 +106,7 @@ def quotes_in(text: str) -> list[str]:
     found = []
     for match in _QUOTED.finditer(text or ""):
         quote = (match.group(1) or match.group(2)).strip()
-        if len(quote.split()) >= MIN_WORDS:
+        if words(quote) >= MIN_WORDS:
             found.append(quote)
     return found
 
@@ -105,7 +126,7 @@ def quote_found(quote: str, pages: list[str]) -> bool:
     """Whether every fragment of `quote` occurs in one of the flattened pages.
     Fragments of two words or fewer, left by an ellipsis, are skipped."""
     fragments = [flatten(f) for f in _ELLIPSIS.split(quote)]
-    fragments = [f.strip(" ,;:.") for f in fragments if len(f.split()) > 2]
+    fragments = [f.strip(" ,;:.") for f in fragments if words(f) > 2]
     if not fragments:
         return True
     return all(any(f in page for page in pages) for f in fragments)

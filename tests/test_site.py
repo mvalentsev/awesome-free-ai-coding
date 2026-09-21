@@ -199,3 +199,15 @@ def test_jekyll_leaves_every_markdown_written_for_github_off_the_site():
     config = yaml.safe_load((TEMPLATES.parent / "_config.yml").read_text(encoding="utf-8"))
     assert "README.md" in config["exclude"]
     assert "configs/README.md" in config["exclude"]
+
+
+def test_a_card_cell_breaks_a_token_with_no_space_in_it():
+    """On a phone the tables become cards whose cells no longer scroll, so a
+    note carrying `ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com` ran 74
+    px past its card and the whole page moved sideways at 390 px (found
+    2026-09-22)."""
+    css = (TEMPLATES / "index.html.j2").read_text(encoding="utf-8")
+    phone = css[css.index("@media (max-width: 760px)"):]
+    phone = phone[:phone.index("\n}\n")]
+    rule = re.search(r"^\s*table\.rows th, table\.rows td \{[^}]*\}", phone, re.M).group(0)
+    assert "overflow-wrap: anywhere" in rule

@@ -349,8 +349,9 @@ agent that runs on them — `no` needs words that also reach those providers, su
 as a no-training rule for every model it lists or zero retention at the
 supplier. A free model the vendor itself says may be trained on makes the row
 `yes` even when the others are not, since the reader is the one choosing among
-them. `url` must be a page the run can read; one behind a bot wall would be
-reported on every run. A row whose vendor says nothing either way carries none.
+them — `opt-out` where a setting keeps calls away from it, as OpenRouter's does.
+`url` must be a page the run can read; one behind a bot wall would be reported
+on every run, and a Chinese or Japanese quote is read like any other. A row whose vendor says nothing either way carries none.
 The README marks `yes` and `opt-out` with 👁 beside the name, the row's page
 quotes the sentence, browse.html keeps the `no` rows behind "Not trained on",
 and every run reads `url` back for the quote.
