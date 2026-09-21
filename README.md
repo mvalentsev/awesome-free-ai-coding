@@ -9,13 +9,13 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Every row verified](https://img.shields.io/badge/every%20row%20verified-2026--09--21%20or%20later-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-78-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-80-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **78** | **77** | **7** | **58** | **69** |
+| **80** | **77** | **7** | **60** | **70** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -62,7 +62,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — 1 row of 78 carries it, and nothing else here asks for a card · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — 3 rows of 80 carry it, and nothing else here asks for a card · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**9** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -80,7 +80,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[CodeGPT](https://www.codegpt.co)** | VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) |
 
 ### 🔌 LLM APIs with free tier
-<sub>**31** live · **30** of them ask for no card · sorted by how much work you can get done for free</sub>
+<sub>**32** live · **30** of them ask for no card · sorted by how much work you can get done for free</sub>
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
@@ -107,6 +107,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[FreeInference (Harvard SEAS)](https://freeinference.org)** | Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
 | **[Ollama Cloud](https://ollama.com/cloud)** | Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) |
 | **[Poolside Platform](https://poolside.ai)** | Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) |
+| **[Sail Research](https://www.sailresearch.com)** 💳 🧪 | Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) |
 | **[SiliconFlow (China)](https://siliconflow.cn)** 🧪 | China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 | **[uncloseai (unturf)](https://uncloseai.com)** | Keyless OpenAI-compatible chat endpoint — no signup, no key, no account | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) |
 | **[IBM watsonx.ai (Lite plan)](https://www.ibm.com/products/watsonx-ai)** 💳 | IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) |
@@ -147,7 +148,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Standard Compute](https://standardcompute.com)** | A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) |
 
 ### 🧭 Aggregators (one key, many providers)
-<sub>**14** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**15** live · **14** of them ask for no card · sorted by how much work you can get done for free</sub>
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
@@ -165,29 +166,32 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Opper](https://opper.ai)** 🧪 | EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits | `gemma-4-31b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) |
 | **[MegaNova](https://meganova.ai)** | OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across its free rows | `mistral-small-3.2` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) |
 | **[Moark (Gitee AI)](https://moark.com)** 🧪 | Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) |
+| **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 69 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 70 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
 |---|---|
 | `gpt-oss` | [Groq](https://groq.com), [Google Antigravity](https://antigravity.google), [SambaNova Cloud](https://cloud.sambanova.ai), [Regolo AI](https://regolo.ai/pricing/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [Pollinations.AI](https://pollinations.ai) |
 | `qwen3.8-27b` | [Groq](https://groq.com), [LLM Tech](https://llmtech.eu), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [Regolo AI](https://regolo.ai/pricing/), [VLM Run Gateway](https://vlm.run), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
+| `deepseek-v4-flash` | [Routeway](https://routeway.ai), [Token Harbor](https://tokenharbor.ai), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [LLMTR](https://llmtr.com) |
 | `qwen3.6` | [Groq](https://groq.com), [LLMTR](https://llmtr.com), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [FreeInference (Harvard SEAS)](https://freeinference.org) |
-| `deepseek-v4-flash` | [Routeway](https://routeway.ai), [Token Harbor](https://tokenharbor.ai), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org) |
+| `glm-5.3-flash` | [Freebuff](https://freebuff.com), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `laguna-s-2.1` | [Kilo Code](https://kilo.ai), [Cline](https://cline.bot), [Vercel AI Gateway](https://vercel.com/ai-gateway), [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
 | `mimo-v2.5` | [opencode](https://opencode.ai), [Freebuff](https://freebuff.com), [AIHubMix (free models)](https://aihubmix.com), [Token Harbor](https://tokenharbor.ai) |
 | `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
-| `glm-5.3-flash` | [Freebuff](https://freebuff.com), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `north-mini-code` | [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `glm-5` | [AIHubMix (free models)](https://aihubmix.com), [Regolo AI](https://regolo.ai/pricing/) |
+| `glm-5.3` | [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
 | `gpt-5.6-luna` | [Freebuff](https://freebuff.com), [Zed](https://zed.dev) |
+| `kimi-k3` | [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
 | `ling-3.0-flash-fin` | [opencode](https://opencode.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `minimax-m2.7` | [Routeway](https://routeway.ai), [Dahl Inference](https://inference.dahl.global) |
 | `muse-glimmer-30b` | [Requesty](https://www.requesty.ai), [Routeway](https://routeway.ai) |
@@ -204,6 +208,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `command-a` | [Cohere (trial keys)](https://cohere.com) |
 | `deepseek` | [SambaNova Cloud](https://cloud.sambanova.ai) |
 | `deepseek-v3.2` | [Kiro](https://kiro.dev/) |
+| `deepseek-v4-pro` | [Sail Research](https://www.sailresearch.com) 💳 |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-pro` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google) |
@@ -215,9 +220,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.7-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-5.1` | [FreeInference (Harvard SEAS)](https://freeinference.org) |
-| `glm-5.3` | [AIHubMix (free models)](https://aihubmix.com) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
-| `kimi-k3` | [AIHubMix (free models)](https://aihubmix.com) |
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai) |
 | `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
@@ -292,11 +295,11 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 </details>
 
-**🔭 Checked and not listed** — 216 services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them](https://mvalentsev.github.io/awesome-free-ai-coding/providers/checked/). Nothing there is disqualified, and every verdict expires after 90 days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
+**🔭 Checked and not listed** — 227 services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them](https://mvalentsev.github.io/awesome-free-ai-coding/providers/checked/). Nothing there is disqualified, and every verdict expires after 90 days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
 
 ## 🔧 Plug it into your agent
 
-Base URL, key name and the notes that matter for every live OpenAI-compatible API on this page — 58 today, with Claude Code's Anthropic-format route wherever the vendor documents one — are in **[`configs/README.md`](configs/README.md)**, beside the files it describes; the same table with copy buttons is on [the website](https://mvalentsev.github.io/awesome-free-ai-coding/#plug). Ready-made, regenerated on every update:
+Base URL, key name and the notes that matter for every live OpenAI-compatible API on this page — 60 today, with Claude Code's Anthropic-format route wherever the vendor documents one — are in **[`configs/README.md`](configs/README.md)**, beside the files it describes; the same table with copy buttons is on [the website](https://mvalentsev.github.io/awesome-free-ai-coding/#plug). Ready-made, regenerated on every update:
 
 | File | What it gives you |
 |---|---|

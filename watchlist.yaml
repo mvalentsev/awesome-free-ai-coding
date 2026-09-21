@@ -232,7 +232,8 @@ watched:
       The Free plan on warp.dev/pricing lists an included monthly credit or
       token allowance instead of pay-as-you-go reloads.
 
-  - domains: [platform.xiaomimimo.com, mimo.mi.com]
+  - domains: [platform.xiaomimimo.com, mimo.mi.com, token-plan-cn.xiaomimimo.com,
+              token-plan-ams.xiaomimimo.com, token-plan-sgp.xiaomimimo.com]
     name: Xiaomi MiMo (API platform)
     checked_on: '2026-08-14'
     reason: >-
@@ -3265,3 +3266,144 @@ watched:
     reopen_if: >-
       The credits become usable from other clients, or Workshop Desktop works
       as a coding agent on an existing project.
+
+  # The providers freellmapi takes keys for that the feed never showed a host
+  # for (its index.ts named them as classes), read on their own pages
+  # 2026-09-21; Sail Research and Experiential Labs became rows the same day.
+  - domains: [aclide.com]
+    name: ACLIDE
+    checked_on: '2026-09-21'
+    reason: >-
+      A gateway run by the French association Skyclouds whose Free plan gives
+      "€20 Monthly usage credits", "Renewed every month · No credit card
+      required". Its catalog serves most models twice: "distribué par
+      l'endpoint Anthropic T2+ configuré par ACLIDE" at list price, and "est
+      disponible via l'API unifiée ACLIDE" below it — and the second route
+      carries all 36 zero-priced ids, Mistral's whole line, MiniMax M2.x,
+      DeepSeek V4 and Qwen ':free' ids, other vendors' free quotas. Who runs
+      that route is never named: the privacy page says only "Administration
+      may select another secure AI endpoint operator". The xKiro case.
+    reopen_if: >-
+      The catalog names the operator behind "l'API unifiée ACLIDE", and it is
+      the vendors' own capacity or sold to ACLIDE for this.
+
+  - domains: [router9.com]
+    name: Router9
+    checked_on: '2026-09-21'
+    reason: >-
+      A flat-rate "Token Plan" gateway with a Free plan, but no readable page
+      states its quota or its models: "on the Free tier it draws only from
+      free-eligible models", unnamed, and "Router9 fronts multiple providers
+      and routes each request for the best value", also unnamed. The pricing
+      page redirects to a login.
+    reopen_if: >-
+      The Free plan's quota and models on a public page, and the providers
+      behind them named.
+
+  - domains: [septorlabs.com]
+    name: Septor Labs
+    checked_on: '2026-09-21'
+    reason: >-
+      Unreadable: every page answers a bot challenge ("enable javascript and
+      cookies to continue"), read directly and from a GitHub runner alike.
+      The only statement of the offer is a router's label for it, "daily
+      free-model quota".
+    reopen_if: >-
+      A page readable without a browser challenge that states the free quota.
+
+  - domains: [clod.io]
+    name: CLōD
+    checked_on: '2026-09-21'
+    reason: >-
+      "100 free daily requests, auto-replenished" across "50+ frontier and
+      open-weight AI models", priced "always below the provider's list price
+      cap" — a reseller that names neither the models the free requests reach
+      nor where it buys them; its site renders client-side and docs.clod.io
+      does not resolve.
+    reopen_if: >-
+      A readable page naming the free models and the supply behind them.
+
+  - domains: [blazeapi.org]
+    name: BlazeAPI
+    checked_on: '2026-09-21'
+    reason: >-
+      Unreadable: blazeapi.org renders 30 characters without JavaScript and
+      docs.blazeapi.org does not resolve. What is known of the offer is a
+      router's label for it, "daily free tokens; Discord verification".
+    reopen_if: >-
+      Docs or a pricing page readable without JavaScript that state the free
+      tokens.
+
+  - domains: [lucidity.sh]
+    name: Lucidity Composite
+    checked_on: '2026-09-21'
+    reason: >-
+      A roleplay-first API whose free daily tier is other providers' capacity:
+      "Composite runs a free daily tier of open-weight models, including Llama
+      3.3 70B, DeepSeek V4 Flash, GLM 5.2, Kimi K2.6", and "For non LucidityAI
+      models, OpenRouter is the upstream provider". The same page says both that
+      "connecting a Discord account unlocks the free tier" and that "No Discord
+      account, credit card, or invite is needed".
+    reopen_if: >-
+      The free tier runs on Lucidity's own infrastructure, with its models and
+      quota stated once.
+
+  - domains: [dreamprompting.com]
+    name: DreamPrompting
+    checked_on: '2026-09-21'
+    reason: >-
+      Says what it is: "One free key routes across the free tiers of many
+      providers with automatic failover" — "Free tiers first, trial credits
+      next, keyless ch.at as the always-on last resort", over Groq, Mistral,
+      NVIDIA NIM, Cohere, Google AI Studio, OpenRouter and Cloudflare. The
+      offer is other vendors' free tiers under one key, the NaraRouter verdict.
+    reopen_if: >-
+      Free capacity of its own, or the vendors' consent to resell theirs.
+
+  - domains: [getwaterfall.org]
+    name: Waterfall
+    checked_on: '2026-09-21'
+    reason: >-
+      "The indie LLM router that tries free models first" — "waterfall routing
+      from free to cheap to premium". A router serves nothing itself, so its
+      131 free models are other providers' free lanes re-served under its own
+      key: the NaraRouter verdict.
+    reopen_if: >-
+      Free capacity of its own, named, with a quota.
+
+  - domains: [electronhub.ai]
+    name: ElectronHub
+    checked_on: '2026-09-21'
+    reason: >-
+      One of the Discord-membership relays sources.yaml records under the
+      YoannDev90 and zukixa lists, where nothing is a vendor's own offer; its
+      site renders 639 characters without JavaScript, and a router's label
+      for it is all that describes the free part, "shared weekly credits".
+    reopen_if: >-
+      A readable page that names the free credits and where they are served
+      from.
+
+  # The only six providers the models.dev digest still raised on 2026-09-21,
+  # all of them zero-priced there because the usage is a paid subscription's.
+  # Xiaomi's three token-plan hosts joined its API platform's record above.
+  - domains: [token-plan.ap-southeast-1.maas.aliyuncs.com, token-plan.cn-beijing.maas.aliyuncs.com]
+    name: Alibaba Cloud Token Plan
+    checked_on: '2026-09-21'
+    reason: >-
+      "Token Plan is an AI model subscription service offered by Alibaba Cloud
+      Model Studio", $6 to $68 a month; models.dev lists its rows at cost 0
+      because the usage is the subscription's. The free quota Model Studio does
+      give is a row of its own.
+    reopen_if: >-
+      A Token Plan tier priced at zero.
+
+  - domains: [api.minimax.cn]
+    name: MiniMax Token Plan (China)
+    checked_on: '2026-09-21'
+    reason: >-
+      The Token Plan is a subscription — "Token Plan 通过订阅 Key 提供套餐内 Token
+      Plan 用量额度" (the plan's quota, through a subscription key), bought as
+      a personal subscription or credits — so its zero-cost rows on models.dev
+      are included usage, not a free tier.
+    reopen_if: >-
+      A free quota on MiniMax's China platform that needs no subscription.

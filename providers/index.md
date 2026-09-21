@@ -45,6 +45,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) | 🔌 LLM APIs with free tier | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | `2026-09-21` |
 | [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
+| [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) | 🔌 LLM APIs with free tier | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | `2026-09-21` |
 | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) | 🔌 LLM APIs with free tier | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | `2026-09-21` |
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
@@ -91,6 +92,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) | 🧭 Aggregators (one key, many providers) | `gemma-4-31b` | `2026-09-21` |
 | [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) | 🧭 Aggregators (one key, many providers) | `mistral-small-3.2` | `2026-09-21` |
 | [Moark (Gitee AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-21` |
+| [Experiential Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-21` |
 
 ## Archived
 

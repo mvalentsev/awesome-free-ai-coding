@@ -962,7 +962,8 @@
       "source_urls": [
         "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
         "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started",
-        "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/"
+        "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
+        "https://endpoints.ai.cloud.ovh.net/"
       ],
       "card_required": false,
       "offering": "EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible)",
@@ -1156,6 +1157,47 @@
       "rank": 80,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/"
+    },
+    {
+      "id": "experiential-labs",
+      "name": "Experiential Labs",
+      "category": "aggregator",
+      "url": "https://www.experientiallabs.ai",
+      "source_urls": [
+        "https://www.experientiallabs.ai/pricing",
+        "https://www.experientiallabs.ai/",
+        "https://platform.experientiallabs.ai/models"
+      ],
+      "card_required": true,
+      "offering": "An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check",
+      "limits": "The Free plan is \"500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)\", a credit being a cent (\"2,000 credits / month · 1¢ each\" on Pro), spent at list price: \"Route on credits at each provider’s list price with nothing on top\". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions its model list marks Free, GPT-5.6 Luna and Nemotron 3 Ultra among them. \"Prompt-capture opt-out\" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-21",
+      "models": [],
+      "api": {
+        "base_url": "https://api.experientiallabs.ai/v1",
+        "key_url": "https://platform.experientiallabs.ai",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [],
+        "note": "the catalog at /v1/models answers only a gateway key; the model list with prices is public at platform.experientiallabs.ai/models"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.experientiallabs.ai/pricing",
+        "keywords": [
+          "500 credits a month once you verify a card"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-21",
+      "last_verified": "2026-09-21",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 96,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"
     },
     {
       "id": "upstage",
@@ -2814,6 +2856,84 @@
       "rank": 98,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"
+    },
+    {
+      "id": "sail-research",
+      "name": "Sail Research",
+      "category": "api-free-tier",
+      "url": "https://www.sailresearch.com",
+      "source_urls": [
+        "https://www.sailresearch.com/",
+        "https://docs.sailresearch.com/pricing",
+        "https://docs.sailresearch.com/models"
+      ],
+      "card_required": true,
+      "offering": "Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account",
+      "limits": "The home page: \"$5 in free credits every month when you attach a payment method\", and its FAQ \"with $5 in free credits refreshed every month\". The credit spends at the per-token prices, which fall with the completion window a request asks for: GLM-5.3 is $0.98 in / $3.08 out per 1M tokens as soon as possible and $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09. \"No strict rate limits\", and request and response data is \"not used to train models without written consent\". Read 2026-09-21",
+      "models": [
+        {
+          "family": "kimi-k3",
+          "tier": "frontier",
+          "released": "",
+          "aa_model": "kimi-k3"
+        },
+        {
+          "family": "glm-5.3",
+          "tier": "frontier",
+          "released": "",
+          "aa_model": "glm-5-3"
+        },
+        {
+          "family": "deepseek-v4-pro",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "deepseek-v4-pro"
+        },
+        {
+          "family": "glm-5.3-flash",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "glm-5-3-flash"
+        },
+        {
+          "family": "deepseek-v4-flash",
+          "tier": "strong",
+          "released": "2026-04",
+          "aa_model": "deepseek-v4-flash"
+        }
+      ],
+      "api": {
+        "base_url": "https://api.sailresearch.com/v1",
+        "key_url": "https://app.sailresearch.com",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "moonshotai/Kimi-K3",
+          "zai-org/GLM-5.3",
+          "deepseek-ai/DeepSeek-V4-Pro-0813",
+          "zai-org/GLM-5.3-Flash",
+          "deepseek-ai/DeepSeek-V4-Flash-0731"
+        ],
+        "note": "ids are the models page's, 2026-09-21 — the catalog answers only a key. Sail's stable surface is the Responses API, and the FAQ says \"Responses, Chat Completions, and Messages all work as expected\"; a request may name a balanced or flex completion window to pay less and wait longer"
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.sailresearch.com/",
+        "keywords": [
+          "$5 in free credits every month when you attach a payment method"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-21",
+      "last_verified": "2026-09-21",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 96,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/"
     },
     {
       "id": "sarvam",
@@ -4943,7 +5063,10 @@
     {
       "domains": [
         "platform.xiaomimimo.com",
-        "mimo.mi.com"
+        "mimo.mi.com",
+        "token-plan-cn.xiaomimimo.com",
+        "token-plan-ams.xiaomimimo.com",
+        "token-plan-sgp.xiaomimimo.com"
       ],
       "name": "Xiaomi MiMo (API platform)",
       "checked_on": "2026-08-14",
@@ -6993,6 +7116,117 @@
       "checked_on": "2026-09-21",
       "reason": "The $0 Discover plan carries \"250 AI Credits\", each \"approximately $0.01 of model usage\", spent inside \"an AI creation platform to build websites, AI apps, dashboards, internal tools, and mobile apps\" — an app builder, in the cloud or as its desktop app, not model access a developer can aim at code they already have.",
       "reopen_if": "The credits become usable from other clients, or Workshop Desktop works as a coding agent on an existing project.",
+      "current": true
+    },
+    {
+      "domains": [
+        "aclide.com"
+      ],
+      "name": "ACLIDE",
+      "checked_on": "2026-09-21",
+      "reason": "A gateway run by the French association Skyclouds whose Free plan gives \"€20 Monthly usage credits\", \"Renewed every month · No credit card required\". Its catalog serves most models twice: \"distribué par l'endpoint Anthropic T2+ configuré par ACLIDE\" at list price, and \"est disponible via l'API unifiée ACLIDE\" below it — and the second route carries all 36 zero-priced ids, Mistral's whole line, MiniMax M2.x, DeepSeek V4 and Qwen ':free' ids, other vendors' free quotas. Who runs that route is never named: the privacy page says only \"Administration may select another secure AI endpoint operator\". The xKiro case.",
+      "reopen_if": "The catalog names the operator behind \"l'API unifiée ACLIDE\", and it is the vendors' own capacity or sold to ACLIDE for this.",
+      "current": true
+    },
+    {
+      "domains": [
+        "router9.com"
+      ],
+      "name": "Router9",
+      "checked_on": "2026-09-21",
+      "reason": "A flat-rate \"Token Plan\" gateway with a Free plan, but no readable page states its quota or its models: \"on the Free tier it draws only from free-eligible models\", unnamed, and \"Router9 fronts multiple providers and routes each request for the best value\", also unnamed. The pricing page redirects to a login.",
+      "reopen_if": "The Free plan's quota and models on a public page, and the providers behind them named.",
+      "current": true
+    },
+    {
+      "domains": [
+        "septorlabs.com"
+      ],
+      "name": "Septor Labs",
+      "checked_on": "2026-09-21",
+      "reason": "Unreadable: every page answers a bot challenge (\"enable javascript and cookies to continue\"), read directly and from a GitHub runner alike. The only statement of the offer is a router's label for it, \"daily free-model quota\".",
+      "reopen_if": "A page readable without a browser challenge that states the free quota.",
+      "current": true
+    },
+    {
+      "domains": [
+        "clod.io"
+      ],
+      "name": "CLōD",
+      "checked_on": "2026-09-21",
+      "reason": "\"100 free daily requests, auto-replenished\" across \"50+ frontier and open-weight AI models\", priced \"always below the provider's list price cap\" — a reseller that names neither the models the free requests reach nor where it buys them; its site renders client-side and docs.clod.io does not resolve.",
+      "reopen_if": "A readable page naming the free models and the supply behind them.",
+      "current": true
+    },
+    {
+      "domains": [
+        "blazeapi.org"
+      ],
+      "name": "BlazeAPI",
+      "checked_on": "2026-09-21",
+      "reason": "Unreadable: blazeapi.org renders 30 characters without JavaScript and docs.blazeapi.org does not resolve. What is known of the offer is a router's label for it, \"daily free tokens; Discord verification\".",
+      "reopen_if": "Docs or a pricing page readable without JavaScript that state the free tokens.",
+      "current": true
+    },
+    {
+      "domains": [
+        "lucidity.sh"
+      ],
+      "name": "Lucidity Composite",
+      "checked_on": "2026-09-21",
+      "reason": "A roleplay-first API whose free daily tier is other providers' capacity: \"Composite runs a free daily tier of open-weight models, including Llama 3.3 70B, DeepSeek V4 Flash, GLM 5.2, Kimi K2.6\", and \"For non LucidityAI models, OpenRouter is the upstream provider\". The same page says both that \"connecting a Discord account unlocks the free tier\" and that \"No Discord account, credit card, or invite is needed\".",
+      "reopen_if": "The free tier runs on Lucidity's own infrastructure, with its models and quota stated once.",
+      "current": true
+    },
+    {
+      "domains": [
+        "dreamprompting.com"
+      ],
+      "name": "DreamPrompting",
+      "checked_on": "2026-09-21",
+      "reason": "Says what it is: \"One free key routes across the free tiers of many providers with automatic failover\" — \"Free tiers first, trial credits next, keyless ch.at as the always-on last resort\", over Groq, Mistral, NVIDIA NIM, Cohere, Google AI Studio, OpenRouter and Cloudflare. The offer is other vendors' free tiers under one key, the NaraRouter verdict.",
+      "reopen_if": "Free capacity of its own, or the vendors' consent to resell theirs.",
+      "current": true
+    },
+    {
+      "domains": [
+        "getwaterfall.org"
+      ],
+      "name": "Waterfall",
+      "checked_on": "2026-09-21",
+      "reason": "\"The indie LLM router that tries free models first\" — \"waterfall routing from free to cheap to premium\". A router serves nothing itself, so its 131 free models are other providers' free lanes re-served under its own key: the NaraRouter verdict.",
+      "reopen_if": "Free capacity of its own, named, with a quota.",
+      "current": true
+    },
+    {
+      "domains": [
+        "electronhub.ai"
+      ],
+      "name": "ElectronHub",
+      "checked_on": "2026-09-21",
+      "reason": "One of the Discord-membership relays sources.yaml records under the YoannDev90 and zukixa lists, where nothing is a vendor's own offer; its site renders 639 characters without JavaScript, and a router's label for it is all that describes the free part, \"shared weekly credits\".",
+      "reopen_if": "A readable page that names the free credits and where they are served from.",
+      "current": true
+    },
+    {
+      "domains": [
+        "token-plan.ap-southeast-1.maas.aliyuncs.com",
+        "token-plan.cn-beijing.maas.aliyuncs.com"
+      ],
+      "name": "Alibaba Cloud Token Plan",
+      "checked_on": "2026-09-21",
+      "reason": "\"Token Plan is an AI model subscription service offered by Alibaba Cloud Model Studio\", $6 to $68 a month; models.dev lists its rows at cost 0 because the usage is the subscription's. The free quota Model Studio does give is a row of its own.",
+      "reopen_if": "A Token Plan tier priced at zero.",
+      "current": true
+    },
+    {
+      "domains": [
+        "api.minimax.cn"
+      ],
+      "name": "MiniMax Token Plan (China)",
+      "checked_on": "2026-09-21",
+      "reason": "The Token Plan is a subscription — \"Token Plan 通过订阅 Key 提供套餐内 Token Plan 用量额度\" (the plan's quota, through a subscription key), bought as a personal subscription or credits — so its zero-cost rows on models.dev are included usage, not a free tier.",
+      "reopen_if": "A free quota on MiniMax's China platform that needs no subscription.",
       "current": true
     }
   ]

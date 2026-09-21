@@ -102,7 +102,7 @@ _Nothing verified right now._
 
 | Model family | Free at |
 |---|---|
-{% for m in model_index %}| `{{ m.family }}` | {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ ", " if not loop.last }}{% endfor %} |
+{% for m in model_index %}| `{{ m.family }}` | {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %} |
 {% endfor %}
 
 </details>

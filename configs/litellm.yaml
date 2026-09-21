@@ -1211,6 +1211,31 @@ model_list:
     model: openai/poolside/laguna-xs-2.1
     api_base: https://inference.poolside.ai/v1
     api_key: os.environ/POOLSIDE_API_KEY
+- model_name: sail-research/moonshotai/Kimi-K3
+  litellm_params:
+    model: openai/moonshotai/Kimi-K3
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+- model_name: sail-research/zai-org/GLM-5.3
+  litellm_params:
+    model: openai/zai-org/GLM-5.3
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+- model_name: sail-research/deepseek-ai/DeepSeek-V4-Pro-0813
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Pro-0813
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+- model_name: sail-research/zai-org/GLM-5.3-Flash
+  litellm_params:
+    model: openai/zai-org/GLM-5.3-Flash
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+- model_name: sail-research/deepseek-ai/DeepSeek-V4-Flash-0731
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
 - model_name: siliconflow-cn/XingChenAGI/Xing4.0-29B
   litellm_params:
     model: openai/XingChenAGI/Xing4.0-29B

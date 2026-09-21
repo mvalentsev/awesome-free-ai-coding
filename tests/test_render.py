@@ -377,6 +377,22 @@ def test_model_index_groups_providers_by_family():
     assert [p["name"] for p in index[0]["providers"]] == ["A", "B"]
 
 
+def test_the_model_index_marks_a_card_where_the_rows_do(tmp_path: Path):
+    """"💳 beside a name is the whole of the fine print about payment", the README
+    says — and the model index named Sail Research beside kimi-k3 as free with
+    no mark, while its $5 a month needs a payment method on the account."""
+    from freetier_radar.models import save_registry
+    entries = [make(id="a", name="A", rank=1, models=[{"family": "kimi-k3"}]),
+               make(id="b", name="B", rank=2, card_required=True, models=[{"family": "kimi-k3"}])]
+    ctx = build_context(entries, TODAY)
+    assert [(p["name"], p["card_flag"]) for p in ctx["model_index"][0]["providers"]] == [
+        ("A", ""), ("B", " 💳")]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "| `kimi-k3` | [A](https://x.ai), [B](https://x.ai) 💳 |" in text
+
+
 def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
     """The curl at the top of the README is the first thing a reader runs. Typed
     by hand it would outlive the entry it calls; generated, it is archived along

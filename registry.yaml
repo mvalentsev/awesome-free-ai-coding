@@ -926,6 +926,7 @@ entries:
   - https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models
   - https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started
   - https://www.ovhcloud.com/en/public-cloud/ai-endpoints/
+  - https://endpoints.ai.cloud.ovh.net/
   card_required: false
   offering: EU-hosted serverless open-model API whose anonymous lane needs no signup,
     no key and no card (OpenAI-compatible)
@@ -1107,6 +1108,48 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 80
+- id: experiential-labs
+  name: Experiential Labs
+  category: aggregator
+  url: https://www.experientiallabs.ai
+  source_urls:
+  - https://www.experientiallabs.ai/pricing
+  - https://www.experientiallabs.ai/
+  - https://platform.experientiallabs.ai/models
+  card_required: true
+  offering: An open-source AI gateway backed by Y Combinator — every hosted provider
+    behind one OpenAI-compatible key at the providers' list prices — whose free plan
+    carries 500 credits ($5) a month after a one-time $1 card check
+  limits: 'The Free plan is "500 credits a month once you verify a card (a one-time
+    $1 charge, credited to your balance)", a credit being a cent ("2,000 credits /
+    month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s
+    list price with nothing on top". So the $5 buys what the catalog prices — Claude
+    Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions
+    its model list marks Free, GPT-5.6 Luna and Nemotron 3 Ultra among them. "Prompt-capture
+    opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-21'
+  models: []
+  api:
+    base_url: https://api.experientiallabs.ai/v1
+    key_url: https://platform.experientiallabs.ai
+    auth: api-key
+    openai_compatible: true
+    model_ids: []
+    note: the catalog at /v1/models answers only a gateway key; the model list with
+      prices is public at platform.experientiallabs.ai/models
+  probe:
+    type: page-keywords
+    endpoint: https://www.experientiallabs.ai/pricing
+    keywords:
+    - 500 credits a month once you verify a card
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-21'
+  last_verified: '2026-09-21'
+  probe_failures: 0
+  provisional: true
+  rank: 96
 - id: upstage
   name: Upstage (Solar API)
   category: trial
@@ -2733,6 +2776,75 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 98
+- id: sail-research
+  name: Sail Research
+  category: api-free-tier
+  url: https://www.sailresearch.com
+  source_urls:
+  - https://www.sailresearch.com/
+  - https://docs.sailresearch.com/pricing
+  - https://docs.sailresearch.com/models
+  card_required: true
+  offering: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek
+    V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit
+    every month once a payment method is on the account
+  limits: 'The home page: "$5 in free credits every month when you attach a payment
+    method", and its FAQ "with $5 in free credits refreshed every month". The credit
+    spends at the per-token prices, which fall with the completion window a request
+    asks for: GLM-5.3 is $0.98 in / $3.08 out per 1M tokens as soon as possible and
+    $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09.
+    "No strict rate limits", and request and response data is "not used to train models
+    without written consent". Read 2026-09-21'
+  models:
+  - family: kimi-k3
+    tier: frontier
+    released: ''
+    aa_model: kimi-k3
+  - family: glm-5.3
+    tier: frontier
+    released: ''
+    aa_model: glm-5-3
+  - family: deepseek-v4-pro
+    tier: strong
+    released: ''
+    aa_model: deepseek-v4-pro
+  - family: glm-5.3-flash
+    tier: strong
+    released: ''
+    aa_model: glm-5-3-flash
+  - family: deepseek-v4-flash
+    tier: strong
+    released: 2026-04
+    aa_model: deepseek-v4-flash
+  api:
+    base_url: https://api.sailresearch.com/v1
+    key_url: https://app.sailresearch.com
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - moonshotai/Kimi-K3
+    - zai-org/GLM-5.3
+    - deepseek-ai/DeepSeek-V4-Pro-0813
+    - zai-org/GLM-5.3-Flash
+    - deepseek-ai/DeepSeek-V4-Flash-0731
+    note: ids are the models page's, 2026-09-21 — the catalog answers only a key.
+      Sail's stable surface is the Responses API, and the FAQ says "Responses, Chat
+      Completions, and Messages all work as expected"; a request may name a balanced
+      or flex completion window to pay less and wait longer
+  probe:
+    type: page-keywords
+    endpoint: https://www.sailresearch.com/
+    keywords:
+    - $5 in free credits every month when you attach a payment method
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-21'
+  last_verified: '2026-09-21'
+  probe_failures: 0
+  provisional: true
+  rank: 96
 - id: sarvam
   name: Sarvam AI
   category: trial

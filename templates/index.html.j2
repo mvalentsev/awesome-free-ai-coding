@@ -458,7 +458,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
             {% for m in model_index %}
             <tr>
               <th scope="row"><code>{{ m.family }}</code></th>
-              <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ ", " if not loop.last }}{% endfor %}</td>
+              <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %}</td>
             </tr>
             {% endfor %}
           </tbody>

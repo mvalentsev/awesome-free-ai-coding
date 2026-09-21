@@ -304,7 +304,8 @@ def _model_index(active: list[Entry]) -> list[dict]:
 
     Answers the question the per-provider tables cannot: a reader who wants
     `qwen3` does not know, and should not have to scan twenty rows to learn,
-    which five entries carry it.
+    which five entries carry it. A row that needs a card carries its 💳 here
+    too: "free at" beside a name with no mark reads as free without one.
     """
     by_family: dict[str, list[Entry]] = {}
     for e in active:
@@ -312,7 +313,8 @@ def _model_index(active: list[Entry]) -> list[dict]:
             by_family.setdefault(family, []).append(e)
     return [
         {"family": family,
-         "providers": [{"name": p.name, "url": p.url}
+         "providers": [{"name": p.name, "url": p.url,
+                        "card_flag": " 💳" if p.card_required else ""}
                        for p in sorted(ps, key=lambda p: (p.rank, p.name.lower()))]}
         for family, ps in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))
     ]

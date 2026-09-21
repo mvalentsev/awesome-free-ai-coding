@@ -36,6 +36,7 @@ OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP
 - Source: <https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models>
 - Source: <https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-getting-started>
 - Source: <https://www.ovhcloud.com/en/public-cloud/ai-endpoints/>
+- Source: <https://endpoints.ai.cloud.ovh.net/>
 
 ## History
 
