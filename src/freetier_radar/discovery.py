@@ -40,12 +40,20 @@ CURATED_FEEDS = [
     # feed on every run and nobody noticed. The one list still carrying that
     # name (nherx/free-llm-api-resources) is a 6KB stub whose only links are
     # "Download Latest Release" and "Report Issues", so it is not a successor.
-    "https://raw.githubusercontent.com/sourcegraph/awesome-code-ai/HEAD/README.md",
-    # A catalog rather than a page: one object per provider, endpoint and model
-    # ids included, so a new gateway arrives here as a base URL to probe instead
-    # of a sentence to interpret. Leads only, like the rest — it carried
-    # "1M tokens/day" for Cerebras while cerebras.ai/pricing said $5 in credits.
-    "https://raw.githubusercontent.com/vava-nessa/free-coding-models/HEAD/sources.js",
+    # sourcegraph/awesome-code-ai followed it on 2026-09-21: archived on GitHub
+    # since February, read twice a week for seven months after its last change.
+    # It is in sources.yaml now, with what its last read found.
+    # One entry per provider with its free tier in a phrase and its sign-up URL,
+    # generated from the project's own catalog (sources.js) by its own script.
+    # The feed read sources.js itself until 2026-09-21: 68,531 characters of
+    # per-model rows by then, of which the excerpt kept 29%, and the provider map
+    # the 2026-08-14 cut was measured for no longer sat at the end. This page is
+    # 8,690 characters and names all 24 providers, and what the catalog has
+    # REMOVED and why. Leads only, like the rest — it carried "1M tokens/day" for
+    # Cerebras while cerebras.ai/pricing said $5 in credits, and "daily Pollen
+    # grants" for Pollinations after the vendor's docs had made that balance
+    # Quest Pollen.
+    "https://raw.githubusercontent.com/vava-nessa/free-coding-models/HEAD/docs/providers.md",
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
     # This was docs/getting-started/PROVIDERS-GUIDE.md until 2026-08-30, when both
@@ -75,18 +83,26 @@ CURATED_FEEDS = [
     # The card column is the only machine-readable answer to that question anywhere
     # in these feeds. Leads only — the same table still lists GitHub Models, retired
     # 2026-07-30, and credits LLM7 with 15 free models when its catalog has none.
-    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/HEAD/README.md",
-    # A router's provider table: base URL, auth shape and a dated live-probe note
-    # per gateway, written by someone who had to make each one answer. That makes
-    # it the densest lead source here and the most opinionated — it carries
-    # NavyAI and AINative next to SEA-LION, so the usual rule holds twice over:
-    # leads only, official-page proof still required. Its verdicts are dated
-    # opinions and two of them have now been wrong here: it says SambaNova's free
-    # tier is "permanently gone" while docs.sambanova.ai still keys a Free Tier to
-    # "no payment method linked with your account" (checked 2026-08-06 and again
-    # 2026-08-14), and it credits AINative with "a recurring ~10M tokens/month free
-    # allocation" that ainative.studio/pricing contradicts on its own page.
-    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/server/src/providers/index.ts",
+    # Read from its provider directory on since 2026-09-21: the file had grown to
+    # 37,578 characters, the directory and the base-URL table ran past the
+    # excerpt's head, and the head was spending 6,600 characters on a pitch and
+    # SDK snippets.
+    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/HEAD/README.md#provider-directory",
+    # A router's own list of the providers it takes keys for: one line each with a
+    # label that says what the free offer is ("daily free-model quota", "shared
+    # monthly credits", "$5 monthly with payment method") and the page that issues
+    # the key, about sixty in 8,846 characters. Until 2026-09-21 the feed read
+    # server/src/providers/index.ts, which had been the base-URL table when it was
+    # adopted; the project has since moved every gateway with an adapter of its
+    # own into a module of its own, and index.ts named those only as class names —
+    # twelve providers, Sail Research, ACLIDE and CLōD among them, that no run
+    # ever saw a host for. Leads only, and the usual rule holds twice over for the
+    # most opinionated router here: it said SambaNova's free tier was
+    # "permanently gone" while docs.sambanova.ai still keyed a Free Tier to "no
+    # payment method linked with your account" (checked 2026-08-06 and again
+    # 2026-08-14), and it credited AINative with "a recurring ~10M tokens/month
+    # free allocation" that ainative.studio/pricing contradicts on its own page.
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/client/src/components/keys/shared.tsx",
     # The only feed here that looks east: of the nine providers it carries that
     # nothing in this repository had a verdict on, seven appear in none of the
     # five feeds above — Intern AI, SenseNova, iFlytek Spark, Inception Labs and
@@ -115,7 +131,10 @@ CURATED_FEEDS = [
     # was promoted for prints limits the vendor's own docs contradict — "3M input
     # / 60K output tokens per 60s" and a 24h row that does not exist, where
     # docs.hetzner.com reads 4M / 100k per 60s and 10 requests per 60s.
-    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md",
+    # Read from its provider directory on since 2026-09-21, when the whole file
+    # was 23,702 characters and the cut fell inside its base-URL table; from the
+    # directory on it is 19,162 and reaches the scout whole.
+    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory",
 ]
 
 # A machine catalog rather than a list: 185 providers, one object per model with

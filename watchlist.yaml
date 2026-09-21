@@ -3202,3 +3202,66 @@ watched:
       is priced at zero.
     reopen_if: >-
       The public plans API lists a plan priced at 0.
+
+  # The tools sourcegraph/awesome-code-ai carried that claim something free,
+  # read on their own pages 2026-09-21 when the list was put down (sources.yaml).
+  - domains: [codeassist.google]
+    name: Gemini Code Assist for individuals
+    checked_on: '2026-09-21'
+    reason: >-
+      The product page still sells "Gemini Code Assist for individuals at no
+      cost" with last year's copy — "the power of Gemini 2.5 to your IDE at no
+      cost (with Gemini 3 coming soon)" — but Google's developers blog of
+      2026-05-19 ended it: "On June 18, 2026, Gemini CLI and Gemini Code Assist
+      IDE extensions will stop serving requests for Google AI Pro and Ultra, as
+      well as those using it free of charge using Gemini Code Assist for
+      individuals." The free individual plan moved to Antigravity, which is a
+      row.
+    reopen_if: >-
+      Google's docs or blog say the Code Assist IDE extensions serve individual
+      free users again.
+
+  - domains: [cosine.sh]
+    name: Cosine
+    checked_on: '2026-09-21'
+    reason: >-
+      Plans start at Starter, "$19 /month 4M credits/month", and the home page,
+      read whole from a GitHub runner, never says "free".
+    reopen_if: >-
+      A free plan or no-card trial credit on cosine.sh/pricing.
+
+  - domains: [refact.ai]
+    name: Refact.ai
+    checked_on: '2026-09-21'
+    reason: >-
+      Bring-your-own-key now. refact.ai/pricing is a 404, the main repository
+      (smallcloudai/refact) was archived after 2026-05-30, and docs.refact.ai
+      redirects to a fork's wiki whose setup page says "Refact is designed
+      around BYOK rather than bundled cloud accounts".
+    reopen_if: >-
+      Refact bundles model usage again — a plan with included credits.
+
+  - domains: [replit.com]
+    name: Replit
+    checked_on: '2026-09-21'
+    reason: >-
+      "Start for free — no credit card required", but what the free Starter
+      plan spends its AI on is Replit's own hosted workspace — the case
+      CONTRIBUTING excludes, "hosted app builders whose free tokens are only
+      spendable inside their own workspace".
+    reopen_if: >-
+      Free model access usable from a client or an endpoint outside Replit's
+      workspace.
+
+  - domains: [workshop.ai, memex.tech]
+    name: Workshop AI (formerly Memex)
+    checked_on: '2026-09-21'
+    reason: >-
+      The $0 Discover plan carries "250 AI Credits", each "approximately $0.01
+      of model usage", spent inside "an AI creation platform to build websites,
+      AI apps, dashboards, internal tools, and mobile apps" — an app builder,
+      in the cloud or as its desktop app, not model access a developer can aim
+      at code they already have.
+    reopen_if: >-
+      The credits become usable from other clients, or Workshop Desktop works
+      as a coding agent on an existing project.

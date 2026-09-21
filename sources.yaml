@@ -961,3 +961,23 @@ read:
     reopen_if: >-
       It starts recording what each tool gives away free, with figures, rather
       than listing tools.
+
+  - url: https://github.com/sourcegraph/awesome-code-ai
+    name: sourcegraph/awesome-code-ai
+    checked_on: '2026-09-21'
+    reason: >-
+      A curated feed from July to 2026-09-21, and archived on GitHub the whole
+      time: its last commit, on 2026-02-23, is the README's own archive notice,
+      so every run for seven months read a list that could not change. It is a
+      directory of AI coding tools rather than of free tiers — 48 hosts, 20 with
+      a verdict here. Of the other 28 the ones claiming anything free were read
+      on their own pages the day it was put down: Gemini Code Assist's page
+      still sells the free individual plan Google ended on 2026-06-18 (the
+      Antigravity row carries what replaced it), Cosine has no free plan,
+      Refact.ai went bring-your-own-key when its main repository was archived,
+      and Replit and Workshop (formerly Memex) spend their free credits inside
+      app builders of their own — all five on the watchlist. The rest are
+      paid, enterprise-only or gone.
+    reopen_if: >-
+      The repository is unarchived and starts listing what the tools give away
+      free.
