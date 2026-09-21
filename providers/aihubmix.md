@@ -17,7 +17,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Free models
 
-`glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss`
+`glm-5.3`
 
 ## Limits, in the vendor's words
 
@@ -40,6 +40,7 @@ per-model caps, spelled out in each model's catalog description: "each account i
 
 ## History
 
+- `2026-09-21` — Free models changed: dropped glm-5, gpt-oss, kimi-k3, mimo-v2.5, north-mini-code
 - `2026-09-17` — Free models changed: added glm-5.3, kimi-k3
 - `2026-08-17` — Added to the list: One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly
 

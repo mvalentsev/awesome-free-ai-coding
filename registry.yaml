@@ -1823,21 +1823,6 @@ entries:
     tier: frontier
     released: ''
     aa_model: glm-5-3
-  - family: kimi-k3
-    tier: frontier
-    released: ''
-    aa_model: kimi-k3
-  - family: glm-5
-    released: 2026-02
-    aa_model: glm-5
-  - family: mimo-v2.5
-    released: ''
-    aa_model: mimo-v2-5-0424
-  - family: north-mini-code
-    released: 2026-06
-    aa_model: north-mini-code
-  - family: gpt-oss
-    released: 2025-08
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://aihubmix.com/token
@@ -2190,9 +2175,6 @@ entries:
     tier: strong
     released: ''
     aa_model: qwen3-8-27b
-  - family: llama-3.3
-    released: ''
-    aa_model: llama-3-3-instruct-70b
   - family: apertus-70b
     released: ''
     aa_model: apertus-70b-instruct

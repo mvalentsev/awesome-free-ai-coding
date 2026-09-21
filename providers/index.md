@@ -62,7 +62,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [Trae](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
-| [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) | 🎁 Trials (no card when possible) | `glm-5`, `gpt-oss`, `qwen3.8-27b`, `llama-3.3`, `apertus-70b` | `2026-09-21` |
+| [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) | 🎁 Trials (no card when possible) | `glm-5`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b` | `2026-09-21` |
 | [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | `solar-pro-3`, `solar-mini` | `2026-09-21` |
 | [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) | 🎁 Trials (no card when possible) | `gpt-5.6-luna` | `2026-09-21` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
@@ -78,7 +78,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Standard Compute](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `gemma-4` | `2026-09-21` |
 | [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny`, `muse-glimmer-30b`, `nemotron-3.5-lightning` | `2026-09-21` |
-| [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`, `gpt-oss` | `2026-09-17` |
+| [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) | 🧭 Aggregators (one key, many providers) | `glm-5.3` | `2026-09-17` |
 | [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b` | `2026-09-21` |
 | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-ultra`, `qwen3.6` | `2026-09-21` |
 | [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) | 🧭 Aggregators (one key, many providers) | `laguna-s-2.1`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante` | `2026-09-21` |
