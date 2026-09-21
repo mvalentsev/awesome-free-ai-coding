@@ -23,6 +23,10 @@ EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4
 
 The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags five rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1 and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Opper never trains on your data. Per-provider data policies are listed in the models directory.” ([source](https://opper.ai/pricing)).
+
 ## Connect
 
 - Base URL: `https://api.opper.ai/v3/compat`

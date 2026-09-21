@@ -23,6 +23,10 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash, 10 of MiMo 2.5, 6 of DeepSeek V4.1 Flash or 5 of GPT-5.6 Luna; they refill at midnight Pacific and do not carry over. "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Solar Pro 4 ("Limited-time trial") and the queued Muse Spark 1.2 stay out of the models column. Read 2026-09-16
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training. … Muse Spark 1.2: Queue. May use data for AI training.” ([source](https://freebuff.com/)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

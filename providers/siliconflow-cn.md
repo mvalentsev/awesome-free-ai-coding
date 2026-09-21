@@ -23,6 +23,10 @@ China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B
 
 The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model ("免费模型的 Rate Limits 固定", shown in the client-rendered model square), and "实名认证后使用全部的免费模型" — they open only after real-name verification. That is an Alipay face scan taking a mainland ID card, a Hong Kong, Macau or Taiwan travel or residence permit, or China's permanent-residence card for foreigners; without one "暂时不支持线上个人认证", and the FAQ offers a form to the staff instead. Sign-in is by SMS or email. The free rows are in the price list's own data, each at ¥0 in and out: Qwen3-8B, GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct, Qwen3.5-4B, DeepSeek-R1-0528-Qwen3-8B, Hunyuan-MT-7B and Xing4.0-29B, the last two also marked 免费 in the table the page renders. Read 2026-09-18
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “我们不会长期存储您的任何业务输入与输出数据；不会将您的业务数据用于任何大模型的预训练、微调或其他商业用途；” ([source](https://docs.siliconflow.cn/docs/legals/privacy-policy)).
+
 ## Connect
 
 - Base URL: `https://api.siliconflow.cn/v1`

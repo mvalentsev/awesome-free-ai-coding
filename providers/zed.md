@@ -23,6 +23,10 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GP
 
 "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit predictions. No credit card is required. The trial ends when you use the $5 balance or 14 days pass, whichever comes first." "GPT-5.6 Luna is the only hosted model available during the free trial", and the balance is shared with Delta, Zed's other app. Trials "automatically convert to Zed Free" — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period on the page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-16
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Zed does not retain your prompts or code context by default. For Zed-hosted models, Zed has no-training commitments from model providers … Zed only retains AI data when you explicitly share feedback or opt in to training data collection.” ([source](https://zed.dev/docs/ai/privacy-and-security)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

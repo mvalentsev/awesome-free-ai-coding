@@ -23,6 +23,10 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Zero Data Retention means Regolo does not store, log, or retain any of the data you send through our APIs — including prompts, completions, and any attached files. … It is never used for model training, analytics, or any other purpose.” ([source](https://regolo.ai/faq/)).
+
 ## Connect
 
 - Base URL: `https://api.regolo.ai/v1`

@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The home page: "Get $1 in free credit", granted "once during key creation, not immediately after signup" to an account with "no previous paid top-up, no existing credit, and no previous setup-credit grant". "Trial traffic is limited to 10 requests per minute, 250,000 tokens per minute, and four concurrent requests", "Signup and guided setup have no payment step", and "The $1 credit does not expire". What the dollar buys is the catalog rate of whatever it is spent on, with "0% Token markup" on the pricing page, so at deepseek-v4-flash it is an afternoon of work and at claude-opus-5 a handful of turns. The terms narrow it: "Until an account makes its first paid top-up, promotional credit may be usable only with a subset of models and at reduced rate limits", "no promotional credit is guaranteed", and one account per person. Which models the subset holds is on no page. Continuing costs a top-up "from $5 by card or $12 by crypto". No legal entity is named on /terms or /about, and /v1/models answers 403 without a key, so nothing here is read off the catalog. A connection test with a little work in it, one step above the smallest trial on this list. Read 2026-09-18
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “RouterPlex does not use your prompts or outputs to train models … Every other model in the catalog remains covered by the no-training rule above.” ([source](https://routerplex.com/privacy)).
+
 ## Connect
 
 - Base URL: `https://api.routerplex.com/v1`

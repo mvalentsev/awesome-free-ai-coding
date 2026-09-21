@@ -23,6 +23,10 @@ Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Ge
 
 $0/month, no subscription. The plan's own bullet reads "Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b" (read 2026-09-03; Gemini 3.5 Flash stood there until 2026-08-31 and three newer Flash generations have taken its place), with unlimited Tab completions, unlimited Command requests and "Basic weekly rate limits". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: "The baseline rate limits are primarily determined to the degree we have capacity, and exist to prevent abuse"
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “We use Interactions to evaluate, develop, and improve Google and Alphabet research, products, services and machine learning technologies. … If you don’t want your Interactions used in this way, navigate to settings to change your preference on how such data is used.” ([source](https://antigravity.google/terms)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

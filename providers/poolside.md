@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the docs site states a quota, a rate limit or a duration. Treat it as unquantified rather than as generous
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “We may use your Content to provide, maintain, improve, and develop the Products and other Poolside offerings, including training our models, unless you opt-out. … you may opt-out of Poolside using your Content for training by selecting the Training Opt-Out under User Settings” ([source](https://poolside.ai/legal/eula)).
+
 ## Connect
 
 - Base URL: `https://inference.poolside.ai/v1`

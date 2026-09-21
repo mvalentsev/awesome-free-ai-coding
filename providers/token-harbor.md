@@ -23,6 +23,10 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: :free ids for 
 
 "Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. "No per-minute request cap"; "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process free-route content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-18
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “After you explicitly enable free models, Token Harbor may retain, log, and analyze prompts and responses … Token Harbor may use this data for service diagnostics, safety, optimization, and model or product improvement.” ([source](https://tokenharbor.ai/terms)).
+
 ## Connect
 
 - Base URL: `https://tokenharbor.ai/v1`

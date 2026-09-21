@@ -473,14 +473,27 @@ def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_
     assert "| **[Yes](https://x.ai)** 👁 |" in listing
     assert "| **[OptOut](https://x.ai)** 👁 |" in listing
     assert "| **[No](https://x.ai)** |" in listing and "| **[Silent](https://x.ai)** |" in listing
-    assert "**👁** — the vendor may train on what you send" in listing
+    assert "**👁** — what you send may be used to train models" in listing
+
+    from freetier_radar.render import build_llms_txt, render_site
+    site = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
+    assert site.count("👁 may train on prompts</span>") == 1
+    assert site.count("👁 may train unless you opt out</span>") == 1
+    llms = build_llms_txt([yes, optout, no, silent], TODAY).splitlines()
+    parts = {name: next(x for x in llms if x.startswith(f"- [{name}]")).split("; ")
+             for name in ("Yes", "OptOut", "No", "Silent")}
+    assert "what you send may be used to train models" in parts["Yes"]
+    assert "what you send may be used to train models unless you opt out" in parts["OptOut"]
+    assert "what you send is not used to train models" in parts["No"]
+    assert not any("train" in p for p in parts["Silent"])
 
     page = build_provider_page(yes, [], TODAY)
-    assert ("## What happens to what you send\n\nThe vendor may use it to train or improve its "
-            "models: “Content used to improve our products” ([source](https://x.ai/pricing)).") in page
-    assert "unless you turn it off" in build_provider_page(optout, [], TODAY)
-    assert "The vendor says it does not train on it: “We never train on your prompts”" in \
-        build_provider_page(no, [], TODAY)
+    assert ("## What happens to what you send\n\nWhat you send may be used to train or improve "
+            "models. In the vendor's words: “Content used to improve our products” "
+            "([source](https://x.ai/pricing)).") in page
+    assert "improve models unless you turn that off. In" in build_provider_page(optout, [], TODAY)
+    assert ("What you send is not used to train models. In the vendor's words: “We never train on "
+            "your prompts”") in build_provider_page(no, [], TODAY)
     assert "## What happens to what you send" not in build_provider_page(silent, [], TODAY)
 
 

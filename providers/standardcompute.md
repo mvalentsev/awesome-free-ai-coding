@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 "Eligible new accounts receive $0.25 of trial compute after activation. This is a finite platform compute allowance. It is not a recurring free tier, a fixed token count, or a value measured at another provider's prices" — the free-trial page, "Updated September 5, 2026", read here 2026-09-16; the pricing FAQ adds "with no card required". It does not refill, no card is asked for, and it is discretionary: "Access is subject to eligibility and availability", with a support address for accounts whose dashboard does not offer it. What the quarter buys is on no page — a flat-rate router publishes no per-token price, and the only conversion the site offers is its own marketing arithmetic, a $20 monthly compute budget on the paid Starter plan that its pricing table says does the work of up to $60 a month of direct API use. The vendor sets the expectation itself: "Start with one small request that lets you check the connection and response", while "a longer coding-quality comparison may need a paid allowance". It is the smallest offer on this list — a connection test, not a working allowance
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Your prompts are never used for training. By us, or by any provider we route to.” ([source](https://standardcompute.com)).
+
 ## Connect
 
 - Base URL: `https://api.stdcmpt.com/v1`

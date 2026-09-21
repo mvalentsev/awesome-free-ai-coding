@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The pricing page's Free plan, "Test out the Arli platform" at $0, lists "Delayed Response", "Max 12K context tokens", "1 request at a time" and "5 times / 2 days trial of all models", and the text generation docs say the allowance recurs: "Free accounts are able to use each model for a maximum of 5 requests every 2 days for testing purposes". The keyless catalog at api.arliai.com/model/all listed 92 models on 2026-09-17 — DeepSeek-V4-Flash-0731, MiMo-V2.5, GLM-4.7 and Gemma-4-31B-it among them, most of the rest Qwen3.5 27B and Gemma 4 31B fine-tunes recommended for writing and roleplay. Past the trial the Personal Starter plan is $10 a month. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “By submitting prompts or other inputs to the Services, you grant us a worldwide, non-exclusive, royalty-free license to use, process, and transmit your inputs solely for the purpose of generating and returning a response to you, and only for the duration necessary to complete that request.” ([source](https://www.arliai.com/terms)).
+
 ## Connect
 
 - Base URL: `https://api.arliai.com/v1`

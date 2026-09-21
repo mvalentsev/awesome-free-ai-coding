@@ -23,6 +23,10 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 "Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota", and "Free models are available to any user with a Cline account" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over "on a rotating, limited-time basis" — ids change within a day, so only Laguna S 2.1, in the lane since July, is in the Models column. The free-models page states two limits outright: "Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI", and "Free model usage may be used to help improve model performance and quality". Read 2026-09-14
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “Free model usage may be used to help improve model performance and quality.” ([source](https://docs.cline.bot/getting-started/free-models)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

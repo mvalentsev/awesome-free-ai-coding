@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is published — no credit amount and no starter-model list — and every cloud model carries a per-million-token price on the same page (gpt-oss:20b $0.07 in / $0.30 out, kimi-k3 $3.00 / $15.00). Free gets 1 concurrent request against Pro's 3, and the included usage "resets monthly from the date you signed up" without rolling over. The starter set can only be measured: on 2026-09-02 a key on the $0 plan got answers from gpt-oss:120b, gemma4:31b and nemotron-3-ultra and 402 Payment Required from minimax-m3, so the edge of the set is not the price — nemotron-3-ultra is inside at $0.10/$3.00, minimax-m3 outside at $0.60/$2.40. Read 2026-09-02
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Prompt or response data is never logged or trained on. … When Ollama partners with providers, we require no logging, no training, and zero data retention policies in place.” ([source](https://ollama.com/pricing)).
+
 ## Connect
 
 - Base URL: `https://ollama.com/v1`

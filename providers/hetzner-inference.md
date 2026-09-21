@@ -23,6 +23,10 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in advance via email with detailed information." Published per API key: 4M input and 100k output tokens per 60s, plus 10 requests per 60s, HTTP 429 over either. No daily, monthly or lifetime cap is published and no end date is named — the same page calls the service experimental, "provided for experimental purposes only" and offered as is, with performance and availability not guaranteed and no backups. A Hetzner account is needed to mint a token and the docs do not say whether a payment method is required; Hetzner's own fraud-prevention page offers a card charge as one of several verification routes (read 2026-08-30)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Prompts and outputs: Under our zero-retention policy, we do not store them. They are also not used in any other way to train or improve the AI models.” ([source](https://www.hetzner.com/legal/privacy-policy/)).
+
 ## Connect
 
 - Base URL: `https://inference.hetzner.com/api/v1`

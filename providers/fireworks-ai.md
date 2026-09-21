@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The pricing page offers "Get started with $1 in free credits", and the billing FAQ says what happens to an account "Without payment method" when the dollar runs out: "Your account will be suspended until you add a payment method". Until then the account quotas put "No payment method or no credits" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits billing system". The dollar buys list prices, per 1M input and output tokens: DeepSeek V4.1 Flash $0.22 and $0.66, GLM 5.3 Flash $0.15 and $0.50, MiniMax M3 $0.30 and $1.20, Kimi K3 $3.00 and $15.00 — about 4.5M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “No AI Training on Your Data: We do not use your prompts, training data, or API inputs to train or improve our AI models without your explicit opt-in.” ([source](https://fireworks.ai/privacy-policy)).
+
 ## Connect
 
 - Base URL: `https://api.fireworks.ai/inference/v1`

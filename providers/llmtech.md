@@ -23,6 +23,10 @@ EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial ke
 
 The quickstart prints the key itself: "Shared and rate-limited: 2 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key — "64 concurrent and no daily limit" — is paid per token and asked for by email. The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context, tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-18
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “We do not use your inputs or outputs to train, fine-tune, or evaluate any model, and we do not provide them to third parties for that purpose.” ([source](https://llmtech.eu/privacy)).
+
 ## Connect
 
 - Base URL: `https://api.llmtech.eu/v1`

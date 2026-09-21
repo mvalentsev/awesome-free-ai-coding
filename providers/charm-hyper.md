@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “We do not use your Content Data to train AI models. Your prompts and outputs are processed solely to provide the Services to you. … We select providers whose terms of service prohibit training on customer data.” ([source](https://hyper.charm.land/privacy)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

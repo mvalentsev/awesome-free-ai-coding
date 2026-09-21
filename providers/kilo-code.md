@@ -23,6 +23,10 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 $0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-21, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “Prompts may be logged by the upstream provider and used to improve their services.” ([source](https://api.kilo.ai/api/gateway/models)).
+
 ## Connect
 
 - Base URL: `https://api.kilo.ai/api/gateway`

@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The FAQ: 选择“免费体验访问令牌”即可享受免费体验，每位用户每日拥有 100 次免费调用次数 — take the free experience token and every user has 100 free calls a day — and a token past that answers `400` `已达到最大当日免费 API 使用次数，请购买资源后继续使用 API`. The Claude Code guide offers the same token to developers who have bought nothing, 仅供体验，每日调用次数有限 (for trying out, daily calls limited), and configures deepseek-v4-flash-0731. Which models the token reaches, 所有精选模型 (all featured models), is listed only on the client-rendered model square; the models marked 免费 there are another matter, needing a purchased resource package of any amount. Sign-in is with a Gitee account, and no page read says whether one can be opened with a phone number from outside mainland China. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “对于您在我们的网站上发布的内容或以其他方式提供的内容，…在此明确，未经您的允许，我们不会使用您的内容作为人工智能模型训练的输入。” ([source](https://moark.com/docs/appendix/terms)).
+
 ## Connect
 
 - Base URL: `https://api.moark.com/v1`

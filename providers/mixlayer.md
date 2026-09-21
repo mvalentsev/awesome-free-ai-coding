@@ -23,6 +23,10 @@ Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B a
 
 The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision and text. The billing docs: "Free models do not require prepaid credit." — a paid model on an empty prepaid balance answers `402`. Rate limits are set per organization and per model, and "Mixlayer does not publish fixed limit values because limits can differ by organization and model". The docs' introduction sends its first request to the free model. The operator is Mixlayer Labs Inc. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “By default, Mixlayer does not use Customer Content (Inputs/Outputs) to train or improve models for general availability” ([source](https://www.mixlayer.com/privacy-policy)).
+
 ## Connect
 
 - Base URL: `https://models.mixlayer.ai/v1`

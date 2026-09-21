@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect the available models, and add prepaid credit or a monthly plan when you are ready." No page says what a credit is worth; the credits endpoint reports the balance as "Total credits available to the organization, in USD". Usage is billed per token — abliterated-model $1.00 in and $3.00 out per million, abliterated-model-large-v2 and abliterated-model-large $3.00 and $5.00 — and plans start at $20 a month. The models "think before answering by default", stream and call tools, and abliterated-model-large-v2 is "Derived from the open-weight GLM-5.3 model, further abliterated and fine-tuned by Abliteration AI". The operator is Abliteration AI, Inc. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Prompts, completions, and images are processed in memory and never stored by default. They are never used to train or fine-tune any model.” ([source](https://abliteration.ai/data-handling)).
+
 ## Connect
 
 - Base URL: `https://api.abliteration.ai/v1`

@@ -23,6 +23,10 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash — the newest of them, "our most intelligent Flash model, engineered for long-horizon software engineering", free in the same column that prices it at $0.75/$3.75 per 1M on the paid tier (read 2026-09-08) — and on 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview, 2.5 Pro and 2.5 Flash, with "Not available" in the same column for Gemini 3.1 Pro Preview, Omni Flash Preview and the Live previews. A new generation arrives here as an addition: every Flash before it kept its free column when 3.8 landed. What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published anywhere a probe can read — the rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial", and sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “When you use Unpaid Services, including, for example, Google AI Studio and the unpaid quota on Gemini API, Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products and services and machine learning technologies” ([source](https://ai.google.dev/gemini-api/terms)).
+
 ## Connect
 
 - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`

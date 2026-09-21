@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The quick start: "New accounts get a $25 signup credit (limited time), enough for millions of test calls on" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Concurrency counts deposits only, "a signup bonus of $25 and a deposit of $20 only counts as $20", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: "The specific model behind any given call can change between calls." The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Neither we nor our suppliers retain the content of your requests or responses. Your data is not used for training, fine-tuning, or any purpose beyond serving the request in front of it.” ([source](https://thegrid.ai/docs/data-handling-and-privacy/data-handling-and-privacy)).
+
 ## Connect
 
 - Base URL: `https://api.thegrid.ai/v1`

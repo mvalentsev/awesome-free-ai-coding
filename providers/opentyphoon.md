@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 Rate limits are the published ceiling — 5 requests per second and 200 per minute on typhoon-v2.5-30b-a3b-instruct, 2 and 20 on typhoon-ocr — with no token, daily or monthly cap stated; higher limits are by email "with details about your use case, expected volume, and requirements". The FAQ answers the price in one sentence, "The Typhoon API is a research showcase and free to use", and names the trade in the next: "Yes, we are collecting usage data from the Typhoon API", used "to improve the model and the API" and, it says, never shared with third parties. Production use is pointed elsewhere — "please support us by using the API through Together AI" — and the paid API Pro that ran there sunset on 2025-12-31 with an AWS successor announced for Q1 2026 that had not appeared by this read (2026-09-05). A key is minted in the playground after signing up; no card is mentioned on any page read
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “Yes, we are collecting usage data from the Typhoon API. We use this data to improve the model and the API.” ([source](https://docs.opentyphoon.ai/en/faq/)).
+
 ## Connect
 
 - Base URL: `https://api.opentyphoon.ai/v1`

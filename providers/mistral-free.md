@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The Free card on mistral.ai/pricing lists "Limited coding sessions", "Test Mistral models in Studio" and "$10 /mo in API credits", where Pro's card says $30. The docs say where the allowance goes: "Mistral plans are global: the same plan applies across Vibe, Studio, and API usage", "Free mode is the default state for new accounts", and "Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code. Usage consumes this monthly allowance first" — past it, usage "can stop until the next billing period" unless pay-as-you-go is switched on. The quickstart asks for nothing more: "Free mode: API access is enabled by default with no credit card required." What $10 buys is on the same page: "For example, Mistral Large costs $0.5 /M tokens in and $1.5 /M tokens out." Free mode also has the lowest rate limits — requests per second, tokens per minute and tokens per month, shown only inside the account — and API calls may be used to improve Mistral's services unless the Admin panel's `Anonymous improvement data` toggle is off.
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “As stated during subscription, we may use your data (input and output) to train our artificial intelligence models. … You have the right to opt out of this program at any time.” ([source](https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models)).
+
 ## Connect
 
 - Base URL: `https://api.mistral.ai/v1`

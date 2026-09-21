@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the page's data rather than its text: every user receives $2 "in free credits. New accounts using the invite code" HPCAI-MAPI get $4, and "Supplies are limited". The console's welcome message, shipped in the same page, reads "Free credits have been added to your account — start calling open-source models right away." and "Make your first deposit to unlock higher RPM limits." The keyless model list gives the L0 tier, an account before its first deposit, 5 requests and 2M tokens a minute on 23 of its 24 models (DeepSeek V4 Pro gets 0), and the rate-limit docs say the move to L1 "is triggered by your first deposit rather than by spending". The credit buys list prices, GLM 5.3 Flash at $0.15 in and $0.50 out per million tokens and Kimi K3 at $3 and $15. No page read asks for a card before the credit is spent, and none gives it an expiry. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “No customer request data is used for model training unless explicitly agreed otherwise.” ([source](https://www.hpc-ai.com/model-apis)).
+
 ## Connect
 
 - Base URL: `https://api.hpc-ai.com/inference/v1`

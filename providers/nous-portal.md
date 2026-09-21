@@ -23,6 +23,10 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 
 The portal's plan table reads "Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The :free tag is what keeps it on the no-cost plan". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices seven rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-18
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “When Privacy Mode is enabled, we will not store your inference payloads and will not use such inference payloads for training, product improvement, or support purposes” ([source](https://portal.nousresearch.com/privacy)).
+
 ## Connect
 
 - Base URL: `https://inference-api.nousresearch.com/v1`

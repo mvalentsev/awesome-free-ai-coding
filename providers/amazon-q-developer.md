@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 "Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID user", and "Free Tier limits in the IDE are available only to Builder ID users". The Free column reads "50 agentic requests per month" for Q&A chat and agentic coding in the IDE plugins and CLI, plus 1,000 lines of code a month of Java upgrade transformation; the plan summary says "Access latest Claude models" without naming them. Pro is $19 a month per user. The end is scheduled: "On April 30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins", pointing to Kiro, which this list carries separately. Read 2026-09-16
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “We may use certain content from Amazon Q Developer Free tier for service improvement. Amazon Q may use this content, for example, to provide better responses to common questions, fix Amazon Q operational issues, for de-bugging, or for model training.” ([source](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/service-improvement.html)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

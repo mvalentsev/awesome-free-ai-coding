@@ -59,6 +59,11 @@
         "anthropic_base_url": "https://openrouter.ai/api",
         "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 21 on 2026-09-21, and the lane rotates, so a new id waits two weeks for the Models column. Six are not coding models: openrouter/free is the free-models router, nemotron-3.5-content-safety a guardrail, ling-3.0-flash-fin and ling-3.0-flash-sante finance- and health-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
       },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "Wherever possible, OpenRouter works with providers to ensure that prompts will not be trained on, but there are exceptions. If you opt out of training in your account settings, OpenRouter will not route to providers that train.",
+        "url": "https://openrouter.ai/docs/guides/privacy/provider-logging"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://openrouter.ai/api/v1/models",
@@ -120,6 +125,11 @@
         "model_ids": [],
         "note": "pass the key as Bearer"
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "When you use Unpaid Services, including, for example, Google AI Studio and the unpaid quota on Gemini API, Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products and services and machine learning technologies",
+        "url": "https://ai.google.dev/gemini-api/terms"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://ai.google.dev/gemini-api/docs/pricing",
@@ -180,6 +190,11 @@
         ],
         "note": "the chat models Groq's own Free Plan Limits table names; its safeguard and prompt-guard classifiers, compound systems, whisper and orpheus rows are left out"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "For clarity, Groq is not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models, unless explicitly granted permission or instructed by Customer.",
+        "url": "https://console.groq.com/docs/legal/services-agreement"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://console.groq.com/docs/rate-limits",
@@ -222,6 +237,11 @@
         "openai_compatible": true,
         "model_ids": [],
         "note": "Free mode is on by default for a new account; create the key under Studio › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's Vibe budget, which Mistral tells API users to avoid"
+      },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "As stated during subscription, we may use your data (input and output) to train our artificial intelligence models. … You have the right to opt out of this program at any time.",
+        "url": "https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models"
       },
       "probe": {
         "type": "page-keywords",
@@ -317,6 +337,11 @@
         "model_ids": [],
         "note": "substitute {account_id} with your Cloudflare account ID"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services",
+        "url": "https://developers.cloudflare.com/workers-ai/platform/data-usage/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
@@ -360,6 +385,11 @@
           "nemotron-3-ultra"
         ],
         "note": "the three ids left are the ones a key on the $0 plan actually answered on 2026-09-02, in that order of speed; minimax-m3 was dropped from this list because the same key gets 402 Payment Required for it. Which models the starter credits reach is published nowhere, so this list is measured rather than read, and /v1/models still lists the whole catalog, starter and metered alike"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Prompt or response data is never logged or trained on. … When Ollama partners with providers, we require no logging, no training, and zero data retention policies in place.",
+        "url": "https://ollama.com/pricing"
       },
       "probe": {
         "type": "page-keywords",
@@ -428,6 +458,11 @@
           "aa_model": "muse-spark-1-3-xhigh"
         }
       ],
+      "data_use": {
+        "trains": "yes",
+        "quote": "During its free period, collected data may be used to improve the model.",
+        "url": "https://opencode.ai/docs/zen/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://opencode.ai/docs/zen/",
@@ -523,6 +558,11 @@
         "refuses_bearer": true,
         "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model"
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "Prompts may be logged by the upstream provider and used to improve their services.",
+        "url": "https://api.kilo.ai/api/gateway/models"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://api.kilo.ai/api/gateway/models",
@@ -552,6 +592,11 @@
       "offering": "AI IDE whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions",
       "limits": "Trae publishes the Free plan as words — \"Auto mode only\", \"Limited usage\", \"Limited Autocomplete\", \"Autocompletion 5000 / month\", \"Concurrent Cloud Tasks 2\" — and as numbers in the page payload, where basic_usage_limit is the dollar figure the paid plans print as \"$20 usage / month\". That figure depends on where the page is served: on 2026-09-16 a GitHub runner read $3 of Basic usage on Free and another network $1, with different paid-plan figures and prices too. Both versions carry 5,000 autocompletions and 1,000 advanced-model requests on Free. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload because trae.ai renders per request and its table can arrive without the Free column",
       "models": [],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "When you use TraeCode's services, your information like your chat interactions, including related code snippets and AI-generated outputs, may be used for analytics, product improvement, and model training. … When Privacy mode is enabled, TraeCode will not use any of your chat interactions, including related code snippets and AI-generated outputs, for the above-mentioned purposes.",
+        "url": "https://docs.trae.ai/ide/privacy-mode"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://www.trae.ai/pricing",
@@ -590,6 +635,11 @@
       "offering": "Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf",
       "limits": "Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint (`Enable JavaScript to continue`), from CI and from a laptop alike, so the pricing page cannot be read. Cognition's docs are open and describe the $0 plan: a \"daily and weekly usage allowance that refreshes automatically\", where Free means \"Wait until your next daily or weekly reset\" and only the paid plans can buy their way past it. Which models that allowance reaches is published nowhere readable; the one tier-tagged model catalogue, docs.devin.ai/desktop/models, carried only Pro and Enterprise tiers when it was read (2026-08-19). Read 2026-09-16",
       "models": [],
+      "data_use": {
+        "trains": "yes",
+        "quote": "By default, we may use your data for model training purposes to improve and enhance the Services. If you’re on a paid plan, you can opt out at any time on the Data Controls settings page.",
+        "url": "https://docs.devin.ai/admin/security"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://docs.devin.ai/desktop/accounts/quota.md",
@@ -665,6 +715,11 @@
       "offering": "Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage",
       "limits": "GitHub folded its Copilot billing-concepts page into the plans page on or before 2026-08-20 and restated the figures there. Inline suggestions are \"limited to 2000 completions per month on Copilot Free\"; for everything agentic, \"Copilot Free and Copilot Student both have an allowance of AI credits\" — an allowance GitHub numbers for every paid plan (1,500 monthly credits on Pro, 7,000 on Pro+, 20,000 on Max) and leaves unnumbered for Free, whose row in the plans table reads only \"An allowance of GitHub AI Credits\" and \"Limited\" agents. Model choice is not offered: \"on Copilot Free and Copilot Student plans, access to models is available through auto model selection only\". The plan is still scoped to developers no employer covers — \"Copilot Free plans are only available to individual developers who don't have access to Copilot through an organization or enterprise\" — but the list of business features it withholds went with the old page and is not on this one (read 2026-08-20)",
       "models": [],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "GitHub may also use interactions from users with a Copilot Free, Copilot Pro, and Copilot Pro+ subscription - including inputs, outputs, code snippets, and associated context - to train and improve our AI models unless they have opted out.",
+        "url": "https://github.com/features/copilot"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://docs.github.com/en/copilot/get-started/plans",
@@ -702,6 +757,11 @@
           "released": ""
         }
       ],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "Let Google use your future Jules conversations and code on content Jules receives from public repositories to train its generative AI models. Opting out does not apply to any feedback you may choose to provide.",
+        "url": "https://jules.google.com/legal"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://jules.google/docs/usage-limits",
@@ -755,6 +815,11 @@
           "aa_model": "minimax-m2-1"
         }
       ],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "We may use certain content from Kiro Free Tier and Kiro individual subscribers for service improvement. … Kiro may use this content, for example, to provide better responses to common questions, fix Kiro operational issues, for de-bugging, or for model training.",
+        "url": "https://kiro.dev/docs/privacy-and-security/data-protection/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://kiro.dev/pricing/",
@@ -789,6 +854,11 @@
       "offering": "Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card",
       "limits": "Cursor publishes no figure for Hobby anywhere. Its pricing card reads \"No credit card required\", \"Limited Agent requests\" and \"Access to Composer\"; the plan table in its own help centre prints \"Limited\" in the included-usage column where Pro reads $20 and Ultra $400; and the help page adds only that \"the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model\". Usage \"resets monthly with your billing cycle\" and \"does not roll over\"; at the cap Cursor shows a notification and offers on-demand billing or an upgrade. Which models Hobby reaches is never enumerated, and Cursor Router has not reached individual plans yet (read 2026-08-14)",
       "models": [],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "we may use and store codebase data, prompts, editor actions, code snippets, and other code data and actions to improve our AI features and train our models.",
+        "url": "https://cursor.com/data-use"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://cursor.com/pricing",
@@ -877,6 +947,11 @@
         ],
         "note": "the catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your account still has credits to call them with, and it publishes no price field at all, so hosting is the only question it can answer"
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "Your input and output will be recorded to provide you with this trial experience and to improve NVIDIA products and services, including AI models",
+        "url": "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://integrate.api.nvidia.com/v1/models",
@@ -933,6 +1008,11 @@
         ],
         "anthropic_base_url": "https://api.z.ai/api/anthropic",
         "note": "the ids are the chat completion reference's own, where glm-4.7-flash and glm-4.5-flash sit in its model enum; Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead. The Claude Code guide sets ANTHROPIC_BASE_URL to https://api.z.ai/api/anthropic with \"your_zai_api_key\" as the token and names Coding-Plan ids (glm-5.3, glm-5.3-flash); whether the free Flash ids answer on that route is not stated, and the route answers 401 keyless (2026-09-05)"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "For enterprises and developers using API Services, we will not use your User Content for developing or improving Services unless you explicitly agree to such use.",
+        "url": "https://docs.z.ai/legal-agreement/terms-of-use"
       },
       "probe": {
         "type": "page-keywords",
@@ -1001,6 +1081,11 @@
         ],
         "refuses_bearer": true,
         "note": "no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not that the offer is gone. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on, except on Qwen3.8-27B, which the catalog prices at zero"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Your data will never be used to train or improve our AI models",
+        "url": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/"
       },
       "probe": {
         "type": "api-models",
@@ -1099,6 +1184,11 @@
         "openai_compatible": true,
         "model_ids": [],
         "note": "international (Singapore) endpoint; keys are region-specific"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Alibaba Cloud strictly protects your data privacy and will never use your data for model training.",
+        "url": "https://www.alibabacloud.com/help/en/model-studio/privacy-notice"
       },
       "probe": {
         "type": "page-keywords",
@@ -1233,6 +1323,11 @@
         "model_ids": [],
         "note": ""
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "The Company shall not use Member Input/Output Data for service improvement or for training artificial intelligence models.",
+        "url": "https://www.upstage.ai/terms-of-service"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://console.upstage.ai/docs/getting-started",
@@ -1288,6 +1383,11 @@
           "command-a-03-2025"
         ],
         "note": "OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2. Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0 is the free-on-any-key one"
+      },
+      "data_use": {
+        "trains": "yes",
+        "quote": "Analyzing usage patterns and using Trial or Research User Inputs/Outputs to improve the performance and safety of our AI models.",
+        "url": "https://cohere.com/privacy"
       },
       "probe": {
         "type": "page-keywords",
@@ -1354,6 +1454,11 @@
       "offering": "Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention",
       "limits": "100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)",
       "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "We do not use your Content Data to train AI models. Your prompts and outputs are processed solely to provide the Services to you. … We select providers whose terms of service prohibit training on customer data.",
+        "url": "https://hyper.charm.land/privacy"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://hyper.charm.land/faq",
@@ -1418,6 +1523,11 @@
         ],
         "anthropic_base_url": "https://ai-gateway.vercel.sh",
         "note": "every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. Zero-priced ids come and go within days, so a new one waits two weeks for the Models column. spacexai/grok-stt also shows a zero but is speech-to-text billed per second of audio. The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY empty"
+      },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "By default, AI Gateway does not route based on the training data policy of providers. If we do not know a provider's training data stance or have not yet established an agreement with them, we assume that they train on your data.",
+        "url": "https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training"
       },
       "probe": {
         "type": "api-models",
@@ -1564,6 +1674,11 @@
           "gpt-oss-120b"
         ],
         "note": "model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "SambaCloud never sees or collects any of your data or user prompts, ensuring full data privacy.",
+        "url": "https://sambanova.ai/products/sambacloud"
       },
       "probe": {
         "type": "page-keywords",
@@ -1714,6 +1829,11 @@
         "anthropic_base_url": "https://router.requesty.ai",
         "note": "the twelve ids listed are every row the catalog prices at 0, and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA and Poolside row is marked data_used_for_training with 30-day retention, and nemotron-3.5-content-safety is a guardrail classifier. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)"
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "Where a Model Provider trains on prompts, we label that model a Training Permitted Model so you can see exactly which ones they are, and every model we label that way is offered free of charge. Requesty's own use of content for training is limited to free plan accounts.",
+        "url": "https://www.requesty.ai/privacy"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://router.requesty.ai/v1/models",
@@ -1785,6 +1905,11 @@
           "released": "2025-08"
         }
       ],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "We use Interactions to evaluate, develop, and improve Google and Alphabet research, products, services and machine learning technologies. … If you don’t want your Interactions used in this way, navigate to settings to change your preference on how such data is used.",
+        "url": "https://antigravity.google/terms"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://antigravity.google/pricing",
@@ -2100,6 +2225,11 @@
         ],
         "note": "mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids /v1/models lists; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions instead and is absent from that catalog by design, so an OpenAI-shaped chat client cannot call it — point an autocomplete plugin at it, not a chat agent"
       },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "we may use User Submissions to … train our models. If you do not want us to use your User Submissions to train our models, you can opt-out by setting the ‘Improve the model for everyone’ option under User Settings in the API Platform to OFF.",
+        "url": "https://www.inceptionlabs.ai/docs/terms-of-use"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://docs.inceptionlabs.ai/get-started",
@@ -2209,6 +2339,11 @@
         ],
         "note": "the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split for Platform keys anywhere, so this row claims no free models and names none in its column. The key is created by signing in to Poolside Platform, whose dashboard sits behind a Cloudflare check no probe can read"
       },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "We may use your Content to provide, maintain, improve, and develop the Products and other Poolside offerings, including training our models, unless you opt-out. … you may opt-out of Poolside using your Content for training by selecting the Training Opt-Out under User Settings",
+        "url": "https://poolside.ai/legal/eula"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://docs.poolside.ai/get-started/quickstart",
@@ -2304,6 +2439,11 @@
           "Qwen3.8-27B"
         ],
         "note": "both ids are 262K-context and take text and images; /v1/models, /v1/completions and /v1/chat/completions are the whole surface. The key is minted in the Inference tab of experiments.hetzner.com, which is a client-rendered page behind a Hetzner login — the readable copy of the terms is the docs page this row probes"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Prompts and outputs: Under our zero-retention policy, we do not store them. They are also not used in any other way to train or improve the AI models.",
+        "url": "https://www.hetzner.com/legal/privacy-policy/"
       },
       "probe": {
         "type": "page-keywords",
@@ -2413,6 +2553,11 @@
         ],
         "note": "GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "Zero Data Retention means Regolo does not store, log, or retain any of the data you send through our APIs — including prompts, completions, and any attached files. … It is never used for model training, analytics, or any other purpose.",
+        "url": "https://regolo.ai/faq/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://regolo.ai/pricing/",
@@ -2472,6 +2617,11 @@
           "aa_model": "mimo-v2-5-0424"
         }
       ],
+      "data_use": {
+        "trains": "yes",
+        "quote": "DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training. … Muse Spark 1.2: Queue. May use data for AI training.",
+        "url": "https://freebuff.com/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://freebuff.com/",
@@ -2610,6 +2760,11 @@
         ],
         "note": "the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free until 22 September 2026, dots-studio/dots-3-note-preview until 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each \"kendi EVREN anahtarınızla çalışır\" (runs on your own EVREN key)"
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "Poolside states that prompts and completions on free access may be logged and used to improve its products.",
+        "url": "https://llmtr.com/docs/en/gateway/poolside-laguna/"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://llmtr.com/v1/models",
@@ -2640,6 +2795,11 @@
       "offering": "Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card",
       "limits": "\"Free 14 Day Trial no credit card\" with \"Unlimited reviews\" and \"Unlimited credits\" is the whole free offer on the pricing page, and the FAQ beside it says so: \"Is there a free plan? We don't offer a permanent free tier. After your trial, pick a paid plan to keep reviewing.\" The plan it trials is \"Pro Team $30\", \"$.012/credit, pooled across the team\", \"Designed for up to 30 users\", \"Monthly billing • no commitment\". The Terms grant Qodo a licence to use customer data \"to train and improve the Platform's, the Qodo Models and Services' performance\", while the pricing FAQ says \"Qodo does not train models on your code\". A standing free lane exists for one audience: \"Qualified open source projects can apply to the Qodo for Open Source program for free access\". Which models the trial runs on is not stated. Read 2026-09-16",
       "models": [],
+      "data_use": {
+        "trains": "no",
+        "quote": "Data of our paid subscribers (or within the trial periods) will never ever be used to train our AI models.",
+        "url": "https://www.qodo.ai/blog/qodo-security-our-commitment-to-data-privacy-and-security/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://www.qodo.ai/pricing/",
@@ -2796,6 +2956,11 @@
         ],
         "note": "the one chat id in the keyless catalog on 2026-09-05; the other five rows are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime, typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai, so it is a Qwen-class coder that also reads Thai; the Free models column stays empty because the FAQ the probe reads names no model"
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "Yes, we are collecting usage data from the Typhoon API. We use this data to improve the model and the API.",
+        "url": "https://docs.opentyphoon.ai/en/faq/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://docs.opentyphoon.ai/en/faq/",
@@ -2838,6 +3003,11 @@
         "openai_compatible": false,
         "model_ids": [],
         "note": "not OpenAI-shaped: the API key is exchanged for an IAM bearer token, chat is POST /ml/v1/text/chat with a project_id in the body and a version date in the query, and the host is per region (us-south.ml.cloud.ibm.com is Dallas). LiteLLM's watsonx provider and the ibm-watsonx-ai SDK wrap it; a plain OpenAI client cannot"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "IBM does not use your work to improve IBM models. … The foundation models are hosted in IBM Cloud or AWS; your prompts are not sent to third-party platforms.",
+        "url": "https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-security.html?context=wx"
       },
       "probe": {
         "type": "page-keywords",
@@ -2918,6 +3088,11 @@
         ],
         "note": "ids are the models page's, 2026-09-21 — the catalog answers only a key. Sail's stable surface is the Responses API, and the FAQ says \"Responses, Chat Completions, and Messages all work as expected\"; a request may name a balanced or flex completion window to pay less and wait longer"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "We do not use inference request or response data to train, fine-tune, or improve models without your written consent.",
+        "url": "https://docs.sailresearch.com/security"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://www.sailresearch.com/",
@@ -2969,6 +3144,11 @@
         ],
         "note": "the vendor's own header is api-subscription-key, and the same key is accepted as \"Authorization: Bearer\" on every endpoint. /v1/chat/completions serves only sarvam-105b and sarvam-105b-conversations; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees"
       },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "We use Your content (including inputs, uploads, prompts, or generated outputs) to train, fine-tune, and/ or improve our AI models unless you explicitly opt-out through your account settings",
+        "url": "https://www.sarvam.ai/privacy-policy"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://docs.sarvam.ai/api/getting-started/pricing.md",
@@ -3013,6 +3193,11 @@
         ],
         "anthropic_base_url": "https://api.stdcmpt.com",
         "note": "one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — \"For Claude Code, use https://api.stdcmpt.com without /v1\". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Your prompts are never used for training. By us, or by any provider we route to.",
+        "url": "https://standardcompute.com"
       },
       "probe": {
         "type": "page-keywords",
@@ -3063,6 +3248,11 @@
         "anthropic_base_url": "https://api.routerplex.com",
         "note": "ids are the catalog page's own spellings (routerplex.com/models, 54 chat ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com and ANTHROPIC_MODEL=claude-sonnet-4-6 (guide reviewed 2026-09-13), the Anthropic SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids is checked against a catalog, and which of them the promotional credit can call is not published"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "RouterPlex does not use your prompts or outputs to train models … Every other model in the catalog remains covered by the no-training rule above.",
+        "url": "https://routerplex.com/privacy"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://routerplex.com/",
@@ -3102,6 +3292,11 @@
           "released": "2026-07"
         }
       ],
+      "data_use": {
+        "trains": "yes",
+        "quote": "Free model usage may be used to help improve model performance and quality.",
+        "url": "https://docs.cline.bot/getting-started/free-models"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://api.cline.bot/api/v1/ai/cline/recommended-models",
@@ -3157,6 +3352,11 @@
         ],
         "note": "the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM. Agnes AI's China station (agnes-ai.cn) prices the same two Flash models at ¥0 (当前均免费, all currently free) and serves them from api.agnes-ai.cn/v1"
       },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "Any inputs you submit (e.g., prompts, files, text), outputs generated by the Service … may be processed, stored, and used to improve our products and AI models, unless you have opted out of such use where opt-out functionality is available.",
+        "url": "https://wiki.agnes-ai.com/en/docs/privacy-policy"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://wiki.agnes-ai.com/en/docs/pricing",
@@ -3194,7 +3394,7 @@
       ],
       "card_required": false,
       "offering": "One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on the vendor's own flat-rate API for coding agents; the free plan is a small daily allowance with no card",
-      "limits": "\"15 free requests a day. No card required.\" on the home page and \"No card required, free forever\" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto \"runs the model-serving stack rather than reselling a third-party model API\". The FAQ calls the free tier \"for testing\" where the plan card says \"free forever\", and the terms forbid using \"multiple accounts ... to combine capacity\". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are \"not routinely retained\". Read 2026-09-17",
+      "limits": "\"15 free requests a day. No card required.\" on the home page and \"No card required, free forever\" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto \"runs the model-serving stack rather than reselling a third-party model API\". The FAQ calls the free tier \"for testing\" where the plan card says \"free forever\", and the terms forbid using \"multiple accounts ... to combine capacity\". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are \"not stored or retained\". Read 2026-09-22",
       "models": [
         {
           "family": "qwen3.8-flash",
@@ -3212,6 +3412,11 @@
           "qwen3.8-flash"
         ],
         "note": "qwen3.8-flash is the one id the Free plan serves, \"the recommended model for coding, text, and tool use\" in the docs; qwen3.8-27b, the id this row carried until 2026-09-16, is still accepted from clients already configured with it, and yolo is a paid-only route whose server-side target can change. /v1/models and /v1/usage answer 401 without a key, and the free plan's context is 128K where Pro's is 256K"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Your prompts and responses are not used for model training.",
+        "url": "https://yolo-auto.com/pricing"
       },
       "probe": {
         "type": "page-keywords",
@@ -3247,6 +3452,11 @@
       "offering": "AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents",
       "limits": "JetBrains' plans table lists \"AI Free Free 3 AI Credits per 30-days\" beside AI Pro's 10 for $10, and \"Each AI Credit equals $1 USD\"; one credit is \"about: ~10 requests to generate code in AI Chat. ~40 requests to generate code in the editor\", and the quota resets every 30 days from first use. AI Free also carries \"Unlimited code completion (powered by JetBrains’ Mellum model)\" and unlimited local models through Ollama or LM Studio. It needs an IDE licence: \"AI Free is available to all users with active JetBrains IDE licenses, including educational licenses, classroom licenses, open source licenses, IDE trial licenses\", but not in IntelliJ IDEA without Ultimate, PyCharm without Pro, or Android Studio — for someone paying nothing, an educational or open-source licence, or the free non-commercial licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial asks for a card. The tier is \"only available in the serviceable territories, with the exception of Mainland China\". Read 2026-09-14",
       "models": [],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "For licenses that are for non-commercial use, this setting is enabled by default, but you can opt out at any time in the settings … Detailed code-related data is used for product improvement and training JetBrains models, and it is not shared with third parties.",
+        "url": "https://lp.jetbrains.com/ai-ides-faq/"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://lp.jetbrains.com/ai-ides-faq/",
@@ -3287,6 +3497,11 @@
           "aa_model": "gpt-5-6-luna"
         }
       ],
+      "data_use": {
+        "trains": "no",
+        "quote": "Zed does not retain your prompts or code context by default. For Zed-hosted models, Zed has no-training commitments from model providers … Zed only retains AI data when you explicitly share feedback or opt in to training data collection.",
+        "url": "https://zed.dev/docs/ai/privacy-and-security"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://zed.dev/pricing",
@@ -3356,6 +3571,11 @@
         "anthropic_base_url": "https://tokenharbor.ai",
         "note": "the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free. For Claude Code the docs say \"a free account works\" and \"every gateway model works on both endpoints\""
       },
+      "data_use": {
+        "trains": "yes",
+        "quote": "After you explicitly enable free models, Token Harbor may retain, log, and analyze prompts and responses … Token Harbor may use this data for service diagnostics, safety, optimization, and model or product improvement.",
+        "url": "https://tokenharbor.ai/terms"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://tokenharbor.ai/pricing",
@@ -3416,6 +3636,11 @@
         ],
         "note": "every id the keyless catalog prices at 0 on 2026-09-18; solar-pro4 is a limited-time trial on other gateways"
       },
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "When Privacy Mode is enabled, we will not store your inference payloads and will not use such inference payloads for training, product improvement, or support purposes",
+        "url": "https://portal.nousresearch.com/privacy"
+      },
       "probe": {
         "type": "api-models",
         "endpoint": "https://inference-api.nousresearch.com/v1/models",
@@ -3446,6 +3671,11 @@
       "offering": "AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month",
       "limits": "\"Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID user\", and \"Free Tier limits in the IDE are available only to Builder ID users\". The Free column reads \"50 agentic requests per month\" for Q&A chat and agentic coding in the IDE plugins and CLI, plus 1,000 lines of code a month of Java upgrade transformation; the plan summary says \"Access latest Claude models\" without naming them. Pro is $19 a month per user. The end is scheduled: \"On April 30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins\", pointing to Kiro, which this list carries separately. Read 2026-09-16",
       "models": [],
+      "data_use": {
+        "trains": "opt-out",
+        "quote": "We may use certain content from Amazon Q Developer Free tier for service improvement. Amazon Q may use this content, for example, to provide better responses to common questions, fix Amazon Q operational issues, for de-bugging, or for model training.",
+        "url": "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/service-improvement.html"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://aws.amazon.com/q/developer/pricing/",
@@ -3545,6 +3775,11 @@
         ],
         "anthropic_base_url": "https://api.fireworks.ai/inference",
         "note": "ids are accounts/fireworks/models/ plus the slug the serverless pricing page links, read 2026-09-17; /inference/v1/models answers 401 without a key, so none is read off a catalog. The quickstart gives the Anthropic SDK base_url https://api.fireworks.ai/inference, which is Claude Code's ANTHROPIC_BASE_URL, the client appending /v1/messages"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "No AI Training on Your Data: We do not use your prompts, training data, or API inputs to train or improve our AI models without your explicit opt-in.",
+        "url": "https://fireworks.ai/privacy-policy"
       },
       "probe": {
         "type": "page-keywords",
@@ -3649,6 +3884,11 @@
         "anthropic_base_url": "https://tokenhub.tencentmaas.com",
         "note": "ids are the models page's model column (调用参数), read 2026-09-17; /v1/models answers 401 without a key, so none is read off a catalog. The Claude Code guide sets ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com with ANTHROPIC_MODEL=hy3"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "不会，我们非常重视您的隐私保护，不会将您的数据用于为您提供服务以外的场景，更不会用于训练。",
+        "url": "https://cloud.tencent.com/document/product/1823/130104"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://cloud.tencent.com/document/product/1823/130053",
@@ -3736,6 +3976,11 @@
         "model_ids": [],
         "note": "the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "By submitting prompts or other inputs to the Services, you grant us a worldwide, non-exclusive, royalty-free license to use, process, and transmit your inputs solely for the purpose of generating and returning a response to you, and only for the duration necessary to complete that request.",
+        "url": "https://www.arliai.com/terms"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://www.arliai.com/pricing",
@@ -3790,6 +4035,11 @@
         "anthropic_base_url": "https://api.opper.ai/v3/compat",
         "note": "ids are four of the five rows the model directory flags free on 2026-09-17, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "Opper never trains on your data. Per-provider data policies are listed in the models directory.",
+        "url": "https://opper.ai/pricing"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://opper.ai/llms.txt",
@@ -3835,6 +4085,11 @@
         ],
         "anthropic_base_url": "https://moark.com/anthropic",
         "note": "the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL with deepseek-v4-flash-0731 in every model slot; the id is checked against the keyless catalog at api.moark.com/v1/models"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "对于您在我们的网站上发布的内容或以其他方式提供的内容，…在此明确，未经您的允许，我们不会使用您的内容作为人工智能模型训练的输入。",
+        "url": "https://moark.com/docs/appendix/terms"
       },
       "probe": {
         "type": "page-keywords",
@@ -3885,6 +4140,11 @@
           "qwen/qwen3.5-4b-free"
         ],
         "note": "the id is the pricing page's and the docs' own example; /v1/models answers 401 without a key, so it is not read off a catalog"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "By default, Mixlayer does not use Customer Content (Inputs/Outputs) to train or improve models for general availability",
+        "url": "https://www.mixlayer.com/privacy-policy"
       },
       "probe": {
         "type": "page-keywords",
@@ -3978,6 +4238,11 @@
         ],
         "anthropic_base_url": "https://api.abliteration.ai",
         "note": "ids are the docs' models page, read 2026-09-17; /v1/models answers 401 without a key. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "Prompts, completions, and images are processed in memory and never stored by default. They are never used to train or fine-tune any model.",
+        "url": "https://abliteration.ai/data-handling"
       },
       "probe": {
         "type": "page-keywords",
@@ -4076,6 +4341,11 @@
         "anthropic_base_url": "https://messages-beta.api.thegrid.ai",
         "note": "the ids are instruments from the keyless catalog at api.thegrid.ai/v1/models, where each carries the models it delivered; the Claude Code guide sets ANTHROPIC_BASE_URL=https://messages-beta.api.thegrid.ai, the Messages API in beta"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "Neither we nor our suppliers retain the content of your requests or responses. Your data is not used for training, fine-tuning, or any purpose beyond serving the request in front of it.",
+        "url": "https://thegrid.ai/docs/data-handling-and-privacy/data-handling-and-privacy"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://thegrid.ai/docs/start-here/quickstart.md",
@@ -4122,6 +4392,11 @@
           "minimax/minimax-m3"
         ],
         "note": "ids are the keyless model list's at www.hpc-ai.com/api/maas/v1/models, 2026-09-17, the quick start's own example being moonshotai/kimi-k2.7-code"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "No customer request data is used for model training unless explicitly agreed otherwise.",
+        "url": "https://www.hpc-ai.com/model-apis"
       },
       "probe": {
         "type": "page-keywords",
@@ -4763,6 +5038,11 @@
         "public_key": "lt-trial-ba1ef28c6d32ed6980678d8d",
         "note": "reasoning is adaptive: `chat_template_kwargs: {\"enable_thinking\": false}` turns it off, and `reasoning_effort` takes low, medium or xhigh. Cline lists LLM Tech among its built-in providers; Claude Code \"needs a translating proxy\", LiteLLM in the vendor's own example"
       },
+      "data_use": {
+        "trains": "no",
+        "quote": "We do not use your inputs or outputs to train, fine-tune, or evaluate any model, and we do not provide them to third parties for that purpose.",
+        "url": "https://llmtech.eu/privacy"
+      },
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://llmtech.eu/docs/",
@@ -4828,6 +5108,11 @@
         ],
         "anthropic_base_url": "https://api.siliconflow.cn",
         "note": "ids are the price list's own; Hunyuan-MT-7B, the other chat row at ¥0, is a translation model. /v1/models needs a key, and the Messages route the API reference documents is https://api.siliconflow.cn/v1/messages"
+      },
+      "data_use": {
+        "trains": "no",
+        "quote": "我们不会长期存储您的任何业务输入与输出数据；不会将您的业务数据用于任何大模型的预训练、微调或其他商业用途；",
+        "url": "https://docs.siliconflow.cn/docs/legals/privacy-policy"
       },
       "probe": {
         "type": "page-keywords",

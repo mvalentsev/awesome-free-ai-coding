@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 "300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per second", on "A free plan with limited capacity" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says "For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity" and "Lite plans do not incur charges". Which foundation models the 300,000 tokens reach is on a separate docs page the probe does not read, which is why the Free models column is empty
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “IBM does not use your work to improve IBM models. … The foundation models are hosted in IBM Cloud or AWS; your prompts are not sent to third-party platforms.” ([source](https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-security.html?context=wx)).
+
 ## Connect
 
 - Base URL: `https://us-south.ml.cloud.ibm.com/ml/v1` (not OpenAI-shaped)

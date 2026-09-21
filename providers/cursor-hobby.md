@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer"; the plan table in its own help centre prints "Limited" in the included-usage column where Pro reads $20 and Ultra $400; and the help page adds only that "the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with your billing cycle" and "does not roll over"; at the cap Cursor shows a notification and offers on-demand billing or an upgrade. Which models Hobby reaches is never enumerated, and Cursor Router has not reached individual plans yet (read 2026-08-14)
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “we may use and store codebase data, prompts, editor actions, code snippets, and other code data and actions to improve our AI features and train our models.” ([source](https://cursor.com/data-use)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

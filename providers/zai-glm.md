@@ -23,6 +23,10 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 
 GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three rows z.ai's own price table reads Free on all four columns — every other model there says "Limited-time Free" instead, including the flagship GLM-5.x. Rate-limited
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “For enterprises and developers using API Services, we will not use your User Content for developing or improving Services unless you explicitly agree to such use.” ([source](https://docs.z.ai/legal-agreement/terms-of-use)).
+
 ## Connect
 
 - Base URL: `https://api.z.ai/api/paas/v4`

@@ -23,6 +23,10 @@ A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for
 
 100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit "shared across all models rather than granted per model", so Mercury 2.5 spends the same balance as Mercury 2. Past it the account moves to pay-as-you-go: $0.25 per 1M input and $0.75 per 1M output on Mercury 2 and Mercury Edit 2, a list $0.20/$0.75 on Mercury 2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10). The Free tier's own ceiling is per minute rather than per month — 1,000 requests, 1,000,000 input tokens and 100,000 output tokens
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “we may use User Submissions to … train our models. If you do not want us to use your User Submissions to train our models, you can opt-out by setting the ‘Improve the model for everyone’ option under User Settings in the API Platform to OFF.” ([source](https://www.inceptionlabs.ai/docs/terms-of-use)).
+
 ## Connect
 
 - Base URL: `https://api.inceptionlabs.ai/v1`

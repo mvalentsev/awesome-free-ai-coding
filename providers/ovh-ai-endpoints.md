@@ -23,6 +23,10 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model", and its product page says "Test all our models for free in a sandbox or via the API". The limit is tighter in practice: at one call a minute per model from one address, Qwen3.8-27B answered five times out of six on 2026-09-14 and the gpt-oss and older Qwen ids once or twice, and on 2026-09-16 every id answered 429 from another network — a 429 is the quota, not a refusal. Qwen3.8-27B is also the one coding model the catalog prices at zero for keyed use; the others are billed per token once a key is in play. Read 2026-09-14
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Your data will never be used to train or improve our AI models” ([source](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)).
+
 ## Connect
 
 - Base URL: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1`

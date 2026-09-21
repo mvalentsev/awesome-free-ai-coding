@@ -23,6 +23,10 @@ The page this row is verified against names no free model, so the column stays e
 
 The free package page, updated 2026-09-04, gives each main account one grant while the promotion runs, 本期活动时间截至 2026 年 12 月 31 日 (until 31 December 2026): 所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年, a million tokens on every language model, valid a year from claiming. The same page says the grant works at main-account level with 同一账号下的所有模型共享额度 (all models on the account sharing it) beside 免费体验包每个账号每个模型仅可领取一次 (once per model per account), so whether the million is per model or shared is not settled there, and the figures are 以控制台显示为准 (as the console shows). When the grant is spent the service stops unless post-payment is switched on, so nothing is billed without it. The quickstart requires registering on Tencent Cloud and passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民 — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are sent to the international site. Read 2026-09-17
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “不会，我们非常重视您的隐私保护，不会将您的数据用于为您提供服务以外的场景，更不会用于训练。” ([source](https://cloud.tencent.com/document/product/1823/130104)).
+
 ## Connect
 
 - Base URL: `https://tokenhub.tencentmaas.com/v1`

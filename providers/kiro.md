@@ -23,6 +23,10 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US. Kiro's docs settle what those credits reach, in a table with a Free column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku 4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked 2026-08-14)
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “We may use certain content from Kiro Free Tier and Kiro individual subscribers for service improvement. … Kiro may use this content, for example, to provide better responses to common questions, fix Kiro operational issues, for de-bugging, or for model training.” ([source](https://kiro.dev/docs/privacy-and-security/data-protection/)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

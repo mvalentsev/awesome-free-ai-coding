@@ -23,6 +23,10 @@ Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro
 
 The home page: "$5 in free credits every month when you attach a payment method", and its FAQ "with $5 in free credits refreshed every month". The credit spends at the per-token prices, which fall with the completion window a request asks for: GLM-5.3 is $0.98 in / $3.08 out per 1M tokens as soon as possible and $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09. "No strict rate limits", and request and response data is "not used to train models without written consent". Read 2026-09-21
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “We do not use inference request or response data to train, fine-tune, or improve models without your written consent.” ([source](https://docs.sailresearch.com/security)).
+
 ## Connect
 
 - Base URL: `https://api.sailresearch.com/v1`

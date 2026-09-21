@@ -21,7 +21,11 @@ One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on
 
 ## Limits, in the vendor's words
 
-"15 free requests a day. No card required." on the home page and "No card required, free forever" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto "runs the model-serving stack rather than reselling a third-party model API". The FAQ calls the free tier "for testing" where the plan card says "free forever", and the terms forbid using "multiple accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are "not routinely retained". Read 2026-09-17
+"15 free requests a day. No card required." on the home page and "No card required, free forever" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a day. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto "runs the model-serving stack rather than reselling a third-party model API". The FAQ calls the free tier "for testing" where the plan card says "free forever", and the terms forbid using "multiple accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are "not stored or retained". Read 2026-09-22
+
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Your prompts and responses are not used for model training.” ([source](https://yolo-auto.com/pricing)).
 
 ## Connect
 

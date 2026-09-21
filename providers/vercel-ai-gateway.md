@@ -23,6 +23,10 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits inclu
 
 $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin, Sante and VL rows, each with and without its -free suffix, on 2026-09-12. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
 
+## What happens to what you send
+
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “By default, AI Gateway does not route based on the training data policy of providers. If we do not know a provider's training data stance or have not yet established an agreement with them, we assume that they train on your data.” ([source](https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training)).
+
 ## Connect
 
 - Base URL: `https://ai-gateway.vercel.sh/v1`

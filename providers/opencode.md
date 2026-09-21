@@ -23,6 +23,10 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer wrote "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)", so this row publishes no base URL. Inside OpenCode the ids are `opencode/<model-id>`, and all six answered the official 1.18.31 CLI, signed out, on 2026-09-18. Zen calls each one "available on OpenCode for a limited time", and the price is data: of the free models "collected data may be used to improve the model", the NVIDIA-backed ones are "Trial use only — do not submit personal or confidential data", and Muse Spark 1.3 Contributor trades "heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models". Mind the suffix: plain muse-spark-1.3 is a paid row; the contributor id's best allowed effort, xhigh, scores 45 on the Artificial Analysis Intelligence Index — max is "Standard-tier `muse-spark-1.3` only". Billing is for the metered ids. Read 2026-09-18
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “During its free period, collected data may be used to improve the model.” ([source](https://opencode.ai/docs/zen/)).
+
 ## Connect
 
 No API endpoint to paste: this row is a tool you install or sign in to.

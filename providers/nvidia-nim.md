@@ -23,6 +23,10 @@ Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program 
 
 Free to start with no card — the account is gated by phone/business-email verification, and access is metered in API credits rather than left open: NVIDIA staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000 free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA publishes no current figure; reports since put the ceiling at a ~40 req/min rate limit instead. Production use needs NVIDIA AI Enterprise either way. The catalog renames ids without notice, so copy them from it rather than from an older guide
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “Your input and output will be recorded to provide you with this trial experience and to improve NVIDIA products and services, including AI models” ([source](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
+
 ## Connect
 
 - Base URL: `https://integrate.api.nvidia.com/v1`

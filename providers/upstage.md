@@ -23,6 +23,10 @@ Upstage Solar LLM API; $10 free credit on signup, no card
 
 $10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai is a client-rendered docs site — 535 characters of text survive with its scripts removed — so "$10 in free credit" is read out of the payload the page ships rather than out of anything a reader sees, and it is declared as a machinery keyword to say so. Neither upstage.ai/pricing nor the Solar Pro product page carries the phrase at all (all three read 2026-09-08)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “The Company shall not use Member Input/Output Data for service improvement or for training artificial intelligence models.” ([source](https://www.upstage.ai/terms-of-service)).
+
 ## Connect
 
 - Base URL: `https://api.upstage.ai/v1`

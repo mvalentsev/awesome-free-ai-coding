@@ -196,15 +196,16 @@ def provider_page_url(entry_id: str) -> str:
 # How a row's page and llms.txt say what the vendor does with what a reader
 # sends, before the vendor's own sentence.
 DATA_USE_WORDS = {
-    "yes": "The vendor may use it to train or improve its models:",
-    "opt-out": "The vendor may use it to train or improve its models unless you turn it off:",
-    "no": "The vendor says it does not train on it:",
+    "yes": "What you send may be used to train or improve models.",
+    "opt-out": "What you send may be used to train or improve models unless you turn that off.",
+    "no": "What you send is not used to train models.",
 }
 
 
 def _trains(e: Entry) -> bool:
-    """Whether the vendor says it may train on what a reader sends — by default,
-    so an opt-out counts: the reader who never reads the setting is trained on."""
+    """Whether, by the vendor's account, what a reader sends may be used to train
+    models — its own or an upstream provider's behind a gateway — by default, so
+    an opt-out counts: the reader who never reads the setting is trained on."""
     return e.data_use is not None and e.data_use.trains in ("yes", "opt-out")
 
 
@@ -973,7 +974,9 @@ def _llms_line(e: Entry) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append("card required" if e.card_required else "no card")
     if e.data_use is not None:
-        parts.append(f"{DATA_USE_WORDS[e.data_use.trains].rstrip(':').lower()} what you send")
+        parts.append({"yes": "what you send may be used to train models",
+                      "opt-out": "what you send may be used to train models unless you opt out",
+                      "no": "what you send is not used to train models"}[e.data_use.trains])
     api = e.api
     if api and api.base_url:
         if api.auth == "none":
@@ -1514,8 +1517,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
             e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
     if e.data_use is not None and not archived:
         out += ["## What happens to what you send", "",
-                f"{DATA_USE_WORDS[e.data_use.trains]} “{e.data_use.quote}” "
-                f"([source]({e.data_use.url})).", ""]
+                f"{DATA_USE_WORDS[e.data_use.trains]} In the vendor's words: "
+                f"“{e.data_use.quote}” ([source]({e.data_use.url})).", ""]
     if not archived:
         out += _connect_section(e)
     out += _evidence_section(e, blocked)

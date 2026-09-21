@@ -23,6 +23,10 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “Where a Model Provider trains on prompts, we label that model a Training Permitted Model so you can see exactly which ones they are, and every model we label that way is offered free of charge. Requesty's own use of content for training is limited to free plan accounts.” ([source](https://www.requesty.ai/privacy)).
+
 ## Connect
 
 - Base URL: `https://router.requesty.ai/v1`

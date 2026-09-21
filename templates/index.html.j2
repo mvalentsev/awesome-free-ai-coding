@@ -398,7 +398,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
               <a class="name" href="{{ r.url }}">{{ r.name }}</a>
               <div class="tags">
                 {% if r.card %}<span class="tag card">💳 card</span>{% endif %}
-                {% if r.trains %}<span class="tag card" title="The vendor may train on what you send; its words are on the row's page">👁 {{ 'trains unless you opt out' if r.trains == 'opt-out' else 'trains on prompts' }}</span>{% endif %}
+                {% if r.trains %}<span class="tag card" title="What you send may be used to train models; the vendor's words are on the row's page">👁 {{ 'may train unless you opt out' if r.trains == 'opt-out' else 'may train on prompts' }}</span>{% endif %}
                 {% if r.no_key %}<span class="tag nokey">no key</span>{% endif %}
                 {% if r.public_key %}<span class="tag nokey">no account</span>{% endif %}
                 {% if r.provisional %}<span class="tag new">🧪 new</span>{% endif %}
@@ -590,8 +590,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       <a href="{{ checked_url }}">the whole list of them</a>. Nothing there is disqualified, and
       every verdict expires after {{ watch_recheck_days }} days. {% endif %}
       Rules, ordering and how to send a row: <a href="{{ repo_url }}/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>.
-      {% if has_trains %}A <span class="tag card">👁 trains on prompts</span> tag means the vendor
-      says it may train on what you send; the row's page quotes it.{% endif %}
+      {% if has_trains %}A <span class="tag card">👁</span> tag means what you send may be used to
+      train models, by the vendor's own account; the row's page quotes it.{% endif %}
       {% if has_provisional %}A <span class="tag new">🧪 new</span> row was added recently on fresh
       evidence and is provisional until two weeks of probes confirm it.{% endif %}
     </p>

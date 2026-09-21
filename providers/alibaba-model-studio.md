@@ -23,6 +23,10 @@ Free quota for Qwen models on DashScope, international (Singapore) region; OpenA
 
 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions". The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later" (read 2026-09-16). Which ids carry it is read off the last column of each International table, "Free quota": the qwen3.8 generation — qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash, qwen3.8-27b — qwen3-max, and the qwen3-coder line. qwen-long reads "No free quota", and the Global tables carry no free-quota column at all (ids read 2026-09-10)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Alibaba Cloud strictly protects your data privacy and will never use your data for model training.” ([source](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
+
 ## Connect
 
 - Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`

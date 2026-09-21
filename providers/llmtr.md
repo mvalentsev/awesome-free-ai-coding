@@ -23,6 +23,10 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — t
 
 A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular" (this step checks that the gateway and usage logging work on a zero balance). Four free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.6 27B, Ling 3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free on its own inference API", with "no extra token allowance to track"; three rows are free "22 Eylul 2026'ya kadar" (until 22 September 2026), and dots-3-note-preview closes on 30 September 2026. Paid use is prepaid credit: "An 8% platform margin is added on top of the requested top-up amount" and "We never modify model prices". The privacy page says prompt and response bodies are not written permanently to its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-16
 
+## What happens to what you send
+
+What you send may be used to train or improve models. In the vendor's words: “Poolside states that prompts and completions on free access may be logged and used to improve its products.” ([source](https://llmtr.com/docs/en/gateway/poolside-laguna/)).
+
 ## Connect
 
 - Base URL: `https://llmtr.com/v1`

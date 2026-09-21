@@ -23,6 +23,10 @@ Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the
 
 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “SambaCloud never sees or collects any of your data or user prompts, ensuring full data privacy.” ([source](https://sambanova.ai/products/sambacloud)).
+
 ## Connect
 
 - Base URL: `https://api.sambanova.ai/v1`

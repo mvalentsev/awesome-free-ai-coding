@@ -23,6 +23,10 @@ permalink: /providers/cloudflare-workers-ai/
 
 Cloudflare's free allocation "allows anyone to use a total of 10,000 Neurons per day at no charge", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. "All limits reset daily at 00:00 UTC", and past the cap "further operations will fail with an error" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Three catalog models sit outside the free lane whatever the neuron count: the same page notes that @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2 "require a paid billing method" (read 2026-08-14)
 
+## What happens to what you send
+
+What you send is not used to train models. In the vendor's words: “Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services” ([source](https://developers.cloudflare.com/workers-ai/platform/data-usage/)).
+
 ## Connect
 
 - Base URL: `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1`
