@@ -80,7 +80,7 @@ curl -s {{ quickstart.base_url }}/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_trains %} · **👁** — the vendor may train on what you send, in its own words on the row's page{% endif %}{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
@@ -89,7 +89,7 @@ curl -s {{ quickstart.base_url }}/chat/completions \
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
-{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | [`{{ r.verified }}`]({{ r.page }}) |
+{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | [`{{ r.verified }}`]({{ r.page }}) |
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}

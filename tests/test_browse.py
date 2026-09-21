@@ -31,7 +31,9 @@ def test_browse_page_reads_only_fields_index_json_publishes():
                         {"family": "old", "superseded_by": "a"}],
                 api={"base_url": "https://x.ai/v1", "auth": "api-key", "openai_compatible": True,
                      "key_url": "https://x.ai/keys", "model_ids": ["a"],
-                     "anthropic_base_url": "https://x.ai", "note": "n", "public_key": "k"})
+                     "anthropic_base_url": "https://x.ai", "note": "n", "public_key": "k"},
+                data_use={"trains": "no", "quote": "We never train on your prompts",
+                          "url": "https://x.ai/privacy"})
     live, gone, folded = build_index(
         [full, make(id="gone", retired_on=TODAY),
          make(id="folded", url="https://folded.example", duplicate_of="gone",
@@ -53,7 +55,8 @@ def test_browse_page_reads_only_fields_index_json_publishes():
 def test_browse_page_filters_on_the_answers_a_reader_asks_for():
     html = _html()
     # category, card, key, both wires, the Models column and the archive
-    for field in ("category", "card_required", "archived", "provisional", "page", "offering"):
+    for field in ("category", "card_required", "archived", "provisional", "page", "offering",
+                  "data_use"):
         assert f"e.{field}" in html
     # a key the vendor prints for anyone answers "no account" as well as no key does
     for field in ("auth", "public_key", "openai_compatible", "anthropic_base_url", "base_url", "key_url"):

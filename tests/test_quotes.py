@@ -3,7 +3,7 @@ from datetime import date
 import httpx
 import respx
 
-from freetier_radar.models import Entry
+from freetier_radar.models import DataUse, Entry
 from freetier_radar.quotes import check_entries, flatten, quote_found, quotes_in, row_quotes
 
 
@@ -35,6 +35,17 @@ def test_quotes_come_from_the_offering_the_limits_and_the_api_note():
     entry = quoted_entry('Tier 1 is "Free registration and no card".', note='the docs say "use the v1 route"')
     assert row_quotes(entry) == [("limits", "Free registration and no card"),
                                  ("api.note", "use the v1 route")]
+
+
+def test_the_data_use_quote_is_checked_on_the_page_it_names():
+    """A row's word on training is the vendor's sentence on its data page, which
+    is usually none of the row's sources — so its url is read too."""
+    from freetier_radar.quotes import row_urls
+    entry = quoted_entry("no quotes here")
+    entry.data_use = DataUse(trains="no", quote="We never train on what you send",
+                             url="https://vendor.example/privacy")
+    assert row_quotes(entry) == [("data_use.quote", "We never train on what you send")]
+    assert "https://vendor.example/privacy" in row_urls(entry)
 
 
 def test_typography_does_not_hide_a_quote_that_is_there():

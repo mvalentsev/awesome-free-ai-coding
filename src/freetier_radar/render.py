@@ -193,6 +193,21 @@ def provider_page_url(entry_id: str) -> str:
     return f"{PAGES_URL}/{PROVIDERS_DIR}/{entry_id}/"
 
 
+# How a row's page and llms.txt say what the vendor does with what a reader
+# sends, before the vendor's own sentence.
+DATA_USE_WORDS = {
+    "yes": "The vendor may use it to train or improve its models:",
+    "opt-out": "The vendor may use it to train or improve its models unless you turn it off:",
+    "no": "The vendor says it does not train on it:",
+}
+
+
+def _trains(e: Entry) -> bool:
+    """Whether the vendor says it may train on what a reader sends — by default,
+    so an opt-out counts: the reader who never reads the setting is trained on."""
+    return e.data_use is not None and e.data_use.trains in ("yes", "opt-out")
+
+
 def _row(e: Entry) -> dict[str, str]:
     fams = _families(e)
     return {
@@ -213,6 +228,9 @@ def _row(e: Entry) -> dict[str, str]:
         # narrowest on the page — a second glyph in it wrapped the date onto two
         # lines in every row that carried one.
         "new_flag": " 🧪" if e.provisional else "",
+        # What the reader pays besides money: the vendor may train on what they
+        # send. One glyph like the card's; the vendor's sentence is on the page.
+        "data_flag": " 👁" if _trains(e) else "",
         "verified": e.last_verified.isoformat(),
         # Backticked, because a model id is something the reader will paste into
         # a config rather than read as prose.
@@ -639,6 +657,7 @@ def build_context(entries: list[Entry], today: date,
             "archived": _archived_rows(entries, today), "active_count": len(active),
             "archive_after_failures": ARCHIVE_AFTER_FAILURES, "archive_after_days": ARCHIVE_AFTER_DAYS,
             "has_provisional": any(e.provisional for e in active),
+            "has_trains": any(_trains(e) for e in active),
             "connections": connections,
             # The headline counts. Every one of them is derived, so the page can
             # never advertise a number the registry stopped backing.
@@ -759,6 +778,7 @@ def _site_row(e: Entry) -> dict:
         "verified": e.last_verified.isoformat(),
         "card": e.card_required,
         "provisional": e.provisional,
+        "trains": e.data_use.trains if _trains(e) else "",
         "no_key": bool(api and api.base_url and api.auth == "none"),
         "public_key": bool(api and api.base_url and api.public_key),
         "openai": bool(api and api.base_url and api.openai_compatible),
@@ -936,6 +956,7 @@ def build_site_context(entries: list[Entry], today: date,
         "archive_after_days": ARCHIVE_AFTER_DAYS,
         "watch_recheck_days": WATCH_RECHECK_DAYS,
         "has_provisional": any(e.provisional for e in active),
+        "has_trains": any(_trains(e) for e in active),
         "feed_url": FEED_URL,
         "pages_url": PAGES_URL,
         "repo_url": REPO_URL,
@@ -951,6 +972,8 @@ def _plain_title(title: str) -> str:
 def _llms_line(e: Entry) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append("card required" if e.card_required else "no card")
+    if e.data_use is not None:
+        parts.append(f"{DATA_USE_WORDS[e.data_use.trains].rstrip(':').lower()} what you send")
     api = e.api
     if api and api.base_url:
         if api.auth == "none":
@@ -1489,6 +1512,10 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
             ", ".join(f"`{f}`" for f in fams) if fams else named, ""]
     out += ["## Limits, in the vendor's words", "",
             e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
+    if e.data_use is not None and not archived:
+        out += ["## What happens to what you send", "",
+                f"{DATA_USE_WORDS[e.data_use.trains]} “{e.data_use.quote}” "
+                f"([source]({e.data_use.url})).", ""]
     if not archived:
         out += _connect_section(e)
     out += _evidence_section(e, blocked)

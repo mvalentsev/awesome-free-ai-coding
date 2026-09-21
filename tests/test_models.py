@@ -497,6 +497,23 @@ def test_refusing_a_bearer_token_is_said_of_a_keyless_lane_only():
         Entry.model_validate(d)
 
 
+def test_data_use_is_the_vendor_s_word_on_training_with_the_page_it_is_on():
+    """What a free offer does with what a reader sends is a claim like the rest:
+    yes, opt-out or no, in the vendor's words, on a page anyone can open."""
+    d = sample_entry()
+    d["data_use"] = {"trains": "yes", "quote": "Content used to improve our products",
+                     "url": "https://ai.google.dev/gemini-api/docs/pricing"}
+    assert Entry.model_validate(d).data_use.trains == "yes"
+    for broken, match in (({"trains": "sometimes"}, "trains"),
+                          ({"quote": "  "}, "quote"),
+                          ({"quote": 'says "no"'}, "quote"),
+                          ({"url": "http://x.ai/privacy"}, "https")):
+        d["data_use"] = {"trains": "no", "quote": "We never train on your prompts",
+                         "url": "https://x.ai/privacy", **broken}
+        with pytest.raises(ValidationError, match=match):
+            Entry.model_validate(d)
+
+
 def test_a_probe_that_follows_an_index_names_a_field_and_reads_a_page():
     """ModelScope serves its docs under a dated release path that the site
     replaces while old paths keep answering, and names the current one in a

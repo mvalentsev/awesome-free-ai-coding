@@ -126,6 +126,14 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 if keyless is not None:
                     unprinted = f"{unprinted} | {keyless.detail}"
                 return verdict(ProbeStatus.STALE_IDS, unprinted)
+        # The row's word on what the vendor does with what a reader sends rests
+        # on one sentence on one page — see data_use_moved.
+        if entry.data_use is not None:
+            moved = await data_use_moved(client, entry, resp, attempts, backoff)
+            if moved:
+                if keyless is not None:
+                    moved = f"{moved} | {keyless.detail}"
+                return verdict(ProbeStatus.STALE_IDS, moved)
         if keyless is not None:
             return verdict(keyless.status, keyless.detail)
         return verdict(ProbeStatus.PASS)
@@ -521,6 +529,32 @@ async def public_key_unprinted(client: httpx.AsyncClient, entry: Entry, probed: 
         return None
     return (f"api.public_key is no longer printed on {url} — read the page for the key it "
             "publishes now")
+
+
+async def data_use_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Response,
+                         attempts: int, backoff: float) -> str | None:
+    """Why the row's word on training no longer stands, or None while the
+    vendor's page still says it.
+
+    The README marks a vendor that may train on what a reader sends with one
+    glyph, and the row's page quotes the sentence it rests on: "Content used to
+    improve our products" in the Gemini API's free column, a data policy's "we
+    never train on your prompts". A vendor that rewrites that page changes what
+    a reader pays for the free tier, so the sentence is read back every run,
+    typography flattened the way freetier-quotes reads every quote. A page that
+    cannot be read is said so rather than skipped."""
+    from .quotes import page_texts, quote_found  # quotes reads pages through this module
+    url = entry.data_use.url
+    if url == entry.probe.endpoint and entry.probe.follow is None:
+        page = probed
+    else:
+        page, failure = await _fetch_page(client, url, attempts, backoff)
+        if page is None:
+            return f"data_use could not be checked against {url}: {failure}"
+    if quote_found(entry.data_use.quote, page_texts(page.text)):
+        return None
+    return (f"data_use quote is no longer on {url} — read what the vendor says now about "
+            "training on what users send")
 
 
 def _keyless_said(answer: httpx.Response | str) -> str:
@@ -1152,9 +1186,11 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str]) -> str:
 
 # How every note about a row's connection details opens — its ids against the
 # catalog, its keyless or public-key lane, its Anthropic route, the page that
-# prints its public key. Each follows a family verdict after " | ".
+# prints its public key — and about its word on training, which only a person
+# re-reading the vendor's data page can restate. Each follows a family verdict
+# after " | ".
 _FOR_A_HUMAN = ("api.model_ids ", "zero-priced ids in the catalog ", "api.public_key ",
-                "keyless ", "public-key ", "anthropic route ")
+                "keyless ", "public-key ", "anthropic route ", "data_use ")
 
 
 def for_a_human(detail: str) -> str:

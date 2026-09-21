@@ -335,6 +335,19 @@ other 4xx — vLLM's 404 for a model id that rotated out — and a lane that can
 reached are reported as `stale-ids` beside a row that stays verified. Put the id
 that answers first: that is the one a reader runs.
 
+**`data_use` is the vendor's word on training on what a reader sends.** A free
+tier is often paid for in data, and the vendors that split tiers say so: the
+Gemini API's free column reads "Content used to improve our products" where the
+paid one says the opposite. `trains: yes` is a vendor that says what is sent on
+the free offer may train or improve models, `opt-out` one where that is the
+default with a setting to turn it off, `no` one that says it does not. `quote`
+is the vendor's sentence, verbatim, about the free offer or plainly covering it
+— a paid or enterprise tier's promise is not evidence for the free one — and
+`url` the page that carries it. A row whose vendor says nothing either way
+carries none. The README marks `yes` and `opt-out` with 👁 beside the name, the
+row's page quotes the sentence, browse.html keeps the `no` rows behind "Not
+trained on", and every run reads `url` back for the quote.
+
 **`api.refuses_bearer` is a keyless lane that answers only a bare call.** Once
 the first id has answered, the run asks it again carrying `Authorization: Bearer
 none` — what LiteLLM sends for `api_key: none`, and LiteLLM sends a bearer token

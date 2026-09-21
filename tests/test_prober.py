@@ -6,7 +6,7 @@ import httpx
 import respx
 
 from freetier_radar.history import load_history
-from freetier_radar.models import ApiInfo, Entry, ModelFamily, save_registry
+from freetier_radar.models import ApiInfo, DataUse, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, family_named, for_a_human, is_model_stale,
     probe_entry,
@@ -1323,6 +1323,9 @@ def test_the_half_of_a_line_for_a_human_is_what_follows_the_models_half():
                                                                 "m answered HTTP 429")
     assert for_a_human("missing families: x | no longer free: y") == ""
     assert for_a_human("") == ""
+    # the row's word on training is restated by a person reading the data page
+    moved = "data_use quote is no longer on https://x.ai/privacy — read what the vendor says now"
+    assert for_a_human(f"listed families the page does not name: x | {moved}") == moved
 
 
 @respx.mock
@@ -2247,3 +2250,34 @@ async def test_a_missing_keyword_says_whether_the_bytes_had_it_at_all():
     assert result.status is ProbeStatus.FAIL
     assert result.detail == ("missing keywords: free tier, "
                              "qwen3-coder (in the page's machinery only) — 63 bytes read")
+
+
+@respx.mock
+async def test_a_row_s_word_on_training_is_read_back_off_its_page():
+    """The glyph beside a name says the vendor may train on what a reader
+    sends, and it is only as true as the sentence it rests on. So the run reads
+    `data_use.url` back for `data_use.quote`, typography flattened the way
+    freetier-quotes does, and a sentence that is gone — or a page that cannot be
+    read — is a note beside a row that stays verified."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3-coder on the free tier, no credit card"))
+    privacy = respx.get("https://x.ai/privacy").mock(return_value=httpx.Response(
+        200, text="<p>We <b>never</b> train on your prompts’ content.</p>"))
+    entry = page_entry()
+    entry.data_use = DataUse(trains="no", quote="We never train on your prompts' content",
+                             url="https://x.ai/privacy")
+    async with httpx.AsyncClient() as client:
+        assert (await probe_entry(client, entry, backoff=0)).status is ProbeStatus.PASS
+
+    privacy.mock(return_value=httpx.Response(200, text="<p>We may use your content.</p>"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert result.detail == ("data_use quote is no longer on https://x.ai/privacy — read what "
+                             "the vendor says now about training on what users send")
+
+    privacy.mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0, attempts=1)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert result.detail == "data_use could not be checked against https://x.ai/privacy: answered HTTP 404"

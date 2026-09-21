@@ -7,6 +7,8 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import yaml
+from typing import Literal
+
 from pydantic import BaseModel, Field, field_validator, model_validator
 
 # Words every vendor keeps on the page long after the offer is gone. A probe
@@ -443,6 +445,41 @@ class ApiInfo(BaseModel):
         return value
 
 
+class DataUse(BaseModel):
+    """What the vendor says it does with what a reader sends on the free offer —
+    prompts, code, conversations — in its own words, on a page anyone can open.
+
+    A free tier's price is often paid in data, and the vendors say so where they
+    split tiers: the Gemini API's free tier lists "Content used to improve our
+    products" and its paid tier "Content not used to improve our products".
+    `trains` is `yes` (it may train or improve models on it), `opt-out` (it does
+    until the reader turns it off) or `no` (it says it does not). A row whose
+    vendor says nothing either way carries none. The README marks yes and
+    opt-out with one glyph beside the name; the row's page quotes the sentence,
+    and the run reads `url` back for it.
+    """
+    trains: Literal["yes", "opt-out", "no"]
+    quote: str  # verbatim; the page prints it inside quotation marks
+    url: str
+
+    @field_validator("quote")
+    @classmethod
+    def _quote_is_a_sentence(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("data_use.quote is empty — the vendor's own words go here")
+        if '"' in value or "“" in value or "”" in value:
+            raise ValueError("data_use.quote holds quotation marks — it is printed inside a pair "
+                             "of its own")
+        return value.strip()
+
+    @field_validator("url")
+    @classmethod
+    def _url_is_https(cls, value: str) -> str:
+        if not value.startswith("https://"):
+            raise ValueError("data_use.url must be an https URL")
+        return value
+
+
 class Delisting(BaseModel):
     """A row a reviewer took off the list, kept in the registry as the record of
     what the list published.
@@ -476,6 +513,7 @@ class Entry(BaseModel):
     limits: str = ""
     models: list[ModelFamily] = []
     api: ApiInfo | None = None
+    data_use: DataUse | None = None
     probe: Probe
     first_seen: date
     last_verified: date

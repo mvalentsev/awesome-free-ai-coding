@@ -450,6 +450,40 @@ def test_the_model_index_marks_a_card_where_the_rows_do(tmp_path: Path):
     assert "| `kimi-k3` | [A](https://x.ai), [B](https://x.ai) 💳 |" in text
 
 
+def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_path: Path):
+    """What a free offer costs besides money is often what a reader sends it:
+    the Gemini API's free tier lists "Content used to improve our products"
+    where the paid one says the opposite. The README carries it as one glyph
+    beside the name, like the card — the vendor's sentence is on the row's page
+    — and a vendor that says it does not train gets no glyph, only the page."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import build_provider_page
+    yes = make(id="yes", name="Yes", rank=1, data_use={
+        "trains": "yes", "quote": "Content used to improve our products",
+        "url": "https://x.ai/pricing"})
+    optout = make(id="optout", name="OptOut", rank=2, data_use={
+        "trains": "opt-out", "quote": "Model training Opt-out", "url": "https://x.ai/plans"})
+    no = make(id="no", name="No", rank=3, data_use={
+        "trains": "no", "quote": "We never train on your prompts", "url": "https://x.ai/privacy"})
+    silent = make(id="silent", name="Silent", rank=4)
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [yes, optout, no, silent])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    listing = text.split("## 📋 The list")[1]
+    assert "| **[Yes](https://x.ai)** 👁 |" in listing
+    assert "| **[OptOut](https://x.ai)** 👁 |" in listing
+    assert "| **[No](https://x.ai)** |" in listing and "| **[Silent](https://x.ai)** |" in listing
+    assert "**👁** — the vendor may train on what you send" in listing
+
+    page = build_provider_page(yes, [], TODAY)
+    assert ("## What happens to what you send\n\nThe vendor may use it to train or improve its "
+            "models: “Content used to improve our products” ([source](https://x.ai/pricing)).") in page
+    assert "unless you turn it off" in build_provider_page(optout, [], TODAY)
+    assert "The vendor says it does not train on it: “We never train on your prompts”" in \
+        build_provider_page(no, [], TODAY)
+    assert "## What happens to what you send" not in build_provider_page(silent, [], TODAY)
+
+
 def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
     """The curl at the top of the README is the first thing a reader runs. Typed
     by hand it would outlive the entry it calls; generated, it is archived along

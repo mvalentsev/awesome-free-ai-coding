@@ -70,6 +70,12 @@ def flatten(text: str) -> str:
     return _SPACE_BEFORE_PUNCTUATION.sub(r"\1", " ".join(text.split())).lower()
 
 
+def page_texts(body: str) -> list[str]:
+    """What a quote is looked for in on one page: the rendered text and the raw
+    body, both flattened — a quote can live in JSON-LD or a framework payload."""
+    return [flatten(_TAG.sub(" ", _rendered(body))), flatten(_TAG.sub(" ", body))]
+
+
 def quotes_in(text: str) -> list[str]:
     """The quoted phrases worth checking: three words or more. Shorter quotes are
     labels ("Free", "$0") that match anywhere and prove nothing. Quotation marks
@@ -88,7 +94,11 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     fields = [("offering", entry.offering), ("limits", entry.limits)]
     if entry.api and entry.api.note:
         fields.append(("api.note", entry.api.note))
-    return [(field, quote) for field, text in fields for quote in quotes_in(text)]
+    found = [(field, quote) for field, text in fields for quote in quotes_in(text)]
+    # Quoted by construction, whatever its length: the page prints it in quotes.
+    if entry.data_use:
+        found.append(("data_use.quote", entry.data_use.quote))
+    return found
 
 
 def quote_found(quote: str, pages: list[str]) -> bool:
@@ -103,10 +113,13 @@ def quote_found(quote: str, pages: list[str]) -> bool:
 
 def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     """The row's sources, its probe's page — `page` where the probe follows an
-    index to it, the endpoint otherwise — and its catalog."""
+    index to it, the endpoint otherwise — its catalog, and the page its word on
+    training is quoted from."""
     urls = list(entry.source_urls) + [page or entry.probe.endpoint]
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)
+    if entry.data_use:
+        urls.append(entry.data_use.url)
     return list(dict.fromkeys(urls))
 
 
@@ -123,8 +136,7 @@ async def fetch_pages(client: httpx.AsyncClient, urls: list[str]) -> tuple[list[
                 return url, f"{url}: {type(exc).__name__}"
         if resp.status_code >= 400:
             return url, f"{url}: HTTP {resp.status_code}"
-        rendered = flatten(_TAG.sub(" ", _rendered(resp.text)))
-        return url, [rendered, flatten(_TAG.sub(" ", resp.text))]
+        return url, page_texts(resp.text)
 
     pages: list[str] = []
     unread: list[str] = []
