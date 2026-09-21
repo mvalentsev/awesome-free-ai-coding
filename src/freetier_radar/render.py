@@ -18,6 +18,9 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_
                      domain_of, folded_into, is_archived, is_archived_for_good, is_blocked,
                      is_watch_current, live_families, load_blocklist, load_registry,
                      load_watchlist)
+# How the probe decides which of a row's families a catalog id is: the configs
+# group ids by tier with the same rule, so the two can never disagree.
+from .prober import _id_squash
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
@@ -1032,7 +1035,8 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         f"- [configs/claude-code.sh]({REPO_URL}/blob/main/configs/claude-code.sh): one shell "
         "function per gateway that serves the Anthropic Messages format, for Claude Code",
         f"- [configs/litellm.yaml]({REPO_URL}/blob/main/configs/litellm.yaml): LiteLLM proxy "
-        "config over the same rows",
+        "config over the same rows, with one-name fallback groups (free/frontier, free/strong, "
+        "free/nokey)",
         f"- [README]({REPO_URL}): the list itself, with the picks table and how it stays fresh",
         f"- [CONTRIBUTING]({REPO_URL}/blob/main/CONTRIBUTING.md): what qualifies, how rows are "
         "ranked, how the probes work",
@@ -1057,29 +1061,85 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
     return {"$schema": "https://opencode.ai/config.json", "provider": providers}
 
 
+# One name over every lane of a kind, in the order a caller falls back through
+# them: the strongest models first, then any strong one, then the lanes that
+# need no account at all.
+FREE_GROUPS = ("free/frontier", "free/strong", "free/nokey")
+
+
+def _litellm_lanes(entries: list[Entry], today: date) -> list[Entry]:
+    """The configurable rows LiteLLM can call. It sends a bearer token on every
+    call — `api_key: none` goes out as "Bearer none" — so a keyless lane that
+    refuses one (`api.refuses_bearer`) cannot be reached through it at all."""
+    return [e for e in _configurable(entries, today) if not e.api.refuses_bearer]
+
+
+def _litellm_ids(e: Entry) -> list[str]:
+    return e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
+
+
+def _tier_of_id(e: Entry, model_id: str) -> Tier | None:
+    """The measured tier of the family an id belongs to: the most specific of
+    the row's families the id names, matched the way the probe matches a family
+    against a catalog id (zai-org/GLM-5.3-Flash is glm-5.3-flash, not glm-5.3)."""
+    named = [m for m in e.models if m.superseded_by is None
+             and _id_squash(m.family) in _id_squash(model_id)]
+    best = max(named, key=lambda m: len(_id_squash(m.family)), default=None)
+    return best.tier if best else None
+
+
+def _litellm_key(e: Entry) -> str:
+    return "none" if e.api.auth == "none" else f"os.environ/{env_var(e.id)}"
+
+
 def build_litellm_config(entries: list[Entry], today: date) -> dict:
     """LiteLLM proxy config — the same providers, for everything that speaks to
     a proxy rather than to a provider.
 
     `openai/<id>` is how LiteLLM is told an endpoint is OpenAI-compatible, and
-    `api_key: none` is its documented spelling for an endpoint that wants no key
-    at all — which several entries here genuinely do not. Aliases are prefixed
-    with the entry id because two providers routinely serve the same model id.
+    `api_key: none` is what it is given for an endpoint that wants no key — it
+    sends "Bearer none", which the keyless lanes left in here answer. Aliases
+    are prefixed with the entry id because two providers routinely serve the
+    same model id.
+
+    Then the groups (FREE_GROUPS): the same deployments again under one name
+    each, so a caller asks for `free/strong` and LiteLLM shuffles across every
+    lane of that tier and falls back down the list when they run out — what
+    OmniRoute sells as "never stop coding", on lanes this list vouches for. A
+    group deployment benches itself after its first failure: a key the reader
+    never set fails before any request leaves, and a 429 means that quota is
+    spent. A model asked for by name keeps LiteLLM's defaults, because one 429
+    on a lone deployment benched with the same policy shut it for the whole
+    cooldown (LiteLLM 1.102, 2026-09-21). Each deployment carries a dict of its
+    own: a shared one is written as a YAML anchor, and LiteLLM then gives every
+    deployment the same id.
     """
-    models = []
-    for e in _configurable(entries, today):
-        ids = e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
-        for model_id in ids:
-            models.append({
-                "model_name": f"{e.id}/{model_id}",
-                "litellm_params": {
-                    "model": f"openai/{model_id}",
-                    "api_base": e.api.base_url,
-                    "api_key": ("none" if e.api.auth == "none"
-                                else f"os.environ/{env_var(e.id)}"),
-                },
-            })
-    return {"model_list": models}
+    models: list[dict] = []
+    groups: dict[str, list[dict]] = {name: [] for name in FREE_GROUPS}
+    for e in _litellm_lanes(entries, today):
+        for model_id in _litellm_ids(e):
+            params = {"model": f"openai/{model_id}", "api_base": e.api.base_url,
+                      "api_key": _litellm_key(e)}
+            models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params})
+            tier = _tier_of_id(e, model_id)
+            names = ([f"free/{tier.value}"] if tier else []) + (
+                ["free/nokey"] if e.api.auth == "none" or e.api.public_key else [])
+            for name in names:
+                groups[name].append({
+                    "model_name": name,
+                    "litellm_params": dict(params),
+                    "model_info": {"allowed_fails_policy": {
+                        "AuthenticationErrorAllowedFails": 0,
+                        "InternalServerErrorAllowedFails": 0,
+                        "RateLimitErrorAllowedFails": 0}},
+                })
+    present = [name for name in FREE_GROUPS if groups[name]]
+    fallbacks = [{name: present[i + 1:]} for i, name in enumerate(present[:-1])]
+    config: dict = {"model_list": models + [d for name in present for d in groups[name]]}
+    if present:
+        config["router_settings"] = {"routing_strategy": "simple-shuffle", "num_retries": 3,
+                                     **({"fallbacks": fallbacks} if fallbacks else {})}
+    return config
 
 
 def build_env_example(entries: list[Entry], today: date) -> str:
@@ -1668,9 +1728,17 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# sets no master_key, so without that flag anyone on your network can spend\n"
         "# the keys it reads from the environment (see free-llm.env.example).\n"
         "# Entries marked `api_key: none` need no account at all.\n"
+        "#\n"
+        "# Or ask for a group instead of a model: free/frontier, free/strong or\n"
+        "# free/nokey pool every lane of that tier, and a call falls back down that\n"
+        "# order when a lane runs out of quota or has no key set here — set only the\n"
+        "# keys you have, and a lane without one is skipped.\n"
         + "".join(f"# Left out: {e.name} — every request needs a stable id per conversation "
                   f"in {e.api.session_header}, which a static config cannot supply.\n"
                   for e in _connectable(entries, today) if e.api.session_header)
+        + "".join(f"# Left out: {e.name} — its keyless lane answers only a call with no "
+                  "Authorization header, and LiteLLM sends one on every call.\n"
+                  for e in _configurable(entries, today) if e.api.refuses_bearer)
         + yaml.safe_dump(build_litellm_config(entries, today), sort_keys=False,
                          allow_unicode=True),
         encoding="utf-8")

@@ -481,6 +481,22 @@ def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_pr
             Entry.model_validate(d)
 
 
+def test_refusing_a_bearer_token_is_said_of_a_keyless_lane_only():
+    """A keyed lane is always called with a bearer token, so a lane that refuses
+    one can only be a keyless lane: OVHcloud's anonymous lane answers "Bearer
+    none" with 403 and a bare call with 200 (2026-09-21). It is written only
+    where set."""
+    d = sample_entry()
+    d["api"] = {"base_url": "https://x.ai/v1", "auth": "none", "refuses_bearer": True}
+    entry = Entry.model_validate(d)
+    assert entry.api.refuses_bearer
+    assert "refuses_bearer" not in Entry.model_validate(
+        {**d, "api": {"base_url": "https://x.ai/v1", "auth": "none"}}).api.model_dump()
+    d["api"] = {"base_url": "https://x.ai/v1", "auth": "api-key", "refuses_bearer": True}
+    with pytest.raises(ValidationError, match="refuses_bearer"):
+        Entry.model_validate(d)
+
+
 def test_a_probe_that_follows_an_index_names_a_field_and_reads_a_page():
     """ModelScope serves its docs under a dated release path that the site
     replaces while old paths keep answering, and names the current one in a

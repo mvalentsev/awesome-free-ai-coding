@@ -353,6 +353,17 @@ class ApiInfo(BaseModel):
     # names that page and the run reads it back. A key anyone else hands out —
     # leaked, pooled, passed around — is key sharing, which does not qualify.
     public_key: str | None = None
+    # A keyless lane that refuses any call carrying an Authorization header
+    # while it answers a bare one. LiteLLM sends a bearer token on every call —
+    # `api_key: none` goes out as "Bearer none", an empty key is refused before
+    # the call, and OVHcloud answers an empty header value with 400 — so a lane
+    # that sets this is left out of litellm.yaml; opencode's
+    # @ai-sdk/openai-compatible adds the header only when given a key, and keeps
+    # the lane. Measured 2026-09-21: OVHcloud's anonymous lane and VLM Run's
+    # answered "Bearer none" with 403, Kilo's with 401 "Your authentication token
+    # is invalid". The keyless probe asks again every run and says when it
+    # changes, both ways. Written only where set.
+    refuses_bearer: bool = Field(default=False, exclude_if=lambda v: not v)
     note: str = ""
     # A lane that does not work as published right now, owned up to while the
     # list waits for the vendor (see Notice). Rendered under the README's
@@ -386,6 +397,13 @@ class ApiInfo(BaseModel):
         if not self.model_ids:
             raise ValueError("public_key is checked by a call on the first of model_ids, "
                              "and there is none")
+        return self
+
+    @model_validator(mode="after")
+    def _refuses_bearer_is_a_keyless_lane_s(self) -> ApiInfo:
+        if self.refuses_bearer and self.auth != "none":
+            raise ValueError("refuses_bearer is said of a keyless lane, and auth is not none — "
+                             "a keyed lane is always called with a bearer token")
         return self
 
     @model_validator(mode="after")

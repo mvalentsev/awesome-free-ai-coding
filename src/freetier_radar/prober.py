@@ -297,6 +297,10 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
 # message, and one token is all it costs the vendor.
 KEYLESS_PROBE_BODY = {"max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
 KEYLESS_REFUSED = (401, 403)
+# The Authorization header LiteLLM puts on a call to a lane its config marks
+# `api_key: none` — the one proxy this list writes a config for, and one that
+# sends a bearer token on every call (see ApiInfo.refuses_bearer).
+PROXY_BEARER = "Bearer none"
 # How many of a keyless row's ids are tried before the run says none answered.
 # The first is the README's curl; the next two tell a rate-limited first id from
 # a rate-limited lane.
@@ -423,11 +427,15 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
             take_down = (f"take down api.notice of {notice.since.isoformat()}, which tells readers "
                          "the lane does not work") if notice else ""
             if not tried:
-                if not take_down:
+                notes = ([f"{lane} call to {model} answered HTTP {answer.status_code} — " + take_down]
+                         if take_down else [])
+                if not public:
+                    await asyncio.sleep(backoff)
+                    drift = await _bearer_drift(client, entry, url, model, headers, backoff)
+                    notes += [drift] if drift else []
+                if not notes:
                     return None
-                return ProbeResult(ProbeStatus.STALE_IDS,
-                                   f"{lane} call to {model} answered HTTP {answer.status_code} — "
-                                   + take_down)
+                return ProbeResult(ProbeStatus.STALE_IDS, " | ".join(notes))
             first, first_answer = tried[0]
             return ProbeResult(ProbeStatus.STALE_IDS,
                                f"{lane} call to {first} answered {_keyless_said(first_answer)} while "
@@ -465,6 +473,27 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                               else "the README's curl on this row answers 429 too"))
     return ProbeResult(ProbeStatus.STALE_IDS,
                        f"{lane} call to {first} answered {_keyless_said(first_answer)}")
+
+
+async def _bearer_drift(client: httpx.AsyncClient, entry: Entry, url: str, model: str,
+                        headers: dict, backoff: float) -> str | None:
+    """Whether `api.refuses_bearer` still says what the lane does, asked once on
+    the id that has just answered a bare call: the same call, carrying the bearer
+    token LiteLLM would send. A refusal on a row without the field, or an answer
+    on a row with it, is the note; anything else — a rate limit, an error, a bot
+    wall — says nothing about the header either way."""
+    answer = await _keyless_call(client, url, model, {**headers, "Authorization": PROXY_BEARER},
+                                 1, backoff)
+    if isinstance(answer, str):
+        return None
+    said = f"keyless call to {model} with a bearer token answered HTTP {answer.status_code}"
+    if (answer.status_code in KEYLESS_REFUSED and not entry.api.refuses_bearer
+            and challenge_marker_hit(answer.text) is None):
+        return (f"{said} — LiteLLM sends one on every call, so set api.refuses_bearer: true to "
+                "leave the lane out of its config")
+    if answer.status_code < 300 and entry.api.refuses_bearer:
+        return f"{said} — drop api.refuses_bearer, and the LiteLLM config takes the lane back"
+    return None
 
 
 async def public_key_unprinted(client: httpx.AsyncClient, entry: Entry, probed: httpx.Response,

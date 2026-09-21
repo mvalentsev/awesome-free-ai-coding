@@ -331,7 +331,7 @@ def test_litellm_config_names_every_free_model_of_every_connectable_entry():
                # broken alias.
                api_entry(id="router", name="Router")]
     cfg = build_litellm_config(entries, TODAY)
-    assert cfg["model_list"] == [
+    assert [d for d in cfg["model_list"] if not d["model_name"].startswith("free/")] == [
         {"model_name": "groq-free/llama-4",
          "litellm_params": {"model": "openai/llama-4",
                             "api_base": "https://api.x.ai/v1",
@@ -341,6 +341,63 @@ def test_litellm_config_names_every_free_model_of_every_connectable_entry():
                             "api_base": "https://free.example/v1",
                             "api_key": "none"}},  # LiteLLM's own spelling for "no key"
     ]
+
+
+def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
+    """OmniRoute's pitch is one model name that keeps answering when a free tier
+    runs out; LiteLLM does that with a model group and fallbacks, on lanes this
+    list vouches for. free/frontier and free/strong hold every id whose family
+    the registry measured at that tier, free/nokey every lane that needs no
+    account. A group deployment benches itself after its first failure — a key
+    the reader never set fails before any request leaves, a 429 is the quota
+    spent — while a model asked for by name keeps LiteLLM's defaults: measured
+    on LiteLLM 1.102 on 2026-09-21, twelve unset keys and one working lane
+    answered 8 calls of 8, and one 429 on a lone model otherwise shut it for the
+    whole cooldown. A keyless lane that refuses any bearer token is in none of
+    it, because LiteLLM sends one on every call."""
+    glm = {"api": {"base_url": "https://glm.example/v1", "auth": "api-key",
+                   "model_ids": ["zai/glm-5.3", "zai/glm-5.3-flash"]},
+           "models": [{"family": "glm-5.3", "tier": "frontier", "aa_model": "glm-5-3"},
+                      {"family": "glm-5.3-flash", "tier": "strong", "aa_model": "glm-5-3-flash"}]}
+    entries = [
+        make(id="glm", name="GLM", rank=1, **glm),
+        make(id="open", name="Open", rank=2, models=[{"family": "gpt-oss"}],
+             api={"base_url": "https://open.example/v1", "auth": "none",
+                  "model_ids": ["gpt-oss-20b"]}),
+        make(id="bare", name="Bare", rank=3, models=[{"family": "qwen3.8", "tier": "strong"}],
+             api={"base_url": "https://bare.example/v1", "auth": "none", "refuses_bearer": True,
+                  "model_ids": ["qwen3.8-27b"]}),
+        make(id="trial", name="Trial", rank=4, models=[{"family": "qwen3.8", "tier": "strong"}],
+             api={"base_url": "https://trial.example/v1", "key_url": "https://trial.example/key",
+                  "public_key": "pk-123", "model_ids": ["qwen3.8-27b"]}),
+    ]
+    cfg = build_litellm_config(entries, TODAY)
+    groups: dict[str, list[tuple[str, str, str]]] = {}
+    for d in cfg["model_list"]:
+        p = d["litellm_params"]
+        if d["model_name"].startswith("free/"):
+            groups.setdefault(d["model_name"], []).append((p["model"], p["api_base"], p["api_key"]))
+            assert d["model_info"] == {"allowed_fails_policy": {
+                "AuthenticationErrorAllowedFails": 0, "InternalServerErrorAllowedFails": 0,
+                "RateLimitErrorAllowedFails": 0}}
+        else:
+            assert "model_info" not in d
+    assert groups == {
+        "free/frontier": [("openai/zai/glm-5.3", "https://glm.example/v1", "os.environ/GLM_API_KEY")],
+        "free/strong": [("openai/zai/glm-5.3-flash", "https://glm.example/v1", "os.environ/GLM_API_KEY"),
+                        ("openai/qwen3.8-27b", "https://trial.example/v1", "os.environ/TRIAL_API_KEY")],
+        "free/nokey": [("openai/gpt-oss-20b", "https://open.example/v1", "none"),
+                       ("openai/qwen3.8-27b", "https://trial.example/v1", "os.environ/TRIAL_API_KEY")],
+    }
+    assert not [d for d in cfg["model_list"] if "bare.example" in d["litellm_params"]["api_base"]]
+    assert cfg["router_settings"] == {
+        "routing_strategy": "simple-shuffle", "num_retries": 3,
+        "fallbacks": [{"free/frontier": ["free/strong", "free/nokey"]},
+                      {"free/strong": ["free/nokey"]}]}
+    # One dict per deployment: PyYAML writes a shared one as an &anchor, LiteLLM
+    # then hands every deployment the same model_info and the same id, and the
+    # group answered 429 to every call (measured the same day).
+    assert "&id" not in yaml.safe_dump(cfg)
 
 
 def test_headline_counts_are_derived_from_the_registry():

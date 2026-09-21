@@ -121,6 +121,6 @@ Each offer links to a page with the free tier in the vendor's own words, the con
 - [Filterable table](https://mvalentsev.github.io/awesome-free-ai-coding/browse.html): the same rows filtered by category, card, key and API format
 - [configs/opencode.json](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/opencode.json): opencode config with every OpenAI-compatible row wired up
 - [configs/claude-code.sh](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh): one shell function per gateway that serves the Anthropic Messages format, for Claude Code
-- [configs/litellm.yaml](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml): LiteLLM proxy config over the same rows
+- [configs/litellm.yaml](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml): LiteLLM proxy config over the same rows, with one-name fallback groups (free/frontier, free/strong, free/nokey)
 - [README](https://github.com/mvalentsev/awesome-free-ai-coding): the list itself, with the picks table and how it stays fresh
 - [CONTRIBUTING](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md): what qualifies, how rows are ranked, how the probes work

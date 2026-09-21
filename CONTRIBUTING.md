@@ -335,6 +335,16 @@ other 4xx — vLLM's 404 for a model id that rotated out — and a lane that can
 reached are reported as `stale-ids` beside a row that stays verified. Put the id
 that answers first: that is the one a reader runs.
 
+**`api.refuses_bearer` is a keyless lane that answers only a bare call.** Once
+the first id has answered, the run asks it again carrying `Authorization: Bearer
+none` — what LiteLLM sends for `api_key: none`, and LiteLLM sends a bearer token
+on every call. OVHcloud's anonymous lane and VLM Run's answer that with 403 and
+Kilo's with 401 (2026-09-21), so those rows set the field and `litellm.yaml`
+leaves them out, saying why in its header; opencode's config adds no header
+without a key and keeps them. The run reports it as `stale-ids` both ways: a
+refusal on a row without the field, and an answer on a row with it. A rate limit
+on the second call says nothing either way.
+
 **`api.public_key` is a key the vendor prints for anyone.** LLM Tech's
 quickstart publishes "a shared free trial key", with its limits beside it, so
 that anyone can "try before you talk to anyone": a reader calls the lane

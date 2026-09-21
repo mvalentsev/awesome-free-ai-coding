@@ -5,6 +5,14 @@
 # sets no master_key, so without that flag anyone on your network can spend
 # the keys it reads from the environment (see free-llm.env.example).
 # Entries marked `api_key: none` need no account at all.
+#
+# Or ask for a group instead of a model: free/frontier, free/strong or
+# free/nokey pool every lane of that tier, and a call falls back down that
+# order when a lane runs out of quota or has no key set here — set only the
+# keys you have, and a lane without one is skipped.
+# Left out: Kilo Code — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
+# Left out: VLM Run Gateway — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
+# Left out: OVHcloud AI Endpoints — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 model_list:
 - model_name: google-ai-studio/gemini-3.8-flash
   litellm_params:
@@ -156,111 +164,6 @@ model_list:
     model: openai/qwen/qwen3.8-27b
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
-- model_name: kilo-code/kilo-auto/free
-  litellm_params:
-    model: openai/kilo-auto/free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/openrouter/free
-  litellm_params:
-    model: openai/openrouter/free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nvidia/nemotron-3-ultra-550b-a55b:free
-  litellm_params:
-    model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nvidia/nemotron-3-super-120b-a12b:free
-  litellm_params:
-    model: openai/nvidia/nemotron-3-super-120b-a12b:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nvidia/nemotron-3.5-lightning:free
-  litellm_params:
-    model: openai/nvidia/nemotron-3.5-lightning:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
-  litellm_params:
-    model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nvidia/nemotron-3.5-content-safety:free
-  litellm_params:
-    model: openai/nvidia/nemotron-3.5-content-safety:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/cohere/north-mini-code:free
-  litellm_params:
-    model: openai/cohere/north-mini-code:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/stepfun/step-3.7-flash:free
-  litellm_params:
-    model: openai/stepfun/step-3.7-flash:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/poolside/laguna-s-2.1:free
-  litellm_params:
-    model: openai/poolside/laguna-s-2.1:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/poolside/laguna-xs-2.1:free
-  litellm_params:
-    model: openai/poolside/laguna-xs-2.1:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/liquid/lfm-2.5-2.6b:free
-  litellm_params:
-    model: openai/liquid/lfm-2.5-2.6b:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/inclusionai/ling-3.0-flash-fin:free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-fin:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/inclusionai/ling-3.0-flash-sante:free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-sante:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/dots-studio/dots-3-note-preview:free
-  litellm_params:
-    model: openai/dots-studio/dots-3-note-preview:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/thinkingmachines/inkling-small:free
-  litellm_params:
-    model: openai/thinkingmachines/inkling-small:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/inclusionai/ling-3.0-flash-vl:free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-vl:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nex-agi/nex-n2.5-pro:free
-  litellm_params:
-    model: openai/nex-agi/nex-n2.5-pro:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/nex-agi/nex-n2.5-mini:free
-  litellm_params:
-    model: openai/nex-agi/nex-n2.5-mini:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/z-ai/glm-5.2:free
-  litellm_params:
-    model: openai/z-ai/glm-5.2:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/qwen/qwen3.8-27b:free
-  litellm_params:
-    model: openai/qwen/qwen3.8-27b:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
 - model_name: requesty/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b
@@ -846,31 +749,6 @@ model_list:
     model: openai/mimo-v2.5:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
-- model_name: vlm-run-gateway/qwen/qwen3.8-27b
-  litellm_params:
-    model: openai/qwen/qwen3.8-27b
-    api_base: https://gateway.vlm.run/v1/openai
-    api_key: none
-- model_name: ovh-ai-endpoints/Qwen3.8-27B
-  litellm_params:
-    model: openai/Qwen3.8-27B
-    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
-    api_key: none
-- model_name: ovh-ai-endpoints/gpt-oss-120b
-  litellm_params:
-    model: openai/gpt-oss-120b
-    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
-    api_key: none
-- model_name: ovh-ai-endpoints/Qwen3.6-27B
-  litellm_params:
-    model: openai/Qwen3.6-27B
-    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
-    api_key: none
-- model_name: ovh-ai-endpoints/Qwen3-Coder-30B-A3B-Instruct
-  litellm_params:
-    model: openai/Qwen3-Coder-30B-A3B-Instruct
-    api_base: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
-    api_key: none
 - model_name: upstage/solar-pro-3
   litellm_params:
     model: openai/solar-pro-3
@@ -1296,3 +1174,312 @@ model_list:
     model: openai/qwen3.8-flash
     api_base: https://yolo-auto.com/v1
     api_key: os.environ/YOLO_AUTO_API_KEY
+- model_name: free/frontier
+  litellm_params:
+    model: openai/coding-kimi-k3-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/frontier
+  litellm_params:
+    model: openai/coding-glm-5.3-flash-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/frontier
+  litellm_params:
+    model: openai/coding-glm-5.3-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/frontier
+  litellm_params:
+    model: openai/qwen3.8-max
+    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/frontier
+  litellm_params:
+    model: openai/moonshotai/Kimi-K3
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/frontier
+  litellm_params:
+    model: openai/zai-org/GLM-5.3
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/gemini-3.8-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/gemini-3.7-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b
+    api_base: https://api.groq.com/openai/v1
+    api_key: os.environ/GROQ_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-v4-flash:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/nvidia/Qwen3.8-27B-NVFP4
+    api_base: https://api.llmtech.eu/v1
+    api_key: os.environ/LLMTECH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/Qwen3.8-27B
+    api_base: https://inference.hetzner.com/api/v1
+    api_key: os.environ/HETZNER_INFERENCE_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/qwen3.8-27b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-v4.1-flash:free
+    api_base: https://tokenharbor.ai/v1
+    api_key: os.environ/TOKEN_HARBOR_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-v4-flash:free
+    api_base: https://tokenharbor.ai/v1
+    api_key: os.environ/TOKEN_HARBOR_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/agnes-3.0-flash
+    api_base: https://apihub.agnes-ai.com/v1
+    api_key: os.environ/AGNES_AI_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/zai-org/GLM-5.3-Flash
+    api_base: https://inference.dahl.global/v1
+    api_key: os.environ/DAHL_INFERENCE_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
+    api_base: https://inference.dahl.global/v1
+    api_key: os.environ/DAHL_INFERENCE_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-v4-flash
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Pro-0813
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/zai-org/GLM-5.3-Flash
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/qwen3.8-flash
+    api_base: https://yolo-auto.com/v1
+    api_key: os.environ/YOLO_AUTO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/GLM-5.3-Flash
+    api_base: https://api.llm7.io/v1
+    api_key: none
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/minimax-m2.7
+    api_base: https://api.llm7.io/v1
+    api_key: none
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/codestral-latest
+    api_base: https://api.llm7.io/v1
+    api_key: none
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/mistral-Nemo-Instruct-2407
+    api_base: https://api.llm7.io/v1
+    api_key: none
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/nvidia/Qwen3.8-27B-NVFP4
+    api_base: https://api.llmtech.eu/v1
+    api_key: os.environ/LLMTECH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/RedHatAI/Qwen3.8-27B-INT4
+    api_base: https://hermes.ai.unturf.com/v1
+    api_key: none
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/gpt-oss
+    api_base: https://text.pollinations.ai/openai
+    api_key: none
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+router_settings:
+  routing_strategy: simple-shuffle
+  num_retries: 3
+  fallbacks:
+  - free/frontier:
+    - free/strong
+    - free/nokey
+  - free/strong:
+    - free/nokey

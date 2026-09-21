@@ -520,6 +520,7 @@
           "z-ai/glm-5.2:free",
           "qwen/qwen3.8-27b:free"
         ],
+        "refuses_bearer": true,
         "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model"
       },
       "probe": {
@@ -998,6 +999,7 @@
           "Qwen3.6-27B",
           "Qwen3-Coder-30B-A3B-Instruct"
         ],
+        "refuses_bearer": true,
         "note": "no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not that the offer is gone. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on, except on Qwen3.8-27B, which the catalog prices at zero"
       },
       "probe": {
@@ -3594,6 +3596,7 @@
         "model_ids": [
           "qwen/qwen3.8-27b"
         ],
+        "refuses_bearer": true,
         "note": "no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key; 10 a minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b is the other chat model on VLM Run's GPUs, and the routed ids in the same catalog, Kimi K3 among them, answer `403 model_not_entitled` without a paid organization"
       },
       "probe": {

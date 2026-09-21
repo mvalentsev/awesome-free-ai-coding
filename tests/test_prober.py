@@ -1710,10 +1710,56 @@ async def test_a_keyless_lane_that_answers_is_a_pass():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
-    assert call.call_count == 1
-    sent = call.calls.last.request
+    # The README's call first, bare; then the same id with the bearer token a
+    # proxy sends (see the refuses_bearer tests below).
+    assert call.call_count == 2
+    sent = call.calls[0].request
     assert "authorization" not in sent.headers
     assert json.loads(sent.content)["model"] == "gpt-oss-120b"
+    assert call.calls[1].request.headers["authorization"] == "Bearer none"
+
+
+def _refuses_a_bearer(status_with_bearer: int):
+    def answer(request: httpx.Request) -> httpx.Response:
+        if "authorization" in request.headers:
+            return httpx.Response(status_with_bearer, json={"error": "invalid token"})
+        return httpx.Response(200, json={})
+    return answer
+
+
+@respx.mock
+async def test_a_keyless_lane_that_refuses_a_bearer_token_is_a_note_for_the_proxy_config():
+    """LiteLLM sends a bearer token on every call — `api_key: none` goes out as
+    "Bearer none" — and OVHcloud's anonymous lane, VLM Run's and Kilo's refuse
+    one while answering a bare call (2026-09-21). The README's curl works and
+    the LiteLLM config does not, so the lane stays verified and the run says
+    which field keeps it out of that config; the field is then measured every
+    run, both ways."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    route = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=_refuses_a_bearer(403))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert result.detail == ("keyless call to gpt-oss-120b with a bearer token answered HTTP 403 — "
+                             "LiteLLM sends one on every call, so set api.refuses_bearer: true to "
+                             "leave the lane out of its config")
+
+    marked = keyless_entry()
+    marked.api.refuses_bearer = True
+    async with httpx.AsyncClient() as client:
+        assert (await probe_entry(client, marked, backoff=0)).status is ProbeStatus.PASS
+
+    route.mock(return_value=httpx.Response(200, json={}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, marked, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert result.detail == ("keyless call to gpt-oss-120b with a bearer token answered HTTP 200 — "
+                             "drop api.refuses_bearer, and the LiteLLM config takes the lane back")
+
+    # A rate limit on the second call says nothing about the header either way.
+    route.mock(side_effect=_refuses_a_bearer(429))
+    async with httpx.AsyncClient() as client:
+        assert (await probe_entry(client, keyless_entry(), backoff=0)).status is ProbeStatus.PASS
 
 
 def _answer_by_model(statuses: dict[str, int]):
@@ -1772,12 +1818,14 @@ async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_anothe
     patience a 5xx gets before the check walks on to name another."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
-        side_effect=[httpx.Response(429, json={}), httpx.Response(200, json={})])
+        side_effect=[httpx.Response(429, json={}), httpx.Response(200, json={}),
+                     httpx.Response(200, json={})])
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
-    assert call.call_count == 2
-    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b"] * 2
+    # asked twice bare, then once with the bearer token a proxy sends
+    assert [(json.loads(c.request.content)["model"], "authorization" in c.request.headers)
+            for c in call.calls] == [("gpt-oss-120b", False)] * 2 + [("gpt-oss-120b", True)]
 
 
 @respx.mock
@@ -1839,7 +1887,7 @@ async def test_a_keyless_lane_that_wants_a_session_header_is_called_with_one():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.PASS
-    sent = call.calls.last.request
+    sent = call.calls[0].request
     assert "authorization" not in sent.headers
     uuid.UUID(sent.headers["x-open-session"])
 
