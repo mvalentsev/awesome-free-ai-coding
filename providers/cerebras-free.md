@@ -40,6 +40,6 @@ Cerebras' own docs: "New accounts receive $5 in free credits after adding a veri
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

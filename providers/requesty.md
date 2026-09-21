@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Requesty free tier: limits, free models, verified 2026-09-17'
+title: 'Requesty free tier: limits, free models, verified 2026-09-21'
 description: OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those. Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend…
 permalink: /providers/requesty/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/requesty/
 
 # Requesty
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-17 · [requesty.ai](https://www.requesty.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [requesty.ai](https://www.requesty.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,11 +41,11 @@ Free plan is $0 with no credit card — 200 requests a day, free models only, wi
 
 ## History
 
-- *next scheduled run* — Free models changed: added muse-glimmer-30b, nemotron-3.5-lightning
+- `2026-09-21` — Free models changed: added muse-glimmer-30b, nemotron-3.5-lightning
 - `2026-08-11` — Added to the list: OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

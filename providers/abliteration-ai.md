@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'abliteration.ai free tier: limits, free models, verified 2026-09-17'
+title: 'abliteration.ai free tier: limits, free models, verified 2026-09-21'
 description: 'OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect…'
 permalink: /providers/abliteration-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/abliteration-ai/
 
 # abliteration.ai
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,10 +42,10 @@ The pricing FAQ: "You can start with a one-credit free preview and no credit car
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card
+- `2026-09-21` — Added to the list: OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

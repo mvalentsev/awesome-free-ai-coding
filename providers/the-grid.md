@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'The Grid free tier: limits, free models, verified 2026-09-17'
+title: 'The Grid free tier: limits, free models, verified 2026-09-21'
 description: 'OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time. The quick start: "New accounts get a $25 signup credit (limited time), enough…'
 permalink: /providers/the-grid/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/the-grid/
 
 # The Grid
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [thegrid.ai](https://thegrid.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [thegrid.ai](https://thegrid.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,10 +42,10 @@ The quick start: "New accounts get a $25 signup credit (limited time), enough fo
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time
+- `2026-09-21` — Added to the list: OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

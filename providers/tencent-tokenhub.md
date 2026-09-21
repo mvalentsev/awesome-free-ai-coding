@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-09-17'
+title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-09-21'
 description: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated 2026-09-04,…
 permalink: /providers/tencent-tokenhub/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/tencent-tokenhub/
 
 # Tencent Cloud TokenHub
 
-🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,10 +42,10 @@ The free package page, updated 2026-09-04, gives each main account one grant whi
 
 ## History
 
-- *next scheduled run* — Added to the list: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification
+- `2026-09-21` — Added to the list: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

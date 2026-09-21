@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Impossibl free tier: limits, free models, verified 2026-09-17'
+title: 'Impossibl free tier: limits, free models, verified 2026-09-21'
 description: 'Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an…'
 permalink: /providers/impossibl/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/impossibl/
 
 # Impossibl
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [impossibl.com](https://impossibl.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [impossibl.com](https://impossibl.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,10 +41,10 @@ An account is one POST with no key, and the llms.txt says what it carries: "an a
 
 ## History
 
-- *next scheduled run* — Added to the list: Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card
+- `2026-09-21` — Added to the list: Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

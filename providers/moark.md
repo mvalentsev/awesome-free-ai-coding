@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-09-17'
+title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-09-21'
 description: 'Gitee''s model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought. The FAQ: 选择“免费体验访问令牌”即可享受免费体验，每位用户每日拥有 100 次免费调用次数 — take the free experience…'
 permalink: /providers/moark/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/moark/
 
 # Moark (Gitee AI)
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [moark.com](https://moark.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [moark.com](https://moark.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,10 +40,10 @@ The FAQ: 选择“免费体验访问令牌”即可享受免费体验，每位�
 
 ## History
 
-- *next scheduled run* — Added to the list: Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought
+- `2026-09-21` — Added to the list: Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

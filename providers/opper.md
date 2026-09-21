@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Opper free tier: limits, free models, verified 2026-09-17'
+title: 'Opper free tier: limits, free models, verified 2026-09-21'
 description: 'EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google''s route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits. The pricing FAQ: "Sign up needs no credit card: you get an API key…'
 permalink: /providers/opper/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/opper/
 
 # Opper
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [opper.ai](https://opper.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [opper.ai](https://opper.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,10 +40,10 @@ The pricing FAQ: "Sign up needs no credit card: you get an API key straight away
 
 ## History
 
-- *next scheduled run* — Added to the list: EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits
+- `2026-09-21` — Added to the list: EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

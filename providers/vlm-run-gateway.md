@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'VLM Run Gateway free tier: limits, free models, verified 2026-09-17'
+title: 'VLM Run Gateway free tier: limits, free models, verified 2026-09-21'
 description: 'OpenAI-compatible gateway for vision and language models whose models on VLM Run''s own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha. The authentication page says it plainly: "The VLM Run Gateway serves anonymous callers on a…'
 permalink: /providers/vlm-run-gateway/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/vlm-run-gateway/
 
 # VLM Run Gateway
 
-🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [vlm.run](https://vlm.run) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [vlm.run](https://vlm.run) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,10 +41,10 @@ The authentication page says it plainly: "The VLM Run Gateway serves anonymous c
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
+- `2026-09-21` — Added to the list: OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

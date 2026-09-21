@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-09-19'
+title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-09-21'
 description: 'Alibaba''s model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification. The limits page: "免费推理API由阿里云提供算力支持，要求您的ModelScope账号必须首先绑定阿里云账号", and the Alibaba Cloud account must…'
 permalink: /providers/modelscope/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/modelscope/
 
 # ModelScope API-Inference (Alibaba)
 
-🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-19 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,10 +41,10 @@ The limits page: "免费推理API由阿里云提供算力支持，要求您的Mo
 
 ## History
 
-- *next scheduled run* — Added to the list: Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification
+- `2026-09-21` — Added to the list: Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

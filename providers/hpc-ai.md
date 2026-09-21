@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-09-17'
+title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-09-21'
 description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the…
 permalink: /providers/hpc-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/hpc-ai/
 
 # HPC-AI Model APIs
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,10 +40,10 @@ The Model APIs page answers its FAQ "Do you offer a free trial for users?" in th
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit
+- `2026-09-21` — Added to the list: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

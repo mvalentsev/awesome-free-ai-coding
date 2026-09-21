@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'LLMTR free tier: limits, free models, verified 2026-09-17'
+title: 'LLMTR free tier: limits, free models, verified 2026-09-21'
 description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — thirteen zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/llmtr/
 
 # LLMTR
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-17 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -47,6 +47,6 @@ A new account calls the free rows before any top-up: the migration guide says "M
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

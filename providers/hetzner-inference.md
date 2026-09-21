@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Hetzner Inference API free tier: limits, free models, verified 2026-09-17'
+title: 'Hetzner Inference API free tier: limits, free models, verified 2026-09-21'
 description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in advance via email with detailed…'
 permalink: /providers/hetzner-inference/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/hetzner-inference/
 
 # Hetzner Inference API
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-17 · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,11 +39,11 @@ Hetzner answers it in its own FAQ: "As long as the Inference API remains in expe
 
 ## History
 
-- *next scheduled run* — Free models changed: added qwen3.8-27b; dropped qwen3.8
+- `2026-09-21` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-08-31` — Added to the list: OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

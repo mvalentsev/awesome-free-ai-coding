@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-17'
+title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-21'
 description: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit. $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the…
 permalink: /providers/vercel-ai-gateway/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/vercel-ai-gateway/
 
 # Vercel AI Gateway
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-17 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,7 +40,7 @@ $5 of gateway credit a month at provider list rates, renewed monthly, with lower
 
 ## History
 
-- *next scheduled run* — Free models changed: added ling-3.0-flash-fin, ling-3.0-flash-sante
+- `2026-09-21` — Free models changed: added ling-3.0-flash-fin, ling-3.0-flash-sante
 - `2026-08-20` — Free models changed: dropped glm-4.6v-flash
 - `2026-08-17` — Free models changed: added laguna-s-2.1; dropped laguna-s-2.1-free
 - `2026-08-14` — Free models changed: added glm-4.6v-flash
@@ -49,6 +49,6 @@ $5 of gateway credit a month at provider list rates, renewed monthly, with lower
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

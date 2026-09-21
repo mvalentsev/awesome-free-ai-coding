@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Arli AI free tier: limits, free models, verified 2026-09-17'
+title: 'Arli AI free tier: limits, free models, verified 2026-09-21'
 description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. The pricing page's Free plan, "Test out the Arli platform" at $0, lists "Delayed Response", "Max 12K context tokens", "1…
 permalink: /providers/arli-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/arli-ai/
 
 # Arli AI
 
-🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,10 +39,10 @@ The pricing page's Free plan, "Test out the Arli platform" at $0, lists "Delayed
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time
+- `2026-09-21` — Added to the list: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

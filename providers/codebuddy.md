@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-09-17'
+title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-09-21'
 description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs. The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time…
 permalink: /providers/codebuddy/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/codebuddy/
 
 # CodeBuddy (Tencent)
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-17 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-21 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,6 +40,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

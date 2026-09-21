@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Freebuff free tier: limits, free models, verified 2026-09-17'
+title: 'Freebuff free tier: limits, free models, verified 2026-09-21'
 description: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna and MiMo 2.5 in the picker. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model…
 permalink: /providers/freebuff/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/freebuff/
 
 # Freebuff
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-17 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-21 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -41,6 +41,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

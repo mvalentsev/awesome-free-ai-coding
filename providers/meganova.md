@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'MegaNova free tier: limits, free models, verified 2026-09-17'
+title: 'MegaNova free tier: limits, free models, verified 2026-09-21'
 description: OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across its free rows. Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free…
 permalink: /providers/meganova/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/meganova/
 
 # MegaNova
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-17 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -44,6 +44,6 @@ Tier 1 is "Free registration — no credit card required", with "Free Access Mod
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

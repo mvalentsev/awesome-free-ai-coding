@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Fireworks AI free tier: limits, free models, verified 2026-09-17'
+title: 'Fireworks AI free tier: limits, free models, verified 2026-09-21'
 description: Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added. The pricing page offers "Get started with $1 in free credits", and the billing FAQ…
 permalink: /providers/fireworks-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/fireworks-ai/
 
 # Fireworks AI
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [fireworks.ai](https://fireworks.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [fireworks.ai](https://fireworks.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,10 +42,10 @@ The pricing page offers "Get started with $1 in free credits", and the billing F
 
 ## History
 
-- *next scheduled run* — Added to the list: Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added
+- `2026-09-21` — Added to the list: Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

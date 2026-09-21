@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'JetBrains AI (AI Free) free tier: limits, free models, verified 2026-09-17'
+title: 'JetBrains AI (AI Free) free tier: limits, free models, verified 2026-09-21'
 description: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents. JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one…
 permalink: /providers/jetbrains-ai/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/jetbrains-ai/
 
 # JetBrains AI (AI Free)
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [jetbrains.com](https://www.jetbrains.com/ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [jetbrains.com](https://www.jetbrains.com/ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,6 +40,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

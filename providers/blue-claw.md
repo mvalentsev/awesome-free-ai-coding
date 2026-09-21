@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Blue Claw Network free tier: limits, free models, verified 2026-09-17'
+title: 'Blue Claw Network free tier: limits, free models, verified 2026-09-21'
 description: 'OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start. The home page: "Every new account starts with a $5 welcome credit. After that, you run on prepaid USD…'
 permalink: /providers/blue-claw/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/blue-claw/
 
 # Blue Claw Network
 
-🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-17 · [blueclaw.network](https://blueclaw.network) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [blueclaw.network](https://blueclaw.network) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,10 +40,10 @@ The home page: "Every new account starts with a $5 welcome credit. After that, y
 
 ## History
 
-- *next scheduled run* — Added to the list: OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start
+- `2026-09-21` — Added to the list: OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

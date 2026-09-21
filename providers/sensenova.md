@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-09-17'
+title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-09-21'
 description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外,…'
 permalink: /providers/sensenova/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sensenova/
 
 # SenseNova (SenseTime 商汤)
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-17 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,6 +40,6 @@ The plan page says 公测期完全免费开放，付费档位即将上线 — fr
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

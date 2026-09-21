@@ -72,7 +72,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -133,7 +133,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -188,7 +188,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -239,7 +239,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 78
@@ -319,7 +319,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -370,7 +370,7 @@ entries:
     catalog: https://ollama.com/v1/models
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 92
@@ -433,8 +433,8 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-14'
-  probe_failures: 1
+  last_verified: '2026-09-21'
+  probe_failures: 0
   provisional: false
   rank: 10
 - id: kilo-code
@@ -519,7 +519,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -555,7 +555,7 @@ entries:
     - '"auto_completion_limit":5000'
     - '"advanced_model_request_limit":1000'
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -595,7 +595,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -670,7 +670,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 10
@@ -704,7 +704,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -750,7 +750,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -786,7 +786,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -817,7 +817,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -863,7 +863,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -917,7 +917,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 30
@@ -975,7 +975,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -1016,7 +1016,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -1066,7 +1066,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1102,7 +1102,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-20'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -1145,7 +1145,7 @@ entries:
     machinery_keywords:
     - $10 in free credit
   first_seen: '2026-07-19'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 80
@@ -1202,7 +1202,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-22'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 75
@@ -1236,7 +1236,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-22'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1264,7 +1264,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-07-22'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1323,7 +1323,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-08-03'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1374,7 +1374,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-08-03'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1420,7 +1420,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-08-05'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 70
@@ -1467,7 +1467,7 @@ entries:
     catalog: https://api.sambanova.ai/v1/models
     machinery_keywords: []
   first_seen: '2026-08-06'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 50
@@ -1524,7 +1524,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-08-06'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 40
@@ -1596,7 +1596,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-08-11'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 20
@@ -1660,7 +1660,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-11'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 25
@@ -1704,7 +1704,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-11'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 85
@@ -1793,7 +1793,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 60
@@ -1917,7 +1917,7 @@ entries:
     machinery_keywords: []
   first_seen: '2026-08-14'
   last_verified: '2026-09-17'
-  probe_failures: 0
+  probe_failures: 1
   provisional: false
   rank: 30
 - id: inception-labs
@@ -1974,7 +1974,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 90
@@ -2019,7 +2019,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 96
@@ -2061,7 +2061,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 88
@@ -2116,7 +2116,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-30'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 55
@@ -2158,7 +2158,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-08-30'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 97
@@ -2223,7 +2223,7 @@ entries:
     catalog: https://api.regolo.ai/v1/models
     machinery_keywords: []
   first_seen: '2026-08-30'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 75
@@ -2277,7 +2277,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-02'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 28
@@ -2343,7 +2343,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-09-02'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 85
@@ -2417,7 +2417,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-09-02'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 45
@@ -2454,7 +2454,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-02'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 85
@@ -2493,7 +2493,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-02'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
   rank: 65
@@ -2568,9 +2568,9 @@ entries:
     catalog: https://freeinference.org/v1/models
     machinery_keywords: []
   first_seen: '2026-09-05'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 91
 - id: opentyphoon
   name: OpenTyphoon (SCB 10X)
@@ -2621,9 +2621,9 @@ entries:
     catalog: https://api.opentyphoon.ai/v1/models
     machinery_keywords: []
   first_seen: '2026-09-05'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 86
 - id: ibm-watsonx-ai
   name: IBM watsonx.ai (Lite plan)
@@ -2669,9 +2669,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-05'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 98
 - id: sarvam
   name: Sarvam AI
@@ -2719,9 +2719,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-05'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 88
 - id: standardcompute
   name: Standard Compute
@@ -2776,9 +2776,9 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-07'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
-  provisional: true
+  provisional: false
   rank: 95
 - id: routerplex
   name: RouterPlex
@@ -2837,7 +2837,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-11'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 93
@@ -2879,7 +2879,7 @@ entries:
     machinery_keywords: []
     lane: free
   first_seen: '2026-09-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 29
@@ -2936,7 +2936,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 87
@@ -2996,7 +2996,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 99
@@ -3036,7 +3036,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-14'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 55
@@ -3074,7 +3074,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-16'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 80
@@ -3143,7 +3143,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-16'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 75
@@ -3196,7 +3196,7 @@ entries:
     require_zero_price: true
     machinery_keywords: []
   first_seen: '2026-09-16'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 65
@@ -3231,7 +3231,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-16'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 45
@@ -3282,7 +3282,7 @@ entries:
     catalog: https://api.llm7.io/v1/models
     machinery_keywords: []
   first_seen: '2026-09-16'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 45
@@ -3338,7 +3338,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 92
@@ -3394,7 +3394,7 @@ entries:
     catalog: https://gateway.vlm.run/v1/openai/models
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 79
@@ -3451,7 +3451,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 89
@@ -3499,7 +3499,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 99
@@ -3547,7 +3547,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 99
@@ -3605,7 +3605,7 @@ entries:
     catalog: https://api.opper.ai/v3/models?limit=0
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 82
@@ -3655,7 +3655,7 @@ entries:
     catalog: https://api.moark.com/v1/models
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 88
@@ -3702,7 +3702,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 99
@@ -3749,7 +3749,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 91
@@ -3800,7 +3800,7 @@ entries:
     require_zero_price: false
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 94
@@ -3853,7 +3853,7 @@ entries:
     catalog: https://api.impossibl.com/v1/models
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 94
@@ -3905,7 +3905,7 @@ entries:
     catalog: https://api.thegrid.ai/v1/models
     machinery_keywords: []
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 86
@@ -3958,7 +3958,7 @@ entries:
     machinery_keywords:
     - in free credits. New accounts using the invite code
   first_seen: '2026-09-17'
-  last_verified: '2026-09-17'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 90
@@ -4534,7 +4534,7 @@ entries:
     catalog: https://api.llmtech.eu/v1/models
     machinery_keywords: []
   first_seen: '2026-09-18'
-  last_verified: '2026-09-18'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 48
@@ -4597,7 +4597,7 @@ entries:
     - Qwen2.5-7B-Instruct (Free)
     - DeepSeek-R1-0528-Qwen3-8B (Free)
   first_seen: '2026-09-18'
-  last_verified: '2026-09-18'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 97
@@ -4662,7 +4662,7 @@ entries:
       field: Data.TargetPrefix
       suffix: /dist/model-service/API-Inference/limits/limits_CN.md
   first_seen: '2026-09-19'
-  last_verified: '2026-09-19'
+  last_verified: '2026-09-21'
   probe_failures: 0
   provisional: true
   rank: 84

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-09-18'
+title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-09-21'
 description: 'China''s SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model…'
 permalink: /providers/siliconflow-cn/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/siliconflow-cn/
 
 # SiliconFlow (China)
 
-🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-18 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added recently, two weeks of probes still to pass · **live** — last verified by a probe on 2026-09-21 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,10 +42,10 @@ The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed
 
 ## History
 
-- *next scheduled run* — Added to the list: China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
+- `2026-09-21` — Added to the list: China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
 
 ---
 
-Generated from `registry.yaml` on 2026-09-20 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-21 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
