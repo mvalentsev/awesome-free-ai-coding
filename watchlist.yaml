@@ -3110,3 +3110,95 @@ watched:
       must own.
     reopen_if: >-
       Starting credits for new accounts without a purchase or a stake.
+
+  # Six gateways OmniRoute's provider registry and README name that had no
+  # verdict here, read on their own pages 2026-09-21. Its "Free Forever"
+  # table and its per-provider configs were the lead; none of them is the
+  # evidence.
+  - domains: [cloudcode.one]
+    name: CloudCode.ONE
+    checked_on: '2026-09-21'
+    reason: >-
+      A pay-as-you-go coding gateway (GLM-5.3, DeepSeek V4 Pro) whose home page
+      FAQ says "Top up credit from $2" and names no free tier. The only
+      statement of one is a July blog post, "CloudCode.ONE now has a free tier",
+      published with its figures never filled in — "[X tokens / $Y worth of
+      credit] per [day/month]" and "[The quota resets every day/month.]" — so
+      the offer has no quota a reader could plan against. OmniRoute's config
+      calls two GLM Flash ids there "published free model aliases".
+    reopen_if: >-
+      A CloudCode.ONE page states what the free tier gives, in numbers.
+
+  - domains: [dgrid.ai]
+    name: DGrid AI Gateway
+    checked_on: '2026-09-21'
+    reason: >-
+      The free lane is one router id, dgridai/free, which "aggregates multiple
+      sources of free inference capacity behind a single routing layer"; the
+      model behind it "can change from request to request" and no page names
+      it or its sources. 10 requests a minute and 100 a day per account, 20 and
+      1,000 after $5 of top-ups. Free capacity gathered from other sources is
+      the NaraRouter verdict above: a gateway re-serving free lanes it does not
+      own is not the vendor of the offer.
+    reopen_if: >-
+      DGrid names the models and the sources behind dgridai/free, and they are
+      its own capacity or sold to it for this.
+
+  - domains: [hcnsec.cn, hcnote.cn]
+    name: HCNSec public-welfare gateway (幻城公益API)
+    checked_on: '2026-09-21'
+    reason: >-
+      A New API relay run by 新疆幻城网安科技有限责任公司 — its own FAQ opens with
+      "中转站如何使用？" (how do I use the relay station?) — whose free-user group
+      serves other vendors' models from sources it does not name. On 2026-09-06
+      the operator warned that the free group's glm-5.3 "是第三方低价服务商非官方服务商
+      模型真实度有待考证": it comes from a third-party low-price, unofficial provider,
+      and whether it is the real model is unverified. A sign-up balance and
+      invite rewards spent on that is not a vendor's own offer.
+    reopen_if: >-
+      The free group serves the operator's own deployment of a named model, with
+      its quota on a page.
+
+  - domains: [literouter.com]
+    name: LiteRouter
+    checked_on: '2026-09-21'
+    reason: >-
+      A subscription gateway run by Eqlyx, LLC whose $0 Basic plan gives "∞
+      requests/day for most of free models" — "a rate limit of up to 100
+      requests per hour applies to free models", its FAQ adds — and 50 premium
+      requests a day. The free models are about forty ':free' variants of
+      other vendors' models (DeepSeek, GLM-5.2 and GLM-5.3-Flash, Kimi, MiniMax,
+      Mistral Large 3, Gemma 4, gpt-oss) and no page says where they are served
+      from: the xKiro case above, unlisted until that is known.
+    reopen_if: >-
+      LiteRouter names the providers behind its :free ids, and they sell or
+      give it that capacity.
+
+  - domains: [helyxai.space]
+    name: Helyx AI
+    checked_on: '2026-09-21'
+    reason: >-
+      A crypto-funded gateway whose pages disagree about the free offer. The
+      home page grants "$10 free credit on signup" — "$2.000000 instant,
+      another $8.000000 released on request" by support — and greets a visitor
+      with "Your 0 daily claim is waiting", while the about page promises "1M
+      free Claude Opus 5 tokens claimed daily" and the terms "the 1M daily
+      Claude Opus 5 claim". No page names the operator: the contacts are a
+      WhatsApp number and a Telegram handle, and the privacy page says only
+      that "we route requests to upstream providers".
+    reopen_if: >-
+      A named operator, and one statement of what a new account gets that all
+      of its pages agree on.
+
+  - domains: [openference.com]
+    name: Openference
+    checked_on: '2026-09-21'
+    reason: >-
+      The site's comparison copy still says "Free forever, no credit card", and
+      OmniRoute's README lists it under "Free Forever — $0, no card", but the
+      plans the site serves (api.openference.com/api/public/plans) start at
+      Promo — priceMonthly 1 through Stripe, "2-day trial on all models, then
+      Qwen3.8 & Llama 3.2", 420 requests a week — and then Lite at 15. No plan
+      is priced at zero.
+    reopen_if: >-
+      The public plans API lists a plan priced at 0.

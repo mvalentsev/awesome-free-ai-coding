@@ -284,3 +284,24 @@
     official Gemini relay). Its "free models" group is billed at 0.001× until
     a subscription makes it 0× (Daoxe-免费模型,订阅后会变成0倍率). Account pools and
     reverse engineering, in the operator's own labels — the kenari.id case.
+- domain: freetheai.xyz
+  reason: >-
+    A Discord-key gateway whose model catalog names its sources by prefix, and
+    one prefix is a client it cannot be: opc/big-pickle,
+    opc/deepseek-v4-flash-free, opc/mimo-v2.5-free, opc/nemotron-3-ultra-free
+    and opc/north-mini-code-free are opencode Zen's free ids, which OpenCode
+    serves to its own client alone ("You cannot use the free tier in other
+    harnesses", its maintainer on anomalyco/opencode#49590, 2026-09-18) and
+    has refused to every other client since 2026-09-17. Serving them to
+    anyone with a Discord key means presenting as OpenCode — the spoofed-client
+    case omniroute.online is here for, in the operator's own model list
+    (freetheai.xyz/models, read 2026-09-21).
+- domain: freeaiapikey.com
+  reason: >-
+    States its supply in its own FAQ: "We aggregate unused credits, utilize
+    volume tier discounts, and intelligently route requests across a massive
+    pool of API keys", and when "an underlying provider key hits a rate limit
+    or fails, we seamlessly and instantly retry your request on a healthy key".
+    A pool of keys rotated past each key's rate limit is key sharing in the
+    operator's own words, and its "Free plan for all users — 100k tokens/day,
+    forever" runs on that pool (read 2026-09-21).
