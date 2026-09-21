@@ -27,7 +27,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
-- Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `Llama-3.3-70B-Instruct`, `apertus-70b`, `brick-v1-beta`
+- Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `brick-v1-beta`
 - Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page
 
 ## Evidence

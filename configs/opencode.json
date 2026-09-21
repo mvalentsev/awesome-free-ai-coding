@@ -271,9 +271,6 @@
         "north-mini-code-free": {
           "name": "north-mini-code-free"
         },
-        "gpt-oss-20b-free": {
-          "name": "gpt-oss-20b-free"
-        },
         "ling-3.0-tiny-free": {
           "name": "ling-3.0-tiny-free"
         },
@@ -319,26 +316,8 @@
         "dots-3-note-preview-free": {
           "name": "dots-3-note-preview-free"
         },
-        "gemini-3.8-flash-free": {
-          "name": "gemini-3.8-flash-free"
-        },
         "glm-4.7-flash-free": {
           "name": "glm-4.7-flash-free"
-        },
-        "gpt-4.1-free": {
-          "name": "gpt-4.1-free"
-        },
-        "gpt-4.1-mini-free": {
-          "name": "gpt-4.1-mini-free"
-        },
-        "gpt-4.1-nano-free": {
-          "name": "gpt-4.1-nano-free"
-        },
-        "gpt-4o-free": {
-          "name": "gpt-4o-free"
-        },
-        "gpt-5.5-free": {
-          "name": "gpt-5.5-free"
         },
         "hy3-free": {
           "name": "hy3-free"
@@ -399,9 +378,6 @@
         },
         "xiaomi-mimo-v2.5-pro-free": {
           "name": "xiaomi-mimo-v2.5-pro-free"
-        },
-        "ox-alpha": {
-          "name": "ox-alpha"
         }
       }
     },
@@ -738,9 +714,6 @@
         },
         "qwen3.8-27b": {
           "name": "qwen3.8-27b"
-        },
-        "Llama-3.3-70B-Instruct": {
-          "name": "Llama-3.3-70B-Instruct"
         },
         "apertus-70b": {
           "name": "apertus-70b"

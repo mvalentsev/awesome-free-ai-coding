@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **77** | **76** | **7** | **57** | **68** |
+| **77** | **76** | **7** | **57** | **69** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -40,7 +40,7 @@
 
 | I want… | Start with |
 |---|---|
-| **Frontier-tier models on a $0 plan** | [opencode](https://opencode.ai) `muse-spark-1.3-contributor` · [AIHubMix (free models)](https://aihubmix.com) `glm-5.3` · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) `qwen3.8-max` |
+| **Frontier-tier models on a $0 plan** | [AIHubMix (free models)](https://aihubmix.com) `glm-5.3` `kimi-k3` · [opencode](https://opencode.ai) `muse-spark-1.3-contributor` · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) `qwen3.8-max` |
 | **An API key that gets the most done for free** | [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Groq](https://groq.com) · [Z.ai (Zhipu GLM)](https://z.ai) |
 | **One key, many free models** | [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com) |
 | **No account at all** | [Kilo Code](https://kilo.ai) · [LLM7.io](https://llm7.io) · [LLM Tech](https://llmtech.eu) |
@@ -152,7 +152,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 |---|---|---|---|
 | **[OpenRouter (free models)](https://openrouter.ai)** | One API key for a rotating set of :free model variants, open-weight and stealth models among them | `nemotron-3-ultra`, `gemma-4` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) |
 | **[Requesty](https://www.requesty.ai)** | OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those | `nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny`, `muse-glimmer-30b`, `nemotron-3.5-lightning` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/) |
-| **[AIHubMix (free models)](https://aihubmix.com)** | One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code | `glm-5.3` | [`2026-09-17`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
+| **[AIHubMix (free models)](https://aihubmix.com)** | One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code | `glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code` | [`2026-09-17`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog | `deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) |
 | **[LLMTR](https://llmtr.com)** | Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — thirteen zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them | `nemotron-3-ultra`, `qwen3.6` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
 | **[Vercel AI Gateway](https://vercel.com/ai-gateway)** | One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit | `laguna-s-2.1`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) |
@@ -166,7 +166,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Moark (Gitee AI)](https://moark.com)** 🧪 | Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 68 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 69 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -176,20 +176,21 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [LLMTR](https://llmtr.com) |
 | `qwen3.6` | [Groq](https://groq.com), [LLMTR](https://llmtr.com), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `laguna-s-2.1` | [Kilo Code](https://kilo.ai), [Cline](https://cline.bot), [Vercel AI Gateway](https://vercel.com/ai-gateway), [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
+| `mimo-v2.5` | [opencode](https://opencode.ai), [Freebuff](https://freebuff.com), [AIHubMix (free models)](https://aihubmix.com), [Token Harbor](https://tokenharbor.ai) |
 | `deepseek-v4-flash` | [Routeway](https://routeway.ai), [Token Harbor](https://tokenharbor.ai), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai), [SambaNova Cloud](https://cloud.sambanova.ai) |
-| `mimo-v2.5` | [opencode](https://opencode.ai), [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
+| `north-mini-code` | [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
+| `glm-5` | [AIHubMix (free models)](https://aihubmix.com), [Regolo AI](https://regolo.ai/pricing/) |
 | `glm-5.3-flash` | [Freebuff](https://freebuff.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `gpt-5.6-luna` | [Freebuff](https://freebuff.com), [Zed](https://zed.dev) |
 | `ling-3.0-flash-fin` | [opencode](https://opencode.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `muse-glimmer-30b` | [Requesty](https://www.requesty.ai), [Routeway](https://routeway.ai) |
 | `nemotron-3-super` | [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai) |
 | `nemotron-3.5-lightning` | [opencode](https://opencode.ai), [Requesty](https://www.requesty.ai) |
-| `north-mini-code` | [Kilo Code](https://kilo.ai), [Cohere (trial keys)](https://cohere.com) |
 | `step-3.7-flash` | [Kilo Code](https://kilo.ai), [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
 | `agnes-2.5-flash` | [Agnes AI](https://agnes-ai.com) |
 | `agnes-3.0-flash` | [Agnes AI](https://agnes-ai.com) |
@@ -211,10 +212,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `glm-4.5-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.7-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
-| `glm-5` | [Regolo AI](https://regolo.ai/pricing/) |
 | `glm-5.1` | [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `glm-5.3` | [AIHubMix (free models)](https://aihubmix.com) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
+| `kimi-k3` | [AIHubMix (free models)](https://aihubmix.com) |
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai) |
 | `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
@@ -248,7 +249,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
-| `2026-09-21` | 🔄 Free models **[AIHubMix (free models)](https://aihubmix.com)** | <sub>dropped glm-5, gpt-oss, kimi-k3, mimo-v2.5, north-mini-code</sub> |
+| `2026-09-21` | 🔄 Free models **[AIHubMix (free models)](https://aihubmix.com)** | <sub>dropped gpt-oss</sub> |
 | `2026-09-21` | 🔄 Free models **[Regolo AI](https://regolo.ai/pricing/)** | <sub>dropped llama-3.3</sub> |
 | `2026-09-21` | ➕ Added **[abliteration.ai](https://abliteration.ai)** | <sub>OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card</sub> |
 | `2026-09-21` | ➕ Added **[Arli AI](https://www.arliai.com)** | <sub>OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time</sub> |

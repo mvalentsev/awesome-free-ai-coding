@@ -361,11 +361,6 @@ model_list:
     model: openai/north-mini-code-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gpt-oss-20b-free
-  litellm_params:
-    model: openai/gpt-oss-20b-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: aihubmix/ling-3.0-tiny-free
   litellm_params:
     model: openai/ling-3.0-tiny-free
@@ -441,39 +436,9 @@ model_list:
     model: openai/dots-3-note-preview-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gemini-3.8-flash-free
-  litellm_params:
-    model: openai/gemini-3.8-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: aihubmix/glm-4.7-flash-free
   litellm_params:
     model: openai/glm-4.7-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gpt-4.1-free
-  litellm_params:
-    model: openai/gpt-4.1-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gpt-4.1-mini-free
-  litellm_params:
-    model: openai/gpt-4.1-mini-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gpt-4.1-nano-free
-  litellm_params:
-    model: openai/gpt-4.1-nano-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gpt-4o-free
-  litellm_params:
-    model: openai/gpt-4o-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/gpt-5.5-free
-  litellm_params:
-    model: openai/gpt-5.5-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: aihubmix/hy3-free
@@ -574,11 +539,6 @@ model_list:
 - model_name: aihubmix/xiaomi-mimo-v2.5-pro-free
   litellm_params:
     model: openai/xiaomi-mimo-v2.5-pro-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-- model_name: aihubmix/ox-alpha
-  litellm_params:
-    model: openai/ox-alpha
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: zai-glm/glm-4.7-flash
@@ -874,11 +834,6 @@ model_list:
 - model_name: regolo/qwen3.8-27b
   litellm_params:
     model: openai/qwen3.8-27b
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-- model_name: regolo/Llama-3.3-70B-Instruct
-  litellm_params:
-    model: openai/Llama-3.3-70B-Instruct
     api_base: https://api.regolo.ai/v1
     api_key: os.environ/REGOLO_API_KEY
 - model_name: regolo/apertus-70b

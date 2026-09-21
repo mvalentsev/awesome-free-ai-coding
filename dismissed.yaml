@@ -429,15 +429,8 @@ dismissed:
       real leader in quality-to-price in 2026". The price table itself does not
       carry the model, and a link to an article about a model is not an offer of
       it.
-  - entry: regolo
-    family: llama-3.3
-    superseded_by: llama-4
-    dismissed_on: 2026-09-08
-    reason: >-
-      regolo.ai/pricing contains neither "llama 4" nor "llama-4" (read
-      2026-09-08). The routeway dismissal this file's header describes, on a
-      second vendor: a newer generation the page does not carry cannot supersede
-      one it does.
+  # regolo llama-3.3 → llama-4 stood here from 2026-09-08 until 2026-09-21, when
+  # Llama 3.3 left Regolo's price table and its catalog and the family left the row.
   - entry: groq-free
     family: qwen3.6
     superseded_by: qwen3.8

@@ -5,20 +5,20 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-21T10:51:36Z</updated>
+  <updated>2026-09-21T11:41:14Z</updated>
   <author><name>freetier-radar</name></author>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260921T105136Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260921T114114Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
     <link rel="alternate" href="https://aihubmix.com"/>
-    <updated>2026-09-21T10:51:36Z</updated>
-    <summary type="text">dropped glm-5, gpt-oss, kimi-k3, mimo-v2.5, north-mini-code · free models: glm-5.3</summary>
+    <updated>2026-09-21T11:41:14Z</updated>
+    <summary type="text">dropped gpt-oss · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260921T105136Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260921T114114Z</id>
     <title>Free models changed: Regolo AI</title>
     <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-21T10:51:36Z</updated>
+    <updated>2026-09-21T11:41:14Z</updated>
     <summary type="text">dropped llama-3.3 · free models: glm-5, gpt-oss, qwen3.8-27b, apertus-70b</summary>
   </entry>
   <entry>
