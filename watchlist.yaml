@@ -1572,7 +1572,7 @@ watched:
       A readable sign-up page for non-mainland accounts, or a free model the
       international site does not carry.
 
-  - domains: [qianfan.baidubce.com, cloud.baidu.com]
+  - domains: [qianfan.baidubce.com, cloud.baidu.com, bce.baidu.com]
     name: Baidu Qianfan (百度千帆)
     checked_on: '2026-09-05'
     reason: >-

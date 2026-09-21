@@ -316,8 +316,16 @@ sets it, the missing key is the offer: the README's zero-signup curl and its "No
 account at all" answer are both built from that field, with the first id in
 `api.model_ids`. So every run sends that id one chat completion — one token, no
 `Authorization` header, and a fresh id in the row's `api.session_header` when it
-names one — to `<base_url>/chat/completions`. A 2xx is the only answer that
-leaves nothing to say. Anything else sends the check on to the next id, up to
+names one — to `<base_url>/chat/completions`. A 2xx carrying a completion — a
+choice holding a message, no `error` in the body or the choice — is the only
+answer that leaves nothing to say: OpenRouter's docs warn that its 200 goes out
+before the first token, so a failure after it arrives as an error in a 200, and
+Kilo's gateway answers in the same format. A completion that names another
+model than the id — a gateway serving one model under another's name — is
+reported as `stale-ids` naming both; a vendor's own spelling of the same model
+is not that (`qwen38` for `nvidia/Qwen3.8-27B-NVFP4`, a dated revision for an
+undated id), and a router id such as `kilo-auto/free` names no model to compare.
+Anything else sends the check on to the next id, up to
 three, because a rate limit does not end the offer but does end the command: on
 2026-09-16 opencode's `big-pickle` answered 429 to every keyless call while
 `ling-3.0-flash-fin-free` beside it answered 200, and the README's first command

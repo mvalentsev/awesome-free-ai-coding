@@ -6162,7 +6162,8 @@
     {
       "domains": [
         "qianfan.baidubce.com",
-        "cloud.baidu.com"
+        "cloud.baidu.com",
+        "bce.baidu.com"
       ],
       "name": "Baidu Qianfan (百度千帆)",
       "checked_on": "2026-09-05",

@@ -74,7 +74,7 @@ read:
 
   - url: https://github.com/mnfst/awesome-free-llm-apis
     name: mnfst/awesome-free-llm-apis
-    checked_on: '2026-08-30'
+    checked_on: '2026-09-21'
     reason: >-
       The right subject and nothing new in it. Of the 38 hosts it links, 35 are
       already carried; the three that are not are awesome.re (the list badge),
@@ -84,6 +84,15 @@ read:
       Re-read 2026-08-30 after a 2026-08-21 push: 43 hosts now, and the two it
       gained over the first read are docs.bigmodel.cn and dash.cloudflare.com —
       second spellings of vendors already carried. The verdict is unchanged.
+      Re-read 2026-09-21 at the user's request: nothing pushed since
+      2026-08-21, and data.json's 16 providers are all carried. Its agent
+      skill (free-llm-apis/SKILL.md) is behind the list it ships with — it
+      still recommends GitHub Models, retired 2026-07-30, Cerebras, which the
+      list itself removed on 2026-08-19, and Kluster AI, gone since June. What
+      it had that this project lacked was a check: its verifier counts an
+      HTTP 200 without choices[] as unknown, and since the same day the
+      keyless probe here reads a 200 for a completion before it counts a lane
+      as answering.
     reopen_if: >-
       Its provider table grows past what the curated feeds already carry.
 
@@ -981,3 +990,32 @@ read:
     reopen_if: >-
       The repository is unarchived and starts listing what the tools give away
       free.
+
+  - url: https://api.freellmapi.co/v1/latest
+    name: freellmapi hosted catalog
+    checked_on: '2026-09-21'
+    reason: >-
+      The signed catalog that tashfeenahmed/freellmapi's installs sync twice a
+      day, public on its monthly tier: version 2026.09.21 held 309 models on 22
+      platforms, each with request and token limits, a monthly token budget, a
+      context window and tool and vision flags, and 71 quirks — the operator's
+      own key-tested notes, many of them dated. The 21 platforms with chat
+      models all have a verdict here — the 22nd, Pinecone, serves only
+      embeddings, which this list leaves out — and the repository's key list,
+      read every run as a curated feed, names all 21 and some forty more, so
+      the catalog brings the scout no lead the feed does not. Its figures are
+      one operator's measurements and they lag the vendors' own pages this
+      registry reads: ModelScope still at 2,000 calls a day where the limits
+      page meters 魔粒, Mistral as per-minute and monthly token caps where the
+      pricing page now gives the Free plan $10 a month in credits. The quirks
+      were read whole as leads; where they touch a row here they agree with it
+      — NVIDIA's ~40 requests a minute, OpenRouter's account-wide 50 a day,
+      Hugging Face's $0.10 a month, OVHcloud's two anonymous requests a minute
+      — and the rest concern vendors already watchlisted or blocklisted. What
+      they taught was a probe check: gateways answering an id with a model it
+      does not name (every Lucidity open/* route as synth-2.5-preview, eleven
+      Septor -free aliases as minimax-m2.5-free), which the keyless probe here
+      now reads off every answer.
+    reopen_if: >-
+      It lists a chat platform with no verdict here, or the repository's key
+      list stops naming every chat platform the catalog serves.

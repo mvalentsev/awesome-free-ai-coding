@@ -1703,13 +1703,24 @@ def keyless_entry() -> Entry:
 KEYLESS_CATALOG = {"data": [{"id": "gpt-oss-120b"}, {"id": "qwen3-coder-30b"}]}
 
 
+def completion(model: str) -> dict:
+    """What a working lane answers the probe's one-token call, whole: the body
+    uncloseai's vLLM returned on 2026-09-21 — one choice cut at the token limit,
+    its reasoning begun and no content yet, and the model that served it."""
+    return {"id": "chatcmpl-1", "object": "chat.completion", "created": 1790000000,
+            "model": model,
+            "choices": [{"index": 0, "finish_reason": "length",
+                         "message": {"role": "assistant", "content": None, "reasoning": "The"}}],
+            "usage": {"prompt_tokens": 53, "completion_tokens": 1, "total_tokens": 54}}
+
+
 @respx.mock
 async def test_a_keyless_lane_that_answers_is_a_pass():
     """The catalog saying a model exists is not the lane letting anyone call it,
     so a row published as keyless is called, keylessly, on its first id."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
-        return_value=httpx.Response(200, json={}))
+        return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
@@ -1726,7 +1737,7 @@ def _refuses_a_bearer(status_with_bearer: int):
     def answer(request: httpx.Request) -> httpx.Response:
         if "authorization" in request.headers:
             return httpx.Response(status_with_bearer, json={"error": "invalid token"})
-        return httpx.Response(200, json={})
+        return httpx.Response(200, json=completion(json.loads(request.content)["model"]))
     return answer
 
 
@@ -1752,7 +1763,7 @@ async def test_a_keyless_lane_that_refuses_a_bearer_token_is_a_note_for_the_prox
     async with httpx.AsyncClient() as client:
         assert (await probe_entry(client, marked, backoff=0)).status is ProbeStatus.PASS
 
-    route.mock(return_value=httpx.Response(200, json={}))
+    route.mock(return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, marked, backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
@@ -1765,9 +1776,187 @@ async def test_a_keyless_lane_that_refuses_a_bearer_token_is_a_note_for_the_prox
         assert (await probe_entry(client, keyless_entry(), backoff=0)).status is ProbeStatus.PASS
 
 
+@respx.mock
+async def test_a_2xx_without_a_completion_is_not_the_lane_answering():
+    """A gateway can say no with a 200: freellmapi's ElectronHub adapter throws
+    out a proxy-error banner served as HTTP 200, and mnfst's verifier counts a
+    200 without choices[] as unknown. A lane that answered every call like this
+    would leave the README's first command returning an error on a green run,
+    so an answer is a completion, and a 200 that is not one sends the check on
+    to the next id like any other non-answer."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+
+    def first_id_errs(request: httpx.Request) -> httpx.Response:
+        model = json.loads(request.content)["model"]
+        if model == "gpt-oss-120b":
+            return httpx.Response(200, json={"error": {"message": "Free models need a signed-in account"}})
+        return httpx.Response(200, json=completion(model))
+    route = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=first_id_errs)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "gpt-oss-120b answered HTTP 200 without a completion" in result.detail
+    assert "Free models need a signed-in account" in result.detail
+    assert "put qwen3-coder-30b first" in result.detail
+
+    # No id answering with one is a lane that did not answer: said, never passed,
+    # and never failed either — a 200 is no key being asked for.
+    route.mock(return_value=httpx.Response(200, text="<html><title>Sign in</title></html>"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert result.detail.startswith("keyless call to gpt-oss-120b answered HTTP 200 without a completion")
+
+
+# 200 bodies that are not an answer, each as a lane serves it every call.
+NOT_A_COMPLETION = [
+    # OpenRouter's docs: the 200 goes out before the first token, so "the status
+    # stays 200 even when every provider fails — the last error reaches you in
+    # the response body"; Kilo's gateway answers in OpenRouter's format.
+    {"error": {"code": 502, "message": "Provider returned error",
+               "metadata": {"error_type": "provider_unavailable"}}},
+    # ...and a provider error after the call began is the choice's, beside
+    # whatever message came first — the docs' own example.
+    {"choices": [{"message": {"role": "assistant", "content": ""}, "finish_reason": "error",
+                  "error": {"code": 502, "message": "Provider disconnected mid-stream",
+                            "metadata": {"error_type": "provider_unavailable"}}}]},
+    # Their rule, "Check the body for an error field even on a 200", holds
+    # however much of a completion the rest of the body looks like.
+    {"id": "gen-1", "object": "chat.completion", "model": "gpt-oss-120b",
+     "error": {"code": 429, "message": "Rate limit exceeded",
+               "metadata": {"error_type": "rate_limit_exceeded"}},
+     "choices": [{"index": 0, "message": {"role": "assistant", "content": ""}, "finish_reason": None}]},
+    ["pong"],  # JSON, and not an object at all
+    {"object": "chat.completion", "choices": []},  # nothing chosen
+    {"object": "chat.completion", "choices": [None]},  # a choice that is not one
+    {"object": "chat.completion", "choices": [{"index": 0, "finish_reason": "stop"}]},  # no message
+]
+
+
+@respx.mock
+async def test_a_200_is_an_answer_only_as_a_choice_holding_a_message_and_no_error():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    for body in NOT_A_COMPLETION:
+        respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(200, json=body))
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, keyless_entry(), backoff=0)
+        assert result.status is ProbeStatus.STALE_IDS, body
+        assert "gpt-oss-120b answered HTTP 200 without a completion" in result.detail, body
+
+
+def keyless_lane(first_id: str) -> tuple[Entry, dict]:
+    """keyless_entry with `first_id` first, and the catalog that lists it
+    beside the ids that keep the row's gpt-oss family evidenced."""
+    entry = keyless_entry()
+    entry.api.model_ids = [first_id, "qwen3-coder-30b"]
+    return entry, {"data": [{"id": first_id}, *KEYLESS_CATALOG["data"]]}
+
+
+# (id asked, model the completion names) — every pair a note, and why.
+ANSWERED_AS_ANOTHER = [
+    ("open/deepseek-v4-flash-0731", "synth-2.5-preview"),  # Lucidity's open/* routes, 2026-09-18
+    ("glm-4.5-air-free", "minimax-m2.5-free"),  # Septor's -free aliases, 2026-09-18
+    ("zai-org/GLM-5.2-FP8", "zai-org/GLM-5.3"),  # Sail's legacy GLM-5.2 id, 2026-09-12
+    ("openai/gpt-oss-120b", "openai/gpt-oss-20b"),  # the smaller sibling under the bigger name
+]
+
+
+@respx.mock
+async def test_an_id_answered_as_another_model_is_a_note():
+    """freellmapi's key tests caught gateways answering an id with a model it
+    does not name — every Lucidity open/* route as synth-2.5-preview, eleven
+    Septor -free aliases as minimax-m2.5-free, Sail's legacy GLM-5.2 id as
+    GLM-5.3. The README's curl still gets an answer, from a model the Models
+    column and the configs do not name; the row stays verified and the run
+    names both."""
+    for asked, served in ANSWERED_AS_ANOTHER:
+        entry, catalog = keyless_lane(asked)
+        respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=catalog))
+        respx.post("https://open.x.ai/v1/chat/completions").mock(
+            return_value=httpx.Response(200, json=completion(served)))
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, entry, backoff=0)
+        assert result.status is ProbeStatus.STALE_IDS, (asked, served)
+        assert f"keyless call to {asked} answered as {served}" in result.detail
+
+    # The id that answered after the README's did not is read the same way.
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+
+    def second_id_swapped(request: httpx.Request) -> httpx.Response:
+        if json.loads(request.content)["model"] == "gpt-oss-120b":
+            return httpx.Response(404, json={"error": {"message": "model not found"}})
+        return httpx.Response(200, json=completion("minimax-m2.5-free"))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=second_id_swapped)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "put qwen3-coder-30b first" in result.detail
+    assert "keyless call to qwen3-coder-30b answered as minimax-m2.5-free" in result.detail
+
+
+# (id asked, model the completion names) — every pair the model asked, and why.
+ANSWERED_AS_ITSELF = [
+    ("nvidia/Qwen3.8-27B-NVFP4", "qwen38"),  # LLM Tech's served name, 2026-09-21
+    ("qwen/qwen3.8-27b", "Qwen/Qwen3.8-27B"),  # VLM Run's spelling, 2026-09-21
+    ("nvidia/nemotron-3-super-120b-a12b:free", "nvidia/nemotron-3-super-120b-a12b"),  # the :free variant tag
+    ("deepseek/deepseek-v4-flash", "deepseek/deepseek-v4-flash-0731"),  # Router9's dated revision, 2026-09-14
+    ("codestral-latest", "codestral-2508"),  # an alias for the newest revision, answered under its date
+    ("qwen/qwen3.8-flash-free", "qwen3.8-flash-0701"),  # a -free alias names a price, not a model
+    ("kilo-auto/free", "inclusionai/ling-3.0-flash-vl:free"),  # Kilo's router, 2026-09-21
+    ("openrouter/free", "nvidia/nemotron-3-super-120b-a12b:free"),  # the router OpenRouter and Kilo list
+    ("auto:free", "qwen/qwen3.7-flash:free"),  # BazaarLink's router
+]
+
+
+@respx.mock
+async def test_a_model_answering_under_its_own_spelling_or_a_router_s_pick_is_the_model_asked():
+    """Vendors spell the model they serve their own way — a served name cut
+    short, a vendor prefix, the :free tag dropped, a dated revision for an
+    undated or -latest id — and a router id names no model at all, only the
+    free ones it picks from. None of that is another model."""
+    for asked, served in ANSWERED_AS_ITSELF:
+        entry, catalog = keyless_lane(asked)
+        respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=catalog))
+        respx.post("https://open.x.ai/v1/chat/completions").mock(
+            return_value=httpx.Response(200, json=completion(served)))
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, entry, backoff=0)
+        assert result.status is ProbeStatus.PASS, (asked, served, result.detail)
+
+
+@respx.mock
+async def test_a_completion_that_names_no_model_is_taken_at_its_word():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    unnamed = {k: v for k, v in completion("gpt-oss-120b").items() if k != "model"}
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(200, json=unnamed))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_bearer_call_answered_without_a_completion_says_nothing_about_the_header():
+    """Taking the bearer token back into the LiteLLM config needs a lane that
+    answers with it, and a 200 carrying an error is not that."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        if "authorization" in request.headers:
+            return httpx.Response(200, json={"error": {"message": "Your authentication token is invalid"}})
+        return httpx.Response(200, json=completion(json.loads(request.content)["model"]))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=answer)
+    marked = keyless_entry()
+    marked.api.refuses_bearer = True
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, marked, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 def _answer_by_model(statuses: dict[str, int]):
     def answer(request: httpx.Request) -> httpx.Response:
-        return httpx.Response(statuses[json.loads(request.content)["model"]], json={})
+        model = json.loads(request.content)["model"]
+        status = statuses[model]
+        return httpx.Response(status, json=completion(model) if status < 300 else {})
     return answer
 
 
@@ -1821,8 +2010,8 @@ async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_anothe
     patience a 5xx gets before the check walks on to name another."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
-        side_effect=[httpx.Response(429, json={}), httpx.Response(200, json={}),
-                     httpx.Response(200, json={})])
+        side_effect=[httpx.Response(429, json={}), httpx.Response(200, json=completion("gpt-oss-120b")),
+                     httpx.Response(200, json=completion("gpt-oss-120b"))])
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
@@ -1838,7 +2027,8 @@ async def test_a_rate_limit_that_names_a_long_wait_is_not_asked_again():
     longer than the pause the check would take is a wait the run does not make."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=[
-        httpx.Response(429, headers={"Retry-After": "60"}, json={}), httpx.Response(200, json={})])
+        httpx.Response(429, headers={"Retry-After": "60"}, json={}),
+        httpx.Response(200, json=completion("qwen3-coder-30b"))])
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS and "put qwen3-coder-30b first" in result.detail
@@ -1884,7 +2074,7 @@ async def test_a_keyless_lane_that_wants_a_session_header_is_called_with_one():
     note."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
-        return_value=httpx.Response(200, json={}))
+        return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     entry = keyless_entry()
     entry.api.session_header = "x-open-session"
     async with httpx.AsyncClient() as client:
@@ -1962,7 +2152,8 @@ async def test_a_lane_that_answers_again_under_a_notice_asks_for_the_notice_to_c
     answers again that sentence is the stale thing on the page, so the run says
     so instead of passing quietly beside it."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
-    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(200, json={}))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, noticed_keyless_entry(date(2026, 9, 17)), backoff=0,
                                    today=date(2026, 9, 21))
@@ -2082,7 +2273,7 @@ async def test_a_lane_the_vendor_prints_a_key_for_is_called_with_that_key():
     with that key, one token, on the first id."""
     respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
     call = respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
-        return_value=httpx.Response(200, json={}))
+        return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, public_key_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
@@ -2116,7 +2307,7 @@ async def test_a_public_key_the_vendor_no_longer_prints_is_a_note():
         200, text="<p>Shared trial key <code>lt-trial-new</code>: 2M tokens per day per address "
                   "on Qwen3.8-27B.</p>"))
     respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
-        return_value=httpx.Response(200, json={}))
+        return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, public_key_entry(), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
@@ -2129,7 +2320,7 @@ async def test_a_public_key_is_read_back_off_its_own_page_when_the_probe_reads_a
     keys = respx.get("https://trial.x.ai/keys").mock(return_value=httpx.Response(
         200, text="<pre>Authorization: Bearer lt-trial-abc</pre>"))
     respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
-        return_value=httpx.Response(200, json={}))
+        return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, public_key_entry("https://trial.x.ai/keys"), backoff=0)
     assert result.status is ProbeStatus.PASS
@@ -2141,7 +2332,7 @@ async def test_a_public_key_whose_page_cannot_be_read_is_said_so():
     respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
     respx.get("https://trial.x.ai/keys").mock(return_value=httpx.Response(503))
     respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
-        return_value=httpx.Response(200, json={}))
+        return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, public_key_entry("https://trial.x.ai/keys"),
                                    backoff=0, attempts=2)

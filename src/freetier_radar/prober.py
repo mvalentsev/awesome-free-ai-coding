@@ -301,8 +301,9 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
     return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
 
 
-# The smallest chat call there is. Its answer is the status line, never the
-# message, and one token is all it costs the vendor.
+# The smallest chat call there is. What it reads is the status line, whether
+# the body is a completion and the model it names, never the message, and one
+# token is all it costs the vendor.
 KEYLESS_PROBE_BODY = {"max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
 KEYLESS_REFUSED = (401, 403)
 # The Authorization header LiteLLM puts on a call to a lane its config marks
@@ -342,6 +343,70 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
     return last or "did not answer"
 
 
+def _completion(answer: httpx.Response | str) -> dict | None:
+    """The chat completion a 2xx answer carries, or None where it carries none.
+
+    A 2xx was the whole test until 2026-09-21, and a gateway can say no with
+    one. OpenRouter's docs say why, and Kilo's gateway answers in OpenRouter's
+    format: the 200 goes out before the first token, so "the status stays 200
+    even when every provider fails — the last error reaches you in the
+    response body", and a provider error after that is the choice's, as
+    `finish_reason: error` beside whatever message came first — "Check the
+    body for an error field even on a 200". freellmapi's ElectronHub adapter
+    throws out a proxy-error banner served as HTTP 200, and mnfst's verifier
+    counts a 200 without choices[] as unknown. The content is not read — one
+    token, often reasoning with no content yet — only that a choice holds a
+    message and no error."""
+    if isinstance(answer, str) or answer.status_code >= 300:
+        return None
+    try:
+        body = answer.json()
+    except ValueError:
+        return None
+    if not isinstance(body, dict) or body.get("error"):
+        return None
+    choices = body.get("choices")
+    if not isinstance(choices, list) or not choices or not isinstance(choices[0], dict):
+        return None
+    choice = choices[0]
+    if choice.get("finish_reason") == "error" or not isinstance(choice.get("message"), dict):
+        return None
+    return body
+
+
+# The last segment of an id that names no model, only how one is picked:
+# Kilo's kilo-auto/free and openrouter/free, BazaarLink's auto:free.
+ROUTER_IDS = {"auto", "free"}
+
+
+def _model_key(model_id: str) -> str:
+    """The model an id names, as letters and digits: its last path segment,
+    less a :variant tag and a -free or -latest that names no model of its own."""
+    name = model_id.lower().rsplit("/", 1)[-1].split(":", 1)[0]
+    return re.sub(r"[^a-z0-9]", "", re.sub(r"[-_.](free|latest)$", "", name))
+
+
+def _answered_as(asked: str, completion: dict) -> str | None:
+    """The model a completion names where it is not the one asked, else None.
+
+    freellmapi's key tests caught gateways answering an id with a model it
+    does not name — every Lucidity open/* route as synth-2.5-preview, eleven
+    Septor -free aliases as minimax-m2.5-free (2026-09-18), Sail's legacy
+    GLM-5.2 id as GLM-5.3. What a vendor calls the model it serves is compared
+    by key, and one key running on into the other is the same model: vendors
+    cut a served name short (LLM Tech answers nvidia/Qwen3.8-27B-NVFP4 as
+    qwen38) and add a dated revision (Router9's deepseek-v4-flash as -0731),
+    but a size or a version that differs is another model. A router id names
+    none, and a completion that names none is taken at its word."""
+    served = completion.get("model")
+    if not isinstance(served, str):
+        return None
+    want, got = _model_key(asked), _model_key(served)
+    if want in ROUTER_IDS or want.startswith(got) or got.startswith(want):
+        return None
+    return served
+
+
 def _asks_to_wait_at_most(resp: httpx.Response, seconds: float) -> bool:
     """Whether a 429's Retry-After, if it sends one, is over by `seconds` — the
     pause before the next try. A date, or anything else that is not a number of
@@ -369,14 +434,17 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     the first command on the page answering 401 behind a green run.
 
     So the first id in `api.model_ids` gets one completion, one token, no
-    Authorization header, and a 2xx is the only answer that leaves nothing to
-    say. A 429 used to count as one too — an anonymous lane is rate-limited
-    instead of keyed — and that is how the README's first command sat on
-    opencode's big-pickle while it answered 429 FreeUsageLimitError to every
-    call, from here and from readers, and ling-3.0-flash-fin-free beside it
-    answered 200 three times out of three (2026-09-16). A rate limit does not end
-    the offer, but it does end the command, so any answer other than a 2xx sends
-    the check on to the next id, up to KEYLESS_IDS_TRIED:
+    Authorization header, and a 2xx carrying a completion is the only answer
+    that leaves nothing to say — a 200 without one is a non-answer like any
+    other (see `_completion`), and a completion from a model the id does not
+    name is a note (see `_answered_as`). A 429 used to count as an answer too
+    — an anonymous lane is rate-limited instead of keyed — and that is how the
+    README's first command sat on opencode's big-pickle while it answered 429
+    FreeUsageLimitError to every call, from here and from readers, and
+    ling-3.0-flash-fin-free beside it answered 200 three times out of three
+    (2026-09-16). A rate limit does not end the offer, but it does end the
+    command, so any other answer sends the check on to the next id, up to
+    KEYLESS_IDS_TRIED:
 
     - a later id answering is a note naming it, since the fix is to put it first;
     - every id answering 429 is a note that the lane is rate-limited from here;
@@ -431,12 +499,17 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
         # tell a rate-limited first id from a rate-limited lane, and are asked once.
         answer = await _keyless_call(client, url, model, headers, attempts, backoff,
                                      patient_with_429=not tried)
-        if not isinstance(answer, str) and answer.status_code < 300:
+        completion = _completion(answer)
+        if completion is not None:
             take_down = (f"take down api.notice of {notice.since.isoformat()}, which tells readers "
                          "the lane does not work") if notice else ""
+            served = _answered_as(model, completion)
+            swapped = ([f"{lane} call to {model} answered as {served} — the id serves another model "
+                        "than it names; read the catalog before the configs keep handing it out"]
+                       if served else [])
             if not tried:
-                notes = ([f"{lane} call to {model} answered HTTP {answer.status_code} — " + take_down]
-                         if take_down else [])
+                notes = swapped + ([f"{lane} call to {model} answered HTTP {answer.status_code} — "
+                                    + take_down] if take_down else [])
                 if not public:
                     await asyncio.sleep(backoff)
                     drift = await _bearer_drift(client, entry, url, model, headers, backoff)
@@ -445,11 +518,10 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                     return None
                 return ProbeResult(ProbeStatus.STALE_IDS, " | ".join(notes))
             first, first_answer = tried[0]
-            return ProbeResult(ProbeStatus.STALE_IDS,
-                               f"{lane} call to {first} answered {_keyless_said(first_answer)} while "
-                               f"{model} answered HTTP {answer.status_code} — {first_is_read}, "
-                               f"so put {model} first"
-                               + (f", and {take_down}" if take_down else ""))
+            moved = (f"{lane} call to {first} answered {_keyless_said(first_answer)} while "
+                     f"{model} answered HTTP {answer.status_code} — {first_is_read}, "
+                     f"so put {model} first" + (f", and {take_down}" if take_down else ""))
+            return ProbeResult(ProbeStatus.STALE_IDS, " | ".join([moved] + swapped))
         tried.append((model, answer))
     first, first_answer = tried[0]
     if isinstance(first_answer, str):
@@ -499,7 +571,7 @@ async def _bearer_drift(client: httpx.AsyncClient, entry: Entry, url: str, model
             and challenge_marker_hit(answer.text) is None):
         return (f"{said} — LiteLLM sends one on every call, so set api.refuses_bearer: true to "
                 "leave the lane out of its config")
-    if answer.status_code < 300 and entry.api.refuses_bearer:
+    if _completion(answer) is not None and entry.api.refuses_bearer:
         return f"{said} — drop api.refuses_bearer, and the LiteLLM config takes the lane back"
     return None
 
@@ -558,10 +630,12 @@ async def data_use_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.
 
 
 def _keyless_said(answer: httpx.Response | str) -> str:
+    """A non-answer as the run reports it; a 2xx here is one without a completion."""
     if isinstance(answer, str):
         return answer
     said = " ".join(answer.text.split())[:160]
-    return f"HTTP {answer.status_code}" + (f": {said}" if said else "")
+    return (f"HTTP {answer.status_code}" + (" without a completion" if answer.status_code < 300 else "")
+            + (f": {said}" if said else ""))
 
 
 async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
