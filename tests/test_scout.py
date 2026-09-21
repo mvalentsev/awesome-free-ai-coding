@@ -804,7 +804,7 @@ def test_main_reports_a_broken_scout_instead_of_failing_the_workflow(tmp_path, m
     # Ending clean is not the same as passing unremarked: the workflow's last
     # step reads this and turns the run red once the report has landed.
     assert json.loads((tmp_path / "scout-status.json").read_text()) == {
-        "llm_outages": [], "aborted": "backend answered HTML"}
+        "llm_outages": [], "aborted": "backend answered HTML", "feed_warnings": []}
 
 
 @respx.mock
@@ -1285,8 +1285,27 @@ def test_main_writes_the_outage_the_workflows_last_step_reads(tmp_path, monkeypa
     scout.main()
 
     assert json.loads((tmp_path / "scout-status.json").read_text()) == {
-        "llm_outages": ["discovery"], "aborted": None}
+        "llm_outages": ["discovery"], "aborted": None, "feed_warnings": []}
     assert "discovery" in (tmp_path / "scout-pr.md").read_text()
+
+
+def test_a_feed_that_went_quiet_reaches_the_status_file_and_the_pull_request(
+        tmp_path, monkeypatch, capsys):
+    """The warnings discovery collects about the curated feeds go where a human
+    reads: the run's log, the pull request, and the status file the workflow's
+    last step turns into annotations."""
+    save_registry(tmp_path / "registry.yaml", [make()])
+    warning = "someone/old-list: archived on GitHub, last pushed 2026-02-23"
+    monkeypatch.setattr(scout, "gather_evidence",
+                        lambda *a, **k: Evidence(feed_warnings=[warning]))
+    monkeypatch.setattr(scout, "run_scout", lambda *a, **k: EMPTY_RUN)
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+
+    scout.main()
+
+    assert json.loads((tmp_path / "scout-status.json").read_text())["feed_warnings"] == [warning]
+    assert f"Curated feeds that need a look: {warning}" in (tmp_path / "scout-pr.md").read_text()
+    assert f"feed warning: {warning}" in capsys.readouterr().out
 
 
 def _scout_argv(tmp_path, *extra) -> list[str]:

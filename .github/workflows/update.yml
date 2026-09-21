@@ -157,6 +157,10 @@ jobs:
           import json, sys
           status = json.load(open("scout-status.json"))
           aborted, outages = status.get("aborted"), status.get("llm_outages") or []
+          # A curated feed that stopped carrying its list is a notice, never a
+          # red run: it costs leads, and the rest of the run is sound.
+          for warning in status.get("feed_warnings") or []:
+              print(f"::warning::curated feed: {warning}")
           if aborted:
               print(f"::error::scout aborted: {aborted}")
           if outages:

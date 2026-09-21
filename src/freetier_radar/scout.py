@@ -262,6 +262,7 @@ Empty list if nothing is clearly superseded.
 PR_BODY_TEMPLATE = """## Scout proposals
 
 Discovery sources used: {providers}
+Curated feeds that need a look: {feed_warnings}
 Backend chain: {backend}
 Pinned scout models this registry does not list under that base url: {unlisted_pins}
 
@@ -1235,7 +1236,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     return result
 
 
-def _write_status(path: Path, outages: list[str], aborted: str | None) -> None:
+def _write_status(path: Path, outages: list[str], aborted: str | None,
+                  feed_warnings: list[str] | None = None) -> None:
     """The one machine-readable line the workflow reads once everything else is
     written and pushed.
 
@@ -1247,8 +1249,13 @@ def _write_status(path: Path, outages: list[str], aborted: str | None) -> None:
     success; four days passed before a human noticed, and only by reading the
     log by hand. So the job's colour is decided by a last step reading this
     file, after the pull request exists — a notification, not an invitation to
-    rerun."""
-    path.write_text(json.dumps({"llm_outages": outages, "aborted": aborted}),
+    rerun.
+
+    Feed warnings ride along as annotations and never turn the run red: a list
+    that went quiet costs leads, not the run, and the step that reads this file
+    prints each one where the run's page shows it (`_read_feed` in discovery)."""
+    path.write_text(json.dumps({"llm_outages": outages, "aborted": aborted,
+                                "feed_warnings": feed_warnings or []}),
                     encoding="utf-8")
 
 
@@ -1308,6 +1315,8 @@ def main() -> None:
                                answered_domains=answered_domains(watchlist, blocklist, date.today()))
     print(f"evidence: {len(evidence.hits)} hits, {len(evidence.pages)} pages, "
           f"providers: {evidence.describe_providers() or 'none'}")
+    for warning in evidence.feed_warnings:
+        print(f"feed warning: {warning}")
 
     try:
         with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
@@ -1342,7 +1351,7 @@ def main() -> None:
         traceback.print_exc()
         print(f"scout aborted: {exc}")
         args.pr_body.write_text(f"## Scout proposals\n\nScout aborted: {exc}\n", encoding="utf-8")
-        _write_status(args.status, [], aborted=str(exc))
+        _write_status(args.status, [], aborted=str(exc), feed_warnings=evidence.feed_warnings)
         return
 
     if args.dry_run:
@@ -1358,6 +1367,7 @@ def main() -> None:
             print(f"history: {ev.event.value} {ev.id}")
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
         providers=evidence.describe_providers() or "none",
+        feed_warnings="; ".join(evidence.feed_warnings) or "—",
         backend=llm.describe(),
         unlisted_pins="; ".join(llm.unlisted_pins) or "—",
         updates=", ".join(result["updates"]) or "—",
@@ -1375,5 +1385,6 @@ def main() -> None:
         skipped=", ".join(result["skipped"]) or "—",
         llm_outages=", ".join(result["llm_outages"]) or "—",
     ), encoding="utf-8")
-    _write_status(args.status, result["llm_outages"], aborted=None)
+    _write_status(args.status, result["llm_outages"], aborted=None,
+                  feed_warnings=evidence.feed_warnings)
     print(f"scout: {result}")

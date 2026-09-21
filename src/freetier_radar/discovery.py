@@ -76,18 +76,20 @@ CURATED_FEEDS = [
     # had stopped at the copy dated 2026-07-31: 48,843 characters against the
     # default branch's 56,556, so every run read July's table. The gap measured
     # on 2026-09-14 — 48,843 served, 55,699 in a clone — was that branch, not
-    # the network: a clone checks out the default branch.
-    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/HEAD/docs/reference/FREE_TIERS.md#per-provider-free-tier",
+    # the network: a clone checks out the default branch. The read stops before
+    # the glossary: the table and the notes on what changed are 23,961 characters,
+    # 16% of them elided.
+    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/HEAD/docs/reference/FREE_TIERS.md#per-provider-free-tier:glossary",
     # A directory rather than a router: 30 providers in one table with a free-model
     # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
     # The card column is the only machine-readable answer to that question anywhere
     # in these feeds. Leads only — the same table still lists GitHub Models, retired
     # 2026-07-30, and credits LLM7 with 15 free models when its catalog has none.
-    # Read from its provider directory on since 2026-09-21: the file had grown to
-    # 37,578 characters, the directory and the base-URL table ran past the
-    # excerpt's head, and the head was spending 6,600 characters on a pitch and
-    # SDK snippets.
-    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/HEAD/README.md#provider-directory",
+    # Read from its provider directory to its per-model catalog since 2026-09-21:
+    # the file had grown to 37,578 characters, the head was spending 6,600 of the
+    # excerpt on a pitch and SDK snippets, and the directory and its base-URL
+    # table ran past it. Those two are 10,110 characters and reach the scout whole.
+    "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/HEAD/README.md#provider-directory:best-free-models",
     # A router's own list of the providers it takes keys for: one line each with a
     # label that says what the free offer is ("daily free-model quota", "shared
     # monthly credits", "$5 monthly with payment method") and the page that issues
@@ -131,10 +133,10 @@ CURATED_FEEDS = [
     # was promoted for prints limits the vendor's own docs contradict — "3M input
     # / 60K output tokens per 60s" and a 24h row that does not exist, where
     # docs.hetzner.com reads 4M / 100k per 60s and 10 requests per 60s.
-    # Read from its provider directory on since 2026-09-21, when the whole file
-    # was 23,702 characters and the cut fell inside its base-URL table; from the
-    # directory on it is 19,162 and reaches the scout whole.
-    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory",
+    # Read from its provider directory to its guides since 2026-09-21, when the
+    # whole file was 23,702 characters and the cut fell inside its base-URL table;
+    # the directory and that table are 13,441 and reach the scout whole.
+    "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory:guides",
 ]
 
 # A machine catalog rather than a list: 185 providers, one object per model with
@@ -178,6 +180,11 @@ PAGE_TEXT_LIMIT = 5000
 # It stays at 20000: the cut moved to both ends of the file instead (see
 # _feed_excerpt), which covered the same blind spot without buying more prompt.
 FEED_TEXT_LIMIT = 20000
+# Past this share of a feed's section falling in the elided middle, the run says
+# so. The excerpt's two ends were chosen for the files as they were; a list that
+# grows keeps its head and tail and loses its middle without a sound — 71% of
+# free-coding-models' catalog by 2026-09-21.
+FEED_ELIDED_WARN = 0.25
 
 
 @dataclass
@@ -198,6 +205,9 @@ class Evidence:
     # say so or the scout will quote it as though the vendor did.
     digests: dict[str, str] = field(default_factory=dict)
     providers: list[str] = field(default_factory=list)
+    # One line per curated feed that is failing the scout, for the run's log and
+    # status file — never for the prompt. See `_read_feed`.
+    feed_warnings: list[str] = field(default_factory=list)
 
     def is_empty(self) -> bool:
         return not (self.hits or self.pages or self.feeds or self.digests)
@@ -292,25 +302,109 @@ def _slug(heading: str) -> str:
     return re.sub(r"\s+", "-", re.sub(r"[^\w\s-]", "", heading.lower()).strip())
 
 
-def _feed_section(text: str, url: str) -> str:
-    """The part of a feed its URL's fragment points at, from that heading on.
+def _section_bounds(text: str, url: str) -> tuple[int, int] | None:
+    """Where the section a feed's fragment names begins and ends: the whole file
+    for a feed without a fragment, None for one whose start heading the file no
+    longer carries.
 
     Both ends of a long file are not always where its leads are. OmniRoute's
     FREE_TIERS.md opens with fifteen thousand characters of methodology and
     closes on a glossary, and the per-provider table sat at character 31,042 of
     55,699 — inside the elided middle on every run until 2026-09-14. A fragment
     is how a feed says which section is the data, and it costs nothing: the
-    fetch drops it, and `_source_key` never read it. The heading is matched as a
+    fetch drops it, and `_source_key` never read it. A heading is matched as a
     prefix of its anchor, so a date the project appends to the title does not
-    break the match; a heading that is gone falls back to the whole file.
-    """
+    break the match; a start heading that is gone falls back to the whole file,
+    and `_read_feed` says so.
+
+    `#from:until` also names where the list ends — the first heading after the
+    start whose anchor begins with `until`. A GitHub anchor carries no colon, so
+    the pair cannot be read as one heading. awesome-freellm-apis needs it: its
+    directory and base-URL table sit between a pitch and a per-model catalog
+    longer than both, and read from the directory on, 35% of it still fell in
+    the elided middle (2026-09-21). An end the file no longer carries reads on
+    to the end of the file, which the elision warning then measures."""
     fragment = urlparse(url).fragment.lower()
     if not fragment:
-        return text
-    for m in re.finditer(r"^#{1,6}\s+(.+?)\s*$", text, re.M):
-        if _slug(m.group(1)).startswith(fragment):
-            return text[m.start():]
-    return text
+        return 0, len(text)
+    begin, _, until = fragment.partition(":")
+    headings = [(m.start(), _slug(m.group(1)))
+                for m in re.finditer(r"^#{1,6}\s+(.+?)\s*$", text, re.M)]
+    start = next((pos for pos, slug in headings if slug.startswith(begin)), None)
+    if start is None:
+        return None
+    end = next((pos for pos, slug in headings
+                if until and pos > start and slug.startswith(until)), len(text))
+    return start, end
+
+
+def _feed_name(url: str) -> str:
+    """A feed as a warning names it: owner/repo/path on GitHub, host/path elsewhere."""
+    parsed = urlparse(url)
+    parts = [p for p in parsed.path.split("/") if p]
+    if parsed.netloc == "raw.githubusercontent.com" and len(parts) > 3:
+        return "/".join(parts[:2] + parts[3:])
+    return parsed.netloc + parsed.path
+
+
+def _read_feed(client: httpx.Client, feed: str, env: Mapping[str, str]) -> tuple[str | None, list[str]]:
+    """The excerpt of one curated feed the scout reads, and what is wrong with it.
+
+    Every way a feed has failed here failed without a sound. cheahjs's list
+    answered 404 on every run for weeks, dropped by a bare `continue`;
+    OmniRoute's table grew into the excerpt's elided middle; free-coding-models
+    grew until the scout saw 29% of it; sourcegraph's list sat archived for seven
+    months, answering 200 with a file that could not change. None of it is worth
+    failing a run over, and all of it is worth one line in the log saying what
+    to do about it."""
+    name = _feed_name(feed)
+    try:
+        r = client.get(feed)
+        r.raise_for_status()
+    except httpx.HTTPError as exc:
+        failure = (f"HTTP {exc.response.status_code}" if isinstance(exc, httpx.HTTPStatusError)
+                   else type(exc).__name__)
+        return None, [f"{name}: not read — {failure}"]
+    warnings = []
+    bounds = _section_bounds(r.text, feed)
+    if bounds is None:
+        begin = urlparse(feed).fragment.partition(":")[0]
+        warnings.append(f"{name}: no heading matches #{begin} any more, "
+                        "so the whole file was read")
+    section = r.text if bounds is None else r.text[bounds[0]:bounds[1]]
+    elided = len(section) - FEED_TEXT_LIMIT
+    if elided > FEED_ELIDED_WARN * len(section):
+        warnings.append(f"{name}: {elided:,} of its {len(section):,} characters "
+                        f"({100 * elided // len(section)}%) never reach the scout — point the "
+                        "feed at the part that is the list")
+    archived = _archived_repo(client, feed, env)
+    if archived:
+        warnings.append(archived)
+    return _feed_excerpt(section, FEED_TEXT_LIMIT), warnings
+
+
+def _archived_repo(client: httpx.Client, feed: str, env: Mapping[str, str]) -> str | None:
+    """A warning if a GitHub feed's repository is archived. Best effort: an API
+    that does not answer is not the feed's fault and says nothing."""
+    parsed = urlparse(feed)
+    parts = [p for p in parsed.path.split("/") if p]
+    if parsed.netloc != "raw.githubusercontent.com" or len(parts) < 2:
+        return None
+    repo = f"{parts[0]}/{parts[1]}"
+    headers = {"Accept": "application/vnd.github+json"}
+    if env.get("GITHUB_TOKEN"):
+        headers["Authorization"] = f"Bearer {env['GITHUB_TOKEN']}"
+    try:
+        r = client.get(f"https://api.github.com/repos/{repo}", headers=headers)
+        r.raise_for_status()
+        data = r.json()
+    except (httpx.HTTPError, ValueError):
+        return None
+    if not isinstance(data, dict) or not data.get("archived"):
+        return None
+    pushed = str(data.get("pushed_at") or "")[:10] or "on an unknown date"
+    return (f"{repo}: archived on GitHub, last pushed {pushed} — its list no longer "
+            "changes; put it down in sources.yaml")
 
 
 def _timeout_within(left: float | None) -> httpx.Timeout:
@@ -525,12 +619,10 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
         for feed in CURATED_FEEDS:
             if spent():
                 break
-            try:
-                r = client.get(feed)
-                r.raise_for_status()
-                ev.feeds[feed] = _feed_excerpt(_feed_section(r.text, feed), FEED_TEXT_LIMIT)
-            except httpx.HTTPError:
-                continue
+            excerpt, warnings = _read_feed(client, feed, env)
+            ev.feed_warnings.extend(warnings)
+            if excerpt is not None:
+                ev.feeds[feed] = excerpt
         if ev.feeds:
             ev.providers.append("curated-feeds")
 

@@ -201,6 +201,98 @@ def test_a_feed_url_fragment_starts_the_read_at_that_heading(monkeypatch):
     assert ev.feeds[feed] == "# Renamed\n| `nara` | recurring |\n"
 
 
+def _quiet_searches():
+    respx.get("https://hn.algolia.com/api/v1/search").mock(
+        return_value=httpx.Response(200, json={"hits": []}))
+    respx.get("https://api.github.com/search/repositories").mock(
+        return_value=httpx.Response(200, json={"items": []}))
+    respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={}))
+
+
+@respx.mock
+def test_a_feed_that_degrades_says_so_instead_of_going_quiet(monkeypatch):
+    """Every way a feed went wrong here went wrong silently. cheahjs's list 404'd
+    for weeks behind a bare `continue`; OmniRoute's table outgrew the excerpt and
+    then moved; free-coding-models grew until the scout read 29% of it. Each
+    reaches the run's log as one line saying what to do about it."""
+    import freetier_radar.discovery as disc
+    gone = "https://raw.example.com/gone.md"
+    moved = "https://raw.example.com/moved.md#provider-table"
+    grown = "https://raw.example.com/grown.md"
+    fine = "https://raw.example.com/fine.md"
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [gone, moved, grown, fine])
+    monkeypatch.setattr(disc, "FEED_TEXT_LIMIT", 100)
+    _quiet_searches()
+    respx.get(gone).mock(return_value=httpx.Response(404))
+    respx.get("https://raw.example.com/moved.md").mock(
+        return_value=httpx.Response(200, text="# Renamed\n| nara | recurring |\n"))
+    respx.get(grown).mock(return_value=httpx.Response(200, text="x" * 400))
+    respx.get(fine).mock(return_value=httpx.Response(200, text="| nara | recurring |\n"))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c)
+    assert ev.feed_warnings == [
+        "raw.example.com/gone.md: not read — HTTP 404",
+        "raw.example.com/moved.md: no heading matches #provider-table any more, so the "
+        "whole file was read",
+        "raw.example.com/grown.md: 300 of its 400 characters (75%) never reach the scout "
+        "— point the feed at the part that is the list",
+    ]
+    assert gone not in ev.feeds and fine in ev.feeds
+
+
+@respx.mock
+def test_a_fragment_can_name_where_the_list_ends_too(monkeypatch):
+    """awesome-freellm-apis keeps its directory and base-URL table between a
+    pitch and a per-model catalog longer than both: read from the directory on,
+    35% of it still fell in the elided middle. `#from:until` stops at the first
+    heading after the start whose anchor begins with `until` — GitHub anchors
+    carry no colon, so the pair cannot be mistaken for one heading — and an end
+    the file no longer has reads on to the end rather than to nothing."""
+    import freetier_radar.discovery as disc
+    feed = "https://raw.example.com/README.md#provider-directory:best-free-models"
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [feed])
+    _quiet_searches()
+    page = ("# List\nthe pitch\n## Provider Directory\n| nara | recurring |\n"
+            "## Quick Reference\n| nara | https://router.bynara.id |\n"
+            "## Best Free Models by Provider\n| nara | glm |\n## Links\n")
+    route = respx.get("https://raw.example.com/README.md").mock(
+        return_value=httpx.Response(200, text=page))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c)
+    assert ev.feeds[feed] == ("## Provider Directory\n| nara | recurring |\n"
+                              "## Quick Reference\n| nara | https://router.bynara.id |\n")
+    assert ev.feed_warnings == []
+
+    route.mock(return_value=httpx.Response(200, text=page.replace("Best Free Models", "Top Models")))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={}, http=c)
+    assert ev.feeds[feed].startswith("## Provider Directory") and ev.feeds[feed].endswith("## Links\n")
+
+
+@respx.mock
+def test_an_archived_list_is_named_as_one(monkeypatch):
+    """sourcegraph/awesome-code-ai answered 200 on every run for seven months
+    after GitHub archived it: a list that cannot change, read twice a week."""
+    import freetier_radar.discovery as disc
+    old = "https://raw.githubusercontent.com/someone/old-list/HEAD/README.md"
+    live = "https://raw.githubusercontent.com/someone/live-list/HEAD/README.md"
+    monkeypatch.setattr(disc, "CURATED_FEEDS", [old, live])
+    _quiet_searches()
+    respx.get(old).mock(return_value=httpx.Response(200, text="| a |\n"))
+    respx.get(live).mock(return_value=httpx.Response(200, text="| b |\n"))
+    repo = respx.get("https://api.github.com/repos/someone/old-list").mock(
+        return_value=httpx.Response(200, json={"archived": True,
+                                                "pushed_at": "2026-02-23T16:51:38Z"}))
+    respx.get("https://api.github.com/repos/someone/live-list").mock(
+        return_value=httpx.Response(200, json={"archived": False}))
+    with httpx.Client() as c:
+        ev = gather_evidence(["q1"], set(), env={"GITHUB_TOKEN": "t"}, http=c)
+    assert ev.feed_warnings == [
+        "someone/old-list: archived on GitHub, last pushed 2026-02-23 — its list no "
+        "longer changes; put it down in sources.yaml"]
+    assert repo.calls.last.request.headers["Authorization"] == "Bearer t"
+
+
 def test_every_github_feed_is_read_at_the_branch_its_repository_works_on():
     """OmniRoute moved its work to release/v3.8.x as the default branch and left
     main standing: the feed named main, got a 200 on every run, and read the
