@@ -17,7 +17,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Free models
 
-`glm-5`, `gpt-oss`, `qwen3.8-27b`, `llama-3.3`, `apertus-70b`
+`glm-5`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b`
 
 ## Limits, in the vendor's words
 
@@ -27,7 +27,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
-- Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `Llama-3.3-70B-Instruct`, `apertus-70b`, `brick-v1-beta`
+- Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `brick-v1-beta`
 - Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page
 
 ## Evidence
@@ -38,6 +38,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## History
 
+- `2026-09-21` — Free models changed: dropped llama-3.3
 - `2026-09-21` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-08-31` — Added to the list: EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 

@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-21T10:49:45Z</updated>
+  <updated>2026-09-21T11:41:14Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260921T114114Z</id>
+    <title>Free models changed: AIHubMix (free models)</title>
+    <link rel="alternate" href="https://aihubmix.com"/>
+    <updated>2026-09-21T11:41:14Z</updated>
+    <summary type="text">dropped gpt-oss · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260921T114114Z</id>
+    <title>Free models changed: Regolo AI</title>
+    <link rel="alternate" href="https://regolo.ai/pricing/"/>
+    <updated>2026-09-21T11:41:14Z</updated>
+    <summary type="text">dropped llama-3.3 · free models: glm-5, gpt-oss, qwen3.8-27b, apertus-70b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/abliteration-ai/20260921T104945Z</id>
     <title>New: abliteration.ai</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://aistudio.google.com"/>
     <updated>2026-09-10T09:50:08Z</updated>
     <summary type="text">added gemini-3.8-flash · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.5-flash-lite, gemini-2.5-pro</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260910T095008Z</id>
-    <title>Free models changed: Groq</title>
-    <link rel="alternate" href="https://groq.com"/>
-    <updated>2026-09-10T09:50:08Z</updated>
-    <summary type="text">added qwen3.8; dropped llama-3.3 · free models: gpt-oss, qwen3.6, qwen3.8</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260910T095008Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-09-10T09:50:08Z</updated>
-    <summary type="text">dropped mercury-2 · free models: nemotron-3-ultra, qwen3.6</summary>
   </entry>
 </feed>
