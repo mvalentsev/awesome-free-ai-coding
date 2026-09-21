@@ -67,6 +67,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) | 🎁 Trials (no card when possible) | `gpt-5.6-luna` | `2026-09-21` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
+| [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) | 🎁 Trials (no card when possible) | `glm-5.3-flash`, `deepseek-v4-flash`, `minimax-m2.7` | `2026-09-21` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-21` |
 | [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-21` |

@@ -1965,6 +1965,69 @@ entries:
   probe_failures: 0
   provisional: false
   rank: 90
+- id: dahl-inference
+  name: Dahl Inference
+  category: trial
+  url: https://inference.dahl.global
+  source_urls:
+  - https://inference.dahl.global/docs/tokens/
+  - https://inference.dahl.global/docs/authentication/
+  - https://inference.dahl.global/docs/models/
+  - https://inference.dahl.global/terms/
+  card_required: false
+  offering: An OpenAI-compatible gateway to open models served by the Gonka decentralized
+    GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up
+    asks for a username and nothing else and puts 100 million tokens in the account
+  limits: 'The docs: "100 million tokens as a gift at signup", paid into the account''s
+    pool rather than onto a key — a new key holds nothing and answers 402 until tokens
+    are allocated to it at /account. The account is a username and a 32-character
+    fingerprint, "Save the fingerprint shown once — it is the password", and "There
+    is no email recovery by design". "Creating extra keys does not grant more free
+    tokens", the terms forbid automating account creation "to harvest promotional
+    allocations" and keep the right to "end discretionary free access", and past the
+    grant the only top-up is crypto, "priced around $0.03 per 1M tokens". Requests
+    are routed to "independent operators within a decentralised network" under terms
+    from FROMZERO OÜ, an Estonian company. Read 2026-09-21'
+  models:
+  - family: glm-5.3-flash
+    tier: strong
+    released: ''
+    aa_model: glm-5-3-flash
+  - family: deepseek-v4-flash
+    tier: strong
+    released: 2026-04
+    aa_model: deepseek-v4-flash
+  - family: minimax-m2.7
+    released: 2026-03
+    aa_model: minimax-m2-7
+  api:
+    base_url: https://inference.dahl.global/v1
+    key_url: https://inference.dahl.global/account
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - zai-org/GLM-5.3-Flash
+    - deepseek-ai/DeepSeek-V4-Flash-0731
+    - MiniMaxAI/MiniMax-M2.7
+    note: ids are the keyless catalog's at inference.dahl.global/v1/models, 2026-09-21;
+      they rotate with the network's capacity, and the models page already lists Kimi
+      K2.6 and GLM-5.2 as retired. A key answers 402 until tokens are moved to it
+      from the account pool
+  probe:
+    type: page-keywords
+    endpoint: https://inference.dahl.global/docs/tokens/
+    keywords:
+    - 100 million tokens as a gift at signup
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    catalog: https://inference.dahl.global/v1/models
+    machinery_keywords: []
+  first_seen: '2026-09-21'
+  last_verified: '2026-09-21'
+  probe_failures: 0
+  provisional: true
+  rank: 87
 - id: poolside
   name: Poolside Platform
   category: api-free-tier
