@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-21'
-description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — thirteen zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
+description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — ten zero-priced chat ids on 2026-09-21, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
 ---
 
@@ -13,15 +13,15 @@ permalink: /providers/llmtr/
 
 ## What you get
 
-Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — thirteen zero-priced chat ids on 2026-09-16, Nemotron 3 Ultra, Qwen3.6 27B and Agnes 3.0 Flash among them
+Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — ten zero-priced chat ids on 2026-09-21, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them
 
 ## Free models
 
-`nemotron-3-ultra`, `qwen3.6`
+`nemotron-3-ultra`
 
 ## Limits, in the vendor's words
 
-A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular" (this step checks that the gateway and usage logging work on a zero balance). Four free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.6 27B, Ling 3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free on its own inference API", with "no extra token allowance to track"; three rows are free "22 Eylul 2026'ya kadar" (until 22 September 2026), and dots-3-note-preview closes on 30 September 2026. Paid use is prepaid credit: "An 8% platform margin is added on top of the requested top-up amount" and "We never modify model prices". The privacy page says prompt and response bodies are not written permanently to its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-16
+A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular" (this step checks that the gateway and usage logging work on a zero balance). Four free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B, Ling 3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free on its own inference API", with "no extra token allowance to track"; dots-3-note-preview closes on 30 September 2026. Paid use is prepaid credit: "An 8% platform margin is added on top of the requested top-up amount" and "We never modify model prices". The privacy page says prompt and response bodies are not written permanently to its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-21
 
 ## What happens to what you send
 
@@ -31,8 +31,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.6-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-flash-free`, `inclusionai/ling-3.0-flash-vl`, `inclusionai/ling-3.0-flash-sante`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`
-- Note: the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free until 22 September 2026, dots-studio/dots-3-note-preview until 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own EVREN key)
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`
+- Note: the ten ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own EVREN key)
 
 ## Evidence
 
@@ -45,6 +45,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
+- *next scheduled run* — Free models changed: dropped qwen3.6
 - `2026-09-10` — Free models changed: dropped mercury-2
 - `2026-09-07` — Free models changed: dropped minimax-m3
 - `2026-09-03` — Added to the list: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them

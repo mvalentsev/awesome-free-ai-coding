@@ -499,9 +499,9 @@ model_list:
     model: openai/nvidia/nemotron-3-super-120b-a12b
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/qwen/qwen3.6-27b-free
+- model_name: llmtr/qwen/qwen3.8-27b-free
   litellm_params:
-    model: openai/qwen/qwen3.6-27b-free
+    model: openai/qwen/qwen3.8-27b-free
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
 - model_name: llmtr/poolside/laguna-xs-2.1
@@ -522,21 +522,6 @@ model_list:
 - model_name: llmtr/openai/gpt-oss-safeguard-20b
   litellm_params:
     model: openai/openai/gpt-oss-safeguard-20b
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/qwen/qwen3.8-flash-free
-  litellm_params:
-    model: openai/qwen/qwen3.8-flash-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/inclusionai/ling-3.0-flash-vl
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-vl
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-- model_name: llmtr/inclusionai/ling-3.0-flash-sante
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-sante
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
 - model_name: llmtr/agnes/agnes-3.0-flash
