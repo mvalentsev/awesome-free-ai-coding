@@ -114,6 +114,45 @@ def test_apply_updates_refuses_a_fix_that_leaves_the_row_failing():
     assert entries[0].models == []  # left as it was
 
 
+def test_an_update_keeps_a_family_the_rows_own_probe_still_names():
+    """The verifier asks whether the corrected row passes, and a shorter Models
+    column always passes — so a reply that deletes too much was written as a
+    repair. On 2026-09-21 aihubmix failed on one family, gpt-oss, and the reply
+    cut the column to glm-5.3 alone: kimi-k3, glm-5, mimo-v2.5 and
+    north-mini-code were still free in the catalog the verdict was read from."""
+    entries = [make(models=[{"family": "x-mini-2", "tier": "strong"},
+                            {"family": "x-pro-1"}, {"family": "x-old-1"}])]
+    applied, rejected = apply_updates(
+        entries, [{"id": "x", "models": [{"family": "x-mini-2"}]}],
+        named=lambda e, family: family != "x-old-1")
+    assert applied == ["x"]
+    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
+    assert rejected == ["x: the update dropped x-pro-1, which the row's own probe still "
+                        "names — kept"]
+
+
+def test_an_update_drops_a_family_the_probe_cannot_vouch_for():
+    """Kept only on a yes. A page that could not be read answers None, and the
+    drop goes through as it always did."""
+    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}, {"family": "x-old-1"}])]
+    applied, rejected = apply_updates(
+        entries, [{"id": "x", "models": [{"family": "x-mini-2"}]}],
+        named=lambda e, family: None if family == "x-pro-1" else False)
+    assert applied == ["x"] and rejected == []
+    assert [m.family for m in entries[0].models] == ["x-mini-2"]
+
+
+def test_an_update_may_drop_a_family_a_reviewer_marked_superseded():
+    """A family carrying `superseded_by` is one a human already said to replace,
+    and replacing it is what the stale-models flag on such a row asks for."""
+    entries = [make(models=[{"family": "x-mini-2", "superseded_by": "x-mini-3"}])]
+    applied, rejected = apply_updates(
+        entries, [{"id": "x", "models": [{"family": "x-mini-3"}]}],
+        named=lambda e, family: True)
+    assert applied == ["x"] and rejected == []
+    assert [m.family for m in entries[0].models] == ["x-mini-3"]
+
+
 def test_apply_updates_verifies_the_corrected_entry_and_not_the_old_one():
     seen = []
     entries = [make()]
@@ -586,6 +625,40 @@ def test_a_fix_the_probe_rejects_leaves_the_row_on_the_unfixed_list():
     assert result["rejected"] == ["x: update to limits still fails the probe — "
                                   "missing keywords: x-mini-2"]
     assert result["unfixed"] == ["x: fail — boom"]
+
+
+def test_a_repaired_row_keeps_its_ids_half_on_the_unfixed_list():
+    """The half of a failure line the fix prompt tells the model to leave alone
+    left the pull request with the row the model did answer for. On 2026-09-21
+    aihubmix's line named eight ids the catalog no longer served; the scout
+    answered the family half, the row dropped off `unfixed` whole, and the ids
+    went on in the configs with nothing in the PR to say so."""
+    llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n"
+                                 "    models: [{family: x-mini-2}]\n```"})
+    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-old-1"}])]
+    ids_half = ("api.model_ids the catalog no longer answers for: "
+                "vendor/x-old-1 is not in the catalog")
+    result = run_scout(llm, entries,
+                       [{"id": "x", "status": "fail",
+                         "detail": f"missing families: x-old-1 | {ids_half}"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=None, verifier=lambda e: None)
+    assert result["updates"] == ["x"]
+    assert result["unfixed"] == [f"x: {ids_half}"]
+
+
+def test_the_fix_phase_asks_the_rows_probe_before_a_family_goes():
+    llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n"
+                                 "    models: [{family: x-mini-2}]\n```"})
+    entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}])]
+    result = run_scout(llm, entries,
+                       [{"id": "x", "status": "fail", "detail": "missing families: x-old-1"}],
+                       lambda urls: {u: "page text" for u in urls}, TODAY,
+                       evidence=None, verifier=lambda e: None,
+                       named=lambda e, family: True)
+    assert [m.family for m in entries[0].models] == ["x-mini-2", "x-pro-1"]
+    assert result["rejected"] == ["x: the update dropped x-pro-1, which the row's own probe "
+                                  "still names — kept"]
 
 
 def test_a_stale_ids_row_is_reported_rather_than_handed_to_the_model():

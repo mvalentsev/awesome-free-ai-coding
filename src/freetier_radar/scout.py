@@ -24,7 +24,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      watch_match)
 from .prober import (ProbeStatus, challenge_marker_hit, check_content, family_named,
-                     probe_page_url_sync, unevidenced_families)
+                     for_a_human, probe_page_url_sync, unevidenced_families)
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -143,11 +143,12 @@ vendor's catalog, and a family counts only where the catalog still carries a
 FREE id for it: an id matching the entry's free marker, and free by the
 catalog's own flag or by a zero price where it publishes one. A family whose
 only ids are metered is not a free model and fails the same probe next run.
-A failure detail can carry a second sentence after " | " about api.model_ids or
-about zero-priced ids the catalog lists — that half is addressed to a human and
-is not yours to repair: `api` is not a key you may write, and an exact id copied
-out of a catalog is not something to reproduce from memory. Read it as evidence
-about which way the lane moved, and answer only with the keys you are allowed.
+A failure detail can carry more after " | " about api.model_ids, zero-priced ids
+the catalog lists, the keyless lane, the Anthropic route or the public key — that
+half is addressed to a human and is not yours to repair: `api` is not a key you
+may write, and an exact id copied out of a catalog is not something to reproduce
+from memory. Read it as evidence about which way the lane moved, and answer only
+with the keys you are allowed.
 A corrected page-keywords probe needs at least one keyword that dies with the
 offer — a quota or price figure, a model id, or a sentence of four or more words
 quoted verbatim from the page below — and it must be in what the page renders:
@@ -792,6 +793,7 @@ def _measured_marks(models: object, entries: list[Entry]) -> object:
 
 def apply_updates(entries: list[Entry], updates: list[dict],
                   verifier: Callable[[Entry], str | None] | None = None,
+                  named: Callable[[Entry, str], bool | None] | None = None,
                   ) -> tuple[list[str], list[str]]:
     """Apply the LLM's corrections to flagged entries.
 
@@ -810,7 +812,17 @@ def apply_updates(entries: list[Entry], updates: list[dict],
     which is how kenari came out of run 33741484383 listing claude-opus-5 as a
     free model. The check is the same one, run on the corrected entry: a fix
     that leaves the row failing is refused, the row keeps the values a human
-    last stood behind, and the reason goes to the pull request."""
+    last stood behind, and the reason goes to the pull request.
+
+    A shorter Models column always passes, though, so the verifier cannot see
+    a reply that deletes too much, and on 2026-09-21 aihubmix failed on one
+    family and the reply kept one of six: four of the five it dropped were
+    still free in the catalog the verdict came from. So a family the reply
+    drops is kept wherever `named` — the row's own probe, read the way the run
+    reads it — still finds it, unless a reviewer has marked it superseded, and
+    the pull request says which. On a page row that is presence on the page,
+    the standard the row is held to on every run; a family the page now names
+    only as paid is a reviewer's call, and the line in the PR puts it to one."""
     applied, rejected = [], []
     for i, e in enumerate(entries):
         upd = next((u for u in updates if isinstance(u, dict) and u.get("id") == e.id), None)
@@ -830,6 +842,13 @@ def apply_updates(entries: list[Entry], updates: list[dict],
             rejected.append(f"{e.id}: invalid update to {', '.join(sorted(changed))}"
                             f" — {_why(exc)}")
             continue
+        kept = []
+        if "models" in changed and named is not None:
+            left = {m.family for m in fixed.models}
+            kept = [m for m in e.models if m.family not in left and not m.superseded_by
+                    and named(fixed, m.family) is True]
+            if kept:
+                fixed = fixed.model_copy(update={"models": [*fixed.models, *kept]})
         problem = verifier(fixed) if verifier is not None else None
         if problem:
             print(f"update for {e.id} rejected: {problem}")
@@ -838,6 +857,9 @@ def apply_updates(entries: list[Entry], updates: list[dict],
             continue
         entries[i] = fixed
         applied.append(e.id)
+        if kept:
+            rejected.append(f"{e.id}: the update dropped {', '.join(m.family for m in kept)}, "
+                            "which the row's own probe still names — kept")
     return applied, rejected
 
 
@@ -1132,7 +1154,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             for e in ctx_entries
         )
         data = _ask(llm, FIX_PROMPT.format(context=context))
-        result["updates"], rejected = apply_updates(entries, data.get("updates") or [], verifier)
+        result["updates"], rejected = apply_updates(entries, data.get("updates") or [], verifier,
+                                                    named)
         result["rejected"] += rejected
 
     # Everything the probe flagged that the run did not repair, carried into the
@@ -1141,9 +1164,16 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     # can be skipped for budget, the model can decline to answer, and its answer
     # can be rejected — and in all three cases the row goes on failing until
     # three failures archive it. Reported after the phase so a repaired row
-    # drops off the list.
-    result["unfixed"] = [f"{f['id']}: {f.get('status', 'fail')} — {f.get('detail', '')}".strip(" —")
-                         for f in failures if f["id"] not in set(result["updates"])]
+    # drops off the list — all but the half of its line the model was told to
+    # leave alone, which no answer of its can have repaired: on 2026-09-21
+    # aihubmix's eight dead ids left the PR with the family half.
+    repaired = set(result["updates"])
+    for f in failures:
+        detail = f.get("detail", "")
+        if f["id"] not in repaired:
+            result["unfixed"].append(f"{f['id']}: {f.get('status', 'fail')} — {detail}".strip(" —"))
+        elif rest := for_a_human(detail):
+            result["unfixed"].append(f"{f['id']}: {rest}")
 
     if evidence is not None and not evidence.is_empty() and within_budget("discovery"):
         # Discovery carries the longest prompt of the run, so it is the phase

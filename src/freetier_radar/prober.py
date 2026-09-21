@@ -66,12 +66,25 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 return keyless
         # The offer is evidenced. Whether the models the README hangs off it
         # still are is a second question, and only a page-keywords probe
-        # leaves it open — see unevidenced_families.
+        # leaves it open — see unevidenced_families. A flagged column is the
+        # verdict, but it no longer ends the read: until 2026-09-21 it returned
+        # here, and every question below went unasked on the rows most likely
+        # to need them. Regolo dropped Llama 3.3 from its price table and its
+        # catalog at once; the run flagged the family, the scout dropped it,
+        # and the id stayed in the configs because the catalog was never read.
+        # So the column's note leads, and whatever the rest of the read finds
+        # follows it after " | ", where the fix prompt already looks for the
+        # half that is not the model's to repair.
         unevidenced = unevidenced_families(resp, entry)
-        if unevidenced:
-            return ProbeResult(ProbeStatus.STALE_MODELS,
-                               "listed families the page does not name: "
-                               + ", ".join(unevidenced))
+        column = ("listed families the page does not name: " + ", ".join(unevidenced)
+                  if unevidenced else "")
+
+        def verdict(status: ProbeStatus, note: str = "") -> ProbeResult:
+            if column:
+                return ProbeResult(ProbeStatus.STALE_MODELS,
+                                   f"{column} | {note}" if note else column)
+            return ProbeResult(status, note)
+
         # A third question, and the last field here that nothing read back
         # — asked in both directions, since a config that hands out a dead
         # id and a config that misses a live one are the same list being
@@ -86,9 +99,9 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         elif entry.probe.catalog:
             catalog, failure = await _fetch_catalog(client, entry.probe.catalog, attempts, backoff)
             if catalog is None:
-                return ProbeResult(ProbeStatus.STALE_IDS,
-                                   f"api.model_ids could not be checked: catalog "
-                                   f"{entry.probe.catalog} {failure}")
+                return verdict(ProbeStatus.STALE_IDS,
+                               f"api.model_ids could not be checked: catalog "
+                               f"{entry.probe.catalog} {failure}")
         else:
             catalog = None
         if catalog is not None:
@@ -96,7 +109,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             if stale:
                 if keyless is not None:
                     stale = f"{stale} | {keyless.detail}"
-                return ProbeResult(ProbeStatus.STALE_IDS, stale)
+                return verdict(ProbeStatus.STALE_IDS, stale)
         # The last published connection detail, and the only one a GET
         # cannot see: the Anthropic-format route a row names for Claude
         # Code. Asked keyless, so the answer is never a message — it is
@@ -104,7 +117,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         if entry.api and entry.api.anthropic_base_url:
             missing = await anthropic_route_missing(client, entry, attempts, backoff)
             if missing:
-                return ProbeResult(ProbeStatus.STALE_IDS, missing)
+                return verdict(ProbeStatus.STALE_IDS, missing)
         # A key handed to everyone is the vendor's only while the vendor's
         # page prints it — see public_key_unprinted.
         if entry.api and entry.api.public_key:
@@ -112,10 +125,10 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             if unprinted:
                 if keyless is not None:
                     unprinted = f"{unprinted} | {keyless.detail}"
-                return ProbeResult(ProbeStatus.STALE_IDS, unprinted)
+                return verdict(ProbeStatus.STALE_IDS, unprinted)
         if keyless is not None:
-            return keyless
-        return ProbeResult(ProbeStatus.PASS)
+            return verdict(keyless.status, keyless.detail)
+        return verdict(ProbeStatus.PASS)
     # Only asked once the content check has already failed. Plenty of live
     # pages carry a <noscript> asking for JavaScript while serving the offer
     # perfectly well above it — on those the keywords match and this never
@@ -1106,6 +1119,26 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str]) -> str:
         parts.append("zero-priced ids in the catalog that api.model_ids does not list "
                      "(add them, or record them in api.ignored_ids): " + ", ".join(unlisted))
     return " | ".join(parts)
+
+
+# How every note about a row's connection details opens — its ids against the
+# catalog, its keyless or public-key lane, its Anthropic route, the page that
+# prints its public key. Each follows a family verdict after " | ".
+_FOR_A_HUMAN = ("api.model_ids ", "zero-priced ids in the catalog ", "api.public_key ",
+                "keyless ", "public-key ", "anthropic route ")
+
+
+def for_a_human(detail: str) -> str:
+    """The part of a verdict's detail the fix prompt tells the model to leave
+    alone, or "" where there is none: whatever follows the family verdict once
+    a note about the connection details begins. A row the scout repaired can
+    still carry it to the pull request — on 2026-09-21 aihubmix's eight dead
+    ids left with the family half the model did answer for."""
+    parts = detail.split(" | ")
+    for i, part in enumerate(parts):
+        if part.startswith(_FOR_A_HUMAN):
+            return " | ".join(parts[i:])
+    return ""
 
 
 def stale_ids(catalog: httpx.Response, entry: Entry) -> str:

@@ -8,7 +8,8 @@ import respx
 from freetier_radar.history import load_history
 from freetier_radar.models import ApiInfo, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
-    ProbeResult, ProbeStatus, _amain, apply_results, family_named, is_model_stale, probe_entry,
+    ProbeResult, ProbeStatus, _amain, apply_results, family_named, for_a_human, is_model_stale,
+    probe_entry,
 )
 
 BASE = {
@@ -1274,6 +1275,54 @@ async def test_a_dead_offer_outranks_a_catalog_check():
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.FAIL
     assert not route.called
+
+
+@respx.mock
+async def test_a_flagged_column_still_carries_what_the_catalog_says_about_the_ids():
+    """A page that stops naming a family flags the Models column, and until
+    2026-09-21 that verdict returned before the row's catalog was asked. Regolo
+    dropped Llama 3.3 from its price table and its catalog at once; the run
+    said stale-models, the scout dropped the family, and Llama-3.3-70B-Instruct
+    stayed in the configs with nothing in the pull request to say so."""
+    entry = catalog_entry("qwen/qwen3-coder", "vendor/llama-4-70b")
+    entry.models = [ModelFamily(family="qwen3-coder"), ModelFamily(family="llama-4")]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=PAGE_OK))
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert result.detail == ("listed families the page does not name: llama-4 | "
+                             "api.model_ids the catalog no longer answers for: "
+                             "vendor/llama-4-70b is not in the catalog")
+
+
+@respx.mock
+async def test_a_flagged_column_with_sound_ids_reads_as_it_did():
+    entry = catalog_entry("qwen/qwen3-coder")
+    entry.models = [ModelFamily(family="qwen3-coder"), ModelFamily(family="llama-4")]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=PAGE_OK))
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result == ProbeResult(ProbeStatus.STALE_MODELS,
+                                 "listed families the page does not name: llama-4")
+
+
+def test_the_half_of_a_line_for_a_human_is_what_follows_the_models_half():
+    """The fix prompt tells the model to leave everything after the family
+    verdict alone; this is that part, so a row the model repaired can still
+    carry it to the pull request."""
+    ids = ("api.model_ids the catalog no longer answers for: a is not in the catalog | "
+           "zero-priced ids in the catalog that api.model_ids does not list "
+           "(add them, or record them in api.ignored_ids): b")
+    assert for_a_human(f"missing families: x | no longer free: y | {ids}") == ids
+    assert for_a_human("listed families the page does not name: x | keyless lane "
+                       "rate-limited: m answered HTTP 429") == ("keyless lane rate-limited: "
+                                                                "m answered HTTP 429")
+    assert for_a_human("missing families: x | no longer free: y") == ""
+    assert for_a_human("") == ""
 
 
 @respx.mock

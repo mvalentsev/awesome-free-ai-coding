@@ -259,7 +259,19 @@ in hand, and the run that fails a row over one model is the run most likely to
 have lost ids beside it — on 2026-09-07 LLMTR failed on `minimax-m3` while three
 of its ids went unreported and stayed in the generated configs. A failing
 `page-keywords` row is not: there the failure is the offer itself, and the row is
-repaired or archived whole.
+repaired or archived whole. A `stale-models` flag, on the other hand, ends nothing:
+the ids, the keyless lane and the Anthropic route are still asked, and what they
+say follows the flag after a `|` — on 2026-09-21 Regolo's Llama 3.3 left its price
+table and its catalog together, and the flag alone had hidden the dead id.
+
+**The scout repairs a family verdict, never the half after the `|`.** That half
+stays on the pull request's "needs a human" line even when the row's Models
+column was answered, and a reply that drops a family the row's own probe still
+names keeps the family and says so under the rejected candidates — a shorter
+column always passes the probe, so the probe cannot catch that reply by itself.
+On 2026-09-21 aihubmix failed on `gpt-oss` alone; the reply kept one family of
+six, four of the five it dropped were still free in the catalog, and the eight
+ids that had left it were on no line of the pull request.
 
 **`api.anthropic_base_url` is the Claude Code answer.** Set it only where the
 vendor documents an Anthropic-format Messages route — a 401 alone proves
