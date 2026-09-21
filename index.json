@@ -2262,11 +2262,12 @@
       "url": "https://regolo.ai/pricing/",
       "source_urls": [
         "https://api.regolo.ai/v1/models",
-        "https://docs.regolo.ai/"
+        "https://docs.regolo.ai/",
+        "https://regolo.ai/models-archive/brick-v1-beta/"
       ],
       "card_required": false,
       "offering": "EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card",
-      "limits": "\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), \"1M tokens per day\" and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, the in-house brick-v1-beta (read 2026-09-16)",
+      "limits": "\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), \"1M tokens per day\" and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it \"a lightweight prompt-complexity classifier designed for LLM routing pipelines\", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)",
       "models": [
         {
           "family": "glm-5",
@@ -2301,7 +2302,7 @@
           "apertus-70b",
           "brick-v1-beta"
         ],
-        "note": "GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page"
+        "note": "GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model"
       },
       "probe": {
         "type": "page-keywords",

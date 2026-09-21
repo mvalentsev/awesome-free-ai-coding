@@ -21,20 +21,21 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Limits, in the vendor's words
 
-"Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, the in-house brick-v1-beta (read 2026-09-16)
+"Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
 
 ## Connect
 
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
 - Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `brick-v1-beta`
-- Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page
+- Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model
 
 ## Evidence
 
 - Probe: the page at <https://regolo.ai/pricing/>, anchored on `1M tokens per day`, `No credit card required, no commitment`; ids checked in <https://api.regolo.ai/v1/models>
 - Source: <https://api.regolo.ai/v1/models>
 - Source: <https://docs.regolo.ai/>
+- Source: <https://regolo.ai/models-archive/brick-v1-beta/>
 
 ## History
 
