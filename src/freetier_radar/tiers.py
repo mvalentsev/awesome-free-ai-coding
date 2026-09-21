@@ -28,7 +28,7 @@ import asyncio
 import json
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import httpx
@@ -115,18 +115,27 @@ class Mark:
 
 def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, list[Mark]]:
     """The top of the index, and one mark per family that names an aa_model —
-    families that name none have nothing to measure and carry no tier."""
+    families that name none have nothing to measure and carry no tier.
+
+    A family's registered mark is the one a row carries against the
+    measurement, if any row does: read off the first row alone, a new row that
+    came in bare beside an older, correct one was never re-marked (Dahl
+    Inference's deepseek-v4-flash, 2026-09-21)."""
     top = index_top(models)
     marks: dict[str, Mark] = {}
     for e in entries:
         for m in e.models:
-            if m.aa_model is None or m.family in marks:
+            if m.aa_model is None:
                 continue
-            scored = models.get(m.aa_model)
-            marks[m.family] = Mark(
-                family=m.family, aa_model=m.aa_model, registered=m.tier,
-                measured=measured_tier(scored.index, top.index) if scored else None,
-                score=scored)
+            mark = marks.get(m.family)
+            if mark is None:
+                scored = models.get(m.aa_model)
+                marks[m.family] = Mark(
+                    family=m.family, aa_model=m.aa_model, registered=m.tier,
+                    measured=measured_tier(scored.index, top.index) if scored else None,
+                    score=scored)
+            elif not mark.moved and m.tier is not mark.registered:
+                marks[m.family] = replace(mark, registered=m.tier)
     return top, sorted(marks.values(), key=lambda k: k.family)
 
 

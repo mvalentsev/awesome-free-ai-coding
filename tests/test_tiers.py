@@ -123,3 +123,25 @@ async def test_write_re_marks_every_row_that_carries_the_family(tmp_path: Path, 
     out = capsys.readouterr().out
     assert "top of the index: Claude Fable 5.1 (max), 53.4 — frontier from 43.4, strong from 28.4" in out
     assert "gemini-3.8-flash: frontier → strong (41.2 on gemini-3-8-flash)" in out
+
+
+@respx.mock
+async def test_a_row_that_disagrees_with_the_measurement_moves_whatever_the_file_order(
+        tmp_path: Path):
+    """A new row carrying a family the registry already measured came in with no
+    tier on 2026-09-21 (Dahl Inference, deepseek-v4-flash), and the review read
+    the family's mark off the first row in the file — which agreed with the
+    board — so --write left the new row bare and freetier-check refused the
+    registry: one family, two marks. Any row off the measurement moves it."""
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [
+        entry("old", {"family": "glm-5.3", "tier": "frontier", "aa_model": "glm-5-3"}),
+        entry("new", {"family": "glm-5.3", "aa_model": "glm-5-3"}),
+    ])
+    top, marks = review(load_registry(registry), parse_leaderboard(page()))
+    assert [(m.family, m.registered, m.measured) for m in marks if m.moved] == [
+        ("glm-5.3", None, Tier.FRONTIER)]
+
+    assert await _amain(registry, write=True) == 0
+    assert [m.tier for e in load_registry(registry) for m in e.models] == [Tier.FRONTIER] * 2
