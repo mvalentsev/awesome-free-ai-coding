@@ -53,12 +53,11 @@
           "nex-agi/nex-n2.5-pro:free",
           "nex-agi/nex-n2.5-mini:free",
           "z-ai/glm-5.2:free",
-          "deepseek/deepseek-v4-flash-0731:free",
           "qwen/qwen3.8-27b:free",
           "openrouter/free"
         ],
         "anthropic_base_url": "https://openrouter.ai/api",
-        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 22 on 2026-09-18, and the lane rotates, so a new id waits two weeks for the Models column. Six are not coding models: openrouter/free is the free-models router, nemotron-3.5-content-safety a guardrail, ling-3.0-flash-fin and ling-3.0-flash-sante finance- and health-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
+        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 21 on 2026-09-21, and the lane rotates, so a new id waits two weeks for the Models column. Six are not coding models: openrouter/free is the free-models router, nemotron-3.5-content-safety a guardrail, ling-3.0-flash-fin and ling-3.0-flash-sante finance- and health-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
       },
       "probe": {
         "type": "api-models",
@@ -462,7 +461,7 @@
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent whose $0 plan routes \"Auto Free\" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside",
-      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree — 22 ids on 2026-09-18, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-18",
+      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-21, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
       "models": [
         {
           "family": "nemotron-3-ultra",
@@ -519,7 +518,6 @@
           "nex-agi/nex-n2.5-pro:free",
           "nex-agi/nex-n2.5-mini:free",
           "z-ai/glm-5.2:free",
-          "deepseek/deepseek-v4-flash-0731:free",
           "qwen/qwen3.8-27b:free"
         ],
         "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model"
@@ -873,7 +871,6 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "deepseek-ai/deepseek-v4-flash-0731",
           "nvidia/nemotron-nano-3-30b-a3b",
           "meta/muse-glimmer-30b"
         ],
@@ -2237,7 +2234,7 @@
         "auth": "none",
         "openai_compatible": true,
         "model_ids": [
-          "Lorbus/Qwen3.6-27B-int4-AutoRound"
+          "RedHatAI/Qwen3.8-27B-INT4"
         ],
         "note": "anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week's, not the offer"
       },
@@ -2494,9 +2491,14 @@
           "motif/motif-3"
         ],
         "ignored_ids": [
-          "liquid/lfm-2.5-embedding-350m-free"
+          "liquid/lfm-2.5-embedding-350m-free",
+          "evren/deepseek-v4-flash-tr",
+          "evren/gemma-4-31b",
+          "evren/glm-5.3-fp8",
+          "evren/qwen3-vl-30b",
+          "evren/qwen3.8-flash-next"
         ],
-        "note": "the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-16, motif/motif-3 created that evening. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free only until 22 September 2026, and dots-studio/dots-3-note-preview closes on 30 September 2026. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier rather than a coding model. liquid/lfm-2.5-embedding-350m-free is ignored as an embeddings row"
+        "note": "the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free until 22 September 2026, dots-studio/dots-3-note-preview until 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each \"kendi EVREN anahtarınızla çalışır\" (runs on your own EVREN key)"
       },
       "probe": {
         "type": "api-models",

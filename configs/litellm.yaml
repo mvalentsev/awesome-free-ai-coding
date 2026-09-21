@@ -126,11 +126,6 @@ model_list:
     model: openai/z-ai/glm-5.2:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/deepseek/deepseek-v4-flash-0731:free
-  litellm_params:
-    model: openai/deepseek/deepseek-v4-flash-0731:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/qwen/qwen3.8-27b:free
   litellm_params:
     model: openai/qwen/qwen3.8-27b:free
@@ -259,11 +254,6 @@ model_list:
 - model_name: kilo-code/z-ai/glm-5.2:free
   litellm_params:
     model: openai/z-ai/glm-5.2:free
-    api_base: https://api.kilo.ai/api/gateway
-    api_key: none
-- model_name: kilo-code/deepseek/deepseek-v4-flash-0731:free
-  litellm_params:
-    model: openai/deepseek/deepseek-v4-flash-0731:free
     api_base: https://api.kilo.ai/api/gateway
     api_key: none
 - model_name: kilo-code/qwen/qwen3.8-27b:free
@@ -791,11 +781,6 @@ model_list:
     model: openai/meituan/longcat-2.0:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
-- model_name: nvidia-nim/deepseek-ai/deepseek-v4-flash-0731
-  litellm_params:
-    model: openai/deepseek-ai/deepseek-v4-flash-0731
-    api_base: https://integrate.api.nvidia.com/v1
-    api_key: os.environ/NVIDIA_NIM_API_KEY
 - model_name: nvidia-nim/nvidia/nemotron-nano-3-30b-a3b
   litellm_params:
     model: openai/nvidia/nemotron-nano-3-30b-a3b
@@ -1251,9 +1236,9 @@ model_list:
     model: openai/Qwen/Qwen2.5-7B-Instruct
     api_base: https://api.siliconflow.cn/v1
     api_key: os.environ/SILICONFLOW_CN_API_KEY
-- model_name: uncloseai/Lorbus/Qwen3.6-27B-int4-AutoRound
+- model_name: uncloseai/RedHatAI/Qwen3.8-27B-INT4
   litellm_params:
-    model: openai/Lorbus/Qwen3.6-27B-int4-AutoRound
+    model: openai/RedHatAI/Qwen3.8-27B-INT4
     api_base: https://hermes.ai.unturf.com/v1
     api_key: none
 - model_name: bytez/Qwen/Qwen3-4B

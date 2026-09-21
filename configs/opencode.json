@@ -91,9 +91,6 @@
         "z-ai/glm-5.2:free": {
           "name": "z-ai/glm-5.2:free"
         },
-        "deepseek/deepseek-v4-flash-0731:free": {
-          "name": "deepseek/deepseek-v4-flash-0731:free"
-        },
         "qwen/qwen3.8-27b:free": {
           "name": "qwen/qwen3.8-27b:free"
         },
@@ -190,9 +187,6 @@
         },
         "z-ai/glm-5.2:free": {
           "name": "z-ai/glm-5.2:free"
-        },
-        "deepseek/deepseek-v4-flash-0731:free": {
-          "name": "deepseek/deepseek-v4-flash-0731:free"
         },
         "qwen/qwen3.8-27b:free": {
           "name": "qwen/qwen3.8-27b:free"
@@ -658,9 +652,6 @@
         "apiKey": "{env:NVIDIA_NIM_API_KEY}"
       },
       "models": {
-        "deepseek-ai/deepseek-v4-flash-0731": {
-          "name": "deepseek-ai/deepseek-v4-flash-0731"
-        },
         "nvidia/nemotron-nano-3-30b-a3b": {
           "name": "nvidia/nemotron-nano-3-30b-a3b"
         },
@@ -1267,8 +1258,8 @@
         "baseURL": "https://hermes.ai.unturf.com/v1"
       },
       "models": {
-        "Lorbus/Qwen3.6-27B-int4-AutoRound": {
-          "name": "Lorbus/Qwen3.6-27B-int4-AutoRound"
+        "RedHatAI/Qwen3.8-27B-INT4": {
+          "name": "RedHatAI/Qwen3.8-27B-INT4"
         }
       }
     },

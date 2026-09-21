@@ -27,7 +27,7 @@ Free to start with no card — the account is gated by phone/business-email veri
 
 - Base URL: `https://integrate.api.nvidia.com/v1`
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `deepseek-ai/deepseek-v4-flash-0731`, `nvidia/nemotron-nano-3-30b-a3b`, `meta/muse-glimmer-30b`
+- Callable ids: `nvidia/nemotron-nano-3-30b-a3b`, `meta/muse-glimmer-30b`
 - Note: the catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your account still has credits to call them with, and it publishes no price field at all, so hosting is the only question it can answer
 
 ## Evidence

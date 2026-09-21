@@ -28,7 +28,7 @@ A new account calls the free rows before any top-up: the migration guide says "M
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
 - Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.6-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-flash-free`, `inclusionai/ling-3.0-flash-vl`, `inclusionai/ling-3.0-flash-sante`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`
-- Note: the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-16, motif/motif-3 created that evening. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free only until 22 September 2026, and dots-studio/dots-3-note-preview closes on 30 September 2026. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row and its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier rather than a coding model. liquid/lfm-2.5-embedding-350m-free is ignored as an embeddings row
+- Note: the thirteen ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows. qwen/qwen3.8-flash-free, inclusionai/ling-3.0-flash-vl and inclusionai/ling-3.0-flash-sante are free until 22 September 2026, dots-studio/dots-3-note-preview until 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own EVREN key)
 
 ## Evidence
 
