@@ -4,6 +4,7 @@ import argparse
 import json
 import re
 import tempfile
+import textwrap
 from datetime import date, datetime, time, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
@@ -652,6 +653,7 @@ def build_context(entries: list[Entry], today: date,
     # fifty-four of fifty-six rows had passed a probe two days earlier and only
     # trae and inception-labs, both mid-re-anchor, were holding it there.
     verified_through = min((e.last_verified for e in active), default=today)
+    groups = litellm_groups(entries, today)
     return {"date": today.isoformat(), "sections": sections,
             "verified_through": verified_through.isoformat(),
             "verified_colour": badge_colour(verified_through, today),
@@ -660,6 +662,8 @@ def build_context(entries: list[Entry], today: date,
             "has_provisional": any(e.provisional for e in active),
             "has_trains": any(_trains(e) for e in active),
             "connections": connections,
+            # The LiteLLM groups the config defines today, ready to print.
+            "litellm_groups": _either([f"`{g}`" for g in groups]) if groups else "",
             # The headline counts. Every one of them is derived, so the page can
             # never advertise a number the registry stopped backing.
             "no_card_count": sum(1 for e in active if not e.card_required),
@@ -1018,6 +1022,7 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
     hand it.
     """
     live = [e for e in entries if not is_archived(e, today)]
+    groups = litellm_groups(entries, today)
     gone = sorted(_archive(entries, today), key=lambda e: e.name.lower())
     lines = [
         "# awesome-free-ai-coding",
@@ -1061,8 +1066,8 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         f"- [configs/claude-code.sh]({REPO_URL}/blob/main/configs/claude-code.sh): one shell "
         "function per gateway that serves the Anthropic Messages format, for Claude Code",
         f"- [configs/litellm.yaml]({REPO_URL}/blob/main/configs/litellm.yaml): LiteLLM proxy "
-        "config over the same rows, with one-name fallback groups (free/frontier, free/strong, "
-        "free/nokey)",
+        "config over the same rows"
+        + (f", with one-name fallback groups ({', '.join(groups)})" if groups else ""),
         f"- [README]({REPO_URL}): the list itself, with the picks table and how it stays fresh",
         f"- [CONTRIBUTING]({REPO_URL}/blob/main/CONTRIBUTING.md): what qualifies, how rows are "
         "ranked, how the probes work",
@@ -1166,6 +1171,37 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
         config["router_settings"] = {"routing_strategy": "simple-shuffle", "num_retries": 3,
                                      **({"fallbacks": fallbacks} if fallbacks else {})}
     return config
+
+
+def litellm_groups(entries: list[Entry], today: date) -> list[str]:
+    """The groups litellm.yaml defines today, in the order a call falls back.
+
+    A group is there only while some lane is measured at its tier. On
+    2026-09-22 Claude Opus 5.5 took the top of the index to 57.6, no free lane
+    stayed within ten points of it, and free/frontier left the config — while
+    the config's own header, llms.txt and the configs README went on offering
+    it, a name LiteLLM answers with "model not found". Every page that names a
+    group reads it from here."""
+    names = {d["model_name"] for d in build_litellm_config(entries, today)["model_list"]}
+    return [name for name in FREE_GROUPS if name in names]
+
+
+def _either(names: list[str]) -> str:
+    """"a", "a or b", "a, b or c"."""
+    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " or " + names[-1]
+
+
+def _litellm_groups_note(groups: list[str]) -> str:
+    """The header's paragraph on the groups, for the ones the file defines."""
+    if not groups:
+        return ""
+    how = (" pools every lane of that tier" if len(groups) == 1 else
+           " pool every lane of that tier, and a call falls back down that order when a "
+           "lane runs out of quota or has no key set here")
+    sentence = (f"Or ask for a group instead of a model: {_either(groups)}{how} — set only "
+                "the keys you have, and a lane without one is skipped.")
+    lines = textwrap.wrap(sentence, width=73, break_long_words=False, break_on_hyphens=False)
+    return "#\n" + "".join(f"# {line}\n" for line in lines)
 
 
 def build_env_example(entries: list[Entry], today: date) -> str:
@@ -1758,11 +1794,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# sets no master_key, so without that flag anyone on your network can spend\n"
         "# the keys it reads from the environment (see free-llm.env.example).\n"
         "# Entries marked `api_key: none` need no account at all.\n"
-        "#\n"
-        "# Or ask for a group instead of a model: free/frontier, free/strong or\n"
-        "# free/nokey pool every lane of that tier, and a call falls back down that\n"
-        "# order when a lane runs out of quota or has no key set here — set only the\n"
-        "# keys you have, and a lane without one is skipped.\n"
+        + _litellm_groups_note(litellm_groups(entries, today))
         + "".join(f"# Left out: {e.name} — every request needs a stable id per conversation "
                   f"in {e.api.session_header}, which a static config cannot supply.\n"
                   for e in _connectable(entries, today) if e.api.session_header)

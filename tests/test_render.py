@@ -400,6 +400,43 @@ def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
     assert "&id" not in yaml.safe_dump(cfg)
 
 
+def test_every_page_offers_only_the_litellm_groups_the_config_defines(tmp_path: Path):
+    """A group exists only while some lane is measured at its tier. On 2026-09-22
+    Claude Opus 5.5 took the top of the index to 57.6, no free lane stayed within
+    ten points of it, and free/frontier left litellm.yaml — while its header,
+    llms.txt and the configs README went on telling readers to ask for it, a
+    call LiteLLM answers with "model not found"."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import build_llms_txt, render_configs_readme
+    strong = make(id="glm", name="GLM", models=[
+        {"family": "glm-5.3", "tier": "strong", "aa_model": "glm-5-3"}],
+        api={"base_url": "https://glm.example/v1", "model_ids": ["zai/glm-5.3"]})
+    frontier = make(id="top", name="Top", models=[
+        {"family": "kimi-k3", "tier": "frontier", "aa_model": "kimi-k3"}],
+        api={"base_url": "https://top.example/v1", "model_ids": ["kimi-k3"]})
+    untiered = make(id="bare", name="Bare", models=[{"family": "m"}],
+                    api={"base_url": "https://bare.example/v1", "model_ids": ["m"]})
+
+    def offered(entries: list[Entry]) -> dict[str, list[str]]:
+        reg = tmp_path / "registry.yaml"
+        save_registry(reg, entries)
+        render_artifacts(reg, tmp_path, today=TODAY)
+        header = "".join(line for line in (tmp_path / "configs" / "litellm.yaml")
+                         .read_text(encoding="utf-8").splitlines(keepends=True)
+                         if line.startswith("#"))
+        configs = render_configs_readme(reg, Path("templates"), tmp_path / "configs" / "README.md",
+                                        today=TODAY)
+        texts = {"header": header, "configs": configs, "llms": build_llms_txt(entries, TODAY)}
+        return {name: [g for g in ("free/frontier", "free/strong", "free/nokey") if g in text]
+                for name, text in texts.items()}
+
+    assert offered([strong]) == {"header": ["free/strong"], "configs": ["free/strong"],
+                                 "llms": ["free/strong"]}
+    assert offered([strong, frontier]) == {name: ["free/frontier", "free/strong"]
+                                           for name in ("header", "configs", "llms")}
+    assert offered([untiered]) == {"header": [], "configs": [], "llms": []}
+
+
 def test_headline_counts_are_derived_from_the_registry():
     """The numbers at the top of the page are a claim about the list, so they are
     counted from it — a hand-typed "31 need no card" is one merged PR away from
