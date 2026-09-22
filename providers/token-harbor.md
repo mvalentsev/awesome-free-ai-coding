@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-09-21'
-description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance per rolling 7-day period, no card. "Models on permanent free routes carry an explicit :free model ID and are listed under Free on the…'
+description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card. "Models on permanent free routes carry an explicit :free model ID and are listed…'
 permalink: /providers/token-harbor/
 ---
 
@@ -13,11 +13,11 @@ permalink: /providers/token-harbor/
 
 ## What you get
 
-OpenAI- and Anthropic-compatible gateway with a standing $0 plan: :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance per rolling 7-day period, no card
+OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card
 
 ## Free models
 
-`deepseek-v4.1-flash`, `deepseek-v4-flash`, `mimo-v2.5`
+`deepseek-v4.1-flash`
 
 ## Limits, in the vendor's words
 
@@ -32,8 +32,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://tokenharbor.ai/v1`
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`
-- Callable ids: `deepseek-v4.1-flash:free`, `deepseek-v4-flash:free`, `mimo-v2.5:free`
-- Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free. For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
+- Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`, `qwen3.8-flash:free`
+- Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free is marked free until 27 September. For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
 
 ## Evidence
 
@@ -48,6 +48,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
+- *next scheduled run* — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
 - `2026-09-21` — Free models changed: added deepseek-v4-flash
 - `2026-09-17` — Added to the list: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card
 

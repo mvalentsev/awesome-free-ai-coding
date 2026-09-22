@@ -26,7 +26,7 @@ claude-requesty() {
 }
 
 # ── AIHubMix (free models) · get a key: https://aihubmix.com/token
-#    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, xiaomi-mimo-v2.5-free, north-mini-code-free, ling-3.0-tiny-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, hy3-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, ling-3.0-flash-free, mimo-v2-flash-free, minimax-m2.7-free, nemotron-3-nano-30b-a3b-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3-super-120b-a12b-free, nemotron-3.5-content-safety-free, nemotron-3.5-lightning-free, nemotron-nano-12b-v2-vl-free, nemotron-nano-9b-v2-free, union-alpha-free, xiaomi-mimo-v2-omni-free, xiaomi-mimo-v2-pro-free, xiaomi-mimo-v2.5-pro-free
+#    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, xiaomi-mimo-v2.5-free, north-mini-code-free, ling-3.0-tiny-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, hy3-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, ling-3.0-flash-free, mimo-v2-flash-free, minimax-m2.7-free, nemotron-3-nano-30b-a3b-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3-super-120b-a12b-free, nemotron-3.5-content-safety-free, nemotron-3.5-lightning-free, nemotron-nano-12b-v2-vl-free, nemotron-nano-9b-v2-free, union-alpha-free, xiaomi-mimo-v2-omni-free, xiaomi-mimo-v2-pro-free, xiaomi-mimo-v2.5-pro-free, xiaomi-mimo-v2.6-flash-free, xiaomi-mimo-v2.6-pro-free
 claude-aihubmix() {
   ANTHROPIC_BASE_URL="https://aihubmix.com" \
   ANTHROPIC_AUTH_TOKEN="$AIHUBMIX_API_KEY" \
@@ -56,7 +56,7 @@ claude-vercel-ai-gateway() {
 }
 
 # ── Token Harbor · get a key: https://tokenharbor.ai/dashboard/api-keys
-#    free ids: deepseek-v4.1-flash:free, deepseek-v4-flash:free, mimo-v2.5:free
+#    free ids: deepseek-v4.1-flash:free, mimo-v2.6-flash:free, qwen3.8-flash:free
 claude-token-harbor() {
   ANTHROPIC_BASE_URL="https://tokenharbor.ai" \
   ANTHROPIC_AUTH_TOKEN="$TOKEN_HARBOR_API_KEY" \

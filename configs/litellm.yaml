@@ -484,6 +484,16 @@ model_list:
     model: openai/xiaomi-mimo-v2.5-pro-free
     api_base: https://aihubmix.com/v1
     api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/xiaomi-mimo-v2.6-flash-free
+  litellm_params:
+    model: openai/xiaomi-mimo-v2.6-flash-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+- model_name: aihubmix/xiaomi-mimo-v2.6-pro-free
+  litellm_params:
+    model: openai/xiaomi-mimo-v2.6-pro-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
 - model_name: zai-glm/glm-4.7-flash
   litellm_params:
     model: openai/glm-4.7-flash
@@ -764,14 +774,14 @@ model_list:
     model: openai/deepseek-v4.1-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
-- model_name: token-harbor/deepseek-v4-flash:free
+- model_name: token-harbor/mimo-v2.6-flash:free
   litellm_params:
-    model: openai/deepseek-v4-flash:free
+    model: openai/mimo-v2.6-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
-- model_name: token-harbor/mimo-v2.5:free
+- model_name: token-harbor/qwen3.8-flash:free
   litellm_params:
-    model: openai/mimo-v2.5:free
+    model: openai/qwen3.8-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
 - model_name: upstage/solar-pro-3
@@ -1332,16 +1342,6 @@ model_list:
 - model_name: free/strong
   litellm_params:
     model: openai/deepseek-v4.1-flash:free
-    api_base: https://tokenharbor.ai/v1
-    api_key: os.environ/TOKEN_HARBOR_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/deepseek-v4-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
   model_info:

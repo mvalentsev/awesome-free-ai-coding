@@ -16,7 +16,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) | 🤖 Coding agents & CLIs | `big-pickle`, `mimo-v2.5`, `ling-3.0-flash-fin`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `muse-spark-1.3-contributor` | `2026-09-21` |
 | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) | 🤖 Coding agents & CLIs | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1` | `2026-09-21` |
 | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) | 🤖 Coding agents & CLIs | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | `2026-09-21` |
-| [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna`, `mimo-v2.5` | `2026-09-21` |
+| [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna` | `2026-09-21` |
 | [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | `laguna-s-2.1` | `2026-09-21` |
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-21` |
 | [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
@@ -87,7 +87,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) | 🧭 Aggregators (one key, many providers) | `qwen3.7-flash` | `2026-09-21` |
 | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) | 🧭 Aggregators (one key, many providers) | `step-3.7-flash`, `laguna-s-2.1` | `2026-09-21` |
 | [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) | 🧭 Aggregators (one key, many providers) | `nemotron-3-nano-omni` | `2026-09-21` |
-| [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4.1-flash`, `deepseek-v4-flash`, `mimo-v2.5` | `2026-09-21` |
+| [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) | 🧭 Aggregators (one key, many providers) | `deepseek-v4.1-flash` | `2026-09-21` |
 | [Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/) | 🧭 Aggregators (one key, many providers) | — | `2026-09-21` |
 | [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/) | 🧭 Aggregators (one key, many providers) | `gemma-4-31b` | `2026-09-21` |
 | [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/) | 🧭 Aggregators (one key, many providers) | `mistral-small-3.2` | `2026-09-21` |
