@@ -211,17 +211,6 @@ dismissed:
       nvidia/nemotron-3-ultra-550b-a55b (free, daily quota), its metered -262k twin
       and nvidia/nemotron-3-super-120b-a12b (free). The target does not exist on
       this vendor, so the bump could only empty the column.
-  - entry: nvidia-nim
-    family: nemotron
-    superseded_by: nemotron-3.5-lightning
-    dismissed_on: 2026-09-08
-    reason: >-
-      The family here is unversioned on purpose: build.nvidia.com serves the whole
-      Nemotron line, and integrate.api.nvidia.com/v1/models carries nemotron-3-ultra,
-      -super, -nano, 3.5 Lightning, 3.5 content-safety and nemotron-parse at once
-      while publishing no prices at all. Narrowing `nemotron` to one checkpoint
-      would claim less than the row grants — the sambanova-cloud deepseek
-      dismissal above, for the same reason.
   - entry: tokenrouter
     family: nemotron-3-nano-omni
     superseded_by: nemotron-3.5-lightning

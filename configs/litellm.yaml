@@ -224,6 +224,56 @@ model_list:
     model: openai/nvidia/nemotron-3.5-lightning-30b-a3b
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
+- model_name: nvidia-nim/moonshotai/kimi-k3
+  litellm_params:
+    model: openai/moonshotai/kimi-k3
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/z-ai/glm-5.3
+  litellm_params:
+    model: openai/z-ai/glm-5.3
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/z-ai/glm-5.3-flash
+  litellm_params:
+    model: openai/z-ai/glm-5.3-flash
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/nvidia/nemotron-3-ultra-550b-a55b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-ultra-550b-a55b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/nvidia/nemotron-3-super-120b-a12b
+  litellm_params:
+    model: openai/nvidia/nemotron-3-super-120b-a12b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/poolside/laguna-xs-2.1
+  litellm_params:
+    model: openai/poolside/laguna-xs-2.1
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/google/gemma-4-31b-it
+  litellm_params:
+    model: openai/google/gemma-4-31b-it
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/meta/muse-glimmer-30b
+  litellm_params:
+    model: openai/meta/muse-glimmer-30b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/nvidia/nemotron-3.5-lightning-30b-a3b
+  litellm_params:
+    model: openai/nvidia/nemotron-3.5-lightning-30b-a3b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+- model_name: nvidia-nim/openai/gpt-oss-20b
+  litellm_params:
+    model: openai/openai/gpt-oss-20b
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
 - model_name: aihubmix/coding-glm-5.2-free
   litellm_params:
     model: openai/coding-glm-5.2-free
@@ -669,16 +719,6 @@ model_list:
     model: openai/meituan/longcat-2.0:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
-- model_name: nvidia-nim/nvidia/nemotron-nano-3-30b-a3b
-  litellm_params:
-    model: openai/nvidia/nemotron-nano-3-30b-a3b
-    api_base: https://integrate.api.nvidia.com/v1
-    api_key: os.environ/NVIDIA_NIM_API_KEY
-- model_name: nvidia-nim/meta/muse-glimmer-30b
-  litellm_params:
-    model: openai/meta/muse-glimmer-30b
-    api_base: https://integrate.api.nvidia.com/v1
-    api_key: os.environ/NVIDIA_NIM_API_KEY
 - model_name: tokenrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
@@ -1159,66 +1199,6 @@ model_list:
     model: openai/qwen3.8-flash
     api_base: https://yolo-auto.com/v1
     api_key: os.environ/YOLO_AUTO_API_KEY
-- model_name: free/frontier
-  litellm_params:
-    model: openai/coding-kimi-k3-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/frontier
-  litellm_params:
-    model: openai/coding-glm-5.3-flash-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/frontier
-  litellm_params:
-    model: openai/coding-glm-5.3-free
-    api_base: https://aihubmix.com/v1
-    api_key: os.environ/AIHUBMIX_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/frontier
-  litellm_params:
-    model: openai/qwen3.8-max
-    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
-    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/frontier
-  litellm_params:
-    model: openai/moonshotai/Kimi-K3
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/frontier
-  litellm_params:
-    model: openai/zai-org/GLM-5.3
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
     model: openai/gemini-3.8-flash
@@ -1251,6 +1231,46 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
+    model: openai/moonshotai/kimi-k3
+    api_base: https://integrate.api.nvidia.com/v1
+    api_key: os.environ/NVIDIA_NIM_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/coding-kimi-k3-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/coding-glm-5.3-flash-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/coding-glm-5.3-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
     model: openai/deepseek-v4-flash:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
@@ -1274,6 +1294,16 @@ model_list:
     model: openai/Qwen3.8-27B
     api_base: https://inference.hetzner.com/api/v1
     api_key: os.environ/HETZNER_INFERENCE_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/qwen3.8-max
+    api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
+    api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0
@@ -1344,6 +1374,26 @@ model_list:
     model: openai/deepseek-v4-flash
     api_base: https://freeinference.org/v1
     api_key: os.environ/FREEINFERENCE_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/moonshotai/Kimi-K3
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/zai-org/GLM-5.3
+    api_base: https://api.sailresearch.com/v1
+    api_key: os.environ/SAIL_RESEARCH_API_KEY
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0
@@ -1463,8 +1513,5 @@ router_settings:
   routing_strategy: simple-shuffle
   num_retries: 3
   fallbacks:
-  - free/frontier:
-    - free/strong
-    - free/nokey
   - free/strong:
     - free/nokey

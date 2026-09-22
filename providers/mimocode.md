@@ -22,6 +22,6 @@ This row was delisted on 2026-07-19: the same project as MiMo Code, the name Xia
 
 ---
 
-Generated from `registry.yaml` on 2026-09-21. No probe reads this row any more — the list keeps one row per service; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-22. No probe reads this row any more — the list keeps one row per service; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

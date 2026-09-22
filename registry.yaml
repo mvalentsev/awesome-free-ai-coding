@@ -454,7 +454,7 @@ entries:
     released: ''
     aa_model: nemotron-3-5-lightning
   - family: muse-spark-1.3-contributor
-    tier: frontier
+    tier: strong
     released: 2026-09
     aa_model: muse-spark-1-3-xhigh
   data_use:
@@ -910,32 +910,57 @@ entries:
   url: https://build.nvidia.com
   source_urls:
   - https://build.nvidia.com/explore/discover
-  - https://forums.developer.nvidia.com/t/api-credits-for-build-nvidia-com/306633
+  - https://build.nvidia.com/moonshotai/kimi-k3
+  - https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798
   card_required: false
-  offering: Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer
-    Program (OpenAI-compatible at integrate.api.nvidia.com/v1)
-  limits: 'Free to start with no card — the account is gated by phone/business-email
-    verification, and access is metered in API credits rather than left open: NVIDIA
-    staff describe the catalog as "a trial experience of NVIDIA NIM limited to 5000
-    free API credits", 1000 granted on sign-up. That answer is from 2024 and NVIDIA
-    publishes no current figure; reports since put the ceiling at a ~40 req/min rate
-    limit instead. Production use needs NVIDIA AI Enterprise either way. The catalog
-    renames ids without notice, so copy them from it rather than from an older guide'
+  offering: Free endpoints for the models build.nvidia.com marks "Free Endpoint",
+    open-weight models from several labs among them, called with a free NVIDIA Developer
+    Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
+  limits: 'No card; the API key needs a free NVIDIA Developer Program account verified
+    by a code sent to your phone, and the phone step does not take every country.
+    The ceiling is a rate, not credits: NVIDIA''s site puts it at "Up to 40 rpm" and
+    "10,000 requests per day", adding that "Rate limits may vary by model and traffic
+    from other users may cause throttling". NVIDIA staff call 40 RPM "the published
+    free-tier cap" that "is not adjustable on a per-account basis"; more throughput
+    takes "an NVIDIA AI Enterprise license or self-hosting the model via the corresponding
+    NIM container". Each model''s page states whether its free endpoint is available
+    or deprecated, and NVIDIA renames ids without notice, so copy them from the catalog.
+    Read 2026-09-22'
   models:
-  - family: nemotron
+  - family: kimi-k3
+    tier: strong
+    released: ''
+    aa_model: kimi-k3
+  - family: nemotron-3-ultra
     released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
+  - family: nemotron-3-super
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: laguna-xs-2.1
+    released: 2026-07
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
     auth: api-key
     openai_compatible: true
     model_ids:
-    - nvidia/nemotron-nano-3-30b-a3b
+    - moonshotai/kimi-k3
+    - z-ai/glm-5.3
+    - z-ai/glm-5.3-flash
+    - nvidia/nemotron-3-ultra-550b-a55b
+    - nvidia/nemotron-3-super-120b-a12b
+    - poolside/laguna-xs-2.1
+    - google/gemma-4-31b-it
     - meta/muse-glimmer-30b
-    note: the catalog endpoint answers unauthenticated, which is what the probe reads
-      — it confirms NVIDIA still hosts these models, not that your account still has
-      credits to call them with, and it publishes no price field at all, so hosting
-      is the only question it can answer
+    - nvidia/nemotron-3.5-lightning-30b-a3b
+    - openai/gpt-oss-20b
+    note: model_ids are chat models whose build.nvidia.com page marks the free endpoint
+      available; the catalog also answers with older ids that have no page and no
+      such mark, and those are left out. The catalog endpoint answers unauthenticated,
+      which is what the probe reads — it confirms NVIDIA still hosts these models,
+      not that your key may call them, and it publishes no price field, so the free
+      mark lives only on each model's page
   data_use:
     trains: 'yes'
     quote: Your input and output will be recorded to provide you with this trial experience
@@ -953,7 +978,7 @@ entries:
   last_verified: '2026-09-21'
   probe_failures: 0
   provisional: false
-  rank: 70
+  rank: 25
 - id: zai-glm
   name: Z.ai (Zhipu GLM)
   category: api-free-tier
@@ -1143,7 +1168,7 @@ entries:
     no free-quota column at all (ids read 2026-09-10)'
   models:
   - family: qwen3.8-max
-    tier: frontier
+    tier: strong
     released: 2026-09
     aa_model: qwen3-8-max
   - family: qwen3-max
@@ -1809,7 +1834,6 @@ entries:
     determined to the degree we have capacity, and exist to prevent abuse"'
   models:
   - family: gemini-3.1-pro
-    tier: strong
     released: ''
     aa_model: gemini-3-1-pro-preview
   - family: gemini-3.8-flash
@@ -2012,11 +2036,11 @@ entries:
     at list rates'
   models:
   - family: glm-5.3
-    tier: frontier
+    tier: strong
     released: ''
     aa_model: glm-5-3
   - family: kimi-k3
-    tier: frontier
+    tier: strong
     released: ''
     aa_model: kimi-k3
   - family: glm-5
@@ -2822,7 +2846,6 @@ entries:
     released: ''
     aa_model: glm-5-3-flash
   - family: minimax-m3
-    tier: strong
     released: ''
     aa_model: minimax-m3
   - family: qwen3.6
@@ -2990,11 +3013,11 @@ entries:
     without written consent". Read 2026-09-21'
   models:
   - family: kimi-k3
-    tier: frontier
+    tier: strong
     released: ''
     aa_model: kimi-k3
   - family: glm-5.3
-    tier: frontier
+    tier: strong
     released: ''
     aa_model: glm-5-3
   - family: deepseek-v4-pro

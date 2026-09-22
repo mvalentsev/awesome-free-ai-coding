@@ -239,6 +239,46 @@
         }
       }
     },
+    "nvidia-nim": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA NIM (build.nvidia.com)",
+      "options": {
+        "baseURL": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "{env:NVIDIA_NIM_API_KEY}"
+      },
+      "models": {
+        "moonshotai/kimi-k3": {
+          "name": "moonshotai/kimi-k3"
+        },
+        "z-ai/glm-5.3": {
+          "name": "z-ai/glm-5.3"
+        },
+        "z-ai/glm-5.3-flash": {
+          "name": "z-ai/glm-5.3-flash"
+        },
+        "nvidia/nemotron-3-ultra-550b-a55b": {
+          "name": "nvidia/nemotron-3-ultra-550b-a55b"
+        },
+        "nvidia/nemotron-3-super-120b-a12b": {
+          "name": "nvidia/nemotron-3-super-120b-a12b"
+        },
+        "poolside/laguna-xs-2.1": {
+          "name": "poolside/laguna-xs-2.1"
+        },
+        "google/gemma-4-31b-it": {
+          "name": "google/gemma-4-31b-it"
+        },
+        "meta/muse-glimmer-30b": {
+          "name": "meta/muse-glimmer-30b"
+        },
+        "nvidia/nemotron-3.5-lightning-30b-a3b": {
+          "name": "nvidia/nemotron-3.5-lightning-30b-a3b"
+        },
+        "openai/gpt-oss-20b": {
+          "name": "openai/gpt-oss-20b"
+        }
+      }
+    },
     "aihubmix": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "AIHubMix (free models)",
@@ -632,22 +672,6 @@
         },
         "meituan/longcat-2.0:free": {
           "name": "meituan/longcat-2.0:free"
-        }
-      }
-    },
-    "nvidia-nim": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "NVIDIA NIM (build.nvidia.com)",
-      "options": {
-        "baseURL": "https://integrate.api.nvidia.com/v1",
-        "apiKey": "{env:NVIDIA_NIM_API_KEY}"
-      },
-      "models": {
-        "nvidia/nemotron-nano-3-30b-a3b": {
-          "name": "nvidia/nemotron-nano-3-30b-a3b"
-        },
-        "meta/muse-glimmer-30b": {
-          "name": "meta/muse-glimmer-30b"
         }
       }
     },
