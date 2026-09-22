@@ -7535,6 +7535,17 @@
       "reason": "The Token Plan is a subscription — \"Token Plan 通过订阅 Key 提供套餐内 Token Plan 用量额度\" (the plan's quota, through a subscription key), bought as a personal subscription or credits — so its zero-cost rows on models.dev are included usage, not a free tier.",
       "reopen_if": "A free quota on MiniMax's China platform that needs no subscription.",
       "current": true
+    },
+    {
+      "domains": [
+        "evren.ssyz.org.tr",
+        "api.ssyz.org.tr"
+      ],
+      "name": "EVREN (SSB)",
+      "checked_on": "2026-09-22",
+      "reason": "The Turkish Presidency of Defence Industries' AI platform serves open models through an OpenAI-compatible API on H200s in Turkey, and its requests pass \"kota ve kredi kontrollerinden\" (through quota and credit checks), the credits earned by labelling data or spent on inference. The site has one way in, \"e-Devlet ile Giriş Yap\" (sign in with e-Devlet), through SSB's identity server on its EDEVLET realm — Turkey's state portal, which takes a Turkish identity number: a national identity wall. LLMTR's evren/* ids run on the caller's own EVREN key and are ignored on that row for the same reason.",
+      "reopen_if": "EVREN takes sign-ins that need no e-Devlet account.",
+      "current": true
     }
   ]
 }
