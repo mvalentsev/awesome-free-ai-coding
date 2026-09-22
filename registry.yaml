@@ -2472,9 +2472,10 @@ entries:
     pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for
     Regolo''s Brick router (read 2026-09-21)'
   models:
-  - family: glm-5
+  - family: glm-5.2
+    tier: strong
     released: ''
-    aa_model: glm-5
+    aa_model: glm-5-2
   - family: gpt-oss
     released: ''
   - family: qwen3.8-27b

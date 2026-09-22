@@ -401,7 +401,7 @@ dismissed:
       2026-09-08). The Qwen this lab serves is Qwen3.6 35B, which is what the row
       lists.
   - entry: regolo
-    family: glm-5
+    family: glm-5.2
     superseded_by: glm-5.3-flash
     dismissed_on: 2026-09-08
     reason: >-
@@ -409,7 +409,9 @@ dismissed:
       sidebar — "DeepSeek V4 Flash vs Qwen3.8-Flash-Next vs GLM-5.3-Flash: the
       real leader in quality-to-price in 2026". The price table itself does not
       carry the model, and a link to an article about a model is not an offer of
-      it.
+      it. The bump was offered against the same model when the row still wrote
+      it glm-5; Regolo's only GLM is glm5.2, and the family says so since
+      2026-09-22.
   # regolo llama-3.3 → llama-4 stood here from 2026-09-08 until 2026-09-21, when
   # Llama 3.3 left Regolo's price table and its catalog and the family left the row.
   - entry: groq-free

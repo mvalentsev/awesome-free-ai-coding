@@ -63,7 +63,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [Trae](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
-| [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) | 🎁 Trials (no card when possible) | `glm-5`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b` | `2026-09-21` |
+| [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) | 🎁 Trials (no card when possible) | `glm-5.2`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b` | `2026-09-21` |
 | [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | `solar-pro-3`, `solar-mini` | `2026-09-21` |
 | [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) | 🎁 Trials (no card when possible) | `gpt-5.6-luna` | `2026-09-21` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |

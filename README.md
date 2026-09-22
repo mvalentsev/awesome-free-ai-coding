@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **80** | **77** | **7** | **60** | **69** |
+| **80** | **77** | **7** | **60** | **70** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -130,7 +130,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Qoder](https://qoder.com)** | Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) |
 | **[CodeBuddy (Tencent)](https://www.codebuddy.ai)** | Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) |
 | **[Trae](https://www.trae.ai)** 👁 | AI IDE whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) |
-| **[Regolo AI](https://regolo.ai/pricing/)** | EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card | `glm-5`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
+| **[Regolo AI](https://regolo.ai/pricing/)** | EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card | `glm-5.2`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | **[Upstage (Solar API)](https://console.upstage.ai/)** | Upstage Solar LLM API; $10 free credit on signup, no card | `solar-pro-3`, `solar-mini` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) |
 | **[Zed](https://zed.dev)** 🧪 | Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan | `gpt-5.6-luna` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) |
 | **[Qodo](https://www.qodo.ai)** | Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) |
@@ -168,7 +168,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 69 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 70 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -189,7 +189,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
-| `glm-5` | [AIHubMix (free models)](https://aihubmix.com), [Regolo AI](https://regolo.ai/pricing/) |
 | `glm-5.3` | [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
 | `gpt-5.6-luna` | [Freebuff](https://freebuff.com), [Zed](https://zed.dev) |
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
@@ -219,7 +218,9 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `glm-4.5-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.6v-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.7-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
+| `glm-5` | [AIHubMix (free models)](https://aihubmix.com) |
 | `glm-5.1` | [FreeInference (Harvard SEAS)](https://freeinference.org) |
+| `glm-5.2` | [Regolo AI](https://regolo.ai/pricing/) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
 | `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |

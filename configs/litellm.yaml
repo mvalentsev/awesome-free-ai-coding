@@ -1311,6 +1311,16 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
+    model: openai/glm5.2
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
     model: openai/qwen3.8-27b
     api_base: https://api.regolo.ai/v1
     api_key: os.environ/REGOLO_API_KEY
