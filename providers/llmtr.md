@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-21'
-description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — ten zero-priced chat ids on 2026-09-21, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
+description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/llmtr/
 
 ## What you get
 
-Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — ten zero-priced chat ids on 2026-09-21, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them
+Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them
 
 ## Free models
 
@@ -31,8 +31,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `openai/gpt-oss-safeguard-20b`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`
-- Note: the ten ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own EVREN key)
+- Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.0-flash-fin`, `dots-studio/dots-3-note-preview`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`
+- Note: the nine ids are every chat row the public catalog prices at 0 on 2026-09-23 outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings row, openai/gpt-oss-safeguard-20b, a content classifier, and five evren/* rows priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own EVREN key)
 
 ## Evidence
 

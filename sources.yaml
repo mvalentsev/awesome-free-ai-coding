@@ -235,10 +235,10 @@ read:
       caution: it renders last_verified-2026--08 while the README's own line
       reads "Last comprehensive verification: June 2026". The two names it
       surfaced that this registry already holds show what reading the row costs
-      — Amazon Q Developer and Supermaven are both watchlisted here with
+      — Amazon Q Developer and Supermaven were both watchlisted here with
       verdicts the list does not have, that Q is the predecessor AWS is folding
       into Kiro and that Supermaven's real free tier is inline completions with
-      no API. Its promo-expiry checker
+      no API; Amazon Q Developer has been a row since 2026-09-16. Its promo-expiry checker
       (scripts/check_promo_expiry.py, run weekly) is the one piece of
       machinery here worth borrowing: it is a deadline sweep, which is what a
       list of dated offers needs and a list of standing free tiers does not.
@@ -278,8 +278,8 @@ read:
       rerank and image products (Deepgram, ElevenLabs, OCR.space, Jina, Voyage,
       Pinecone) that this registry leaves out by category. The seven text-LLM
       rows became rows or verdicts the same day: IBM watsonx.ai Lite, Typhoon
-      and Sarvam are registry rows, Arli AI, W&B Inference and Tencent Hunyuan
-      are on the watchlist, and Clarifai could not be reached from here (DNS
+      and Sarvam are registry rows, W&B Inference is on the watchlist, Arli AI
+      and Tencent's TokenHub have been rows since 2026-09-17, and Clarifai could not be reached from here (DNS
       and connection timeouts on every fetch) — it went to the watchlist on
       2026-09-12, once a GitHub runner could not reach it either. One of its readings did not
       survive the vendor's page — the "$100/month of Serverless Inference
@@ -358,10 +358,11 @@ read:
       by model with an "API 质量" column that records observed behaviour (NVIDIA
       NIM "经常超时", AMD Token Factory "TTFT 偏高"). 33 hosts, 12 with no verdict
       here, and every one of the 12 got one the same day: the mainland
-      consoles it quotes quotas for (Baidu Qianfan, Volcengine Ark, Tencent,
-      BigModel) are on the watchlist with those quotas and the real-name wall,
-      AMD Token Factory and B.AI are on it as unreadable, free.empero.org and
-      tokenharbor.ai as unquantified. Its figures for carried rows agree with
+      consoles it quotes quotas for (Baidu Qianfan, Volcengine Ark, BigModel)
+      are on the watchlist with those quotas and the real-name wall, AMD Token
+      Factory and B.AI are on it as unreadable and free.empero.org as
+      unquantified, and Tencent's TokenHub and Token Harbor have been rows
+      since 2026-09-17 and 2026-09-16. Its figures for carried rows agree with
       the registry (SenseNova "每 5 小时 1500 次", Ollama Cloud's unpublished
       starter credit, OpenRouter's 50-a-day-then-1,000).
     reopen_if: >-
@@ -526,8 +527,9 @@ read:
       services", APIKEY.FUN is "a professional enterprise-grade AI relay
       platform", FastAIToken sells at "¥1 = $1 in API credits", AICodeMirror
       prices "Claude Code / Codex / Gemini official channels at 38% / 2% / 9%
-      of original price" and Aiberm "85–90% off Claude, 90% off GPT" — the last
-      two now blocklisted on those figures — beside CyberPay, which takes
+      of original price" and Aiberm "85–90% off Claude, 90% off GPT" — since
+      2026-09-17 AICodeMirror is blocklisted on its relay routes and Aiberm is
+      on the watchlist, a price being no evidence of supply — beside CyberPay, which takes
       payments "for selling GPT, Gemini, Claude, and Codex accounts", and three
       residential-proxy sellers built "for automation and multi-account
       operations". The rest are Qiniu Cloud's MaaS platform, a CDN, APIMart's
@@ -707,7 +709,7 @@ read:
       2026-09-05, each a base URL, a model id, an auth mode, a last-ok
       timestamp and per-capability results (tools, JSON mode, vision) from
       real calls. Every host in it is answered here — OVHcloud's anonymous
-      lane, Pollinations, uncloseai, and llm7.io, which is on the blocklist —
+      lane, Pollinations, uncloseai, and llm7.io, a row since 2026-09-16 —
       and its own disclaimer is the right one: "These are other people's free
       services and can add a key requirement or disappear at any moment." Not
       a feed because its whole set is carried; the right re-read is one GET.
@@ -789,7 +791,8 @@ read:
       among them carried — Gemini, Groq, Cloudflare, Fireworks, Hugging
       Face, Ollama, OpenRouter, DeepSeek, Pollinations, Replicate, Together,
       IBM — and the rest already answered: anyapi.ai and Puter on the
-      watchlist, llm7.io and g4f.dev's family on the blocklist.
+      watchlist, g4f.dev's family on the blocklist and llm7.io a row since
+      2026-09-16.
     reopen_if: >-
       Its Developer APIs section names a vendor with no verdict here.
 

@@ -17,7 +17,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) | 🤖 Coding agents & CLIs | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1` | `2026-09-21` |
 | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) | 🤖 Coding agents & CLIs | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | `2026-09-21` |
 | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna` | `2026-09-21` |
-| [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | `laguna-s-2.1` | `2026-09-21` |
+| [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-21` |
 | [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |

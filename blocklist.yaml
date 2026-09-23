@@ -1,5 +1,5 @@
 # Domains the scout must never propose (and reviewers rejected for cause).
-# Matching is by domain suffix: "llm7.io" also blocks api.llm7.io.
+# Matching is by domain suffix: "kenari.id" also blocks api.kenari.id.
 #
 # A cause is something about the service that no new offer changes: reverse
 # engineering, pooled accounts, spoofed clients, hostility to agents, a product
@@ -287,9 +287,9 @@
 - domain: freetheai.xyz
   reason: >-
     A Discord-key gateway whose model catalog names its sources by prefix, and
-    one prefix is a client it cannot be: opc/big-pickle,
-    opc/deepseek-v4-flash-free, opc/mimo-v2.5-free, opc/nemotron-3-ultra-free
-    and opc/north-mini-code-free are opencode Zen's free ids, which OpenCode
+    one prefix is a client it cannot be: its opc/ ids name opencode Zen's
+    free models — opc/big-pickle, opc/mimo-v2.5-free and
+    opc/nemotron-3-ultra-free among them — which OpenCode
     serves to its own client alone ("You cannot use the free tier in other
     harnesses", its maintainer on anomalyco/opencode#49590, 2026-09-18) and
     has refused to every other client since 2026-09-17. Serving them to

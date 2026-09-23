@@ -37,7 +37,6 @@
           "nvidia/nemotron-3-super-120b-a12b:free",
           "nvidia/nemotron-3.5-lightning:free",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-          "nvidia/nemotron-3.5-content-safety:free",
           "google/gemma-4-31b-it:free",
           "google/gemma-4-26b-a4b-it:free",
           "cohere/north-mini-code:free",
@@ -49,15 +48,17 @@
           "inclusionai/ling-3.0-flash-fin:free",
           "inclusionai/ling-3.0-flash-sante:free",
           "liquid/lfm-2.5-2.6b:free",
-          "inclusionai/ling-3.0-flash-vl:free",
           "nex-agi/nex-n2.5-pro:free",
           "nex-agi/nex-n2.5-mini:free",
           "z-ai/glm-5.2:free",
           "qwen/qwen3.8-27b:free",
           "openrouter/free"
         ],
+        "ignored_ids": [
+          "nvidia/nemotron-3.5-content-safety:free"
+        ],
         "anthropic_base_url": "https://openrouter.ai/api",
-        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 21 on 2026-09-21, and the lane rotates, so a new id waits two weeks for the Models column. Six are not coding models: openrouter/free is the free-models router, nemotron-3.5-content-safety a guardrail, ling-3.0-flash-fin and ling-3.0-flash-sante finance- and health-tuned, nemotron-3-nano-omni a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
+        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-23, and the lane rotates, so a new id waits two weeks for the Models column. nemotron-3.5-content-safety, a guardrail classifier, is left out; openrouter/free is the free-models router, ling-3.0-flash-fin and ling-3.0-flash-sante are finance- and health-tuned, nemotron-3-nano-omni is a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
       },
       "data_use": {
         "trains": "opt-out",
@@ -539,7 +540,6 @@
           "nvidia/nemotron-3-super-120b-a12b:free",
           "nvidia/nemotron-3.5-lightning:free",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
-          "nvidia/nemotron-3.5-content-safety:free",
           "cohere/north-mini-code:free",
           "stepfun/step-3.7-flash:free",
           "poolside/laguna-s-2.1:free",
@@ -549,14 +549,16 @@
           "inclusionai/ling-3.0-flash-sante:free",
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling-small:free",
-          "inclusionai/ling-3.0-flash-vl:free",
           "nex-agi/nex-n2.5-pro:free",
           "nex-agi/nex-n2.5-mini:free",
           "z-ai/glm-5.2:free",
           "qwen/qwen3.8-27b:free"
         ],
+        "ignored_ids": [
+          "nvidia/nemotron-3.5-content-safety:free"
+        ],
         "refuses_bearer": true,
-        "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model"
+        "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, not models, and nemotron-3.5-content-safety, a guardrail classifier, is left out"
       },
       "data_use": {
         "trains": "yes",
@@ -1531,8 +1533,8 @@
         "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api"
       ],
       "card_required": false,
-      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit",
-      "limits": "$5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin, Sante and VL rows, each with and without its -free suffix, on 2026-09-12. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens",
+      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit",
+      "limits": "$5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens",
       "models": [
         {
           "family": "laguna-s-2.1",
@@ -1558,9 +1560,7 @@
           "inclusionai/ling-3.0-flash-fin",
           "inclusionai/ling-3.0-flash-fin-free",
           "inclusionai/ling-3.0-flash-sante",
-          "inclusionai/ling-3.0-flash-sante-free",
-          "inclusionai/ling-3.0-flash-vl",
-          "inclusionai/ling-3.0-flash-vl-free"
+          "inclusionai/ling-3.0-flash-sante-free"
         ],
         "anthropic_base_url": "https://ai-gateway.vercel.sh",
         "note": "every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. Zero-priced ids come and go within days, so a new one waits two weeks for the Models column. spacexai/grok-stt also shows a zero but is speech-to-text billed per second of audio. The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY empty"
@@ -1712,7 +1712,9 @@
         "model_ids": [
           "DeepSeek-V3.1",
           "Meta-Llama-3.3-70B-Instruct",
-          "gpt-oss-120b"
+          "gpt-oss-120b",
+          "DeepSeek-V3.2",
+          "gemma-4-31B-it"
         ],
         "note": "model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane"
       },
@@ -1754,7 +1756,7 @@
         "https://docs.routeway.ai/getting-started/rate-limits"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog",
+      "offering": "OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog",
       "limits": "Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates: ten zero-priced ids on 2026-08-14, three on 2026-09-16, with ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
       "models": [
         {
@@ -1785,9 +1787,14 @@
           "minimax-m2.7:free"
         ],
         "ignored_ids": [
-          "gemma-4-26b-a4b-it-meromero:free"
+          "gemma-4-26b-a4b-it-meromero:free",
+          "gemma-4-26b-a4b-it-chimerax:free",
+          "gemma-4-26b-a4b-it-darksoul:free",
+          "gemma-4-26b-a4b-it-luminous:free",
+          "gemma-4-26b-a4b-it-moonlight:free",
+          "gemma-4-26b-a4b-it-musica:free"
         ],
-        "note": "the three :free ids are every zero-priced row in the catalog on 2026-09-23 but one, all marked available; gemma-4-26b-a4b-it-meromero:free is left out, a community finetune the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. An id joins the Models column only after two weeks in the lane, since every family there is re-checked on every run and three misses archive the row"
+        "note": "the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. An id joins the Models column only after two weeks in the lane, since every family there is re-checked on every run and three misses archive the row"
       },
       "probe": {
         "type": "api-models",
@@ -1861,7 +1868,6 @@
           "nvidia/nemotron-3-super-120b-a12b",
           "nvidia/nemotron-3-nano-30b-a3b",
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
-          "nvidia/nemotron-3.5-content-safety",
           "novita/inclusionai/ling-3.0-tiny",
           "google/gemma-4-31b-it",
           "poolside/laguna-xs.2",
@@ -1870,8 +1876,11 @@
           "nvidia/muse-glimmer-30b",
           "nvidia/nemotron-3.5-lightning-30b-a3b"
         ],
+        "ignored_ids": [
+          "nvidia/nemotron-3.5-content-safety"
+        ],
         "anthropic_base_url": "https://router.requesty.ai",
-        "note": "the twelve ids listed are every row the catalog prices at 0, and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA and Poolside row is marked data_used_for_training with 30-day retention, and nemotron-3.5-content-safety is a guardrail classifier. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)"
+        "note": "the eleven ids listed and the one ignored are every row the catalog prices at 0, and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA and Poolside row is marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety, a guardrail classifier, is left out. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)"
       },
       "data_use": {
         "trains": "yes",
@@ -2192,7 +2201,6 @@
           "nemotron-3-nano-30b-a3b-free",
           "nemotron-3-nano-omni-30b-a3b-reasoning-free",
           "nemotron-3-super-120b-a12b-free",
-          "nemotron-3.5-content-safety-free",
           "nemotron-3.5-lightning-free",
           "nemotron-nano-12b-v2-vl-free",
           "nemotron-nano-9b-v2-free",
@@ -2207,10 +2215,11 @@
           "qwen3.6-plus-preview-free",
           "gpt-live-transcribe",
           "jina-ocr-v1",
-          "gpt-realtime-2.1"
+          "gpt-realtime-2.1",
+          "nemotron-3.5-content-safety-free"
         ],
         "anthropic_base_url": "https://aihubmix.com",
-        "note": "every id the catalog prices at 0 is listed or ignored on purpose, 46 rows on 2026-09-21; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 parses page images into Markdown, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 is a realtime voice model, and qwen3.6-plus-preview-free says it was \"removed from the platform\". For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it"
+        "note": "every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 parses page images into Markdown, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 is a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was \"removed from the platform\". For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it"
       },
       "probe": {
         "type": "api-models",
@@ -2759,7 +2768,7 @@
         "https://llmtr.com/v1/models"
       ],
       "card_required": false,
-      "offering": "Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — ten zero-priced chat ids on 2026-09-21, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them",
+      "offering": "Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them",
       "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a chat model marked free in the catalog), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (this step checks that the gateway and usage logging work on a zero balance). Four free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B, Ling 3.0 Flash Fin); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\"; dots-3-note-preview closes on 30 September 2026. Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\" and \"We never modify model prices\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Read 2026-09-21",
       "models": [
         {
@@ -2780,7 +2789,6 @@
           "poolside/laguna-xs-2.1",
           "inclusionai/ling-3.0-flash-fin",
           "dots-studio/dots-3-note-preview",
-          "openai/gpt-oss-safeguard-20b",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
           "motif/motif-3"
@@ -2791,9 +2799,10 @@
           "evren/gemma-4-31b",
           "evren/glm-5.3-fp8",
           "evren/qwen3-vl-30b",
-          "evren/qwen3.8-flash-next"
+          "evren/qwen3.8-flash-next",
+          "openai/gpt-oss-safeguard-20b"
         ],
-        "note": "the ten ids are every chat row the public catalog prices at 0 on 2026-09-21 outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one; openai/gpt-oss-safeguard-20b is a content classifier. Ignored: an embeddings row, and five evren/* rows priced 0 because each \"kendi EVREN anahtarınızla çalışır\" (runs on your own EVREN key)"
+        "note": "the nine ids are every chat row the public catalog prices at 0 on 2026-09-23 outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings row, openai/gpt-oss-safeguard-20b, a content classifier, and five evren/* rows priced 0 because each \"kendi EVREN anahtarınızla çalışır\" (runs on your own EVREN key)"
       },
       "data_use": {
         "trains": "yes",
@@ -3314,13 +3323,8 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
-      "limits": "\"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota\", and \"Free models are available to any user with a Cline account\" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over \"on a rotating, limited-time basis\" — ids change within a day, so only Laguna S 2.1, in the lane since July, is in the Models column. The free-models page states two limits outright: \"Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI\", and \"Free model usage may be used to help improve model performance and quality\". Read 2026-09-14",
-      "models": [
-        {
-          "family": "laguna-s-2.1",
-          "released": "2026-07"
-        }
-      ],
+      "limits": "\"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota\", and \"Free models are available to any user with a Cline account\" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over \"on a rotating, limited-time basis\" — ids change within a day, so a model joins the Models column only after two weeks in the lane. The free-models page states two limits outright: \"Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI\", and \"Free model usage may be used to help improve model performance and quality\". Read 2026-09-14",
+      "models": [],
       "data_use": {
         "trains": "yes",
         "quote": "Free model usage may be used to help improve model performance and quality.",

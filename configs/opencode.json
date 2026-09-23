@@ -43,9 +43,6 @@
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
         },
-        "nvidia/nemotron-3.5-content-safety:free": {
-          "name": "nvidia/nemotron-3.5-content-safety:free"
-        },
         "google/gemma-4-31b-it:free": {
           "name": "google/gemma-4-31b-it:free"
         },
@@ -78,9 +75,6 @@
         },
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
-        },
-        "inclusionai/ling-3.0-flash-vl:free": {
-          "name": "inclusionai/ling-3.0-flash-vl:free"
         },
         "nex-agi/nex-n2.5-pro:free": {
           "name": "nex-agi/nex-n2.5-pro:free"
@@ -146,9 +140,6 @@
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
         },
-        "nvidia/nemotron-3.5-content-safety:free": {
-          "name": "nvidia/nemotron-3.5-content-safety:free"
-        },
         "cohere/north-mini-code:free": {
           "name": "cohere/north-mini-code:free"
         },
@@ -175,9 +166,6 @@
         },
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
-        },
-        "inclusionai/ling-3.0-flash-vl:free": {
-          "name": "inclusionai/ling-3.0-flash-vl:free"
         },
         "nex-agi/nex-n2.5-pro:free": {
           "name": "nex-agi/nex-n2.5-pro:free"
@@ -212,9 +200,6 @@
         },
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
-        },
-        "nvidia/nemotron-3.5-content-safety": {
-          "name": "nvidia/nemotron-3.5-content-safety"
         },
         "novita/inclusionai/ling-3.0-tiny": {
           "name": "novita/inclusionai/ling-3.0-tiny"
@@ -407,9 +392,6 @@
         "nemotron-3-super-120b-a12b-free": {
           "name": "nemotron-3-super-120b-a12b-free"
         },
-        "nemotron-3.5-content-safety-free": {
-          "name": "nemotron-3.5-content-safety-free"
-        },
         "nemotron-3.5-lightning-free": {
           "name": "nemotron-3.5-lightning-free"
         },
@@ -537,9 +519,6 @@
         "dots-studio/dots-3-note-preview": {
           "name": "dots-studio/dots-3-note-preview"
         },
-        "openai/gpt-oss-safeguard-20b": {
-          "name": "openai/gpt-oss-safeguard-20b"
-        },
         "agnes/agnes-3.0-flash": {
           "name": "agnes/agnes-3.0-flash"
         },
@@ -580,6 +559,12 @@
         },
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
+        },
+        "DeepSeek-V3.2": {
+          "name": "DeepSeek-V3.2"
+        },
+        "gemma-4-31B-it": {
+          "name": "gemma-4-31B-it"
         }
       }
     },
@@ -605,12 +590,6 @@
         },
         "inclusionai/ling-3.0-flash-sante-free": {
           "name": "inclusionai/ling-3.0-flash-sante-free"
-        },
-        "inclusionai/ling-3.0-flash-vl": {
-          "name": "inclusionai/ling-3.0-flash-vl"
-        },
-        "inclusionai/ling-3.0-flash-vl-free": {
-          "name": "inclusionai/ling-3.0-flash-vl-free"
         }
       }
     },

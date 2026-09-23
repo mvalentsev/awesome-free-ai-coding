@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-09-21'
-description: OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog. Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and…
+description: OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog. Free models — every id ending :free — are capped at 5 requests per minute and 200 per day…
 permalink: /providers/routeway/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/routeway/
 
 ## What you get
 
-OpenAI-compatible gateway whose :free lane rotates — three zero-priced ids on 2026-09-16, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 257 metered rows in the same catalog
+OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog
 
 ## Free models
 
@@ -28,7 +28,7 @@ Free models — every id ending :free — are capped at 5 requests per minute an
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Callable ids: `muse-glimmer-30b:free`, `deepseek-v4-flash:free`, `minimax-m2.7:free`
-- Note: the three :free ids are every zero-priced row in the catalog on 2026-09-23 but one, all marked available; gemma-4-26b-a4b-it-meromero:free is left out, a community finetune the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. An id joins the Models column only after two weeks in the lane, since every family there is re-checked on every run and three misses archive the row
+- Note: the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. An id joins the Models column only after two weeks in the lane, since every family there is re-checked on every run and three misses archive the row
 
 ## Evidence
 

@@ -17,11 +17,11 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 ## Free models
 
-`laguna-s-2.1`
+The row names no free model family; the ids its lane serves, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
-"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota", and "Free models are available to any user with a Cline account" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over "on a rotating, limited-time basis" — ids change within a day, so only Laguna S 2.1, in the lane since July, is in the Models column. The free-models page states two limits outright: "Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI", and "Free model usage may be used to help improve model performance and quality". Read 2026-09-14
+"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota", and "Free models are available to any user with a Cline account" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over "on a rotating, limited-time basis" — ids change within a day, so a model joins the Models column only after two weeks in the lane. The free-models page states two limits outright: "Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI", and "Free model usage may be used to help improve model performance and quality". Read 2026-09-14
 
 ## What happens to what you send
 
@@ -40,6 +40,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+- *next scheduled run* — Free models changed: dropped laguna-s-2.1
 - `2026-09-17` — Free models changed: dropped deepseek-v4-flash
 - `2026-09-14` — Added to the list: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 - `2026-07-19` — Delisted

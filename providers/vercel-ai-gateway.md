@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-21'
-description: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit. $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the…
+description: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit. $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the…
 permalink: /providers/vercel-ai-gateway/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/vercel-ai-gateway/
 
 ## What you get
 
-One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and five language models that never touch the credit
+One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit
 
 ## Free models
 
@@ -21,7 +21,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits inclu
 
 ## Limits, in the vendor's words
 
-$5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin, Sante and VL rows, each with and without its -free suffix, on 2026-09-12. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
+$5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
 
 ## What happens to what you send
 
@@ -32,7 +32,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Base URL: `https://ai-gateway.vercel.sh/v1`
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
-- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.0-flash-fin`, `inclusionai/ling-3.0-flash-fin-free`, `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`, `inclusionai/ling-3.0-flash-vl`, `inclusionai/ling-3.0-flash-vl-free`
+- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.0-flash-fin`, `inclusionai/ling-3.0-flash-fin-free`, `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`
 - Note: every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. Zero-priced ids come and go within days, so a new one waits two weeks for the Models column. spacexai/grok-stt also shows a zero but is speech-to-text billed per second of audio. The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY empty
 
 ## Evidence

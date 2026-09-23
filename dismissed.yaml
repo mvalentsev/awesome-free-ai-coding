@@ -275,8 +275,8 @@ dismissed:
     superseded_by: qwen3.8
     dismissed_on: 2026-09-08
     reason: >-
-      The row lists qwen3.6 and qwen3.8 both, from the same docs.hetzner.com
-      page. Nothing to bump.
+      The row lists qwen3.6 and qwen3.8-27b both, from the same
+      docs.hetzner.com page. Nothing to bump.
   - entry: aihubmix
     family: glm-5
     superseded_by: glm-5.3-flash

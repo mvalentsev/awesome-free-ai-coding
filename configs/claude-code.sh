@@ -6,7 +6,7 @@
 # e.g. claude-openrouter-free. Works in bash and zsh.
 
 # ── OpenRouter (free models) · get a key: https://openrouter.ai/settings/keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, nvidia/nemotron-3.5-content-safety:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, inclusionai/ling-3.0-flash-fin:free, inclusionai/ling-3.0-flash-sante:free, liquid/lfm-2.5-2.6b:free, inclusionai/ling-3.0-flash-vl:free, nex-agi/nex-n2.5-pro:free, nex-agi/nex-n2.5-mini:free, z-ai/glm-5.2:free, qwen/qwen3.8-27b:free, openrouter/free
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, inclusionai/ling-3.0-flash-fin:free, inclusionai/ling-3.0-flash-sante:free, liquid/lfm-2.5-2.6b:free, nex-agi/nex-n2.5-pro:free, nex-agi/nex-n2.5-mini:free, z-ai/glm-5.2:free, qwen/qwen3.8-27b:free, openrouter/free
 claude-openrouter-free() {
   ANTHROPIC_BASE_URL="https://openrouter.ai/api" \
   ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY" \
@@ -16,7 +16,7 @@ claude-openrouter-free() {
 }
 
 # ── Requesty · get a key: https://app.requesty.ai/api-keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-super-120b-a12b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, nvidia/nemotron-3.5-content-safety, novita/inclusionai/ling-3.0-tiny, google/gemma-4-31b-it, poolside/laguna-xs.2, poolside/laguna-m.1, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-super-120b-a12b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, novita/inclusionai/ling-3.0-tiny, google/gemma-4-31b-it, poolside/laguna-xs.2, poolside/laguna-m.1, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b
 claude-requesty() {
   ANTHROPIC_BASE_URL="https://router.requesty.ai" \
   ANTHROPIC_AUTH_TOKEN="$REQUESTY_API_KEY" \
@@ -26,7 +26,7 @@ claude-requesty() {
 }
 
 # ── AIHubMix (free models) · get a key: https://aihubmix.com/token
-#    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, xiaomi-mimo-v2.5-free, north-mini-code-free, ling-3.0-tiny-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, hy3-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, ling-3.0-flash-free, mimo-v2-flash-free, minimax-m2.7-free, nemotron-3-nano-30b-a3b-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3-super-120b-a12b-free, nemotron-3.5-content-safety-free, nemotron-3.5-lightning-free, nemotron-nano-12b-v2-vl-free, nemotron-nano-9b-v2-free, union-alpha-free, xiaomi-mimo-v2-omni-free, xiaomi-mimo-v2-pro-free, xiaomi-mimo-v2.5-pro-free, xiaomi-mimo-v2.6-flash-free, xiaomi-mimo-v2.6-pro-free
+#    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, xiaomi-mimo-v2.5-free, north-mini-code-free, ling-3.0-tiny-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, hy3-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, ling-3.0-flash-free, mimo-v2-flash-free, minimax-m2.7-free, nemotron-3-nano-30b-a3b-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3-super-120b-a12b-free, nemotron-3.5-lightning-free, nemotron-nano-12b-v2-vl-free, nemotron-nano-9b-v2-free, union-alpha-free, xiaomi-mimo-v2-omni-free, xiaomi-mimo-v2-pro-free, xiaomi-mimo-v2.5-pro-free, xiaomi-mimo-v2.6-flash-free, xiaomi-mimo-v2.6-pro-free
 claude-aihubmix() {
   ANTHROPIC_BASE_URL="https://aihubmix.com" \
   ANTHROPIC_AUTH_TOKEN="$AIHUBMIX_API_KEY" \
@@ -46,7 +46,7 @@ claude-zai-glm() {
 }
 
 # ── Vercel AI Gateway · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
-#    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-fin, inclusionai/ling-3.0-flash-fin-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free, inclusionai/ling-3.0-flash-vl, inclusionai/ling-3.0-flash-vl-free
+#    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-fin, inclusionai/ling-3.0-flash-fin-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free
 claude-vercel-ai-gateway() {
   ANTHROPIC_BASE_URL="https://ai-gateway.vercel.sh" \
   ANTHROPIC_AUTH_TOKEN="$VERCEL_AI_GATEWAY_API_KEY" \

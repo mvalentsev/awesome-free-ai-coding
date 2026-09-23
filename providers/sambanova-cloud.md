@@ -31,7 +31,7 @@ What you send is not used to train models. In the vendor's words: “SambaCloud 
 
 - Base URL: `https://api.sambanova.ai/v1`
 - Key: `SAMBANOVA_CLOUD_API_KEY` — get one at <https://cloud.sambanova.ai/apis>
-- Callable ids: `DeepSeek-V3.1`, `Meta-Llama-3.3-70B-Instruct`, `gpt-oss-120b`
+- Callable ids: `DeepSeek-V3.1`, `Meta-Llama-3.3-70B-Instruct`, `gpt-oss-120b`, `DeepSeek-V3.2`, `gemma-4-31B-it`
 - Note: model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane
 
 ## Evidence
