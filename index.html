@@ -3113,7 +3113,7 @@ the id is the pricing page&#39;s and the docs&#39; own example; /v1/models answe
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
           <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and <code>claude-openrouter-free</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane.</td></tr>
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
-          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model behind one local endpoint, and <code>free/strong</code> behind one name that moves to the next free lane when one runs out. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model behind one local endpoint; ask for <code>free/strong</code> or <code>free/nokey</code> instead of a model and a call moves to the next free lane when one runs out. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
           <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
         <tr><th scope="row"><a href="index.json">index.json</a></th>

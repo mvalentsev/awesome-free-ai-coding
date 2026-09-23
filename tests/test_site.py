@@ -147,9 +147,9 @@ def test_the_quickstart_command_survives_both_places_it_is_printed(tmp_path):
 
 
 def test_the_readme_and_the_page_ask_the_quickstart_lane_the_same_question(tmp_path):
-    """The README template and `_site_quickstart` each write the command out in
-    full, so its question is typed in two places. A reader who copies it from
-    either one has to send the same prompt, the accuracy requirement included."""
+    """The command is written once (`_quickstart_curl`) and printed by both
+    pages; until 2026-09-24 each wrote it out in full. A reader who copies it
+    from either one sends the same prompt, the accuracy requirement included."""
     registry = tmp_path / "registry.yaml"
     save_registry(registry, [make(api={"base_url": "https://x.ai/v1/", "auth": "none",
                                        "model_ids": ["m-free"]})])
@@ -211,3 +211,80 @@ def test_a_card_cell_breaks_a_token_with_no_space_in_it():
     phone = phone[:phone.index("\n}\n")]
     rule = re.search(r"^\s*table\.rows th, table\.rows td \{[^}]*\}", phone, re.M).group(0)
     assert "overflow-wrap: anywhere" in rule
+
+
+def _render_everything(entries, tmp_path, watchlist=None, today=TODAY) -> dict[str, str]:
+    """Every file the render writes, by path, rendered from one registry the way
+    `freetier-render` renders the repository."""
+    from freetier_radar.render import CONFIGS_README, render_artifacts, render_configs_readme
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, entries)
+    if watchlist is not None:
+        (tmp_path / "watchlist.yaml").write_text(yaml.safe_dump({"watched": watchlist}),
+                                                 encoding="utf-8")
+    render_readme(registry, TEMPLATES, tmp_path / "README.md", today=today)
+    render_site(registry, TEMPLATES, tmp_path / SITE_PAGE, today=today)
+    render_configs_readme(registry, TEMPLATES, tmp_path / CONFIGS_README, today=today)
+    render_artifacts(registry, tmp_path, today=today)
+    inputs = {registry, tmp_path / "watchlist.yaml"}
+    return {p.relative_to(tmp_path).as_posix(): p.read_text(encoding="utf-8")
+            for p in tmp_path.rglob("*") if p.is_file() and p not in inputs}
+
+
+def test_the_readme_and_the_page_count_the_services_checked_alike(tmp_path):
+    """Both pages link the same list of services checked and not listed, and
+    that page counts every verdict on it, a verdict due for a fresh look
+    included. The README counted them all and the site only the current ones,
+    so from the day the oldest verdict aged past the recheck limit the two pages
+    would have printed two numbers for one list."""
+    current = {"domains": ["a.example"], "name": "A", "checked_on": "2026-07-01",
+               "reason": "nothing free today", "reopen_if": "a free lane"}
+    expired = {**current, "domains": ["b.example"], "name": "B", "checked_on": "2026-01-02"}
+    pages = _render_everything([make()], tmp_path, watchlist=[current, expired])
+    assert "**🔭 Checked and not listed** — 2 services" in pages["README.md"]
+    assert "<b>2</b> services were checked and are not listed" in pages[SITE_PAGE]
+    assert "\n2 services whose free tier" in pages["providers/checked.md"]
+
+
+def test_the_shell_function_every_page_names_is_one_the_file_defines(tmp_path):
+    """The site, the configs README and the file's own header told a reader to
+    run `claude-openrouter-free` — typed by hand, so the day OpenRouter's row
+    lost its Anthropic route or left the list, three pages would have named a
+    function configs/claude-code.sh no longer defines."""
+    entries = [make(id="gw-one", name="GwOne", category="aggregator",
+                    api={"base_url": "https://one.example/v1",
+                         "anthropic_base_url": "https://one.example", "model_ids": ["m"]})]
+    pages = _render_everything(entries, tmp_path)
+    assert "claude-gw-one() {" in pages["configs/claude-code.sh"]
+    for path in ("configs/claude-code.sh", "configs/README.md", SITE_PAGE):
+        assert "claude-gw-one" in pages[path].split("claude-gw-one() {")[0], path
+    assert not [path for path, text in pages.items() if "claude-openrouter-free" in text]
+
+
+@pytest.mark.parametrize("name, value, readme_says, site_says, unsaid", [
+    ("FRONTIER_WITHIN", 12.0, "within 12 points", "within 12 points", "within 10 points"),
+    ("PROVISIONAL_PROMOTE_DAYS", 21, "three weeks", "three weeks", "two weeks"),
+    ("ARCHIVE_AFTER_FAILURES", 4, "fail ×4", "fails 4 probes", "fail ×3"),
+    ("ARCHIVE_AFTER_DAYS", 45, "stale 45d", "goes 45\n          days", "stale 60d"),
+    ("PROBE_WEEKDAYS", (1,), "once a week", "once a week", "twice a week"),
+])
+def test_every_page_states_the_rule_the_code_applies(tmp_path, monkeypatch, name, value,
+                                                      readme_says, site_says, unsaid):
+    """A rule the pages describe is a constant in the code, and a page that
+    typed the constant's value kept describing the old rule after the code
+    moved: the diagram's `fail ×3 · stale 60d`, the frontier bar's "within 10
+    points", the provisional "two weeks" and "twice a week" in two dozen places.
+    Each page reads the constant, so changing it changes every page."""
+    import freetier_radar.render as render
+    monkeypatch.setattr(render, name, value)
+    entries = [
+        make(id="a", name="A", provisional=True, models=[{"family": "big", "tier": "frontier",
+                                                            "aa_model": "big"}],
+             api={"base_url": "https://a.example/v1", "auth": "none", "model_ids": ["big"]}),
+        make(id="b", name="B", category="agent-cli", models=[{"family": "big", "tier": "frontier",
+                                                                "aa_model": "big"}]),
+    ]
+    pages = _render_everything(entries, tmp_path)
+    assert readme_says in pages["README.md"]
+    assert site_says in pages[SITE_PAGE]
+    assert not [path for path, text in pages.items() if unsaid in text]

@@ -420,9 +420,11 @@ def test_every_page_offers_only_the_litellm_groups_the_config_defines(tmp_path: 
     Claude Opus 5.5 took the top of the index to 57.6, no free lane stayed within
     ten points of it, and free/frontier left litellm.yaml — while its header,
     llms.txt and the configs README went on telling readers to ask for it, a
-    call LiteLLM answers with "model not found"."""
+    call LiteLLM answers with "model not found". The fix reached those three and
+    left `free/strong` typed into the README's and the site's file tables."""
     from freetier_radar.models import save_registry
-    from freetier_radar.render import build_llms_txt, render_configs_readme
+    from freetier_radar.render import (SITE_PAGE, build_llms_txt, render_configs_readme,
+                                       render_site)
     strong = make(id="glm", name="GLM", models=[
         {"family": "glm-5.3", "tier": "strong", "aa_model": "glm-5-3"}],
         api={"base_url": "https://glm.example/v1", "model_ids": ["zai/glm-5.3"]})
@@ -441,15 +443,18 @@ def test_every_page_offers_only_the_litellm_groups_the_config_defines(tmp_path: 
                          if line.startswith("#"))
         configs = render_configs_readme(reg, Path("templates"), tmp_path / "configs" / "README.md",
                                         today=TODAY)
-        texts = {"header": header, "configs": configs, "llms": build_llms_txt(entries, TODAY)}
+        texts = {"header": header, "configs": configs, "llms": build_llms_txt(entries, TODAY),
+                 "readme": render_readme(reg, Path("templates"), tmp_path / "README.md",
+                                         today=TODAY),
+                 "site": render_site(reg, Path("templates"), tmp_path / SITE_PAGE, today=TODAY)}
         return {name: [g for g in ("free/frontier", "free/strong", "free/nokey") if g in text]
                 for name, text in texts.items()}
 
-    assert offered([strong]) == {"header": ["free/strong"], "configs": ["free/strong"],
-                                 "llms": ["free/strong"]}
+    pages = ("header", "configs", "llms", "readme", "site")
+    assert offered([strong]) == {name: ["free/strong"] for name in pages}
     assert offered([strong, frontier]) == {name: ["free/frontier", "free/strong"]
-                                           for name in ("header", "configs", "llms")}
-    assert offered([untiered]) == {"header": [], "configs": [], "llms": []}
+                                           for name in pages}
+    assert offered([untiered]) == {name: [] for name in pages}
 
 
 def test_headline_counts_are_derived_from_the_registry():
@@ -571,7 +576,13 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
                           "note": "2 requests per minute, per IP and per model",
                           "session_header": "",
                           "user_agent": "",
-                          "notice": None}
+                          "notice": None,
+                          # written once, for the README's code block and the
+                          # site's <pre> and copy button alike
+                          "curl": "curl -s https://b.example/v1/chat/completions \\\n"
+                                  "  -H 'Content-Type: application/json' \\\n"
+                                  """  -d '{"model":"gpt-oss-120b","messages":"""
+                                  """[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'"""}
 
 
 def test_the_quickstart_curl_sends_the_session_header_its_lane_asks_for(tmp_path: Path):

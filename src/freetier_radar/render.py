@@ -14,14 +14,18 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .history import (Event, EventType, archive_reason, diff_state, load_history,
                       refuse_deleted_rows, registry_state, replay)
-from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, SOURCE_RECHECK_DAYS,
-                     WATCH_RECHECK_DAYS, Category, Entry, Notice, ProbeType, Tier, Watched,
-                     domain_of, folded_into, is_archived, is_archived_for_good, is_blocked,
-                     is_watch_current, live_families, load_blocklist, load_registry,
-                     load_watchlist)
+from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
+                     SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, Notice,
+                     ProbeType, Tier, Watched, domain_of, folded_into, is_archived,
+                     is_archived_for_good, is_blocked, is_watch_current, live_families,
+                     load_blocklist, load_registry, load_watchlist, probe_frequency)
 # How the probe decides which of a row's families a catalog id is: the configs
-# group ids by tier with the same rule, so the two can never disagree.
-from .prober import _id_squash
+# group ids by tier with the same rule, so the two can never disagree. The
+# promotion day is the probe's too, and the pages say how far off it is.
+from .prober import PROVISIONAL_PROMOTE_DAYS, _id_squash
+# The bar a family's score must clear to be called frontier, which the picks
+# table states beside the answer.
+from .tiers import FRONTIER_WITHIN
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
@@ -124,6 +128,31 @@ def badge_colour(verified_through: date, today: date) -> str:
     if age <= BADGE_FRESH_DAYS:
         return BADGE_GREEN
     return BADGE_AMBER if age <= BADGE_AGEING_DAYS else BADGE_RED
+
+
+def _schedule() -> str:
+    """How often every row is probed, as each page says it — read when a page is
+    built rather than when this module loads, so it is always the schedule the
+    run keeps."""
+    return probe_frequency(PROBE_WEEKDAYS)
+
+
+_WEEKS = {7: "a week", 14: "two weeks", 21: "three weeks", 28: "four weeks"}
+
+
+def _weeks(days: int) -> str:
+    return _WEEKS.get(days, f"{days} days")
+
+
+def _by_rank(e: Entry) -> tuple[int, str]:
+    """The order rows are read in wherever the list prints more than one of
+    them: `rank`, then the name."""
+    return e.rank, e.name.lower()
+
+
+def _ordered(active: list[Entry], category: Category) -> list[Entry]:
+    """One section of the list, in the order every page prints it."""
+    return sorted((e for e in active if e.category is category), key=_by_rank)
 
 
 # What each event is called where a human reads it. The feed titles stand alone
@@ -291,7 +320,7 @@ def _connectable(entries: list[Entry], today: date) -> list[Entry]:
     return sorted(
         (e for e in entries
          if not is_archived(e, today) and e.api and e.api.base_url and e.api.openai_compatible),
-        key=lambda e: (e.rank, e.name.lower()),
+        key=_by_rank,
     )
 
 
@@ -338,7 +367,7 @@ def _model_index(active: list[Entry]) -> list[dict]:
         {"family": family,
          "providers": [{"name": p.name, "url": p.url,
                         "card_flag": " 💳" if p.card_required else ""}
-                       for p in sorted(ps, key=lambda p: (p.rank, p.name.lower()))]}
+                       for p in sorted(ps, key=_by_rank)]}
         for family, ps in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))
     ]
 
@@ -362,7 +391,7 @@ def _starters(active: list[Entry]) -> list[dict]:
     rows = [e for e in active
             if e.category is Category.AGENT_CLI and not e.card_required and live_families(e)]
     return [{"name": e.name, "url": e.url, "families": live_families(e)}
-            for e in sorted(rows, key=lambda e: (e.rank, e.name.lower()))[:README_STARTERS]]
+            for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
 
 
 def _pick(e: Entry, families: list[str] | None = None) -> dict:
@@ -393,8 +422,7 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
     "no account" is a property of the endpoint, and it is the same property the
     quickstart curl below the table is chosen by.
     """
-    ranked = [e for e in sorted(active, key=lambda e: (e.rank, e.name.lower()))
-              if not e.card_required]
+    ranked = [e for e in sorted(active, key=_by_rank) if not e.card_required]
 
     def top(category: Category) -> list[dict]:
         return [_pick(e) for e in ranked if e.category is category][:README_PICKS]
@@ -444,18 +472,42 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
     for e in connectable:
         if e.api.auth == "none" and e.api.model_ids:
             notice = e.api.notice
-            return {"name": e.name, "url": e.url,
-                    "base_url": e.api.base_url.rstrip("/"),
-                    "model_id": e.api.model_ids[0],
-                    "note": e.api.note,
-                    "session_header": e.api.session_header or "",
-                    "user_agent": QUICKSTART_USER_AGENT if e.api.client_user_agent else "",
-                    # The command stays on the page while the list waits for the
-                    # vendor, so the page says, right under it, that it does not
-                    # work and since when.
-                    "notice": ({"since": notice.since.isoformat(), "text": notice.text,
-                                "url": notice.url or ""} if notice else None)}
+            start = {"name": e.name, "url": e.url,
+                     "base_url": e.api.base_url.rstrip("/"),
+                     "model_id": e.api.model_ids[0],
+                     "note": e.api.note,
+                     "session_header": e.api.session_header or "",
+                     "user_agent": QUICKSTART_USER_AGENT if e.api.client_user_agent else "",
+                     # The command stays on the page while the list waits for the
+                     # vendor, so the page says, right under it, that it does not
+                     # work and since when.
+                     "notice": ({"since": notice.since.isoformat(), "text": notice.text,
+                                 "url": notice.url or ""} if notice else None)}
+            return {**start, "curl": _quickstart_curl(start)}
     return None
+
+
+def _quickstart_curl(start: dict) -> str:
+    """The command itself, written once for both pages that print it.
+
+    The README printed it from its template and the site from here, so the
+    question it asks was typed twice and a test held the two copies together.
+    The site shows it twice more — in a <pre> and in the copy button's
+    attribute — and an attribute is the one place a shell command must not be
+    assembled by a template: this one carries both quote characters, and a
+    fragment Jinja had already marked safe would close the attribute on the
+    first of them. Built as one string here, it is printed as it is in the
+    README's code block and escaped correctly in both places on the site.
+    """
+    lines = [f"curl -s {start['base_url']}/chat/completions \\",
+             "  -H 'Content-Type: application/json' \\"]
+    if start["user_agent"]:
+        lines.append(f"  -H 'User-Agent: {start['user_agent']}' \\")
+    if start["session_header"]:
+        lines.append(f'  -H "{start["session_header"]}: quickstart-$RANDOM$RANDOM" \\')
+    lines.append(f"""  -d '{{"model":"{start['model_id']}","messages":"""
+                 """[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'""")
+    return "\n".join(lines)
 
 
 def _watch_rows(watchlist: list[Watched], today: date) -> list[dict]:
@@ -551,7 +603,7 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES,
         '<feed xmlns="http://www.w3.org/2005/Atom">',
         "  <title>awesome-free-ai-coding — what changed</title>",
         "  <subtitle>Free LLM APIs and coding agents arriving, changing and dying, "
-        "as the twice-weekly probes see it.</subtitle>",
+        f"as the probes that run {_schedule()} see it.</subtitle>",
         f"  <id>{FEED_URL}</id>",
         f"  <link rel=\"self\" href={quoteattr(FEED_URL)}/>",
         f"  <link rel=\"alternate\" href={quoteattr(REPO_URL)}/>",
@@ -613,14 +665,80 @@ def _connection_note(e: Entry) -> str:
     return "<br>".join(parts)
 
 
+def _shared_facts(entries: list[Entry], today: date,
+                  watchlist: list[Watched] | None = None) -> dict:
+    """Every figure and every stated rule the README and the site both print,
+    worked out once.
+
+    Each page used to count for itself: the site kept its own tally of the
+    services checked (the current verdicts only, where the README and the page
+    both link counted them all), and the README typed `free/strong` into its
+    file table after the configs README, llms.txt and litellm.yaml had started
+    reading the groups off the config. A figure computed in one place cannot be
+    two figures, and a rule the code applies — the frontier bar, the provisional
+    fortnight, how often a row is probed, how a row leaves — is printed from
+    the constant that applies it.
+    """
+    active = [e for e in entries if not is_archived(e, today)]
+    connectable = _connectable(entries, today)
+    # The badge dates the evidence, not the render. Using today's date moved it
+    # forward whenever the README was regenerated without a probe run —
+    # claiming a freshness no entry had. The oldest passing probe among live
+    # entries is the honest reading: everything on this page has been confirmed
+    # at least this recently. It is a floor, and the badge has to say so — read
+    # as a single check date it understates the page badly, because one lagging
+    # row drags the whole claim back. On 2026-09-12 it read 2026-09-07 while
+    # fifty-four of fifty-six rows had passed a probe two days earlier and only
+    # trae and inception-labs, both mid-re-anchor, were holding it there.
+    verified_through = min((e.last_verified for e in active), default=today)
+    colour = badge_colour(verified_through, today)
+    model_index = _model_index(active)
+    anthropic = _anthropic_ready(entries, today)
+    return {
+        "date": today.isoformat(),
+        "verified_through": verified_through.isoformat(),
+        "verified_colour": colour,
+        "verified_word": BADGE_WORDS[colour],
+        # The headline counts. Every one of them is derived, so the page can
+        # never advertise a number the registry stopped backing.
+        "active_count": len(active),
+        "no_card_count": sum(1 for e in active if not e.card_required),
+        "card_count": sum(1 for e in active if e.card_required),
+        "no_signup_count": sum(1 for e in connectable if needs_no_account(e)),
+        "endpoint_count": len(connectable),
+        "family_count": len(model_index),
+        "model_index": model_index,
+        "starters": _starters(active),
+        "picks": _picks(active, connectable),
+        "quickstart": _quickstart(connectable),
+        # Every verdict on the page of services checked and not listed, a
+        # verdict due for a fresh look included — that page lists them all.
+        "watch_count": len(watchlist or []),
+        # The LiteLLM groups the config defines today, and the shell function a
+        # reader is shown as the example: both are read off the files they name.
+        "litellm_groups": litellm_groups(entries, today),
+        "claude_example": f"claude-{anthropic[0].id}" if anthropic else "",
+        "has_provisional": any(e.provisional for e in active),
+        "has_trains": any(_trains(e) for e in active),
+        "schedule": _schedule(),
+        "frontier_within": f"{FRONTIER_WITHIN:g}",
+        "provisional_weeks": _weeks(PROVISIONAL_PROMOTE_DAYS),
+        "archive_after_failures": ARCHIVE_AFTER_FAILURES,
+        "archive_after_days": ARCHIVE_AFTER_DAYS,
+        "watch_recheck_days": WATCH_RECHECK_DAYS,
+        "checked_url": checked_page_url(),
+        "feed_url": FEED_URL,
+        "pages_url": PAGES_URL,
+    }
+
+
 def build_context(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
                   history: list[Event] | None = None) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     sections = []
     for cat, title in CATEGORY_TITLES.items():
-        rows = sorted((e for e in active if e.category is cat),
-                      key=lambda e: (e.rank, e.name.lower()))
+        rows = _ordered(active, cat)
         # Counted here rather than in the template: the "no card" number is the
         # one a reader is actually shopping for, and a section where it equals
         # the row count should say so in those words instead of making them
@@ -633,7 +751,6 @@ def build_context(entries: list[Entry], today: date,
             "no_card": no_card,
             "all_no_card": bool(rows) and no_card == len(rows),
         })
-    connectable = _connectable(entries, today)
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "page": provider_page_url(e.id),
@@ -641,46 +758,17 @@ def build_context(entries: list[Entry], today: date,
          "auth": _auth_cell(e),
          "key_url": e.api.key_url or "",
          "note": _connection_note(e)}
-        for e in connectable
+        for e in _connectable(entries, today)
     ]
-    # The badge dates the evidence, not the render. Using today's date moved it
-    # forward whenever the README was regenerated without a probe run —
-    # claiming a freshness no entry had. The oldest passing probe among live
-    # entries is the honest reading: everything on this page has been confirmed
-    # at least this recently. It is a floor, and the badge has to say so — read
-    # as a single check date it understates the page badly, because one lagging
-    # row drags the whole claim back. On 2026-09-12 it read 2026-09-07 while
-    # fifty-four of fifty-six rows had passed a probe two days earlier and only
-    # trae and inception-labs, both mid-re-anchor, were holding it there.
-    verified_through = min((e.last_verified for e in active), default=today)
-    groups = litellm_groups(entries, today)
-    return {"date": today.isoformat(), "sections": sections,
-            "verified_through": verified_through.isoformat(),
-            "verified_colour": badge_colour(verified_through, today),
-            "archived": _archived_rows(entries, today), "active_count": len(active),
-            "archive_after_failures": ARCHIVE_AFTER_FAILURES, "archive_after_days": ARCHIVE_AFTER_DAYS,
-            "has_provisional": any(e.provisional for e in active),
-            "has_trains": any(_trains(e) for e in active),
+    return {**_shared_facts(entries, today, watchlist),
+            "sections": sections,
+            "archived": _archived_rows(entries, today),
             "connections": connections,
-            # The LiteLLM groups the config defines today, ready to print.
-            "litellm_groups": _either([f"`{g}`" for g in groups]) if groups else "",
-            # The headline counts. Every one of them is derived, so the page can
-            # never advertise a number the registry stopped backing.
-            "no_card_count": sum(1 for e in active if not e.card_required),
-            "card_count": sum(1 for e in active if e.card_required),
-            "no_signup_count": sum(1 for e in connectable if needs_no_account(e)),
-            "endpoint_count": len(connections),
-            "model_index": _model_index(active),
-            "starters": _starters(active),
-            "picks": _picks(active, connectable),
-            "quickstart": _quickstart(connectable),
             # The answer to "why isn't X here?", which a list like this is asked
             # more often than anything else. Rendered from the same file the
             # scout filters proposals with, so the page and the machinery can
             # never drift apart.
             "watchlist": _watch_rows(watchlist or [], today),
-            "watch_recheck_days": WATCH_RECHECK_DAYS,
-            "checked_url": checked_page_url(),
             # sources.yaml itself is not rendered — the page says how the
             # verdicts work and the file holds them, the way it does for
             # dismissed.yaml.
@@ -689,9 +777,7 @@ def build_context(entries: list[Entry], today: date,
             # Everything else is regenerated from scratch each run and remembers
             # nothing, which left "did anything change?" answerable only from
             # git log.
-            "changes": _change_rows(history or [], entries, today),
-            "feed_url": FEED_URL,
-            "pages_url": PAGES_URL}
+            "changes": _change_rows(history or [], entries, today)}
 
 
 def build_index(entries: list[Entry], today: date,
@@ -800,8 +886,7 @@ def _site_row(e: Entry) -> dict:
 def _site_sections(active: list[Entry]) -> list[dict]:
     sections = []
     for cat, title in CATEGORY_TITLES.items():
-        rows = sorted((e for e in active if e.category is cat),
-                      key=lambda e: (e.rank, e.name.lower()))
+        rows = _ordered(active, cat)
         emoji, _, name = title.partition(" ")
         no_card = sum(1 for e in rows if not e.card_required)
         sections.append({
@@ -853,29 +938,6 @@ def _site_changes(events: list[Event], entries: list[Entry] | None,
             for ev in _newest_first(events, limit)]
 
 
-def _site_quickstart(connectable: list[Entry]) -> dict | None:
-    """The README's quickstart with the command itself built here.
-
-    The page shows the curl twice — in the <pre> and in the copy button's
-    attribute — and an attribute is the one place a shell command must not be
-    assembled by a template: this one carries both quote characters, and a
-    fragment Jinja had already marked safe would close the attribute on the
-    first of them. Built as one string, it is escaped correctly in both places.
-    """
-    start = _quickstart(connectable)
-    if start is None:
-        return None
-    lines = [f"curl -s {start['base_url']}/chat/completions \\",
-             "  -H 'Content-Type: application/json' \\"]
-    if start["user_agent"]:
-        lines.append(f"  -H 'User-Agent: {start['user_agent']}' \\")
-    if start["session_header"]:
-        lines.append(f'  -H "{start["session_header"]}: quickstart-$RANDOM$RANDOM" \\')
-    lines.append(f"""  -d '{{"model":"{start['model_id']}","messages":"""
-                 """[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'""")
-    return {**start, "curl": "\n".join(lines)}
-
-
 def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
     """What the page is, for the engines that read structured data rather than
     prose: a site, and the dataset behind it with the three files it publishes.
@@ -891,7 +953,7 @@ def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
             {"@type": "WebSite", "@id": f"{PAGES_URL}/#website", "url": f"{PAGES_URL}/",
              "name": "awesome-free-ai-coding", "inLanguage": "en",
              "description": "Legal free LLM APIs, coding agents and no-card trials for AI "
-                            "coding, machine-verified twice a week."},
+                            f"coding, machine-verified {_schedule()}."},
             {"@type": "Dataset", "@id": f"{PAGES_URL}/#dataset",
              "name": "awesome-free-ai-coding registry",
              "description": f"{active_count} legal free LLM APIs, coding agents and no-card "
@@ -923,47 +985,23 @@ def build_site_context(entries: list[Entry], today: date,
                        history: list[Event] | None = None) -> dict:
     """Everything index.html shows, derived from the registry the README is.
 
-    Deliberately a second reading of the same entries rather than a reshaping of
-    `build_context`: that context is Markdown — folded cells, backticked ids,
-    escaped pipes — and an HTML page that unpicked it would be one renderer's
-    output squeezed through another's, which is the very failure this page
-    exists to end.
+    The figures, the picks, the quickstart and the rules the page states are
+    the README's own (`_shared_facts`). The rows are a second reading of the
+    same entries rather than a reshaping of `build_context`'s: that context is
+    Markdown — folded cells, backticked ids, escaped pipes — and an HTML page
+    that unpicked it would be one renderer's output squeezed through another's,
+    which is the very failure this page exists to end.
     """
     active = [e for e in entries if not is_archived(e, today)]
-    connectable = _connectable(entries, today)
-    verified_through = min((e.last_verified for e in active), default=today)
-    colour = badge_colour(verified_through, today)
-    model_index = _model_index(active)
+    facts = _shared_facts(entries, today, watchlist)
     return {
-        "date": today.isoformat(),
+        **facts,
         "sections": _site_sections(active),
-        "verified_through": verified_through.isoformat(),
-        "verified_colour": colour,
-        "verified_word": BADGE_WORDS[colour],
-        "active_count": len(active),
-        "no_card_count": sum(1 for e in active if not e.card_required),
-        "card_count": sum(1 for e in active if e.card_required),
-        "no_signup_count": sum(1 for e in connectable if needs_no_account(e)),
-        "endpoint_count": len(connectable),
-        "family_count": len(model_index),
-        "jsonld": _site_jsonld(len(active), len(model_index), today),
-        "model_index": model_index,
-        "starters": _starters(active),
-        "picks": _picks(active, connectable),
-        "quickstart": _site_quickstart(connectable),
-        "connections": _site_connections(connectable),
+        "jsonld": _site_jsonld(facts["active_count"], facts["family_count"], today),
+        "connections": _site_connections(_connectable(entries, today)),
         "archived": _site_archived_rows(entries, today),
         "changes": _site_changes(history or [], entries, today),
-        "watch_count": sum(1 for w in (watchlist or []) if is_watch_current(w, today)),
-        "checked_url": checked_page_url(),
         "providers_url": f"{PAGES_URL}/{PROVIDERS_DIR}/",
-        "archive_after_failures": ARCHIVE_AFTER_FAILURES,
-        "archive_after_days": ARCHIVE_AFTER_DAYS,
-        "watch_recheck_days": WATCH_RECHECK_DAYS,
-        "has_provisional": any(e.provisional for e in active),
-        "has_trains": any(_trains(e) for e in active),
-        "feed_url": FEED_URL,
-        "pages_url": PAGES_URL,
         "repo_url": REPO_URL,
     }
 
@@ -1028,7 +1066,7 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         "# awesome-free-ai-coding",
         "",
         "> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials "
-        "and free models, probe-verified twice a week against live model catalogs and "
+        f"and free models, probe-verified {_schedule()} against live model catalogs and "
         f"pricing pages. Generated {today.isoformat()} from the registry; every offer under "
         "the first four headings answered its last probe.",
         "",
@@ -1041,8 +1079,7 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         "are listed last, under Archived, each with why it left.",
     ]
     for category, title in CATEGORY_TITLES.items():
-        rows = sorted((e for e in live if e.category == category),
-                      key=lambda e: (e.rank, e.name.lower()))
+        rows = _ordered(live, category)
         if not rows:
             continue
         lines += ["", f"## {_plain_title(title)}", ""]
@@ -1241,7 +1278,7 @@ def _anthropic_ready(entries: list[Entry], today: date) -> list[Entry]:
     return sorted(
         (e for e in entries
          if not is_archived(e, today) and e.api and e.api.anthropic_base_url),
-        key=lambda e: (e.rank, e.name.lower()),
+        key=_by_rank,
     )
 
 
@@ -1259,16 +1296,19 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
     The model is the first id the row lists, which on a rotating lane is the
     registry's own order; a row that lists none leaves ANTHROPIC_MODEL to the
     reader and says so."""
+    ready = _anthropic_ready(entries, today)
+    example = (f",\n# e.g. claude-{ready[0].id}. Works in bash and zsh." if ready
+               else ".\n# Works in bash and zsh.")
     lines = [
         "# Claude Code on a free lane — generated from registry.yaml, do not edit by hand.",
-        "# Each function points Claude Code at a gateway this list verifies twice a week:",
+        f"# Each function points Claude Code at a gateway this list verifies {_schedule()}:",
         "# the vendor documents the Anthropic-format route, and the probe confirms it still",
         "# answers. Usage:  source configs/free-llm.env.example  (fill the key you use),",
-        "# then  source configs/claude-code.sh  and run the function named after the row,",
-        "# e.g. claude-openrouter-free. Works in bash and zsh.",
+        "# then  source configs/claude-code.sh  and run the function named after the row"
+        + example,
         "",
     ]
-    for e in _anthropic_ready(entries, today):
+    for e in ready:
         card = " · card required" if e.card_required else ""
         key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
         lines.append(f"# ── {e.name}{card}{key_hint}")
@@ -1510,7 +1550,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     flags = [CATEGORY_TITLES[e.category]]
     flags.append("card required" if e.card_required else "no card")
     if e.provisional and not archived:
-        flags.append("provisional — added recently, two weeks of probes still to pass")
+        flags.append(f"provisional — added recently, {_weeks(PROVISIONAL_PROMOTE_DAYS)} of probes "
+                     "still to pass")
     if archived:
         flags.append(f"**archived** — {archive_reason(e, today)}")
     else:
@@ -1565,13 +1606,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     out += _history_section(e, events, today)
     if not archived:
         standing = (f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
-                    "twice a week")
+                    f"{_schedule()}")
     elif is_archived_for_good(e, today):
         standing = (f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row "
                     "any more — it left the list for good unless a reviewer brings it back")
     else:
         standing = (f"Generated from `registry.yaml` on {today.isoformat()}. A probe still reads it "
-                    "twice a week, and the first probe it passes brings it back to the list")
+                    f"{_schedule()}, and the first probe it passes brings it back to the list")
     out += ["", "---", "",
             f"{standing}; the full list, the Atom feed and the machinery are at <{REPO_URL}>.",
             "", "{% endraw %}", ""]
@@ -1585,17 +1626,16 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
                           "title": "Every free LLM API and coding agent on the list, with its evidence",
                           "description": "One page per provider: the free tier in the vendor's own "
                                          "words, connection details, the evidence a live probe reads "
-                                         "twice a week, and the row's history.",
+                                         f"{_schedule()}, and the row's history.",
                           "permalink": f"/{PROVIDERS_DIR}/"}),
            "{% raw %}", "", "# Every provider, one page each", "",
            f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
-           "row is re-verified twice a week, and an archived one says why it left.", ""]
+           f"row is re-verified {_schedule()}, and an archived one says why it left.", ""]
     live = [e for e in entries if not is_archived(e, today)]
     archived = _archive(entries, today)
     out += ["| Provider | Section | Free models | Last verified |", "|---|---|---|---|"]
     for cat, title in CATEGORY_TITLES.items():
-        for e in sorted((e for e in live if e.category is cat),
-                        key=lambda e: (e.rank, e.name.lower())):
+        for e in _ordered(live, cat):
             fams = ", ".join(f"`{f}`" for f in live_families(e)) or "—"
             out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {title} | {fams} "
                        f"| `{e.last_verified.isoformat()}` |")
@@ -1680,6 +1720,8 @@ def _markdown_env(template_dir: Path) -> Environment:
     # sentence in the context so the two pages read the same registry field.
     env.filters["fold_note"] = lambda text: _fold(text, README_NOTE_TEASER,
                                                   README_NOTE_COLLAPSE, small=True)
+    # A list of names as a sentence of code spans: "`a`", "`a` or `b`".
+    env.filters["either_code"] = lambda names: _either([f"`{n}`" for n in names])
     return env
 
 

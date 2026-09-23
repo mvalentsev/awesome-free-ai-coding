@@ -303,7 +303,7 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 | File | What it gives you |
 |---|---|
 | [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
-| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint, and `free/strong` behind one name that moves to the next free lane when one runs out |
+| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint; ask for `free/strong` or `free/nokey` instead of a model and a call moves to the next free lane when one runs out |
 | [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml) | The list for machines — one text file for LLM search and agents, the JSON registry, and an Atom feed of every change |

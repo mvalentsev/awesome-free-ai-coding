@@ -11,17 +11,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free LLM APIs &amp; AI coding agents — {{ active_count }} verified free tiers</title>
-<meta name="description" content="{{ active_count }} legal free LLM APIs, coding agents and no-card trials for AI coding — {{ no_card_count }} need no card, {{ no_signup_count }} need no signup. Machine-verified twice a week against live APIs and pricing pages, with the limits in each vendor's own words.">
+<meta name="description" content="{{ active_count }} legal free LLM APIs, coding agents and no-card trials for AI coding — {{ no_card_count }} need no card, {{ no_signup_count }} need no signup. Machine-verified {{ schedule }} against live APIs and pricing pages, with the limits in each vendor's own words.">
 <link rel="canonical" href="{{ pages_url }}/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="awesome-free-ai-coding">
 <meta property="og:title" content="Free LLM APIs &amp; AI coding agents — {{ active_count }} verified free tiers">
-<meta property="og:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified twice a week. {{ no_card_count }} of {{ active_count }} rows need no card; {{ no_signup_count }} need no signup at all.">
+<meta property="og:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified {{ schedule }}. {{ no_card_count }} of {{ active_count }} rows need no card; {{ no_signup_count }} need no signup at all.">
 <meta property="og:url" content="{{ pages_url }}/">
 <meta property="og:image" content="{{ pages_url }}/assets/social-preview.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free LLM APIs &amp; AI coding agents — {{ active_count }} verified free tiers">
-<meta name="twitter:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified twice a week.">
+<meta name="twitter:description" content="Legal free tiers, no-card trials and free-model APIs for AI coding, probe-verified {{ schedule }}.">
 <meta name="twitter:image" content="{{ pages_url }}/assets/social-preview.png">
 <link rel="alternate" type="application/atom+xml" title="awesome-free-ai-coding changes" href="{{ feed_url }}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E">
@@ -230,7 +230,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
            alt="awesome-free-ai-coding — legal free LLM APIs and coding agents, probe-verified">
     </picture>
     <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
-      free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages;
+      free-model APIs for AI coding — probed {{ schedule }} against live model APIs and pricing pages;
       an offer that dies drops to the <a href="#archive">Archive</a> on the run that finds it gone.</p>
     <p class="meta">
       <span class="dot" style="background:#{{ verified_colour }}"></span>
@@ -293,7 +293,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       {% endfor %}
     </div>
     <p class="sub" style="margin-top:12px">Every model name here is read back from the vendor's own
-      API or pricing page twice a week, and the quota that comes with it is in
+      API or pricing page {{ schedule }}, and the quota that comes with it is in
       <a href="#agent-cli">the agents table</a>.</p>
     {% endif %}
 
@@ -343,8 +343,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     </div>
     <p class="sub" style="margin-top:12px">“Frontier” is a tier measured on the
       <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
-      Index</a> — the model a row's free lane serves scores within 10 points of its top, re-read
-      twice a week. Every other answer is the section's own ranking,
+      Index</a> — the model a row's free lane serves scores within {{ frontier_within }} points of its top, re-read
+      {{ schedule }}. Every other answer is the section's own ranking,
       <a href="{{ repo_url }}/blob/main/CONTRIBUTING.md#how-rows-are-ordered">explained in
       CONTRIBUTING</a>; each list is the top of its section, so a row that stops verifying leaves
       these cards on the same run it leaves the list.</p>
@@ -540,9 +540,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/free-llm.env.example">configs/free-llm.env.example</a></th>
           <td>Commented env exports for any OpenAI-compatible tool.</td></tr>
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
-          <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and <code>claude-openrouter-free</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane.</td></tr>
+          <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and {% if claude_example %}<code>{{ claude_example }}</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane{% else %}run the function named after a row to start <a href="https://code.claude.com/docs">Claude Code</a> on its lane{% endif %}.</td></tr>
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
-          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model behind one local endpoint, and <code>free/strong</code> behind one name that moves to the next free lane when one runs out. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model behind one local endpoint{% if litellm_groups %}; ask for {% for g in litellm_groups %}<code>{{ g }}</code>{{ ', ' if loop.revindex > 2 else (' or ' if loop.revindex == 2 else '') }}{% endfor %} instead of a model and a call moves to the next free lane when one runs out{% endif %}. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
           <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
         <tr><th scope="row"><a href="index.json">index.json</a></th>
@@ -562,7 +562,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   <div class="wrap">
     <header>
       <h2>📡 How this list stays fresh</h2>
-      <p class="sub">A scheduled job calls every provider twice a week and rewrites this page from
+      <p class="sub">A scheduled job calls every provider {{ schedule }} and rewrites this page from
         what it finds — there is no hand-maintained copy of any figure on it.</p>
     </header>
     <div class="grid cols-3">
@@ -595,7 +595,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       {% if has_trains %}A <span class="tag card">👁</span> tag means what you send may be used to
       train models, by the vendor's own account; the row's page quotes it.{% endif %}
       {% if has_provisional %}A <span class="tag new">🧪 new</span> row was added recently on fresh
-      evidence and is provisional until two weeks of probes confirm it.{% endif %}
+      evidence and is provisional until {{ provisional_weeks }} of probes confirm it.{% endif %}
     </p>
   </div>
 </section>

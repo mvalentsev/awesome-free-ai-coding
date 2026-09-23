@@ -726,6 +726,23 @@ def known_domains(entries: list[Entry]) -> set[str]:
 
 
 ARCHIVE_AFTER_DAYS = 60
+# The weekdays the scheduled run probes every row on, numbered the way the cron
+# in .github/workflows/update.yml numbers them (0 is Sunday). Every page that
+# says how often a row is checked reads the phrase from here, and freetier-check
+# holds the workflow's cron and the hand-written files to it: "twice a week" was
+# typed into two dozen places, each of which would have gone on saying it the
+# day the cron moved.
+PROBE_WEEKDAYS = (1, 4)
+_TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
+                 4: "four times a week", 5: "five times a week", 6: "six times a week",
+                 7: "every day"}
+
+
+def probe_frequency(weekdays: tuple[int, ...] = PROBE_WEEKDAYS) -> str:
+    """How often the list says a row is checked, in the words its pages use."""
+    return _TIMES_A_WEEK[len(set(weekdays))]
+
+
 # Consecutive FAILs before a row is buried. Two is a vendor reshuffling a
 # page between Monday and Thursday; three is the offer being gone. The
 # provider page quotes it, so the countdown a reader is shown and the rule

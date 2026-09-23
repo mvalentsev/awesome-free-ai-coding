@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>awesome-free-ai-coding — what changed</title>
-  <subtitle>Free LLM APIs and coding agents arriving, changing and dying, as the twice-weekly probes see it.</subtitle>
+  <subtitle>Free LLM APIs and coding agents arriving, changing and dying, as the probes that run twice a week see it.</subtitle>
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>

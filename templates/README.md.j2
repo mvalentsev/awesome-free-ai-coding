@@ -21,7 +21,7 @@
 
 </div>
 
-> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) on the run that finds it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website]({{ pages_url }}/) has every row with a filter box and dark mode.
+> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed {{ schedule }} against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) on the run that finds it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website]({{ pages_url }}/) has every row with a filter box and dark mode.
 
 ## 🚀 Start here
 
@@ -33,7 +33,7 @@
 {% for s in starters %}| **[{{ s.name }}]({{ s.url }})** | {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %} |
 {% endfor %}
 
-<sub>Every model name above is read back from the vendor's own API or pricing page twice a week; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>
+<sub>Every model name above is read back from the vendor's own API or pricing page {{ schedule }}; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>
 
 {% endif %}
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
@@ -49,22 +49,14 @@
 {% endif %}{% if picks.claude_code %}| **Claude Code on a free lane** | {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
 {% endif %}
 
-<sub>Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the run it leaves the list. "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within 10 points of its top, re-read twice a week — and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route that answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
+<sub>Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the run it leaves the list. "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within {{ frontier_within }} points of its top, re-read {{ schedule }} — and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route that answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
 
 {% endif %}
 {% if quickstart %}
 **No account at all?** [{{ quickstart.name }}]({{ quickstart.url }}) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 
 ```bash
-curl -s {{ quickstart.base_url }}/chat/completions \
-  -H 'Content-Type: application/json' \
-{% if quickstart.user_agent %}
-  -H 'User-Agent: {{ quickstart.user_agent }}' \
-{% endif %}
-{% if quickstart.session_header %}
-  -H "{{ quickstart.session_header }}: quickstart-$RANDOM$RANDOM" \
-{% endif %}
-  -d '{"model":"{{ quickstart.model_id }}","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+{{ quickstart.curl }}
 ```
 {% if quickstart.notice %}
 > [!WARNING]
@@ -80,7 +72,7 @@ curl -s {{ quickstart.base_url }}/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_trains %} · **👁** — what you send may be used to train models, in the vendor's own words on the row's page{% endif %}{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_trains %} · **👁** — what you send may be used to train models, in the vendor's own words on the row's page{% endif %}{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until {{ provisional_weeks }} of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
@@ -144,7 +136,7 @@ _Empty — the radar is clean._
 </details>
 
 {% if watchlist %}
-**🔭 Checked and not listed** — {{ watchlist | length }} services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them]({{ checked_url }}). Nothing there is disqualified, and every verdict expires after {{ watch_recheck_days }} days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
+**🔭 Checked and not listed** — {{ watch_count }} services whose free tier this list could not find or could not verify, each with the reason on the date it was read and what would change the answer: [the whole list of them]({{ checked_url }}). Nothing there is disqualified, and every verdict expires after {{ watch_recheck_days }} days; domains rejected for cause are a separate file, [`blocklist.yaml`](blocklist.yaml).
 {% endif %}
 
 ## 🔧 Plug it into your agent
@@ -154,7 +146,7 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 | File | What it gives you |
 |---|---|
 | [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
-| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint, and `free/strong` behind one name that moves to the next free lane when one runs out |
+| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint{% if litellm_groups %}; ask for {{ litellm_groups | either_code }} instead of a model and a call moves to the next free lane when one runs out{% endif %} |
 | [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed]({{ feed_url }}) | The list for machines — one text file for LLM search and agents, the JSON registry, and an Atom feed of every change |
@@ -170,9 +162,9 @@ flowchart LR
     L --> G{"🛡 probe gate"}
     G -->|verified| PR["📬 pull request"]
     PR -->|human merge| R[("registry.yaml")]
-    R --> P{"📡 live probes<br/>twice a week"}
+    R --> P{"📡 live probes<br/>{{ schedule }}"}
     P -->|pass| V["✅ verified date updated"]
-    P -->|fail ×3 · stale 60d · shutdown announced| A["📦 Archive"]
+    P -->|fail ×{{ archive_after_failures }} · stale {{ archive_after_days }}d · shutdown announced| A["📦 Archive"]
     R -->|render| MD["README.md<br/>(this page)"]
 
     classDef pass fill:#3fb95022,stroke:#3fb950,stroke-width:2px
@@ -185,7 +177,7 @@ flowchart LR
     class R store
 ```
 
-- **Live probes, twice a week.** GitHub Actions calls every row's models API or reads its pricing page and re-verifies the offer; a `Last verified` date is earned by passing, never typed. A probe anchors on something that dies with the offer — a model id, a quota figure, a price row, a sentence quoted from the vendor's own page — never on the word "free", which outlives most free tiers; where a lane needs no key, the probe calls it without one, and a bot wall answering for a vendor counts as "could not check", never as "gone".
+- **Live probes, {{ schedule }}.** GitHub Actions calls every row's models API or reads its pricing page and re-verifies the offer; a `Last verified` date is earned by passing, never typed. A probe anchors on something that dies with the offer — a model id, a quota figure, a price row, a sentence quoted from the vendor's own page — never on the word "free", which outlives most free tiers; where a lane needs no key, the probe calls it without one, and a bot wall answering for a vendor counts as "could not check", never as "gone".
 - **Probe-gated discovery.** A scout sweeps Tavily search, Hacker News, GitHub, curated feeds and every models.dev provider that publishes a zero-cost model; an LLM extracts candidates strictly from fetched evidence, and a candidate lands only through a pull request, after passing its own live probe. The LLM never writes to this README or to `main`.
 - **Self-pruning, never silent.** {{ archive_after_failures }} failed probes in a row, {{ archive_after_days }} days without a passing one, a vendor's announced shutdown date or a reviewer's delisting move a row to the [Archive](#-archive) with the reason — and no row is ever deleted. Every arrival, departure and free-model change is appended to [`history.jsonl`](history.jsonl) and published as an [Atom feed]({{ feed_url }}). Services checked and found to have nothing free today are on [a page of their own]({{ checked_url }}), each verdict expiring after {{ watch_recheck_days }} days so the question comes back around.
 
