@@ -76,8 +76,9 @@ dismissed:
     dismissed_on: 2026-08-20
     reason: >-
       The same mark on the same row for the same reason. MiniMax M3 is not on
-      kiro.dev/pricing at all; M2.5 is, on the paid side, and M2.1 is what the
-      free footnote grants.
+      kiro.dev/pricing at all; M2.5 is, and kiro.dev/docs/models ticks it in the
+      Free column beside M2.1, but the free footnote the probe reads grants M2.1
+      (read 2026-09-23).
   - entry: kiro
     family: claude-sonnet-4.5
     superseded_by: claude-sonnet-4.6

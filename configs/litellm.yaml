@@ -1094,6 +1094,11 @@ model_list:
     model: openai/abliterated-model
     api_base: https://api.abliteration.ai/v1
     api_key: os.environ/ABLITERATION_AI_API_KEY
+- model_name: abliteration-ai/abliterated-model-large
+  litellm_params:
+    model: openai/abliterated-model-large
+    api_base: https://api.abliteration.ai/v1
+    api_key: os.environ/ABLITERATION_AI_API_KEY
 - model_name: impossibl/zai/glm-5.3-flash
   litellm_params:
     model: openai/zai/glm-5.3-flash

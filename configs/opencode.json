@@ -1191,6 +1191,9 @@
         },
         "abliterated-model": {
           "name": "abliterated-model"
+        },
+        "abliterated-model-large": {
+          "name": "abliterated-model-large"
         }
       }
     },

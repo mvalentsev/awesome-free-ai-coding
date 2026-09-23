@@ -146,7 +146,7 @@ claude-routerplex() {
 }
 
 # ── abliteration.ai · get a key: https://abliteration.ai/console
-#    free ids: abliterated-model-large-v2, abliterated-model
+#    free ids: abliterated-model-large-v2, abliterated-model, abliterated-model-large
 claude-abliteration-ai() {
   ANTHROPIC_BASE_URL="https://api.abliteration.ai" \
   ANTHROPIC_AUTH_TOKEN="$ABLITERATION_AI_API_KEY" \

@@ -3833,14 +3833,14 @@ entries:
     no key — at 100 requests a day per IP, in alpha
   limits: 'The authentication page says it plainly: "The VLM Run Gateway serves anonymous
     callers on a small free quota, keyed by client IP", and "Every GPU-served model
-    is public and reachable anonymously", while "The routed models carry the paid
+    is public and reachable anonymously", while "The frontier models carry the paid
     access tier". The rate-limit table gives the anonymous tier "10/min, 30/hr, 100/day"
     per client IP, the three windows stacking, against 240 a minute with a key. The
     FAQ calls the gateway alpha, with a model catalog kept intentionally small: its
-    chat models on VLM Run GPUs are Qwen3.8 27B and Qwen3.5 0.8B, beside OCR, embedding
-    and speech models. The published request schema has no tools field, yet a keyless
-    call carrying one tool was answered with a tool call on 2026-09-17. The operator
-    is Autonomi AI Inc.; its terms render only in a browser. Read 2026-09-17'
+    chat models on VLM Run GPUs are Qwen3.8 27B, Qwen3.5 0.8B and DiffusionGemma 26B,
+    beside OCR, embedding and speech models. The published request schema has no tools
+    field, yet a keyless call carrying one tool was answered with a tool call on 2026-09-17.
+    The operator is Autonomi AI Inc.; its terms render only in a browser. Read 2026-09-23'
   models:
   - family: qwen3.8-27b
     tier: strong
@@ -3856,9 +3856,11 @@ entries:
     refuses_bearer: true
     note: 'no key: a call with no Authorization header is anonymous, and `Bearer vlmrun`
       is the explicit anonymous form for a client that needs a non-empty key; 10 a
-      minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b is the other chat
-      model on VLM Run''s GPUs, and the routed ids in the same catalog, Kimi K3 among
-      them, answer `403 model_not_entitled` without a paid organization'
+      minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b and google/diffusiongemma-26b-a4b-it
+      are the other chat models on VLM Run''s GPUs — DiffusionGemma gave no answer
+      to a keyless call within 150 seconds on 2026-09-23 — and the frontier models
+      in the same catalog, Kimi K3 among them, answer `403 model_not_entitled` without
+      a paid organization'
   probe:
     type: page-keywords
     endpoint: https://docs.vlm.run/gateway/models
@@ -4287,10 +4289,12 @@ entries:
     model_ids:
     - abliterated-model-large-v2
     - abliterated-model
+    - abliterated-model-large
     anthropic_base_url: https://api.abliteration.ai
-    note: ids are the docs' models page, read 2026-09-17; /v1/models answers 401 without
-      a key. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai
-      with an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages
+    note: ids are the three the docs' models page serves, read 2026-09-23 — abliterated-model-large
+      the previous large model, from GLM-5.2; /v1/models answers 401 without a key.
+      The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with
+      an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages
   data_use:
     trains: 'no'
     quote: Prompts, completions, and images are processed in memory and never stored
@@ -5192,3 +5196,67 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 84
+- id: vertex-ai-express
+  name: Vertex AI express mode (Google Cloud)
+  category: trial
+  url: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
+  source_urls:
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
+  - https://cloud.google.com/resources/cloud-express-faqs
+  - https://cloud.google.com/free/docs/free-cloud-features
+  - https://raw.githubusercontent.com/google-gemini/gemini-cli/HEAD/packages/cli/src/config/auth.ts
+  card_required: false
+  offering: 'Google Cloud''s express mode for the Gemini Enterprise Agent Platform,
+    formerly Vertex AI: an API key and 90 days of Gemini models within the free tier''s
+    quotas, with no billing information, for a new Google Cloud user on a @gmail.com
+    account'
+  limits: 'The express mode overview: "New users to Google Cloud can sign up for an
+    express mode account in a free tier to try Agent Platform for free for up to 90
+    days, within the specified quotas", and "You don''t need to provide billing information
+    to sign up in the free tier". Its model table gives gemini-3.1-pro-preview, gemini-3-pro-preview
+    and gemini-3-flash-preview a dynamic rate limit and gemini-2.5-pro, gemini-2.5-flash
+    and the Flash-Lite and 2.0 Flash rows 10 requests a minute. The key authenticates
+    the Google Gen AI SDK with vertexai=True, and Gemini CLI takes it as GOOGLE_API_KEY
+    "if using express mode". The FAQ: "If you don''t enable billing, you won''t be
+    able to use express mode after 90 days". An existing Google Cloud user gets no
+    free tier, and the separate $300 Free Trial asks for "a credit card or other payment
+    method". Read 2026-09-23'
+  models:
+  - family: gemini-3.1-pro
+    released: ''
+    aa_model: gemini-3-1-pro-preview
+  - family: gemini-3-flash
+    released: ''
+  - family: gemini-2.5-pro
+    released: ''
+    aa_model: gemini-2-5-pro
+  - family: gemini-2.5-flash
+    released: ''
+  api:
+    base_url: https://aiplatform.googleapis.com/v1
+    key_url: https://console.cloud.google.com/expressmode
+    auth: api-key
+    openai_compatible: false
+    model_ids:
+    - gemini-3.1-pro-preview
+    - gemini-3-flash-preview
+    - gemini-2.5-pro
+    - gemini-2.5-flash
+    note: 'the key stands in for a project and a location: `https://aiplatform.googleapis.com/v1/publishers/google/models/{model}:streamGenerateContent?key={API_KEY}`,
+      Gemini''s own API rather than an OpenAI-compatible one. Gemini CLI reads it
+      from GOOGLE_API_KEY with Vertex AI as the auth method'
+  probe:
+    type: page-keywords
+    endpoint: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
+    keywords:
+    - try Agent Platform for free for up to 90 days
+    - need to provide billing information to sign up in the free tier
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-23'
+  last_verified: '2026-09-23'
+  probe_failures: 0
+  provisional: true
+  rank: 45

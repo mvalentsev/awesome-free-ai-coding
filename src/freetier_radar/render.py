@@ -962,9 +962,9 @@ def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
             {"@type": "Dataset", "@id": f"{PAGES_URL}/#dataset",
              "name": "awesome-free-ai-coding registry",
              "description": f"{active_count} legal free LLM APIs, coding agents and no-card "
-                            f"trials, each with the free models it serves ({family_count} "
+                            f"trials, with the free models they name ({family_count} "
                             "families), the limits in the vendor's own words and the day a "
-                            "live probe last confirmed it.",
+                            "live probe last confirmed each.",
              "url": f"{PAGES_URL}/", "isAccessibleForFree": True,
              "license": "https://opensource.org/licenses/MIT",
              "dateModified": today.isoformat(),
