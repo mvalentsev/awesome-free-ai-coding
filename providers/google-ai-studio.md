@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-09-21'
-description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash — the newest of them, "our most intelligent Flash model, engineered for…'
+description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software…'
 permalink: /providers/google-ai-studio/
 ---
 
@@ -17,11 +17,11 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ## Free models
 
-`gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro`
+`gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`
 
 ## Limits, in the vendor's words
 
-Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash — the newest of them, "our most intelligent Flash model, engineered for long-horizon software engineering", free in the same column that prices it at $0.75/$3.75 per 1M on the paid tier (read 2026-09-08) — and on 3.7 Flash, 3.6 Flash, 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite, 3 Flash Preview, 2.5 Pro and 2.5 Flash, with "Not available" in the same column for Gemini 3.1 Pro Preview, Omni Flash Preview and the Live previews. A new generation arrives here as an addition: every Flash before it kept its free column when 3.8 landed. What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. The per-model RPM/TPM/RPD figures are no longer published anywhere a probe can read — the rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial", and sends you to aistudio.google.com/rate-limit, which needs a sign-in (read 2026-08-14)
+Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software engineering", in the same column that prices it at $0.75/$3.75 per 1M on the paid tier, and on 3.7, 3.6 and 3.5 Flash, 3.5 and 3.1 Flash-Lite and 3 Flash Preview, with "Not available" there for Gemini 3.1 Pro Preview and Omni Flash. The 2.5 models keep a free column, but since 2026-09-18 the changelog says Google is "limiting access to the 2.5 models to users who have actively used them in the past": "For any new projects, use our latest models: 3.5 Flash-Lite or 3.8 Flash". What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. Per-model RPM/TPM/RPD figures sit behind a sign-in at aistudio.google.com/rate-limit; the public rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial". Read 2026-09-23
 
 ## What happens to what you send
 
@@ -35,12 +35,14 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## Evidence
 
-- Probe: the page at <https://ai.google.dev/gemini-api/docs/pricing>, anchored on `gemini-2.5-flash`, `free of charge`
+- Probe: the page at <https://ai.google.dev/gemini-api/docs/pricing>, anchored on `gemini-3.8-flash`, `free of charge`
 - Source: <https://ai.google.dev/gemini-api/docs/pricing>
 - Source: <https://ai.google.dev/gemini-api/docs/rate-limits>
+- Source: <https://ai.google.dev/gemini-api/docs/changelog>
 
 ## History
 
+- *next scheduled run* — Free models changed: dropped gemini-2.5-pro
 - `2026-09-10` — Free models changed: added gemini-3.8-flash
 - `2026-08-17` — Free models changed: added gemini-2.5-pro, gemini-3.5-flash-lite, gemini-3.7-flash; dropped gemini-2.5
 - `2026-07-19` — Added to the list: Free tier for Gemini 2.5 Flash/Pro API

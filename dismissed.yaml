@@ -113,22 +113,9 @@ dismissed:
       Jules in Pro and "Priority access" on Ultra. The free row is pinned to
       2.5 deliberately, and gemini-3.1-pro is not a name that page uses at all.
 
-  # Both bumps PR #12 reported, each read off the vendor's own free/paid column
-  # on 2026-08-28. They fail the same way from opposite directions: Google
-  # prints the newer generation as not free, and SambaNova prints it as free
-  # twice over, in a lane the older one is already in.
-  - entry: google-ai-studio
-    family: gemini-2.5-pro
-    superseded_by: gemini-3.1-pro
-    dismissed_on: 2026-08-28
-    reason: >-
-      ai.google.dev/gemini-api/docs/pricing gives every model a Free Tier
-      column. On Gemini 3.1 Pro Preview it reads "Not available" for input,
-      output and context caching, beside $2.00 and $12.00 per 1M tokens on the
-      paid tier; on Gemini 2.5 Pro the same column reads "Free of charge" for
-      input and output. The bump would swap the row's only free Pro model for
-      the one Google sells — the google-jules dismissal above, on Google's
-      other free lane, for the same reason.
+  # A bump PR #12 reported, read off the vendor's own free column on
+  # 2026-08-28: SambaNova prints the newer generation as free twice over, in a
+  # lane the older one is already in.
   - entry: sambanova-cloud
     family: deepseek
     superseded_by: deepseek-v3.2
@@ -366,15 +353,6 @@ dismissed:
     reason: >-
       Same page, same read: Flash-Lite's input and output are "Free of charge"
       too, and it is the cheap high-volume model rather than an older 3.8.
-  - entry: google-ai-studio
-    family: gemini-2.5-pro
-    superseded_by: gemini-3.8-flash
-    dismissed_on: 2026-09-08
-    reason: >-
-      The 2026-08-28 dismissal of gemini-2.5-pro → gemini-3.1-pro, retargeted at
-      a Flash. 2.5 Pro is still "Free of charge" on that page and is this row's
-      only free Pro model; swapping it for a Flash would drop the reasoning tier
-      the row is ranked for.
   - entry: google-jules
     family: gemini-2.5
     superseded_by: gemini-3.8-flash

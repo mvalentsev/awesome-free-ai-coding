@@ -82,7 +82,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
-| **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 | Free tier on the Gemini API, priced model by model rather than as one account quota | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) |
+| **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 | Free tier on the Gemini API, priced model by model rather than as one account quota | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) |
 | **[Groq](https://groq.com)** | Fast inference against a free plan Groq publishes as a per-model rate table | `gpt-oss`, `qwen3.6`, `qwen3.8-27b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) |
 | **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** 👁 | Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible) | `kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) |
@@ -184,7 +184,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `north-mini-code` | [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
-| `gemini-2.5-pro` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
@@ -210,6 +209,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `deepseek-v4-pro` | [Sail Research](https://www.sailresearch.com) 💳 |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
+| `gemini-2.5-pro` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.5-flash-lite` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `gemini-3.6-flash` | [Google Antigravity](https://antigravity.google) |

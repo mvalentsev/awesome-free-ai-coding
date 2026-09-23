@@ -21,7 +21,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-21` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
-| [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro` | `2026-09-21` |
+| [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite` | `2026-09-21` |
 | [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8-27b` | `2026-09-21` |
 | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | 🔌 LLM APIs with free tier | `kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1` | `2026-09-21` |
 | [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) | 🔌 LLM APIs with free tier | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | `2026-09-21` |

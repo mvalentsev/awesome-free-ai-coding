@@ -29,11 +29,6 @@ model_list:
     model: openai/gemini-3.5-flash-lite
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
-- model_name: google-ai-studio/gemini-2.5-pro
-  litellm_params:
-    model: openai/gemini-2.5-pro
-    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
-    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
 - model_name: openrouter-free/nvidia/nemotron-3-ultra-550b-a55b:free
   litellm_params:
     model: openai/nvidia/nemotron-3-ultra-550b-a55b:free
