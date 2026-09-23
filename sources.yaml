@@ -238,7 +238,8 @@ read:
       — Amazon Q Developer and Supermaven were both watchlisted here with
       verdicts the list does not have, that Q is the predecessor AWS is folding
       into Kiro and that Supermaven's real free tier is inline completions with
-      no API; Amazon Q Developer has been a row since 2026-09-16. Its promo-expiry checker
+      no API; Amazon Q Developer was listed on 2026-09-16 and is archived to
+      2026-05-15, the day AWS stopped taking new Free Tier accounts. Its promo-expiry checker
       (scripts/check_promo_expiry.py, run weekly) is the one piece of
       machinery here worth borrowing: it is a deadline sweep, which is what a
       list of dated offers needs and a list of standing free tiers does not.

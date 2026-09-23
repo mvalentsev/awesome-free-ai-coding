@@ -28,7 +28,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) | 🔌 LLM APIs with free tier | `llama-4` | `2026-09-21` |
 | [LLM7.io](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) | 🔌 LLM APIs with free tier | `qwen3.8-27b` | `2026-09-21` |
-| [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) | 🔌 LLM APIs with free tier | `deepseek`, `gpt-oss`, `gemma-4` | `2026-09-21` |
 | [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) | 🔌 LLM APIs with free tier | `qwen3.6`, `qwen3.8-27b` | `2026-09-21` |
 | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | `2026-09-21` |
 | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a`, `north-mini-code` | `2026-09-21` |
@@ -98,6 +97,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 
 | Provider | Why it left |
 |---|---|
+| [SambaNova Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/) | delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier |
 | [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) | delisted on 2026-09-16: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit |
 | [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) | delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas |
 | [Infomaniak AI Services](https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/) | delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit |

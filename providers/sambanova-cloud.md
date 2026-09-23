@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'SambaNova Cloud free tier: limits, free models, verified 2026-09-21'
+title: 'SambaNova Cloud free tier (archived): what it offered, and why it left the list'
 description: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it. 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3…
 permalink: /providers/sambanova-cloud/
 ---
@@ -9,30 +9,19 @@ permalink: /providers/sambanova-cloud/
 
 # SambaNova Cloud
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## What you get
+## What it offered
 
 Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it
 
-## Free models
+## Free models it listed
 
 `deepseek`, `gpt-oss`, `gemma-4`
 
 ## Limits, in the vendor's words
 
 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)
-
-## What happens to what you send
-
-What you send is not used to train models. In the vendor's words: “SambaCloud never sees or collects any of your data or user prompts, ensuring full data privacy.” ([source](https://sambanova.ai/products/sambacloud)).
-
-## Connect
-
-- Base URL: `https://api.sambanova.ai/v1`
-- Key: `SAMBANOVA_CLOUD_API_KEY` — get one at <https://cloud.sambanova.ai/apis>
-- Callable ids: `DeepSeek-V3.1`, `Meta-Llama-3.3-70B-Instruct`, `gpt-oss-120b`, `DeepSeek-V3.2`, `gemma-4-31B-it`
-- Note: model ids are case-sensitive; the catalog publishes list prices for every row, so the free tier is a quota rather than a zero-priced lane
 
 ## Evidence
 
@@ -41,10 +30,11 @@ What you send is not used to train models. In the vendor's words: “SambaCloud 
 
 ## History
 
+- *next scheduled run* — Archived: delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier
 - `2026-08-05` — Added to the list: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-23. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

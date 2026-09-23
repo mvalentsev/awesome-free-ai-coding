@@ -1739,10 +1739,15 @@
       },
       "first_seen": "2026-08-06",
       "last_verified": "2026-09-21",
+      "delisted": {
+        "on": "2026-09-23",
+        "reason": "new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier"
+      },
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
-      "archived": false,
+      "archived": true,
+      "archived_because": "delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/"
     },
     {
@@ -7627,6 +7632,16 @@
       "checked_on": "2026-09-22",
       "reason": "The Turkish Presidency of Defence Industries' AI platform serves open models through an OpenAI-compatible API on H200s in Turkey, and its requests pass \"kota ve kredi kontrollerinden\" (through quota and credit checks), the credits earned by labelling data or spent on inference. The site has one way in, \"e-Devlet ile Giriş Yap\" (sign in with e-Devlet), through SSB's identity server on its EDEVLET realm — Turkey's state portal, which takes a Turkish identity number: a national identity wall. LLMTR's evren/* ids run on the caller's own EVREN key and are ignored on that row for the same reason.",
       "reopen_if": "EVREN takes sign-ins that need no e-Devlet account.",
+      "current": true
+    },
+    {
+      "domains": [
+        "sambanova.ai"
+      ],
+      "name": "SambaNova Cloud (SambaCloud)",
+      "checked_on": "2026-09-23",
+      "reason": "Listed from 2026-08-06 to 2026-09-23 as a free tier that applies while no payment method is linked, and taken off because a new account gets no free usage. The console's plans page, cloud.sambanova.ai/plans, read \"Start exploring SambaNova Cloud with free API credits. No credit card required.\" in every Wayback capture up to 2026-06-20; by 2026-08-03 it read \"Start exploring SambaNova Cloud. Add a payment method and purchase credits to run your first requests.\", as it still does, and on 2026-08-12 a user on SambaNova's forum asked why, for a friend's new account, \"a payment method is needed to use it\" — unanswered. The docs' rate-limit page still describes a Free Tier \"Applied when there is no payment method linked with your account\", which is the page the row's probe read, so the probe passed through the change; the tier may hold for accounts that had free credits before it.",
+      "reopen_if": "The plans page offers free credits or free usage without a payment method again.",
       "current": true
     }
   ]

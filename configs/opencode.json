@@ -543,31 +543,6 @@
         }
       }
     },
-    "sambanova-cloud": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "SambaNova Cloud",
-      "options": {
-        "baseURL": "https://api.sambanova.ai/v1",
-        "apiKey": "{env:SAMBANOVA_CLOUD_API_KEY}"
-      },
-      "models": {
-        "DeepSeek-V3.1": {
-          "name": "DeepSeek-V3.1"
-        },
-        "Meta-Llama-3.3-70B-Instruct": {
-          "name": "Meta-Llama-3.3-70B-Instruct"
-        },
-        "gpt-oss-120b": {
-          "name": "gpt-oss-120b"
-        },
-        "DeepSeek-V3.2": {
-          "name": "DeepSeek-V3.2"
-        },
-        "gemma-4-31B-it": {
-          "name": "gemma-4-31B-it"
-        }
-      }
-    },
     "vercel-ai-gateway": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Vercel AI Gateway",
