@@ -57,15 +57,17 @@ jobs:
 
           import httpx
 
-          from freetier_radar.prober import UA, _rendered, challenge_marker_hit
+          from freetier_radar.prober import (UA, _as_read, _plain_spaces, _rendered,
+                                             challenge_marker_hit)
 
           urls = [u for u in re.split(r"[\s,]+", os.environ["URLS"]) if u]
           keywords = [k.strip() for k in os.environ.get("KEYWORDS", "").split(",") if k.strip()]
           out = Path("pages")
 
           def excerpt(text: str, needle: str, span: int = 160) -> str:
+              text, needle = (" ".join(_plain_spaces(s).split()) for s in (text, needle))
               i = text.lower().find(needle.lower())
-              return "…" + " ".join(text[max(0, i - span):i + span * 2].split()) + "…"
+              return "…" + text[max(0, i - span):i + span * 2] + "…"
 
           async def main() -> int:
               bad = 0
@@ -97,8 +99,14 @@ jobs:
                       if challenge:
                           print(f"- ⚠ **bot wall**: the page carries `{challenge}`, so this is the "
                                 f"challenge and not the vendor's words")
+                      # Matched as the probe matches: every run of whitespace one
+                      # space, typographic spaces plain. Read as they are, the two
+                      # keywords of Google's express mode overview, which its source
+                      # wraps across lines, printed as absent on 2026-09-23 while
+                      # the probe found both on the same bytes.
+                      seen_text, seen_raw = _as_read(text), _as_read(raw)
                       for kw in keywords:
-                          in_text, in_raw = kw.lower() in text.lower(), kw.lower() in raw.lower()
+                          in_text, in_raw = _as_read(kw) in seen_text, _as_read(kw) in seen_raw
                           where = ("rendered text" if in_text else
                                    "**raw bytes only** — a machinery_keywords candidate" if in_raw
                                    else "**absent from both halves**")
