@@ -214,7 +214,7 @@
     },
     {
       "id": "mistral-free",
-      "name": "Mistral AI Studio",
+      "name": "Mistral Studio",
       "category": "api-free-tier",
       "url": "https://mistral.ai",
       "source_urls": [
@@ -580,14 +580,14 @@
     },
     {
       "id": "trae",
-      "name": "Trae",
+      "name": "TRAE (TraeCode)",
       "category": "trial",
       "url": "https://www.trae.ai",
       "source_urls": [
         "https://www.trae.ai/pricing"
       ],
       "card_required": false,
-      "offering": "AI IDE whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions",
+      "offering": "TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions",
       "limits": "Trae publishes the Free plan as words — \"Auto mode only\", \"Limited usage\", \"Limited Autocomplete\", \"Autocompletion 5000 / month\", \"Concurrent Cloud Tasks 2\" — and as numbers in the page payload, where basic_usage_limit is the dollar figure the paid plans print as \"$20 usage / month\". That figure depends on where the page is served: on 2026-09-16 a GitHub runner read $3 of Basic usage on Free and another network $1, with different paid-plan figures and prices too. Both versions carry 5,000 autocompletions and 1,000 advanced-model requests on Free. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload because trae.ai renders per request and its table can arrive without the Free column",
       "models": [],
       "data_use": {
@@ -744,12 +744,18 @@
       "category": "trial",
       "url": "https://jules.google/",
       "source_urls": [
-        "https://jules.google/docs/usage-limits"
+        "https://jules.google/docs/usage-limits",
+        "https://jules.google/docs/changelog/2026-01-30/",
+        "https://jules.google/docs/changelog/2026-03-09/"
       ],
       "card_required": false,
-      "offering": "Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously",
-      "limits": "15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table pins the free plan to Gemini 2.5 Pro while both paid rows read \"starting with Gemini 3 Pro\". Upgrading runs through a Google AI plan, \"currently available only for individual Google Accounts (ending in @gmail.com)\"; task limits are \"not shared or pooled\" on a family plan; and Google states it \"may adjust limits and features as we learn how people are using the product\" (read 2026-08-14)",
+      "offering": "Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously",
+      "limits": "15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free plan \"Gemini 2.5 Pro\" and both paid rows \"starting with Gemini 3 Pro\", but the changelog of 2026-01-30 reads \"Today we’re launching Gemini 3 Flash in Jules for all users on all tiers\", \"our new base model\", and Pro users default to Gemini 3.1 Pro since 2026-03-09. Upgrading runs through a Google AI plan, \"currently available only for individual Google Accounts (ending in @gmail.com)\"; task limits are \"not shared or pooled\" on a family plan; and Google states it \"may adjust limits and features as we learn how people are using the product\" (read 2026-09-23)",
       "models": [
+        {
+          "family": "gemini-3-flash",
+          "released": "2026-01"
+        },
         {
           "family": "gemini-2.5",
           "released": ""
@@ -1527,12 +1533,13 @@
       "url": "https://vercel.com/ai-gateway",
       "source_urls": [
         "https://vercel.com/docs/ai-gateway/pricing",
+        "https://vercel.com/docs/ai-gateway/faq",
         "https://vercel.com/docs/ai-gateway/openai-compat",
         "https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api"
       ],
-      "card_required": false,
-      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit",
-      "limits": "$5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens",
+      "card_required": true,
+      "offering": "One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit",
+      "limits": "Vercel's FAQ, in its error table: \"The team must add a valid payment method before using free credits\" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens",
       "models": [
         {
           "family": "laguna-s-2.1",
@@ -2648,8 +2655,8 @@
         "https://freebuff.com/terms-of-service"
       ],
       "card_required": false,
-      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna, MiMo 2.6 and Gemini 3.8 Flash in the picker",
-      "limits": "\"Freebuff is supported by text ads.\" The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash, 10 of MiMo 2.6 Flash or Solar Pro 4, 6 of DeepSeek V4.1 Flash or Muse Spark 1.2, or 5 of GPT-5.6 Luna; they refill at midnight Pacific and do not carry over. \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked \"May use data for AI training\". Solar Pro 4 (\"Limited-time trial\") and the queued Muse Spark 1.2 stay out of the models column. Read 2026-09-22",
+      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours",
+      "limits": "\"Freebuff is supported by text ads.\" The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash, Solar Mini 4 or the stealth Space Bunny Alpha, whose \"Anonymous provider retains prompts\", 10 of DeepSeek V4.1 Flash or MiMo 2.6 Flash, or 6 of Muse Spark 1.2; they refill at midnight Pacific and do not carry over. The rest of the picker is paid: \"GPT-6 Luna and MiMo 2.6 Pro and Gemini 3.8 Flash are included with a paid plan\". \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked \"May use data for AI training\". Read 2026-09-23",
       "models": [
         {
           "family": "glm-5.3-flash",
@@ -2662,12 +2669,6 @@
           "tier": "strong",
           "released": "",
           "aa_model": "deepseek-v4-1-flash"
-        },
-        {
-          "family": "gpt-5.6-luna",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "gpt-5-6-luna"
         }
       ],
       "data_use": {

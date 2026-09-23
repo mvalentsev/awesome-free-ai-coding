@@ -725,7 +725,7 @@
     },
     "mistral-free": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Mistral AI Studio",
+      "name": "Mistral Studio",
       "options": {
         "baseURL": "https://api.mistral.ai/v1",
         "apiKey": "{env:MISTRAL_API_KEY}"

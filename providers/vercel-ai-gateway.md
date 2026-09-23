@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-21'
-description: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit. $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the…
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Vercel''s FAQ, in its error table: "The team must add a valid payment method before using free…'
 permalink: /providers/vercel-ai-gateway/
 ---
 
@@ -9,11 +9,11 @@ permalink: /providers/vercel-ai-gateway/
 
 # Vercel AI Gateway
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-09-21 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit
+One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit
 
 ## Free models
 
@@ -21,7 +21,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits inclu
 
 ## Limits, in the vendor's words
 
-$5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
+Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
 
 ## What happens to what you send
 
@@ -39,6 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Probe: the models catalog at <https://ai-gateway.vercel.sh/v1/models>, every listed family required at a zero price
 - Source: <https://vercel.com/docs/ai-gateway/pricing>
+- Source: <https://vercel.com/docs/ai-gateway/faq>
 - Source: <https://vercel.com/docs/ai-gateway/openai-compat>
 - Source: <https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api>
 

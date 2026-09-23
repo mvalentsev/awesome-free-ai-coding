@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **76** | **7** | **59** | **71** |
+| **79** | **75** | **7** | **59** | **71** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -32,7 +32,7 @@
 | **[opencode](https://opencode.ai)** | `big-pickle` · `mimo-v2.5` · `ling-3.0-flash-fin` · `nemotron-3-ultra` · `nemotron-3.5-lightning` · `muse-spark-1.3-contributor` |
 | **[Kilo Code](https://kilo.ai)** | `nemotron-3-ultra` · `nemotron-3-super` · `north-mini-code` · `step-3.7-flash` · `laguna-s-2.1` · `laguna-xs-2.1` |
 | **[Google Antigravity](https://antigravity.google)** | `gemini-3.1-pro` · `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss` |
-| **[Freebuff](https://freebuff.com)** | `glm-5.3-flash` · `deepseek-v4.1-flash` · `gpt-5.6-luna` |
+| **[Freebuff](https://freebuff.com)** | `glm-5.3-flash` · `deepseek-v4.1-flash` |
 
 <sub>Every model name above is read back from the vendor's own API or pricing page twice a week; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>
 
@@ -61,7 +61,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — 3 rows of 79 carry it, and nothing else here asks for a card · **👁** — what you send may be used to train models, in the vendor's own words on the row's page · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — 4 rows of 79 carry it, and nothing else here asks for a card · **👁** — what you send may be used to train models, in the vendor's own words on the row's page · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**8** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -71,7 +71,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[opencode](https://opencode.ai)** 👁 | Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK | `big-pickle`, `mimo-v2.5`, `ling-3.0-flash-fin`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `muse-spark-1.3-contributor` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | **[Kilo Code](https://kilo.ai)** 👁 | Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) |
 | **[Google Antigravity](https://antigravity.google)** 👁 | Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
-| **[Freebuff](https://freebuff.com)** 👁 | Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna, MiMo 2.6 and Gemini 3.8 Flash in the picker | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
+| **[Freebuff](https://freebuff.com)** 👁 | Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours | `glm-5.3-flash`, `deepseek-v4.1-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | **[Cline](https://cline.bot)** 👁 🧪 | Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) |
 | **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | `gpt-5.6` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) |
@@ -92,7 +92,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/)** | OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs | `qwen3.6`, `qwen3.8-27b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) |
 | **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | **[Cohere (trial keys)](https://cohere.com)** 👁 | Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type | `command-a`, `north-mini-code` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
-| **[Mistral AI Studio](https://mistral.ai)** 👁 | Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) |
+| **[Mistral Studio](https://mistral.ai)** 👁 | Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) |
 | **[VLM Run Gateway](https://vlm.run)** 🧪 | OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha | `qwen3.8-27b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
 | **[OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)** | EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible) | `gpt-oss`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) |
 | **[ModelScope API-Inference (Alibaba)](https://modelscope.cn)** 🧪 | Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) |
@@ -121,14 +121,14 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 |---|---|---|---|
 | **[GitHub Copilot Free](https://github.com/features/copilot)** 👁 | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) |
 | **[Kiro](https://kiro.dev/)** 👁 | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | `claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-2.1` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
-| **[Google Jules](https://jules.google/)** 👁 | Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously | `gemini-2.5` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
+| **[Google Jules](https://jules.google/)** 👁 | Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously | `gemini-3-flash`, `gemini-2.5` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
 | **[Cursor (Hobby)](https://cursor.com/)** 👁 | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) |
 | **[Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview)** 🧪 | Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | [`2026-09-23`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |
 | **[Devin Desktop (formerly Windsurf)](https://devin.ai/desktop)** 👁 | Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
 | **[JetBrains AI (AI Free)](https://www.jetbrains.com/ai/)** 👁 🧪 | AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) |
 | **[Qoder](https://qoder.com)** | Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) |
 | **[CodeBuddy (Tencent)](https://www.codebuddy.ai)** | Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) |
-| **[Trae](https://www.trae.ai)** 👁 | AI IDE whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) |
+| **[TRAE (TraeCode)](https://www.trae.ai)** 👁 | TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) |
 | **[Regolo AI](https://regolo.ai/pricing/)** | EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card | `glm-5.2`, `gpt-oss`, `qwen3.8-27b`, `apertus-70b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | **[Upstage (Solar API)](https://console.upstage.ai/)** | Upstage Solar LLM API; $10 free credit on signup, no card | `solar-pro-3`, `solar-mini` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) |
 | **[Zed](https://zed.dev)** 🧪 | Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan | `gpt-5.6-luna` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) |
@@ -146,7 +146,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Standard Compute](https://standardcompute.com)** | A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/) |
 
 ### 🧭 Aggregators (one key, many providers)
-<sub>**15** live · **14** of them ask for no card · sorted by how much work you can get done for free</sub>
+<sub>**15** live · **13** of them ask for no card · sorted by how much work you can get done for free</sub>
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
@@ -155,7 +155,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[AIHubMix (free models)](https://aihubmix.com)** | One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code | `glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | **[Routeway](https://routeway.ai)** | OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog | `deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) |
 | **[LLMTR](https://llmtr.com)** 👁 | Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them | `nemotron-3-ultra` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) |
-| **[Vercel AI Gateway](https://vercel.com/ai-gateway)** 👁 | One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits included every month and three language models that never touch the credit | `laguna-s-2.1`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) |
+| **[Vercel AI Gateway](https://vercel.com/ai-gateway)** 💳 👁 | One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit | `laguna-s-2.1`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) |
 | **[BazaarLink](https://bazaarlink.ai)** | OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14 — Qwen3.7 Flash and DeepSeek V4 Flash 0731 — beside the auto:free router | `qwen3.7-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) |
 | **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** 👁 🧪 | Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API | `step-3.7-flash`, `laguna-s-2.1` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
 | **[TokenRouter (PaleBlueDot)](https://www.tokenrouter.com)** | One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest | `nemotron-3-nano-omni` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) |
@@ -179,19 +179,19 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `glm-5.3-flash` | [Freebuff](https://freebuff.com), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `qwen3.6` | [Groq](https://groq.com), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `kimi-k3` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
-| `laguna-s-2.1` | [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway), [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
+| `laguna-s-2.1` | [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳, [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
 | `nemotron-3-super` | [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `north-mini-code` | [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
+| `gemini-3-flash` | [Google Jules](https://jules.google/), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai) |
 | `glm-5.3` | [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
-| `gpt-5.6-luna` | [Freebuff](https://freebuff.com), [Zed](https://zed.dev) |
 | `laguna-xs-2.1` | [Kilo Code](https://kilo.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
-| `ling-3.0-flash-fin` | [opencode](https://opencode.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) |
+| `ling-3.0-flash-fin` | [opencode](https://opencode.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
 | `mimo-v2.5` | [opencode](https://opencode.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `minimax-m2.7` | [Routeway](https://routeway.ai), [Dahl Inference](https://inference.dahl.global) |
 | `muse-glimmer-30b` | [Requesty](https://www.requesty.ai), [Routeway](https://routeway.ai) |
@@ -210,7 +210,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-2.5-pro` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
-| `gemini-3-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.5-flash-lite` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `gemini-3.6-flash` | [Google Antigravity](https://antigravity.google) |
 | `gemma-4-31b` | [Opper](https://opper.ai) |
@@ -222,7 +221,8 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `glm-5.1` | [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `glm-5.2` | [Regolo AI](https://regolo.ai/pricing/) |
 | `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
-| `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
+| `gpt-5.6-luna` | [Zed](https://zed.dev) |
+| `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
 | `llama-4` | [Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/) |
 | `mercury-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |

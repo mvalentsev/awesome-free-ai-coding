@@ -45,7 +45,7 @@ claude-zai-glm() {
   claude "$@"
 }
 
-# ── Vercel AI Gateway · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
+# ── Vercel AI Gateway · card required · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
 #    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-fin, inclusionai/ling-3.0-flash-fin-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free
 claude-vercel-ai-gateway() {
   ANTHROPIC_BASE_URL="https://ai-gateway.vercel.sh" \
