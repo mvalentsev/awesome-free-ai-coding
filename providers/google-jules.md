@@ -17,7 +17,7 @@ Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base m
 
 ## Free models
 
-`gemini-3-flash`, `gemini-2.5`
+`gemini-2.5`
 
 ## Limits, in the vendor's words
 
@@ -40,7 +40,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Free models changed: added gemini-3-flash
 - `2026-07-19` — Free models changed: added gemini-2.5
 - `2026-07-19` — Added to the list: Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously
 

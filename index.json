@@ -753,10 +753,6 @@
       "limits": "15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free plan \"Gemini 2.5 Pro\" and both paid rows \"starting with Gemini 3 Pro\", but the changelog of 2026-01-30 reads \"Today we’re launching Gemini 3 Flash in Jules for all users on all tiers\", \"our new base model\", and Pro users default to Gemini 3.1 Pro since 2026-03-09. Upgrading runs through a Google AI plan, \"currently available only for individual Google Accounts (ending in @gmail.com)\"; task limits are \"not shared or pooled\" on a family plan; and Google states it \"may adjust limits and features as we learn how people are using the product\" (read 2026-09-23)",
       "models": [
         {
-          "family": "gemini-3-flash",
-          "released": "2026-01"
-        },
-        {
           "family": "gemini-2.5",
           "released": ""
         }
@@ -1200,11 +1196,12 @@
       "category": "api-free-tier",
       "url": "https://www.alibabacloud.com/en/product/modelstudio",
       "source_urls": [
-        "https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+        "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
+        "https://www.alibabacloud.com/help/en/model-studio/new-free-quota"
       ],
       "card_required": false,
       "offering": "Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible",
-      "limits": "1,000,000 free tokens per model, on the Singapore (international) region alone: \"the following models offer a free quota only in Singapore. No free quota is available in other regions\". The grant is \"valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later\" (read 2026-09-16). Which ids carry it is read off the last column of each International table, \"Free quota\": the qwen3.8 generation — qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash, qwen3.8-27b — qwen3-max, and the qwen3-coder line. qwen-long reads \"No free quota\", and the Global tables carry no free-quota column at all (ids read 2026-09-10)",
+      "limits": "1,000,000 free tokens per model, on the Singapore (international) region alone: \"the following models offer a free quota only in Singapore. No free quota is available in other regions\". The grant is \"valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later\" (read 2026-09-16). Which ids carry it is read off the last column of each International table, \"Free quota\": the qwen3.8 generation — qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash, qwen3.8-27b — qwen3-max, and the qwen3-coder line. qwen-long reads \"No free quota\", and the Global tables carry no free-quota column at all (ids read 2026-09-10). Since 2026-09-15 \"you must complete your account information before activating Model Studio\", and past the quota \"you are automatically billed on a pay-as-you-go basis\" unless Free Quota Only, which \"is disabled by default\", is switched on per model (read 2026-09-23)",
       "models": [
         {
           "family": "qwen3.8-max",

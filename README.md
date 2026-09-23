@@ -121,7 +121,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 |---|---|---|---|
 | **[GitHub Copilot Free](https://github.com/features/copilot)** 👁 | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) |
 | **[Kiro](https://kiro.dev/)** 👁 | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | `claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-2.1` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
-| **[Google Jules](https://jules.google/)** 👁 | Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously | `gemini-3-flash`, `gemini-2.5` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
+| **[Google Jules](https://jules.google/)** 👁 | Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously | `gemini-2.5` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
 | **[Cursor (Hobby)](https://cursor.com/)** 👁 | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) |
 | **[Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview)** 🧪 | Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | [`2026-09-23`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |
 | **[Devin Desktop (formerly Windsurf)](https://devin.ai/desktop)** 👁 | Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
@@ -184,7 +184,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `north-mini-code` | [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
-| `gemini-3-flash` | [Google Jules](https://jules.google/), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
@@ -210,6 +209,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-2.5-pro` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
+| `gemini-3-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.5-flash-lite` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `gemini-3.6-flash` | [Google Antigravity](https://antigravity.google) |
 | `gemma-4-31b` | [Opper](https://opper.ai) |
