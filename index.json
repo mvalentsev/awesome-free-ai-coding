@@ -316,7 +316,7 @@
       "id": "cloudflare-workers-ai",
       "name": "Cloudflare Workers AI",
       "category": "api-free-tier",
-      "url": "https://workers.cloudflare.com",
+      "url": "https://www.cloudflare.com/products/workers-ai/",
       "source_urls": [
         "https://developers.cloudflare.com/workers-ai/platform/pricing/",
         "https://developers.cloudflare.com/workers-ai/platform/limits/"

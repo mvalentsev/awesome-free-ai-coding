@@ -9,7 +9,7 @@ permalink: /providers/cloudflare-workers-ai/
 
 # Cloudflare Workers AI
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [workers.cloudflare.com](https://workers.cloudflare.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [cloudflare.com](https://www.cloudflare.com/products/workers-ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

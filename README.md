@@ -86,7 +86,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Groq](https://groq.com)** | Fast inference against a free plan Groq publishes as a per-model rate table | `gpt-oss`, `qwen3.6`, `qwen3.8-27b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) |
 | **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** 👁 | Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible) | `kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) |
-| **[Cloudflare Workers AI](https://workers.cloudflare.com)** | 10k neurons/day free | `llama-4` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) |
+| **[Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/)** | 10k neurons/day free | `llama-4` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) |
 | **[LLM7.io](https://llm7.io)** 🧪 | OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) |
 | **[LLM Tech](https://llmtech.eu)** 🧪 | EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account | `qwen3.8-27b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) |
 | **[Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/)** | OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs | `qwen3.6`, `qwen3.8-27b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) |
@@ -224,7 +224,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
 | `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
-| `llama-4` | [Cloudflare Workers AI](https://workers.cloudflare.com) |
+| `llama-4` | [Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/) |
 | `mercury-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
 | `mercury-2.5` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
 | `mercury-edit-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
