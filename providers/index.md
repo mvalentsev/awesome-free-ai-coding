@@ -48,8 +48,8 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) | 🔌 LLM APIs with free tier | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | `2026-09-21` |
 | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) | 🔌 LLM APIs with free tier | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | `2026-09-21` |
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
-| [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) | 🔌 LLM APIs with free tier | `gpt-oss` | `2026-09-21` |
+| [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [Arli AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [Bytez](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [Mixlayer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/) | 🔌 LLM APIs with free tier | `qwen3.5-4b` | `2026-09-21` |

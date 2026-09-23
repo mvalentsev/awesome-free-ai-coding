@@ -22,7 +22,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
-                     watch_match)
+                     probe_frequency, watch_match)
 from .prober import (ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, probe_page_url_sync,
                      unevidenced_families)
@@ -288,7 +288,7 @@ longer suppressing anything): {stale_watch}
 Lists declined as feeds and due for a re-read (older than {source_days} days):
 {stale_sources}
 
-_Proposed by the web-evidence scout — review before merging. Weekly probes keep re-verifying after merge._
+_Proposed by the web-evidence scout — review before merging. After the merge the probes re-verify it {schedule}._
 """
 
 
@@ -1386,6 +1386,7 @@ def main() -> None:
         supersede_filtered=", ".join(result["supersede_filtered"]) or "—",
         stale_watch=", ".join(result["stale_watch"]) or "—",
         recheck_days=WATCH_RECHECK_DAYS,
+        schedule=probe_frequency(),
         stale_sources=", ".join(result["stale_sources"]) or "—",
         source_days=SOURCE_RECHECK_DAYS,
         retired=", ".join(result["retired"]) or "—",

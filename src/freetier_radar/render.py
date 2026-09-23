@@ -5,7 +5,7 @@ import json
 import re
 import tempfile
 import textwrap
-from datetime import date, datetime, time, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape, quoteattr
 
@@ -26,6 +26,8 @@ from .prober import PROVISIONAL_PROMOTE_DAYS, _id_squash
 # The bar a family's score must clear to be called frontier, which the picks
 # table states beside the answer.
 from .tiers import FRONTIER_WITHIN
+# The map of the repository, which CONTRIBUTING.md prints.
+from .layout import MAP, markdown_table
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
@@ -37,7 +39,7 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED
            "picks",
            "SITE_PAGE", "build_site_context", "render_site",
            "CONFIGS_README", "README_BUDGET", "render_configs_readme",
-           "render_readme", "render_artifacts", "main"]
+           "render_readme", "render_artifacts", "render_all", "render_contributing", "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
     Category.AGENT_CLI: "🤖 Coding agents & CLIs",
@@ -144,10 +146,12 @@ def _weeks(days: int) -> str:
     return _WEEKS.get(days, f"{days} days")
 
 
-def _by_rank(e: Entry) -> tuple[int, str]:
+def _by_rank(e: Entry) -> tuple[int, bool, str]:
     """The order rows are read in wherever the list prints more than one of
-    them: `rank`, then the name."""
-    return e.rank, e.name.lower()
+    them: `rank`, then a row that asks for no card before one that does
+    (CONTRIBUTING: a row that needs a card never leads the no-card rows it ties
+    with), then the name."""
+    return e.rank, e.card_required, e.name.lower()
 
 
 def _ordered(active: list[Entry], category: Category) -> list[Entry]:
@@ -757,6 +761,7 @@ def build_context(entries: list[Entry], today: date,
          "anthropic_base_url": e.api.anthropic_base_url or "",
          "auth": _auth_cell(e),
          "key_url": e.api.key_url or "",
+         "keyless": e.api.auth == "none",
          "note": _connection_note(e)}
         for e in _connectable(entries, today)
     ]
@@ -1067,8 +1072,9 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         "",
         "> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials "
         f"and free models, probe-verified {_schedule()} against live model catalogs and "
-        f"pricing pages. Generated {today.isoformat()} from the registry; every offer under "
-        "the first four headings answered its last probe.",
+        f"pricing pages. Generated {today.isoformat()} from the registry; every offer above "
+        f"the Archived heading passed a probe in the last {ARCHIVE_AFTER_DAYS} days and has not "
+        f"failed {ARCHIVE_AFTER_FAILURES} in a row.",
         "",
         "Each offer links to a page with the free tier in the vendor's own words, the "
         "connection details (base URL, where to get a key, model ids, an Anthropic-format "
@@ -1550,8 +1556,9 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     flags = [CATEGORY_TITLES[e.category]]
     flags.append("card required" if e.card_required else "no card")
     if e.provisional and not archived:
-        flags.append(f"provisional — added recently, {_weeks(PROVISIONAL_PROMOTE_DAYS)} of probes "
-                     "still to pass")
+        promote = e.first_seen + timedelta(days=PROVISIONAL_PROMOTE_DAYS)
+        flags.append(f"provisional — added on {e.first_seen.isoformat()}, a regular row from "
+                     f"the first probe it passes on or after {promote.isoformat()}")
     if archived:
         flags.append(f"**archived** — {archive_reason(e, today)}")
     else:
@@ -1589,9 +1596,12 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     fams = live_families(e)
     if archived:
         named = "The row named no free model."
-    else:
+    elif e.probe.type is ProbeType.PAGE_KEYWORDS:
         named = ("The page this row is verified against names no free model, so the column stays "
                  "empty; callable ids, where the row has them, are under Connect.")
+    else:
+        named = ("The row names no free model family; the ids its lane serves, where the row has "
+                 "them, are under Connect.")
     out += ["## Free models it listed" if archived else "## Free models", "",
             ", ".join(f"`{f}`" for f in fams) if fams else named, ""]
     out += ["## Limits, in the vendor's words", "",
@@ -1852,6 +1862,51 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         encoding="utf-8")
 
 
+# CONTRIBUTING.md is written by hand except for its map section, which is the
+# map itself (layout.MAP) printed as a table between these two lines.
+CONTRIBUTING = "CONTRIBUTING.md"
+MAP_BEGIN = ("<!-- The map: printed by freetier-render from layout.MAP. "
+             "Edit layout.py, not this table. -->")
+MAP_END = "<!-- End of the map. -->"
+
+
+def render_contributing(source: Path, out: Path) -> str | None:
+    """CONTRIBUTING.md with its map section printed from the map.
+
+    The prose is a person's; the table is layout.MAP's, so the page that
+    explains which file comes from which cannot describe a map the checks no
+    longer hold. A page without the two marker lines is left as it is, and
+    `freetier-check` is where their absence is reported."""
+    if not source.is_file():
+        return None
+    text = source.read_text(encoding="utf-8")
+    if MAP_BEGIN not in text or MAP_END not in text:
+        return None
+    head, rest = text.split(MAP_BEGIN, 1)
+    _, tail = rest.split(MAP_END, 1)
+    text = f"{head}{MAP_BEGIN}\n\n{markdown_table()}\n\n{MAP_END}{tail}"
+    out.write_text(text, encoding="utf-8")
+    return text
+
+
+def render_all(registry_path: Path, template_dir: Path, root: Path,
+               readme_name: str = "README.md", today: date | None = None,
+               watchlist_path: Path | None = None, contributing_from: Path | None = None) -> None:
+    """Every file the render writes, into `root`: what `freetier-render` does to
+    the repository and what `--check` does to a temporary directory, so the
+    check can never compare fewer files than the render writes.
+    `contributing_from` is the directory whose CONTRIBUTING.md the map is
+    printed into — the repository itself, when the output is not."""
+    render_readme(registry_path, template_dir, root / readme_name, today=today,
+                  watchlist_path=watchlist_path)
+    render_site(registry_path, template_dir, root / SITE_PAGE, today=today,
+                watchlist_path=watchlist_path)
+    render_configs_readme(registry_path, template_dir, root / CONFIGS_README, today=today,
+                          watchlist_path=watchlist_path)
+    render_artifacts(registry_path, root, today=today, watchlist_path=watchlist_path)
+    render_contributing((contributing_from or root) / CONTRIBUTING, root / CONTRIBUTING)
+
+
 def _generated_on(root: Path, today: date) -> date:
     """The day the committed artifacts were rendered on, read back off them.
 
@@ -1889,13 +1944,8 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
         # Only the outputs move: the registry, its watchlist and its history are
         # read from where they live, so this is the committed files against the
         # curated ones and not against a copy of them.
-        render_readme(registry_path, template_dir, tmp / readme_name, today=pinned,
-                      watchlist_path=watchlist_path)
-        render_site(registry_path, template_dir, tmp / SITE_PAGE, today=pinned,
-                    watchlist_path=watchlist_path)
-        render_configs_readme(registry_path, template_dir, tmp / CONFIGS_README, today=pinned,
-                              watchlist_path=watchlist_path)
-        render_artifacts(registry_path, tmp, today=pinned, watchlist_path=watchlist_path)
+        render_all(registry_path, template_dir, tmp, readme_name, today=pinned,
+                   watchlist_path=watchlist_path, contributing_from=root)
         fresh = {p.relative_to(tmp).as_posix(): p.read_bytes()
                  for p in tmp.rglob("*") if p.is_file()}
     stale = [rel for rel, data in fresh.items()
@@ -1920,24 +1970,20 @@ def main() -> None:
                              "match the registry, and exit 1 if any do")
     args = parser.parse_args()
     root = args.out.parent if args.out.parent != Path("") else Path(".")
+    # What the map says the render writes, so the summary is the map's list.
+    written = ", ".join(n.path for n in MAP if "freetier-render" in n.written_by)
     if args.check:
         stale = check_rendered(args.registry, args.templates, root, args.out.name,
                                watchlist_path=args.watchlist)
         for rel in stale:
             print(f"stale: {rel}")
-        print(f"checked {args.out}, {SITE_PAGE}, {CONFIGS_README}, index.json, feed.xml, "
-              f"llms.txt, configs/, {PROVIDERS_DIR}/ — {len(stale)} out of date")
+        print(f"checked {written} — {len(stale)} out of date")
         if stale:
             # The remedy is one command and it is the same one every time, so
             # the failure says it rather than leaving a contributor to find it
             # in CONTRIBUTING.
-            print("run `uv run freetier-render` and commit what it writes")
+            print("run `TZ=UTC uv run freetier-render` and commit what it writes")
             raise SystemExit(1)
         return
-    render_readme(args.registry, args.templates, args.out, watchlist_path=args.watchlist)
-    render_site(args.registry, args.templates, root / SITE_PAGE, watchlist_path=args.watchlist)
-    render_configs_readme(args.registry, args.templates, root / CONFIGS_README,
-                          watchlist_path=args.watchlist)
-    render_artifacts(args.registry, root, watchlist_path=args.watchlist)
-    print(f"rendered {args.out}, {SITE_PAGE}, {CONFIGS_README}, index.json, feed.xml, llms.txt, "
-          f"configs/, {PROVIDERS_DIR}/")
+    render_all(args.registry, args.templates, root, args.out.name, watchlist_path=args.watchlist)
+    print(f"rendered {written}")

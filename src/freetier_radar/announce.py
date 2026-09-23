@@ -30,7 +30,7 @@ from pathlib import Path
 import httpx
 
 from .history import Event, EventType, load_history
-from .models import Entry, is_archived, live_families, load_registry
+from .models import Entry, is_archived, live_families, load_registry, probe_frequency
 from .render import CATEGORY_TITLES, PAGES_URL, REPO_URL, picks, provider_page_url
 
 __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
@@ -212,7 +212,7 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
              f"{no_card} without a card")
     out = [
         f"*Generated on {today.isoformat()} from [a registry]({REPO_URL}) that a live probe "
-        f"re-verifies twice a week. Every offer below passed its probe; the ones the list "
+        f"re-verifies {probe_frequency()}. Every offer below is on the list today; the ones it "
         f"carries no more are in the archive, each with why it left. Each name links to the "
         f"row's own page with the vendor's words, the connection details and the evidence.*",
         "",

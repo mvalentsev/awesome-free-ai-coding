@@ -1250,15 +1250,6 @@
         }
       }
     },
-    "experiential-labs": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Experiential Labs",
-      "options": {
-        "baseURL": "https://api.experientiallabs.ai/v1",
-        "apiKey": "{env:EXPERIENTIAL_LABS_API_KEY}"
-      },
-      "models": {}
-    },
     "poolside": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Poolside Platform",
@@ -1274,6 +1265,15 @@
           "name": "poolside/laguna-xs-2.1"
         }
       }
+    },
+    "experiential-labs": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Experiential Labs",
+      "options": {
+        "baseURL": "https://api.experientiallabs.ai/v1",
+        "apiKey": "{env:EXPERIENTIAL_LABS_API_KEY}"
+      },
+      "models": {}
     },
     "sail-research": {
       "npm": "@ai-sdk/openai-compatible",

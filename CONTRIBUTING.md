@@ -184,9 +184,9 @@ matching ten times over from the schema and samples beside it, and the list
 published a withdrawn free model until someone read the table by hand. Where the
 page's data genuinely is the evidence — a client-rendered docs site, a plan name
 that exists only in the payload a framework ships — put those strings in
-`probe.machinery_keywords`, which is searched against the whole response. Three
-rows use it (`trae`, `upstage`, `siliconflow-cn`), each saying in `limits`
-where its evidence lives. What a page renders is also what its whitespace
+`probe.machinery_keywords`, which is searched against the whole response, and
+say in `limits` where the evidence lives — trae's plan payload, the heading
+Upstage's docs render in the browser. What a page renders is also what its whitespace
 renders as: a line break in the source is a space, so a sentence a template
 wraps across two lines is matched whole, as a reader copies it.
 
@@ -203,7 +203,8 @@ read like any endpoint, a 404 failing the row. `freetier-quotes` and the scout
 read the same page, and the provider page says where the probe starts rather
 than printing a dated URL that the next release makes stale.
 
-Words that outlive the offer are rejected by validation, so CI fails on them:
+A probe whose keywords are all words that outlive the offer is rejected by
+validation, so CI fails on it:
 `free`, `hobby`, `free quota`, `monthly credits`, `no signup`, `no credit card
 required`. On an `api-models` probe against a gateway that publishes prices, set
 `require_zero_price: true` — a model id can stay in the catalog long after it
@@ -238,7 +239,7 @@ read as they are against a price. NVIDIA's list is NGC's catalog search filtered
 to its free label (see the `nvidia-nim` row); a document of another shape is
 reported, not guessed at. Until then the row's free ids were found by hand: Kimi
 K3 was free from 2026-08-27 and reached the row on 2026-09-22, and on 2026-09-23
-the list marked seven chat models the row did not carry, DeepSeek V4.1 Flash
+the list marked six chat models the row did not carry, DeepSeek V4.1 Flash
 among them. A list that cannot be read leaves the offer unchecked, which is
 `inconclusive`; one that answers and marks nothing free fails the row.
 
@@ -296,7 +297,7 @@ nothing, since a gateway's auth wall answers 401 on any path. It is the value
 appends that itself; validation refuses a value that already carries it). Every
 run then POSTs to the route keyless, naming the row's first id in `api.model_ids`
 — Fireworks answers a model it does not serve with 404 before it asks for a key
-— and a 401, 400 or 429 is a route, a 404 or 405
+— and a 401, 400 or 429 is a route, a 404, 405 or 410
 is reported as `stale-ids` beside the row while the row stays verified by its
 page, and a route that cannot be reached is reported rather than skipped. The
 field feeds the Claude Code line of the picks table, the second URL in the
@@ -383,10 +384,10 @@ and every run reads `url` back for the quote.
 **`api.refuses_bearer` is a keyless lane that answers only a bare call.** Once
 the first id has answered, the run asks it again carrying `Authorization: Bearer
 none` — what LiteLLM sends for `api_key: none`, and LiteLLM sends a bearer token
-on every call. OVHcloud's anonymous lane and VLM Run's answer that with 403 and
-Kilo's with 401 (2026-09-21), so those rows set the field and `litellm.yaml`
-leaves them out, saying why in its header; opencode's config adds no header
-without a key and keeps them. The run reports it as `stale-ids` both ways: a
+on every call. On 2026-09-21 OVHcloud's anonymous lane and VLM Run's answered
+that with 403 and Kilo's with 401, so a row whose lane does sets the field and
+`litellm.yaml` leaves it out, saying why in its header; opencode's config adds
+no header without a key and keeps it. The run reports it as `stale-ids` both ways: a
 refusal on a row without the field, and an answer on a row with it. A rate limit
 on the second call says nothing either way.
 
@@ -445,7 +446,7 @@ via pull request. Humans review the PR; robots do everything else.
 The README is the landing page, and the site is the reference. A visitor scrolls
 the README on GitHub, under the file list, so it carries the hero, the picks, the
 quickstart and one line per live row — the name, `offering`, the models and the
-date — and folds nothing in its tables; the quota in the vendor's words is on the
+date — and folds nothing in the list's tables; the quota in the vendor's words is on the
 row's own page and on `index.html`, one click from the date. On 2026-09-20 it had
 grown to 161 KB, 83 KB of it inside folded cells, thirty-one desktop screens and
 fifty-one on a phone. `README_BUDGET` in `render.py` is the ceiling, and a test
@@ -494,11 +495,67 @@ not a secret.
 
 Every change to what the list publishes — a row arriving, dropping to the
 Archive, coming back, or changing its free models — is appended to
-[`history.jsonl`](history.jsonl) by those same two commands and published as an
+[`history.jsonl`](history.jsonl) by the probe run and the scout and published as an
 [Atom feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml).
 **Never edit it by hand.** It is append-only, and it is compared against the
 registry rather than against the previous run, so a row you add by hand is
 reported by the next scheduled run rather than going unrecorded.
+
+## What depends on what
+
+Every file this repository tracks is one line of the map below, and
+`freetier-check` refuses a file that is on no line, a line that names no file,
+and a page the site serves or leaves out against the map. A **generated** file
+is never edited by hand: change what it is made from and run `TZ=UTC uv run
+freetier-render`, which also prints this table from
+[`layout.py`](src/freetier_radar/layout.py). A **log** is written by its
+command alone. **Data** is edited by hand and read back by `freetier-check`.
+Whatever every page prints — a count, the verified floor, a rule such as the
+frontier bar or how often a row is probed — is worked out in one place in the
+render and stated from the constant that applies it, so the README and the site
+cannot print two versions of it.
+
+<!-- The map: printed by freetier-render from layout.MAP. Edit layout.py, not this table. -->
+
+| File | What it is | Made from | Written by |
+|---|---|---|---|
+| `registry.yaml` | **data** — every row the list has published, live or archived — the single source of truth | — | `hand`, `freetier-probe`, `freetier-tiers`, `freetier-scout` |
+| `watchlist.yaml` | **data** — services checked and not listed: the date, the reason, what would reopen them | — | `hand` |
+| `blocklist.yaml` | **data** — domains rejected for cause | — | `hand` |
+| `sources.yaml` | **data** — lists read once and put down | — | `hand` |
+| `dismissed.yaml` | **data** — model-generation bumps a reviewer declined | — | `hand` |
+| `history.jsonl` | **log** — every change to what the list publishes, one event a line, append-only | `registry.yaml` | `freetier-probe`, `freetier-scout` |
+| `announced.jsonl` | **log** — the posts the announcer has sent, append-only | `history.jsonl` | `freetier-announce` |
+| `README.md` | **generated** — the landing page GitHub shows under the file list · not on the site | `templates/README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
+| `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
+| `configs/README.md` | **generated** — the connection table, beside the configs · not on the site | `templates/configs-README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
+| `configs/opencode.json` | **generated** — the opencode config | `registry.yaml` | `freetier-render` |
+| `configs/litellm.yaml` | **generated** — the LiteLLM proxy config and its groups | `registry.yaml` | `freetier-render` |
+| `configs/free-llm.env.example` | **generated** — one export per key | `registry.yaml` | `freetier-render` |
+| `configs/claude-code.sh` | **generated** — one Claude Code shell function per Anthropic-format lane | `registry.yaml` | `freetier-render` |
+| `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
+| `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
+| `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
+| `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
+| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
+| `assets/*.svg` | **page** — the banners and the social preview's source | — | `hand` |
+| `assets/*.png` | **page** — the social preview | — | `hand` |
+| `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
+| `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
+| `LICENSE` | **doc** — MIT | — | `hand` |
+| `assets/README.md` | **doc** — what each asset is for · not on the site | — | `hand` |
+| `src/freetier_radar/*.py` | **code** — the probe, the scout, the render and the checks · not on the site | — | `hand` |
+| `templates/*.j2` | **code** — the page templates freetier-render fills · not on the site | — | `hand` |
+| `tests/*.py` | **code** — the test suite · not on the site | — | `hand` |
+| `pyproject.toml` | **config** — the package and its commands · not on the site | — | `hand` |
+| `uv.lock` | **config** — the pinned dependencies · not on the site | — | `hand` |
+| `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
+| `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
+| `.github/workflows/*.yml` | **config** — CI, the scheduled run and read-page · not on the site | — | `hand` |
+| `.github/dependabot.yml` | **config** — the pinned actions' watcher · not on the site | — | `hand` |
+| `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
+
+<!-- End of the map. -->
 
 ## How the list announces itself
 
@@ -510,7 +567,7 @@ only events from the last 14 days, at most five per channel per run, oldest
 first, and only what a channel has not posted before: `announced.jsonl` is the
 append-only ledger, keyed by event and channel, so a retried run cannot post a
 line twice and a channel that failed is simply retried next time. `--dry-run`
-prints every due post and sends nothing.
+prints every post due on the channels configured and sends nothing.
 
 Channels come from the repository's settings, and until they exist the step
 prints "no channel configured" and exits 0:
@@ -532,7 +589,7 @@ submissions, and a post there is a person's decision every time.
 uv sync
 uv run pytest
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
-uv run freetier-render            # regenerate README.md + index.html + configs/README.md + index.json + feed.xml + llms.txt + configs/ + providers/
+uv run freetier-render            # regenerate every file the map above marks generated, and the map
 uv run freetier-check             # validate the curated files against each other
 uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
@@ -562,12 +619,12 @@ or a client answered — an error body, a refusal, a status line — is not a
 published sentence: write it in backticks, which the check does not read.
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
-`blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Four of
-those are read only by the scout, which runs behind a catch-all — so before this
-existed, a malformed one could reach `main` and turn into a green workflow that
-had quietly done nothing. It checks `history.jsonl` too, for the different
-reason that the log is the only file here that cannot be regenerated from
-another one.
+`blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Two of
+those — `dismissed.yaml` and `sources.yaml` — are read only by the scout, which
+runs behind a catch-all, so before this existed a malformed one could reach
+`main` and turn into a green workflow that had quietly done nothing. It checks
+`history.jsonl` too, for the different reason that the log is the only file here
+that cannot be regenerated from another one.
 
 The `update` workflow also takes manual inputs: `dry_run` runs every phase and
 writes nothing (the scout's report lands in the run summary instead of a PR),
@@ -575,12 +632,10 @@ and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.
 
 Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI runs
-it on every push and pull request, together with `freetier-check` and
+it on every push to `main` and every pull request, together with `freetier-check` and
 `freetier-render --check`. The second one re-renders everything and compares it
-with what is committed, so an edit to `registry.yaml` that never reached
-`README.md`, `index.html`, `configs/README.md`, `index.json`, the configs or the
-provider pages is a red run and
-not a page that quietly disagrees with the registry for three days until the
-next scheduled run heals it. It pins the comparison to the date the committed
+with what is committed, so an edit that never reached a file the map marks
+generated is a red run and not a page that quietly disagrees with the registry
+until the next scheduled run heals it. It pins the comparison to the date the committed
 `index.json` carries, so an untouched repository does not go red on the
 calendar alone.

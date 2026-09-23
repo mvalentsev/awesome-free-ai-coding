@@ -357,3 +357,66 @@ def test_two_rows_under_one_name_are_one_service_or_two_names(tmp_path: Path):
     folded = {**seed, "duplicate_of": "mimo-code",
               "delisted": {"on": "2026-07-19", "reason": "the same project as mimo code"}}
     assert check(build(tmp_path, entries=[holder, folded]), TODAY) == []
+
+
+def test_a_row_rejected_for_cause_is_blocklisted_and_keeps_no_connection(tmp_path: Path):
+    """A reviewer's "rejected for cause" is a verdict about the service, which
+    lives on the blocklist, and the row's page must not hand a reader the way
+    in: Kenari and easy-gonka-api were delisted, blocklisted and stripped of
+    their api blocks in one commit each — three edits nothing held together."""
+    cause = {**ENTRY, "delisted": {"on": "2026-08-10", "reason": "rejected for cause — pooled OAuth"},
+             "api": {"base_url": "https://x.ai/v1"}}
+    problems = check(build(tmp_path, entries=[cause]), TODAY)
+    assert ("registry: x is delisted for cause and x.ai is not on the blocklist — the verdict "
+            "about the service goes to blocklist.yaml") in problems
+    assert ("registry: x is delisted for cause and still carries an api block — a row rejected "
+            "for cause keeps no connection details") in problems
+
+
+def test_a_blocklisted_row_says_it_was_rejected_for_cause(tmp_path: Path):
+    """The Archive prints the delisting's reason; on a blocklisted domain any
+    other reason contradicts the file that holds the verdict."""
+    quiet = {**ENTRY, "delisted": {"on": "2026-08-10", "reason": "the offer ended"}}
+    root = build(tmp_path, entries=[quiet], blocklist=[{"domain": "x.ai", "reason": "rejected"}],
+                 watched=[{**WATCHED, "domains": ["x.ai"]}])
+    assert check(root, TODAY) == [
+        "registry: x sits on blocklisted domain x.ai and its delisting says `the offer ended` — "
+        "a row on the blocklist is delisted as `rejected for cause — …`",
+        "watchlist: Watched Co (x.ai) is also blocklisted — a domain gets one verdict"]
+
+
+def test_a_delisting_keeps_its_long_account_on_the_watchlist(tmp_path: Path):
+    """The reason is the Archive's one line; the account — the date, what was
+    read, what would reopen it — is the watchlist's, and the scout reads the
+    watchlist, not the Archive, before it proposes the vendor again."""
+    gone = {**ENTRY, "delisted": {"on": "2026-08-10", "reason": "the offer ended"}}
+    assert check(build(tmp_path, entries=[gone]), TODAY) == [
+        "registry: x is delisted and no watchlist verdict covers x.ai — the account of why the "
+        "offer ended goes to watchlist.yaml (or, for cause, blocklist.yaml)"]
+    assert check(build(tmp_path, entries=[gone], watched=[{**WATCHED, "domains": ["x.ai"]}]),
+                 TODAY) == []
+    fold = {**gone, "id": "y", "name": "Y", "url": "https://y.ai", "duplicate_of": "x"}
+    retired = {**ENTRY, "id": "z", "name": "Z", "url": "https://z.ai", "retired_on": "2026-08-01"}
+    root = build(tmp_path, entries=[{**ENTRY}, fold, retired])
+    assert check(root, TODAY) == []
+
+
+def test_the_registry_is_kept_in_the_form_the_tools_write_it(tmp_path: Path):
+    """The run, the scout and freetier-tiers rewrite the whole file through
+    save_registry, so an edit that leaves it in another layout turns the next
+    run's verification commit into a diff of every line it re-wrapped."""
+    from freetier_radar.models import Entry, save_registry
+    from freetier_radar.validate import registry_form_problems
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [Entry.model_validate(ENTRY)])
+    assert registry_form_problems(tmp_path) == []
+    reg.write_text(reg.read_text(encoding="utf-8").replace("name: X", "name: 'X'"),
+                   encoding="utf-8")
+    assert registry_form_problems(tmp_path) == [
+        "registry: registry.yaml is not in the form save_registry writes — run "
+        "`uv run freetier-check --normalize` and commit the result"]
+
+
+def test_the_committed_repository_holds_to_its_map_its_claims_and_its_form():
+    from freetier_radar.validate import check_repository
+    assert check_repository(Path(__file__).resolve().parent.parent) == []

@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import tempfile
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
@@ -29,9 +30,9 @@ from urllib.parse import urlparse
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, load_history
 from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismissed,
-                     load_registry, load_sources, load_watchlist)
+                     load_registry, load_sources, load_watchlist, save_registry)
 
-__all__ = ["check", "main"]
+__all__ = ["check", "check_repository", "registry_form_problems", "main"]
 
 # The most a row's prose may run to, in characters: a README cell and a provider
 # page, not a research log.
@@ -39,6 +40,10 @@ PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "api.notice": 
                 "delisted.reason": 300}
 
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
+
+# How a delisting's reason says the service itself was rejected (CONTRIBUTING,
+# "How a row leaves the list"): the words the Archive prints first.
+FOR_CAUSE = "rejected for cause"
 
 # Text a Markdown renderer takes for an HTML tag: `<` straight into a letter, a
 # slash or a bang. "a < b" is left alone.
@@ -239,11 +244,38 @@ def check(root: Path, today: date | None = None) -> list[str]:
         if is_blocked(_domain(e.url), blocklist):
             problems.append(f"registry: {e.id} sits on blocklisted domain {_domain(e.url)}")
 
+    # ---- a delisting and the verdict behind it
+    # A row a reviewer takes off keeps one line in the Archive; the account of
+    # why lives in the file the scout reads before it proposes the vendor again —
+    # the blocklist for a service rejected for cause, the watchlist for an offer
+    # that ended or never qualified. Kenari and easy-gonka-api each took three
+    # edits in one commit (delisted, blocklisted, api block dropped), and nothing
+    # held the three together.
+    watched_domains = {d.lower() for w in watchlist for d in w.domains}
+    for e in entries:
+        if e.delisted is None or e.duplicate_of is not None:
+            continue
+        d = _domain(e.url)
+        for_cause = e.delisted.reason.lower().startswith(FOR_CAUSE)
+        if for_cause and not is_blocked(d, blocklist):
+            problems.append(f"registry: {e.id} is delisted for cause and {d} is not on the "
+                            "blocklist — the verdict about the service goes to blocklist.yaml")
+        if for_cause and e.api is not None:
+            problems.append(f"registry: {e.id} is delisted for cause and still carries an api "
+                            "block — a row rejected for cause keeps no connection details")
+        if not for_cause and is_blocked(d, blocklist):
+            problems.append(f"registry: {e.id} sits on blocklisted domain {d} and its delisting "
+                            f"says `{e.delisted.reason}` — a row on the blocklist is delisted as "
+                            f"`{FOR_CAUSE} — …`")
+        elif not for_cause and not any(d == wd or d.endswith("." + wd) for wd in watched_domains):
+            problems.append(f"registry: {e.id} is delisted and no watchlist verdict covers {d} — "
+                            "the account of why the offer ended goes to watchlist.yaml (or, for "
+                            "cause, blocklist.yaml)")
+
     # ---- registry against watchlist.yaml
     # A live row and a "no free tier here" verdict are the same contradiction,
     # one file apart. Archived rows are exempt: burying an entry and then
     # recording why its offer is gone is the intended sequence, not a conflict.
-    watched_domains = {d.lower() for w in watchlist for d in w.domains}
     for e in entries:
         if is_archived(e, today):
             continue
@@ -374,17 +406,62 @@ def check(root: Path, today: date | None = None) -> list[str]:
     return problems
 
 
+def registry_form_problems(root: Path) -> list[str]:
+    """registry.yaml is rewritten whole by every command that saves it — the
+    run, the scout, freetier-tiers — so it is kept in the form save_registry
+    writes, and a hand edit in another layout is the next run's diff of every
+    line it re-wrapped."""
+    path = root / "registry.yaml"
+    with tempfile.TemporaryDirectory() as tmp:
+        again = Path(tmp) / "registry.yaml"
+        save_registry(again, load_registry(path))
+        if again.read_bytes() == path.read_bytes():
+            return []
+    return ["registry: registry.yaml is not in the form save_registry writes — run "
+            "`uv run freetier-check --normalize` and commit the result"]
+
+
+def check_repository(root: Path) -> list[str]:
+    """The rules about the repository as a whole, beyond the curated files: the
+    map (layout.MAP), what the hand-written files state (claims.CLAIMS), the
+    map's own section in CONTRIBUTING.md and the registry's form."""
+    # Imported here: both read the constants this module defines.
+    from .claims import check_claims
+    from .layout import check_layout
+    from .render import CONTRIBUTING, MAP_BEGIN, MAP_END
+    problems = [f"layout: {p}" for p in check_layout(root)]
+    problems += [f"claims: {p}" for p in check_claims(root)]
+    text = (root / CONTRIBUTING).read_text(encoding="utf-8")
+    if MAP_BEGIN not in text or MAP_END not in text:
+        problems.append(f"layout: {CONTRIBUTING} has lost the lines the map section is printed "
+                        "between — put them back and run `uv run freetier-render`")
+    return problems + registry_form_problems(root)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Validate registry.yaml, blocklist.yaml, dismissed.yaml, "
-                    "watchlist.yaml, sources.yaml and history.jsonl, and the "
-                    "rules that hold between them.")
+                    "watchlist.yaml, sources.yaml and history.jsonl, the rules that hold "
+                    "between them, the map of the repository and what its hand-written "
+                    "files state.")
     parser.add_argument("--root", type=Path, default=Path("."))
+    parser.add_argument("--normalize", action="store_true",
+                        help="rewrite registry.yaml in the form save_registry writes, and stop")
     args = parser.parse_args()
 
-    problems = check(args.root)
+    if args.normalize:
+        path = args.root / "registry.yaml"
+        save_registry(path, load_registry(path))
+        print(f"rewrote {path} in the form save_registry writes")
+        return
+    problems = check(args.root) + check_repository(args.root)
     for p in problems:
         print(f"✗ {p}")
     if problems:
         raise SystemExit(f"{len(problems)} problem(s) found")
-    print("✓ registry, blocklist, dismissed, watchlist, sources and history are consistent")
+    print("✓ registry, blocklist, dismissed, watchlist, sources and history are consistent, "
+          "every tracked file is on the map, and the hand-written files say what the code does")
+
+
+if __name__ == "__main__":
+    main()

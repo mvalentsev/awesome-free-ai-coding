@@ -665,7 +665,7 @@ def test_context_connections():
                                    "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/",
                                    "anthropic_base_url": "",
                                    "auth": "`GROQ_API_KEY`", "key_url": "https://x.ai/keys",
-                                   "note": ""}]
+                                   "keyless": False, "note": ""}]
 
 
 def test_a_long_connection_note_folds_like_the_prose_columns():

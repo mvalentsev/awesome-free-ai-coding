@@ -21,7 +21,7 @@
 
 </div>
 
-> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) on the run that finds it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website](https://mvalentsev.github.io/awesome-free-ai-coding/) has every row with a filter box and dark mode.
+> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) once 3 runs in a row find it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website](https://mvalentsev.github.io/awesome-free-ai-coding/) has every row with a filter box and dark mode.
 
 ## 🚀 Start here
 
@@ -46,7 +46,7 @@
 | **A trial that asks for no card** | [GitHub Copilot Free](https://github.com/features/copilot) · [Kiro](https://kiro.dev/) · [Google Jules](https://jules.google/) |
 | **Claude Code on a free lane** | [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com) |
 
-<sub>Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the run it leaves the list. "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within 10 points of its top, re-read twice a week — and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route that answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
+<sub>Each answer is the registry's own order read from the top — of its section, or of every section for no account at all and Claude Code — so a row that stops verifying leaves this table on the run it leaves the list, and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route, which every run calls; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
 
 **No account at all?** [Kilo Code](https://kilo.ai) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 
@@ -57,7 +57,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 ```
 <details><summary><sub>no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id …</sub></summary><sub>no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers and nemotron-3.5-content-safety is a guardrail classifier, so none of the three is a coding model</sub></details>
 
-**Ready to wire one in?** Base URL and key name for every API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and [Claude Code](https://code.claude.com/docs) — all generated from the same registry and regenerated on every update.
+**Ready to wire one in?** Base URL and key name for every OpenAI-compatible API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and [Claude Code](https://code.claude.com/docs) — all generated from the same registry and regenerated on every update.
 
 ## 📋 The list
 
@@ -109,8 +109,8 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Sail Research](https://www.sailresearch.com)** 💳 🧪 | Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) |
 | **[SiliconFlow (China)](https://siliconflow.cn)** 🧪 | China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 | **[uncloseai (unturf)](https://uncloseai.com)** | Keyless OpenAI-compatible chat endpoint — no signup, no key, no account | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) |
-| **[IBM watsonx.ai (Lite plan)](https://www.ibm.com/products/watsonx-ai)** 💳 | IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) |
 | **[Pollinations.AI](https://pollinations.ai)** | Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B | `gpt-oss` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) |
+| **[IBM watsonx.ai (Lite plan)](https://www.ibm.com/products/watsonx-ai)** 💳 | IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) |
 | **[Arli AI](https://www.arliai.com)** 🧪 | OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) |
 | **[Bytez](https://bytez.com)** 🧪 | Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) |
 | **[Mixlayer](https://www.mixlayer.com)** 🧪 | Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit | `qwen3.5-4b` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/) |
@@ -247,7 +247,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 </details>
 
 <details>
-<summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of the rest</summary>
+<summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
 <br>
 
 | When | What | Details |
@@ -303,8 +303,8 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 | File | What it gives you |
 |---|---|
 | [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
-| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint; ask for `free/strong` or `free/nokey` instead of a model and a call moves to the next free lane when one runs out |
-| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in |
+| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model LiteLLM can call behind one local endpoint; ask for `free/strong` or `free/nokey` instead of a model and a call moves to the next free lane when one runs out |
+| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in where the row lists one |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml) | The list for machines — one text file for LLM search and agents, the JSON registry, and an Atom feed of every change |
 | [`browse.html`](https://mvalentsev.github.io/awesome-free-ai-coding/browse.html) · [provider pages](https://mvalentsev.github.io/awesome-free-ai-coding/providers/) | The list as a filterable table, and one page per row — the offer in the vendor's own words, the connection details, the evidence and the history |

@@ -21,7 +21,7 @@
 
 </div>
 
-> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed {{ schedule }} against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) on the run that finds it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website]({{ pages_url }}/) has every row with a filter box and dark mode.
+> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed {{ schedule }} against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) once {{ archive_after_failures }} runs in a row find it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website]({{ pages_url }}/) has every row with a filter box and dark mode.
 
 ## 🚀 Start here
 
@@ -49,7 +49,7 @@
 {% endif %}{% if picks.claude_code %}| **Claude Code on a free lane** | {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
 {% endif %}
 
-<sub>Each answer is the top of its section in the registry's own order, so a row that stops verifying leaves this table on the run it leaves the list. "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models) — the model a row's free lane serves scores within {{ frontier_within }} points of its top, re-read {{ schedule }} — and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route that answered the last probe; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
+<sub>Each answer is the registry's own order read from the top — of its section, or of every section for no account at all{% if picks.frontier %}, frontier models{% endif %}{% if picks.claude_code %} and Claude Code{% endif %} — so a row that stops verifying leaves this table on the run it leaves the list, and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered).{% if picks.frontier %} "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models): the model a row's free lane serves scores within {{ frontier_within }} points of its top, re-read {{ schedule }}.{% endif %}{% if picks.claude_code %} The Claude Code line names gateways whose vendor documents an Anthropic-format route, which every run calls; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.{% endif %}</sub>
 
 {% endif %}
 {% if quickstart %}
@@ -68,7 +68,7 @@
 {% endif %}
 
 {% endif %}
-**Ready to wire one in?** Base URL and key name for every API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and [Claude Code](https://code.claude.com/docs) — all generated from the same registry and regenerated on every update.
+**Ready to wire one in?** Base URL and key name for every OpenAI-compatible API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai) and [Claude Code](https://code.claude.com/docs) — all generated from the same registry and regenerated on every update.
 
 ## 📋 The list
 
@@ -102,7 +102,7 @@ _Nothing verified right now._
 
 {% if changes %}
 <details>
-<summary><b>🕰 What changed</b> — the last {{ changes | length }} registry events, and an <a href="{{ feed_url }}">Atom feed</a> of the rest</summary>
+<summary><b>🕰 What changed</b> — the last {{ changes | length }} registry events, and an <a href="{{ feed_url }}">Atom feed</a> of each new one</summary>
 <br>
 
 | When | What | Details |
@@ -146,8 +146,8 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 | File | What it gives you |
 |---|---|
 | [`configs/opencode.json`](configs/opencode.json) | Drop-in [opencode](https://opencode.ai) config with every provider wired up — keys via `{env:...}`, keyless endpoints work immediately |
-| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model behind one local endpoint{% if litellm_groups %}; ask for {{ litellm_groups | either_code }} instead of a model and a call moves to the next free lane when one runs out{% endif %} |
-| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in |
+| [`configs/litellm.yaml`](configs/litellm.yaml) | [LiteLLM](https://docs.litellm.ai) proxy config — `litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model LiteLLM can call behind one local endpoint{% if litellm_groups %}; ask for {{ litellm_groups | either_code }} instead of a model and a call moves to the next free lane when one runs out{% endif %} |
+| [`configs/claude-code.sh`](configs/claude-code.sh) | One shell function per gateway that serves the Anthropic Messages format — `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in where the row lists one |
 | [`configs/free-llm.env.example`](configs/free-llm.env.example) | Commented env exports for any OpenAI-compatible tool |
 | [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed]({{ feed_url }}) | The list for machines — one text file for LLM search and agents, the JSON registry, and an Atom feed of every change |
 | [`browse.html`]({{ pages_url }}/browse.html) · [provider pages]({{ pages_url }}/providers/) | The list as a filterable table, and one page per row — the offer in the vendor's own words, the connection details, the evidence and the history |

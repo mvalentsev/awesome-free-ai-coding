@@ -277,7 +277,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     </picture>
     <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
       free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages;
-      an offer that dies drops to the <a href="#archive">Archive</a> on the run that finds it gone.</p>
+      an offer that dies drops to the <a href="#archive">Archive</a> once 3 runs in a row find it gone.</p>
     <p class="meta">
       <span class="dot" style="background:#3fb950"></span>
       every row verified <b>2026-09-21</b> or later (fresh)
@@ -377,13 +377,11 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <ul><li><span class="who"><a href="https://openrouter.ai">OpenRouter (free models)</a></span></li><li><span class="who"><a href="https://www.requesty.ai">Requesty</a></span></li><li><span class="who"><a href="https://aihubmix.com">AIHubMix (free models)</a></span></li></ul>
       </div>
     </div>
-    <p class="sub" style="margin-top:12px">“Frontier” is a tier measured on the
-      <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
-      Index</a> — the model a row's free lane serves scores within 10 points of its top, re-read
-      twice a week. Every other answer is the section's own ranking,
+    <p class="sub" style="margin-top:12px">Every answer is the registry's own ranking,
       <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md#how-rows-are-ordered">explained in
-      CONTRIBUTING</a>; each list is the top of its section, so a row that stops verifying leaves
-      these cards on the same run it leaves the list.</p>
+      CONTRIBUTING</a>, read from the top — of its section, or of every section for no account at
+      all and Claude Code — so a row that stops
+      verifying leaves these cards on the same run it leaves the list.</p>
 
     <h3 style="margin-top:26px">No account at all? Paste this.</h3>
     <p class="sub" style="margin-bottom:10px"><a href="https://kilo.ai">Kilo Code</a>
@@ -1082,23 +1080,6 @@ Keyless OpenAI-compatible chat endpoint — no signup, no key, no account       
           </tr>
           <tr>
             <th class="who" scope="row">
-              <a class="name" href="https://www.ibm.com/products/watsonx-ai">IBM watsonx.ai (Lite plan)</a>
-              <div class="tags">
-<span class="tag card">💳 card</span>              </div>
-            </th>
-            <td class="what" data-label="What you get">
-IBM&#39;s watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM&#39;s own docs call free and never bill            </td>
-            <td class="models" data-label="Free models">
-<span class="empty">—</span>            </td>
-            <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>&#34;300,000 tokens per month&#34;, &#34;20 CUH per month&#34; of compute and &#34;2 inference requests per second&#34;, on &#34;A free plan with limited capacity&#34; — the Lite …</summary><span class="full">&#34;300,000 tokens per month&#34;, &#34;20 CUH per month&#34; of compute and &#34;2 inference requests per second&#34;, on &#34;A free plan with limited capacity&#34; — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says &#34;For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity&#34; and &#34;Lite plans do not incur charges&#34;. Which foundation models the 300,000 tokens reach is on a separate docs page the probe does not read, which is why the Free models column is empty</span></details>
-            </td>
-            <td class="when" data-label="Verified">
-              <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"><time datetime="2026-09-21">2026-09-21</time></a>
-            </td>
-          </tr>
-          <tr>
-            <th class="who" scope="row">
               <a class="name" href="https://pollinations.ai">Pollinations.AI</a>
               <div class="tags">
 <span class="tag nokey">no key</span>              </div>
@@ -1114,6 +1095,23 @@ Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/op
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/"><time datetime="2026-09-21">2026-09-21</time></a>
+            </td>
+          </tr>
+          <tr>
+            <th class="who" scope="row">
+              <a class="name" href="https://www.ibm.com/products/watsonx-ai">IBM watsonx.ai (Lite plan)</a>
+              <div class="tags">
+<span class="tag card">💳 card</span>              </div>
+            </th>
+            <td class="what" data-label="What you get">
+IBM&#39;s watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM&#39;s own docs call free and never bill            </td>
+            <td class="models" data-label="Free models">
+<span class="empty">—</span>            </td>
+            <td class="limits" data-label="Limits, in the vendor's words">
+                <details><summary>&#34;300,000 tokens per month&#34;, &#34;20 CUH per month&#34; of compute and &#34;2 inference requests per second&#34;, on &#34;A free plan with limited capacity&#34; — the Lite …</summary><span class="full">&#34;300,000 tokens per month&#34;, &#34;20 CUH per month&#34; of compute and &#34;2 inference requests per second&#34;, on &#34;A free plan with limited capacity&#34; — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says &#34;For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity&#34; and &#34;Lite plans do not incur charges&#34;. Which foundation models the 300,000 tokens reach is on a separate docs page the probe does not read, which is why the Free models column is empty</span></details>
+            </td>
+            <td class="when" data-label="Verified">
+              <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"><time datetime="2026-09-21">2026-09-21</time></a>
             </td>
           </tr>
           <tr>
@@ -2963,19 +2961,6 @@ ids are the docs&#39; models page, read 2026-09-17; /v1/models answers 401 witho
             </td>
           </tr>
           <tr>
-            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/">Experiential Labs</a></th>
-            <td class="what" data-label="Base URL">
-              <code>https://api.experientiallabs.ai/v1</code>
-              <button class="copy" type="button" data-copy="https://api.experientiallabs.ai/v1" hidden
-                      style="position:static;margin-left:6px">Copy</button>
-            </td>
-            <td class="models" data-label="Key">
-<code>EXPERIENTIAL_LABS_API_KEY</code>
-<div class="sub" style="margin-top:6px"><a href="https://platform.experientiallabs.ai">get a key</a></div>            </td>
-            <td class="limits" data-label="Notes">
-the catalog at /v1/models answers only a gateway key; the model list with prices is public at platform.experientiallabs.ai/models            </td>
-          </tr>
-          <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/">Poolside Platform</a></th>
             <td class="what" data-label="Base URL">
               <code>https://inference.poolside.ai/v1</code>
@@ -2988,6 +2973,19 @@ the catalog at /v1/models answers only a gateway key; the model list with prices
             <td class="limits" data-label="Notes">
                 <details><summary>the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split …</summary><span class="full">the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split for Platform keys anywhere, so this row claims no free models and names none in its column. The key is created by signing in to Poolside Platform, whose dashboard sits behind a Cloudflare check no probe can read</span></details>
             </td>
+          </tr>
+          <tr>
+            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/">Experiential Labs</a></th>
+            <td class="what" data-label="Base URL">
+              <code>https://api.experientiallabs.ai/v1</code>
+              <button class="copy" type="button" data-copy="https://api.experientiallabs.ai/v1" hidden
+                      style="position:static;margin-left:6px">Copy</button>
+            </td>
+            <td class="models" data-label="Key">
+<code>EXPERIENTIAL_LABS_API_KEY</code>
+<div class="sub" style="margin-top:6px"><a href="https://platform.experientiallabs.ai">get a key</a></div>            </td>
+            <td class="limits" data-label="Notes">
+the catalog at /v1/models answers only a gateway key; the model list with prices is public at platform.experientiallabs.ai/models            </td>
           </tr>
           <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/">Sail Research</a></th>
@@ -3113,7 +3111,7 @@ the id is the pricing page&#39;s and the docs&#39; own example; /v1/models answe
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
           <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and <code>claude-openrouter-free</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane.</td></tr>
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
-          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model behind one local endpoint; ask for <code>free/strong</code> or <code>free/nokey</code> instead of a model and a call moves to the next free lane when one runs out. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model LiteLLM can call behind one local endpoint; ask for <code>free/strong</code> or <code>free/nokey</code> instead of a model and a call moves to the next free lane when one runs out. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
           <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
         <tr><th scope="row"><a href="index.json">index.json</a></th>
@@ -3146,14 +3144,14 @@ the id is the pricing page&#39;s and the docs&#39; own example; /v1/models answe
       </div>
       <div class="card">
         <h3>The vendor's own words</h3>
-        <p class="sub">The limits column quotes the page it was read from, with the date. No figure
+        <p class="sub">The limits column is the vendor's own words, from the page they were read on. No figure
           here is a summary of a summary, and a quote that stops matching its source is re-read
           before it is edited.</p>
       </div>
       <div class="card">
         <h3>Legal free only</h3>
-        <p class="sub">Free is by the vendor's own account — a catalog flag or a published price of
-          zero. Anything running on pooled consumer accounts, reverse-engineered clients or spoofed
+        <p class="sub">Free is by the vendor's own account — a catalog flag, a published price of
+          zero or the vendor's own words on its pricing page. Anything running on pooled consumer accounts, reverse-engineered clients or spoofed
           apps is refused, and the reason is published with it.</p>
       </div>
     </div>

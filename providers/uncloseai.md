@@ -17,7 +17,7 @@ Keyless OpenAI-compatible chat endpoint — no signup, no key, no account
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+The row names no free model family; the ids its lane serves, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 

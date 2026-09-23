@@ -217,6 +217,7 @@ def _render_everything(entries, tmp_path, watchlist=None, today=TODAY) -> dict[s
     """Every file the render writes, by path, rendered from one registry the way
     `freetier-render` renders the repository."""
     from freetier_radar.render import CONFIGS_README, render_artifacts, render_configs_readme
+    tmp_path.mkdir(parents=True, exist_ok=True)
     registry = tmp_path / "registry.yaml"
     save_registry(registry, entries)
     if watchlist is not None:
@@ -288,3 +289,51 @@ def test_every_page_states_the_rule_the_code_applies(tmp_path, monkeypatch, name
     assert readme_says in pages["README.md"]
     assert site_says in pages[SITE_PAGE]
     assert not [path for path, text in pages.items() if unsaid in text]
+
+
+def test_a_row_that_needs_a_card_never_leads_the_no_card_rows_it_ties_with(tmp_path):
+    """CONTRIBUTING's rule, which every sort ignored: on 2026-09-23 IBM
+    watsonx.ai (card, rank 98) sat above Pollinations.AI (no card, rank 98)
+    because the name broke the tie."""
+    entries = [make(id="ibm", name="IBM", rank=98, card_required=True),
+               make(id="poll", name="Pollinations", rank=98)]
+    pages = _render_everything(entries, tmp_path)
+    readme, site = pages["README.md"], pages[SITE_PAGE]
+    assert readme.index("[Pollinations]") < readme.index("[IBM]")
+    assert site.index(">Pollinations<") < site.index(">IBM<")
+    assert pages["llms.txt"].index("[Pollinations]") < pages["llms.txt"].index("[IBM]")
+
+
+def test_a_provisional_page_says_the_day_its_promotion_can_come(tmp_path):
+    """"Two weeks of probes still to pass" was printed on every provisional
+    page, twelve days into the fortnight as on the first."""
+    from datetime import timedelta
+    row = make(id="young", name="Young", provisional=True, first_seen=TODAY - timedelta(days=5))
+    page = _render_everything([row], tmp_path)["providers/young.md"]
+    promote = (TODAY - timedelta(days=5) + timedelta(days=14)).isoformat()
+    assert f"the first probe it passes on or after {promote}" in page
+    assert "still to pass" not in page
+
+
+def test_the_frontier_bar_is_explained_only_where_a_frontier_line_is_shown(tmp_path):
+    """With no free lane measured frontier the picks table has no Frontier line,
+    and both pages went on explaining one."""
+    plain = [make(id="a", name="A", category="api-free-tier")]
+    pages = _render_everything(plain, tmp_path / "plain")
+    assert "Frontier" not in pages["README.md"].split("## 📋")[0]
+    assert "Frontier" not in pages[SITE_PAGE].split('id="plug"')[0]
+    top = [make(id="b", name="B", models=[{"family": "big", "tier": "frontier", "aa_model": "big"}])]
+    pages = _render_everything(top, tmp_path / "top")
+    assert "within 10 points" in pages["README.md"] and "within 10 points" in pages[SITE_PAGE]
+
+
+def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
+    """The connection table printed "not needed" wherever a row named no key
+    page, keyed or not."""
+    keyed = make(id="k", name="Keyed", api={"base_url": "https://k.example/v1"})
+    keyless = make(id="n", name="Keyless", api={"base_url": "https://n.example/v1", "auth": "none"})
+    table = _render_everything([keyed, keyless], tmp_path)["configs/README.md"]
+    keyed_row = next(line for line in table.splitlines() if line.startswith("| **[Keyed]"))
+    keyless_row = next(line for line in table.splitlines() if line.startswith("| **[Keyless]"))
+    assert "not needed" not in keyed_row
+    assert keyless_row.endswith("| not needed |")
