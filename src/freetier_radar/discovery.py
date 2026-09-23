@@ -98,12 +98,15 @@ CURATED_FEEDS = [
     # adopted; the project has since moved every gateway with an adapter of its
     # own into a module of its own, and index.ts named those only as class names —
     # twelve providers, Sail Research, ACLIDE and CLōD among them, that no run
-    # ever saw a host for. Leads only, and the usual rule holds twice over for the
-    # most opinionated router here: it said SambaNova's free tier was
-    # "permanently gone" while docs.sambanova.ai still keyed a Free Tier to "no
-    # payment method linked with your account" (checked 2026-08-06 and again
-    # 2026-08-14), and it credited AINative with "a recurring ~10M tokens/month
+    # ever saw a host for. Leads only, and for the most opinionated router here
+    # that cuts both ways. It said SambaNova's free tier was "permanently gone"
+    # while docs.sambanova.ai still keyed a Free Tier to "no payment method
+    # linked with your account" (checked 2026-08-06 and again 2026-08-14) — and
+    # it was right: the console's plans page had asked every new account for a
+    # card and a credit purchase since 2026-08, and the row came off on
+    # 2026-09-23. It also credited AINative with "a recurring ~10M tokens/month
     # free allocation" that ainative.studio/pricing contradicts on its own page.
+    # Read a lead against the page where the plan is sold, not the docs about it.
     "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/client/src/components/keys/shared.tsx",
     # The only feed here that looks east: of the nine providers it carries that
     # nothing in this repository had a verdict on, seven appear in none of the

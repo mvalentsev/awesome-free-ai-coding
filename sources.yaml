@@ -841,8 +841,10 @@ read:
     reason: >-
       A Bifrost configuration, 53 stars, pushed 2026-06-11, routing one local
       base URL over OpenCode Zen, Kilo, NVIDIA NIM, Gemini, Mistral, Cerebras,
-      Groq, SambaNova and Cohere — all carried — plus certification scripts
-      that call each route. A consumer of lists like this one, not a source.
+      Groq, SambaNova and Cohere — all carried on that day; Cerebras and
+      SambaNova have left the list since, each with a watchlist verdict — plus
+      certification scripts that call each route. A consumer of lists like
+      this one, not a source.
     reopen_if: >-
       Its provider catalog names a host with no verdict here.
 

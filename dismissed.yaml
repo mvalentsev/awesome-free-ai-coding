@@ -110,8 +110,12 @@ dismissed:
       Gemini 3 Pro is what the paid plans buy. jules.google/docs/usage-limits
       sets Model Access per plan: "Gemini 2.5 Pro" on the free Jules row,
       "Higher access to the latest model (starting with Gemini 3 Pro)" on
-      Jules in Pro and "Priority access" on Ultra. The free row is pinned to
-      2.5 deliberately, and gemini-3.1-pro is not a name that page uses at all.
+      Jules in Pro and "Priority access" on Ultra, and gemini-3.1-pro is not a
+      name that page uses at all. The changelog agrees on the bump and not on
+      the base: 3.1 Pro went to "Google Pro plan users" on 2026-03-09, while
+      Gemini 3 Flash has been the base model "for all users on all tiers"
+      since 2026-01-30 — which the row's prose says, and its column cannot
+      until the plan table the probe reads names it.
 
   # A bump PR #12 reported, read off the vendor's own free column on
   # 2026-08-28: SambaNova prints the newer generation as free twice over, in a
@@ -360,8 +364,8 @@ dismissed:
     reason: >-
       The 2026-08-14 dismissal on this row, retargeted from gemini-3.1-pro to
       gemini-3.8-flash. jules.google/docs/usage-limits does not contain the
-      string "3.8" at all (read 2026-09-08): the free Jules row is still pinned
-      to "Gemini 2.5 Pro", with "the latest model" reserved for Pro and Ultra.
+      string "3.8" at all (read 2026-09-08): its free Jules row still names
+      "Gemini 2.5 Pro", with "the latest model" reserved for Pro and Ultra.
   - entry: kiro
     family: qwen3-coder
     superseded_by: qwen3.8

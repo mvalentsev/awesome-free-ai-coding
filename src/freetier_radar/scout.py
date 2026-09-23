@@ -406,7 +406,10 @@ class LLMClient:
 
     def __init__(self, gemini_key: str | None = None, openrouter_key: str | None = None,
                  openrouter_model: str | None = None,
-                 gemini_model: str = "gemini-2.5-flash",
+                 # Google keeps the 2.5 models for keys that already used them
+                 # (changelog, 2026-09-18): "For any new projects, use our latest
+                 # models: 3.5 Flash-Lite or 3.8 Flash".
+                 gemini_model: str = "gemini-3.8-flash",
                  custom_base_url: str | None = None, custom_model: str | None = None,
                  custom_key: str | None = None,
                  fallback_base_url: str | None = None, fallback_model: str | None = None,
