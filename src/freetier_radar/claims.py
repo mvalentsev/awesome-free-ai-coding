@@ -20,6 +20,7 @@ from typing import Callable
 import yaml
 
 from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
+from .gate import EARNED
 from .layout import MAP, Kind
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, load_registry,
@@ -120,6 +121,10 @@ CLAIMS: tuple[Claim, ...] = (
                                    and n.path.startswith("configs/")
                                    and n.path != "configs/README.md"])),),
           "the configs layout.MAP marks generated"),
+    Claim("CONTRIBUTING.md",
+          r"a hand edit of `(\w+)`,\s+`(\w+)`, `(\w+)` or `(\w+)`, which only the run's probe",
+          lambda root: tuple(sorted(EARNED)), "gate.EARNED",
+          read=lambda found: tuple(sorted(found.groups()))),
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("browse.html", r"listed for less than (\w+ weeks|a week)",

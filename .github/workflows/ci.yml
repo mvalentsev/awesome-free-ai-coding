@@ -12,7 +12,10 @@ jobs:
   test:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     steps:
+      # The whole history, so the log check below can read the push's parent.
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       # An exact version where the two lines around it float a major tag:
       # setup-uv stopped publishing major and minor tags at v8, on purpose, so
@@ -45,3 +48,18 @@ jobs:
       # gets caught now, together with the contradictions that span two files.
       - name: Curated files + cross-file consistency
         run: uv run freetier-check
+
+      # What no check of one tree can see: history.jsonl and the announcer's
+      # ledger only ever appended to, and on a pull request the fields a probe
+      # earns (last_verified, probe_failures, provisional, first_seen) left as
+      # the run wrote them. The pre-commit hook holds a commit to the same rules
+      # before it exists; this holds a push or a pull request made without it.
+      # On a pull request HEAD is the merge commit, and its first parent is the
+      # branch the request would land on.
+      - name: Logs appended to, earned fields untouched
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            uv run freetier-gate diff HEAD^1 --earned
+          elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            uv run freetier-gate diff "${{ github.event.before }}"
+          fi

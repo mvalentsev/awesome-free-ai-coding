@@ -57,6 +57,18 @@ jobs:
       - name: Render README
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
+      # CI never runs on this workflow's own push (GITHUB_TOKEN starts no
+      # workflow), so what CI would check is checked here, before the commit:
+      # the curated files, the map and the hand-written claims, every generated
+      # file against the registry, and the logs only ever appended to. A red
+      # step leaves main as it was and the findings in this log. It runs on a
+      # dry run too, which is how a change to it is tried before a real run.
+      - name: Check what the run is about to commit
+        run: |
+          uv run freetier-check
+          uv run freetier-render --check
+          uv run freetier-gate diff HEAD
+
       - name: Commit verification results to main
         id: commit
         if: ${{ !inputs.dry_run }}
@@ -125,6 +137,33 @@ jobs:
 
       - name: Render README with scout changes
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
+
+      # A pull request this workflow opens starts no CI run (GITHUB_TOKEN), and
+      # PR #17 went up failing freetier-check with nothing on it saying so. The
+      # checks run here on the branch's tree, earned fields and new rows
+      # included, and their result heads the PR body and the run summary.
+      - name: Check the scout's branch
+        run: |
+          {
+            echo "## Checks on this branch"
+            echo
+            echo "CI does not run on a pull request this workflow opens, so these ran here:"
+            echo
+            for cmd in "freetier-check" "freetier-render --check" "freetier-gate diff HEAD --earned"; do
+              if out=$(uv run $cmd 2>&1); then
+                echo "- ✓ \`$cmd\`"
+              else
+                echo "- ✗ \`$cmd\`"
+                echo
+                echo '```'
+                echo "$out" | tail -30
+                echo '```'
+              fi
+            done
+            echo
+            cat scout-pr.md
+          } > scout-pr.checked.md
+          mv scout-pr.checked.md scout-pr.md
 
       # The scout's report is the only account of what the run found. On a dry
       # run there is no PR to carry it, and on a scheduled run it is worth

@@ -1,0 +1,3 @@
+#!/bin/sh
+# A subject with its kind (`fix: …`) and a blank line before the body.
+exec uv run --quiet --frozen freetier-gate commit-msg "$1"

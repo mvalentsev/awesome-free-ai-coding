@@ -1,0 +1,181 @@
+"""The gate is where the map's rules meet a commit: every check on the snapshot
+about to be committed, the logs only ever appended to, the fields a probe
+earns never typed, and a message git can show as a subject and a body."""
+import subprocess
+from datetime import date
+from pathlib import Path
+
+import pytest
+
+from freetier_radar.gate import (earned_problems, log_problems, main, message_problems,
+                                 pre_commit, snapshot_index)
+from freetier_radar.models import Entry
+
+BASE = {"name": "X", "category": "api-free-tier", "url": "https://x.ai", "offering": "stuff",
+        "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["x-mini-2"]}}
+
+
+def row(**kw) -> Entry:
+    return Entry.model_validate({**BASE, "id": "x", "first_seen": date(2026, 9, 1),
+                                 "last_verified": date(2026, 9, 21), **kw})
+
+
+# ---- the logs
+
+def test_a_log_is_only_ever_appended_to():
+    assert log_problems("history.jsonl", "a\nb\n", "a\nb\nc\n") == []
+    assert log_problems("history.jsonl", None, "a\n") == []
+    assert log_problems("history.jsonl", "a\nb\n", "a\nB\nc\n") == [
+        "history.jsonl rewrites line 2 of what is committed — it is append-only: restore the "
+        "file and let its command append"]
+    assert log_problems("history.jsonl", "a\nb\n", None) == [
+        "history.jsonl is deleted — it is append-only and nothing regenerates it"]
+
+
+def test_a_commit_on_main_leaves_the_logs_to_the_commands_that_write_them():
+    """history.jsonl on main is written by the scheduled run and by a merged
+    scout PR; a hand-appended line would pass every consistency check there is
+    and still be an event no run recorded."""
+    assert log_problems("history.jsonl", "a\n", "a\n", frozen=True) == []
+    assert log_problems("history.jsonl", "a\n", "a\nb\n", frozen=True) == [
+        "history.jsonl changes in a commit on main — only freetier-probe and freetier-scout "
+        "write it, on the scheduled run and on the scout's branch"]
+
+
+# ---- the fields a probe earns
+
+def test_a_probe_earned_field_is_never_typed():
+    before, after = [row()], [row(last_verified=date(2026, 9, 23), probe_failures=0)]
+    assert earned_problems(before, after) == [
+        "registry: x last_verified 2026-09-21 → 2026-09-23 — it is earned by the scheduled run "
+        "(prober.apply_results); a commit made anywhere else leaves it as it is"]
+    assert earned_problems([row(probe_failures=1)], [row()])[0].startswith(
+        "registry: x probe_failures 1 → 0 —")
+    assert earned_problems([row(provisional=True)], [row()])[0].startswith(
+        "registry: x provisional True → False —")
+    assert earned_problems([row()], [row(first_seen=date(2026, 9, 2))])[0].startswith(
+        "registry: x first_seen 2026-09-01 → 2026-09-02 —")
+    assert earned_problems([row()], [row(offering="new words")]) == []
+
+
+def test_a_new_row_starts_provisional_on_the_day_it_is_added():
+    fresh = row(id="y", first_seen=date(2026, 9, 23), last_verified=date(2026, 9, 23),
+                provisional=True)
+    assert earned_problems([row()], [row(), fresh]) == []
+    assert earned_problems([row()], [row(), row(id="y", provisional=False)]) == [
+        "registry: y is new and not provisional — a row enters on 🧪 and the run promotes it",
+        "registry: y is new with first_seen 2026-09-01 and last_verified 2026-09-21 — a row "
+        "enters with both on the day it is added"]
+
+
+def test_a_row_the_base_holds_is_never_dropped():
+    assert earned_problems([row(), row(id="y")], [row()]) == [
+        "registry: y is gone — a row leaves the list through the Archive, never the file"]
+
+
+# ---- the message
+
+@pytest.mark.parametrize("text", [
+    "fix: a subject\n", "feat: a subject\n\nA body.\n", "fix(tests): scoped\n",
+    "Merge branch 'scout/weekly'\n", "fixup! fix: a subject\n",
+    "chore: verification 2026-09-24\n# a comment git strips\n",
+])
+def test_a_message_git_can_show_passes(text):
+    assert message_problems(text) == []
+
+
+def test_a_subject_that_swallowed_the_body_is_refused():
+    """ccac77a's subject ran on into its first paragraph: no blank line, and
+    main refuses the force push that could have fixed it."""
+    assert message_problems("feat: a subject\nthat runs on\n") == [
+        "the second line of the message is not blank — git would read the paragraph as part "
+        "of the subject"]
+
+
+def test_a_subject_says_its_kind_in_lower_case():
+    assert message_problems("Update things\n") == [
+        "the subject does not start with a kind — `feat: …`, `fix: …`, `chore: …`, `docs: …`"]
+    assert message_problems("\n\n") == ["the message is empty"]
+
+
+# ---- the snapshot and the commit
+
+def _git(repo: Path, *args: str) -> str:
+    return subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True,
+                          text=True).stdout
+
+
+def _repo(tmp_path: Path) -> Path:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    _git(repo, "init", "-q", "-b", "main")
+    _git(repo, "config", "user.email", "t@example.com")
+    _git(repo, "config", "user.name", "t")
+    (repo / "history.jsonl").write_text("a\n", encoding="utf-8")
+    (repo / "note.txt").write_text("one\n", encoding="utf-8")
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-q", "-m", "chore: start")
+    return repo
+
+
+def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(tmp_path):
+    repo = _repo(tmp_path)
+    (repo / "note.txt").write_text("staged\n", encoding="utf-8")
+    _git(repo, "add", "note.txt")
+    (repo / "note.txt").write_text("not staged\n", encoding="utf-8")
+    (repo / "untracked.txt").write_text("x\n", encoding="utf-8")
+    with snapshot_index(repo) as snap:
+        assert (snap / "note.txt").read_text(encoding="utf-8") == "staged\n"
+        assert not (snap / "untracked.txt").exists()
+
+
+def test_the_gate_refuses_a_commit_that_rewrites_the_history(tmp_path):
+    repo = _repo(tmp_path)
+    (repo / "history.jsonl").write_text("A\n", encoding="utf-8")
+    _git(repo, "add", "history.jsonl")
+    ran = []
+    problems = pre_commit(repo, steps=[("a step", lambda snap: ran.append(snap) or "")])
+    assert ran, "the checks run on the snapshot"
+    assert problems == ["history.jsonl changes in a commit on main — only freetier-probe and "
+                        "freetier-scout write it, on the scheduled run and on the scout's branch"]
+
+
+def test_the_gate_reports_a_check_that_fails_on_the_snapshot(tmp_path):
+    repo = _repo(tmp_path)
+    problems = pre_commit(repo, steps=[("freetier-check", lambda snap: "✗ something is off"),
+                                       ("pytest", lambda snap: "")])
+    assert problems == ["freetier-check failed on what is about to be committed:\n"
+                        "✗ something is off"]
+
+
+def test_the_commit_msg_hook_exits_non_zero_on_a_bad_message(tmp_path, capsys):
+    message = tmp_path / "COMMIT_EDITMSG"
+    message.write_text("fix: subject\nbody\n", encoding="utf-8")
+    with pytest.raises(SystemExit) as refused:
+        main(["commit-msg", str(message)])
+    assert refused.value.code == 1
+    assert "second line" in capsys.readouterr().out
+    message.write_text("fix: subject\n\nbody\n", encoding="utf-8")
+    main(["commit-msg", str(message)])
+
+
+def test_each_check_fails_on_a_snapshot_it_should_refuse(tmp_path):
+    """The first version called the render as `python -m freetier_radar.render`,
+    which runs nothing in a module with no `__main__` guard and exits 0: a hand
+    edit of the README passed the gate. Each step is run here on a copy of the
+    repository with a hand-edited README, and the render's step has to say so."""
+    import shutil
+    from freetier_radar.gate import CHECKS
+    from freetier_radar.layout import tracked_files
+    root = Path(__file__).resolve().parent.parent
+    snap = tmp_path / "snap"
+    for f in tracked_files(root):
+        (snap / f).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(root / f, snap / f)
+    readme = snap / "README.md"
+    readme.write_text(readme.read_text(encoding="utf-8").replace("live offers", "live deals"),
+                      encoding="utf-8")
+    render = dict(CHECKS)["freetier-render --check"]
+    assert "stale: README.md" in render(snap)
+    check = dict(CHECKS)["freetier-check"]
+    assert check(snap) == ""

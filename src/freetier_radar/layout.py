@@ -140,6 +140,8 @@ MAP: tuple[Node, ...] = (
     Node("uv.lock", Kind.CONFIG, "the pinned dependencies"),
     Node("_config.yml", Kind.CONFIG, "the Pages site: its name, its plugins, what it leaves out"),
     Node(".gitignore", Kind.CONFIG, "what git leaves alone"),
+    Node(".githooks/*", Kind.CONFIG,
+         "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),
     Node(".github/workflows/*.yml", Kind.CONFIG, "CI, the scheduled run and read-page"),
     Node(".github/dependabot.yml", Kind.CONFIG, "the pinned actions' watcher"),
     Node(".github/ISSUE_TEMPLATE/*.yml", Kind.CONFIG, "the suggest-a-service form"),

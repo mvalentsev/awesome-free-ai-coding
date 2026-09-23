@@ -1987,3 +1987,7 @@ def main() -> None:
         return
     render_all(args.registry, args.templates, root, args.out.name, watchlist_path=args.watchlist)
     print(f"rendered {written}")
+
+
+if __name__ == "__main__":
+    main()

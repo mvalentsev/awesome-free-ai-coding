@@ -1,0 +1,4 @@
+#!/bin/sh
+# The same checks on the commit being pushed, and the log and earned-field rules
+# over every commit the push adds — a commit made with --no-verify included.
+exec uv run --quiet --frozen freetier-gate pre-push

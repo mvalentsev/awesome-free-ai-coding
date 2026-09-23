@@ -551,6 +551,7 @@ cannot print two versions of it.
 | `uv.lock` | **config** — the pinned dependencies · not on the site | — | `hand` |
 | `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
+| `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
 | `.github/workflows/*.yml` | **config** — CI, the scheduled run and read-page · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the pinned actions' watcher · not on the site | — | `hand` |
 | `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
@@ -587,13 +588,29 @@ submissions, and a post there is a person's decision every time.
 
 ```bash
 uv sync
+git config core.hooksPath .githooks   # once per clone: every check runs before each commit
 uv run pytest
+uv run freetier-map               # the map: what every file is, what it is made from, what writes it
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
 uv run freetier-render            # regenerate every file the map above marks generated, and the map
 uv run freetier-check             # validate the curated files against each other
 uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
+
+**The checks run before a commit exists.** With the hooks on, `git commit`
+runs `freetier-gate pre-commit`: `freetier-check`, `freetier-render --check` and
+the test suite on a snapshot of what is staged, with the dates in UTC. It also
+refuses what only a command may write: a commit on `main` that changes
+`history.jsonl` or `announced.jsonl`, which the scheduled run and a merged scout
+PR write, a log rewritten on any branch, and a hand edit of `last_verified`,
+`probe_failures`, `provisional` or `first_seen`, which only the run's probe
+writes — a new row enters provisional, with `first_seen` and `last_verified`
+both the day it is added. `commit-msg` wants a subject that starts with its
+kind (`fix: …`) and a blank line before the body; `pre-push` runs the same
+checks on what is pushed. CI checks the logs again on every push, the earned
+fields on every pull request, and the scheduled run does both before its own
+commit, since CI never runs on it.
 
 **A row's prose is for the reader deciding whether to use the offer.** `offering` says
 what it is, `limits` the quota, the conditions and what happens to the data, and
