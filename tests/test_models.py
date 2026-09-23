@@ -224,6 +224,30 @@ def test_a_lane_belongs_to_an_api_models_probe():
     assert Entry.model_validate(on_the_api).probe.lane == "free"
 
 
+NGC_SEARCH = "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=free"
+
+
+def test_a_free_list_marks_what_a_models_api_reads_as_free():
+    """The list stands in for the prices a catalog does not publish, so it is
+    read only where an api-models probe asks whether a row is free. Anywhere
+    else it would sit in the registry changing nothing — on a page probe, or on
+    a catalog probe that never asks the question."""
+    on_a_page = {**sample_entry(), "probe": {"type": "page-keywords",
+                                             "endpoint": "https://x.ai/pricing",
+                                             "keywords": ["solar-mini", "free"],
+                                             "free_list": NGC_SEARCH}}
+    unasked = {**sample_entry(), "probe": {**sample_entry()["probe"], "free_list": NGC_SEARCH}}
+    plain = {**sample_entry(), "probe": {**sample_entry()["probe"], "require_zero_price": True,
+                                         "free_list": NGC_SEARCH.replace("https", "http")}}
+    for misplaced in (on_a_page, unasked, plain):
+        with pytest.raises(ValidationError):
+            Entry.model_validate(misplaced)
+
+    read = {**sample_entry(), "probe": {**sample_entry()["probe"], "require_zero_price": True,
+                                        "free_list": NGC_SEARCH}}
+    assert Entry.model_validate(read).probe.free_list == NGC_SEARCH
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

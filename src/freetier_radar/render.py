@@ -1379,7 +1379,11 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
             how = f"- Probe: the models catalog at {at(probe.endpoint)}"
         if probe.free_marker:
             how += f", free rows carrying `{probe.free_marker}`"
-        if probe.require_zero_price:
+        if probe.free_list:
+            # No price to be zero: the mark is in a second document.
+            how += (", every listed family required free on the vendor's free list at "
+                    + at(probe.free_list))
+        elif probe.require_zero_price:
             how += ", every listed family required at a zero price"
     else:
         # A page-keywords row can carry its whole anchor in the page's data —

@@ -271,6 +271,36 @@ def test_probe_check_reads_the_page_a_followed_index_names():
         assert scout.named_by_row(client)(e, "x-mini-2") is True
 
 
+@respx.mock
+def test_a_catalog_without_prices_is_read_with_its_free_list_by_the_scout_too():
+    """A generation bump is measured against what the row serves free, and on a
+    catalog that prices nothing only the vendor's free list says what that is:
+    on 2026-09-23 NVIDIA's catalog answered moonshotai/kimi-k2.6 beside kimi-k3
+    and the list marked only kimi-k3, so the catalog alone would call a family
+    served that the row cannot offer."""
+    e = make(id="nimmy", models=[{"family": "kimi-k3", "tier": "strong"}],
+             probe={"type": "api-models", "endpoint": "https://integrate.x.ai/v1/models",
+                    "require_zero_price": True, "free_list": "https://api.x.ai/search?q=free"})
+    respx.get("https://integrate.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "moonshotai/kimi-k3"}, {"id": "moonshotai/kimi-k2.6"}]}))
+    free = {"resultTotal": 1, "resultPageTotal": 1, "results": [{"groupValue": "ENDPOINT", "resources": [
+        {"name": "kimi-k3", "labels": [
+            {"key": "general", "unresolvedValues": ["playgroundtype_chat", "nim_type_preview"]},
+            {"key": "publisher", "values": ["moonshotai"]}], "attributes": []}]}]}
+    route = respx.get("https://api.x.ai/search?q=free").mock(
+        return_value=httpx.Response(200, json=free))
+    with httpx.Client() as client:
+        assert scout.probe_check_sync(e, client) is None
+        named = scout.named_by_row(client)
+        assert named(e, "kimi-k3") is True
+        assert named(e, "kimi-k2.6") is False
+
+    route.mock(return_value=httpx.Response(403, text="denied"))
+    with httpx.Client() as client:
+        assert "free list" in scout.probe_check_sync(e, client)
+        assert scout.named_by_row(client)(e, "kimi-k3") is None
+
+
 def test_apply_new_uses_verifier():
     entries = [make()]
     added, rejected = apply_new(

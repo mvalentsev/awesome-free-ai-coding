@@ -226,6 +226,22 @@ catalog does. The two ways a lane comes back empty are reported apart, `the
 'free' lane lists no model ids` and `response has no 'free' lane`, because a
 promotion that ended and a key the vendor renamed want opposite repairs.
 
+**A catalog that prices nothing takes its free marks from the vendor's own
+list.** NVIDIA's `/v1/models` answered 82 ids on 2026-09-23 with nothing beside
+each one but its owner, older ids with no page among them, while build.nvidia.com
+marks each model's page "Free Endpoint", available or deprecated. Set
+`probe.free_list` to the keyless document that carries those marks, with
+`require_zero_price: true`, and the probe joins it onto the catalog: an id the
+list marks is free, one it dates for retirement is marked unavailable, and every
+other id is not free — so the families, `api.model_ids` and the unlisted ids are
+read as they are against a price. NVIDIA's list is NGC's catalog search filtered
+to its free label (see the `nvidia-nim` row); a document of another shape is
+reported, not guessed at. Until then the row's free ids were found by hand: Kimi
+K3 was free from 2026-08-27 and reached the row on 2026-09-22, and on 2026-09-23
+the list marked seven chat models the row did not carry, DeepSeek V4.1 Flash
+among them. A list that cannot be read leaves the offer unchecked, which is
+`inconclusive`; one that answers and marks nothing free fails the row.
+
 **Every family in `models[]` must be named on the page the probe reads.** The
 Free models column is a claim, and it needs to be re-checkable by the same run
 that re-checks the offer: an `api-models` probe demands each family back from the

@@ -218,6 +218,14 @@ class Probe(BaseModel):
     # 2026-09-14 — so the lane is named rather than every array read. Unset,
     # the rows are the document itself or its `data`, as in an OpenAI catalog.
     lane: str | None = None
+    # api-models: a keyless document in which the vendor marks which of the
+    # catalog's models are free, for a catalog that publishes no price. NVIDIA's
+    # /v1/models answered 82 ids on 2026-09-23 with nothing but the id and its
+    # owner, while build.nvidia.com marked 39 endpoints "Free Endpoint", and
+    # NGC's catalog search returns those marks for all of them in one call. The
+    # probe joins the list onto the catalog and reads it as it reads a price
+    # (see prober.join_free_list), so it takes require_zero_price with it.
+    free_list: str | None = None
     # page-keywords: the endpoint is a JSON index that names the page to read,
     # for a vendor whose docs move to a new dated path each release (see Follow)
     follow: Follow | None = None
@@ -251,6 +259,21 @@ class Probe(BaseModel):
             raise ValueError(
                 f"probe {self.endpoint}: require_zero_price needs an api-models probe"
             )
+        return self
+
+    @model_validator(mode="after")
+    def _free_list_answers_the_price_question(self) -> Probe:
+        """The list is read only where an api-models probe asks whether a row is
+        free, which is what require_zero_price turns on: anywhere else it would
+        be fetched, or not, and change nothing either way."""
+        if self.free_list is None:
+            return self
+        if self.type is not ProbeType.API_MODELS or not self.require_zero_price:
+            raise ValueError(
+                f"probe {self.endpoint}: free_list stands in for the prices a catalog does "
+                "not publish, so it needs an api-models probe with require_zero_price: true")
+        if not self.free_list.startswith("https://"):
+            raise ValueError(f"probe {self.endpoint}: free_list must be an https URL")
         return self
 
     @model_validator(mode="after")

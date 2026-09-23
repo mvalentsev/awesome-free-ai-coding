@@ -50,6 +50,13 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         resp, stop = await _read_followed(client, entry, resp, attempts, backoff)
         if stop is not None:
             return stop
+    # The vendor's own bytes, for the checks below that read its words back;
+    # a catalog read with a free list is checked with the list's marks on it.
+    page = resp
+    if entry.probe.free_list is not None:
+        resp, stop = await _read_free_list(client, entry, resp, attempts, backoff)
+        if stop is not None:
+            return stop
     detail = check_content(resp, entry)
     if detail is None:
         # A row published as keyless is only as live as a call without a
@@ -121,7 +128,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # A key handed to everyone is the vendor's only while the vendor's
         # page prints it — see public_key_unprinted.
         if entry.api and entry.api.public_key:
-            unprinted = await public_key_unprinted(client, entry, resp, attempts, backoff)
+            unprinted = await public_key_unprinted(client, entry, page, attempts, backoff)
             if unprinted:
                 if keyless is not None:
                     unprinted = f"{unprinted} | {keyless.detail}"
@@ -129,7 +136,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # The row's word on what the vendor does with what a reader sends rests
         # on one sentence on one page — see data_use_moved.
         if entry.data_use is not None:
-            moved = await data_use_moved(client, entry, resp, attempts, backoff)
+            moved = await data_use_moved(client, entry, page, attempts, backoff)
             if moved:
                 if keyless is not None:
                     moved = f"{moved} | {keyless.detail}"
@@ -142,7 +149,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
     # perfectly well above it — on those the keywords match and this never
     # runs. It is when they do NOT match that the wording matters: a bot wall
     # means we did not see the vendor's page, not that the offer is gone.
-    challenge = challenge_marker_hit(resp.text)
+    challenge = challenge_marker_hit(page.text)
     if challenge is not None:
         return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
     # A failing api-models row is where a dead id hides best, and until
@@ -228,6 +235,37 @@ async def _read_followed(client: httpx.AsyncClient, entry: Entry, index: httpx.R
                                  f"the index at {entry.probe.endpoint} names no page in "
                                  f"{entry.probe.follow.field}")
     return await _read(client, url, attempts, backoff, named=True)
+
+
+async def _read_free_list(client: httpx.AsyncClient, entry: Entry, catalog: httpx.Response,
+                          attempts: int, backoff: float
+                          ) -> tuple[httpx.Response | None, ProbeResult | None]:
+    """The catalog with the vendor's free marks on it — see join_free_list. A
+    list that cannot be read leaves the offer unchecked rather than unmet:
+    taken as a list that marks nothing, a bot wall or a changed search format
+    would fail every family, and three runs of that archive a live row."""
+    url = entry.probe.free_list
+    listed, failure = await _fetch_page(client, url, attempts, backoff)
+    if listed is not None:
+        joined, failure = join_free_list(catalog, listed, entry.probe.lane)
+        if joined is not None:
+            return joined, None
+    return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"free list {url} {failure}")
+
+
+def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Response
+                        ) -> tuple[httpx.Response | None, str]:
+    """join_free_list for the scout's synchronous client: the catalog with the
+    marks on it, or None and why the list could not be read."""
+    url = entry.probe.free_list
+    try:
+        listed = client.get(url, follow_redirects=True)
+    except httpx.HTTPError as exc:
+        return None, f"free list {url} unreachable: {exc}"
+    if listed.status_code != 200:
+        return None, f"free list {url} answered HTTP {listed.status_code}"
+    joined, failure = join_free_list(catalog, listed, entry.probe.lane)
+    return (joined, "") if joined is not None else (None, f"free list {url} {failure}")
 
 
 async def probe_page_url(client: httpx.AsyncClient, probe: Probe) -> str:
@@ -818,10 +856,14 @@ def _is_withdrawn(model: dict) -> bool:
     return False
 
 
-def _price_note(model: dict) -> str:
+def _price_note(model: dict, listed: bool = False) -> str:
+    """Why a row is not free, in words a person can check: on a row read with a
+    free list the mark is the list's, and "the catalog" would send them to a
+    document that marks nothing."""
     mid = _model_id(model) or "?"
     if _free_flag(model) is False:
-        return f"{mid} is marked not free by the catalog"
+        return (f"{mid} is not marked free on the free list" if listed
+                else f"{mid} is marked not free by the catalog")
     prices = _price_of(model)
     if prices is None:
         return f"{mid} publishes no price"
@@ -849,6 +891,12 @@ def _catalog_items(resp: httpx.Response, lane: str | None = None) -> list[dict] 
         data = resp.json()
     except json.JSONDecodeError:
         return None
+    return _rows(data, lane)
+
+
+def _rows(data: object, lane: str | None) -> list[dict]:
+    """The model rows of a parsed catalog, as _catalog_items finds them — the
+    document's own objects, so a caller can mark them where they stand."""
     if lane is not None:
         rows = data.get(lane) if isinstance(data, dict) else None
         rows = rows if isinstance(rows, list) else []
@@ -860,6 +908,91 @@ def _catalog_items(resp: httpx.Response, lane: str | None = None) -> list[dict] 
     else:
         rows = []
     return [m for m in rows if isinstance(m, dict)]
+
+
+# The label NVIDIA files every free endpoint under in NGC's catalog search, and
+# displays as "Free Endpoint" on the model's page at build.nvidia.com.
+NGC_FREE_LABEL = "nim_type_preview"
+
+
+def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
+    """The endpoints a free list marks free, keyed by `_id_squash` of
+    publisher/name, each with the date the vendor retires it or "" — or, where
+    the document cannot be read as a free list, why.
+
+    The one list read today is NGC's catalog search filtered to NVIDIA's free
+    label, the data build.nvidia.com's model pages render from. An endpoint is
+    named there without its publisher (`glm-5-3`), the publisher sits in a
+    label of its own (`z-ai`), the free mark is a label value, and a retirement
+    is a DEPRECATION attribute holding the last day the endpoint is supported
+    — deepseek-v4-flash-0731 carried "09/21/2026" while its page read "Free
+    Endpoint: Deprecated". The catalog spells that model `z-ai/glm-5.3`, so the
+    key is squashed the way an id is.
+
+    The label is read on every endpoint rather than trusted to the query's
+    filter: a query is a request, and a search that stopped honouring it would
+    otherwise mark every endpoint it returned free. A document of another shape
+    is reported rather than guessed at, and so is a list longer than the page
+    read, since an endpoint on a page not read would be called not free.
+    """
+    try:
+        data = resp.json()
+    except json.JSONDecodeError:
+        return "answered something other than JSON"
+    groups = data.get("results") if isinstance(data, dict) else None
+    if not isinstance(groups, list):
+        return "answered something other than an NGC catalog search"
+    pages = data.get("resultPageTotal")
+    if isinstance(pages, int) and pages > 1:
+        return f"runs to {pages} pages and only the first was read"
+    marks: dict[str, str] = {}
+    for group in groups:
+        resources = group.get("resources") if isinstance(group, dict) else None
+        for endpoint in resources if isinstance(resources, list) else []:
+            if not isinstance(endpoint, dict) or not isinstance(endpoint.get("name"), str):
+                continue
+            labels = {label.get("key"): label for label in endpoint.get("labels") or []
+                      if isinstance(label, dict)}
+            general = labels.get("general", {}).get("unresolvedValues")
+            publishers = labels.get("publisher", {}).get("values")
+            if (not isinstance(general, list) or NGC_FREE_LABEL not in general
+                    or not isinstance(publishers, list) or not publishers):
+                continue
+            attributes = {a.get("key"): a.get("value") for a in endpoint.get("attributes") or []
+                          if isinstance(a, dict)}
+            retired = attributes.get("DEPRECATION")
+            marks[_id_squash(f"{publishers[0]}/{endpoint['name']}")] = (
+                retired if isinstance(retired, str) else "")
+    return marks
+
+
+def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
+                   lane: str | None = None) -> tuple[httpx.Response | None, str]:
+    """The catalog as it would read if it carried the free list's marks itself,
+    or None and why the list could not be read.
+
+    A catalog that prices nothing leaves require_zero_price nothing to read, so
+    the marks go where a flag would be: an id the list marks is `free`, one the
+    list also dates for retirement is `available: false` as well — the vendor's
+    word that the endpoint is going, said before the day it stops answering —
+    and every other id is `free: false`, the ones the catalog keeps answering
+    with no page at all among them. From there the family check, the dead ids
+    and the unlisted ones read it as they read Kilo's isFree or Routeway's
+    available. A catalog that is not JSON is handed back as it came, for the
+    check that reads it to report."""
+    marks = free_list_marks(free_list)
+    if isinstance(marks, str):
+        return None, marks
+    try:
+        data = catalog.json()
+    except json.JSONDecodeError:
+        return catalog, ""
+    for model in _rows(data, lane):
+        retired = marks.get(_id_squash(_model_id(model)))
+        model["free"] = retired is not None
+        if retired:
+            model["available"] = False
+    return httpx.Response(catalog.status_code, json=data, request=catalog.request), ""
 
 
 def _empty_lane(resp: httpx.Response, lane: str) -> str:
@@ -904,7 +1037,8 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         # substring check would keep passing forever. Where the vendor publishes
         # prices, the zero is the offer.
         if entry.probe.require_zero_price and not any(_is_free(m) for m in live):
-            priced.append(", ".join(_price_note(m) for m in live[:3]))
+            priced.append(", ".join(_price_note(m, entry.probe.free_list is not None)
+                                    for m in live[:3]))
     problems = []
     if missing:
         problems.append(f"missing families: {', '.join(missing)}")
@@ -1194,7 +1328,7 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
         elif _is_withdrawn(model):
             dead.append(f"{wanted} is marked unavailable")
         elif entry.probe.require_zero_price and not _is_free(model):
-            dead.append(_price_note(model))
+            dead.append(_price_note(model, entry.probe.free_list is not None))
     return dead
 
 
@@ -1245,16 +1379,19 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     return sorted(lane)
 
 
-def _stale_ids_detail(dead: list[str], unlisted: list[str]) -> str:
+def _stale_ids_detail(dead: list[str], unlisted: list[str], listed: bool = False) -> str:
     """One line for a human with both directions on it. A rename that changed
     the words of an id — the case _successor_hint cannot see — is a dead id on
-    one side and an unlisted one on the other, and they belong together."""
+    one side and an unlisted one on the other, and they belong together. On a
+    row read with a free list the unlisted ids are the ones the list marks, and
+    the line says so: that catalog prices nothing to be zero."""
     parts = []
     if dead:
         parts.append("api.model_ids the catalog no longer answers for: " + "; ".join(dead))
     if unlisted:
-        parts.append("zero-priced ids in the catalog that api.model_ids does not list "
-                     "(add them, or record them in api.ignored_ids): " + ", ".join(unlisted))
+        parts.append(("ids the free list marks free that api.model_ids does not list " if listed
+                      else "zero-priced ids in the catalog that api.model_ids does not list ")
+                     + "(add them, or record them in api.ignored_ids): " + ", ".join(unlisted))
     return " | ".join(parts)
 
 
@@ -1263,8 +1400,8 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str]) -> str:
 # prints its public key — and about its word on training, which only a person
 # re-reading the vendor's data page can restate. Each follows a family verdict
 # after " | ".
-_FOR_A_HUMAN = ("api.model_ids ", "zero-priced ids in the catalog ", "api.public_key ",
-                "keyless ", "public-key ", "anthropic route ", "data_use ")
+_FOR_A_HUMAN = ("api.model_ids ", "zero-priced ids in the catalog ", "ids the free list ",
+                "api.public_key ", "keyless ", "public-key ", "anthropic route ", "data_use ")
 
 
 def for_a_human(detail: str) -> str:
@@ -1291,7 +1428,8 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     """
     dead = dead_model_ids(catalog, entry)
     unlisted = unlisted_free_ids(catalog, entry)
-    return _stale_ids_detail(dead, unlisted) if dead or unlisted else ""
+    return (_stale_ids_detail(dead, unlisted, entry.probe.free_list is not None)
+            if dead or unlisted else "")
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

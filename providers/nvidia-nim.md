@@ -31,12 +31,12 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://integrate.api.nvidia.com/v1`
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `moonshotai/kimi-k3`, `z-ai/glm-5.3`, `z-ai/glm-5.3-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`
-- Note: model_ids are chat models whose build.nvidia.com page marks the free endpoint available; the catalog also answers with older ids that have no page and no such mark, and those are left out. The catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your key may call them, and it publishes no price field, so the free mark lives only on each model's page
+- Callable ids: `moonshotai/kimi-k3`, `z-ai/glm-5.3`, `z-ai/glm-5.3-flash`, `deepseek-ai/deepseek-v4.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`, `mistralai/mistral-nemotron`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `google/diffusiongemma-26b-a4b-it`, `meta/llama-3.2-90b-vision-instruct`, `meta/llama-3.2-11b-vision-instruct`
+- Note: model_ids are every chat model NVIDIA's free list marks "Free Endpoint" without a retirement date — the probe reads that list from NGC's catalog search and reports an id that joins or leaves it; ignored_ids are the free models made for another job: an embedding model, three safety classifiers, two translation models and a reader of quantum-calibration plots. The catalog also answers older ids with no page and no free mark, and those are left out
 
 ## Evidence
 
-- Probe: the models catalog at <https://integrate.api.nvidia.com/v1/models>
+- Probe: the models catalog at <https://integrate.api.nvidia.com/v1/models>, every listed family required free on the vendor's free list at <https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=%7B%22filters%22%3A%5B%7B%22field%22%3A%22label%22%2C%22value%22%3A%22nim_type_preview%22%7D%5D%2C%22page%22%3A0%2C%22pageSize%22%3A100%2C%22query%22%3A%22%2A%22%7D>
 - Source: <https://build.nvidia.com/explore/discover>
 - Source: <https://build.nvidia.com/moonshotai/kimi-k3>
 - Source: <https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798>
@@ -49,6 +49,6 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ---
 
-Generated from `registry.yaml` on 2026-09-22 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

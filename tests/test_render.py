@@ -31,6 +31,21 @@ def make(**kw) -> Entry:
     return Entry.model_validate(d)
 
 
+def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
+    """The Evidence section says what the probe reads, and on a catalog that
+    prices nothing "every listed family required at a zero price" would be
+    false twice over: there is no price, and the list is a second document."""
+    from freetier_radar.render import build_provider_page
+
+    search = "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=free"
+    page = build_provider_page(make(id="nimmy", models=[{"family": "kimi-k3"}], probe={
+        "type": "api-models", "endpoint": "https://integrate.api.nvidia.com/v1/models",
+        "require_zero_price": True, "free_list": search}), [], TODAY)
+    assert ("- Probe: the models catalog at <https://integrate.api.nvidia.com/v1/models>, "
+            f"every listed family required free on the vendor's free list at <{search}>") in page
+    assert "zero price" not in page
+
+
 def test_archive_rules():
     assert not is_archived(make(), TODAY)
     assert is_archived(make(probe_failures=3), TODAY)

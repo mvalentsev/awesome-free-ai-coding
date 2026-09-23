@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-22",
+  "generated": "2026-09-23",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -962,15 +962,30 @@
           "moonshotai/kimi-k3",
           "z-ai/glm-5.3",
           "z-ai/glm-5.3-flash",
+          "deepseek-ai/deepseek-v4.1-flash",
           "nvidia/nemotron-3-ultra-550b-a55b",
           "nvidia/nemotron-3-super-120b-a12b",
           "poolside/laguna-xs-2.1",
           "google/gemma-4-31b-it",
           "meta/muse-glimmer-30b",
           "nvidia/nemotron-3.5-lightning-30b-a3b",
-          "openai/gpt-oss-20b"
+          "openai/gpt-oss-20b",
+          "mistralai/mistral-nemotron",
+          "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+          "google/diffusiongemma-26b-a4b-it",
+          "meta/llama-3.2-90b-vision-instruct",
+          "meta/llama-3.2-11b-vision-instruct"
         ],
-        "note": "model_ids are chat models whose build.nvidia.com page marks the free endpoint available; the catalog also answers with older ids that have no page and no such mark, and those are left out. The catalog endpoint answers unauthenticated, which is what the probe reads — it confirms NVIDIA still hosts these models, not that your key may call them, and it publishes no price field, so the free mark lives only on each model's page"
+        "ignored_ids": [
+          "nvidia/nemotron-3-embed-1b",
+          "nvidia/nemotron-3.5-content-safety",
+          "nvidia/llama-3.1-nemotron-safety-guard-8b-v3",
+          "meta/llama-guard-4-12b",
+          "nvidia/riva-translate-4b-instruct-v2",
+          "nvidia/riva-translate-4b-instruct-v1.1",
+          "nvidia/ising-calibration-1.5-31b"
+        ],
+        "note": "model_ids are every chat model NVIDIA's free list marks \"Free Endpoint\" without a retirement date — the probe reads that list from NGC's catalog search and reports an id that joins or leaves it; ignored_ids are the free models made for another job: an embedding model, three safety classifiers, two translation models and a reader of quantum-calibration plots. The catalog also answers older ids with no page and no free mark, and those are left out"
       },
       "data_use": {
         "trains": "yes",
@@ -983,8 +998,9 @@
         "keywords": [],
         "free_marker": "",
         "dead_markers": [],
-        "require_zero_price": false,
-        "machinery_keywords": []
+        "require_zero_price": true,
+        "machinery_keywords": [],
+        "free_list": "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=%7B%22filters%22%3A%5B%7B%22field%22%3A%22label%22%2C%22value%22%3A%22nim_type_preview%22%7D%5D%2C%22page%22%3A0%2C%22pageSize%22%3A100%2C%22query%22%3A%22%2A%22%7D"
       },
       "first_seen": "2026-07-20",
       "last_verified": "2026-09-21",

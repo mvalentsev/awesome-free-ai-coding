@@ -24,7 +24,8 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      watch_match)
 from .prober import (ProbeStatus, challenge_marker_hit, check_content, family_named,
-                     for_a_human, probe_page_url_sync, unevidenced_families)
+                     for_a_human, join_free_list_sync, probe_page_url_sync,
+                     unevidenced_families)
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
@@ -143,12 +144,12 @@ vendor's catalog, and a family counts only where the catalog still carries a
 FREE id for it: an id matching the entry's free marker, and free by the
 catalog's own flag or by a zero price where it publishes one. A family whose
 only ids are metered is not a free model and fails the same probe next run.
-A failure detail can carry more after " | " about api.model_ids, zero-priced ids
-the catalog lists, the keyless lane, the Anthropic route or the public key — that
-half is addressed to a human and is not yours to repair: `api` is not a key you
-may write, and an exact id copied out of a catalog is not something to reproduce
-from memory. Read it as evidence about which way the lane moved, and answer only
-with the keys you are allowed.
+A failure detail can carry more after " | " about api.model_ids, free ids the
+catalog or its free list names, the keyless lane, the Anthropic route or the
+public key — that half is addressed to a human and is not yours to repair: `api`
+is not a key you may write, and an exact id copied out of a catalog is not
+something to reproduce from memory. Read it as evidence about which way the lane
+moved, and answer only with the keys you are allowed.
 A corrected page-keywords probe needs at least one keyword that dies with the
 offer — a quota or price figure, a model id, or a sentence of four or more words
 quoted verbatim from the page below — and it must be in what the page renders:
@@ -749,6 +750,10 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
         return f"unreachable: {exc}"
     if resp.status_code >= 400:
         return f"HTTP {resp.status_code}"
+    if entry.probe.free_list is not None:
+        resp, failure = join_free_list_sync(client, entry, resp)
+        if resp is None:
+            return failure
     problem = check_content(resp, entry)
     if problem is None:
         # An existing row only gets flagged for this — three failures archive it,
@@ -1026,6 +1031,8 @@ def named_by_row(client: httpx.Client, time_left: Callable[[], float] | None = N
                 resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
             except httpx.HTTPError:
                 resp = None
+            if resp is not None and resp.status_code < 400 and entry.probe.free_list is not None:
+                resp, _ = join_free_list_sync(client, entry, resp)
             responses[entry.id] = resp if resp is not None and resp.status_code < 400 else None
         resp = responses[entry.id]
         return None if resp is None else family_named(resp, entry, family)

@@ -256,6 +256,9 @@
         "z-ai/glm-5.3-flash": {
           "name": "z-ai/glm-5.3-flash"
         },
+        "deepseek-ai/deepseek-v4.1-flash": {
+          "name": "deepseek-ai/deepseek-v4.1-flash"
+        },
         "nvidia/nemotron-3-ultra-550b-a55b": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b"
         },
@@ -276,6 +279,21 @@
         },
         "openai/gpt-oss-20b": {
           "name": "openai/gpt-oss-20b"
+        },
+        "mistralai/mistral-nemotron": {
+          "name": "mistralai/mistral-nemotron"
+        },
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
+        },
+        "google/diffusiongemma-26b-a4b-it": {
+          "name": "google/diffusiongemma-26b-a4b-it"
+        },
+        "meta/llama-3.2-90b-vision-instruct": {
+          "name": "meta/llama-3.2-90b-vision-instruct"
+        },
+        "meta/llama-3.2-11b-vision-instruct": {
+          "name": "meta/llama-3.2-11b-vision-instruct"
         }
       }
     },

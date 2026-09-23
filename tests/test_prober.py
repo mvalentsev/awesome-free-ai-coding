@@ -404,6 +404,190 @@ async def test_config_ids_are_read_from_the_lane_too():
     assert "deepseek/deepseek-v4-flash" not in result.detail
 
 
+NIM_CATALOG = "https://integrate.api.nvidia.com/v1/models"
+NGC_SEARCH = "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=free"
+
+
+def nim_catalog(*ids: str) -> dict:
+    """NVIDIA's catalog as it answered on 2026-09-23: 82 ids, no price, no free
+    flag, nothing but the id and who owns it."""
+    return {"object": "list", "data": [
+        {"id": i, "object": "model", "created": 735790403, "owned_by": i.split("/")[0]}
+        for i in ids]}
+
+
+def ngc_endpoint(publisher: str, name: str, deprecation: str | None = None,
+                 free: bool = True) -> dict:
+    """One endpoint as NGC's catalog search answers it (read 2026-09-23): named
+    without its publisher, the publisher in a label of its own, the free mark as
+    the label value NVIDIA displays as "Free Endpoint", and a retirement as a
+    DEPRECATION attribute — deepseek-v4-flash-0731 carried "09/21/2026" while
+    its page read "Free Endpoint: Deprecated"."""
+    general = ["playgroundtype_chat", "nim_type_run_anywhere"] + (["nim_type_preview"] if free else [])
+    attributes = [{"key": "AVAILABLE", "value": "false"}, {"key": "PREVIEW", "value": "true"}]
+    if deprecation:
+        attributes.append({"key": "DEPRECATION", "value": deprecation})
+    return {"resourceType": "ENDPOINT", "resourceId": f"qc69jvmznzxy/{name}", "name": name,
+            "labels": [{"key": "general", "values": ["chat"], "unresolvedValues": general},
+                       {"key": "publisher", "values": [publisher], "unresolvedValues": [publisher]}],
+            "attributes": attributes}
+
+
+def ngc_search(*endpoints: dict, pages: int = 1) -> dict:
+    return {"resultTotal": len(endpoints), "resultPageTotal": pages,
+            "results": [{"groupValue": "_scored", "resources": list(endpoints[:1])},
+                        {"groupValue": "ENDPOINT", "resources": list(endpoints[1:])}]}
+
+
+def nim_entry(**api) -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "nimmy",
+        "models": [{"family": "kimi-k3", "tier": "strong"}],
+        "api": {"base_url": "https://integrate.api.nvidia.com/v1",
+                "model_ids": ["moonshotai/kimi-k3", "z-ai/glm-5.3"], **api},
+        "probe": {"type": "api-models", "endpoint": NIM_CATALOG,
+                  "require_zero_price": True, "free_list": NGC_SEARCH},
+    })
+
+
+def mock_nim(catalog: dict, search: dict | httpx.Response) -> None:
+    respx.get(NIM_CATALOG).mock(return_value=httpx.Response(200, json=catalog))
+    respx.get(NGC_SEARCH).mock(return_value=search if isinstance(search, httpx.Response)
+                               else httpx.Response(200, json=search))
+
+
+@respx.mock
+async def test_a_catalog_that_prices_nothing_reads_free_off_the_vendor_s_free_list():
+    """NVIDIA's catalog also answers ids with no page and no free mark — the row's
+    old nvidia/nemotron-nano-3-30b-a3b among them — so presence there says the
+    model is hosted, not that it is free. The list is NVIDIA's own word, and it
+    names an endpoint the way its page URL does: glm-5-3 for z-ai/glm-5.3."""
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3", "nvidia/nemotron-nano-3-30b-a3b"),
+             ngc_search(ngc_endpoint("moonshotai", "kimi-k3"), ngc_endpoint("z-ai", "glm-5-3")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_family_the_free_list_no_longer_marks_is_no_longer_free():
+    """What the list is for. The catalog keeps the id whether or not the endpoint
+    is free, so a probe that reads presence alone would vouch for the Models
+    column after NVIDIA took the mark away — the free offer is the mark."""
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             ngc_search(ngc_endpoint("moonshotai", "kimi-k3", free=False),
+                        ngc_endpoint("z-ai", "glm-5-3")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "no longer free" in result.detail and "moonshotai/kimi-k3" in result.detail
+
+
+@respx.mock
+async def test_the_free_mark_is_read_per_endpoint_and_per_publisher():
+    """The mark belongs to one publisher's endpoint: another lab's model under the
+    same name is not this one. (A row the search returns without the label is
+    not free either, whatever filter the query asked for — the test above: a
+    query is a request, the label is the answer.)"""
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             ngc_search(ngc_endpoint("somelab", "kimi-k3"), ngc_endpoint("z-ai", "glm-5-3")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "moonshotai/kimi-k3" in result.detail
+
+
+@respx.mock
+async def test_a_deprecation_date_takes_an_id_out_before_it_stops_answering():
+    """NVIDIA dates a free endpoint's retirement on the list while the endpoint
+    still answers: deepseek-v4-flash-0731's page read "Free Endpoint: Deprecated"
+    and "will no longer be supported after 09/21/2026". The configs should stop
+    handing it out on the first run that sees the date, not the day it dies —
+    and a Models family resting on it is no longer on offer."""
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
+                        ngc_endpoint("z-ai", "glm-5-3", deprecation="10/06/2026")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "z-ai/glm-5.3 is marked unavailable" in result.detail
+
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             ngc_search(ngc_endpoint("moonshotai", "kimi-k3", deprecation="10/06/2026"),
+                        ngc_endpoint("z-ai", "glm-5-3")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "marked unavailable" in result.detail and "moonshotai/kimi-k3" in result.detail
+
+
+@respx.mock
+async def test_a_free_model_the_row_does_not_list_is_reported_until_it_is_read():
+    """The growth no price-less catalog could report: Kimi K3 was free on NVIDIA
+    from 2026-08-27 and reached the row on 2026-09-22, found by hand. An endpoint
+    the list marks free that the catalog serves and api.model_ids lacks is said
+    on the run, until it is added or recorded in api.ignored_ids — and one the
+    list marks free that is not a chat-catalog id at all, a speech or vision
+    service, is not this row's to list."""
+    catalog = nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3", "deepseek-ai/deepseek-v4.1-flash",
+                          "nvidia/nemotron-3-embed-1b")
+    search = ngc_search(ngc_endpoint("moonshotai", "kimi-k3"), ngc_endpoint("z-ai", "glm-5-3"),
+                        ngc_endpoint("deepseek-ai", "deepseek-v4.1-flash"),
+                        ngc_endpoint("nvidia", "nemotron-3-embed-1b"),
+                        ngc_endpoint("nvidia", "magpie-tts-zeroshot"))
+    mock_nim(catalog, search)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert result.detail.startswith("ids the free list marks free that api.model_ids does not list")
+    assert "deepseek-ai/deepseek-v4.1-flash" in result.detail
+    assert "nvidia/nemotron-3-embed-1b" in result.detail
+    assert "magpie" not in result.detail
+    # Addressed to a human, like every note about the ids: the fix prompt leaves it alone.
+    assert for_a_human(f"no longer free: x | {result.detail}") == result.detail
+
+    read = nim_entry(ignored_ids=["nvidia/nemotron-3-embed-1b"])
+    read.api.model_ids.append("deepseek-ai/deepseek-v4.1-flash")
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, read, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@respx.mock
+async def test_a_free_list_that_cannot_be_read_leaves_the_offer_unchecked():
+    """Without the list the question is unanswered, not answered no: read as a
+    catalog with no free rows, a bot wall or a changed search format would fail
+    every family, and three runs of that archive a live row. So each is
+    inconclusive and says which list — the one exception being a list that
+    answers in its own shape and marks nothing free, which is the vendor's word
+    that nothing is (next test). A list longer than the page read is not
+    guessed at either: an endpoint on a page not read would be called not free."""
+    unreadable = [
+        httpx.Response(403, text="<html>Access denied</html>"),
+        httpx.Response(200, text="<html>maintenance</html>"),
+        httpx.Response(200, json={"data": [{"id": "moonshotai/kimi-k3"}]}),
+        httpx.Response(200, json=ngc_search(ngc_endpoint("moonshotai", "kimi-k3"),
+                                            ngc_endpoint("z-ai", "glm-5-3"), pages=2)),
+    ]
+    for answer in unreadable:
+        mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"), answer)
+        async with httpx.AsyncClient() as client:
+            result = await probe_entry(client, nim_entry(), backoff=0)
+        assert result.status is ProbeStatus.INCONCLUSIVE, answer
+        assert "free list" in result.detail and NGC_SEARCH in result.detail
+
+
+@respx.mock
+async def test_a_free_list_that_marks_nothing_free_fails_the_row():
+    """The list answered in its own shape and names no free endpoint: that is
+    NVIDIA saying the offer is over, as an empty free lane is Cline saying so."""
+    mock_nim(nim_catalog("moonshotai/kimi-k3", "z-ai/glm-5.3"),
+             {"resultTotal": 0, "resultPageTotal": 0, "results": []})
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, nim_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL and "no longer free" in result.detail
+
+
 def _read(url: str, **body) -> httpx.Response:
     return httpx.Response(200, request=httpx.Request("GET", url), **body)
 
