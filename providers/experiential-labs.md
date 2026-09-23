@@ -21,7 +21,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)", a credit being a cent ("2,000 credits / month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s list price with nothing on top". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions its model list marks Free, GPT-5.6 Luna and Nemotron 3 Ultra among them. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-21
+The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)", a credit being a cent ("2,000 credits / month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s list price with nothing on top". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions its model list marks Free, GPT-6 Luna and Nemotron 3 Ultra among them. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-23
 
 ## Connect
 

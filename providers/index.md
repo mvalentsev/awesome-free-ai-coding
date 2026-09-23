@@ -18,7 +18,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) | 🤖 Coding agents & CLIs | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | `2026-09-21` |
 | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash` | `2026-09-21` |
 | [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
-| [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-21` |
+| [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite` | `2026-09-21` |

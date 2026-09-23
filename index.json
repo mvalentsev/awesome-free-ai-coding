@@ -886,19 +886,13 @@
       "url": "https://learn.chatgpt.com/docs/codex/cli",
       "source_urls": [
         "https://learn.chatgpt.com/docs/pricing",
-        "https://github.com/openai/codex"
+        "https://github.com/openai/codex",
+        "https://learn.chatgpt.com/docs/models"
       ],
       "card_required": false,
       "offering": "Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans",
-      "limits": "Free ChatGPT plan carries the smallest allowance; shared 5-hour rolling + weekly rate limits; local tasks only",
-      "models": [
-        {
-          "family": "gpt-5.6",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "gpt-5-6-terra"
-        }
-      ],
+      "limits": "The pricing page: \"ChatGPT Work and Codex are included in your ChatGPT Free, Go, Plus, Pro, Business, Edu, or Enterprise plan\". Its Free card offers \"Explore Codex capabilities on quick coding tasks\" with \"GPT-6 Luna at Standard speed in the desktop app, subject to rollout\", while \"Codex on the web, in the CLI, in the IDE extension, and on iOS\" is spelled out on the Plus card, and the usage tables start at Plus — no Free allowance is published. \"GPT-5.5 retires from ChatGPT, ChatGPT Work, and Codex on all plans on October 14, 2026\", and the models page tells Free and Go users to \"choose GPT-6 Luna … in the desktop app when available\", naming no model for them in the CLI. Read 2026-09-23",
+      "models": [],
       "probe": {
         "type": "page-keywords",
         "endpoint": "https://learn.chatgpt.com/docs/pricing",
@@ -1304,7 +1298,7 @@
       ],
       "card_required": true,
       "offering": "An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check",
-      "limits": "The Free plan is \"500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)\", a credit being a cent (\"2,000 credits / month · 1¢ each\" on Pro), spent at list price: \"Route on credits at each provider’s list price with nothing on top\". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions its model list marks Free, GPT-5.6 Luna and Nemotron 3 Ultra among them. \"Prompt-capture opt-out\" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-21",
+      "limits": "The Free plan is \"500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)\", a credit being a cent (\"2,000 credits / month · 1¢ each\" on Pro), spent at list price: \"Route on credits at each provider’s list price with nothing on top\". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions its model list marks Free, GPT-6 Luna and Nemotron 3 Ultra among them. \"Prompt-capture opt-out\" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-23",
       "models": [],
       "api": {
         "base_url": "https://api.experientiallabs.ai/v1",

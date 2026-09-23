@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **71** |
+| **79** | **75** | **7** | **59** | **70** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -73,7 +73,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Google Antigravity](https://antigravity.google)** 👁 | Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | **[Freebuff](https://freebuff.com)** 👁 | Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours | `glm-5.3-flash`, `deepseek-v4.1-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | **[Cline](https://cline.bot)** 👁 🧪 | Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) |
-| **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | `gpt-5.6` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
+| **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) |
 | **[CodeGPT](https://www.codegpt.co)** | VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) |
 
@@ -167,7 +167,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 71 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 70 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -220,7 +220,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `glm-5` | [AIHubMix (free models)](https://aihubmix.com) |
 | `glm-5.1` | [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `glm-5.2` | [Regolo AI](https://regolo.ai/pricing/) |
-| `gpt-5.6` | [OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli) |
 | `gpt-5.6-luna` | [Zed](https://zed.dev) |
 | `ling-3.0-flash-sante` | [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai) |
