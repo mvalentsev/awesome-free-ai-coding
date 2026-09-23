@@ -58,7 +58,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) | 🎁 Trials (no card when possible) | `claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-2.1` | `2026-09-21` |
 | [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) | 🎁 Trials (no card when possible) | `gemini-2.5` | `2026-09-21` |
 | [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
-| [Vertex AI express mode (Google Cloud)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) | 🎁 Trials (no card when possible) | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | `2026-09-23` |
+| [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) | 🎁 Trials (no card when possible) | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | `2026-09-23` |
 | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |

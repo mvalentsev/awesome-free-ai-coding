@@ -181,8 +181,9 @@
     accounts per provider", which is account pooling. It issues no keys and
     bundles no model usage of its own; its "Free Providers" panel names Kiro,
     OpenCode Free and a $300 Vertex trial, all of which this registry answers
-    for — the $300 Free Trial asks for a card, and Vertex AI's no-card express
-    mode is a row since 2026-09-23. The tagline "Unlimited FREE AI coding" is the reverse-proxy
+    for — the $300 Free Trial asks for a card, and the no-card express mode of
+    Gemini Enterprise Agent Platform, formerly Vertex AI, is a row since
+    2026-09-23. The tagline "Unlimited FREE AI coding" is the reverse-proxy
     line CONTRIBUTING excludes, stated by the operator.
 - domain: agentrouter.org
   reason: >-
