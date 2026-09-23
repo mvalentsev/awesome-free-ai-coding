@@ -9,13 +9,13 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Every row verified](https://img.shields.io/badge/every%20row%20verified-2026--09--21%20or%20later-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-81-58a6ff)
+![Live entries](https://img.shields.io/badge/live%20entries-80-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **81** | **78** | **7** | **60** | **72** |
+| **80** | **77** | **7** | **60** | **72** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -61,10 +61,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — 3 rows of 81 carry it, and nothing else here asks for a card · **👁** — what you send may be used to train models, in the vendor's own words on the row's page · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — 3 rows of 80 carry it, and nothing else here asks for a card · **👁** — what you send may be used to train models, in the vendor's own words on the row's page · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 
 ### 🤖 Coding agents & CLIs
-<sub>**9** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**8** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
@@ -74,7 +74,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Freebuff](https://freebuff.com)** 👁 | Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, GPT-5.6 Luna, MiMo 2.6 and Gemini 3.8 Flash in the picker | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | **[Cline](https://cline.bot)** 👁 🧪 | Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) |
 | **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | `gpt-5.6` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
-| **[Amazon Q Developer](https://aws.amazon.com/q/developer/)** 👁 🧪 | AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) |
 | **[CodeGPT](https://www.codegpt.co)** | VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) |
 
@@ -273,7 +272,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 ## 📦 Archive
 
 <details>
-<summary>14 rows this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
+<summary>15 rows this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
 <br>
 
 | Tool | Why it left |
@@ -292,6 +291,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) | <sub>delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)</sub> |
 | [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) | <sub>delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly</sub> |
 | [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | <sub>vendor-announced shutdown on 2026-06-16</sub> |
+| [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | <sub>vendor-announced shutdown on 2026-05-15</sub> |
 
 <sub>A row leaves the list for this table and nowhere else: when its vendor's own shutdown date arrives, after 3 failed probes in a row, after 60 days without a passing probe, or when a reviewer takes it off — an offer that ended without notice, a row that no longer meets the rules, a service rejected for cause. A row its probe put here comes back the day it passes again. Each name links the row's own page, with what it offered and the evidence; a row is never deleted from `registry.yaml`, and `freetier-check` refuses a registry that has lost one. Two rows that named one service are folded into one line, and the folded id keeps its own page, pointing here.</sub>
 

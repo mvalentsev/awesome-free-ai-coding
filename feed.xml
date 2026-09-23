@@ -192,7 +192,7 @@
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/amazon-q-developer/20260917T100542Z</id>
     <title>New: Amazon Q Developer</title>
-    <link rel="alternate" href="https://aws.amazon.com/q/developer/"/>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
     <updated>2026-09-17T10:05:42Z</updated>
     <summary type="text">AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month</summary>
   </entry>

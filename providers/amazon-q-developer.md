@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'Amazon Q Developer free tier: limits, free models, verified 2026-09-21'
-description: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month. "Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID…
+title: 'Amazon Q Developer free tier (archived): what it offered, and why it left the list'
+description: 'AWS''s coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month. Closed to new users since 2026-05-15. AWS''s end-of-support post of 2026-04-30: "New Q Developer Free Tier account creation (via Builder ID in IDE plugins) and new Q…'
 permalink: /providers/amazon-q-developer/
 ---
 
@@ -9,40 +9,34 @@ permalink: /providers/amazon-q-developer/
 
 # Amazon Q Developer
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-21 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-05-15 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## What you get
+## What it offered
 
 AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month
 
-## Free models
+## Free models it listed
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+The row named no free model.
 
 ## Limits, in the vendor's words
 
-"Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID user", and "Free Tier limits in the IDE are available only to Builder ID users". The Free column reads "50 agentic requests per month" for Q&A chat and agentic coding in the IDE plugins and CLI, plus 1,000 lines of code a month of Java upgrade transformation; the plan summary says "Access latest Claude models" without naming them. Pro is $19 a month per user. The end is scheduled: "On April 30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins", pointing to Kiro, which this list carries separately. Read 2026-09-16
-
-## What happens to what you send
-
-What you send may be used to train or improve models unless you turn that off. In the vendor's words: “We may use certain content from Amazon Q Developer Free tier for service improvement. Amazon Q may use this content, for example, to provide better responses to common questions, fix Amazon Q operational issues, for de-bugging, or for model training.” ([source](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/service-improvement.html)).
-
-## Connect
-
-No API endpoint to paste: this row is a tool you install or sign in to.
+Closed to new users since 2026-05-15. AWS's end-of-support post of 2026-04-30: "New Q Developer Free Tier account creation (via Builder ID in IDE plugins) and new Q Developer subscription creation (via the AWS Console) will be blocked", and "The May 15, 2026 cutoff applies only to creating new Q Developer accounts and new subscriptions"; the product page adds "On April 30, 2027, AWS will discontinue support for Amazon Q Developer IDE plugins", pointing to Kiro, which this list carries. The pricing page still reads as it did — "Amazon Q Developer offers a perpetual Free Tier with monthly limits available to users logged in as an AWS Identity and Access Management (IAM) user or AWS Builder ID user", "50 agentic requests per month" in its Free column — for the accounts that already exist. Read 2026-09-23
 
 ## Evidence
 
 - Probe: the page at <https://aws.amazon.com/q/developer/pricing/>, anchored on `50 agentic requests per month`, `perpetual Free Tier with monthly limits`
+- Source: <https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/>
 - Source: <https://aws.amazon.com/q/developer/pricing/>
 - Source: <https://aws.amazon.com/q/developer/>
 
 ## History
 
+- *next scheduled run* — Archived: vendor-announced shutdown on 2026-05-15
 - `2026-09-17` — Added to the list: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-23. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

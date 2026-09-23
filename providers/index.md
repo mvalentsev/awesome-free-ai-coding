@@ -19,7 +19,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) | 🤖 Coding agents & CLIs | `glm-5.3-flash`, `deepseek-v4.1-flash`, `gpt-5.6-luna` | `2026-09-21` |
 | [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) | 🤖 Coding agents & CLIs | `gpt-5.6` | `2026-09-21` |
-| [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) | 🤖 Coding agents & CLIs | — | `2026-09-21` |
 | [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) | 🔌 LLM APIs with free tier | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`, `gemini-2.5-pro` | `2026-09-21` |
@@ -113,5 +112,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Easy GonkaAI API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/) | delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam) |
 | [Aider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/) | delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly |
 | [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | vendor-announced shutdown on 2026-06-16 |
+| [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | vendor-announced shutdown on 2026-05-15 |
 
 {% endraw %}
