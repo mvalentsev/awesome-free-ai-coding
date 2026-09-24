@@ -645,7 +645,10 @@ checks on what is pushed, commit by commit. CI checks the logs again on every
 push and the earned fields on every pull request. CI never runs on the scheduled run's own commit,
 so the run checks its logs, the curated files and the render before it commits,
 and checks the scout's branch, earned fields included, before it opens the pull
-request.
+request. A log rewritten or an earned field typed on purpose is the repository
+owner's alone: made once with the hooks off and named, with the reason, in
+`gate.RATIFIED` by the commit after it — a push or a CI run that meets it checks
+from it on.
 
 **A row's prose is for the reader deciding whether to use the offer.** `offering` says
 what it is, `limits` the quota, the conditions and what happens to the data, and

@@ -320,6 +320,13 @@ def test_the_lines_a_commit_appends_are_the_changes_its_registry_makes():
         "changes at one time")
     assert block_problems(base, block, entries, TODAY, now=NOW) == [
         "the commit appends lines dated 2026-08-14T06:39:00+00:00, after the commit itself"]
+    # A scout branch rendered in the morning and merged after an afternoon
+    # commit would put the morning's line under the afternoon's.
+    stale = [ev.model_copy(update={"ts": NOW - timedelta(hours=1)}) for ev in block]
+    assert block_problems(base, stale, entries, TODAY, now=LATER) == [
+        "the commit appends lines dated 2026-08-14T05:30:00+00:00, before the last line it "
+        "found (2026-08-14T06:30:00+00:00) — the log is in the order the list changed: render "
+        "again on top of it"]
 
 
 # ---- the two callers -------------------------------------------------------

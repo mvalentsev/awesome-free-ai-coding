@@ -206,6 +206,54 @@ def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(tmp_path):
         assert not (snap / "untracked.txt").exists()
 
 
+def test_the_scheduled_run_holds_what_it_is_about_to_commit_to_the_same_rule(tmp_path):
+    """No hook runs on the runner: `freetier-gate diff HEAD` reads the working
+    tree before the verification commit exists."""
+    repo = _history_repo(tmp_path)
+    _add_row(repo, _line("added", "y"))
+    assert diff(repo, "HEAD", earned=False) == []
+    _add_row(repo, _line("archived", "x", detail="gone"))
+    assert diff(repo, "HEAD", earned=False) == [
+        "history.jsonl: line 2 of what the commit appends (archived x) is not a change this "
+        "registry makes"]
+
+
+def test_a_push_is_checked_from_the_commit_its_owner_ratified(tmp_path, monkeypatch):
+    """A rewrite the gate refuses to everyone — the log rebuilt from main's own
+    history, a first_seen typed to the day a row really arrived — is made once,
+    with the hooks off, by the repository's owner, and named in RATIFIED by the
+    commit after it. A push or a CI run that meets it checks from it on; the
+    commits after it are held as ever."""
+    from freetier_radar import gate
+    from freetier_radar.gate import pre_push
+
+    repo = _history_repo(tmp_path)
+    base = _git(repo, "rev-parse", "HEAD").strip()
+    (repo / "history.jsonl").write_text(_line("added", "x", RENDERED_AT), encoding="utf-8")
+    save_registry(repo / "registry.yaml", [row(first_seen=date(2026, 9, 2))])
+    _git(repo, "commit", "-qam", "fix: the log rebuilt")
+    rebuilt = _git(repo, "rev-parse", "HEAD").strip()
+    refused = diff(repo, base, earned=True)
+    assert [p.split(" — ")[0] for p in refused] == [
+        "history.jsonl rewrites line 1 of what is committed",
+        "registry: x first_seen 2026-09-01 → 2026-09-02"]
+
+    monkeypatch.setattr(gate, "RATIFIED", {rebuilt: "the log rebuilt from main's history"})
+    assert diff(repo, base, earned=True) == []
+    assert pre_push(repo, [f"refs/heads/main {rebuilt} refs/heads/main {base}"], steps=[]) == []
+
+    with (repo / "history.jsonl").open("a", encoding="utf-8") as fh:
+        fh.write(_line("archived", "x", detail="gone"))
+    _git(repo, "commit", "-qam", "fix: a line by hand")
+    forged = _git(repo, "rev-parse", "HEAD").strip()
+    assert diff(repo, base, earned=True) == [
+        f"{forged[:7]}: history.jsonl: line 1 of what the commit appends (archived x) is not a "
+        "change this registry makes"]
+    assert pre_push(repo, [f"refs/heads/main {forged} refs/heads/main {base}"], steps=[]) == [
+        f"{forged[:7]}: history.jsonl: line 1 of what the commit appends (archived x) is not a "
+        "change this registry makes"]
+
+
 def test_the_gate_refuses_a_commit_on_main_that_touches_the_announcers_ledger(tmp_path):
     repo = _repo(tmp_path)
     (repo / "announced.jsonl").write_text("A\n", encoding="utf-8")

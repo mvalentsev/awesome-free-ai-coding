@@ -62,6 +62,12 @@ RECORDED = tuple(n.path for n in MAP if n.kind is Kind.LOG and "freetier-render"
 # page count from.
 EARNED = ("first_seen", "last_verified", "probe_failures", "provisional")
 
+# Commits that rewrote a log or typed an earned field on purpose, each with why.
+# The gate refuses such a commit to everyone, so it is made once, with the hooks
+# off, by the repository's owner, and named here by the commit after it; a push
+# or a CI run that meets one checks the logs and the earned fields from it on.
+RATIFIED: dict[str, str] = {}
+
 _KIND = re.compile(r"^(?:[a-z]+(?:\([a-z0-9-]+\))?: \S|Merge |Revert \"|fixup! |squash! |amend! )")
 
 
@@ -308,9 +314,17 @@ def _history_by_commit(repo: Path, base: str, local: str) -> list[str]:
     return problems
 
 
+def _checked_from(repo: Path, base: str, local: str) -> str:
+    """`base`, or the newest commit RATIFIED names on main's line from it to
+    `local`."""
+    listed = _git(repo, "rev-list", "--first-parent", f"{base}..{local}").stdout.split()
+    return next((sha for sha in listed if sha in RATIFIED), base)
+
+
 def diff(repo: Path, base: str, earned: bool) -> list[str]:
     """The log rules — and with `earned` the earned fields — between `base` and
     the working tree: for CI, and for the scheduled run before it commits."""
+    base = _checked_from(repo, base, "HEAD")
     problems = []
     for name in LOGS:
         now = (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
@@ -319,7 +333,11 @@ def diff(repo: Path, base: str, earned: bool) -> list[str]:
 
     def on_disk(name: str) -> str | None:
         return (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
+    # The working tree, where the scheduled run checks what it is about to
+    # commit; a tree that is HEAD's own was read with HEAD's commit above.
     for name in RECORDED:
+        if all(on_disk(n) == _show(repo, "HEAD", n) for n in (name, "registry.yaml", "index.json")):
+            continue
         problems += history_problems(_show(repo, "HEAD", name), on_disk(name),
                                      on_disk("registry.yaml"), on_disk("index.json"),
                                      datetime.now(timezone.utc))
@@ -351,6 +369,7 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
             problems += _run_steps(snap, steps)
         if base is None:
             continue
+        base = _checked_from(repo, base, local)
         for name in LOGS:
             problems += log_problems(name, _show(repo, base, name), _show(repo, local, name))
         problems += _history_by_commit(repo, base, local)
