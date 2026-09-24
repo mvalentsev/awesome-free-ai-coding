@@ -44,7 +44,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Free models changed: dropped deepseek-v4-flash, glm-5.3-flash
 - `2026-09-05` — Added: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint

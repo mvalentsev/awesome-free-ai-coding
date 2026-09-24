@@ -528,8 +528,11 @@ already shows it; a render run again before the commit rewrites only its own
 uncommitted lines. A change the calendar makes — a row going unverified past
 the staleness limit, a vendor's shutdown date arriving — is recorded by the
 first render after it, the scheduled run's at the latest. Until 2026-09-24 only
-the scheduled run recorded, up to four days after a change reached the list,
-and the rows' pages showed that run's date.
+the scheduled run recorded, up to four days after a change reached the list;
+that day the log was rebuilt from main's history, every line dated by the
+commit that made its change (the commit `gate.RATIFIED` names), and a row's
+`first_seen` is the day the log added it — `freetier-check` holds the two to
+one day.
 
 ## What depends on what
 

@@ -44,7 +44,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-24` — Free models changed: added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code
 - `2026-08-28` — Free models changed: dropped gpt-oss

@@ -41,7 +41,7 @@ An account is one POST with no key, and the llms.txt says what it carries: "an a
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-17` — Added: Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card
 

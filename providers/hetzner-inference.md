@@ -43,7 +43,7 @@ What you send is not used to train models. In the vendor's words: “Prompts and
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-17` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-08-30` — Added: OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs

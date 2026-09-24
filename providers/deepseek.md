@@ -31,7 +31,7 @@ Official DeepSeek API; every new account gets a one-time free token grant, no ca
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-07-27` — Delisted
 - `2026-07-22` — Added: Official DeepSeek API; every new account gets a one-time free token grant, no card required

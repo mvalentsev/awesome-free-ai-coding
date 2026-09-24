@@ -41,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “Alibaba Clo
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-10` — Free models changed: added qwen3.8-max
 - `2026-07-19` — Added: Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible

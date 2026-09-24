@@ -39,7 +39,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-24` — Free models changed: added minimax-m2.1; dropped minimax-2.1
 - `2026-08-20` — Free models changed: added deepseek-v3.2, minimax-2.1

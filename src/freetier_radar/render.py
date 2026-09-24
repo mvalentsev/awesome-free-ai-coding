@@ -1481,8 +1481,8 @@ def _history_section(e: Entry, events: list[Event]) -> list[str]:
     read "Delisted" as its newest event under a header that said live.
     """
     out = ["", "## History", "",
-           "Each line is a change to what this page publishes, dated the day the list "
-           "recorded it, in UTC.", ""]
+           "Each line is a change to what this page publishes, dated the day it reached "
+           "the list, in UTC.", ""]
     for ev in reversed([ev for ev in events if ev.id == e.id]):
         out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev)}")
     return out

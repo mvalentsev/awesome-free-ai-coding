@@ -48,7 +48,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-22` — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
 - `2026-09-18` — Free models changed: added deepseek-v4-flash

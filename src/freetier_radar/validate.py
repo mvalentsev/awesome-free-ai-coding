@@ -385,6 +385,29 @@ def check(root: Path, today: date | None = None) -> list[str]:
     # A row leaves the list through the Archive, never by leaving the registry.
     for entry_id in deleted_rows(entries, history):
         problems.append(f"registry: {deleted_row_problem(entry_id)}")
+    # The day a row arrived, twice over: its page says "added on" from
+    # first_seen and "Added" from the log. Until 2026-09-24 the two disagreed on
+    # 61 of 96 rows — the run recorded a hand-added row up to four days late,
+    # and fifteen first_seen days were typed in local time.
+    # And the day it left, where a reviewer's delisting is what took it off:
+    # "delisted on" in the page's header, "Delisted" or "Archived" in its History.
+    added: dict[str, date] = {}
+    left: dict[str, date] = {}
+    for ev in history:
+        if ev.event is EventType.ADDED:
+            added[ev.id] = ev.ts.date()
+        if ev.event is EventType.REMOVED or (ev.event is EventType.ARCHIVED
+                                             and ev.detail.startswith("delisted on ")):
+            left[ev.id] = ev.ts.date()
+        elif ev.event in (EventType.ADDED, EventType.RESTORED, EventType.ARCHIVED):
+            left.pop(ev.id, None)
+    for e in entries:
+        if e.id in added and e.first_seen != added[e.id]:
+            problems.append(f"registry: {e.id} first_seen {e.first_seen} is not the day "
+                            f"history.jsonl added it, {added[e.id]}")
+        if e.delisted is not None and e.id in left and e.delisted.on != left[e.id]:
+            problems.append(f"registry: {e.id} delisted.on {e.delisted.on} is not the day "
+                            f"history.jsonl took it off the list, {left[e.id]}")
 
     # ---- announced.jsonl
     # The announcer's ledger: append-only like the history, and read every run

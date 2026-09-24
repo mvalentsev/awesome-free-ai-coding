@@ -197,7 +197,8 @@ def test_a_missing_sources_file_is_not_a_problem(tmp_path: Path):
 # ---- history.jsonl — the one file here that cannot be regenerated ----------
 
 def test_a_repository_with_a_history_reports_nothing(tmp_path: Path):
-    root = build(tmp_path, watched=[WATCHED], history=[event()])
+    root = build(tmp_path, entries=[{**ENTRY, "first_seen": "2026-08-10"}], watched=[WATCHED],
+                 history=[event()])
     assert check(root, TODAY) == []
 
 
@@ -223,6 +224,45 @@ def test_removing_something_the_history_never_recorded_is_a_contradiction(tmp_pa
 def test_adding_something_the_history_already_has_is_a_contradiction(tmp_path: Path):
     root = build(tmp_path, history=[event(), event(ts="2026-08-11T05:23:00Z")])
     assert any("added" in p and "already" in p for p in check(root, TODAY))
+
+
+def test_a_row_is_first_seen_the_day_the_history_added_it(tmp_path: Path):
+    """A row's page says "added on" from first_seen and its History "Added"
+    from history.jsonl — two records of one day, which disagreed on 61 of 96
+    rows until 2026-09-24: the scheduled run recorded a row added by hand up
+    to four days late, and fifteen first_seen days were typed in local time."""
+    root = build(tmp_path, entries=[{**ENTRY, "first_seen": "2026-08-09"}],
+                 history=[event()])
+    assert check(root, TODAY) == [
+        "registry: x first_seen 2026-08-09 is not the day history.jsonl added it, 2026-08-10"]
+    back = [event(ts="2026-07-01T05:23:00Z"), event(event="removed", ts="2026-07-02T05:23:00Z"),
+            event()]
+    assert check(build(tmp_path, entries=[{**ENTRY, "first_seen": "2026-08-10"}],
+                       history=back), TODAY) == []
+
+
+def test_a_delisted_row_left_the_list_the_day_its_delisting_says(tmp_path: Path):
+    """The header of an archived row's page reads "delisted on" from the
+    registry and its History "Archived" or "Delisted" from the log: Cerebras
+    read "delisted on 2026-09-16" above "2026-09-17 — Delisted" until the
+    log was rebuilt on 2026-09-24."""
+    gone = {**ENTRY, "first_seen": "2026-08-01",
+            "delisted": {"on": "2026-08-12", "reason": "the free lane is gone"}}
+    left = event(event="archived", ts="2026-08-13T05:23:00Z",
+                 detail="delisted on 2026-08-12: the free lane is gone")
+    verdict = [{**WATCHED, "domains": ["x.ai"], "name": "X"}]
+    root = build(tmp_path, entries=[gone], watched=verdict,
+                 history=[event(ts="2026-08-01T05:23:00Z"), left])
+    assert check(root, TODAY) == [
+        "registry: x delisted.on 2026-08-12 is not the day history.jsonl took it off the "
+        "list, 2026-08-13"]
+    # A row its probes archived first and a reviewer delisted later left on
+    # the day of the probes.
+    probed = event(event="archived", ts="2026-08-11T05:23:00Z",
+                   detail="3 failed probes in a row, last passed 2026-08-01")
+    root = build(tmp_path, entries=[gone], watched=verdict,
+                 history=[event(ts="2026-08-01T05:23:00Z"), probed])
+    assert check(root, TODAY) == []
 
 
 def test_a_row_the_history_recorded_may_not_be_deleted_from_the_registry(tmp_path: Path):

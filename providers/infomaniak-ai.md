@@ -31,7 +31,7 @@ The row named no free model.
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Delisted
 - `2026-09-02` — Added: Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token

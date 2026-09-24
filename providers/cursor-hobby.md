@@ -40,7 +40,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-07-19` — Added: Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card
 

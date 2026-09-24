@@ -36,7 +36,7 @@ Free users get $0.10/month credits (subject to change); credits apply only on HF
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-08-14` — Free models changed: dropped deepseek, qwen3
 - `2026-07-19` — Added: Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account

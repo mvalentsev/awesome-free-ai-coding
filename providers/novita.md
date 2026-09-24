@@ -30,7 +30,7 @@ Selected models priced Free on the pricing page (Ling-3.0-flash, Macaron V1 Vent
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-08-14` — Delisted
 - `2026-07-19` — Added: Inference cloud for 200+ open models; selected models priced Free plus a small signup trial credit

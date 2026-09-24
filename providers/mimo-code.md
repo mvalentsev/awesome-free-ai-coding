@@ -34,7 +34,7 @@ Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it 
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-07-27` — Archived: vendor-announced shutdown on 2026-07-26
 - `2026-07-20` — Free models changed: added mimo-v2.5

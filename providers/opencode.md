@@ -41,7 +41,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Free models changed: added muse-spark-1.3-contributor
 - `2026-09-14` — Free models changed: dropped muse-spark-1.2

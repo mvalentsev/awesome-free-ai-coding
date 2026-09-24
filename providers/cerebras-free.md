@@ -32,7 +32,7 @@ Cerebras' own docs: "New accounts receive $5 in free credits after adding a veri
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Delisted
 - `2026-09-03` — Free models changed: added qwen3.8; dropped gemma-4

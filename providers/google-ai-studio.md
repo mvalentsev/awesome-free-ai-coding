@@ -42,7 +42,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-23` — Free models changed: dropped gemini-2.5-pro
 - `2026-09-07` — Free models changed: added gemini-3.8-flash

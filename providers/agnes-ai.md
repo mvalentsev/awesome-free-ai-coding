@@ -44,7 +44,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-14` — Added: Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
 

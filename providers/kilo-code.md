@@ -44,7 +44,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-24` — Free models changed: added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-08-14` — Free models changed: dropped ling-3.0-tiny

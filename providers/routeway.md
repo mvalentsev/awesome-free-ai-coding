@@ -39,7 +39,7 @@ Free models — every id ending :free — are capped at 5 requests per minute an
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Free models changed: added deepseek-v4-flash, minimax-m2.7
 - `2026-09-14` — Free models changed: added muse-glimmer-30b

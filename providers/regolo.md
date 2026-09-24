@@ -43,7 +43,7 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-22` — Free models changed: added glm-5.2; dropped glm-5
 - `2026-09-21` — Free models changed: dropped llama-3.3

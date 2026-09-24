@@ -37,7 +37,7 @@ the free id sits in the default group and publishes no request cap; of the other
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-08-14` — Free models changed: dropped kimi-k3
 - `2026-08-05` — Added: Zero-priced Kimi K3 on the gateway's own deployment, plus a free Nemotron lane, inside a 121-model paid catalog

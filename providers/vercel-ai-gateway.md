@@ -45,7 +45,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-19` — Free models changed: added ling-3.0-flash-sante
 - `2026-09-17` — Free models changed: added ling-3.0-flash-fin

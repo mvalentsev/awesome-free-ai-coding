@@ -33,7 +33,7 @@ Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed R
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Delisted
 - `2026-09-03` — Free models changed: dropped glm-4.7-flash

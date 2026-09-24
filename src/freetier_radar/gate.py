@@ -66,7 +66,12 @@ EARNED = ("first_seen", "last_verified", "probe_failures", "provisional")
 # The gate refuses such a commit to everyone, so it is made once, with the hooks
 # off, by the repository's owner, and named here by the commit after it; a push
 # or a CI run that meets one checks the logs and the earned fields from it on.
-RATIFIED: dict[str, str] = {}
+RATIFIED: dict[str, str] = {
+    "4fb0103149211db8f93503d5c15b8ce530ce77e1":
+        "history.jsonl rebuilt from main's first-parent registry history, every change dated "
+        "by the commit that made it, where the scheduled run had dated it up to four days "
+        "late; sixteen first_seen days set to the UTC day of the commit that added the row",
+}
 
 _KIND = re.compile(r"^(?:[a-z]+(?:\([a-z0-9-]+\))?: \S|Merge |Revert \"|fixup! |squash! |amend! )")
 

@@ -33,7 +33,7 @@ Per-model rate limits, free tier; closed to new customers on 2026-06-16 and full
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-07-27` — Archived: vendor-announced shutdown on 2026-06-16
 - `2026-07-19` — Added: Free playground+API for catalog models with GitHub account

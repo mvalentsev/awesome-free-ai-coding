@@ -30,7 +30,7 @@ The row named no free model.
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-09-16` — Delisted
 - `2026-08-14` — Free models changed: dropped glm-5.2, qwen3

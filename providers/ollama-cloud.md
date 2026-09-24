@@ -41,7 +41,7 @@ What you send is not used to train models. In the vendor's words: “Prompt or r
 
 ## History
 
-Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
 - `2026-08-14` — Free models changed: dropped gpt-oss, minimax-3, nemotron
 - `2026-07-20` — Free models changed: added minimax-3, nemotron; dropped qwen3-coder
