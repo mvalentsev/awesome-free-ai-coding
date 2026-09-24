@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'opencode free tier: limits, free models, verified 2026-09-21'
+title: 'opencode free tier: limits, free models, verified 2026-09-24'
 description: Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK. The free ids work inside…
 permalink: /providers/opencode/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/opencode/
 
 # opencode
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-21 · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

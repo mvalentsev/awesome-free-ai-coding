@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Experiential Labs free tier: limits, free models, verified 2026-09-21'
+title: 'Experiential Labs free tier: limits, free models, verified 2026-09-24'
 description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check. The Free plan is "500 credits a month once you verify a card (a one-time $1…
 permalink: /providers/experiential-labs/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/experiential-labs/
 
 # Experiential Labs
 
-🧭 Aggregators (one key, many providers) · card required · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-21 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-24 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -38,7 +38,7 @@ The Free plan is "500 credits a month once you verify a card (a one-time $1 char
 
 ## History
 
-- *next scheduled run* — Added to the list: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check
+- `2026-09-24` — Added to the list: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check
 
 ---
 

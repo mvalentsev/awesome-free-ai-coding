@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Cline free tier: limits, free models, verified 2026-09-21'
+title: 'Cline free tier: limits, free models, verified 2026-09-24'
 description: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. "Cline periodically offers free model promotions that let…
 permalink: /providers/cline/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/cline/
 
 # Cline
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-14, a regular row from the first probe it passes on or after 2026-09-28 · **live** — last verified by a probe on 2026-09-21 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-14, a regular row from the first probe it passes on or after 2026-09-28 · **live** — last verified by a probe on 2026-09-24 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -40,7 +40,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Free models changed: added muse-spark-1.3-contributor; dropped laguna-s-2.1
+- `2026-09-24` — Free models changed: added muse-spark-1.3-contributor; dropped laguna-s-2.1
 - `2026-09-17` — Free models changed: dropped deepseek-v4-flash
 - `2026-09-14` — Added to the list: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 - `2026-07-19` — Delisted

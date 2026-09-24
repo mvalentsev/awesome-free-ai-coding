@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Sail Research free tier: limits, free models, verified 2026-09-21'
+title: 'Sail Research free tier: limits, free models, verified 2026-09-24'
 description: 'Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account. The home page: "$5 in free credits every month when you attach a payment method", and its FAQ…'
 permalink: /providers/sail-research/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/sail-research/
 
 # Sail Research
 
-🔌 LLM APIs with free tier · card required · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-21 · [sailresearch.com](https://www.sailresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-24 · [sailresearch.com](https://www.sailresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -43,7 +43,7 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 ## History
 
-- *next scheduled run* — Added to the list: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account
+- `2026-09-24` — Added to the list: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account
 
 ---
 

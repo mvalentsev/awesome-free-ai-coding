@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-21'
+title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-24'
 description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Vercel''s FAQ, in its error table: "The team must add a valid payment method before using free…'
 permalink: /providers/vercel-ai-gateway/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/vercel-ai-gateway/
 
 # Vercel AI Gateway
 
-🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-09-21 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-09-24 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-21'
+title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-24'
 description: Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). No card; the API key needs a free NVIDIA Developer Program account verified…
 permalink: /providers/nvidia-nim/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/nvidia-nim/
 
 # NVIDIA NIM (build.nvidia.com)
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -44,7 +44,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: added diffusiongemma, gemma-4-31b, gpt-oss-20b, kimi-k3, laguna-xs-2.1, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning; dropped nemotron
+- `2026-09-24` — Free models changed: added diffusiongemma, gemma-4-31b, gpt-oss-20b, kimi-k3, laguna-xs-2.1, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning; dropped nemotron
 - `2026-07-27` — Free models changed: dropped llama-4
 - `2026-07-19` — Added to the list: Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1)
 

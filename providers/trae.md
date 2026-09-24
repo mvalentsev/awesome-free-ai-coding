@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-09-21'
+title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-09-24'
 description: TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions. Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", "Autocompletion 5000 / month",…
 permalink: /providers/trae/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/trae/
 
 # TRAE (TraeCode)
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-21 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Regolo AI free tier: limits, free models, verified 2026-09-21'
+title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and…'
 permalink: /providers/regolo/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/regolo/
 
 # Regolo AI
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-21 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -43,7 +43,7 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 
 ## History
 
-- *next scheduled run* — Free models changed: added glm-5.2; dropped glm-5
+- `2026-09-24` — Free models changed: added glm-5.2; dropped glm-5
 - `2026-09-21` — Free models changed: dropped llama-3.3
 - `2026-09-21` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-08-31` — Added to the list: EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OpenAI Codex CLI free tier: limits, free models, verified 2026-09-21'
+title: 'OpenAI Codex CLI free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans. The pricing page: "ChatGPT Work and Codex are included in your ChatGPT Free, Go, Plus, Pro, Business, Edu, or Enterprise plan". Its Free card offers "Explore Codex capabilities on…'
 permalink: /providers/openai-codex-cli/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/openai-codex-cli/
 
 # OpenAI Codex CLI
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-21 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -36,7 +36,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Free models changed: dropped gpt-5.6
+- `2026-09-24` — Free models changed: dropped gpt-5.6
 - `2026-07-19` — Free models changed: added gpt-5.6
 - `2026-07-19` — Added to the list: Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans
 

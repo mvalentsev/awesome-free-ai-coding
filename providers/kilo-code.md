@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Kilo Code free tier: limits, free models, verified 2026-09-21'
+title: 'Kilo Code free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. $0 a month, and no account for the free lane: "The gateway allows…'
 permalink: /providers/kilo-code/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/kilo-code/
 
 # Kilo Code
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-21 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -44,7 +44,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning
+- `2026-09-24` — Free models changed: added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-08-14` — Free models changed: dropped ling-3.0-tiny
 - `2026-08-11` — Free models changed: added laguna-xs-2.1, ling-3.0-tiny, nemotron-3-super
 - `2026-08-11` — Free models changed: added laguna-s-2.1, step-3.7-flash; dropped ling-3.0-flash

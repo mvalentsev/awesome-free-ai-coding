@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Token Harbor free tier: limits, free models, verified 2026-09-21'
+title: 'Token Harbor free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card. "Models on permanent free routes carry an explicit :free model ID and are listed…'
 permalink: /providers/token-harbor/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/token-harbor/
 
 # Token Harbor
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-21 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-24 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -48,7 +48,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
+- `2026-09-24` — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
 - `2026-09-21` — Free models changed: added deepseek-v4-flash
 - `2026-09-17` — Added to the list: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card
 

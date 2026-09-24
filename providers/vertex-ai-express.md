@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-09-23'
+title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-09-24'
 description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to…'
 permalink: /providers/vertex-ai-express/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/vertex-ai-express/
 
 # Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-23, a regular row from the first probe it passes on or after 2026-10-07 · **live** — last verified by a probe on 2026-09-23 · [docs.cloud.google.com](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-23, a regular row from the first probe it passes on or after 2026-10-07 · **live** — last verified by a probe on 2026-09-24 · [docs.cloud.google.com](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -46,7 +46,7 @@ What you send is not used to train models. In the vendor's words: “Google won'
 
 ## History
 
-- *next scheduled run* — Added to the list: Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
+- `2026-09-24` — Added to the list: Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 
 ---
 

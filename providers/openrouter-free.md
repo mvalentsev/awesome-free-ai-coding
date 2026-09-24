@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-09-21'
+title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-09-24'
 description: One API key for a rotating set of :free model variants, open-weight and stealth models among them. 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants —…
 permalink: /providers/openrouter-free/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/openrouter-free/
 
 # OpenRouter (free models)
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -44,7 +44,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-- *next scheduled run* — Free models changed: added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code
+- `2026-09-24` — Free models changed: added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code
 - `2026-08-27` — Free models changed: dropped gpt-oss
 - `2026-07-19` — Free models changed: added gemma-4, gpt-oss, nemotron-3-ultra; dropped deepseek, glm-4.5, kimi-k2, qwen3-coder
 - `2026-07-19` — Added to the list: One API key for rotating :free variants of frontier models

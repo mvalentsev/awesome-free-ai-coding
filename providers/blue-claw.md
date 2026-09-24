@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Blue Claw Network free tier: limits, free models, verified 2026-09-21'
+title: 'Blue Claw Network free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start. The home page: "Every new account starts with a $5 welcome credit. After that, you run on prepaid USD…'
 permalink: /providers/blue-claw/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/blue-claw/
 
 # Blue Claw Network
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-21 · [blueclaw.network](https://blueclaw.network) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [blueclaw.network](https://blueclaw.network) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

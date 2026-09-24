@@ -32,7 +32,7 @@ Closed to new users since 2026-05-15. AWS's end-of-support post of 2026-04-30: "
 
 ## History
 
-- *next scheduled run* — Archived: vendor-announced shutdown on 2026-05-15
+- `2026-09-24` — Archived: vendor-announced shutdown on 2026-05-15
 - `2026-09-17` — Added to the list: AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month
 
 ---

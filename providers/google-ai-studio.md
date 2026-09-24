@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-09-21'
+title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-09-24'
 description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software…'
 permalink: /providers/google-ai-studio/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/google-ai-studio/
 
 # Google AI Studio (Gemini API)
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-21 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -42,7 +42,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: dropped gemini-2.5-pro
+- `2026-09-24` — Free models changed: dropped gemini-2.5-pro
 - `2026-09-10` — Free models changed: added gemini-3.8-flash
 - `2026-08-17` — Free models changed: added gemini-2.5-pro, gemini-3.5-flash-lite, gemini-3.7-flash; dropped gemini-2.5
 - `2026-07-19` — Added to the list: Free tier for Gemini 2.5 Flash/Pro API

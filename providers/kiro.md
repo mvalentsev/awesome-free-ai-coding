@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Kiro free tier: limits, free models, verified 2026-09-21'
+title: 'Kiro free tier: limits, free models, verified 2026-09-24'
 description: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models. 50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from…
 permalink: /providers/kiro/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/kiro/
 
 # Kiro
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-21 · [kiro.dev](https://kiro.dev/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [kiro.dev](https://kiro.dev/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -39,7 +39,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- *next scheduled run* — Free models changed: added minimax-m2.1; dropped minimax-2.1
+- `2026-09-24` — Free models changed: added minimax-m2.1; dropped minimax-2.1
 - `2026-08-24` — Free models changed: added deepseek-v3.2, minimax-2.1
 - `2026-07-20` — Free models changed: dropped deepseek-v3.2, minimax-2.1
 - `2026-07-19` — Free models changed: added claude-sonnet-4.5, deepseek-v3.2, minimax-2.1, qwen3-coder

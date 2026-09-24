@@ -30,7 +30,7 @@ Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the
 
 ## History
 
-- *next scheduled run* — Archived: delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier
+- `2026-09-24` — Archived: delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier
 - `2026-08-05` — Added to the list: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it
 
 ---

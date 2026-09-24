@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'LLMTR free tier: limits, free models, verified 2026-09-21'
+title: 'LLMTR free tier: limits, free models, verified 2026-09-24'
 description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
 ---
@@ -9,7 +9,7 @@ permalink: /providers/llmtr/
 
 # LLMTR
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-21 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -45,7 +45,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: added laguna-xs-2.1, ling-3.0-flash-fin, nemotron-3-super; dropped qwen3.6
+- `2026-09-24` — Free models changed: added laguna-xs-2.1, ling-3.0-flash-fin, nemotron-3-super; dropped qwen3.6
 - `2026-09-10` — Free models changed: dropped mercury-2
 - `2026-09-07` — Free models changed: dropped minimax-m3
 - `2026-09-03` — Added to the list: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them
