@@ -1321,16 +1321,6 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
-    model: openai/agnes-3.0-flash
-    api_base: https://apihub.agnes-ai.com/v1
-    api_key: os.environ/AGNES_AI_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
     model: openai/zai-org/GLM-5.3-Flash
     api_base: https://inference.dahl.global/v1
     api_key: os.environ/DAHL_INFERENCE_API_KEY

@@ -3670,9 +3670,7 @@
       "models": [
         {
           "family": "agnes-3.0-flash",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "agnes-3-0-flash"
+          "released": ""
         },
         {
           "family": "agnes-2.5-flash",

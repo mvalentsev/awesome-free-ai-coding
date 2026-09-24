@@ -3549,9 +3549,7 @@ entries:
     law. The docs live on wiki.agnes-ai.com. Read 2026-09-14'
   models:
   - family: agnes-3.0-flash
-    tier: strong
     released: ''
-    aa_model: agnes-3-0-flash
   - family: agnes-2.5-flash
     released: ''
   api:
