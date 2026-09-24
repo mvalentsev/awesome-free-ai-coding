@@ -1000,11 +1000,12 @@
       "source_urls": [
         "https://build.nvidia.com/explore/discover",
         "https://build.nvidia.com/moonshotai/kimi-k3",
-        "https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798"
+        "https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798",
+        "https://forums.developer.nvidia.com/t/account-access-verification-update/360900"
       ],
       "card_required": false,
       "offering": "Free endpoints for the models build.nvidia.com marks \"Free Endpoint\", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)",
-      "limits": "No card; the API key needs a free NVIDIA Developer Program account verified by a code sent to your phone, and the phone step does not take every country. The ceiling is a rate, not credits: NVIDIA's site puts it at \"Up to 40 rpm\" and \"10,000 requests per day\", adding that \"Rate limits may vary by model and traffic from other users may cause throttling\". NVIDIA staff call 40 RPM \"the published free-tier cap\" that \"is not adjustable on a per-account basis\"; more throughput takes \"an NVIDIA AI Enterprise license or self-hosting the model via the corresponding NIM container\". Each model's page states whether its free endpoint is available or deprecated, and NVIDIA renames ids without notice, so copy them from the catalog. Read 2026-09-22",
+      "limits": "No card; the API key needs a free NVIDIA Developer Program account verified by a code sent to your phone, and the phone step does not take every country. The ceiling is a rate, not credits: NVIDIA's site puts it at \"Up to 40 rpm\" and \"10,000 requests per day\", adding that \"Rate limits may vary by model and traffic from other users may cause throttling\". NVIDIA staff call 40 RPM \"the published free-tier cap\" that \"is not adjustable on a per-account basis\"; more throughput takes \"an NVIDIA AI Enterprise license or self-hosting the model via the corresponding NIM container\". A key can also be issued and still not answer: since June 2026 the vendor's forum has carried thread after thread of new personal keys that list the catalog and get 404 on every chat call, and NVIDIA's pinned note on account access says verification \"has been challenging for both the community and NVIDIA\", sending such cases to help@build.nvidia.com. Each model's page states whether its free endpoint is available or deprecated, and NVIDIA renames ids without notice, so copy them from the catalog. Read 2026-09-24",
       "models": [
         {
           "family": "kimi-k3",
@@ -1878,7 +1879,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog",
-      "limits": "Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates: ten zero-priced ids on 2026-08-14, three on 2026-09-16, with ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
+      "limits": "Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates, ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
       "models": [
         {
           "family": "deepseek-v4-flash",
@@ -1915,7 +1916,7 @@
           "gemma-4-26b-a4b-it-moonlight:free",
           "gemma-4-26b-a4b-it-musica:free"
         ],
-        "note": "the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. An id joins the Models column only after two weeks in the lane, since every family there is re-checked on every run and three misses archive the row"
+        "note": "the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. A new id joins the Models column after two weeks in the lane"
       },
       "probe": {
         "type": "api-models",

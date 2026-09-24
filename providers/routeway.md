@@ -21,14 +21,14 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 
 ## Limits, in the vendor's words
 
-Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates: ten zero-priced ids on 2026-08-14, three on 2026-09-16, with ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency
+Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates, ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency
 
 ## Connect
 
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Callable ids: `muse-glimmer-30b:free`, `deepseek-v4-flash:free`, `minimax-m2.7:free`
-- Note: the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. An id joins the Models column only after two weeks in the lane, since every family there is re-checked on every run and three misses archive the row
+- Note: the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. A new id joins the Models column after two weeks in the lane
 
 ## Evidence
 
