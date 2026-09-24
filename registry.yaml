@@ -82,6 +82,9 @@ entries:
     - nvidia/nemotron-3.5-content-safety:free
     - nex-agi/nex-n2.5-pro:free
     - nex-agi/nex-n2.5-mini:free
+    no_family_ids:
+    - liquid/lfm-2.5-2.6b:free
+    - openrouter/free
     anthropic_base_url: https://openrouter.ai/api
     note: 'pick models with the :free suffix: every id carrying it is priced 0/0,
       20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the
@@ -586,6 +589,11 @@ entries:
     - nvidia/nemotron-3.5-content-safety:free
     - nex-agi/nex-n2.5-pro:free
     - nex-agi/nex-n2.5-mini:free
+    no_family_ids:
+    - kilo-auto/free
+    - openrouter/free
+    - liquid/lfm-2.5-2.6b:free
+    - stealth/space-bunny-alpha
     refuses_bearer: true
     note: 'no key at all for the free ids, capped at 200 requests per hour per IP;
       a metered id answers 401 `You need to sign in to use this model`. Every id listed
@@ -1662,6 +1670,8 @@ entries:
     - qwen/qwen3.7-flash:free
     - deepseek/deepseek-v4-flash-0731free:free
     - auto:free
+    no_family_ids:
+    - auto:free
     note: only the two :free ids and auto:free cost nothing — the plain qwen3.7-flash
       beside the first is the metered twin ($0.03/$0.13 per 1M), and deepseek-v4-flash-0731free
       without the suffix is metered at $0.20/$0.40. auto:free picks a free model for
@@ -2300,6 +2310,10 @@ entries:
     - jina-ocr-v1
     - gpt-realtime-2.1
     - nemotron-3.5-content-safety-free
+    no_family_ids:
+    - k2.6-code-preview-free
+    - lfm-2.5-2.6b-free
+    - union-alpha-free
     anthropic_base_url: https://aihubmix.com
     note: 'every id the catalog prices at 0 is listed or ignored on purpose, 47 rows
       on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored:
@@ -2693,6 +2707,8 @@ entries:
     - qwen3.8-27b
     - apertus-70b
     - brick-v1-beta
+    no_family_ids:
+    - brick-v1-beta
     note: GET /v1/models is public and needs no key, but it publishes ids only — the
       prices and the trial terms are on the pricing page this row probes. brick-v1-beta
       is the one id priced at zero on that page, and it is Brick's prompt-complexity
@@ -2821,6 +2837,9 @@ entries:
     - Sao10K/L3-70B-Euryale-v2.1
     - Sao10K/L3-8B-Stheno-v3.2
     - MegaNova/Web-Search
+    no_family_ids:
+    - meganova-ai/manta-mini-1.0
+    - meganova-ai/manta-flash-1.0
     note: the three ids listed are the chat rows a Tier 1 account can call for free;
       eleven more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash
       and manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B
@@ -2903,6 +2922,8 @@ entries:
     - evren/qwen3-vl-30b
     - evren/qwen3.8-flash-next
     - openai/gpt-oss-safeguard-20b
+    no_family_ids:
+    - dots-studio/dots-3-note-preview
     note: 'the nine ids are every chat row the public catalog prices at 0 on 2026-09-23
       outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September.
       nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin
@@ -3046,6 +3067,10 @@ entries:
     aa_model: minimax-m3
   - family: qwen3.6
     released: ''
+  - family: minimax-m2.5
+    released: ''
+  - family: diffusiongemma
+    released: 2026-06
   api:
     base_url: https://freeinference.org/v1
     key_url: https://freeinference.org
@@ -3756,6 +3781,8 @@ entries:
     model_ids:
     - deepseek-v4.1-flash:free
     - mimo-v2.6-flash:free
+    - qwen3.8-flash:free
+    no_family_ids:
     - qwen3.8-flash:free
     anthropic_base_url: https://tokenharbor.ai
     note: the :free suffix selects the free route, which has to be switched on in

@@ -101,7 +101,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Agnes AI](https://agnes-ai.com)** 👁 🧪 | Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them | `agnes-3.0-flash`, `agnes-2.5-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/) |
 | **[SenseNova (SenseTime 商汤)](https://www.sensenova.cn)** | SenseTime's own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) |
 | **[Tencent Cloud TokenHub](https://cloud.tencent.com/document/product/1823)** 🧪 | Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) |
-| **[FreeInference (Harvard SEAS)](https://freeinference.org)** | Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
+| **[FreeInference (Harvard SEAS)](https://freeinference.org)** | Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6`, `minimax-m2.5`, `diffusiongemma` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) |
 | **[Ollama Cloud](https://ollama.com/cloud)** | Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) |
 | **[Poolside Platform](https://poolside.ai)** 👁 | Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) |
 | **[Sail Research](https://www.sailresearch.com)** 💳 🧪 | Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) |
@@ -192,6 +192,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `muse-glimmer-30b` | [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Routeway](https://routeway.ai) |
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
+| `diffusiongemma` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
@@ -203,6 +204,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `mimo-v2.5` | [opencode](https://opencode.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `minimax-m2.1` | [Kiro](https://kiro.dev/), [AIHubMix (free models)](https://aihubmix.com) |
+| `minimax-m2.5` | [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `minimax-m3` | [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `muse-spark-1.3-contributor` | [opencode](https://opencode.ai), [Cline](https://cline.bot) |
 | `nemotron-3-nano-30b` | [Requesty](https://www.requesty.ai), [AIHubMix (free models)](https://aihubmix.com) |
@@ -217,7 +219,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `command-a` | [Cohere (trial keys)](https://cohere.com) |
 | `deepseek-v3.2` | [Kiro](https://kiro.dev/) |
 | `deepseek-v4-pro` | [Sail Research](https://www.sailresearch.com) 💳 |
-| `diffusiongemma` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-2.5-pro` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
@@ -251,7 +252,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `mimo-v2-omni` | [AIHubMix (free models)](https://aihubmix.com) |
 | `mimo-v2-pro` | [AIHubMix (free models)](https://aihubmix.com) |
 | `minimax-m2` | [AIHubMix (free models)](https://aihubmix.com) |
-| `minimax-m2.5` | [AIHubMix (free models)](https://aihubmix.com) |
 | `mistral-nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `mistral-small-3.2` | [MegaNova](https://meganova.ai) |
 | `nemotron-nano-12b-v2-vl` | [AIHubMix (free models)](https://aihubmix.com) |

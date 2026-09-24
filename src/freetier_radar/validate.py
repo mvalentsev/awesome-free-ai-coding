@@ -29,8 +29,8 @@ from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, load_history
-from .models import (Entry, is_archived, is_blocked, load_blocklist, load_dismissed,
-                     load_registry, load_sources, load_watchlist, save_registry)
+from .models import (Entry, family_names, is_archived, is_blocked, load_blocklist,
+                     load_dismissed, load_registry, load_sources, load_watchlist, save_registry)
 
 __all__ = ["check", "check_repository", "registry_form_problems", "main"]
 
@@ -166,6 +166,22 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(
                     f"registry: family {m.family!r} is measured as {first[0]} on {first[1]} and "
                     f"{m.aa_model} on {e.id} — a family is one model")
+
+    # An id kept out of the Models column on purpose is one the row lists and no
+    # family names: a router, a stealth codename, a model its own developer
+    # advises against agentic coding. Anything else is a decision about nothing,
+    # and freetier-bars would go on asking for a family the row already has.
+    for e in entries:
+        for i in e.api.no_family_ids if e.api else []:
+            if i not in e.api.model_ids:
+                problems.append(
+                    f"registry: {e.id} api.no_family_ids names {i}, which is not in api.model_ids "
+                    f"— list the id there or take it out")
+            named = [m.family for m in e.models if family_names(m.family, i)]
+            if named:
+                problems.append(
+                    f"registry: {e.id} api.no_family_ids names {i}, but family {named[0]!r} names it "
+                    f"— take it out of no_family_ids")
 
     for e in entries:
         if e.last_verified > today:

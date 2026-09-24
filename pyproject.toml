@@ -27,6 +27,7 @@ freetier-quotes = "freetier_radar.quotes:main"
 freetier-tiers = "freetier_radar.tiers:main"
 freetier-map = "freetier_radar.layout:main"
 freetier-gate = "freetier_radar.gate:main"
+freetier-bars = "freetier_radar.bars:main"
 
 [build-system]
 requires = ["hatchling"]

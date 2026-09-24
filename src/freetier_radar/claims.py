@@ -20,6 +20,7 @@ from typing import Callable
 import yaml
 
 from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
+from .bars import BAR_DAYS
 from .gate import EARNED
 from .layout import MAP, Kind
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, NOTICE_HOLD_DAYS,
@@ -112,6 +113,10 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(README_STARTERS),), "render.README_STARTERS"),
     Claim("CONTRIBUTING.md", r"read (\w+) names deep per section",
           lambda root: (_word(README_PICKS),), "render.README_PICKS"),
+    Claim("CONTRIBUTING.md", r"A lane that rotates names a model once it has stayed (\w+ weeks|a week)",
+          lambda root: (_WEEKS.get(BAR_DAYS, f"{BAR_DAYS} days"),), "bars.BAR_DAYS"),
+    Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
+          lambda root: (_WEEKS.get(BAR_DAYS, f"{BAR_DAYS} days"),), "bars.BAR_DAYS"),
     Claim("CONTRIBUTING.md", r"`offering`, the first (\w+)\s+model families and the date",
           lambda root: (_word(README_MODELS),), "render.README_MODELS"),
     Claim("CONTRIBUTING.md", r"every family past the (\w+), one click from their count",

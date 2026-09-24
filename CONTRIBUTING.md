@@ -265,13 +265,17 @@ counted from that read or from the vendor's own date for the free id, such as th
 `dateCreated` of an NVIDIA endpoint. Every chat model that has stayed that long
 joins the column, since the list of models and everyone who serves each one free
 is built from it. A router is not a model and a stealth codename names none, and a
-model whose own developer advises against agentic coding stays out; each goes in
-`api.note` with the reason. A free id the vendor dates to end within those two weeks
+model whose own developer advises against agentic coding stays out; each is
+listed in `api.no_family_ids`, with the reason in `api.note`. A free id the vendor dates to end within those two weeks
 never joins: OpenRouter and Kilo publish the date as `expiration_date`, and on
 2026-09-24 it was the next day for both Nex-N2.5 ids. Until that day a family that
 left the lane failed the row, so the column was kept to a few names per lane, and
 OpenRouter was missing from the list for `north-mini-code`, which it had served
-free since July.
+free since July. `uv run freetier-bars` dates every id in `api.model_ids` from the
+registry's git history and prints which are owed a family and when the rest fall
+due, and the scheduled run prints the same report in its summary; `freetier-check`
+refuses an id in `api.no_family_ids` that the row does not list or a family
+already names.
 
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —
@@ -614,6 +618,7 @@ uv run freetier-probe --dry-run   # live-probe all entries, record nothing
 uv run freetier-render            # regenerate every file the map above marks generated, and the map
 uv run freetier-check             # validate the curated files against each other
 uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources
+uv run freetier-bars              # which ids a free lane has carried two weeks with no family
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
 

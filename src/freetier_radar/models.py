@@ -141,6 +141,32 @@ class ProbeType(str, Enum):
     PAGE_KEYWORDS = "page-keywords"
 
 
+def _squash(s: str) -> str:
+    """Case and separators removed: vendors write "Qwen3 Coder" and "GLM-4.7
+    Flash" for what the registry calls qwen3-coder and glm-4.7-flash."""
+    return re.sub(r"[\s_-]+", "", s.lower())
+
+
+def _id_squash(s: str) -> str:
+    """_squash for a catalog id, where the dot goes too: Kenari lists the
+    registry's glm-4.7-flash, step-3.7-flash and laguna-s-2.1 as
+    glm-4-7-flash:free, step-3-7-flash:free and laguna-s-2-1:free. A page is
+    prose and keeps its dots — "Qwen 3 6B" must not read as qwen3.6 — but an
+    id is one token, and a version written with a hyphen is the same
+    version."""
+    return re.sub(r"[\s_.\-]+", "", s.lower())
+
+
+def family_names(family: str, model_id: str) -> bool:
+    """Whether a catalog id is one of a family's, the one way every part of the
+    project decides it: the probe demanding a family back from a catalog, the
+    render reading an id's tier, freetier-check and freetier-bars asking which
+    ids a row's column already names. A substring of the squashed id, so
+    `glm-5.3` also names a `glm-5.3-flash` id — give a family the most
+    specific name the lane serves."""
+    return _id_squash(family) in _id_squash(model_id)
+
+
 class ModelFamily(BaseModel):
     family: str
     # A measurement, never a reputation (CONTRIBUTING, "tier: frontier is a
@@ -343,6 +369,12 @@ class ApiInfo(BaseModel):
     # set: every api block already carries model_ids and note, and this list
     # means something only on the rows whose catalog prices are read.
     ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
+    # Ids in model_ids that no Models-column family will name, on purpose: a
+    # router, a stealth codename, a model its own developer advises against
+    # agentic coding — with the reason in `note`. Every other id a free lane
+    # has carried for two weeks is owed a family, and freetier-bars says so;
+    # this is where a decision not to give one is recorded.
+    no_family_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
     # The base of the vendor's Anthropic-format Messages API — the value Claude
     # Code's ANTHROPIC_BASE_URL takes, the client appending /v1/messages itself.
     # Set only where the vendor documents the route, never from a 401 alone:

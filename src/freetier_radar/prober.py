@@ -15,7 +15,8 @@ import httpx
 from .history import record_changes
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
-    is_archived_for_good, load_registry, notice_holds, save_registry,
+    _id_squash, _squash, family_names, is_archived_for_good, load_registry, notice_holds,
+    save_registry,
 )
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
@@ -1030,7 +1031,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
     for family in entry.models:
         matches = [
             m for m in items
-            if _id_squash(family.family) in _id_squash(_model_id(m))
+            if family_names(family.family, _model_id(m))
             and (not marker or marker in _model_id(m).lower())
         ]
         if not matches:
@@ -1471,22 +1472,6 @@ def _id_words(model_id: str) -> tuple[str, ...]:
     """A model id as the sorted bag of words a vendor built it from — the unit
     that survives a rename which only reorders them."""
     return tuple(sorted(w for w in re.split(r"[^a-z0-9]+", model_id.lower()) if w))
-
-
-def _squash(s: str) -> str:
-    """Case and separators removed: vendors write "Qwen3 Coder" and "GLM-4.7
-    Flash" for what the registry calls qwen3-coder and glm-4.7-flash."""
-    return re.sub(r"[\s_-]+", "", s.lower())
-
-
-def _id_squash(s: str) -> str:
-    """_squash for a catalog id, where the dot goes too: Kenari lists the
-    registry's glm-4.7-flash, step-3.7-flash and laguna-s-2.1 as
-    glm-4-7-flash:free, step-3-7-flash:free and laguna-s-2-1:free. A page is
-    prose and keeps its dots — "Qwen 3 6B" must not read as qwen3.6 — but an
-    id is one token, and a version written with a hyphen is the same
-    version."""
-    return re.sub(r"[\s_.\-]+", "", s.lower())
 
 
 # How far apart the parts of a family name may sit and still be one name. Wide

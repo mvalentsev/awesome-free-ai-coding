@@ -33,7 +33,11 @@ jobs:
     # for the default six hours.
     timeout-minutes: 60
     steps:
+      # The whole history, 3 MB: freetier-bars dates every id a free lane lists
+      # from the commits that added it to registry.yaml.
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       # Exact by necessity — see the note in ci.yml.
       - uses: astral-sh/setup-uv@v10.0.1
@@ -53,6 +57,13 @@ jobs:
       - name: Re-read tier marks from the Artificial Analysis index
         continue-on-error: true
         run: uv run freetier-tiers --registry registry.yaml --write
+
+      # Which ids a free lane has carried for two weeks with no Models-column
+      # family, and when the rest fall due. A report for the reviewer, never a
+      # gate: the calendar moves an id from waiting to due without a commit.
+      - name: Report the models owed a family
+        continue-on-error: true
+        run: uv run freetier-bars | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Render README
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md

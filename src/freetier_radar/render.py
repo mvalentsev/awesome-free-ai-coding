@@ -16,13 +16,14 @@ from .history import (Event, EventType, archive_reason, diff_state, load_history
                       refuse_deleted_rows, registry_state, replay)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
                      SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, Notice,
-                     ProbeType, Tier, Watched, domain_of, folded_into, is_archived,
+                     ProbeType, Tier, Watched, _id_squash, domain_of, family_names, folded_into,
+                     is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, live_families,
                      load_blocklist, load_registry, load_watchlist, probe_frequency)
 # How the probe decides which of a row's families a catalog id is: the configs
 # group ids by tier with the same rule, so the two can never disagree. The
 # promotion day is the probe's too, and the pages say how far off it is.
-from .prober import PROVISIONAL_PROMOTE_DAYS, _id_squash
+from .prober import PROVISIONAL_PROMOTE_DAYS
 # The bar a family's score must clear to be called frontier, which the picks
 # table states beside the answer.
 from .tiers import FRONTIER_WITHIN
@@ -1176,7 +1177,7 @@ def _tier_of_id(e: Entry, model_id: str) -> Tier | None:
     the row's families the id names, matched the way the probe matches a family
     against a catalog id (zai-org/GLM-5.3-Flash is glm-5.3-flash, not glm-5.3)."""
     named = [m for m in e.models if m.superseded_by is None
-             and _id_squash(m.family) in _id_squash(model_id)]
+             and family_names(m.family, model_id)]
     best = max(named, key=lambda m: len(_id_squash(m.family)), default=None)
     return best.tier if best else None
 

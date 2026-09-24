@@ -108,6 +108,10 @@
           "nex-agi/nex-n2.5-pro:free",
           "nex-agi/nex-n2.5-mini:free"
         ],
+        "no_family_ids": [
+          "liquid/lfm-2.5-2.6b:free",
+          "openrouter/free"
+        ],
         "anthropic_base_url": "https://openrouter.ai/api",
         "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b, which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety, a guardrail classifier. Nex-N2.5 Pro and Mini are ignored: the catalog dates their free ids to end 2026-09-25. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
       },
@@ -632,6 +636,12 @@
           "nvidia/nemotron-3.5-content-safety:free",
           "nex-agi/nex-n2.5-pro:free",
           "nex-agi/nex-n2.5-mini:free"
+        ],
+        "no_family_ids": [
+          "kilo-auto/free",
+          "openrouter/free",
+          "liquid/lfm-2.5-2.6b:free",
+          "stealth/space-bunny-alpha"
         ],
         "refuses_bearer": true,
         "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, stealth/space-bunny-alpha names no model, and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail classifier, and Nex-N2.5, whose free ids end 2026-09-25"
@@ -1732,6 +1742,9 @@
           "deepseek/deepseek-v4-flash-0731free:free",
           "auto:free"
         ],
+        "no_family_ids": [
+          "auto:free"
+        ],
         "note": "only the two :free ids and auto:free cost nothing — the plain qwen3.7-flash beside the first is the metered twin ($0.03/$0.13 per 1M), and deepseek-v4-flash-0731free without the suffix is metered at $0.20/$0.40. auto:free picks a free model for you, and on a funded account it can fall through to the paid routing table \"unless paid fallback is disabled\""
       },
       "probe": {
@@ -2472,6 +2485,11 @@
           "gpt-realtime-2.1",
           "nemotron-3.5-content-safety-free"
         ],
+        "no_family_ids": [
+          "k2.6-code-preview-free",
+          "lfm-2.5-2.6b-free",
+          "union-alpha-free"
+        ],
         "anthropic_base_url": "https://aihubmix.com",
         "note": "every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was \"removed from the platform\". Not in the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it"
       },
@@ -2860,6 +2878,9 @@
           "apertus-70b",
           "brick-v1-beta"
         ],
+        "no_family_ids": [
+          "brick-v1-beta"
+        ],
         "note": "GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model"
       },
       "data_use": {
@@ -2984,6 +3005,10 @@
           "Sao10K/L3-8B-Stheno-v3.2",
           "MegaNova/Web-Search"
         ],
+        "no_family_ids": [
+          "meganova-ai/manta-mini-1.0",
+          "meganova-ai/manta-flash-1.0"
+        ],
         "note": "the three ids listed are the chat rows a Tier 1 account can call for free; eleven more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash and manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B and bge-reranker-v2-m3 are not chat models, nor is MegaNova/Web-Search, a search API with 50 free queries a day, and five are roleplay fine-tunes (four of Llama, one of Mistral NeMo). Manta Mini and Manta Flash are MegaNova's own routers, tagged best_role_play in the catalog, so Mistral Small 3.2, at 8,192 tokens of context, is the one named coding model on the lane"
       },
       "probe": {
@@ -3063,6 +3088,9 @@
           "evren/qwen3-vl-30b",
           "evren/qwen3.8-flash-next",
           "openai/gpt-oss-safeguard-20b"
+        ],
+        "no_family_ids": [
+          "dots-studio/dots-3-note-preview"
         ],
         "note": "the nine ids are every chat row the public catalog prices at 0 on 2026-09-23 outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September. nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings row, openai/gpt-oss-safeguard-20b, a content classifier, and five evren/* rows priced 0 because each \"kendi EVREN anahtarınızla çalışır\" (runs on your own EVREN key)"
       },
@@ -3197,6 +3225,14 @@
         {
           "family": "qwen3.6",
           "released": ""
+        },
+        {
+          "family": "minimax-m2.5",
+          "released": ""
+        },
+        {
+          "family": "diffusiongemma",
+          "released": "2026-06"
         }
       ],
       "api": {
@@ -3857,6 +3893,9 @@
         "model_ids": [
           "deepseek-v4.1-flash:free",
           "mimo-v2.6-flash:free",
+          "qwen3.8-flash:free"
+        ],
+        "no_family_ids": [
           "qwen3.8-flash:free"
         ],
         "anthropic_base_url": "https://tokenharbor.ai",

@@ -53,6 +53,20 @@ def test_a_consistent_repository_reports_nothing(tmp_path: Path):
     assert check(build(tmp_path, watched=[WATCHED]), TODAY) == []
 
 
+def test_an_id_kept_out_of_the_column_is_a_callable_id_no_family_names(tmp_path: Path):
+    """`api.no_family_ids` records a decision about an id in `api.model_ids` —
+    a router, a stealth codename, a model its developer keeps away from agentic
+    coding — so freetier-bars stops asking for its family. An id the row does
+    not list, or one a family already names, is a decision about nothing."""
+    row = {**ENTRY, "models": [{"family": "big-1"}],
+           "api": {"base_url": "https://x.ai/v1", "model_ids": ["v/big-1", "v/router"],
+                   "no_family_ids": ["v/router", "v/big-1", "v/gone"]}}
+    problems = check(build(tmp_path, entries=[row], watched=[WATCHED]), TODAY)
+    assert any("v/gone" in p and "not in api.model_ids" in p for p in problems), problems
+    assert any("v/big-1" in p and "big-1" in p and "names it" in p for p in problems), problems
+    assert not any("v/router" in p for p in problems), problems
+
+
 def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
     """The median `limits` went from 87 characters in July to 813 by 2026-09-16,
     the longest 3,712 — a research log in a README cell. The history belongs to
