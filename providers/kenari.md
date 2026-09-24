@@ -25,7 +25,7 @@ Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed R
 
 ## Evidence
 
-- Probe: the models catalog at `https://kenari.id/v1/models`, free rows carrying `:free`, every listed family required at a zero price
+- Probe: the models catalog at `https://kenari.id/v1/models`, free rows carrying `:free`, each listed family checked for a zero price
 - Source: `https://kenari.id/en/docs/billing`
 - Source: `https://kenari.id/api/public/pricing`
 - Source: `https://kenari.id/v1/models`
@@ -39,6 +39,6 @@ Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed R
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

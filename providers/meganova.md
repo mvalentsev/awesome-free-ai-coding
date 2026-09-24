@@ -32,7 +32,7 @@ Tier 1 is "Free registration — no credit card required", with "Free Access Mod
 
 ## Evidence
 
-- Probe: the models catalog at <https://api.meganova.ai/v1/models>, every listed family required at a zero price
+- Probe: the models catalog at <https://api.meganova.ai/v1/models>, each listed family checked for a zero price
 - Source: <https://docs.meganova.ai/free-model-quota>
 - Source: <https://docs.meganova.ai/tiers/tier-1.md>
 - Source: <https://docs.meganova.ai/legal-docs/terms-of-service.md>
@@ -44,6 +44,6 @@ Tier 1 is "Free registration — no credit card required", with "Free Access Mod
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -33,7 +33,7 @@ per-model caps, spelled out in each model's catalog description: the newest codi
 
 ## Evidence
 
-- Probe: the models catalog at <https://aihubmix.com/api/v1/models>, free rows carrying `free`, every listed family required at a zero price
+- Probe: the models catalog at <https://aihubmix.com/api/v1/models>, free rows carrying `free`, each listed family checked for a zero price
 - Source: <https://docs.aihubmix.com/en/blogs/free-ai-models>
 - Source: <https://aihubmix.com/api/v1/models>
 - Source: <https://docs.aihubmix.com/en/api/Claude-Code>
@@ -46,6 +46,6 @@ per-model caps, spelled out in each model's catalog description: the newest codi
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -36,7 +36,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## Evidence
 
-- Probe: the models catalog at <https://llmtr.com/v1/models>, every listed family required at a zero price
+- Probe: the models catalog at <https://llmtr.com/v1/models>, each listed family checked for a zero price
 - Source: <https://llmtr.com/docs/migration/openai-openrouter/>
 - Source: <https://llmtr.com/docs/en/billing/>
 - Source: <https://llmtr.com/docs/en/gateway/poolside-laguna/>
@@ -52,6 +52,6 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

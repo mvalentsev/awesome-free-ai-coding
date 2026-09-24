@@ -33,7 +33,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the `free` lane of the models document at <https://api.cline.bot/api/v1/ai/cline/recommended-models>, every listed family required in that lane
+- Probe: the `free` lane of the models document at <https://api.cline.bot/api/v1/ai/cline/recommended-models>, each listed family checked in that lane
 - Source: <https://docs.cline.bot/getting-started/free-models>
 - Source: <https://api.cline.bot/api/v1/ai/cline/recommended-models>
 - Source: <https://docs.cline.bot/getting-started/cline-provider>
@@ -48,6 +48,6 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

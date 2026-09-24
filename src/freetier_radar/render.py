@@ -1420,17 +1420,17 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
             # The document lists paid lanes beside the free one, so naming only
             # the URL would present every model in it as the evidence.
             how = (f"- Probe: the `{probe.lane}` lane of the models document at "
-                   f"{at(probe.endpoint)}, every listed family required in that lane")
+                   f"{at(probe.endpoint)}, each listed family checked in that lane")
         else:
             how = f"- Probe: the models catalog at {at(probe.endpoint)}"
         if probe.free_marker:
             how += f", free rows carrying `{probe.free_marker}`"
         if probe.free_list:
             # No price to be zero: the mark is in a second document.
-            how += (", every listed family required free on the vendor's free list at "
+            how += (", each listed family checked for its free mark on the vendor's free list at "
                     + at(probe.free_list))
         elif probe.require_zero_price:
-            how += ", every listed family required at a zero price"
+            how += ", each listed family checked for a zero price"
     else:
         # A page-keywords row can carry its whole anchor in the page's data —
         # trae's plan blob, Upstage's client-rendered heading — and this line

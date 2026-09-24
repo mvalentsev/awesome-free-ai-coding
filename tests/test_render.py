@@ -33,7 +33,7 @@ def make(**kw) -> Entry:
 
 def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
     """The Evidence section says what the probe reads, and on a catalog that
-    prices nothing "every listed family required at a zero price" would be
+    prices nothing "each listed family checked for a zero price" would be
     false twice over: there is no price, and the list is a second document."""
     from freetier_radar.render import build_provider_page
 
@@ -42,8 +42,27 @@ def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
         "type": "api-models", "endpoint": "https://integrate.api.nvidia.com/v1/models",
         "require_zero_price": True, "free_list": search}), [], TODAY)
     assert ("- Probe: the models catalog at <https://integrate.api.nvidia.com/v1/models>, "
-            f"every listed family required free on the vendor's free list at <{search}>") in page
+            f"each listed family checked for its free mark on the vendor's free list at "
+            f"<{search}>") in page
     assert "zero price" not in page
+
+
+def test_a_provider_page_says_the_families_are_checked_not_that_one_fails_the_row():
+    """Since 2026-09-24 a family a catalog stopped serving free flags the Models
+    column while another family stands, so "required" no longer says what one
+    missing family does; each is still checked, on every run."""
+    from freetier_radar.render import build_provider_page
+
+    page = build_provider_page(make(id="lane", models=[{"family": "kimi-k3"}], probe={
+        "type": "api-models", "endpoint": "https://api.x.ai/v1/models", "free_marker": ":free",
+        "require_zero_price": True}), [], TODAY)
+    assert ("- Probe: the models catalog at <https://api.x.ai/v1/models>, free rows carrying "
+            "`:free`, each listed family checked for a zero price") in page
+    page = build_provider_page(make(id="laned", models=[{"family": "kimi-k3"}], probe={
+        "type": "api-models", "endpoint": "https://api.x.ai/v1/models", "lane": "free"}), [], TODAY)
+    assert ("- Probe: the `free` lane of the models document at <https://api.x.ai/v1/models>, "
+            "each listed family checked in that lane") in page
+    assert "required" not in page.split("## Evidence")[1]
 
 
 def test_archive_rules():

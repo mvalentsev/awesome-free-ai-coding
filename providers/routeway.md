@@ -32,7 +32,7 @@ Free models — every id ending :free — are capped at 5 requests per minute an
 
 ## Evidence
 
-- Probe: the models catalog at <https://api.routeway.ai/v1/models>, free rows carrying `:free`, every listed family required at a zero price
+- Probe: the models catalog at <https://api.routeway.ai/v1/models>, free rows carrying `:free`, each listed family checked for a zero price
 - Source: <https://api.routeway.ai/v1/models>
 - Source: <https://routeway.ai/docs>
 - Source: <https://docs.routeway.ai/getting-started/rate-limits>
@@ -49,6 +49,6 @@ Free models — every id ending :free — are capped at 5 requests per minute an
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

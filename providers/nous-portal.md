@@ -36,7 +36,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## Evidence
 
-- Probe: the models catalog at <https://inference-api.nousresearch.com/v1/models>, free rows carrying `:free`, every listed family required at a zero price
+- Probe: the models catalog at <https://inference-api.nousresearch.com/v1/models>, free rows carrying `:free`, each listed family checked for a zero price
 - Source: <https://portal.nousresearch.com/>
 - Source: <https://hermes-agent.nousresearch.com/docs/guides/run-nemotron-3-ultra-free>
 - Source: <https://inference-api.nousresearch.com/v1/models>
@@ -47,6 +47,6 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ---
 
-Generated from `registry.yaml` on 2026-09-23 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-24 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
