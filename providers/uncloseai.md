@@ -27,7 +27,7 @@ No quota is published anywhere on the site. The offer is a sentence — "we offe
 
 - Base URL: `https://hermes.ai.unturf.com/v1`
 - Key: none — the lane is anonymous
-- Callable ids: `RedHatAI/Qwen3.8-27B-INT4`
+- Callable ids: `turboderp/Qwen3.8-27B-exl3`
 - Note: anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week's, not the offer
 
 ## Evidence

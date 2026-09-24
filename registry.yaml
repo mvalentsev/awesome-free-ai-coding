@@ -2642,7 +2642,7 @@ entries:
     auth: none
     openai_compatible: true
     model_ids:
-    - RedHatAI/Qwen3.8-27B-INT4
+    - turboderp/Qwen3.8-27B-exl3
     note: 'anonymous: the catalog and chat/completions both answer with no Authorization
       header at all. One id is served at a time and it rotates — the endpoint is named
       after Hermes and serves a Qwen build today — so treat the id as this week''s,

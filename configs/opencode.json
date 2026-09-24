@@ -1283,8 +1283,8 @@
         "baseURL": "https://hermes.ai.unturf.com/v1"
       },
       "models": {
-        "RedHatAI/Qwen3.8-27B-INT4": {
-          "name": "RedHatAI/Qwen3.8-27B-INT4"
+        "turboderp/Qwen3.8-27B-exl3": {
+          "name": "turboderp/Qwen3.8-27B-exl3"
         }
       }
     },

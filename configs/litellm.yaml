@@ -1154,9 +1154,9 @@ model_list:
     model: openai/Qwen/Qwen2.5-7B-Instruct
     api_base: https://api.siliconflow.cn/v1
     api_key: os.environ/SILICONFLOW_CN_API_KEY
-- model_name: uncloseai/RedHatAI/Qwen3.8-27B-INT4
+- model_name: uncloseai/turboderp/Qwen3.8-27B-exl3
   litellm_params:
-    model: openai/RedHatAI/Qwen3.8-27B-INT4
+    model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
     api_key: none
 - model_name: pollinations/gpt-oss
@@ -1471,7 +1471,7 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/nokey
   litellm_params:
-    model: openai/RedHatAI/Qwen3.8-27B-INT4
+    model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
     api_key: none
   model_info:
