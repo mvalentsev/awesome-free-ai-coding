@@ -30,7 +30,7 @@
 
 | Agent | Models you get for nothing |
 |---|---|
-{% for s in starters %}| **[{{ s.name }}]({{ s.url }})** | {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %} |
+{% for s in starters %}| **[{{ s.name }}]({{ s.url }})** | {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %}{% if s.more %} · [+{{ s.more }} more]({{ s.page }}){% endif %} |
 {% endfor %}
 
 <sub>Every model name above is read back from the vendor's own API or pricing page {{ schedule }}; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>

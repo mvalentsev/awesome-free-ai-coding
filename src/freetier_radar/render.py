@@ -30,7 +30,7 @@ from .tiers import FRONTIER_WITHIN
 from .layout import MAP, markdown_table
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
-           "README_CHANGES", "README_PICKS", "README_STARTERS", "badge_colour",
+           "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS", "badge_colour",
            "is_archived", "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_folded_page", "build_providers_index",
@@ -104,6 +104,11 @@ README_STARTERS = 4
 # How many names answer each "I want…" line of the picks table. Three reads as
 # a choice; a fourth is the section itself, which starts one heading down.
 README_PICKS = 3
+# How many of a row's model families a README line names before it links the
+# rest: a lane that rotates names every model it has served free for two weeks,
+# fourteen on OpenRouter on 2026-09-24, and a README row is one line. The row's
+# page, the site and the list of who serves each model name them all.
+README_MODELS = 8
 # What the README's quickstart curl calls itself on a lane that asks every client
 # for a User-Agent of its own: the command is this page's, so it says so, in the
 # name/version shape the vendors' own example uses.
@@ -182,6 +187,13 @@ def _families(e: Entry) -> list[str]:
     return live_families(e)
 
 
+def _readme_families(e: Entry) -> tuple[list[str], int]:
+    """The families a README line names, in the row's own order and at most
+    README_MODELS of them, and how many more the row's page names."""
+    fams = _families(e)
+    return fams[:README_MODELS], max(0, len(fams) - README_MODELS)
+
+
 def _fold(text: str, teaser_at: int, collapse_over: int, small: bool = False) -> str:
     """A long cell without the wall: what it says first, then all of it.
 
@@ -244,7 +256,7 @@ def _trains(e: Entry) -> bool:
 
 
 def _row(e: Entry) -> dict[str, str]:
-    fams = _families(e)
+    fams, more = _readme_families(e)
     return {
         "name": e.name,
         "url": e.url,
@@ -269,7 +281,9 @@ def _row(e: Entry) -> dict[str, str]:
         "verified": e.last_verified.isoformat(),
         # Backticked, because a model id is something the reader will paste into
         # a config rather than read as prose.
-        "models": ", ".join(f"`{f}`" for f in fams) if fams else "—",
+        "models": (", ".join([f"`{f}`" for f in fams]
+                             + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else []))
+                   if fams else "—"),
     }
 
 
@@ -394,8 +408,13 @@ def _starters(active: list[Entry]) -> list[dict]:
     """
     rows = [e for e in active
             if e.category is Category.AGENT_CLI and not e.card_required and live_families(e)]
-    return [{"name": e.name, "url": e.url, "families": live_families(e)}
-            for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
+    return [_starter(e) for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
+
+
+def _starter(e: Entry) -> dict:
+    families, more = _readme_families(e)
+    return {"name": e.name, "url": e.url, "families": families, "more": more,
+            "page": provider_page_url(e.id)}
 
 
 def _pick(e: Entry, families: list[str] | None = None) -> dict:

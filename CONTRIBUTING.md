@@ -448,9 +448,10 @@ via pull request. Humans review the PR; robots do everything else.
 
 The README is the landing page, and the site is the reference. A visitor scrolls
 the README on GitHub, under the file list, so it carries the hero, the picks, the
-quickstart and one line per live row — the name, `offering`, the models and the
-date — and folds nothing in the list's tables; the quota in the vendor's words is on the
-row's own page and on `index.html`, one click from the date. On 2026-09-20 it had
+quickstart and one line per live row — the name, `offering`, the first eight
+model families and the date — and folds nothing in the list's tables; the quota
+in the vendor's words is on the row's own page and on `index.html`, one click
+from the date, and so is every family past the eighth, one click from their count. On 2026-09-20 it had
 grown to 161 KB, 83 KB of it inside folded cells, thirty-one desktop screens and
 fifty-one on a phone. `README_BUDGET` in `render.py` is the ceiling, and a test
 renders the committed registry against it, so the reference job cannot creep back

@@ -287,7 +287,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <h3>Agent · no card</h3>
         <div class="who"><a href="{{ s.url }}">{{ s.name }}</a></div>
         <div class="chips">
-          {% for f in s.families %}<span class="chip">{{ f }}</span>{% endfor %}
+          {% for f in s.families %}<span class="chip">{{ f }}</span>{% endfor %}{% if s.more %}<a class="chip" href="{{ s.page }}">+{{ s.more }} more</a>{% endif %}
         </div>
       </div>
       {% endfor %}

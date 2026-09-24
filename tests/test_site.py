@@ -291,6 +291,45 @@ def test_every_page_states_the_rule_the_code_applies(tmp_path, monkeypatch, name
     assert not [path for path, text in pages.items() if unsaid in text]
 
 
+TEN = [{"family": f"m-{i}"} for i in range(1, 11)]
+
+
+def _readme_row(readme: str) -> str:
+    return next(line for line in readme.splitlines() if line.startswith("| **[X]"))
+
+
+def test_a_readme_row_names_eight_families_and_links_the_rest(tmp_path):
+    """The README is the landing page and a row is one line: the name, the
+    offering, the models and the date. A rotating lane names every model it has
+    served free for two weeks, and on 2026-09-24 that was fourteen on OpenRouter
+    and twenty-seven on AIHubMix, so the README shows the first eight in the
+    row's own order and links the rest to the row's page. The row's page, the
+    site and the list of who serves each model keep every family."""
+    pages = _render_everything([make(id="gw", category="aggregator", models=TEN)], tmp_path)
+    row = _readme_row(pages["README.md"])
+    assert "`m-8`" in row and "`m-9`" not in row
+    assert "[+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gw/)" in row
+    assert "| `m-10` |" in pages["README.md"]
+    assert ">m-10<" in pages[SITE_PAGE]
+    assert "`m-10`" in pages["providers/gw.md"]
+
+
+def test_eight_families_or_fewer_are_all_on_the_readme_row(tmp_path):
+    pages = _render_everything([make(id="gw", category="aggregator", models=TEN[:8])], tmp_path)
+    row = _readme_row(pages["README.md"])
+    assert "`m-8`" in row and "more](" not in row
+
+
+def test_an_agent_in_the_start_block_names_eight_families_there_too(tmp_path):
+    pages = _render_everything([make(id="ag", category="agent-cli", models=TEN)], tmp_path)
+    start = pages["README.md"].split("## 🚀 Start here")[1].split("<sub>Every model name above")[0]
+    assert "`m-8`" in start and "`m-9`" not in start
+    assert "[+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/)" in start
+    card = pages[SITE_PAGE].split("Agent · no card")[1].split('<p class="sub"')[0]
+    assert ">m-8<" in card and ">m-9<" not in card
+    assert 'href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/">+2 more<' in card
+
+
 def test_a_row_that_needs_a_card_never_leads_the_no_card_rows_it_ties_with(tmp_path):
     """CONTRIBUTING's rule, which every sort ignored: on 2026-09-23 IBM
     watsonx.ai (card, rank 98) sat above Pollinations.AI (no card, rank 98)
