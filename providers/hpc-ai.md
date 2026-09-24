@@ -46,7 +46,7 @@ What you send is not used to train models. In the vendor's words: “No customer
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-21` — Added: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit
+- `2026-09-17` — Added: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit
 
 ---
 

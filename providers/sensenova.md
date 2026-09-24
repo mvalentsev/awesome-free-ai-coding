@@ -38,7 +38,7 @@ The plan page says 公测期完全免费开放，付费档位即将上线 — fr
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-08-17` — Added: SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible url, free for everyone while the token plan is in public beta
+- `2026-08-14` — Added: SenseTime's own models plus DeepSeek and GLM behind an OpenAI-compatible url, free for everyone while the token plan is in public beta
 
 ---
 

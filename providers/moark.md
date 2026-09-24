@@ -46,7 +46,7 @@ What you send is not used to train models. In the vendor's words: “对于您�
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-21` — Added: Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought
+- `2026-09-17` — Added: Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought
 
 ---
 

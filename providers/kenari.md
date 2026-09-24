@@ -35,9 +35,9 @@ Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed R
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-17` — Delisted
+- `2026-09-16` — Delisted
 - `2026-09-03` — Free models changed: dropped glm-4.7-flash
-- `2026-09-03` — Added: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — twelve on 2026-09-02, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them
+- `2026-09-02` — Added: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — twelve on 2026-09-02, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them
 
 ---
 

@@ -40,7 +40,7 @@ Free API meant for prototyping — rate limited at 10 calls/min per user, with n
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-08-17` — Free models changed: dropped llama-sea-lion-v3.5, qwen-sea-lion-v4.5
+- `2026-08-14` — Free models changed: dropped llama-sea-lion-v3.5, qwen-sea-lion-v4.5
 - `2026-08-11` — Added: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's
 
 ---

@@ -46,7 +46,7 @@ What you send is not used to train models. In the vendor's words: “Opper never
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-21` — Added: EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits
+- `2026-09-17` — Added: EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits
 
 ---
 

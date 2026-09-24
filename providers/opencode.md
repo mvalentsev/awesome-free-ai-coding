@@ -43,11 +43,11 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-17` — Free models changed: added muse-spark-1.3-contributor; dropped muse-spark-1.2
-- `2026-08-31` — Free models changed: added ling-3.0-flash-fin; dropped hy3
-- `2026-08-24` — Free models changed: added muse-spark-1.2; dropped deepseek-v4-flash
-- `2026-08-20` — Free models changed: dropped laguna-s-2.1
-- `2026-08-17` — Free models changed: added hy3, laguna-s-2.1, nemotron-3.5-lightning
+- `2026-09-16` — Free models changed: added muse-spark-1.3-contributor
+- `2026-09-14` — Free models changed: dropped muse-spark-1.2
+- `2026-08-30` — Free models changed: added ling-3.0-flash-fin; dropped hy3
+- `2026-08-20` — Free models changed: added muse-spark-1.2; dropped deepseek-v4-flash, laguna-s-2.1
+- `2026-08-14` — Free models changed: added hy3, laguna-s-2.1, nemotron-3.5-lightning
 - `2026-07-19` — Free models changed: added big-pickle, deepseek-v4-flash, mimo-v2.5, nemotron-3-ultra
 - `2026-07-19` — Added: Open-source TUI agent, BYOK or free models via OpenRouter
 

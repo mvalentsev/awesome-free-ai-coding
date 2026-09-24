@@ -32,8 +32,8 @@ The row named no free model.
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-17` — Delisted
-- `2026-08-17` — Free models changed: dropped glm-5.2, qwen3
+- `2026-09-16` — Delisted
+- `2026-08-14` — Free models changed: dropped glm-5.2, qwen3
 - `2026-07-19` — Added: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer
 
 ---

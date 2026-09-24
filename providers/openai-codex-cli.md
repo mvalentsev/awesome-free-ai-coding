@@ -38,7 +38,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-24` — Free models changed: dropped gpt-5.6
+- `2026-09-23` — Free models changed: dropped gpt-5.6
 - `2026-07-19` — Free models changed: added gpt-5.6
 - `2026-07-19` — Added: Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans
 

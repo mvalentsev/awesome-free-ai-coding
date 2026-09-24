@@ -40,7 +40,7 @@ No quota is published anywhere on the site. The offer is a sentence — "we offe
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-08-31` — Added: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account
+- `2026-08-30` — Added: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account
 
 ---
 

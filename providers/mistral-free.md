@@ -45,7 +45,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-08-17` — Free models changed: dropped mistral-medium
+- `2026-08-14` — Free models changed: dropped mistral-medium
 - `2026-07-19` — Added: Free experiment tier on La Plateforme
 
 ---

@@ -34,10 +34,10 @@ Cerebras' own docs: "New accounts receive $5 in free credits after adding a veri
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-17` — Delisted
+- `2026-09-16` — Delisted
 - `2026-09-03` — Free models changed: added qwen3.8; dropped gemma-4
-- `2026-08-20` — Free models changed: dropped glm-4.7
-- `2026-08-17` — Free models changed: added gemma-4, glm-4.7, gpt-oss; dropped qwen3
+- `2026-08-19` — Free models changed: dropped glm-4.7
+- `2026-08-14` — Free models changed: added gemma-4, glm-4.7, gpt-oss; dropped qwen3
 - `2026-07-19` — Added: Very fast inference, free tier
 
 ---

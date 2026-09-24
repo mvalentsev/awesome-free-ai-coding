@@ -41,7 +41,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-17` — Added: Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
+- `2026-09-16` — Added: Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
 - `2026-07-19` — Delisted
 - `2026-07-19` — Added: Free plan with AI features
 

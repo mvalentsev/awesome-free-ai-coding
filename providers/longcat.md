@@ -33,7 +33,7 @@ Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recur
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-08-17` — Delisted
+- `2026-08-14` — Delisted
 - `2026-07-22` — Added: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota
 
 ---

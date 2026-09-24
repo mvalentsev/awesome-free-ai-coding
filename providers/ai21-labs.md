@@ -37,7 +37,7 @@ Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-07` — Archived: vendor-announced shutdown on 2026-08-09
+- `2026-09-05` — Archived: vendor-announced shutdown on 2026-08-09
 - `2026-08-14` — Added: AI21's Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context, so the trial is worth spending on a long file rather than on a chat
 
 ---

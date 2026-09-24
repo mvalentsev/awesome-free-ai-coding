@@ -44,8 +44,8 @@ Each line is a change to what this page publishes, dated the day the list record
 
 - `2026-09-24` — Free models changed: added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2
 - `2026-09-21` — Free models changed: dropped gpt-oss
-- `2026-09-17` — Free models changed: added glm-5.3, kimi-k3
-- `2026-08-17` — Added: One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly
+- `2026-09-16` — Free models changed: added glm-5.3, kimi-k3
+- `2026-08-14` — Added: One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly
 
 ---
 

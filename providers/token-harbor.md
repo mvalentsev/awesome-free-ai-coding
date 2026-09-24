@@ -50,9 +50,9 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-24` — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
-- `2026-09-21` — Free models changed: added deepseek-v4-flash
-- `2026-09-17` — Added: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card
+- `2026-09-22` — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
+- `2026-09-18` — Free models changed: added deepseek-v4-flash
+- `2026-09-16` — Added: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card
 
 ---
 

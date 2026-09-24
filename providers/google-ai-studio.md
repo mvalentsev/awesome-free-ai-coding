@@ -44,9 +44,9 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-24` — Free models changed: dropped gemini-2.5-pro
-- `2026-09-10` — Free models changed: added gemini-3.8-flash
-- `2026-08-17` — Free models changed: added gemini-2.5-pro, gemini-3.5-flash-lite, gemini-3.7-flash; dropped gemini-2.5
+- `2026-09-23` — Free models changed: dropped gemini-2.5-pro
+- `2026-09-07` — Free models changed: added gemini-3.8-flash
+- `2026-08-14` — Free models changed: added gemini-2.5-pro, gemini-3.5-flash-lite, gemini-3.7-flash; dropped gemini-2.5
 - `2026-07-19` — Added: Free tier for Gemini 2.5 Flash/Pro API
 
 ---

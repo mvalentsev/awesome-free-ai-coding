@@ -47,9 +47,10 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
-- `2026-09-21` — Free models changed: added ling-3.0-flash-fin, ling-3.0-flash-sante
+- `2026-09-19` — Free models changed: added ling-3.0-flash-sante
+- `2026-09-17` — Free models changed: added ling-3.0-flash-fin
 - `2026-08-20` — Free models changed: dropped glm-4.6v-flash
-- `2026-08-17` — Free models changed: added laguna-s-2.1; dropped laguna-s-2.1-free
+- `2026-08-14` — Free models changed: added laguna-s-2.1; dropped laguna-s-2.1-free
 - `2026-08-14` — Free models changed: added glm-4.6v-flash
 - `2026-08-11` — Free models changed: dropped ling-3.0-flash-free
 - `2026-08-03` — Added: One OpenAI-compatible endpoint for 300+ models, with $5 of gateway credits included every month

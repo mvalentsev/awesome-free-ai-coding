@@ -47,7 +47,7 @@ What you send may be used to train or improve models unless you turn that off. I
 Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
 
 - `2026-09-24` — Free models changed: added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code
-- `2026-08-27` — Free models changed: dropped gpt-oss
+- `2026-08-28` — Free models changed: dropped gpt-oss
 - `2026-07-19` — Free models changed: added gemma-4, gpt-oss, nemotron-3-ultra; dropped deepseek, glm-4.5, kimi-k2, qwen3-coder
 - `2026-07-19` — Added: One API key for rotating :free variants of frontier models
 

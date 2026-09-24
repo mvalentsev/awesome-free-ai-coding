@@ -5,147 +5,189 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-24T10:10:36Z</updated>
+  <updated>2026-09-24T07:24:35Z</updated>
   <author><name>freetier-radar</name></author>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260924T101036Z</id>
-    <title>Free models changed: AIHubMix (free models)</title>
-    <link rel="alternate" href="https://aihubmix.com"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2 · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code, nemotron-3-ultra, nemotron-3-super, minimax-m3, minimax-m2.7, hy3, laguna-s-2.1, laguna-xs-2.1, kimi-for-coding, ling-3.0-flash, ling-3.0-tiny, glm-4.7, glm-4.7-flash, glm-4.6, minimax-m2.5, minimax-m2.1, minimax-m2, mimo-v2-pro, mimo-v2-flash, mimo-v2-omni, dots-3-note, nemotron-3.5-lightning, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/amazon-q-developer/20260924T101036Z</id>
-    <title>Archived: Amazon Q Developer</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">vendor-announced shutdown on 2026-05-15</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260924T101036Z</id>
-    <title>Free models changed: Cline</title>
-    <link rel="alternate" href="https://cline.bot"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">added muse-spark-1.3-contributor; dropped laguna-s-2.1 · free models: muse-spark-1.3-contributor</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/dahl-inference/20260924T101036Z</id>
-    <title>Added: Dahl Inference</title>
-    <link rel="alternate" href="https://inference.dahl.global"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account · free models: glm-5.3-flash, deepseek-v4-flash, minimax-m2.7</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/experiential-labs/20260924T101036Z</id>
-    <title>Added: Experiential Labs</title>
-    <link rel="alternate" href="https://www.experientiallabs.ai"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260924T101036Z</id>
-    <title>Free models changed: Freebuff</title>
-    <link rel="alternate" href="https://freebuff.com"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">dropped gpt-5.6-luna, mimo-v2.5 · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freeinference/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freeinference/20260924T072435Z</id>
     <title>Free models changed: FreeInference (Harvard SEAS)</title>
     <link rel="alternate" href="https://freeinference.org"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-24T07:24:35Z</updated>
     <summary type="text">added diffusiongemma, minimax-m2.5 · free models: deepseek-v4-flash, glm-5.1, glm-5.3-flash, minimax-m3, qwen3.6, minimax-m2.5, diffusiongemma</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260924T101036Z</id>
-    <title>Free models changed: Google AI Studio (Gemini API)</title>
-    <link rel="alternate" href="https://aistudio.google.com"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">dropped gemini-2.5-pro · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.5-flash-lite</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260924T070650Z</id>
+    <title>Free models changed: AIHubMix (free models)</title>
+    <link rel="alternate" href="https://aihubmix.com"/>
+    <updated>2026-09-24T07:06:50Z</updated>
+    <summary type="text">added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2 · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code, nemotron-3-ultra, nemotron-3-super, minimax-m3, minimax-m2.7, hy3, laguna-s-2.1, laguna-xs-2.1, kimi-for-coding, ling-3.0-flash, ling-3.0-tiny, glm-4.7, glm-4.7-flash, glm-4.6, minimax-m2.5, minimax-m2.1, minimax-m2, mimo-v2-pro, mimo-v2-flash, mimo-v2-omni, dots-3-note, nemotron-3.5-lightning, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260924T070650Z</id>
+    <title>Free models changed: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-09-24T07:06:50Z</updated>
+    <summary type="text">added muse-spark-1.3-contributor · free models: muse-spark-1.3-contributor</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260924T070650Z</id>
     <title>Free models changed: Kilo Code</title>
     <link rel="alternate" href="https://kilo.ai"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260924T070650Z</id>
     <title>Free models changed: Kiro</title>
     <link rel="alternate" href="https://kiro.dev/"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added minimax-m2.1; dropped minimax-2.1 · free models: claude-sonnet-4.5, qwen3-coder, deepseek-v3.2, minimax-m2.1</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260924T070650Z</id>
     <title>Free models changed: LLMTR</title>
     <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">added laguna-xs-2.1, ling-3.0-flash-fin, nemotron-3-super; dropped qwen3.6 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin</summary>
+    <updated>2026-09-24T07:06:50Z</updated>
+    <summary type="text">added laguna-xs-2.1, ling-3.0-flash-fin, nemotron-3-super · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260924T070650Z</id>
     <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
     <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">added diffusiongemma, gemma-4-31b, gpt-oss-20b, kimi-k3, laguna-xs-2.1, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning; dropped nemotron · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, mistral-nemotron, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision</summary>
+    <updated>2026-09-24T07:06:50Z</updated>
+    <summary type="text">added diffusiongemma, gemma-4-31b, gpt-oss-20b, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3.5-lightning · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, mistral-nemotron, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openai-codex-cli/20260924T101036Z</id>
-    <title>Free models changed: OpenAI Codex CLI</title>
-    <link rel="alternate" href="https://learn.chatgpt.com/docs/codex/cli"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">dropped gpt-5.6</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260924T070650Z</id>
     <title>Free models changed: OpenRouter (free models)</title>
     <link rel="alternate" href="https://openrouter.ai"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code · free models: nemotron-3-ultra, gemma-4, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260924T101036Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">added glm-5.2; dropped glm-5 · free models: glm-5.2, gpt-oss, qwen3.8-27b, apertus-70b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260924T070650Z</id>
     <title>Free models changed: Requesty</title>
     <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added laguna-m.1, laguna-xs.2, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni · free models: nemotron-3-ultra, nemotron-3-super, gemma-4, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, laguna-xs.2, laguna-m.1, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sail-research/20260924T101036Z</id>
-    <title>Added: Sail Research</title>
-    <link rel="alternate" href="https://www.sailresearch.com"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account · free models: kimi-k3, glm-5.3, deepseek-v4-pro, glm-5.3-flash, deepseek-v4-flash</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openai-codex-cli/20260923T225840Z</id>
+    <title>Free models changed: OpenAI Codex CLI</title>
+    <link rel="alternate" href="https://learn.chatgpt.com/docs/codex/cli"/>
+    <updated>2026-09-23T22:58:40Z</updated>
+    <summary type="text">dropped gpt-5.6</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/sambanova-cloud/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-jules/20260923T224629Z</id>
+    <title>Free models changed: Google Jules</title>
+    <link rel="alternate" href="https://jules.google/"/>
+    <updated>2026-09-23T22:46:29Z</updated>
+    <summary type="text">dropped gemini-3-flash · free models: gemini-2.5</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260923T224414Z</id>
+    <title>Free models changed: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-09-23T22:44:14Z</updated>
+    <summary type="text">dropped gpt-5.6-luna · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-jules/20260923T224414Z</id>
+    <title>Free models changed: Google Jules</title>
+    <link rel="alternate" href="https://jules.google/"/>
+    <updated>2026-09-23T22:44:14Z</updated>
+    <summary type="text">added gemini-3-flash · free models: gemini-3-flash, gemini-2.5</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260923T223859Z</id>
+    <title>Free models changed: Google AI Studio (Gemini API)</title>
+    <link rel="alternate" href="https://aistudio.google.com"/>
+    <updated>2026-09-23T22:38:59Z</updated>
+    <summary type="text">dropped gemini-2.5-pro · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.5-flash-lite</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/sambanova-cloud/20260923T222323Z</id>
     <title>Archived: SambaNova Cloud</title>
     <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-23T22:23:23Z</updated>
     <summary type="text">delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/token-harbor/20260924T101036Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/amazon-q-developer/20260923T221746Z</id>
+    <title>Archived: Amazon Q Developer</title>
+    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
+    <updated>2026-09-23T22:17:46Z</updated>
+    <summary type="text">vendor-announced shutdown on 2026-05-15</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vertex-ai-express/20260923T212343Z</id>
+    <title>Added: Vertex AI express mode (Google Cloud)</title>
+    <link rel="alternate" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview"/>
+    <updated>2026-09-23T21:23:43Z</updated>
+    <summary type="text">Google Cloud's express mode for the Gemini Enterprise Agent Platform, formerly Vertex AI: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account · free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260923T203616Z</id>
+    <title>Free models changed: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-09-23T20:36:16Z</updated>
+    <summary type="text">dropped laguna-s-2.1</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260922T174825Z</id>
+    <title>Free models changed: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-09-22T17:48:25Z</updated>
+    <summary type="text">dropped mimo-v2.5 · free models: glm-5.3-flash, deepseek-v4.1-flash, gpt-5.6-luna</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/token-harbor/20260922T174825Z</id>
     <title>Free models changed: Token Harbor</title>
     <link rel="alternate" href="https://tokenharbor.ai"/>
-    <updated>2026-09-24T10:10:36Z</updated>
+    <updated>2026-09-22T17:48:25Z</updated>
     <summary type="text">dropped deepseek-v4-flash, mimo-v2.5 · free models: deepseek-v4.1-flash</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vertex-ai-express/20260924T101036Z</id>
-    <title>Added: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</title>
-    <link rel="alternate" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview"/>
-    <updated>2026-09-24T10:10:36Z</updated>
-    <summary type="text">Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account · free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260922T172647Z</id>
+    <title>Free models changed: Regolo AI</title>
+    <link rel="alternate" href="https://regolo.ai/pricing/"/>
+    <updated>2026-09-22T17:26:47Z</updated>
+    <summary type="text">added glm-5.2; dropped glm-5 · free models: glm-5.2, gpt-oss, qwen3.8-27b, apertus-70b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260922T172011Z</id>
+    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
+    <link rel="alternate" href="https://build.nvidia.com"/>
+    <updated>2026-09-22T17:20:11Z</updated>
+    <summary type="text">added kimi-k3, laguna-xs-2.1, nemotron-3-super, nemotron-3-ultra; dropped nemotron · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260921T223027Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-09-21T22:30:27Z</updated>
+    <summary type="text">dropped qwen3.6 · free models: nemotron-3-ultra</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/experiential-labs/20260921T182157Z</id>
+    <title>Added: Experiential Labs</title>
+    <link rel="alternate" href="https://www.experientiallabs.ai"/>
+    <updated>2026-09-21T18:21:57Z</updated>
+    <summary type="text">An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sail-research/20260921T182157Z</id>
+    <title>Added: Sail Research</title>
+    <link rel="alternate" href="https://www.sailresearch.com"/>
+    <updated>2026-09-21T18:21:57Z</updated>
+    <summary type="text">Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account · free models: kimi-k3, glm-5.3, deepseek-v4-pro, glm-5.3-flash, deepseek-v4-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/dahl-inference/20260921T174513Z</id>
+    <title>Added: Dahl Inference</title>
+    <link rel="alternate" href="https://inference.dahl.global"/>
+    <updated>2026-09-21T17:45:13Z</updated>
+    <summary type="text">An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account · free models: glm-5.3-flash, deepseek-v4-flash, minimax-m2.7</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260921T114114Z</id>
@@ -162,199 +204,157 @@
     <summary type="text">dropped llama-3.3 · free models: glm-5, gpt-oss, qwen3.8-27b, apertus-70b</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/abliteration-ai/20260921T104945Z</id>
-    <title>Added: abliteration.ai</title>
-    <link rel="alternate" href="https://abliteration.ai"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260919T001108Z</id>
+    <title>Free models changed: Vercel AI Gateway</title>
+    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
+    <updated>2026-09-19T00:11:08Z</updated>
+    <summary type="text">added ling-3.0-flash-sante · free models: laguna-s-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/arli-ai/20260921T104945Z</id>
-    <title>Added: Arli AI</title>
-    <link rel="alternate" href="https://www.arliai.com"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/blue-claw/20260921T104945Z</id>
-    <title>Added: Blue Claw Network</title>
-    <link rel="alternate" href="https://blueclaw.network"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/bytez/20260921T104945Z</id>
-    <title>Added: Bytez</title>
-    <link rel="alternate" href="https://bytez.com"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/fireworks-ai/20260921T104945Z</id>
-    <title>Added: Fireworks AI</title>
-    <link rel="alternate" href="https://fireworks.ai"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260921T104945Z</id>
-    <title>Free models changed: Groq</title>
-    <link rel="alternate" href="https://groq.com"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/hetzner-inference/20260921T104945Z</id>
-    <title>Free models changed: Hetzner Inference API</title>
-    <link rel="alternate" href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: qwen3.6, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/hpc-ai/20260921T104945Z</id>
-    <title>Added: HPC-AI Model APIs</title>
-    <link rel="alternate" href="https://www.hpc-ai.com/model-apis"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/impossibl/20260921T104945Z</id>
-    <title>Added: Impossibl</title>
-    <link rel="alternate" href="https://impossibl.com"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llmtech/20260921T104945Z</id>
-    <title>Added: LLM Tech</title>
-    <link rel="alternate" href="https://llmtech.eu"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 2 concurrent requests, tool calls included, no account · free models: qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixlayer/20260921T104945Z</id>
-    <title>Added: Mixlayer</title>
-    <link rel="alternate" href="https://www.mixlayer.com"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit · free models: qwen3.5-4b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/moark/20260921T104945Z</id>
-    <title>Added: Moark (Gitee AI)</title>
-    <link rel="alternate" href="https://moark.com"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/modelscope/20260921T104945Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/modelscope/20260919T000944Z</id>
     <title>Added: ModelScope API-Inference (Alibaba)</title>
     <link rel="alternate" href="https://modelscope.cn"/>
-    <updated>2026-09-21T10:49:45Z</updated>
+    <updated>2026-09-19T00:09:44Z</updated>
     <summary type="text">Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/opper/20260921T104945Z</id>
-    <title>Added: Opper</title>
-    <link rel="alternate" href="https://opper.ai"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits · free models: gemma-4-31b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260921T104945Z</id>
-    <title>Free models changed: OVHcloud AI Endpoints</title>
-    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8-27b, qwen3-coder</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260921T104945Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: glm-5, gpt-oss, qwen3.8-27b, llama-3.3, apertus-70b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260921T104945Z</id>
-    <title>Free models changed: Requesty</title>
-    <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">added muse-glimmer-30b, nemotron-3.5-lightning · free models: nemotron-3-ultra, nemotron-3-super, gemma-4, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/siliconflow-cn/20260921T104945Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/siliconflow-cn/20260919T000106Z</id>
     <title>Added: SiliconFlow (China)</title>
     <link rel="alternate" href="https://siliconflow.cn"/>
-    <updated>2026-09-21T10:49:45Z</updated>
+    <updated>2026-09-19T00:01:06Z</updated>
     <summary type="text">China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers · free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/tencent-tokenhub/20260921T104945Z</id>
-    <title>Added: Tencent Cloud TokenHub</title>
-    <link rel="alternate" href="https://cloud.tencent.com/document/product/1823"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llmtech/20260918T234845Z</id>
+    <title>Added: LLM Tech</title>
+    <link rel="alternate" href="https://llmtech.eu"/>
+    <updated>2026-09-18T23:48:45Z</updated>
+    <summary type="text">EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 2 concurrent requests, tool calls included, no account · free models: qwen3.8-27b</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/the-grid/20260921T104945Z</id>
-    <title>Added: The Grid</title>
-    <link rel="alternate" href="https://thegrid.ai"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/token-harbor/20260921T104945Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/token-harbor/20260918T231538Z</id>
     <title>Free models changed: Token Harbor</title>
     <link rel="alternate" href="https://tokenharbor.ai"/>
-    <updated>2026-09-21T10:49:45Z</updated>
+    <updated>2026-09-18T23:15:38Z</updated>
     <summary type="text">added deepseek-v4-flash · free models: deepseek-v4.1-flash, deepseek-v4-flash, mimo-v2.5</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260921T104945Z</id>
-    <title>Free models changed: Vercel AI Gateway</title>
-    <link rel="alternate" href="https://vercel.com/ai-gateway"/>
-    <updated>2026-09-21T10:49:45Z</updated>
-    <summary type="text">added ling-3.0-flash-fin, ling-3.0-flash-sante · free models: laguna-s-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/hpc-ai/20260917T141007Z</id>
+    <title>Added: HPC-AI Model APIs</title>
+    <link rel="alternate" href="https://www.hpc-ai.com/model-apis"/>
+    <updated>2026-09-17T14:10:07Z</updated>
+    <summary type="text">OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vlm-run-gateway/20260921T104945Z</id>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/abliteration-ai/20260917T135334Z</id>
+    <title>Added: abliteration.ai</title>
+    <link rel="alternate" href="https://abliteration.ai"/>
+    <updated>2026-09-17T13:53:34Z</updated>
+    <summary type="text">OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/blue-claw/20260917T135334Z</id>
+    <title>Added: Blue Claw Network</title>
+    <link rel="alternate" href="https://blueclaw.network"/>
+    <updated>2026-09-17T13:53:34Z</updated>
+    <summary type="text">OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/impossibl/20260917T135334Z</id>
+    <title>Added: Impossibl</title>
+    <link rel="alternate" href="https://impossibl.com"/>
+    <updated>2026-09-17T13:53:34Z</updated>
+    <summary type="text">Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/the-grid/20260917T135334Z</id>
+    <title>Added: The Grid</title>
+    <link rel="alternate" href="https://thegrid.ai"/>
+    <updated>2026-09-17T13:53:34Z</updated>
+    <summary type="text">OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixlayer/20260917T135251Z</id>
+    <title>Added: Mixlayer</title>
+    <link rel="alternate" href="https://www.mixlayer.com"/>
+    <updated>2026-09-17T13:52:51Z</updated>
+    <summary type="text">Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit · free models: qwen3.5-4b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/moark/20260917T135221Z</id>
+    <title>Added: Moark (Gitee AI)</title>
+    <link rel="alternate" href="https://moark.com"/>
+    <updated>2026-09-17T13:52:21Z</updated>
+    <summary type="text">Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/opper/20260917T135058Z</id>
+    <title>Added: Opper</title>
+    <link rel="alternate" href="https://opper.ai"/>
+    <updated>2026-09-17T13:50:58Z</updated>
+    <summary type="text">EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits · free models: gemma-4-31b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/arli-ai/20260917T123948Z</id>
+    <title>Added: Arli AI</title>
+    <link rel="alternate" href="https://www.arliai.com"/>
+    <updated>2026-09-17T12:39:48Z</updated>
+    <summary type="text">OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/bytez/20260917T123948Z</id>
+    <title>Added: Bytez</title>
+    <link rel="alternate" href="https://bytez.com"/>
+    <updated>2026-09-17T12:39:48Z</updated>
+    <summary type="text">Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/tencent-tokenhub/20260917T123707Z</id>
+    <title>Added: Tencent Cloud TokenHub</title>
+    <link rel="alternate" href="https://cloud.tencent.com/document/product/1823"/>
+    <updated>2026-09-17T12:37:07Z</updated>
+    <summary type="text">Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vlm-run-gateway/20260917T123404Z</id>
     <title>Added: VLM Run Gateway</title>
     <link rel="alternate" href="https://vlm.run"/>
-    <updated>2026-09-21T10:49:45Z</updated>
+    <updated>2026-09-17T12:34:04Z</updated>
     <summary type="text">OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha · free models: qwen3.8-27b</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260917T100542Z</id>
-    <title>Free models changed: AIHubMix (free models)</title>
-    <link rel="alternate" href="https://aihubmix.com"/>
-    <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">added glm-5.3, kimi-k3 · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code, gpt-oss</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260917T123234Z</id>
+    <title>Free models changed: Groq</title>
+    <link rel="alternate" href="https://groq.com"/>
+    <updated>2026-09-17T12:32:34Z</updated>
+    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8-27b</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/amazon-q-developer/20260917T100542Z</id>
-    <title>Added: Amazon Q Developer</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
-    <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/hetzner-inference/20260917T123234Z</id>
+    <title>Free models changed: Hetzner Inference API</title>
+    <link rel="alternate" href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/"/>
+    <updated>2026-09-17T12:32:34Z</updated>
+    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: qwen3.6, qwen3.8-27b</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/removed/cerebras-free/20260917T100542Z</id>
-    <title>Delisted: Cerebras Inference</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/"/>
-    <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260917T123234Z</id>
+    <title>Free models changed: OVHcloud AI Endpoints</title>
+    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
+    <updated>2026-09-17T12:32:34Z</updated>
+    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8-27b, qwen3-coder</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260917T100542Z</id>
-    <title>Free models changed: Cline</title>
-    <link rel="alternate" href="https://cline.bot"/>
-    <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">dropped deepseek-v4-flash · free models: laguna-s-2.1</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260917T123234Z</id>
+    <title>Free models changed: Regolo AI</title>
+    <link rel="alternate" href="https://regolo.ai/pricing/"/>
+    <updated>2026-09-17T12:32:34Z</updated>
+    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: glm-5, gpt-oss, qwen3.8-27b, llama-3.3, apertus-70b</summary>
   </entry>
   <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260917T100542Z</id>
-    <title>Free models changed: Freebuff</title>
-    <link rel="alternate" href="https://freebuff.com"/>
-    <updated>2026-09-17T10:05:42Z</updated>
-    <summary type="text">added deepseek-v4.1-flash; dropped deepseek-v4-flash · free models: glm-5.3-flash, deepseek-v4.1-flash, gpt-5.6-luna, mimo-v2.5</summary>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/fireworks-ai/20260917T123003Z</id>
+    <title>Added: Fireworks AI</title>
+    <link rel="alternate" href="https://fireworks.ai"/>
+    <updated>2026-09-17T12:30:03Z</updated>
+    <summary type="text">Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added</summary>
   </entry>
 </feed>
