@@ -36,7 +36,9 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- `2026-07-22` — Added to the list: Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-22` — Added: Alibaba's agentic coding IDE + CLI; Pro trial with credits on signup, then a free plan with basic models
 
 ---
 

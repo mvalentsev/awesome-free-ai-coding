@@ -39,7 +39,9 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- `2026-07-22` — Added to the list: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-22` — Added: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention
 
 ---
 

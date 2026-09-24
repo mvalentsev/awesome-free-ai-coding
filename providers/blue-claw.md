@@ -40,7 +40,9 @@ The home page: "Every new account starts with a $5 welcome credit. After that, y
 
 ## History
 
-- `2026-09-21` — Added to the list: OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-21` — Added: OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start
 
 ---
 

@@ -39,13 +39,15 @@ Free models — every id ending :free — are capped at 5 requests per minute an
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-17` — Free models changed: added deepseek-v4-flash, minimax-m2.7
 - `2026-09-14` — Free models changed: added muse-glimmer-30b
 - `2026-09-07` — Free models changed: dropped gemma-4, gpt-oss
 - `2026-08-31` — Free models changed: dropped llama-3.3, step-3.7-flash
 - `2026-08-11` — Free models changed: dropped ling-3.0-flash
 - `2026-08-05` — Free models changed: added gemma-4, llama-3.3
-- `2026-08-05` — Added to the list: OpenAI-compatible gateway whose catalog carries eleven live :free ids priced at zero — gpt-oss-120b, Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 and the Llama 3.x line — beside a metered 100+ model catalog
+- `2026-08-05` — Added: OpenAI-compatible gateway whose catalog carries eleven live :free ids priced at zero — gpt-oss-120b, Ling 3.0 Flash, Step 3.7 Flash, Gemma 4 and the Llama 3.x line — beside a metered 100+ model catalog
 
 ---
 

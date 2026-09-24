@@ -45,9 +45,11 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-24` — Free models changed: added laguna-m.1, laguna-xs.2, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni
 - `2026-09-21` — Free models changed: added muse-glimmer-30b, nemotron-3.5-lightning
-- `2026-08-11` — Added to the list: OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those
+- `2026-08-11` — Added: OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those
 
 ---
 

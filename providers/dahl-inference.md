@@ -40,7 +40,9 @@ The docs: "100 million tokens as a gift at signup", paid into the account's pool
 
 ## History
 
-- `2026-09-24` — Added to the list: An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-24` — Added: An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account
 
 ---
 

@@ -81,8 +81,7 @@ MAP: tuple[Node, ...] = (
     # ---- logs
     Node("history.jsonl", Kind.LOG,
          "every change to what the list publishes, one event a line, append-only",
-         made_from=("registry.yaml",), written_by=("freetier-probe", "freetier-scout"),
-         published=True),
+         made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("announced.jsonl", Kind.LOG, "the posts the announcer has sent, append-only",
          made_from=("history.jsonl",), written_by=("freetier-announce",), published=True,
          optional=True),

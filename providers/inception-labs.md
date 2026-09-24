@@ -44,8 +44,10 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-12` — Free models changed: added mercury-2.5
-- `2026-08-17` — Added to the list: A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls
+- `2026-08-17` — Added: A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls
 
 ---
 

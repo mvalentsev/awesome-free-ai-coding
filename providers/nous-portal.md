@@ -43,7 +43,9 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-- `2026-09-17` — Added to the list: Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-17` — Added: Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API
 
 ---
 

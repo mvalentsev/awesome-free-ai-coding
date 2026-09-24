@@ -157,8 +157,8 @@ that publishes no site, sat in the Archive two lines apart from 2026-07-19 to
 2026-09-20, because nothing ever compared two names.
 
 Deleting a row is refused three times over: `freetier-check` fails on a registry
-missing an id `history.jsonl` has recorded, the probe run stops before it can
-record the deletion, and the render will not build the page without the row.
+missing an id `history.jsonl` has recorded, the render stops before it can
+record the deletion, and it will not build a page without the row.
 Before 2026-09-17 twelve rows left by deletion — Cerebras, Novita and Kenari
 among them — and the page said nothing about them but "Delisted —". They are
 back as delisted rows, with the reason.
@@ -518,11 +518,18 @@ not a secret.
 
 Every change to what the list publishes — a row arriving, dropping to the
 Archive, coming back, or changing its free models — is appended to
-[`history.jsonl`](history.jsonl) by the probe run and the scout and published as an
+[`history.jsonl`](history.jsonl) by `freetier-render`, in the commit that makes
+the change, and published as an
 [Atom feed](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml).
-**Never edit it by hand.** It is append-only, and it is compared against the
-registry rather than against the previous run, so a row you add by hand is
-reported by the next scheduled run rather than going unrecorded.
+**Never edit it by hand.** The render compares the registry with the log the
+commit starts from and records the difference before it writes a page, so a
+row you add by hand gets its line in your commit, dated that day, and its page
+already shows it; a render run again before the commit rewrites only its own
+uncommitted lines. A change the calendar makes — a row going unverified past
+the staleness limit, a vendor's shutdown date arriving — is recorded by the
+first render after it, the scheduled run's at the latest. Until 2026-09-25 only
+the scheduled run recorded, up to four days after a change reached the list,
+and the rows' pages showed that run's date.
 
 ## What depends on what
 
@@ -547,7 +554,7 @@ cannot print two versions of it.
 | `blocklist.yaml` | **data** — domains rejected for cause | — | `hand` |
 | `sources.yaml` | **data** — lists read once and put down | — | `hand` |
 | `dismissed.yaml` | **data** — model-generation bumps a reviewer declined | — | `hand` |
-| `history.jsonl` | **log** — every change to what the list publishes, one event a line, append-only | `registry.yaml` | `freetier-probe`, `freetier-scout` |
+| `history.jsonl` | **log** — every change to what the list publishes, one event a line, append-only | `registry.yaml` | `freetier-render` |
 | `announced.jsonl` | **log** — the posts the announcer has sent, append-only | `history.jsonl` | `freetier-announce` |
 | `README.md` | **generated** — the landing page GitHub shows under the file list · not on the site | `templates/README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
@@ -584,7 +591,7 @@ cannot print two versions of it.
 ## How the list announces itself
 
 `freetier-announce` runs in the same workflow, after the verification commit:
-every event the run appended to `history.jsonl` — a row arriving, dropping to
+every event `history.jsonl` has gained — a row arriving, dropping to
 the Archive, coming back, changing its free models — becomes one post from
 the project's own accounts, labelled as a bot, linking the row's page. It posts
 only events from the last 14 days, at most five per channel per run, oldest
@@ -625,15 +632,17 @@ uv run freetier-announce --dry-run  # print what the announcer would post, send 
 **The checks run before a commit exists.** With the hooks on, `git commit`
 runs `freetier-gate pre-commit`: `freetier-check`, `freetier-render --check` and
 the test suite on a snapshot of what is staged, with the dates in UTC. It also
-refuses what only a command may write: a commit on `main` that changes
-`history.jsonl` or `announced.jsonl`, which the scheduled run and a merged scout
-PR write, a log rewritten on any branch, and a hand edit of `last_verified`,
+refuses what only a command may write: a line in `history.jsonl` that is not
+one the render records for the commit's own registry, or a change the registry
+makes that the commit does not record; a commit on `main` that changes
+`announced.jsonl`, which only the scheduled run writes; a log rewritten on any
+branch; and a hand edit of `last_verified`,
 `probe_failures`, `provisional` or `first_seen`, which only the run's probe
 writes — a new row enters provisional, with `first_seen` and `last_verified`
 both the day it is added. `commit-msg` wants a subject that starts with its
 kind (`fix: …`) and a blank line before the body; `pre-push` runs the same
-checks on what is pushed. CI checks the logs again on every push and the earned
-fields on every pull request. CI never runs on the scheduled run's own commit,
+checks on what is pushed, commit by commit. CI checks the logs again on every
+push and the earned fields on every pull request. CI never runs on the scheduled run's own commit,
 so the run checks its logs, the curated files and the render before it commits,
 and checks the scout's branch, earned fields included, before it opens the pull
 request.

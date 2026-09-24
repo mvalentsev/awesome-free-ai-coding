@@ -31,8 +31,10 @@ $10 free credits at the start of every month, usable on any API feature
 
 ## History
 
-- `2026-08-11` — Delisted: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits
-- `2026-07-22` — Added to the list: Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-08-11` — Delisted
+- `2026-07-22` — Added: Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month
 
 ---
 

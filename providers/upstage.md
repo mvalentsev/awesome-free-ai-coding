@@ -40,8 +40,10 @@ What you send is not used to train models. In the vendor's words: “The Company
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-07-19` — Free models changed: added solar-mini, solar-pro-3
-- `2026-07-19` — Added to the list: Upstage Solar LLM API; $10 free credit on signup, no card
+- `2026-07-19` — Added: Upstage Solar LLM API; $10 free credit on signup, no card
 
 ---
 

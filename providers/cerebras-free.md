@@ -32,11 +32,13 @@ Cerebras' own docs: "New accounts receive $5 in free credits after adding a veri
 
 ## History
 
-- `2026-09-17` — Delisted: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-17` — Delisted
 - `2026-09-03` — Free models changed: added qwen3.8; dropped gemma-4
 - `2026-08-20` — Free models changed: dropped glm-4.7
 - `2026-08-17` — Free models changed: added gemma-4, glm-4.7, gpt-oss; dropped qwen3
-- `2026-07-19` — Added to the list: Very fast inference, free tier
+- `2026-07-19` — Added: Very fast inference, free tier
 
 ---
 

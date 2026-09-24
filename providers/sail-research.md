@@ -43,7 +43,9 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 ## History
 
-- `2026-09-24` — Added to the list: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-24` — Added: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account
 
 ---
 

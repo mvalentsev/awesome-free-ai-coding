@@ -44,8 +44,10 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-08-17` — Free models changed: added north-mini-code
-- `2026-07-22` — Added to the list: Cohere Command models via free trial API keys that never expire
+- `2026-07-22` — Added: Cohere Command models via free trial API keys that never expire
 
 ---
 

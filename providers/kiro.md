@@ -39,11 +39,13 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-24` — Free models changed: added minimax-m2.1; dropped minimax-2.1
 - `2026-08-24` — Free models changed: added deepseek-v3.2, minimax-2.1
 - `2026-07-20` — Free models changed: dropped deepseek-v3.2, minimax-2.1
 - `2026-07-19` — Free models changed: added claude-sonnet-4.5, deepseek-v3.2, minimax-2.1, qwen3-coder
-- `2026-07-19` — Added to the list: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models
+- `2026-07-19` — Added: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models
 
 ---
 

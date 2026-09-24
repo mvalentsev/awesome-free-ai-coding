@@ -44,7 +44,9 @@ What you send is not used to train models. In the vendor's words: “Your prompt
 
 ## History
 
-- `2026-09-10` — Added to the list: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-10` — Added: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is
 
 ---
 

@@ -30,14 +30,14 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/dahl-inference/20260924T101036Z</id>
-    <title>New: Dahl Inference</title>
+    <title>Added: Dahl Inference</title>
     <link rel="alternate" href="https://inference.dahl.global"/>
     <updated>2026-09-24T10:10:36Z</updated>
     <summary type="text">An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account · free models: glm-5.3-flash, deepseek-v4-flash, minimax-m2.7</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/experiential-labs/20260924T101036Z</id>
-    <title>New: Experiential Labs</title>
+    <title>Added: Experiential Labs</title>
     <link rel="alternate" href="https://www.experientiallabs.ai"/>
     <updated>2026-09-24T10:10:36Z</updated>
     <summary type="text">An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check</summary>
@@ -121,7 +121,7 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sail-research/20260924T101036Z</id>
-    <title>New: Sail Research</title>
+    <title>Added: Sail Research</title>
     <link rel="alternate" href="https://www.sailresearch.com"/>
     <updated>2026-09-24T10:10:36Z</updated>
     <summary type="text">Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account · free models: kimi-k3, glm-5.3, deepseek-v4-pro, glm-5.3-flash, deepseek-v4-flash</summary>
@@ -142,7 +142,7 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vertex-ai-express/20260924T101036Z</id>
-    <title>New: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</title>
+    <title>Added: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</title>
     <link rel="alternate" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview"/>
     <updated>2026-09-24T10:10:36Z</updated>
     <summary type="text">Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account · free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash</summary>
@@ -163,35 +163,35 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/abliteration-ai/20260921T104945Z</id>
-    <title>New: abliteration.ai</title>
+    <title>Added: abliteration.ai</title>
     <link rel="alternate" href="https://abliteration.ai"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/arli-ai/20260921T104945Z</id>
-    <title>New: Arli AI</title>
+    <title>Added: Arli AI</title>
     <link rel="alternate" href="https://www.arliai.com"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/blue-claw/20260921T104945Z</id>
-    <title>New: Blue Claw Network</title>
+    <title>Added: Blue Claw Network</title>
     <link rel="alternate" href="https://blueclaw.network"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/bytez/20260921T104945Z</id>
-    <title>New: Bytez</title>
+    <title>Added: Bytez</title>
     <link rel="alternate" href="https://bytez.com"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/fireworks-ai/20260921T104945Z</id>
-    <title>New: Fireworks AI</title>
+    <title>Added: Fireworks AI</title>
     <link rel="alternate" href="https://fireworks.ai"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added</summary>
@@ -212,49 +212,49 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/hpc-ai/20260921T104945Z</id>
-    <title>New: HPC-AI Model APIs</title>
+    <title>Added: HPC-AI Model APIs</title>
     <link rel="alternate" href="https://www.hpc-ai.com/model-apis"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/impossibl/20260921T104945Z</id>
-    <title>New: Impossibl</title>
+    <title>Added: Impossibl</title>
     <link rel="alternate" href="https://impossibl.com"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llmtech/20260921T104945Z</id>
-    <title>New: LLM Tech</title>
+    <title>Added: LLM Tech</title>
     <link rel="alternate" href="https://llmtech.eu"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 2 concurrent requests, tool calls included, no account · free models: qwen3.8-27b</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixlayer/20260921T104945Z</id>
-    <title>New: Mixlayer</title>
+    <title>Added: Mixlayer</title>
     <link rel="alternate" href="https://www.mixlayer.com"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit · free models: qwen3.5-4b</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/moark/20260921T104945Z</id>
-    <title>New: Moark (Gitee AI)</title>
+    <title>Added: Moark (Gitee AI)</title>
     <link rel="alternate" href="https://moark.com"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/modelscope/20260921T104945Z</id>
-    <title>New: ModelScope API-Inference (Alibaba)</title>
+    <title>Added: ModelScope API-Inference (Alibaba)</title>
     <link rel="alternate" href="https://modelscope.cn"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/opper/20260921T104945Z</id>
-    <title>New: Opper</title>
+    <title>Added: Opper</title>
     <link rel="alternate" href="https://opper.ai"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits · free models: gemma-4-31b</summary>
@@ -282,21 +282,21 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/siliconflow-cn/20260921T104945Z</id>
-    <title>New: SiliconFlow (China)</title>
+    <title>Added: SiliconFlow (China)</title>
     <link rel="alternate" href="https://siliconflow.cn"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers · free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/tencent-tokenhub/20260921T104945Z</id>
-    <title>New: Tencent Cloud TokenHub</title>
+    <title>Added: Tencent Cloud TokenHub</title>
     <link rel="alternate" href="https://cloud.tencent.com/document/product/1823"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification</summary>
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/the-grid/20260921T104945Z</id>
-    <title>New: The Grid</title>
+    <title>Added: The Grid</title>
     <link rel="alternate" href="https://thegrid.ai"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time</summary>
@@ -317,7 +317,7 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vlm-run-gateway/20260921T104945Z</id>
-    <title>New: VLM Run Gateway</title>
+    <title>Added: VLM Run Gateway</title>
     <link rel="alternate" href="https://vlm.run"/>
     <updated>2026-09-21T10:49:45Z</updated>
     <summary type="text">OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha · free models: qwen3.8-27b</summary>
@@ -331,7 +331,7 @@
   </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/amazon-q-developer/20260917T100542Z</id>
-    <title>New: Amazon Q Developer</title>
+    <title>Added: Amazon Q Developer</title>
     <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
     <updated>2026-09-17T10:05:42Z</updated>
     <summary type="text">AWS's coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month</summary>

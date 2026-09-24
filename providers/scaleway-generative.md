@@ -30,9 +30,11 @@ The row named no free model.
 
 ## History
 
-- `2026-09-17` — Delisted: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-17` — Delisted
 - `2026-08-17` — Free models changed: dropped glm-5.2, qwen3
-- `2026-07-19` — Added to the list: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer
+- `2026-07-19` — Added: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer
 
 ---
 

@@ -43,10 +43,12 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-24` — Free models changed: added glm-5.2; dropped glm-5
 - `2026-09-21` — Free models changed: dropped llama-3.3
 - `2026-09-21` — Free models changed: added qwen3.8-27b; dropped qwen3.8
-- `2026-08-31` — Added to the list: EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
+- `2026-08-31` — Added: EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
 ---
 

@@ -1,15 +1,17 @@
 """The gate is where the map's rules meet a commit: every check on the snapshot
 about to be committed, the logs only ever appended to, the fields a probe
 earns never typed, and a message git can show as a subject and a body."""
+import json
 import subprocess
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import pytest
 
-from freetier_radar.gate import (earned_problems, log_problems, main, message_problems,
+from freetier_radar.gate import (diff, earned_problems, log_problems, main, message_problems,
                                  pre_commit, snapshot_index)
-from freetier_radar.models import Entry
+from freetier_radar.history import Event, EventType
+from freetier_radar.models import Entry, save_registry
 
 BASE = {"name": "X", "category": "api-free-tier", "url": "https://x.ai", "offering": "stuff",
         "probe": {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": ["x-mini-2"]}}
@@ -32,14 +34,13 @@ def test_a_log_is_only_ever_appended_to():
         "history.jsonl is deleted — it is append-only and nothing regenerates it"]
 
 
-def test_a_commit_on_main_leaves_the_logs_to_the_commands_that_write_them():
-    """history.jsonl on main is written by the scheduled run and by a merged
-    scout PR; a hand-appended line would pass every consistency check there is
-    and still be an event no run recorded."""
-    assert log_problems("history.jsonl", "a\n", "a\n", frozen=True) == []
-    assert log_problems("history.jsonl", "a\n", "a\nb\n", frozen=True) == [
-        "history.jsonl changes in a commit on main — only freetier-probe and freetier-scout "
-        "write it, on the scheduled run and on the scout's branch"]
+def test_the_announcers_ledger_changes_on_main_only_on_the_scheduled_run():
+    """announced.jsonl is what the announcer has posted; a line appended by hand
+    would pass every consistency check there is and still be a post nobody sent."""
+    assert log_problems("announced.jsonl", "a\n", "a\n", frozen=True) == []
+    assert log_problems("announced.jsonl", "a\n", "a\nb\n", frozen=True) == [
+        "announced.jsonl changes in a commit on main — freetier-announce writes it on the "
+        "scheduled run and nowhere else"]
 
 
 # ---- the fields a probe earns
@@ -111,11 +112,87 @@ def _repo(tmp_path: Path) -> Path:
     _git(repo, "init", "-q", "-b", "main")
     _git(repo, "config", "user.email", "t@example.com")
     _git(repo, "config", "user.name", "t")
-    (repo / "history.jsonl").write_text("a\n", encoding="utf-8")
+    (repo / "announced.jsonl").write_text("a\n", encoding="utf-8")
     (repo / "note.txt").write_text("one\n", encoding="utf-8")
     _git(repo, "add", ".")
     _git(repo, "commit", "-q", "-m", "chore: start")
     return repo
+
+
+ADDED_AT = datetime(2026, 9, 21, 10, 0, tzinfo=timezone.utc)
+RENDERED_AT = datetime(2026, 9, 21, 12, 0, tzinfo=timezone.utc)
+
+
+def _line(event: str, entry_id: str, ts: datetime = RENDERED_AT, detail: str = "stuff") -> str:
+    ev = Event(ts=ts, event=EventType(event), id=entry_id, name="X", url="https://x.ai",
+               detail=detail)
+    return json.dumps(ev.model_dump(mode="json"), ensure_ascii=False) + "\n"
+
+
+def _history_repo(tmp_path: Path) -> Path:
+    """A registry of one row, the line that recorded it, and the day the pages
+    were rendered on — what a commit's lines are held to."""
+    repo = _repo(tmp_path)
+    save_registry(repo / "registry.yaml", [row()])
+    (repo / "history.jsonl").write_text(_line("added", "x", ADDED_AT), encoding="utf-8")
+    (repo / "index.json").write_text('{"generated": "2026-09-21"}\n', encoding="utf-8")
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-q", "-m", "chore: the list")
+    return repo
+
+
+def _add_row(repo: Path, line: str | None) -> None:
+    fresh = row(id="y", first_seen=date(2026, 9, 21), provisional=True)
+    save_registry(repo / "registry.yaml", [row(), fresh])
+    if line is not None:
+        with (repo / "history.jsonl").open("a", encoding="utf-8") as fh:
+            fh.write(line)
+    _git(repo, "add", ".")
+
+
+def test_a_commit_on_main_appends_the_lines_its_render_records(tmp_path):
+    repo = _history_repo(tmp_path)
+    _add_row(repo, _line("added", "y"))
+    assert pre_commit(repo, steps=[]) == []
+
+
+def test_a_history_line_no_render_wrote_is_refused(tmp_path):
+    """Appending is what the render does on every commit now, so on main an
+    appended line is held to the change it records: a line typed by hand,
+    for a change the registry never made, is refused."""
+    repo = _history_repo(tmp_path)
+    with (repo / "history.jsonl").open("a", encoding="utf-8") as fh:
+        fh.write(_line("archived", "x", detail="gone"))
+    _git(repo, "add", "history.jsonl")
+    assert pre_commit(repo, steps=[]) == [
+        "history.jsonl: line 1 of what the commit appends (archived x) is not a change this "
+        "registry makes"]
+
+
+def test_a_registry_change_the_commit_does_not_record_is_refused(tmp_path):
+    repo = _history_repo(tmp_path)
+    _add_row(repo, None)
+    assert pre_commit(repo, steps=[]) == [
+        "history.jsonl: the registry makes a change the commit does not record: added y"]
+
+
+def test_each_commit_a_push_adds_is_held_to_its_own_lines(tmp_path):
+    """CI and the pre-push hook read a push as a range, and a range hides which
+    commit wrote a line: a registry change and its line one commit later read
+    as right. Each commit is held to its own."""
+    repo = _history_repo(tmp_path)
+    base = _git(repo, "rev-parse", "HEAD").strip()
+    _add_row(repo, None)
+    _git(repo, "commit", "-q", "-m", "feat: y")
+    missing = _git(repo, "rev-parse", "--short", "HEAD").strip()
+    (repo / "note.txt").write_text("two\n", encoding="utf-8")
+    with (repo / "history.jsonl").open("a", encoding="utf-8") as fh:
+        fh.write(_line("added", "y"))
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-q", "-m", "fix: the line")
+    assert diff(repo, base, earned=False) == [
+        f"{missing}: history.jsonl: the registry makes a change the commit does not record: "
+        "added y"]
 
 
 def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(tmp_path):
@@ -129,15 +206,25 @@ def test_the_snapshot_is_what_is_staged_not_what_is_on_disk(tmp_path):
         assert not (snap / "untracked.txt").exists()
 
 
-def test_the_gate_refuses_a_commit_that_rewrites_the_history(tmp_path):
+def test_the_gate_refuses_a_commit_on_main_that_touches_the_announcers_ledger(tmp_path):
     repo = _repo(tmp_path)
-    (repo / "history.jsonl").write_text("A\n", encoding="utf-8")
-    _git(repo, "add", "history.jsonl")
+    (repo / "announced.jsonl").write_text("A\n", encoding="utf-8")
+    _git(repo, "add", "announced.jsonl")
     ran = []
     problems = pre_commit(repo, steps=[("a step", lambda snap: ran.append(snap) or "")])
     assert ran, "the checks run on the snapshot"
-    assert problems == ["history.jsonl changes in a commit on main — only freetier-probe and "
-                        "freetier-scout write it, on the scheduled run and on the scout's branch"]
+    assert problems == ["announced.jsonl changes in a commit on main — freetier-announce "
+                        "writes it on the scheduled run and nowhere else"]
+
+
+def test_the_gate_refuses_a_commit_that_rewrites_the_history(tmp_path):
+    repo = _history_repo(tmp_path)
+    (repo / "history.jsonl").write_text(_line("added", "x", ADDED_AT, detail="other words"),
+                                        encoding="utf-8")
+    _git(repo, "add", "history.jsonl")
+    assert pre_commit(repo, steps=[]) == [
+        "history.jsonl rewrites line 1 of what is committed — it is append-only: restore the "
+        "file and let its command append"]
 
 
 def test_the_gate_reports_a_check_that_fails_on_the_snapshot(tmp_path):

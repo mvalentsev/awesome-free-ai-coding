@@ -46,7 +46,9 @@ What you send is not used to train models. In the vendor's words: “Prompts, co
 
 ## History
 
-- `2026-09-21` — Added to the list: OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-21` — Added: OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card
 
 ---
 

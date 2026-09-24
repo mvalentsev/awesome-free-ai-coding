@@ -8,7 +8,6 @@ import respx
 
 from freetier_radar import scout
 from freetier_radar.discovery import Evidence, Hit
-from freetier_radar.history import load_history
 from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source,
                                    Watched, save_registry)
 from freetier_radar.scout import (
@@ -1400,38 +1399,6 @@ def test_the_pr_body_says_how_many_hits_each_search_kept(tmp_path, monkeypatch):
 
     assert "Discovery sources used: hn (1 hit kept), github (0 hits kept)" in (
         tmp_path / "scout-pr.md").read_text()
-
-
-def test_main_records_what_the_scout_changed_in_the_history(tmp_path, monkeypatch):
-    """The scout is the other command that writes registry.yaml, and the only
-    one that ever adds a row."""
-    # main() records the history on the real clock, so the rows are verified on
-    # the real day: at TODAY they read as 60 days unverified from 2026-09-18 on,
-    # and the history called both of them archived.
-    verified = date.today()
-    save_registry(tmp_path / "registry.yaml", [make(last_verified=verified)])
-    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
-    monkeypatch.setattr(scout, "run_scout",
-                        lambda llm, entries, *a, **k: entries.append(
-                            make(id="newcomer", name="Newcomer",
-                                 last_verified=verified)) or EMPTY_RUN)
-    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path))
-
-    scout.main()
-
-    events = load_history(tmp_path / "history.jsonl")
-    assert [(e.event.value, e.id) for e in events] == [("added", "newcomer"), ("added", "x")]
-
-
-def test_a_dry_run_scout_records_no_history(tmp_path, monkeypatch):
-    save_registry(tmp_path / "registry.yaml", [make()])
-    monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
-    monkeypatch.setattr(scout, "run_scout", lambda *a, **k: EMPTY_RUN)
-    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
-
-    scout.main()
-
-    assert not (tmp_path / "history.jsonl").exists()
 
 
 def test_answered_domains_are_the_current_watchlist_and_the_whole_blocklist():

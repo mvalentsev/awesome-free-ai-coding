@@ -40,9 +40,11 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-24` — Free models changed: dropped gpt-5.6-luna, mimo-v2.5
 - `2026-09-17` — Free models changed: added deepseek-v4.1-flash; dropped deepseek-v4-flash
-- `2026-09-03` — Added to the list: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker
+- `2026-09-03` — Added: Ad-funded coding agent in five surfaces — CLI, desktop, browser app builder, cloud sandbox on any GitHub repo, and chat — with no account, no API key and no card; GLM 5.3 Flash by default, with GPT-5.6 Luna, DeepSeek V4 Flash and MiMo 2.5 in the picker
 
 ---
 

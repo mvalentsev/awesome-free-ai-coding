@@ -46,7 +46,9 @@ What you send is not used to train models. In the vendor's words: “RouterPlex 
 
 ## History
 
-- `2026-09-12` — Added to the list: A one-time $1 of test credit on a prepaid reseller that bills 54 chat models at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-12` — Added: A one-time $1 of test credit on a prepaid reseller that bills 54 chat models at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is
 
 ---
 

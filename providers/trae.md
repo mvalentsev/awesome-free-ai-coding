@@ -38,7 +38,9 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- `2026-07-19` — Added to the list: Free access to frontier models in IDE
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Added: Free access to frontier models in IDE
 
 ---
 

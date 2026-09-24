@@ -40,7 +40,9 @@ Tier 1 is "Free registration — no credit card required", with "Free Access Mod
 
 ## History
 
-- `2026-09-03` — Added to the list: OpenAI-compatible gateway whose no-card Tier 1 account gets a daily free quota on Mistral Small 3.2 and the house Manta routers — 50 a day per model, 550 across the lane
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-03` — Added: OpenAI-compatible gateway whose no-card Tier 1 account gets a daily free quota on Mistral Small 3.2 and the house Manta routers — 50 a day per model, 550 across the lane
 
 ---
 

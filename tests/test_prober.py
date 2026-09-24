@@ -5,7 +5,6 @@ from datetime import date
 import httpx
 import respx
 
-from freetier_radar.history import load_history
 from freetier_radar.models import ApiInfo, DataUse, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, check_content, family_named, for_a_human,
@@ -1810,21 +1809,6 @@ def test_pass_promotes_provisional_after_settling():
 
 
 @respx.mock
-async def test_a_probe_run_records_what_changed_beside_the_registry(tmp_path):
-    """The prober is the first of the two commands that write registry.yaml, so
-    it is the first that owes the change log an entry."""
-    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
-        200, text="qwen3-coder free tier no credit card"))
-    registry = tmp_path / "registry.yaml"
-    save_registry(registry, [page_entry()])
-
-    await _amain(registry, tmp_path / "failures", dry_run=False)
-
-    events = load_history(tmp_path / "history.jsonl")
-    assert [(e.event.value, e.id) for e in events] == [("added", "pagey")]
-
-
-@respx.mock
 async def test_the_summary_line_names_what_needs_attention(tmp_path, capsys):
     """failures.json stays on the runner, so "1 need attention" in the log was
     the whole account of a probe that passes from a laptop and fails from CI —
@@ -1854,20 +1838,6 @@ async def test_a_clean_run_says_so_without_a_trailing_list(tmp_path, capsys):
     await _amain(registry, tmp_path / "failures", dry_run=True)
 
     assert "probed 1 entries, 0 need attention\n" in capsys.readouterr().out
-
-
-@respx.mock
-async def test_a_dry_run_records_no_history(tmp_path):
-    """A local read must leave no trace, exactly as it leaves no verification
-    date — the history is a log of what was published, not of who looked."""
-    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
-        200, text="qwen3-coder free tier no credit card"))
-    registry = tmp_path / "registry.yaml"
-    save_registry(registry, [page_entry()])
-
-    await _amain(registry, tmp_path / "failures", dry_run=True)
-
-    assert not (tmp_path / "history.jsonl").exists()
 
 
 def anthropic_entry() -> Entry:

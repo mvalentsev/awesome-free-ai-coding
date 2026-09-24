@@ -257,6 +257,71 @@ def test_an_event_is_one_line_of_json(tmp_path: Path):
     assert line["ts"].startswith("2026-08-14T06:30:00")
 
 
+# ---- recorded by the render of every change --------------------------------
+
+LATER = NOW + timedelta(minutes=9)
+
+
+def test_a_render_records_against_the_log_the_last_commit_left(tmp_path: Path):
+    """The render writes the lines the commit it belongs to will carry, so a
+    render run twice before a commit — a row added, then swapped for another —
+    leaves one block, and nothing about the row that never reached the list."""
+    registry, history = tmp_path / "registry.yaml", tmp_path / "history.jsonl"
+    save_registry(registry, [make()])
+    record_changes(registry, history, TODAY, NOW)
+    committed = history.read_text(encoding="utf-8")
+
+    save_registry(registry, [make(), make("draft")])
+    record_changes(registry, history, TODAY, NOW + timedelta(minutes=5), committed=committed)
+    save_registry(registry, [make(), make("kept")])
+    written = record_changes(registry, history, TODAY, LATER, committed=committed)
+
+    assert [(e.event, e.id, e.ts) for e in written] == [(EventType.ADDED, "kept", LATER)]
+    assert history.read_text(encoding="utf-8").startswith(committed)
+    assert [(e.id, e.ts) for e in load_history(history)] == [("example", NOW), ("kept", LATER)]
+
+
+def test_a_render_with_nothing_new_leaves_its_block_as_it_was(tmp_path: Path):
+    """Rendering again changes no byte: the run renders twice, and a check
+    between the two must not find the log moved on its clock alone."""
+    registry, history = tmp_path / "registry.yaml", tmp_path / "history.jsonl"
+    save_registry(registry, [make()])
+    record_changes(registry, history, TODAY, NOW, committed="")
+    first = history.read_bytes()
+
+    written = record_changes(registry, history, TODAY, LATER, committed="")
+
+    assert history.read_bytes() == first
+    assert [(e.id, e.ts) for e in written] == [("example", NOW)]
+
+
+def test_the_lines_a_commit_appends_are_the_changes_its_registry_makes():
+    """What the gate holds a commit's lines to: exactly the block its render
+    records — nothing typed by hand, nothing left out, one render's clock."""
+    from freetier_radar.history import block_problems
+
+    base = diff_state({}, registry_state([make()], TODAY), NOW)
+    entries = [make(), make("second")]
+    block = [Event(ts=LATER, event=EventType.ADDED, id="second", name="Example",
+                   url="https://example.com", detail="free tokens")]
+    assert block_problems(base, block, entries, TODAY, now=LATER) == []
+
+    forged = block + [Event(ts=LATER, event=EventType.ARCHIVED, id="example",
+                            name="Example", url="https://example.com")]
+    assert block_problems(base, forged, entries, TODAY, now=LATER) == [
+        "line 2 of what the commit appends (archived example) is not a change this "
+        "registry makes"]
+    assert block_problems(base, [], entries, TODAY, now=LATER) == [
+        "the registry makes a change the commit does not record: added second"]
+    two_clocks = [block[0], Event(ts=NOW, event=EventType.ARCHIVED, id="example",
+                                  name="Example", url="https://example.com")]
+    assert block_problems(base, two_clocks, entries, TODAY, now=LATER)[0] == (
+        "the commit appends lines with 2 timestamps — one render records a commit's "
+        "changes at one time")
+    assert block_problems(base, block, entries, TODAY, now=NOW) == [
+        "the commit appends lines dated 2026-08-14T06:39:00+00:00, after the commit itself"]
+
+
 # ---- the two callers -------------------------------------------------------
 
 def test_recording_reads_the_registry_and_writes_only_what_changed(tmp_path: Path):

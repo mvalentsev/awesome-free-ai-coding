@@ -31,8 +31,10 @@ Official DeepSeek API; every new account gets a one-time free token grant, no ca
 
 ## History
 
-- `2026-07-27` — Delisted: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant
-- `2026-07-22` — Added to the list: Official DeepSeek API; every new account gets a one-time free token grant, no card required
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-27` — Delisted
+- `2026-07-22` — Added: Official DeepSeek API; every new account gets a one-time free token grant, no card required
 
 ---
 

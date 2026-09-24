@@ -41,8 +41,10 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-03` — Free models changed: added gemini-3.6-flash, gemini-3.7-flash, gemini-3.8-flash; dropped gemini-3.5-flash
-- `2026-08-11` — Added to the list: Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
+- `2026-08-11` — Added: Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 
 ---
 

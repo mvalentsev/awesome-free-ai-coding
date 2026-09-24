@@ -7,27 +7,31 @@ its free models. `README.md` and `index.json` are regenerated from scratch on
 every run and carry no memory at all, so until now the only record of a
 withdrawn free tier was a line in `git log`.
 
-The diff is against the HISTORY, not against the registry as it was at the start
-of the run. That matters for three reasons, each of which a before/after diff of
-the file gets wrong:
+The diff is against the HISTORY, not against the registry as it was before an
+edit. That matters for three reasons, each of which a before/after diff of the
+file gets wrong:
 
-- most of this registry is edited by hand and merged through a pull request, so
-  the run that first *sees* an entry is not the run that added it — a
-  within-run diff would never report a hand-added row at all;
+- the registry is edited by hand, by the probe run and by the scout, and the
+  render that records a change is not the command that made it — a diff of
+  one command's edit would never report the others;
 - an entry can be archived by the calendar alone, without a byte of the registry
   changing, when it goes unverified past the staleness limit;
 - a state machine cannot report the same transition twice, so a feed built on it
   cannot ping a subscriber about the same event on two consecutive runs.
 
-The file is append-only and is the first thing the cron commits that cannot be
-regenerated from `registry.yaml`. It is written one line at a time, never
-rewritten, so two branches that both appended merge by keeping both sides.
+The file is append-only and is the first thing here that cannot be
+regenerated from `registry.yaml`. Until 2026-09-25 only the scheduled run wrote
+it, so a change committed by hand reached the README the day it landed and the
+log at the next run, up to four days later, dated that day. Now `freetier-render`
+records every change before it writes a page — the lines a commit carries are
+the changes that commit makes, at the time it makes them — and `freetier-gate`
+holds each commit's lines to exactly that (`block_problems`).
 """
 from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, time, timezone
 from enum import Enum
 from pathlib import Path
 
@@ -37,7 +41,8 @@ from .models import ARCHIVE_AFTER_FAILURES, Entry, is_archived, live_families, l
 
 __all__ = ["EventType", "Event", "State", "archive_reason", "registry_state", "replay",
            "diff_state", "deleted_row_problem", "deleted_rows", "refuse_deleted_rows",
-           "load_history", "append_history", "record_changes"]
+           "parse_history", "load_history", "append_history", "record_changes",
+           "pending_changes", "block_problems"]
 
 
 class EventType(str, Enum):
@@ -58,7 +63,7 @@ class Event(BaseModel):
     delta: it is what lets the file be replayed into the state the history
     believes the list is in, which is the whole basis of the next diff.
     """
-    ts: datetime      # when the event was recorded, UTC — the run's clock, not the vendor's
+    ts: datetime      # when the render recorded it, UTC — the list's clock, not the vendor's
     event: EventType
     id: str
     name: str
@@ -187,22 +192,31 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
     return events
 
 
-def load_history(path: Path) -> list[Event]:
-    """Missing file means no history — the same reading every other curated file
-    here gets. A malformed line is an error and names itself: this file is the
-    only one in the repository that cannot be regenerated, so a line that will
-    not parse must stop a run rather than be skipped past."""
-    if not path.exists():
-        return []
+def parse_history(text: str, where: str = "history.jsonl", first_line: int = 1) -> list[Event]:
+    """A malformed line is an error and names itself: this file is the only one
+    in the repository that cannot be regenerated, so a line that will not parse
+    must stop a run rather than be skipped past."""
     events: list[Event] = []
-    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    for number, line in enumerate(text.splitlines(), start=first_line):
         if not line.strip():
             continue
         try:
             events.append(Event.model_validate(json.loads(line)))
         except Exception as exc:
-            raise ValueError(f"{path}: line {number} is not a history event: {exc}") from exc
+            raise ValueError(f"{where}: line {number} is not a history event: {exc}") from exc
     return events
+
+
+def load_history(path: Path) -> list[Event]:
+    """Missing file means no history — the same reading every other curated file
+    here gets."""
+    if not path.exists():
+        return []
+    return parse_history(path.read_text(encoding="utf-8"), str(path))
+
+
+def _line(ev: Event) -> str:
+    return json.dumps(ev.model_dump(mode="json"), ensure_ascii=False) + "\n"
 
 
 def append_history(path: Path, events: list[Event]) -> None:
@@ -214,7 +228,7 @@ def append_history(path: Path, events: list[Event]) -> None:
         return
     with path.open("a", encoding="utf-8") as fh:
         for ev in events:
-            fh.write(json.dumps(ev.model_dump(mode="json"), ensure_ascii=False) + "\n")
+            fh.write(_line(ev))
 
 
 def deleted_rows(entries: list[Entry], events: list[Event]) -> list[str]:
@@ -225,7 +239,7 @@ def deleted_rows(entries: list[Entry], events: list[Event]) -> list[str]:
     was published. Deleting it instead is how twelve rows left before
     2026-09-17 with nothing on the page but "Delisted —", so a registry that
     has lost a row is refused wherever it would be published: `freetier-check`,
-    the probe run's history and the render."""
+    the render's record of it and the render's pages."""
     held = {e.id for e in entries}
     return sorted(set(replay(events)) - held)
 
@@ -242,21 +256,80 @@ def refuse_deleted_rows(entries: list[Entry], events: list[Event]) -> None:
         raise ValueError("; ".join(deleted_row_problem(i) for i in missing))
 
 
-def record_changes(registry_path: Path, history_path: Path,
-                   today: date, now: datetime) -> list[Event]:
+def _unstamped(events: list[Event]) -> list[dict]:
+    return [ev.model_dump(mode="json", exclude={"ts"}) for ev in events]
+
+
+def record_changes(registry_path: Path, history_path: Path, today: date, now: datetime,
+                   committed: str | None = None) -> list[Event]:
     """Compare the registry against the history and write the difference.
 
-    Called by the two commands that write `registry.yaml` — the prober and the
-    scout — rather than from `save_registry` itself, which is also called by
-    tests and by anything that just wants the file on disk. A saver with a side
-    effect is a saver that eventually writes history nobody asked for.
+    `freetier-render` calls it before it writes a page, so every commit that
+    changes what the list publishes carries the lines for that change. With
+    `committed` — the log as the commit being made will find it, read from git
+    — the lines are the difference from that: whatever an earlier render of
+    the same uncommitted work wrote after it is replaced, since a row added and
+    taken back out before the commit never reached the list, and lines that
+    already say the same thing are kept as they are, clock and all, so a second
+    render changes no byte. Without it, the difference from the file as it
+    stands is appended.
 
-    A deleted row stops the run here, before anything is appended: the history
-    would call it delisted and the page would lose it, and the run is where
-    that becomes public.
+    A deleted row stops the render here, before anything is written: the
+    history would call it delisted and the page would lose it.
     """
-    entries, recorded = load_registry(registry_path), load_history(history_path)
-    refuse_deleted_rows(entries, recorded)
-    events = diff_state(replay(recorded), registry_state(entries, today), now)
-    append_history(history_path, events)
-    return events
+    entries = load_registry(registry_path)
+    text = history_path.read_text(encoding="utf-8") if history_path.exists() else ""
+    if committed is None or not text.startswith(committed):
+        committed = text
+    if committed and not committed.endswith("\n"):
+        committed += "\n"
+    base = parse_history(committed, str(history_path))
+    tail = parse_history(text[len(committed):], str(history_path),
+                         first_line=committed.count("\n") + 1)
+    refuse_deleted_rows(entries, base)
+    block = diff_state(replay(base), registry_state(entries, today), now)
+    if _unstamped(block) == _unstamped(tail):
+        return tail
+    history_path.write_text(committed + "".join(_line(ev) for ev in block), encoding="utf-8")
+    return block
+
+
+def pending_changes(entries: list[Entry], events: list[Event], today: date) -> list[Event]:
+    """What a render on `today` would record: nothing, when the log is up to
+    date with the registry."""
+    return diff_state(replay(events), registry_state(entries, today),
+                      datetime.combine(today, time(), tzinfo=timezone.utc))
+
+
+def block_problems(base: list[Event], block: list[Event], entries: list[Entry], day: date,
+                   now: datetime) -> list[str]:
+    """What is wrong with the lines a commit appends to the log it found: they
+    are the render's own record of the changes the commit makes, or they are
+    not. `day` is the day the commit's pages were rendered on (index.json's
+    `generated`), `now` the latest a render of it could have run — the commit's
+    own time."""
+    problems = []
+    stamps = sorted({ev.ts for ev in block})
+    if len(stamps) > 1:
+        problems.append(f"the commit appends lines with {len(stamps)} timestamps — one render "
+                        "records a commit's changes at one time")
+    at = stamps[-1] if stamps else now
+    if block and at > now:
+        problems.append(f"the commit appends lines dated {at.isoformat()}, after the commit "
+                        "itself")
+    if block and base and block[0].ts < base[-1].ts:
+        problems.append(f"the commit appends lines dated {block[0].ts.isoformat()}, before the "
+                        f"last line it found ({base[-1].ts.isoformat()}) — the log is in the "
+                        "order the list changed: render again on top of it")
+    expected = diff_state(replay(base), registry_state(entries, day), at)
+    unmatched = _unstamped(expected)
+    for number, (ev, got) in enumerate(zip(block, _unstamped(block)), start=1):
+        if got in unmatched:
+            unmatched.remove(got)
+        else:
+            problems.append(f"line {number} of what the commit appends ({ev.event.value} "
+                            f"{ev.id}) is not a change this registry makes")
+    if unmatched:
+        problems.append("the registry makes a change the commit does not record: "
+                        + ", ".join(f"{u['event']} {u['id']}" for u in unmatched))
+    return problems

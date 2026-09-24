@@ -41,7 +41,9 @@ What you send is not used to train models. In the vendor's words: “Cloudflare 
 
 ## History
 
-- `2026-07-19` — Added to the list: 10k neurons/day free
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Added: 10k neurons/day free
 
 ---
 

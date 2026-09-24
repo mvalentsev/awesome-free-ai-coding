@@ -46,7 +46,9 @@ What you send is not used to train models. In the vendor's words: “Google won'
 
 ## History
 
-- `2026-09-24` — Added to the list: Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-24` — Added: Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 
 ---
 

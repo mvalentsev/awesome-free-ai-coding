@@ -40,8 +40,10 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-07-19` — Free models changed: added gemini-2.5
-- `2026-07-19` — Added to the list: Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously
+- `2026-07-19` — Added: Free tier of Google's async cloud coding agent powered by Gemini 2.5 Pro; connects to GitHub repos and works autonomously
 
 ---
 

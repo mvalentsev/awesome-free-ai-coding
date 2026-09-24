@@ -7,7 +7,7 @@ import re
 import time
 import traceback
 from functools import partial
-from datetime import date, datetime, timezone
+from datetime import date
 from pathlib import Path
 from typing import Callable
 
@@ -15,7 +15,6 @@ import httpx
 import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
-from .history import record_changes
 # The curated-file loaders live in models.py; re-exported here because this is
 # where callers and tests have always reached for them.
 from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Watched,
@@ -1368,14 +1367,9 @@ def main() -> None:
     if args.dry_run:
         print("dry run: registry left untouched")
     else:
+        # history.jsonl is not written here: the render the workflow runs on
+        # the scout's changes records them, on the branch its pull request is.
         save_registry(args.registry, entries)
-        # Below the catch-all on purpose: a scout that aborted wrote no registry,
-        # so there is nothing for it to have changed. The prober has already
-        # recorded whatever the probes did; this call adds only what the scout
-        # did on top of that.
-        for ev in record_changes(args.registry, args.registry.parent / "history.jsonl",
-                                 date.today(), datetime.now(timezone.utc)):
-            print(f"history: {ev.event.value} {ev.id}")
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
         providers=evidence.describe_providers() or "none",
         feed_warnings="; ".join(evidence.feed_warnings) or "—",

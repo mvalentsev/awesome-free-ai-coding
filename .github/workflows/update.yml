@@ -65,13 +65,16 @@ jobs:
         continue-on-error: true
         run: uv run freetier-bars | tee -a "$GITHUB_STEP_SUMMARY"
 
-      - name: Render README
+      # The render records what this run changed in history.jsonl — with any
+      # change the calendar made since the last commit — before it writes a page.
+      - name: Record what changed and render every page
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
       # CI never runs on this workflow's own push (GITHUB_TOKEN starts no
       # workflow), so what CI would check is checked here, before the commit:
       # the curated files, the map and the hand-written claims, every generated
-      # file against the registry, and the logs only ever appended to. A red
+      # file against the registry, history.jsonl grown by exactly what the
+      # render recorded, and the announcer's ledger left alone. A red
       # step leaves main as it was and the findings in this log. It runs on a
       # dry run too, which is how a change to it is tried before a real run.
       - name: Check what the run is about to commit
@@ -146,7 +149,7 @@ jobs:
           SCOUT_DEADLINE_SECONDS: ${{ vars.SCOUT_DEADLINE_SECONDS }}
         run: uv run freetier-scout --registry registry.yaml --failures failures/failures.json --pr-body scout-pr.md ${{ inputs.dry_run && '--dry-run' || '' }}
 
-      - name: Render README with scout changes
+      - name: Record the scout's changes and render every page
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
       # A pull request this workflow opens starts no CI run (GITHUB_TOKEN), and

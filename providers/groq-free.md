@@ -41,10 +41,12 @@ What you send is not used to train models. In the vendor's words: “For clarity
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-21` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-10` — Free models changed: added qwen3.8; dropped llama-3.3
 - `2026-08-17` — Free models changed: added gpt-oss, llama-3.3, qwen3.6; dropped llama-4, qwen3
-- `2026-07-19` — Added to the list: Fast inference free tier
+- `2026-07-19` — Added: Fast inference free tier
 
 ---
 

@@ -30,9 +30,11 @@ Third-party OpenAI-compatible broker to the permissionless Gonka decentralized i
 
 ## History
 
-- `2026-07-19` — Delisted: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Delisted
 - `2026-07-19` — Free models changed: added kimi-k2, minimax-m2
-- `2026-07-19` — Added to the list: Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models)
+- `2026-07-19` — Added: Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models)
 
 ---
 

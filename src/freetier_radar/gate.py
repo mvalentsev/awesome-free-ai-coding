@@ -11,16 +11,17 @@ commit exists, from git's own hooks (`git config core.hooksPath .githooks`):
 - `pre-commit` exports the index — what is staged, not what is on disk — and
   runs freetier-check, `freetier-render --check` and the test suite on it, with
   the dates in UTC, the way the scheduled run reads them. Then it holds the
-  commit to what only a command may write: on main a log changes on the
-  scheduled run and nowhere else, on a branch it is only appended to, and the
-  fields a probe earns (`last_verified`, `probe_failures`, `provisional`,
-  `first_seen`) are never typed — a new row enters provisional, dated the day
-  it is added.
+  commit to what only a command may write: history.jsonl grows by exactly the
+  lines the render records for the commit's own registry, the announcer's
+  ledger changes on main on the scheduled run and nowhere else, no log is
+  rewritten, and the fields a probe earns (`last_verified`, `probe_failures`,
+  `provisional`, `first_seen`) are never typed — a new row enters provisional,
+  dated the day it is added.
 - `commit-msg` refuses a subject with no kind and a body with no blank line
   before it.
 - `pre-push` runs the same checks on the commit being pushed, and the log and
-  earned-field rules over everything the push adds, so a `--no-verify` commit
-  does not reach main unchecked.
+  earned-field rules over every commit the push adds, one by one, so a
+  `--no-verify` commit does not reach main unchecked.
 
 `freetier-gate diff BASE` is the rules between BASE and the working tree for
 the places no hook runs: CI (against the push's parent, and on a pull request
@@ -30,24 +31,30 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import json
 import os
 import re
 import subprocess
 import sys
 import tempfile
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Callable, Iterator
 
 import yaml
 
+from .history import block_problems, parse_history
 from .layout import MAP, Kind
 from .models import Entry
 
-__all__ = ["log_problems", "earned_problems", "message_problems", "snapshot_index",
-           "pre_commit", "main"]
+__all__ = ["log_problems", "earned_problems", "message_problems", "history_problems",
+           "snapshot_index", "log_base", "committed_log", "pre_commit", "diff", "main"]
 
 LOGS = tuple(n.path for n in MAP if n.kind is Kind.LOG)
 LOG_WRITERS = {n.path: n.written_by for n in MAP if n.kind is Kind.LOG}
+# The log the render writes, with every commit that changes the list; every
+# other log is written on the scheduled run alone.
+RECORDED = tuple(n.path for n in MAP if n.kind is Kind.LOG and "freetier-render" in n.written_by)
 
 # Written by the scheduled run's probe (prober.apply_results) and by nothing
 # else: the day a row last passed, the failures since, and whether it is still
@@ -67,9 +74,10 @@ def log_problems(name: str, before: str | None, after: str | None,
     if before == after:
         return []
     if frozen:
-        writers = " and ".join(LOG_WRITERS.get(name, ("its command",)))
-        return [f"{name} changes in a commit on main — only {writers} write it, on the "
-                "scheduled run and on the scout's branch"]
+        writers = LOG_WRITERS.get(name, ("its command",))
+        verb = "writes" if len(writers) == 1 else "write"
+        return [f"{name} changes in a commit on main — {' and '.join(writers)} {verb} it on "
+                "the scheduled run and nowhere else"]
     if after is None:
         return [f"{name} is deleted — it is append-only and nothing regenerates it"]
     if before is None or after.startswith(before):
@@ -79,6 +87,25 @@ def log_problems(name: str, before: str | None, after: str | None,
                 min(len(old), len(new)) + 1)
     return [f"{name} rewrites line {line} of what is committed — it is append-only: restore "
             "the file and let its command append"]
+
+
+def history_problems(before: str | None, after: str | None, registry: str | None,
+                     index: str | None, now: datetime) -> list[str]:
+    """What a commit appends to history.jsonl, held to what its render records:
+    the changes its registry makes against the log it found, on the day its
+    pages were rendered (index.json's `generated`), at one time no later than
+    the commit itself. A rewrite or a deletion is `log_problems`' to report."""
+    if registry is None or after is None or not after.startswith(before or ""):
+        return []
+    found = before or ""
+    try:
+        base = parse_history(found)
+        block = parse_history(after[len(found):], first_line=found.count("\n") + 1)
+        day = date.fromisoformat(json.loads(index)["generated"]) if index else now.date()
+    except (ValueError, KeyError, TypeError) as exc:
+        return [f"history.jsonl: {exc}"]
+    return [f"history.jsonl: {p}"
+            for p in block_problems(base, block, _registry(registry), day, now)]
 
 
 def earned_problems(before: list[Entry], after: list[Entry]) -> list[str]:
@@ -153,6 +180,31 @@ def _merging(repo: Path) -> list[str]:
     return head.read_text(encoding="utf-8").split() if head.is_file() else []
 
 
+def log_base(repo: Path) -> str:
+    """The commit whose logs the next commit is held to: HEAD on main and in a
+    merge; on any other branch the commit it left main at, since what a branch
+    appended may be written again — fixing a scout PR records the scout's
+    lines anew, as one block against main."""
+    if _branch(repo) == "main" or _merging(repo):
+        return "HEAD"
+    return _git(repo, "merge-base", "HEAD", "origin/main").stdout.strip() or "HEAD"
+
+
+def committed_log(path: Path) -> str | None:
+    """The log at `path` as the next commit will find it — what the render
+    records against — or None outside a git work tree, where there is nothing
+    to find it in and the render appends to the file as it stands."""
+    where = path.resolve().parent
+    top = _git(where, "rev-parse", "--show-toplevel")
+    if top.returncode:
+        return None
+    repo = Path(top.stdout.strip())
+    if _git(repo, "rev-parse", "--verify", "--quiet", "HEAD").returncode:
+        return ""
+    rel = path.resolve().relative_to(repo.resolve()).as_posix()
+    return _show(repo, log_base(repo), rel) or ""
+
+
 @contextlib.contextmanager
 def snapshot_index(repo: Path) -> Iterator[Path]:
     """The index exported to a directory of its own: what the commit will hold,
@@ -219,18 +271,40 @@ def pre_commit(repo: Path, steps: list[Step] | None = None) -> list[str]:
         problems = _run_steps(snap, steps)
     merging = _merging(repo)
     on_main = _branch(repo) == "main" and not merging
-    # Off main, what the branch itself appended may be written again — fixing a
-    # scout PR replaces the scout's own history lines through record_changes —
-    # so a log is held to the commit the branch left main at.
-    fork = "HEAD" if on_main or merging else (
-        _git(repo, "merge-base", "HEAD", "origin/main").stdout.strip() or "HEAD")
+    fork = log_base(repo)
     for name in LOGS:
         staged = _show(repo, "", name)
         for parent in [fork, *merging]:
-            problems += log_problems(name, _show(repo, parent, name), staged, frozen=on_main)
+            problems += log_problems(name, _show(repo, parent, name), staged,
+                                     frozen=on_main and name not in RECORDED)
     if not merging:
+        for name in RECORDED:
+            problems += history_problems(_show(repo, fork, name), _show(repo, "", name),
+                                         _show(repo, "", "registry.yaml"),
+                                         _show(repo, "", "index.json"),
+                                         datetime.now(timezone.utc))
         problems += earned_problems(_registry(_show(repo, "HEAD", "registry.yaml")),
                                     _registry(_show(repo, "", "registry.yaml")))
+    return problems
+
+
+def _history_by_commit(repo: Path, base: str, local: str) -> list[str]:
+    """The history rule for each commit from `base` to `local` along main's
+    line, against the log its parent left and at the time it was made: a range
+    read whole would take a registry change and its line one commit later for
+    a commit that recorded what it changed."""
+    problems = []
+    listed = _git(repo, "rev-list", "--reverse", "--first-parent", "--format=%H %ct",
+                  f"{base}..{local}").stdout.splitlines()
+    for line in listed:
+        if line.startswith("commit "):
+            continue
+        sha, _, stamp = line.partition(" ")
+        made = datetime.fromtimestamp(int(stamp), timezone.utc)
+        for name in RECORDED:
+            problems += [f"{sha[:7]}: {p}" for p in history_problems(
+                _show(repo, f"{sha}^", name), _show(repo, sha, name),
+                _show(repo, sha, "registry.yaml"), _show(repo, sha, "index.json"), made)]
     return problems
 
 
@@ -241,6 +315,14 @@ def diff(repo: Path, base: str, earned: bool) -> list[str]:
     for name in LOGS:
         now = (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
         problems += log_problems(name, _show(repo, base, name), now)
+    problems += _history_by_commit(repo, base, "HEAD")
+
+    def on_disk(name: str) -> str | None:
+        return (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
+    for name in RECORDED:
+        problems += history_problems(_show(repo, "HEAD", name), on_disk(name),
+                                     on_disk("registry.yaml"), on_disk("index.json"),
+                                     datetime.now(timezone.utc))
     if earned:
         registry = repo / "registry.yaml"
         problems += earned_problems(_registry(_show(repo, base, "registry.yaml")),
@@ -271,6 +353,7 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
             continue
         for name in LOGS:
             problems += log_problems(name, _show(repo, base, name), _show(repo, local, name))
+        problems += _history_by_commit(repo, base, local)
         problems += _earned_by_commit(repo, base, local)
     return problems
 

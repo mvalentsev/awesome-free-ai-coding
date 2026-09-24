@@ -43,7 +43,9 @@ What you send is not used to train models. In the vendor's words: “By submitti
 
 ## History
 
-- `2026-09-21` — Added to the list: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-21` — Added: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time
 
 ---
 

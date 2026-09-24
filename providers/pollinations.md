@@ -37,7 +37,9 @@ The keyless catalog publishes exactly one model and tags it with the tier it bel
 
 ## History
 
-- `2026-07-19` — Added to the list: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Added: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)
 
 ---
 

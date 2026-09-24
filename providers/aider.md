@@ -31,8 +31,10 @@ Tool is free and open-source; model usage is BYOK (no bundled free-model quota)
 
 ## History
 
-- `2026-07-19` — Delisted: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly
-- `2026-07-19` — Added to the list: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Delisted
+- `2026-07-19` — Added: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama
 
 ---
 

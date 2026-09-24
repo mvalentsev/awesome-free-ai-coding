@@ -34,11 +34,13 @@ Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it 
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-07-27` — Archived: vendor-announced shutdown on 2026-07-26
 - `2026-07-20` — Free models changed: added mimo-v2.5
 - `2026-07-20` — Free models changed: dropped mimo
 - `2026-07-19` — Free models changed: added mimo
-- `2026-07-19` — Added to the list: Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card
+- `2026-07-19` — Added: Xiaomi's open-source (MIT) terminal coding agent; built-in "MiMo Auto" channel runs Xiaomi's MiMo models with no login, API key, or card
 
 ---
 

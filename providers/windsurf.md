@@ -43,9 +43,11 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-08-17` — Free models changed: dropped claude-haiku, gpt-5.2-mini, kimi-k2.5
 - `2026-07-19` — Free models changed: added claude-haiku, gpt-5.2-mini, kimi-k2.5
-- `2026-07-19` — Added to the list: Free plan + trial of paid tiers
+- `2026-07-19` — Added: Free plan + trial of paid tiers
 
 ---
 

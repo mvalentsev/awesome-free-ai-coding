@@ -31,7 +31,8 @@ import httpx
 
 from .history import Event, EventType, load_history
 from .models import Entry, is_archived, live_families, load_registry, probe_frequency
-from .render import CATEGORY_TITLES, PAGES_URL, REPO_URL, picks, provider_page_url
+from .render import (CATEGORY_TITLES, EVENT_WORDS, PAGES_URL, REPO_URL, event_detail, picks,
+                     provider_page_url)
 
 __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
            "channels_from_env", "devto_from_env", "compose", "event_key", "link_facets",
@@ -87,10 +88,8 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
         lead, body, tail = (f"Back: {ev.name}", ev.detail or "passing its probe again",
                             "Restored to the list")
     elif ev.event is EventType.REMOVED:
-        # A delisting recorded before rows were archived carries no detail; the
-        # row is back in the registry as delisted, with the reason.
-        reason = ev.detail or (e.delisted.reason if e is not None and e.delisted else "")
-        lead, body, tail = f"Delisted: {ev.name}", reason, "Taken off the list by a reviewer"
+        lead, body, tail = (f"Delisted: {ev.name}", event_detail(ev, list(entries_by_id.values())),
+                            "Taken off the list by a reviewer")
     else:
         lead = f"{ev.name}: free models changed"
         body = ev.detail
@@ -161,10 +160,6 @@ class Mastodon:
 DEVTO_API = "https://dev.to/api/articles"
 # Dev.to takes four tags at most; these are the ones its readers follow.
 DIGEST_TAGS = ["ai", "llm", "opensource", "free"]
-PAGE_LABELS_PLAIN: dict[EventType, str] = {
-    EventType.ADDED: "Added", EventType.ARCHIVED: "Archived", EventType.RESTORED: "Restored",
-    EventType.REMOVED: "Delisted", EventType.MODELS: "Free models changed",
-}
 
 
 @dataclass
@@ -239,10 +234,11 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
     out += ["", f"## What changed in {start:%B}", ""]
     if changed:
         for ev in changed:
-            line = f"- `{ev.ts.date().isoformat()}` — {PAGE_LABELS_PLAIN[ev.event]}: **{ev.name}**"
-            if ev.detail:
-                line += f" — {ev.detail}"
-            elif ev.models:
+            line = f"- `{ev.ts.date().isoformat()}` — {EVENT_WORDS[ev.event]}: **{ev.name}**"
+            detail = event_detail(ev, entries)
+            if detail:
+                line += f" — {detail}"
+            elif ev.models and ev.event is not EventType.REMOVED:
                 line += " — " + ", ".join(ev.models)
             out.append(line)
     else:

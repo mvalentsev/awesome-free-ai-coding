@@ -12,8 +12,8 @@ from xml.sax.saxutils import escape, quoteattr
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-from .history import (Event, EventType, archive_reason, diff_state, load_history,
-                      refuse_deleted_rows, registry_state, replay)
+from .history import (Event, EventType, archive_reason, load_history, pending_changes,
+                      record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
                      SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, Notice,
                      ProbeType, Tier, Watched, _id_squash, domain_of, family_names, folded_into,
@@ -28,6 +28,7 @@ from .prober import PROVISIONAL_PROMOTE_DAYS
 # table states beside the answer.
 from .tiers import FRONTIER_WITHIN
 # The map of the repository, which CONTRIBUTING.md prints.
+from .gate import committed_log
 from .layout import MAP, markdown_table
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
@@ -165,23 +166,23 @@ def _ordered(active: list[Entry], category: Category) -> list[Entry]:
     return sorted((e for e in active if e.category is category), key=_by_rank)
 
 
-# What each event is called where a human reads it. The feed titles stand alone
-# in a reader's inbox, so they name the thing that happened; the README labels
-# sit in a column beside the name and can be shorter.
-FEED_TITLES: dict[EventType, str] = {
-    EventType.ADDED: "New: {name}",
-    EventType.ARCHIVED: "Archived: {name}",
-    EventType.RESTORED: "Back: {name}",
-    EventType.REMOVED: "Delisted: {name}",
-    EventType.MODELS: "Free models changed: {name}",
+# What each event is called wherever a human reads it: the row's page, the
+# "What changed" tables, the feed and the monthly digest. One word each — until
+# 2026-09-25 four tables named the five events, and "Added to the list", "New"
+# and "➕ Added" were one event. The tables put a mark before the word.
+EVENT_WORDS: dict[EventType, str] = {
+    EventType.ADDED: "Added",
+    EventType.ARCHIVED: "Archived",
+    EventType.RESTORED: "Restored",
+    EventType.REMOVED: "Delisted",
+    EventType.MODELS: "Free models changed",
+}
+_EVENT_MARKS: dict[EventType, str] = {
+    EventType.ADDED: "➕", EventType.ARCHIVED: "📦", EventType.RESTORED: "↩",
+    EventType.REMOVED: "➖", EventType.MODELS: "🔄",
 }
 CHANGE_LABELS: dict[EventType, str] = {
-    EventType.ADDED: "➕ Added",
-    EventType.ARCHIVED: "📦 Archived",
-    EventType.RESTORED: "↩ Restored",
-    EventType.REMOVED: "➖ Delisted",
-    EventType.MODELS: "🔄 Free models",
-}
+    kind: f"{_EVENT_MARKS[kind]} {word}" for kind, word in EVENT_WORDS.items()}
 
 
 def _families(e: Entry) -> list[str]:
@@ -557,11 +558,13 @@ def _event_link(ev: Event, entries: list[Entry] | None, today: date) -> str:
     return ev.url or REPO_URL
 
 
-def _event_detail(ev: Event, entries: list[Entry] | None) -> str:
+def event_detail(ev: Event, entries: list[Entry] | None) -> str:
     """What an event says after its name. A row deleted before rows were
     archived carries no detail in the history — "➖ Delisted Kenari —" was all
     the page said about four rows on 2026-09-17 — and the row is back in the
-    registry as delisted, so the reason the Archive keeps answers for it."""
+    registry as delisted, so the reason the Archive keeps answers for it, on
+    every page that lists events of many rows. The row's own page says it once,
+    in its header."""
     if ev.detail or ev.event is not EventType.REMOVED:
         return ev.detail
     row = next((e for e in entries or [] if e.id == ev.id), None)
@@ -581,7 +584,7 @@ def _change_rows(events: list[Event], entries: list[Entry] | None = None,
          "label": CHANGE_LABELS[ev.event],
          "name": ev.name,
          "url": _event_link(ev, entries, today or date.today()),
-         "detail": _event_detail(ev, entries).replace("|", r"\|") or "—"}
+         "detail": event_detail(ev, entries).replace("|", r"\|") or "—"}
         for ev in _newest_first(events, limit)
     ]
 
@@ -635,8 +638,8 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES,
         "  <author><name>freetier-radar</name></author>",
     ]
     for ev in recent:
-        title = FEED_TITLES[ev.event].format(name=ev.name)
-        summary = _event_detail(ev, entries) or title
+        title = f"{EVENT_WORDS[ev.event]}: {ev.name}"
+        summary = event_detail(ev, entries) or title
         # Only where the list is what the event is about. An entry on its way
         # out carries its last known families too, and appending them to
         # "Delisted" reads as an offer rather than as an epitaph.
@@ -959,7 +962,7 @@ def _site_changes(events: list[Event], entries: list[Entry] | None,
     has no cell separator to protect a vendor's sentence from."""
     return [{"date": ev.ts.date().isoformat(), "label": CHANGE_LABELS[ev.event],
              "name": ev.name, "url": _event_link(ev, entries, today),
-             "detail": _event_detail(ev, entries)}
+             "detail": event_detail(ev, entries)}
             for ev in _newest_first(events, limit)]
 
 
@@ -1358,25 +1361,16 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
     return "\n".join(lines)
 
 
-PAGE_LABELS: dict[EventType, str] = {
-    EventType.ADDED: "Added to the list",
-    EventType.ARCHIVED: "Archived",
-    EventType.RESTORED: "Restored",
-    EventType.REMOVED: "Delisted",
-    EventType.MODELS: "Free models changed",
-}
-
-
-def _event_text(ev: Event, e: Entry | None = None) -> str:
-    """What a provider page says about one event, after its date. A delisting
-    says why, from the row the Archive keeps — never the families the row had,
-    which after "Delisted" read as the thing taken off."""
-    detail = _event_detail(ev, [e] if e is not None else None)
-    if detail:
-        return f"{PAGE_LABELS[ev.event]}: {detail}"
+def _event_text(ev: Event) -> str:
+    """What a row's page says about one of its events, after the date. A
+    delisting says why in the page's header, with the reviewer's date; the
+    families a row had are not repeated after "Delisted", where they read as
+    the thing taken off."""
+    if ev.detail:
+        return f"{EVENT_WORDS[ev.event]}: {ev.detail}"
     if ev.models and ev.event is not EventType.REMOVED:
-        return f"{PAGE_LABELS[ev.event]}: " + ", ".join(ev.models)
-    return PAGE_LABELS[ev.event]
+        return f"{EVENT_WORDS[ev.event]}: " + ", ".join(ev.models)
+    return EVENT_WORDS[ev.event]
 
 
 def _front_matter(fields: dict) -> str:
@@ -1478,23 +1472,19 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
     return out
 
 
-def _history_section(e: Entry, events: list[Event], today: date) -> list[str]:
-    """Every event this row has, newest first, and the one the next run will write.
+def _history_section(e: Entry, events: list[Event]) -> list[str]:
+    """Every event of this row, newest first, as history.jsonl holds it.
 
-    history.jsonl is written by the probe run alone, so between a hand edit
-    and the next scheduled run the log still describes the row as it was:
-    Cline, back on the list on 2026-09-14, read "Delisted" as its newest
-    event under a header that said live. The line that run will write comes
-    from the same diff and heads the list without a date, since nothing has
-    recorded one yet — which also covers a row with no history at all.
+    The render records a change before it writes the page, so the newest line
+    is the commit's own. Until 2026-09-25 only the scheduled run recorded, and
+    the page guessed at the line it would write — Cline, back on 2026-09-14,
+    read "Delisted" as its newest event under a header that said live.
     """
-    out = ["", "## History", ""]
-    own = [ev for ev in events if ev.id == e.id]
-    stamp = datetime.combine(today, time(), tzinfo=timezone.utc)
-    for ev in diff_state(replay(own), registry_state([e], today), stamp):
-        out.append(f"- *next scheduled run* — {_event_text(ev, e)}")
-    for ev in reversed(own):
-        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev, e)}")
+    out = ["", "## History", "",
+           "Each line is a change to what this page publishes, dated the day the list "
+           "recorded it, in UTC.", ""]
+    for ev in reversed([ev for ev in events if ev.id == e.id]):
+        out.append(f"- `{ev.ts.date().isoformat()}` — {_event_text(ev)}")
     return out
 
 
@@ -1528,7 +1518,7 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
            f"behind it and what became of it are on the [{name}]({page}) page — this id is kept "
            f"because the list published it, and nothing the list published disappears without "
            f"a word."]
-    out += _history_section(e, events, today)
+    out += _history_section(e, events)
     out += ["", "---", "",
             f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row any "
             f"more — the list keeps one row per service; the full list, the Atom feed and the "
@@ -1633,7 +1623,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     if not archived:
         out += _connect_section(e)
     out += _evidence_section(e, blocked)
-    out += _history_section(e, events, today)
+    out += _history_section(e, events)
     if not archived:
         standing = (f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
                     f"{_schedule()}")
@@ -1727,10 +1717,17 @@ def _blocklist_beside(registry_path: Path) -> dict[str, str]:
     return load_blocklist(registry_path.parent / "blocklist.yaml")
 
 
+HISTORY = "history.jsonl"
+
+
+def _history_path(registry_path: Path) -> Path:
+    return registry_path.parent / HISTORY
+
+
 def _history_beside(registry_path: Path) -> list[Event]:
     """The change log of this registry, read the same way — a sibling file, and
     missing means nothing has been recorded yet."""
-    return load_history(registry_path.parent / "history.jsonl")
+    return load_history(_history_path(registry_path))
 
 
 def _markdown_env(template_dir: Path) -> Environment:
@@ -1927,6 +1924,23 @@ def render_all(registry_path: Path, template_dir: Path, root: Path,
     render_contributing((contributing_from or root) / CONTRIBUTING, root / CONTRIBUTING)
 
 
+def render_repository(registry_path: Path, template_dir: Path, root: Path,
+                      readme_name: str = "README.md", today: date | None = None,
+                      now: datetime | None = None, watchlist_path: Path | None = None,
+                      committed: str | None = None) -> list[Event]:
+    """What `freetier-render` does: record every change the registry makes in
+    history.jsonl beside it, then write every page — so the commit that makes a
+    change carries its line, and the pages it publishes already show it.
+    `committed` is the log the commit will be made on (`gate.committed_log`);
+    the lines recorded are the ones it will add."""
+    today = today or date.today()
+    recorded = record_changes(registry_path, _history_path(registry_path), today,
+                              now or datetime.now(timezone.utc), committed=committed)
+    render_all(registry_path, template_dir, root, readme_name, today=today,
+               watchlist_path=watchlist_path)
+    return recorded
+
+
 def _generated_on(root: Path, today: date) -> date:
     """The day the committed artifacts were rendered on, read back off them.
 
@@ -1970,6 +1984,10 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
                  for p in tmp.rglob("*") if p.is_file()}
     stale = [rel for rel, data in fresh.items()
              if not (root / rel).is_file() or (root / rel).read_bytes() != data]
+    # The log is the render's to write too: a registry that moves on and a log
+    # that does not would publish a change no page lists and no feed announces.
+    if pending_changes(load_registry(registry_path), _history_beside(registry_path), pinned):
+        stale.append(HISTORY)
     # render_artifacts deletes the page of a row that left, but only in the
     # directory it wrote; a page left behind in the repository is still served,
     # so the absent half of the comparison counts too.
@@ -2005,7 +2023,11 @@ def main() -> None:
             print("run `TZ=UTC uv run freetier-render` and commit what it writes")
             raise SystemExit(1)
         return
-    render_all(args.registry, args.templates, root, args.out.name, watchlist_path=args.watchlist)
+    recorded = render_repository(args.registry, args.templates, root, args.out.name,
+                                 watchlist_path=args.watchlist,
+                                 committed=committed_log(_history_path(args.registry)))
+    for ev in recorded:
+        print(f"history: {ev.event.value} {ev.id}")
     print(f"rendered {written}")
 
 

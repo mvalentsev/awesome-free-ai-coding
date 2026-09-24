@@ -49,10 +49,11 @@ jobs:
       - name: Curated files + cross-file consistency
         run: uv run freetier-check
 
-      # What no check of one tree can see: history.jsonl and the announcer's
-      # ledger only ever appended to, and on a pull request the fields a probe
-      # earns (last_verified, probe_failures, provisional, first_seen) left as
-      # the run wrote them. The pre-commit hook holds a commit to the same rules
+      # What no check of one tree can see: history.jsonl grown, commit by
+      # commit, by exactly the lines each commit's render records, the
+      # announcer's ledger only ever appended to, and on a pull request the
+      # fields a probe earns (last_verified, probe_failures, provisional,
+      # first_seen) left as the run wrote them. The pre-commit hook holds a commit to the same rules
       # before it exists; this holds a push or a pull request made without it.
       # On a pull request HEAD is the merge commit, and its first parent is the
       # branch the request would land on.

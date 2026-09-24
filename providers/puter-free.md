@@ -30,8 +30,10 @@ No API key or developer cost; usage billed to each end user's Puter account; per
 
 ## History
 
-- `2026-07-19` — Delisted: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan
-- `2026-07-19` — Added to the list: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Delisted
+- `2026-07-19` — Added: Browser SDK exposing hundreds of models (GPT, Claude, Gemini, Grok) at no developer cost via Puter's User-Pays model
 
 ---
 

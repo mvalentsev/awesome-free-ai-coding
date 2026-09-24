@@ -42,7 +42,9 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## History
 
-- `2026-08-17` — Added to the list: Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-08-17` — Added: Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway
 
 ---
 

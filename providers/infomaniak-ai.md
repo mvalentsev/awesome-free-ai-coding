@@ -31,8 +31,10 @@ The row named no free model.
 
 ## History
 
-- `2026-09-17` — Delisted: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit
-- `2026-09-03` — Added to the list: Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-17` — Delisted
+- `2026-09-03` — Added: Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token
 
 ---
 

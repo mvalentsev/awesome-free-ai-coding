@@ -31,8 +31,10 @@ Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recur
 
 ## History
 
-- `2026-08-17` — Delisted: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day
-- `2026-07-22` — Added to the list: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-08-17` — Delisted
+- `2026-07-22` — Added: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota
 
 ---
 

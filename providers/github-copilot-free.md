@@ -39,7 +39,9 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
-- `2026-07-19` — Added to the list: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Added: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage
 
 ---
 

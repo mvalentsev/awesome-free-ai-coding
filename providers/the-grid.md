@@ -46,7 +46,9 @@ What you send is not used to train models. In the vendor's words: “Neither we 
 
 ## History
 
-- `2026-09-21` — Added to the list: OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-09-21` — Added: OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time
 
 ---
 

@@ -309,8 +309,12 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
         CONFIGS_README, SITE_PAGE, check_rendered, render_configs_readme, render_site,
     )
 
+    from freetier_radar.history import record_changes
+
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [api_entry(id="x", name="X"), make(id="gone", name="Gone")])
+    record_changes(reg, tmp_path / "history.jsonl", TODAY,
+                   datetime(2026, 7, 19, 9, 30, tzinfo=timezone.utc))
     render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     render_site(reg, Path("templates"), tmp_path / SITE_PAGE, today=TODAY)
     render_configs_readme(reg, Path("templates"), tmp_path / CONFIGS_README, today=TODAY)
@@ -329,11 +333,10 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
     # and so is the connection table beside the configs.
     assert SITE_PAGE in stale and CONFIGS_README in stale
 
-    # A row dropped from the registry leaves its page behind, and the page is
-    # served: the check has to see a file the render no longer makes, not only
-    # the ones whose bytes moved.
-    save_registry(reg, [api_entry(id="x", name="X")])
-    assert "providers/gone.md" in check_rendered(reg, Path("templates"), tmp_path)
+    # A page no row renders any more is still served: the check has to see a
+    # file the render no longer makes, not only the ones whose bytes moved.
+    (tmp_path / "providers" / "stray.md").write_text("# Stray\n", encoding="utf-8")
+    assert "providers/stray.md" in check_rendered(reg, Path("templates"), tmp_path)
 
 
 def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path):
@@ -818,7 +821,7 @@ def test_the_feed_is_well_formed_atom():
     assert any(link.get("rel") == "self" and link.get("href") == FEED_URL
                for link in feed.findall(f"{ns}link"))
     entry = feed.find(f"{ns}entry")
-    assert entry.findtext(f"{ns}title") == "New: X"
+    assert entry.findtext(f"{ns}title") == "Added: X"
     assert entry.findtext(f"{ns}updated") == "2026-07-18T05:23:00Z"
     assert entry.findtext(f"{ns}summary") is not None
     assert entry.find(f"{ns}link").get("href") == "https://x.ai"
@@ -839,7 +842,7 @@ def test_the_feed_escapes_what_would_otherwise_break_the_xml():
     feed = build_feed([ev(name="A & B <script>", detail="1 < 2 & 3 > 2")], TODAY)
     assert "<script>" not in feed
     entry = ElementTree.fromstring(feed).find("{http://www.w3.org/2005/Atom}entry")
-    assert entry.findtext("{http://www.w3.org/2005/Atom}title") == "New: A & B <script>"
+    assert entry.findtext("{http://www.w3.org/2005/Atom}title") == "Added: A & B <script>"
 
 
 def test_the_feed_carries_the_newest_events_first_and_stops_at_the_cap():
@@ -870,7 +873,7 @@ def test_render_writes_the_feed_beside_the_other_artifacts(tmp_path: Path):
 
     feed = (tmp_path / "feed.xml").read_text(encoding="utf-8")
     assert feed.startswith("<?xml")
-    assert "New: X" in feed
+    assert "Added: X" in feed
 
 
 def test_the_readme_shows_what_changed_and_links_the_feed(tmp_path: Path):
@@ -929,15 +932,54 @@ def test_an_event_about_an_archived_row_links_its_page_not_the_vendor():
     assert "https://gone.example" not in feed and page in feed
 
 
-def test_a_provider_page_says_why_a_row_was_delisted_not_which_models_it_had():
+def test_a_provider_page_says_why_a_row_was_delisted_once_and_not_which_models_it_had():
+    """The header says why the row left, with the reviewer's date. A deletion
+    recorded before rows were archived carries no reason of its own, and the
+    page used to borrow the header's under the older date — Puter's history
+    read "2026-07-19 — Delisted: … the endpoint read on 2026-09-14 …"."""
     from freetier_radar.render import build_provider_page
     gone = make(id="gone", name="Gone", models=[{"family": "a"}],
                 delisted={"on": TODAY, "reason": "the free lane is gone"})
     page = build_provider_page(gone, [ev(id="gone", name="Gone"),
                                       ev(event="removed", id="gone", name="Gone", models=["a"],
                                          ts="2026-07-19T05:23:00Z")], TODAY)
-    assert "— Delisted: the free lane is gone" in page
-    assert "Delisted: a" not in page
+    body = page.split("{% raw %}")[1]
+    assert body.count("the free lane is gone") == 1
+    assert _history_lines(page)[0] == "- `2026-07-19` — Delisted"
+
+
+@pytest.mark.parametrize("kind, word", [
+    ("added", "Added"), ("archived", "Archived"), ("restored", "Restored"),
+    ("removed", "Delisted"), ("models", "Free models changed")])
+def test_an_event_goes_by_one_word_wherever_it_is_named(kind, word):
+    """The README said "➕ Added", the row's page "Added to the list" and the
+    feed "New:", each from a table of its own: four tables for five events, and
+    a word changed in one never reached the others."""
+    from freetier_radar.announce import build_digest
+    from freetier_radar.render import build_provider_page
+
+    row = make(id="row", name="Row")
+    event = ev(event=kind, id="row", name="Row", detail="what happened")
+    label = build_context([row], TODAY, history=[event])["changes"][0]["label"]
+    assert label.split(" ", 1)[1] == word
+    ns = "{http://www.w3.org/2005/Atom}"
+    feed = ElementTree.fromstring(build_feed([event], TODAY, entries=[row]))
+    assert feed.find(f"{ns}entry").findtext(f"{ns}title") == f"{word}: Row"
+    assert _history_lines(build_provider_page(row, [event], TODAY)) == [
+        f"- `2026-07-18` — {word}: what happened"]
+    _, digest = build_digest([row], [event], date(2026, 8, 3))
+    assert f"— {word}: **Row** — what happened" in digest
+
+
+def test_the_digest_says_why_a_row_was_delisted_as_the_readme_does():
+    """The monthly digest composed its lines on its own and printed a deletion
+    recorded before rows were archived as a bare "Delisted", where the README
+    and the feed read the reason the Archive keeps."""
+    from freetier_radar.announce import build_digest
+    gone = make(id="gone", name="Gone", delisted={"on": TODAY, "reason": "the free lane is gone"})
+    removal = ev(event="removed", id="gone", name="Gone", detail="")
+    _, digest = build_digest([make(), gone], [removal], date(2026, 8, 3))
+    assert "— Delisted: **Gone** — the free lane is gone" in digest
 
 
 def test_the_archive_says_why_each_row_left_and_links_its_page_not_the_vendor(tmp_path: Path):
@@ -1177,37 +1219,51 @@ def test_a_provider_page_carries_the_evidence_and_the_history():
     assert provider_page_url("groq-free") == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"
 
 
-def test_a_change_the_history_has_not_recorded_yet_heads_the_page_history():
-    """history.jsonl is written by the probe run alone, so a row edited by hand
-    keeps its old history until the next scheduled run. Cline came back on
-    2026-09-14 and its page read "Delisted" as the newest event under a header
-    that said live. The page shows the line that run will write — the same
-    label and detail, from the same diff — without a date, since nothing has
-    recorded one yet."""
-    from freetier_radar.render import build_provider_page
+def _history_lines(page: str) -> list[str]:
+    block = page.split("## History")[1].split("\n---\n")[0]
+    return [line for line in block.splitlines() if line.startswith("- ")]
 
-    def at(day: int, event: EventType, detail: str = "") -> Event:
-        return Event(ts=datetime(2026, 7, day, tzinfo=timezone.utc), event=event,
-                     id="back", name="Back", url="https://x.ai", detail=detail)
 
-    def history_lines(page: str) -> list[str]:
-        block = page.split("## History")[1].split("\n---\n")[0]
-        return [line for line in block.splitlines() if line.startswith("- ")]
+def test_the_render_records_a_change_before_it_writes_the_pages(tmp_path: Path):
+    """history.jsonl was written by the scheduled run alone, so a row added by
+    hand was on the README the day it was committed and in its own page's
+    history days later: Sail Research read "added on 2026-09-21" above
+    "2026-09-24 — Added to the list", and the lines between a commit and the
+    run were a guess without a date. The render records every change the
+    commit makes, before it writes a page that shows it."""
+    from freetier_radar.history import load_history
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_repository
 
-    e = make(id="back", name="Back", offering="free models after all")
-    delisted = [at(1, EventType.ADDED, "byok only"), at(2, EventType.REMOVED)]
-    lines = history_lines(build_provider_page(e, delisted, TODAY))
-    assert len(lines) == 3
-    assert "Added to the list: free models after all" in lines[0]
-    assert not lines[0].startswith("- `")
-    assert lines[1] == "- `2026-07-02` — Delisted"
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="new", name="New", offering="free models, no card")])
+    now = datetime(2026, 7, 19, 9, 30, tzinfo=timezone.utc)
+    written = render_repository(reg, Path("templates"), tmp_path, today=TODAY, now=now,
+                                committed="")
 
-    recorded = delisted + [at(19, EventType.ADDED, "free models after all")]
-    lines = history_lines(build_provider_page(e, recorded, TODAY))
-    assert len(lines) == 3 and lines[0].startswith("- `2026-07-19` — Added to the list")
+    assert [(e.event, e.id, e.ts) for e in written] == [(EventType.ADDED, "new", now)]
+    assert load_history(tmp_path / "history.jsonl") == written
+    page = (tmp_path / "providers" / "new.md").read_text(encoding="utf-8")
+    assert _history_lines(page) == ["- `2026-07-19` — Added: free models, no card"]
+    readme = (tmp_path / "README.md").read_text(encoding="utf-8")
+    assert "| `2026-07-19` | ➕ Added **[New]" in readme
 
-    unseen = history_lines(build_provider_page(make(id="new"), [], TODAY))
-    assert len(unseen) == 1 and "Added to the list: stuff" in unseen[0]
+
+def test_the_check_finds_a_history_the_registry_has_moved_past(tmp_path: Path):
+    """A commit that changed the registry and not the log would publish pages
+    with no line for the change and a feed that never mentions it."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import check_rendered, render_all, render_repository
+
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="a", name="A")])
+    render_repository(reg, Path("templates"), tmp_path, today=TODAY,
+                      now=datetime(2026, 7, 19, 9, 30, tzinfo=timezone.utc), committed="")
+    assert check_rendered(reg, Path("templates"), tmp_path) == []
+
+    save_registry(reg, [make(id="a", name="A"), make(id="b", name="B")])
+    render_all(reg, Path("templates"), tmp_path, today=TODAY)
+    assert check_rendered(reg, Path("templates"), tmp_path) == ["history.jsonl"]
 
 
 def test_an_archived_provider_page_says_so_and_why():

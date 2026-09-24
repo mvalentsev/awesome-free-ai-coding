@@ -275,16 +275,16 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
-| `2026-09-24` | 🔄 Free models **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2</sub> |
+| `2026-09-24` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2</sub> |
 | `2026-09-24` | 📦 Archived **[Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/)** | <sub>vendor-announced shutdown on 2026-05-15</sub> |
-| `2026-09-24` | 🔄 Free models **[Cline](https://cline.bot)** | <sub>added muse-spark-1.3-contributor; dropped laguna-s-2.1</sub> |
+| `2026-09-24` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added muse-spark-1.3-contributor; dropped laguna-s-2.1</sub> |
 | `2026-09-24` | ➕ Added **[Dahl Inference](https://inference.dahl.global)** | <sub>An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account</sub> |
 | `2026-09-24` | ➕ Added **[Experiential Labs](https://www.experientiallabs.ai)** | <sub>An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check</sub> |
-| `2026-09-24` | 🔄 Free models **[Freebuff](https://freebuff.com)** | <sub>dropped gpt-5.6-luna, mimo-v2.5</sub> |
-| `2026-09-24` | 🔄 Free models **[FreeInference (Harvard SEAS)](https://freeinference.org)** | <sub>added diffusiongemma, minimax-m2.5</sub> |
-| `2026-09-24` | 🔄 Free models **[Google AI Studio (Gemini API)](https://aistudio.google.com)** | <sub>dropped gemini-2.5-pro</sub> |
-| `2026-09-24` | 🔄 Free models **[Kilo Code](https://kilo.ai)** | <sub>added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning</sub> |
-| `2026-09-24` | 🔄 Free models **[Kiro](https://kiro.dev/)** | <sub>added minimax-m2.1; dropped minimax-2.1</sub> |
+| `2026-09-24` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>dropped gpt-5.6-luna, mimo-v2.5</sub> |
+| `2026-09-24` | 🔄 Free models changed **[FreeInference (Harvard SEAS)](https://freeinference.org)** | <sub>added diffusiongemma, minimax-m2.5</sub> |
+| `2026-09-24` | 🔄 Free models changed **[Google AI Studio (Gemini API)](https://aistudio.google.com)** | <sub>dropped gemini-2.5-pro</sub> |
+| `2026-09-24` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning</sub> |
+| `2026-09-24` | 🔄 Free models changed **[Kiro](https://kiro.dev/)** | <sub>added minimax-m2.1; dropped minimax-2.1</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

@@ -44,10 +44,12 @@ What you send is not used to train models. In the vendor's words: “Your data w
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-21` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-10` — Free models changed: added qwen3.8
 - `2026-08-20` — Free models changed: added qwen3-coder, qwen3.6; dropped qwen3
-- `2026-07-19` — Added to the list: EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible)
+- `2026-07-19` — Added: EU-hosted serverless open-model API; anonymous tier needs no signup or API key (OpenAI-compatible)
 
 ---
 

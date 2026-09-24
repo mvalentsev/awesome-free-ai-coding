@@ -17,8 +17,10 @@ This row was delisted on 2026-07-19: the same project as MiMo Code, the name Xia
 
 ## History
 
-- `2026-07-19` — Delisted: the same project as MiMo Code, the name Xiaomi's own README prints — a placeholder from the list's first day at mimocode.ai, a domain that still publishes no site, taken off the same day as unverifiable and folded into that row on 2026-09-20
-- `2026-07-19` — Added to the list: Coding agent with free tier
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
+- `2026-07-19` — Delisted
+- `2026-07-19` — Added: Coding agent with free tier
 
 ---
 

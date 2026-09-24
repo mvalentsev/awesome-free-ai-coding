@@ -44,6 +44,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-09-24` — Free models changed: added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-08-14` — Free models changed: dropped ling-3.0-tiny
 - `2026-08-11` — Free models changed: added laguna-xs-2.1, ling-3.0-tiny, nemotron-3-super
@@ -51,7 +53,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - `2026-08-05` — Free models changed: added ling-3.0-flash, nemotron-3-ultra, north-mini-code
 - `2026-07-19` — Free models changed: dropped claude-sonnet-5, gemini-3.1-pro, gpt-5.5
 - `2026-07-19` — Free models changed: added claude-sonnet-5, gemini-3.1-pro, gpt-5.5
-- `2026-07-19` — Added to the list: VS Code agent extension with free starter credits
+- `2026-07-19` — Added: VS Code agent extension with free starter credits
 
 ---
 

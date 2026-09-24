@@ -43,9 +43,11 @@ What you send is not used to train models. In the vendor's words: “For enterpr
 
 ## History
 
+Each line is a change to what this page publishes, dated the day the list recorded it, in UTC.
+
 - `2026-08-14` — Free models changed: added glm-4.5-flash, glm-4.6v-flash
 - `2026-07-27` — Free models changed: added glm-4.7-flash; dropped glm-4.5
-- `2026-07-19` — Added to the list: GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4)
+- `2026-07-19` — Added: GLM Flash models free on the API (OpenAI-compatible at api.z.ai/api/paas/v4)
 
 ---
 
