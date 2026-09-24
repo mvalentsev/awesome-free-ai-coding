@@ -33,7 +33,6 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a`, `north-mini-code` | `2026-09-21` |
 | [Mistral Studio](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) | 🔌 LLM APIs with free tier | `qwen3.8-27b` | `2026-09-21` |
-| [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder` | `2026-09-21` |
 | [ModelScope API-Inference (Alibaba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [SEA-LION (AI Singapore)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [OpenTyphoon (SCB 10X)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
@@ -42,6 +41,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Tencent Cloud TokenHub](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/) | 🔌 LLM APIs with free tier | `deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6`, `minimax-m2.5`, `diffusiongemma` | `2026-09-21` |
 | [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
+| [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder` | `2026-09-21` |
 | [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) | 🔌 LLM APIs with free tier | — | `2026-09-21` |
 | [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) | 🔌 LLM APIs with free tier | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | `2026-09-21` |
 | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) | 🔌 LLM APIs with free tier | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | `2026-09-21` |

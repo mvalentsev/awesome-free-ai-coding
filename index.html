@@ -813,25 +813,6 @@ OpenAI-compatible gateway for vision and language models whose models on VLM Run
           </tr>
           <tr>
             <th class="who" scope="row">
-              <a class="name" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a>
-              <div class="tags">
-<span class="tag nokey">no key</span>              </div>
-            </th>
-            <td class="what" data-label="What you get">
-EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible)            </td>
-            <td class="models" data-label="Free models">
-              <div class="chips">
-<span class="chip">gpt-oss</span><span class="chip">qwen3.6</span><span class="chip">qwen3.8-27b</span><span class="chip">qwen3-coder</span>              </div>
-            </td>
-            <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>OVHcloud documents the anonymous lane: &#34;Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests …</summary><span class="full">OVHcloud documents the anonymous lane: &#34;Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model&#34;, and its product page says &#34;Test all our models for free in a sandbox or via the API&#34;. The limit is tighter in practice: on 2026-09-23 one call every 20 seconds to Qwen3.8-27B from one address got two answers in eight, the rest 429 with a Retry-After — the quota, not a refusal. A key bills every chat model per token, Qwen3.8-27B at &#34;0.4 € / Mtoken(input)&#34; and &#34;2.7 € / Mtoken(output)&#34;. Read 2026-09-23</span></details>
-            </td>
-            <td class="when" data-label="Verified">
-              <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/"><time datetime="2026-09-21">2026-09-21</time></a>
-            </td>
-          </tr>
-          <tr>
-            <th class="who" scope="row">
               <a class="name" href="https://modelscope.cn">ModelScope API-Inference (Alibaba)</a>
               <div class="tags">
 <span class="tag new">🧪 new</span><span class="tag">Claude Code</span>              </div>
@@ -968,6 +949,25 @@ Cloud-hosted open models on a $0 plan that grants starter usage credits for a st
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/"><time datetime="2026-09-21">2026-09-21</time></a>
+            </td>
+          </tr>
+          <tr>
+            <th class="who" scope="row">
+              <a class="name" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a>
+              <div class="tags">
+<span class="tag nokey">no key</span>              </div>
+            </th>
+            <td class="what" data-label="What you get">
+EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller            </td>
+            <td class="models" data-label="Free models">
+              <div class="chips">
+<span class="chip">gpt-oss</span><span class="chip">qwen3.6</span><span class="chip">qwen3.8-27b</span><span class="chip">qwen3-coder</span>              </div>
+            </td>
+            <td class="limits" data-label="Limits, in the vendor's words">
+                <details><summary>OVHcloud documents the anonymous lane: &#34;Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests …</summary><span class="full">OVHcloud documents the anonymous lane: &#34;Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model&#34;, and its product page says &#34;Test all our models for free in a sandbox or via the API&#34;. It is not counted per IP in practice: on 2026-09-24 one call a minute to Qwen3.8-27B from an address nothing else used answered twice in five, and each answer left `ratelimit-remaining: 0`, another caller having spent the minute&#39;s other request; the first call of a minute on six ids, and every call from a GitHub runner that morning, answered 429. The two requests a minute per model are shared by every anonymous caller. A key bills every chat model per token, Qwen3.8-27B at &#34;0.4 € / Mtoken(input)&#34; and &#34;2.7 € / Mtoken(output)&#34;. Read 2026-09-24</span></details>
+            </td>
+            <td class="when" data-label="Verified">
+              <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/"><time datetime="2026-09-21">2026-09-21</time></a>
             </td>
           </tr>
           <tr>
@@ -1986,7 +1986,7 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
             </tr>
             <tr>
               <th scope="row"><code>qwen3.6</code></th>
-              <td><a href="https://groq.com">Groq</a>, <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+              <td><a href="https://groq.com">Groq</a>, <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
             </tr>
             <tr>
               <th scope="row"><code>dots-3-note</code></th>
@@ -2689,20 +2689,6 @@ Free mode is on by default for a new account; create the key under Studio › AP
 chat-only; model ids namespaced (openai/gpt-oss-120b)            </td>
           </tr>
           <tr>
-            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/">OVHcloud AI Endpoints</a></th>
-            <td class="what" data-label="Base URL">
-              <code>https://oai.endpoints.kepler.ai.cloud.ovh.net/v1</code>
-              <button class="copy" type="button" data-copy="https://oai.endpoints.kepler.ai.cloud.ovh.net/v1" hidden
-                      style="position:static;margin-left:6px">Copy</button>
-            </td>
-            <td class="models" data-label="Key">
-<span class="tag nokey">none — the lane is anonymous</span>
-            </td>
-            <td class="limits" data-label="Notes">
-                <details><summary>no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not …</summary><span class="full">no key at all on the anonymous lane, which OVHcloud rate-limits at 2 requests per minute per IP per model — a 429 means wait about half a minute, not that the offer is gone. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on</span></details>
-            </td>
-          </tr>
-          <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/">Upstage (Solar API)</a></th>
             <td class="what" data-label="Base URL">
               <code>https://api.upstage.ai/v1</code>
@@ -3010,6 +2996,20 @@ auto is the quick start&#39;s model and keys start with bc_; /v1/models answers 
 <div class="sub" style="margin-top:6px"><a href="https://impossibl.com/dashboard">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
                 <details><summary>ids are the keyless catalog&#39;s at api.impossibl.com/v1/models, 2026-09-17; which of them the promotional credit can call is not published. The Claude …</summary><span class="full">ids are the keyless catalog&#39;s at api.impossibl.com/v1/models, 2026-09-17; which of them the promotional credit can call is not published. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.impossibl.com and clears ANTHROPIC_API_KEY so the bearer token is used</span></details>
+            </td>
+          </tr>
+          <tr>
+            <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/">OVHcloud AI Endpoints</a></th>
+            <td class="what" data-label="Base URL">
+              <code>https://oai.endpoints.kepler.ai.cloud.ovh.net/v1</code>
+              <button class="copy" type="button" data-copy="https://oai.endpoints.kepler.ai.cloud.ovh.net/v1" hidden
+                      style="position:static;margin-left:6px">Copy</button>
+            </td>
+            <td class="models" data-label="Key">
+<span class="tag nokey">none — the lane is anonymous</span>
+            </td>
+            <td class="limits" data-label="Notes">
+                <details><summary>no key at all on the anonymous lane, where 2 requests per minute per model are shared by every anonymous caller (measured 2026-09-24) — a 429 means …</summary><span class="full">no key at all on the anonymous lane, where 2 requests per minute per model are shared by every anonymous caller (measured 2026-09-24) — a 429 means the minute&#39;s quota is gone, not the offer. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on</span></details>
             </td>
           </tr>
           <tr>

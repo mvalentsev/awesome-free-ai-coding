@@ -744,27 +744,6 @@
       },
       "models": {}
     },
-    "ovh-ai-endpoints": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "OVHcloud AI Endpoints",
-      "options": {
-        "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
-      },
-      "models": {
-        "Qwen3.8-27B": {
-          "name": "Qwen3.8-27B"
-        },
-        "gpt-oss-120b": {
-          "name": "gpt-oss-120b"
-        },
-        "Qwen3.6-27B": {
-          "name": "Qwen3.6-27B"
-        },
-        "Qwen3-Coder-30B-A3B-Instruct": {
-          "name": "Qwen3-Coder-30B-A3B-Instruct"
-        }
-      }
-    },
     "upstage": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Upstage (Solar API)",
@@ -1176,6 +1155,27 @@
         },
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b"
+        }
+      }
+    },
+    "ovh-ai-endpoints": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OVHcloud AI Endpoints",
+      "options": {
+        "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
+      },
+      "models": {
+        "Qwen3.8-27B": {
+          "name": "Qwen3.8-27B"
+        },
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        },
+        "Qwen3.6-27B": {
+          "name": "Qwen3.6-27B"
+        },
+        "Qwen3-Coder-30B-A3B-Instruct": {
+          "name": "Qwen3-Coder-30B-A3B-Instruct"
         }
       }
     },
