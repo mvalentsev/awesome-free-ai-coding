@@ -17,7 +17,7 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — n
 
 ## Free models
 
-`nemotron-3-ultra`
+`nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`, `ling-3.0-flash-fin`
 
 ## Limits, in the vendor's words
 
@@ -45,7 +45,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: dropped qwen3.6
+- *next scheduled run* — Free models changed: added laguna-xs-2.1, ling-3.0-flash-fin, nemotron-3-super; dropped qwen3.6
 - `2026-09-10` — Free models changed: dropped mercury-2
 - `2026-09-07` — Free models changed: dropped minimax-m3
 - `2026-09-03` — Added to the list: Turkish OpenAI-compatible gateway with a daily-quota free lane that answers on a zero balance — eleven zero-priced ids on 2026-09-02, MiniMax M3, Nemotron 3 Ultra, Qwen3.6 27B and Mercury 2 among them

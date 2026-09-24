@@ -17,7 +17,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ## Free models
 
-`kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`
+`kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`, `muse-glimmer-30b`, `nemotron-3.5-lightning`, `gemma-4-31b`, `gpt-oss-20b`, `mistral-nemotron`, `nemotron-3-nano-omni`, `diffusiongemma`, `llama-3.2-90b-vision`, `llama-3.2-11b-vision`
 
 ## Limits, in the vendor's words
 
@@ -43,7 +43,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
-- *next scheduled run* — Free models changed: added kimi-k3, laguna-xs-2.1, nemotron-3-super, nemotron-3-ultra; dropped nemotron
+- *next scheduled run* — Free models changed: added diffusiongemma, gemma-4-31b, gpt-oss-20b, kimi-k3, laguna-xs-2.1, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning; dropped nemotron
 - `2026-07-27` — Free models changed: dropped llama-4
 - `2026-07-19` — Added to the list: Free hosted NIM endpoints for 100+ models via the free NVIDIA Developer Program (OpenAI-compatible at integrate.api.nvidia.com/v1)
 

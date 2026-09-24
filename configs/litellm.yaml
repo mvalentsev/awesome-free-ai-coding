@@ -104,16 +104,6 @@ model_list:
     model: openai/liquid/lfm-2.5-2.6b:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/nex-agi/nex-n2.5-pro:free
-  litellm_params:
-    model: openai/nex-agi/nex-n2.5-pro:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/nex-agi/nex-n2.5-mini:free
-  litellm_params:
-    model: openai/nex-agi/nex-n2.5-mini:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/z-ai/glm-5.2:free
   litellm_params:
     model: openai/z-ai/glm-5.2:free

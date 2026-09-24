@@ -25,6 +25,57 @@
         {
           "family": "gemma-4",
           "released": "2026-04"
+        },
+        {
+          "family": "nemotron-3-super",
+          "released": "2026-03",
+          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
+        },
+        {
+          "family": "north-mini-code",
+          "released": "2026-06",
+          "aa_model": "north-mini-code"
+        },
+        {
+          "family": "laguna-s-2.1",
+          "released": "2026-07"
+        },
+        {
+          "family": "laguna-xs-2.1",
+          "released": "2026-07"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "released": "2026-08",
+          "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "inkling",
+          "released": "2026-07",
+          "aa_model": "inkling"
+        },
+        {
+          "family": "inkling-small",
+          "released": "2026-07",
+          "aa_model": "inkling-small"
+        },
+        {
+          "family": "dots-3-note",
+          "released": "2026-08"
+        },
+        {
+          "family": "ling-3.0-flash-fin",
+          "released": "2026-09",
+          "aa_model": "ling-3-0-flash-fin"
+        },
+        {
+          "family": "ling-3.0-flash-sante",
+          "released": "2026-09"
+        },
+        {
+          "family": "nemotron-3-nano-omni",
+          "released": "2026-04",
+          "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
       "api": {
@@ -48,17 +99,17 @@
           "inclusionai/ling-3.0-flash-fin:free",
           "inclusionai/ling-3.0-flash-sante:free",
           "liquid/lfm-2.5-2.6b:free",
-          "nex-agi/nex-n2.5-pro:free",
-          "nex-agi/nex-n2.5-mini:free",
           "z-ai/glm-5.2:free",
           "qwen/qwen3.8-27b:free",
           "openrouter/free"
         ],
         "ignored_ids": [
-          "nvidia/nemotron-3.5-content-safety:free"
+          "nvidia/nemotron-3.5-content-safety:free",
+          "nex-agi/nex-n2.5-pro:free",
+          "nex-agi/nex-n2.5-mini:free"
         ],
         "anthropic_base_url": "https://openrouter.ai/api",
-        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-23, and the lane rotates, so a new id waits two weeks for the Models column. nemotron-3.5-content-safety, a guardrail classifier, is left out; openrouter/free is the free-models router, ling-3.0-flash-fin and ling-3.0-flash-sante are finance- and health-tuned, nemotron-3-nano-omni is a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
+        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b, which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety, a guardrail classifier. Nex-N2.5 Pro and Mini are ignored: the catalog dates their free ids to end 2026-09-25. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
       },
       "data_use": {
         "trains": "opt-out",
@@ -493,7 +544,7 @@
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent whose $0 plan routes \"Auto Free\" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside",
-      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-21, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
+      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
       "models": [
         {
           "family": "nemotron-3-ultra",
@@ -522,6 +573,34 @@
         {
           "family": "laguna-xs-2.1",
           "released": "2026-07"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "released": "2026-08",
+          "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "inkling-small",
+          "released": "2026-07",
+          "aa_model": "inkling-small"
+        },
+        {
+          "family": "dots-3-note",
+          "released": "2026-08"
+        },
+        {
+          "family": "ling-3.0-flash-fin",
+          "released": "2026-09",
+          "aa_model": "ling-3-0-flash-fin"
+        },
+        {
+          "family": "ling-3.0-flash-sante",
+          "released": "2026-09"
+        },
+        {
+          "family": "nemotron-3-nano-omni",
+          "released": "2026-04",
+          "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
       "api": {
@@ -545,16 +624,17 @@
           "inclusionai/ling-3.0-flash-sante:free",
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling-small:free",
-          "nex-agi/nex-n2.5-pro:free",
-          "nex-agi/nex-n2.5-mini:free",
           "z-ai/glm-5.2:free",
-          "qwen/qwen3.8-27b:free"
+          "qwen/qwen3.8-27b:free",
+          "stealth/space-bunny-alpha"
         ],
         "ignored_ids": [
-          "nvidia/nemotron-3.5-content-safety:free"
+          "nvidia/nemotron-3.5-content-safety:free",
+          "nex-agi/nex-n2.5-pro:free",
+          "nex-agi/nex-n2.5-mini:free"
         ],
         "refuses_bearer": true,
-        "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, not models, and nemotron-3.5-content-safety, a guardrail classifier, is left out"
+        "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, stealth/space-bunny-alpha names no model, and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail classifier, and Nex-N2.5, whose free ids end 2026-09-25"
       },
       "data_use": {
         "trains": "yes",
@@ -810,7 +890,7 @@
           "aa_model": "deepseek-v3-2"
         },
         {
-          "family": "minimax-2.1",
+          "family": "minimax-m2.1",
           "released": "",
           "aa_model": "minimax-m2-1"
         }
@@ -945,6 +1025,46 @@
         {
           "family": "laguna-xs-2.1",
           "released": "2026-07"
+        },
+        {
+          "family": "muse-glimmer-30b",
+          "released": "2026-08",
+          "aa_model": "muse-glimmer"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "released": "2026-08",
+          "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "gemma-4-31b",
+          "released": "",
+          "aa_model": "gemma-4-31b"
+        },
+        {
+          "family": "gpt-oss-20b",
+          "released": "2025-08"
+        },
+        {
+          "family": "mistral-nemotron",
+          "released": "2025-06"
+        },
+        {
+          "family": "nemotron-3-nano-omni",
+          "released": "2026-04",
+          "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "diffusiongemma",
+          "released": "2026-06"
+        },
+        {
+          "family": "llama-3.2-90b-vision",
+          "released": "2024-09"
+        },
+        {
+          "family": "llama-3.2-11b-vision",
+          "released": "2024-09"
         }
       ],
       "api": {
@@ -1857,6 +1977,27 @@
           "family": "nemotron-3.5-lightning",
           "released": "2026-08",
           "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "laguna-xs.2",
+          "released": "2026-04"
+        },
+        {
+          "family": "laguna-m.1",
+          "released": ""
+        },
+        {
+          "family": "leanstral-1.5",
+          "released": ""
+        },
+        {
+          "family": "nemotron-3-nano-30b",
+          "released": ""
+        },
+        {
+          "family": "nemotron-3-nano-omni",
+          "released": "2026-04",
+          "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
       "api": {
@@ -2160,6 +2301,117 @@
           "family": "north-mini-code",
           "released": "2026-06",
           "aa_model": "north-mini-code"
+        },
+        {
+          "family": "nemotron-3-ultra",
+          "released": "2026-03",
+          "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+        },
+        {
+          "family": "nemotron-3-super",
+          "released": "2026-03",
+          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
+        },
+        {
+          "family": "minimax-m3",
+          "released": "",
+          "aa_model": "minimax-m3"
+        },
+        {
+          "family": "minimax-m2.7",
+          "released": "2026-03",
+          "aa_model": "minimax-m2-7"
+        },
+        {
+          "family": "hy3",
+          "released": "",
+          "aa_model": "hy3"
+        },
+        {
+          "family": "laguna-s-2.1",
+          "released": "2026-07"
+        },
+        {
+          "family": "laguna-xs-2.1",
+          "released": "2026-07"
+        },
+        {
+          "family": "kimi-for-coding",
+          "released": ""
+        },
+        {
+          "family": "ling-3.0-flash",
+          "released": "",
+          "aa_model": "ling-3-0-flash"
+        },
+        {
+          "family": "ling-3.0-tiny",
+          "released": "2026-08",
+          "aa_model": "ling-3-0-tiny"
+        },
+        {
+          "family": "glm-4.7",
+          "released": ""
+        },
+        {
+          "family": "glm-4.7-flash",
+          "released": "2026-01",
+          "aa_model": "glm-4-7-flash"
+        },
+        {
+          "family": "glm-4.6",
+          "released": ""
+        },
+        {
+          "family": "minimax-m2.5",
+          "released": ""
+        },
+        {
+          "family": "minimax-m2.1",
+          "released": "",
+          "aa_model": "minimax-m2-1"
+        },
+        {
+          "family": "minimax-m2",
+          "released": ""
+        },
+        {
+          "family": "mimo-v2-pro",
+          "released": ""
+        },
+        {
+          "family": "mimo-v2-flash",
+          "released": ""
+        },
+        {
+          "family": "mimo-v2-omni",
+          "released": ""
+        },
+        {
+          "family": "dots-3-note",
+          "released": "2026-08"
+        },
+        {
+          "family": "nemotron-3.5-lightning",
+          "released": "2026-08",
+          "aa_model": "nemotron-3-5-lightning"
+        },
+        {
+          "family": "nemotron-3-nano-30b",
+          "released": ""
+        },
+        {
+          "family": "nemotron-3-nano-omni",
+          "released": "2026-04",
+          "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "nemotron-nano-12b-v2-vl",
+          "released": ""
+        },
+        {
+          "family": "nemotron-nano-9b-v2",
+          "released": ""
         }
       ],
       "api": {
@@ -2220,7 +2472,7 @@
           "nemotron-3.5-content-safety-free"
         ],
         "anthropic_base_url": "https://aihubmix.com",
-        "note": "every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 parses page images into Markdown, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 is a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was \"removed from the platform\". For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it"
+        "note": "every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was \"removed from the platform\". Not in the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it"
       },
       "probe": {
         "type": "api-models",
@@ -2770,6 +3022,20 @@
           "family": "nemotron-3-ultra",
           "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
+        },
+        {
+          "family": "nemotron-3-super",
+          "released": "2026-03",
+          "aa_model": "nvidia-nemotron-3-super-120b-a12b"
+        },
+        {
+          "family": "laguna-xs-2.1",
+          "released": "2026-07"
+        },
+        {
+          "family": "ling-3.0-flash-fin",
+          "released": "2026-09",
+          "aa_model": "ling-3-0-flash-fin"
         }
       ],
       "api": {
@@ -3319,7 +3585,14 @@
       "card_required": false,
       "offering": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
       "limits": "\"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota\", and \"Free models are available to any user with a Cline account\" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over \"on a rotating, limited-time basis\" — ids change within a day, so a model joins the Models column only after two weeks in the lane. The free-models page states two limits outright: \"Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI\", and \"Free model usage may be used to help improve model performance and quality\". Read 2026-09-14",
-      "models": [],
+      "models": [
+        {
+          "family": "muse-spark-1.3-contributor",
+          "tier": "strong",
+          "released": "2026-09",
+          "aa_model": "muse-spark-1-3-xhigh"
+        }
+      ],
       "data_use": {
         "trains": "yes",
         "quote": "Free model usage may be used to help improve model performance and quality.",

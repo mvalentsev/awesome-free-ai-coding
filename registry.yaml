@@ -25,6 +25,35 @@ entries:
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: gemma-4
     released: 2026-04
+  - family: nemotron-3-super
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: north-mini-code
+    released: 2026-06
+    aa_model: north-mini-code
+  - family: laguna-s-2.1
+    released: 2026-07
+  - family: laguna-xs-2.1
+    released: 2026-07
+  - family: nemotron-3.5-lightning
+    released: 2026-08
+    aa_model: nemotron-3-5-lightning
+  - family: inkling
+    released: 2026-07
+    aa_model: inkling
+  - family: inkling-small
+    released: 2026-07
+    aa_model: inkling-small
+  - family: dots-3-note
+    released: 2026-08
+  - family: ling-3.0-flash-fin
+    released: 2026-09
+    aa_model: ling-3-0-flash-fin
+  - family: ling-3.0-flash-sante
+    released: 2026-09
+  - family: nemotron-3-nano-omni
+    released: 2026-04
+    aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://openrouter.ai/api/v1
     key_url: https://openrouter.ai/settings/keys
@@ -46,22 +75,22 @@ entries:
     - inclusionai/ling-3.0-flash-fin:free
     - inclusionai/ling-3.0-flash-sante:free
     - liquid/lfm-2.5-2.6b:free
-    - nex-agi/nex-n2.5-pro:free
-    - nex-agi/nex-n2.5-mini:free
     - z-ai/glm-5.2:free
     - qwen/qwen3.8-27b:free
     - openrouter/free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
+    - nex-agi/nex-n2.5-pro:free
+    - nex-agi/nex-n2.5-mini:free
     anthropic_base_url: https://openrouter.ai/api
     note: 'pick models with the :free suffix: every id carrying it is priced 0/0,
-      20 on 2026-09-23, and the lane rotates, so a new id waits two weeks for the
-      Models column. nemotron-3.5-content-safety, a guardrail classifier, is left
-      out; openrouter/free is the free-models router, ling-3.0-flash-fin and ling-3.0-flash-sante
-      are finance- and health-tuned, nemotron-3-nano-omni is a perception sub-agent,
-      and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter''s
-      cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY
-      empty and a :free id as ANTHROPIC_MODEL'
+      20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the
+      Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b,
+      which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety,
+      a guardrail classifier. Nex-N2.5 Pro and Mini are ignored: the catalog dates
+      their free ids to end 2026-09-25. For Claude Code, OpenRouter''s cookbook sets
+      ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty
+      and a :free id as ANTHROPIC_MODEL'
   data_use:
     trains: opt-out
     quote: Wherever possible, OpenRouter works with providers to ensure that prompts
@@ -490,7 +519,7 @@ entries:
   limits: '$0 a month, and no account for the free lane: "The gateway allows unauthenticated
     access for free models only. Anonymous requests are identified by IP address and
     are subject to rate limiting (200 requests per hour per IP)". The lane is whatever
-    the gateway marks isFree — 21 ids on 2026-09-21, Nemotron 3 Ultra, Step 3.7 Flash
+    the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash
     and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks
     before it joins the Models column. It costs something other than money: every
     free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free
@@ -513,6 +542,22 @@ entries:
     released: 2026-07
   - family: laguna-xs-2.1
     released: 2026-07
+  - family: nemotron-3.5-lightning
+    released: 2026-08
+    aa_model: nemotron-3-5-lightning
+  - family: inkling-small
+    released: 2026-07
+    aa_model: inkling-small
+  - family: dots-3-note
+    released: 2026-08
+  - family: ling-3.0-flash-fin
+    released: 2026-09
+    aa_model: ling-3-0-flash-fin
+  - family: ling-3.0-flash-sante
+    released: 2026-09
+  - family: nemotron-3-nano-omni
+    released: 2026-04
+    aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -534,19 +579,22 @@ entries:
     - inclusionai/ling-3.0-flash-sante:free
     - dots-studio/dots-3-note-preview:free
     - thinkingmachines/inkling-small:free
-    - nex-agi/nex-n2.5-pro:free
-    - nex-agi/nex-n2.5-mini:free
     - z-ai/glm-5.2:free
     - qwen/qwen3.8-27b:free
+    - stealth/space-bunny-alpha
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
+    - nex-agi/nex-n2.5-pro:free
+    - nex-agi/nex-n2.5-mini:free
     refuses_bearer: true
-    note: no key at all for the free ids, capped at 200 requests per hour per IP;
+    note: 'no key at all for the free ids, capped at 200 requests per hour per IP;
       a metered id answers 401 `You need to sign in to use this model`. Every id listed
       is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads
-      because it routes over the free models the catalog's autoRouting list names;
-      it and openrouter/free are routers, not models, and nemotron-3.5-content-safety,
-      a guardrail classifier, is left out
+      because it routes over the free models the catalog''s autoRouting list names;
+      it and openrouter/free are routers, stealth/space-bunny-alpha names no model,
+      and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of
+      them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail
+      classifier, and Nex-N2.5, whose free ids end 2026-09-25'
   data_use:
     trains: 'yes'
     quote: Prompts may be logged by the upstream provider and used to improve their
@@ -810,7 +858,7 @@ entries:
   - family: deepseek-v3.2
     released: ''
     aa_model: deepseek-v3-2
-  - family: minimax-2.1
+  - family: minimax-m2.1
     released: ''
     aa_model: minimax-m2-1
   data_use:
@@ -946,6 +994,28 @@ entries:
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
     released: 2026-07
+  - family: muse-glimmer-30b
+    released: 2026-08
+    aa_model: muse-glimmer
+  - family: nemotron-3.5-lightning
+    released: 2026-08
+    aa_model: nemotron-3-5-lightning
+  - family: gemma-4-31b
+    released: ''
+    aa_model: gemma-4-31b
+  - family: gpt-oss-20b
+    released: 2025-08
+  - family: mistral-nemotron
+    released: 2025-06
+  - family: nemotron-3-nano-omni
+    released: 2026-04
+    aa_model: nemotron-3-nano-omni-30b-a3b
+  - family: diffusiongemma
+    released: 2026-06
+  - family: llama-3.2-90b-vision
+    released: 2024-09
+  - family: llama-3.2-11b-vision
+    released: 2024-09
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
@@ -1811,6 +1881,17 @@ entries:
   - family: nemotron-3.5-lightning
     released: 2026-08
     aa_model: nemotron-3-5-lightning
+  - family: laguna-xs.2
+    released: 2026-04
+  - family: laguna-m.1
+    released: ''
+  - family: leanstral-1.5
+    released: ''
+  - family: nemotron-3-nano-30b
+    released: ''
+  - family: nemotron-3-nano-omni
+    released: 2026-04
+    aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://router.requesty.ai/v1
     key_url: https://app.requesty.ai/api-keys
@@ -2100,6 +2181,67 @@ entries:
   - family: north-mini-code
     released: 2026-06
     aa_model: north-mini-code
+  - family: nemotron-3-ultra
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-ultra-550b-a55b
+  - family: nemotron-3-super
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: minimax-m3
+    released: ''
+    aa_model: minimax-m3
+  - family: minimax-m2.7
+    released: 2026-03
+    aa_model: minimax-m2-7
+  - family: hy3
+    released: ''
+    aa_model: hy3
+  - family: laguna-s-2.1
+    released: 2026-07
+  - family: laguna-xs-2.1
+    released: 2026-07
+  - family: kimi-for-coding
+    released: ''
+  - family: ling-3.0-flash
+    released: ''
+    aa_model: ling-3-0-flash
+  - family: ling-3.0-tiny
+    released: 2026-08
+    aa_model: ling-3-0-tiny
+  - family: glm-4.7
+    released: ''
+  - family: glm-4.7-flash
+    released: 2026-01
+    aa_model: glm-4-7-flash
+  - family: glm-4.6
+    released: ''
+  - family: minimax-m2.5
+    released: ''
+  - family: minimax-m2.1
+    released: ''
+    aa_model: minimax-m2-1
+  - family: minimax-m2
+    released: ''
+  - family: mimo-v2-pro
+    released: ''
+  - family: mimo-v2-flash
+    released: ''
+  - family: mimo-v2-omni
+    released: ''
+  - family: dots-3-note
+    released: 2026-08
+  - family: nemotron-3.5-lightning
+    released: 2026-08
+    aa_model: nemotron-3-5-lightning
+  - family: nemotron-3-nano-30b
+    released: ''
+  - family: nemotron-3-nano-omni
+    released: 2026-04
+    aa_model: nemotron-3-nano-omni-30b-a3b
+  - family: nemotron-nano-12b-v2-vl
+    released: ''
+  - family: nemotron-nano-9b-v2
+    released: ''
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://aihubmix.com/token
@@ -2158,11 +2300,12 @@ entries:
     anthropic_base_url: https://aihubmix.com
     note: 'every id the catalog prices at 0 is listed or ignored on purpose, 47 rows
       on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored:
-      jina-ocr-v1 parses page images into Markdown, gpt-live-transcribe is speech-to-text,
-      gpt-realtime-2.1 is a realtime voice model, nemotron-3.5-content-safety-free
-      a guardrail classifier, and qwen3.6-plus-preview-free says it was "removed from
-      the platform". For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com,
-      as its Claude Code guide sets it'
+      jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1
+      a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier,
+      and qwen3.6-plus-preview-free says it was "removed from the platform". Not in
+      the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and
+      k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code:
+      ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it'
   probe:
     type: api-models
     endpoint: https://aihubmix.com/api/v1/models
@@ -2726,6 +2869,14 @@ entries:
   - family: nemotron-3-ultra
     released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
+  - family: nemotron-3-super
+    released: 2026-03
+    aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: laguna-xs-2.1
+    released: 2026-07
+  - family: ling-3.0-flash-fin
+    released: 2026-09
+    aa_model: ling-3-0-flash-fin
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -3317,7 +3468,11 @@ entries:
     through the Cline API. Free models are only available in the Cline IDE Extension
     and CLI", and "Free model usage may be used to help improve model performance
     and quality". Read 2026-09-14'
-  models: []
+  models:
+  - family: muse-spark-1.3-contributor
+    tier: strong
+    released: 2026-09
+    aa_model: muse-spark-1-3-xhigh
   data_use:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.

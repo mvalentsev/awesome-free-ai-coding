@@ -17,11 +17,11 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ## Free models
 
-`nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1`
+`nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1`, `nemotron-3.5-lightning`, `inkling-small`, `dots-3-note`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante`, `nemotron-3-nano-omni`
 
 ## Limits, in the vendor's words
 
-$0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-21, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
+$0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
 
 ## What happens to what you send
 
@@ -31,8 +31,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://api.kilo.ai/api/gateway`
 - Key: none — the lane is anonymous
-- Callable ids: `kilo-auto/free`, `openrouter/free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3-super-120b-a12b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `cohere/north-mini-code:free`, `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `liquid/lfm-2.5-2.6b:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `dots-studio/dots-3-note-preview:free`, `thinkingmachines/inkling-small:free`, `nex-agi/nex-n2.5-pro:free`, `nex-agi/nex-n2.5-mini:free`, `z-ai/glm-5.2:free`, `qwen/qwen3.8-27b:free`
-- Note: no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, not models, and nemotron-3.5-content-safety, a guardrail classifier, is left out
+- Callable ids: `kilo-auto/free`, `openrouter/free`, `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3-super-120b-a12b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `cohere/north-mini-code:free`, `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `liquid/lfm-2.5-2.6b:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `dots-studio/dots-3-note-preview:free`, `thinkingmachines/inkling-small:free`, `z-ai/glm-5.2:free`, `qwen/qwen3.8-27b:free`, `stealth/space-bunny-alpha`
+- Note: no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, stealth/space-bunny-alpha names no model, and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail classifier, and Nex-N2.5, whose free ids end 2026-09-25
 
 ## Evidence
 
@@ -44,6 +44,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## History
 
+- *next scheduled run* — Free models changed: added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-08-14` — Free models changed: dropped ling-3.0-tiny
 - `2026-08-11` — Free models changed: added laguna-xs-2.1, ling-3.0-tiny, nemotron-3-super
 - `2026-08-11` — Free models changed: added laguna-s-2.1, step-3.7-flash; dropped ling-3.0-flash

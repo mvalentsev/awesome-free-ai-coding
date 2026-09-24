@@ -17,7 +17,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Free models
 
-`glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`
+`glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`, `nemotron-3-ultra`, `nemotron-3-super`, `minimax-m3`, `minimax-m2.7`, `hy3`, `laguna-s-2.1`, `laguna-xs-2.1`, `kimi-for-coding`, `ling-3.0-flash`, `ling-3.0-tiny`, `glm-4.7`, `glm-4.7-flash`, `glm-4.6`, `minimax-m2.5`, `minimax-m2.1`, `minimax-m2`, `mimo-v2-pro`, `mimo-v2-flash`, `mimo-v2-omni`, `dots-3-note`, `nemotron-3.5-lightning`, `nemotron-3-nano-30b`, `nemotron-3-nano-omni`, `nemotron-nano-12b-v2-vl`, `nemotron-nano-9b-v2`
 
 ## Limits, in the vendor's words
 
@@ -29,7 +29,7 @@ per-model caps, spelled out in each model's catalog description: the newest codi
 - Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Callable ids: `coding-glm-5.2-free`, `coding-glm-5.1-free`, `coding-kimi-k3-free`, `kimi-for-coding-free`, `xiaomi-mimo-v2.5-free`, `north-mini-code-free`, `ling-3.0-tiny-free`, `nemotron-3-ultra-550b-a55b-free`, `agents-a1-free`, `coding-glm-4.6-free`, `coding-glm-4.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-minimax-m2-free`, `coding-minimax-m2.1-free`, `coding-minimax-m2.5-free`, `coding-minimax-m2.7-free`, `coding-minimax-m3-free`, `dots-3-note-preview-free`, `glm-4.7-flash-free`, `hy3-free`, `intern-s2-free`, `k2.6-code-preview-free`, `laguna-s-2.1-free`, `laguna-xs-2.1-free`, `lfm-2.5-2.6b-free`, `ling-3.0-flash-free`, `mimo-v2-flash-free`, `minimax-m2.7-free`, `nemotron-3-nano-30b-a3b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3.5-lightning-free`, `nemotron-nano-12b-v2-vl-free`, `nemotron-nano-9b-v2-free`, `union-alpha-free`, `xiaomi-mimo-v2-omni-free`, `xiaomi-mimo-v2-pro-free`, `xiaomi-mimo-v2.5-pro-free`, `xiaomi-mimo-v2.6-flash-free`, `xiaomi-mimo-v2.6-pro-free`
-- Note: every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 parses page images into Markdown, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 is a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was "removed from the platform". For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it
+- Note: every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was "removed from the platform". Not in the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it
 
 ## Evidence
 
@@ -40,6 +40,7 @@ per-model caps, spelled out in each model's catalog description: the newest codi
 
 ## History
 
+- *next scheduled run* — Free models changed: added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2
 - `2026-09-21` — Free models changed: dropped gpt-oss
 - `2026-09-17` — Free models changed: added glm-5.3, kimi-k3
 - `2026-08-17` — Added to the list: One OpenAI-compatible gateway over 850+ models, 49 of which the platform prices at 0 and subsidises itself; both /v1/chat/completions and Anthropic-format /v1/messages are served, so a free id can back Claude Code directly

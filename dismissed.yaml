@@ -71,7 +71,7 @@ dismissed:
       this vendor does not carry, and its only effect was to hide a free model
       from the row.
   - entry: kiro
-    family: minimax-2.1
+    family: minimax-m2.1
     superseded_by: minimax-3
     dismissed_on: 2026-08-20
     reason: >-

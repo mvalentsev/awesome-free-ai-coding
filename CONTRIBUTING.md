@@ -258,6 +258,21 @@ that carries both, or list fewer families: an id that belongs to the free lane b
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
 configs without making a claim on the page.
 
+**A lane that rotates names a model once it has stayed two weeks.** OpenRouter,
+Kilo, Requesty, AIHubMix and Cline add and drop free ids within days, so a new id
+is callable from the read that finds it and joins `models[]` two weeks later,
+counted from that read or from the vendor's own date for the free id, such as the
+`dateCreated` of an NVIDIA endpoint. Every chat model that has stayed that long
+joins the column, since the list of models and everyone who serves each one free
+is built from it. A router is not a model and a stealth codename names none, and a
+model whose own developer advises against agentic coding stays out; each goes in
+`api.note` with the reason. A free id the vendor dates to end within those two weeks
+never joins: OpenRouter and Kilo publish the date as `expiration_date`, and on
+2026-09-24 it was the next day for both Nex-N2.5 ids. Until that day a family that
+left the lane failed the row, so the column was kept to a few names per lane, and
+OpenRouter was missing from the list for `north-mini-code`, which it had served
+free since July.
+
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —
 where `require_zero_price` is set — priced 0; a dead id is reported as

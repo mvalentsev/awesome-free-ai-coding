@@ -34,7 +34,7 @@
       "@type": "Dataset",
       "@id": "https://mvalentsev.github.io/awesome-free-ai-coding/#dataset",
       "name": "awesome-free-ai-coding registry",
-      "description": "79 legal free LLM APIs, coding agents and no-card trials, with the free models they name (70 families), the limits in the vendor's own words and the day a live probe last confirmed each.",
+      "description": "79 legal free LLM APIs, coding agents and no-card trials, with the free models they name (94 families), the limits in the vendor's own words and the day a live probe last confirmed each.",
       "url": "https://mvalentsev.github.io/awesome-free-ai-coding/",
       "isAccessibleForFree": true,
       "license": "https://opensource.org/licenses/MIT",
@@ -295,7 +295,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       <li><b>75</b><span>need no card</span></li>
       <li><b>7</b><span>need no signup</span></li>
       <li><b>59</b><span>OpenAI-compatible</span></li>
-      <li><b>70</b><span>free model families</span></li>
+      <li><b>94</b><span>free model families</span></li>
     </ul>
   </div>
 </header>
@@ -336,7 +336,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <h3>Agent · no card</h3>
         <div class="who"><a href="https://kilo.ai">Kilo Code</a></div>
         <div class="chips">
-<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">north-mini-code</span><span class="chip">step-3.7-flash</span><span class="chip">laguna-s-2.1</span><span class="chip">laguna-xs-2.1</span>        </div>
+<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">north-mini-code</span><span class="chip">step-3.7-flash</span><span class="chip">laguna-s-2.1</span><span class="chip">laguna-xs-2.1</span><span class="chip">nemotron-3.5-lightning</span><span class="chip">inkling-small</span><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/">+4 more</a>        </div>
       </div>
       <div class="card">
         <h3>Agent · no card</h3>
@@ -395,7 +395,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   -H &#39;Content-Type: application/json&#39; \
   -d &#39;{&#34;model&#34;:&#34;kilo-auto/free&#34;,&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;2+2? MAKE NO MISTAKES.&#34;}]}&#39;</pre>
     </div>
-    <p class="sub" style="margin-top:10px">no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog&#39;s autoRouting list names; it and openrouter/free are routers, not models, and nemotron-3.5-content-safety, a guardrail classifier, is left out</p>
+    <p class="sub" style="margin-top:10px">no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog&#39;s autoRouting list names; it and openrouter/free are routers, stealth/space-bunny-alpha names no model, and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail classifier, and Nex-N2.5, whose free ids end 2026-09-25</p>
   </div>
 </section>
 
@@ -448,10 +448,10 @@ not one of them asks for a card        · sorted by how much work you can get do
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes &#34;Auto Free&#34; to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">north-mini-code</span><span class="chip">step-3.7-flash</span><span class="chip">laguna-s-2.1</span><span class="chip">laguna-xs-2.1</span>              </div>
+<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">north-mini-code</span><span class="chip">step-3.7-flash</span><span class="chip">laguna-s-2.1</span><span class="chip">laguna-xs-2.1</span><span class="chip">nemotron-3.5-lightning</span><span class="chip">inkling-small</span><span class="chip">dots-3-note</span><span class="chip">ling-3.0-flash-fin</span><span class="chip">ling-3.0-flash-sante</span><span class="chip">nemotron-3-nano-omni</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>$0 a month, and no account for the free lane: &#34;The gateway allows unauthenticated access for free models only. Anonymous requests are identified by …</summary><span class="full">$0 a month, and no account for the free lane: &#34;The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)&#34;. The lane is whatever the gateway marks isFree — 21 ids on 2026-09-21, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog&#39;s autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21</span></details>
+                <details><summary>$0 a month, and no account for the free lane: &#34;The gateway allows unauthenticated access for free models only. Anonymous requests are identified by …</summary><span class="full">$0 a month, and no account for the free lane: &#34;The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)&#34;. The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog&#39;s autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21</span></details>
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"><time datetime="2026-09-21">2026-09-21</time></a>
@@ -504,7 +504,9 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
             <td class="what" data-label="What you get">
 Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK            </td>
             <td class="models" data-label="Free models">
-<span class="empty">—</span>            </td>
+              <div class="chips">
+<span class="chip">muse-spark-1.3-contributor</span>              </div>
+            </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>&#34;Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota&#34;, and &#34;Free models are …</summary><span class="full">&#34;Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota&#34;, and &#34;Free models are available to any user with a Cline account&#34; — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline&#39;s clients word the stop: `You&#39;ve reached today&#39;s free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over &#34;on a rotating, limited-time basis&#34; — ids change within a day, so a model joins the Models column only after two weeks in the lane. The free-models page states two limits outright: &#34;Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI&#34;, and &#34;Free model usage may be used to help improve model performance and quality&#34;. Read 2026-09-14</span></details>
             </td>
@@ -634,7 +636,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table     
 Free endpoints for the models build.nvidia.com marks &#34;Free Endpoint&#34;, open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">kimi-k3</span><span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">laguna-xs-2.1</span>              </div>
+<span class="chip">kimi-k3</span><span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">laguna-xs-2.1</span><span class="chip">muse-glimmer-30b</span><span class="chip">nemotron-3.5-lightning</span><span class="chip">gemma-4-31b</span><span class="chip">gpt-oss-20b</span><span class="chip">mistral-nemotron</span><span class="chip">nemotron-3-nano-omni</span><span class="chip">diffusiongemma</span><span class="chip">llama-3.2-90b-vision</span><span class="chip">llama-3.2-11b-vision</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>No card; the API key needs a free NVIDIA Developer Program account verified by a code sent to your phone, and the phone step does not take every …</summary><span class="full">No card; the API key needs a free NVIDIA Developer Program account verified by a code sent to your phone, and the phone step does not take every country. The ceiling is a rate, not credits: NVIDIA&#39;s site puts it at &#34;Up to 40 rpm&#34; and &#34;10,000 requests per day&#34;, adding that &#34;Rate limits may vary by model and traffic from other users may cause throttling&#34;. NVIDIA staff call 40 RPM &#34;the published free-tier cap&#34; that &#34;is not adjustable on a per-account basis&#34;; more throughput takes &#34;an NVIDIA AI Enterprise license or self-hosting the model via the corresponding NIM container&#34;. Each model&#39;s page states whether its free endpoint is available or deprecated, and NVIDIA renames ids without notice, so copy them from the catalog. Read 2026-09-22</span></details>
@@ -1199,7 +1201,7 @@ Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio
 Perpetual free tier of AWS&#39;s spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">claude-sonnet-4.5</span><span class="chip">qwen3-coder</span><span class="chip">deepseek-v3.2</span><span class="chip">minimax-2.1</span>              </div>
+<span class="chip">claude-sonnet-4.5</span><span class="chip">qwen3-coder</span><span class="chip">deepseek-v3.2</span><span class="chip">minimax-m2.1</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always …</summary><span class="full">50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US. Kiro&#39;s docs settle what those credits reach, in a table with a Free column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku 4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked 2026-08-14)</span></details>
@@ -1649,7 +1651,7 @@ A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card �
 One API key for a rotating set of :free model variants, open-weight and stealth models among them            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">nemotron-3-ultra</span><span class="chip">gemma-4</span>              </div>
+<span class="chip">nemotron-3-ultra</span><span class="chip">gemma-4</span><span class="chip">nemotron-3-super</span><span class="chip">north-mini-code</span><span class="chip">laguna-s-2.1</span><span class="chip">laguna-xs-2.1</span><span class="chip">nemotron-3.5-lightning</span><span class="chip">inkling</span><span class="chip">inkling-small</span><span class="chip">dots-3-note</span><span class="chip">ling-3.0-flash-fin</span><span class="chip">ling-3.0-flash-sante</span><span class="chip">nemotron-3-nano-omni</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those …</summary><span class="full">20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter&#39;s FAQ says its free models &#34;have low rate limits&#34; and &#34;are usually not suitable for production use&#34;, warns that a negative credit balance can produce errors &#34;including for free models&#34;, and notes a 429 may come from the upstream provider rather than the platform (read 2026-08-14)</span></details>
@@ -1668,7 +1670,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">gemma-4</span><span class="chip">ling-3.0-tiny</span><span class="chip">muse-glimmer-30b</span><span class="chip">nemotron-3.5-lightning</span>              </div>
+<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">gemma-4</span><span class="chip">ling-3.0-tiny</span><span class="chip">muse-glimmer-30b</span><span class="chip">nemotron-3.5-lightning</span><span class="chip">laguna-xs.2</span><span class="chip">laguna-m.1</span><span class="chip">leanstral-1.5</span><span class="chip">nemotron-3-nano-30b</span><span class="chip">nemotron-3-nano-omni</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
 Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go            </td>
@@ -1686,7 +1688,7 @@ Free plan is $0 with no credit card — 200 requests a day, free models only, wi
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">glm-5.3</span><span class="chip">kimi-k3</span><span class="chip">glm-5</span><span class="chip">mimo-v2.5</span><span class="chip">north-mini-code</span>              </div>
+<span class="chip">glm-5.3</span><span class="chip">kimi-k3</span><span class="chip">glm-5</span><span class="chip">mimo-v2.5</span><span class="chip">north-mini-code</span><span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">minimax-m3</span><span class="chip">minimax-m2.7</span><span class="chip">hy3</span><span class="chip">laguna-s-2.1</span><span class="chip">laguna-xs-2.1</span><span class="chip">kimi-for-coding</span><span class="chip">ling-3.0-flash</span><span class="chip">ling-3.0-tiny</span><span class="chip">glm-4.7</span><span class="chip">glm-4.7-flash</span><span class="chip">glm-4.6</span><span class="chip">minimax-m2.5</span><span class="chip">minimax-m2.1</span><span class="chip">minimax-m2</span><span class="chip">mimo-v2-pro</span><span class="chip">mimo-v2-flash</span><span class="chip">mimo-v2-omni</span><span class="chip">dots-3-note</span><span class="chip">nemotron-3.5-lightning</span><span class="chip">nemotron-3-nano-30b</span><span class="chip">nemotron-3-nano-omni</span><span class="chip">nemotron-nano-12b-v2-vl</span><span class="chip">nemotron-nano-9b-v2</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>per-model caps, spelled out in each model&#39;s catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are …</summary><span class="full">per-model caps, spelled out in each model&#39;s catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are &#34;limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day&#34;, others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says &#34;the developer advises against using this model for agentic coding tasks&#34;. Every free id carries a -free suffix and the paid twin beside it is metered at list rates</span></details>
@@ -1724,7 +1726,7 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">nemotron-3-ultra</span>              </div>
+<span class="chip">nemotron-3-ultra</span><span class="chip">nemotron-3-super</span><span class="chip">laguna-xs-2.1</span><span class="chip">ling-3.0-flash-fin</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>A new account calls the free rows before any top-up: the migration guide says &#34;Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin&#34; …</summary><span class="full">A new account calls the free rows before any top-up: the migration guide says &#34;Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin&#34; (pick a chat model marked free in the catalog), and &#34;Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular&#34; (this step checks that the gateway and usage logging work on a zero balance). Four free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B, Ling 3.0 Flash Fin); Laguna XS 2.1 is free because &#34;Poolside serves these models free on its own inference API&#34;, with &#34;no extra token allowance to track&#34;; dots-3-note-preview closes on 30 September 2026. Paid use is prepaid credit: &#34;An 8% platform margin is added on top of the requested top-up amount&#34; and &#34;We never modify model prices&#34;. The privacy page says prompt and response bodies are not written permanently to its usage and billing database (&#34;kalıcı olarak yazılmaz&#34;). Read 2026-09-21</span></details>
@@ -1927,7 +1929,7 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
   <div class="wrap">
     <header>
       <h2>🧠 Looking for one model in particular?</h2>
-      <p class="sub">70 model families, and everyone who serves each one free.</p>
+      <p class="sub">94 model families, and everyone who serves each one free.</p>
     </header>
     <div class="scroll" style="padding: 4px 16px">
       <details>
@@ -1936,7 +1938,19 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
           <tbody>
             <tr>
               <th scope="row"><code>nemotron-3-ultra</code></th>
-              <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://llmtr.com">LLMTR</a></td>
+              <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://llmtr.com">LLMTR</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>nemotron-3-nano-omni</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://www.tokenrouter.com">TokenRouter (PaleBlueDot)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>nemotron-3-super</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://llmtr.com">LLMTR</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>nemotron-3.5-lightning</code></th>
+              <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>qwen3.8-27b</code></th>
@@ -1947,6 +1961,18 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://groq.com">Groq</a>, <a href="https://antigravity.google">Google Antigravity</a>, <a href="https://regolo.ai/pricing/">Regolo AI</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a>, <a href="https://pollinations.ai">Pollinations.AI</a></td>
             </tr>
             <tr>
+              <th scope="row"><code>laguna-s-2.1</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳, <a href="https://portal.nousresearch.com">Nous Portal (Hermes Agent)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>laguna-xs-2.1</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://llmtr.com">LLMTR</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ling-3.0-flash-fin</code></th>
+              <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://llmtr.com">LLMTR</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳</td>
+            </tr>
+            <tr>
               <th scope="row"><code>deepseek-v4-flash</code></th>
               <td><a href="https://routeway.ai">Routeway</a>, <a href="https://inference.dahl.global">Dahl Inference</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a>, <a href="https://www.sailresearch.com">Sail Research</a> 💳</td>
             </tr>
@@ -1955,24 +1981,32 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://freebuff.com">Freebuff</a>, <a href="https://inference.dahl.global">Dahl Inference</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a>, <a href="https://www.sailresearch.com">Sail Research</a> 💳</td>
             </tr>
             <tr>
+              <th scope="row"><code>north-mini-code</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
               <th scope="row"><code>qwen3.6</code></th>
               <td><a href="https://groq.com">Groq</a>, <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>dots-3-note</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>kimi-k3</code></th>
               <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://www.sailresearch.com">Sail Research</a> 💳</td>
             </tr>
             <tr>
-              <th scope="row"><code>laguna-s-2.1</code></th>
-              <td><a href="https://kilo.ai">Kilo Code</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳, <a href="https://portal.nousresearch.com">Nous Portal (Hermes Agent)</a></td>
+              <th scope="row"><code>ling-3.0-flash-sante</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳</td>
             </tr>
             <tr>
-              <th scope="row"><code>nemotron-3-super</code></th>
-              <td><a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
+              <th scope="row"><code>minimax-m2.7</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://routeway.ai">Routeway</a>, <a href="https://inference.dahl.global">Dahl Inference</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>north-mini-code</code></th>
-              <td><a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://cohere.com">Cohere (trial keys)</a></td>
+              <th scope="row"><code>muse-glimmer-30b</code></th>
+              <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://routeway.ai">Routeway</a></td>
             </tr>
             <tr>
               <th scope="row"><code>qwen3-coder</code></th>
@@ -1999,32 +2033,44 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://www.requesty.ai">Requesty</a></td>
             </tr>
             <tr>
+              <th scope="row"><code>gemma-4-31b</code></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://opper.ai">Opper</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>glm-4.7-flash</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
+            </tr>
+            <tr>
               <th scope="row"><code>glm-5.3</code></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://www.sailresearch.com">Sail Research</a> 💳</td>
             </tr>
             <tr>
-              <th scope="row"><code>laguna-xs-2.1</code></th>
-              <td><a href="https://kilo.ai">Kilo Code</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
+              <th scope="row"><code>inkling-small</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>ling-3.0-flash-fin</code></th>
-              <td><a href="https://opencode.ai">opencode</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳</td>
+              <th scope="row"><code>ling-3.0-tiny</code></th>
+              <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>mimo-v2.5</code></th>
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>minimax-m2.7</code></th>
-              <td><a href="https://routeway.ai">Routeway</a>, <a href="https://inference.dahl.global">Dahl Inference</a></td>
+              <th scope="row"><code>minimax-m2.1</code></th>
+              <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>muse-glimmer-30b</code></th>
-              <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://routeway.ai">Routeway</a></td>
+              <th scope="row"><code>minimax-m3</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>nemotron-3.5-lightning</code></th>
-              <td><a href="https://opencode.ai">opencode</a>, <a href="https://www.requesty.ai">Requesty</a></td>
+              <th scope="row"><code>muse-spark-1.3-contributor</code></th>
+              <td><a href="https://opencode.ai">opencode</a>, <a href="https://cline.bot">Cline</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>nemotron-3-nano-30b</code></th>
+              <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>step-3.7-flash</code></th>
@@ -2071,6 +2117,10 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://www.sailresearch.com">Sail Research</a> 💳</td>
             </tr>
             <tr>
+              <th scope="row"><code>diffusiongemma</code></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
+            </tr>
+            <tr>
               <th scope="row"><code>gemini-2.5</code></th>
               <td><a href="https://jules.google/">Google Jules</a></td>
             </tr>
@@ -2095,10 +2145,6 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://antigravity.google">Google Antigravity</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>gemma-4-31b</code></th>
-              <td><a href="https://opper.ai">Opper</a></td>
-            </tr>
-            <tr>
               <th scope="row"><code>glm-4-9b-0414</code></th>
               <td><a href="https://siliconflow.cn">SiliconFlow (China)</a></td>
             </tr>
@@ -2107,12 +2153,16 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
             </tr>
             <tr>
+              <th scope="row"><code>glm-4.6</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
               <th scope="row"><code>glm-4.6v-flash</code></th>
               <td><a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>glm-4.7-flash</code></th>
-              <td><a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
+              <th scope="row"><code>glm-4.7</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>glm-5</code></th>
@@ -2131,12 +2181,44 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://zed.dev">Zed</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>ling-3.0-flash-sante</code></th>
-              <td><a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳</td>
+              <th scope="row"><code>gpt-oss-20b</code></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>ling-3.0-tiny</code></th>
+              <th scope="row"><code>hy3</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>inkling</code></th>
+              <td><a href="https://openrouter.ai">OpenRouter (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>kimi-for-coding</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>laguna-m.1</code></th>
               <td><a href="https://www.requesty.ai">Requesty</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>laguna-xs.2</code></th>
+              <td><a href="https://www.requesty.ai">Requesty</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>leanstral-1.5</code></th>
+              <td><a href="https://www.requesty.ai">Requesty</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ling-3.0-flash</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>llama-3.2-11b-vision</code></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>llama-3.2-90b-vision</code></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>llama-4</code></th>
@@ -2155,24 +2237,40 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <td><a href="https://platform.inceptionlabs.ai">Inception Labs (Mercury)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>minimax-2.1</code></th>
-              <td><a href="https://kiro.dev/">Kiro</a></td>
+              <th scope="row"><code>mimo-v2-flash</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>minimax-m3</code></th>
-              <td><a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+              <th scope="row"><code>mimo-v2-omni</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>mimo-v2-pro</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>minimax-m2</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>minimax-m2.5</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>mistral-nemotron</code></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>mistral-small-3.2</code></th>
               <td><a href="https://meganova.ai">MegaNova</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>muse-spark-1.3-contributor</code></th>
-              <td><a href="https://opencode.ai">opencode</a></td>
+              <th scope="row"><code>nemotron-nano-12b-v2-vl</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
-              <th scope="row"><code>nemotron-3-nano-omni</code></th>
-              <td><a href="https://www.tokenrouter.com">TokenRouter (PaleBlueDot)</a></td>
+              <th scope="row"><code>nemotron-nano-9b-v2</code></th>
+              <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
             <tr>
               <th scope="row"><code>qwen3-8b</code></th>
@@ -2266,7 +2364,7 @@ pass the key as Bearer            </td>
 <code>OPENROUTER_API_KEY</code>
 <div class="sub" style="margin-top:6px"><a href="https://openrouter.ai/settings/keys">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
-                <details><summary>pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-23, and the lane rotates, so a new id waits two weeks for the …</summary><span class="full">pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-23, and the lane rotates, so a new id waits two weeks for the Models column. nemotron-3.5-content-safety, a guardrail classifier, is left out; openrouter/free is the free-models router, ling-3.0-flash-fin and ling-3.0-flash-sante are finance- and health-tuned, nemotron-3-nano-omni is a perception sub-agent, and LiquidAI warns lfm-2.5-2.6b off agentic coding. For Claude Code, OpenRouter&#39;s cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL</span></details>
+                <details><summary>pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the …</summary><span class="full">pick models with the :free suffix: every id carrying it is priced 0/0, 20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b, which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety, a guardrail classifier. Nex-N2.5 Pro and Mini are ignored: the catalog dates their free ids to end 2026-09-25. For Claude Code, OpenRouter&#39;s cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL</span></details>
             </td>
           </tr>
           <tr>
@@ -2293,7 +2391,7 @@ the chat models Groq&#39;s own Free Plan Limits table names; its safeguard and p
 <span class="tag nokey">none — the lane is anonymous</span>
             </td>
             <td class="limits" data-label="Notes">
-                <details><summary>no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id …</summary><span class="full">no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog&#39;s autoRouting list names; it and openrouter/free are routers, not models, and nemotron-3.5-content-safety, a guardrail classifier, is left out</span></details>
+                <details><summary>no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id …</summary><span class="full">no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog&#39;s autoRouting list names; it and openrouter/free are routers, stealth/space-bunny-alpha names no model, and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail classifier, and Nex-N2.5, whose free ids end 2026-09-25</span></details>
             </td>
           </tr>
           <tr>
@@ -2337,7 +2435,7 @@ the chat models Groq&#39;s own Free Plan Limits table names; its safeguard and p
 <code>AIHUBMIX_API_KEY</code>
 <div class="sub" style="margin-top:6px"><a href="https://aihubmix.com/token">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
-                <details><summary>every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin …</summary><span class="full">every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 parses page images into Markdown, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 is a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was &#34;removed from the platform&#34;. For Claude Code, ANTHROPIC_BASE_URL is https://aihubmix.com, as its Claude Code guide sets it</span></details>
+                <details><summary>every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin …</summary><span class="full">every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was &#34;removed from the platform&#34;. Not in the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it</span></details>
             </td>
           </tr>
           <tr>

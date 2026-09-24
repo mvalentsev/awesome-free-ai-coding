@@ -17,7 +17,7 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 ## Free models
 
-`claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-2.1`
+`claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-m2.1`
 
 ## Limits, in the vendor's words
 
@@ -39,6 +39,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## History
 
+- *next scheduled run* — Free models changed: added minimax-m2.1; dropped minimax-2.1
 - `2026-08-24` — Free models changed: added deepseek-v3.2, minimax-2.1
 - `2026-07-20` — Free models changed: dropped deepseek-v3.2, minimax-2.1
 - `2026-07-19` — Free models changed: added claude-sonnet-4.5, deepseek-v3.2, minimax-2.1, qwen3-coder

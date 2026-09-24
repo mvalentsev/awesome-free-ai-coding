@@ -73,12 +73,6 @@
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         },
-        "nex-agi/nex-n2.5-pro:free": {
-          "name": "nex-agi/nex-n2.5-pro:free"
-        },
-        "nex-agi/nex-n2.5-mini:free": {
-          "name": "nex-agi/nex-n2.5-mini:free"
-        },
         "z-ai/glm-5.2:free": {
           "name": "z-ai/glm-5.2:free"
         },
@@ -164,17 +158,14 @@
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
         },
-        "nex-agi/nex-n2.5-pro:free": {
-          "name": "nex-agi/nex-n2.5-pro:free"
-        },
-        "nex-agi/nex-n2.5-mini:free": {
-          "name": "nex-agi/nex-n2.5-mini:free"
-        },
         "z-ai/glm-5.2:free": {
           "name": "z-ai/glm-5.2:free"
         },
         "qwen/qwen3.8-27b:free": {
           "name": "qwen/qwen3.8-27b:free"
+        },
+        "stealth/space-bunny-alpha": {
+          "name": "stealth/space-bunny-alpha"
         }
       }
     },
