@@ -246,10 +246,13 @@ among them. A list that cannot be read leaves the offer unchecked, which is
 **Every family in `models[]` must be named on the page the probe reads.** The
 Free models column is a claim, and it needs to be re-checkable by the same run
 that re-checks the offer: an `api-models` probe demands each family back from the
-catalog, and a `page-keywords` probe now looks for each family in the page it
-already fetched. A family the page does not name is reported as `stale-models` —
-the entry stays live and verified, because a marketing page dropping a model name
-is not a tier ending, but the column is flagged until someone fixes it. Where the
+catalog, free where the row reads prices, and a `page-keywords` probe now looks
+for each family in the page it already fetched. A family the page does not name,
+or one the catalog stopped serving free while it still serves another family the
+row lists, is reported as `stale-models` — the entry stays live and verified,
+because a marketing page dropping a model name is not a tier ending and neither
+is one model leaving a lane, but the column is flagged until someone fixes it. A
+catalog that serves none of the row's families fails the row. Where the
 vendor keeps its offer on one page and its model list on another, probe the page
 that carries both, or list fewer families: an id that belongs to the free lane but
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
@@ -271,10 +274,10 @@ vendor keeps its ids in a keyless catalog at another url names it in
 catalog that stops answering is reported as `stale-ids` too, since a check that
 quietly did not run is the silence this whole mechanism exists to end. A failing
 `api-models` row is asked the same question and carries the answer after a `|` in
-its own failure line: the catalog that failed the family is the response already
-in hand, and the run that fails a row over one model is the run most likely to
-have lost ids beside it — on 2026-09-07 LLMTR failed on `minimax-m3` while three
-of its ids went unreported and stayed in the generated configs. A failing
+its own failure line: the catalog that failed its families is the response
+already in hand, and the run that loses a model is the run most likely to have
+lost ids beside it — on 2026-09-07 LLMTR failed on `minimax-m3` while three of
+its ids went unreported and stayed in the generated configs. A failing
 `page-keywords` row is not: there the failure is the offer itself, and the row is
 repaired or archived whole. A `stale-models` flag, on the other hand, ends nothing:
 the ids, the keyless lane and the Anthropic route are still asked, and what they

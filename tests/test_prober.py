@@ -8,8 +8,8 @@ import respx
 from freetier_radar.history import load_history
 from freetier_radar.models import ApiInfo, DataUse, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
-    ProbeResult, ProbeStatus, _amain, apply_results, family_named, for_a_human, is_model_stale,
-    probe_entry,
+    ProbeResult, ProbeStatus, _amain, apply_results, check_content, family_named, for_a_human,
+    is_model_stale, probe_entry,
 )
 
 BASE = {
@@ -82,6 +82,74 @@ def zero_price_entry() -> Entry:
     e = api_entry()
     e.probe.require_zero_price = True
     return e
+
+
+FREE_QWEN = {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}}
+
+
+def two_family_entry() -> Entry:
+    e = zero_price_entry()
+    e.models = [ModelFamily(family="qwen3-coder"), ModelFamily(family="llama-4")]
+    return e
+
+
+@respx.mock
+async def test_a_family_that_left_beside_one_that_stands_flags_the_column_not_the_offer():
+    """Three failed runs archive a row, and on an api-models row every family
+    was a tripwire: one model leaving a lane of fifteen failed the whole row.
+    That is why OpenRouter's column held two families for a month while its
+    catalog served a dozen more free. The offer is the lane, and a lane that
+    still serves a listed family free is alive; the family that left is the
+    Models column's problem, flagged the way a page row's is."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [FREE_QWEN, {"id": "meta/llama-4-70b"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, two_family_entry(), backoff=0)
+    assert result == ProbeResult(ProbeStatus.STALE_MODELS, "missing families: llama-4")
+
+
+@respx.mock
+async def test_a_family_that_started_billing_beside_a_free_one_flags_the_column():
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [FREE_QWEN, {"id": "meta/llama-4-70b:free",
+                                         "pricing": {"prompt": "0.0000001", "completion": "0.0000003"}}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, two_family_entry(), backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+    assert result.detail.startswith("no longer free: ") and "llama-4-70b:free" in result.detail
+
+
+@respx.mock
+async def test_a_lane_that_serves_none_of_its_families_still_fails_the_row():
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder"}, {"id": "meta/llama-4-70b"}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, two_family_entry(), backoff=0)
+    assert result == ProbeResult(ProbeStatus.FAIL, "missing families: qwen3-coder, llama-4")
+
+
+@respx.mock
+async def test_a_column_flagged_on_a_catalog_still_carries_what_it_says_about_the_ids():
+    """The flag leads and the read goes on, as on a page row since 2026-09-21:
+    the run that loses a family is the run most likely to have lost its id."""
+    entry = two_family_entry()
+    entry.api = ApiInfo(base_url="https://api.x.ai/v1",
+                        model_ids=["qwen/qwen3-coder:free", "meta/llama-4-70b:free"])
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [FREE_QWEN]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result == ProbeResult(ProbeStatus.STALE_MODELS,
+                                 "missing families: llama-4 | api.model_ids the catalog no longer "
+                                 "answers for: meta/llama-4-70b:free is not in the catalog")
+
+
+def test_a_repair_is_still_held_to_every_family_it_lists():
+    """What the scout writes is checked with check_content, and that check stays
+    whole: a reply that keeps a family the lane no longer serves is refused, or
+    the column the run flagged would come back from the pull request unrepaired."""
+    catalog = httpx.Response(200, json={"data": [FREE_QWEN]})
+    assert check_content(catalog, two_family_entry()) == "missing families: llama-4"
 
 
 @respx.mock

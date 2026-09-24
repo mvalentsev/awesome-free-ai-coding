@@ -30,7 +30,7 @@ class ProbeStatus(str, Enum):
     PASS = "pass"
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
-    STALE_MODELS = "stale-models"  # offer verified, but every listed family is superseded
+    STALE_MODELS = "stale-models"  # offer verified, but not the Models column: a family its page no longer names, one its catalog no longer serves free beside one it does, or every family superseded
     STALE_IDS = "stale-ids"  # offer and families verified, but a published connection detail is not backed: api.model_ids against the catalog, the Anthropic route, or a public key its page stopped printing
 
 
@@ -58,6 +58,18 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         if stop is not None:
             return stop
     detail = check_content(resp, entry)
+    # A catalog that still serves one of the row's families free is a live
+    # lane, and the families it stopped serving are the Models column's
+    # problem, not the offer's. Until 2026-09-24 one model leaving failed the
+    # whole row, three runs of that archive it, and so a rotating lane's column
+    # was kept short: OpenRouter's named two families for a month while its
+    # catalog served a dozen more free. The column verdict is the same words
+    # check_content wrote, flagged the way a page row's missing family is; a
+    # lane that serves none of them still fails.
+    column = ""
+    if (detail is not None and entry.probe.type is ProbeType.API_MODELS
+            and any(family_named(resp, entry, m.family) for m in entry.models)):
+        column, detail = detail, None
     if detail is None:
         # A row published as keyless is only as live as a call without a
         # key, and one the vendor prints a key for as a call with that key:
@@ -72,8 +84,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
                 return keyless
         # The offer is evidenced. Whether the models the README hangs off it
-        # still are is a second question, and only a page-keywords probe
-        # leaves it open — see unevidenced_families. A flagged column is the
+        # still are is a second question: a catalog answered it above, a page
+        # is asked here — see unevidenced_families. A flagged column is the
         # verdict, but it no longer ends the read: until 2026-09-21 it returned
         # here, and every question below went unasked on the rows most likely
         # to need them. Regolo dropped Llama 3.3 from its price table and its
@@ -83,8 +95,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # follows it after " | ", where the fix prompt already looks for the
         # half that is not the model's to repair.
         unevidenced = unevidenced_families(resp, entry)
-        column = ("listed families the page does not name: " + ", ".join(unevidenced)
-                  if unevidenced else "")
+        if unevidenced:
+            column = "listed families the page does not name: " + ", ".join(unevidenced)
 
         def verdict(status: ProbeStatus, note: str = "") -> ProbeResult:
             if column:
@@ -1213,8 +1225,8 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
 def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     """Families the README publishes that the probed page does not even name.
 
-    `_check_api_models` demands every listed family back from the catalog, so on
-    that half of the registry a model that quietly leaves takes its row with it.
+    `_check_api_models` demands every listed family back from the catalog, and on
+    that half of the registry a model that quietly leaves is flagged by the run.
     A page-keywords probe had no equivalent: its keywords anchor the OFFER, and
     nothing ever asked whether the models listed beside that offer are still
     there. Measured 2026-08-14 across every live page-keywords entry, a third of
@@ -1242,10 +1254,11 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
 
     And it never fails an entry. Three failures archive a row, so a marketing
     page that drops a model name in a restyle would bury a live service inside a
-    week; the rotating-lane rule (Kilo, TokenRouter) says the same thing from the
-    other side. STALE_MODELS is what "the offer is alive, the Models column is
-    not trustworthy" already means here, and it is what the scout's FIX_PROMPT
-    already knows how to repair.
+    week. Since 2026-09-24 a catalog row is held to the same line, a family
+    leaving a lane that still serves another one free being a flag and not a
+    failure (see probe_entry). STALE_MODELS is what "the offer is alive, the
+    Models column is not trustworthy" already means here, and it is what the
+    scout's FIX_PROMPT already knows how to repair.
     """
     if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
         return []

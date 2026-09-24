@@ -130,10 +130,11 @@ official page text below, propose corrected values (e.g. a working probe endpoin
 updated limits). Allowed keys per update: id (unchanged), offering, limits,
 card_required, probe, models.
 A "stale-models" failure means the probe passed and the offer is alive, but the
-entry's model list is in doubt — either every family listed for it was marked
-superseded, or the page no longer names a family the entry lists. The failure
-detail says which. Reply with a models list naming only families the page text
-below names itself, and leave the probe alone.
+entry's model list is in doubt — every family listed for it was marked
+superseded, the page no longer names a family the entry lists, or the catalog
+no longer serves one of its families free while it still serves another. The
+failure detail says which. Reply with a models list naming only families the
+page text below names itself, and leave the probe alone.
 A "missing families" detail, on that verdict or on a plain failure, names
 families the entry lists and the evidence no longer backs. The list you reply
 with replaces the old one whole: keep the families that still stand, drop the
