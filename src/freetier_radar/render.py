@@ -168,7 +168,7 @@ def _ordered(active: list[Entry], category: Category) -> list[Entry]:
 
 # What each event is called wherever a human reads it: the row's page, the
 # "What changed" tables, the feed and the monthly digest. One word each — until
-# 2026-09-25 four tables named the five events, and "Added to the list", "New"
+# 2026-09-24 four tables named the five events, and "Added to the list", "New"
 # and "➕ Added" were one event. The tables put a mark before the word.
 EVENT_WORDS: dict[EventType, str] = {
     EventType.ADDED: "Added",
@@ -1476,7 +1476,7 @@ def _history_section(e: Entry, events: list[Event]) -> list[str]:
     """Every event of this row, newest first, as history.jsonl holds it.
 
     The render records a change before it writes the page, so the newest line
-    is the commit's own. Until 2026-09-25 only the scheduled run recorded, and
+    is the commit's own. Until 2026-09-24 only the scheduled run recorded, and
     the page guessed at the line it would write — Cline, back on 2026-09-14,
     read "Delisted" as its newest event under a header that said live.
     """

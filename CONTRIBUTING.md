@@ -527,7 +527,7 @@ row you add by hand gets its line in your commit, dated that day, and its page
 already shows it; a render run again before the commit rewrites only its own
 uncommitted lines. A change the calendar makes — a row going unverified past
 the staleness limit, a vendor's shutdown date arriving — is recorded by the
-first render after it, the scheduled run's at the latest. Until 2026-09-25 only
+first render after it, the scheduled run's at the latest. Until 2026-09-24 only
 the scheduled run recorded, up to four days after a change reached the list,
 and the rows' pages showed that run's date.
 

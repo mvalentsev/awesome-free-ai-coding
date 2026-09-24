@@ -20,7 +20,7 @@ file gets wrong:
   cannot ping a subscriber about the same event on two consecutive runs.
 
 The file is append-only and is the first thing here that cannot be
-regenerated from `registry.yaml`. Until 2026-09-25 only the scheduled run wrote
+regenerated from `registry.yaml`. Until 2026-09-24 only the scheduled run wrote
 it, so a change committed by hand reached the README the day it landed and the
 log at the next run, up to four days later, dated that day. Now `freetier-render`
 records every change before it writes a page — the lines a commit carries are
