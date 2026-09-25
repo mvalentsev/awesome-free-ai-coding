@@ -1147,8 +1147,9 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
         options: dict = {"baseURL": e.api.base_url}
         if e.api.auth != "none":
             options["apiKey"] = "{env:" + env_var(e.id) + "}"
-        ids = e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
-        models = {mid: {"name": mid} for mid in ids}
+        # The ids the row lists and nothing else: a family names a model, not
+        # the string a request carries (see _litellm_ids).
+        models = {mid: {"name": mid} for mid in e.api.model_ids}
         providers[e.id] = {
             "npm": "@ai-sdk/openai-compatible",
             "name": e.name,
@@ -1172,7 +1173,13 @@ def _litellm_lanes(entries: list[Entry], today: date) -> list[Entry]:
 
 
 def _litellm_ids(e: Entry) -> list[str]:
-    return e.api.model_ids or [m.family for m in e.models if m.superseded_by is None]
+    """The ids a config calls: the row's own, exactly. Until 2026-09-25 a row
+    with none had its family names written in their place, which is right only
+    where a family happens to be an id — Cloudflare's config handed out
+    `llama-4`, which Workers AI does not know, and Upstage's `solar-pro-3` for
+    the id solar-pro3. freetier-check now refuses a connectable row whose
+    column names families with no ids beside them."""
+    return e.api.model_ids
 
 
 def _tier_of_id(e: Entry, model_id: str) -> Tier | None:

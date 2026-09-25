@@ -184,6 +184,18 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"registry: {e.id} {lane.field}.no_family_ids names {i}, but family "
                     f"{named[0]!r} names it — take it out of no_family_ids")
 
+    # The configs are written from api.model_ids alone: a family names a model,
+    # an id is what a request carries. A connectable row whose column names
+    # families and lists no id would hand a reader nothing to call — and until
+    # 2026-09-25 the render wrote the family names in their place, `llama-4`
+    # for Cloudflare, whose ids are @cf/ paths.
+    for e in entries:
+        if (e.api and e.api.base_url and e.api.openai_compatible and e.models
+                and not e.api.model_ids and not is_archived(e, today)):
+            problems.append(
+                f"registry: {e.id} names families but no api.model_ids — the configs call ids, "
+                f"never family names; list the vendor's exact ids")
+
     for e in entries:
         if e.last_verified > today:
             problems.append(f"registry: {e.id} last_verified {e.last_verified} is in the future")

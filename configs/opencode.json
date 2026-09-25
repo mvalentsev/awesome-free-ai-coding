@@ -610,8 +610,8 @@
         "qwen3-max": {
           "name": "qwen3-max"
         },
-        "qwen3-coder": {
-          "name": "qwen3-coder"
+        "qwen3-coder-plus": {
+          "name": "qwen3-coder-plus"
         }
       }
     },

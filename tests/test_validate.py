@@ -79,6 +79,18 @@ def test_an_id_a_client_lane_keeps_out_of_the_column_is_one_it_lists(tmp_path: P
     assert not any("stealth/alpha" in p for p in problems), problems
 
 
+def test_a_row_with_an_endpoint_and_a_models_column_lists_the_ids_to_call(tmp_path: Path):
+    """The configs are written from api.model_ids alone, so a connectable row
+    whose column names families and whose ids are missing would hand a reader
+    nothing to call — and until 2026-09-25 it handed out the family names."""
+    bare = {**ENTRY, "api": {"base_url": "https://x.ai/v1"}}
+    problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
+    assert any("x" in p and "api.model_ids" in p and "family" in p for p in problems), problems
+    listed = {**ENTRY, "api": {"base_url": "https://x.ai/v1", "model_ids": ["x-mini-2"]}}
+    problems = check(build(tmp_path, entries=[listed], watched=[WATCHED]), TODAY)
+    assert not any("api.model_ids" in p and "family" in p for p in problems), problems
+
+
 def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
     """The median `limits` went from 87 characters in July to 813 by 2026-09-16,
     the longest 3,712 — a research log in a README cell. The history belongs to

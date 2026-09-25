@@ -679,9 +679,9 @@ model_list:
     model: openai/qwen3-max
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
-- model_name: alibaba-model-studio/qwen3-coder
+- model_name: alibaba-model-studio/qwen3-coder-plus
   litellm_params:
-    model: openai/qwen3-coder
+    model: openai/qwen3-coder-plus
     api_base: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
     api_key: os.environ/ALIBABA_MODEL_STUDIO_API_KEY
 - model_name: bazaarlink/qwen/qwen3.7-flash:free

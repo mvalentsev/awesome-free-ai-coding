@@ -234,7 +234,9 @@ def api_entry(**kw):
 
 def test_opencode_config_and_env_example():
     entries = [
-        api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}]),
+        api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}],
+                  api={"base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",
+                       "auth": "api-key", "model_ids": ["llama-4"]}),
         make(id="keyless", name="Keyless",
              api={"base_url": "https://free.example/v1", "auth": "none"}),
         make(id="no-api", name="NoApi"),
@@ -356,8 +358,23 @@ def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path)
     assert "the 2 probes since have not found that evidence" in twice
 
 
+def test_configs_call_the_ids_a_row_lists_never_its_family_names():
+    """A family names a model; an id is what a request carries. Until 2026-09-25
+    a row with no api.model_ids had its family names written into litellm.yaml
+    and opencode.json as ids, which is right only where a family happens to be
+    one: Cloudflare's config handed out `llama-4`, which Workers AI does not
+    know (its ids are @cf/ paths), and Upstage's `solar-pro-3` for the id
+    solar-pro3."""
+    row = api_entry(id="cf", name="CF", models=[{"family": "llama-4", "tier": "strong"}])
+    assert [d for d in build_litellm_config([row], TODAY)["model_list"]
+            if "llama-4" in d["litellm_params"]["model"]] == []
+    assert build_opencode_config([row], TODAY)["provider"]["cf"]["models"] == {}
+
+
 def test_litellm_config_names_every_free_model_of_every_connectable_entry():
-    entries = [api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}]),
+    entries = [api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}],
+                         api={"base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",
+                              "auth": "api-key", "model_ids": ["llama-4"]}),
                api_entry(id="keyless", name="NoKey", api={
                    "base_url": "https://free.example/v1", "auth": "none",
                    "model_ids": ["gpt-oss-120b"]}),
@@ -1109,7 +1126,8 @@ def test_a_lane_that_wants_a_session_id_per_conversation_stays_out_of_the_static
     zen = api_entry(id="zen", name="Zen", api={
         "base_url": "https://zen.example/v1", "key_url": "https://zen.example/auth",
         "model_ids": ["free-a"], "session_header": "x-zen-session"})
-    plain = api_entry(id="plain", name="Plain", models=[{"family": "m"}])
+    plain = api_entry(id="plain", name="Plain", models=[{"family": "m"}],
+                      api={"base_url": "https://api.x.ai/v1", "model_ids": ["m"]})
     entries = [zen, plain]
 
     assert [m["model_name"] for m in build_litellm_config(entries, TODAY)["model_list"]] == [

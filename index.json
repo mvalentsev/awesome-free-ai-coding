@@ -1416,7 +1416,11 @@
         "key_url": "https://modelstudio.console.alibabacloud.com",
         "auth": "api-key",
         "openai_compatible": true,
-        "model_ids": [],
+        "model_ids": [
+          "qwen3.8-max",
+          "qwen3-max",
+          "qwen3-coder-plus"
+        ],
         "note": "international (Singapore) endpoint; keys are region-specific"
       },
       "data_use": {

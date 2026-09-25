@@ -31,6 +31,7 @@ What you send is not used to train models. In the vendor's words: “Alibaba Clo
 
 - Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
 - Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
+- Callable ids: `qwen3.8-max`, `qwen3-max`, `qwen3-coder-plus`
 - Note: international (Singapore) endpoint; keys are region-specific
 
 ## Evidence

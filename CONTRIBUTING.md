@@ -312,6 +312,14 @@ free list it could not read; the scheduled run prints the same report in its
 summary, and `freetier-check` refuses an id in `no_family_ids` that the row does
 not list or a family already names.
 
+**The configs call ids, never family names.** `configs/litellm.yaml` and
+`configs/opencode.json` are written from `api.model_ids` alone: a family names a
+model, an id is the string a request carries, and the two coincide only by
+luck. Until 2026-09-25 a row with no ids had its family names written in their
+place — Cloudflare's config handed out `llama-4`, which Workers AI does not know,
+and Upstage's `solar-pro-3` for the id `solar-pro3` — so `freetier-check` now
+refuses a connectable row whose column names families with no ids beside them.
+
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —
 where `require_zero_price` is set — priced 0; a dead id is reported as
