@@ -161,6 +161,18 @@ details > summary::after { content: " ▸"; color: var(--muted); font-size: .8em
 details[open] > summary::after { content: " ▾"; }
 details > summary:hover { color: var(--accent); }
 details .full { display: block; margin-top: 6px; }
+/* A fold a reader opens on purpose — the model index, the connection table —
+   has a summary drawn as a button: on a phone a bare line of text with a small
+   triangle after it does not read as something to tap. */
+details.fold > summary { display: inline-block; padding: 9px 16px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--raised); color: var(--fg); font-weight: 550;
+  font-size: .94rem; box-shadow: var(--shadow); }
+details.fold > summary:hover { border-color: var(--accent); color: var(--accent); }
+details.fold[open] > summary { margin-bottom: 14px; }
+/* A row's families past the first few, under their count; open, they take a
+   line of their own below the ones shown. */
+details.more > summary.chip { display: inline-block; color: var(--accent); }
+details.more[open] { flex-basis: 100%; }
 .notice { display: block; margin-top: 6px; padding: 6px 9px; border-radius: 8px;
   background: var(--warn-bg); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent);
   color: var(--fg); font-size: .84rem; }
@@ -441,6 +453,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
               {% if r.models %}
               <div class="chips">
                 {% for m in r.models %}<span class="chip{{ ' top' if m.tier == 'frontier' }}">{{ m.family }}</span>{% endfor %}
+                {% if r.more_models %}<details class="more"><summary class="chip">+{{ r.more_models | length }} more</summary><div class="chips">
+                  {% for m in r.more_models %}<span class="chip{{ ' top' if m.tier == 'frontier' }}">{{ m.family }}</span>{% endfor %}
+                </div></details>{% endif %}
               </div>
               {% else %}<span class="empty">—</span>{% endif %}
             </td>
@@ -473,10 +488,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       <h2>🧠 Looking for one model in particular?</h2>
       <p class="sub">{{ family_count }} model families, and everyone who serves each one free.</p>
     </header>
-    <div class="scroll" style="padding: 4px 16px">
-      <details id="model-index">
-        <summary>Show the model index</summary>
-        <table class="files" style="margin-top:8px">
+    <details id="model-index" class="fold">
+      <summary>Show the model index</summary>
+      <div class="scroll" style="padding: 4px 16px">
+        <table class="files">
           <tbody>
             {% for m in model_index %}
             <tr>
@@ -486,8 +501,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
             {% endfor %}
           </tbody>
         </table>
-      </details>
-    </div>
+      </div>
+    </details>
   </div>
 </section>
 {% endif %}
@@ -501,6 +516,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         the same key also serves the Anthropic Messages format: that one is Claude Code's
         <code>ANTHROPIC_BASE_URL</code>, and the probe checks it answers.</p>
     </header>
+    <details id="connections" class="fold">
+    <summary>Show the connection table for all {{ connections | length }} APIs</summary>
     <div class="scroll">
       <table class="rows">
         <thead>
@@ -551,6 +568,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         </tbody>
       </table>
     </div>
+    </details>
 
     <h3 style="margin-top:26px">Ready-made files, regenerated on every update</h3>
     <table class="files">
@@ -707,8 +725,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     });
   }
   // A link that names a fold opens it: the README sends a reader after one
-  // model to #model-index, and a closed summary there is a second click that
-  // the link already asked for.
+  // model to #model-index and a reader after a base URL to #connections, and
+  // a closed summary there is a second click that the link already asked for.
   function openNamedFold() {
     var named = document.getElementById(location.hash.slice(1));
     if (named && named.tagName === "DETAILS") { named.open = true; }

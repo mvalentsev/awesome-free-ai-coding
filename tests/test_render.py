@@ -202,7 +202,23 @@ def test_the_readme_keeps_the_plug_it_in_heading_and_sends_the_reader_to_configs
     assert "[`configs/README.md`](configs/README.md)" in plug
     assert "| Provider | Base URL |" not in plug and "https://api.x.ai/v1" not in plug
     assert "[`llms.txt`](llms.txt)" in plug and "[`index.json`](index.json)" in plug
-    assert f"{PAGES_URL}/#plug" in plug
+    assert f"{PAGES_URL}/#connections" in plug
+
+
+def test_the_readme_lists_the_ready_made_files_as_list_items(tmp_path: Path):
+    """The files were a two-column table until 2026-09-26, and GitHub gives a
+    table the screen's width and no more: on a phone the LiteLLM line's
+    `litellm --config … --host 127.0.0.1` held its cell open past the edge and
+    the table scrolled sideways under the reader's thumb. A list item wraps."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [api_entry(id="groq-free", name="Groq")])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    plug = text.split("## 🔧 Plug it into your agent")[1].split("## 📡 How this list stays fresh")[0]
+    assert not [line for line in plug.splitlines() if line.startswith("|")]
+    for f in ("configs/opencode.json", "configs/litellm.yaml", "configs/claude-code.sh",
+              "configs/free-llm.env.example"):
+        assert any(line.startswith(f"- [`{f}`]({f}) — ") for line in plug.splitlines()), f
 
 
 def test_a_teaser_is_never_cut_inside_a_code_span():
@@ -1859,7 +1875,7 @@ def test_the_connection_table_is_a_readme_beside_the_configs(tmp_path: Path):
                  "[`claude-code.sh`](claude-code.sh)",
                  "[`free-llm.env.example`](free-llm.env.example)",
                  "[`../llms.txt`](../llms.txt)", "[`../index.json`](../index.json)",
-                 "(../README.md)", "(../registry.yaml)", f"{PAGES_URL}/#plug"):
+                 "(../README.md)", "(../registry.yaml)", f"{PAGES_URL}/#connections"):
         assert link in text, link
     assert "do not edit" in text.lower()
 

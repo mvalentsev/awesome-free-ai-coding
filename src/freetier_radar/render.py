@@ -40,7 +40,7 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED
            "provider_page_url", "PAGES_URL",
            "build_llms_txt",
            "picks",
-           "SITE_PAGE", "build_site_context", "render_site",
+           "SITE_MODELS", "SITE_PAGE", "build_site_context", "render_site",
            "CONFIGS_README", "README_BUDGET", "render_configs_readme",
            "render_readme", "render_artifacts", "render_all", "render_contributing", "main"]
 
@@ -905,6 +905,11 @@ SITE_NAV_LABELS: dict[Category, str] = {
 # Shorter than the README's ten: the page shows the changes as cards rather than
 # table rows, and the feed is one click away under them.
 SITE_CHANGES = 8
+# How many of a row's families the page shows before it folds the rest under
+# their count — the README line's number, so the two read the same row alike.
+# Every family stays in the page: Alibaba's 57 stood as a column of chips
+# 1,681 px tall on a desktop on 2026-09-25, beside three lines of offer.
+SITE_MODELS = README_MODELS
 # How fresh the floor date reads in words, beside the colour badge_colour gives
 # it — a colour alone is not an answer for a reader who cannot see it.
 BADGE_WORDS = {BADGE_GREEN: "fresh", BADGE_AMBER: "ageing", BADGE_RED: "stale"}
@@ -928,6 +933,7 @@ def _site_row(e: Entry) -> dict:
     filterable table and a reader who scans this page are asking one question.
     """
     families = [m for m in e.models if m.superseded_by is None]
+    chips = [{"family": m.family, "tier": m.tier.value if m.tier else ""} for m in families]
     api = e.api
     return {
         "id": e.id,
@@ -936,8 +942,8 @@ def _site_row(e: Entry) -> dict:
         "page": provider_page_url(e.id),
         "offering": _site_fold(e.offering),
         "limits": _site_fold(e.limits) if e.limits else None,
-        "models": [{"family": m.family, "tier": m.tier.value if m.tier else ""}
-                   for m in families],
+        "models": chips[:SITE_MODELS],
+        "more_models": chips[SITE_MODELS:],
         "verified": e.last_verified.isoformat(),
         "card": e.card_required,
         "provisional": e.provisional,

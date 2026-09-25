@@ -386,9 +386,49 @@ def test_a_link_to_the_model_index_opens_it(tmp_path):
     section would land on a closed summary. The fold carries the id the link
     names, and the page's script opens a fold a link names."""
     html = _render([make(models=[{"family": "a"}])], tmp_path)
-    assert '<details id="model-index">' in html
+    assert '<details id="model-index" class="fold">' in html
     script = html.split("<script>")[1]
     assert "location.hash" in script and "hashchange" in script and ".open = true" in script
+
+
+def test_a_link_to_the_connection_table_opens_it(tmp_path):
+    """Fifty-nine connection cards were twenty-four of the page's eighty-nine
+    phone screens on 2026-09-25, between the list and the rest of the page, for
+    the reader who came to wire up one agent. The table is folded like the model
+    index, the files that wire every lane at once stay in view, and the README
+    and configs/README.md link the fold itself, which the page's script opens."""
+    from freetier_radar.render import PAGES_URL
+    rows = [make(id="k", name="Keyed", api={"base_url": "https://k.example/v1"})]
+    pages = _render_everything(rows, tmp_path)
+    plug = pages[SITE_PAGE].split('<section id="plug">')[1].split("</section>")[0]
+    table, files = plug.split("Ready-made files")
+    assert '<details id="connections" class="fold">' in table
+    assert table.index('<details id="connections"') < table.index("https://k.example/v1")
+    assert "configs/opencode.json" in files and "</details>" not in files
+    for page in ("README.md", "configs/README.md"):
+        assert f"{PAGES_URL}/#connections" in pages[page], page
+        assert f"{PAGES_URL}/#plug" not in pages[page], page
+
+
+def test_a_row_names_its_first_families_and_folds_the_rest(tmp_path):
+    """Alibaba's row named 57 families on 2026-09-25 and stood 1,681 px tall on
+    a desktop and 1,423 on a phone, a column of chips beside three lines of
+    offer. A row shows the families its README line names and folds the rest
+    under their count, still in the page, where the filter box and a browser's
+    find reach them."""
+    from freetier_radar.render import SITE_MODELS
+    families = [f"fam-{i}" for i in range(SITE_MODELS + 4)]
+    html = _render([make(id="wide", name="Wide",
+                         models=[{"family": f} for f in families])], tmp_path)
+    cell = html.split('data-label="Free models">')[1].split("</td>")[0]
+    shown, folded = cell.split('<details class="more">')
+    assert all(f">{f}<" in shown for f in families[:SITE_MODELS])
+    assert all(f">{f}<" in folded for f in families[SITE_MODELS:])
+    assert "+4 more" in folded
+    (tmp_path / "narrow").mkdir()
+    narrow = _render([make(id="narrow", models=[{"family": f} for f in families[:SITE_MODELS]])],
+                     tmp_path / "narrow")
+    assert '<details class="more">' not in narrow
 
 
 def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
