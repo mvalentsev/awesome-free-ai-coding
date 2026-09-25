@@ -106,6 +106,23 @@ def test_a_live_row_says_what_its_free_part_is(tmp_path: Path):
     assert not any("free_part" in p for p in problems), problems
 
 
+def test_an_earlier_record_of_a_free_id_stops_once_its_family_joins(tmp_path: Path):
+    """The record exists to bring a bar forward; once a family names the id it
+    dates nothing, and a day after today is a typo."""
+    seen = {"id": "x-mini-2", "on": "2026-08-01",
+            "source": "https://web.archive.org/web/20260801000000/https://x.ai/pricing"}
+    api = {"base_url": "https://x.ai/v1", "model_ids": ["x-mini-2", "x-pro-1"]}
+    named = {**ENTRY, "api": {**api, "free_since": [seen]}}
+    problems = check(build(tmp_path, entries=[named], watched=[WATCHED]), TODAY)
+    assert any("x-mini-2" in p and "free_since" in p and "x-mini" in p for p in problems), problems
+    ahead = {**ENTRY, "api": {**api, "free_since": [{**seen, "id": "x-pro-1", "on": "2026-08-20"}]}}
+    problems = check(build(tmp_path, entries=[ahead], watched=[WATCHED]), TODAY)
+    assert any("x-pro-1" in p and "2026-08-20" in p for p in problems), problems
+    fine = {**ENTRY, "api": {**api, "free_since": [{**seen, "id": "x-pro-1"}]}}
+    assert not any("free_since" in p
+                   for p in check(build(tmp_path, entries=[fine], watched=[WATCHED]), TODAY))
+
+
 def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
     """The median `limits` went from 87 characters in July to 813 by 2026-09-16,
     the longest 3,712 — a research log in a README cell. The history belongs to

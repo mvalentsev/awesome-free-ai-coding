@@ -14,7 +14,10 @@ itself, the earlier of the two days counts: NVIDIA created glm-5.3's free
 endpoint on 2026-09-15 and the row listed it on 09-22, so counted from the row
 alone the bar fell a week after the rule's. The report reads those dates off
 the same free list the probe reads (`probe.free_list`), and a list it cannot
-read is named in the report rather than silently counted from the row.
+read is named in the report rather than silently counted from the row. A row
+can also record an older record of an id being free itself — a Wayback snapshot
+of the vendor's free list, the vendor's own snapshot of its lane — in
+`free_since`, and the report counts from the earliest day it knows.
 
 It is a report, not a check. The calendar moves an id from waiting to due
 without anyone touching the file, and a commit gate that failed on a date would
@@ -93,6 +96,9 @@ class Waiting:
     listed: date  # the day the row's own record took the id in
     vendor: date | None = None  # the vendor's own date for the free id, where it gives one
     field: str = "api"  # the block the id is listed in: api, or client_lane
+    # Where `vendor` was read: the vendor's free list, or the record a row's
+    # free_since names for the id.
+    vendor_source: str = "the vendor's list"
 
     @property
     def since(self) -> date:
@@ -136,26 +142,32 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
             vendor: dict[tuple[str, str], date] | None = None) -> list[Waiting]:
     """Every id a live row's free lane lists that no family names and no decision
     keeps out, soonest due first. An id the history has not seen, on a row edited
-    and not yet committed, arrives today."""
+    and not yet committed, arrives today; the vendor's date for it, or a record
+    the row's free_since names, counts where it is earlier."""
     vendor = vendor or {}
     out = []
     for e in entries:
         lane = lane_ids(e)
         if lane is None or is_archived(e, today) or not _free_lane(e):
             continue
+        recorded = {s.id: s for s in lane.free_since}
         for model_id in lane.model_ids:
             if model_id in lane.no_family_ids or any(family_names(m.family, model_id)
                                                      for m in e.models):
                 continue
+            day, source = vendor.get((e.id, model_id)), "the vendor's list"
+            record = recorded.get(model_id)
+            if record is not None and (day is None or record.on < day):
+                day, source = record.on, f"<{record.source}>"
             out.append(Waiting(e.id, model_id, since.get((e.id, model_id), today),
-                               vendor.get((e.id, model_id)), lane.field))
+                               day, lane.field, source))
     return sorted(out, key=lambda w: (w.due_on, w.row, w.model_id))
 
 
 def _dated(w: Waiting) -> str:
     listed = f"in {w.field}.model_ids since {w.listed}"
     if w.vendor is not None and w.vendor < w.listed:
-        return f"free on the vendor's list since {w.vendor}, {listed}"
+        return f"free on {w.vendor_source} since {w.vendor}, {listed}"
     return listed
 
 

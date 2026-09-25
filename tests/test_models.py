@@ -357,6 +357,31 @@ def test_the_free_part_is_written_beside_the_offer_and_only_where_set(tmp_path: 
     assert load_registry(p)[0].free_part == "sum"
 
 
+WAYBACK = ("https://web.archive.org/web/20260914103442/"
+           "https://www.alibabacloud.com/help/en/model-studio/model-pricing")
+
+
+def test_an_earlier_record_of_a_free_id_is_one_the_lane_lists(tmp_path: Path):
+    """A Wayback snapshot of the vendor's free list, or the vendor's own snapshot
+    of its lane, can show an id free before this registry first read it; the
+    record names the id, the day and the source, and only for an id the lane
+    lists — a date for an id nowhere else in the row dates nothing."""
+    api = {"base_url": "https://api.x.ai/v1", "model_ids": ["m-1", "m-2"]}
+    seen = {"id": "m-2", "on": "2026-09-14", "source": WAYBACK}
+    row = Entry.model_validate({**sample_entry(), "api": {**api, "free_since": [seen]}})
+    assert row.api.free_since[0].on == date(2026, 9, 14)
+    for wrong in ({**seen, "id": "m-9"}, {**seen, "source": "web.archive.org/web/2026"}):
+        with pytest.raises(ValidationError):
+            Entry.model_validate({**sample_entry(), "api": {**api, "free_since": [wrong]}})
+    lane = {"model_ids": ["cline-free/a-1"], "free_since": [{**seen, "id": "cline-free/a-1"}]}
+    laned = Entry.model_validate({**sample_entry(), "category": "agent-cli",
+                                  "probe": CLIENT_LANE_PROBE, "client_lane": lane})
+    assert laned.client_lane.free_since[0].id == "cline-free/a-1"
+    p = tmp_path / "registry.yaml"
+    save_registry(p, [row, Entry.model_validate({**sample_entry(), "id": "plain", "api": api})])
+    assert p.read_text(encoding="utf-8").count("free_since") == 1
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

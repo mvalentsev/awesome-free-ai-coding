@@ -333,7 +333,14 @@ created `z-ai/glm-5.3`'s free endpoint on 2026-09-15 and the row listed it on
 It prints which ids are owed a family and when the rest fall due, and names any
 free list it could not read; the scheduled run prints the same report in its
 summary, and `freetier-check` refuses an id in `no_family_ids` that the row does
-not list or a family already names.
+not list or a family already names. Where an older record than the registry
+shows an id free — a Wayback snapshot of the vendor's free list, the vendor's
+own snapshot of its lane, an earlier commit of this list that named it in prose
+— the row says so in `api.free_since` (or `client_lane.free_since`): the id,
+the day and the record, which the report counts from. Alibaba's pricing page
+gave DeepSeek V4.1 Flash its quota by 2026-09-14 by Wayback while the row listed
+the id on 09-25, and until that day such bars lived in a maintainer's notes. A
+record goes when the family joins, and `freetier-check` says so.
 
 **The configs call ids, never family names.** `configs/litellm.yaml` and
 `configs/opencode.json` are written from `api.model_ids` alone: a family names a

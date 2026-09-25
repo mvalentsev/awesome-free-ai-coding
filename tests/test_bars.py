@@ -108,6 +108,23 @@ def test_a_page_row_whose_free_part_is_models_owes_its_ids_a_family_too():
                                                  TODAY)] == [("page", "p-1")]
 
 
+def test_an_earlier_record_of_a_free_id_brings_its_bar_forward():
+    """Alibaba's pricing page gave DeepSeek V4.1 Flash its free quota by
+    2026-09-14 by Wayback, and the row listed the id on 09-25: counted from the
+    row alone the bar fell on 10-09, and the true one lived in a maintainer's
+    notes, as Cline's did."""
+    snap = "https://web.archive.org/web/20260914103442/https://x.ai/pricing"
+    page = make(id="page", api={"base_url": "https://p.ai/v1", "model_ids": ["p-1", "p-2"],
+                                "free_since": [{"id": "p-1", "on": "2026-09-14", "source": snap},
+                                               {"id": "p-2", "on": "2026-09-30", "source": snap}]})
+    since = {("page", "p-1"): date(2026, 9, 25), ("page", "p-2"): date(2026, 9, 25)}
+    rows = waiting([page], since, TODAY)
+    assert [(w.model_id, w.due_on) for w in rows] == [("p-1", date(2026, 9, 28)),
+                                                      ("p-2", date(2026, 10, 9))]
+    assert f"free on <{snap}> since 2026-09-14, in api.model_ids since 2026-09-25" in report(
+        [page], since, TODAY)
+
+
 def test_an_archived_row_has_no_bars():
     gone = make(id="gone", models=[{"family": "big-1"}], probe=LANE, retired_on=date(2026, 9, 1),
                 api={"base_url": "https://x.ai/v1", "model_ids": ["v/new-2:free"]})

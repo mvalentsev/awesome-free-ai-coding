@@ -372,6 +372,34 @@ def notice_holds(notice: Notice | None, today: date) -> bool:
     return notice is not None and (today - notice.since).days <= NOTICE_HOLD_DAYS
 
 
+class FreeSince(BaseModel):
+    """A record older than this registry's own first read that shows an id
+    free: a Wayback snapshot of the vendor's free list, the vendor's own
+    snapshot of its lane. freetier-bars counts the two-week bar from the
+    earliest day it knows, and until 2026-09-25 it knew only the registry's
+    history and NVIDIA's free list, so the bars such a record set lived in a
+    maintainer's notes — Cline's DeepSeek V4.1 Flash in its lane since 09-14,
+    Alibaba's since 09-14 by Wayback, both dated 10-09 by the report."""
+    id: str
+    on: date
+    source: str  # the record itself, one a reader can open
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_a_page(cls, value: str) -> str:
+        if not value.startswith("https://"):
+            raise ValueError(f"free_since source {value!r} is not an https URL — name the record "
+                             "that shows the id free: a Wayback snapshot, the vendor's own snapshot")
+        return value
+
+
+def _dated_ids_are_listed(field: str, model_ids: list[str], free_since: list[FreeSince]) -> None:
+    unlisted = [s.id for s in free_since if s.id not in model_ids]
+    if unlisted:
+        raise ValueError(f"{field}.free_since dates {', '.join(unlisted)}, which {field}.model_ids "
+                         "does not list — a date for an id the lane does not carry dates nothing")
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -393,6 +421,9 @@ class ApiInfo(BaseModel):
     # has carried for two weeks is owed a family, and freetier-bars says so;
     # this is where a decision not to give one is recorded.
     no_family_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
+    # Ids in model_ids that an older record than this registry shows free, with
+    # the day and the record, so freetier-bars counts their bar from there.
+    free_since: list[FreeSince] = Field(default_factory=list, exclude_if=lambda v: not v)
     # The base of the vendor's Anthropic-format Messages API — the value Claude
     # Code's ANTHROPIC_BASE_URL takes, the client appending /v1/messages itself.
     # Set only where the vendor documents the route, never from a 401 alone:
@@ -487,6 +518,11 @@ class ApiInfo(BaseModel):
             raise ValueError("notice speaks about calling base_url, and there is no base_url")
         return self
 
+    @model_validator(mode="after")
+    def _free_since_dates_listed_ids(self) -> ApiInfo:
+        _dated_ids_are_listed("api", self.model_ids, self.free_since)
+        return self
+
     @field_validator("session_header")
     @classmethod
     def _session_header_is_a_header_name(cls, value: str | None) -> str | None:
@@ -537,6 +573,9 @@ class ClientLane(BaseModel):
     # `api.no_family_ids`. A lane no config is written from needs no second
     # list for ids left out of it: every id it carries is listed here.
     no_family_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
+    # As `api.free_since`: the vendor's own snapshots of its lane date an id
+    # before this list's history does.
+    free_since: list[FreeSince] = Field(default_factory=list, exclude_if=lambda v: not v)
     note: str = Field(default="", exclude_if=lambda v: not v)
 
     @field_validator("model_ids")
@@ -546,6 +585,11 @@ class ClientLane(BaseModel):
             raise ValueError("client_lane.model_ids is empty — a lane with no ids records nothing, "
                              "so drop the block")
         return value
+
+    @model_validator(mode="after")
+    def _free_since_dates_listed_ids(self) -> ClientLane:
+        _dated_ids_are_listed("client_lane", self.model_ids, self.free_since)
+        return self
 
 
 @dataclass(frozen=True)
@@ -557,14 +601,16 @@ class LaneIds:
     model_ids: list[str]
     ignored_ids: list[str]
     no_family_ids: list[str]
+    free_since: list[FreeSince]
 
 
 def lane_ids(entry: Entry) -> LaneIds | None:
     if entry.api is not None:
-        return LaneIds("api", entry.api.model_ids, entry.api.ignored_ids, entry.api.no_family_ids)
+        return LaneIds("api", entry.api.model_ids, entry.api.ignored_ids, entry.api.no_family_ids,
+                       entry.api.free_since)
     if entry.client_lane is not None:
         return LaneIds("client_lane", entry.client_lane.model_ids, [],
-                       entry.client_lane.no_family_ids)
+                       entry.client_lane.no_family_ids, entry.client_lane.free_since)
     return None
 
 

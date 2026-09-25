@@ -1733,6 +1733,23 @@
           "deepseek-v3.2",
           "glm-5.1"
         ],
+        "free_since": [
+          {
+            "id": "deepseek-v4.1-flash",
+            "on": "2026-09-14",
+            "source": "https://web.archive.org/web/20260914103442/https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+          },
+          {
+            "id": "glm-5.3",
+            "on": "2026-09-16",
+            "source": "https://web.archive.org/web/20260916141712/https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+          },
+          {
+            "id": "glm-5.2",
+            "on": "2026-09-16",
+            "source": "https://web.archive.org/web/20260916141712/https://www.alibabacloud.com/help/en/model-studio/model-pricing"
+          }
+        ],
         "note": "international (Singapore) endpoint; keys are region-specific. Free Quota Only is off by default, so a call past a model's million is billed: switch it on per model in the console. Each family calls its undated id; the dated snapshots priced beside it carry quotas of their own"
       },
       "data_use": {
@@ -4060,6 +4077,18 @@
         ],
         "no_family_ids": [
           "stealth/space-bunny-alpha"
+        ],
+        "free_since": [
+          {
+            "id": "cline-free/deepseek-v4.1-flash",
+            "on": "2026-09-14",
+            "source": "https://github.com/mvalentsev/awesome-free-ai-coding/commit/43855272e9945928db1577f5042613547bf66bd9"
+          },
+          {
+            "id": "cline-free/mimo-v2.6-flash",
+            "on": "2026-09-23",
+            "source": "https://github.com/cline/cline/blob/3af36a5c63530a5d1d2ac594d30dd732c6e4752a/sdk/packages/llms/src/catalog/cline-recommended.generated.ts"
+          }
         ],
         "note": "stealth/space-bunny-alpha is a stealth codename that names no model, so it stays out of the Models column"
       },

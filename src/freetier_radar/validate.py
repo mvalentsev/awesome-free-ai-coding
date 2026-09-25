@@ -184,6 +184,20 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"registry: {e.id} {lane.field}.no_family_ids names {i}, but family "
                     f"{named[0]!r} names it — take it out of no_family_ids")
 
+    # An earlier record of a free id exists to bring its bar forward: once a
+    # family names the id it dates nothing, and a day after today is a typo.
+    for e in entries:
+        lane = lane_ids(e)
+        for s in lane.free_since if lane else []:
+            named = [m.family for m in e.models if family_names(m.family, s.id)]
+            if named:
+                problems.append(
+                    f"registry: {e.id} {lane.field}.free_since dates {s.id}, which family "
+                    f"{named[0]!r} names — its bar is behind it, so take the record out")
+            if s.on > today:
+                problems.append(
+                    f"registry: {e.id} {lane.field}.free_since dates {s.id} {s.on}, after today")
+
     # "A sum to spend names no model" was applied on 2026-09-25 by reading rows,
     # and three were missed. Entry holds the rule wherever a row says which kind
     # of free it is, so a live row has to say it.
