@@ -3505,6 +3505,17 @@ entries:
     tier: strong
     released: 2026-09
     aa_model: muse-spark-1-3-xhigh
+  client_lane:
+    model_ids:
+    - stealth/space-bunny-alpha
+    - cline-free/mimo-v2.6-flash
+    - cline-free/deepseek-v4.1-flash
+    - cline-free/gemini-3.8-flash
+    - cline-free/muse-spark-1.3-contributor
+    no_family_ids:
+    - stealth/space-bunny-alpha
+    note: stealth/space-bunny-alpha is a stealth codename that names no model, so
+      it stays out of the Models column
   data_use:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.

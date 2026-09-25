@@ -1,6 +1,6 @@
 # awesome-free-ai-coding
 
-> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-09-24 from the registry; every offer above the Archived heading passed a probe in the last 60 days and has not failed 3 in a row.
+> Legal free LLM APIs and coding agents for AI coding — free tiers, no-card trials and free models, probe-verified twice a week against live model catalogs and pricing pages. Generated 2026-09-25 from the registry; every offer above the Archived heading passed a probe in the last 60 days and has not failed 3 in a row.
 
 Each offer links to a page with the free tier in the vendor's own words, the connection details (base URL, where to get a key, model ids, an Anthropic-format URL where the vendor documents one), the evidence the probe reads and the row's history. "No card" means the vendor asks for no payment method; "no key" means the endpoint answers without an account; "no account" means the vendor prints a key anyone may call it with. Offers the list carried and carries no more are listed last, under Archived, each with why it left.
 
