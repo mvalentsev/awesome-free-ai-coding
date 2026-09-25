@@ -75,12 +75,15 @@ no-card rows it ties with.
 a sign-up that refuses them, or a site and an endpoint that do not resolve there —
 does less work for this list's readers than the same offer open to all of them, so
 it ranks below the offers of its size that are, and lower the more readers it
-leaves out; the row names who, as a class, with the day it was measured. An
-exclusion most vendors share, such as the countries under US sanctions, sets no
-row apart and moves no rank. On 2026-09-25 CodeBuddy's international site, sign-in
-and API endpoint answered 0.0.0.1 in the United States, India and Russia and
-resolved in the seventeen other countries and territories asked; with the two
-largest developer populations on GitHub left out
+leaves out; the row names who, as a class, with the day it was measured. Readers
+are counted as developers: a border's share is its countries' part of the
+developers GitHub's [Innovation Graph](https://innovationgraph.github.com/) counts
+in its latest quarter, the EU's line left out of the total because it repeats the
+member states. An exclusion most vendors share, such as the countries under US
+sanctions, sets no row apart and moves no rank. On 2026-09-25 CodeBuddy's
+international site, sign-in and API endpoint answered 0.0.0.1 in the United
+States, India and Russia and resolved in the seventeen other countries and
+territories asked; with the two largest developer populations on GitHub left out
 ([Octoverse 2025](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)),
 it went from 65, among the recurring agent plans, to 82, below the trials and
 credits that reach them.
