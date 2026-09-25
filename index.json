@@ -1411,8 +1411,8 @@
         "https://www.alibabacloud.com/help/en/model-studio/new-free-quota"
       ],
       "card_required": false,
-      "offering": "Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible",
-      "limits": "1,000,000 free tokens per model, on the Singapore (international) region alone: \"the following models offer a free quota only in Singapore. No free quota is available in other regions\". The grant is \"valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later\" (read 2026-09-16). Which ids carry it is read off the last column of each International table, \"Free quota\": the qwen3.8 generation — qwen3.8-max and qwen3.8-max-0902 at a $2/$6 list, qwen3.8-flash, qwen3.8-27b — qwen3-max, and the qwen3-coder line. qwen-long reads \"No free quota\", and the Global tables carry no free-quota column at all (ids read 2026-09-10). Since 2026-09-15 \"you must complete your account information before activating Model Studio\", and past the quota \"you are automatically billed on a pay-as-you-go basis\" unless Free Quota Only, which \"is disabled by default\", is switched on per model (read 2026-09-23)",
+      "offering": "A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible",
+      "limits": "1,000,000 free tokens per model, on the Singapore (international) region alone: \"the following models offer a free quota only in Singapore. No free quota is available in other regions\", and the quota \"is independent per model and cannot be shared across models\", a dated snapshot counting as a model of its own. The grant is \"valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later\". The last column of each Singapore table, \"Free quota\", gives it to every Qwen text model from Qwen3.8 Max down to Qwen3 8B, the Coder and VL lines among them, to DeepSeek V4.1 Flash, V4 Pro, V4 Flash and V3.2, and to GLM-5.3, 5.2 and 5.1; the Kimi table has no such column, glm-5.2-fast-preview reads \"None\", and its translation, OCR, omni and realtime models are not ones to code with (read 2026-09-25). Since 2026-09-15 \"you must complete your account information before activating Model Studio\", and past the quota \"you are automatically billed on a pay-as-you-go basis\" unless Free Quota Only, which \"is disabled by default\", is switched on per model (read 2026-09-23)",
       "free_part": "models",
       "models": [
         {
@@ -1422,13 +1422,248 @@
           "aa_model": "qwen3-8-max"
         },
         {
+          "family": "qwen3.8-flash",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-flash-next"
+        },
+        {
+          "family": "qwen3.8-2.4t-a95b",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-2-4t-a95b"
+        },
+        {
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "qwen3-8-27b"
+        },
+        {
+          "family": "deepseek-v4-pro",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "deepseek-v4-pro"
+        },
+        {
+          "family": "deepseek-v4-flash",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "deepseek-v4-flash"
+        },
+        {
+          "family": "qwen3-coder-plus",
+          "released": ""
+        },
+        {
+          "family": "qwen3-coder-next",
+          "released": "",
+          "aa_model": "qwen3-coder-next"
+        },
+        {
+          "family": "qwen3.7-max",
+          "released": ""
+        },
+        {
+          "family": "qwen3.7-plus",
+          "released": "",
+          "aa_model": "qwen3-7-plus"
+        },
+        {
+          "family": "qwen3.7-flash",
+          "released": ""
+        },
+        {
+          "family": "qwen3.6-max",
+          "released": ""
+        },
+        {
+          "family": "qwen3.6-plus",
+          "released": ""
+        },
+        {
+          "family": "qwen3.6-flash",
+          "released": ""
+        },
+        {
+          "family": "qwen3.6-35b-a3b",
+          "released": "",
+          "aa_model": "qwen3-6-35b-a3b"
+        },
+        {
+          "family": "qwen3.6-27b",
+          "released": ""
+        },
+        {
+          "family": "qwen3.5-plus",
+          "released": ""
+        },
+        {
+          "family": "qwen3.5-flash",
+          "released": ""
+        },
+        {
+          "family": "qwen3.5-397b-a17b",
+          "released": "",
+          "aa_model": "qwen3-5-397b-a17b"
+        },
+        {
+          "family": "qwen3.5-122b-a10b",
+          "released": "",
+          "aa_model": "qwen3-5-122b-a10b"
+        },
+        {
+          "family": "qwen3.5-35b-a3b",
+          "released": ""
+        },
+        {
+          "family": "qwen3.5-27b",
+          "released": ""
+        },
+        {
           "family": "qwen3-max",
           "released": "2026-04",
           "aa_model": "qwen3-max"
         },
         {
-          "family": "qwen3-coder",
-          "released": "2025-07"
+          "family": "qwen3-coder-flash",
+          "released": ""
+        },
+        {
+          "family": "qwen3-coder-480b-a35b",
+          "released": ""
+        },
+        {
+          "family": "qwen3-coder-30b-a3b",
+          "released": ""
+        },
+        {
+          "family": "qwen3-next-80b-a3b-thinking",
+          "released": "",
+          "aa_model": "qwen3-next-80b-a3b-reasoning"
+        },
+        {
+          "family": "qwen3-next-80b-a3b-instruct",
+          "released": "",
+          "aa_model": "qwen3-next-80b-a3b-instruct"
+        },
+        {
+          "family": "qwen3-235b-a22b-thinking-2507",
+          "released": ""
+        },
+        {
+          "family": "qwen3-235b-a22b-instruct-2507",
+          "released": ""
+        },
+        {
+          "family": "qwen3-235b-a22b",
+          "released": ""
+        },
+        {
+          "family": "qwen3-30b-a3b-thinking-2507",
+          "released": ""
+        },
+        {
+          "family": "qwen3-30b-a3b-instruct-2507",
+          "released": ""
+        },
+        {
+          "family": "qwen3-30b-a3b",
+          "released": ""
+        },
+        {
+          "family": "qwen3-32b",
+          "released": ""
+        },
+        {
+          "family": "qwen3-14b",
+          "released": ""
+        },
+        {
+          "family": "qwen3-8b",
+          "released": ""
+        },
+        {
+          "family": "qwen-max",
+          "released": ""
+        },
+        {
+          "family": "qwen-plus",
+          "released": ""
+        },
+        {
+          "family": "qwen-flash",
+          "released": ""
+        },
+        {
+          "family": "qwen-turbo",
+          "released": ""
+        },
+        {
+          "family": "qwq-plus",
+          "released": ""
+        },
+        {
+          "family": "qvq-max",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-plus",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-flash",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-235b-a22b-thinking",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-235b-a22b-instruct",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-32b-thinking",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-32b-instruct",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-30b-a3b-thinking",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-30b-a3b-instruct",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-8b-thinking",
+          "released": ""
+        },
+        {
+          "family": "qwen3-vl-8b-instruct",
+          "released": ""
+        },
+        {
+          "family": "qwen-vl-max",
+          "released": ""
+        },
+        {
+          "family": "qwen-vl-plus",
+          "released": ""
+        },
+        {
+          "family": "deepseek-v3.2",
+          "released": "",
+          "aa_model": "deepseek-v3-2"
+        },
+        {
+          "family": "glm-5.1",
+          "released": "",
+          "aa_model": "glm-5-1"
         }
       ],
       "api": {
@@ -1438,10 +1673,67 @@
         "openai_compatible": true,
         "model_ids": [
           "qwen3.8-max",
+          "qwen3.8-flash",
+          "qwen3.8-2.4t-a95b",
+          "qwen3.8-27b",
+          "deepseek-v4-pro",
+          "deepseek-v4-flash",
+          "deepseek-v4.1-flash",
+          "glm-5.3",
+          "glm-5.2",
+          "qwen3-coder-plus",
+          "qwen3-coder-next",
+          "qwen3.7-max",
+          "qwen3.7-plus",
+          "qwen3.7-flash",
+          "qwen3.6-max-preview",
+          "qwen3.6-plus",
+          "qwen3.6-flash",
+          "qwen3.6-35b-a3b",
+          "qwen3.6-27b",
+          "qwen3.5-plus",
+          "qwen3.5-flash",
+          "qwen3.5-397b-a17b",
+          "qwen3.5-122b-a10b",
+          "qwen3.5-35b-a3b",
+          "qwen3.5-27b",
           "qwen3-max",
-          "qwen3-coder-plus"
+          "qwen3-coder-flash",
+          "qwen3-coder-480b-a35b-instruct",
+          "qwen3-coder-30b-a3b-instruct",
+          "qwen3-next-80b-a3b-thinking",
+          "qwen3-next-80b-a3b-instruct",
+          "qwen3-235b-a22b-thinking-2507",
+          "qwen3-235b-a22b-instruct-2507",
+          "qwen3-235b-a22b",
+          "qwen3-30b-a3b-thinking-2507",
+          "qwen3-30b-a3b-instruct-2507",
+          "qwen3-30b-a3b",
+          "qwen3-32b",
+          "qwen3-14b",
+          "qwen3-8b",
+          "qwen-max",
+          "qwen-plus",
+          "qwen-flash",
+          "qwen-turbo",
+          "qwq-plus",
+          "qvq-max",
+          "qwen3-vl-plus",
+          "qwen3-vl-flash",
+          "qwen3-vl-235b-a22b-thinking",
+          "qwen3-vl-235b-a22b-instruct",
+          "qwen3-vl-32b-thinking",
+          "qwen3-vl-32b-instruct",
+          "qwen3-vl-30b-a3b-thinking",
+          "qwen3-vl-30b-a3b-instruct",
+          "qwen3-vl-8b-thinking",
+          "qwen3-vl-8b-instruct",
+          "qwen-vl-max",
+          "qwen-vl-plus",
+          "deepseek-v3.2",
+          "glm-5.1"
         ],
-        "note": "international (Singapore) endpoint; keys are region-specific"
+        "note": "international (Singapore) endpoint; keys are region-specific. Free Quota Only is off by default, so a call past a model's million is billed: switch it on per model in the console. Each family calls its undated id; the dated snapshots priced beside it carry quotas of their own"
       },
       "data_use": {
         "trains": "no",

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T12:50:26Z</updated>
+  <updated>2026-09-25T13:27:54Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/alibaba-model-studio/20260925T132754Z</id>
+    <title>Free models changed: Alibaba Cloud Model Studio (DashScope, international)</title>
+    <link rel="alternate" href="https://www.alibabacloud.com/en/product/modelstudio"/>
+    <updated>2026-09-25T13:27:54Z</updated>
+    <summary type="text">added deepseek-v3.2, deepseek-v4-flash, deepseek-v4-pro, glm-5.1, qvq-max, qwen-flash, qwen-max, qwen-plus, qwen-turbo, qwen-vl-max, qwen-vl-plus, qwen3-14b, qwen3-235b-a22b, qwen3-235b-a22b-instruct-2507, qwen3-235b-a22b-thinking-2507, qwen3-30b-a3b, qwen3-30b-a3b-instruct-2507, qwen3-30b-a3b-thinking-2507, qwen3-32b, qwen3-8b, qwen3-coder-30b-a3b, qwen3-coder-480b-a35b, qwen3-coder-flash, qwen3-coder-next, qwen3-coder-plus, qwen3-next-80b-a3b-instruct, qwen3-next-80b-a3b-thinking, qwen3-vl-235b-a22b-instruct, qwen3-vl-235b-a22b-thinking, qwen3-vl-30b-a3b-instruct, qwen3-vl-30b-a3b-thinking, qwen3-vl-32b-instruct, qwen3-vl-32b-thinking, qwen3-vl-8b-instruct, qwen3-vl-8b-thinking, qwen3-vl-flash, qwen3-vl-plus, qwen3.5-122b-a10b, qwen3.5-27b, qwen3.5-35b-a3b, qwen3.5-397b-a17b, qwen3.5-flash, qwen3.5-plus, qwen3.6-27b, qwen3.6-35b-a3b, qwen3.6-flash, qwen3.6-max, qwen3.6-plus, qwen3.7-flash, qwen3.7-max, qwen3.7-plus, qwen3.8-2.4t-a95b, qwen3.8-27b, qwen3.8-flash, qwq-plus; dropped qwen3-coder · free models: qwen3.8-max, qwen3.8-flash, qwen3.8-2.4t-a95b, qwen3.8-27b, deepseek-v4-pro, deepseek-v4-flash, qwen3-coder-plus, qwen3-coder-next, qwen3.7-max, qwen3.7-plus, qwen3.7-flash, qwen3.6-max, qwen3.6-plus, qwen3.6-flash, qwen3.6-35b-a3b, qwen3.6-27b, qwen3.5-plus, qwen3.5-flash, qwen3.5-397b-a17b, qwen3.5-122b-a10b, qwen3.5-35b-a3b, qwen3.5-27b, qwen3-max, qwen3-coder-flash, qwen3-coder-480b-a35b, qwen3-coder-30b-a3b, qwen3-next-80b-a3b-thinking, qwen3-next-80b-a3b-instruct, qwen3-235b-a22b-thinking-2507, qwen3-235b-a22b-instruct-2507, qwen3-235b-a22b, qwen3-30b-a3b-thinking-2507, qwen3-30b-a3b-instruct-2507, qwen3-30b-a3b, qwen3-32b, qwen3-14b, qwen3-8b, qwen-max, qwen-plus, qwen-flash, qwen-turbo, qwq-plus, qvq-max, qwen3-vl-plus, qwen3-vl-flash, qwen3-vl-235b-a22b-thinking, qwen3-vl-235b-a22b-instruct, qwen3-vl-32b-thinking, qwen3-vl-32b-instruct, qwen3-vl-30b-a3b-thinking, qwen3-vl-30b-a3b-instruct, qwen3-vl-8b-thinking, qwen3-vl-8b-instruct, qwen-vl-max, qwen-vl-plus, deepseek-v3.2, glm-5.1</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/inception-labs/20260925T125026Z</id>
     <title>Free models changed: Inception Labs (Mercury)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://siliconflow.cn"/>
     <updated>2026-09-19T00:01:06Z</updated>
     <summary type="text">China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers · free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/llmtech/20260918T234845Z</id>
-    <title>Added: LLM Tech</title>
-    <link rel="alternate" href="https://llmtech.eu"/>
-    <updated>2026-09-18T23:48:45Z</updated>
-    <summary type="text">EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 2 concurrent requests, tool calls included, no account · free models: qwen3.8-27b</summary>
   </entry>
 </feed>

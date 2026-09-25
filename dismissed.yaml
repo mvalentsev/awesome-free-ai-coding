@@ -412,7 +412,7 @@ dismissed:
       release. The newer generation arrives with the same grant rather than
       taking the older one's.
   - entry: alibaba-model-studio
-    family: qwen3-coder
+    family: qwen3-coder-plus
     superseded_by: qwen3.8
     dismissed_on: 2026-09-08
     reason: >-

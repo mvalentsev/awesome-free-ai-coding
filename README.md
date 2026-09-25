@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **100** |
+| **79** | **75** | **7** | **59** | **147** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -90,7 +90,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[LLM7.io](https://llm7.io)** 🧪 | OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) |
 | **[LLM Tech](https://llmtech.eu)** 🧪 | EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account | `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) |
 | **[Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/)** | OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs | `qwen3.6`, `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) |
-| **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
+| **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible | `qwen3.8-max`, `qwen3.8-flash`, `qwen3.8-2.4t-a95b`, `qwen3.8-27b`, `deepseek-v4-pro`, `deepseek-v4-flash`, `qwen3-coder-plus`, `qwen3-coder-next`, [+49 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
 | **[Cohere (trial keys)](https://cohere.com)** 👁 | Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type | `command-a-plus`, `command-a-reasoning`, `north-mini-code`, `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
 | **[Mistral Studio](https://mistral.ai)** 👁 | Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) |
 | **[VLM Run Gateway](https://vlm.run)** 🧪 | OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha | `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
@@ -167,16 +167,16 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 100 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 147 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
 |---|---|
 | `nemotron-3-ultra` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [LLMTR](https://llmtr.com) |
+| `qwen3.8-27b` | [Groq](https://groq.com), [LLM Tech](https://llmtech.eu), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [Regolo AI](https://regolo.ai/pricing/), [VLM Run Gateway](https://vlm.run), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `nemotron-3-nano-omni` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [TokenRouter (PaleBlueDot)](https://www.tokenrouter.com) |
 | `nemotron-3-super` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [LLMTR](https://llmtr.com) |
 | `nemotron-3.5-lightning` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com) |
-| `qwen3.8-27b` | [Groq](https://groq.com), [LLM Tech](https://llmtech.eu), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [Regolo AI](https://regolo.ai/pricing/), [VLM Run Gateway](https://vlm.run), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `laguna-s-2.1` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳, [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
 | `laguna-xs-2.1` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [LLMTR](https://llmtr.com) |
 | `ling-3.0-flash-fin` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [LLMTR](https://llmtr.com), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
@@ -184,13 +184,15 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `gpt-oss-120b` | [Groq](https://groq.com), [Google Antigravity](https://antigravity.google), [Regolo AI](https://regolo.ai/pricing/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `north-mini-code` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3.6` | [Groq](https://groq.com), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [FreeInference (Harvard SEAS)](https://freeinference.org), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
+| `deepseek-v4-flash` | [Routeway](https://routeway.ai), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `dots-3-note` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com) |
+| `glm-5.1` | [AIHubMix (free models)](https://aihubmix.com), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `glm-5.3-flash` | [Freebuff](https://freebuff.com), [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `gpt-oss-20b` | [Groq](https://groq.com), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Pollinations.AI](https://pollinations.ai) |
 | `ling-3.0-flash-sante` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
 | `minimax-m2.5` | [Kiro](https://kiro.dev/), [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `muse-glimmer-30b` | [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Routeway](https://routeway.ai) |
-| `deepseek-v4-flash` | [Routeway](https://routeway.ai), [FreeInference (Harvard SEAS)](https://freeinference.org) |
+| `deepseek-v3.2` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
 | `diffusiongemma` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `gemini-3-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
@@ -200,7 +202,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `glm-4.7-flash` | [AIHubMix (free models)](https://aihubmix.com), [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-5` | [Kiro](https://kiro.dev/), [AIHubMix (free models)](https://aihubmix.com) |
-| `glm-5.1` | [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `glm-5.2` | [AIHubMix (free models)](https://aihubmix.com), [Regolo AI](https://regolo.ai/pricing/) |
 | `inkling-small` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai) |
 | `kimi-k3` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com) |
@@ -211,7 +212,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `minimax-m3` | [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `muse-spark-1.3-contributor` | [opencode](https://opencode.ai), [Cline](https://cline.bot) |
 | `nemotron-3-nano-30b` | [Requesty](https://www.requesty.ai), [AIHubMix (free models)](https://aihubmix.com) |
-| `qwen3-coder` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
+| `qwen3-8b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [SiliconFlow (China)](https://siliconflow.cn) |
+| `qwen3-coder-next` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.7-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [BazaarLink](https://bazaarlink.ai) |
+| `qwen3.8-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [Yolo-Auto](https://yolo-auto.com) |
 | `step-3.7-flash` | [Kilo Code](https://kilo.ai), [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
 | `agnes-2.5-flash` | [Agnes AI](https://agnes-ai.com) |
 | `agnes-3.0-flash` | [Agnes AI](https://agnes-ai.com) |
@@ -228,7 +232,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `command-r` | [Cohere (trial keys)](https://cohere.com) |
 | `command-r-plus` | [Cohere (trial keys)](https://cohere.com) |
 | `command-r7b` | [Cohere (trial keys)](https://cohere.com) |
-| `deepseek-v3.2` | [Kiro](https://kiro.dev/) |
+| `deepseek-v4-pro` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-2.5-pro` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
@@ -264,13 +268,56 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `muse-spark-1.2` | [Freebuff](https://freebuff.com) |
 | `nemotron-nano-12b-v2-vl` | [AIHubMix (free models)](https://aihubmix.com) |
 | `nemotron-nano-9b-v2` | [AIHubMix (free models)](https://aihubmix.com) |
-| `qwen3-8b` | [SiliconFlow (China)](https://siliconflow.cn) |
-| `qwen3-coder-next` | [Kiro](https://kiro.dev/) |
+| `qvq-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen-turbo` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen-vl-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen-vl-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-14b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-235b-a22b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-235b-a22b-instruct-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-235b-a22b-thinking-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-30b-a3b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-30b-a3b-instruct-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-30b-a3b-thinking-2507` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-32b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-coder` | [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
+| `qwen3-coder-30b-a3b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-coder-480b-a35b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-coder-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-coder-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-next-80b-a3b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-next-80b-a3b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-235b-a22b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-235b-a22b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-30b-a3b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-30b-a3b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-32b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-32b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-8b-instruct` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-8b-thinking` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3-vl-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.5-122b-a10b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.5-27b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.5-35b-a3b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.5-397b-a17b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.5-4b` | [Mixlayer](https://www.mixlayer.com) |
-| `qwen3.7-flash` | [BazaarLink](https://bazaarlink.ai) |
-| `qwen3.8-flash` | [Yolo-Auto](https://yolo-auto.com) |
+| `qwen3.5-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.5-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.6-27b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.6-35b-a3b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.6-flash` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.6-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.6-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.7-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.7-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwen3.8-2.4t-a95b` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `qwen3.8-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
+| `qwq-plus` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `xing4.0-29b` | [SiliconFlow (China)](https://siliconflow.cn) |
 
 </details>
@@ -281,6 +328,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-25` | 🔄 Free models changed **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | <sub>added deepseek-v3.2, deepseek-v4-flash, deepseek-v4-pro, glm-5.1, qvq-max, qwen-flash, qwen-max, qwen-plus, qwen-turbo, qwen-vl-max, qwen-vl-plus, qwen3-14b, qwen3-235b-a22b, qwen3-235b-a22b-instruct-2507, qwen3-235b-a22b-thinking-2507, qwen3-30b-a3b, qwen3-30b-a3b-instruct-2507, qwen3-30b-a3b-thinking-2507, qwen3-32b, qwen3-8b, qwen3-coder-30b-a3b, qwen3-coder-480b-a35b, qwen3-coder-flash, qwen3-coder-next, qwen3-coder-plus, qwen3-next-80b-a3b-instruct, qwen3-next-80b-a3b-thinking, qwen3-vl-235b-a22b-instruct, qwen3-vl-235b-a22b-thinking, qwen3-vl-30b-a3b-instruct, qwen3-vl-30b-a3b-thinking, qwen3-vl-32b-instruct, qwen3-vl-32b-thinking, qwen3-vl-8b-instruct, qwen3-vl-8b-thinking, qwen3-vl-flash, qwen3-vl-plus, qwen3.5-122b-a10b, qwen3.5-27b, qwen3.5-35b-a3b, qwen3.5-397b-a17b, qwen3.5-flash, qwen3.5-plus, qwen3.6-27b, qwen3.6-35b-a3b, qwen3.6-flash, qwen3.6-max, qwen3.6-plus, qwen3.7-flash, qwen3.7-max, qwen3.7-plus, qwen3.8-2.4t-a95b, qwen3.8-27b, qwen3.8-flash, qwq-plus; dropped qwen3-coder</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Inception Labs (Mercury)](https://platform.inceptionlabs.ai)** | <sub>dropped mercury-2, mercury-2.5, mercury-edit-2</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Sail Research](https://www.sailresearch.com)** | <sub>dropped deepseek-v4-flash, deepseek-v4-pro, glm-5.3, glm-5.3-flash, kimi-k3</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Sarvam AI](https://www.sarvam.ai)** | <sub>dropped sarvam-105b</sub> |
@@ -290,7 +338,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-25` | 🔄 Free models changed **[Cohere (trial keys)](https://cohere.com)** | <sub>added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Kiro](https://kiro.dev/)** | <sub>added claude-sonnet-4, glm-5, minimax-m2.5, qwen3-coder-next; dropped qwen3-coder</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>added muse-spark-1.2</sub> |
-| `2026-09-25` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added glm-5-turbo, glm-5.1, glm-5.2, glm-5.3-flash, mimo-v2.5-pro</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 
