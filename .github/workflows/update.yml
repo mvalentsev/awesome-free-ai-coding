@@ -74,14 +74,16 @@ jobs:
       # workflow), so what CI would check is checked here, before the commit:
       # the curated files, the map and the hand-written claims, every generated
       # file against the registry, history.jsonl grown by exactly what the
-      # render recorded, and the announcer's ledger left alone. A red
-      # step leaves main as it was and the findings in this log. It runs on a
-      # dry run too, which is how a change to it is tried before a real run.
+      # render recorded, the announcer's ledger left alone, and the tests —
+      # some of which read the committed files, such as the README's ceiling.
+      # A red step leaves main as it was and the findings in this log. It runs
+      # on a dry run too, which is how a change to it is tried before a real run.
       - name: Check what the run is about to commit
         run: |
           uv run freetier-check
           uv run freetier-render --check
           uv run freetier-gate diff HEAD
+          uv run pytest -q
 
       - name: Commit verification results to main
         id: commit
@@ -163,7 +165,7 @@ jobs:
             echo
             echo "CI does not run on a pull request this workflow opens, so these ran here:"
             echo
-            for cmd in "freetier-check" "freetier-render --check" "freetier-gate diff HEAD --earned"; do
+            for cmd in "freetier-check" "freetier-render --check" "freetier-gate diff HEAD --earned" "pytest -q"; do
               if out=$(uv run $cmd 2>&1); then
                 echo "- ✓ \`$cmd\`"
               else

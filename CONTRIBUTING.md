@@ -726,8 +726,8 @@ both the day it is added. `commit-msg` wants a subject that starts with its
 kind (`fix: …`) and a blank line before the body; `pre-push` runs the same
 checks on what is pushed, commit by commit. CI checks the logs again on every
 push and the earned fields on every pull request. CI never runs on the scheduled run's own commit,
-so the run checks its logs, the curated files and the render before it commits,
-and checks the scout's branch, earned fields included, before it opens the pull
+so the run checks its logs, the curated files, the render and the tests before it commits,
+and checks the scout's branch, earned fields and tests included, before it opens the pull
 request. A log rewritten or an earned field typed on purpose is the repository
 owner's alone: made once with the hooks off and named, with the reason, in
 `gate.RATIFIED` by the commit after it — a push or a CI run that meets it checks

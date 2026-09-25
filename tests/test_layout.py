@@ -115,6 +115,27 @@ def test_the_workflow_commits_the_maps_list():
     assert "freetier-map paths run" in commit["run"]
 
 
+def test_the_run_checks_what_ci_would_before_it_commits():
+    """CI never runs on the scheduled run's own push — GITHUB_TOKEN starts no
+    workflow — so a commit that broke a test CI runs would have sat on main
+    until the maintainer's next commit met it at the pre-commit gate, with
+    nothing to say which change did it. On 2026-09-25 the README stood at 70 KB
+    of the 80 KB ceiling a test holds, and the part growing was one the run
+    commits. What CI runs, the run runs before it commits, and the scout's
+    branch reports it in the pull request CI does not run on either."""
+    workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
+    ci = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
+    steps = workflow["jobs"]["update"]["steps"]
+    check = next(s for s in steps if s.get("name") == "Check what the run is about to commit")
+    commit = next(s for s in steps if s.get("id") == "commit")
+    assert steps.index(check) < steps.index(commit)
+    ci_runs = "\n".join(s.get("run", "") for s in ci["jobs"]["test"]["steps"])
+    for command in ("pytest", "freetier-check", "freetier-render"):
+        assert command in ci_runs and command in check["run"], command
+    scout = next(s for s in steps if s.get("name") == "Check the scout's branch")
+    assert "pytest" in scout["run"]
+
+
 def test_the_map_is_printed_as_a_table_with_one_row_per_line():
     table = markdown_table(TINY)
     lines = table.splitlines()
