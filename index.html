@@ -355,6 +355,85 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       API or pricing page twice a week, and the quota that comes with it is in
       <a href="#agent-cli">the agents table</a>.</p>
 
+    <h3 style="margin-top:26px">Strong models, free</h3>
+    <p class="sub" style="margin-bottom:10px">Each of these scores within 25 points of the top of the
+      <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
+      Index</a>, re-read twice a week, and every row beside it serves it free.</p>
+    <div class="scroll">
+      <table class="files">
+        <tbody>
+          <tr>
+            <th scope="row"><span class="chip">qwen3.8-27b</span></th>
+            <td><a href="https://groq.com">Groq</a> · <a href="https://llmtech.eu">LLM Tech</a> · <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a> · <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://regolo.ai/pricing/">Regolo AI</a> · <a href="https://vlm.run">VLM Run Gateway</a> · <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">deepseek-v4-flash</span></th>
+            <td><a href="https://routeway.ai">Routeway</a> · <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">glm-5.3-flash</span></th>
+            <td><a href="https://freebuff.com">Freebuff</a> · <a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">deepseek-v4.1-flash</span></th>
+            <td><a href="https://freebuff.com">Freebuff</a> · <a href="https://tokenharbor.ai">Token Harbor</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">gemini-3.6-flash</span></th>
+            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">gemini-3.7-flash</span></th>
+            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">gemini-3.8-flash</span></th>
+            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">glm-5.2</span></th>
+            <td><a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://regolo.ai/pricing/">Regolo AI</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">kimi-k3</span></th>
+            <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a> · <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">muse-spark-1.3-contributor</span></th>
+            <td><a href="https://opencode.ai">opencode</a> · <a href="https://cline.bot">Cline</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">qwen3.8-flash</span></th>
+            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://yolo-auto.com">Yolo-Auto</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">deepseek-v4-pro</span></th>
+            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">glm-5.3</span></th>
+            <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">gpt-5.6-luna</span></th>
+            <td><a href="https://zed.dev">Zed</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">muse-spark-1.2</span></th>
+            <td><a href="https://freebuff.com">Freebuff</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">qwen3.8-2.4t-a95b</span></th>
+            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><span class="chip">qwen3.8-max</span></th>
+            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="grid cols-3" style="margin-top:22px">
       <div class="card">
         <h3>An API key that gets the most done</h3>
@@ -1924,7 +2003,7 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
       <p class="sub">149 model families, and everyone who serves each one free.</p>
     </header>
     <div class="scroll" style="padding: 4px 16px">
-      <details>
+      <details id="model-index">
         <summary>Show the model index</summary>
         <table class="files" style="margin-top:8px">
           <tbody>
@@ -3649,6 +3728,15 @@ vendor-announced shutdown on 2026-05-15            </td>
       });
     });
   }
+  // A link that names a fold opens it: the README sends a reader after one
+  // model to #model-index, and a closed summary there is a second click that
+  // the link already asked for.
+  function openNamedFold() {
+    var named = document.getElementById(location.hash.slice(1));
+    if (named && named.tagName === "DETAILS") { named.open = true; }
+  }
+  window.addEventListener("hashchange", openNamedFold);
+  openNamedFold();
   // Type-to-narrow over the rows already in the page. browse.html is the full
   // filter (category, card, key, wire format); this is the one-box version for
   // a reader who arrived knowing the name or the model they want.

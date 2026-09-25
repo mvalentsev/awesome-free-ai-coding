@@ -28,28 +28,37 @@
 {% if starters %}
 **Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
 
-| Agent | Models you get for nothing |
-|---|---|
-{% for s in starters %}| **[{{ s.name }}]({{ s.url }})** | {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %}{% if s.more %} · [+{{ s.more }} more]({{ s.page }}){% endif %} |
+{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %}{% if s.more %} · [+{{ s.more }} more]({{ s.page }}){% endif %}{{ '' }}
 {% endfor %}
 
-<sub>Every model name above is read back from the vendor's own API or pricing page {{ schedule }}; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>
+<sub>Every model name above is read back from the vendor's own API or pricing page {{ schedule }}; the quota that comes with it is one click from the [list below](#-coding-agents--clis), on the row's own page.</sub>
+
+{% endif %}
+{% if readme_strong %}
+{% set strong_card = readme_strong | map(attribute='providers') | sum(start=[]) | selectattr('card_flag') | list %}
+**Strong models, free.** Each of these scores within {{ strong_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read {{ schedule }}, and every row beside it serves it free{% if strong_card %} — 💳 where the row wants a card on file{% endif %}:
+
+{# The '' keeps the line's newline, which trim_blocks takes from a line that ends in a block tag. #}
+{% for m in readme_strong %}- `{{ m.family }}`{% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}{{ '' }}
+{% endfor %}
+{% if strong_more %}
+
+<sub>The {{ readme_strong | length }} most widely served; the other {% if strong_more == 1 %}strong one is{% else %}{{ strong_more }} strong ones are{% endif %} in [the website's model index]({{ pages_url }}/#model-index).</sub>
+{% endif %}
 
 {% endif %}
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
 **Or pick by what you need:**
 
-| I want… | Start with |
-|---|---|
-{% if picks.frontier %}| **Frontier-tier models on a $0 plan** | {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %} · {% endif %}{% endfor %} |
-{% endif %}{% if picks.apis %}| **An API key that gets the most done for free** | {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
-{% endif %}{% if picks.aggregators %}| **One key, many free models** | {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
-{% endif %}{% if picks.keyless %}| **No account at all** | {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
-{% endif %}{% if picks.trials %}| **A trial that asks for no card** | {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
-{% endif %}{% if picks.claude_code %}| **Claude Code on a free lane** | {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %} |
+{% if picks.frontier %}- **Frontier-tier models on a $0 plan** — {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.apis %}- **An API key that gets the most done for free** — {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.aggregators %}- **One key, many free models** — {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.keyless %}- **No account at all** — {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.trials %}- **A trial that asks for no card** — {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.claude_code %}- **Claude Code on a free lane** — {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
 {% endif %}
 
-<sub>Each answer is the registry's own order read from the top — of its section, or of every section for no account at all{% if picks.frontier %}, frontier models{% endif %}{% if picks.claude_code %} and Claude Code{% endif %} — so a row that stops verifying leaves this table on the run it leaves the list, and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered).{% if picks.frontier %} "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models): the model a row's free lane serves scores within {{ frontier_within }} points of its top, re-read {{ schedule }}.{% endif %}{% if picks.claude_code %} The Claude Code line names gateways whose vendor documents an Anthropic-format route, which every run calls; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.{% endif %}</sub>
+<sub>Each answer is the registry's own order read from the top — of its section, or of every section for no account at all{% if picks.frontier %}, frontier models{% endif %}{% if picks.claude_code %} and Claude Code{% endif %} — so a row that stops verifying leaves these answers on the run it leaves the list, and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered).{% if picks.frontier %} "Frontier" is measured on the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models): the model a row's free lane serves scores within {{ frontier_within }} points of its top, re-read {{ schedule }}.{% endif %}{% if picks.claude_code %} The Claude Code line names gateways whose vendor documents an Anthropic-format route, which every run calls; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.{% endif %}</sub>
 
 {% endif %}
 {% if quickstart %}
@@ -72,32 +81,21 @@
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_trains %} · **👁** — what you send may be used to train models, in the vendor's own words on the row's page{% endif %}{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until {{ provisional_weeks }} of probes confirm it{% endif %} · **Last verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; the date links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** beside a name is the whole of the fine print about payment — {% if card_count %}{{ card_count }} row{{ 's' if card_count != 1 }} of {{ active_count }} carr{{ 'y' if card_count != 1 else 'ies' }} it{% else %}no row carries it today{% endif %}, and nothing else here asks for a card{% if has_trains %} · **👁** — what you send may be used to train models, in the vendor's own words on the row's page{% endif %}{% if has_provisional %} · **🧪** — added recently on fresh evidence, provisional until {{ provisional_weeks }} of probes confirm it{% endif %} · **verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; it links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
 {% if s.rows %}
 <sub>**{{ s.count }}** live · {% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %} · sorted by how much work you can get done for free</sub>
 
-| Tool | What you get | Free models | Last verified |
-|---|---|---|---|
-{% for r in s.rows %}| **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} | {{ r.offering }} | {{ r.models }} | [`{{ r.verified }}`]({{ r.page }}) |
+{% for r in s.rows %}- **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} — {{ r.offering }}<br><sub>[verified {{ r.verified }}]({{ r.page }}){% if r.models %} · {{ r.models }}{% endif %}</sub>
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}
 {% endfor %}
 
 {% if model_index %}
-<details>
-<summary><b>🧠 Looking for one model in particular?</b> — {{ model_index | length }} model families, and everyone who serves them free</summary>
-<br>
-
-| Model family | Free at |
-|---|---|
-{% for m in model_index %}| `{{ m.family }}` | {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %} |
-{% endfor %}
-
-</details>
+**🧠 Looking for one model in particular?** [The website's model index]({{ pages_url }}/#model-index) names all {{ family_count }} model famil{{ 'y' if family_count == 1 else 'ies' }} on the list and everyone who serves each one free{% if readme_strong %}; the strong ones are [under Start here](#-start-here){% endif %}.
 {% endif %}
 
 {% if changes %}

@@ -24,15 +24,16 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
 # group ids by tier with the same rule, so the two can never disagree. The
 # promotion day is the probe's too, and the pages say how far off it is.
 from .prober import PROVISIONAL_PROMOTE_DAYS
-# The bar a family's score must clear to be called frontier, which the picks
-# table states beside the answer.
-from .tiers import FRONTIER_WITHIN
+# The bars a family's score must clear to be called frontier or strong, which
+# the picks table and the strong models state beside the answer.
+from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 # The map of the repository, which CONTRIBUTING.md prints.
 from .gate import committed_log
 from .layout import MAP, markdown_table
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
-           "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS", "badge_colour",
+           "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS", "README_STRONG",
+           "badge_colour",
            "is_archived", "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_folded_page", "build_providers_index",
@@ -81,7 +82,10 @@ README_LIMITS_COLLAPSE = 260
 # grows a line per row, and the budget is what keeps the reference job from
 # creeping back: sixty rows of headroom, and less than the connection table
 # alone (38 KB) or the limits column (83 KB) would put back. A test renders the
-# committed registry against it.
+# committed registry against it. What the page carries has to grow with the
+# rows and no faster: the index of every family and who serves it grew with
+# the families, 70 of them in 7 KB on 2026-09-20 and 149 in 18.7 KB on 09-25
+# with the page at 70 KB, and moved to the site that day.
 README_BUDGET = 80_000
 # The connection table lives beside the files it describes. GitHub renders a
 # folder's README under its file list, so a reader who opens configs/ for the
@@ -109,8 +113,13 @@ README_PICKS = 3
 # How many of a row's model families a README line names before it links the
 # rest: a lane that rotates names every model it has served free for two weeks,
 # fourteen on OpenRouter on 2026-09-24, and a README row is one line. The row's
-# page, the site and the list of who serves each model name them all.
+# page and the site, its model index among them, name them all.
 README_MODELS = 8
+# How many strong models the README names in its Start here, the most widely
+# served first. The tier bar keeps the set short — seventeen families of 149 on
+# 2026-09-25 — and the cap keeps it short whatever the bar lets through; the
+# rest are one click away in the site's model index.
+README_STRONG = 20
 # What the README's quickstart curl calls itself on a lane that asks every client
 # for a User-Agent of its own: the command is this page's, so it says so, in the
 # name/version shape the vendors' own example uses.
@@ -282,10 +291,10 @@ def _row(e: Entry) -> dict[str, str]:
         "data_flag": " 👁" if _trains(e) else "",
         "verified": e.last_verified.isoformat(),
         # Backticked, because a model id is something the reader will paste into
-        # a config rather than read as prose.
-        "models": (", ".join([f"`{f}`" for f in fams]
-                             + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else []))
-                   if fams else "—"),
+        # a config rather than read as prose. A row that names no model has the
+        # date alone on its small line.
+        "models": " · ".join([f"`{f}`" for f in fams]
+                             + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else [])),
     }
 
 
@@ -389,6 +398,34 @@ def _model_index(active: list[Entry]) -> list[dict]:
                         "card_flag": " 💳" if p.card_required else ""}
                        for p in sorted(ps, key=_by_rank)]}
         for family, ps in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+    ]
+
+
+def _strong_models(active: list[Entry]) -> list[dict]:
+    """The models a reader comes for, and every row that serves each one free.
+
+    A reader often arrives with a model rather than a vendor in mind — where is
+    Kimi K3 free, where is DeepSeek V4 Pro — and the model index answers that
+    for all of them, which is what made it the one part of the README growing
+    faster than the list: 149 families on 2026-09-25, eighteen kilobytes and
+    counting. The tier marks pick out the ones worth the trip, measured against
+    the Artificial Analysis index and never typed, and the bar keeps the set
+    short on its own: seventeen of the 149 that day. Frontier first, then the
+    most widely served — every row beside a model is one more free quota of it
+    — and the name to break a tie. A row that needs a card carries its 💳 here
+    as in the list."""
+    by_family: dict[str, tuple[bool, list[Entry]]] = {}
+    for e in active:
+        for m in e.models:
+            if m.superseded_by is None and m.tier in (Tier.FRONTIER, Tier.STRONG):
+                by_family.setdefault(m.family, (m.tier is Tier.FRONTIER, []))[1].append(e)
+    ordered = sorted(by_family.items(), key=lambda kv: (not kv[1][0], -len(kv[1][1]), kv[0]))
+    return [
+        {"family": family, "frontier": frontier,
+         "providers": [{"name": p.name, "url": p.url,
+                        "card_flag": " 💳" if p.card_required else ""}
+                       for p in sorted(ps, key=_by_rank)]}
+        for family, (frontier, ps) in ordered
     ]
 
 
@@ -735,6 +772,7 @@ def _shared_facts(entries: list[Entry], today: date,
         "endpoint_count": len(connectable),
         "family_count": len(model_index),
         "model_index": model_index,
+        "strong_models": _strong_models(active),
         "starters": _starters(active),
         "picks": _picks(active, connectable),
         "quickstart": _quickstart(connectable),
@@ -749,6 +787,7 @@ def _shared_facts(entries: list[Entry], today: date,
         "has_trains": any(_trains(e) for e in active),
         "schedule": _schedule(),
         "frontier_within": f"{FRONTIER_WITHIN:g}",
+        "strong_within": f"{STRONG_WITHIN:g}",
         "provisional_weeks": _weeks(PROVISIONAL_PROMOTE_DAYS),
         "archive_after_failures": ARCHIVE_AFTER_FAILURES,
         "archive_after_days": ARCHIVE_AFTER_DAYS,
@@ -788,7 +827,12 @@ def build_context(entries: list[Entry], today: date,
          "note": _connection_note(e)}
         for e in _connectable(entries, today)
     ]
-    return {**_shared_facts(entries, today, watchlist),
+    shared = _shared_facts(entries, today, watchlist)
+    return {**shared,
+            # The README names the first README_STRONG strong models and links
+            # the rest; the site has no budget and names them all.
+            "readme_strong": shared["strong_models"][:README_STRONG],
+            "strong_more": max(0, len(shared["strong_models"]) - README_STRONG),
             "sections": sections,
             "archived": _archived_rows(entries, today),
             "connections": connections,

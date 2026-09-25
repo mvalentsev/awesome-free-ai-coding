@@ -540,18 +540,25 @@ via pull request. Humans review the PR; robots do everything else.
 
 The README is the landing page, and the site is the reference. A visitor scrolls
 the README on GitHub, under the file list, so it carries the hero, the picks, the
-quickstart and one line per live row — the name, `offering`, the first eight
-model families and the date — and folds nothing in the list's tables; the quota
+strong models, the quickstart and one list item per live row — the name, `offering`, the first eight
+model families and the date — and folds nothing in the list; the quota
 in the vendor's words is on the row's own page and on `index.html`, one click
 from the date, and so is every family past the eighth, one click from their count. On 2026-09-20 it had
 grown to 161 KB, 83 KB of it inside folded cells, thirty-one desktop screens and
-fifty-one on a phone. `README_BUDGET` in `render.py` is the ceiling, and a test
+fifty-one on a phone. The list was four tables until 2026-09-25, and they measured
+thirty-one phone screens: GitHub gives a table the screen's width and no more, so
+the offer got a column a word or two wide and the models and the dates sat off the
+right edge. The same rows as list items measured eighteen. The strong models are
+the families the tier bar reaches, frontier first, then the most widely served first and at most 20;
+every family and everyone who serves it free is the site's model index, which grows
+with the families rather than the rows — 70 in 7 KB on 2026-09-20, 149 in 18.7 KB on
+09-25 — and left the README that day. `README_BUDGET` in `render.py` is the ceiling, and a test
 renders the committed registry against it, so the reference job cannot creep back
 a column at a time.
 
 `providers/` is generated with it: one page per row on the GitHub Pages site,
 in the row's own words, with the evidence the probe reads and the row's history,
-plus an index — the "Last verified" date of a live README row links to it, and
+plus an index — the verified date of a live README row links to it, and
 so does the name of an archived one. The
 pages exist for the reader who arrives from a search about one vendor, so their
 titles name the vendor, the tier and the date; `_config.yml` names the site so

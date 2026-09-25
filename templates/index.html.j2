@@ -297,6 +297,25 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       <a href="#agent-cli">the agents table</a>.</p>
     {% endif %}
 
+    {% if strong_models %}
+    <h3 style="margin-top:26px">Strong models, free</h3>
+    <p class="sub" style="margin-bottom:10px">Each of these scores within {{ strong_within }} points of the top of the
+      <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
+      Index</a>, re-read {{ schedule }}, and every row beside it serves it free.</p>
+    <div class="scroll">
+      <table class="files">
+        <tbody>
+          {% for m in strong_models %}
+          <tr>
+            <th scope="row"><span class="chip{{ ' top' if m.frontier }}">{{ m.family }}</span></th>
+            <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
     <div class="grid cols-3" style="margin-top:22px">
       {% if picks.frontier %}
       <div class="card">
@@ -455,7 +474,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       <p class="sub">{{ family_count }} model families, and everyone who serves each one free.</p>
     </header>
     <div class="scroll" style="padding: 4px 16px">
-      <details>
+      <details id="model-index">
         <summary>Show the model index</summary>
         <table class="files" style="margin-top:8px">
           <tbody>
@@ -687,6 +706,15 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       });
     });
   }
+  // A link that names a fold opens it: the README sends a reader after one
+  // model to #model-index, and a closed summary there is a second click that
+  // the link already asked for.
+  function openNamedFold() {
+    var named = document.getElementById(location.hash.slice(1));
+    if (named && named.tagName === "DETAILS") { named.open = true; }
+  }
+  window.addEventListener("hashchange", openNamedFold);
+  openNamedFold();
   // Type-to-narrow over the rows already in the page. browse.html is the full
   // filter (category, card, key, wire format); this is the one-box version for
   // a reader who arrived knowing the name or the model they want.

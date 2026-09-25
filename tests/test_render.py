@@ -152,16 +152,41 @@ def test_the_readme_row_prints_what_you_get_whole_and_leaves_the_quota_to_the_ro
     assert row["page"] == "https://mvalentsev.github.io/awesome-free-ai-coding/providers/l/"
 
 
-def test_the_list_is_one_line_per_row_with_no_fold_and_no_limits_column(tmp_path: Path):
+def test_the_list_is_one_item_per_row_with_no_table_no_fold_and_no_limits(tmp_path: Path):
+    """On 2026-09-25 the list's four tables ran to thirty-one phone screens:
+    GitHub gives a table no more than the screen, so the offer got a column a
+    word or two wide, a row stood a screen tall, and the models and the dates
+    sat off the right edge behind a sideways scroll. The same rows as list
+    items measured eighteen phone screens with nothing off the edge, and eight
+    desktop screens where the tables took eleven (github-markdown-css, 390 and
+    1280 pixels). A row is one list item, and the quota is on its own page."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="l", name="L", limits="a quota figure, read on a date. " * 40)])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     listing = text.split("## 📋 The list")[1].split("## 📦 Archive")[0]
-    assert "| Tool | What you get | Free models | Last verified |" in listing
-    assert "| Limits |" not in listing and "a quota figure" not in listing
-    rows = [line for line in listing.splitlines() if line.startswith("| **[")]
-    assert rows and all("<details>" not in line for line in rows)
+    assert "| Tool |" not in listing and "| Limits |" not in listing
+    assert "a quota figure" not in listing
+    items = [line for line in listing.splitlines() if line.startswith("- **[")]
+    assert len(items) == 1 and "<details>" not in items[0]
+
+
+def test_a_list_item_is_the_name_the_offer_and_a_small_line_of_date_and_models(tmp_path: Path):
+    """The flags stay beside the name, where the eye lands first. The date
+    leads the small line under the offer: at the line's end a break fell inside
+    it, `2026-` above `09-24`, which the narrow date column had done in every
+    row. A row that names no model has the date alone."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="x", name="X", offering="An offer", card_required=True,
+                             provisional=True, models=[{"family": "a"}, {"family": "b"}]),
+                        make(id="y", name="Y", offering="Another offer")])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    page = "https://mvalentsev.github.io/awesome-free-ai-coding/providers/"
+    assert (f"- **[X](https://x.ai)** 💳 🧪 — An offer<br><sub>[verified 2026-07-19]({page}x/)"
+            " · `a` · `b`</sub>") in text
+    assert (f"- **[Y](https://x.ai)** — Another offer<br>"
+            f"<sub>[verified 2026-07-19]({page}y/)</sub>") in text
 
 
 def test_the_readme_keeps_the_plug_it_in_heading_and_sends_the_reader_to_configs(tmp_path: Path):
@@ -558,8 +583,78 @@ def test_the_model_index_marks_a_card_where_the_rows_do(tmp_path: Path):
         ("A", ""), ("B", " 💳")]
     reg = tmp_path / "registry.yaml"
     save_registry(reg, entries)
+    from freetier_radar.render import SITE_PAGE, render_site
+    html = render_site(reg, Path("templates"), tmp_path / SITE_PAGE, today=TODAY)
+    assert '<a href="https://x.ai">A</a>, <a href="https://x.ai">B</a> 💳' in html
+
+
+def test_a_reader_after_one_model_is_sent_to_the_websites_index(tmp_path: Path):
+    """The README carried every family and everyone who serves it free, and
+    that index grows with the families rather than the rows: 70 families in
+    7 KB on 2026-09-20, 149 in 18.7 KB on 09-25 — of a 70 KB page, 80 KB the
+    ceiling — with thirty-six more ids due a family within two weeks. Nothing a
+    scheduled run committed was checked against the ceiling, so the first a
+    maintainer would have heard of it is a test refusing an unrelated commit.
+    The whole index is the site's; the README names the strong models and
+    links the rest."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import PAGES_URL
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="a", name="A", models=[{"family": "qwen3"}, {"family": "glm-5"}])])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    assert "| `kimi-k3` | [A](https://x.ai), [B](https://x.ai) 💳 |" in text
+    assert "| Model family | Free at |" not in text
+    assert (f"[The website's model index]({PAGES_URL}/#model-index) names all 2 model families "
+            "on the list and everyone who serves each one free") in text
+
+
+def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_path: Path):
+    """The question a reader brings is often a model, not a vendor: where is
+    Kimi K3 free, where is DeepSeek V4 Pro. The tier marks answer it for the
+    models worth coming for — measured, never typed — and the bar keeps the set
+    short where the whole index is not: seventeen families of 149 on
+    2026-09-25. Frontier first, then the most widely served, since every row
+    beside a model is another free quota of it; a row that needs a card says so
+    here as it does in the list."""
+    from freetier_radar.models import save_registry
+    strong = {"tier": "strong", "aa_model": "kimi-k3"}
+    entries = [
+        make(id="a", name="A", rank=1, models=[{"family": "kimi-k3", **strong}, {"family": "small"}]),
+        make(id="b", name="B", rank=2, card_required=True, models=[{"family": "kimi-k3", **strong}]),
+        make(id="c", name="C", rank=3, models=[{"family": "big", "tier": "frontier",
+                                                "aa_model": "big"}]),
+        make(id="d", name="D", rank=4, models=[{"family": "glm-5.3", "tier": "strong",
+                                                "aa_model": "glm-5-3"}]),
+    ]
+    ctx = build_context(entries, TODAY)
+    assert [(m["family"], m["frontier"], [p["name"] + p["card_flag"] for p in m["providers"]])
+            for m in ctx["strong_models"]] == [
+        ("big", True, ["C"]), ("kimi-k3", False, ["A", "B 💳"]), ("glm-5.3", False, ["D"])]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
+    # A list, as the rows are: in a table the model's column took a third of a
+    # phone's width, and seventeen models stood two screens tall.
+    assert "\n- `big` <sub>frontier</sub> — [C](https://x.ai)\n" in start
+    assert "\n- `kimi-k3` — [A](https://x.ai) · [B](https://x.ai) 💳\n" in start
+    assert "`small`" not in start
+
+
+def test_the_strong_models_on_the_readme_are_capped_and_the_rest_linked(tmp_path: Path,
+                                                                       monkeypatch):
+    import freetier_radar.render as render
+    from freetier_radar.models import save_registry
+    monkeypatch.setattr(render, "README_STRONG", 1)
+    entries = [make(id="a", name="A", models=[
+        {"family": "kimi-k3", "tier": "strong", "aa_model": "kimi-k3"},
+        {"family": "glm-5.3", "tier": "strong", "aa_model": "glm-5-3"}])]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
+    shown = [line for line in start.splitlines() if line.startswith("- `")]
+    assert shown == ["- `glm-5.3` — [A](https://x.ai)"]
+    assert "the other strong one is in [the website's model index]" in start
 
 
 def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_path: Path):
@@ -582,9 +677,9 @@ def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_
     save_registry(reg, [yes, optout, no, silent])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     listing = text.split("## 📋 The list")[1]
-    assert "| **[Yes](https://x.ai)** 👁 |" in listing
-    assert "| **[OptOut](https://x.ai)** 👁 |" in listing
-    assert "| **[No](https://x.ai)** |" in listing and "| **[Silent](https://x.ai)** |" in listing
+    assert "- **[Yes](https://x.ai)** 👁 — " in listing
+    assert "- **[OptOut](https://x.ai)** 👁 — " in listing
+    assert "- **[No](https://x.ai)** — " in listing and "- **[Silent](https://x.ai)** — " in listing
     assert "**👁** — what you send may be used to train models" in listing
 
     from freetier_radar.render import build_llms_txt, render_site
@@ -1114,12 +1209,29 @@ def test_picks_render_between_the_starters_and_the_list(tmp_path: Path):
     save_registry(reg, entries)
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
-    assert "| I want… |" in hero
-    assert "[Agent](https://x.ai) `f-3`" in hero
+    assert "**Or pick by what you need:**" in hero
+    assert "- **Frontier-tier models on a $0 plan** — [Agent](https://x.ai) `f-3`" in hero
     assert "[Api1](https://x.ai)" in hero and "[Agg](https://x.ai)" in hero
-    # a need nobody on the registry answers is not a row that says so
-    assert "No account at all" not in hero.split("| I want… |")[1]
-    assert "asks for no card" not in hero.split("| I want… |")[1]
+    # a need nobody on the registry answers is not a line that says so
+    assert "No account at all" not in hero.split("**Or pick by what you need:**")[1]
+    assert "asks for no card" not in hero.split("**Or pick by what you need:**")[1]
+
+
+def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
+    """The agents and the picks were tables, and a phone gives a table the
+    screen's width and no more: the agents' models broke at every hyphen,
+    `mimo-` above `v2.5`, in a column a third of the screen wide, and four
+    agents stood 773 pixels tall. As list items they take the whole width."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="ag", name="Ag", category="agent-cli",
+                             models=[{"family": "m-1"}, {"family": "m-2"}]),
+                        make(id="api", name="Api")])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
+    assert "\n- **[Ag](https://x.ai)** — `m-1` · `m-2`\n" in start
+    assert "\n- **An API key that gets the most done for free** — [Api](https://x.ai)\n" in start
+    assert "| Agent |" not in start and "| I want… |" not in start
 
 
 def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
@@ -1127,7 +1239,7 @@ def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="paid", name="Paid", card_required=True)])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    assert "| I want… |" not in text
+    assert "Or pick by what you need" not in text
 
 
 def test_a_lane_that_wants_a_session_id_per_conversation_stays_out_of_the_static_configs(
@@ -1212,7 +1324,7 @@ def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_pat
     save_registry(reg, entries)
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
-    assert "**Claude Code on a free lane** | [GwOne](https://x.ai) · [GwNoIds](https://x.ai) |" in hero
+    assert "- **Claude Code on a free lane** — [GwOne](https://x.ai) · [GwNoIds](https://x.ai)\n" in hero
     from freetier_radar.render import CONFIGS_README, render_configs_readme
     plug = render_configs_readme(reg, Path("templates"), tmp_path / CONFIGS_README, today=TODAY)
     assert "`https://one.example`" in plug and "claude-code.sh" in plug
@@ -1395,7 +1507,7 @@ def test_the_readme_dates_link_to_the_provider_pages(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="x", name="X"), make(id="gone", name="Gone", probe_failures=3)])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    assert "[`2026-07-19`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/)" in text
+    assert "[verified 2026-07-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/x/)" in text
     assert "[Gone](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gone/)" in text
     assert "https://mvalentsev.github.io/awesome-free-ai-coding/providers/" in text
     index = build_index([make()], TODAY)

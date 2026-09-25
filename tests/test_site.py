@@ -264,6 +264,7 @@ def test_the_shell_function_every_page_names_is_one_the_file_defines(tmp_path):
 
 @pytest.mark.parametrize("name, value, readme_says, site_says, unsaid", [
     ("FRONTIER_WITHIN", 12.0, "within 12 points", "within 12 points", "within 10 points"),
+    ("STRONG_WITHIN", 30.0, "within 30 points", "within 30 points", "within 25 points"),
     ("PROVISIONAL_PROMOTE_DAYS", 21, "three weeks", "three weeks", "two weeks"),
     ("ARCHIVE_AFTER_FAILURES", 4, "fail ×4", "fails 4 probes", "fail ×3"),
     ("ARCHIVE_AFTER_DAYS", 45, "stale 45d", "goes 45\n          days", "stale 60d"),
@@ -295,21 +296,21 @@ TEN = [{"family": f"m-{i}"} for i in range(1, 11)]
 
 
 def _readme_row(readme: str) -> str:
-    return next(line for line in readme.splitlines() if line.startswith("| **[X]"))
+    return next(line for line in readme.splitlines() if line.startswith("- **[X]"))
 
 
 def test_a_readme_row_names_eight_families_and_links_the_rest(tmp_path):
-    """The README is the landing page and a row is one line: the name, the
-    offering, the models and the date. A rotating lane names every model it has
+    """The README is the landing page and a row is one list item: the name, the
+    offering, the date and the models. A rotating lane names every model it has
     served free for two weeks, and on 2026-09-24 that was fourteen on OpenRouter
     and twenty-seven on AIHubMix, so the README shows the first eight in the
-    row's own order and links the rest to the row's page. The row's page, the
-    site and the list of who serves each model keep every family."""
+    row's own order and links the rest to the row's page. The row's page and
+    the site, its model index included, keep every family."""
     pages = _render_everything([make(id="gw", category="aggregator", models=TEN)], tmp_path)
     row = _readme_row(pages["README.md"])
     assert "`m-8`" in row and "`m-9`" not in row
     assert "[+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/gw/)" in row
-    assert "| `m-10` |" in pages["README.md"]
+    assert "`m-10`" not in pages["README.md"]
     assert ">m-10<" in pages[SITE_PAGE]
     assert "`m-10`" in pages["providers/gw.md"]
 
@@ -364,6 +365,30 @@ def test_the_frontier_bar_is_explained_only_where_a_frontier_line_is_shown(tmp_p
     top = [make(id="b", name="B", models=[{"family": "big", "tier": "frontier", "aa_model": "big"}])]
     pages = _render_everything(top, tmp_path / "top")
     assert "within 10 points" in pages["README.md"] and "within 10 points" in pages[SITE_PAGE]
+
+
+def test_the_page_names_the_strong_models_the_readme_does(tmp_path):
+    """One set of strong models, worked out once: the page's Start here carries
+    the families the README's does, the rows beside them and the card mark."""
+    strong = {"family": "kimi-k3", "tier": "strong", "aa_model": "kimi-k3"}
+    entries = [make(id="a", name="A", rank=1, models=[strong]),
+               make(id="b", name="B", rank=2, card_required=True, models=[strong])]
+    html = _render_everything(entries, tmp_path)[SITE_PAGE]
+    start = html.split('<section id="start">')[1].split("</section>")[0]
+    assert ">kimi-k3<" in start
+    assert '<a href="https://x.ai">A</a> · <a href="https://x.ai">B</a> 💳' in start
+    assert "within 25 points" in start
+
+
+def test_a_link_to_the_model_index_opens_it(tmp_path):
+    """The index is folded on the page — 149 rows on 2026-09-25 — and the README
+    sends a reader after one model straight to it, where a link naming the
+    section would land on a closed summary. The fold carries the id the link
+    names, and the page's script opens a fold a link names."""
+    html = _render([make(models=[{"family": "a"}])], tmp_path)
+    assert '<details id="model-index">' in html
+    script = html.split("<script>")[1]
+    assert "location.hash" in script and "hashchange" in script and ".open = true" in script
 
 
 def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):

@@ -29,7 +29,7 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
 from .prober import ANTHROPIC_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS,
-                     README_PICKS, README_STARTERS)
+                     README_PICKS, README_STARTERS, README_STRONG)
 from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 from .validate import PROSE_LIMITS
 
@@ -121,6 +121,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(README_MODELS),), "render.README_MODELS"),
     Claim("CONTRIBUTING.md", r"every family past the (\w+), one click from their count",
           lambda root: (_ordinal(README_MODELS),), "render.README_MODELS"),
+    Claim("CONTRIBUTING.md", r"the most widely served first and at most (\w+);",
+          lambda root: (_word(README_STRONG),), "render.README_STRONG"),
     Claim("CONTRIBUTING.md", r"sends the check on to the next id, up to\s+(\w+),",
           lambda root: (_word(KEYLESS_IDS_TRIED),), "prober.KEYLESS_IDS_TRIED"),
     Claim("CONTRIBUTING.md", r"always calls under this\s+project's own `([^`]+)`",
