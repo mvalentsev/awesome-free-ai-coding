@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **94** |
+| **79** | **75** | **7** | **59** | **96** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -82,7 +82,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | Tool | What you get | Free models | Last verified |
 |---|---|---|---|
-| **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 | Free tier on the Gemini API, priced model by model rather than as one account quota | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) |
+| **[Google AI Studio (Gemini API)](https://aistudio.google.com)** 👁 | Free tier on the Gemini API, priced model by model rather than as one account quota | `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.5-flash`, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3-flash`, `gemma-4` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/) |
 | **[Groq](https://groq.com)** | Fast inference against a free plan Groq publishes as a per-model rate table | `gpt-oss`, `qwen3.6`, `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) |
 | **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** 👁 | Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible) | `kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`, `muse-glimmer-30b`, `nemotron-3.5-lightning`, `gemma-4-31b`, `gpt-oss-20b`, [+5 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) |
@@ -167,7 +167,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 94 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 96 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -186,6 +186,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `north-mini-code` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3.6` | [Groq](https://groq.com), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [FreeInference (Harvard SEAS)](https://freeinference.org), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `dots-3-note` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com) |
+| `gemma-4` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai) |
 | `kimi-k3` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
 | `ling-3.0-flash-sante` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
 | `minimax-m2.7` | [AIHubMix (free models)](https://aihubmix.com), [Routeway](https://routeway.ai), [Dahl Inference](https://inference.dahl.global) |
@@ -193,10 +194,11 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `qwen3-coder` | [Kiro](https://kiro.dev/), [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
 | `diffusiongemma` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
+| `gemini-3-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-3.1-pro` | [Google Antigravity](https://antigravity.google), [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
+| `gemini-3.6-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.7-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
 | `gemini-3.8-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com), [Google Antigravity](https://antigravity.google) |
-| `gemma-4` | [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai) |
 | `gemma-4-31b` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Opper](https://opper.ai) |
 | `glm-4.7-flash` | [AIHubMix (free models)](https://aihubmix.com), [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-5.3` | [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
@@ -222,9 +224,9 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
 | `gemini-2.5-pro` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
-| `gemini-3-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
+| `gemini-3.1-flash-lite` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
+| `gemini-3.5-flash` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
 | `gemini-3.5-flash-lite` | [Google AI Studio (Gemini API)](https://aistudio.google.com) |
-| `gemini-3.6-flash` | [Google Antigravity](https://antigravity.google) |
 | `glm-4-9b-0414` | [SiliconFlow (China)](https://siliconflow.cn) |
 | `glm-4.5-flash` | [Z.ai (Zhipu GLM)](https://z.ai) |
 | `glm-4.6` | [AIHubMix (free models)](https://aihubmix.com) |
@@ -275,6 +277,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-25` | 🔄 Free models changed **[Google AI Studio (Gemini API)](https://aistudio.google.com)** | <sub>added gemini-3-flash, gemini-3.1-flash-lite, gemini-3.5-flash, gemini-3.6-flash, gemma-4</sub> |
 | `2026-09-24` | 🔄 Free models changed **[FreeInference (Harvard SEAS)](https://freeinference.org)** | <sub>added diffusiongemma, minimax-m2.5</sub> |
 | `2026-09-24` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2</sub> |
 | `2026-09-24` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added muse-spark-1.3-contributor</sub> |
@@ -284,7 +287,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-24` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>added diffusiongemma, gemma-4-31b, gpt-oss-20b, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3.5-lightning</sub> |
 | `2026-09-24` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code</sub> |
 | `2026-09-24` | 🔄 Free models changed **[Requesty](https://www.requesty.ai)** | <sub>added laguna-m.1, laguna-xs.2, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</sub> |
-| `2026-09-23` | 🔄 Free models changed **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | <sub>dropped gpt-5.6</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

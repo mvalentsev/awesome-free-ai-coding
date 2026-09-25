@@ -17,11 +17,11 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ## Free models
 
-`gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.5-flash-lite`
+`gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.5-flash`, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3-flash`, `gemma-4`
 
 ## Limits, in the vendor's words
 
-Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software engineering", in the same column that prices it at $0.75/$3.75 per 1M on the paid tier, and on 3.7, 3.6 and 3.5 Flash, 3.5 and 3.1 Flash-Lite and 3 Flash Preview, with "Not available" there for Gemini 3.1 Pro Preview and Omni Flash. The 2.5 models keep a free column, but since 2026-09-18 the changelog says Google is "limiting access to the 2.5 models to users who have actively used them in the past": "For any new projects, use our latest models: 3.5 Flash-Lite or 3.8 Flash". What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. Per-model RPM/TPM/RPD figures sit behind a sign-in at aistudio.google.com/rate-limit; the public rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial". Read 2026-09-23
+Google prices the free tier per model: its pricing page reads "Free of charge" for input, output and context caching on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software engineering", in the same column that prices it at $0.75/$3.75 per 1M on the paid tier, and on 3.7, 3.6 and 3.5 Flash, 3.5 and 3.1 Flash-Lite, 3 Flash Preview and Gemma 4, with "Not available" there for Gemini 3.1 Pro Preview and Omni Flash. The 2.5 models keep a free column, but since 2026-09-18 the changelog says Google is "limiting access to the 2.5 models to users who have actively used them in the past": "For any new projects, use our latest models: 3.5 Flash-Lite or 3.8 Flash". What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. Per-model RPM/TPM/RPD figures sit behind a sign-in at aistudio.google.com/rate-limit; the public rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial". Read 2026-09-25
 
 ## What happens to what you send
 
@@ -31,6 +31,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
 - Key: `GOOGLE_AI_STUDIO_API_KEY` — get one at <https://aistudio.google.com/apikey>
+- Callable ids: `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.5-flash`, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3-flash-preview`, `gemma-4-31b-it`, `gemma-4-26b-a4b-it`
 - Note: pass the key as Bearer
 
 ## Evidence
@@ -39,11 +40,13 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Source: <https://ai.google.dev/gemini-api/docs/pricing>
 - Source: <https://ai.google.dev/gemini-api/docs/rate-limits>
 - Source: <https://ai.google.dev/gemini-api/docs/changelog>
+- Source: <https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added gemini-3-flash, gemini-3.1-flash-lite, gemini-3.5-flash, gemini-3.6-flash, gemma-4
 - `2026-09-23` — Free models changed: dropped gemini-2.5-pro
 - `2026-09-07` — Free models changed: added gemini-3.8-flash
 - `2026-08-14` — Free models changed: added gemini-2.5-pro, gemini-3.5-flash-lite, gemini-3.7-flash; dropped gemini-2.5

@@ -24,9 +24,39 @@ model_list:
     model: openai/gemini-3.7-flash
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemini-3.6-flash
+  litellm_params:
+    model: openai/gemini-3.6-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemini-3.5-flash
+  litellm_params:
+    model: openai/gemini-3.5-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
 - model_name: google-ai-studio/gemini-3.5-flash-lite
   litellm_params:
     model: openai/gemini-3.5-flash-lite
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemini-3.1-flash-lite
+  litellm_params:
+    model: openai/gemini-3.1-flash-lite
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemini-3-flash-preview
+  litellm_params:
+    model: openai/gemini-3-flash-preview
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemma-4-31b-it
+  litellm_params:
+    model: openai/gemma-4-31b-it
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+- model_name: google-ai-studio/gemma-4-26b-a4b-it
+  litellm_params:
+    model: openai/gemma-4-26b-a4b-it
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
 - model_name: openrouter-free/nvidia/nemotron-3-ultra-550b-a55b:free
@@ -1192,6 +1222,16 @@ model_list:
 - model_name: free/strong
   litellm_params:
     model: openai/gemini-3.7-flash
+    api_base: https://generativelanguage.googleapis.com/v1beta/openai/
+    api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/gemini-3.6-flash
     api_base: https://generativelanguage.googleapis.com/v1beta/openai/
     api_key: os.environ/GOOGLE_AI_STUDIO_API_KEY
   model_info:

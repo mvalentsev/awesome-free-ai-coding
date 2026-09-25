@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-24T07:24:35Z</updated>
+  <updated>2026-09-25T11:54:08Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260925T115408Z</id>
+    <title>Free models changed: Google AI Studio (Gemini API)</title>
+    <link rel="alternate" href="https://aistudio.google.com"/>
+    <updated>2026-09-25T11:54:08Z</updated>
+    <summary type="text">added gemini-3-flash, gemini-3.1-flash-lite, gemini-3.5-flash, gemini-3.6-flash, gemma-4 · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3-flash, gemma-4</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freeinference/20260924T072435Z</id>
     <title>Free models changed: FreeInference (Harvard SEAS)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://regolo.ai/pricing/"/>
     <updated>2026-09-17T12:32:34Z</updated>
     <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: glm-5, gpt-oss, qwen3.8-27b, llama-3.3, apertus-70b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/fireworks-ai/20260917T123003Z</id>
-    <title>Added: Fireworks AI</title>
-    <link rel="alternate" href="https://fireworks.ai"/>
-    <updated>2026-09-17T12:30:03Z</updated>
-    <summary type="text">Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added</summary>
   </entry>
 </feed>
