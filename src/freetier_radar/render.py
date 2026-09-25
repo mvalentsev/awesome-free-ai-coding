@@ -104,7 +104,7 @@ _CODE_SPAN = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.S)
 README_NOTE_TEASER = 150
 README_NOTE_COLLAPSE = 300
 # How many agents the page answers "what do I code with, then?" by name before
-# the reference table starts. Four is what fits above the fold beside the
+# the list starts. Four is what fits above the fold beside the
 # quickstart; the fifth-ranked agent is one section down either way.
 README_STARTERS = 4
 # How many names answer each "I want…" line of the picks table. Three reads as
@@ -282,9 +282,9 @@ def _row(e: Entry) -> dict[str, str]:
         # headings carry the count in words.
         "card_flag": " 💳" if e.card_required else "",
         # Both markers sit beside the name for the same reason: they are facts
-        # about the row, not values of a column, and the date column is the
-        # narrowest on the page — a second glyph in it wrapped the date onto two
-        # lines in every row that carried one.
+        # about the row, not values beside the date — when the list was a table
+        # the date had the narrowest column on the page, and a second glyph in it
+        # wrapped the date onto two lines in every row that carried one.
         "new_flag": " 🧪" if e.provisional else "",
         # What the reader pays besides money: the vendor may train on what they
         # send. One glyph like the card's; the vendor's sentence is on the page.
@@ -430,7 +430,7 @@ def _strong_models(active: list[Entry]) -> list[dict]:
 
 
 def _starters(active: list[Entry]) -> list[dict]:
-    """The agents a reader can code with today, named before the reference table.
+    """The agents a reader can code with today, named before the list.
 
     The page used to open on the keyless curl alone, and that reads as an offer:
     the one lane on this list that needs no account is also the weakest thing on

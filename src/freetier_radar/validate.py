@@ -358,13 +358,14 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(
                 f"watchlist: {w.name} has no reopen_if — a verdict with no way back "
                 f"is a blocklist entry in the wrong file")
-        # Both fields render as cells of a Markdown table, where an unescaped
-        # pipe silently splits the row into extra columns.
+        # Both fields render as cells of the Markdown table on the page of
+        # services checked, where an unescaped pipe splits the row into extra
+        # columns.
         for field, text in (("reason", w.reason), ("reopen_if", w.reopen_if)):
             if "|" in text:
                 problems.append(
                     f"watchlist: {w.name} has a pipe in {field} — it would break the "
-                    f"README table row it renders into")
+                    f"table row it renders into on the page of services checked")
         for d in w.domains:
             if d.lower() in seen_domains:
                 problems.append(f"watchlist: duplicate domain {d}")
