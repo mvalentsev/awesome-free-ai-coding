@@ -4804,7 +4804,7 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [],
-        "note": "the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key"
+        "note": "the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key. The Models column stays empty: the pricing page the probe reads names no model, and its trial covers every catalog row alike"
       },
       "data_use": {
         "trains": "no",

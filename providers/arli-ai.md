@@ -31,7 +31,7 @@ What you send is not used to train models. In the vendor's words: “By submitti
 
 - Base URL: `https://api.arliai.com/v1`
 - Key: `ARLI_AI_API_KEY` — get one at <https://www.arliai.com/account>
-- Note: the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key
+- Note: the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key. The Models column stays empty: the pricing page the probe reads names no model, and its trial covers every catalog row alike
 
 ## Evidence
 
