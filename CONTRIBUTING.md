@@ -90,8 +90,8 @@ the slug of the model's page on artificialanalysis.ai, for the variant the lane
 serves: where the lane restricts it, that variant — Meta's contributor tier has no
 max effort, so Muse Spark 1.3 Contributor is read as `muse-spark-1-3-xhigh` — and
 where the lane does not say, the model's own page. A family that stands for no
-single model, such as `gpt-oss` on a lane serving both sizes or a bare
-`nemotron`, carries no tier. `freetier-check` refuses a tier without an
+single model, such as `gemma-4` where Google's pricing page prices Gemma 4 as
+one row, or a bare `nemotron`, carries no tier. `freetier-check` refuses a tier without an
 `aa_model`, and two rows naming different models for one family; `uv run
 freetier-tiers` reads every score back off the leaderboard, prints the marks the
 index no longer backs, and with `--write` re-marks every row that carries the
@@ -100,8 +100,14 @@ family — the scheduled run does that twice a week. On 2026-09-17 the top was 5
 every family without a mark was `strong`, Apertus 70B at 5 points beside GLM 5.3
 Flash at 42, and nineteen of twenty-two frontier marks set by hand no longer met
 the bar, because a tier written once never decays by itself. Give a family the
-most specific name the lane serves, since `glm-5.3` is also matched by a
-`glm-5.3-flash` id.
+most specific name the lane serves, one family per model, since a broader name
+also matches every id that contains it — `glm-5.3` a `glm-5.3-flash` id, `glm-5`
+a `glm-5.2` one — and a model hidden under a broader family is missing from the
+model index, from the tier marks and from freetier-bars, which counts an id as
+named once any family names it. On 2026-09-25 AIHubMix's `glm-5` stood for
+GLM-5.2, 5.1, 5 and 5-Turbo, so its strong GLM-5.2 was in no pick; eight rows
+split their families that day. A family stays broader than one model only where
+the evidence names nothing narrower.
 
 ## How a row leaves the list
 

@@ -17,7 +17,7 @@ Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/op
 
 ## Free models
 
-`gpt-oss`
+`gpt-oss-20b`
 
 ## Limits, in the vendor's words
 
@@ -39,6 +39,7 @@ The keyless catalog publishes exactly one model and tags it with the tier it bel
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added gpt-oss-20b; dropped gpt-oss
 - `2026-07-19` — Added: Open GenAI text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai)
 
 ---

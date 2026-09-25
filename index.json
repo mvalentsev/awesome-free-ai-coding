@@ -23,8 +23,14 @@
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
-          "family": "gemma-4",
-          "released": "2026-04"
+          "family": "gemma-4-31b",
+          "released": "2026-04",
+          "aa_model": "gemma-4-31b"
+        },
+        {
+          "family": "gemma-4-26b-a4b",
+          "released": "2026-04",
+          "aa_model": "gemma-4-26b-a4b"
         },
         {
           "family": "nemotron-3-super",
@@ -250,8 +256,14 @@
       "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
       "models": [
         {
-          "family": "gpt-oss",
-          "released": "2025-08"
+          "family": "gpt-oss-120b",
+          "released": "2025-08",
+          "aa_model": "gpt-oss-120b"
+        },
+        {
+          "family": "gpt-oss-20b",
+          "released": "2025-08",
+          "aa_model": "gpt-oss-20b"
         },
         {
           "family": "qwen3.6",
@@ -1089,7 +1101,8 @@
         },
         {
           "family": "gpt-oss-20b",
-          "released": "2025-08"
+          "released": "2025-08",
+          "aa_model": "gpt-oss-20b"
         },
         {
           "family": "mistral-nemotron",
@@ -1252,8 +1265,9 @@
       "limits": "OVHcloud documents the anonymous lane: \"Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model\", and its product page says \"Test all our models for free in a sandbox or via the API\". It is not counted per IP in practice: on 2026-09-24 one call a minute to Qwen3.8-27B from an address nothing else used answered twice in five, and each answer left `ratelimit-remaining: 0`, another caller having spent the minute's other request; the first call of a minute on six ids, and every call from a GitHub runner that morning, answered 429. The two requests a minute per model are shared by every anonymous caller. A key bills every chat model per token, Qwen3.8-27B at \"0.4 € / Mtoken(input)\" and \"2.7 € / Mtoken(output)\". Read 2026-09-24",
       "models": [
         {
-          "family": "gpt-oss",
-          "released": "2025-08"
+          "family": "gpt-oss-120b",
+          "released": "2025-08",
+          "aa_model": "gpt-oss-120b"
         },
         {
           "family": "qwen3.6",
@@ -1319,8 +1333,9 @@
       "limits": "The keyless catalog publishes exactly one model and tags it with the tier it belongs to — \"openai-fast\", described as \"GPT-OSS 20B Reasoning LLM (OVH)\", tier \"anonymous\", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-09-21. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — \"Get an API key\" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate",
       "models": [
         {
-          "family": "gpt-oss",
-          "released": "2025-08"
+          "family": "gpt-oss-20b",
+          "released": "2025-08",
+          "aa_model": "gpt-oss-20b"
         }
       ],
       "api": {
@@ -2009,8 +2024,9 @@
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
-          "family": "gemma-4",
-          "released": "2026-04"
+          "family": "gemma-4-31b",
+          "released": "2026-04",
+          "aa_model": "gemma-4-31b"
         },
         {
           "family": "ling-3.0-tiny",
@@ -2144,8 +2160,9 @@
           "aa_model": "claude-sonnet-4-6"
         },
         {
-          "family": "gpt-oss",
-          "released": "2025-08"
+          "family": "gpt-oss-120b",
+          "released": "2025-08",
+          "aa_model": "gpt-oss-120b"
         }
       ],
       "data_use": {
@@ -2331,15 +2348,42 @@
           "aa_model": "glm-5-3"
         },
         {
+          "family": "glm-5.3-flash",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "glm-5-3-flash"
+        },
+        {
           "family": "kimi-k3",
           "tier": "strong",
           "released": "",
           "aa_model": "kimi-k3"
         },
         {
+          "family": "glm-5.2",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "glm-5-2"
+        },
+        {
+          "family": "glm-5.1",
+          "released": "",
+          "aa_model": "glm-5-1"
+        },
+        {
           "family": "glm-5",
           "released": "2026-02",
           "aa_model": "glm-5"
+        },
+        {
+          "family": "glm-5-turbo",
+          "released": "",
+          "aa_model": "glm-5-turbo"
+        },
+        {
+          "family": "mimo-v2.5-pro",
+          "released": "",
+          "aa_model": "mimo-v2-5-pro"
         },
         {
           "family": "mimo-v2.5",
@@ -2886,8 +2930,9 @@
           "aa_model": "glm-5-2"
         },
         {
-          "family": "gpt-oss",
-          "released": ""
+          "family": "gpt-oss-120b",
+          "released": "",
+          "aa_model": "gpt-oss-120b"
         },
         {
           "family": "qwen3.8-27b",

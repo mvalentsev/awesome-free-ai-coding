@@ -17,7 +17,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ## Free models
 
-`nemotron-3-ultra`, `gemma-4`, `nemotron-3-super`, `north-mini-code`, `laguna-s-2.1`, `laguna-xs-2.1`, `nemotron-3.5-lightning`, `inkling`, `inkling-small`, `dots-3-note`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante`, `nemotron-3-nano-omni`
+`nemotron-3-ultra`, `gemma-4-31b`, `gemma-4-26b-a4b`, `nemotron-3-super`, `north-mini-code`, `laguna-s-2.1`, `laguna-xs-2.1`, `nemotron-3.5-lightning`, `inkling`, `inkling-small`, `dots-3-note`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante`, `nemotron-3-nano-omni`
 
 ## Limits, in the vendor's words
 
@@ -46,6 +46,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added gemma-4-26b-a4b, gemma-4-31b; dropped gemma-4
 - `2026-09-24` — Free models changed: added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code
 - `2026-08-28` — Free models changed: dropped gpt-oss
 - `2026-07-19` — Free models changed: added gemma-4, gpt-oss, nemotron-3-ultra; dropped deepseek, glm-4.5, kimi-k2, qwen3-coder

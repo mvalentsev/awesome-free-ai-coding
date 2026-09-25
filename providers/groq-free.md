@@ -17,7 +17,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ## Free models
 
-`gpt-oss`, `qwen3.6`, `qwen3.8-27b`
+`gpt-oss-120b`, `gpt-oss-20b`, `qwen3.6`, `qwen3.8-27b`
 
 ## Limits, in the vendor's words
 
@@ -43,6 +43,7 @@ What you send is not used to train models. In the vendor's words: “For clarity
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added gpt-oss-120b, gpt-oss-20b; dropped gpt-oss
 - `2026-09-17` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-07` — Free models changed: added qwen3.8; dropped llama-3.3
 - `2026-08-14` — Free models changed: added gpt-oss, llama-3.3, qwen3.6; dropped llama-4, qwen3

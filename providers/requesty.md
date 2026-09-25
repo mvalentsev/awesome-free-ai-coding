@@ -17,7 +17,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ## Free models
 
-`nemotron-3-ultra`, `nemotron-3-super`, `gemma-4`, `ling-3.0-tiny`, `muse-glimmer-30b`, `nemotron-3.5-lightning`, `laguna-xs.2`, `laguna-m.1`, `leanstral-1.5`, `nemotron-3-nano-30b`, `nemotron-3-nano-omni`
+`nemotron-3-ultra`, `nemotron-3-super`, `gemma-4-31b`, `ling-3.0-tiny`, `muse-glimmer-30b`, `nemotron-3.5-lightning`, `laguna-xs.2`, `laguna-m.1`, `leanstral-1.5`, `nemotron-3-nano-30b`, `nemotron-3-nano-omni`
 
 ## Limits, in the vendor's words
 
@@ -47,6 +47,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added gemma-4-31b; dropped gemma-4
 - `2026-09-24` — Free models changed: added laguna-m.1, laguna-xs.2, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni
 - `2026-09-17` — Free models changed: added muse-glimmer-30b, nemotron-3.5-lightning
 - `2026-08-11` — Added: OpenAI-compatible router over a 500+ model catalog with routing, caching and fallbacks; ten rows in it are priced 0 and the free plan is the same gateway restricted to those

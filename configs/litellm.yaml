@@ -1189,9 +1189,9 @@ model_list:
     model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
     api_key: none
-- model_name: pollinations/gpt-oss
+- model_name: pollinations/gpt-oss-20b
   litellm_params:
-    model: openai/gpt-oss
+    model: openai/gpt-oss-20b
     api_base: https://text.pollinations.ai/openai
     api_key: none
 - model_name: bytez/Qwen/Qwen3-4B
@@ -1254,6 +1254,16 @@ model_list:
     model: openai/moonshotai/kimi-k3
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/coding-glm-5.2-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0
@@ -1511,7 +1521,7 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/nokey
   litellm_params:
-    model: openai/gpt-oss
+    model: openai/gpt-oss-20b
     api_base: https://text.pollinations.ai/openai
     api_key: none
   model_info:

@@ -17,7 +17,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Free models
 
-`gpt-oss`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder`
+`gpt-oss-120b`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder`
 
 ## Limits, in the vendor's words
 
@@ -46,6 +46,7 @@ What you send is not used to train models. In the vendor's words: “Your data w
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added gpt-oss-120b; dropped gpt-oss
 - `2026-09-17` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-07` — Free models changed: added qwen3.8
 - `2026-08-19` — Free models changed: added qwen3-coder, qwen3.6; dropped qwen3

@@ -5,8 +5,64 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T11:54:08Z</updated>
+  <updated>2026-09-25T12:00:52Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260925T120052Z</id>
+    <title>Free models changed: AIHubMix (free models)</title>
+    <link rel="alternate" href="https://aihubmix.com"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added glm-5-turbo, glm-5.1, glm-5.2, glm-5.3-flash, mimo-v2.5-pro · free models: glm-5.3, glm-5.3-flash, kimi-k3, glm-5.2, glm-5.1, glm-5, glm-5-turbo, mimo-v2.5-pro, mimo-v2.5, north-mini-code, nemotron-3-ultra, nemotron-3-super, minimax-m3, minimax-m2.7, hy3, laguna-s-2.1, laguna-xs-2.1, kimi-for-coding, ling-3.0-flash, ling-3.0-tiny, glm-4.7, glm-4.7-flash, glm-4.6, minimax-m2.5, minimax-m2.1, minimax-m2, mimo-v2-pro, mimo-v2-flash, mimo-v2-omni, dots-3-note, nemotron-3.5-lightning, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/antigravity/20260925T120052Z</id>
+    <title>Free models changed: Google Antigravity</title>
+    <link rel="alternate" href="https://antigravity.google"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gpt-oss-120b; dropped gpt-oss · free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260925T120052Z</id>
+    <title>Free models changed: Groq</title>
+    <link rel="alternate" href="https://groq.com"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gpt-oss-120b, gpt-oss-20b; dropped gpt-oss · free models: gpt-oss-120b, gpt-oss-20b, qwen3.6, qwen3.8-27b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260925T120052Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gemma-4-26b-a4b, gemma-4-31b; dropped gemma-4 · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260925T120052Z</id>
+    <title>Free models changed: OVHcloud AI Endpoints</title>
+    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gpt-oss-120b; dropped gpt-oss · free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/pollinations/20260925T120052Z</id>
+    <title>Free models changed: Pollinations.AI</title>
+    <link rel="alternate" href="https://pollinations.ai"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gpt-oss-20b; dropped gpt-oss · free models: gpt-oss-20b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260925T120052Z</id>
+    <title>Free models changed: Regolo AI</title>
+    <link rel="alternate" href="https://regolo.ai/pricing/"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gpt-oss-120b; dropped gpt-oss · free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260925T120052Z</id>
+    <title>Free models changed: Requesty</title>
+    <link rel="alternate" href="https://www.requesty.ai"/>
+    <updated>2026-09-25T12:00:52Z</updated>
+    <summary type="text">added gemma-4-31b; dropped gemma-4 · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, laguna-xs.2, laguna-m.1, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260925T115408Z</id>
     <title>Free models changed: Google AI Studio (Gemini API)</title>
@@ -300,61 +356,5 @@
     <link rel="alternate" href="https://opper.ai"/>
     <updated>2026-09-17T13:50:58Z</updated>
     <summary type="text">EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits · free models: gemma-4-31b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/arli-ai/20260917T123948Z</id>
-    <title>Added: Arli AI</title>
-    <link rel="alternate" href="https://www.arliai.com"/>
-    <updated>2026-09-17T12:39:48Z</updated>
-    <summary type="text">OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/bytez/20260917T123948Z</id>
-    <title>Added: Bytez</title>
-    <link rel="alternate" href="https://bytez.com"/>
-    <updated>2026-09-17T12:39:48Z</updated>
-    <summary type="text">Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/tencent-tokenhub/20260917T123707Z</id>
-    <title>Added: Tencent Cloud TokenHub</title>
-    <link rel="alternate" href="https://cloud.tencent.com/document/product/1823"/>
-    <updated>2026-09-17T12:37:07Z</updated>
-    <summary type="text">Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vlm-run-gateway/20260917T123404Z</id>
-    <title>Added: VLM Run Gateway</title>
-    <link rel="alternate" href="https://vlm.run"/>
-    <updated>2026-09-17T12:34:04Z</updated>
-    <summary type="text">OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha · free models: qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260917T123234Z</id>
-    <title>Free models changed: Groq</title>
-    <link rel="alternate" href="https://groq.com"/>
-    <updated>2026-09-17T12:32:34Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/hetzner-inference/20260917T123234Z</id>
-    <title>Free models changed: Hetzner Inference API</title>
-    <link rel="alternate" href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/"/>
-    <updated>2026-09-17T12:32:34Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: qwen3.6, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260917T123234Z</id>
-    <title>Free models changed: OVHcloud AI Endpoints</title>
-    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
-    <updated>2026-09-17T12:32:34Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: gpt-oss, qwen3.6, qwen3.8-27b, qwen3-coder</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260917T123234Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-17T12:32:34Z</updated>
-    <summary type="text">added qwen3.8-27b; dropped qwen3.8 · free models: glm-5, gpt-oss, qwen3.8-27b, llama-3.3, apertus-70b</summary>
   </entry>
 </feed>

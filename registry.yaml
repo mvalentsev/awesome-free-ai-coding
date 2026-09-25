@@ -23,8 +23,12 @@ entries:
   - family: nemotron-3-ultra
     released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
-  - family: gemma-4
+  - family: gemma-4-31b
     released: 2026-04
+    aa_model: gemma-4-31b
+  - family: gemma-4-26b-a4b
+    released: 2026-04
+    aa_model: gemma-4-26b-a4b
   - family: nemotron-3-super
     released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
@@ -222,8 +226,12 @@ entries:
     the table "a high level summary and there may be exceptions", and points at the
     limits page in an account for the exact figures'
   models:
-  - family: gpt-oss
+  - family: gpt-oss-120b
     released: 2025-08
+    aa_model: gpt-oss-120b
+  - family: gpt-oss-20b
+    released: 2025-08
+    aa_model: gpt-oss-20b
   - family: qwen3.6
     released: ''
   - family: qwen3.8-27b
@@ -1042,6 +1050,7 @@ entries:
     aa_model: gemma-4-31b
   - family: gpt-oss-20b
     released: 2025-08
+    aa_model: gpt-oss-20b
   - family: mistral-nemotron
     released: 2025-06
   - family: nemotron-3-nano-omni
@@ -1193,8 +1202,9 @@ entries:
     every chat model per token, Qwen3.8-27B at "0.4 € / Mtoken(input)" and "2.7 €
     / Mtoken(output)". Read 2026-09-24'
   models:
-  - family: gpt-oss
+  - family: gpt-oss-120b
     released: 2025-08
+    aa_model: gpt-oss-120b
   - family: qwen3.6
     released: ''
   - family: qwen3.8-27b
@@ -1254,8 +1264,9 @@ entries:
     used to quote came from docs on a branch the vendor stopped updating on 2026-08-04,
     and no current page states an anonymous rate'
   models:
-  - family: gpt-oss
+  - family: gpt-oss-20b
     released: 2025-08
+    aa_model: gpt-oss-20b
   api:
     base_url: https://text.pollinations.ai/openai
     auth: none
@@ -1911,8 +1922,9 @@ entries:
   - family: nemotron-3-super
     released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
-  - family: gemma-4
+  - family: gemma-4-31b
     released: 2026-04
+    aa_model: gemma-4-31b
   - family: ling-3.0-tiny
     released: 2026-08
     aa_model: ling-3-0-tiny
@@ -2024,8 +2036,9 @@ entries:
   - family: claude-sonnet-4.6
     released: ''
     aa_model: claude-sonnet-4-6
-  - family: gpt-oss
+  - family: gpt-oss-120b
     released: 2025-08
+    aa_model: gpt-oss-120b
   data_use:
     trains: opt-out
     quote: We use Interactions to evaluate, develop, and improve Google and Alphabet
@@ -2209,13 +2222,30 @@ entries:
     tier: strong
     released: ''
     aa_model: glm-5-3
+  - family: glm-5.3-flash
+    tier: strong
+    released: ''
+    aa_model: glm-5-3-flash
   - family: kimi-k3
     tier: strong
     released: ''
     aa_model: kimi-k3
+  - family: glm-5.2
+    tier: strong
+    released: ''
+    aa_model: glm-5-2
+  - family: glm-5.1
+    released: ''
+    aa_model: glm-5-1
   - family: glm-5
     released: 2026-02
     aa_model: glm-5
+  - family: glm-5-turbo
+    released: ''
+    aa_model: glm-5-turbo
+  - family: mimo-v2.5-pro
+    released: ''
+    aa_model: mimo-v2-5-pro
   - family: mimo-v2.5
     released: ''
     aa_model: mimo-v2-5-0424
@@ -2715,8 +2745,9 @@ entries:
     tier: strong
     released: ''
     aa_model: glm-5-2
-  - family: gpt-oss
+  - family: gpt-oss-120b
     released: ''
+    aa_model: gpt-oss-120b
   - family: qwen3.8-27b
     tier: strong
     released: ''

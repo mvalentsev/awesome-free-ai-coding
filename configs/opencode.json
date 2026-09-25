@@ -1313,8 +1313,8 @@
         "baseURL": "https://text.pollinations.ai/openai"
       },
       "models": {
-        "gpt-oss": {
-          "name": "gpt-oss"
+        "gpt-oss-20b": {
+          "name": "gpt-oss-20b"
         }
       }
     },

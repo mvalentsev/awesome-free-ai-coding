@@ -17,7 +17,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Free models
 
-`glm-5.3`, `kimi-k3`, `glm-5`, `mimo-v2.5`, `north-mini-code`, `nemotron-3-ultra`, `nemotron-3-super`, `minimax-m3`, `minimax-m2.7`, `hy3`, `laguna-s-2.1`, `laguna-xs-2.1`, `kimi-for-coding`, `ling-3.0-flash`, `ling-3.0-tiny`, `glm-4.7`, `glm-4.7-flash`, `glm-4.6`, `minimax-m2.5`, `minimax-m2.1`, `minimax-m2`, `mimo-v2-pro`, `mimo-v2-flash`, `mimo-v2-omni`, `dots-3-note`, `nemotron-3.5-lightning`, `nemotron-3-nano-30b`, `nemotron-3-nano-omni`, `nemotron-nano-12b-v2-vl`, `nemotron-nano-9b-v2`
+`glm-5.3`, `glm-5.3-flash`, `kimi-k3`, `glm-5.2`, `glm-5.1`, `glm-5`, `glm-5-turbo`, `mimo-v2.5-pro`, `mimo-v2.5`, `north-mini-code`, `nemotron-3-ultra`, `nemotron-3-super`, `minimax-m3`, `minimax-m2.7`, `hy3`, `laguna-s-2.1`, `laguna-xs-2.1`, `kimi-for-coding`, `ling-3.0-flash`, `ling-3.0-tiny`, `glm-4.7`, `glm-4.7-flash`, `glm-4.6`, `minimax-m2.5`, `minimax-m2.1`, `minimax-m2`, `mimo-v2-pro`, `mimo-v2-flash`, `mimo-v2-omni`, `dots-3-note`, `nemotron-3.5-lightning`, `nemotron-3-nano-30b`, `nemotron-3-nano-omni`, `nemotron-nano-12b-v2-vl`, `nemotron-nano-9b-v2`
 
 ## Limits, in the vendor's words
 
@@ -42,6 +42,7 @@ per-model caps, spelled out in each model's catalog description: the newest codi
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added glm-5-turbo, glm-5.1, glm-5.2, glm-5.3-flash, mimo-v2.5-pro
 - `2026-09-24` — Free models changed: added dots-3-note, glm-4.6, glm-4.7, glm-4.7-flash, hy3, kimi-for-coding, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash, ling-3.0-tiny, mimo-v2-flash, mimo-v2-omni, mimo-v2-pro, minimax-m2, minimax-m2.1, minimax-m2.5, minimax-m2.7, minimax-m3, nemotron-3-nano-30b, nemotron-3-nano-omni, nemotron-3-super, nemotron-3-ultra, nemotron-3.5-lightning, nemotron-nano-12b-v2-vl, nemotron-nano-9b-v2
 - `2026-09-21` — Free models changed: dropped gpt-oss
 - `2026-09-16` — Free models changed: added glm-5.3, kimi-k3
