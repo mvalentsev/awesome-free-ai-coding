@@ -534,9 +534,19 @@ model_list:
     model: openai/glm-4.6v-flash
     api_base: https://api.z.ai/api/paas/v4
     api_key: os.environ/ZAI_GLM_API_KEY
-- model_name: cloudflare-workers-ai/llama-4
+- model_name: cloudflare-workers-ai/@cf/zai-org/glm-5.3-flash
   litellm_params:
-    model: openai/llama-4
+    model: openai/@cf/zai-org/glm-5.3-flash
+    api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
+    api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
+- model_name: cloudflare-workers-ai/@cf/qwen/qwen3.8-27b
+  litellm_params:
+    model: openai/@cf/qwen/qwen3.8-27b
+    api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
+    api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
+- model_name: cloudflare-workers-ai/@cf/meta/llama-4-scout-17b-16e-instruct
+  litellm_params:
+    model: openai/@cf/meta/llama-4-scout-17b-16e-instruct
     api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
     api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
 - model_name: routeway/muse-glimmer-30b:free
@@ -809,14 +819,14 @@ model_list:
     model: openai/qwen3.8-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
-- model_name: upstage/solar-pro-3
+- model_name: upstage/solar-pro4
   litellm_params:
-    model: openai/solar-pro-3
+    model: openai/solar-pro4
     api_base: https://api.upstage.ai/v1
     api_key: os.environ/UPSTAGE_API_KEY
-- model_name: upstage/solar-mini
+- model_name: upstage/solar-mini4
   litellm_params:
-    model: openai/solar-mini
+    model: openai/solar-mini4
     api_base: https://api.upstage.ai/v1
     api_key: os.environ/UPSTAGE_API_KEY
 - model_name: opper/gemini/gemma-4-31b
@@ -1394,26 +1404,6 @@ model_list:
     model: openai/deepseek-v4.1-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/zai-org/GLM-5.3-Flash
-    api_base: https://inference.dahl.global/v1
-    api_key: os.environ/DAHL_INFERENCE_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
-    api_base: https://inference.dahl.global/v1
-    api_key: os.environ/DAHL_INFERENCE_API_KEY
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0

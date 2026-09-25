@@ -244,15 +244,9 @@ dismissed:
     dismissed_on: 2026-09-08
     reason: >-
       Same row, same read, the third of the trio.
-  - entry: upstage
-    family: solar-mini
-    superseded_by: solar-pro-3
-    dismissed_on: 2026-09-08
-    reason: >-
-      The comment above the google-jules block listed this one as left standing
-      because nobody had read the page. Read now: the row lists solar-pro-3 and
-      solar-mini both, so the target is already in the column and the bump can
-      only remove the smaller model beside it.
+  # upstage solar-mini → solar-pro-3 stood here from 2026-09-08 until 2026-09-25,
+  # when the row's column emptied: Upstage's offer is a $10 signup credit spent
+  # on any model, and a sum to spend names no model.
   - entry: freeinference
     family: glm-5.1
     superseded_by: glm-5.3-flash

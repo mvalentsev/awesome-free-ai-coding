@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T12:13:01Z</updated>
+  <updated>2026-09-25T12:24:53Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cloudflare-workers-ai/20260925T122453Z</id>
+    <title>Free models changed: Cloudflare Workers AI</title>
+    <link rel="alternate" href="https://www.cloudflare.com/products/workers-ai/"/>
+    <updated>2026-09-25T12:24:53Z</updated>
+    <summary type="text">dropped llama-4</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/dahl-inference/20260925T122453Z</id>
+    <title>Free models changed: Dahl Inference</title>
+    <link rel="alternate" href="https://inference.dahl.global"/>
+    <updated>2026-09-25T12:24:53Z</updated>
+    <summary type="text">dropped deepseek-v4-flash, glm-5.3-flash, minimax-m2.7</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/upstage/20260925T122453Z</id>
+    <title>Free models changed: Upstage (Solar API)</title>
+    <link rel="alternate" href="https://console.upstage.ai/"/>
+    <updated>2026-09-25T12:24:53Z</updated>
+    <summary type="text">dropped solar-mini, solar-pro-3</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cohere/20260925T121301Z</id>
     <title>Free models changed: Cohere (trial keys)</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://abliteration.ai"/>
     <updated>2026-09-17T13:53:34Z</updated>
     <summary type="text">OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/blue-claw/20260917T135334Z</id>
-    <title>Added: Blue Claw Network</title>
-    <link rel="alternate" href="https://blueclaw.network"/>
-    <updated>2026-09-17T13:53:34Z</updated>
-    <summary type="text">OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/impossibl/20260917T135334Z</id>
-    <title>Added: Impossibl</title>
-    <link rel="alternate" href="https://impossibl.com"/>
-    <updated>2026-09-17T13:53:34Z</updated>
-    <summary type="text">Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/the-grid/20260917T135334Z</id>
-    <title>Added: The Grid</title>
-    <link rel="alternate" href="https://thegrid.ai"/>
-    <updated>2026-09-17T13:53:34Z</updated>
-    <summary type="text">OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time</summary>
   </entry>
 </feed>

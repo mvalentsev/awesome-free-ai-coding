@@ -17,7 +17,7 @@ Upstage Solar LLM API; $10 free credit on signup, no card
 
 ## Free models
 
-`solar-pro-3`, `solar-mini`
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -31,6 +31,7 @@ What you send is not used to train models. In the vendor's words: “The Company
 
 - Base URL: `https://api.upstage.ai/v1`
 - Key: `UPSTAGE_API_KEY` — get one at <https://console.upstage.ai/api-keys>
+- Callable ids: `solar-pro4`, `solar-mini4`
 
 ## Evidence
 
@@ -42,6 +43,7 @@ What you send is not used to train models. In the vendor's words: “The Company
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: dropped solar-mini, solar-pro-3
 - `2026-07-19` — Free models changed: added solar-mini, solar-pro-3
 - `2026-07-19` — Added: Upstage Solar LLM API; $10 free credit on signup, no card
 

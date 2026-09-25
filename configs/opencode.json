@@ -454,8 +454,14 @@
         "apiKey": "{env:CLOUDFLARE_WORKERS_AI_API_KEY}"
       },
       "models": {
-        "llama-4": {
-          "name": "llama-4"
+        "@cf/zai-org/glm-5.3-flash": {
+          "name": "@cf/zai-org/glm-5.3-flash"
+        },
+        "@cf/qwen/qwen3.8-27b": {
+          "name": "@cf/qwen/qwen3.8-27b"
+        },
+        "@cf/meta/llama-4-scout-17b-16e-instruct": {
+          "name": "@cf/meta/llama-4-scout-17b-16e-instruct"
         }
       }
     },
@@ -794,11 +800,11 @@
         "apiKey": "{env:UPSTAGE_API_KEY}"
       },
       "models": {
-        "solar-pro-3": {
-          "name": "solar-pro-3"
+        "solar-pro4": {
+          "name": "solar-pro4"
         },
-        "solar-mini": {
-          "name": "solar-mini"
+        "solar-mini4": {
+          "name": "solar-mini4"
         }
       }
     },

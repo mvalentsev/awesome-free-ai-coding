@@ -17,7 +17,7 @@ permalink: /providers/cloudflare-workers-ai/
 
 ## Free models
 
-`llama-4`
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -31,6 +31,7 @@ What you send is not used to train models. In the vendor's words: “Cloudflare 
 
 - Base URL: `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1`
 - Key: `CLOUDFLARE_WORKERS_AI_API_KEY` — get one at <https://dash.cloudflare.com/profile/api-tokens>
+- Callable ids: `@cf/zai-org/glm-5.3-flash`, `@cf/qwen/qwen3.8-27b`, `@cf/meta/llama-4-scout-17b-16e-instruct`
 - Note: substitute {account_id} with your Cloudflare account ID
 
 ## Evidence
@@ -43,6 +44,7 @@ What you send is not used to train models. In the vendor's words: “Cloudflare 
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: dropped llama-4
 - `2026-07-19` — Added: 10k neurons/day free
 
 ---

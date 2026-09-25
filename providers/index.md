@@ -25,7 +25,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) | 🔌 LLM APIs with free tier | `gpt-oss-120b`, `gpt-oss-20b`, `qwen3.6`, `qwen3.8-27b` | `2026-09-24` |
 | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | 🔌 LLM APIs with free tier | `kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`, `muse-glimmer-30b`, `nemotron-3.5-lightning`, `gemma-4-31b`, `gpt-oss-20b`, `mistral-nemotron`, `nemotron-3-nano-omni`, `diffusiongemma`, `llama-3.2-90b-vision`, `llama-3.2-11b-vision` | `2026-09-24` |
 | [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) | 🔌 LLM APIs with free tier | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | `2026-09-24` |
-| [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) | 🔌 LLM APIs with free tier | `llama-4` | `2026-09-24` |
+| [Cloudflare Workers AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
 | [LLM7.io](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
 | [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) | 🔌 LLM APIs with free tier | `qwen3.8-27b` | `2026-09-24` |
 | [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) | 🔌 LLM APIs with free tier | `qwen3.6`, `qwen3.8-27b` | `2026-09-24` |
@@ -63,11 +63,11 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) | 🎁 Trials (no card when possible) | `glm-5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b` | `2026-09-24` |
-| [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | `solar-pro-3`, `solar-mini` | `2026-09-24` |
+| [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) | 🎁 Trials (no card when possible) | `gpt-5.6-luna` | `2026-09-24` |
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
-| [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) | 🎁 Trials (no card when possible) | `glm-5.3-flash`, `deepseek-v4-flash`, `minimax-m2.7` | `2026-09-24` |
+| [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-24` |
 | [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-24` |

@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **108** |
+| **79** | **75** | **7** | **59** | **105** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -86,7 +86,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Groq](https://groq.com)** | Fast inference against a free plan Groq publishes as a per-model rate table | `gpt-oss-120b`, `gpt-oss-20b`, `qwen3.6`, `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) |
 | **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** 👁 | Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible) | `kimi-k3`, `nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`, `muse-glimmer-30b`, `nemotron-3.5-lightning`, `gemma-4-31b`, `gpt-oss-20b`, [+5 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | **[Z.ai (Zhipu GLM)](https://z.ai)** | GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4) | `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/) |
-| **[Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/)** | 10k neurons/day free | `llama-4` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) |
+| **[Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/)** | 10k neurons/day free | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/) |
 | **[LLM7.io](https://llm7.io)** 🧪 | OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/) |
 | **[LLM Tech](https://llmtech.eu)** 🧪 | EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account | `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) |
 | **[Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/)** | OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs | `qwen3.6`, `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) |
@@ -130,11 +130,11 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[CodeBuddy (Tencent)](https://www.codebuddy.ai)** | Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) |
 | **[TRAE (TraeCode)](https://www.trae.ai)** 👁 | TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) |
 | **[Regolo AI](https://regolo.ai/pricing/)** | EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card | `glm-5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
-| **[Upstage (Solar API)](https://console.upstage.ai/)** | Upstage Solar LLM API; $10 free credit on signup, no card | `solar-pro-3`, `solar-mini` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) |
+| **[Upstage (Solar API)](https://console.upstage.ai/)** | Upstage Solar LLM API; $10 free credit on signup, no card | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) |
 | **[Zed](https://zed.dev)** 🧪 | Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan | `gpt-5.6-luna` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) |
 | **[Qodo](https://www.qodo.ai)** | Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) |
 | **[The Grid](https://thegrid.ai)** 🧪 | OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) |
-| **[Dahl Inference](https://inference.dahl.global)** 🧪 | An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account | `glm-5.3-flash`, `deepseek-v4-flash`, `minimax-m2.7` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) |
+| **[Dahl Inference](https://inference.dahl.global)** 🧪 | An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) |
 | **[Sarvam AI](https://www.sarvam.ai)** 👁 | India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint | `sarvam-105b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) |
 | **[HPC-AI Model APIs](https://www.hpc-ai.com/model-apis)** 🧪 | OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) |
 | **[Inception Labs (Mercury)](https://platform.inceptionlabs.ai)** 👁 | A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) |
@@ -167,7 +167,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 108 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 105 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -177,21 +177,20 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `nemotron-3-super` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [LLMTR](https://llmtr.com) |
 | `nemotron-3.5-lightning` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com) |
 | `qwen3.8-27b` | [Groq](https://groq.com), [LLM Tech](https://llmtech.eu), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [Regolo AI](https://regolo.ai/pricing/), [VLM Run Gateway](https://vlm.run), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
-| `glm-5.3-flash` | [Freebuff](https://freebuff.com), [AIHubMix (free models)](https://aihubmix.com), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `laguna-s-2.1` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳, [Nous Portal (Hermes Agent)](https://portal.nousresearch.com) |
 | `laguna-xs-2.1` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [LLMTR](https://llmtr.com) |
 | `ling-3.0-flash-fin` | [opencode](https://opencode.ai), [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [LLMTR](https://llmtr.com), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
-| `deepseek-v4-flash` | [Routeway](https://routeway.ai), [Dahl Inference](https://inference.dahl.global), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `gemma-4-31b` | [OpenRouter (free models)](https://openrouter.ai), [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Opper](https://opper.ai) |
+| `glm-5.3-flash` | [Freebuff](https://freebuff.com), [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `gpt-oss-120b` | [Groq](https://groq.com), [Google Antigravity](https://antigravity.google), [Regolo AI](https://regolo.ai/pricing/), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
 | `north-mini-code` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com), [Cohere (trial keys)](https://cohere.com) |
 | `qwen3.6` | [Groq](https://groq.com), [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/), [FreeInference (Harvard SEAS)](https://freeinference.org), [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/) |
+| `deepseek-v4-flash` | [Routeway](https://routeway.ai), [FreeInference (Harvard SEAS)](https://freeinference.org), [Sail Research](https://www.sailresearch.com) 💳 |
 | `dots-3-note` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `gpt-oss-20b` | [Groq](https://groq.com), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Pollinations.AI](https://pollinations.ai) |
 | `kimi-k3` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [AIHubMix (free models)](https://aihubmix.com), [Sail Research](https://www.sailresearch.com) 💳 |
 | `ling-3.0-flash-sante` | [OpenRouter (free models)](https://openrouter.ai), [Kilo Code](https://kilo.ai), [Vercel AI Gateway](https://vercel.com/ai-gateway) 💳 |
 | `minimax-m2.5` | [Kiro](https://kiro.dev/), [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
-| `minimax-m2.7` | [AIHubMix (free models)](https://aihubmix.com), [Routeway](https://routeway.ai), [Dahl Inference](https://inference.dahl.global) |
 | `muse-glimmer-30b` | [Requesty](https://www.requesty.ai), [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [Routeway](https://routeway.ai) |
 | `deepseek-v4.1-flash` | [Freebuff](https://freebuff.com), [Token Harbor](https://tokenharbor.ai) |
 | `diffusiongemma` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
@@ -209,6 +208,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `ling-3.0-tiny` | [Requesty](https://www.requesty.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `mimo-v2.5` | [opencode](https://opencode.ai), [AIHubMix (free models)](https://aihubmix.com) |
 | `minimax-m2.1` | [Kiro](https://kiro.dev/), [AIHubMix (free models)](https://aihubmix.com) |
+| `minimax-m2.7` | [AIHubMix (free models)](https://aihubmix.com), [Routeway](https://routeway.ai) |
 | `minimax-m3` | [AIHubMix (free models)](https://aihubmix.com), [FreeInference (Harvard SEAS)](https://freeinference.org) |
 | `muse-spark-1.3-contributor` | [opencode](https://opencode.ai), [Cline](https://cline.bot) |
 | `nemotron-3-nano-30b` | [Requesty](https://www.requesty.ai), [AIHubMix (free models)](https://aihubmix.com) |
@@ -255,7 +255,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `ling-3.0-flash` | [AIHubMix (free models)](https://aihubmix.com) |
 | `llama-3.2-11b-vision` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `llama-3.2-90b-vision` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
-| `llama-4` | [Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/) |
 | `mercury-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
 | `mercury-2.5` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
 | `mercury-edit-2` | [Inception Labs (Mercury)](https://platform.inceptionlabs.ai) |
@@ -277,8 +276,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `qwen3.8-flash` | [Yolo-Auto](https://yolo-auto.com) |
 | `qwen3.8-max` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `sarvam-105b` | [Sarvam AI](https://www.sarvam.ai) |
-| `solar-mini` | [Upstage (Solar API)](https://console.upstage.ai/) |
-| `solar-pro-3` | [Upstage (Solar API)](https://console.upstage.ai/) |
 | `xing4.0-29b` | [SiliconFlow (China)](https://siliconflow.cn) |
 
 </details>
@@ -289,6 +286,9 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-25` | 🔄 Free models changed **[Cloudflare Workers AI](https://www.cloudflare.com/products/workers-ai/)** | <sub>dropped llama-4</sub> |
+| `2026-09-25` | 🔄 Free models changed **[Dahl Inference](https://inference.dahl.global)** | <sub>dropped deepseek-v4-flash, glm-5.3-flash, minimax-m2.7</sub> |
+| `2026-09-25` | 🔄 Free models changed **[Upstage (Solar API)](https://console.upstage.ai/)** | <sub>dropped solar-mini, solar-pro-3</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Cohere (trial keys)](https://cohere.com)** | <sub>added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Kiro](https://kiro.dev/)** | <sub>added claude-sonnet-4, glm-5, minimax-m2.5, qwen3-coder-next; dropped qwen3-coder</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>added muse-spark-1.2</sub> |
@@ -296,9 +296,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-25` | 🔄 Free models changed **[Google Antigravity](https://antigravity.google)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Groq](https://groq.com)** | <sub>added gpt-oss-120b, gpt-oss-20b; dropped gpt-oss</sub> |
 | `2026-09-25` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added gemma-4-26b-a4b, gemma-4-31b; dropped gemma-4</sub> |
-| `2026-09-25` | 🔄 Free models changed **[OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
-| `2026-09-25` | 🔄 Free models changed **[Pollinations.AI](https://pollinations.ai)** | <sub>added gpt-oss-20b; dropped gpt-oss</sub> |
-| `2026-09-25` | 🔄 Free models changed **[Regolo AI](https://regolo.ai/pricing/)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

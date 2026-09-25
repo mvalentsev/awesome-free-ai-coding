@@ -27,6 +27,7 @@ The keyless catalog publishes exactly one model and tags it with the tier it bel
 
 - Base URL: `https://text.pollinations.ai/openai`
 - Key: none — the lane is anonymous
+- Callable ids: `gpt-oss-20b`
 - Note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai, answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys` (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
 
 ## Evidence

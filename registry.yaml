@@ -384,15 +384,16 @@ entries:
     sit outside the free lane whatever the neuron count: the same page notes that
     @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2
     "require a paid billing method" (read 2026-08-14)'
-  models:
-  - family: llama-4
-    released: 2025-04
+  models: []
   api:
     base_url: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
     key_url: https://dash.cloudflare.com/profile/api-tokens
     auth: api-key
     openai_compatible: true
-    model_ids: []
+    model_ids:
+    - '@cf/zai-org/glm-5.3-flash'
+    - '@cf/qwen/qwen3.8-27b'
+    - '@cf/meta/llama-4-scout-17b-16e-instruct'
     note: substitute {account_id} with your Cloudflare account ID
   data_use:
     trains: 'no'
@@ -1281,7 +1282,8 @@ entries:
     base_url: https://text.pollinations.ai/openai
     auth: none
     openai_compatible: true
-    model_ids: []
+    model_ids:
+    - gpt-oss-20b
     note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai,
       answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys`
       (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
@@ -1452,19 +1454,15 @@ entries:
     than out of anything a reader sees, and it is declared as a machinery keyword
     to say so. Neither upstage.ai/pricing nor the Solar Pro product page carries the
     phrase at all (all three read 2026-09-08)
-  models:
-  - family: solar-pro-3
-    released: ''
-    aa_model: solar-pro-3
-  - family: solar-mini
-    released: ''
-    aa_model: solar-mini
+  models: []
   api:
     base_url: https://api.upstage.ai/v1
     key_url: https://console.upstage.ai/api-keys
     auth: api-key
     openai_compatible: true
-    model_ids: []
+    model_ids:
+    - solar-pro4
+    - solar-mini4
     note: ''
   data_use:
     trains: 'no'
@@ -2512,18 +2510,7 @@ entries:
     grant the only top-up is crypto, "priced around $0.03 per 1M tokens". Requests
     are routed to "independent operators within a decentralised network" under terms
     from FROMZERO OÜ, an Estonian company. Read 2026-09-21'
-  models:
-  - family: glm-5.3-flash
-    tier: strong
-    released: ''
-    aa_model: glm-5-3-flash
-  - family: deepseek-v4-flash
-    tier: strong
-    released: 2026-04
-    aa_model: deepseek-v4-flash
-  - family: minimax-m2.7
-    released: 2026-03
-    aa_model: minimax-m2-7
+  models: []
   api:
     base_url: https://inference.dahl.global/v1
     key_url: https://inference.dahl.global/account

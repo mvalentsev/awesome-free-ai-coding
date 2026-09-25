@@ -17,7 +17,7 @@ An OpenAI-compatible gateway to open models served by the Gonka decentralized GP
 
 ## Free models
 
-`glm-5.3-flash`, `deepseek-v4-flash`, `minimax-m2.7`
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -42,6 +42,7 @@ The docs: "100 million tokens as a gift at signup", paid into the account's pool
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: dropped deepseek-v4-flash, glm-5.3-flash, minimax-m2.7
 - `2026-09-21` — Added: An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account
 
 ---
