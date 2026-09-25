@@ -768,6 +768,12 @@
       "models": {
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b"
+        },
+        "qwen/qwen3.5-0.8b": {
+          "name": "qwen/qwen3.5-0.8b"
+        },
+        "google/diffusiongemma-26b-a4b-it": {
+          "name": "google/diffusiongemma-26b-a4b-it"
         }
       }
     },

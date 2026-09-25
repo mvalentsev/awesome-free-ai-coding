@@ -27,8 +27,8 @@ The authentication page says it plainly: "The VLM Run Gateway serves anonymous c
 
 - Base URL: `https://gateway.vlm.run/v1/openai`
 - Key: none — the lane is anonymous
-- Callable ids: `qwen/qwen3.8-27b`
-- Note: no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key; 10 a minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b and google/diffusiongemma-26b-a4b-it are the other chat models on VLM Run's GPUs — DiffusionGemma gave no answer to a keyless call within 150 seconds on 2026-09-23 — and the frontier models in the same catalog, Kimi K3 among them, answer `403 model_not_entitled` without a paid organization
+- Callable ids: `qwen/qwen3.8-27b`, `qwen/qwen3.5-0.8b`, `google/diffusiongemma-26b-a4b-it`
+- Note: no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key; 10 a minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b and google/diffusiongemma-26b-a4b-it are the other chat models on VLM Run's GPUs and answered keyless calls on 2026-09-25, while the frontier models in the same catalog, Kimi K3 and Gemma 4 26B among them, answer `403 model_not_entitled` without a paid organization
 
 ## Evidence
 
