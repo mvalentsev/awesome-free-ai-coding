@@ -34,7 +34,7 @@
       "@type": "Dataset",
       "@id": "https://mvalentsev.github.io/awesome-free-ai-coding/#dataset",
       "name": "awesome-free-ai-coding registry",
-      "description": "79 legal free LLM APIs, coding agents and no-card trials, with the free models they name (102 families), the limits in the vendor's own words and the day a live probe last confirmed each.",
+      "description": "79 legal free LLM APIs, coding agents and no-card trials, with the free models they name (108 families), the limits in the vendor's own words and the day a live probe last confirmed each.",
       "url": "https://mvalentsev.github.io/awesome-free-ai-coding/",
       "isAccessibleForFree": true,
       "license": "https://opensource.org/licenses/MIT",
@@ -295,7 +295,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       <li><b>75</b><span>need no card</span></li>
       <li><b>7</b><span>need no signup</span></li>
       <li><b>59</b><span>OpenAI-compatible</span></li>
-      <li><b>102</b><span>free model families</span></li>
+      <li><b>108</b><span>free model families</span></li>
     </ul>
   </div>
 </header>
@@ -766,7 +766,7 @@ Free quota for Qwen models on DashScope, international (Singapore) region; OpenA
 Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="chip">command-a</span><span class="chip">north-mini-code</span>              </div>
+<span class="chip">command-a-plus</span><span class="chip">command-a-reasoning</span><span class="chip">north-mini-code</span><span class="chip">command-a</span><span class="chip">command-a-vision</span><span class="chip">command-r-plus</span><span class="chip">command-r</span><span class="chip">command-r7b</span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
                 <details><summary>Trial keys are &#34;limited to 1,000 API calls a month&#34; and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code …</summary><span class="full">Trial keys are &#34;limited to 1,000 API calls a month&#34; and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere&#39;s pricing page states that trial keys &#34;are not permitted to be used for production or commercial purposes&#34;, and that every account &#34;begins as a personal account and only has access to Trial API keys&#34; — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that &#34;for both trial keys and production keys, North Mini Code is free until rate limits are reached&#34;, which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)</span></details>
@@ -1929,7 +1929,7 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
   <div class="wrap">
     <header>
       <h2>🧠 Looking for one model in particular?</h2>
-      <p class="sub">102 model families, and everyone who serves each one free.</p>
+      <p class="sub">108 model families, and everyone who serves each one free.</p>
     </header>
     <div class="scroll" style="padding: 4px 16px">
       <details>
@@ -2138,6 +2138,30 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
             </tr>
             <tr>
               <th scope="row"><code>command-a</code></th>
+              <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>command-a-plus</code></th>
+              <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>command-a-reasoning</code></th>
+              <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>command-a-vision</code></th>
+              <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>command-r</code></th>
+              <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>command-r-plus</code></th>
+              <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
+            </tr>
+            <tr>
+              <th scope="row"><code>command-r7b</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
             <tr>
@@ -3393,6 +3417,11 @@ vendor-announced shutdown on 2026-05-15            </td>
       <li>
         <time datetime="2026-09-25">2026-09-25</time>
         <span class="label">🔄 Free models changed</span>
+        <span><a href="https://cohere.com">Cohere (trial keys)</a> — added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b</span>
+      </li>
+      <li>
+        <time datetime="2026-09-25">2026-09-25</time>
+        <span class="label">🔄 Free models changed</span>
         <span><a href="https://kiro.dev/">Kiro</a> — added claude-sonnet-4, glm-5, minimax-m2.5, qwen3-coder-next; dropped qwen3-coder</span>
       </li>
       <li>
@@ -3424,11 +3453,6 @@ vendor-announced shutdown on 2026-05-15            </td>
         <time datetime="2026-09-25">2026-09-25</time>
         <span class="label">🔄 Free models changed</span>
         <span><a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a> — added gpt-oss-120b; dropped gpt-oss</span>
-      </li>
-      <li>
-        <time datetime="2026-09-25">2026-09-25</time>
-        <span class="label">🔄 Free models changed</span>
-        <span><a href="https://pollinations.ai">Pollinations.AI</a> — added gpt-oss-20b; dropped gpt-oss</span>
       </li>
     </ul>
   </div>

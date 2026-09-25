@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T12:09:47Z</updated>
+  <updated>2026-09-25T12:13:01Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cohere/20260925T121301Z</id>
+    <title>Free models changed: Cohere (trial keys)</title>
+    <link rel="alternate" href="https://cohere.com"/>
+    <updated>2026-09-25T12:13:01Z</updated>
+    <summary type="text">added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b · free models: command-a-plus, command-a-reasoning, north-mini-code, command-a, command-a-vision, command-r-plus, command-r, command-r7b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260925T120947Z</id>
     <title>Free models changed: Kiro</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://thegrid.ai"/>
     <updated>2026-09-17T13:53:34Z</updated>
     <summary type="text">OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/mixlayer/20260917T135251Z</id>
-    <title>Added: Mixlayer</title>
-    <link rel="alternate" href="https://www.mixlayer.com"/>
-    <updated>2026-09-17T13:52:51Z</updated>
-    <summary type="text">Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit · free models: qwen3.5-4b</summary>
   </entry>
 </feed>

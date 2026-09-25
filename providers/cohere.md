@@ -17,7 +17,7 @@ Cohere Command models via free trial API keys that never expire, plus North Mini
 
 ## Free models
 
-`command-a`, `north-mini-code`
+`command-a-plus`, `command-a-reasoning`, `north-mini-code`, `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b`
 
 ## Limits, in the vendor's words
 
@@ -31,7 +31,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://api.cohere.com/compatibility/v1`
 - Key: `COHERE_API_KEY` — get one at <https://dashboard.cohere.com/api-keys>
-- Callable ids: `north-mini-code-1-0`, `command-a-03-2025`
+- Callable ids: `north-mini-code-1-0`, `command-a-plus-05-2026`, `command-a-reasoning-08-2025`, `command-a-03-2025`, `command-a-vision-07-2025`, `command-r-plus-08-2024`, `command-r-08-2024`, `command-r7b-12-2024`
 - Note: OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2. Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0 is the free-on-any-key one
 
 ## Evidence
@@ -46,6 +46,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b
 - `2026-08-14` — Free models changed: added north-mini-code
 - `2026-07-22` — Added: Cohere Command models via free trial API keys that never expire
 

@@ -1510,12 +1510,25 @@ entries:
     here built for agentic coding the one that stays free on a paid key too (read
     2026-08-14)
   models:
-  - family: command-a
+  - family: command-a-plus
     released: ''
-    aa_model: command-a
+    aa_model: command-a-plus
+  - family: command-a-reasoning
+    released: ''
   - family: north-mini-code
     released: ''
     aa_model: north-mini-code
+  - family: command-a
+    released: ''
+    aa_model: command-a
+  - family: command-a-vision
+    released: ''
+  - family: command-r-plus
+    released: ''
+  - family: command-r
+    released: ''
+  - family: command-r7b
+    released: ''
   api:
     base_url: https://api.cohere.com/compatibility/v1
     key_url: https://dashboard.cohere.com/api-keys
@@ -1523,7 +1536,13 @@ entries:
     openai_compatible: true
     model_ids:
     - north-mini-code-1-0
+    - command-a-plus-05-2026
+    - command-a-reasoning-08-2025
     - command-a-03-2025
+    - command-a-vision-07-2025
+    - command-r-plus-08-2024
+    - command-r-08-2024
+    - command-r7b-12-2024
     note: OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2.
       Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0
       is the free-on-any-key one

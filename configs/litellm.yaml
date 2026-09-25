@@ -734,9 +734,39 @@ model_list:
     model: openai/north-mini-code-1-0
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-a-plus-05-2026
+  litellm_params:
+    model: openai/command-a-plus-05-2026
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-a-reasoning-08-2025
+  litellm_params:
+    model: openai/command-a-reasoning-08-2025
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
 - model_name: cohere/command-a-03-2025
   litellm_params:
     model: openai/command-a-03-2025
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-a-vision-07-2025
+  litellm_params:
+    model: openai/command-a-vision-07-2025
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-r-plus-08-2024
+  litellm_params:
+    model: openai/command-r-plus-08-2024
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-r-08-2024
+  litellm_params:
+    model: openai/command-r-08-2024
+    api_base: https://api.cohere.com/compatibility/v1
+    api_key: os.environ/COHERE_API_KEY
+- model_name: cohere/command-r7b-12-2024
+  litellm_params:
+    model: openai/command-r7b-12-2024
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
 - model_name: regolo/glm5.2

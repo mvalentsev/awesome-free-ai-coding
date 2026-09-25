@@ -1596,14 +1596,39 @@
       "limits": "Trial keys are \"limited to 1,000 API calls a month\" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys \"are not permitted to be used for production or commercial purposes\", and that every account \"begins as a personal account and only has access to Trial API keys\" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that \"for both trial keys and production keys, North Mini Code is free until rate limits are reached\", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)",
       "models": [
         {
-          "family": "command-a",
+          "family": "command-a-plus",
           "released": "",
-          "aa_model": "command-a"
+          "aa_model": "command-a-plus"
+        },
+        {
+          "family": "command-a-reasoning",
+          "released": ""
         },
         {
           "family": "north-mini-code",
           "released": "",
           "aa_model": "north-mini-code"
+        },
+        {
+          "family": "command-a",
+          "released": "",
+          "aa_model": "command-a"
+        },
+        {
+          "family": "command-a-vision",
+          "released": ""
+        },
+        {
+          "family": "command-r-plus",
+          "released": ""
+        },
+        {
+          "family": "command-r",
+          "released": ""
+        },
+        {
+          "family": "command-r7b",
+          "released": ""
         }
       ],
       "api": {
@@ -1613,7 +1638,13 @@
         "openai_compatible": true,
         "model_ids": [
           "north-mini-code-1-0",
-          "command-a-03-2025"
+          "command-a-plus-05-2026",
+          "command-a-reasoning-08-2025",
+          "command-a-03-2025",
+          "command-a-vision-07-2025",
+          "command-r-plus-08-2024",
+          "command-r-08-2024",
+          "command-r7b-12-2024"
         ],
         "note": "OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2. Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0 is the free-on-any-key one"
       },

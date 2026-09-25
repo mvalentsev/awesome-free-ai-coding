@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **102** |
+| **79** | **75** | **7** | **59** | **108** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -91,7 +91,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[LLM Tech](https://llmtech.eu)** 🧪 | EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account | `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) |
 | **[Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/)** | OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs | `qwen3.6`, `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) |
 | **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | Free quota for Qwen models on DashScope, international (Singapore) region; OpenAI-compatible | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) |
-| **[Cohere (trial keys)](https://cohere.com)** 👁 | Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type | `command-a`, `north-mini-code` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
+| **[Cohere (trial keys)](https://cohere.com)** 👁 | Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type | `command-a-plus`, `command-a-reasoning`, `north-mini-code`, `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) |
 | **[Mistral Studio](https://mistral.ai)** 👁 | Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) |
 | **[VLM Run Gateway](https://vlm.run)** 🧪 | OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha | `qwen3.8-27b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) |
 | **[ModelScope API-Inference (Alibaba)](https://modelscope.cn)** 🧪 | Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) |
@@ -167,7 +167,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 102 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 108 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -223,6 +223,12 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `claude-sonnet-4.5` | [Kiro](https://kiro.dev/) |
 | `claude-sonnet-4.6` | [Google Antigravity](https://antigravity.google) |
 | `command-a` | [Cohere (trial keys)](https://cohere.com) |
+| `command-a-plus` | [Cohere (trial keys)](https://cohere.com) |
+| `command-a-reasoning` | [Cohere (trial keys)](https://cohere.com) |
+| `command-a-vision` | [Cohere (trial keys)](https://cohere.com) |
+| `command-r` | [Cohere (trial keys)](https://cohere.com) |
+| `command-r-plus` | [Cohere (trial keys)](https://cohere.com) |
+| `command-r7b` | [Cohere (trial keys)](https://cohere.com) |
 | `deepseek-v3.2` | [Kiro](https://kiro.dev/) |
 | `deepseek-v4-pro` | [Sail Research](https://www.sailresearch.com) 💳 |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
@@ -283,6 +289,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-25` | 🔄 Free models changed **[Cohere (trial keys)](https://cohere.com)** | <sub>added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Kiro](https://kiro.dev/)** | <sub>added claude-sonnet-4, glm-5, minimax-m2.5, qwen3-coder-next; dropped qwen3-coder</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>added muse-spark-1.2</sub> |
 | `2026-09-25` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added glm-5-turbo, glm-5.1, glm-5.2, glm-5.3-flash, mimo-v2.5-pro</sub> |
@@ -292,7 +299,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-25` | 🔄 Free models changed **[OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Pollinations.AI](https://pollinations.ai)** | <sub>added gpt-oss-20b; dropped gpt-oss</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Regolo AI](https://regolo.ai/pricing/)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
-| `2026-09-25` | 🔄 Free models changed **[Requesty](https://www.requesty.ai)** | <sub>added gemma-4-31b; dropped gemma-4</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

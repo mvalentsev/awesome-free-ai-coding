@@ -30,7 +30,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/) | 🔌 LLM APIs with free tier | `qwen3.8-27b` | `2026-09-24` |
 | [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) | 🔌 LLM APIs with free tier | `qwen3.6`, `qwen3.8-27b` | `2026-09-24` |
 | [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) | 🔌 LLM APIs with free tier | `qwen3.8-max`, `qwen3-max`, `qwen3-coder` | `2026-09-24` |
-| [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a`, `north-mini-code` | `2026-09-24` |
+| [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) | 🔌 LLM APIs with free tier | `command-a-plus`, `command-a-reasoning`, `north-mini-code`, `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b` | `2026-09-24` |
 | [Mistral Studio](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
 | [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) | 🔌 LLM APIs with free tier | `qwen3.8-27b` | `2026-09-24` |
 | [ModelScope API-Inference (Alibaba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |

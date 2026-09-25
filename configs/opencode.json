@@ -683,8 +683,26 @@
         "north-mini-code-1-0": {
           "name": "north-mini-code-1-0"
         },
+        "command-a-plus-05-2026": {
+          "name": "command-a-plus-05-2026"
+        },
+        "command-a-reasoning-08-2025": {
+          "name": "command-a-reasoning-08-2025"
+        },
         "command-a-03-2025": {
           "name": "command-a-03-2025"
+        },
+        "command-a-vision-07-2025": {
+          "name": "command-a-vision-07-2025"
+        },
+        "command-r-plus-08-2024": {
+          "name": "command-r-plus-08-2024"
+        },
+        "command-r-08-2024": {
+          "name": "command-r-08-2024"
+        },
+        "command-r7b-12-2024": {
+          "name": "command-r7b-12-2024"
         }
       }
     },
