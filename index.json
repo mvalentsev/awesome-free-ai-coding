@@ -3014,6 +3014,12 @@
           "tier": "strong",
           "released": "",
           "aa_model": "deepseek-v4-1-flash"
+        },
+        {
+          "family": "muse-spark-1.2",
+          "tier": "strong",
+          "released": "",
+          "aa_model": "muse-spark-1-2"
         }
       ],
       "data_use": {

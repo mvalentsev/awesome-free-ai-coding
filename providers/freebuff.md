@@ -17,7 +17,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 ## Free models
 
-`glm-5.3-flash`, `deepseek-v4.1-flash`
+`glm-5.3-flash`, `deepseek-v4.1-flash`, `muse-spark-1.2`
 
 ## Limits, in the vendor's words
 
@@ -42,6 +42,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added muse-spark-1.2
 - `2026-09-23` — Free models changed: dropped gpt-5.6-luna
 - `2026-09-22` — Free models changed: dropped mimo-v2.5
 - `2026-09-16` — Free models changed: added deepseek-v4.1-flash; dropped deepseek-v4-flash

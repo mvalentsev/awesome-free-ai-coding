@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **99** |
+| **79** | **75** | **7** | **59** | **100** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -32,7 +32,7 @@
 | **[opencode](https://opencode.ai)** | `big-pickle` · `mimo-v2.5` · `ling-3.0-flash-fin` · `nemotron-3-ultra` · `nemotron-3.5-lightning` · `muse-spark-1.3-contributor` |
 | **[Kilo Code](https://kilo.ai)** | `nemotron-3-ultra` · `nemotron-3-super` · `north-mini-code` · `step-3.7-flash` · `laguna-s-2.1` · `laguna-xs-2.1` · `nemotron-3.5-lightning` · `inkling-small` · [+4 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) |
 | **[Google Antigravity](https://antigravity.google)** | `gemini-3.1-pro` · `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss-120b` |
-| **[Freebuff](https://freebuff.com)** | `glm-5.3-flash` · `deepseek-v4.1-flash` |
+| **[Freebuff](https://freebuff.com)** | `glm-5.3-flash` · `deepseek-v4.1-flash` · `muse-spark-1.2` |
 
 <sub>Every model name above is read back from the vendor's own API or pricing page twice a week; the quota that comes with it is one click from the [table below](#-coding-agents--clis), on the row's own page.</sub>
 
@@ -71,7 +71,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[opencode](https://opencode.ai)** 👁 | Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK | `big-pickle`, `mimo-v2.5`, `ling-3.0-flash-fin`, `nemotron-3-ultra`, `nemotron-3.5-lightning`, `muse-spark-1.3-contributor` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | **[Kilo Code](https://kilo.ai)** 👁 | Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside | `nemotron-3-ultra`, `nemotron-3-super`, `north-mini-code`, `step-3.7-flash`, `laguna-s-2.1`, `laguna-xs-2.1`, `nemotron-3.5-lightning`, `inkling-small`, [+4 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) |
 | **[Google Antigravity](https://antigravity.google)** 👁 | Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do | `gemini-3.1-pro`, `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gpt-oss-120b` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
-| **[Freebuff](https://freebuff.com)** 👁 | Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours | `glm-5.3-flash`, `deepseek-v4.1-flash` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
+| **[Freebuff](https://freebuff.com)** 👁 | Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours | `glm-5.3-flash`, `deepseek-v4.1-flash`, `muse-spark-1.2` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) |
 | **[Cline](https://cline.bot)** 👁 🧪 | Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK | `muse-spark-1.3-contributor` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) |
 | **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** | Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) |
 | **[Crush + Charm Hyper](https://hyper.charm.land)** | Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) |
@@ -167,7 +167,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 99 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 100 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -259,6 +259,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `minimax-m2` | [AIHubMix (free models)](https://aihubmix.com) |
 | `mistral-nemotron` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `mistral-small-3.2` | [MegaNova](https://meganova.ai) |
+| `muse-spark-1.2` | [Freebuff](https://freebuff.com) |
 | `nemotron-nano-12b-v2-vl` | [AIHubMix (free models)](https://aihubmix.com) |
 | `nemotron-nano-9b-v2` | [AIHubMix (free models)](https://aihubmix.com) |
 | `qwen3-8b` | [SiliconFlow (China)](https://siliconflow.cn) |
@@ -280,6 +281,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-25` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>added muse-spark-1.2</sub> |
 | `2026-09-25` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added glm-5-turbo, glm-5.1, glm-5.2, glm-5.3-flash, mimo-v2.5-pro</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Google Antigravity](https://antigravity.google)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Groq](https://groq.com)** | <sub>added gpt-oss-120b, gpt-oss-20b; dropped gpt-oss</sub> |
@@ -289,7 +291,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-25` | 🔄 Free models changed **[Regolo AI](https://regolo.ai/pricing/)** | <sub>added gpt-oss-120b; dropped gpt-oss</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Requesty](https://www.requesty.ai)** | <sub>added gemma-4-31b; dropped gemma-4</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Google AI Studio (Gemini API)](https://aistudio.google.com)** | <sub>added gemini-3-flash, gemini-3.1-flash-lite, gemini-3.5-flash, gemini-3.6-flash, gemma-4</sub> |
-| `2026-09-24` | 🔄 Free models changed **[FreeInference (Harvard SEAS)](https://freeinference.org)** | <sub>added diffusiongemma, minimax-m2.5</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

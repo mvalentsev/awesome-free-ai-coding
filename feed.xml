@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T12:00:52Z</updated>
+  <updated>2026-09-25T12:05:33Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260925T120533Z</id>
+    <title>Free models changed: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-09-25T12:05:33Z</updated>
+    <summary type="text">added muse-spark-1.2 · free models: glm-5.3-flash, deepseek-v4.1-flash, muse-spark-1.2</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260925T120052Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://moark.com"/>
     <updated>2026-09-17T13:52:21Z</updated>
     <summary type="text">Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/opper/20260917T135058Z</id>
-    <title>Added: Opper</title>
-    <link rel="alternate" href="https://opper.ai"/>
-    <updated>2026-09-17T13:50:58Z</updated>
-    <summary type="text">EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits · free models: gemma-4-31b</summary>
   </entry>
 </feed>
