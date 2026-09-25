@@ -85,20 +85,17 @@ entries:
     - openrouter/free
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
-    - nex-agi/nex-n2.5-pro:free
-    - nex-agi/nex-n2.5-mini:free
     no_family_ids:
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
     anthropic_base_url: https://openrouter.ai/api
     note: 'pick models with the :free suffix: every id carrying it is priced 0/0,
-      20 on 2026-09-24, and the lane rotates, so a new id waits two weeks for the
+      18 on 2026-09-25, and the lane rotates, so a new id waits two weeks for the
       Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b,
       which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety,
-      a guardrail classifier. Nex-N2.5 Pro and Mini are ignored: the catalog dates
-      their free ids to end 2026-09-25. For Claude Code, OpenRouter''s cookbook sets
-      ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty
-      and a :free id as ANTHROPIC_MODEL'
+      a guardrail classifier. For Claude Code, OpenRouter''s cookbook sets ANTHROPIC_BASE_URL
+      to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as
+      ANTHROPIC_MODEL'
   data_use:
     trains: opt-out
     quote: Wherever possible, OpenRouter works with providers to ensure that prompts
@@ -628,8 +625,6 @@ entries:
     - stealth/space-bunny-alpha
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
-    - nex-agi/nex-n2.5-pro:free
-    - nex-agi/nex-n2.5-mini:free
     no_family_ids:
     - kilo-auto/free
     - openrouter/free
@@ -643,7 +638,7 @@ entries:
       it and openrouter/free are routers, stealth/space-bunny-alpha names no model,
       and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of
       them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail
-      classifier, and Nex-N2.5, whose free ids end 2026-09-25'
+      classifier'
   data_use:
     trains: 'yes'
     quote: Prompts may be logged by the upstream provider and used to improve their
