@@ -53,7 +53,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Mixlayer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/) | 🔌 LLM APIs with free tier | `qwen3.5-4b` | `2026-09-24` |
 | [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/) | 🔌 LLM APIs with free tier | `qwen3.8-flash` | `2026-09-24` |
 | [GitHub Copilot Free](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
-| [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) | 🎁 Trials (no card when possible) | `claude-sonnet-4.5`, `qwen3-coder`, `deepseek-v3.2`, `minimax-m2.1` | `2026-09-24` |
+| [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) | 🎁 Trials (no card when possible) | `claude-sonnet-4.5`, `claude-sonnet-4`, `glm-5`, `minimax-m2.5`, `deepseek-v3.2`, `qwen3-coder-next`, `minimax-m2.1` | `2026-09-24` |
 | [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) | 🎁 Trials (no card when possible) | `gemini-2.5` | `2026-09-24` |
 | [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) | 🎁 Trials (no card when possible) | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | `2026-09-24` |

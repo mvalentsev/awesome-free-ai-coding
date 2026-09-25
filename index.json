@@ -930,7 +930,7 @@
       ],
       "card_required": false,
       "offering": "Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models",
-      "limits": "50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US. Kiro's docs settle what those credits reach, in a table with a Free column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku 4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked 2026-08-14)",
+      "limits": "50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US. Kiro's docs settle what those credits reach, in a table with a Free column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku 4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked 2026-09-25)",
       "models": [
         {
           "family": "claude-sonnet-4.5",
@@ -938,13 +938,29 @@
           "aa_model": "claude-4-5-sonnet"
         },
         {
-          "family": "qwen3-coder",
-          "released": ""
+          "family": "claude-sonnet-4",
+          "released": "",
+          "aa_model": "claude-4-sonnet"
+        },
+        {
+          "family": "glm-5",
+          "released": "",
+          "aa_model": "glm-5"
+        },
+        {
+          "family": "minimax-m2.5",
+          "released": "",
+          "aa_model": "minimax-m2-5"
         },
         {
           "family": "deepseek-v3.2",
           "released": "",
           "aa_model": "deepseek-v3-2"
+        },
+        {
+          "family": "qwen3-coder-next",
+          "released": "",
+          "aa_model": "qwen3-coder-next"
         },
         {
           "family": "minimax-m2.1",
@@ -2457,7 +2473,8 @@
         },
         {
           "family": "minimax-m2.5",
-          "released": ""
+          "released": "",
+          "aa_model": "minimax-m2-5"
         },
         {
           "family": "minimax-m2.1",
@@ -3314,7 +3331,8 @@
         },
         {
           "family": "minimax-m2.5",
-          "released": ""
+          "released": "",
+          "aa_model": "minimax-m2-5"
         },
         {
           "family": "diffusiongemma",

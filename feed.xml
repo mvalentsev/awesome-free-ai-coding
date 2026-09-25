@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T12:05:33Z</updated>
+  <updated>2026-09-25T12:09:47Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kiro/20260925T120947Z</id>
+    <title>Free models changed: Kiro</title>
+    <link rel="alternate" href="https://kiro.dev/"/>
+    <updated>2026-09-25T12:09:47Z</updated>
+    <summary type="text">added claude-sonnet-4, glm-5, minimax-m2.5, qwen3-coder-next; dropped qwen3-coder · free models: claude-sonnet-4.5, claude-sonnet-4, glm-5, minimax-m2.5, deepseek-v3.2, qwen3-coder-next, minimax-m2.1</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260925T120533Z</id>
     <title>Free models changed: Freebuff</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://www.mixlayer.com"/>
     <updated>2026-09-17T13:52:51Z</updated>
     <summary type="text">Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit · free models: qwen3.5-4b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/moark/20260917T135221Z</id>
-    <title>Added: Moark (Gitee AI)</title>
-    <link rel="alternate" href="https://moark.com"/>
-    <updated>2026-09-17T13:52:21Z</updated>
-    <summary type="text">Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought</summary>
   </entry>
 </feed>

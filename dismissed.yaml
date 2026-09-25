@@ -367,14 +367,15 @@ dismissed:
       string "3.8" at all (read 2026-09-08): its free Jules row still names
       "Gemini 2.5 Pro", with "the latest model" reserved for Pro and Ultra.
   - entry: kiro
-    family: qwen3-coder
+    family: qwen3-coder-next
     superseded_by: qwen3.8
     dismissed_on: 2026-09-08
     reason: >-
       kiro.dev/pricing does not name Qwen3.8 anywhere (0 hits, read 2026-09-08).
       Its free-tier footnote still grants "open weight models such as Qwen3 Coder
       Next, DeepSeek 3.2, and MiniMax M2.1" — the third dismissal on this row for
-      a generation the vendor does not carry.
+      a generation the vendor does not carry. Written against the family
+      qwen3-coder until 2026-09-25, when the family took the model's own name.
   - entry: freeinference
     family: qwen3.6
     superseded_by: qwen3.8

@@ -888,16 +888,26 @@ entries:
     Haiku 4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on
     exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose
     says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked
-    2026-08-14)'
+    2026-09-25)'
   models:
   - family: claude-sonnet-4.5
     released: ''
     aa_model: claude-4-5-sonnet
-  - family: qwen3-coder
+  - family: claude-sonnet-4
     released: ''
+    aa_model: claude-4-sonnet
+  - family: glm-5
+    released: ''
+    aa_model: glm-5
+  - family: minimax-m2.5
+    released: ''
+    aa_model: minimax-m2-5
   - family: deepseek-v3.2
     released: ''
     aa_model: deepseek-v3-2
+  - family: qwen3-coder-next
+    released: ''
+    aa_model: qwen3-coder-next
   - family: minimax-m2.1
     released: ''
     aa_model: minimax-m2-1
@@ -2288,6 +2298,7 @@ entries:
     released: ''
   - family: minimax-m2.5
     released: ''
+    aa_model: minimax-m2-5
   - family: minimax-m2.1
     released: ''
     aa_model: minimax-m2-1
@@ -3132,6 +3143,7 @@ entries:
     released: ''
   - family: minimax-m2.5
     released: ''
+    aa_model: minimax-m2-5
   - family: diffusiongemma
     released: 2026-06
   api:
