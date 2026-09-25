@@ -15,9 +15,9 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **149** |
-|:---:|:---:|:---:|:---:|:---:|
-| <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
+| **79** | **75** | **7** | **149** |
+|:---:|:---:|:---:|:---:|
+| <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>free model families</sub> |
 
 </div>
 

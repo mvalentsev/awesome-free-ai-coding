@@ -1217,6 +1217,23 @@ def test_picks_render_between_the_starters_and_the_list(tmp_path: Path):
     assert "asks for no card" not in hero.split("**Or pick by what you need:**")[1]
 
 
+def test_the_hero_counters_fit_a_phone(tmp_path: Path):
+    """GitHub pads every table cell thirteen pixels a side, so five counters
+    spent 130 of the 309 pixels a phone gives the README on padding alone, and
+    the table under the badges scrolled sideways with its last figure cut off
+    (2026-09-25, 390 pixels). Four fit with room to spare; the count of
+    OpenAI-compatible endpoints that the fifth carried is stated under Plug it
+    into your agent, where the connections are."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="a", name="A", models=[{"family": "m"}])])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    hero = text.split("## 🚀 Start here")[0]
+    counters = next(line for line in hero.splitlines() if line.startswith("| **"))
+    assert counters.count("|") - 1 == 4
+    assert "<sub>live offers</sub>" in hero and "<sub>free model families</sub>" in hero
+
+
 def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
     """The agents and the picks were tables, and a phone gives a table the
     screen's width and no more: the agents' models broke at every hyphen,
