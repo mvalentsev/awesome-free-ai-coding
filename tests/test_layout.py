@@ -136,6 +136,19 @@ def test_the_run_checks_what_ci_would_before_it_commits():
     assert "pytest" in scout["run"]
 
 
+def test_a_dry_run_reaches_the_checks_when_a_row_fails():
+    """A dry run is how a change to the workflow is tried before a real run,
+    and the probe exits 1 on a dry run that finds a failing row — which a person
+    chaining it in a shell wants. On 2026-09-25 one FAIL, Yolo-Auto's, skipped
+    every step after the probe, the checks the dry run was dispatched to try
+    among them. In a dry run the probe step carries on; a real run's probe
+    exits 0 whatever it finds, and a scheduled run has no inputs at all."""
+    workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
+    probe = next(s for s in workflow["jobs"]["update"]["steps"]
+                 if s.get("name") == "Probe all entries")
+    assert probe.get("continue-on-error") == "${{ inputs.dry_run == true }}"
+
+
 def test_the_map_is_printed_as_a_table_with_one_row_per_line():
     table = markdown_table(TINY)
     lines = table.splitlines()

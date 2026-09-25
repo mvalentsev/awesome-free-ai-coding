@@ -46,7 +46,13 @@ jobs:
 
       - run: uv sync
 
+      # A real run's probe exits 0 whatever it finds and hands its failures to
+      # the scout. A dry run's exits 1 on a failing row, and without this one
+      # FAIL would skip every step after it — the checks a dry run is
+      # dispatched to try among them (Yolo-Auto's, 2026-09-25). A scheduled
+      # run has no inputs, so null == true is false and nothing changes there.
       - name: Probe all entries
+        continue-on-error: ${{ inputs.dry_run == true }}
         run: uv run freetier-probe --registry registry.yaml --failures failures ${{ inputs.dry_run && '--dry-run' || '' }}
 
       # A tier is a measurement, and a measurement goes stale: the index moves as
