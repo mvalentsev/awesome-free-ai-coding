@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-09-21'
-description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs. The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time…
+description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site unreachable from the US, India and Russia. The docs price table gives Free "Base Credits /…
 permalink: /providers/codebuddy/
 ---
 
@@ -13,7 +13,7 @@ permalink: /providers/codebuddy/
 
 ## What you get
 
-Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs
+Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site unreachable from the US, India and Russia
 
 ## Free models
 
@@ -21,7 +21,7 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time Offer)" of 30 credits a day, 5,000 completions a month ("unlimited during the promotional period") and auto routing ("all models available during the promotional period"); "Standard quotas resume when the promotion ends", and "The end date of this promotion will be announced separately". "Base and bonus credits are issued monthly and are valid for that month; they do not roll over", and "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days". No card for Free — only the 7-day Pro trial asks for one. The docs name no model for the plan. The terms are Tencent Cloud International Pte. Ltd.'s and require users "at least 18 years old". Read 2026-09-02
+The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time Offer)" of 30 credits a day, 5,000 completions a month ("unlimited during the promotional period") and auto routing ("all models available during the promotional period"); "Standard quotas resume when the promotion ends", and "The end date of this promotion will be announced separately". "Base and bonus credits are issued monthly and are valid for that month; they do not roll over", and "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days". No card for Free — only the 7-day Pro trial asks for one. The docs name no model for the plan. The terms are Tencent Cloud International Pte. Ltd.'s and require users "at least 18 years old". www.codebuddy.ai, where the plan is sold and signed in to, does not resolve from US, Indian or Russian networks: on 2026-09-25 its DNS answered 0.0.0.1 to client subnets there and ordinary addresses in Germany, Singapore and Kazakhstan. The same docs page is also served on Tencent's www.workbuddy.ai, which the probe reads. Read 2026-09-25
 
 ## Connect
 
@@ -29,7 +29,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 
-- Probe: the page at <https://www.codebuddy.ai/docs/ide/Account/pricing>, anchored on `100 credits`, `Base and bonus credits are issued monthly and are valid for that month`, `Individual Plans`
+- Probe: the page at <https://www.workbuddy.ai/docs/ide/Account/pricing>, anchored on `100 credits`, `Base and bonus credits are issued monthly and are valid for that month`, `Individual Plans`, `CodeBuddy offers the following plans`
 - Source: <https://www.codebuddy.ai/docs/ide/Account/pricing>
 - Source: <https://www.codebuddy.ai/docs/ide/Account/Subscription>
 - Source: <https://www.codebuddy.ai/document/term>
