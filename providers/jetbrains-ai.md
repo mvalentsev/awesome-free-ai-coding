@@ -21,7 +21,7 @@ AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum mod
 
 ## Limits, in the vendor's words
 
-JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one credit is "about: ~10 requests to generate code in AI Chat. ~40 requests to generate code in the editor", and the quota resets every 30 days from first use. AI Free also carries "Unlimited code completion (powered by JetBrains’ Mellum model)" and unlimited local models through Ollama or LM Studio. It needs an IDE licence: "AI Free is available to all users with active JetBrains IDE licenses, including educational licenses, classroom licenses, open source licenses, IDE trial licenses", but not in IntelliJ IDEA without Ultimate, PyCharm without Pro, or Android Studio — for someone paying nothing, an educational or open-source licence, or the free non-commercial licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial asks for a card. The tier is "only available in the serviceable territories, with the exception of Mainland China". Read 2026-09-14
+JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one credit is "about: ~10 requests to generate code in AI Chat. ~40 requests to generate code in the editor", and the quota resets every 30 days from first use. AI Free also carries "Unlimited code completion (powered by JetBrains’ Mellum model)" and unlimited local models through Ollama or LM Studio. It needs an IDE licence: "AI Free is available to all users with active JetBrains IDE licenses, including educational licenses, classroom licenses, open source licenses, IDE trial licenses", but not in IntelliJ IDEA without Ultimate, PyCharm without Pro, or Android Studio — for someone paying nothing, an educational or open-source licence, or the free non-commercial licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial asks for a card. The tier is "only available in the serviceable territories, with the exception of Mainland China"; on 2026-09-25 that list, which JetBrains says its model providers set, also left out Hong Kong, Macao, Russia, Belarus, Venezuela, Iran, Cuba, Syria and North Korea, among others. Read 2026-09-25
 
 ## What happens to what you send
 
@@ -37,6 +37,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 - Source: <https://www.jetbrains.com/help/ai-assistant/licensing-and-subscriptions.html>
 - Source: <https://lp.jetbrains.com/ai-ides-faq/>
 - Source: <https://www.jetbrains.com/help/ai-assistant/jetbrains-ai-subscription.html>
+- Source: <https://www.jetbrains.com/legal/docs/terms/jetbrains-ai/service-territory/>
 
 ## History
 

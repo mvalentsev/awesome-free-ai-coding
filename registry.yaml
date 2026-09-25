@@ -4005,6 +4005,7 @@ entries:
   - https://www.jetbrains.com/help/ai-assistant/licensing-and-subscriptions.html
   - https://lp.jetbrains.com/ai-ides-faq/
   - https://www.jetbrains.com/help/ai-assistant/jetbrains-ai-subscription.html
+  - https://www.jetbrains.com/legal/docs/terms/jetbrains-ai/service-territory/
   card_required: false
   offering: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum
     model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents
@@ -4020,7 +4021,9 @@ entries:
     someone paying nothing, an educational or open-source licence, or the free non-commercial
     licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial
     asks for a card. The tier is "only available in the serviceable territories, with
-    the exception of Mainland China". Read 2026-09-14'
+    the exception of Mainland China"; on 2026-09-25 that list, which JetBrains says
+    its model providers set, also left out Hong Kong, Macao, Russia, Belarus, Venezuela,
+    Iran, Cuba, Syria and North Korea, among others. Read 2026-09-25'
   free_part: models
   models:
   - family: mellum
