@@ -17,7 +17,7 @@ India's Sarvam AI credits every new account ₹100 that never expire, spendable 
 
 ## Free models
 
-`sarvam-105b`
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -31,13 +31,14 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://api.sarvam.ai/v1`
 - Key: `SARVAM_API_KEY` — get one at <https://dashboard.sarvam.ai>
-- Callable ids: `sarvam-105b`, `sarvam-105b-conversations`
-- Note: the vendor's own header is api-subscription-key, and the same key is accepted as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only sarvam-105b and sarvam-105b-conversations; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees
+- Callable ids: `sarvam-105b`
+- Note: the vendor's own header is api-subscription-key, and the same key is accepted as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only sarvam-105b and its voice-agent variant, sarvam-105b-conversations, which the configs leave out; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees
 
 ## Evidence
 
 - Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `Every new user receives ₹100 in credits`
 - Source: <https://docs.sarvam.ai/api/getting-started/pricing.md>
+- Source: <https://docs.sarvam.ai/api/getting-started/models.md>
 - Source: <https://docs.sarvam.ai/api/getting-started/ratelimits.md>
 - Source: <https://docs.sarvam.ai/api-reference/authentication.md>
 - Source: <https://docs.sarvam.ai/api-reference/beta-apis.md>
@@ -46,6 +47,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: dropped sarvam-105b
 - `2026-09-16` — Free models changed: dropped deepseek-v4-flash, glm-5.3-flash
 - `2026-09-05` — Added: India's Sarvam AI credits every new account ₹100 to spend on any of its APIs — its own Sarvam-105B chat model beside hosted DeepSeek V4 Flash, GLM 5.3 Flash and Gemma 4 — through an OpenAI-shaped chat endpoint
 

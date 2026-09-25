@@ -17,7 +17,7 @@ Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro
 
 ## Free models
 
-`kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash`
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -45,6 +45,7 @@ What you send is not used to train models. In the vendor's words: “We do not u
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: dropped deepseek-v4-flash, deepseek-v4-pro, glm-5.3, glm-5.3-flash, kimi-k3
 - `2026-09-21` — Added: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account
 
 ---

@@ -984,11 +984,6 @@ model_list:
     model: openai/sarvam-105b
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
-- model_name: sarvam/sarvam-105b-conversations
-  litellm_params:
-    model: openai/sarvam-105b-conversations
-    api_base: https://api.sarvam.ai/v1
-    api_key: os.environ/SARVAM_API_KEY
 - model_name: tencent-tokenhub/kimi-k3
   litellm_params:
     model: openai/kimi-k3
@@ -1414,56 +1409,6 @@ model_list:
     model: openai/deepseek-v4-flash
     api_base: https://freeinference.org/v1
     api_key: os.environ/FREEINFERENCE_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/moonshotai/Kimi-K3
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/zai-org/GLM-5.3
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/deepseek-ai/DeepSeek-V4-Pro-0813
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/zai-org/GLM-5.3-Flash
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
-    api_base: https://api.sailresearch.com/v1
-    api_key: os.environ/SAIL_RESEARCH_API_KEY
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0

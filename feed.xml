@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T12:24:53Z</updated>
+  <updated>2026-09-25T12:50:26Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/inception-labs/20260925T125026Z</id>
+    <title>Free models changed: Inception Labs (Mercury)</title>
+    <link rel="alternate" href="https://platform.inceptionlabs.ai"/>
+    <updated>2026-09-25T12:50:26Z</updated>
+    <summary type="text">dropped mercury-2, mercury-2.5, mercury-edit-2</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/sail-research/20260925T125026Z</id>
+    <title>Free models changed: Sail Research</title>
+    <link rel="alternate" href="https://www.sailresearch.com"/>
+    <updated>2026-09-25T12:50:26Z</updated>
+    <summary type="text">dropped deepseek-v4-flash, deepseek-v4-pro, glm-5.3, glm-5.3-flash, kimi-k3</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/sarvam/20260925T125026Z</id>
+    <title>Free models changed: Sarvam AI</title>
+    <link rel="alternate" href="https://www.sarvam.ai"/>
+    <updated>2026-09-25T12:50:26Z</updated>
+    <summary type="text">dropped sarvam-105b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cloudflare-workers-ai/20260925T122453Z</id>
     <title>Free models changed: Cloudflare Workers AI</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://llmtech.eu"/>
     <updated>2026-09-18T23:48:45Z</updated>
     <summary type="text">EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 2 concurrent requests, tool calls included, no account · free models: qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/token-harbor/20260918T231538Z</id>
-    <title>Free models changed: Token Harbor</title>
-    <link rel="alternate" href="https://tokenharbor.ai"/>
-    <updated>2026-09-18T23:15:38Z</updated>
-    <summary type="text">added deepseek-v4-flash · free models: deepseek-v4.1-flash, deepseek-v4-flash, mimo-v2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/hpc-ai/20260917T141007Z</id>
-    <title>Added: HPC-AI Model APIs</title>
-    <link rel="alternate" href="https://www.hpc-ai.com/model-apis"/>
-    <updated>2026-09-17T14:10:07Z</updated>
-    <summary type="text">OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/abliteration-ai/20260917T135334Z</id>
-    <title>Added: abliteration.ai</title>
-    <link rel="alternate" href="https://abliteration.ai"/>
-    <updated>2026-09-17T13:53:34Z</updated>
-    <summary type="text">OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card</summary>
   </entry>
 </feed>

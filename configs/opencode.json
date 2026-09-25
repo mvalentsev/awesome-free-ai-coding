@@ -998,9 +998,6 @@
       "models": {
         "sarvam-105b": {
           "name": "sarvam-105b"
-        },
-        "sarvam-105b-conversations": {
-          "name": "sarvam-105b-conversations"
         }
       }
     },

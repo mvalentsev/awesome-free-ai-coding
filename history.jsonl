@@ -228,3 +228,6 @@
 {"ts": "2026-09-25T12:24:53.889266Z", "event": "models", "id": "cloudflare-workers-ai", "name": "Cloudflare Workers AI", "url": "https://www.cloudflare.com/products/workers-ai/", "models": [], "detail": "dropped llama-4"}
 {"ts": "2026-09-25T12:24:53.889266Z", "event": "models", "id": "dahl-inference", "name": "Dahl Inference", "url": "https://inference.dahl.global", "models": [], "detail": "dropped deepseek-v4-flash, glm-5.3-flash, minimax-m2.7"}
 {"ts": "2026-09-25T12:24:53.889266Z", "event": "models", "id": "upstage", "name": "Upstage (Solar API)", "url": "https://console.upstage.ai/", "models": [], "detail": "dropped solar-mini, solar-pro-3"}
+{"ts": "2026-09-25T12:50:26.137997Z", "event": "models", "id": "inception-labs", "name": "Inception Labs (Mercury)", "url": "https://platform.inceptionlabs.ai", "models": [], "detail": "dropped mercury-2, mercury-2.5, mercury-edit-2"}
+{"ts": "2026-09-25T12:50:26.137997Z", "event": "models", "id": "sail-research", "name": "Sail Research", "url": "https://www.sailresearch.com", "models": [], "detail": "dropped deepseek-v4-flash, deepseek-v4-pro, glm-5.3, glm-5.3-flash, kimi-k3"}
+{"ts": "2026-09-25T12:50:26.137997Z", "event": "models", "id": "sarvam", "name": "Sarvam AI", "url": "https://www.sarvam.ai", "models": [], "detail": "dropped sarvam-105b"}

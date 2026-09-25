@@ -43,7 +43,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Ollama Cloud](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
 | [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/) | 🔌 LLM APIs with free tier | `gpt-oss-120b`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder` | `2026-09-24` |
 | [Poolside Platform](https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
-| [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) | 🔌 LLM APIs with free tier | `kimi-k3`, `glm-5.3`, `deepseek-v4-pro`, `glm-5.3-flash`, `deepseek-v4-flash` | `2026-09-24` |
+| [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
 | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) | 🔌 LLM APIs with free tier | `xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414` | `2026-09-24` |
 | [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) | 🔌 LLM APIs with free tier | — | `2026-09-24` |
 | [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) | 🔌 LLM APIs with free tier | `gpt-oss-20b` | `2026-09-24` |
@@ -68,9 +68,9 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
-| [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | `sarvam-105b` | `2026-09-24` |
+| [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [HPC-AI Model APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
-| [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | `mercury-2.5`, `mercury-2`, `mercury-edit-2` | `2026-09-24` |
+| [Inception Labs (Mercury)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Blue Claw Network](https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Fireworks AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [RouterPlex](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |

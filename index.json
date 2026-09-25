@@ -2648,21 +2648,7 @@
       "card_required": false,
       "offering": "A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls",
       "limits": "100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit \"shared across all models rather than granted per model\", so Mercury 2.5 spends the same balance as Mercury 2. Past it the account moves to pay-as-you-go: $0.25 per 1M input and $0.75 per 1M output on Mercury 2 and Mercury Edit 2, a list $0.20/$0.75 on Mercury 2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10). The Free tier's own ceiling is per minute rather than per month — 1,000 requests, 1,000,000 input tokens and 100,000 output tokens",
-      "models": [
-        {
-          "family": "mercury-2.5",
-          "released": "2026-09"
-        },
-        {
-          "family": "mercury-2",
-          "released": "",
-          "aa_model": "mercury-2"
-        },
-        {
-          "family": "mercury-edit-2",
-          "released": ""
-        }
-      ],
+      "models": [],
       "api": {
         "base_url": "https://api.inceptionlabs.ai/v1",
         "key_url": "https://platform.inceptionlabs.ai",
@@ -3492,38 +3478,7 @@
       "card_required": true,
       "offering": "Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account",
       "limits": "The home page: \"$5 in free credits every month when you attach a payment method\", and its FAQ \"with $5 in free credits refreshed every month\". The credit spends at the per-token prices, which fall with the completion window a request asks for: GLM-5.3 is $0.98 in / $3.08 out per 1M tokens as soon as possible and $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09. \"No strict rate limits\", and request and response data is \"not used to train models without written consent\". Read 2026-09-21",
-      "models": [
-        {
-          "family": "kimi-k3",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "kimi-k3"
-        },
-        {
-          "family": "glm-5.3",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "glm-5-3"
-        },
-        {
-          "family": "deepseek-v4-pro",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "deepseek-v4-pro"
-        },
-        {
-          "family": "glm-5.3-flash",
-          "tier": "strong",
-          "released": "",
-          "aa_model": "glm-5-3-flash"
-        },
-        {
-          "family": "deepseek-v4-flash",
-          "tier": "strong",
-          "released": "2026-04",
-          "aa_model": "deepseek-v4-flash"
-        }
-      ],
+      "models": [],
       "api": {
         "base_url": "https://api.sailresearch.com/v1",
         "key_url": "https://app.sailresearch.com",
@@ -3569,6 +3524,7 @@
       "url": "https://www.sarvam.ai",
       "source_urls": [
         "https://docs.sarvam.ai/api/getting-started/pricing.md",
+        "https://docs.sarvam.ai/api/getting-started/models.md",
         "https://docs.sarvam.ai/api/getting-started/ratelimits.md",
         "https://docs.sarvam.ai/api-reference/authentication.md",
         "https://docs.sarvam.ai/api-reference/beta-apis.md"
@@ -3576,23 +3532,16 @@
       "card_required": false,
       "offering": "India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint",
       "limits": "\"Every new user receives ₹100 in credits\", usable \"across any of our APIs\", and the credits \"are universal and never expire\". Sarvam-105B costs ₹29.28 in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is \"not enabled by default with standard API subscription keys\" and is granted per key on request. No page read mentions a card (2026-09-18)",
-      "models": [
-        {
-          "family": "sarvam-105b",
-          "released": "",
-          "aa_model": "sarvam-105b"
-        }
-      ],
+      "models": [],
       "api": {
         "base_url": "https://api.sarvam.ai/v1",
         "key_url": "https://dashboard.sarvam.ai",
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "sarvam-105b",
-          "sarvam-105b-conversations"
+          "sarvam-105b"
         ],
-        "note": "the vendor's own header is api-subscription-key, and the same key is accepted as \"Authorization: Bearer\" on every endpoint. /v1/chat/completions serves only sarvam-105b and sarvam-105b-conversations; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees"
+        "note": "the vendor's own header is api-subscription-key, and the same key is accepted as \"Authorization: Bearer\" on every endpoint. /v1/chat/completions serves only sarvam-105b and its voice-agent variant, sarvam-105b-conversations, which the configs leave out; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees"
       },
       "data_use": {
         "trains": "opt-out",

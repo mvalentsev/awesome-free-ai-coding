@@ -17,7 +17,7 @@ A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for
 
 ## Free models
 
-`mercury-2.5`, `mercury-2`, `mercury-edit-2`
+The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
@@ -46,6 +46,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: dropped mercury-2, mercury-2.5, mercury-edit-2
 - `2026-09-10` — Free models changed: added mercury-2.5
 - `2026-08-14` — Added: A signup grant on the Mercury diffusion models, one for chat and one built for fill-in-the-middle and code edits — the second is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls
 

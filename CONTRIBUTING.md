@@ -279,14 +279,19 @@ configs without making a claim on the page.
 
 **A sum to spend names no model.** The Models column lists models the vendor
 serves free in their own right: a free lane, a free tier or trial that names its
-models, a free quota per model. Where the free part is an amount spent across a
-metered catalog at each model's own price — a signup credit, a monthly
-allowance, Cloudflare's 10,000 neurons a day — no model is free by itself: the
-column stays empty, the prose says what the amount buys, and `api.model_ids`
-carries a few of the vendor's exact ids to paste. Mistral's $10 a month, Hugging
-Face's credits and Fireworks' starter credit were read that way from the start;
-until 2026-09-25 Cloudflare named llama-4, Upstage two Solar models and Dahl
-its three, the only rows that did not.
+models, a free quota per model. Where the free part is an amount the account
+spends across the catalog — a signup credit, a grant of tokens every model draws
+on, a monthly allowance at each model's own price, Cloudflare's 10,000 neurons a
+day — no model is free by itself: the column stays empty, the prose says what
+the amount buys, and `api.model_ids` carries a few of the vendor's exact ids to
+paste. A cap counted the same on every model is not such an amount but the limit
+of a free tier: Cohere's trial keys are "limited to 1,000 API calls a month" and
+Regolo's trial to a million tokens a day, whichever model answers. Mistral's $10
+a month, Hugging Face's credits and Fireworks' starter credit were read that way
+from the start; until 2026-09-25 six rows were not — Cloudflare named llama-4,
+Upstage two Solar models and Dahl its three, and a second pass the same day
+found Inception's three Mercury models on a grant "shared across all models",
+Sail Research's five on $5 a month and Sarvam-105B on ₹100 of credit.
 
 **A lane that rotates names a model once it has stayed two weeks.** OpenRouter,
 Kilo, Requesty, AIHubMix and Cline add and drop free ids within days, so a new id
