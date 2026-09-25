@@ -55,10 +55,10 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 | [GitHub Copilot Free](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) | 🎁 Trials (no card when possible) | `claude-sonnet-4.5`, `claude-sonnet-4`, `glm-5`, `minimax-m2.5`, `deepseek-v3.2`, `qwen3-coder-next`, `minimax-m2.1` | `2026-09-24` |
 | [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) | 🎁 Trials (no card when possible) | `gemini-2.5` | `2026-09-24` |
-| [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
+| [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) | 🎁 Trials (no card when possible) | `composer` | `2026-09-24` |
 | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) | 🎁 Trials (no card when possible) | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | `2026-09-24` |
 | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
-| [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
+| [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) | 🎁 Trials (no card when possible) | `mellum` | `2026-09-24` |
 | [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |
 | [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) | 🎁 Trials (no card when possible) | — | `2026-09-21` |
 | [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) | 🎁 Trials (no card when possible) | — | `2026-09-24` |

@@ -15,7 +15,7 @@
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
-| **79** | **75** | **7** | **59** | **147** |
+| **79** | **75** | **7** | **59** | **149** |
 |:---:|:---:|:---:|:---:|:---:|
 | <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>OpenAI-compatible</sub> | <sub>free model families</sub> |
 
@@ -122,10 +122,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[GitHub Copilot Free](https://github.com/features/copilot)** 👁 | Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/) |
 | **[Kiro](https://kiro.dev/)** 👁 | Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models | `claude-sonnet-4.5`, `claude-sonnet-4`, `glm-5`, `minimax-m2.5`, `deepseek-v3.2`, `qwen3-coder-next`, `minimax-m2.1` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
 | **[Google Jules](https://jules.google/)** 👁 | Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously | `gemini-2.5` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) |
-| **[Cursor (Hobby)](https://cursor.com/)** 👁 | Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests and Tab completions, no credit card | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) |
+| **[Cursor (Hobby)](https://cursor.com/)** 👁 | Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor's own Composer model and Tab completions, no credit card | `composer` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) |
 | **[Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview)** 🧪 | Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account | `gemini-3.1-pro`, `gemini-3-flash`, `gemini-2.5-pro`, `gemini-2.5-flash` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) |
 | **[Devin Desktop (formerly Windsurf)](https://devin.ai/desktop)** 👁 | Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
-| **[JetBrains AI (AI Free)](https://www.jetbrains.com/ai/)** 👁 🧪 | AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) |
+| **[JetBrains AI (AI Free)](https://www.jetbrains.com/ai/)** 👁 🧪 | AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents | `mellum` | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) |
 | **[Qoder](https://qoder.com)** | Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) |
 | **[CodeBuddy (Tencent)](https://www.codebuddy.ai)** | Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs | — | [`2026-09-21`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) |
 | **[TRAE (TraeCode)](https://www.trae.ai)** 👁 | TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) |
@@ -167,7 +167,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 | An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check | — | [`2026-09-24`](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) |
 
 <details>
-<summary><b>🧠 Looking for one model in particular?</b> — 147 model families, and everyone who serves them free</summary>
+<summary><b>🧠 Looking for one model in particular?</b> — 149 model families, and everyone who serves them free</summary>
 <br>
 
 | Model family | Free at |
@@ -232,6 +232,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `command-r` | [Cohere (trial keys)](https://cohere.com) |
 | `command-r-plus` | [Cohere (trial keys)](https://cohere.com) |
 | `command-r7b` | [Cohere (trial keys)](https://cohere.com) |
+| `composer` | [Cursor (Hobby)](https://cursor.com/) |
 | `deepseek-v4-pro` | [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) |
 | `gemini-2.5` | [Google Jules](https://jules.google/) |
 | `gemini-2.5-flash` | [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) |
@@ -258,6 +259,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `ling-3.0-flash` | [AIHubMix (free models)](https://aihubmix.com) |
 | `llama-3.2-11b-vision` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
 | `llama-3.2-90b-vision` | [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) |
+| `mellum` | [JetBrains AI (AI Free)](https://www.jetbrains.com/ai/) |
 | `mimo-v2-flash` | [AIHubMix (free models)](https://aihubmix.com) |
 | `mimo-v2-omni` | [AIHubMix (free models)](https://aihubmix.com) |
 | `mimo-v2-pro` | [AIHubMix (free models)](https://aihubmix.com) |
@@ -328,6 +330,8 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-25` | 🔄 Free models changed **[Cursor (Hobby)](https://cursor.com/)** | <sub>added composer</sub> |
+| `2026-09-25` | 🔄 Free models changed **[JetBrains AI (AI Free)](https://www.jetbrains.com/ai/)** | <sub>added mellum</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | <sub>added deepseek-v3.2, deepseek-v4-flash, deepseek-v4-pro, glm-5.1, qvq-max, qwen-flash, qwen-max, qwen-plus, qwen-turbo, qwen-vl-max, qwen-vl-plus, qwen3-14b, qwen3-235b-a22b, qwen3-235b-a22b-instruct-2507, qwen3-235b-a22b-thinking-2507, qwen3-30b-a3b, qwen3-30b-a3b-instruct-2507, qwen3-30b-a3b-thinking-2507, qwen3-32b, qwen3-8b, qwen3-coder-30b-a3b, qwen3-coder-480b-a35b, qwen3-coder-flash, qwen3-coder-next, qwen3-coder-plus, qwen3-next-80b-a3b-instruct, qwen3-next-80b-a3b-thinking, qwen3-vl-235b-a22b-instruct, qwen3-vl-235b-a22b-thinking, qwen3-vl-30b-a3b-instruct, qwen3-vl-30b-a3b-thinking, qwen3-vl-32b-instruct, qwen3-vl-32b-thinking, qwen3-vl-8b-instruct, qwen3-vl-8b-thinking, qwen3-vl-flash, qwen3-vl-plus, qwen3.5-122b-a10b, qwen3.5-27b, qwen3.5-35b-a3b, qwen3.5-397b-a17b, qwen3.5-flash, qwen3.5-plus, qwen3.6-27b, qwen3.6-35b-a3b, qwen3.6-flash, qwen3.6-max, qwen3.6-plus, qwen3.7-flash, qwen3.7-max, qwen3.7-plus, qwen3.8-2.4t-a95b, qwen3.8-27b, qwen3.8-flash, qwq-plus; dropped qwen3-coder</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Inception Labs (Mercury)](https://platform.inceptionlabs.ai)** | <sub>dropped mercury-2, mercury-2.5, mercury-edit-2</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Sail Research](https://www.sailresearch.com)** | <sub>dropped deepseek-v4-flash, deepseek-v4-pro, glm-5.3, glm-5.3-flash, kimi-k3</sub> |
@@ -336,8 +340,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-25` | 🔄 Free models changed **[Dahl Inference](https://inference.dahl.global)** | <sub>dropped deepseek-v4-flash, glm-5.3-flash, minimax-m2.7</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Upstage (Solar API)](https://console.upstage.ai/)** | <sub>dropped solar-mini, solar-pro-3</sub> |
 | `2026-09-25` | 🔄 Free models changed **[Cohere (trial keys)](https://cohere.com)** | <sub>added command-a-plus, command-a-reasoning, command-a-vision, command-r, command-r-plus, command-r7b</sub> |
-| `2026-09-25` | 🔄 Free models changed **[Kiro](https://kiro.dev/)** | <sub>added claude-sonnet-4, glm-5, minimax-m2.5, qwen3-coder-next; dropped qwen3-coder</sub> |
-| `2026-09-25` | 🔄 Free models changed **[Freebuff](https://freebuff.com)** | <sub>added muse-spark-1.2</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

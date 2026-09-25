@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-25T13:27:54Z</updated>
+  <updated>2026-09-25T13:41:16Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cursor-hobby/20260925T134116Z</id>
+    <title>Free models changed: Cursor (Hobby)</title>
+    <link rel="alternate" href="https://cursor.com/"/>
+    <updated>2026-09-25T13:41:16Z</updated>
+    <summary type="text">added composer · free models: composer</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/jetbrains-ai/20260925T134116Z</id>
+    <title>Free models changed: JetBrains AI (AI Free)</title>
+    <link rel="alternate" href="https://www.jetbrains.com/ai/"/>
+    <updated>2026-09-25T13:41:16Z</updated>
+    <summary type="text">added mellum · free models: mellum</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/alibaba-model-studio/20260925T132754Z</id>
     <title>Free models changed: Alibaba Cloud Model Studio (DashScope, international)</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://vercel.com/ai-gateway"/>
     <updated>2026-09-19T00:11:08Z</updated>
     <summary type="text">added ling-3.0-flash-sante · free models: laguna-s-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/modelscope/20260919T000944Z</id>
-    <title>Added: ModelScope API-Inference (Alibaba)</title>
-    <link rel="alternate" href="https://modelscope.cn"/>
-    <updated>2026-09-19T00:09:44Z</updated>
-    <summary type="text">Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/siliconflow-cn/20260919T000106Z</id>
-    <title>Added: SiliconFlow (China)</title>
-    <link rel="alternate" href="https://siliconflow.cn"/>
-    <updated>2026-09-19T00:01:06Z</updated>
-    <summary type="text">China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers · free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414</summary>
   </entry>
 </feed>

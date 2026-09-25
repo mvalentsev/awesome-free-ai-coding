@@ -17,11 +17,11 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+No model is free by itself here: the free part is an amount the account spends across the catalog, so the column names none. The limits below say what it buys; the ids to call, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 
-The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)", a credit being a cent ("2,000 credits / month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s list price with nothing on top". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions its model list marks Free, GPT-6 Luna and Nemotron 3 Ultra among them. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-23
+The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)", a credit being a cent ("2,000 credits / month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s list price with nothing on top". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens. The one model its list marks Free is TypeSafe's Jev, whose catalog entry supports neither tools nor streaming, so not one to code with, and the other promotions are discounts, GPT-6 Luna at 75% off. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-25
 
 ## Connect
 

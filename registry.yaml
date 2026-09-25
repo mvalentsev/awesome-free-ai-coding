@@ -955,20 +955,23 @@ entries:
   - https://cursor.com/pricing
   - https://cursor.com/help/models-and-usage/usage-limits
   - https://cursor.com/help/account-and-billing/pricing
+  - https://cursor.com/docs/account/pricing
   card_required: false
-  offering: Permanent free Hobby plan of the Cursor AI IDE with limited Agent requests
-    and Tab completions, no credit card
+  offering: Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests,
+    Cursor's own Composer model and Tab completions, no credit card
   limits: Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No
-    credit card required", "Limited Agent requests" and "Access to Composer"; the
-    plan table in its own help centre prints "Limited" in the included-usage column
-    where Pro reads $20 and Ultra $400; and the help page adds only that "the Hobby
-    plan gives you access to Cursor's core features with limited usage. You can use
-    Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with
-    your billing cycle" and "does not roll over"; at the cap Cursor shows a notification
-    and offers on-demand billing or an upgrade. Which models Hobby reaches is never
-    enumerated, and Cursor Router has not reached individual plans yet (read 2026-08-14)
-  free_part: unnamed
-  models: []
+    credit card required", "Limited Agent requests" and "Access to Composer", the
+    one model it names — Cursor's own, listed as Composer 2.5 in the Cursor Models
+    pool of its model docs, where the Pro card names Grok and frontier models — and
+    the help page adds only that "the Hobby plan gives you access to Cursor's core
+    features with limited usage. You can use Agent, Chat, and Tab completions with
+    the Auto model". Usage "resets monthly with your billing cycle" and "does not
+    roll over"; at the cap Cursor shows a notification and offers on-demand usage
+    or an upgrade. Cursor Router has not reached individual plans yet (read 2026-09-25)
+  free_part: models
+  models:
+  - family: composer
+    released: ''
   data_use:
     trains: opt-out
     quote: we may use and store codebase data, prompts, editor actions, code snippets,
@@ -1637,10 +1640,12 @@ entries:
     $1 charge, credited to your balance)", a credit being a cent ("2,000 credits /
     month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s
     list price with nothing on top". So the $5 buys what the catalog prices — Claude
-    Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions
-    its model list marks Free, GPT-6 Luna and Nemotron 3 Ultra among them. "Prompt-capture
-    opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-23'
-  free_part: models
+    Opus 5 at $5 in / $25 out per 1M tokens. The one model its list marks Free is
+    TypeSafe''s Jev, whose catalog entry supports neither tools nor streaming, so
+    not one to code with, and the other promotions are discounts, GPT-6 Luna at 75%
+    off. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are
+    captured. Read 2026-09-25'
+  free_part: sum
   models: []
   api:
     base_url: https://api.experientiallabs.ai/v1
@@ -4012,7 +4017,9 @@ entries:
     asks for a card. The tier is "only available in the serviceable territories, with
     the exception of Mainland China". Read 2026-09-14'
   free_part: models
-  models: []
+  models:
+  - family: mellum
+    released: ''
   data_use:
     trains: opt-out
     quote: For licenses that are for non-commercial use, this setting is enabled by

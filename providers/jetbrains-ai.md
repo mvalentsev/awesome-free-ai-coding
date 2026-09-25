@@ -17,7 +17,7 @@ AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum mod
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+`mellum`
 
 ## Limits, in the vendor's words
 
@@ -42,6 +42,7 @@ No API endpoint to paste: this row is a tool you install or sign in to.
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-25` — Free models changed: added mellum
 - `2026-09-14` — Added: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents
 
 ---
