@@ -227,6 +227,19 @@ catalog does. The two ways a lane comes back empty are reported apart, `the
 'free' lane lists no model ids` and `response has no 'free' lane`, because a
 promotion that ended and a key the vendor renamed want opposite repairs.
 
+**A lane served only inside the vendor's own client lists its ids in
+`client_lane`.** Cline's free models are picked in Cline — "Free model usage is
+not supported through the Cline API" — so the row has no `api` block, and until
+2026-09-25 nothing recorded which ids its lane carried: nine came or went
+between 2026-09-10 and 09-25 by the vendor's own snapshots of the lane, and no
+run said so. `client_lane.model_ids` holds them, checked against the lane in
+both directions as `api.model_ids` is against a catalog and dated for the Models
+column the same way; `client_lane.no_family_ids` keeps a stealth codename out of
+the column, with the reason in `client_lane.note`. Nothing a reader pastes is
+written from it, and validation refuses it beside an `api` block — one lane,
+one list — or on a probe that cannot tell the lane from the rest of what it
+reads: a page, or a catalog with neither `probe.lane` nor prices read.
+
 **A catalog that prices nothing takes its free marks from the vendor's own
 list.** NVIDIA's `/v1/models` answered 82 ids on 2026-09-23 with nothing beside
 each one but its owner, older ids with no page among them, while build.nvidia.com
@@ -266,16 +279,21 @@ counted from that read or from the vendor's own date for the free id, such as th
 joins the column, since the list of models and everyone who serves each one free
 is built from it. A router is not a model and a stealth codename names none, and a
 model whose own developer advises against agentic coding stays out; each is
-listed in `api.no_family_ids`, with the reason in `api.note`. A free id the vendor dates to end within those two weeks
+listed in `api.no_family_ids`, with the reason in `api.note` (`client_lane`'s own
+two fields on a lane no API serves). A free id the vendor dates to end within those two weeks
 never joins: OpenRouter and Kilo publish the date as `expiration_date`, and on
 2026-09-24 it was the next day for both Nex-N2.5 ids. Until that day a family that
 left the lane failed the row, so the column was kept to a few names per lane, and
 OpenRouter was missing from the list for `north-mini-code`, which it had served
-free since July. `uv run freetier-bars` dates every id in `api.model_ids` from the
-registry's git history and prints which are owed a family and when the rest fall
-due, and the scheduled run prints the same report in its summary; `freetier-check`
-refuses an id in `api.no_family_ids` that the row does not list or a family
-already names.
+free since July. `uv run freetier-bars` dates every id in `api.model_ids` and
+`client_lane.model_ids` from the registry's git history, or from the vendor's
+own date where the row's free list carries one and it is earlier — NVIDIA
+created `z-ai/glm-5.3`'s free endpoint on 2026-09-15 and the row listed it on
+09-22, and until 2026-09-25 the report counted from the row alone, a week late.
+It prints which ids are owed a family and when the rest fall due, and names any
+free list it could not read; the scheduled run prints the same report in its
+summary, and `freetier-check` refuses an id in `no_family_ids` that the row does
+not list or a family already names.
 
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —

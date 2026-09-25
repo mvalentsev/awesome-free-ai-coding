@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from dataclasses import dataclass
 from datetime import date
 from enum import Enum
 from pathlib import Path
@@ -500,6 +501,56 @@ class ApiInfo(BaseModel):
         return value
 
 
+class ClientLane(BaseModel):
+    """The ids of a free lane served only inside the vendor's own client.
+
+    Cline's free models are picked in Cline's own model picker — "Free model
+    usage is not supported through the Cline API. Free models are only
+    available in the Cline IDE Extension and CLI" — so the row has no endpoint
+    to paste and no `api` block, and until 2026-09-25 nothing recorded which
+    ids its lane carried. Nine ids came or went between 2026-09-10 and 09-25 by
+    the vendor's own snapshots of the lane: no run said so, and freetier-bars
+    could not date one of them. The ids are recorded here, held to the lane on
+    every run in both directions as `api.model_ids` are held to a catalog, and
+    dated from this list's history for the two-week bar. Nothing a reader
+    pastes is written from them: there is nothing to connect to."""
+    model_ids: list[str]
+    # Ids the lane carries that no Models-column family will name, on purpose —
+    # a stealth codename, a router — with the reason in `note`, as
+    # `api.no_family_ids`. A lane no config is written from needs no second
+    # list for ids left out of it: every id it carries is listed here.
+    no_family_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
+    note: str = Field(default="", exclude_if=lambda v: not v)
+
+    @field_validator("model_ids")
+    @classmethod
+    def _a_lane_records_ids(cls, value: list[str]) -> list[str]:
+        if not value:
+            raise ValueError("client_lane.model_ids is empty — a lane with no ids records nothing, "
+                             "so drop the block")
+        return value
+
+
+@dataclass(frozen=True)
+class LaneIds:
+    """Where a row records the ids of its free lane, read the one way the probe,
+    freetier-check and freetier-bars read it: `api` for a lane an API serves,
+    `client_lane` for one served only inside the vendor's own client."""
+    field: str
+    model_ids: list[str]
+    ignored_ids: list[str]
+    no_family_ids: list[str]
+
+
+def lane_ids(entry: Entry) -> LaneIds | None:
+    if entry.api is not None:
+        return LaneIds("api", entry.api.model_ids, entry.api.ignored_ids, entry.api.no_family_ids)
+    if entry.client_lane is not None:
+        return LaneIds("client_lane", entry.client_lane.model_ids, [],
+                       entry.client_lane.no_family_ids)
+    return None
+
+
 class DataUse(BaseModel):
     """What the vendor says it does with what a reader sends on the free offer —
     prompts, code, conversations — in its own words, on a page anyone can open.
@@ -568,6 +619,7 @@ class Entry(BaseModel):
     limits: str = ""
     models: list[ModelFamily] = []
     api: ApiInfo | None = None
+    client_lane: ClientLane | None = None
     data_use: DataUse | None = None
     probe: Probe
     first_seen: date
@@ -657,6 +709,28 @@ class Entry(BaseModel):
             raise ValueError(
                 f"{self.id}: {', '.join(both)} cannot sit in both api.model_ids and "
                 "api.ignored_ids")
+        return self
+
+    @model_validator(mode="after")
+    def _a_client_lane_is_a_lane_its_probe_reads(self) -> Entry:
+        """`client_lane` records a lane no API serves, and its ids are held to what
+        the probe reads, in both directions — so the probe must be able to tell
+        the free lane from the rest of what it reads: the key the vendor lists
+        it under (`probe.lane`), or prices it reads at zero. On a page, or on a
+        catalog it cannot read free off, the list would be checked by nothing.
+        And a lane an API serves keeps its ids in `api.model_ids`, which the
+        configs are written from: two lists of one lane drift apart."""
+        if self.client_lane is None:
+            return self
+        if self.api is not None:
+            raise ValueError(
+                f"{self.id}: a lane an API serves keeps its ids in api.model_ids — "
+                "client_lane is for a lane served only inside the vendor's own client")
+        probe = self.probe
+        if probe.type is not ProbeType.API_MODELS or not (probe.lane or probe.require_zero_price):
+            raise ValueError(
+                f"{self.id}: client_lane.model_ids are held to the lane an api-models probe "
+                "reads — name it in probe.lane, or read prices with require_zero_price")
         return self
 
     @model_validator(mode="after")

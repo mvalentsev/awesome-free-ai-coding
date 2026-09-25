@@ -6,7 +6,7 @@ import json
 import re
 import uuid
 from dataclasses import dataclass
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path
 
@@ -14,8 +14,8 @@ import httpx
 
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
-    _id_squash, _squash, family_names, is_archived_for_good, load_registry, notice_holds,
-    save_registry,
+    _id_squash, _squash, family_names, is_archived_for_good, lane_ids, load_registry,
+    notice_holds, save_registry,
 )
 
 TIMEOUT = httpx.Timeout(20.0, connect=10.0)
@@ -927,19 +927,15 @@ def _rows(data: object, lane: str | None) -> list[dict]:
 NGC_FREE_LABEL = "nim_type_preview"
 
 
-def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
-    """The endpoints a free list marks free, keyed by `_id_squash` of
-    publisher/name, each with the date the vendor retires it or "" — or, where
-    the document cannot be read as a free list, why.
+def _free_endpoints(resp: httpx.Response) -> dict[str, dict] | str:
+    """Every endpoint a free list marks free, keyed by `_id_squash` of
+    publisher/name — or, where the document cannot be read as a free list, why.
 
     The one list read today is NGC's catalog search filtered to NVIDIA's free
     label, the data build.nvidia.com's model pages render from. An endpoint is
     named there without its publisher (`glm-5-3`), the publisher sits in a
-    label of its own (`z-ai`), the free mark is a label value, and a retirement
-    is a DEPRECATION attribute holding the last day the endpoint is supported
-    — deepseek-v4-flash-0731 carried "09/21/2026" while its page read "Free
-    Endpoint: Deprecated". The catalog spells that model `z-ai/glm-5.3`, so the
-    key is squashed the way an id is.
+    label of its own (`z-ai`) and the free mark is a label value. The catalog
+    spells that model `z-ai/glm-5.3`, so the key is squashed the way an id is.
 
     The label is read on every endpoint rather than trusted to the query's
     filter: a query is a request, and a search that stopped honouring it would
@@ -957,7 +953,7 @@ def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
     pages = data.get("resultPageTotal")
     if isinstance(pages, int) and pages > 1:
         return f"runs to {pages} pages and only the first was read"
-    marks: dict[str, str] = {}
+    free: dict[str, dict] = {}
     for group in groups:
         resources = group.get("resources") if isinstance(group, dict) else None
         for endpoint in resources if isinstance(resources, list) else []:
@@ -970,12 +966,64 @@ def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
             if (not isinstance(general, list) or NGC_FREE_LABEL not in general
                     or not isinstance(publishers, list) or not publishers):
                 continue
-            attributes = {a.get("key"): a.get("value") for a in endpoint.get("attributes") or []
-                          if isinstance(a, dict)}
-            retired = attributes.get("DEPRECATION")
-            marks[_id_squash(f"{publishers[0]}/{endpoint['name']}")] = (
-                retired if isinstance(retired, str) else "")
+            free[_id_squash(f"{publishers[0]}/{endpoint['name']}")] = endpoint
+    return free
+
+
+def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
+    """The endpoints a free list marks free, keyed as `_free_endpoints` keys
+    them, each with the date the vendor retires it or "" — or, where the
+    document cannot be read as a free list, why. A retirement is a DEPRECATION
+    attribute holding the last day the endpoint is supported:
+    deepseek-v4-flash-0731 carried "09/21/2026" while its page read "Free
+    Endpoint: Deprecated"."""
+    endpoints = _free_endpoints(resp)
+    if isinstance(endpoints, str):
+        return endpoints
+    marks: dict[str, str] = {}
+    for key, endpoint in endpoints.items():
+        attributes = {a.get("key"): a.get("value") for a in endpoint.get("attributes") or []
+                      if isinstance(a, dict)}
+        retired = attributes.get("DEPRECATION")
+        marks[key] = retired if isinstance(retired, str) else ""
     return marks
+
+
+def free_list_dates(resp: httpx.Response, model_ids: list[str]) -> dict[str, date] | str:
+    """The UTC day the vendor created the free endpoint of each of `model_ids`
+    the list marks free — or, where the document cannot be read as a free list,
+    why.
+
+    The two-week bar before a free id joins the Models column counts from the
+    read that found it or from the vendor's own date for the free id, the
+    earlier. NGC stamps every endpoint with the moment NVIDIA created it, and
+    the list is NVIDIA's word on which endpoints are free, so the stamp on a
+    marked endpoint is the day the free id began: z-ai/glm-5.3's reads
+    "2026-09-15T19:47:58.961Z", and the row listed the id on 2026-09-22. An
+    endpoint with no readable stamp gives no date rather than a guess."""
+    endpoints = _free_endpoints(resp)
+    if isinstance(endpoints, str):
+        return endpoints
+    dates: dict[str, date] = {}
+    for model_id in model_ids:
+        endpoint = endpoints.get(_id_squash(model_id))
+        day = _utc_day(endpoint.get("dateCreated")) if endpoint else None
+        if day is not None:
+            dates[model_id] = day
+    return dates
+
+
+def _utc_day(stamp: object) -> date | None:
+    """The UTC day of an ISO 8601 moment, read as UTC where it names no zone."""
+    if not isinstance(stamp, str):
+        return None
+    try:
+        moment = datetime.fromisoformat(stamp)
+    except ValueError:
+        return None
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=timezone.utc)
+    return moment.astimezone(timezone.utc).date()
 
 
 def join_free_list(catalog: httpx.Response, free_list: httpx.Response,
@@ -1309,7 +1357,9 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     (Ollama, opencode Zen, SambaNova, Regolo), 18 of their 37 ids between them.
     Inception is deliberately not among them — mercury-edit-2 answers
     /v1/edit/completions and is absent from /v1/models by design, and a check
-    that cannot tell that apart would call it dead on every run.
+    that cannot tell that apart would call it dead on every run. A lane served
+    only inside the vendor's own client keeps its ids in `client_lane`, and is
+    asked the same question of the lane its probe reads.
 
     The match is exact, because `api.model_ids` holds what goes in the request
     body. `deepseek-ai/deepseek-v4-flash` and its live successor
@@ -1326,7 +1376,8 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     thing to let an LLM guess at: the scout is told to leave these rows for a
     human rather than sent off to fix them.
     """
-    if entry.api is None:
+    lane = lane_ids(entry)
+    if lane is None:
         return []
     catalog: dict[str, dict] = {}
     for model in _catalog_items(resp, entry.probe.lane) or []:
@@ -1334,7 +1385,7 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
         if mid:
             catalog.setdefault(mid, model)
     dead = []
-    for wanted in entry.api.model_ids:
+    for wanted in lane.model_ids:
         model = catalog.get(wanted)
         if model is None:
             dead.append(f"{wanted} is not in the catalog{_successor_hint(wanted, catalog)}")
@@ -1373,38 +1424,55 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     Without the list those would print on every run, and a report that always
     prints is a report nobody reads.
 
+    A lane the vendor lists under a key of its own (`probe.lane`) is asked
+    too, prices or none: Cline's free lane is the vendor's whole account of
+    what is free, so every id in it is in the lane, and ids in the paid lanes
+    beside it are not.
+
     Like dead_model_ids it never fails a row and is never handed to the
     scout: an id to add is an exact string copied out of a catalog, and
     whether to add it — or to record it as ignored — is a judgement about what
     the row is for.
     """
-    if (entry.probe.type is not ProbeType.API_MODELS or entry.api is None
-            or not entry.probe.require_zero_price):
+    lane = lane_ids(entry)
+    if (entry.probe.type is not ProbeType.API_MODELS or lane is None
+            or not (entry.probe.require_zero_price or entry.probe.lane)):
         return []
     marker = entry.probe.free_marker.lower()
-    known = set(entry.api.model_ids) | set(entry.api.ignored_ids)
-    lane = set()
+    known = set(lane.model_ids) | set(lane.ignored_ids)
+    unlisted = set()
     for model in _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
         if (mid and mid not in known and (not marker or marker in mid.lower())
-                and _is_free(model) and not _is_withdrawn(model)):
-            lane.add(mid)
-    return sorted(lane)
+                and (_is_free(model) or not entry.probe.require_zero_price)
+                and not _is_withdrawn(model)):
+            unlisted.add(mid)
+    return sorted(unlisted)
 
 
-def _stale_ids_detail(dead: list[str], unlisted: list[str], listed: bool = False) -> str:
+def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str:
     """One line for a human with both directions on it. A rename that changed
     the words of an id — the case _successor_hint cannot see — is a dead id on
     one side and an unlisted one on the other, and they belong together. On a
     row read with a free list the unlisted ids are the ones the list marks, and
-    the line says so: that catalog prices nothing to be zero."""
+    the line says so: that catalog prices nothing to be zero. The line names
+    the list the ids belong in, `api` or `client_lane`, and a client lane has
+    no ignored ids: it writes no config to keep an id out of."""
+    field = lane_ids(entry).field
     parts = []
     if dead:
-        parts.append("api.model_ids the catalog no longer answers for: " + "; ".join(dead))
+        parts.append(f"{field}.model_ids the catalog no longer answers for: " + "; ".join(dead))
     if unlisted:
-        parts.append(("ids the free list marks free that api.model_ids does not list " if listed
-                      else "zero-priced ids in the catalog that api.model_ids does not list ")
-                     + "(add them, or record them in api.ignored_ids): " + ", ".join(unlisted))
+        if entry.probe.free_list is not None:
+            found = "ids the free list marks free"
+        elif entry.probe.require_zero_price:
+            found = "zero-priced ids in the catalog"
+        else:
+            found = f"ids in the {entry.probe.lane!r} lane"
+        todo = ("add them, or record them in api.ignored_ids" if field == "api"
+                else "add them, and keep any that names no model in client_lane.no_family_ids")
+        parts.append(f"{found} that {field}.model_ids does not list ({todo}): "
+                     + ", ".join(unlisted))
     return " | ".join(parts)
 
 
@@ -1413,7 +1481,8 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str], listed: bool = False
 # prints its public key — and about its word on training, which only a person
 # re-reading the vendor's data page can restate. Each follows a family verdict
 # after " | ".
-_FOR_A_HUMAN = ("api.model_ids ", "zero-priced ids in the catalog ", "ids the free list ",
+_FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in the catalog ",
+                "ids the free list ", "ids in the ",
                 "api.public_key ", "keyless ", "public-key ", "anthropic route ", "data_use ")
 
 
@@ -1441,8 +1510,7 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     """
     dead = dead_model_ids(catalog, entry)
     unlisted = unlisted_free_ids(catalog, entry)
-    return (_stale_ids_detail(dead, unlisted, entry.probe.free_list is not None)
-            if dead or unlisted else "")
+    return _stale_ids_detail(dead, unlisted, entry) if dead or unlisted else ""
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

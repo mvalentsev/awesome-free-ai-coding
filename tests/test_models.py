@@ -224,6 +224,62 @@ def test_a_lane_belongs_to_an_api_models_probe():
     assert Entry.model_validate(on_the_api).probe.lane == "free"
 
 
+CLIENT_LANE_PROBE = {"type": "api-models", "endpoint": "https://api.x.ai/api/v1/ai/recommended-models",
+                     "lane": "free"}
+
+
+def test_a_lane_served_only_inside_the_vendor_s_client_records_its_ids_in_client_lane(
+        tmp_path: Path):
+    """Cline's free models are picked inside Cline — "Free model usage is not
+    supported through the Cline API" — so the row has no endpoint to paste and
+    no `api` block, and until 2026-09-25 nothing recorded which ids its lane
+    carried: the run could not say one arrived and freetier-bars could not date
+    it. A row with no such lane writes nothing."""
+    p = tmp_path / "registry.yaml"
+    row = Entry.model_validate({
+        **sample_entry(), "category": "agent-cli", "probe": CLIENT_LANE_PROBE,
+        "client_lane": {"model_ids": ["cline-free/a-1", "stealth/b"], "no_family_ids": ["stealth/b"],
+                        "note": "stealth/b is a codename that names no model"}})
+    plain = Entry.model_validate({**sample_entry(), "id": "plain"})
+    save_registry(p, [row, plain])
+    loaded = load_registry(p)
+    assert loaded[0].client_lane.model_ids == ["cline-free/a-1", "stealth/b"]
+    assert loaded[0].client_lane.no_family_ids == ["stealth/b"]
+    assert loaded[1].client_lane is None
+    assert p.read_text(encoding="utf-8").count("client_lane") == 1
+
+
+def test_a_lane_is_recorded_in_one_place():
+    """A lane an API serves keeps its ids in api.model_ids, which the configs are
+    written from; client_lane is for a lane no API serves. Both on one row would
+    be two lists of one lane, bound to drift apart."""
+    both = {**sample_entry(), "probe": CLIENT_LANE_PROBE,
+            "api": {"base_url": "https://api.x.ai/v1", "model_ids": ["cline-free/a-1"]},
+            "client_lane": {"model_ids": ["cline-free/a-1"]}}
+    with pytest.raises(ValidationError):
+        Entry.model_validate(both)
+
+
+def test_a_client_lane_is_held_to_a_lane_its_probe_can_read():
+    """The ids are checked against what the probe reads, in both directions, so
+    the probe has to be able to tell the free lane from the rest of what it
+    reads: a lane key, or prices it reads at zero. On a page, or on a catalog
+    it cannot read free off, the list would sit in the registry checked by
+    nothing — and a lane with no ids records nothing."""
+    ids = {"model_ids": ["cline-free/a-1"]}
+    on_a_page = {**sample_entry(), "client_lane": ids,
+                 "probe": {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
+                           "keywords": ["solar-mini", "free"]}}
+    free_unread = {**sample_entry(), "client_lane": ids}
+    no_ids = {**sample_entry(), "probe": CLIENT_LANE_PROBE, "client_lane": {"model_ids": []}}
+    for row in (on_a_page, free_unread, no_ids):
+        with pytest.raises(ValidationError):
+            Entry.model_validate(row)
+    priced = {**sample_entry(), "client_lane": ids,
+              "probe": {**sample_entry()["probe"], "require_zero_price": True}}
+    assert Entry.model_validate(priced).client_lane.model_ids == ["cline-free/a-1"]
+
+
 NGC_SEARCH = "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=free"
 
 

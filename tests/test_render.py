@@ -8,8 +8,7 @@ import yaml
 from freetier_radar.history import Event, EventType
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, README_LIMITS_TEASER,
-    README_NOTE_TEASER,
+    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, README_NOTE_TEASER,
     build_context, build_env_example, build_feed, build_index, build_litellm_config,
     build_opencode_config, env_var, is_archived, render_artifacts, render_readme,
 )

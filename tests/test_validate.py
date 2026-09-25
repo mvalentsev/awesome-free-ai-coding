@@ -67,6 +67,18 @@ def test_an_id_kept_out_of_the_column_is_a_callable_id_no_family_names(tmp_path:
     assert not any("v/router" in p for p in problems), problems
 
 
+def test_an_id_a_client_lane_keeps_out_of_the_column_is_one_it_lists(tmp_path: Path):
+    """The same decision on a lane no API serves, held the same way."""
+    row = {**ENTRY, "category": "agent-cli", "models": [{"family": "big-1"}],
+           "probe": {"type": "api-models", "endpoint": "https://x.ai/lanes", "lane": "free"},
+           "client_lane": {"model_ids": ["x-free/big-1", "stealth/alpha"],
+                           "no_family_ids": ["stealth/alpha", "x-free/big-1", "x-free/gone"]}}
+    problems = check(build(tmp_path, entries=[row], watched=[WATCHED]), TODAY)
+    assert any("x-free/gone" in p and "not in client_lane.model_ids" in p for p in problems), problems
+    assert any("x-free/big-1" in p and "names it" in p for p in problems), problems
+    assert not any("stealth/alpha" in p for p in problems), problems
+
+
 def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
     """The median `limits` went from 87 characters in July to 813 by 2026-09-16,
     the longest 3,712 — a research log in a README cell. The history belongs to

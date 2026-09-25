@@ -144,11 +144,12 @@ vendor's catalog, and a family counts only where the catalog still carries a
 FREE id for it: an id matching the entry's free marker, and free by the
 catalog's own flag or by a zero price where it publishes one. A family whose
 only ids are metered is not a free model and fails the same probe next run.
-A failure detail can carry more after " | " about api.model_ids, free ids the
-catalog or its free list names, the keyless lane, the Anthropic route or the
-public key — that half is addressed to a human and is not yours to repair: `api`
-is not a key you may write, and an exact id copied out of a catalog is not
-something to reproduce from memory. Read it as evidence about which way the lane
+A failure detail can carry more after " | " about api.model_ids or
+client_lane.model_ids, free ids the catalog, its free list or its lane names, the
+keyless lane, the Anthropic route or the public key — that half is addressed to a
+human and is not yours to repair: `api` and `client_lane` are not keys you may
+write, and an exact id copied out of a catalog is not something to reproduce
+from memory. Read it as evidence about which way the lane
 moved, and answer only with the keys you are allowed.
 A corrected page-keywords probe needs at least one keyword that dies with the
 offer — a quota or price figure, a model id, or a sentence of four or more words

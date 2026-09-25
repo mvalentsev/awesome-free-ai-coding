@@ -8,7 +8,7 @@ import respx
 from freetier_radar.models import ApiInfo, DataUse, Entry, ModelFamily, save_registry
 from freetier_radar.prober import (
     ProbeResult, ProbeStatus, _amain, apply_results, check_content, family_named, for_a_human,
-    is_model_stale, probe_entry,
+    free_list_dates, is_model_stale, probe_entry,
 )
 
 BASE = {
@@ -471,6 +471,45 @@ async def test_config_ids_are_read_from_the_lane_too():
     assert "deepseek/deepseek-v4-flash" not in result.detail
 
 
+def client_lane_entry(*model_ids: str) -> Entry:
+    return Entry.model_validate({
+        **BASE,
+        "id": "laney",
+        "category": "agent-cli",
+        "models": [{"family": "deepseek-v4.1-flash", "tier": "strong"}],
+        "probe": {"type": "api-models", "endpoint": LANES_URL, "lane": "free"},
+        "client_lane": {"model_ids": list(model_ids)},
+    })
+
+
+@respx.mock
+async def test_a_client_lane_is_held_to_its_lane_in_both_directions():
+    """Nine ids came or went in Cline's free lane between 2026-09-10 and 09-25,
+    by the vendor's own snapshots of it, and no run said so: only the Models
+    column was read, and it held one family. So the lane is read against
+    client_lane.model_ids as a catalog is against api.model_ids — an id that
+    left and one that arrived are notes for a human, and the paid lanes beside
+    it are not the free lane."""
+    respx.get(LANES_URL).mock(return_value=httpx.Response(200, json=keyed_lanes(
+        free=["cline-free/deepseek-v4.1-flash", "cline-free/gemini-3.8-flash"],
+        cline_pass=["cline-pass/glm-5.3"], recommended=["anthropic/claude-opus-5"])))
+    entry = client_lane_entry("cline-free/deepseek-v4.1-flash", "cline-free/solar-pro4")
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "cline-free/solar-pro4" in result.detail
+    assert "cline-free/gemini-3.8-flash" in result.detail
+    assert "glm-5.3" not in result.detail and "claude-opus-5" not in result.detail
+    assert result.detail.startswith("client_lane.model_ids ")
+    # Addressed to a human, like every note about the ids: the fix prompt leaves it alone.
+    assert for_a_human(f"missing families: x | {result.detail}") == result.detail
+
+    entry = client_lane_entry("cline-free/deepseek-v4.1-flash", "cline-free/gemini-3.8-flash")
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
 NIM_CATALOG = "https://integrate.api.nvidia.com/v1/models"
 NGC_SEARCH = "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=free"
 
@@ -484,20 +523,25 @@ def nim_catalog(*ids: str) -> dict:
 
 
 def ngc_endpoint(publisher: str, name: str, deprecation: str | None = None,
-                 free: bool = True) -> dict:
+                 free: bool = True, created: str | None = "2026-08-27T20:40:37.796Z") -> dict:
     """One endpoint as NGC's catalog search answers it (read 2026-09-23): named
     without its publisher, the publisher in a label of its own, the free mark as
     the label value NVIDIA displays as "Free Endpoint", and a retirement as a
     DEPRECATION attribute — deepseek-v4-flash-0731 carried "09/21/2026" while
-    its page read "Free Endpoint: Deprecated"."""
+    its page read "Free Endpoint: Deprecated". Each endpoint carries the moment
+    NVIDIA created it (read 2026-09-25: glm-5-3 "2026-09-15T19:47:58.961Z")."""
     general = ["playgroundtype_chat", "nim_type_run_anywhere"] + (["nim_type_preview"] if free else [])
     attributes = [{"key": "AVAILABLE", "value": "false"}, {"key": "PREVIEW", "value": "true"}]
     if deprecation:
         attributes.append({"key": "DEPRECATION", "value": deprecation})
-    return {"resourceType": "ENDPOINT", "resourceId": f"qc69jvmznzxy/{name}", "name": name,
-            "labels": [{"key": "general", "values": ["chat"], "unresolvedValues": general},
-                       {"key": "publisher", "values": [publisher], "unresolvedValues": [publisher]}],
-            "attributes": attributes}
+    endpoint = {"resourceType": "ENDPOINT", "resourceId": f"qc69jvmznzxy/{name}", "name": name,
+                "labels": [{"key": "general", "values": ["chat"], "unresolvedValues": general},
+                           {"key": "publisher", "values": [publisher],
+                            "unresolvedValues": [publisher]}],
+                "attributes": attributes}
+    if created is not None:
+        endpoint.update(dateCreated=created, dateModified=created)
+    return endpoint
 
 
 def ngc_search(*endpoints: dict, pages: int = 1) -> dict:
@@ -657,6 +701,35 @@ async def test_a_free_list_that_marks_nothing_free_fails_the_row():
 
 def _read(url: str, **body) -> httpx.Response:
     return httpx.Response(200, request=httpx.Request("GET", url), **body)
+
+
+def test_a_free_list_dates_each_free_id_the_day_the_vendor_created_its_endpoint():
+    """The two-week bar counts from the first read or from the vendor's own date
+    for the free id, and NGC gives every endpoint the moment NVIDIA created it:
+    glm-5-3 on 2026-09-15, a week before the row listed z-ai/glm-5.3. The day
+    is the UTC one, as every day the registry keeps is; an endpoint the list
+    does not mark free has no free date, and one it names without a date gives
+    none rather than a guess."""
+    search = _read(NGC_SEARCH, json=ngc_search(
+        ngc_endpoint("z-ai", "glm-5-3", created="2026-09-15T19:47:58.961Z"),
+        ngc_endpoint("moonshotai", "kimi-k3", created="2026-08-27T23:40:37.796Z"),
+        ngc_endpoint("nvidia", "nemotron-3-embed-1b", created="2026-09-01T08:00:00Z", free=False),
+        ngc_endpoint("z-ai", "glm-5-3-flash", created=None)))
+    ids = ["z-ai/glm-5.3", "moonshotai/kimi-k3", "nvidia/nemotron-3-embed-1b",
+           "z-ai/glm-5.3-flash", "somelab/unlisted"]
+    assert free_list_dates(search, ids) == {"z-ai/glm-5.3": date(2026, 9, 15),
+                                            "moonshotai/kimi-k3": date(2026, 8, 27)}
+
+
+def test_a_free_list_that_cannot_be_read_dates_nothing_and_says_why():
+    """An empty answer would read as a vendor that dates none of its free ids,
+    and the bars would quietly fall back to the row's own dates; a reason lets
+    the report say which list it could not read."""
+    for answer in (_read(NGC_SEARCH, text="<html>maintenance</html>"),
+                   _read(NGC_SEARCH, json={"data": [{"id": "z-ai/glm-5.3"}]}),
+                   _read(NGC_SEARCH, json=ngc_search(ngc_endpoint("z-ai", "glm-5-3"), pages=2))):
+        said = free_list_dates(answer, ["z-ai/glm-5.3"])
+        assert isinstance(said, str) and said, answer
 
 
 def test_a_newer_family_is_named_only_where_the_rows_own_page_names_it():

@@ -29,7 +29,7 @@ from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, load_history
-from .models import (Entry, family_names, is_archived, is_blocked, load_blocklist,
+from .models import (Entry, family_names, is_archived, is_blocked, lane_ids, load_blocklist,
                      load_dismissed, load_registry, load_sources, load_watchlist, save_registry)
 
 __all__ = ["check", "check_repository", "registry_form_problems", "main"]
@@ -172,16 +172,17 @@ def check(root: Path, today: date | None = None) -> list[str]:
     # advises against agentic coding. Anything else is a decision about nothing,
     # and freetier-bars would go on asking for a family the row already has.
     for e in entries:
-        for i in e.api.no_family_ids if e.api else []:
-            if i not in e.api.model_ids:
+        lane = lane_ids(e)
+        for i in lane.no_family_ids if lane else []:
+            if i not in lane.model_ids:
                 problems.append(
-                    f"registry: {e.id} api.no_family_ids names {i}, which is not in api.model_ids "
-                    f"— list the id there or take it out")
+                    f"registry: {e.id} {lane.field}.no_family_ids names {i}, which is not in "
+                    f"{lane.field}.model_ids — list the id there or take it out")
             named = [m.family for m in e.models if family_names(m.family, i)]
             if named:
                 problems.append(
-                    f"registry: {e.id} api.no_family_ids names {i}, but family {named[0]!r} names it "
-                    f"— take it out of no_family_ids")
+                    f"registry: {e.id} {lane.field}.no_family_ids names {i}, but family "
+                    f"{named[0]!r} names it — take it out of no_family_ids")
 
     for e in entries:
         if e.last_verified > today:
