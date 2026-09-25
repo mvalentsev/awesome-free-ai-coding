@@ -132,6 +132,23 @@ class Category(str, Enum):
     AGGREGATOR = "aggregator"
 
 
+class FreePart(str, Enum):
+    """What the free part of an offer is, which decides what its Models column
+    may name (CONTRIBUTING, "A sum to spend names no model")."""
+    # The vendor names models its free part serves in their own right: a free
+    # lane, a zero price, a free quota per model, a free tier or trial that names
+    # them — or caps it counts the same on every model it serves, which limit a
+    # free tier rather than spend a sum. The column names them.
+    MODELS = "models"
+    # An amount the account spends across the catalog: a signup credit, a grant
+    # of tokens every model draws on, an allowance at each model's own price. No
+    # model is free by itself, so the column names none.
+    SUM = "sum"
+    # The vendor does not say which models the free part reaches — Copilot Free's
+    # "auto model selection only". A family would be a claim it never makes.
+    UNNAMED = "unnamed"
+
+
 class Tier(str, Enum):
     FRONTIER = "frontier"
     STRONG = "strong"
@@ -617,6 +634,8 @@ class Entry(BaseModel):
     card_required: bool = False
     offering: str
     limits: str = ""
+    # Which kind of free this is; freetier-check refuses a live row without it.
+    free_part: FreePart | None = None
     models: list[ModelFamily] = []
     api: ApiInfo | None = None
     client_lane: ClientLane | None = None
@@ -660,6 +679,46 @@ class Entry(BaseModel):
                     "the offer — use a free model id, a quota or price figure, or a phrase "
                     "of four or more words quoted from the page"
                 )
+        return self
+
+    @model_validator(mode="after")
+    def _only_a_free_part_of_models_names_models(self) -> Entry:
+        """The Models column lists models the vendor serves free in their own
+        right. A sum to spend makes none of them free by itself, and a free part
+        the vendor names no model for makes no claim a family could repeat.
+
+        Until 2026-09-25 this was a sentence in CONTRIBUTING, applied by reading
+        rows: the pass that emptied Cloudflare's, Upstage's and Dahl's columns
+        said they were the only ones, and Inception, Sail Research and Sarvam
+        went on naming the models their credit is spent on."""
+        if self.models and self.free_part is FreePart.SUM:
+            raise ValueError(
+                f"{self.id}: free_part is sum — a sum to spend names no model, since no model is "
+                "free by itself; empty models[] and keep a few of the vendor's exact ids in "
+                "api.model_ids")
+        if self.models and self.free_part is FreePart.UNNAMED:
+            raise ValueError(
+                f"{self.id}: free_part is unnamed — the vendor names no model its free part "
+                "reaches, so a family would be a claim it never makes; empty models[], or set "
+                "free_part: models where it names them")
+        return self
+
+    @model_validator(mode="after")
+    def _a_probe_that_reads_free_models_reads_a_free_part_of_models(self) -> Entry:
+        """A probe that reads each model's own free mark — a zero price, a free
+        marker, a lane key, a free list — or a lane served inside the vendor's
+        client is reading free models, whatever else the row offers: Vercel's $5
+        a month sits beside three models it prices at zero, and those three are
+        its column."""
+        p = self.probe
+        reads_free = self.client_lane is not None or (
+            p.type is ProbeType.API_MODELS
+            and bool(p.require_zero_price or p.free_marker or p.lane or p.free_list))
+        if reads_free and self.free_part in (FreePart.SUM, FreePart.UNNAMED):
+            raise ValueError(
+                f"{self.id}: the probe reads free models — each model's own free mark, or the "
+                f"lane the vendor's client serves — so free_part is models, not "
+                f"{self.free_part.value}")
         return self
 
     @model_validator(mode="after")

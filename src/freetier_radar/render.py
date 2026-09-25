@@ -15,7 +15,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
-                     SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, Notice,
+                     SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, FreePart, Notice,
                      ProbeType, Tier, Watched, _id_squash, domain_of, family_names, folded_into,
                      is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, live_families,
@@ -1613,6 +1613,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     fams = live_families(e)
     if archived:
         named = "The row named no free model."
+    elif e.free_part is FreePart.SUM:
+        named = ("No model is free by itself here: the free part is an amount the account spends "
+                 "across the catalog, so the column names none. The limits below say what it buys; "
+                 "the ids to call, where the row has them, are under Connect.")
+    elif e.free_part is FreePart.UNNAMED:
+        named = ("The vendor does not say which models the free part reaches, so the column names "
+                 "none.")
     elif e.probe.type is ProbeType.PAGE_KEYWORDS:
         named = ("The page this row is verified against names no free model, so the column stays "
                  "empty; callable ids, where the row has them, are under Connect.")

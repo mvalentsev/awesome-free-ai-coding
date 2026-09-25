@@ -46,6 +46,23 @@ def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
     assert "zero price" not in page
 
 
+def test_a_provider_page_says_why_its_row_names_no_model():
+    """An empty column read the same on every page — "the page this row is
+    verified against names no free model" — which a credit made false: Sail
+    Research's page names Kimi K3 beside the $5 a month spent on it. The row's
+    free part says which empty column it is."""
+    from freetier_radar.render import build_provider_page
+
+    credit = build_provider_page(make(id="credit", free_part="sum"), [], TODAY)
+    assert "No model is free by itself here" in credit
+    assert "names no free model" not in credit
+    auto = build_provider_page(make(id="auto", free_part="unnamed"), [], TODAY)
+    assert "The vendor does not say which models" in auto
+    assert "names no free model" not in auto
+    page = build_provider_page(make(id="page", free_part="models"), [], TODAY)
+    assert "The page this row is verified against names no free model" in page
+
+
 def test_a_provider_page_says_the_families_are_checked_not_that_one_fails_the_row():
     """Since 2026-09-24 a family a catalog stopped serving free flags the Models
     column while another family stands, so "required" no longer says what one

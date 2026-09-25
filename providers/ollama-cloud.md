@@ -17,7 +17,7 @@ Cloud-hosted open models on a $0 plan that grants starter usage credits for a st
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+The vendor does not say which models the free part reaches, so the column names none.
 
 ## Limits, in the vendor's words
 

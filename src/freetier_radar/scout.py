@@ -217,8 +217,17 @@ new_entries:
     card_required: false
     offering: ...
     limits: ...
-    models:                # ONLY models actually usable for free on the free tier/plan,
-                           # never the vendor's paid catalog; omit when the evidence is silent
+    free_part: models | sum | unnamed
+                           # models: the vendor names the models its free part serves — a
+                           #   free lane, a zero price, a free quota per model, a free tier or
+                           #   trial that names them, caps counted alike on every model;
+                           # sum: only an amount spent across the catalog — a signup credit,
+                           #   a grant of tokens every model draws on, an allowance at each
+                           #   model's own price — so no model is free by itself;
+                           # unnamed: the vendor does not say which models the free part reaches
+    models:                # ONLY with free_part: models, and ONLY models actually usable for
+                           # free on the free tier/plan, never the vendor's paid catalog; omit
+                           # when the evidence is silent
       - {{family: <substring of the vendor's API model ids>, released: 'YYYY-MM'}}
                            # no tier: tiers are measured on Artificial Analysis, never proposed
     probe: {{type: page-keywords, endpoint: <official url>,

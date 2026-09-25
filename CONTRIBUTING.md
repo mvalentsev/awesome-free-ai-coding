@@ -293,6 +293,20 @@ Upstage two Solar models and Dahl its three, and a second pass the same day
 found Inception's three Mercury models on a grant "shared across all models",
 Sail Research's five on $5 a month and Sarvam-105B on ₹100 of credit.
 
+The first pass had read the rows by hand, so every live row now says which kind
+of free it is in `free_part`, and `freetier-check` refuses one that does not:
+`models` where the vendor names the models its free part serves in their own
+right, `sum` where the free part is an amount spent across the models it lists,
+and `unnamed` where it does not say which models the free part reaches — Copilot
+Free's "auto model selection only", a credit whose models no page names. Only a
+row of `models` may name a family, and a probe that reads each model's own free
+mark, or a lane the vendor's client serves, reads `models` whatever else the row
+offers: Vercel's $5 a month sits beside three models it prices at zero, and
+those three are its column. `freetier-bars` asks the same question of every id a
+row of `models` lists, whatever its probe reads, so a free model kept out of the
+column is kept out by a decision with its reason, never by a row the report did
+not look at.
+
 **A lane that rotates names a model once it has stayed two weeks.** OpenRouter,
 Kilo, Requesty, AIHubMix and Cline add and drop free ids within days, so a new id
 is callable from the read that finds it and joins `models[]` two weeks later,

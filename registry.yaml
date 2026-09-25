@@ -19,6 +19,7 @@ entries:
     for production use", warns that a negative credit balance can produce errors "including
     for free models", and notes a 429 may come from the upstream provider rather than
     the platform (read 2026-08-14)
+  free_part: models
   models:
   - family: nemotron-3-ultra
     released: 2026-03
@@ -143,6 +144,7 @@ entries:
     a sign-in at aistudio.google.com/rate-limit; the public rate-limits page keeps
     only the usage-tier table, whose free row reads "Active project or free trial".
     Read 2026-09-25'
+  free_part: models
   models:
   - family: gemini-3.8-flash
     tier: strong
@@ -225,6 +227,7 @@ entries:
     among them — the Llama ids in the page''s API samples are not on it. Groq calls
     the table "a high level summary and there may be exceptions", and points at the
     limits page in an account for the exact figures'
+  free_part: models
   models:
   - family: gpt-oss-120b
     released: 2025-08
@@ -298,6 +301,7 @@ entries:
     and tokens per month, shown only inside the account — and API calls may be used
     to improve Mistral''s services unless the Admin panel''s `Anonymous improvement
     data` toggle is off.'
+  free_part: sum
   models: []
   api:
     base_url: https://api.mistral.ai/v1
@@ -384,6 +388,7 @@ entries:
     sit outside the free lane whatever the neuron count: the same page notes that
     @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2
     "require a paid billing method" (read 2026-08-14)'
+  free_part: sum
   models: []
   api:
     base_url: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
@@ -435,6 +440,7 @@ entries:
     nemotron-3-ultra and 402 Payment Required from minimax-m3, so the edge of the
     set is not the price — nemotron-3-ultra is inside at $0.10/$3.00, minimax-m3 outside
     at $0.60/$2.40. Read 2026-09-02'
+  free_part: unnamed
   models: []
   api:
     base_url: https://ollama.com/v1
@@ -501,6 +507,7 @@ entries:
     row; the contributor id''s best allowed effort, xhigh, scores 45 on the Artificial
     Analysis Intelligence Index — max is "Standard-tier `muse-spark-1.3` only". Billing
     is for the metered ids. Read 2026-09-18'
+  free_part: models
   models:
   - family: big-pickle
     released: ''
@@ -561,6 +568,7 @@ entries:
     free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free
     routes over the free models the catalog''s autoRouting list names. Everything
     else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21'
+  free_part: models
   models:
   - family: nemotron-3-ultra
     released: 2026-03
@@ -673,6 +681,7 @@ entries:
     Auto mode picks the model, and which models it routes to is published nowhere.
     The probe reads the payload because trae.ai renders per request and its table
     can arrive without the Free column'
+  free_part: unnamed
   models: []
   data_use:
     trains: opt-out
@@ -722,6 +731,7 @@ entries:
     models that allowance reaches is published nowhere readable; the one tier-tagged
     model catalogue, docs.devin.ai/desktop/models, carried only Pro and Enterprise
     tiers when it was read (2026-08-19). Read 2026-09-16'
+  free_part: unnamed
   models: []
   data_use:
     trains: 'yes'
@@ -803,6 +813,7 @@ entries:
     who don''t have access to Copilot through an organization or enterprise" — but
     the list of business features it withholds went with the old page and is not on
     this one (read 2026-08-20)'
+  free_part: unnamed
   models: []
   data_use:
     trains: opt-out
@@ -847,6 +858,7 @@ entries:
     available only for individual Google Accounts (ending in @gmail.com)"; task limits
     are "not shared or pooled" on a family plan; and Google states it "may adjust
     limits and features as we learn how people are using the product" (read 2026-09-23)
+  free_part: models
   models:
   - family: gemini-2.5
     released: ''
@@ -890,6 +902,7 @@ entries:
     exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose
     says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked
     2026-09-25)'
+  free_part: models
   models:
   - family: claude-sonnet-4.5
     released: ''
@@ -954,6 +967,7 @@ entries:
     your billing cycle" and "does not roll over"; at the cap Cursor shows a notification
     and offers on-demand billing or an upgrade. Which models Hobby reaches is never
     enumerated, and Cursor Router has not reached individual plans yet (read 2026-08-14)
+  free_part: unnamed
   models: []
   data_use:
     trains: opt-out
@@ -995,6 +1009,7 @@ entries:
     from ChatGPT, ChatGPT Work, and Codex on all plans on October 14, 2026", and the
     models page tells Free and Go users to "choose GPT-6 Luna … in the desktop app
     when available", naming no model for them in the CLI. Read 2026-09-23'
+  free_part: unnamed
   models: []
   probe:
     type: page-keywords
@@ -1037,6 +1052,7 @@ entries:
     and NVIDIA", sending such cases to help@build.nvidia.com. Each model''s page states
     whether its free endpoint is available or deprecated, and NVIDIA renames ids without
     notice, so copy them from the catalog. Read 2026-09-24'
+  free_part: models
   models:
   - family: kimi-k3
     tier: strong
@@ -1142,6 +1158,7 @@ entries:
     three rows z.ai's own price table reads Free on all four columns — every other
     model there says "Limited-time Free" instead, including the flagship GLM-5.x.
     Rate-limited
+  free_part: models
   models:
   - family: glm-4.7-flash
     released: 2026-01
@@ -1212,6 +1229,7 @@ entries:
     requests a minute per model are shared by every anonymous caller. A key bills
     every chat model per token, Qwen3.8-27B at "0.4 € / Mtoken(input)" and "2.7 €
     / Mtoken(output)". Read 2026-09-24'
+  free_part: models
   models:
   - family: gpt-oss-120b
     released: 2025-08
@@ -1274,6 +1292,7 @@ entries:
     — and a keyless call there answers 401. The 1 request per 15 seconds this row
     used to quote came from docs on a branch the vendor stopped updating on 2026-08-04,
     and no current page states an anonymous rate'
+  free_part: models
   models:
   - family: gpt-oss-20b
     released: 2025-08
@@ -1324,6 +1343,7 @@ entries:
     complete your account information before activating Model Studio", and past the
     quota "you are automatically billed on a pay-as-you-go basis" unless Free Quota
     Only, which "is disabled by default", is switched on per model (read 2026-09-23)'
+  free_part: models
   models:
   - family: qwen3.8-max
     tier: strong
@@ -1377,6 +1397,7 @@ entries:
     on HF-routed requests. There is no free model list to publish — the credit is
     spent at each provider's own rate across everything the router reaches, so which
     models it buys depends on their price, not on a tier (read 2026-08-14)
+  free_part: sum
   models: []
   api:
     base_url: https://router.huggingface.co/v1
@@ -1419,6 +1440,7 @@ entries:
     Opus 5 at $5 in / $25 out per 1M tokens — or nothing at all on the promotions
     its model list marks Free, GPT-6 Luna and Nemotron 3 Ultra among them. "Prompt-capture
     opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-23'
+  free_part: models
   models: []
   api:
     base_url: https://api.experientiallabs.ai/v1
@@ -1457,6 +1479,7 @@ entries:
     than out of anything a reader sees, and it is declared as a machinery keyword
     to say so. Neither upstage.ai/pricing nor the Solar Pro product page carries the
     phrase at all (all three read 2026-09-08)
+  free_part: sum
   models: []
   api:
     base_url: https://api.upstage.ai/v1
@@ -1510,6 +1533,7 @@ entries:
     North Mini Code is free until rate limits are reached", which makes the one model
     here built for agentic coding the one that stays free on a paid key too (read
     2026-08-14)
+  free_part: models
   models:
   - family: command-a-plus
     released: ''
@@ -1589,6 +1613,7 @@ entries:
     Credits run out"; the Efficient tier left in its place "is already free for paid
     users". Paid plans buy premium-model credits (2,000/month on Pro) that reset to
     zero when the subscription period ends. Read 2026-09-23'
+  free_part: sum
   models: []
   probe:
     type: page-keywords
@@ -1617,6 +1642,7 @@ entries:
     the free plan includes monthly Hypercredits, zero data retention
   limits: 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign
     up from Crush or the site)
+  free_part: sum
   models: []
   data_use:
     trains: 'no'
@@ -1660,6 +1686,7 @@ entries:
     S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its
     -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it
     costs $0.10/$0.20 per 1M tokens'
+  free_part: models
   models:
   - family: laguna-s-2.1
     released: 2026-07
@@ -1727,6 +1754,7 @@ entries:
     described as "Rate-limited free tier." and listed on the free page as "Deepseek
     V4 Flash 0731free" at $0 against $0.20/$0.40, beside a metered deepseek-v4-flash-0731free
     twin at those rates'
+  free_part: models
   models:
   - family: qwen3.7-flash
     released: 2026-07
@@ -1775,6 +1803,7 @@ entries:
     had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains
     — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left
     by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered'
+  free_part: models
   models:
   - family: nemotron-3-nano-omni
     released: 2026-04
@@ -1883,6 +1912,7 @@ entries:
     2026-08-30). The lane itself rotates, ids joining and leaving within days while
     their metered twins stay. The gateway publishes no legal entity or terms of service
     and is supported through Discord alone: a fallback lane, not a dependency'
+  free_part: models
   models:
   - family: deepseek-v4-flash
     tier: strong
@@ -1945,6 +1975,7 @@ entries:
   limits: Free plan is $0 with no credit card — 200 requests a day, free models only,
     with routing, caching, fallbacks, spend tracking and EU data residency included;
     past that the same key moves to pay-as-you-go
+  free_part: models
   models:
   - family: nemotron-3-ultra
     released: 2026-03
@@ -2044,6 +2075,7 @@ entries:
     the Claude and GPT models a weekly allowance of their own, apart from the Gemini
     one. Google publishes no figure for either: "The baseline rate limits are primarily
     determined to the degree we have capacity, and exist to prevent abuse"'
+  free_part: models
   models:
   - family: gemini-3.1-pro
     released: ''
@@ -2109,6 +2141,7 @@ entries:
     The two surfaces do not overlap — the page that calls the API free names no model,
     and the docs page that names aisingapore/Qwen-SEA-LION-v4.5-27B-IT — and dates
     the 10 RPM limit to 04 Jun 2026 — never says free
+  free_part: models
   models: []
   api:
     base_url: https://api.sea-lion.ai/v1
@@ -2209,6 +2242,7 @@ entries:
     says plainly "No credit card required". Unlimited use of the same Economy models
     is the paid Professional plan at $9-10/mo. CodeGPT does not publish which models
     the Economy tier routes to, so this row names none
+  free_part: unnamed
   models: []
   probe:
     type: page-keywords
@@ -2247,6 +2281,7 @@ entries:
     the catalog says "the developer advises against using this model for agentic coding
     tasks". Every free id carries a -free suffix and the paid twin beside it is metered
     at list rates'
+  free_part: models
   models:
   - family: glm-5.3
     tier: strong
@@ -2447,6 +2482,7 @@ entries:
     2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10).
     The Free tier''s own ceiling is per minute rather than per month — 1,000 requests,
     1,000,000 input tokens and 100,000 output tokens'
+  free_part: sum
   models: []
   api:
     base_url: https://api.inceptionlabs.ai/v1
@@ -2506,6 +2542,7 @@ entries:
     grant the only top-up is crypto, "priced around $0.03 per 1M tokens". Requests
     are routed to "independent operators within a decentralised network" under terms
     from FROMZERO OÜ, an Estonian company. Read 2026-09-21'
+  free_part: sum
   models: []
   api:
     base_url: https://inference.dahl.global/v1
@@ -2551,6 +2588,7 @@ entries:
     a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the
     docs site states a quota, a rate limit or a duration. Treat it as unquantified
     rather than as generous
+  free_part: unnamed
   models: []
   api:
     base_url: https://inference.poolside.ai/v1
@@ -2602,6 +2640,7 @@ entries:
     the two models it covers, SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Signup
     needs a phone number; whether a non-mainland one is accepted could not be verified
     from any served page'
+  free_part: models
   models: []
   api:
     base_url: https://token.sensenova.cn/v1
@@ -2650,6 +2689,7 @@ entries:
     and no backups. A Hetzner account is needed to mint a token and the docs do not
     say whether a payment method is required; Hetzner''s own fraud-prevention page
     offers a card charge as one of several verification routes (read 2026-08-30)'
+  free_part: models
   models:
   - family: qwen3.6
     released: ''
@@ -2707,6 +2747,7 @@ entries:
     one the page''s own examples call, and the vendor says so — "See our Model Discovery
     docs to query the current model IDs being hosted" — so the id lives in api.model_ids
     and the Free models column stays empty'
+  free_part: models
   models: []
   api:
     base_url: https://hermes.ai.unturf.com/v1
@@ -2753,6 +2794,7 @@ entries:
     calls it "a lightweight prompt-complexity classifier designed for LLM routing
     pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for
     Regolo''s Brick router (read 2026-09-21)'
+  free_part: models
   models:
   - family: glm-5.2
     tier: strong
@@ -2833,6 +2875,7 @@ entries:
     code, files, repository data, and agent traces when you use features that need
     them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for
     AI training". Read 2026-09-23'
+  free_part: models
   models:
   - family: glm-5.3-flash
     tier: strong
@@ -2888,6 +2931,7 @@ entries:
     to Tier 2. The terms say "Free modules are for evaluation and interactive use
     only and are not designed for production or unattended batch workloads". The operator
     is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16
+  free_part: models
   models:
   - family: mistral-small-3.2
     released: 2025-06
@@ -2963,6 +3007,7 @@ entries:
     is added on top of the requested top-up amount" and "We never modify model prices".
     The privacy page says prompt and response bodies are not written permanently to
     its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-21'
+  free_part: models
   models:
   - family: nemotron-3-ultra
     released: 2026-03
@@ -3045,6 +3090,7 @@ entries:
     exists for one audience: "Qualified open source projects can apply to the Qodo
     for Open Source program for free access". Which models the trial runs on is not
     stated. Read 2026-09-16'
+  free_part: unnamed
   models: []
   probe:
     type: page-keywords
@@ -3083,6 +3129,7 @@ entries:
     are valid for 14 days". No card for Free — only the 7-day Pro trial asks for one.
     The docs name no model for the plan. The terms are Tencent Cloud International
     Pte. Ltd.'s and require users "at least 18 years old". Read 2026-09-02
+  free_part: unnamed
   models: []
   probe:
     type: page-keywords
@@ -3126,6 +3173,7 @@ entries:
     "Free accounts can use models marked Free. Models marked Pro require a Pro-enabled
     key" — seven chat ids Free and three Pro (glm-5.2, glm-5.3, kimi-k2.7-code), read
     2026-09-05'
+  free_part: models
   models:
   - family: deepseek-v4-flash
     tier: strong
@@ -3203,6 +3251,7 @@ entries:
     with an AWS successor announced for Q1 2026 that had not appeared by this read
     (2026-09-05). A key is minted in the playground after signing up; no card is mentioned
     on any page read'
+  free_part: models
   models: []
   api:
     base_url: https://api.opentyphoon.ai/v1
@@ -3258,6 +3307,7 @@ entries:
     do not incur charges". Which foundation models the 300,000 tokens reach is on
     a separate docs page the probe does not read, which is why the Free models column
     is empty'
+  free_part: models
   models: []
   api:
     base_url: https://us-south.ml.cloud.ibm.com/ml/v1
@@ -3309,6 +3359,7 @@ entries:
     $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09.
     "No strict rate limits", and request and response data is "not used to train models
     without written consent". Read 2026-09-21'
+  free_part: sum
   models: []
   api:
     base_url: https://api.sailresearch.com/v1
@@ -3365,6 +3416,7 @@ entries:
     and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled
     by default with standard API subscription keys" and is granted per key on request.
     No page read mentions a card (2026-09-18)'
+  free_part: sum
   models: []
   api:
     base_url: https://api.sarvam.ai/v1
@@ -3424,6 +3476,7 @@ entries:
     "Start with one small request that lets you check the connection and response",
     while "a longer coding-quality comparison may need a paid allowance". It is the
     smallest offer on this list — a connection test, not a working allowance'
+  free_part: sum
   models: []
   api:
     base_url: https://api.stdcmpt.com/v1
@@ -3489,6 +3542,7 @@ entries:
     /terms or /about, and /v1/models answers 403 without a key, so nothing here is
     read off the catalog. A connection test with a little work in it, one step above
     the smallest trial on this list. Read 2026-09-18'
+  free_part: unnamed
   models: []
   api:
     base_url: https://api.routerplex.com/v1
@@ -3551,6 +3605,7 @@ entries:
     through the Cline API. Free models are only available in the Cline IDE Extension
     and CLI", and "Free model usage may be used to help improve model performance
     and quality". Read 2026-09-14'
+  free_part: models
   models:
   - family: muse-spark-1.3-contributor
     tier: strong
@@ -3609,6 +3664,7 @@ entries:
     text models (Token Plan FAQ, effective 2026-06-22), and no daily figure is published.
     Image models are free at every resolution too. The terms are governed by Singapore
     law. The docs live on wiki.agnes-ai.com. Read 2026-09-14'
+  free_part: models
   models:
   - family: agnes-3.0-flash
     released: ''
@@ -3676,6 +3732,7 @@ entries:
     where the plan card says "free forever", and the terms forbid using "multiple
     accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord,
     and prompt and response bodies are "not stored or retained". Read 2026-09-21'
+  free_part: models
   models:
   - family: qwen3.8-flash
     tier: strong
@@ -3737,6 +3794,7 @@ entries:
     licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial
     asks for a card. The tier is "only available in the serviceable territories, with
     the exception of Mainland China". Read 2026-09-14'
+  free_part: models
   models: []
   data_use:
     trains: opt-out
@@ -3778,6 +3836,7 @@ entries:
     is shared with Delta, Zed''s other app. Trials "automatically convert to Zed Free"
     — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period
     on the page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-16'
+  free_part: models
   models:
   - family: gpt-5.6-luna
     tier: strong
@@ -3832,6 +3891,7 @@ entries:
     may retain prompts and responses sent through explicit free routes after you opt
     in", and "Upstream providers separately process free-route content under their
     own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-18'
+  free_part: models
   models:
   - family: deepseek-v4.1-flash
     tier: strong
@@ -3894,6 +3954,7 @@ entries:
     and no page read mentions a card. The keyless catalog prices seven rows at zero;
     a call without a key answers HTTP 402 with a payment offer, so the free models
     want the portal's key. Read 2026-09-18
+  free_part: models
   models:
   - family: step-3.7-flash
     released: ''
@@ -4001,6 +4062,7 @@ entries:
     rows marked usage_based_only, DeepSeek V4 Flash and Gemini 3.1 Flash Lite, answered
     a keyless call with 401 `Missing API key.` The operator publishes terms, last
     updated 9 August 2026, and names no upstream for any model. Read 2026-09-16
+  free_part: models
   models: []
   api:
     base_url: https://api.llm7.io/v1
@@ -4055,6 +4117,7 @@ entries:
     DeepSeek V4.1 Flash $0.22 and $0.66, GLM 5.3 Flash $0.15 and $0.50, MiniMax M3
     $0.30 and $1.20, Kimi K3 $3.00 and $15.00 — about 4.5M input tokens on DeepSeek
     V4.1 Flash, about 330K on Kimi K3. Read 2026-09-17'
+  free_part: sum
   models: []
   api:
     base_url: https://api.fireworks.ai/inference/v1
@@ -4116,6 +4179,7 @@ entries:
     beside OCR, embedding and speech models. The published request schema has no tools
     field, yet a keyless call carrying one tool was answered with a tool call on 2026-09-17.
     The operator is Autonomi AI Inc.; its terms render only in a browser. Read 2026-09-23'
+  free_part: models
   models:
   - family: qwen3.8-27b
     tier: strong
@@ -4179,6 +4243,7 @@ entries:
     passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民
     — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents
     are sent to the international site. Read 2026-09-17'
+  free_part: models
   models: []
   api:
     base_url: https://tokenhub.tencentmaas.com/v1
@@ -4234,6 +4299,7 @@ entries:
     so the free dollar reaches only the open models of 7B parameters or fewer — Qwen3
     4B, the docs' own example, is one. An open model above 7B needs at least $10 of
     credit bought in the last four weeks, on the $3 a month plan. Read 2026-09-17
+  free_part: sum
   models: []
   api:
     base_url: https://api.bytez.com/models/v2/openai/v1
@@ -4283,6 +4349,7 @@ entries:
     Gemma-4-31B-it among them, most of the rest Qwen3.5 27B and Gemma 4 31B fine-tunes
     recommended for writing and roleplay. Past the trial the Personal Starter plan
     is $10 a month. Read 2026-09-17'
+  free_part: models
   models: []
   api:
     base_url: https://api.arliai.com/v1
@@ -4339,6 +4406,7 @@ entries:
     a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee
     on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm.
     Read 2026-09-17'
+  free_part: models
   models:
   - family: gemma-4-31b
     released: ''
@@ -4401,6 +4469,7 @@ entries:
     package of any amount. Sign-in is with a Gitee account, and no page read says
     whether one can be opened with a phone number from outside mainland China. Read
     2026-09-17'
+  free_part: models
   models: []
   api:
     base_url: https://api.moark.com/v1
@@ -4452,6 +4521,7 @@ entries:
     values because limits can differ by organization and model". The docs'' introduction
     sends its first request to the free model. The operator is Mixlayer Labs Inc.
     Read 2026-09-17'
+  free_part: models
   models:
   - family: qwen3.5-4b
     released: ''
@@ -4507,6 +4577,7 @@ entries:
     among them; Blue Claw "does not log prompts, inputs, or outputs by default" and
     offers "No TEE, E2EE, or confidential-compute guarantee yet". No page gives the
     credit an expiry. Read 2026-09-17'
+  free_part: unnamed
   models: []
   api:
     base_url: https://openai.blueclaw.network/v1
@@ -4556,6 +4627,7 @@ entries:
     by default", stream and call tools, and abliterated-model-large-v2 is "Derived
     from the open-weight GLM-5.3 model, further abliterated and fine-tuned by Abliteration
     AI". The operator is Abliteration AI, Inc. Read 2026-09-17'
+  free_part: sum
   models: []
   api:
     base_url: https://api.abliteration.ai/v1
@@ -4612,6 +4684,7 @@ entries:
     list price — "Provider usage is billed at provider list prices with no usage markup"
     — GLM-5.3-Flash at $0.15 in and $0.50 out per million tokens, Claude Opus 5 at
     $5 and $25 — and a top-up starts at $5 plus a 5% platform fee. Read 2026-09-17'
+  free_part: sum
   models: []
   api:
     base_url: https://api.impossibl.com/v1
@@ -4666,6 +4739,7 @@ entries:
     call can change between calls." The keyless catalog publishes what each tier delivered
     over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3,
     Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-17'
+  free_part: unnamed
   models: []
   api:
     base_url: https://api.thegrid.ai/v1
@@ -4726,6 +4800,7 @@ entries:
     The credit buys list prices, GLM 5.3 Flash at $0.15 in and $0.50 out per million
     tokens and Kimi K3 at $3 and $15. No page read asks for a card before the credit
     is spent, and none gives it an expiry. Read 2026-09-17'
+  free_part: sum
   models: []
   api:
     base_url: https://api.hpc-ai.com/inference/v1
@@ -5303,6 +5378,7 @@ entries:
     the source IP among it, is kept 13 months as billing evidence. The operator is
     one person, Artem Burei, trading as a sole proprietorship in Poland, serving since
     22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-23'
+  free_part: models
   models:
   - family: qwen3.8-27b
     tier: strong
@@ -5364,6 +5440,7 @@ entries:
     in and out: Qwen3-8B, GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct, Qwen3.5-4B,
     DeepSeek-R1-0528-Qwen3-8B, Hunyuan-MT-7B and Xing4.0-29B, the last two also marked
     免费 in the table the page renders. Read 2026-09-18'
+  free_part: models
   models:
   - family: xing4.0-29b
     released: ''
@@ -5430,6 +5507,7 @@ entries:
     the service calls itself non-commercial and not for production — "请勿用于需要高并发以及SLA保障的线上任务"
     — and older models leave as new ones arrive. The docs are read through the index
     that names the current release (Data.TargetPrefix). Read 2026-09-19'
+  free_part: sum
   models: []
   api:
     base_url: https://api-inference.modelscope.cn/v1
@@ -5498,6 +5576,7 @@ entries:
     "a credit card or other payment method". Express mode is a Preview, and its terms
     add "Customer will not use the Express Mode Offerings to process personal data".
     Read 2026-09-23'
+  free_part: models
   models:
   - family: gemini-3.1-pro
     released: ''

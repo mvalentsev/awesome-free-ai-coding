@@ -304,6 +304,59 @@ def test_a_free_list_marks_what_a_models_api_reads_as_free():
     assert Entry.model_validate(read).probe.free_list == NGC_SEARCH
 
 
+CREDIT_PAGE = {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
+               "keywords": ["$5 in free credits every month", "free"]}
+
+
+def test_a_sum_to_spend_names_no_model():
+    """A signup credit, a grant of tokens every model draws on, an allowance at
+    each model's own price: no model is free by itself, so the column names
+    none. Until 2026-09-25 the rule lived in CONTRIBUTING alone, and the pass
+    that applied it by reading rows left three naming the models their
+    credit is spent on — Inception's, Sail Research's and Sarvam's."""
+    credit = {**sample_entry(), "probe": CREDIT_PAGE, "free_part": "sum"}
+    with pytest.raises(ValidationError, match="sum to spend"):
+        Entry.model_validate(credit)
+    assert Entry.model_validate({**credit, "models": []}).free_part == "sum"
+
+
+def test_a_free_part_the_vendor_names_no_model_for_names_none_here():
+    """Copilot Free picks the model itself — "access to models is available
+    through auto model selection only" — so a family would be a claim the
+    vendor never makes."""
+    auto = {**sample_entry(), "probe": CREDIT_PAGE, "free_part": "unnamed"}
+    with pytest.raises(ValidationError, match="unnamed"):
+        Entry.model_validate(auto)
+    assert Entry.model_validate({**auto, "models": []}).free_part == "unnamed"
+
+
+def test_a_lane_the_probe_reads_free_is_models_whatever_else_the_row_offers():
+    """A probe that reads each model's own free mark — a zero price, a free
+    marker, a lane key, a free list — is reading free models, so the row's free
+    part cannot be a sum or unnamed: Vercel's $5 a month sits beside three
+    models it prices at zero, and those three are the column."""
+    marked = {**sample_entry(), "models": []}
+    laned = {**sample_entry(), "models": [], "category": "agent-cli",
+             "probe": CLIENT_LANE_PROBE, "client_lane": {"model_ids": ["cline-free/a-1"]}}
+    for row in (marked, laned):
+        for part in ("sum", "unnamed"):
+            with pytest.raises(ValidationError, match="reads free models"):
+                Entry.model_validate({**row, "free_part": part})
+        assert Entry.model_validate({**row, "free_part": "models"}).free_part == "models"
+
+
+def test_the_free_part_is_written_beside_the_offer_and_only_where_set(tmp_path: Path):
+    p = tmp_path / "registry.yaml"
+    credit = Entry.model_validate({**sample_entry(), "id": "credit", "probe": CREDIT_PAGE,
+                                   "models": [], "free_part": "sum"})
+    unset = Entry.model_validate({**sample_entry(), "id": "unset"})
+    save_registry(p, [credit, unset])
+    text = p.read_text(encoding="utf-8")
+    assert text.count("free_part") == 1
+    assert text.index("limits:") < text.index("free_part: sum") < text.index("models: []")
+    assert load_registry(p)[0].free_part == "sum"
+
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

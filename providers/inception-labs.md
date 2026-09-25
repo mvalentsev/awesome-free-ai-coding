@@ -17,7 +17,7 @@ A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+No model is free by itself here: the free part is an amount the account spends across the catalog, so the column names none. The limits below say what it buys; the ids to call, where the row has them, are under Connect.
 
 ## Limits, in the vendor's words
 

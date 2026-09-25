@@ -17,7 +17,7 @@ TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice
 
 ## Free models
 
-The page this row is verified against names no free model, so the column stays empty; callable ids, where the row has them, are under Connect.
+The vendor does not say which models the free part reaches, so the column names none.
 
 ## Limits, in the vendor's words
 

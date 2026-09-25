@@ -178,6 +178,21 @@ def test_apply_new_skips_duplicates_and_invalid():
     assert new.provisional is True and new.first_seen == TODAY and new.last_verified == TODAY
 
 
+def test_a_proposed_row_says_what_its_free_part_is_and_a_sum_names_no_model():
+    """The discovery prompt asks every proposal which kind of free it is, since
+    freetier-check refuses a live row that does not say; a proposal whose credit
+    is spent on the models it names is turned away with the rule, not added for a
+    reviewer to find."""
+    assert "free_part: models | sum | unnamed" in scout.DISCOVER_PROMPT
+    entries = [make()]
+    credit = {**proposal(id="credit", url="https://c.ai"), "free_part": "sum",
+              "models": [{"family": "c-flash-1"}]}
+    added, rejected = apply_new(entries, [credit, {**proposal(), "free_part": "models"}], TODAY)
+    assert added == ["new1"] and entries[1].free_part == "models"
+    assert len(rejected) == 1 and rejected[0].startswith("credit: invalid")
+    assert "sum to spend" in rejected[0]
+
+
 def test_apply_new_rejects_blocklisted_domain():
     entries = [make()]
     added, rejected = apply_new(entries, [proposal(id="p", url="https://developer.puter.com/x")],

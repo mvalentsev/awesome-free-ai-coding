@@ -17,6 +17,7 @@ ENTRY = {
     "probe": {"type": "page-keywords", "endpoint": "https://x.ai",
               "keywords": ["x-mini-2", "free"]},
     "models": [{"family": "x-mini"}],
+    "free_part": "models",
 }
 
 WATCHED = {"domains": ["watched.ai"], "name": "Watched Co", "checked_on": "2026-08-01",
@@ -89,6 +90,20 @@ def test_a_row_with_an_endpoint_and_a_models_column_lists_the_ids_to_call(tmp_pa
     listed = {**ENTRY, "api": {"base_url": "https://x.ai/v1", "model_ids": ["x-mini-2"]}}
     problems = check(build(tmp_path, entries=[listed], watched=[WATCHED]), TODAY)
     assert not any("api.model_ids" in p and "family" in p for p in problems), problems
+
+
+def test_a_live_row_says_what_its_free_part_is(tmp_path: Path):
+    """"A sum to spend names no model" was applied on 2026-09-25 by reading rows,
+    and three rows naming the models their credit is spent on were missed. A
+    rule a check can hold needs the row to say which kind of free it is, so a
+    live row without `free_part` is a problem; an archived one keeps its record
+    as it was."""
+    bare = {k: v for k, v in ENTRY.items() if k != "free_part"}
+    problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
+    assert any(p.startswith("registry: x ") and "free_part" in p for p in problems), problems
+    archived = {**bare, "retired_on": "2026-08-01"}
+    problems = check(build(tmp_path, entries=[archived], watched=[WATCHED]), TODAY)
+    assert not any("free_part" in p for p in problems), problems
 
 
 def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):

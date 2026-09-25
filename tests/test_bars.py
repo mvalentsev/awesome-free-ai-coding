@@ -18,9 +18,11 @@ TODAY = date(2026, 9, 24)
 
 
 def make(**kw):
-    """A row verified this week: one verified 60 days ago is archived, and an
-    archived row is owed nothing."""
-    return _make(last_verified=kw.pop("last_verified", date(2026, 9, 21)), **kw)
+    """A row verified this week — one verified 60 days ago is archived, and an
+    archived row is owed nothing — whose free part is models unless the test
+    says otherwise."""
+    return _make(last_verified=kw.pop("last_verified", date(2026, 9, 21)),
+                 free_part=kw.pop("free_part", "models"), **kw)
 LANE = {"type": "api-models", "endpoint": "https://x.ai/v1/models", "free_marker": ":free",
         "require_zero_price": True}
 
@@ -83,11 +85,27 @@ def test_an_id_the_history_has_not_seen_arrives_today():
 
 def test_a_row_whose_ids_are_not_a_free_lane_has_no_bars():
     """A credit or an allowance names no free model: its ids are examples to
-    paste, and its column is empty on purpose."""
-    credit = make(id="credit", api={"base_url": "https://c.ai/v1", "model_ids": ["m-1"]})
+    paste, and its column is empty on purpose. The same holds where the vendor
+    names no model the free part reaches."""
+    credit = make(id="credit", free_part="sum",
+                  api={"base_url": "https://c.ai/v1", "model_ids": ["m-1"]})
+    auto = make(id="auto", free_part="unnamed",
+                api={"base_url": "https://a.ai/v1", "model_ids": ["m-3"]})
     lane = make(id="lane", probe=LANE, api={"base_url": "https://l.ai/v1", "model_ids": ["m-2"]})
-    since = {("credit", "m-1"): date(2026, 8, 1), ("lane", "m-2"): date(2026, 8, 1)}
-    assert [w.row for w in waiting([credit, lane], since, TODAY)] == ["lane"]
+    since = {("credit", "m-1"): date(2026, 8, 1), ("lane", "m-2"): date(2026, 8, 1),
+             ("auto", "m-3"): date(2026, 8, 1)}
+    assert [w.row for w in waiting([credit, auto, lane], since, TODAY)] == ["lane"]
+
+
+def test_a_page_row_whose_free_part_is_models_owes_its_ids_a_family_too():
+    """Until 2026-09-25 a row counted as a free lane only where its column named
+    a family or its probe read each model's free mark, so a page row with free
+    models and an empty column was never asked: SEA-LION's free API, OpenTyphoon's
+    research showcase and LLM7's anonymous tier listed ids no report dated. The
+    row's own `free_part` decides now."""
+    page = make(id="page", api={"base_url": "https://p.ai/v1", "model_ids": ["p-1"]})
+    assert [(w.row, w.model_id) for w in waiting([page], {("page", "p-1"): date(2026, 8, 1)},
+                                                 TODAY)] == [("page", "p-1")]
 
 
 def test_an_archived_row_has_no_bars():

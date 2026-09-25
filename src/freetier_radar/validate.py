@@ -184,6 +184,16 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"registry: {e.id} {lane.field}.no_family_ids names {i}, but family "
                     f"{named[0]!r} names it — take it out of no_family_ids")
 
+    # "A sum to spend names no model" was applied on 2026-09-25 by reading rows,
+    # and three were missed. Entry holds the rule wherever a row says which kind
+    # of free it is, so a live row has to say it.
+    for e in entries:
+        if e.free_part is None and not is_archived(e, today):
+            problems.append(
+                f"registry: {e.id} has no free_part — say whether the vendor names the models "
+                "its free part serves (models), it is a sum to spend (sum), or the vendor names "
+                "none (unnamed)")
+
     # The configs are written from api.model_ids alone: a family names a model,
     # an id is what a request carries. A connectable row whose column names
     # families and lists no id would hand a reader nothing to call — and until

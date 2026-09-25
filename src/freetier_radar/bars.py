@@ -34,7 +34,7 @@ from pathlib import Path
 import httpx
 import yaml
 
-from .models import Entry, ProbeType, family_names, is_archived, lane_ids, load_registry
+from .models import Entry, FreePart, family_names, is_archived, lane_ids, load_registry
 from .prober import TIMEOUT, UA, free_list_dates
 
 __all__ = ["BAR_DAYS", "Waiting", "arrivals", "vendor_dates", "waiting", "report", "main"]
@@ -76,12 +76,14 @@ def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], d
 
 
 def _free_lane(e: Entry) -> bool:
-    """Whether a row's ids are a lane of named free models: its column names
-    families, or its probe reads each model's own free mark. A credit or an
-    allowance names no free model, and its ids are examples to paste."""
-    p = e.probe
-    return bool(e.models) or (p.type is ProbeType.API_MODELS
-                              and bool(p.require_zero_price or p.free_marker or p.lane or p.free_list))
+    """Whether a row's ids are a lane of named free models, which the row says
+    itself: its free part is models. A credit or an allowance names no free
+    model, nor does a free part the vendor names none for, and their ids are
+    examples to paste. Until 2026-09-25 the answer was read off the row's shape
+    — a family in its column, or a probe reading each model's free mark — so a
+    page row with free models and an empty column was never asked about its
+    ids."""
+    return e.free_part is FreePart.MODELS
 
 
 @dataclass(frozen=True)
