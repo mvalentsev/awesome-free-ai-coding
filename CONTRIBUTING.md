@@ -64,12 +64,26 @@ paying?** In order of what moves a row up:
 
 1. the vendor publishes the quota, so you can plan against it;
 2. the models it serves are ones people build with;
-3. no card, no verification wall, no "contact us".
+3. no card, no verification wall, no border, no "contact us".
 
 A real but unquantified free tier sits below one that prints its numbers, and a
 row that publishes no free model list at all sits below both — the page cannot
 tell a reader what they would be calling. A row that needs a card never leads the
 no-card rows it ties with.
+
+**A border counts like a wall.** An offer its vendor keeps from whole countries —
+a sign-up that refuses them, or a site and an endpoint that do not resolve there —
+does less work for this list's readers than the same offer open to all of them, so
+it ranks below the offers of its size that are, and lower the more readers it
+leaves out; the row names who, as a class, with the day it was measured. An
+exclusion most vendors share, such as the countries under US sanctions, sets no
+row apart and moves no rank. On 2026-09-25 CodeBuddy's international site, sign-in
+and API endpoint answered 0.0.0.1 in the United States, India and Russia and
+resolved in the seventeen other countries and territories asked; with the two
+largest developer populations on GitHub left out
+([Octoverse 2025](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)),
+it went from 65, among the recurring agent plans, to 82, below the trials and
+credits that reach them.
 
 The first four no-card agents are also the top of the README, with the models
 they hand you, so this ordering is the page's answer to "what do I use, then?"
