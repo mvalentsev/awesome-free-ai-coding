@@ -2151,9 +2151,13 @@ entries:
     model_ids:
     - aisingapore/Qwen-SEA-LION-v4.5-27B-IT
     - aisingapore/Llama-SEA-LION-v3.5-70B-R
-    note: the key manager calls it a Trial API Key but publishes no expiry and no
+    no_family_ids:
+    - aisingapore/Qwen-SEA-LION-v4.5-27B-IT
+    - aisingapore/Llama-SEA-LION-v3.5-70B-R
+    note: 'the key manager calls it a Trial API Key but publishes no expiry and no
       credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models
-      needs the key, so the probe reads the offer page
+      needs the key, so the probe reads the offer page. Both ids stay out of the Models
+      column: the page that calls the API free names no model'
   probe:
     type: page-keywords
     endpoint: https://sea-lion.ai/try-sea-lion/
@@ -2755,10 +2759,14 @@ entries:
     openai_compatible: true
     model_ids:
     - turboderp/Qwen3.8-27B-exl3
+    no_family_ids:
+    - turboderp/Qwen3.8-27B-exl3
     note: 'anonymous: the catalog and chat/completions both answer with no Authorization
       header at all. One id is served at a time and it rotates — the endpoint is named
       after Hermes and serves a Qwen build today — so treat the id as this week''s,
-      not the offer'
+      not the offer. It stays out of the Models column: a family would name this week''s
+      model, and the catalog serving none of the row''s families fails the row at
+      the next rotation'
   probe:
     type: api-models
     endpoint: https://hermes.ai.unturf.com/v1/models
@@ -3260,11 +3268,13 @@ entries:
     openai_compatible: true
     model_ids:
     - typhoon-v2.5-30b-a3b-instruct
+    no_family_ids:
+    - typhoon-v2.5-30b-a3b-instruct
     note: the one chat id in the keyless catalog on 2026-09-05; the other five rows
       are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime,
       typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai,
-      so it is a Qwen-class coder that also reads Thai; the Free models column stays
-      empty because the FAQ the probe reads names no model
+      so it is a Qwen-class coder that also reads Thai; it stays out of the Models
+      column because the FAQ the probe reads names no model
   data_use:
     trains: 'yes'
     quote: Yes, we are collecting usage data from the Typhoon API. We use this data
@@ -4074,9 +4084,17 @@ entries:
     - minimax-m2.7
     - codestral-latest
     - mistral-Nemo-Instruct-2407
-    note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart
-      passes `unused`. The ids listed are the turbo rows that answered a keyless call
-      on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite need a token
+    no_family_ids:
+    - GLM-5.3-Flash
+    - minimax-m2.7
+    - codestral-latest
+    - mistral-Nemo-Instruct-2407
+    note: 'no key for the anonymous tier — OpenAI SDKs want some api_key, and the
+      quickstart passes `unused`. The ids listed are the turbo rows that answered
+      a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite
+      need a token. The four stay out of the Models column: the limits page the probe
+      reads names no model, and the catalog that marks the turbo tier prices every
+      row for balance accounting'
   probe:
     type: page-keywords
     endpoint: https://docs.llm7.io/limits.md
@@ -4228,21 +4246,22 @@ entries:
   - https://cloud.tencent.com/document/product/1823/131903
   card_required: false
   offering: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3
-    among its models — with a one-time grant of a million tokens on its language models,
-    valid a year and no card, on an account that has passed Tencent Cloud real-name
-    verification
+    among its models — with a one-time grant of a million tokens on each of its language
+    models, valid a year and no card, on an account that has passed Tencent Cloud
+    real-name verification
   limits: 'The free package page, updated 2026-09-04, gives each main account one
     grant while the promotion runs, 本期活动时间截至 2026 年 12 月 31 日 (until 31 December 2026):
     所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年, a million tokens on every language model,
-    valid a year from claiming. The same page says the grant works at main-account
-    level with 同一账号下的所有模型共享额度 (all models on the account sharing it) beside 免费体验包每个账号每个模型仅可领取一次
-    (once per model per account), so whether the million is per model or shared is
-    not settled there, and the figures are 以控制台显示为准 (as the console shows). When the
-    grant is spent the service stops unless post-payment is switched on, so nothing
-    is billed without it. The quickstart requires registering on Tencent Cloud and
-    passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民
-    — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents
-    are sent to the international site. Read 2026-09-17'
+    valid a year from claiming. The grant is per model: packages are ticked model
+    by model in the model square or claimed on a model''s first call, 免费体验包每个账号每个模型仅可领取一次
+    (each account claims each model''s package once), and the quickstart speaks of
+    各模型免费体验额度, each model''s free quota — against one note that 同一账号下的所有模型共享额度 (the
+    account''s models share it), with the figures 以控制台显示为准 (as the console shows).
+    When the grant is spent the service stops unless post-payment is switched on,
+    so nothing is billed without it. The quickstart requires registering on Tencent
+    Cloud and passing 实名认证, real-name verification, and personal verification is for
+    中国大陆、中国香港、中国澳门、中国台湾居民 — residents of mainland China, Hong Kong, Macau and Taiwan;
+    other identity documents are sent to the international site. Read 2026-09-25'
   free_part: models
   models: []
   api:
@@ -4255,10 +4274,17 @@ entries:
     - glm-5.3
     - hy3
     - minimax-m3
+    no_family_ids:
+    - kimi-k3
+    - glm-5.3
+    - hy3
+    - minimax-m3
     anthropic_base_url: https://tokenhub.tencentmaas.com
-    note: ids are the models page's model column (调用参数), read 2026-09-17; /v1/models
+    note: 'ids are the models page''s model column (调用参数), read 2026-09-17; /v1/models
       answers 401 without a key, so none is read off a catalog. The Claude Code guide
-      sets ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com with ANTHROPIC_MODEL=hy3
+      sets ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com with ANTHROPIC_MODEL=hy3.
+      The four stay out of the Models column: the free-package page grants 所有语言模型,
+      every language model, and names none of them'
   data_use:
     trains: 'no'
     quote: 不会，我们非常重视您的隐私保护，不会将您的数据用于为您提供服务以外的场景，更不会用于训练。
@@ -4478,11 +4504,15 @@ entries:
     openai_compatible: true
     model_ids:
     - deepseek-v4-flash-0731
+    no_family_ids:
+    - deepseek-v4-flash-0731
     anthropic_base_url: https://moark.com/anthropic
-    note: the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic
+    note: 'the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic
       one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL
       with deepseek-v4-flash-0731 in every model slot; the id is checked against the
-      keyless catalog at api.moark.com/v1/models
+      keyless catalog at api.moark.com/v1/models. It stays out of the Models column:
+      the FAQ names no model, and the featured models the free token reaches are listed
+      only on the client-rendered model square'
   data_use:
     trains: 'no'
     quote: 对于您在我们的网站上发布的内容或以其他方式提供的内容，…在此明确，未经您的允许，我们不会使用您的内容作为人工智能模型训练的输入。

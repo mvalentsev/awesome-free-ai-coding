@@ -28,7 +28,7 @@ Free API meant for prototyping — rate limited at 10 calls/min per user, with n
 - Base URL: `https://api.sea-lion.ai/v1`
 - Key: `SEA_LION_API_KEY` — get one at <https://playground.sea-lion.ai/key-manager>
 - Callable ids: `aisingapore/Qwen-SEA-LION-v4.5-27B-IT`, `aisingapore/Llama-SEA-LION-v3.5-70B-R`
-- Note: the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page
+- Note: the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page. Both ids stay out of the Models column: the page that calls the API free names no model
 
 ## Evidence
 

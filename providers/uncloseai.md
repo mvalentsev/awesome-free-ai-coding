@@ -28,7 +28,7 @@ No quota is published anywhere on the site. The offer is a sentence — "we offe
 - Base URL: `https://hermes.ai.unturf.com/v1`
 - Key: none — the lane is anonymous
 - Callable ids: `turboderp/Qwen3.8-27B-exl3`
-- Note: anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week's, not the offer
+- Note: anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week's, not the offer. It stays out of the Models column: a family would name this week's model, and the catalog serving none of the row's families fails the row at the next rotation
 
 ## Evidence
 

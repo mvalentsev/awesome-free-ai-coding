@@ -33,7 +33,7 @@ What you send is not used to train models. In the vendor's words: “对于您�
 - Key: `MOARK_API_KEY` — get one at <https://moark.com/dashboard/tokens>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://moark.com/anthropic`
 - Callable ids: `deepseek-v4-flash-0731`
-- Note: the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL with deepseek-v4-flash-0731 in every model slot; the id is checked against the keyless catalog at api.moark.com/v1/models
+- Note: the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL with deepseek-v4-flash-0731 in every model slot; the id is checked against the keyless catalog at api.moark.com/v1/models. It stays out of the Models column: the FAQ names no model, and the featured models the free token reaches are listed only on the client-rendered model square
 
 ## Evidence
 

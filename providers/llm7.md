@@ -28,7 +28,7 @@ The limits page gives anonymous callers 1 request a second, 10 a minute and 60 a
 - Base URL: `https://api.llm7.io/v1`
 - Key: none — the lane is anonymous
 - Callable ids: `GLM-5.3-Flash`, `minimax-m2.7`, `codestral-latest`, `mistral-Nemo-Instruct-2407`
-- Note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite need a token
+- Note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite need a token. The four stay out of the Models column: the limits page the probe reads names no model, and the catalog that marks the turbo tier prices every row for balance accounting
 
 ## Evidence
 

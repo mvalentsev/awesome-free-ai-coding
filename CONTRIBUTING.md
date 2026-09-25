@@ -314,7 +314,11 @@ counted from that read or from the vendor's own date for the free id, such as th
 `dateCreated` of an NVIDIA endpoint. Every chat model that has stayed that long
 joins the column, since the list of models and everyone who serves each one free
 is built from it. A router is not a model and a stealth codename names none, and a
-model whose own developer advises against agentic coding stays out; each is
+model whose own developer advises against agentic coding stays out; so does a
+model the page the probe reads never names, since a family has to be named where
+the run reads it again — SEA-LION announces its free API on a page that names no
+model — and a lane that serves one model at a time and rotates it, where a family
+would fail the row at the next rotation; each is
 listed in `api.no_family_ids`, with the reason in `api.note` (`client_lane`'s own
 two fields on a lane no API serves). A free id the vendor dates to end within those two weeks
 never joins: OpenRouter and Kilo publish the date as `expiration_date`, and on
