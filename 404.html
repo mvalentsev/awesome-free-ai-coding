@@ -1,0 +1,33 @@
+---
+layout: default
+title: No page at this address
+permalink: /404.html
+sitemap: false
+---
+{%- comment -%}
+  What Pages serves for an address the site does not have. The list never
+  takes a page back (freetier-gate refuses it), so the address that lands here
+  was typed or guessed — by a reader, or by an answer engine putting a model's
+  name where the list keeps its pages. The script reads the name off the
+  address and offers every row that names it, which is what the reader came for.
+{%- endcomment %}
+<h1>No page at this address</h1>
+
+<p id="guess" hidden></p>
+
+<p>Every free model and the rows that serve it are on <a href="{{ "/models/" | relative_url }}">the model index</a>, every provider on <a href="{{ "/providers/" | relative_url }}">the provider index</a>, and <a href="{{ "/" | relative_url }}">the whole list</a> filters by what you need.</p>
+
+<script>
+(function () {
+  "use strict";
+  var parts = location.pathname.split("/").filter(Boolean);
+  var name = decodeURIComponent(parts[parts.length - 1] || "").replace(/\.(html?|md)$/i, "");
+  if (!name || name === "awesome-free-ai-coding" || name === "404") return;
+  var link = document.createElement("a");
+  link.href = "{{ "/browse.html" | relative_url }}?q=" + encodeURIComponent(name);
+  link.textContent = "every row that names " + name;
+  var guess = document.getElementById("guess");
+  guess.append("Looking for " + name + "? Here is ", link, ".");
+  guess.hidden = false;
+})();
+</script>

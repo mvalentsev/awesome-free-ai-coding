@@ -4,6 +4,7 @@ title: 'qwen3.7-flash free: 2 providers, limits and ids, verified 2026-09-24'
 description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.7-flash/
 last_modified_at: 2026-09-25
+crumb: qwen3.7-flash
 ---
 
 {% raw %}

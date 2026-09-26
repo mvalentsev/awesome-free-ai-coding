@@ -4,11 +4,12 @@ title: 'Qodo free tier: limits, free models, verified 2026-09-24'
 description: 'Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card. "Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited credits" is the whole free offer on the pricing page, and the FAQ beside it says so: "Is…'
 permalink: /providers/qodo/
 last_modified_at: 2026-09-24
+crumb: Qodo
 ---
 
 {% raw %}
 
-# Qodo
+# Qodo free tier
 
 🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [qodo.ai](https://www.qodo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

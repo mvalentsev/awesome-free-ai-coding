@@ -4,11 +4,12 @@ title: 'Easy GonkaAI API free tier (archived): what it offered, and why it left 
 description: Third-party OpenAI-compatible broker to the permissionless Gonka decentralized inference network (Qwen, Kimi and other open models). 10M free tokens on signup (one-time trial, no card); paid usage billed in crypto
 permalink: /providers/easy-gonka-api/
 last_modified_at: 2026-07-19
+crumb: Easy GonkaAI API
 ---
 
 {% raw %}
 
-# Easy GonkaAI API
+# Easy GonkaAI API free tier (archived)
 
 🎁 Trials (no card when possible) · no card · **archived** — delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam) · `gonka-api.org` · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

@@ -4,11 +4,12 @@ title: 'Agnes AI free tier: limits, free models, verified 2026-09-24'
 description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash…'
 permalink: /providers/agnes-ai/
 last_modified_at: 2026-09-24
+crumb: Agnes AI
 ---
 
 {% raw %}
 
-# Agnes AI
+# Agnes AI free tier
 
 🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-14, a regular row from the first probe it passes on or after 2026-09-28 · **live** — last verified by a probe on 2026-09-24 · [agnes-ai.com](https://agnes-ai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

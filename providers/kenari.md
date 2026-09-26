@@ -4,11 +4,12 @@ title: 'Kenari free tier (archived): what it offered, and why it left the list'
 description: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — sixteen on 2026-09-16, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them. "Models with the :free suffix, for example step-3-7-flash:free, are billed at…
 permalink: /providers/kenari/
 last_modified_at: 2026-09-16
+crumb: Kenari
 ---
 
 {% raw %}
 
-# Kenari
+# Kenari free tier (archived)
 
 🧭 Aggregators (one key, many providers) · no card · **archived** — delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas · `kenari.id` · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

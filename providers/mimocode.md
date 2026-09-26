@@ -4,6 +4,7 @@ title: 'MiMoCode: the same project as MiMo Code'
 description: 'MiMoCode and MiMo Code are one project. The list carried it twice and now keeps one row: the free tier, the evidence and the history are on the MiMo Code page.'
 permalink: /providers/mimocode/
 last_modified_at: 2026-07-19
+crumb: MiMoCode
 ---
 
 {% raw %}

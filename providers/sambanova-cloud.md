@@ -4,11 +4,12 @@ title: 'SambaNova Cloud free tier (archived): what it offered, and why it left t
 description: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it. 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3…
 permalink: /providers/sambanova-cloud/
 last_modified_at: 2026-09-23
+crumb: SambaNova Cloud
 ---
 
 {% raw %}
 
-# SambaNova Cloud
+# SambaNova Cloud free tier (archived)
 
 🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

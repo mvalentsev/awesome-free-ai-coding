@@ -4,11 +4,12 @@ title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-09-24'
 description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. GitHub folded its Copilot billing-concepts page into the plans page on or before 2026-08-20 and restated the figures there. Inline suggestions are "limited to 2000…
 permalink: /providers/github-copilot-free/
 last_modified_at: 2026-09-24
+crumb: GitHub Copilot Free
 ---
 
 {% raw %}
 
-# GitHub Copilot Free
+# GitHub Copilot Free free tier
 
 🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

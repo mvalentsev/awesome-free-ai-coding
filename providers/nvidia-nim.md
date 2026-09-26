@@ -4,11 +4,12 @@ title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2
 description: Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). No card; the API key needs a free NVIDIA Developer Program account verified…
 permalink: /providers/nvidia-nim/
 last_modified_at: 2026-09-24
+crumb: NVIDIA NIM (build.nvidia.com)
 ---
 
 {% raw %}
 
-# NVIDIA NIM (build.nvidia.com)
+# NVIDIA NIM (build.nvidia.com) free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

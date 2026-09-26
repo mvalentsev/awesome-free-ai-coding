@@ -4,6 +4,7 @@ title: 'glm-5.1 free: 3 providers, limits and ids, verified 2026-09-24'
 description: glm-5.1 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-5.1/
 last_modified_at: 2026-09-25
+crumb: glm-5.1
 ---
 
 {% raw %}

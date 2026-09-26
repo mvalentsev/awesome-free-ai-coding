@@ -4,11 +4,12 @@ title: 'GitHub Models free tier (archived): what it offered, and why it left the
 description: Free playground+API for catalog models with GitHub account. Per-model rate limits, free tier; closed to new customers on 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30
 permalink: /providers/github-models/
 last_modified_at: 2026-07-30
+crumb: GitHub Models
 ---
 
 {% raw %}
 
-# GitHub Models
+# GitHub Models free tier (archived)
 
 🔌 LLM APIs with free tier · no card · **archived** — vendor-announced shutdown on 2026-06-16 · [github.com](https://github.com/marketplace/models) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

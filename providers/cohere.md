@@ -4,11 +4,12 @@ title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-09-24'
 description: Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Trial keys are "limited to 1,000 API calls a month" and rate-limited per model — 20 req/min on every Chat model, Command A and North…
 permalink: /providers/cohere/
 last_modified_at: 2026-09-25
+crumb: Cohere (trial keys)
 ---
 
 {% raw %}
 
-# Cohere (trial keys)
+# Cohere (trial keys) free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

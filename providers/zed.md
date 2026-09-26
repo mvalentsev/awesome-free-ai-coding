@@ -4,11 +4,12 @@ title: 'Zed free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit…'
 permalink: /providers/zed/
 last_modified_at: 2026-09-24
+crumb: Zed
 ---
 
 {% raw %}
 
-# Zed
+# Zed free tier
 
 🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-24 · [zed.dev](https://zed.dev) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

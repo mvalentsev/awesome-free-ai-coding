@@ -4,11 +4,12 @@ title: 'Cline free tier: limits, free models, verified 2026-09-24'
 description: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. "Cline periodically offers free model promotions that let…
 permalink: /providers/cline/
 last_modified_at: 2026-09-24
+crumb: Cline
 ---
 
 {% raw %}
 
-# Cline
+# Cline free tier
 
 🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-14, a regular row from the first probe it passes on or after 2026-09-28 · **live** — last verified by a probe on 2026-09-24 · [cline.bot](https://cline.bot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

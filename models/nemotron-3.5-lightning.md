@@ -4,6 +4,7 @@ title: 'nemotron-3.5-lightning free: 6 providers, limits and ids, verified 2026-
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live…
 permalink: /models/nemotron-3.5-lightning/
 last_modified_at: 2026-09-25
+crumb: nemotron-3.5-lightning
 ---
 
 {% raw %}

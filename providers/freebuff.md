@@ -4,11 +4,12 @@ title: 'Freebuff free tier: limits, free models, verified 2026-09-24'
 description: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on…
 permalink: /providers/freebuff/
 last_modified_at: 2026-09-25
+crumb: Freebuff
 ---
 
 {% raw %}
 
-# Freebuff
+# Freebuff free tier
 
 🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

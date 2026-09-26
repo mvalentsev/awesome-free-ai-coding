@@ -4,11 +4,12 @@ title: 'Scaleway Generative APIs free tier (archived): what it offered, and why 
 description: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer. 1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — "The Free Tier is applied to the most expensive tokens first", across the whole serverless…
 permalink: /providers/scaleway-generative/
 last_modified_at: 2026-09-16
+crumb: Scaleway Generative APIs
 ---
 
 {% raw %}
 
-# Scaleway Generative APIs
+# Scaleway Generative APIs free tier (archived)
 
 🔌 LLM APIs with free tier · card required · **archived** — delisted on 2026-09-16: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit · [scaleway.com](https://www.scaleway.com/en/generative-apis/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

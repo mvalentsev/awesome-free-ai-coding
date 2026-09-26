@@ -4,6 +4,7 @@ title: 'north-mini-code free: 4 providers, limits and ids, verified 2026-09-24'
 description: north-mini-code is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and Cohere (trial keys). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/north-mini-code/
 last_modified_at: 2026-09-25
+crumb: north-mini-code
 ---
 
 {% raw %}

@@ -4,6 +4,7 @@ title: 'qwen3-8b free: 2 providers, limits and ids, verified 2026-09-24'
 description: qwen3-8b is served free by Alibaba Cloud Model Studio (DashScope, international) and SiliconFlow (China). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3-8b/
 last_modified_at: 2026-09-25
+crumb: qwen3-8b
 ---
 
 {% raw %}

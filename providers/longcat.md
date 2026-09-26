@@ -4,11 +4,12 @@ title: 'LongCat API Platform free tier (archived): what it offered, and why it l
 description: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota. 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout
 permalink: /providers/longcat/
 last_modified_at: 2026-08-14
+crumb: LongCat API Platform
 ---
 
 {% raw %}
 
-# LongCat API Platform
+# LongCat API Platform free tier (archived)
 
 🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day · [longcat.chat](https://longcat.chat/platform) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

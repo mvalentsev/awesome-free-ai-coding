@@ -4,6 +4,7 @@ title: 'ling-3.0-tiny free: 2 providers, limits and ids, verified 2026-09-24'
 description: ling-3.0-tiny is served free by Requesty and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/ling-3.0-tiny/
 last_modified_at: 2026-09-25
+crumb: ling-3.0-tiny
 ---
 
 {% raw %}

@@ -4,6 +4,7 @@ title: 'gpt-oss-20b free: 3 providers, limits and ids, verified 2026-09-24'
 description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com) and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-oss-20b/
 last_modified_at: 2026-09-25
+crumb: gpt-oss-20b
 ---
 
 {% raw %}

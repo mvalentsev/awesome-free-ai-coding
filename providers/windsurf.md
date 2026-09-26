@@ -4,11 +4,12 @@ title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verifi
 description: Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint…
 permalink: /providers/windsurf/
 last_modified_at: 2026-09-24
+crumb: Devin Desktop (formerly Windsurf)
 ---
 
 {% raw %}
 
-# Devin Desktop (formerly Windsurf)
+# Devin Desktop (formerly Windsurf) free tier
 
 🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

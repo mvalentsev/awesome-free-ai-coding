@@ -4,11 +4,12 @@ title: 'Cerebras Inference free tier (archived): what it offered, and why it lef
 description: 'Very fast inference; $5 in trial credits that expire in 30 days, card required before the API answers at all. Cerebras'' own docs: "New accounts receive $5 in free credits after adding a verified payment method", credits "expire 30 days after they''re granted", and "If you skip adding a payment…'
 permalink: /providers/cerebras-free/
 last_modified_at: 2026-09-16
+crumb: Cerebras Inference
 ---
 
 {% raw %}
 
-# Cerebras Inference
+# Cerebras Inference free tier (archived)
 
 🎁 Trials (no card when possible) · card required · **archived** — delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit · [cerebras.ai](https://www.cerebras.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

@@ -4,6 +4,7 @@ title: 'muse-spark-1.2 free: 1 provider, limits and ids, verified 2026-09-24'
 description: muse-spark-1.2 is served free by Freebuff. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/muse-spark-1.2/
 last_modified_at: 2026-09-25
+crumb: muse-spark-1.2
 ---
 
 {% raw %}

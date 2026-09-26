@@ -4,6 +4,7 @@ title: 'qwen3.8-max free: 1 provider, limits and ids, verified 2026-09-24'
 description: qwen3.8-max is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.8-max/
 last_modified_at: 2026-09-25
+crumb: qwen3.8-max
 ---
 
 {% raw %}

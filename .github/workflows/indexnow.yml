@@ -31,6 +31,7 @@ on:
       - "providers/*.md"
       - "models/*.md"
       - "browse.html"
+      - "404.html"
       - "assets/*.svg"
       - "assets/*.png"
       - "eb68c254f1e03877b906ccc800002691.txt"

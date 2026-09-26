@@ -4,11 +4,12 @@ title: 'MiMo Code free tier (archived): what it offered, and why it left the lis
 description: 'Xiaomi''s open-source (MIT) terminal coding agent; its built-in "MiMo Auto" channel used to run Xiaomi''s MiMo models with no login, API key, or card. Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it past that timestamp (FREE_API_SUNSET_AT) and prompts: "The free API…'
 permalink: /providers/mimo-code/
 last_modified_at: 2026-08-03
+crumb: MiMo Code
 ---
 
 {% raw %}
 
-# MiMo Code
+# MiMo Code free tier (archived)
 
 🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-07-26 · [mimo.xiaomi.com](https://mimo.xiaomi.com/coder) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

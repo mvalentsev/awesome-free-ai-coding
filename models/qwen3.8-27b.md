@@ -4,6 +4,7 @@ title: 'qwen3.8-27b free: 7 providers, limits and ids, verified 2026-09-24'
 description: qwen3.8-27b is served free by Groq, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each one's…
 permalink: /models/qwen3.8-27b/
 last_modified_at: 2026-09-25
+crumb: qwen3.8-27b
 ---
 
 {% raw %}

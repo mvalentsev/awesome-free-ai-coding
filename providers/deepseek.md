@@ -4,11 +4,12 @@ title: 'DeepSeek Platform free tier (archived): what it offered, and why it left
 description: Official DeepSeek API; every new account gets a one-time free token grant, no card required. 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models
 permalink: /providers/deepseek/
 last_modified_at: 2026-07-27
+crumb: DeepSeek Platform
 ---
 
 {% raw %}
 
-# DeepSeek Platform
+# DeepSeek Platform free tier (archived)
 
 🎁 Trials (no card when possible) · no card · **archived** — delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant · [platform.deepseek.com](https://platform.deepseek.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

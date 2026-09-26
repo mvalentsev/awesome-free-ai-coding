@@ -4,11 +4,12 @@ title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 20
 description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外,…'
 permalink: /providers/sensenova/
 last_modified_at: 2026-09-24
+crumb: SenseNova (SenseTime 商汤)
 ---
 
 {% raw %}
 
-# SenseNova (SenseTime 商汤)
+# SenseNova (SenseTime 商汤) free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

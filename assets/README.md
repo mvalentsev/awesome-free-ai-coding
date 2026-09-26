@@ -8,7 +8,8 @@ touches them.
 |---|---|
 | `banner-light.svg` / `banner-dark.svg` | README hero banner, theme-switched via `<picture>` |
 | `social-preview.svg` | Source of the social preview card |
-| `social-preview.png` | 1280×640 render for GitHub's social preview |
+| `social-preview.png` | 1280×640 render for GitHub's social preview, and every Pages page's preview card (`_config.yml` defaults) |
+| `favicon.svg` | The site's icon, on `index.html`, `browse.html` and every page `_layouts/default.html` serves |
 
 The banners animate. The beam turns once every 6 seconds, driven by SMIL
 (`animateTransform`) rather than a CSS transform — a rendered-as-image SVG does not

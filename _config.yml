@@ -15,6 +15,15 @@ plugins:
   - jekyll-sitemap
   - jekyll-optional-front-matter
   - jekyll-relative-links
+# Every page's preview card, where a page names none of its own: a link to a
+# provider's or a model's page shared anywhere — or read by an answer engine —
+# carries the list's picture rather than none. _layouts/default.html is the
+# page these are served in.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/social-preview.png
 exclude:
   # Served as index.html instead — see the note at the top of this file.
   - README.md

@@ -1784,7 +1784,8 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
                                          f"it twice and now keeps one row: the free tier, the "
                                          f"evidence and the history are on the {name} page.",
                           "permalink": _permalink(provider_page_url(e.id)),
-                          "last_modified_at": _last_modified(e, events)}),
+                          "last_modified_at": _last_modified(e, events),
+                          "crumb": e.name}),
            "{% raw %}", "", f"# {e.name}", "",
            " · ".join([CATEGORY_TITLES[e.category],
                        f"**folded into [{name}]({page})** — one project, one row",
@@ -1839,8 +1840,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     out = [_front_matter({"layout": "default", "title": title,
                           "description": _page_description(e),
                           "permalink": _permalink(provider_page_url(e.id)),
-                          "last_modified_at": _last_modified(e, events)}),
-           "{% raw %}", "", f"# {e.name}", ""]
+                          "last_modified_at": _last_modified(e, events),
+                          # The page's own name in the breadcrumb the layout
+                          # writes for search results.
+                          "crumb": e.name}),
+           # The page's one heading says what a search for it asks: the
+           # vendor and "free tier", as the title does.
+           "{% raw %}", "", f"# {e.name} free tier" + (" (archived)" if archived else ""), ""]
     flags = [CATEGORY_TITLES[e.category]]
     flags.append(_card_words(e))
     if e.provisional and not archived:
@@ -2152,7 +2158,8 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                    f"{series([e.name for e in by_family[f]])}" for f in related), ""]
     out = [_front_matter({"layout": "default", "title": title, "description": description,
                           "permalink": _permalink(model_page_url(family)),
-                          "last_modified_at": max(changed, default=today)}),
+                          "last_modified_at": max(changed, default=today),
+                          "crumb": family}),
            "{% raw %}", "", *body, "---", "",
            f"Generated from `registry.yaml` on {today.isoformat()} and re-verified {_schedule()}; "
            f"every free model on the list is at <{models_index_url()}>, and the full list, "

@@ -4,11 +4,12 @@ title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026
 description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API. The portal''s plan table reads "Free $0 Free models only Standard rate limits $0…'
 permalink: /providers/nous-portal/
 last_modified_at: 2026-09-24
+crumb: Nous Portal (Hermes Agent)
 ---
 
 {% raw %}
 
-# Nous Portal (Hermes Agent)
+# Nous Portal (Hermes Agent) free tier
 
 🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-24 · [portal.nousresearch.com](https://portal.nousresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

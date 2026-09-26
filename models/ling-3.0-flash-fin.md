@@ -4,6 +4,7 @@ title: 'ling-3.0-flash-fin free: 5 providers, limits and ids, verified 2026-09-2
 description: ling-3.0-flash-fin is served free by opencode, OpenRouter (free models), Kilo Code, LLMTR and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live…
 permalink: /models/ling-3.0-flash-fin/
 last_modified_at: 2026-09-25
+crumb: ling-3.0-flash-fin
 ---
 
 {% raw %}

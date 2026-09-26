@@ -4,6 +4,7 @@ title: 'diffusiongemma free: 2 providers, limits and ids, verified 2026-09-24'
 description: diffusiongemma is served free by NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/diffusiongemma/
 last_modified_at: 2026-09-24
+crumb: diffusiongemma
 ---
 
 {% raw %}

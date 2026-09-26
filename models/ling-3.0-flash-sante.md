@@ -4,6 +4,7 @@ title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, verified 2026-09
 description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last…
 permalink: /models/ling-3.0-flash-sante/
 last_modified_at: 2026-09-25
+crumb: ling-3.0-flash-sante
 ---
 
 {% raw %}

@@ -4,6 +4,7 @@ title: 'minimax-m3 free: 2 providers, limits and ids, verified 2026-09-24'
 description: minimax-m3 is served free by AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/minimax-m3/
 last_modified_at: 2026-09-25
+crumb: minimax-m3
 ---
 
 {% raw %}

@@ -4,11 +4,12 @@ title: 'Hetzner Inference API free tier: limits, free models, verified 2026-09-2
 description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in advance via email with detailed…'
 permalink: /providers/hetzner-inference/
 last_modified_at: 2026-09-24
+crumb: Hetzner Inference API
 ---
 
 {% raw %}
 
-# Hetzner Inference API
+# Hetzner Inference API free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

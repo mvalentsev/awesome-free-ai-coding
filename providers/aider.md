@@ -4,11 +4,12 @@ title: 'Aider free tier (archived): what it offered, and why it left the list'
 description: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama. Tool is free and open-source; model usage is BYOK (no bundled free-model quota)
 permalink: /providers/aider/
 last_modified_at: 2026-07-19
+crumb: Aider
 ---
 
 {% raw %}
 
-# Aider
+# Aider free tier (archived)
 
 🤖 Coding agents & CLIs · no card · **archived** — delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly · [aider.chat](https://aider.chat/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

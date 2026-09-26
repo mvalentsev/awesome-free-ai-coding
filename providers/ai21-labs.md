@@ -4,11 +4,12 @@ title: 'AI21 Labs (Jamba) free tier (archived): what it offered, and why it left
 description: 'AI21''s Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio''s, and the vendor sunset Studio''s Jamba API on 2026-08-09. Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every…'
 permalink: /providers/ai21-labs/
 last_modified_at: 2026-09-05
+crumb: AI21 Labs (Jamba)
 ---
 
 {% raw %}
 
-# AI21 Labs (Jamba)
+# AI21 Labs (Jamba) free tier (archived)
 
 🎁 Trials (no card when possible) · no card · **archived** — vendor-announced shutdown on 2026-08-09 · [ai21.com](https://www.ai21.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

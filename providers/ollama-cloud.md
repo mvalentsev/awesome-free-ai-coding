@@ -4,11 +4,12 @@ title: 'Ollama Cloud free tier: limits, free models, verified 2026-09-24'
 description: 'Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is…'
 permalink: /providers/ollama-cloud/
 last_modified_at: 2026-09-24
+crumb: Ollama Cloud
 ---
 
 {% raw %}
 
-# Ollama Cloud
+# Ollama Cloud free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

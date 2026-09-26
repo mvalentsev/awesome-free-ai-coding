@@ -4,11 +4,12 @@ title: 'Token Harbor free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card. "Models on permanent free routes carry an explicit :free model ID and are listed…'
 permalink: /providers/token-harbor/
 last_modified_at: 2026-09-24
+crumb: Token Harbor
 ---
 
 {% raw %}
 
-# Token Harbor
+# Token Harbor free tier
 
 🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-24 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

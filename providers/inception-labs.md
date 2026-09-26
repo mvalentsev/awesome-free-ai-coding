@@ -4,11 +4,12 @@ title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-0
 description: A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls. 100 million tokens on every new account, no…
 permalink: /providers/inception-labs/
 last_modified_at: 2026-09-25
+crumb: Inception Labs (Mercury)
 ---
 
 {% raw %}
 
-# Inception Labs (Mercury)
+# Inception Labs (Mercury) free tier
 
 🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

@@ -4,6 +4,7 @@ title: 'deepseek-v3.2 free: 2 providers, limits and ids, verified 2026-09-24'
 description: deepseek-v3.2 is served free by Kiro and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/deepseek-v3.2/
 last_modified_at: 2026-09-25
+crumb: deepseek-v3.2
 ---
 
 {% raw %}

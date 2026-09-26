@@ -4,6 +4,7 @@ title: 'glm-5.3-flash free: 3 providers, limits and ids, verified 2026-09-24'
 description: glm-5.3-flash is served free by Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-5.3-flash/
 last_modified_at: 2026-09-25
+crumb: glm-5.3-flash
 ---
 
 {% raw %}

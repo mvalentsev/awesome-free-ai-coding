@@ -4,11 +4,12 @@ title: 'Kilo Code free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. $0 a month, and no account for the free lane: "The gateway allows…'
 permalink: /providers/kilo-code/
 last_modified_at: 2026-09-24
+crumb: Kilo Code
 ---
 
 {% raw %}
 
-# Kilo Code
+# Kilo Code free tier
 
 🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

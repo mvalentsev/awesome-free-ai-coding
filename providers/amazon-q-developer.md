@@ -4,11 +4,12 @@ title: 'Amazon Q Developer free tier (archived): what it offered, and why it lef
 description: 'AWS''s coding assistant in the IDE and the CLI; its perpetual Free Tier gives a Builder ID user 50 agentic requests a month. Closed to new users since 2026-05-15. AWS''s end-of-support post of 2026-04-30: "New Q Developer Free Tier account creation (via Builder ID in IDE plugins) and new Q…'
 permalink: /providers/amazon-q-developer/
 last_modified_at: 2026-09-23
+crumb: Amazon Q Developer
 ---
 
 {% raw %}
 
-# Amazon Q Developer
+# Amazon Q Developer free tier (archived)
 
 🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-05-15 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

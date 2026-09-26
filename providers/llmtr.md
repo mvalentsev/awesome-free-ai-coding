@@ -4,11 +4,12 @@ title: 'LLMTR free tier: limits, free models, verified 2026-09-24'
 description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-09-24
+crumb: LLMTR
 ---
 
 {% raw %}
 
-# LLMTR
+# LLMTR free tier
 
 🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [llmtr.com](https://llmtr.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

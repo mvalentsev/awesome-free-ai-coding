@@ -4,11 +4,12 @@ title: 'Groq free tier: limits, free models, verified 2026-09-24'
 description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K /…'
 permalink: /providers/groq-free/
 last_modified_at: 2026-09-25
+crumb: Groq
 ---
 
 {% raw %}
 
-# Groq
+# Groq free tier
 
 🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

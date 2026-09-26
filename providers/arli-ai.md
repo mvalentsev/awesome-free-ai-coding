@@ -4,11 +4,12 @@ title: 'Arli AI free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. The pricing page's Free plan, "Test out the Arli platform" at $0, lists only what it withholds — "Delayed Response",…
 permalink: /providers/arli-ai/
 last_modified_at: 2026-09-24
+crumb: Arli AI
 ---
 
 {% raw %}
 
-# Arli AI
+# Arli AI free tier
 
 🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

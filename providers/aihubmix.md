@@ -4,11 +4,12 @@ title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-
 description: One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code. per-model caps, spelled out in each model's catalog…
 permalink: /providers/aihubmix/
 last_modified_at: 2026-09-25
+crumb: AIHubMix (free models)
 ---
 
 {% raw %}
 
-# AIHubMix (free models)
+# AIHubMix (free models) free tier
 
 🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [aihubmix.com](https://aihubmix.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

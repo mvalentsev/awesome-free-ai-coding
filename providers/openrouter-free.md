@@ -4,11 +4,12 @@ title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-0
 description: One API key for a rotating set of :free model variants, open-weight and stealth models among them. 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants —…
 permalink: /providers/openrouter-free/
 last_modified_at: 2026-09-25
+crumb: OpenRouter (free models)
 ---
 
 {% raw %}
 
-# OpenRouter (free models)
+# OpenRouter (free models) free tier
 
 🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

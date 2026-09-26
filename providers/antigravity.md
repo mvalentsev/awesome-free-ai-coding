@@ -4,11 +4,12 @@ title: 'Google Antigravity free tier: limits, free models, verified 2026-09-24'
 description: Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do. $0/month, no subscription. The plan's own…
 permalink: /providers/antigravity/
 last_modified_at: 2026-09-25
+crumb: Google Antigravity
 ---
 
 {% raw %}
 
-# Google Antigravity
+# Google Antigravity free tier
 
 🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

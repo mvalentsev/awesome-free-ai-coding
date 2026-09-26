@@ -4,6 +4,7 @@ title: 'gpt-5.6-luna free: 1 provider, limits and ids, verified 2026-09-24'
 description: gpt-5.6-luna is served free by Zed. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-5.6-luna/
 last_modified_at: 2026-09-24
+crumb: gpt-5.6-luna
 ---
 
 {% raw %}

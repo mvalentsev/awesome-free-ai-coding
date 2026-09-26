@@ -4,6 +4,7 @@ title: 'muse-spark-1.3-contributor free: 2 providers, limits and ids, verified 2
 description: muse-spark-1.3-contributor is served free by opencode and Cline. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/muse-spark-1.3-contributor/
 last_modified_at: 2026-09-24
+crumb: muse-spark-1.3-contributor
 ---
 
 {% raw %}

@@ -4,11 +4,12 @@ title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verif
 description: 'Alibaba''s model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification. The limits page: "免费推理API由阿里云提供算力支持，要求您的ModelScope账号必须首先绑定阿里云账号", and the Alibaba Cloud account must…'
 permalink: /providers/modelscope/
 last_modified_at: 2026-09-24
+crumb: ModelScope API-Inference (Alibaba)
 ---
 
 {% raw %}
 
-# ModelScope API-Inference (Alibaba)
+# ModelScope API-Inference (Alibaba) free tier
 
 🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-19, a regular row from the first probe it passes on or after 2026-10-03 · **live** — last verified by a probe on 2026-09-24 · [modelscope.cn](https://modelscope.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

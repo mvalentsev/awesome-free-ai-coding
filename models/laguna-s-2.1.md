@@ -4,6 +4,7 @@ title: 'laguna-s-2.1 free: 5 providers, limits and ids, verified 2026-09-24'
 description: laguna-s-2.1 is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models), Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids…
 permalink: /models/laguna-s-2.1/
 last_modified_at: 2026-09-25
+crumb: laguna-s-2.1
 ---
 
 {% raw %}

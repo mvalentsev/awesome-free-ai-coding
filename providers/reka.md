@@ -4,11 +4,12 @@ title: 'Reka AI free tier (archived): what it offered, and why it left the list'
 description: Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month. $10 free credits at the start of every month, usable on any API feature
 permalink: /providers/reka/
 last_modified_at: 2026-08-11
+crumb: Reka AI
 ---
 
 {% raw %}
 
-# Reka AI
+# Reka AI free tier (archived)
 
 🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits · [platform.reka.ai](https://platform.reka.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

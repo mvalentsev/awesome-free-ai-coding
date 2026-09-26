@@ -4,6 +4,7 @@ title: 'gemini-3.1-pro free: 2 providers, limits and ids, verified 2026-09-24'
 description: gemini-3.1-pro is served free by Google Antigravity and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemini-3.1-pro/
 last_modified_at: 2026-09-25
+crumb: gemini-3.1-pro
 ---
 
 {% raw %}

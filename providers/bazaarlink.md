@@ -4,11 +4,12 @@ title: 'BazaarLink free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14 — Qwen3.7 Flash and DeepSeek V4 Flash 0731 — beside the auto:free router. BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2…'
 permalink: /providers/bazaarlink/
 last_modified_at: 2026-09-24
+crumb: BazaarLink
 ---
 
 {% raw %}
 
-# BazaarLink
+# BazaarLink free tier
 
 🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

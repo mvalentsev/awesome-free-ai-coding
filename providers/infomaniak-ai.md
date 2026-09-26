@@ -4,11 +4,12 @@ title: 'Infomaniak AI Services free tier (archived): what it offered, and why it
 description: Swiss sovereign-cloud API over open-weight models with a one-month trial wallet of one million credits, one credit per LLM token. "One million free credits allow you to test the service without commitment for one month" and "The API is billed on a credit basis. Each request consumes one credit…
 permalink: /providers/infomaniak-ai/
 last_modified_at: 2026-09-16
+crumb: Infomaniak AI Services
 ---
 
 {% raw %}
 
-# Infomaniak AI Services
+# Infomaniak AI Services free tier (archived)
 
 🎁 Trials (no card when possible) · card required · **archived** — delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit · [infomaniak.com](https://www.infomaniak.com/en/hosting/ai-services) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

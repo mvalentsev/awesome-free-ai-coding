@@ -4,11 +4,12 @@ title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and…'
 permalink: /providers/regolo/
 last_modified_at: 2026-09-25
+crumb: Regolo AI
 ---
 
 {% raw %}
 
-# Regolo AI
+# Regolo AI free tier
 
 🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [regolo.ai](https://regolo.ai/pricing/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

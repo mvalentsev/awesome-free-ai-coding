@@ -4,6 +4,7 @@ title: 'mimo-v2.5 free: 2 providers, limits and ids, verified 2026-09-24'
 description: mimo-v2.5 is served free by opencode and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/mimo-v2.5/
 last_modified_at: 2026-09-25
+crumb: mimo-v2.5
 ---
 
 {% raw %}

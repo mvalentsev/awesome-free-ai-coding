@@ -702,6 +702,7 @@ cannot print two versions of it.
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
+| `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/*.svg` | **page** — the banners and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
@@ -714,6 +715,7 @@ cannot print two versions of it.
 | `pyproject.toml` | **config** — the package and its commands · not on the site | — | `hand` |
 | `uv.lock` | **config** — the pinned dependencies · not on the site | — | `hand` |
 | `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
+| `_layouts/*.html` | **config** — the page every generated Markdown page is served in: one heading, the way back to the indexes, the breadcrumb · not on the site | — | `hand` |
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
 | `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page and the IndexNow ping on a push · not on the site | — | `hand` |

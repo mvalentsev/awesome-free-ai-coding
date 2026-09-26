@@ -4,11 +4,12 @@ title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-09-24'
 description: 'China''s SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model…'
 permalink: /providers/siliconflow-cn/
 last_modified_at: 2026-09-24
+crumb: SiliconFlow (China)
 ---
 
 {% raw %}
 
-# SiliconFlow (China)
+# SiliconFlow (China) free tier
 
 🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-19, a regular row from the first probe it passes on or after 2026-10-03 · **live** — last verified by a probe on 2026-09-24 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

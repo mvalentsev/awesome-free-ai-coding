@@ -128,6 +128,9 @@ MAP: tuple[Node, ...] = (
     # ---- hand-written pages
     Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
          made_from=("index.json",), published=True),
+    Node("404.html", Kind.PAGE,
+         "what Pages serves for an address the site does not have, offering the rows that "
+         "name what the address asked for", published=True),
     Node("assets/*.svg", Kind.PAGE, "the banners and the social preview's source",
          published=True),
     Node("assets/*.png", Kind.PAGE, "the social preview", published=True),
@@ -148,6 +151,9 @@ MAP: tuple[Node, ...] = (
     Node("pyproject.toml", Kind.CONFIG, "the package and its commands"),
     Node("uv.lock", Kind.CONFIG, "the pinned dependencies"),
     Node("_config.yml", Kind.CONFIG, "the Pages site: its name, its plugins, what it leaves out"),
+    Node("_layouts/*.html", Kind.CONFIG,
+         "the page every generated Markdown page is served in: one heading, the way back to "
+         "the indexes, the breadcrumb"),
     Node(".gitignore", Kind.CONFIG, "what git leaves alone"),
     Node(".githooks/*", Kind.CONFIG,
          "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),

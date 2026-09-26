@@ -4,11 +4,12 @@ title: 'Fireworks AI free tier: limits, free models, verified 2026-09-24'
 description: Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added. The pricing page offers "Get started with $1 in free credits", and the billing FAQ…
 permalink: /providers/fireworks-ai/
 last_modified_at: 2026-09-24
+crumb: Fireworks AI
 ---
 
 {% raw %}
 
-# Fireworks AI
+# Fireworks AI free tier
 
 🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [fireworks.ai](https://fireworks.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

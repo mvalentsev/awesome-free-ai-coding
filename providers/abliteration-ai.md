@@ -4,11 +4,12 @@ title: 'abliteration.ai free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect…'
 permalink: /providers/abliteration-ai/
 last_modified_at: 2026-09-24
+crumb: abliteration.ai
 ---
 
 {% raw %}
 
-# abliteration.ai
+# abliteration.ai free tier
 
 🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
