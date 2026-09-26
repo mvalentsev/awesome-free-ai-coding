@@ -28,6 +28,10 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 - Callable ids: `deepseek-v4-pro`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
+## Rows that listed it before
+
+- [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25
+
 ## Related models
 
 - [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — free at Routeway, Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS)

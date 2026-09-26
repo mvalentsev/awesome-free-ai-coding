@@ -314,3 +314,38 @@ def test_each_check_fails_on_a_snapshot_it_should_refuse(tmp_path):
     assert "stale: README.md" in render(snap)
     check = dict(CHECKS)["freetier-check"]
     assert check(snap) == ""
+
+
+# ---- a page the site published
+
+def test_a_page_the_site_published_is_never_deleted(tmp_path):
+    """A provider's or a model's page is an address a search engine indexed and
+    an answer may cite. The render keeps every page it published and says on it
+    what became of its subject, so a page that leaves the tree is one somebody
+    deleted: the commit is refused, and so is the working tree CI and the
+    scheduled run check against the commit they start from. Adding is fine."""
+    repo = _repo(tmp_path)
+    for path in ("models/kimi-k3.md", "providers/x.md"):
+        (repo / path).parent.mkdir(exist_ok=True)
+        (repo / path).write_text("a page\n", encoding="utf-8")
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-q", "-m", "feat: two pages")
+    base = _git(repo, "rev-parse", "HEAD").strip()
+    (repo / "models" / "glm-5.md").write_text("a new page\n", encoding="utf-8")
+    _git(repo, "add", ".")
+    assert pre_commit(repo, steps=[]) == []
+    _git(repo, "rm", "-q", "models/kimi-k3.md")
+    refused = ["models/kimi-k3.md is deleted — the site published this page, and a published "
+               "page stays: the render keeps it and says on it what became of its row or model; "
+               "restore it"]
+    assert pre_commit(repo, steps=[]) == refused
+    assert diff(repo, base, earned=False) == refused
+
+
+def test_only_the_published_pages_are_kept():
+    """The rule reads the map: the pages under providers/ and models/, and no
+    other file — a config or a note may still be removed."""
+    from freetier_radar.gate import page_problems, _kept
+    assert _kept(["models/a.md", "providers/b.md", "configs/litellm.yaml", "note.txt"]) == {
+        "models/a.md", "providers/b.md"}
+    assert page_problems({"models/a.md"}, {"models/a.md", "models/b.md"}) == []

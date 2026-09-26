@@ -97,7 +97,7 @@ Each offer links to a page with the free tier in the vendor's own words, the con
 
 ## Free models by name
 
-A model has a page of its own where two rows or more serve it free, or it measures strong or frontier: every row that serves it, the limits in the vendor's words and the ids to call. Every other model is named on the one row above that serves it.
+A model gets a page of its own once two rows or more serve it free, or it measures strong or frontier: every row that serves it, the limits in the vendor's words and the ids to call. Every other model is named on the one row above that serves it.
 
 - [nemotron-3-ultra](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/): opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR
 - [qwen3.8-27b](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/): strong; Groq, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway, OVHcloud AI Endpoints
@@ -175,7 +175,7 @@ A model has a page of its own where two rows or more serve it free, or it measur
 - [index.json](https://mvalentsev.github.io/awesome-free-ai-coding/index.json): every row with its connection details and probe, plus the watchlist of services considered and not listed
 - [feed.xml](https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml): Atom feed of every change — rows arriving, leaving and changing their free models
 - [Provider pages](https://mvalentsev.github.io/awesome-free-ai-coding/providers/): one page per row, live and archived
-- [Model pages](https://mvalentsev.github.io/awesome-free-ai-coding/models/): every free model on the list and the rows that serve it, and a page of its own for each model where two rows or more serve it free, or it measures strong or frontier
+- [Model pages](https://mvalentsev.github.io/awesome-free-ai-coding/models/): every free model on the list and the rows that serve it, and a page of its own for each model once two rows or more serve it free, or it measures strong or frontier
 - [Filterable table](https://mvalentsev.github.io/awesome-free-ai-coding/browse.html): the same rows filtered by category, card, key and API format
 - [configs/opencode.json](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/opencode.json): opencode config with every OpenAI-compatible row wired up
 - [configs/claude-code.sh](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh): one shell function per gateway that serves the Anthropic Messages format, for Claude Code

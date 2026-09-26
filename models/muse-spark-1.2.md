@@ -26,6 +26,10 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/)).
 
+## Rows that listed it before
+
+- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-08-20 to 2026-09-14
+
 ## Related models
 
 - [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) — free at Requesty, NVIDIA NIM (build.nvidia.com) and Routeway

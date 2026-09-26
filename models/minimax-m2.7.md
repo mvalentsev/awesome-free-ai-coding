@@ -39,6 +39,10 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Callable ids: `minimax-m2.7:free`
 
+## Rows that listed it before
+
+- [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — listed 2026-09-21 to 2026-09-25
+
 ## Related models
 
 - [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS)

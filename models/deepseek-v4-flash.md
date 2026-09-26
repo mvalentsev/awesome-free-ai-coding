@@ -51,6 +51,16 @@ Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GL
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
 - Callable ids: `deepseek-v4-flash`
 
+## Rows that listed it before
+
+- [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — listed 2026-09-21 to 2026-09-25
+- [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25
+- [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) — listed 2026-09-18 to 2026-09-22
+- [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-02 to 2026-09-16
+- [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — listed 2026-09-05 to 2026-09-16
+- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-07-19 to 2026-08-20
+- [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) — listed 2026-08-03 to 2026-08-19
+
 ## Related models
 
 - [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) — free at Kiro and Alibaba Cloud Model Studio (DashScope, international)

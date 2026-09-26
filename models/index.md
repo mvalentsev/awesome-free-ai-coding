@@ -10,7 +10,7 @@ last_modified_at: 2026-09-25
 
 # Every free model on the list
 
-149 model families, and every row that serves each one free, the most widely served first. A model has a page of its own where two rows or more serve it free, or it measures strong or frontier: every row that serves it, the limits in the vendor's words and the ids to call. A live probe reads every row again twice a week.
+149 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures strong or frontier: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 

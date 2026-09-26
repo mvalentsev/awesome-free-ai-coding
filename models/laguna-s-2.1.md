@@ -78,6 +78,12 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 - Callable ids: `poolside/laguna-s-2.1:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
 
+## Rows that listed it before
+
+- [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — listed 2026-09-14 to 2026-09-23
+- [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
+- [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-08-14 to 2026-08-20
+
 ## Related models
 
 - [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) — free at OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR

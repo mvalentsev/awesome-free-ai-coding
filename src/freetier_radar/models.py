@@ -209,6 +209,9 @@ class ModelFamily(BaseModel):
         if not re.fullmatch(r"[a-z0-9][a-z0-9.\-]*", value):
             raise ValueError(f"family {value!r} is not a page name — lower case, digits, dots "
                              "and hyphens, the way the registry spells every family")
+        if value == "index":
+            raise ValueError("family 'index' is not a page name — models/index.md is the index "
+                             "of every model")
         return value
 
     @field_validator("aa_model")

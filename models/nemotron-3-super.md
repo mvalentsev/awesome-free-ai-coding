@@ -90,6 +90,10 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — n
 - Callable ids: `nvidia/nemotron-3-super-120b-a12b`
 - What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/poolside-laguna/)).
 
+## Rows that listed it before
+
+- [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
+
 ## Related models
 
 - [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) — free at opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR

@@ -58,6 +58,12 @@ class Node:
     published: bool = False
     # A file that exists only once a command first writes it.
     optional: bool = False
+    # A page the site published at an address of its own. Once committed it is
+    # never deleted — freetier-gate refuses the commit, the push and the run
+    # that would — because a URL a search engine indexed or an answer cited
+    # has to go on answering: the render keeps the page and says on it what
+    # became of its row or its model.
+    kept: bool = False
 
 
 # The commands the scheduled run executes before its verification commit, and
@@ -114,11 +120,11 @@ MAP: tuple[Node, ...] = (
     Node("providers/*.md", Kind.GENERATED,
          "a page per row, the provider index and the page of services checked",
          made_from=("registry.yaml", "history.jsonl", "watchlist.yaml", "blocklist.yaml"),
-         written_by=("freetier-render",), published=True),
+         written_by=("freetier-render",), published=True, kept=True),
     Node("models/*.md", Kind.GENERATED,
          "a page per widely served or strong free model, and the index of every free model",
          made_from=("registry.yaml", "history.jsonl"), written_by=("freetier-render",),
-         published=True),
+         published=True, kept=True),
     # ---- hand-written pages
     Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
          made_from=("index.json",), published=True),
@@ -248,7 +254,8 @@ def markdown_table(nodes: tuple[Node, ...] = MAP) -> str:
     rows = ["| File | What it is | Made from | Written by |", "|---|---|---|---|"]
     for n in nodes:
         by = n.written_by if n.kind in (Kind.LOG, Kind.GENERATED) else ("hand", *n.written_by)
-        what = f"**{n.kind.value}** — {n.about}" + ("" if n.published else " · not on the site")
+        what = (f"**{n.kind.value}** — {n.about}" + ("" if n.published else " · not on the site")
+                + (" · never deleted once published" if n.kept else ""))
         rows.append(f"| `{n.path}` | {what} | {_code(n.made_from)} | {_code(by)} |")
     return "\n".join(rows)
 

@@ -41,6 +41,10 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Callable ids: `ling-3.0-tiny-free`
 
+## Rows that listed it before
+
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-08-11 to 2026-08-14
+
 ## Related models
 
 - [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, OpenRouter (free models), Kilo Code, LLMTR and Vercel AI Gateway

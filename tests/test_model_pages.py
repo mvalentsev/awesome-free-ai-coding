@@ -88,7 +88,7 @@ def test_a_model_has_a_page_where_rows_compare_or_where_it_measures_strong():
     assert models["solo"] == {"family": "solo", "rows": ["a"]}
 
 
-def test_the_render_writes_a_page_per_model_and_takes_away_one_that_lost_its_page(tmp_path):
+def test_the_render_writes_a_page_per_model_and_keeps_one_that_fell_below_the_bar(tmp_path):
     reg = tmp_path / "registry.yaml"
     both = [make(id="a", name="A", models=[{"family": "kimi-k3"}]),
             make(id="b", name="B", models=[{"family": "kimi-k3"}])]
@@ -97,7 +97,15 @@ def test_the_render_writes_a_page_per_model_and_takes_away_one_that_lost_its_pag
     assert sorted(p.name for p in (tmp_path / MODELS_DIR).iterdir()) == ["index.md", "kimi-k3.md"]
     save_registry(reg, [both[0], make(id="b", name="B", models=[{"family": "glm-5"}])])
     render_artifacts(reg, tmp_path, today=TODAY)
-    assert sorted(p.name for p in (tmp_path / MODELS_DIR).iterdir()) == ["index.md"]
+    assert sorted(p.name for p in (tmp_path / MODELS_DIR).iterdir()) == ["index.md", "kimi-k3.md"]
+    # Rendered anew into an empty directory, the same registry publishes no
+    # page for a model one row serves: the page above stays because the
+    # repository published it, not because the rule gives it one.
+    fresh = tmp_path / "fresh"
+    fresh.mkdir()
+    save_registry(fresh / "registry.yaml", [both[0], make(id="b", name="B", models=[{"family": "glm-5"}])])
+    render_artifacts(fresh / "registry.yaml", fresh, today=TODAY)
+    assert sorted(p.name for p in (fresh / MODELS_DIR).iterdir()) == ["index.md"]
 
 
 def test_check_rendered_sees_a_model_page_the_render_no_longer_makes(tmp_path):
@@ -348,6 +356,8 @@ def test_every_family_is_a_path_segment():
     import pytest
     with pytest.raises(ValueError, match="not a page name"):
         make(models=[{"family": "Qwen 3/8"}])
+    with pytest.raises(ValueError, match="the index of every model"):
+        make(models=[{"family": "index"}])
     make(models=[{"family": "qwen3.8-2.4t-a95b"}])
 
 
@@ -380,3 +390,97 @@ def test_the_render_dates_are_utc_days():
                                  "models": ["qwen3.8-27b"]})
     page = build_model_page("qwen3.8-27b", [groq(), keyless()], [late], TODAY + timedelta(days=2))
     assert front(page)["last_modified_at"] == date(2026, 7, 20)
+
+
+# ---- a page the site published stays --------------------------------------------
+
+def _publish(root: Path, entries, day: date) -> Path:
+    """What `freetier-render` does to the repository: record the history, then
+    write every page, on `day` at noon UTC."""
+    from freetier_radar.render import render_repository
+    reg = root / "registry.yaml"
+    save_registry(reg, entries)
+    render_repository(reg, TEMPLATES, root, today=day,
+                      now=datetime(day.year, day.month, day.day, 12, tzinfo=timezone.utc))
+    return reg
+
+
+LATER = TODAY + timedelta(days=3)
+
+
+def serving(entry_id: str, *families: str, day: date = TODAY):
+    return make(id=entry_id, name=entry_id.upper(), last_verified=day,
+                models=[{"family": f} for f in families])
+
+
+def test_a_model_page_stays_when_the_model_drops_below_the_bar(tmp_path):
+    """Two rows gave kimi-k3 its page; one row keeps serving it. The address was
+    published — a search engine indexed it, an answer cited it — and the model
+    is still free, so the page stays and says so, with the row that left and
+    the days it carried the model."""
+    _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
+    reg = _publish(tmp_path, [serving("a", "kimi-k3", day=LATER),
+                              serving("b", "glm-5", day=LATER)], LATER)
+    page = (tmp_path / MODELS_DIR / "kimi-k3.md").read_text(encoding="utf-8")
+    assert "**One row on the list serves `kimi-k3` free:** A." in page
+    before = page.split("## Rows that listed it before")[1]
+    assert f"- [B]({PAGES_URL}/providers/b/) — listed 2026-07-19 to 2026-07-22" in before
+    assert not [s for s in check_rendered(reg, TEMPLATES, tmp_path) if s.startswith(MODELS_DIR)]
+
+
+def test_a_model_no_row_serves_any_more_keeps_a_page_that_says_where_it_went(tmp_path):
+    """The page a reader lands on from an old link answers the question they
+    brought — is it still free? — instead of a 404: no longer, since when, where
+    it was, and every other model free today one link away."""
+    _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
+    reg = _publish(tmp_path, [serving("a", "glm-5", day=LATER),
+                              serving("b", "glm-5", day=LATER)], LATER)
+    page = (tmp_path / MODELS_DIR / "kimi-k3.md").read_text(encoding="utf-8")
+    meta = front(page)
+    assert meta["title"] == "kimi-k3 free: no longer free on the list, last listed 2026-07-22"
+    assert meta["last_modified_at"] == date(2026, 7, 22)
+    assert "# Where kimi-k3 was free" in page
+    assert ("**No row on the list serves `kimi-k3` free any more.** The list carried it at A "
+            "and B until 2026-07-22.") in page
+    assert f"- [A]({PAGES_URL}/providers/a/) — listed 2026-07-19 to 2026-07-22" in page
+    assert f"[Every free model]({PAGES_URL}/models/)" in page
+    import json
+    index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
+    assert {"family": "kimi-k3", "rows": [], "page": model_page_url("kimi-k3")} in index["models"]
+    models_index = (tmp_path / MODELS_DIR / "index.md").read_text(encoding="utf-8")
+    gone = models_index.split("## No longer free on the list")[1]
+    assert (f"| [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) | 2026-07-22 | "
+            f"[A]({PAGES_URL}/providers/a/), [B]({PAGES_URL}/providers/b/) |") in gone
+    assert not [s for s in check_rendered(reg, TEMPLATES, tmp_path) if s.startswith(MODELS_DIR)]
+
+
+def test_a_file_in_models_that_names_no_family_is_not_a_published_page(tmp_path):
+    """The directory is the record of what the site published, so a file the
+    render never wrote must not become a page: the check reports it, and the
+    render takes it away."""
+    reg = _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
+    (tmp_path / MODELS_DIR / "not-a-model.md").write_text("# Stray\n", encoding="utf-8")
+    assert f"{MODELS_DIR}/not-a-model.md" in check_rendered(reg, TEMPLATES, tmp_path)
+    _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
+    assert not (tmp_path / MODELS_DIR / "not-a-model.md").exists()
+    assert (tmp_path / MODELS_DIR / "kimi-k3.md").exists()
+
+
+def test_a_page_links_to_a_model_page_that_stays_as_well(tmp_path):
+    """A row's page, archived or not, names the families it listed; each one
+    that has a page links it, a kept page included."""
+    _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
+    _publish(tmp_path, [serving("a", "kimi-k3", day=LATER), serving("b", "glm-5", day=LATER)],
+             LATER)
+    row_page = (tmp_path / "providers" / "a.md").read_text(encoding="utf-8")
+    assert f"[`kimi-k3`]({PAGES_URL}/models/kimi-k3/)" in row_page
+
+
+def test_a_same_day_correction_is_not_a_stretch_the_model_was_listed(tmp_path):
+    """A family added and taken back on one day — Jules' on 2026-09-23 — was a
+    correction, not a day a reader could have used the model there."""
+    events = [at("2026-07-10", event="added", id="b", name="B", models=["kimi-k3"]),
+              at("2026-07-10", id="b", name="B", models=["glm-5"])]
+    page = build_model_page("kimi-k3", [serving("a", "kimi-k3"), serving("b", "glm-5")],
+                            events, TODAY)
+    assert "## Rows that listed it before" not in page

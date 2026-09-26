@@ -40,6 +40,11 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Callable ids: `coding-kimi-k3-free`
 
+## Rows that listed it before
+
+- [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25
+- [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/) — listed 2026-08-05 to 2026-08-14
+
 ---
 
 Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.

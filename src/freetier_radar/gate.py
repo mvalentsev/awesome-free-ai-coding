@@ -16,7 +16,9 @@ commit exists, from git's own hooks (`git config core.hooksPath .githooks`):
   ledger changes on main on the scheduled run and nowhere else, no log is
   rewritten, and the fields a probe earns (`last_verified`, `probe_failures`,
   `provisional`, `first_seen`) are never typed — a new row enters provisional,
-  dated the day it is added.
+  dated the day it is added. And no page the site has published is deleted:
+  a provider's or a model's address stays, and its page says what became of
+  its subject.
 - `commit-msg` refuses a subject with no kind and a body with no blank line
   before it.
 - `pre-push` runs the same checks on the commit being pushed, and the log and
@@ -44,10 +46,10 @@ from typing import Callable, Iterator
 import yaml
 
 from .history import block_problems, parse_history
-from .layout import MAP, Kind
+from .layout import MAP, Kind, node_for
 from .models import Entry
 
-__all__ = ["log_problems", "earned_problems", "message_problems", "history_problems",
+__all__ = ["log_problems", "earned_problems", "message_problems", "history_problems", "page_problems",
            "snapshot_index", "log_base", "committed_log", "pre_commit", "diff", "main"]
 
 LOGS = tuple(n.path for n in MAP if n.kind is Kind.LOG)
@@ -146,6 +148,21 @@ def earned_problems(before: list[Entry], after: list[Entry]) -> list[str]:
     return problems
 
 
+def page_problems(before: set[str], after: set[str]) -> list[str]:
+    """What a commit does to the pages the site has published (layout.Node.kept):
+    it may add them and never take one away. The render keeps every page it
+    published and says on it what became of its row or its model, so a page
+    that leaves the tree is one somebody deleted — and an address a search
+    engine indexed, or an answer cited, that would now answer 404."""
+    return [f"{path} is deleted — the site published this page, and a published page stays: "
+            "the render keeps it and says on it what became of its row or model; restore it"
+            for path in sorted(before - after)]
+
+
+def _kept(paths) -> set[str]:
+    return {p for p in paths if (node := node_for(p)) is not None and node.kept}
+
+
 def message_problems(text: str) -> list[str]:
     lines = [line for line in text.splitlines() if not line.startswith("#")]
     while lines and not lines[-1].strip():
@@ -178,6 +195,19 @@ def _registry(text: str | None) -> list[Entry]:
     if text is None:
         return []
     return [Entry.model_validate(e) for e in (yaml.safe_load(text) or {}).get("entries", [])]
+
+
+def _pages_at(repo: Path, rev: str) -> set[str]:
+    """The published pages a commit holds; none for a revision that does not exist yet."""
+    return _kept(_git(repo, "ls-tree", "-r", "--name-only", rev).stdout.splitlines())
+
+
+def _pages_staged(repo: Path) -> set[str]:
+    return _kept(_git(repo, "ls-files").stdout.splitlines())
+
+
+def _pages_on_disk(repo: Path) -> set[str]:
+    return _kept(p.relative_to(repo).as_posix() for n in MAP if n.kept for p in repo.glob(n.path))
 
 
 def _branch(repo: Path) -> str:
@@ -282,6 +312,7 @@ def pre_commit(repo: Path, steps: list[Step] | None = None) -> list[str]:
         problems = _run_steps(snap, steps)
     merging = _merging(repo)
     on_main = _branch(repo) == "main" and not merging
+    problems += page_problems(_pages_at(repo, "HEAD"), _pages_staged(repo))
     fork = log_base(repo)
     for name in LOGS:
         staged = _show(repo, "", name)
@@ -330,7 +361,7 @@ def diff(repo: Path, base: str, earned: bool) -> list[str]:
     """The log rules — and with `earned` the earned fields — between `base` and
     the working tree: for CI, and for the scheduled run before it commits."""
     base = _checked_from(repo, base, "HEAD")
-    problems = []
+    problems = page_problems(_pages_at(repo, base), _pages_on_disk(repo))
     for name in LOGS:
         now = (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
         problems += log_problems(name, _show(repo, base, name), now)
@@ -375,6 +406,7 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
         if base is None:
             continue
         base = _checked_from(repo, base, local)
+        problems += page_problems(_pages_at(repo, base), _pages_at(repo, local))
         for name in LOGS:
             problems += log_problems(name, _show(repo, base, name), _show(repo, local, name))
         problems += _history_by_commit(repo, base, local)

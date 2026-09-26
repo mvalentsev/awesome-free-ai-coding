@@ -38,6 +38,10 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Callable ids: `coding-glm-5.2-free`, `coding-glm-5.1-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`
 
+## Rows that listed it before
+
+- [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) — listed 2026-08-30 to 2026-09-22
+
 ## Related models
 
 - [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/) — free at AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS)

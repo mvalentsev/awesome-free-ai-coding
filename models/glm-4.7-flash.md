@@ -41,6 +41,10 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 - Callable ids: `glm-4.7-flash`
 - What you send is not used to train models ([the vendor's words](https://docs.z.ai/legal-agreement/terms-of-use)).
 
+## Rows that listed it before
+
+- [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-03; the row itself is archived
+
 ## Related models
 
 - [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/) — free at AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS)

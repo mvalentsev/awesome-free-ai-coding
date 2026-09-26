@@ -64,6 +64,10 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 - Callable ids: `Qwen3.6-27B`
 - What you send is not used to train models ([the vendor's words](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)).
 
+## Rows that listed it before
+
+- [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-09-02 to 2026-09-21
+
 ---
 
 Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.

@@ -590,12 +590,19 @@ as often as with a vendor: where is Kimi K3 free. A model page's title is that
 question, and its body is every live row that serves the model, in the list's
 order: what the row asks for, the day a probe last confirmed it, the day the
 list started carrying the model there, the limits in the vendor's words and the
-ids of that model to call. A model one row serves and nothing measures has no
-page — it would repeat the row's — and stays on the index beside the row. Every
-page under `providers/` and `models/` carries `last_modified_at`, the newest of
-its rows' verified dates and history lines, which Jekyll writes into the
-sitemap as `<lastmod>` and into the page's structured data as `dateModified`.
-**Never edit them by hand** either.
+ids of that model to call, then the rows that listed it before and the days
+they did. A model one row serves and nothing measures gets no page — it would
+repeat the row's — and stays on the index beside the row. **A page, once
+published, stays**: a model that falls below the bar keeps its page, and a model
+no row serves any more keeps one that says so in its title, since when, and
+which rows listed it — the list never takes back an address a search engine
+indexed or an answer cited, as it never deletes a row. The render reads the
+pages already in `models/` beside the registry to know which it published, and
+`freetier-gate` refuses a commit, a push or a run that deletes a page under
+`providers/` or `models/`. Every page under both carries `last_modified_at`, the
+newest of its rows' verified dates and history lines, which Jekyll writes into
+the sitemap as `<lastmod>` and into the page's structured data as
+`dateModified`. **Never edit them by hand** either.
 
 [`index.html`](index.html) is the site's own front page, rendered from the
 registry by the same command from [`templates/index.html.j2`](templates/index.html.j2)
@@ -680,8 +687,8 @@ cannot print two versions of it.
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
-| `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
-| `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model | `registry.yaml`, `history.jsonl` | `freetier-render` |
+| `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
+| `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
 | `assets/*.svg` | **page** — the banners and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
@@ -754,7 +761,8 @@ makes that the commit does not record; a commit on `main` that changes
 branch; and a hand edit of `last_verified`,
 `probe_failures`, `provisional` or `first_seen`, which only the run's probe
 writes — a new row enters provisional, with `first_seen` and `last_verified`
-both the day it is added. `commit-msg` wants a subject that starts with its
+both the day it is added; and a page the site published, under `providers/` or
+`models/`, deleted. `commit-msg` wants a subject that starts with its
 kind (`fix: …`) and a blank line before the body; `pre-push` runs the same
 checks on what is pushed, commit by commit. CI checks the logs again on every
 push and the earned fields on every pull request. CI never runs on the scheduled run's own commit,

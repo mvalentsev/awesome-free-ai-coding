@@ -40,6 +40,11 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 - Callable ids: `stepfun/step-3.7-flash:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
 
+## Rows that listed it before
+
+- [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
+- [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) — listed 2026-08-05 to 2026-08-30
+
 ---
 
 Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.

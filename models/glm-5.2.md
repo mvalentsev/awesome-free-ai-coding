@@ -40,6 +40,10 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 - Callable ids: `glm5.2`
 - What you send is not used to train models ([the vendor's words](https://regolo.ai/faq/)).
 
+## Rows that listed it before
+
+- [Scaleway Generative APIs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/) — listed 2026-07-19 to 2026-08-14; the row itself is archived
+
 ## Related models
 
 - [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/) — free at AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS)

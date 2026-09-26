@@ -40,6 +40,10 @@ Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GL
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
 - Callable ids: the row lists none for this model
 
+## Rows that listed it before
+
+- [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-09-02 to 2026-09-07
+
 ## Related models
 
 - [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS)

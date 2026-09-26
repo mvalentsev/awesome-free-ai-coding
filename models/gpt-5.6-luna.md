@@ -26,6 +26,10 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GP
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send is not used to train models ([the vendor's words](https://zed.dev/docs/ai/privacy-and-security)).
 
+## Rows that listed it before
+
+- [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-02 to 2026-09-23
+
 ## Related models
 
 - [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) — free at Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints

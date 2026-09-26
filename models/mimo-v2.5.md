@@ -38,6 +38,12 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Callable ids: `xiaomi-mimo-v2.5-free`, `xiaomi-mimo-v2.5-pro-free`
 
+## Rows that listed it before
+
+- [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-02 to 2026-09-22
+- [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/) — listed 2026-09-16 to 2026-09-22
+- [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/) — listed 2026-07-20 to 2026-07-27; the row itself is archived
+
 ---
 
 Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
