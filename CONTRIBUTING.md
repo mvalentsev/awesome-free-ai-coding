@@ -336,7 +336,10 @@ spends across the catalog — a signup credit, a grant of tokens every model dra
 on, a monthly allowance at each model's own price, Cloudflare's 10,000 neurons a
 day — no model is free by itself: the column stays empty, the prose says what
 the amount buys, and `api.model_ids` carries a few of the vendor's exact ids to
-paste. A cap counted the same on every model is not such an amount but the limit
+paste. A connectable row whose vendor names no id a request carries — its
+catalog answers only a key, and no page it publishes lists them — says so in
+`api.no_ids`, and its page checks a reader's key against that catalog instead;
+`freetier-check` refuses a connectable row with neither. A cap counted the same on every model is not such an amount but the limit
 of a free tier: Cohere's trial keys are "limited to 1,000 API calls a month" and
 Regolo's trial to a million tokens a day, whichever model answers. Mistral's $10
 a month, Hugging Face's credits and Fireworks' starter credit were read that way

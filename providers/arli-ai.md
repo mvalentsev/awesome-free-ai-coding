@@ -37,7 +37,15 @@ What you send is not used to train models. In the vendor's words: “By submitti
 
 - Base URL: `https://api.arliai.com/v1`
 - Key: `ARLI_AI_API_KEY` — get one at <https://www.arliai.com/account>
+- Callable ids: none listed — its public catalog names models by display name, and /v1/models, which holds the ids a request carries, answers only a key
 - Note: the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key. The Models column stays empty: the docs page the probe reads names no model, and the trial covers every catalog row alike
+
+Check your key from your terminal — with it in `ARLI_AI_API_KEY`, the vendor's catalog lists the models it can call:
+
+```sh
+curl -s https://api.arliai.com/v1/models \
+  -H "Authorization: Bearer $ARLI_AI_API_KEY"
+```
 
 ## Evidence
 

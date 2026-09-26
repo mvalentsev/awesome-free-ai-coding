@@ -1935,3 +1935,18 @@ def test_a_provider_page_offers_the_call_that_checks_a_key_in_the_readers_own_te
     odd = build_provider_page(make(id="odd", api={
         "base_url": "https://x.ai/api", "openai_compatible": False, "model_ids": ["x-1"]}), [], TODAY)
     assert "Try it from your terminal" not in odd
+
+
+def test_a_row_that_can_list_no_id_says_why_and_checks_the_key_on_the_catalog():
+    """Where the vendor publishes no id a request carries, the page says why,
+    and the key is checked against the catalog, which answers only a key."""
+    import pytest
+    from pydantic import ValidationError
+    from freetier_radar.render import build_provider_page, env_var
+    page = build_provider_page(make(id="shy", api={
+        "base_url": "https://s.ai/v1/", "no_ids": "the catalog answers only a key"}), [], TODAY)
+    assert "- Callable ids: none listed — the catalog answers only a key" in page
+    assert ("```sh\ncurl -s https://s.ai/v1/models \\\n"
+            f'  -H "Authorization: Bearer ${env_var("shy")}"\n```') in page
+    with pytest.raises(ValidationError, match="no_ids"):
+        make(id="both", api={"base_url": "https://s.ai/v1", "model_ids": ["s-1"], "no_ids": "none"})

@@ -1847,6 +1847,8 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
                    f"`{api.anthropic_base_url}`")
     if ids:
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
+    elif api.no_ids:
+        out.append(f"- Callable ids: none listed — {api.no_ids}")
     return out
 
 
@@ -1867,10 +1869,17 @@ def _try_it(e: Entry) -> list[str]:
     client-side code". Here the key never leaves the reader's machine: the
     command reads it from the environment variable the configs name."""
     api = e.api
-    if not (api and api.base_url and api.openai_compatible and api.model_ids):
+    if not (api and api.base_url and api.openai_compatible and (api.model_ids or api.no_ids)):
         return []
     key = (None if api.key_kind == "none" else api.public_key if api.key_kind == "public"
            else f"${env_var(e.id)}")
+    if not api.model_ids:
+        # No id to call: the catalog, which answers only a key, is the check
+        # the vendor itself points at.
+        return [f"Check your key from your terminal — with it in `{env_var(e.id)}`, the "
+                "vendor's catalog lists the models it can call:", "", "```sh",
+                f"curl -s {api.base_url.rstrip('/')}/models \\\n"
+                f'  -H "Authorization: Bearer {key}"', "```", ""]
     said = ("Try it from your terminal — the lane takes no key:" if key is None else
             "Try it from your terminal — the key is the vendor's printed one:"
             if api.key_kind == "public" else

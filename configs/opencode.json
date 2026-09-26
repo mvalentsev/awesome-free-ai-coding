@@ -891,7 +891,14 @@
         "baseURL": "https://api.mistral.ai/v1",
         "apiKey": "{env:MISTRAL_API_KEY}"
       },
-      "models": {}
+      "models": {
+        "mistral-large-latest": {
+          "name": "mistral-large-latest"
+        },
+        "mistral-medium-latest": {
+          "name": "mistral-medium-latest"
+        }
+      }
     },
     "vlm-run-gateway": {
       "npm": "@ai-sdk/openai-compatible",
@@ -952,7 +959,17 @@
         "baseURL": "https://router.huggingface.co/v1",
         "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
       },
-      "models": {}
+      "models": {
+        "openai/gpt-oss-120b": {
+          "name": "openai/gpt-oss-120b"
+        },
+        "Qwen/Qwen3.8-27B": {
+          "name": "Qwen/Qwen3.8-27B"
+        },
+        "zai-org/GLM-5.3-Flash": {
+          "name": "zai-org/GLM-5.3-Flash"
+        }
+      }
     },
     "upstage": {
       "npm": "@ai-sdk/openai-compatible",

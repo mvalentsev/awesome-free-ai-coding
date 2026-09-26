@@ -33,7 +33,15 @@ The vendor names no country it keeps the offer from ([source](https://www.experi
 
 - Base URL: `https://api.experientiallabs.ai/v1`
 - Key: `EXPERIENTIAL_LABS_API_KEY` — get one at <https://platform.experientiallabs.ai>
+- Callable ids: none listed — its /v1/models answers only a gateway key, and no page it publishes says which name a request carries
 - Note: the catalog at /v1/models answers only a gateway key; the model list with prices is public at platform.experientiallabs.ai/models
+
+Check your key from your terminal — with it in `EXPERIENTIAL_LABS_API_KEY`, the vendor's catalog lists the models it can call:
+
+```sh
+curl -s https://api.experientiallabs.ai/v1/models \
+  -H "Authorization: Bearer $EXPERIENTIAL_LABS_API_KEY"
+```
 
 ## Evidence
 

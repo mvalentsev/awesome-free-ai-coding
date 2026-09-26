@@ -37,7 +37,17 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://api.mistral.ai/v1`
 - Key: `MISTRAL_API_KEY` — get one at <https://console.mistral.ai/api-keys>
-- Note: Free mode is on by default for a new account; create the key under Studio › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's Vibe budget, which Mistral tells API users to avoid
+- Callable ids: `mistral-large-latest`, `mistral-medium-latest`
+- Note: Free mode is on by default for a new account; create the key under Studio › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's Vibe budget, which Mistral tells API users to avoid. The ids are the ones Mistral's own API quickstart and docs call
+
+Try it from your terminal with your key in `MISTRAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.mistral.ai/v1/chat/completions \
+  -H "Authorization: Bearer $MISTRAL_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"mistral-large-latest","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
 
 ## Evidence
 

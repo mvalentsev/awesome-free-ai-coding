@@ -33,11 +33,21 @@ The vendor names no country it keeps the offer from ([source](https://huggingfac
 
 - Base URL: `https://router.huggingface.co/v1`
 - Key: `HUGGINGFACE_INFERENCE_API_KEY` — get one at <https://huggingface.co/settings/tokens>
-- Note: chat-only; model ids namespaced (openai/gpt-oss-120b)
+- Callable ids: `openai/gpt-oss-120b`, `Qwen/Qwen3.8-27B`, `zai-org/GLM-5.3-Flash`
+- Note: chat-only; model ids namespaced — three examples from the router's own catalog of 138, which the run reads back; the credit spends on any of them
+
+Try it from your terminal with your key in `HUGGINGFACE_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://router.huggingface.co/v1/chat/completions \
+  -H "Authorization: Bearer $HUGGINGFACE_INFERENCE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"openai/gpt-oss-120b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
 
 ## Evidence
 
-- Probe: the page at <https://huggingface.co/docs/inference-providers/pricing>, anchored on `monthly credits`, `$0.10, subject to change`
+- Probe: the page at <https://huggingface.co/docs/inference-providers/pricing>, anchored on `monthly credits`, `$0.10, subject to change`; ids checked in <https://router.huggingface.co/v1/models>
 - Source: <https://huggingface.co/docs/inference-providers/pricing>
 
 ## History

@@ -236,6 +236,18 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 f"registry: {e.id} names families but no api.model_ids — the configs call ids, "
                 f"never family names; list the vendor's exact ids")
 
+    # And any live connectable row lists an id, or says why it cannot: the
+    # configs are written from the ids and the row's page checks a reader's key
+    # with a call to one. Three rows whose free part is a sum had none until
+    # 2026-09-26, though CONTRIBUTING says such a row keeps a few to paste, and
+    # nothing asked.
+    for e in entries:
+        if (e.api and e.api.base_url and e.api.openai_compatible and not e.api.model_ids
+                and not e.api.no_ids and not is_archived(e, today)):
+            problems.append(
+                f"registry: {e.id} lists no api.model_ids — list a few of the vendor's exact "
+                f"ids, or say in api.no_ids why no page it publishes names them")
+
     for e in entries:
         if e.last_verified > today:
             problems.append(f"registry: {e.id} last_verified {e.last_verified} is in the future")

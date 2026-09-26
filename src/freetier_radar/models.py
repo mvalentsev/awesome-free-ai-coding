@@ -474,6 +474,15 @@ class ApiInfo(BaseModel):
     # Ids in model_ids that an older record than this registry shows free, with
     # the day and the record, so freetier-bars counts their bar from there.
     free_since: list[FreeSince] = Field(default_factory=list, exclude_if=lambda v: not v)
+    # Why the row lists no id to call, where it can list none: the vendor's
+    # catalog answers only a key and no page it publishes names the ids
+    # (SenseNova keeps them in a JavaScript console). Every other connectable
+    # row carries at least one — the configs are written from them, and the
+    # row's page checks a reader's key with a call to one. Until 2026-09-26
+    # nothing asked: three rows whose free part is a sum to spend had none,
+    # though CONTRIBUTING says such a row keeps a few to paste. Written only
+    # where set.
+    no_ids: str = Field(default="", exclude_if=lambda v: not v)
     # The base of the vendor's Anthropic-format Messages API — the value Claude
     # Code's ANTHROPIC_BASE_URL takes, the client appending /v1/messages itself.
     # Set only where the vendor documents the route, never from a 401 alone:
@@ -604,6 +613,16 @@ class ApiInfo(BaseModel):
     def _session_header_needs_an_endpoint(self) -> ApiInfo:
         if self.session_header and not self.base_url:
             raise ValueError("session_header says how to call base_url, and there is no base_url")
+        return self
+
+    @model_validator(mode="after")
+    def _no_ids_is_a_reason_for_none(self) -> ApiInfo:
+        if self.no_ids and self.model_ids:
+            raise ValueError("api.no_ids says why the row lists no id, and model_ids lists some — "
+                             "take one of the two out")
+        if self.no_ids and not self.base_url:
+            raise ValueError("api.no_ids says why base_url has no id to call, and there is no "
+                             "base_url")
         return self
 
     @field_validator("anthropic_base_url")

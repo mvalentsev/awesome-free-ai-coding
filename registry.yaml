@@ -315,10 +315,13 @@ entries:
     key_url: https://console.mistral.ai/api-keys
     auth: api-key
     openai_compatible: true
-    model_ids: []
+    model_ids:
+    - mistral-large-latest
+    - mistral-medium-latest
     note: Free mode is on by default for a new account; create the key under Studio
       › API Keys. A key made under Code › Vibe CLI is a plan key that spends the plan's
-      Vibe budget, which Mistral tells API users to avoid
+      Vibe budget, which Mistral tells API users to avoid. The ids are the ones Mistral's
+      own API quickstart and docs call
   data_use:
     trains: opt-out
     quote: As stated during subscription, we may use your data (input and output)
@@ -1655,8 +1658,12 @@ entries:
     key_url: https://huggingface.co/settings/tokens
     auth: api-key
     openai_compatible: true
-    model_ids: []
-    note: chat-only; model ids namespaced (openai/gpt-oss-120b)
+    model_ids:
+    - openai/gpt-oss-120b
+    - Qwen/Qwen3.8-27B
+    - zai-org/GLM-5.3-Flash
+    note: chat-only; model ids namespaced — three examples from the router's own catalog
+      of 138, which the run reads back; the credit spends on any of them
   border:
     left_out: []
     'on': '2026-09-26'
@@ -1670,6 +1677,7 @@ entries:
     free_marker: ''
     dead_markers: []
     require_zero_price: false
+    catalog: https://router.huggingface.co/v1/models
     machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-09-24'
@@ -1705,6 +1713,8 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids: []
+    no_ids: its /v1/models answers only a gateway key, and no page it publishes says
+      which name a request carries
     note: the catalog at /v1/models answers only a gateway key; the model list with
       prices is public at platform.experientiallabs.ai/models
   border:
@@ -2962,6 +2972,8 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids: []
+    no_ids: the ids live only in the vendor's JavaScript console, and /v1/models answers
+      only a key
     note: the base url is not printed on any server-rendered page — it is taken from
       the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models
       answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable
@@ -4833,6 +4845,8 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids: []
+    no_ids: its public catalog names models by display name, and /v1/models, which
+      holds the ids a request carries, answers only a key
     note: 'the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses
       a placeholder model id; the catalog''s names are the models page''s, and the
       coding quick-start connects Roo Code and Kilo Code with a context window set

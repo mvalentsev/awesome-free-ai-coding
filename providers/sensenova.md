@@ -33,7 +33,15 @@ Offered only in mainland China ([source](https://platform.sensenova.cn/login), r
 
 - Base URL: `https://token.sensenova.cn/v1`
 - Key: `SENSENOVA_API_KEY` — get one at <https://platform.sensenova.cn>
+- Callable ids: none listed — the ids live only in the vendor's JavaScript console, and /v1/models answers only a key
 - Note: the base url is not printed on any server-rendered page — it is taken from the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable ids live only in that JavaScript console, which no probe here can read, so none are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone.
+
+Check your key from your terminal — with it in `SENSENOVA_API_KEY`, the vendor's catalog lists the models it can call:
+
+```sh
+curl -s https://token.sensenova.cn/v1/models \
+  -H "Authorization: Bearer $SENSENOVA_API_KEY"
+```
 
 ## Evidence
 

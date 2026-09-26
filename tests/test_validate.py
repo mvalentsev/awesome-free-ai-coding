@@ -547,3 +547,17 @@ def test_the_registry_is_kept_in_the_form_the_tools_write_it(tmp_path: Path):
 def test_the_committed_repository_holds_to_its_map_its_claims_and_its_form():
     from freetier_radar.validate import check_repository
     assert check_repository(Path(__file__).resolve().parent.parent) == []
+
+
+def test_a_connectable_row_lists_an_id_or_says_why_it_cannot(tmp_path: Path):
+    """The configs are written from api.model_ids and the row's page checks a
+    reader's key with a call to one. Three rows whose free part is a sum had
+    none until 2026-09-26, though CONTRIBUTING says such a row keeps a few to
+    paste — so a live connectable row without ids is a problem unless
+    `api.no_ids` says why the vendor names none."""
+    bare = {**ENTRY, "models": [], "free_part": "sum", "api": {"base_url": "https://x.ai/v1"}}
+    problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
+    assert any(p.startswith("registry: x lists no api.model_ids") for p in problems), problems
+    said = {**bare, "api": {"base_url": "https://x.ai/v1", "no_ids": "the catalog answers only a key"}}
+    problems = check(build(tmp_path, entries=[said], watched=[WATCHED]), TODAY)
+    assert not any("api.model_ids" in p for p in problems), problems

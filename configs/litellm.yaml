@@ -1054,6 +1054,16 @@ model_list:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
     api_base: https://api.tokenrouter.com/v1
     api_key: os.environ/TOKENROUTER_API_KEY
+- model_name: mistral-free/mistral-large-latest
+  litellm_params:
+    model: openai/mistral-large-latest
+    api_base: https://api.mistral.ai/v1
+    api_key: os.environ/MISTRAL_API_KEY
+- model_name: mistral-free/mistral-medium-latest
+  litellm_params:
+    model: openai/mistral-medium-latest
+    api_base: https://api.mistral.ai/v1
+    api_key: os.environ/MISTRAL_API_KEY
 - model_name: cohere/north-mini-code-1-0
   litellm_params:
     model: openai/north-mini-code-1-0
@@ -1094,6 +1104,21 @@ model_list:
     model: openai/command-r7b-12-2024
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
+- model_name: huggingface-inference/openai/gpt-oss-120b
+  litellm_params:
+    model: openai/openai/gpt-oss-120b
+    api_base: https://router.huggingface.co/v1
+    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
+- model_name: huggingface-inference/Qwen/Qwen3.8-27B
+  litellm_params:
+    model: openai/Qwen/Qwen3.8-27B
+    api_base: https://router.huggingface.co/v1
+    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
+- model_name: huggingface-inference/zai-org/GLM-5.3-Flash
+  litellm_params:
+    model: openai/zai-org/GLM-5.3-Flash
+    api_base: https://router.huggingface.co/v1
+    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
 - model_name: upstage/solar-pro4
   litellm_params:
     model: openai/solar-pro4
