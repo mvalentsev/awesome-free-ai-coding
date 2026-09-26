@@ -27,7 +27,8 @@ def test_browse_page_is_self_contained_and_reads_index_json_beside_itself():
 def test_browse_page_reads_only_fields_index_json_publishes():
     html = _html()
     full = make(card_required=True, provisional=True,
-                models=[{"family": "a", "tier": "frontier"},
+                models=[{"family": "a", "tier": "frontier", "aa_model": "a"},
+                        {"family": "b", "tier": "notable", "aa_model": "b"},
                         {"family": "old", "superseded_by": "a"}],
                 api={"base_url": "https://x.ai/v1", "auth": "api-key", "openai_compatible": True,
                      "key_url": "https://x.ai/keys", "model_ids": ["a"],

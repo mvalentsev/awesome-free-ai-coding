@@ -218,13 +218,19 @@ async def test_write_measures_a_bare_family_the_board_scores_by_its_own_name(tmp
     a model below every bar is left as it is."""
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
     registry = tmp_path / "registry.yaml"
+    gone = entry("gone", {"family": "glm-5.3"})
+    gone.retired_on = date(2026, 9, 1)
     save_registry(registry, [
         entry("a", {"family": "glm-5.3"}, {"family": "nvidia-nemotron-3-ultra-550b-a55b"}),
         entry("b", {"family": "glm-5.3"}),
+        # an archived row carrying the family is measured with it: a family is
+        # one model, and freetier-check holds every row that names it to one slug
+        gone,
     ])
     assert await _amain(registry, write=True) == 0
     marks = {(e.id, m.family): (m.aa_model, m.tier) for e in load_registry(registry) for m in e.models}
     assert marks == {("a", "glm-5.3"): ("glm-5-3", Tier.FRONTIER),
                      ("a", "nvidia-nemotron-3-ultra-550b-a55b"): (None, None),
-                     ("b", "glm-5.3"): ("glm-5-3", Tier.FRONTIER)}
+                     ("b", "glm-5.3"): ("glm-5-3", Tier.FRONTIER),
+                     ("gone", "glm-5.3"): ("glm-5-3", Tier.FRONTIER)}
     assert "glm-5.3: measured as glm-5-3 — 44.9, frontier" in capsys.readouterr().out
