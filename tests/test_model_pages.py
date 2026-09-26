@@ -484,3 +484,21 @@ def test_a_same_day_correction_is_not_a_stretch_the_model_was_listed(tmp_path):
     page = build_model_page("kimi-k3", [serving("a", "kimi-k3"), serving("b", "glm-5")],
                             events, TODAY)
     assert "## Rows that listed it before" not in page
+
+
+def test_every_chip_on_the_site_that_names_a_model_with_a_page_links_it(tmp_path):
+    """The agents up top, the picks, the strong models and every row's card
+    name models in chips; a chip for a model with a page is a link to it, and
+    one for a model without stays text."""
+    import re
+    from freetier_radar.render import SITE_PAGE, render_site
+    entries = [make(id="a", name="A", rank=1, category="agent-cli",
+                    models=[{"family": "kimi-k3"}, {"family": "solo"}]),
+               make(id="b", name="B", rank=2, models=[{"family": "kimi-k3"},
+                                                      {"family": "glm-5.3", **STRONG}])]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, entries)
+    html = render_site(reg, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY)
+    assert not re.search(r'<span class="chip[^"]*">(kimi-k3|glm-5\.3)</span>', html)
+    assert html.count(f'<a class="chip" href="{PAGES_URL}/models/kimi-k3/">kimi-k3</a>') >= 3
+    assert '<span class="chip">solo</span>' in html

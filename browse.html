@@ -75,6 +75,8 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   var els = {};
   ["q", "cat", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
   var entries = [];
+  // A model's own page, where it has one: index.json's `models` names each.
+  var modelPages = {};
 
   function families(e) {
     return (e.models || []).filter(function (m) { return !m.superseded_by; });
@@ -154,7 +156,14 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     var models = el("td");
     var fams = families(e);
     fams.forEach(function (m, i) {
-      models.appendChild(el("span", m.tier === "frontier" ? "frontier" : "", m.family));
+      var name = el("span", m.tier === "frontier" ? "frontier" : "", m.family);
+      if (modelPages[m.family]) {
+        var link = el("a");
+        link.href = modelPages[m.family];
+        link.appendChild(name);
+        name = link;
+      }
+      models.appendChild(name);
       if (i < fams.length - 1) models.appendChild(text(", "));
     });
     if (!fams.length) models.appendChild(el("span", "muted", "—"));
@@ -225,6 +234,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     if (!response.ok) throw new Error("HTTP " + response.status);
     return response.json();
   }).then(function (data) {
+    (data.models || []).forEach(function (x) { if (x.page) modelPages[x.family] = x.page; });
     entries = data.entries.slice().sort(function (a, b) {
       var ka = sortKey(a), kb = sortKey(b);
       for (var i = 0; i < ka.length; i++) {

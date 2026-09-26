@@ -891,8 +891,8 @@ def _shared_facts(entries: list[Entry], today: date,
     # trae and inception-labs, both mid-re-anchor, were holding it there.
     verified_through = _oldest_verified(active, today)
     colour = badge_colour(verified_through, today)
-    model_index = _model_index(active, model_pages(entries, [], today) if pages is None
-                               else pages)
+    pages = model_pages(entries, [], today) if pages is None else pages
+    model_index = _model_index(active, pages)
     anthropic = _anthropic_ready(entries, today)
     return {
         "date": today.isoformat(),
@@ -910,6 +910,9 @@ def _shared_facts(entries: list[Entry], today: date,
         "model_index": model_index,
         "models_url": models_index_url(),
         "model_page_rule": _model_page_rule(),
+        # Every model with a page and its address: each place a page names a
+        # model links its page (the site's `chip` macro reads this).
+        "model_pages": {f: model_page_url(f) for f in sorted(pages)},
         "strong_models": _strong_models(active),
         "starters": _starters(active),
         "picks": _picks(active, connectable),
@@ -1246,9 +1249,10 @@ def _llms_line(e: Entry) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append(_card_words(e))
     if e.data_use is not None:
-        parts.append({"yes": "what you send may be used to train models",
-                      "opt-out": "what you send may be used to train models unless you opt out",
-                      "no": "what you send is not used to train models"}[e.data_use.trains])
+        # The row page's own sentence, as a clause: one wording of what the
+        # vendor does with what a reader sends, wherever the list says it.
+        said = DATA_USE_WORDS[e.data_use.trains].rstrip(".")
+        parts.append(said[:1].lower() + said[1:])
     api = e.api
     if api and api.base_url:
         if api.key_kind == "none":
@@ -1939,7 +1943,8 @@ def build_providers_index(entries: list[Entry], today: date,
                                                    for e in entries), default=today)}),
            "{% raw %}", "", "# Every provider, one page each", "",
            f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
-           f"row is re-verified {_schedule()}, and an archived one says why it left.", ""]
+           f"row is re-verified {_schedule()}, and an archived one says why it left. Every free "
+           f"model and the rows that serve it are on [the model index]({models_index_url()}).", ""]
     live = [e for e in entries if not is_archived(e, today)]
     archived = _archive(entries, today)
     pages = model_pages(entries, events or [], today) if pages is None else pages

@@ -708,8 +708,10 @@ def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_
     llms = build_llms_txt([yes, optout, no, silent], TODAY).splitlines()
     parts = {name: next(x for x in llms if x.startswith(f"- [{name}]")).split("; ")
              for name in ("Yes", "OptOut", "No", "Silent")}
-    assert "what you send may be used to train models" in parts["Yes"]
-    assert "what you send may be used to train models unless you opt out" in parts["OptOut"]
+    # The row page's sentence, as a clause — one wording wherever it is said.
+    assert "what you send may be used to train or improve models" in parts["Yes"]
+    assert ("what you send may be used to train or improve models unless you turn that off"
+            in parts["OptOut"])
     assert "what you send is not used to train models" in parts["No"]
     assert not any("train" in p for p in parts["Silent"])
 

@@ -5,6 +5,11 @@
    data that a Markdown file served through kramdown cannot carry. Nothing here
    is typed by hand: every figure, row and model id comes out of the registry on
    the run that renders it. #}
+{# A model as the page names it: a link to its own page where it has one — every
+   place this page names a model, so none is a dead end. #}
+{% macro chip(family, top=False) -%}
+{% if family in model_pages %}<a class="chip{{ ' top' if top }}" href="{{ model_pages[family] }}">{{ family }}</a>{% else %}<span class="chip{{ ' top' if top }}">{{ family }}</span>{% endif %}
+{%- endmacro %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -126,6 +131,10 @@ section > .wrap > header { margin-bottom: 18px; }
   color: var(--fg); }
 .chip.top { border-color: color-mix(in srgb, var(--accent-2) 55%, var(--line));
   color: var(--accent-2); }
+/* A chip that opens a page reads as a link: the model's own page, or a row's
+   families past the eighth. A frontier chip keeps its colour. */
+a.chip:not(.top) { color: var(--accent); }
+a.chip:hover { border-color: currentColor; text-decoration: none; }
 
 /* ── tables ───────────────────────────────────────────────────────────── */
 .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--raised); }
@@ -299,7 +308,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <h3>Agent · no card</h3>
         <div class="who"><a href="{{ s.url }}">{{ s.name }}</a></div>
         <div class="chips">
-          {% for f in s.families %}<span class="chip">{{ f }}</span>{% endfor %}{% if s.more %}<a class="chip" href="{{ s.page }}">+{{ s.more }} more</a>{% endif %}
+          {% for f in s.families %}{{ chip(f) }}{% endfor %}{% if s.more %}<a class="chip" href="{{ s.page }}">+{{ s.more }} more</a>{% endif %}
         </div>
       </div>
       {% endfor %}
@@ -319,7 +328,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <tbody>
           {% for m in strong_models %}
           <tr>
-            <th scope="row"><a class="chip{{ ' top' if m.frontier }}" href="{{ m.page }}">{{ m.family }}</a></th>
+            <th scope="row">{{ chip(m.family, m.frontier) }}</th>
             <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}</td>
           </tr>
           {% endfor %}
@@ -335,7 +344,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <ul>
           {% for p in picks.frontier %}
           <li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span>
-            <div class="chips">{% for f in p.families %}<span class="chip top">{{ f }}</span>{% endfor %}</div>
+            <div class="chips">{% for f in p.families %}{{ chip(f, True) }}{% endfor %}</div>
           </li>
           {% endfor %}
         </ul>
@@ -452,9 +461,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
             <td class="models" data-label="Free models">
               {% if r.models %}
               <div class="chips">
-                {% for m in r.models %}<span class="chip{{ ' top' if m.tier == 'frontier' }}">{{ m.family }}</span>{% endfor %}
+                {% for m in r.models %}{{ chip(m.family, m.tier == 'frontier') }}{% endfor %}
                 {% if r.more_models %}<details class="more"><summary class="chip">+{{ r.more_models | length }} more</summary><div class="chips">
-                  {% for m in r.more_models %}<span class="chip{{ ' top' if m.tier == 'frontier' }}">{{ m.family }}</span>{% endfor %}
+                  {% for m in r.more_models %}{{ chip(m.family, m.tier == 'frontier') }}{% endfor %}
                 </div></details>{% endif %}
               </div>
               {% else %}<span class="empty">—</span>{% endif %}

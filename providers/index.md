@@ -10,7 +10,7 @@ last_modified_at: 2026-09-25
 
 # Every provider, one page each
 
-Each page is generated from the same registry as [the list](https://mvalentsev.github.io/awesome-free-ai-coding/); a live row is re-verified twice a week, and an archived one says why it left.
+Each page is generated from the same registry as [the list](https://mvalentsev.github.io/awesome-free-ai-coding/); a live row is re-verified twice a week, and an archived one says why it left. Every free model and the rows that serve it are on [the model index](https://mvalentsev.github.io/awesome-free-ai-coding/models/).
 
 | Provider | Section | Free models | Last verified |
 |---|---|---|---|

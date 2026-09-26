@@ -75,3 +75,15 @@ def test_browse_page_leaves_a_folded_row_to_the_row_that_holds_the_service():
                   delisted={"on": TODAY, "reason": "the same project as MiMo Code"})
     row, = build_index([folded], TODAY)["entries"]
     assert row["duplicate_of"] == "mimo-code"
+
+
+def test_browse_page_links_a_model_to_its_page_from_the_index():
+    """A model name in the table links the model's own page, read from
+    index.json's `models` — only the fields that list publishes."""
+    html = _html()
+    assert "data.models" in html
+    used = set(re.findall(r"\bx\.([a-z_]+)\b", html))
+    index = build_index([make(id="a", models=[{"family": "kimi-k3"}]),
+                         make(id="b", models=[{"family": "kimi-k3"}])], TODAY)
+    fields = {k for m in index["models"] for k in m}
+    assert used == {"family", "page"} and used <= fields, used - fields
