@@ -77,7 +77,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # call them. A refusal is the offer itself, so it outranks every
         # note below; a note of its own waits for them.
         keyless = None
-        if (entry.api and (entry.api.auth == "none" or entry.api.public_key)
+        if (entry.api and entry.api.key_kind in ("none", "public")
                 and entry.api.model_ids):
             keyless = await keyless_lane_verdict(client, entry, attempts, backoff,
                                                  today or date.today())

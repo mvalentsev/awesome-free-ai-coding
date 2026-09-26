@@ -404,7 +404,24 @@ def env_var(entry_id: str) -> str:
 def needs_no_account(e: Entry) -> bool:
     """Whether a reader calls the lane without making an account: it takes no
     key, or the vendor prints one for anyone (`api.public_key`)."""
-    return bool(e.api) and (e.api.auth == "none" or e.api.public_key is not None)
+    return bool(e.api) and e.api.key_kind in ("none", "public")
+
+
+# Why a config written once — litellm.yaml, opencode.json, claude-code.sh —
+# cannot carry an ask (models.ASKS), or None where it can: a client names
+# itself on every request it sends, but a stable id per conversation is the
+# calling client's to make up, and a static file would pin one id for every
+# conversation. Every table keyed by the asks is held to ASKS by the tests.
+ASK_CONFIG: dict[str, str | None] = {
+    "user-agent": None,
+    "session-header": ("every request needs a stable id per conversation in {}, which a static "
+                       "config cannot supply"),
+}
+
+
+def _static_blockers(e: Entry) -> list[str]:
+    """Why a config written once cannot call the row's lane; none where it can."""
+    return [ASK_CONFIG[name].format(value) for name, value in e.api.asks() if ASK_CONFIG[name]]
 
 
 def _connectable(entries: list[Entry], today: date) -> list[Entry]:
@@ -427,11 +444,7 @@ def _configurable(entries: list[Entry], today: date) -> list[Entry]:
     it sends no other vendor's header. Those rows are connected by a client that
     sends the header, and the connection table, the provider page, the env
     example and llms.txt say which header."""
-    return [e for e in _connectable(entries, today) if not e.api.session_header]
-
-
-def _session_note(header: str) -> str:
-    return f"`{header}` per conversation"
+    return [e for e in _connectable(entries, today) if not _static_blockers(e)]
 
 
 def _notice_since(notice: Notice) -> str:
@@ -650,14 +663,13 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
     typed into the template, or it would outlive the entry it describes.
     """
     for e in connectable:
-        if e.api.auth == "none" and e.api.model_ids:
+        if e.api.key_kind == "none" and e.api.model_ids:
             notice = e.api.notice
             start = {"name": e.name, "url": e.url,
                      "base_url": e.api.base_url.rstrip("/"),
                      "model_id": e.api.model_ids[0],
                      "note": e.api.note,
-                     "session_header": e.api.session_header or "",
-                     "user_agent": QUICKSTART_USER_AGENT if e.api.client_user_agent else "",
+                     "asks": e.api.asks(),
                      # The command stays on the page while the list waits for the
                      # vendor, so the page says, right under it, that it does not
                      # work and since when.
@@ -681,13 +693,15 @@ def _quickstart_curl(start: dict) -> str:
     """
     lines = [f"curl -s {start['base_url']}/chat/completions \\",
              "  -H 'Content-Type: application/json' \\"]
-    if start["user_agent"]:
-        lines.append(f"  -H 'User-Agent: {start['user_agent']}' \\")
-    if start["session_header"]:
-        lines.append(f'  -H "{start["session_header"]}: quickstart-$RANDOM$RANDOM" \\')
+    lines += [_ASK_CURL[name].format(value) for name, value in start["asks"]]
     lines.append(f"""  -d '{{"model":"{start['model_id']}","messages":"""
                  """[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'""")
     return "\n".join(lines)
+
+
+# Each ask as a header line of the quickstart's curl.
+_ASK_CURL = {"user-agent": "  -H 'User-Agent: " + QUICKSTART_USER_AGENT + "' \\",
+             "session-header": '  -H "{}: quickstart-$RANDOM$RANDOM" \\'}
 
 
 def _watch_rows(watchlist: list[Watched], today: date) -> list[dict]:
@@ -813,21 +827,23 @@ def build_feed(events: list[Event], today: date, limit: int = FEED_ENTRIES,
     return "\n".join(out) + "\n"
 
 
+# Each ask as the connection table's cell says it, beside the key.
+_ASK_CELL = {"user-agent": "your client's own `User-Agent`",
+             "session-header": "`{}` per conversation"}
+
+
 def _auth_cell(e: Entry) -> str:
     """What a client sends to be let in: the key, or none, the key the vendor
     prints for anyone where it prints one, and whatever else the vendor asks
     every request to carry."""
-    cell = "—" if e.api.auth == "none" else f"`{env_var(e.id)}`"
+    kind = e.api.key_kind
+    cell = "—" if kind == "none" else f"`{env_var(e.id)}`"
     subs = []
-    if e.api.public_key:
+    if kind == "public":
         subs.append(f"no account: the vendor prints one for anyone, `{e.api.public_key}`")
-    asks = []
-    if e.api.client_user_agent:
-        asks.append("your client's own `User-Agent`")
-    if e.api.session_header:
-        asks.append(_session_note(e.api.session_header))
+    asks = [_ASK_CELL[name].format(value) for name, value in e.api.asks()]
     if asks:
-        subs.append(("" if e.api.auth == "none" else "and ") + " and ".join(asks))
+        subs.append(("" if kind == "none" else "and ") + " and ".join(asks))
     if not subs:
         return cell
     return cell + "<br><sub>" + "; ".join(subs) + "</sub>"
@@ -946,7 +962,7 @@ def build_context(entries: list[Entry], today: date,
          "anthropic_base_url": e.api.anthropic_base_url or "",
          "auth": _auth_cell(e),
          "key_url": e.api.key_url or "",
-         "keyless": e.api.auth == "none",
+         "keyless": e.api.key_kind == "none",
          "note": _connection_note(e)}
         for e in _connectable(entries, today)
     ]
@@ -1077,8 +1093,8 @@ def _site_row(e: Entry) -> dict:
         "card": e.card_required,
         "provisional": e.provisional,
         "trains": e.data_use.trains if _trains(e) else "",
-        "no_key": bool(api and api.base_url and api.auth == "none"),
-        "public_key": bool(api and api.base_url and api.public_key),
+        "no_key": bool(api and api.base_url and api.key_kind == "none"),
+        "public_key": bool(api and api.base_url and api.key_kind == "public"),
         "openai": bool(api and api.base_url and api.openai_compatible),
         "claude_code": bool(api and api.anthropic_base_url),
         "frontier": any(m.tier is Tier.FRONTIER for m in families),
@@ -1104,20 +1120,21 @@ def _site_sections(active: list[Entry]) -> list[dict]:
     return sections
 
 
+# Each ask as the site's connection table says it, after "also sends".
+_ASK_SITE = {"user-agent": "your client's own User-Agent",
+             "session-header": "{} per conversation"}
+
+
 def _site_connections(connectable: list[Entry]) -> list[dict]:
     """The connection table as data: what to paste, and what the vendor asks
     every request to carry beside it."""
     rows = []
     for e in connectable:
-        asks = []
-        if e.api.client_user_agent:
-            asks.append("your client's own User-Agent")
-        if e.api.session_header:
-            asks.append(f"{e.api.session_header} per conversation")
+        asks = [_ASK_SITE[name].format(value) for name, value in e.api.asks()]
         rows.append({
             "name": e.name, "page": provider_page_url(e.id),
             "base_url": e.api.base_url, "anthropic_base_url": e.api.anthropic_base_url or "",
-            "keyless": e.api.auth == "none", "env_var": env_var(e.id),
+            "keyless": e.api.key_kind == "none", "env_var": env_var(e.id),
             "public_key": e.api.public_key or "",
             "key_url": e.api.key_url or "", "asks": asks,
             "note": _site_fold(e.api.note) if e.api.note else None,
@@ -1220,6 +1237,11 @@ def _plain_title(title: str) -> str:
     return rest if rest and not head[:1].isalnum() else title
 
 
+# Each ask as llms.txt says it, in the row's line.
+_ASK_TEXT = {"user-agent": "every request names its client in its own User-Agent",
+             "session-header": "every request needs a stable id per conversation in `{}`"}
+
+
 def _llms_line(e: Entry) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append(_card_words(e))
@@ -1229,9 +1251,9 @@ def _llms_line(e: Entry) -> str:
                       "no": "what you send is not used to train models"}[e.data_use.trains])
     api = e.api
     if api and api.base_url:
-        if api.auth == "none":
+        if api.key_kind == "none":
             parts.append("no key")
-        elif api.public_key:
+        elif api.key_kind == "public":
             parts.append(f"no account: the vendor prints a key for anyone at {api.key_url}, "
                          f"`{api.public_key}`")
         elif api.key_url:
@@ -1242,10 +1264,7 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"does not work as published since {api.notice.since.isoformat()}: "
                          f"{api.notice.text.rstrip('.')}")
         parts.append(f"{'OpenAI-compatible' if api.openai_compatible else 'API'} at {api.base_url}")
-        if api.client_user_agent:
-            parts.append("every request names its client in its own User-Agent")
-        if api.session_header:
-            parts.append(f"every request needs a stable id per conversation in `{api.session_header}`")
+        parts += [_ASK_TEXT[name].format(value) for name, value in api.asks()]
         if api.anthropic_base_url:
             parts.append(f"Anthropic Messages at {api.anthropic_base_url}")
     fams = _families(e)
@@ -1342,7 +1361,7 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
     providers = {}
     for e in _configurable(entries, today):
         options: dict = {"baseURL": e.api.base_url}
-        if e.api.auth != "none":
+        if e.api.key_kind != "none":
             options["apiKey"] = "{env:" + env_var(e.id) + "}"
         # The ids the row lists and nothing else: a family names a model, not
         # the string a request carries (see _litellm_ids).
@@ -1390,7 +1409,7 @@ def _tier_of_id(e: Entry, model_id: str) -> Tier | None:
 
 
 def _litellm_key(e: Entry) -> str:
-    return "none" if e.api.auth == "none" else f"os.environ/{env_var(e.id)}"
+    return "none" if e.api.key_kind == "none" else f"os.environ/{env_var(e.id)}"
 
 
 def build_litellm_config(entries: list[Entry], today: date) -> dict:
@@ -1424,7 +1443,7 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
             models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params})
             tier = _tier_of_id(e, model_id)
             names = ([f"free/{tier.value}"] if tier else []) + (
-                ["free/nokey"] if e.api.auth == "none" or e.api.public_key else [])
+                ["free/nokey"] if needs_no_account(e) else [])
             for name in names:
                 groups[name].append({
                     "model_name": name,
@@ -1469,6 +1488,13 @@ def _litellm_groups_note(groups: list[str]) -> str:
     return "#\n" + "".join(f"# {line}\n" for line in lines)
 
 
+# Each ask as the env example notes it under the row's key; empty where the
+# client the reader runs makes the ask for them.
+_ASK_ENV = {"user-agent": "",
+            "session-header": ("#    header: every request needs a stable id per conversation in "
+                               "{} — send it from your client")}
+
+
 def build_env_example(entries: list[Entry], today: date) -> str:
     lines = [
         "# Free LLM providers — generated from registry.yaml, do not edit by hand.",
@@ -1477,9 +1503,9 @@ def build_env_example(entries: list[Entry], today: date) -> str:
         "",
     ]
     for e in _connectable(entries, today):
-        if e.api.auth == "none":
+        if e.api.key_kind == "none":
             lines.append(f"# ── {e.name} — no key needed · base: {e.api.base_url}")
-        elif e.api.public_key:
+        elif e.api.key_kind == "public":
             # Filled in: the vendor prints this key for anyone, so the lane works
             # the moment the file is sourced, with no account behind it.
             lines.append(f"# ── {e.name} — no account needed · base: {e.api.base_url}")
@@ -1490,9 +1516,7 @@ def build_env_example(entries: list[Entry], today: date) -> str:
             key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
             lines.append(f"# ── {e.name} — base: {e.api.base_url}{key_hint}")
             lines.append(f'export {env_var(e.id)}=""')
-        if e.api.session_header:
-            lines.append(f"#    header: every request needs a stable id per conversation in "
-                         f"{e.api.session_header} — send it from your client")
+        lines += [_ASK_ENV[name].format(value) for name, value in e.api.asks() if _ASK_ENV[name]]
         if e.api.note:
             lines.append(f"#    note: {e.api.note}")
         lines.append("")
@@ -1500,12 +1524,21 @@ def build_env_example(entries: list[Entry], today: date) -> str:
 
 
 def _anthropic_ready(entries: list[Entry], today: date) -> list[Entry]:
-    """Every live row that publishes an Anthropic-format route, in rank order —
-    card-required rows included, since the file is a menu rather than a
-    recommendation and the card is stated beside the name."""
+    """Every live row that publishes an Anthropic-format route a shell function
+    can call, in rank order — card-required rows included, since the file is a
+    menu rather than a recommendation and the card is stated beside the name.
+
+    The function is a config written once, like litellm.yaml: a lane whose ask
+    it cannot carry (`_static_blockers`) is left out, and so is a keyless lane
+    that refuses any Authorization header, since the function hands Claude
+    Code a token of "none" and Claude Code sends it as a bearer. Until
+    2026-09-26 the file took every Anthropic route, so the first lane with a
+    session header or a refused bearer would have been a function that
+    failed on its first call."""
     return sorted(
         (e for e in entries
-         if not is_archived(e, today) and e.api and e.api.anthropic_base_url),
+         if not is_archived(e, today) and e.api and e.api.anthropic_base_url
+         and not _static_blockers(e) and not e.api.refuses_bearer),
         key=_by_rank,
     )
 
@@ -1547,7 +1580,7 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
             lines.append(f"#    free ids: {', '.join(e.api.model_ids)}")
         lines.append(f"claude-{e.id}() {{")
         lines.append(f'  ANTHROPIC_BASE_URL="{e.api.anthropic_base_url}" \\')
-        if e.api.auth == "none":
+        if e.api.key_kind == "none":
             lines.append('  ANTHROPIC_AUTH_TOKEN="none" \\')
         else:
             lines.append(f'  ANTHROPIC_AUTH_TOKEN="${env_var(e.id)}" \\')
@@ -1614,6 +1647,15 @@ def _family_links(families: list[str], pages: set[str]) -> str:
                      for f in families)
 
 
+# Each ask as a line of Connect on the row's page and on every model page.
+_ASK_PAGE = {"user-agent": ("- User-Agent: your client's own name and version, such as "
+                            "`my-coding-agent/1.0` — not an SDK's or an HTTP library's, which the "
+                            "vendor asks clients not to send"),
+             "session-header": ("- Session header: `{}` — a stable id per conversation on every "
+                                "request, which the calling client sends itself; the generated "
+                                "LiteLLM, opencode and Claude Code configs leave this row out")}
+
+
 def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
     """How to reach a row, a list item a fact: the base URL, the key, what every
     request carries, the Anthropic route and the ids — every id the row lists
@@ -1628,23 +1670,17 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
             out.append(f"- In {e.name}'s own model list: " + ", ".join(f"`{i}`" for i in ids))
         return out
     out = [f"- Base URL: `{api.base_url}`" + ("" if api.openai_compatible else " (not OpenAI-shaped)")]
-    if api.auth == "none":
+    if api.key_kind == "none":
         out.append("- Key: none — the lane is anonymous")
     else:
         key = f"- Key: `{env_var(e.id)}`"
-        if api.public_key:
+        if api.key_kind == "public":
             key += (f" — no account needed: the vendor prints one for anyone at "
                     f"<{api.key_url}>, `{api.public_key}`")
         elif api.key_url:
             key += f" — get one at <{api.key_url}>"
         out.append(key)
-    if api.client_user_agent:
-        out.append("- User-Agent: your client's own name and version, such as `my-coding-agent/1.0` — not an "
-                   "SDK's or an HTTP library's, which the vendor asks clients not to send")
-    if api.session_header:
-        out.append(f"- Session header: `{api.session_header}` — a stable id per "
-                   "conversation on every request, which the calling client sends itself; "
-                   "the generated LiteLLM and opencode configs leave this row out")
+    out += [_ASK_PAGE[name].format(value) for name, value in api.asks()]
     if api.anthropic_base_url:
         out.append(f"- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): "
                    f"`{api.anthropic_base_url}`")
@@ -2425,9 +2461,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# the keys it reads from the environment (see free-llm.env.example).\n"
         "# Entries marked `api_key: none` need no account at all.\n"
         + _litellm_groups_note(litellm_groups(entries, today))
-        + "".join(f"# Left out: {e.name} — every request needs a stable id per conversation "
-                  f"in {e.api.session_header}, which a static config cannot supply.\n"
-                  for e in _connectable(entries, today) if e.api.session_header)
+        + "".join(f"# Left out: {e.name} — {why}.\n"
+                  for e in _connectable(entries, today) for why in _static_blockers(e))
         + "".join(f"# Left out: {e.name} — its keyless lane answers only a call with no "
                   "Authorization header, and LiteLLM sends one on every call.\n"
                   for e in _configurable(entries, today) if e.api.refuses_bearer)

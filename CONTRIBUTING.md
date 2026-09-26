@@ -425,10 +425,15 @@ asked of other clients for OpenCode Go — with 200, keyless on 2026-09-16, unti
 Zen closed its free tier to every client but OpenCode on 2026-09-17. No row sets
 the field today. A `litellm.yaml` entry is written once and cannot mint an id per
 conversation, and OpenCode sends such a header only for its own built-in
-provider, so a row that sets the field is left out of `litellm.yaml` and
-`opencode.json`; the connection table, the provider page, the env example and
-`llms.txt` name the header, and the keyless check below and the README's
-quickstart curl send a fresh id in it.
+provider, so a row that sets the field is left out of `litellm.yaml`,
+`opencode.json` and `claude-code.sh`; the connection table, the provider and
+model pages, the env example and `llms.txt` name the header, and the keyless
+check below and the README's quickstart curl send a fresh id in it. What a lane
+asks every request to carry is decided in one place, `ApiInfo.asks` — the
+session header and the client's own `User-Agent` today — and every page and
+config that words an ask keeps its words in a table keyed by the asks'
+names, which the tests hold to the whole list: a new ask is one line there and
+one line in each table, and none of them can be forgotten.
 
 **`api.client_user_agent` is for a lane that asks every client to name itself.**
 OpenCode's client rules for Go ask for two headers, not one: "Identify itself with its
@@ -498,8 +503,9 @@ the first id has answered, the run asks it again carrying `Authorization: Bearer
 none` — what LiteLLM sends for `api_key: none`, and LiteLLM sends a bearer token
 on every call. On 2026-09-21 OVHcloud's anonymous lane and VLM Run's answered
 that with 403 and Kilo's with 401, so a row whose lane does sets the field and
-`litellm.yaml` leaves it out, saying why in its header; opencode's config adds
-no header without a key and keeps it. The run reports it as `stale-ids` both ways: a
+`litellm.yaml` leaves it out, saying why in its header; so does
+`claude-code.sh`, which hands Claude Code a token of "none" that goes out as a
+bearer; opencode's config adds no header without a key and keeps it. The run reports it as `stale-ids` both ways: a
 refusal on a row without the field, and an answer on a row with it. A rate limit
 on the second call says nothing either way.
 

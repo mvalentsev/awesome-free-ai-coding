@@ -414,6 +414,16 @@ def _dated_ids_are_listed(field: str, model_ids: list[str], free_since: list[Fre
                          "does not list — a date for an id the lane does not carry dates nothing")
 
 
+# How a lane lets a client in: no key at all, the key the vendor prints for
+# anyone, or the reader's own — `ApiInfo.key_kind`, the one place that decides.
+KEY_KINDS = ("none", "public", "own")
+# What a lane can ask every request to carry besides its key — `ApiInfo.asks`.
+# Each page and config that says how to connect keys its words by these names,
+# and the render's tests refuse a table without one, so a new ask cannot reach
+# some pages and not others.
+ASKS = ("user-agent", "session-header")
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -492,6 +502,26 @@ class ApiInfo(BaseModel):
     # for NOTICE_HOLD_DAYS, and the run asks for it to come down the day the
     # lane answers again.
     notice: Notice | None = None
+
+    @property
+    def key_kind(self) -> str:
+        """How a client is let in, decided once for every page, config and probe
+        that says it or acts on it — one of KEY_KINDS. A key the vendor prints
+        for anyone rides on a keyed lane, so it is its own kind: no account,
+        and still a key on every request."""
+        if self.auth == "none":
+            return "none"
+        return "public" if self.public_key is not None else "own"
+
+    def asks(self) -> list[tuple[str, str]]:
+        """What the lane asks every request to carry besides its key, as (name,
+        value) by the names in ASKS, in the order the pages list them."""
+        out = []
+        if self.client_user_agent:
+            out.append(("user-agent", ""))
+        if self.session_header:
+            out.append(("session-header", self.session_header))
+        return out
 
     @model_validator(mode="after")
     def _client_user_agent_needs_an_endpoint(self) -> ApiInfo:

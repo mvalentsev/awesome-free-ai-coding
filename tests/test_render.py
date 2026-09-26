@@ -743,8 +743,7 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
                           # the rate limit that pays for the missing key travels
                           # with the snippet: the reader meets it on this call
                           "note": "2 requests per minute, per IP and per model",
-                          "session_header": "",
-                          "user_agent": "",
+                          "asks": [],
                           "notice": None,
                           # written once, for the README's code block and the
                           # site's <pre> and copy button alike
