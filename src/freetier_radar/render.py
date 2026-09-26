@@ -12,6 +12,8 @@ from xml.sax.saxutils import escape, quoteattr
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
+from .borders import SHARED, beyond_shared, left_out_of, load_yardstick, share
+from .countries import country_name
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
@@ -305,6 +307,87 @@ def _trains(e: Entry) -> bool:
     models — its own or an upstream provider's behind a gateway — by default, so
     an opt-out counts: the reader who never reads the setting is trained on."""
     return e.data_use is not None and e.data_use.trains in ("yes", "opt-out")
+
+
+# Where a border's share is counted, as the pages cite it.
+INNOVATION_GRAPH_URL = "https://innovationgraph.github.com/"
+# How many countries a page names before it counts the rest: the provider page's
+# section, and the one-line flag the top of a page, a model page and llms.txt use.
+BORDER_NAMES = 8
+BORDER_FLAG_NAMES = 3
+
+
+def _percent(fraction: float) -> str:
+    """"11.1%"; a share too small to show as a figure, as such."""
+    p = 100 * fraction
+    return "under 0.1%" if 0 < p < 0.05 else f"{p:.1f}%"
+
+
+def _places(codes: list[str], most: int) -> str:
+    """"mainland China, Russia and 12 more places" — the first `most` by name."""
+    names = [country_name(c) for c in codes[:most]]
+    rest = len(codes) - len(names)
+    return series(names + ([f"{rest} more place" + ("s" if rest > 1 else "")] if rest else []))
+
+
+def _left_out_order(codes: set[str]) -> list[str]:
+    """The most developers first — the countries a reader is likeliest to be in."""
+    devs = load_yardstick().developers
+    return sorted(codes, key=lambda c: (-devs.get(c, 0), country_name(c)))
+
+
+def _border_flag(e: Entry) -> str:
+    """The border in one line, for the top of a page and a row elsewhere:
+    "not offered in mainland China, Russia, Hong Kong and 25 more places". Empty
+    where the offer leaves out no more than the embargoed countries most offers
+    leave out."""
+    if e.border is None:
+        return ""
+    yardstick = load_yardstick()
+    if not beyond_shared(e.border, yardstick):
+        return ""
+    if _served_only(e.border):
+        return "offered only in " + series([country_name(c) for c in
+                                            _left_out_order(set(e.border.served))])
+    return "not offered in " + _places(_left_out_order(left_out_of(e.border, yardstick)),
+                                       BORDER_FLAG_NAMES)
+
+
+def _served_only(b) -> bool:
+    """An allow-list short enough to name whole — a sign-up for one market —
+    which a page says as where the offer is, not as the world it leaves out."""
+    return b.served is not None and len(b.served) <= BORDER_NAMES
+
+
+def border_words(e: Entry) -> str:
+    """The provider page's account of where the offer reaches: the countries
+    it serves or leaves out, the share of developers that is, and the vendor's
+    words it rests on with the day they were read."""
+    b = e.border
+    yardstick = load_yardstick()
+    left = _left_out_order(left_out_of(b, yardstick))
+    beyond = beyond_shared(b, yardstick)
+    shared = sorted(set(left) & SHARED, key=country_name)
+    if _served_only(b):
+        where = f"Offered only in {series([country_name(c) for c in _left_out_order(set(b.served))])}"
+    elif b.served is not None:
+        where = (f"Offered in the {len(b.served)} countries and territories its list names"
+                 + (f", not in {_places(left, BORDER_NAMES)}" if left else ""))
+    elif beyond:
+        where = f"Not offered in {_places(left, BORDER_NAMES)}"
+    elif shared:
+        where = (f"Not offered in {series([country_name(c) for c in shared], 'or')}, the embargoed "
+                 f"countries most offers leave out, and in no other country the vendor names")
+    else:
+        where = "The vendor names no country it keeps the offer from"
+    said = [f"{where} ([source]({b.source}), read {b.on.isoformat()})."]
+    if beyond:
+        said.append(f"That leaves out {_percent(share(b, yardstick))} of the developers GitHub "
+                    f"counts, beyond the embargoed countries most offers leave out "
+                    f"([Innovation Graph]({INNOVATION_GRAPH_URL}), {yardstick.label}).")
+    if b.quote:
+        said.append(f"In the vendor's words: “{b.quote}”.")
+    return " ".join(said)
 
 
 def _row_models(e: Entry, pages: set[str]) -> str:
@@ -1258,6 +1341,10 @@ _ASK_TEXT = {"user-agent": "every request names its client in its own User-Agent
 def _llms_line(e: Entry) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append(_card_words(e))
+    # Where the offer reaches, beside what it asks: "is there a free API I can
+    # use from here" is a question a model answers from this file.
+    if _border_flag(e):
+        parts.append(_border_flag(e))
     if e.data_use is not None:
         # The row page's own sentence, as a clause: one wording of what the
         # vendor does with what a reader sends, wherever the list says it.
@@ -1862,6 +1949,10 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
            "{% raw %}", "", f"# {e.name} free tier" + (" (archived)" if archived else ""), ""]
     flags = [CATEGORY_TITLES[e.category]]
     flags.append(_card_words(e))
+    # At the top, beside the card: a reader who arrives from a search about
+    # this vendor learns before anything else whether it reaches them.
+    if _border_flag(e) and not archived:
+        flags.append(_border_flag(e))
     if e.provisional and not archived:
         promote = e.first_seen + timedelta(days=PROVISIONAL_PROMOTE_DAYS)
         flags.append(f"provisional — added on {e.first_seen.isoformat()}, a regular row from "
@@ -1921,6 +2012,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
             ""]
     out += ["## Limits, in the vendor's words", "",
             e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
+    if e.border is not None and not archived:
+        out += ["## Where it is offered", "", border_words(e), ""]
     if e.data_use is not None and not archived:
         out += ["## What happens to what you send", "",
                 f"{DATA_USE_WORDS[e.data_use.trains]} In the vendor's words: "
@@ -2055,6 +2148,8 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     the vendor's words and how to call this model there. The evidence and the
     history stay on the row's own page, one click from its name."""
     flags = [CATEGORY_TITLES[e.category], _card_words(e)]
+    if _border_flag(e):
+        flags.append(_border_flag(e))
     if e.provisional:
         flags.append(_provisional_words(e))
     flags.append(f"verified {e.last_verified.isoformat()}")

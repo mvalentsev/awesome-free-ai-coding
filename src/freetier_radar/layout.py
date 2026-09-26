@@ -145,6 +145,9 @@ MAP: tuple[Node, ...] = (
     Node("assets/README.md", Kind.DOC, "what each asset is for"),
     # ---- code
     Node("src/freetier_radar/*.py", Kind.CODE, "the probe, the scout, the render and the checks"),
+    Node("src/freetier_radar/developers.json", Kind.DATA,
+         "the developers GitHub's Innovation Graph counts per country in its latest quarter — the "
+         "yardstick a border's share is counted on", written_by=("freetier-borders",)),
     Node("templates/*.j2", Kind.CODE, "the page templates freetier-render fills"),
     Node("tests/*.py", Kind.CODE, "the test suite"),
     # ---- config

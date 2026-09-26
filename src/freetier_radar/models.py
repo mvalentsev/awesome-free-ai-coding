@@ -719,6 +719,94 @@ class DataUse(BaseModel):
         return value
 
 
+class Border(BaseModel):
+    """Where the free offer reaches, in the vendor's own words: the countries it
+    serves or the countries it leaves out, as ISO codes, read on a day from a
+    source the run reads back.
+
+    CONTRIBUTING's "A border counts like a wall" ranks an offer lower the more
+    of the list's readers it keeps out. Until 2026-09-26 the border lived in the
+    prose of three rows — NVIDIA's phone step, JetBrains' territory list,
+    CodeBuddy's DNS — while Google, OpenAI and TRAE carried theirs unnamed, and
+    nothing read any of them again. The sweep of every live row's territory
+    words that day found about seventeen that leave out more than the
+    embargoed countries every vendor leaves out.
+
+    It is recorded in the vendor's own form, never a computed one: `served` is a
+    vendor's allow-list (Google's region list, a sign-up that takes mainland
+    Chinese papers only), `left_out` a deny-list — every country it names,
+    sanctioned ones too, so a reader in Russia can tell a vendor that names
+    Russia from one that does not. A generic "sanctioned jurisdictions" clause
+    names no country, and neither does a vendor that says nothing: both are
+    `left_out: []`.
+
+    `read` is how the run reads it back — the names still on the page (`page`),
+    a list of codes the vendor publishes as data (`codes`, NVIDIA's), the answer
+    a resolver gives from inside each country (`dns`, CodeBuddy's), or not at
+    all where only a browser gets the page (`none`). A change is reported, never
+    failed: the offer is still there, and the border is a reviewer's to reread.
+    `also_named` are the countries the source page names outside its list, so a
+    name the page adds is told apart from one it always carried.
+    """
+    served: list[str] | None = None
+    left_out: list[str] | None = None
+    on: date
+    source: str
+    quote: str = ""  # verbatim; the pages print it inside quotation marks
+    read: Literal["page", "codes", "dns", "none"] = "page"
+    also_named: list[str] = []
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_https(cls, value: str) -> str:
+        if not value.startswith("https://"):
+            raise ValueError("border.source must be an https URL")
+        return value
+
+    @field_validator("quote")
+    @classmethod
+    def _quote_prints_inside_its_own_marks(cls, value: str) -> str:
+        if '"' in value or "“" in value or "”" in value:
+            raise ValueError("border.quote holds quotation marks — it is printed inside a pair "
+                             "of its own")
+        return value.strip()
+
+    @model_validator(mode="after")
+    def _one_list_of_known_codes(self) -> Border:
+        from .countries import COUNTRIES, DNS_SUBNETS
+        if (self.served is None) == (self.left_out is None):
+            raise ValueError("border holds exactly one of served (the vendor's allow-list) and "
+                             "left_out (the countries it names as left out)")
+        if self.served is not None and not self.served:
+            raise ValueError("border.served is empty — an allow-list names the countries served; "
+                             "a vendor that names none leaves out none: left_out: []")
+        listed = self.served if self.served is not None else self.left_out
+        for field, codes in (("served" if self.served is not None else "left_out", listed),
+                             ("also_named", self.also_named)):
+            unknown = [c for c in codes if c not in COUNTRIES]
+            if unknown:
+                raise ValueError(f"border.{field} names {', '.join(unknown)}, which is no ISO "
+                                 "country code the list knows")
+            twice = sorted({c for c in codes if codes.count(c) > 1})
+            if twice:
+                raise ValueError(f"border.{field} names {', '.join(twice)} twice")
+        both = sorted(set(listed) & set(self.also_named))
+        if both:
+            raise ValueError(f"border.also_named holds {', '.join(both)}, which the list itself "
+                             "names — also_named is for the page's names outside its list")
+        if self.read == "codes" and not listed:
+            raise ValueError("border.read is codes, but the border names no codes to compare")
+        if self.read == "dns":
+            if not self.left_out:
+                raise ValueError("border.read is dns: name the countries the host does not "
+                                 "answer in, under left_out")
+            unasked = [c for c in self.left_out if c not in DNS_SUBNETS]
+            if unasked:
+                raise ValueError(f"border.read is dns, and there is no subnet to ask from in "
+                                 f"{', '.join(unasked)} — add one to countries.DNS_SUBNETS")
+        return self
+
+
 class Delisting(BaseModel):
     """A row a reviewer took off the list, kept in the registry as the record of
     what the list published.
@@ -756,6 +844,8 @@ class Entry(BaseModel):
     api: ApiInfo | None = None
     client_lane: ClientLane | None = None
     data_use: DataUse | None = None
+    # Where the offer reaches; freetier-check refuses a live row without it.
+    border: Border | None = None
     probe: Probe
     first_seen: date
     last_verified: date

@@ -736,6 +736,7 @@ cannot print two versions of it.
 | `LICENSE` | **doc** — MIT | — | `hand` |
 | `assets/README.md` | **doc** — what each asset is for · not on the site | — | `hand` |
 | `src/freetier_radar/*.py` | **code** — the probe, the scout, the render and the checks · not on the site | — | `hand` |
+| `src/freetier_radar/developers.json` | **data** — the developers GitHub's Innovation Graph counts per country in its latest quarter — the yardstick a border's share is counted on · not on the site | — | `hand`, `freetier-borders` |
 | `templates/*.j2` | **code** — the page templates freetier-render fills · not on the site | — | `hand` |
 | `tests/*.py` | **code** — the test suite · not on the site | — | `hand` |
 | `pyproject.toml` | **config** — the package and its commands · not on the site | — | `hand` |

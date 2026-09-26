@@ -31,7 +31,7 @@ class ProbeStatus(str, Enum):
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
     STALE_MODELS = "stale-models"  # offer verified, but not the Models column: a family its page no longer names, one its catalog no longer serves free beside one it does, or every family superseded
-    STALE_IDS = "stale-ids"  # offer and families verified, but a published connection detail is not backed: api.model_ids against the catalog, the Anthropic route, or a public key its page stopped printing
+    STALE_IDS = "stale-ids"  # offer and families verified, but a published detail is not backed: api.model_ids against the catalog, the Anthropic route, a public key its page stopped printing, the data-use sentence or the border
 
 
 @dataclass
@@ -146,13 +146,19 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                     unprinted = f"{unprinted} | {keyless.detail}"
                 return verdict(ProbeStatus.STALE_IDS, unprinted)
         # The row's word on what the vendor does with what a reader sends rests
-        # on one sentence on one page — see data_use_moved.
+        # on one sentence on one page — see data_use_moved — and its word on
+        # where the offer reaches on the vendor's list — see border_moved.
+        # Both are read, and both notes kept: one does not answer the other.
+        moved = []
         if entry.data_use is not None:
-            moved = await data_use_moved(client, entry, page, attempts, backoff)
-            if moved:
-                if keyless is not None:
-                    moved = f"{moved} | {keyless.detail}"
-                return verdict(ProbeStatus.STALE_IDS, moved)
+            moved.append(await data_use_moved(client, entry, page, attempts, backoff))
+        if entry.border is not None:
+            moved.append(await border_moved(client, entry, page, attempts, backoff))
+        if any(moved):
+            note = " | ".join(m for m in moved if m)
+            if keyless is not None:
+                note = f"{note} | {keyless.detail}"
+            return verdict(ProbeStatus.STALE_IDS, note)
         if keyless is not None:
             return verdict(keyless.status, keyless.detail)
         return verdict(ProbeStatus.PASS)
@@ -677,6 +683,126 @@ async def data_use_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.
         return None
     return (f"data_use quote is no longer on {url} — read what the vendor says now about "
             "training on what users send")
+
+
+# How a border note ends: what the reviewer does about it.
+BORDER_REREAD = "read the vendor's territory words again"
+
+
+async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Response,
+                       attempts: int, backoff: float) -> str | None:
+    """Why the row's border no longer reads as it was recorded, or None while it
+    does.
+
+    The border rests on the vendor's own list or sentence — Google's region
+    list, NVIDIA's list of the countries its phone step refuses, a clause in a
+    SaaS agreement — and vendors move them: NVIDIA's forum threads name
+    countries its list no longer holds. So it is read back every run the way
+    it was read the day it was recorded: every recorded country still named on
+    the page and no new one beside them, the quote still there, the codes a
+    vendor publishes as data unchanged, the host still not answering from
+    inside each country it leaves out. A change is a note beside a row that
+    stays verified, never a failure: the offer is still there, and which
+    countries it reaches is a reviewer's to reread."""
+    from .quotes import page_texts, quote_found  # quotes reads pages through this module
+    border = entry.border
+    if border.read == "none":
+        return None
+    if border.read == "dns":
+        return await _border_dns(client, entry, attempts, backoff)
+    url = border.source
+    if url == entry.probe.endpoint and entry.probe.follow is None:
+        page = probed
+    else:
+        page, failure = await _fetch_page(client, url, attempts, backoff)
+        if page is None:
+            return f"border could not be checked against {url}: {failure}"
+    recorded = set(border.served if border.served is not None else border.left_out)
+    if border.read == "codes":
+        listed = _listed_codes(page.text)
+        if listed is None:
+            return f"border could not be checked against {url}: the answer is no list of codes"
+        added, gone = sorted(listed - recorded), sorted(recorded - listed)
+        if not added and not gone:
+            return None
+        said = [f"now lists {', '.join(added)}" if added else "",
+                f"no longer lists {', '.join(gone)}" if gone else ""]
+        return f"border: {url} {' and '.join(s for s in said if s)} — {BORDER_REREAD}"
+    notes = []
+    if border.quote and not quote_found(border.quote, page_texts(page.text)):
+        notes.append("its quote is gone")
+    if recorded:
+        from .countries import codes_named, country_name
+        rendered, raw = _country_texts(page.text)
+        seen = codes_named(rendered)
+        gone = sorted(recorded - seen - codes_named(raw))
+        added = sorted(seen - recorded - set(border.also_named))
+        if gone:
+            notes.append("no longer names " + ", ".join(country_name(c) for c in gone))
+        if added:
+            notes.append("now also names " + ", ".join(country_name(c) for c in added))
+    if not notes:
+        return None
+    return f"border: {url} — {'; '.join(notes)} — {BORDER_REREAD}"
+
+
+def _country_texts(body: str) -> tuple[str, str]:
+    """A page as country names are read off it: the rendered text and the raw
+    body, markup out and entities decoded, capitals kept — "Chad" is a
+    country and "chad" is not. A name only in the raw body (a framework's
+    payload) still counts as on the page; only the rendered text can add one,
+    so a country picker in a script is not a list growing."""
+    import html
+    def plain(text: str) -> str:
+        return " ".join(html.unescape(re.sub(r"<[^>]+>", " ", text)).split())
+    return plain(_rendered(body)), plain(body)
+
+
+def _listed_codes(body: str) -> set[str] | None:
+    """A vendor's list of country codes published as data — NVIDIA serves its
+    as a JSON array under a .yaml name — or None when the answer is not one."""
+    import yaml
+    try:
+        data = yaml.safe_load(body)
+    except yaml.YAMLError:
+        return None
+    if isinstance(data, dict):
+        lists = [v for v in data.values() if isinstance(v, list)]
+        data = lists[0] if len(lists) == 1 else None
+    if not isinstance(data, list) or not all(isinstance(c, str) for c in data):
+        return None
+    return {c.strip().upper() for c in data}
+
+
+async def _border_dns(client: httpx.AsyncClient, entry: Entry, attempts: int,
+                      backoff: float) -> str | None:
+    """The host still answering 0.0.0.1, or nothing, from inside every country
+    the border leaves out — the way CodeBuddy's border was measured on
+    2026-09-25, a public resolver asked on behalf of a subnet in each country.
+    A real address from one of them is the border lifting there."""
+    from .countries import DNS_SUBNETS, country_name
+    border = entry.border
+    lifted, unread = [], []
+    for code in border.left_out:
+        url = f"{border.source}&edns_client_subnet={DNS_SUBNETS[code]}"
+        answer, failure = await _fetch_page(client, url, attempts, backoff)
+        if answer is None:
+            unread.append(f"{country_name(code)} ({failure})")
+            continue
+        try:
+            records = answer.json().get("Answer") or []
+        except ValueError:
+            unread.append(f"{country_name(code)} (no DNS answer in the reply)")
+            continue
+        addresses = sorted({r.get("data", "") for r in records if r.get("type") == 1} - {"0.0.0.1"})
+        if addresses:
+            lifted.append(f"{country_name(code)} ({', '.join(addresses)})")
+    notes = []
+    if lifted:
+        notes.append(f"border: the host answers from {', '.join(lifted)} now — {BORDER_REREAD}")
+    if unread:
+        notes.append(f"border could not be checked from {', '.join(unread)}")
+    return " | ".join(notes) or None
 
 
 def _keyless_said(answer: httpx.Response | str) -> str:
