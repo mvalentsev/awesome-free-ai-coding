@@ -61,25 +61,13 @@ jobs:
       - run: uv sync
 
       # Pages builds a push in a minute or two, and an engine that fetched on
-      # the ping would read the pages before it. The build of this very commit
-      # is what to wait for; a push that lands meanwhile cancels this job.
-      - name: Wait for Pages to publish this commit
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for attempt in $(seq 1 60); do
-            build=$(gh api "repos/${{ github.repository }}/pages/builds/latest" \
-                      --jq '.status + " " + .commit' || true)
-            case "$build" in
-              "built ${{ github.sha }}") echo "Pages published ${{ github.sha }}"; exit 0 ;;
-              "errored ${{ github.sha }}") echo "::error::Pages failed to build ${{ github.sha }}"; exit 1 ;;
-            esac
-            sleep 15
-          done
-          echo "::warning::Pages had not published ${{ github.sha }} in fifteen minutes; pinging anyway"
-
-      # Best effort, as on the scheduled run: an engine being down is not a
-      # reason to mark a push that has already published as failed.
+      # the ping would read the pages before it: `--after-pages-build` waits for
+      # the build of this very commit (indexnow.wait_for_pages, the scheduled
+      # run's wait too); a push that lands meanwhile cancels this job. Best
+      # effort, as on the scheduled run: an engine being down is not a reason to
+      # mark a push that has already published as failed.
       - name: Tell search engines what changed (IndexNow)
         continue-on-error: true
-        run: uv run freetier-indexnow --index index.json
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run freetier-indexnow --index index.json --after-pages-build "${{ github.sha }}"

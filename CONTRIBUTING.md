@@ -638,9 +638,11 @@ does; `tests/test_browse.py` holds the two to the same field names. After the
 scheduled run pushes, `freetier-indexnow` submits the site's URLs to IndexNow
 (Bing, Yandex and the engines that share their index), and so does
 `.github/workflows/indexnow.yml` after any other push to `main` that changes a
-file the site publishes, once Pages has built it — its path filter is the
-map's published lines, held to them by a test, and the run's own push starts
-no workflow, so a commit is never announced twice; the key it proves
+file the site publishes — its path filter is the map's published lines, held
+to them by a test, and the run's own push starts no workflow, so a commit is
+never announced twice. Both wait until Pages has built the commit they ping
+for (`freetier-indexnow --after-pages-build`), so an engine that fetches on the
+ping reads the new page; the key it proves
 ownership with is the file named after it at the repository root, and it is
 not a secret.
 

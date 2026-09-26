@@ -24,6 +24,8 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # The IndexNow step reads the Pages build of the commit it pings for.
+  pages: read
 
 jobs:
   update:
@@ -113,12 +115,17 @@ jobs:
 
       # Bing, Yandex and the engines sharing their index recrawl a site this
       # size every few weeks on their own; a ping after a push has the pages
-      # that changed read the same day. Best effort: an engine being down is
-      # not a reason to fail a run that has already published.
+      # that changed read the same day — once Pages has built the commit, or an
+      # engine fetching on the ping reads the pages before it (see indexnow.yml,
+      # which waits the same way for a push made by hand). Best effort: an
+      # engine being down is not a reason to fail a run that has already
+      # published.
       - name: Tell search engines what changed (IndexNow)
         if: ${{ !inputs.dry_run && steps.commit.outputs.pushed == 'true' }}
         continue-on-error: true
-        run: uv run freetier-indexnow --index index.json
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: uv run freetier-indexnow --index index.json --after-pages-build "$(git rev-parse HEAD)"
 
       # Says what the history just recorded, from the project's own accounts,
       # once per event and channel (announced.jsonl is the ledger). With no

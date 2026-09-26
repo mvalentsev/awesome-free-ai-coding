@@ -11,18 +11,25 @@ crawl our own pages.
 """
 import argparse
 import json
+import os
 import sys
+import time
 from pathlib import Path
+from typing import Callable
 
 import httpx
 
-from .render import PAGES_URL, checked_page_url, models_index_url, providers_index_url
+from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
 HOST = "mvalentsev.github.io"
 INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
 KEY_FILE = f"{INDEXNOW_KEY}.txt"
 TIMEOUT = 30.0
+# How long a ping waits for Pages to build its commit: fifteen minutes, where a
+# build takes one or two.
+PAGES_ATTEMPTS = 60
+PAGES_EVERY = 15.0
 
 
 def site_urls(index: dict) -> list[str]:
@@ -51,10 +58,51 @@ def submit(urls: list[str], post=httpx.post) -> int:
     return response.status_code
 
 
+def latest_pages_build(token: str | None = None) -> tuple[str, str]:
+    """The status and commit of the repository's newest Pages build, read with
+    the workflow's token (GH_TOKEN or GITHUB_TOKEN)."""
+    token = token or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
+    repo = REPO_URL.removeprefix("https://github.com/")
+    response = httpx.get(f"https://api.github.com/repos/{repo}/pages/builds/latest",
+                         headers={"Accept": "application/vnd.github+json",
+                                  **({"Authorization": f"Bearer {token}"} if token else {})},
+                         timeout=TIMEOUT)
+    response.raise_for_status()
+    build = response.json()
+    return build.get("status", ""), build.get("commit", "")
+
+
+def wait_for_pages(sha: str, fetch: Callable[[], tuple[str, str]] = latest_pages_build,
+                   sleep: Callable[[float], None] = time.sleep,
+                   attempts: int = PAGES_ATTEMPTS, every: float = PAGES_EVERY) -> str:
+    """Wait until Pages has built commit `sha`: "built", "errored" — the build
+    of that commit failed — or "timeout". An engine that fetched on the ping
+    would otherwise read the pages Pages had not rebuilt yet; the scheduled run
+    and a hand push both wait here. A build that cannot be read is waited out,
+    never fatal: the ping is best effort."""
+    for attempt in range(attempts):
+        try:
+            status, commit = fetch()
+        except (OSError, httpx.HTTPError, ValueError):
+            status, commit = "", ""
+        if commit == sha and status in ("built", "errored"):
+            return status
+        if attempt < attempts - 1:
+            sleep(every)
+    return "timeout"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--index", type=Path, default=Path("index.json"))
+    parser.add_argument("--after-pages-build", metavar="SHA",
+                        help="wait until GitHub Pages has built this commit before pinging")
     args = parser.parse_args()
+    if args.after_pages_build:
+        waited = wait_for_pages(args.after_pages_build)
+        print(f"indexnow: Pages build of {args.after_pages_build[:7]}: {waited}")
+        if waited == "errored":
+            sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
     urls = site_urls(index)
     status = submit(urls)

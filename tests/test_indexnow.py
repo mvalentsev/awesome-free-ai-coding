@@ -48,3 +48,25 @@ def test_submit_posts_the_indexnow_payload_and_returns_the_status():
         "keyLocation": f"{PAGES_URL}/{KEY_FILE}",
         "urlList": urls,
     })]
+
+
+def test_the_ping_waits_for_pages_to_publish_the_commit():
+    """An engine that fetched on the ping would read the page before Pages built
+    it, so both the scheduled run and a hand push wait for the build of their
+    own commit — one wait, here, for both."""
+    from freetier_radar.indexnow import wait_for_pages
+    builds = iter([("building", "new"), ("built", "old"), ("built", "new")])
+    slept = []
+    assert wait_for_pages("new", fetch=lambda: next(builds), sleep=slept.append) == "built"
+    assert len(slept) == 2
+    assert wait_for_pages("new", fetch=lambda: ("errored", "new"), sleep=slept.append) == "errored"
+    assert wait_for_pages("new", fetch=lambda: ("built", "old"), sleep=lambda s: None,
+                          attempts=3) == "timeout"
+
+
+def test_a_build_that_cannot_be_read_is_waited_out_not_fatal():
+    from freetier_radar.indexnow import wait_for_pages
+
+    def unreachable():
+        raise OSError("no network")
+    assert wait_for_pages("sha", fetch=unreachable, sleep=lambda s: None, attempts=2) == "timeout"
