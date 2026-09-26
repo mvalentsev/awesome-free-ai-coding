@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “Your prompt
 - Callable ids: `qwen3.8-flash`
 - Note: qwen3.8-flash is the one id the Free plan serves, "the recommended model for coding, text, and tool use" in the docs; qwen3.8-27b, the id this row carried until 2026-09-16, is still accepted from clients already configured with it, and yolo is a paid-only route whose server-side target can change. /v1/models and /v1/usage answer 401 without a key, and the free plan's context is 128K where Pro's is 256K
 
+Try it from your terminal with your key in `YOLO_AUTO_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://yolo-auto.com/v1/chat/completions \
+  -H "Authorization: Bearer $YOLO_AUTO_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen3.8-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://yolo-auto.com/>, anchored on `15 free requests a week`, `No card required, free forever`

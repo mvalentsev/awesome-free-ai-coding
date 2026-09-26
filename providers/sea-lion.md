@@ -36,6 +36,15 @@ The vendor names no country it keeps the offer from ([source](https://sea-lion.a
 - Callable ids: `aisingapore/Qwen-SEA-LION-v4.5-27B-IT`, `aisingapore/Llama-SEA-LION-v3.5-70B-R`
 - Note: the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page. Both ids stay out of the Models column: the page that calls the API free names no model
 
+Try it from your terminal with your key in `SEA_LION_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.sea-lion.ai/v1/chat/completions \
+  -H "Authorization: Bearer $SEA_LION_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"aisingapore/Qwen-SEA-LION-v4.5-27B-IT","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://sea-lion.ai/try-sea-lion/>, anchored on `10 calls/min`, `prototype and test with our free api`

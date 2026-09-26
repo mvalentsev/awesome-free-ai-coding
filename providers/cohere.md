@@ -40,6 +40,15 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `north-mini-code-1-0`, `command-a-plus-05-2026`, `command-a-reasoning-08-2025`, `command-a-03-2025`, `command-a-vision-07-2025`, `command-r-plus-08-2024`, `command-r-08-2024`, `command-r7b-12-2024`
 - Note: OpenAI-compatible endpoint; native API lives at https://api.cohere.com/v2. Both ids are the Model ID Cohere's own model pages publish — north-mini-code-1-0 is the free-on-any-key one
 
+Try it from your terminal with your key in `COHERE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.cohere.com/compatibility/v1/chat/completions \
+  -H "Authorization: Bearer $COHERE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"north-mini-code-1-0","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.cohere.com/docs/rate-limits>, anchored on `trial keys`, `1,000`

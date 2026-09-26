@@ -40,6 +40,15 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `typhoon-v2.5-30b-a3b-instruct`
 - Note: the one chat id in the keyless catalog on 2026-09-05; the other five rows are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime, typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai, so it is a Qwen-class coder that also reads Thai; it stays out of the Models column because the FAQ the probe reads names no model
 
+Try it from your terminal with your key in `OPENTYPHOON_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.opentyphoon.ai/v1/chat/completions \
+  -H "Authorization: Bearer $OPENTYPHOON_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"typhoon-v2.5-30b-a3b-instruct","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.opentyphoon.ai/en/faq/>, anchored on `the typhoon api is a research showcase and`, `free to use`; ids checked in <https://api.opentyphoon.ai/v1/models>

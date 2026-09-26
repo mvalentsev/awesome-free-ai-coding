@@ -36,6 +36,14 @@ The vendor names no country it keeps the offer from ([source](https://vlm.run/te
 - Callable ids: `qwen/qwen3.8-27b`, `qwen/qwen3.5-0.8b`, `google/diffusiongemma-26b-a4b-it`
 - Note: no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key; 10 a minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b and google/diffusiongemma-26b-a4b-it are the other chat models on VLM Run's GPUs and answered keyless calls on 2026-09-25, while the frontier models in the same catalog, Kimi K3 and Gemma 4 26B among them, answer `403 model_not_entitled` without a paid organization
 
+Try it from your terminal — the lane takes no key:
+
+```sh
+curl -s https://gateway.vlm.run/v1/openai/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen/qwen3.8-27b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.vlm.run/gateway/models>, anchored on `qwen/qwen3.8-27b`; ids checked in <https://gateway.vlm.run/v1/openai/models>

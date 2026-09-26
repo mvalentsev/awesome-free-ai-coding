@@ -36,6 +36,15 @@ The vendor names no country it keeps the offer from ([source](https://routeway.a
 - Callable ids: `muse-glimmer-30b:free`, `deepseek-v4-flash:free`, `minimax-m2.7:free`
 - Note: the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. A new id joins the Models column after two weeks in the lane
 
+Try it from your terminal with your key in `ROUTEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.routeway.ai/v1/chat/completions \
+  -H "Authorization: Bearer $ROUTEWAY_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"muse-glimmer-30b:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://api.routeway.ai/v1/models>, free rows carrying `:free`, each listed family checked for a zero price

@@ -41,6 +41,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`, `stealth/pixel-canary`
 - Note: every id listed is priced 0 in and 0 out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. Zero-priced ids come and go within days, so a new one waits two weeks for the Models column; stealth/pixel-canary is a stealth codename that names no model, so it stays out of it. spacexai/grok-stt also shows a zero but is speech-to-text billed per second of audio. The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY empty
 
+Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
+  -H "Authorization: Bearer $VERCEL_AI_GATEWAY_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"poolside/laguna-s-2.1-free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://ai-gateway.vercel.sh/v1/models>, each listed family checked for a zero price

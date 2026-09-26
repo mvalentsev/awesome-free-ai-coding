@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “Cloudflare 
 - Callable ids: `@cf/zai-org/glm-5.3-flash`, `@cf/qwen/qwen3.8-27b`, `@cf/meta/llama-4-scout-17b-16e-instruct`
 - Note: substitute {account_id} with your Cloudflare account ID
 
+Try it from your terminal with your key in `CLOUDFLARE_WORKERS_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1/chat/completions \
+  -H "Authorization: Bearer $CLOUDFLARE_WORKERS_AI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"@cf/zai-org/glm-5.3-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://developers.cloudflare.com/workers-ai/platform/pricing/>, anchored on `10,000 neurons per day`, `free allocation`

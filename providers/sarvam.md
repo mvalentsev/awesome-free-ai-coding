@@ -40,6 +40,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `sarvam-105b`
 - Note: the vendor's own header is api-subscription-key, and the same key is accepted as "Authorization: Bearer" on every endpoint. /v1/chat/completions serves only sarvam-105b and its voice-agent variant, sarvam-105b-conversations, which the configs leave out; the open models are on the /v2 beta, whitelisted per key. Prices are in rupees
 
+Try it from your terminal with your key in `SARVAM_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.sarvam.ai/v1/chat/completions \
+  -H "Authorization: Bearer $SARVAM_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"sarvam-105b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.sarvam.ai/api/getting-started/pricing.md>, anchored on `Every new user receives ₹100 in credits`

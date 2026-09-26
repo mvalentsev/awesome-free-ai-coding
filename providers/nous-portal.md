@@ -40,6 +40,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `upstage/solar-pro4:free`, `meituan/longcat-2.0:free`
 - Note: every id the keyless catalog prices at 0 on 2026-09-18; solar-pro4 is a limited-time trial on other gateways
 
+Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://inference-api.nousresearch.com/v1/chat/completions \
+  -H "Authorization: Bearer $NOUS_PORTAL_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"stepfun/step-3.7-flash:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://inference-api.nousresearch.com/v1/models>, free rows carrying `:free`, each listed family checked for a zero price

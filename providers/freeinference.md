@@ -37,6 +37,15 @@ The vendor names no country it keeps the offer from ([source](https://freeinfere
 - Callable ids: `deepseek-v4-flash`, `qwen3.6-35b`, `diffusiongemma`
 - Note: the three ids are the chat rows the keyless catalog at freeinference.org/v1/models returned on 2026-09-05 (bge-m3, the fourth, is an embedding model); the docs mark four more chat ids Free, which stay out of the generated configs until a keyed read confirms them. The catalog's prices are upstream reference accounting, "not fees charged by FreeInference to users". The same key serves https://freeinference.org/anthropic, which the docs give as Claude Code's ANTHROPIC_BASE_URL
 
+Try it from your terminal with your key in `FREEINFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://freeinference.org/v1/chat/completions \
+  -H "Authorization: Bearer $FREEINFERENCE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"deepseek-v4-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://doc.freeinference.org/models>, anchored on `free accounts can use models marked`; ids checked in <https://freeinference.org/v1/models>

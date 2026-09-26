@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “Prompts, co
 - Callable ids: `abliterated-model-large-v2`, `abliterated-model`, `abliterated-model-large`
 - Note: ids are the three the docs' models page serves, read 2026-09-23 — abliterated-model-large the previous large model, from GLM-5.2; /v1/models answers 401 without a key. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with an ak_ key as ANTHROPIC_AUTH_TOKEN, the client appending /v1/messages
 
+Try it from your terminal with your key in `ABLITERATION_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.abliteration.ai/v1/chat/completions \
+  -H "Authorization: Bearer $ABLITERATION_AI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"abliterated-model-large-v2","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://abliteration.ai/pricing>, anchored on `You can start with a one-credit free preview and no credit card`

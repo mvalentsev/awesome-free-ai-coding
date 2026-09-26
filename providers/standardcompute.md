@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “Your prompt
 - Callable ids: `anthropic/claude-standardcompute`, `StandardCompute`
 - Note: one key, two wires: https://api.stdcmpt.com/v1 for OpenAI-shaped clients and https://api.stdcmpt.com for Claude Code — "For Claude Code, use https://api.stdcmpt.com without /v1". /v1/models is keyless and lists the pool the router picks from, 40 unpriced ids on 2026-09-07 with Claude, GPT and Grok among them; requests are smart-routed across it unless a call pins one id. The two ids here are the router's own
 
+Try it from your terminal with your key in `STANDARDCOMPUTE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.stdcmpt.com/v1/chat/completions \
+  -H "Authorization: Bearer $STANDARDCOMPUTE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"anthropic/claude-standardcompute","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://standardcompute.com/free-trial>, anchored on `$0.25 of trial compute`, `no card required`

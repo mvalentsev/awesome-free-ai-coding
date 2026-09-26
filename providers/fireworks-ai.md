@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “No AI Train
 - Callable ids: `accounts/fireworks/models/deepseek-v4p1-flash`, `accounts/fireworks/models/glm-5p3-flash`, `accounts/fireworks/models/minimax-m3`, `accounts/fireworks/models/glm-5p3`, `accounts/fireworks/models/kimi-k3`
 - Note: ids are accounts/fireworks/models/ plus the slug the serverless pricing page links, read 2026-09-17; /inference/v1/models answers 401 without a key, so none is read off a catalog. The quickstart gives the Anthropic SDK base_url https://api.fireworks.ai/inference, which is Claude Code's ANTHROPIC_BASE_URL, the client appending /v1/messages
 
+Try it from your terminal with your key in `FIREWORKS_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.fireworks.ai/inference/v1/chat/completions \
+  -H "Authorization: Bearer $FIREWORKS_AI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"accounts/fireworks/models/deepseek-v4p1-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://fireworks.ai/pricing>, anchored on `Get started with $1 in free credits`

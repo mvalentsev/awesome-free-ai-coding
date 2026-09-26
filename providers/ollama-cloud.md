@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “Prompt or r
 - Callable ids: `gpt-oss:120b`, `gemma4:31b`, `nemotron-3-ultra`
 - Note: the three ids left are the ones a key on the $0 plan actually answered on 2026-09-02, in that order of speed; minimax-m3 was dropped from this list because the same key gets 402 Payment Required for it. Which models the starter credits reach is published nowhere, so this list is measured rather than read, and /v1/models still lists the whole catalog, starter and metered alike
 
+Try it from your terminal with your key in `OLLAMA_CLOUD_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://ollama.com/v1/chat/completions \
+  -H "Authorization: Bearer $OLLAMA_CLOUD_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gpt-oss:120b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://ollama.com/cloud>, anchored on `Starter usage credits included`, `Includes access to starter models`; ids checked in <https://ollama.com/v1/models>

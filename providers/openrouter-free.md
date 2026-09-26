@@ -41,6 +41,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `nvidia/nemotron-3-ultra-550b-a55b:free`, `nvidia/nemotron-3-super-120b-a12b:free`, `nvidia/nemotron-3.5-lightning:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `google/gemma-4-31b-it:free`, `google/gemma-4-26b-a4b-it:free`, `cohere/north-mini-code:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `thinkingmachines/inkling:free`, `thinkingmachines/inkling-small:free`, `dots-studio/dots-3-note-preview:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `liquid/lfm-2.5-2.6b:free`, `qwen/qwen3.8-27b:free`, `openrouter/free`
 - Note: pick models with the :free suffix: every id carrying it is priced 0/0, 18 on 2026-09-25, and the lane rotates, so a new id waits two weeks for the Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b, which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety, a guardrail classifier. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL
 
+Try it from your terminal with your key in `OPENROUTER_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://openrouter.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"nvidia/nemotron-3-ultra-550b-a55b:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://openrouter.ai/api/v1/models>, free rows carrying `:free`, each listed family checked for a zero price

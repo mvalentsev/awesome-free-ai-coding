@@ -36,6 +36,15 @@ The vendor names no country it keeps the offer from ([source](https://blueclaw.n
 - Callable ids: `auto`
 - Note: auto is the quick start's model and keys start with bc_; /v1/models answers 401 without a key, and the models behind auto are listed only in the console
 
+Try it from your terminal with your key in `BLUE_CLAW_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://openai.blueclaw.network/v1/chat/completions \
+  -H "Authorization: Bearer $BLUE_CLAW_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"auto","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://blueclaw.network/>, anchored on `Every new account starts with a $5 welcome credit`, `No credit card required to start`

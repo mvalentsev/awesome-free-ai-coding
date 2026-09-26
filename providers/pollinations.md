@@ -36,6 +36,14 @@ The vendor names no country it keeps the offer from ([source](https://pollinatio
 - Callable ids: `gpt-oss-20b`
 - Note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai, answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys` (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
 
+Try it from your terminal — the lane takes no key:
+
+```sh
+curl -s https://text.pollinations.ai/openai/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gpt-oss-20b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://text.pollinations.ai/models>, anchored on `"tier":"anonymous"`, `GPT-OSS 20B`

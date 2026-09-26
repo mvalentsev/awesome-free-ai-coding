@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “RouterPlex 
 - Callable ids: `deepseek-v4-flash`, `glm-5.3-flash`, `claude-sonnet-4-6`
 - Note: ids are the catalog page's own spellings (routerplex.com/models, 54 chat ids on 2026-09-11); the vendor's Claude Code page sets ANTHROPIC_BASE_URL=https://api.routerplex.com and ANTHROPIC_MODEL=claude-sonnet-4-6 (guide reviewed 2026-09-13), the Anthropic SDK appending /v1/messages itself. /v1/models is keyed, so none of these ids is checked against a catalog, and which of them the promotional credit can call is not published
 
+Try it from your terminal with your key in `ROUTERPLEX_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.routerplex.com/v1/chat/completions \
+  -H "Authorization: Bearer $ROUTERPLEX_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"deepseek-v4-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://routerplex.com/>, anchored on `Get $1 in free credit`, `Signup and guided setup have no payment step`

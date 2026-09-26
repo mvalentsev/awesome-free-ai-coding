@@ -36,6 +36,15 @@ The vendor names no country it keeps the offer from ([source](https://docs.bytez
 - Callable ids: `Qwen/Qwen3-4B`
 - Note: model ids are Hugging Face ids, Qwen/Qwen3-4B being the docs' example; the OpenAI SDK examples pass the key as the api key and the docs' curl sends it bare in Authorization. /v1/models answers 401 without a key, and closed-source models need a provider key of your own
 
+Try it from your terminal with your key in `BYTEZ_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.bytez.com/models/v2/openai/v1/chat/completions \
+  -H "Authorization: Bearer $BYTEZ_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"Qwen/Qwen3-4B","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.bytez.com/model-api/docs/billing.md>, anchored on `$0 / month - Get $1 in free credits`, `Run open models up to 7B parameters`

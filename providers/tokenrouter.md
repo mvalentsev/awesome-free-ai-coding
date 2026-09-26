@@ -36,6 +36,15 @@ Not offered in Russia, Iran, Belarus, Syria, Cuba and North Korea ([source](http
 - Callable ids: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`
 - Note: one id in the catalog is priced 0 under the free marker, and it is the whole free lane here — nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, alone on 2026-08-14 and again on 2026-09-16; z-ai/glm-5.3-free stood beside it from 2026-09-02 until it left the catalog between the 2026-09-14 and 2026-09-16 reads. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here
 
+Try it from your terminal with your key in `TOKENROUTER_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.tokenrouter.com/v1/chat/completions \
+  -H "Authorization: Bearer $TOKENROUTER_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://api.tokenrouter.com/api/pricing>, free rows carrying `free`, each listed family checked for a zero price

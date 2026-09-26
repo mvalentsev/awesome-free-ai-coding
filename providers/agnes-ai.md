@@ -40,6 +40,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `agnes-3.0-flash`, `agnes-2.5-flash`
 - Note: the quickstart sends its chat completion to apihub.agnes-ai.com/v1/chat/completions with a Bearer key from the Agnes AI Platform dashboard; free and Token Plan keys draw on separate limit pools, and creating more keys of one type does not stack RPM. Agnes AI's China station (agnes-ai.cn) prices the same two Flash models at ¥0 (当前均免费, all currently free) and serves them from api.agnes-ai.cn/v1
 
+Try it from your terminal with your key in `AGNES_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://apihub.agnes-ai.com/v1/chat/completions \
+  -H "Authorization: Bearer $AGNES_AI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"agnes-3.0-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://wiki.agnes-ai.com/en/docs/pricing>, anchored on `Cached input, input tokens, and output tokens are currently free for`, `agnes-3.0-flash`

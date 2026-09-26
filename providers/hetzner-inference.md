@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “Prompts and
 - Callable ids: `Qwen/Qwen3.6-35B-A3B-FP8`, `Qwen3.8-27B`
 - Note: both ids are 262K-context and take text and images; /v1/models, /v1/completions and /v1/chat/completions are the whole surface. The key is minted in the Inference tab of experiments.hetzner.com, which is a client-rendered page behind a Hetzner login — the readable copy of the terms is the docs page this row probes
 
+Try it from your terminal with your key in `HETZNER_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://inference.hetzner.com/api/v1/chat/completions \
+  -H "Authorization: Bearer $HETZNER_INFERENCE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"Qwen/Qwen3.6-35B-A3B-FP8","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.hetzner.com/general/company-and-policy/experiments/inference/>, anchored on `remains in experimental status, it is free of charge`, `https://inference.hetzner.com/api/v1`

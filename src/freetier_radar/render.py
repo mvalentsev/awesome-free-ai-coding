@@ -791,10 +791,21 @@ def _quickstart_curl(start: dict) -> str:
     first of them. Built as one string here, it is printed as it is in the
     README's code block and escaped correctly in both places on the site.
     """
-    lines = [f"curl -s {start['base_url']}/chat/completions \\",
-             "  -H 'Content-Type: application/json' \\"]
-    lines += [_ASK_CURL[name].format(value) for name, value in start["asks"]]
-    lines.append(f"""  -d '{{"model":"{start['model_id']}","messages":"""
+    return _curl(start["base_url"], start["model_id"], start["asks"])
+
+
+def _curl(base_url: str, model_id: str, asks: list[tuple[str, str]],
+          key: str | None = None) -> str:
+    """One chat call to a lane, as a shell command: the quickstart's, and the
+    one each provider page offers for checking a key — with the key read from
+    the reader's own environment, since a key belongs in their terminal and
+    nowhere else (a page that asks for it was turned down on 2026-09-26)."""
+    lines = [f"curl -s {base_url.rstrip('/')}/chat/completions \\"]
+    if key:
+        lines.append(f'  -H "Authorization: Bearer {key}" \\')
+    lines.append("  -H 'Content-Type: application/json' \\")
+    lines += [_ASK_CURL[name].format(value) for name, value in asks]
+    lines.append(f"""  -d '{{"model":"{model_id}","messages":"""
                  """[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'""")
     return "\n".join(lines)
 
@@ -1844,7 +1855,28 @@ def _connect_section(e: Entry) -> list[str]:
     out = ["## Connect", "", *_connect_lines(e, lane.model_ids if lane else [])]
     if e.api and e.api.base_url and e.api.note:
         out.append(f"- Note: {e.api.note}")
-    return out + [""]
+    return out + [""] + _try_it(e)
+
+
+def _try_it(e: Entry) -> list[str]:
+    """The call that answers "does my key work here?", for a reader to paste
+    into their own terminal. The page that asked for the key itself — the
+    browser-side checker other lists run — was turned down on 2026-09-26: a
+    form that takes a secret reads as a card checker whatever its code does,
+    and OpenAI's API reference says a key "should never be exposed in
+    client-side code". Here the key never leaves the reader's machine: the
+    command reads it from the environment variable the configs name."""
+    api = e.api
+    if not (api and api.base_url and api.openai_compatible and api.model_ids):
+        return []
+    key = (None if api.key_kind == "none" else api.public_key if api.key_kind == "public"
+           else f"${env_var(e.id)}")
+    said = ("Try it from your terminal — the lane takes no key:" if key is None else
+            "Try it from your terminal — the key is the vendor's printed one:"
+            if api.key_kind == "public" else
+            f"Try it from your terminal with your key in `{env_var(e.id)}` — "
+            "it goes from your machine to the vendor and nowhere else:")
+    return [said, "", "```sh", _curl(api.base_url, api.model_ids[0], api.asks(), key), "```", ""]
 
 
 def _evidence_section(e: Entry, blocked: bool) -> list[str]:

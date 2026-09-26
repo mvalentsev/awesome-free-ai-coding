@@ -40,6 +40,15 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `moonshotai/kimi-k3`, `z-ai/glm-5.3`, `z-ai/glm-5.3-flash`, `deepseek-ai/deepseek-v4.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`, `mistralai/mistral-nemotron`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `google/diffusiongemma-26b-a4b-it`, `meta/llama-3.2-90b-vision-instruct`, `meta/llama-3.2-11b-vision-instruct`
 - Note: model_ids are every chat model NVIDIA's free list marks "Free Endpoint" without a retirement date — the probe reads that list from NGC's catalog search and reports an id that joins or leaves it; ignored_ids are the free models made for another job: an embedding model, three safety classifiers, two translation models and a reader of quantum-calibration plots. The catalog also answers older ids with no page and no free mark, and those are left out
 
+Try it from your terminal with your key in `NVIDIA_NIM_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://integrate.api.nvidia.com/v1/chat/completions \
+  -H "Authorization: Bearer $NVIDIA_NIM_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"moonshotai/kimi-k3","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://integrate.api.nvidia.com/v1/models>, each listed family checked for its free mark on the vendor's free list at <https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=%7B%22filters%22%3A%5B%7B%22field%22%3A%22label%22%2C%22value%22%3A%22nim_type_preview%22%7D%5D%2C%22page%22%3A0%2C%22pageSize%22%3A100%2C%22query%22%3A%22%2A%22%7D>

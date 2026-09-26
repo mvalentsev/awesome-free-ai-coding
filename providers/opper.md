@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “Opper never
 - Callable ids: `gemini/gemma-4-31b`, `gemini/gemma-4-26b-moe`, `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`
 - Note: ids are four of the five rows the model directory flags free on 2026-09-17, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages
 
+Try it from your terminal with your key in `OPPER_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.opper.ai/v3/compat/chat/completions \
+  -H "Authorization: Bearer $OPPER_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gemini/gemma-4-31b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://opper.ai/llms.txt>, anchored on `gemini/gemma-4-31b is a free model`, `the free models work in the playground and the API`; ids checked in <https://api.opper.ai/v3/models?limit=0>

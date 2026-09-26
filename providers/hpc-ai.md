@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “No customer
 - Callable ids: `zai-org/glm-5.3-flash`, `moonshotai/kimi-k2.7-code`, `minimax/minimax-m3`
 - Note: ids are the keyless model list's at www.hpc-ai.com/api/maas/v1/models, 2026-09-17, the quick start's own example being moonshotai/kimi-k2.7-code
 
+Try it from your terminal with your key in `HPC_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.hpc-ai.com/inference/v1/chat/completions \
+  -H "Authorization: Bearer $HPC_AI_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"zai-org/glm-5.3-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://www.hpc-ai.com/model-apis>, anchored on `Do you offer a free trial for users?` and `in free credits. New accounts using the invite code` in the page's own data; ids checked in <https://www.hpc-ai.com/api/maas/v1/models>

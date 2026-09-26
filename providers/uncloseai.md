@@ -36,6 +36,14 @@ The vendor names no country it keeps the offer from ([source](https://uncloseai.
 - Callable ids: `turboderp/Qwen3.8-27B-exl3`
 - Note: anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week's, not the offer. It stays out of the Models column: a family would name this week's model, and the catalog serving none of the row's families fails the row at the next rotation
 
+Try it from your terminal — the lane takes no key:
+
+```sh
+curl -s https://hermes.ai.unturf.com/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"turboderp/Qwen3.8-27B-exl3","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://hermes.ai.unturf.com/v1/models>

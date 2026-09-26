@@ -1907,3 +1907,31 @@ def test_the_published_readme_stays_a_landing_page(tmp_path: Path):
     text = render_readme(Path("registry.yaml"), Path("templates"), tmp_path / "README.md",
                          today=pinned)
     assert len(text.encode("utf-8")) <= README_BUDGET
+
+
+def test_a_provider_page_offers_the_call_that_checks_a_key_in_the_readers_own_terminal():
+    """"Does my key work here?" is answered by a command the reader runs, with
+    the key read from their own environment — never by a page that asks for
+    it (turned down on 2026-09-26). A keyless lane needs no header, a key the
+    vendor prints for anyone is its own, and an endpoint that is not
+    OpenAI-shaped gets no command a reader could not run."""
+    from freetier_radar.render import build_provider_page, env_var
+    keyed = build_provider_page(make(id="keyed-free", api={
+        "base_url": "https://k.ai/v1/", "key_url": "https://k.ai/keys", "model_ids": ["k-1", "k-2"]}),
+        [], TODAY)
+    assert (f"Try it from your terminal with your key in `{env_var('keyed-free')}` — it goes "
+            "from your machine to the vendor and nowhere else:") in keyed
+    assert ("```sh\ncurl -s https://k.ai/v1/chat/completions \\\n"
+            f'  -H "Authorization: Bearer ${env_var("keyed-free")}" \\\n'
+            "  -H 'Content-Type: application/json' \\\n"
+            """  -d '{"model":"k-1","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'\n```""") in keyed
+    keyless = build_provider_page(make(id="open", api={
+        "base_url": "https://o.ai/v1", "auth": "none", "model_ids": ["o-1"]}), [], TODAY)
+    assert "the lane takes no key" in keyless and "Authorization" not in keyless
+    public = build_provider_page(make(id="pub", api={
+        "base_url": "https://p.ai/v1", "public_key": "pk-123", "key_url": "https://p.ai/key",
+        "model_ids": ["p-1"]}), [], TODAY)
+    assert '-H "Authorization: Bearer pk-123"' in public
+    odd = build_provider_page(make(id="odd", api={
+        "base_url": "https://x.ai/api", "openai_compatible": False, "model_ids": ["x-1"]}), [], TODAY)
+    assert "Try it from your terminal" not in odd

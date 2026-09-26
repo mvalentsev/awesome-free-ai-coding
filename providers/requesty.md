@@ -41,6 +41,15 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `nvidia/nemotron-3-nano-30b-a3b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `novita/inclusionai/ling-3.0-tiny`, `google/gemma-4-31b-it`, `poolside/laguna-xs.2`, `poolside/laguna-m.1`, `mistral/leanstral-1-5`, `nvidia/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`
 - Note: the eleven ids listed and the one ignored are every row the catalog prices at 0, and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA and Poolside row is marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety, a guardrail classifier, is left out. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)
 
+Try it from your terminal with your key in `REQUESTY_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://router.requesty.ai/v1/chat/completions \
+  -H "Authorization: Bearer $REQUESTY_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"nvidia/nemotron-3-ultra-550b-a55b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://router.requesty.ai/v1/models>, each listed family checked for a zero price

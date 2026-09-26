@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “For enterpr
 - Callable ids: `glm-4.7-flash`, `glm-4.5-flash`, `glm-4.6v-flash`
 - Note: the ids are the chat completion reference's own, where glm-4.7-flash and glm-4.5-flash sit in its model enum; Coding-Plan keys use https://api.z.ai/api/coding/paas/v4 instead. The Claude Code guide sets ANTHROPIC_BASE_URL to https://api.z.ai/api/anthropic with "your_zai_api_key" as the token and names Coding-Plan ids (glm-5.3, glm-5.3-flash); whether the free Flash ids answer on that route is not stated, and the route answers 401 keyless (2026-09-05)
 
+Try it from your terminal with your key in `ZAI_GLM_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.z.ai/api/paas/v4/chat/completions \
+  -H "Authorization: Bearer $ZAI_GLM_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"glm-4.7-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.z.ai/guides/overview/pricing>, anchored on `GLM-4.7-Flash</td><td style="text-align:left">Free</td>`, `GLM-4.5-Flash</td><td style="text-align:left">Free</td>`, `GLM-4.6V-Flash</td><td style="text-align:left">Free</td>`

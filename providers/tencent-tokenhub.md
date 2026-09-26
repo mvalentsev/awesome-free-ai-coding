@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “不会，�
 - Callable ids: `kimi-k3`, `glm-5.3`, `hy3`, `minimax-m3`
 - Note: ids are the models page's model column (调用参数), read 2026-09-17; /v1/models answers 401 without a key, so none is read off a catalog. The Claude Code guide sets ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com with ANTHROPIC_MODEL=hy3. The four stay out of the Models column: the free-package page grants 所有语言模型, every language model, and names none of them
 
+Try it from your terminal with your key in `TENCENT_TOKENHUB_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://tokenhub.tencentmaas.com/v1/chat/completions \
+  -H "Authorization: Bearer $TENCENT_TOKENHUB_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"kimi-k3","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://cloud.tencent.com/document/product/1823/130053>, anchored on `100 万 Tokens 的免费体验额度`, `2026 年 12 月 31 日`

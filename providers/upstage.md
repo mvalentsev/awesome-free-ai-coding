@@ -39,6 +39,15 @@ What you send is not used to train models. In the vendor's words: “The Company
 - Key: `UPSTAGE_API_KEY` — get one at <https://console.upstage.ai/api-keys>
 - Callable ids: `solar-pro4`, `solar-mini4`
 
+Try it from your terminal with your key in `UPSTAGE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.upstage.ai/v1/chat/completions \
+  -H "Authorization: Bearer $UPSTAGE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"solar-pro4","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://console.upstage.ai/docs/getting-started>, anchored on `$10 in free credit` in the page's own data

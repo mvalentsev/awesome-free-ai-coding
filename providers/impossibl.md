@@ -37,6 +37,15 @@ The vendor names no country it keeps the offer from ([source](https://impossibl.
 - Callable ids: `zai/glm-5.3-flash`, `deepseek/deepseek-v4.1-flash`, `qwen/qwen3.8-27b`
 - Note: ids are the keyless catalog's at api.impossibl.com/v1/models, 2026-09-17; which of them the promotional credit can call is not published. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.impossibl.com and clears ANTHROPIC_API_KEY so the bearer token is used
 
+Try it from your terminal with your key in `IMPOSSIBL_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.impossibl.com/v1/chat/completions \
+  -H "Authorization: Bearer $IMPOSSIBL_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"zai/glm-5.3-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://impossibl.com/llms.txt>, anchored on `claiming adds an extra $1`, `a $0.05 signup bonus`; ids checked in <https://api.impossibl.com/v1/models>

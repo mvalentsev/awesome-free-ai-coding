@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “For clarity
 - Callable ids: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.6-27b`, `qwen/qwen3.8-27b`
 - Note: the chat models Groq's own Free Plan Limits table names; its safeguard and prompt-guard classifiers, compound systems, whisper and orpheus rows are left out
 
+Try it from your terminal with your key in `GROQ_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.groq.com/openai/v1/chat/completions \
+  -H "Authorization: Bearer $GROQ_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"openai/gpt-oss-120b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://console.groq.com/docs/rate-limits>, anchored on `free plan limits`, `qwen/qwen3.8-27b`

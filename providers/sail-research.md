@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “We do not u
 - Callable ids: `moonshotai/Kimi-K3`, `zai-org/GLM-5.3`, `deepseek-ai/DeepSeek-V4-Pro-0813`, `zai-org/GLM-5.3-Flash`, `deepseek-ai/DeepSeek-V4-Flash-0731`
 - Note: ids are the models page's, 2026-09-21 — the catalog answers only a key. Sail's stable surface is the Responses API, and the FAQ says "Responses, Chat Completions, and Messages all work as expected"; a request may name a balanced or flex completion window to pay less and wait longer
 
+Try it from your terminal with your key in `SAIL_RESEARCH_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.sailresearch.com/v1/chat/completions \
+  -H "Authorization: Bearer $SAIL_RESEARCH_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"moonshotai/Kimi-K3","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://www.sailresearch.com/>, anchored on `$5 in free credits every month when you attach a payment method`

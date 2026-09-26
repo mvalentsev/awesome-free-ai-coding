@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “我们不�
 - Callable ids: `XingChenAGI/Xing4.0-29B`, `Qwen/Qwen3-8B`, `THUDM/GLM-4-9B-0414`, `THUDM/GLM-Z1-9B-0414`, `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B`, `Qwen/Qwen3.5-4B`, `Qwen/Qwen2.5-7B-Instruct`
 - Note: ids are the price list's own; Hunyuan-MT-7B, the other chat row at ¥0, is a translation model. /v1/models needs a key, and the Messages route the API reference documents is https://api.siliconflow.cn/v1/messages
 
+Try it from your terminal with your key in `SILICONFLOW_CN_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.siliconflow.cn/v1/chat/completions \
+  -H "Authorization: Bearer $SILICONFLOW_CN_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"XingChenAGI/Xing4.0-29B","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://siliconflow.cn/pricing>, anchored on `Qwen2.5-7B-Instruct (Free)`, `DeepSeek-R1-0528-Qwen3-8B (Free)` in the page's own data

@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “Alibaba Clo
 - Callable ids: `qwen3.8-max`, `qwen3.8-flash`, `qwen3.8-2.4t-a95b`, `qwen3.8-27b`, `deepseek-v4-pro`, `deepseek-v4-flash`, `deepseek-v4.1-flash`, `glm-5.3`, `glm-5.2`, `qwen3-coder-plus`, `qwen3-coder-next`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.7-flash`, `qwen3.6-max-preview`, `qwen3.6-plus`, `qwen3.6-flash`, `qwen3.6-35b-a3b`, `qwen3.6-27b`, `qwen3.5-plus`, `qwen3.5-flash`, `qwen3.5-397b-a17b`, `qwen3.5-122b-a10b`, `qwen3.5-35b-a3b`, `qwen3.5-27b`, `qwen3-max`, `qwen3-coder-flash`, `qwen3-coder-480b-a35b-instruct`, `qwen3-coder-30b-a3b-instruct`, `qwen3-next-80b-a3b-thinking`, `qwen3-next-80b-a3b-instruct`, `qwen3-235b-a22b-thinking-2507`, `qwen3-235b-a22b-instruct-2507`, `qwen3-235b-a22b`, `qwen3-30b-a3b-thinking-2507`, `qwen3-30b-a3b-instruct-2507`, `qwen3-30b-a3b`, `qwen3-32b`, `qwen3-14b`, `qwen3-8b`, `qwen-max`, `qwen-plus`, `qwen-flash`, `qwen-turbo`, `qwq-plus`, `qvq-max`, `qwen3-vl-plus`, `qwen3-vl-flash`, `qwen3-vl-235b-a22b-thinking`, `qwen3-vl-235b-a22b-instruct`, `qwen3-vl-32b-thinking`, `qwen3-vl-32b-instruct`, `qwen3-vl-30b-a3b-thinking`, `qwen3-vl-30b-a3b-instruct`, `qwen3-vl-8b-thinking`, `qwen3-vl-8b-instruct`, `qwen-vl-max`, `qwen-vl-plus`, `deepseek-v3.2`, `glm-5.1`
 - Note: international (Singapore) endpoint; keys are region-specific. Free Quota Only is off by default, so a call past a model's million is billed: switch it on per model in the console. Each family calls its undated id; the dated snapshots priced beside it carry quotas of their own
 
+Try it from your terminal with your key in `ALIBABA_MODEL_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions \
+  -H "Authorization: Bearer $ALIBABA_MODEL_STUDIO_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen3.8-max","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://www.alibabacloud.com/help/en/model-studio/model-pricing>, anchored on `free quota`, `valid for 90 days`

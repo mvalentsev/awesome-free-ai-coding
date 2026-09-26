@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “We do not u
 - Callable ids: `nvidia/Qwen3.8-27B-NVFP4`
 - Note: reasoning is adaptive: `chat_template_kwargs: {"enable_thinking": false}` turns it off, and `reasoning_effort` takes low, medium or xhigh. Cline lists LLM Tech among its built-in providers; Claude Code "needs a translating proxy", LiteLLM in the vendor's own example
 
+Try it from your terminal — the key is the vendor's printed one:
+
+```sh
+curl -s https://api.llmtech.eu/v1/chat/completions \
+  -H "Authorization: Bearer lt-trial-ba1ef28c6d32ed6980678d8d" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"nvidia/Qwen3.8-27B-NVFP4","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://llmtech.eu/docs/>, anchored on `4 concurrent requests and 2M tokens per day per address`; ids checked in <https://api.llmtech.eu/v1/models>

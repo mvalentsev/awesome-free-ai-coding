@@ -36,6 +36,15 @@ Offered in the 187 countries and territories its list names, not in Hong Kong, V
 - Callable ids: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `meganova-ai/manta-mini-1.0`, `meganova-ai/manta-flash-1.0`
 - Note: the three ids listed are the chat rows a Tier 1 account can call for free; eleven more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash and manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B and bge-reranker-v2-m3 are not chat models, nor is MegaNova/Web-Search, a search API with 50 free queries a day, and five are roleplay fine-tunes (four of Llama, one of Mistral NeMo). Manta Mini and Manta Flash are MegaNova's own routers, tagged best_role_play in the catalog, so Mistral Small 3.2, at 8,192 tokens of context, is the one named coding model on the lane
 
+Try it from your terminal with your key in `MEGANOVA_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.meganova.ai/v1/chat/completions \
+  -H "Authorization: Bearer $MEGANOVA_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"mistralai/Mistral-Small-3.2-24B-Instruct-2506","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://api.meganova.ai/v1/models>, each listed family checked for a zero price

@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “对于您�
 - Callable ids: `deepseek-v4-flash-0731`
 - Note: the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL with deepseek-v4-flash-0731 in every model slot; the id is checked against the keyless catalog at api.moark.com/v1/models. It stays out of the Models column: the FAQ names no model, and the featured models the free token reaches are listed only on the client-rendered model square
 
+Try it from your terminal with your key in `MOARK_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.moark.com/v1/chat/completions \
+  -H "Authorization: Bearer $MOARK_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"deepseek-v4-flash-0731","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://moark.com/docs/FAQ>, anchored on `每位用户每日拥有 100 次免费调用次数`; ids checked in <https://api.moark.com/v1/models>

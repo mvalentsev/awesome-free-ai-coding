@@ -40,6 +40,15 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.5-flash`, `gemini-3.5-flash-lite`, `gemini-3.1-flash-lite`, `gemini-3-flash-preview`, `gemma-4-31b-it`, `gemma-4-26b-a4b-it`
 - Note: pass the key as Bearer
 
+Try it from your terminal with your key in `GOOGLE_AI_STUDIO_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://generativelanguage.googleapis.com/v1beta/openai/chat/completions \
+  -H "Authorization: Bearer $GOOGLE_AI_STUDIO_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"gemini-3.8-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://ai.google.dev/gemini-api/docs/pricing>, anchored on `gemini-3.8-flash`, `free of charge`

@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 - Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `brick-v1-beta`
 - Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model
 
+Try it from your terminal with your key in `REGOLO_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.regolo.ai/v1/chat/completions \
+  -H "Authorization: Bearer $REGOLO_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"glm5.2","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://regolo.ai/pricing/>, anchored on `1M tokens per day`, `No credit card required, no commitment`; ids checked in <https://api.regolo.ai/v1/models>

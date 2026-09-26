@@ -40,6 +40,15 @@ What you send is not used to train models. In the vendor's words: “By default,
 - Callable ids: `qwen/qwen3.5-4b-free`
 - Note: the id is the pricing page's and the docs' own example; /v1/models answers 401 without a key, so it is not read off a catalog
 
+Try it from your terminal with your key in `MIXLAYER_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://models.mixlayer.ai/v1/chat/completions \
+  -H "Authorization: Bearer $MIXLAYER_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen/qwen3.5-4b-free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://www.mixlayer.com/pricing>, anchored on `qwen/qwen3.5-4b-free`, `Free models stay free`

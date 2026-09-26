@@ -37,6 +37,15 @@ The vendor names no country it keeps the offer from ([source](https://aihubmix.c
 - Callable ids: `coding-glm-5.2-free`, `coding-glm-5.1-free`, `coding-kimi-k3-free`, `kimi-for-coding-free`, `xiaomi-mimo-v2.5-free`, `north-mini-code-free`, `ling-3.0-tiny-free`, `nemotron-3-ultra-550b-a55b-free`, `agents-a1-free`, `coding-glm-4.6-free`, `coding-glm-4.7-free`, `coding-glm-5-free`, `coding-glm-5-turbo-free`, `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`, `coding-minimax-m2-free`, `coding-minimax-m2.1-free`, `coding-minimax-m2.5-free`, `coding-minimax-m2.7-free`, `coding-minimax-m3-free`, `dots-3-note-preview-free`, `glm-4.7-flash-free`, `hy3-free`, `intern-s2-free`, `k2.6-code-preview-free`, `laguna-s-2.1-free`, `laguna-xs-2.1-free`, `lfm-2.5-2.6b-free`, `ling-3.0-flash-free`, `mimo-v2-flash-free`, `minimax-m2.7-free`, `nemotron-3-nano-30b-a3b-free`, `nemotron-3-nano-omni-30b-a3b-reasoning-free`, `nemotron-3-super-120b-a12b-free`, `nemotron-3.5-lightning-free`, `nemotron-nano-12b-v2-vl-free`, `nemotron-nano-9b-v2-free`, `union-alpha-free`, `xiaomi-mimo-v2-omni-free`, `xiaomi-mimo-v2-pro-free`, `xiaomi-mimo-v2.5-pro-free`, `xiaomi-mimo-v2.6-flash-free`, `xiaomi-mimo-v2.6-pro-free`
 - Note: every id the catalog prices at 0 is listed or ignored on purpose, 47 rows on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored: jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1 a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier, and qwen3.6-plus-preview-free says it was "removed from the platform". Not in the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it
 
+Try it from your terminal with your key in `AIHUBMIX_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://aihubmix.com/v1/chat/completions \
+  -H "Authorization: Bearer $AIHUBMIX_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"coding-glm-5.2-free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://aihubmix.com/api/v1/models>, free rows carrying `free`, each listed family checked for a zero price

@@ -40,6 +40,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `mercury-2.5`, `mercury-2`, `mercury-edit-2`
 - Note: mercury-2.5 and mercury-2 answer /v1/chat/completions and are the two ids /v1/models lists; mercury-edit-2 answers /v1/fim/completions and /v1/edit/completions instead and is absent from that catalog by design, so an OpenAI-shaped chat client cannot call it — point an autocomplete plugin at it, not a chat agent
 
+Try it from your terminal with your key in `INCEPTION_LABS_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.inceptionlabs.ai/v1/chat/completions \
+  -H "Authorization: Bearer $INCEPTION_LABS_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"mercury-2.5","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.inceptionlabs.ai/get-started>, anchored on `100 million free tokens`, `no payment details required`

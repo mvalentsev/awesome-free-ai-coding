@@ -41,6 +41,15 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`, `qwen3.8-flash:free`
 - Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free is marked free until 27 September. For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
 
+Try it from your terminal with your key in `TOKEN_HARBOR_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://tokenharbor.ai/v1/chat/completions \
+  -H "Authorization: Bearer $TOKEN_HARBOR_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"deepseek-v4.1-flash:free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://tokenharbor.ai/pricing>, anchored on `Try Token Harbor with a free allowance and a rotating model lineup`, `Included every month (4 weeks)`

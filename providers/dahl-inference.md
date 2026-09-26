@@ -36,6 +36,15 @@ The vendor names no country it keeps the offer from ([source](https://inference.
 - Callable ids: `zai-org/GLM-5.3-Flash`, `deepseek-ai/DeepSeek-V4-Flash-0731`, `MiniMaxAI/MiniMax-M2.7`
 - Note: ids are the keyless catalog's at inference.dahl.global/v1/models, 2026-09-21; they rotate with the network's capacity, and the models page already lists Kimi K2.6 and GLM-5.2 as retired. A key answers 402 until tokens are moved to it from the account pool
 
+Try it from your terminal with your key in `DAHL_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://inference.dahl.global/v1/chat/completions \
+  -H "Authorization: Bearer $DAHL_INFERENCE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"zai-org/GLM-5.3-Flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://inference.dahl.global/docs/tokens/>, anchored on `100 million tokens as a gift at signup`; ids checked in <https://inference.dahl.global/v1/models>

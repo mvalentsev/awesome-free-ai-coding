@@ -40,6 +40,14 @@ What you send is not used to train models. In the vendor's words: “Your data w
 - Callable ids: `Qwen3.8-27B`, `gpt-oss-120b`, `Qwen3.6-27B`, `Qwen3-Coder-30B-A3B-Instruct`
 - Note: no key at all on the anonymous lane, where 2 requests per minute per model are shared by every anonymous caller (measured 2026-09-24) — a 429 means the minute's quota is gone, not the offer. An API access key from a Public Cloud project raises that to 400 per minute and bills per token from then on
 
+Try it from your terminal — the lane takes no key:
+
+```sh
+curl -s https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"Qwen3.8-27B","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the models catalog at <https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models>

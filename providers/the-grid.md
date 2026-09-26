@@ -41,6 +41,15 @@ What you send is not used to train models. In the vendor's words: “Neither we 
 - Callable ids: `agent-prime`, `code-prime`, `agent-max`
 - Note: the ids are instruments from the keyless catalog at api.thegrid.ai/v1/models, where each carries the models it delivered; the Claude Code guide sets ANTHROPIC_BASE_URL=https://messages-beta.api.thegrid.ai, the Messages API in beta
 
+Try it from your terminal with your key in `THE_GRID_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://api.thegrid.ai/v1/chat/completions \
+  -H "Authorization: Bearer $THE_GRID_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"agent-prime","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://thegrid.ai/docs/start-here/quickstart.md>, anchored on `New accounts get a $25 signup credit`; ids checked in <https://api.thegrid.ai/v1/models>

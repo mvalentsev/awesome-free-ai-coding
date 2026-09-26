@@ -40,6 +40,15 @@ What you send may be used to train or improve models unless you turn that off. I
 - Callable ids: `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`
 - Note: the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split for Platform keys anywhere, so this row claims no free models and names none in its column. The key is created by signing in to Poolside Platform, whose dashboard sits behind a Cloudflare check no probe can read
 
+Try it from your terminal with your key in `POOLSIDE_API_KEY` — it goes from your machine to the vendor and nowhere else:
+
+```sh
+curl -s https://inference.poolside.ai/v1/chat/completions \
+  -H "Authorization: Bearer $POOLSIDE_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"poolside/laguna-s-2.1","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+```
+
 ## Evidence
 
 - Probe: the page at <https://docs.poolside.ai/get-started/quickstart>, anchored on `Choose this option for fast, free developer access`, `fastest way to get a free Poolside API key`
