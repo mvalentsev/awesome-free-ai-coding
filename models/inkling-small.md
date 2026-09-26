@@ -3,7 +3,7 @@ layout: default
 title: 'inkling-small free: 2 providers, limits and ids, verified 2026-09-24'
 description: inkling-small is served free by OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/inkling-small/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: inkling-small
 ---
 

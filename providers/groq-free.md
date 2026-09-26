@@ -3,7 +3,7 @@ layout: default
 title: 'Groq free tier: limits, free models, verified 2026-09-24'
 description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K /…'
 permalink: /providers/groq-free/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Groq
 ---
 
@@ -24,6 +24,10 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 ## Limits, in the vendor's words
 
 Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://console.groq.com/docs/legal/services-agreement), read 2026-09-26).
 
 ## What happens to what you send
 

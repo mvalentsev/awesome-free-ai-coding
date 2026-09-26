@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-120b free: 4 providers, limits and ids, verified 2026-09-24'
 description: gpt-oss-120b is served free by Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-oss-120b/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: gpt-oss-120b
 ---
 
@@ -31,7 +31,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-24 · listed since 2026-09-25
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-24 · listed since 2026-09-25
 
 Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 

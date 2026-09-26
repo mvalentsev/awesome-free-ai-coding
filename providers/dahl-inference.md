@@ -3,7 +3,7 @@ layout: default
 title: 'Dahl Inference free tier: limits, free models, verified 2026-09-24'
 description: 'An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account. The docs: "100 million tokens as a gift at signup", paid…'
 permalink: /providers/dahl-inference/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Dahl Inference
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The docs: "100 million tokens as a gift at signup", paid into the account's pool rather than onto a key — a new key holds nothing and answers 402 until tokens are allocated to it at /account. The account is a username and a 32-character fingerprint, "Save the fingerprint shown once — it is the password", and "There is no email recovery by design". "Creating extra keys does not grant more free tokens", the terms forbid automating account creation "to harvest promotional allocations" and keep the right to "end discretionary free access", and past the grant the only top-up is crypto, "priced around $0.03 per 1M tokens". Requests are routed to "independent operators within a decentralised network" under terms from FROMZERO OÜ, an Estonian company. Read 2026-09-21
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://inference.dahl.global/terms/), read 2026-09-26).
 
 ## Connect
 

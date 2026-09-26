@@ -3,7 +3,7 @@ layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and…'
 permalink: /providers/regolo/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Regolo AI
 ---
 
@@ -24,6 +24,10 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 ## Limits, in the vendor's words
 
 "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://regolo.ai/terms-and-conditions/), read 2026-09-26).
 
 ## What happens to what you send
 

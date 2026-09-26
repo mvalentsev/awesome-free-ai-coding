@@ -3,7 +3,7 @@ layout: default
 title: 'Cline free tier: limits, free models, verified 2026-09-24'
 description: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. "Cline periodically offers free model promotions that let…
 permalink: /providers/cline/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Cline
 ---
 
@@ -24,6 +24,10 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 ## Limits, in the vendor's words
 
 "Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota", and "Free models are available to any user with a Cline account" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over "on a rotating, limited-time basis" — ids change within a day, so a model joins the Models column only after two weeks in the lane. The free-models page states two limits outright: "Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI", and "Free model usage may be used to help improve model performance and quality". Read 2026-09-14
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://cline.bot/tos), read 2026-09-26).
 
 ## What happens to what you send
 

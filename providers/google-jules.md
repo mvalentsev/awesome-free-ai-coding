@@ -3,7 +3,7 @@ layout: default
 title: 'Google Jules free tier: limits, free models, verified 2026-09-24'
 description: Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously. 15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and…
 permalink: /providers/google-jules/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Google Jules
 ---
 
@@ -24,6 +24,10 @@ Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base m
 ## Limits, in the vendor's words
 
 15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free plan "Gemini 2.5 Pro" and both paid rows "starting with Gemini 3 Pro", but the changelog of 2026-01-30 reads "Today we’re launching Gemini 3 Flash in Jules for all users on all tiers", "our new base model", and Pro users default to Gemini 3.1 Pro since 2026-03-09. Upgrading runs through a Google AI plan, "currently available only for individual Google Accounts (ending in @gmail.com)"; task limits are "not shared or pooled" on a family plan; and Google states it "may adjust limits and features as we learn how people are using the product" (read 2026-09-23)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://blog.google/innovation-and-ai/models-and-research/google-labs/jules/), read 2026-09-26). In the vendor's words: “Worldwide, everywhere where the Gemini model is available”.
 
 ## What happens to what you send
 

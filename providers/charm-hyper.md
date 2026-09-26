@@ -3,7 +3,7 @@ layout: default
 title: 'Crush + Charm Hyper free tier: limits, free models, verified 2026-09-24'
 description: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention. 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)
 permalink: /providers/charm-hyper/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Crush + Charm Hyper
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://hyper.charm.land/terms), read 2026-09-26).
 
 ## What happens to what you send
 

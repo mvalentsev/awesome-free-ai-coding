@@ -3,7 +3,7 @@ layout: default
 title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, verified 2026-09-24'
 description: claude-sonnet-4.5 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/claude-sonnet-4.5/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: claude-sonnet-4.5
 ---
 

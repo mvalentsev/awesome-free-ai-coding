@@ -3,7 +3,7 @@ layout: default
 title: 'step-3.7-flash free: 2 providers, limits and ids, verified 2026-09-24'
 description: step-3.7-flash is served free by Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/step-3.7-flash/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: step-3.7-flash
 ---
 

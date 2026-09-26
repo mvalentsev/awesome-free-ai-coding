@@ -3,7 +3,7 @@ layout: default
 title: 'Upstage (Solar API) free tier: limits, free models, verified 2026-09-24'
 description: Upstage Solar LLM API; $10 free credit on signup, no card. $10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai is a client-rendered docs site — 535 characters of text survive with its scripts removed — so "$10 in free credit" is read out of the payload the page…
 permalink: /providers/upstage/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Upstage (Solar API)
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 $10 signup credit (see console for validity); pay-as-you-go after. console.upstage.ai is a client-rendered docs site — 535 characters of text survive with its scripts removed — so "$10 in free credit" is read out of the payload the page ships rather than out of anything a reader sees, and it is declared as a machinery keyword to say so. Neither upstage.ai/pricing nor the Solar Pro product page carries the phrase at all (all three read 2026-09-08)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://www.upstage.ai/terms-of-service), read 2026-09-26).
 
 ## What happens to what you send
 

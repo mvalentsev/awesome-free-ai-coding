@@ -3,7 +3,7 @@ layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. $0 a month, and no account for the free lane: "The gateway allows…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Kilo Code
 ---
 
@@ -24,6 +24,10 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 ## Limits, in the vendor's words
 
 $0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
+
+## Where it is offered
+
+Not offered in Cuba, Iran, North Korea or Syria, the embargoed countries most offers leave out, and in no other country the vendor names ([source](https://kilo.ai/terms), read 2026-09-26). In the vendor's words: “including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine”.
 
 ## What happens to what you send
 

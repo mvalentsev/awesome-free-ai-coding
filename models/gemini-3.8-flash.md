@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3.8-flash free: 2 providers, limits and ids, verified 2026-09-24'
 description: gemini-3.8-flash is served free by Google AI Studio (Gemini API) and Google Antigravity. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemini-3.8-flash/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: gemini-3.8-flash
 ---
 
@@ -19,7 +19,7 @@ crumb: gemini-3.8-flash
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-07
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-24 · listed since 2026-09-07
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 
@@ -31,7 +31,7 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-24 · listed since 2026-09-03
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-24 · listed since 2026-09-03
 
 Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 

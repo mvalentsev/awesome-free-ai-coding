@@ -3,7 +3,7 @@ layout: default
 title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-09-24'
 description: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill. "300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per…
 permalink: /providers/ibm-watsonx-ai/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: IBM watsonx.ai (Lite plan)
 ---
 
@@ -11,7 +11,7 @@ crumb: IBM watsonx.ai (Lite plan)
 
 # IBM watsonx.ai (Lite plan) free tier
 
-🔌 LLM APIs with free tier · card required · **live** — last verified by a probe on 2026-09-24 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · not offered in Vietnam, Türkiye, Taiwan and 24 more places · **live** — last verified by a probe on 2026-09-24 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ The page this row is verified against names no free model, so the column stays e
 ## Limits, in the vendor's words
 
 "300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per second", on "A free plan with limited capacity" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says "For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity" and "Lite plans do not incur charges". Which foundation models the 300,000 tokens reach is on a separate docs page the probe does not read, which is why the Free models column is empty
+
+## Where it is offered
+
+Not offered in Vietnam, Türkiye, Taiwan, Nigeria, Ukraine, Egypt, Saudi Arabia, Switzerland and 19 more places ([source](https://cloud.ibm.com/docs/account?topic=account-account-getting-started), read 2026-09-26). That leaves out 10.2% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The following table shows the countries where personal use of the platform not related to business, trade, craft, or professional purposes is not supported”.
 
 ## What happens to what you send
 

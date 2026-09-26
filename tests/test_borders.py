@@ -2,6 +2,7 @@
 words — and everything read off it: the names on a vendor's page, the share of
 developers it leaves out, the line the pages print and the run's re-read."""
 from datetime import date
+from pathlib import Path
 
 import httpx
 import pytest
@@ -355,3 +356,77 @@ def test_index_json_carries_the_border_as_recorded():
     row = build_index([bordered(left_out=[])], TODAY)["entries"][0]
     assert row["border"] == {"left_out": [], "on": "2026-09-26", "source": REGIONS, "quote": "",
                              "read": "page", "also_named": []}
+
+
+@respx.mock
+async def test_a_border_resting_on_documents_is_read_for_its_quote_alone():
+    """A sign-up that takes mainland ID cards names documents, not countries —
+    no name on its page to look for, and its sentence is what the row rests on."""
+    respx.get(PAGE).mock(return_value=httpx.Response(200, text="x-mini-2, no credit card"))
+    page = respx.get(REGIONS).mock(return_value=httpx.Response(
+        200, text="个人认证支持证件类型：身份证。不具有以上证件的用户，暂时不支持线上个人认证。"))
+    entry = probed(served=["CN"], read="quote", quote="不具有以上证件的用户，暂时不支持线上个人认证")
+    assert (await verdict(entry)).status is ProbeStatus.PASS
+    page.mock(return_value=httpx.Response(200, text="支持护照认证。"))
+    assert (await verdict(entry)).detail == (f"border: {REGIONS} — its quote is gone — read the "
+                                             "vendor's territory words again")
+
+
+@respx.mock
+async def test_a_vendor_that_names_nothing_quoted_costs_the_run_no_read():
+    respx.get(PAGE).mock(return_value=httpx.Response(200, text="x-mini-2, no credit card"))
+    terms = respx.get(REGIONS).mock(return_value=httpx.Response(200, text="Terms."))
+    assert (await verdict(probed(left_out=[]))).status is ProbeStatus.PASS
+    assert not terms.called
+
+
+def test_a_border_read_for_its_quote_has_one():
+    with pytest.raises(ValidationError, match="no quote"):
+        border(served=["CN"], read="quote")
+
+
+# ---- the registry --------------------------------------------------------------
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows():
+    """CONTRIBUTING: "an exclusion most vendors share sets no row apart". The
+    shared set is the embargoes a sanctions clause covers unnamed; a country
+    most live rows leave out in their own words would belong beside them, and
+    the day one does, this says so."""
+    from freetier_radar.models import is_archived, load_registry
+    live = [e for e in load_registry(ROOT / "registry.yaml") if not is_archived(e, TODAY)]
+    counts: dict[str, int] = {}
+    for e in live:
+        b = e.border
+        codes = set(COUNTRIES) - set(b.served) if b.served is not None else set(b.left_out)
+        for c in codes - SHARED:
+            counts[c] = counts.get(c, 0) + 1
+    most = {c: n for c, n in counts.items() if n > len(live) / 2}
+    assert not most, most
+
+
+def test_the_registry_writes_a_border_as_it_was_recorded_and_no_longer(tmp_path):
+    """Google's allow-list is 230 codes: one a line made the border longer than
+    the row it belongs to. Its lists are written as wrapped lines, and the
+    defaults every row shares are left out."""
+    from freetier_radar.models import load_registry, save_registry
+    path = tmp_path / "registry.yaml"
+    rows = [bordered(served=sorted(COUNTRIES)[:40], quote="available in the following"),
+            Entry.model_validate({**BASE, "id": "y", "border": {"left_out": [], "on": TODAY,
+                                                                 "source": REGIONS}})]
+    save_registry(path, rows)
+    text = path.read_text(encoding="utf-8")
+    assert "    served: [AD, AE, AF," in text
+    assert "left_out: []" in text and "also_named" not in text and "read: page" not in text
+    assert [e.border for e in load_registry(path)] == [r.border for r in rows]
+
+
+def test_a_border_read_dates_the_page_it_is_printed_on():
+    """The sitemap's <lastmod> is the newest day a page changed for a reader,
+    and a border read is a fact the page gained that day with no history line."""
+    from freetier_radar.render import _last_modified
+    e = Entry.model_validate({**BASE, "last_verified": date(2026, 9, 24), "border": {
+        "left_out": [], "on": TODAY, "source": REGIONS}})
+    assert _last_modified(e, []) == TODAY

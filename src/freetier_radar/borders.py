@@ -31,12 +31,16 @@ YARDSTICK_URL = "https://raw.githubusercontent.com/github/innovationgraph/main/d
 YARDSTICK_SOURCE = "https://github.com/github/innovationgraph/blob/main/data/developers.csv"
 YARDSTICK_PATH = Path(__file__).with_name("developers.json")
 
-# The exclusions that set no row apart, because the vendors' terms leave them
-# out almost everywhere — by name or by a sanctions clause: the four embargoed
-# countries. CONTRIBUTING's rule says "an exclusion most vendors share", and
+# The exclusions that set no row apart: the countries under comprehensive US
+# embargo, which a sanctions clause covers whether it names them or not — seventeen
+# live rows carry one that names no country, and the rows that name any name
+# these first. CONTRIBUTING's rule says "an exclusion most vendors share", and
 # until the sweep of 2026-09-26 its example, "the countries under US sanctions",
-# was read to take in Russia, Belarus and Venezuela as well; the sweep's count
-# of the vendors' own words is what decides which countries belong here.
+# was read to take in Russia, Belarus and Venezuela as well. The sweep counted
+# the vendors' own words: fifteen of eighty live rows leave Russia out, and no
+# embargo clause reaches it — not most, so a border that leaves out Russia is
+# counted. The suite holds the set to the registry: no country outside it is
+# left out by most rows.
 SHARED = frozenset({"CU", "IR", "KP", "SY"})
 
 

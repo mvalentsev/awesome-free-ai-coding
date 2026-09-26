@@ -3,7 +3,7 @@ layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14 — Qwen3.7 Flash and DeepSeek V4 Flash 0731 — beside the auto:free router. BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2…'
 permalink: /providers/bazaarlink/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: BazaarLink
 ---
 
@@ -24,6 +24,10 @@ OpenAI-compatible gateway to a 173-id catalog whose free page counts two models 
 ## Limits, in the vendor's words
 
 BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the models it counts as free. Past the quota "requests on free-quota models continue at the normal paid rate if you have credit; otherwise they are rate-limited until the quota resets"; everything else in the catalog is metered at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog's own id deepseek/deepseek-v4-flash-0731free:free, described as "Rate-limited free tier." and listed on the free page as "Deepseek V4 Flash 0731free" at $0 against $0.20/$0.40, beside a metered deepseek-v4-flash-0731free twin at those rates
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://bazaarlink.ai/en/terms), read 2026-09-26).
 
 ## Connect
 

@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m2 free: 1 provider, limits and ids, verified 2026-09-24'
 description: minimax-m2 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/minimax-m2/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: minimax-m2
 ---
 

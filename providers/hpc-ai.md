@@ -3,7 +3,7 @@ layout: default
 title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the…
 permalink: /providers/hpc-ai/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: HPC-AI Model APIs
 ---
 
@@ -11,7 +11,7 @@ crumb: HPC-AI Model APIs
 
 # HPC-AI Model APIs free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in mainland China · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the page's data rather than its text: every user receives $2 "in free credits. New accounts using the invite code" HPCAI-MAPI get $4, and "Supplies are limited". The console's welcome message, shipped in the same page, reads "Free credits have been added to your account — start calling open-source models right away." and "Make your first deposit to unlock higher RPM limits." The keyless model list gives the L0 tier, an account before its first deposit, 5 requests and 2M tokens a minute on 23 of its 24 models (DeepSeek V4 Pro gets 0), and the rate-limit docs say the move to L1 "is triggered by your first deposit rather than by spending". The credit buys list prices, GLM 5.3 Flash at $0.15 in and $0.50 out per million tokens and Kimi K3 at $3 and $15. No page read asks for a card before the credit is spent, and none gives it an expiry. Read 2026-09-17
+
+## Where it is offered
+
+Not offered in mainland China ([source](https://www.hpc-ai.com/agreement/service), read 2026-09-26). That leaves out 5.9% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Services are intended for users outside Mainland China and are not available to individuals or entities located in Mainland China”.
 
 ## What happens to what you send
 

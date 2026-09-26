@@ -3,7 +3,7 @@ layout: default
 title: 'Standard Compute free tier: limits, free models, verified 2026-09-24'
 description: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. "Eligible new accounts receive $0.25 of trial compute after activation. This is a finite…
 permalink: /providers/standardcompute/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Standard Compute
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 "Eligible new accounts receive $0.25 of trial compute after activation. This is a finite platform compute allowance. It is not a recurring free tier, a fixed token count, or a value measured at another provider's prices" — the free-trial page, "Updated September 5, 2026", read here 2026-09-16; the pricing FAQ adds "with no card required". It does not refill, no card is asked for, and it is discretionary: "Access is subject to eligibility and availability", with a support address for accounts whose dashboard does not offer it. What the quarter buys is on no page — a flat-rate router publishes no per-token price, and the only conversion the site offers is its own marketing arithmetic, a $20 monthly compute budget on the paid Starter plan that its pricing table says does the work of up to $60 a month of direct API use. The vendor sets the expectation itself: "Start with one small request that lets you check the connection and response", while "a longer coding-quality comparison may need a paid allowance". It is the smallest offer on this list — a connection test, not a working allowance
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://standardcompute.com/free-trial), read 2026-09-26).
 
 ## What happens to what you send
 

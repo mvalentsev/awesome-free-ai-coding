@@ -3,7 +3,7 @@ layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-09-24'
 description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check. The Free plan is "500 credits a month once you verify a card (a one-time $1…
 permalink: /providers/experiential-labs/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Experiential Labs
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)", a credit being a cent ("2,000 credits / month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s list price with nothing on top". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens. The one model its list marks Free is TypeSafe's Jev, whose catalog entry supports neither tools nor streaming, so not one to code with, and the other promotions are discounts, GPT-6 Luna at 75% off. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-25
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://www.experientiallabs.ai/terms), read 2026-09-26).
 
 ## Connect
 

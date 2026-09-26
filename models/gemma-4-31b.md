@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-31b free: 4 providers, limits and ids, verified 2026-09-24'
 description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com) and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: gemma-4-31b
 ---
 
@@ -45,7 +45,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-24 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 

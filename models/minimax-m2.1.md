@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m2.1 free: 2 providers, limits and ids, verified 2026-09-24'
 description: minimax-m2.1 is served free by Kiro and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/minimax-m2.1/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: minimax-m2.1
 ---
 

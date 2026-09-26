@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-27b free: 7 providers, limits and ids, verified 2026-09-24'
 description: qwen3.8-27b is served free by Groq, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each one's…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: qwen3.8-27b
 ---
 
@@ -55,7 +55,7 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-24 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible
 

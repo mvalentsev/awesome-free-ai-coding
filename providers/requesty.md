@@ -3,7 +3,7 @@ layout: default
 title: 'Requesty free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those. Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend…
 permalink: /providers/requesty/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Requesty
 ---
 
@@ -24,6 +24,10 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 ## Limits, in the vendor's words
 
 Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://www.requesty.ai/terms), read 2026-09-26).
 
 ## What happens to what you send
 

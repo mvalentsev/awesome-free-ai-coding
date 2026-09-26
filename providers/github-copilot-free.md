@@ -3,7 +3,7 @@ layout: default
 title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-09-24'
 description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. GitHub folded its Copilot billing-concepts page into the plans page on or before 2026-08-20 and restated the figures there. Inline suggestions are "limited to 2000…
 permalink: /providers/github-copilot-free/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: GitHub Copilot Free
 ---
 
@@ -11,7 +11,7 @@ crumb: GitHub Copilot Free
 
 # GitHub Copilot Free free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-09-24 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ The vendor does not say which models the free part reaches, so the column names 
 ## Limits, in the vendor's words
 
 GitHub folded its Copilot billing-concepts page into the plans page on or before 2026-08-20 and restated the figures there. Inline suggestions are "limited to 2000 completions per month on Copilot Free"; for everything agentic, "Copilot Free and Copilot Student both have an allowance of AI credits" — an allowance GitHub numbers for every paid plan (1,500 monthly credits on Pro, 7,000 on Pro+, 20,000 on Max) and leaves unnumbered for Free, whose row in the plans table reads only "An allowance of GitHub AI Credits" and "Limited" agents. Model choice is not offered: "on Copilot Free and Copilot Student plans, access to models is available through auto model selection only". The plan is still scoped to developers no employer covers — "Copilot Free plans are only available to individual developers who don't have access to Copilot through an organization or enterprise" — but the list of business features it withholds went with the old page and is not on this one (read 2026-08-20)
+
+## Where it is offered
+
+Not offered in Russia, Iran, Belarus, Cuba and North Korea ([source](https://docs.github.com/en/site-policy/other-site-policies/github-and-trade-controls), read 2026-09-26). That leaves out 2.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “These destinations currently include Cuba, Iran, North Korea, Russia, Belarus, and the following regions of Ukraine: Crimea/Sevastopol and the separatist areas of Donetsk and Luhansk”.
 
 ## What happens to what you send
 

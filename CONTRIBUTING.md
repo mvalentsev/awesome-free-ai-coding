@@ -75,18 +75,39 @@ no-card rows it ties with.
 a sign-up that refuses them, or a site and an endpoint that do not resolve there —
 does less work for this list's readers than the same offer open to all of them, so
 it ranks below the offers of its size that are, and lower the more readers it
-leaves out; the row names who, as a class, with the day it was measured. Readers
-are counted as developers: a border's share is its countries' part of the
-developers GitHub's [Innovation Graph](https://innovationgraph.github.com/) counts
-in its latest quarter, the EU's line left out of the total because it repeats the
-member states. An exclusion most vendors share, such as the countries under US
-sanctions, sets no row apart and moves no rank. On 2026-09-25 CodeBuddy's
+leaves out. Readers are counted as developers: a border's share is its
+countries' part of the developers GitHub's
+[Innovation Graph](https://innovationgraph.github.com/) counts in its latest
+quarter, the EU's line left out of the total because it repeats the member
+states. An exclusion most vendors share sets no row apart and moves no rank: the
+countries under comprehensive US embargo — Cuba, Iran, North Korea and Syria —
+which a sanctions clause covers whether it names them or not. Russia is not one
+of them: on 2026-09-26 fifteen of the eighty live rows left it out in their own
+words, so a border that leaves out Russia counts. On 2026-09-25 CodeBuddy's
 international site, sign-in and API endpoint answered 0.0.0.1 in the United
 States, India and Russia and resolved in the seventeen other countries and
 territories asked; with the two largest developer populations on GitHub left out
 ([Octoverse 2025](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)),
 it went from 65, among the recurring agent plans, to 82, below the trials and
 credits that reach them.
+
+**Every live row records its border**, in `border`, the way its vendor states
+it: `served`, the countries of an allow-list (Google's region list, a sign-up
+that takes mainland Chinese ID cards), or `left_out`, every country a deny-list
+names, the embargoed ones included, so a reader in Russia can tell a vendor that
+names Russia from one that does not. A vendor that names no country, or covers
+them with a sanctions clause that names none, is `left_out: []`. The codes are
+ISO 3166-1's, the ones the Innovation Graph counts under, and each border carries
+the day it was read, its source and, where the page has one, the vendor's
+sentence. A disclaimer that a service is "intended for" one country, with nothing
+that refuses the rest, is not a border (CodeGPT's terms); nor is the Gemini API's
+rule that only its paid services may serve users in the EEA, Switzerland or the
+UK, which is about the apps a developer builds, not the developer. The run reads
+every border back — the names still on its page, the codes a vendor publishes as
+data, a host still silent from inside a country — and reports a change beside a
+row that stays verified; it never fails one. `freetier-borders` prints every
+row's share, the figure a rank is argued from, and `--refresh` reads the
+Innovation Graph's newest quarter into the committed snapshot.
 
 The first four no-card agents are also the top of the README, with the models
 they hand you, so this ordering is the page's answer to "what do I use, then?"

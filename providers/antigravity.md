@@ -3,7 +3,7 @@ layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-09-24'
 description: Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do. $0/month, no subscription. The plan's own…
 permalink: /providers/antigravity/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Google Antigravity
 ---
 
@@ -11,7 +11,7 @@ crumb: Google Antigravity
 
 # Google Antigravity free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-09-24 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Ge
 ## Limits, in the vendor's words
 
 $0/month, no subscription. The plan's own bullet reads "Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b" (read 2026-09-03; Gemini 3.5 Flash stood there until 2026-08-31 and three newer Flash generations have taken its place), with unlimited Tab completions, unlimited Command requests and "Basic weekly rate limits". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: "The baseline rate limits are primarily determined to the degree we have capacity, and exist to prevent abuse"
+
+## Where it is offered
+
+Offered in the 222 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Moldova, Syria and 16 more places ([source](https://antigravity.google/docs/faq), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “Google Antigravity is available in the following countries and territories. If you’re not in one of these countries or territories, you will be unable to use Google Antigravity at this time”.
 
 ## What happens to what you send
 

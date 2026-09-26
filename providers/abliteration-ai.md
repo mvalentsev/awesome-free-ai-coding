@@ -3,7 +3,7 @@ layout: default
 title: 'abliteration.ai free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect…'
 permalink: /providers/abliteration-ai/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: abliteration.ai
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect the available models, and add prepaid credit or a monthly plan when you are ready." No page says what a credit is worth; the credits endpoint reports the balance as "Total credits available to the organization, in USD". Usage is billed per token — abliterated-model $1.00 in and $3.00 out per million, abliterated-model-large-v2 and abliterated-model-large $3.00 and $5.00 — and plans start at $20 a month. The models "think before answering by default", stream and call tools, and abliterated-model-large-v2 is "Derived from the open-weight GLM-5.3 model, further abliterated and fine-tuned by Abliteration AI". The operator is Abliteration AI, Inc. Read 2026-09-17
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://abliteration.ai/terms-of-service), read 2026-09-26).
 
 ## What happens to what you send
 

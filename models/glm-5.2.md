@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5.2 free: 2 providers, limits and ids, verified 2026-09-24'
 description: glm-5.2 is served free by AIHubMix (free models) and Regolo AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-5.2/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: glm-5.2
 ---
 

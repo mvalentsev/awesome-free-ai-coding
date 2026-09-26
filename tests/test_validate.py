@@ -18,6 +18,7 @@ ENTRY = {
               "keywords": ["x-mini-2", "free"]},
     "models": [{"family": "x-mini"}],
     "free_part": "models",
+    "border": {"left_out": [], "on": "2026-08-14", "source": "https://x.ai/terms"},
 }
 
 WATCHED = {"domains": ["watched.ai"], "name": "Watched Co", "checked_on": "2026-08-01",
@@ -104,6 +105,22 @@ def test_a_live_row_says_what_its_free_part_is(tmp_path: Path):
     archived = {**bare, "retired_on": "2026-08-01"}
     problems = check(build(tmp_path, entries=[archived], watched=[WATCHED]), TODAY)
     assert not any("free_part" in p for p in problems), problems
+
+
+def test_a_live_row_says_where_its_offer_reaches(tmp_path: Path):
+    """A rank argued from the readers a border leaves out needs every row's
+    border — Google's, OpenAI's and TRAE's went unnamed while three rows said
+    theirs in prose — so a live row without one is a problem, and so is a
+    border read on a day still to come. An archived row keeps its record."""
+    bare = {k: v for k, v in ENTRY.items() if k != "border"}
+    problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
+    assert any(p.startswith("registry: x has no border") for p in problems), problems
+    later = {**ENTRY, "border": {**ENTRY["border"], "on": "2026-08-15"}}
+    problems = check(build(tmp_path, entries=[later], watched=[WATCHED]), TODAY)
+    assert any("border was read on 2026-08-15, after today" in p for p in problems), problems
+    archived = {**bare, "retired_on": "2026-08-01"}
+    problems = check(build(tmp_path, entries=[archived], watched=[WATCHED]), TODAY)
+    assert not any("border" in p for p in problems), problems
 
 
 def test_an_earlier_record_of_a_free_id_stops_once_its_family_joins(tmp_path: Path):

@@ -3,7 +3,7 @@ layout: default
 title: 'Alibaba Cloud Model Studio (DashScope, international) free tier: limits, free models, verified 2026-09-24'
 description: A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible. 1,000,000 free tokens per model, on the Singapore (international) region alone:…
 permalink: /providers/alibaba-model-studio/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Alibaba Cloud Model Studio (DashScope, international)
 ---
 
@@ -11,7 +11,7 @@ crumb: Alibaba Cloud Model Studio (DashScope, international)
 
 # Alibaba Cloud Model Studio (DashScope, international) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [alibabacloud.com](https://www.alibabacloud.com/en/product/modelstudio) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China · **live** — last verified by a probe on 2026-09-24 · [alibabacloud.com](https://www.alibabacloud.com/en/product/modelstudio) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 ## Limits, in the vendor's words
 
 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions", and the quota "is independent per model and cannot be shared across models", a dated snapshot counting as a model of its own. The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later". The last column of each Singapore table, "Free quota", gives it to every Qwen text model from Qwen3.8 Max down to Qwen3 8B, the Coder and VL lines among them, to DeepSeek V4.1 Flash, V4 Pro, V4 Flash and V3.2, and to GLM-5.3, 5.2 and 5.1; the Kimi table has no such column, glm-5.2-fast-preview reads "None", and its translation, OCR, omni and realtime models are not ones to code with (read 2026-09-25). Since 2026-09-15 "you must complete your account information before activating Model Studio", and past the quota "you are automatically billed on a pay-as-you-go basis" unless Free Quota Only, which "is disabled by default", is switched on per model (read 2026-09-23)
+
+## Where it is offered
+
+Not offered in mainland China ([source](https://www.alibabacloud.com/help/en/account/step-1-register-an-alibaba-cloud-account), read 2026-09-26). That leaves out 5.9% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Alibaba Cloud international site does not support selecting the Chinese mainland as the registration region, and does not support binding a mobile number of the Chinese mainland”.
 
 ## What happens to what you send
 

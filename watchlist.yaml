@@ -3444,3 +3444,22 @@ watched:
     reopen_if: >-
       The plans page offers free credits or free usage without a payment
       method again.
+
+  - domains: [tencentcloud.com]
+    name: Tencent Cloud TokenHub (international)
+    checked_on: '2026-09-26'
+    reason: >-
+      The international site's New User Free Trial Package gives each language
+      model a million tokens valid a year, in a campaign to 2026-12-31, but
+      "Each time you claim a free resource package for a model or enable
+      postpaid service for a model, USD 1 will be automatically frozen in your
+      account. If your account balance or credit limit is insufficient, the
+      claim or enablement will fail" — a funded account, model by model (read
+      2026-09-26 in a browser). Its docs answer the project's client and the
+      runners alike with EdgeOne's JavaScript challenge, so no probe could read
+      a row back. The Chinese site, cloud.tencent.com, is a row
+      (tencent-tokenhub) for accounts verified with mainland, Hong Kong, Macau
+      or Taiwan papers.
+    reopen_if: >-
+      The package can be claimed without a balance, or the offer is published
+      on a page a probe can read.

@@ -3,7 +3,7 @@ layout: default
 title: 'glm-4.7-flash free: 2 providers, limits and ids, verified 2026-09-24'
 description: glm-4.7-flash is served free by AIHubMix (free models) and Z.ai (Zhipu GLM). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: glm-4.7-flash
 ---
 

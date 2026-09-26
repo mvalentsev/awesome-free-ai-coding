@@ -3,7 +3,7 @@ layout: default
 title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-24'
 description: One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the…
 permalink: /providers/tokenrouter/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: TokenRouter (PaleBlueDot)
 ---
 
@@ -11,7 +11,7 @@ crumb: TokenRouter (PaleBlueDot)
 
 # TokenRouter (PaleBlueDot) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-09-24 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 1
 ## Limits, in the vendor's words
 
 the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free ids have come and gone beside it: the zero-priced Kimi K3 this entry was registered for — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered
+
+## Where it is offered
+
+Not offered in Russia, Iran, Belarus, Syria, Cuba and North Korea ([source](https://www.tokenrouter.com/docs/conditions-of-use/), read 2026-09-26). That leaves out 2.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “for or on behalf of parties located in, headquartered in, or having a parent company headquartered in Russia, Belarus, Iran, North Korea, Cuba, or the occupied regions of Ukraine”.
 
 ## Connect
 

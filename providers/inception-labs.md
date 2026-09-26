@@ -3,7 +3,7 @@ layout: default
 title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-09-24'
 description: A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls. 100 million tokens on every new account, no…
 permalink: /providers/inception-labs/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Inception Labs (Mercury)
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit "shared across all models rather than granted per model", so Mercury 2.5 spends the same balance as Mercury 2. Past it the account moves to pay-as-you-go: $0.25 per 1M input and $0.75 per 1M output on Mercury 2 and Mercury Edit 2, a list $0.20/$0.75 on Mercury 2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10). The Free tier's own ceiling is per minute rather than per month — 1,000 requests, 1,000,000 input tokens and 100,000 output tokens
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://www.inceptionlabs.ai/docs/terms-of-use), read 2026-09-26).
 
 ## What happens to what you send
 

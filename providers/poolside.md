@@ -3,7 +3,7 @@ layout: default
 title: 'Poolside Platform free tier: limits, free models, verified 2026-09-24'
 description: Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway. Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with…
 permalink: /providers/poolside/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Poolside Platform
 ---
 
@@ -24,6 +24,10 @@ The vendor does not say which models the free part reaches, so the column names 
 ## Limits, in the vendor's words
 
 Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the docs site states a quota, a rate limit or a duration. Treat it as unquantified rather than as generous
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://poolside.ai/legal/eula), read 2026-09-26).
 
 ## What happens to what you send
 

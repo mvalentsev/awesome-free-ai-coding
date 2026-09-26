@@ -3,7 +3,7 @@ layout: default
 title: 'Ollama Cloud free tier: limits, free models, verified 2026-09-24'
 description: 'Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is…'
 permalink: /providers/ollama-cloud/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Ollama Cloud
 ---
 
@@ -24,6 +24,10 @@ The vendor does not say which models the free part reaches, so the column names 
 ## Limits, in the vendor's words
 
 The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is published — no credit amount and no starter-model list — and every cloud model carries a per-million-token price on the same page (gpt-oss:20b $0.07 in / $0.30 out, kimi-k3 $3.00 / $15.00). Free gets 1 concurrent request against Pro's 3, and the included usage "resets monthly from the date you signed up" without rolling over. The starter set can only be measured: on 2026-09-02 a key on the $0 plan got answers from gpt-oss:120b, gemma4:31b and nemotron-3-ultra and 402 Payment Required from minimax-m3, so the edge of the set is not the price — nemotron-3-ultra is inside at $0.10/$3.00, minimax-m3 outside at $0.60/$2.40. Read 2026-09-02
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://ollama.com/terms), read 2026-09-26).
 
 ## What happens to what you send
 

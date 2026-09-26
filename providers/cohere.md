@@ -3,7 +3,7 @@ layout: default
 title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-09-24'
 description: Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Trial keys are "limited to 1,000 API calls a month" and rate-limited per model — 20 req/min on every Chat model, Command A and North…
 permalink: /providers/cohere/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Cohere (trial keys)
 ---
 
@@ -11,7 +11,7 @@ crumb: Cohere (trial keys)
 
 # Cohere (trial keys) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · **live** — last verified by a probe on 2026-09-24 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ Cohere Command models via free trial API keys that never expire, plus North Mini
 ## Limits, in the vendor's words
 
 Trial keys are "limited to 1,000 API calls a month" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys "are not permitted to be used for production or commercial purposes", and that every account "begins as a personal account and only has access to Trial API keys" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that "for both trial keys and production keys, North Mini Code is free until rate limits are reached", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)
+
+## Where it is offered
+
+Not offered in mainland China, Russia, Hong Kong, Iran, Belarus, Syria, Macao and North Korea ([source](https://cohere.com/saas-agreement), read 2026-09-26). That leaves out 10.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “means Belarus, China (including Hong Kong and Macau), Iran, North Korea, Russia and Syria”.
 
 ## What happens to what you send
 

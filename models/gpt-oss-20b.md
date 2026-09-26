@@ -3,7 +3,7 @@ layout: default
 title: 'gpt-oss-20b free: 3 providers, limits and ids, verified 2026-09-24'
 description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com) and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-oss-20b/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: gpt-oss-20b
 ---
 
@@ -31,7 +31,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-24 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 

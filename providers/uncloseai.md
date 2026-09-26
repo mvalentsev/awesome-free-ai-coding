@@ -3,7 +3,7 @@ layout: default
 title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-09-24'
 description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as…
 permalink: /providers/uncloseai/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: uncloseai (unturf)
 ---
 
@@ -24,6 +24,10 @@ The row names no free model family; the ids its lane serves, where the row has t
 ## Limits, in the vendor's words
 
 No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the page names three endpoints, of which one serves text today: hermes.ai.unturf.com/v1 answered a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1 answers 403 `Access denied - This endpoint is closed`. The served id is not the one the page's own examples call, and the vendor says so — "See our Model Discovery docs to query the current model IDs being hosted" — so the id lives in api.model_ids and the Free models column stays empty
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://uncloseai.com/terms-of-use.html), read 2026-09-26).
 
 ## Connect
 

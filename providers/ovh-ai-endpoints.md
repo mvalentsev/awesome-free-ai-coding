@@ -3,7 +3,7 @@ layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-24'
 description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated…'
 permalink: /providers/ovh-ai-endpoints/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: OVHcloud AI Endpoints
 ---
 
@@ -24,6 +24,10 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 ## Limits, in the vendor's words
 
 OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model", and its product page says "Test all our models for free in a sandbox or via the API". It is not counted per IP in practice: on 2026-09-24 one call a minute to Qwen3.8-27B from an address nothing else used answered twice in five, and each answer left `ratelimit-remaining: 0`, another caller having spent the minute's other request; the first call of a minute on six ids, and every call from a GitHub runner that morning, answered 429. The two requests a minute per model are shared by every anonymous caller. A key bills every chat model per token, Qwen3.8-27B at "0.4 € / Mtoken(input)" and "2.7 € / Mtoken(output)". Read 2026-09-24
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://contract.eu.ovhapis.com/1.0/pdf/contrat_genServices-we.pdf), read 2026-09-26).
 
 ## What happens to what you send
 

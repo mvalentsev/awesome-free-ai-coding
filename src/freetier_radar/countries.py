@@ -25,6 +25,8 @@ __all__ = ["COUNTRIES", "NOT_COUNTRIES", "DNS_SUBNETS", "country_name", "codes_n
 
 # code -> (the name a page prints, then every other spelling a vendor uses).
 # Matched as written, capitals and all: "chad", "turkey" and "china" are words.
+# "Korea" alone is the Republic of Korea, as every commercial list prints it
+# (TRAE's); the North is "North Korea" or "DPRK" wherever a vendor names it.
 COUNTRIES: dict[str, tuple[str, ...]] = {
     "AD": ('Andorra', 'Principality of Andorra'),
     "AE": ('the United Arab Emirates', 'United Arab Emirates'),
@@ -146,11 +148,11 @@ COUNTRIES: dict[str, tuple[str, ...]] = {
     "KI": ('Kiribati', 'Republic of Kiribati'),
     "KM": ('the Comoros', 'Comoros', 'Union of the Comoros'),
     "KN": ('Saint Kitts and Nevis', 'St. Kitts and Nevis', 'St Kitts and Nevis', 'Saint Kitts & Nevis'),
-    "KP": ('North Korea', "Korea, Democratic People's Republic of", "Democratic People's Republic of Korea"),
-    "KR": ('South Korea', 'Korea, Republic of', 'Republic of Korea'),
+    "KP": ('North Korea', "Korea, Democratic People's Republic of", "Democratic People's Republic of Korea", 'DPRK'),
+    "KR": ('South Korea', 'Korea, Republic of', 'Republic of Korea', 'Korea'),
     "KW": ('Kuwait', 'State of Kuwait'),
     "KY": ('the Cayman Islands', 'Cayman Islands'),
-    "KZ": ('Kazakhstan', 'Republic of Kazakhstan'),
+    "KZ": ('Kazakhstan', 'Republic of Kazakhstan', 'Kazakstan'),
     "LA": ('Laos', "Lao People's Democratic Republic"),
     "LB": ('Lebanon', 'Lebanese Republic'),
     "LC": ('Saint Lucia', 'St. Lucia', 'St Lucia'),
@@ -207,7 +209,7 @@ COUNTRIES: dict[str, tuple[str, ...]] = {
     "PL": ('Poland', 'Republic of Poland'),
     "PM": ('Saint Pierre and Miquelon', 'St. Pierre and Miquelon', 'St Pierre and Miquelon'),
     "PN": ('the Pitcairn Islands', 'Pitcairn'),
-    "PR": ('Puerto Rico',),
+    "PR": ('Puerto Rico', 'Puerto-Rico'),
     "PS": ('Palestine', 'Palestine, State of', 'the State of Palestine', 'Palestinian Territories', 'Palestinian Territory'),
     "PT": ('Portugal', 'Portuguese Republic'),
     "PW": ('Palau', 'Republic of Palau'),
@@ -264,8 +266,8 @@ COUNTRIES: dict[str, tuple[str, ...]] = {
     "VA": ('Vatican City', 'Holy See (Vatican City State)', 'Holy See', 'Vatican'),
     "VC": ('Saint Vincent and the Grenadines', 'St. Vincent and the Grenadines', 'St Vincent and the Grenadines', 'Saint Vincent & the Grenadines'),
     "VE": ('Venezuela', 'Venezuela, Bolivarian Republic of', 'Bolivarian Republic of Venezuela'),
-    "VG": ('the British Virgin Islands', 'British Virgin Islands', 'Virgin Islands, British'),
-    "VI": ('the U.S. Virgin Islands', 'U.S. Virgin Islands', 'Virgin Islands, U.S.', 'Virgin Islands of the United States', 'US Virgin Islands', 'United States Virgin Islands'),
+    "VG": ('the British Virgin Islands', 'British Virgin Islands', 'Virgin Islands, British', 'Virgin Islands (British)'),
+    "VI": ('the U.S. Virgin Islands', 'U.S. Virgin Islands', 'Virgin Islands, U.S.', 'Virgin Islands of the United States', 'US Virgin Islands', 'United States Virgin Islands', 'Virgin Islands (U.S.)'),
     "VN": ('Vietnam', 'Viet Nam', 'Socialist Republic of Viet Nam'),
     "VU": ('Vanuatu', 'Republic of Vanuatu'),
     "WF": ('Wallis and Futuna',),

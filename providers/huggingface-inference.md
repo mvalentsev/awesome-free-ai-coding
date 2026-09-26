@@ -3,7 +3,7 @@ layout: default
 title: 'Hugging Face Inference Providers free tier: limits, free models, verified 2026-09-24'
 description: Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account. Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across…
 permalink: /providers/huggingface-inference/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Hugging Face Inference Providers
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across everything the router reaches, so which models it buys depends on their price, not on a tier (read 2026-08-14)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://huggingface.co/terms-of-service), read 2026-09-26).
 
 ## Connect
 

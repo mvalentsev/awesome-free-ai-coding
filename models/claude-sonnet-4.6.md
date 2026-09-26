@@ -3,7 +3,7 @@ layout: default
 title: 'claude-sonnet-4.6 free: 1 provider, limits and ids, verified 2026-09-24'
 description: claude-sonnet-4.6 is served free by Google Antigravity. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/claude-sonnet-4.6/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: claude-sonnet-4.6
 ---
 
@@ -19,7 +19,7 @@ crumb: claude-sonnet-4.6
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-24 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-24 · listed since 2026-08-11
 
 Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 

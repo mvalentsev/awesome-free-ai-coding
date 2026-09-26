@@ -3,7 +3,7 @@ layout: default
 title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-09-24'
 description: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's. Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and…
 permalink: /providers/sea-lion/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: SEA-LION (AI Singapore)
 ---
 
@@ -24,6 +24,10 @@ The page this row is verified against names no free model, so the column stays e
 ## Limits, in the vendor's words
 
 Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead. The two surfaces do not overlap — the page that calls the API free names no model, and the docs page that names aisingapore/Qwen-SEA-LION-v4.5-27B-IT — and dates the 10 RPM limit to 04 Jun 2026 — never says free
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://sea-lion.ai/terms-of-use/), read 2026-09-26).
 
 ## Connect
 

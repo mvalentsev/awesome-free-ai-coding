@@ -3,7 +3,7 @@ layout: default
 title: 'OpenAI Codex CLI free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans. The pricing page: "ChatGPT Work and Codex are included in your ChatGPT Free, Go, Plus, Pro, Business, Edu, or Enterprise plan". Its Free card offers "Explore Codex capabilities on…'
 permalink: /providers/openai-codex-cli/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: OpenAI Codex CLI
 ---
 
@@ -11,7 +11,7 @@ crumb: OpenAI Codex CLI
 
 # OpenAI Codex CLI free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-24 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-09-24 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ The vendor does not say which models the free part reaches, so the column names 
 ## Limits, in the vendor's words
 
 The pricing page: "ChatGPT Work and Codex are included in your ChatGPT Free, Go, Plus, Pro, Business, Edu, or Enterprise plan". Its Free card offers "Explore Codex capabilities on quick coding tasks" with "GPT-6 Luna at Standard speed in the desktop app, subject to rollout", while "Codex on the web, in the CLI, in the IDE extension, and on iOS" is spelled out on the Plus card, and the usage tables start at Plus — no Free allowance is published. "GPT-5.5 retires from ChatGPT, ChatGPT Work, and Codex on all plans on October 14, 2026", and the models page tells Free and Go users to "choose GPT-6 Luna … in the desktop app when available", naming no model for them in the CLI. Read 2026-09-23
+
+## Where it is offered
+
+Offered in the 208 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Venezuela, Puerto Rico, Syria and 19 more places ([source](https://developers.openai.com/api/docs/supported-countries.md), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “Accessing or offering access to our services outside of the countries and territories listed below may result in your account being blocked or suspended”.
 
 ## Connect
 

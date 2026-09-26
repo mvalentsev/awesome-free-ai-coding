@@ -3,7 +3,7 @@ layout: default
 title: 'LLM7.io free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it. The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000…
 permalink: /providers/llm7/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: LLM7.io
 ---
 
@@ -24,6 +24,10 @@ The page this row is verified against names no free model, so the column stays e
 ## Limits, in the vendor's words
 
 The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models are fast models available to anonymous and free-token users" — though two turbo rows marked usage_based_only, DeepSeek V4 Flash and Gemini 3.1 Flash Lite, answered a keyless call with 401 `Missing API key.` The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-16
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://github.com/chigwell/llm7.io/blob/main/TERMS.md), read 2026-09-26).
 
 ## Connect
 

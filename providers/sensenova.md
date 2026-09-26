@@ -3,7 +3,7 @@ layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-09-24'
 description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外,…'
 permalink: /providers/sensenova/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: SenseNova (SenseTime 商汤)
 ---
 
@@ -11,7 +11,7 @@ crumb: SenseNova (SenseTime 商汤)
 
 # SenseNova (SenseTime 商汤) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-09-24 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ The page this row is verified against names no free model, so the column stays e
 ## Limits, in the vendor's words
 
 The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外, with 最多 20 个 API Key and the tier marked 限时放量. The Free card names the two models it covers, SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Signup needs a phone number; whether a non-mainland one is accepted could not be verified from any served page
+
+## Where it is offered
+
+Offered only in mainland China ([source](https://platform.sensenova.cn/login), read 2026-09-26). That leaves out 93.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
 
 ## Connect
 

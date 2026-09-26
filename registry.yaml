@@ -93,6 +93,10 @@ entries:
       will not be trained on, but there are exceptions. If you opt out of training
       in your account settings, OpenRouter will not route to providers that train.
     url: https://openrouter.ai/docs/guides/privacy/provider-logging
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://openrouter.ai/terms
   probe:
     type: api-models
     endpoint: https://openrouter.ai/api/v1/models
@@ -179,6 +183,24 @@ entries:
       Services and any generated responses to provide, improve, and develop Google
       products and services and machine learning technologies
     url: https://ai.google.dev/gemini-api/terms
+  border:
+    served: [AD, AE, AG, AI, AL, AM, AO, AQ, AR, AS, AT, AU, AW, AX, AZ, BA, BB, BD,
+      BE, BF, BG, BH, BI, BJ, BL, BM, BN, BO, BQ, BR, BS, BT, BW, BZ, CA, CC, CD,
+      CF, CG, CH, CI, CK, CL, CM, CO, CR, CV, CW, CX, CY, CZ, DE, DJ, DK, DM, DO,
+      DZ, EC, EE, EG, EH, ER, ES, ET, FI, FJ, FK, FM, FO, FR, GA, GB, GD, GE, GF,
+      GG, GH, GI, GL, GM, GN, GQ, GR, GS, GT, GU, GW, GY, HM, HN, HR, HT, HU, ID,
+      IE, IL, IM, IN, IO, IQ, IS, IT, JE, JM, JO, JP, KE, KG, KH, KI, KM, KN, KR,
+      KW, KY, KZ, LA, LB, LC, LI, LK, LR, LS, LT, LU, LV, LY, MA, MC, MD, ME, MG,
+      MH, MK, ML, MN, MP, MR, MS, MT, MU, MV, MW, MX, MY, MZ, NA, NC, NE, NF, NG,
+      NI, NL, 'NO', NP, NR, NU, NZ, OM, PA, PE, PG, PH, PK, PL, PM, PN, PR, PS, PT,
+      PW, PY, QA, RE, RO, RS, RW, SA, SB, SC, SD, SE, SG, SH, SI, SK, SL, SM, SN,
+      SO, SR, SS, ST, SV, SZ, TC, TD, TG, TH, TJ, TK, TL, TM, TN, TO, TR, TT, TV,
+      TW, TZ, UA, UG, UM, US, UY, UZ, VA, VC, VE, VG, VI, VN, VU, WF, WS, XK, YE,
+      ZA, ZM, ZW]
+    'on': '2026-09-26'
+    source: https://ai.google.dev/gemini-api/docs/available-regions
+    quote: The Gemini API and Google AI Studio are available in the following countries
+      and territories
   probe:
     type: page-keywords
     endpoint: https://ai.google.dev/gemini-api/docs/pricing
@@ -241,6 +263,10 @@ entries:
       or fine-tuning any AI Model Services or other models, unless explicitly granted
       permission or instructed by Customer.
     url: https://console.groq.com/docs/legal/services-agreement
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://console.groq.com/docs/legal/services-agreement
   probe:
     type: page-keywords
     endpoint: https://console.groq.com/docs/rate-limits
@@ -299,6 +325,13 @@ entries:
       to train our artificial intelligence models. … You have the right to opt out
       of this program at any time.
     url: https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models
+  border:
+    left_out: [CU, IR, KP, SY]
+    'on': '2026-09-26'
+    source: https://legal.mistral.ai/terms/commercial-terms-of-service
+    quote: including, as of the Effective Date, Cuba, Iran, North Korea, Syria, and
+      the Crimea, Donetsk, and Luhansk regions of Ukraine
+    also_named: [AU, BD, CN, FR, IN, JP, KR, NZ, PK, SG, TH, UA, US, VN]
   probe:
     type: page-keywords
     endpoint: https://mistral.ai/pricing
@@ -385,6 +418,10 @@ entries:
     quote: Cloudflare does not use your Customer Content to (1) train any AI models
       made available on Workers AI or (2) improve any Cloudflare or third-party services
     url: https://developers.cloudflare.com/workers-ai/platform/data-usage/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.cloudflare.com/terms/
   probe:
     type: page-keywords
     endpoint: https://developers.cloudflare.com/workers-ai/platform/pricing/
@@ -442,6 +479,10 @@ entries:
       with providers, we require no logging, no training, and zero data retention
       policies in place.
     url: https://ollama.com/pricing
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://ollama.com/terms
   probe:
     type: page-keywords
     endpoint: https://ollama.com/cloud
@@ -508,6 +549,10 @@ entries:
     trains: 'yes'
     quote: During its free period, collected data may be used to improve the model.
     url: https://opencode.ai/docs/zen/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://opencode.ai/legal/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://opencode.ai/docs/zen/
@@ -615,6 +660,13 @@ entries:
     quote: Prompts may be logged by the upstream provider and used to improve their
       services.
     url: https://api.kilo.ai/api/gateway/models
+  border:
+    left_out: [CU, IR, KP, SY]
+    'on': '2026-09-26'
+    source: https://kilo.ai/terms
+    quote: including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk
+      People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine
+    also_named: [UA, US]
   probe:
     type: api-models
     endpoint: https://api.kilo.ai/api/gateway/models
@@ -657,6 +709,23 @@ entries:
       will not use any of your chat interactions, including related code snippets
       and AI-generated outputs, for the above-mentioned purposes.
     url: https://docs.trae.ai/ide/privacy-mode
+  border:
+    served: [AD, AE, AF, AG, AI, AL, AM, AO, AQ, AR, AS, AT, AU, AW, AZ, BA, BB, BD,
+      BE, BF, BG, BH, BI, BJ, BL, BM, BN, BO, BQ, BR, BS, BT, BV, BW, BZ, CC, CD,
+      CF, CG, CH, CI, CK, CL, CM, CO, CR, CV, CW, CX, CY, CZ, DE, DJ, DK, DM, DO,
+      DZ, EC, EE, EH, ER, ES, ET, FI, FJ, FK, FM, FO, FR, GA, GB, GD, GE, GF, GG,
+      GH, GI, GL, GM, GN, GP, GQ, GR, GS, GT, GU, GW, GY, HM, HN, HR, HT, HU, ID,
+      IE, IL, IM, IN, IO, IQ, IS, IT, JE, JM, JO, JP, KE, KG, KH, KI, KN, KR, KW,
+      KY, KZ, LA, LB, LC, LI, LK, LR, LS, LT, LU, LV, LY, MA, MC, MD, ME, MF, MG,
+      MH, MK, ML, MM, MN, MP, MQ, MR, MS, MT, MU, MV, MW, MX, MY, MZ, NA, NC, NE,
+      NF, NG, NI, NL, 'NO', NP, NR, NU, NZ, OM, PA, PE, PF, PG, PH, PK, PL, PM, PN,
+      PR, PS, PT, PW, PY, QA, RE, RO, RS, RW, SA, SB, SC, SD, SE, SG, SH, SI, SJ,
+      SK, SL, SM, SN, SO, SR, SS, ST, SV, SX, SZ, TC, TD, TF, TG, TH, TJ, TK, TL,
+      TM, TN, TO, TR, TT, TV, TZ, UA, UG, UM, US, UY, UZ, VA, VC, VG, VI, VN, VU,
+      WF, WS, XK, YE, YT, ZA, ZM, ZW]
+    'on': '2026-09-26'
+    source: https://docs.trae.ai/ide/supported-countries-and-regions
+    quote: TRAE is currently available in the following countries and regions
   probe:
     type: page-keywords
     endpoint: https://www.trae.ai/pricing
@@ -705,6 +774,10 @@ entries:
       and enhance the Services. If you’re on a paid plan, you can opt out at any time
       on the Data Controls settings page.
     url: https://docs.devin.ai/admin/security
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://cognition.com/legal/platform-terms-of-service
   probe:
     type: page-keywords
     endpoint: https://docs.devin.ai/desktop/accounts/quota.md
@@ -788,6 +861,14 @@ entries:
       and associated context - to train and improve our AI models unless they have
       opted out.
     url: https://github.com/features/copilot
+  border:
+    left_out: [BY, CU, IR, KP, RU]
+    'on': '2026-09-26'
+    source: https://docs.github.com/en/site-policy/other-site-policies/github-and-trade-controls
+    quote: 'These destinations currently include Cuba, Iran, North Korea, Russia,
+      Belarus, and the following regions of Ukraine: Crimea/Sevastopol and the separatist
+      areas of Donetsk and Luhansk'
+    also_named: [SY, UA]
   probe:
     type: page-keywords
     endpoint: https://docs.github.com/en/copilot/get-started/plans
@@ -833,6 +914,11 @@ entries:
       receives from public repositories to train its generative AI models. Opting
       out does not apply to any feedback you may choose to provide.
     url: https://jules.google.com/legal
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://blog.google/innovation-and-ai/models-and-research/google-labs/jules/
+    quote: Worldwide, everywhere where the Gemini model is available
   probe:
     type: page-keywords
     endpoint: https://jules.google/docs/usage-limits
@@ -896,6 +982,10 @@ entries:
       better responses to common questions, fix Kiro operational issues, for de-bugging,
       or for model training.
     url: https://kiro.dev/docs/privacy-and-security/data-protection/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://kiro.dev/faq/
   probe:
     type: page-keywords
     endpoint: https://kiro.dev/pricing/
@@ -940,6 +1030,10 @@ entries:
     quote: we may use and store codebase data, prompts, editor actions, code snippets,
       and other code data and actions to improve our AI features and train our models.
     url: https://cursor.com/data-use
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://cursor.com/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://cursor.com/pricing
@@ -977,6 +1071,22 @@ entries:
     when available", naming no model for them in the CLI. Read 2026-09-23'
   free_part: unnamed
   models: []
+  border:
+    served: [AD, AE, AF, AG, AL, AM, AO, AR, AT, AU, AW, AX, AZ, BA, BB, BD, BE, BF,
+      BG, BH, BI, BJ, BL, BM, BN, BO, BR, BS, BT, BW, BZ, CA, CD, CF, CG, CH, CI,
+      CL, CM, CO, CR, CV, CY, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ER, ES, ET,
+      FI, FJ, FM, FO, FR, GA, GB, GD, GE, GF, GH, GL, GM, GN, GP, GQ, GR, GT, GW,
+      GY, HN, HR, HT, HU, ID, IE, IL, IN, IQ, IS, IT, JM, JO, JP, KE, KG, KH, KI,
+      KM, KN, KR, KW, KY, KZ, LA, LB, LC, LI, LK, LR, LS, LT, LU, LV, LY, MA, MC,
+      MD, ME, MF, MG, MH, MK, ML, MM, MN, MQ, MR, MT, MU, MV, MW, MX, MY, MZ, NA,
+      NC, NE, NG, NI, NL, 'NO', NP, NR, NZ, OM, PA, PE, PF, PG, PH, PK, PL, PM, PS,
+      PT, PW, PY, QA, RE, RO, RS, RW, SA, SB, SC, SD, SE, SG, SH, SI, SJ, SK, SL,
+      SM, SN, SO, SR, SS, ST, SV, SZ, TD, TF, TG, TH, TJ, TL, TM, TN, TO, TR, TT,
+      TV, TW, TZ, UA, UG, US, UY, UZ, VA, VC, VN, VU, WF, WS, YE, YT, ZA, ZM, ZW]
+    'on': '2026-09-26'
+    source: https://developers.openai.com/api/docs/supported-countries.md
+    quote: Accessing or offering access to our services outside of the countries and
+      territories listed below may result in your account being blocked or suspended
   probe:
     type: page-keywords
     endpoint: https://learn.chatgpt.com/docs/pricing
@@ -1088,6 +1198,11 @@ entries:
     quote: Your input and output will be recorded to provide you with this trial experience
       and to improve NVIDIA products and services, including AI models
     url: https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b
+  border:
+    left_out: [AF, BD, BY, CU, IR, KG, KP, KZ, PK, RU, SY, TJ, TZ, UZ]
+    'on': '2026-09-26'
+    source: https://build.nvidia.com/api/runtime/config/otp-unsupported-countries.yaml
+    read: codes
   probe:
     type: api-models
     endpoint: https://integrate.api.nvidia.com/v1/models
@@ -1145,6 +1260,13 @@ entries:
       User Content for developing or improving Services unless you explicitly agree
       to such use.
     url: https://docs.z.ai/legal-agreement/terms-of-use
+  border:
+    left_out: [CU, IR, KP]
+    'on': '2026-09-26'
+    source: https://docs.z.ai/legal-agreement/terms-of-use
+    quote: 'You confirm that you are not located in the following regions: Iran, North
+      Korea, Cuba, Crimea, Donetsk, or Zaporizhzhia'
+    also_named: [CN, SG, US]
   probe:
     type: page-keywords
     endpoint: https://docs.z.ai/guides/overview/pricing
@@ -1212,6 +1334,10 @@ entries:
     trains: 'no'
     quote: Your data will never be used to train or improve our AI models
     url: https://www.ovhcloud.com/en/public-cloud/ai-endpoints/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://contract.eu.ovhapis.com/1.0/pdf/contrat_genServices-we.pdf
   probe:
     type: api-models
     endpoint: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models
@@ -1257,6 +1383,10 @@ entries:
     note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai,
       answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys`
       (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://pollinations.ai/legal/TERMS_OF_SERVICE.md
   probe:
     type: page-keywords
     endpoint: https://text.pollinations.ai/models
@@ -1482,6 +1612,14 @@ entries:
     quote: Alibaba Cloud strictly protects your data privacy and will never use your
       data for model training.
     url: https://www.alibabacloud.com/help/en/model-studio/privacy-notice
+  border:
+    left_out: [CN]
+    'on': '2026-09-26'
+    source: https://www.alibabacloud.com/help/en/account/step-1-register-an-alibaba-cloud-account
+    quote: The Alibaba Cloud international site does not support selecting the Chinese
+      mainland as the registration region, and does not support binding a mobile number
+      of the Chinese mainland
+    also_named: [GB, MY]
   probe:
     type: page-keywords
     endpoint: https://www.alibabacloud.com/help/en/model-studio/model-pricing
@@ -1519,6 +1657,10 @@ entries:
     openai_compatible: true
     model_ids: []
     note: chat-only; model ids namespaced (openai/gpt-oss-120b)
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://huggingface.co/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://huggingface.co/docs/inference-providers/pricing
@@ -1565,6 +1707,10 @@ entries:
     model_ids: []
     note: the catalog at /v1/models answers only a gateway key; the model list with
       prices is public at platform.experientiallabs.ai/models
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.experientiallabs.ai/terms
   probe:
     type: page-keywords
     endpoint: https://www.experientiallabs.ai/pricing
@@ -1610,6 +1756,10 @@ entries:
     quote: The Company shall not use Member Input/Output Data for service improvement
       or for training artificial intelligence models.
     url: https://www.upstage.ai/terms-of-service
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.upstage.ai/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://console.upstage.ai/docs/getting-started
@@ -1683,6 +1833,13 @@ entries:
     quote: Analyzing usage patterns and using Trial or Research User Inputs/Outputs
       to improve the performance and safety of our AI models.
     url: https://cohere.com/privacy
+  border:
+    left_out: [BY, CN, HK, IR, KP, MO, RU, SY]
+    'on': '2026-09-26'
+    source: https://cohere.com/saas-agreement
+    quote: means Belarus, China (including Hong Kong and Macau), Iran, North Korea,
+      Russia and Syria
+    also_named: [CA]
   probe:
     type: page-keywords
     endpoint: https://docs.cohere.com/docs/rate-limits
@@ -1722,6 +1879,10 @@ entries:
     zero when the subscription period ends. Read 2026-09-23'
   free_part: sum
   models: []
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://qoder.com/product-service
   probe:
     type: page-keywords
     endpoint: https://docs.qoder.com/account/pricing
@@ -1757,6 +1918,10 @@ entries:
       are processed solely to provide the Services to you. … We select providers whose
       terms of service prohibit training on customer data.
     url: https://hyper.charm.land/privacy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://hyper.charm.land/terms
   probe:
     type: page-keywords
     endpoint: https://hyper.charm.land/faq
@@ -1824,6 +1989,10 @@ entries:
       of providers. If we do not know a provider's training data stance or have not
       yet established an agreement with them, we assume that they train on your data.
     url: https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://vercel.com/legal/ai-product-terms
   probe:
     type: api-models
     endpoint: https://ai-gateway.vercel.sh/v1/models
@@ -1877,6 +2046,10 @@ entries:
       without the suffix is metered at $0.20/$0.40. auto:free picks a free model for
       you, and on a funded account it can fall through to the paid routing table "unless
       paid fallback is disabled"
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://bazaarlink.ai/en/terms
   probe:
     type: api-models
     endpoint: https://api.bazaarlink.ai/v1/models
@@ -1923,6 +2096,14 @@ entries:
       until it left the catalog between the 2026-09-14 and 2026-09-16 reads. PaleBlueDot
       AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are
       separate services and their keys do not work here
+  border:
+    left_out: [BY, CU, IR, KP, RU, SY]
+    'on': '2026-09-26'
+    source: https://www.tokenrouter.com/docs/conditions-of-use/
+    quote: for or on behalf of parties located in, headquartered in, or having a parent
+      company headquartered in Russia, Belarus, Iran, North Korea, Cuba, or the occupied
+      regions of Ukraine
+    also_named: [CN, HK, KH, MM, MO, NI, UA, US, VE]
   probe:
     type: api-models
     endpoint: https://api.tokenrouter.com/api/pricing
@@ -2044,6 +2225,10 @@ entries:
       catalog describes for expressive writing and roleplay. Only the :free suffix
       is free, and the same catalog meters Claude and GPT at list rates. A new id
       joins the Models column after two weeks in the lane
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://routeway.ai/terms
   probe:
     type: api-models
     endpoint: https://api.routeway.ai/v1/models
@@ -2130,6 +2315,10 @@ entries:
       we label that way is offered free of charge. Requesty's own use of content for
       training is limited to free plan accounts.
     url: https://www.requesty.ai/privacy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.requesty.ai/terms
   probe:
     type: api-models
     endpoint: https://router.requesty.ai/v1/models
@@ -2195,6 +2384,24 @@ entries:
       want your Interactions used in this way, navigate to settings to change your
       preference on how such data is used.
     url: https://antigravity.google/terms
+  border:
+    served: [AE, AG, AI, AL, AM, AO, AQ, AR, AS, AT, AU, AW, AZ, BA, BB, BD, BE, BF,
+      BG, BH, BI, BJ, BL, BM, BN, BO, BQ, BR, BS, BT, BW, BZ, CA, CC, CD, CF, CG,
+      CH, CI, CK, CL, CM, CO, CR, CV, CW, CX, CY, CZ, DE, DJ, DK, DM, DO, DZ, EC,
+      EE, EG, EH, ER, ES, ET, FI, FJ, FK, FM, FO, FR, GA, GB, GD, GE, GG, GH, GI,
+      GL, GM, GN, GQ, GR, GS, GT, GU, GW, GY, HM, HN, HR, HT, HU, ID, IE, IL, IM,
+      IN, IO, IQ, IS, IT, JE, JM, JO, JP, KE, KG, KH, KI, KM, KN, KR, KW, KY, KZ,
+      LA, LB, LC, LI, LK, LR, LS, LT, LU, LV, LY, MA, ME, MG, MH, MK, ML, MN, MP,
+      MR, MS, MT, MU, MV, MW, MX, MY, MZ, NA, NC, NE, NF, NG, NI, NL, 'NO', NP, NR,
+      NU, NZ, OM, PA, PE, PG, PH, PK, PL, PM, PN, PR, PS, PT, PW, PY, QA, RO, RS,
+      RW, SA, SB, SC, SD, SE, SG, SH, SI, SK, SL, SN, SO, SR, SS, ST, SV, SZ, TC,
+      TD, TG, TH, TJ, TK, TL, TM, TN, TO, TR, TT, TV, TW, TZ, UA, UG, UM, US, UY,
+      UZ, VC, VE, VG, VI, VN, VU, WF, WS, XK, YE, ZA, ZM, ZW]
+    'on': '2026-09-26'
+    source: https://antigravity.google/docs/faq
+    quote: Google Antigravity is available in the following countries and territories.
+      If you’re not in one of these countries or territories, you will be unable to
+      use Google Antigravity at this time
   probe:
     type: page-keywords
     endpoint: https://antigravity.google/pricing
@@ -2245,6 +2452,10 @@ entries:
       credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models
       needs the key, so the probe reads the offer page. Both ids stay out of the Models
       column: the page that calls the API free names no model'
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://sea-lion.ai/terms-of-use/
   probe:
     type: page-keywords
     endpoint: https://sea-lion.ai/try-sea-lion/
@@ -2333,6 +2544,13 @@ entries:
     the Economy tier routes to, so this row names none
   free_part: unnamed
   models: []
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.codegpt.co/terms_and_conditions
+    quote: The Service is intended for visitors located within the United States.
+      We make no representation that the Service is appropriate or available for use
+      outside of the United States
   probe:
     type: page-keywords
     endpoint: https://www.codegpt.co/pricing
@@ -2527,6 +2745,10 @@ entries:
       the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and
       k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code:
       ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it'
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://aihubmix.com/legal/terms
   probe:
     type: api-models
     endpoint: https://aihubmix.com/api/v1/models
@@ -2584,6 +2806,10 @@ entries:
       the ‘Improve the model for everyone’ option under User Settings in the API Platform
       to OFF.
     url: https://www.inceptionlabs.ai/docs/terms-of-use
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.inceptionlabs.ai/docs/terms-of-use
   probe:
     type: page-keywords
     endpoint: https://docs.inceptionlabs.ai/get-started
@@ -2637,6 +2863,10 @@ entries:
       they rotate with the network's capacity, and the models page already lists Kimi
       K2.6 and GLM-5.2 as retired. A key answers 402 until tokens are moved to it
       from the account pool
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://inference.dahl.global/terms/
   probe:
     type: page-keywords
     endpoint: https://inference.dahl.global/docs/tokens/
@@ -2690,6 +2920,10 @@ entries:
       you opt-out. … you may opt-out of Poolside using your Content for training by
       selecting the Training Opt-Out under User Settings
     url: https://poolside.ai/legal/eula
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://poolside.ai/legal/eula
   probe:
     type: page-keywords
     endpoint: https://docs.poolside.ai/get-started/quickstart
@@ -2733,6 +2967,11 @@ entries:
       answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable
       ids live only in that JavaScript console, which no probe here can read, so none
       are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone.
+  border:
+    served: [CN]
+    'on': '2026-09-26'
+    source: https://platform.sensenova.cn/login
+    read: none
   probe:
     type: page-keywords
     endpoint: https://www.sensenova.cn/token-plan
@@ -2792,6 +3031,10 @@ entries:
     quote: 'Prompts and outputs: Under our zero-retention policy, we do not store
       them. They are also not used in any other way to train or improve the AI models.'
     url: https://www.hetzner.com/legal/privacy-policy/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.hetzner.com/legal/terms-and-conditions/
   probe:
     type: page-keywords
     endpoint: https://docs.hetzner.com/general/company-and-policy/experiments/inference/
@@ -2841,6 +3084,10 @@ entries:
       not the offer. It stays out of the Models column: a family would name this week''s
       model, and the catalog serving none of the row''s families fails the row at
       the next rotation'
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://uncloseai.com/terms-of-use.html
   probe:
     type: api-models
     endpoint: https://hermes.ai.unturf.com/v1/models
@@ -2912,6 +3159,10 @@ entries:
       attached files. … It is never used for model training, analytics, or any other
       purpose.
     url: https://regolo.ai/faq/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://regolo.ai/terms-and-conditions/
   probe:
     type: page-keywords
     endpoint: https://regolo.ai/pricing/
@@ -2969,6 +3220,10 @@ entries:
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training. … Muse
       Spark 1.2: Queue. May use data for AI training.'
     url: https://freebuff.com/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://freebuff.com/
   probe:
     type: page-keywords
     endpoint: https://freebuff.com/
@@ -3042,6 +3297,21 @@ entries:
       one of Mistral NeMo). Manta Mini and Manta Flash are MegaNova's own routers,
       tagged best_role_play in the catalog, so Mistral Small 3.2, at 8,192 tokens
       of context, is the one named coding model on the lane
+  border:
+    served: [AD, AE, AG, AL, AM, AO, AR, AT, AU, BA, BB, BD, BE, BF, BG, BH, BI, BJ,
+      BN, BO, BR, BS, BT, BW, BY, BZ, CA, CF, CG, CH, CL, CM, CN, CO, CR, CU, CV,
+      CY, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ER, ES, ET, FI, FJ, FM, FR, GA,
+      GB, GD, GE, GH, GM, GN, GQ, GR, GT, GW, GY, HN, HR, HT, HU, ID, IE, IL, IN,
+      IQ, IR, IS, IT, JM, JO, JP, KE, KG, KH, KI, KM, KN, KR, KW, KZ, LA, LB, LC,
+      LI, LK, LR, LS, LT, LU, LV, LY, MA, MC, MD, ME, MG, MH, MK, ML, MM, MN, MR,
+      MT, MU, MV, MW, MX, MY, MZ, NA, NE, NG, NI, NL, 'NO', NP, NR, NZ, OM, PA, PE,
+      PG, PH, PK, PL, PS, PT, PW, PY, QA, RO, RS, RU, RW, SA, SB, SC, SD, SE, SG,
+      SI, SK, SL, SM, SN, SO, SR, SS, ST, SV, SY, SZ, TD, TG, TH, TJ, TL, TM, TN,
+      TO, TR, TT, TV, TW, TZ, UA, UG, US, UY, UZ, VC, VN, WS, ZA, ZM, ZW]
+    'on': '2026-09-26'
+    source: https://docs.meganova.ai/faq/supported-countries.md
+    quote: We provide the following list of countries and territories where … services
+      are officially supported
   probe:
     type: api-models
     endpoint: https://api.meganova.ai/v1/models
@@ -3128,6 +3398,10 @@ entries:
     quote: Poolside states that prompts and completions on free access may be logged
       and used to improve its products.
     url: https://llmtr.com/docs/en/gateway/poolside-laguna/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://llmtr.com/en/terms
   probe:
     type: api-models
     endpoint: https://llmtr.com/v1/models
@@ -3164,6 +3438,10 @@ entries:
     stated. Read 2026-09-16'
   free_part: unnamed
   models: []
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.qodo.ai/terms/
   probe:
     type: page-keywords
     endpoint: https://www.qodo.ai/pricing/
@@ -3209,6 +3487,11 @@ entries:
     www.workbuddy.ai, which the probe reads. Read 2026-09-25'
   free_part: unnamed
   models: []
+  border:
+    left_out: [IN, RU, US]
+    'on': '2026-09-26'
+    source: https://dns.google/resolve?name=www.codebuddy.ai&type=A
+    read: dns
   probe:
     type: page-keywords
     endpoint: https://www.workbuddy.ai/docs/ide/Account/pricing
@@ -3287,6 +3570,10 @@ entries:
       a keyed read confirms them. The catalog's prices are upstream reference accounting,
       "not fees charged by FreeInference to users". The same key serves https://freeinference.org/anthropic,
       which the docs give as Claude Code's ANTHROPIC_BASE_URL
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://freeinference.org/terms
   probe:
     type: page-keywords
     endpoint: https://doc.freeinference.org/models
@@ -3347,6 +3634,10 @@ entries:
     quote: Yes, we are collecting usage data from the Typhoon API. We use this data
       to improve the model and the API.
     url: https://docs.opentyphoon.ai/en/faq/
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://opentyphoon.ai/tac
   probe:
     type: page-keywords
     endpoint: https://docs.opentyphoon.ai/en/faq/
@@ -3402,6 +3693,13 @@ entries:
     quote: IBM does not use your work to improve IBM models. … The foundation models
       are hosted in IBM Cloud or AWS; your prompts are not sent to third-party platforms.
     url: https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/fm-security.html?context=wx
+  border:
+    left_out: [AE, AL, AM, BH, BY, CH, CI, CM, DZ, EG, GH, KE, KZ, MD, MR, NG, 'NO',
+      RS, SA, SC, TR, TW, TZ, UA, UG, UZ, VN]
+    'on': '2026-09-26'
+    source: https://cloud.ibm.com/docs/account?topic=account-account-getting-started
+    quote: The following table shows the countries where personal use of the platform
+      not related to business, trade, craft, or professional purposes is not supported
   probe:
     type: page-keywords
     endpoint: https://www.ibm.com/docs/en/watsonx/saas?topic=cloud-watsonxai-runtime-plans
@@ -3458,6 +3756,13 @@ entries:
     quote: We do not use inference request or response data to train, fine-tune, or
       improve models without your written consent.
     url: https://docs.sailresearch.com/security
+  border:
+    left_out: [CU, IR, KP, RU, SY]
+    'on': '2026-09-26'
+    source: https://www.sailresearch.com/terms
+    quote: access or use the Services in or for the benefit of any embargoed or sanctioned
+      country, region, or person (including Cuba, Iran, North Korea, Syria, the Crimea,
+      Donetsk, and Luhansk regions, and Russia)
   probe:
     type: page-keywords
     endpoint: https://www.sailresearch.com/
@@ -3513,6 +3818,10 @@ entries:
       to train, fine-tune, and/ or improve our AI models unless you explicitly opt-out
       through your account settings
     url: https://www.sarvam.ai/privacy-policy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.sarvam.ai/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://docs.sarvam.ai/api/getting-started/pricing.md
@@ -3575,6 +3884,10 @@ entries:
     quote: Your prompts are never used for training. By us, or by any provider we
       route to.
     url: https://standardcompute.com
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://standardcompute.com/free-trial
   probe:
     type: page-keywords
     endpoint: https://standardcompute.com/free-trial
@@ -3642,6 +3955,10 @@ entries:
     quote: RouterPlex does not use your prompts or outputs to train models … Every
       other model in the catalog remains covered by the no-training rule above.
     url: https://routerplex.com/privacy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://routerplex.com/terms
   probe:
     type: page-keywords
     endpoint: https://routerplex.com/
@@ -3711,6 +4028,10 @@ entries:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.
     url: https://docs.cline.bot/getting-started/free-models
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://cline.bot/tos
   probe:
     type: api-models
     endpoint: https://api.cline.bot/api/v1/ai/cline/recommended-models
@@ -3773,6 +4094,10 @@ entries:
       AI models, unless you have opted out of such use where opt-out functionality
       is available.
     url: https://wiki.agnes-ai.com/en/docs/privacy-policy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://agnes-ai.com/en/docs/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://wiki.agnes-ai.com/en/docs/pricing
@@ -3838,6 +4163,10 @@ entries:
     trains: 'no'
     quote: Your prompts and responses are not used for model training.
     url: https://yolo-auto.com/pricing
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://yolo-auto.com/terms
   probe:
     type: page-keywords
     endpoint: https://yolo-auto.com/
@@ -3890,6 +4219,20 @@ entries:
       data is used for product improvement and training JetBrains models, and it is
       not shared with third parties.
     url: https://lp.jetbrains.com/ai-ides-faq/
+  border:
+    served: [AD, AE, AF, AG, AL, AM, AO, AR, AT, AU, AX, AZ, BA, BB, BD, BE, BF, BG,
+      BH, BI, BJ, BN, BO, BR, BS, BT, BW, BZ, CA, CD, CF, CG, CH, CI, CL, CM, CO,
+      CR, CV, CW, CY, CZ, DE, DJ, DK, DM, DO, DZ, EC, EE, EG, ER, ES, ET, FI, FJ,
+      FM, FO, FR, GA, GB, GD, GE, GG, GH, GM, GN, GQ, GR, GT, GW, GY, HN, HR, HT,
+      HU, ID, IE, IL, IM, IN, IQ, IS, IT, JE, JM, JO, JP, KE, KG, KH, KI, KM, KN,
+      KR, KW, KZ, LA, LB, LC, LI, LK, LR, LS, LT, LU, LV, LY, MA, MC, MD, ME, MG,
+      MH, MK, ML, MM, MN, MQ, MR, MT, MU, MV, MW, MX, MY, MZ, NA, NC, NE, NG, NI,
+      NL, 'NO', NP, NR, NZ, OM, PA, PE, PF, PG, PH, PK, PL, PR, PS, PT, PW, PY, QA,
+      RE, RO, RS, RW, SA, SB, SC, SD, SE, SG, SI, SK, SL, SM, SN, SO, SR, SS, ST,
+      SV, SZ, TD, TG, TH, TJ, TL, TM, TN, TO, TR, TT, TV, TW, TZ, UA, UG, US, UY,
+      UZ, VA, VC, VG, VI, VN, VU, WS, YE, YT, ZA, ZM, ZW]
+    'on': '2026-09-26'
+    source: https://www.jetbrains.com/legal/docs/terms/jetbrains-ai/service-territory/
   probe:
     type: page-keywords
     endpoint: https://lp.jetbrains.com/ai-ides-faq/
@@ -3934,6 +4277,10 @@ entries:
       models, Zed has no-training commitments from model providers … Zed only retains
       AI data when you explicitly share feedback or opt in to training data collection.
     url: https://zed.dev/docs/ai/privacy-and-security
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://zed.dev/terms
   probe:
     type: page-keywords
     endpoint: https://zed.dev/pricing
@@ -4005,6 +4352,11 @@ entries:
       and analyze prompts and responses … Token Harbor may use this data for service
       diagnostics, safety, optimization, and model or product improvement.
     url: https://tokenharbor.ai/terms
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://tokenharbor.ai/terms
+    quote: the Service is restricted and not intended for use in certain jurisdictions
   probe:
     type: page-keywords
     endpoint: https://tokenharbor.ai/pricing
@@ -4066,6 +4418,10 @@ entries:
       and will not use such inference payloads for training, product improvement,
       or support purposes
     url: https://portal.nousresearch.com/privacy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://portal.nousresearch.com/terms
   probe:
     type: api-models
     endpoint: https://inference-api.nousresearch.com/v1/models
@@ -4169,6 +4525,10 @@ entries:
       need a token. The four stay out of the Models column: the limits page the probe
       reads names no model, and the catalog that marks the turbo tier prices every
       row for balance accounting'
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://github.com/chigwell/llm7.io/blob/main/TERMS.md
   probe:
     type: page-keywords
     endpoint: https://docs.llm7.io/limits.md
@@ -4233,6 +4593,10 @@ entries:
     quote: 'No AI Training on Your Data: We do not use your prompts, training data,
       or API inputs to train or improve our AI models without your explicit opt-in.'
     url: https://fireworks.ai/privacy-policy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://fireworks.ai/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://fireworks.ai/pricing
@@ -4292,6 +4656,10 @@ entries:
       are the other chat models on VLM Run''s GPUs and answered keyless calls on 2026-09-25,
       while the frontier models in the same catalog, Kimi K3 and Gemma 4 26B among
       them, answer `403 model_not_entitled` without a paid organization'
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://vlm.run/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://docs.vlm.run/gateway/models
@@ -4362,6 +4730,11 @@ entries:
     trains: 'no'
     quote: 不会，我们非常重视您的隐私保护，不会将您的数据用于为您提供服务以外的场景，更不会用于训练。
     url: https://cloud.tencent.com/document/product/1823/130104
+  border:
+    served: [CN, HK, MO, TW]
+    'on': '2026-09-26'
+    source: https://cloud.tencent.com/document/product/378/3629
+    quote: 其他类型国际证件请前往 国际站 进行认证
   probe:
     type: page-keywords
     endpoint: https://cloud.tencent.com/document/product/1823/130053
@@ -4411,6 +4784,10 @@ entries:
       OpenAI SDK examples pass the key as the api key and the docs' curl sends it
       bare in Authorization. /v1/models answers 401 without a key, and closed-source
       models need a provider key of your own
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://docs.bytez.com/model-api/docs/billing.md
   probe:
     type: page-keywords
     endpoint: https://docs.bytez.com/model-api/docs/billing.md
@@ -4469,6 +4846,10 @@ entries:
       solely for the purpose of generating and returning a response to you, and only
       for the duration necessary to complete that request.
     url: https://www.arliai.com/terms
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.arliai.com/terms
   probe:
     type: page-keywords
     endpoint: https://www.arliai.com/docs/textgen
@@ -4532,6 +4913,10 @@ entries:
     quote: Opper never trains on your data. Per-provider data policies are listed
       in the models directory.
     url: https://opper.ai/pricing
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://opper.ai/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://opper.ai/llms.txt
@@ -4592,6 +4977,12 @@ entries:
     trains: 'no'
     quote: 对于您在我们的网站上发布的内容或以其他方式提供的内容，…在此明确，未经您的允许，我们不会使用您的内容作为人工智能模型训练的输入。
     url: https://moark.com/docs/appendix/terms
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://moark.com/docs/appendix/terms
+    quote: 您必须提交自身合法、真实、有效的身份信息完成真实身份的核验
+    read: quote
   probe:
     type: page-keywords
     endpoint: https://moark.com/docs/FAQ
@@ -4644,6 +5035,10 @@ entries:
     quote: By default, Mixlayer does not use Customer Content (Inputs/Outputs) to
       train or improve models for general availability
     url: https://www.mixlayer.com/privacy-policy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://www.mixlayer.com/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://www.mixlayer.com/pricing
@@ -4692,6 +5087,10 @@ entries:
     - auto
     note: auto is the quick start's model and keys start with bc_; /v1/models answers
       401 without a key, and the models behind auto are listed only in the console
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://blueclaw.network/terms
   probe:
     type: page-keywords
     endpoint: https://blueclaw.network/
@@ -4752,6 +5151,10 @@ entries:
     quote: Prompts, completions, and images are processed in memory and never stored
       by default. They are never used to train or fine-tune any model.
     url: https://abliteration.ai/data-handling
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://abliteration.ai/terms-of-service
   probe:
     type: page-keywords
     endpoint: https://abliteration.ai/pricing
@@ -4804,6 +5207,10 @@ entries:
       which of them the promotional credit can call is not published. The Claude Code
       guide sets ANTHROPIC_BASE_URL=https://api.impossibl.com and clears ANTHROPIC_API_KEY
       so the bearer token is used
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://impossibl.com/terms
   probe:
     type: page-keywords
     endpoint: https://impossibl.com/llms.txt
@@ -4864,6 +5271,10 @@ entries:
       Your data is not used for training, fine-tuning, or any purpose beyond serving
       the request in front of it.
     url: https://thegrid.ai/docs/data-handling-and-privacy/data-handling-and-privacy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://thegrid.ai/terms-of-use
   probe:
     type: page-keywords
     endpoint: https://thegrid.ai/docs/start-here/quickstart.md
@@ -4922,6 +5333,13 @@ entries:
     quote: No customer request data is used for model training unless explicitly agreed
       otherwise.
     url: https://www.hpc-ai.com/model-apis
+  border:
+    left_out: [CN]
+    'on': '2026-09-26'
+    source: https://www.hpc-ai.com/agreement/service
+    quote: The Services are intended for users outside Mainland China and are not
+      available to individuals or entities located in Mainland China
+    also_named: [HK, MO, SG, TW]
   probe:
     type: page-keywords
     endpoint: https://www.hpc-ai.com/model-apis
@@ -5494,6 +5912,10 @@ entries:
     quote: We do not use your inputs or outputs to train, fine-tune, or evaluate any
       model, and we do not provide them to third parties for that purpose.
     url: https://llmtech.eu/privacy
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://llmtech.eu/terms
   probe:
     type: page-keywords
     endpoint: https://llmtech.eu/docs/
@@ -5559,6 +5981,12 @@ entries:
     trains: 'no'
     quote: 我们不会长期存储您的任何业务输入与输出数据；不会将您的业务数据用于任何大模型的预训练、微调或其他商业用途；
     url: https://docs.siliconflow.cn/docs/legals/privacy-policy
+  border:
+    served: [CN, HK, MO, TW]
+    'on': '2026-09-26'
+    source: https://docs.siliconflow.cn/docs/userguide/faqs/authentication
+    quote: 不具有以上证件的用户，暂时不支持线上个人认证
+    read: quote
   probe:
     type: page-keywords
     endpoint: https://siliconflow.cn/pricing
@@ -5621,6 +6049,12 @@ entries:
       is bound to an Alibaba Cloud account that has passed real-name verification.
       The ids are the coding-capable rows of the keyless catalog; the Anthropic-format
       route is in beta
+  border:
+    served: [CN]
+    'on': '2026-09-26'
+    source: https://help.aliyun.com/zh/account/verify-your-identity-individual-account
+    quote: 输入个人认证的姓名和身份证号码
+    read: quote
   probe:
     type: page-keywords
     endpoint: https://www.modelscope.cn/api/v1/document/main_doc_CN_prod
@@ -5699,6 +6133,10 @@ entries:
       your prior permission or instruction. This applies to all managed models on
       Gemini Enterprise Agent Platform, including GA and pre-GA models
     url: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/zero-data-retention
+  border:
+    left_out: []
+    'on': '2026-09-26'
+    source: https://cloud.google.com/terms/google-cloud-express
   probe:
     type: page-keywords
     endpoint: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview
@@ -5748,6 +6186,13 @@ entries:
       opt in, we will not use your input information, generated content, or product
       usage data for product or model training and optimization.
     url: https://zcode.z.ai/en/privacy
+  border:
+    left_out: [CU, IR, KP]
+    'on': '2026-09-26'
+    source: https://zcode.z.ai/en/terms
+    quote: 'You confirm that you are not located in the following regions: Iran, North
+      Korea, Cuba, Crimea, Donetsk, or Zaporizhzhia'
+    also_named: [CN, SG]
   probe:
     type: page-keywords
     endpoint: https://zcode.z.ai/en/docs/welcome

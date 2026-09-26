@@ -710,6 +710,12 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
         return None
     if border.read == "dns":
         return await _border_dns(client, entry, attempts, backoff)
+    recorded = set(border.served if border.served is not None else border.left_out)
+    names = border.read == "page" and bool(recorded)
+    if not (border.quote or names or border.read == "codes"):
+        # A vendor that names no country, in no sentence the row quotes:
+        # there is nothing on its page to hold the border to.
+        return None
     url = border.source
     if url == entry.probe.endpoint and entry.probe.follow is None:
         page = probed
@@ -717,7 +723,6 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
         page, failure = await _fetch_page(client, url, attempts, backoff)
         if page is None:
             return f"border could not be checked against {url}: {failure}"
-    recorded = set(border.served if border.served is not None else border.left_out)
     if border.read == "codes":
         listed = _listed_codes(page.text)
         if listed is None:
@@ -731,7 +736,7 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
     notes = []
     if border.quote and not quote_found(border.quote, page_texts(page.text)):
         notes.append("its quote is gone")
-    if recorded:
+    if names:
         from .countries import codes_named, country_name
         rendered, raw = _country_texts(page.text)
         seen = codes_named(rendered)

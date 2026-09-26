@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash free: 1 provider, limits and ids, verified 2026-09-24'
 description: ling-3.0-flash is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/ling-3.0-flash/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: ling-3.0-flash
 ---
 

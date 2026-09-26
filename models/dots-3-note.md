@@ -3,7 +3,7 @@ layout: default
 title: 'dots-3-note free: 3 providers, limits and ids, verified 2026-09-24'
 description: dots-3-note is served free by OpenRouter (free models), Kilo Code and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/dots-3-note/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: dots-3-note
 ---
 

@@ -3,7 +3,7 @@ layout: default
 title: 'Sarvam AI free tier: limits, free models, verified 2026-09-24'
 description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. "Every new user receives ₹100 in credits", usable "across any of our APIs", and the credits "are universal and never expire".…
 permalink: /providers/sarvam/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Sarvam AI
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 "Every new user receives ₹100 in credits", usable "across any of our APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28 in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled by default with standard API subscription keys" and is granted per key on request. No page read mentions a card (2026-09-18)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://www.sarvam.ai/terms-of-service), read 2026-09-26).
 
 ## What happens to what you send
 

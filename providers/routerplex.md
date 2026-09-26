@@ -3,7 +3,7 @@ layout: default
 title: 'RouterPlex free tier: limits, free models, verified 2026-09-24'
 description: 'A one-time $1 of free credit on a prepaid reseller that bills 56 models at catalog rates with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. The home page: "Get $1 in free credit", granted "once during key…'
 permalink: /providers/routerplex/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: RouterPlex
 ---
 
@@ -24,6 +24,10 @@ The vendor does not say which models the free part reaches, so the column names 
 ## Limits, in the vendor's words
 
 The home page: "Get $1 in free credit", granted "once during key creation, not immediately after signup" to an account with "no previous paid top-up, no existing credit, and no previous setup-credit grant". "Trial traffic is limited to 10 requests per minute, 250,000 tokens per minute, and four concurrent requests", "Signup and guided setup have no payment step", and "The $1 credit does not expire". What the dollar buys is the catalog rate of whatever it is spent on, with "0% Token markup" on the pricing page, so at deepseek-v4-flash it is an afternoon of work and at claude-opus-5 a handful of turns. The terms narrow it: "Until an account makes its first paid top-up, promotional credit may be usable only with a subset of models and at reduced rate limits", "no promotional credit is guaranteed", and one account per person. Which models the subset holds is on no page. Continuing costs a top-up "from $5 by card or $12 by crypto". No legal entity is named on /terms or /about, and /v1/models answers 403 without a key, so nothing here is read off the catalog. A connection test with a little work in it, one step above the smallest trial on this list. Read 2026-09-18
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://routerplex.com/terms), read 2026-09-26).
 
 ## What happens to what you send
 

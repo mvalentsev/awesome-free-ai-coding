@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3-nano-omni free: 6 providers, limits and ids, verified 2026-09-24'
 description: nemotron-3-nano-omni is served free by OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and TokenRouter (PaleBlueDot). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and…
 permalink: /models/nemotron-3-nano-omni/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: nemotron-3-nano-omni
 ---
 
@@ -57,7 +57,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-24 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -81,7 +81,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [TokenRouter (PaleBlueDot)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-08-05
+🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · verified 2026-09-24 · listed since 2026-08-05
 
 One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest
 

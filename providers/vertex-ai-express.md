@@ -3,7 +3,7 @@ layout: default
 title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-09-24'
 description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to…'
 permalink: /providers/vertex-ai-express/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 ---
 
@@ -24,6 +24,10 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 ## Limits, in the vendor's words
 
 The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to try Agent Platform for free for up to 90 days, within the specified quotas", and "You don't need to provide billing information to sign up in the free tier". Its model table gives gemini-3.1-pro-preview, gemini-3-pro-preview and gemini-3-flash-preview a dynamic rate limit and gemini-2.5-pro, gemini-2.5-flash and the Flash-Lite and 2.0 Flash rows 10 requests a minute. The FAQ: "If you don't enable billing, you won't be able to use express mode after 90 days". An existing Google Cloud user gets no free tier, and the separate $300 Free Trial asks for "a credit card or other payment method". Express mode is a Preview, and its terms add "Customer will not use the Express Mode Offerings to process personal data". Read 2026-09-23
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://cloud.google.com/terms/google-cloud-express), read 2026-09-26).
 
 ## What happens to what you send
 

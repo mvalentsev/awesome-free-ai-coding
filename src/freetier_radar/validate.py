@@ -208,6 +208,22 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 "its free part serves (models), it is a sum to spend (sum), or the vendor names "
                 "none (unnamed)")
 
+    # CONTRIBUTING's border rule ranks an offer by the readers it leaves out, and
+    # until 2026-09-26 three rows said so in prose while Google, OpenAI and TRAE
+    # carried theirs unnamed. A rank argued from a share needs every row's
+    # border, so a live row says where its offer reaches, read on a day that
+    # has happened.
+    for e in entries:
+        if is_archived(e, today):
+            continue
+        if e.border is None:
+            problems.append(
+                f"registry: {e.id} has no border — record where the offer reaches in the "
+                "vendor's words: served (an allow-list), or left_out (the countries it names; "
+                "[] where it names none)")
+        elif e.border.on > today:
+            problems.append(f"registry: {e.id} border was read on {e.border.on}, after today")
+
     # The configs are written from api.model_ids alone: a family names a model,
     # an id is what a request carries. A connectable row whose column names
     # families and lists no id would hand a reader nothing to call — and until

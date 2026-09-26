@@ -3,7 +3,7 @@ layout: default
 title: 'minimax-m2.5 free: 3 providers, limits and ids, verified 2026-09-24'
 description: minimax-m2.5 is served free by Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/minimax-m2.5/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: minimax-m2.5
 ---
 

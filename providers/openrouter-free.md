@@ -3,7 +3,7 @@ layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-09-24'
 description: One API key for a rotating set of :free model variants, open-weight and stealth models among them. 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants —…
 permalink: /providers/openrouter-free/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: OpenRouter (free models)
 ---
 
@@ -24,6 +24,10 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 ## Limits, in the vendor's words
 
 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", warns that a negative credit balance can produce errors "including for free models", and notes a 429 may come from the upstream provider rather than the platform (read 2026-08-14)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://openrouter.ai/terms), read 2026-09-26).
 
 ## What happens to what you send
 

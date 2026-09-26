@@ -3,7 +3,7 @@ layout: default
 title: 'Bytez free tier: limits, free models, verified 2026-09-24'
 description: Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing. The billing page's Free card reads "$0 / month - Get $1 in free credits", "Run open models up to 7B parameters", "1 concurrent…
 permalink: /providers/bytez/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Bytez
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The billing page's Free card reads "$0 / month - Get $1 in free credits", "Run open models up to 7B parameters", "1 concurrent request (open models)" and "Credits refresh every 4 weeks", and the billing cycle adds that "Credits expire 4 weeks after grant", with no billing on the plan. The card also lists "Access all closed model providers", but the get-started guide says a closed-source model needs "an account with the model provider" and is "billed directly by the provider", so the free dollar reaches only the open models of 7B parameters or fewer — Qwen3 4B, the docs' own example, is one. An open model above 7B needs at least $10 of credit bought in the last four weeks, on the $3 a month plan. Read 2026-09-17
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://docs.bytez.com/model-api/docs/billing.md), read 2026-09-26).
 
 ## Connect
 

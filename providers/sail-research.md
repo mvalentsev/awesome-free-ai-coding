@@ -3,7 +3,7 @@ layout: default
 title: 'Sail Research free tier: limits, free models, verified 2026-09-24'
 description: 'Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account. The home page: "$5 in free credits every month when you attach a payment method", and its FAQ…'
 permalink: /providers/sail-research/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Sail Research
 ---
 
@@ -11,7 +11,7 @@ crumb: Sail Research
 
 # Sail Research free tier
 
-🔌 LLM APIs with free tier · card required · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-24 · [sailresearch.com](https://www.sailresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · not offered in Russia, Iran, Syria and 2 more places · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-24 · [sailresearch.com](https://www.sailresearch.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The home page: "$5 in free credits every month when you attach a payment method", and its FAQ "with $5 in free credits refreshed every month". The credit spends at the per-token prices, which fall with the completion window a request asks for: GLM-5.3 is $0.98 in / $3.08 out per 1M tokens as soon as possible and $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09. "No strict rate limits", and request and response data is "not used to train models without written consent". Read 2026-09-21
+
+## Where it is offered
+
+Not offered in Russia, Iran, Syria, Cuba and North Korea ([source](https://www.sailresearch.com/terms), read 2026-09-26). That leaves out 2.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “access or use the Services in or for the benefit of any embargoed or sanctioned country, region, or person (including Cuba, Iran, North Korea, Syria, the Crimea, Donetsk, and Luhansk regions, and Russia)”.
 
 ## What happens to what you send
 

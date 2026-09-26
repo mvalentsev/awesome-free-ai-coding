@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.6 free: 4 providers, limits and ids, verified 2026-09-24'
 description: qwen3.6 is served free by Groq, Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.6/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: qwen3.6
 ---
 

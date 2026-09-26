@@ -3,7 +3,7 @@ layout: default
 title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-09-24'
 description: 'Gitee''s model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought. The FAQ: 选择“免费体验访问令牌”即可享受免费体验，每位用户每日拥有 100 次免费调用次数 — take the free experience…'
 permalink: /providers/moark/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Moark (Gitee AI)
 ---
 
@@ -24,6 +24,10 @@ The page this row is verified against names no free model, so the column stays e
 ## Limits, in the vendor's words
 
 The FAQ: 选择“免费体验访问令牌”即可享受免费体验，每位用户每日拥有 100 次免费调用次数 — take the free experience token and every user has 100 free calls a day — and a token past that answers `400` `已达到最大当日免费 API 使用次数，请购买资源后继续使用 API`. The Claude Code guide offers the same token to developers who have bought nothing, 仅供体验，每日调用次数有限 (for trying out, daily calls limited), and configures deepseek-v4-flash-0731. Which models the token reaches, 所有精选模型 (all featured models), is listed only on the client-rendered model square; the models marked 免费 there are another matter, needing a purchased resource package of any amount. Sign-in is with a Gitee account, and no page read says whether one can be opened with a phone number from outside mainland China. Read 2026-09-17
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://moark.com/docs/appendix/terms), read 2026-09-26). In the vendor's words: “您必须提交自身合法、真实、有效的身份信息完成真实身份的核验”.
 
 ## What happens to what you send
 

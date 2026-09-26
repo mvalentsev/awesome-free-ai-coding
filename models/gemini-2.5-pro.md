@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-2.5-pro free: 1 provider, limits and ids, verified 2026-09-24'
 description: gemini-2.5-pro is served free by Gemini Enterprise Agent Platform express mode (formerly Vertex AI). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemini-2.5-pro/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: gemini-2.5-pro
 ---
 

@@ -3,7 +3,7 @@ layout: default
 title: 'gemini-3-flash free: 2 providers, limits and ids, verified 2026-09-24'
 description: gemini-3-flash is served free by Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemini-3-flash/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: gemini-3-flash
 ---
 
@@ -19,7 +19,7 @@ crumb: gemini-3-flash
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-24 · listed since 2026-09-25
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 

@@ -3,7 +3,7 @@ layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-24'
 description: Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint…
 permalink: /providers/windsurf/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Devin Desktop (formerly Windsurf)
 ---
 
@@ -24,6 +24,10 @@ The vendor does not say which models the free part reaches, so the column names 
 ## Limits, in the vendor's words
 
 Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint (`Enable JavaScript to continue`), from CI and from a laptop alike, so the pricing page cannot be read. Cognition's docs are open and describe the $0 plan: a "daily and weekly usage allowance that refreshes automatically", where Free means "Wait until your next daily or weekly reset" and only the paid plans can buy their way past it. Which models that allowance reaches is published nowhere readable; the one tier-tagged model catalogue, docs.devin.ai/desktop/models, carried only Pro and Enterprise tiers when it was read (2026-08-19). Read 2026-09-16
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://cognition.com/legal/platform-terms-of-service), read 2026-09-26).
 
 ## What happens to what you send
 

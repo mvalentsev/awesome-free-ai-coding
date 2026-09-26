@@ -3,7 +3,7 @@ layout: default
 title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-09-24'
 description: 'Harvard SEAS''s MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. No quota figure is published: the landing page says "Free…'
 permalink: /providers/freeinference/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: FreeInference (Harvard SEAS)
 ---
 
@@ -24,6 +24,10 @@ Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GL
 ## Limits, in the vendor's words
 
 No quota figure is published: the landing page says "Free to use", "No credit card required" and "Generous quota for research and prototyping", and the terms say "Quotas, rate limits, model access, and usage limits may change based on usage, demand, infrastructure capacity, abuse prevention, operational needs, and individual or aggregate activity". It is "an experimental research service", and prompts are not private: "All prompts and responses may be logged for research purposes" and "sanitized prompts and responses, usage statistics, and routing metrics — may be published or open-sourced". The models page splits the catalog: "Free accounts can use models marked Free. Models marked Pro require a Pro-enabled key" — seven chat ids Free and three Pro (glm-5.2, glm-5.3, kimi-k2.7-code), read 2026-09-05
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://freeinference.org/terms), read 2026-09-26).
 
 ## Connect
 

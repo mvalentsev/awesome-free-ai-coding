@@ -3,7 +3,7 @@ layout: default
 title: 'Zed free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit…'
 permalink: /providers/zed/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Zed
 ---
 
@@ -24,6 +24,10 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GP
 ## Limits, in the vendor's words
 
 "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit predictions. No credit card is required. The trial ends when you use the $5 balance or 14 days pass, whichever comes first." "GPT-5.6 Luna is the only hosted model available during the free trial", and the balance is shared with Delta, Zed's other app. Trials "automatically convert to Zed Free" — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period on the page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-16
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://zed.dev/terms), read 2026-09-26).
 
 ## What happens to what you send
 

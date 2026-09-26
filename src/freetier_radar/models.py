@@ -741,9 +741,11 @@ class Border(BaseModel):
     `left_out: []`.
 
     `read` is how the run reads it back — the names still on the page (`page`),
-    a list of codes the vendor publishes as data (`codes`, NVIDIA's), the answer
-    a resolver gives from inside each country (`dns`, CodeBuddy's), or not at
-    all where only a browser gets the page (`none`). A change is reported, never
+    the quote alone where the page names documents rather than countries
+    (`quote`: a sign-up that takes mainland ID cards), a list of codes the
+    vendor publishes as data (`codes`, NVIDIA's), the answer a resolver gives
+    from inside each country (`dns`, CodeBuddy's), or not at all where only a
+    browser gets the page (`none`). A change is reported, never
     failed: the offer is still there, and the border is a reviewer's to reread.
     `also_named` are the countries the source page names outside its list, so a
     name the page adds is told apart from one it always carried.
@@ -753,7 +755,7 @@ class Border(BaseModel):
     on: date
     source: str
     quote: str = ""  # verbatim; the pages print it inside quotation marks
-    read: Literal["page", "codes", "dns", "none"] = "page"
+    read: Literal["page", "quote", "codes", "dns", "none"] = "page"
     also_named: list[str] = []
 
     @field_validator("source")
@@ -794,6 +796,8 @@ class Border(BaseModel):
         if both:
             raise ValueError(f"border.also_named holds {', '.join(both)}, which the list itself "
                              "names — also_named is for the page's names outside its list")
+        if self.read == "quote" and not self.quote:
+            raise ValueError("border.read is quote, but the border has no quote to read back")
         if self.read == "codes" and not listed:
             raise ValueError("border.read is codes, but the border names no codes to compare")
         if self.read == "dns":
@@ -1325,9 +1329,36 @@ def load_registry(path: Path) -> list[Entry]:
     return [Entry.model_validate(e) for e in data["entries"]]
 
 
+class _FlowList(list):
+    """A list the registry writes as one wrapped line: a border's country codes.
+    Google's allow-list is 230 codes, and one code a line made the border the
+    longest thing in the file, longer than the row it belongs to."""
+
+
+class _RegistryDumper(yaml.SafeDumper):
+    pass
+
+
+_RegistryDumper.add_representer(
+    _FlowList, lambda d, data: d.represent_sequence("tag:yaml.org,2002:seq", data, flow_style=True))
+
+
+def _row_payload(e: Entry) -> dict:
+    row = e.model_dump(mode="json", exclude_none=True)
+    if e.border is not None:
+        # Only what the row says: an unset quote, a page read and no names
+        # outside the list are the defaults, and eighty rows repeat them.
+        border = e.border.model_dump(mode="json", exclude_defaults=True)
+        for field in ("served", "left_out", "also_named"):
+            if field in border:
+                border[field] = _FlowList(border[field])
+        row["border"] = border
+    return row
+
+
 def save_registry(path: Path, entries: list[Entry]) -> None:
-    payload = {"entries": [e.model_dump(mode="json", exclude_none=True) for e in entries]}
+    payload = {"entries": [_row_payload(e) for e in entries]}
     path.write_text(
-        yaml.safe_dump(payload, sort_keys=False, allow_unicode=True),
+        yaml.dump(payload, Dumper=_RegistryDumper, sort_keys=False, allow_unicode=True),
         encoding="utf-8",
     )

@@ -3,7 +3,7 @@ layout: default
 title: 'MegaNova free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across its free rows. Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free…
 permalink: /providers/meganova/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: MegaNova
 ---
 
@@ -11,7 +11,7 @@ crumb: MegaNova
 
 # MegaNova free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · **live** — last verified by a probe on 2026-09-24 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a d
 ## Limits, in the vendor's words
 
 Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free Model Quota table gives a Tier 1 account 50 requests a day ("50 RPD (Requests Per Day)") on each of Mistral-Small-3.2-24B, Manta Mini and Manta Flash, and on several roleplay fine-tunes, an embedding model and a reranker — "Total Free Quota per day 550", with a "daily reset at 00:00 UTC" — and 0 on GLM-4.7-Flash and Manta Pro until a "$1 deposit" moves the account to Tier 2. The terms say "Free modules are for evaluation and interactive use only and are not designed for production or unattended batch workloads". The operator is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16
+
+## Where it is offered
+
+Offered in the 187 countries and territories its list names, not in Hong Kong, Venezuela, Azerbaijan, Yemen, Côte d'Ivoire, Puerto Rico, DR Congo, Afghanistan and 35 more places ([source](https://docs.meganova.ai/faq/supported-countries.md), read 2026-09-26). That leaves out 2.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “We provide the following list of countries and territories where … services are officially supported”.
 
 ## Connect
 

@@ -3,7 +3,7 @@ layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog. Free models — every id ending :free — are capped at 5 requests per minute and 200 per day…
 permalink: /providers/routeway/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Routeway
 ---
 
@@ -24,6 +24,10 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 ## Limits, in the vendor's words
 
 Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates, ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://routeway.ai/terms), read 2026-09-26).
 
 ## Connect
 

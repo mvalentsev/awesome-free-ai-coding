@@ -380,7 +380,10 @@ def border_words(e: Entry) -> str:
                  f"countries most offers leave out, and in no other country the vendor names")
     else:
         where = "The vendor names no country it keeps the offer from"
-    said = [f"{where} ([source]({b.source}), read {b.on.isoformat()})."]
+    # A border measured by DNS is a resolver's answer from inside each country,
+    # and the link is the question as it was asked, not a vendor's page.
+    source = "the host's DNS answer" if b.read == "dns" else "source"
+    said = [f"{where} ([{source}]({b.source}), read {b.on.isoformat()})."]
     if beyond:
         said.append(f"That leaves out {_percent(share(b, yardstick))} of the developers GitHub "
                     f"counts, beyond the embargoed countries most offers leave out "
@@ -1727,7 +1730,8 @@ def _description(text: str) -> str:
 
 def _last_modified(e: Entry, events: list[Event]) -> date:
     """The newest day a row's page changed for a reader: the last probe that
-    passed it or its newest history line, whichever came later, as a UTC day.
+    passed it, the day its border was read or its newest history line,
+    whichever came last, as a UTC day.
 
     It goes in the page's front matter as `last_modified_at`, which
     jekyll-sitemap writes as the URL's <lastmod> and jekyll-seo-tag as the
@@ -1735,8 +1739,10 @@ def _last_modified(e: Entry, events: list[Event]) -> date:
     date on 2026-09-26, and a crawler deciding what to read again had only the
     two pages Jekyll copies verbatim to go on. The footer's render date is not
     it: a render changes no fact on the page."""
-    return max([e.last_verified, *(ev.ts.astimezone(timezone.utc).date()
-                                   for ev in events if ev.id == e.id)])
+    # A border read is a fact the page gained that day, with no history line.
+    read = [e.border.on] if e.border is not None else []
+    return max([e.last_verified, *read, *(ev.ts.astimezone(timezone.utc).date()
+                                          for ev in events if ev.id == e.id)])
 
 
 def _family_links(families: list[str], pages: set[str], sep: str = ", ") -> str:

@@ -3,7 +3,7 @@ layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card. "Models on permanent free routes carry an explicit :free model ID and are listed…'
 permalink: /providers/token-harbor/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Token Harbor
 ---
 
@@ -24,6 +24,10 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 ## Limits, in the vendor's words
 
 "Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. "No per-minute request cap"; "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process free-route content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-18
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://tokenharbor.ai/terms), read 2026-09-26). In the vendor's words: “the Service is restricted and not intended for use in certain jurisdictions”.
 
 ## What happens to what you send
 

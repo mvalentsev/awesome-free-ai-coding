@@ -3,7 +3,7 @@ layout: default
 title: 'Impossibl free tier: limits, free models, verified 2026-09-24'
 description: 'Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an…'
 permalink: /providers/impossibl/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Impossibl
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 An account is one POST with no key, and the llms.txt says what it carries: "an agent-created account has $0.05; claiming adds an extra $1" — the claim is an email sign-in, the dollar "granted once per human". The billing page narrows it: "Some models require a completed credit purchase and return 403 billing_required without one. Saving a card or having promotional credits does not satisfy that requirement." Which models those are is not published. What the credit buys is list price — "Provider usage is billed at provider list prices with no usage markup" — GLM-5.3-Flash at $0.15 in and $0.50 out per million tokens, Claude Opus 5 at $5 and $25 — and a top-up starts at $5 plus a 5% platform fee. Read 2026-09-17
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://impossibl.com/terms), read 2026-09-26).
 
 ## Connect
 

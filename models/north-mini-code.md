@@ -3,7 +3,7 @@ layout: default
 title: 'north-mini-code free: 4 providers, limits and ids, verified 2026-09-24'
 description: north-mini-code is served free by OpenRouter (free models), Kilo Code, AIHubMix (free models) and Cohere (trial keys). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/north-mini-code/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: north-mini-code
 ---
 
@@ -56,7 +56,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-08-14
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · verified 2026-09-24 · listed since 2026-08-14
 
 Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type
 

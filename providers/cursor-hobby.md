@@ -3,7 +3,7 @@ layout: default
 title: 'Cursor (Hobby) free tier: limits, free models, verified 2026-09-24'
 description: Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor's own Composer model and Tab completions, no credit card. Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer", the one…
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: Cursor (Hobby)
 ---
 
@@ -24,6 +24,10 @@ Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Curso
 ## Limits, in the vendor's words
 
 Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer", the one model it names — Cursor's own, listed as Composer 2.5 in the Cursor Models pool of its model docs, where the Pro card names Grok and frontier models — and the help page adds only that "the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with your billing cycle" and "does not roll over"; at the cap Cursor shows a notification and offers on-demand usage or an upgrade. Cursor Router has not reached individual plans yet (read 2026-09-25)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://cursor.com/terms-of-service), read 2026-09-26).
 
 ## What happens to what you send
 

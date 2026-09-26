@@ -34,7 +34,9 @@ from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 from .validate import PROSE_LIMITS
 # The render's own words for a figure, so a sentence held here and the page
 # printing the same constant can never spell it two ways.
-from .words import number as _word, ordinal as _ordinal, weeks as _weeks
+from .words import number as _word, ordinal as _ordinal, series as _series, weeks as _weeks
+from .borders import SHARED
+from .countries import country_name
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
 
@@ -134,6 +136,9 @@ CLAIMS: tuple[Claim, ...] = (
           read=lambda found: tuple(sorted(found.groups()))),
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
+    Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",
+          lambda root: (_series(sorted(country_name(c) for c in SHARED)),), "borders.SHARED",
+          read=lambda found: (" ".join(found.group(1).split()),)),
     Claim("browse.html", r"listed for less than (\w+ weeks|a week)",
           lambda root: (_weeks(PROVISIONAL_PROMOTE_DAYS),),
           "prober.PROVISIONAL_PROMOTE_DAYS"),

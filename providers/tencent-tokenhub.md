@@ -3,7 +3,7 @@ layout: default
 title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-09-24'
 description: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated…
 permalink: /providers/tencent-tokenhub/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Tencent Cloud TokenHub
 ---
 
@@ -11,7 +11,7 @@ crumb: Tencent Cloud TokenHub
 
 # Tencent Cloud TokenHub free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -24,6 +24,10 @@ The page this row is verified against names no free model, so the column stays e
 ## Limits, in the vendor's words
 
 The free package page, updated 2026-09-04, gives each main account one grant while the promotion runs, 本期活动时间截至 2026 年 12 月 31 日 (until 31 December 2026): 所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年, a million tokens on every language model, valid a year from claiming. The grant is per model: packages are ticked model by model in the model square or claimed on a model's first call, 免费体验包每个账号每个模型仅可领取一次 (each account claims each model's package once), and the quickstart speaks of 各模型免费体验额度, each model's free quota — against one note that 同一账号下的所有模型共享额度 (the account's models share it), with the figures 以控制台显示为准 (as the console shows). When the grant is spent the service stops unless post-payment is switched on, so nothing is billed without it. The quickstart requires registering on Tencent Cloud and passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民 — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are sent to the international site. Read 2026-09-25
+
+## Where it is offered
+
+Offered only in mainland China, Hong Kong, Taiwan and Macao ([source](https://cloud.tencent.com/document/product/378/3629), read 2026-09-26). That leaves out 90.8% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “其他类型国际证件请前往 国际站 进行认证”.
 
 ## What happens to what you send
 

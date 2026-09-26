@@ -3,7 +3,7 @@ layout: default
 title: 'inkling free: 1 provider, limits and ids, verified 2026-09-24'
 description: inkling is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/inkling/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: inkling
 ---
 

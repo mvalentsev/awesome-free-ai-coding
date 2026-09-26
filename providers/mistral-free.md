@@ -3,7 +3,7 @@ layout: default
 title: 'Mistral Studio free tier: limits, free models, verified 2026-09-24'
 description: Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card. The Free card on mistral.ai/pricing lists "Limited coding sessions", "Test Mistral models in Studio" and "$10 /mo in API credits", where Pro's card says $30. The docs…
 permalink: /providers/mistral-free/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Mistral Studio
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The Free card on mistral.ai/pricing lists "Limited coding sessions", "Test Mistral models in Studio" and "$10 /mo in API credits", where Pro's card says $30. The docs say where the allowance goes: "Mistral plans are global: the same plan applies across Vibe, Studio, and API usage", "Free mode is the default state for new accounts", and "Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code. Usage consumes this monthly allowance first" — past it, usage "can stop until the next billing period" unless pay-as-you-go is switched on. The quickstart asks for nothing more: "Free mode: API access is enabled by default with no credit card required." What $10 buys is on the same page: "For example, Mistral Large costs $0.5 /M tokens in and $1.5 /M tokens out." Free mode also has the lowest rate limits — requests per second, tokens per minute and tokens per month, shown only inside the account — and API calls may be used to improve Mistral's services unless the Admin panel's `Anonymous improvement data` toggle is off.
+
+## Where it is offered
+
+Not offered in Cuba, Iran, North Korea or Syria, the embargoed countries most offers leave out, and in no other country the vendor names ([source](https://legal.mistral.ai/terms/commercial-terms-of-service), read 2026-09-26). In the vendor's words: “including, as of the Effective Date, Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine”.
 
 ## What happens to what you send
 

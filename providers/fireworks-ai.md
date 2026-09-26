@@ -3,7 +3,7 @@ layout: default
 title: 'Fireworks AI free tier: limits, free models, verified 2026-09-24'
 description: Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added. The pricing page offers "Get started with $1 in free credits", and the billing FAQ…
 permalink: /providers/fireworks-ai/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Fireworks AI
 ---
 
@@ -24,6 +24,10 @@ No model is free by itself here: the free part is an amount the account spends a
 ## Limits, in the vendor's words
 
 The pricing page offers "Get started with $1 in free credits", and the billing FAQ says what happens to an account "Without payment method" when the dollar runs out: "Your account will be suspended until you add a payment method". Until then the account quotas put "No payment method or no credits" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits billing system". The dollar buys list prices, per 1M input and output tokens: DeepSeek V4.1 Flash $0.22 and $0.66, GLM 5.3 Flash $0.15 and $0.50, MiniMax M3 $0.30 and $1.20, Kimi K3 $3.00 and $15.00 — about 4.5M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-17
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://fireworks.ai/terms-of-service), read 2026-09-26).
 
 ## What happens to what you send
 

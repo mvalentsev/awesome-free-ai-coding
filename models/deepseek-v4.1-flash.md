@@ -3,7 +3,7 @@ layout: default
 title: 'deepseek-v4.1-flash free: 2 providers, limits and ids, verified 2026-09-24'
 description: deepseek-v4.1-flash is served free by Freebuff and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: deepseek-v4.1-flash
 ---
 

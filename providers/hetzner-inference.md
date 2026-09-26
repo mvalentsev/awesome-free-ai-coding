@@ -3,7 +3,7 @@ layout: default
 title: 'Hetzner Inference API free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in advance via email with detailed…'
 permalink: /providers/hetzner-inference/
-last_modified_at: 2026-09-24
+last_modified_at: 2026-09-26
 crumb: Hetzner Inference API
 ---
 
@@ -24,6 +24,10 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 ## Limits, in the vendor's words
 
 Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in advance via email with detailed information." Published per API key: 4M input and 100k output tokens per 60s, plus 10 requests per 60s, HTTP 429 over either. No daily, monthly or lifetime cap is published and no end date is named — the same page calls the service experimental, "provided for experimental purposes only" and offered as is, with performance and availability not guaranteed and no backups. A Hetzner account is needed to mint a token and the docs do not say whether a payment method is required; Hetzner's own fraud-prevention page offers a card charge as one of several verification routes (read 2026-08-30)
+
+## Where it is offered
+
+The vendor names no country it keeps the offer from ([source](https://www.hetzner.com/legal/terms-and-conditions/), read 2026-09-26).
 
 ## What happens to what you send
 

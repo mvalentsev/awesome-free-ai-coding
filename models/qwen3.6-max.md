@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.6-max free: 1 provider, limits and ids, verified 2026-09-24'
 description: qwen3.6-max is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.6-max/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: qwen3.6-max
 ---
 
@@ -19,7 +19,7 @@ crumb: qwen3.6-max
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-24 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
