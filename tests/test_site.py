@@ -4,6 +4,8 @@ reason it exists: a vendor's sentence arrives as text and never as markup, the
 figures are the registry's own, and nothing on it was typed by hand."""
 import json
 import re
+import shutil
+import subprocess
 
 import yaml
 from datetime import date
@@ -483,6 +485,64 @@ def test_the_search_reads_what_the_page_renders(tmp_path):
         assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
     for attr in ("family", "tier", "rows"):
         assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
+
+
+def _js_function(script: str, name: str) -> str:
+    """One function of the page's script, its braces matched."""
+    start = script.index(f"function {name}(")
+    depth = 0
+    for i in range(script.index("{", start), len(script)):
+        depth += {"{": 1, "}": -1}.get(script[i], 0)
+        if depth == 0:
+            return script[start:i + 1]
+    raise AssertionError(f"{name} does not close")
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path):
+    """A reader types "Nemotron 3 Ultra", not nemotron-3-ultra, and until
+    2026-09-26 the search found nothing for it: every term had to be found on
+    its own, and a lone "3" may only start a name. Since the same day no
+    description spells a model out, so the name the vendor writes has to find
+    the row's models and the model itself. The page's own functions run here."""
+    script = _render([make()], tmp_path).split('id="search-config">')[1]
+    names = ("fold", "squash", "written", "prepareOffer", "prepareModel",
+             "scoreOffer", "wholeOffer", "scoreModel", "spelled", "snippet")
+    harness = "\n".join(_js_function(script, n) for n in names) + """
+    function q(s) { return fold(s).split(" ").filter(Boolean); }
+    function offer(models, limits) {
+      var o = {name: "Row", models: models, what: "A gateway", limits: limits || ""};
+      prepareOffer(o); return o;
+    }
+    function model(f) { var m = {family: f}; prepareModel(m); return m; }
+    console.log(JSON.stringify({
+      family: scoreModel(model("nemotron-3-ultra"), q("Nemotron 3 Ultra")),
+      exact: scoreModel(model("glm-5"), q("GLM 5")),
+      prefix: scoreModel(model("glm-5.3"), q("glm 5")),
+      version: scoreModel(model("qwen3-8b"), q("qwen 3.8")),
+      letter: scoreModel(model("mimo-v2.5"), q("m")),
+      inside: scoreModel(model("kimi-k3"), q("m")),
+      row: scoreOffer(offer(["nemotron-3-ultra"]), q("nemotron 3 ultra")),
+      waiting: scoreOffer(offer(["gemma-4-31b"], "gemini/gemma-4-26b-moe is free"), q("gemma 4 26b")),
+      other: scoreOffer(offer(["kimi-k3"]), q("nemotron 3 ultra")),
+      terms: scoreOffer(offer(["kimi-k3"]), q("kimi k3")),
+      snippet: snippet(offer(["ling-3.0-flash-fin", "nemotron-3.5-lightning", "nemotron-3-ultra"]),
+                       q("nemotron 3 ultra")),
+      said: snippet(offer(["gemma-4-31b"], "Free: gemini/gemma-4-31b and gemini/gemma-4-26b-moe."),
+                    q("gemma 4 26b"))
+    }));"""
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    got = json.loads(run.stdout)
+    assert got["family"] == got["exact"] == 32, got
+    assert got["prefix"] == 20 and got["version"] == 0, got
+    assert got["letter"] > 0 and got["inside"] == 0, got
+    assert got["row"] > 0 and got["waiting"] > 0 and got["other"] == 0 and got["terms"] > 0, got
+    # why the row came up: the model the query spells, first — not a "3" in another name
+    assert got["snippet"] == ("Free models: nemotron-3-ultra, nemotron-3.5-lightning, "
+                              "ling-3.0-flash-fin"), got
+    # a model the column does not carry yet: the sentence that names it
+    assert got["said"] == "Free: gemini/gemma-4-31b and gemini/gemma-4-26b-moe.", got
 
 
 def test_the_search_filters_on_the_answers_the_rows_carry(tmp_path):

@@ -2,8 +2,13 @@
 only contract between them is the field names — checked here against what
 build_index actually publishes, so a renamed field cannot leave the page
 silently showing nothing."""
+import json
 import re
+import shutil
+import subprocess
 from pathlib import Path
+
+import pytest
 
 from freetier_radar.render import build_index
 from test_render import TODAY, make
@@ -109,3 +114,26 @@ def test_browse_page_says_so_when_nothing_matches():
     assert "No row matches all of these filters" in html
     # the Frontier chip is shown only while a live row carries a frontier family
     assert 'id="frontier-chip" hidden' in html
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
+    """The site's search sends "the same search as a table" here, and the 404
+    page sends the name off an address. Until 2026-09-26 "nemotron 3 ultra"
+    found the two rows whose offering spelled it out and none that only listed
+    nemotron-3-ultra; since that day no offering spells a model out. The
+    page's own functions run here on a row index.json publishes."""
+    from test_site import _js_function
+
+    html = _html()
+    row = build_index([make(offering="A free lane",
+                            models=[{"family": "nemotron-3-ultra"}, {"family": "qwen3-8b"}])],
+                      TODAY)["entries"][0]
+    harness = "\n".join(_js_function(html, n) for n in ("families", "haystack", "written")) + f"""
+    var e = {json.dumps(row)};
+    function finds(q) {{ return haystack(e).indexOf(written(q.trim().toLowerCase())) !== -1; }}
+    console.log(JSON.stringify(["Nemotron 3 Ultra", "nemotron-3-ultra", "a free lane",
+                                "qwen 3.8", "qwen3 8b"].map(finds)));"""
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    assert json.loads(run.stdout) == [True, True, True, False, True]

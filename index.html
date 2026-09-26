@@ -4169,11 +4169,8 @@ vendor-announced shutdown on 2026-05-15            </td>
                page: tr.querySelector("a.name").getAttribute("href"),
                name: textOf(tr.querySelector("a.name")), why: full(tr.querySelector("td.what")) };
     });
-    offers.forEach(function (o) {
-      o.fName = fold(o.name); o.fModels = o.models.map(fold);
-      o.fWhat = fold(o.what); o.fLimits = fold(o.limits);
-    });
-    models.forEach(function (m) { m.fFamily = fold(m.family); });
+    offers.forEach(prepareOffer);
+    models.forEach(prepareModel);
     gone.forEach(function (g) { g.fName = fold(g.name); g.fWhy = fold(g.why); });
     return { offers: offers, models: models, gone: gone };
   }
@@ -4213,14 +4210,37 @@ vendor-announced shutdown on 2026-05-15            </td>
       else if (o.fModels.some(function (m) { return m.indexOf(t) !== -1; })) { best = 6; }
       else if (o.fWhat.indexOf(t) !== -1) { best = 3; }
       else if (o.fLimits.indexOf(t) !== -1) { best = 1; }
-      if (!best) { return 0; }
+      if (!best) { total = 0; break; }
       total += best;
     }
-    return total;
+    return Math.max(total, wholeOffer(o, terms));
+  }
+  // Terms that spell one name the way its vendor writes it — "Nemotron 3 Ultra",
+  // "GLM 5", "Gemma 4 26B" — are read whole as well: a lone digit starts no
+  // name on its own, so term by term the name found nothing.
+  function wholeOffer(o, terms) {
+    var whole = terms.length > 1 ? written(terms.join("")) : "";
+    if (whole.length < 3) { return 0; }
+    if (o.wModels.some(function (m) { return m.indexOf(whole) !== -1; })) { return 6 * terms.length; }
+    return o.wWhat.indexOf(whole) !== -1 ? 3 * terms.length
+      : o.wLimits.indexOf(whole) !== -1 ? terms.length : 0;
   }
   function squash(text) { return text.replace(/[\s._-]+/g, ""); }
+  // A name as a reader writes it, separators aside and its version whole:
+  // "nemotron 3 ultra" is nemotron-3-ultra, and "qwen 3.8" is not qwen3-8b.
+  function written(text) { return text.replace(/[\s_-]+/g, ""); }
+  function prepareOffer(o) {
+    o.fName = fold(o.name); o.fModels = o.models.map(fold);
+    o.fWhat = fold(o.what); o.fLimits = fold(o.limits);
+    o.wModels = o.fModels.map(written); o.wWhat = written(o.fWhat); o.wLimits = written(o.fLimits);
+  }
+  function prepareModel(m) { m.fFamily = fold(m.family); m.wFamily = written(m.fFamily); }
   function scoreModel(m, terms) {
-    var whole = squash(terms.join("")), total = squash(m.fFamily) === whole ? 20 : 0;
+    var whole = written(terms.join(""));
+    if (terms.length > 1 && whole.length > 2 && m.wFamily.indexOf(whole) !== -1) {
+      return m.wFamily === whole ? 32 : m.wFamily.indexOf(whole) === 0 ? 20 : 12;
+    }
+    var total = squash(m.fFamily) === squash(terms.join("")) ? 20 : 0;
     for (var i = 0; i < terms.length; i++) {
       var at = m.fFamily.indexOf(terms[i]);
       if (at === -1 || (terms[i].length === 1 && at !== 0)) { return 0; }
@@ -4231,13 +4251,25 @@ vendor-announced shutdown on 2026-05-15            </td>
 
   // A run of text with every term marked, built as nodes: a vendor's sentence
   // is text here as it is everywhere else on the page.
+  // The terms as one name, a separator between them or none: "gemma 4 26b"
+  // finds gemma-4-26b-moe, where term by term it found every "4" on the page.
+  function spelled(terms) {
+    return terms.length > 1 ? new RegExp(terms.map(function (t) {
+      return t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }).join("[\\s_-]*"), "g") : null;
+  }
   function marked(text, terms) {
     var span = document.createElement("span");
-    var folded = fold(text), from = 0, spans = [];
-    terms.forEach(function (t) {
-      var at = folded.indexOf(t);
-      while (at !== -1 && t) { spans.push([at, at + t.length]); at = folded.indexOf(t, at + t.length); }
-    });
+    var folded = fold(text), from = 0, spans = [], whole = spelled(terms), hit;
+    while (whole && (hit = whole.exec(folded))) { spans.push([hit.index, hit.index + hit[0].length]); }
+    if (!spans.length) {
+      terms.forEach(function (t) {
+        for (var at = folded.indexOf(t); at !== -1 && t; at = folded.indexOf(t, at + t.length)) {
+          // one letter or digit marks where a word starts, not every one in a name
+          if (t.length > 1 || !/[a-z0-9]/.test(folded.charAt(at - 1))) { spans.push([at, at + t.length]); }
+        }
+      });
+    }
     spans.sort(function (a, b) { return a[0] - b[0]; });
     spans.forEach(function (sp) {
       if (sp[0] < from) { return; }
@@ -4254,17 +4286,28 @@ vendor-announced shutdown on 2026-05-15            </td>
   // them, else the sentence a match sits in, cut short around it at a word —
   // not the first two hundred characters of a paragraph.
   function snippet(o, terms) {
-    var named = o.models.filter(function (m) {
-      return terms.some(function (t) { return fold(m).indexOf(t) !== -1; });
+    var whole = spelled(terms);
+    function names(text) {
+      var f = fold(text);
+      return terms.some(function (t) { return t.length > 1 ? f.indexOf(t) !== -1 : f.indexOf(t) === 0; });
+    }
+    // The model the whole query spells comes first, then those a term names;
+    // a name the column does not carry yet is shown where the text says it.
+    var spelt = o.models.filter(function (m) { return whole !== null && fold(m).search(whole) !== -1; });
+    var said = whole !== null && !spelt.length && [o.what, o.limits].some(function (text) {
+      return fold(text).search(whole) !== -1;
     });
-    if (named.length && !terms.some(function (t) { return o.fName.indexOf(t) !== -1; })) {
+    var named = said ? [] : spelt.concat(o.models.filter(function (m) {
+      return spelt.indexOf(m) === -1 && names(m);
+    }));
+    if (named.length && !names(o.name)) {
       var rest = o.models.filter(function (m) { return named.indexOf(m) === -1; });
       return "Free models: " + named.concat(rest).slice(0, 8).join(", ")
         + (o.models.length > 8 ? " …" : "");
     }
     var fields = [o.what, o.limits];
     for (var f = 0; f < fields.length; f++) {
-      var folded = fold(fields[f]), at = -1;
+      var folded = fold(fields[f]), at = whole ? folded.search(whole) : -1;
       for (var i = 0; i < terms.length && at === -1; i++) { at = folded.indexOf(terms[i]); }
       if (at !== -1) {
         var dot = fields[f].lastIndexOf(". ", at), start = dot === -1 ? 0 : dot + 2;

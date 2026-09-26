@@ -104,8 +104,12 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   function notTrained(e) { return !!(e.data_use && e.data_use.trains === "no"); }
   function haystack(e) {
     var names = families(e).map(function (m) { return m.family; }).join(" ");
-    return [e.name, e.offering, e.category, names].join(" ").toLowerCase();
+    return written([e.name, e.offering, e.category, names].join(" ").toLowerCase());
   }
+  // Separators aside, as a reader writes a name: "nemotron 3 ultra" finds
+  // nemotron-3-ultra, and the dot stays, so "qwen 3.8" is not qwen3-8b. Since
+  // 2026-09-26 no offering spells a model out, so the families have to answer.
+  function written(text) { return text.replace(/[\s_-]+/g, ""); }
 
   function readState() {
     var params = new URLSearchParams(location.search);
@@ -212,7 +216,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   }
 
   function render() {
-    var q = els.q.value.trim().toLowerCase();
+    var q = written(els.q.value.trim().toLowerCase());
     var cat = els.cat.value;
     var shown = entries.filter(function (e) {
       // One service, one line: a row folded into another named a service the
