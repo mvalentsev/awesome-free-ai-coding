@@ -636,7 +636,11 @@ shape LLM search and agents read — and `browse.html` is a hand-written static
 page that reads `index.json` in the browser, so it changes only when a field
 does; `tests/test_browse.py` holds the two to the same field names. After the
 scheduled run pushes, `freetier-indexnow` submits the site's URLs to IndexNow
-(Bing, Yandex and the engines that share their index); the key it proves
+(Bing, Yandex and the engines that share their index), and so does
+`.github/workflows/indexnow.yml` after any other push to `main` that changes a
+file the site publishes, once Pages has built it — its path filter is the
+map's published lines, held to them by a test, and the run's own push starts
+no workflow, so a commit is never announced twice; the key it proves
 ownership with is the file named after it at the repository root, and it is
 not a secret.
 
@@ -710,7 +714,7 @@ cannot print two versions of it.
 | `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
-| `.github/workflows/*.yml` | **config** — CI, the scheduled run and read-page · not on the site | — | `hand` |
+| `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page and the IndexNow ping on a push · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the pinned actions' watcher · not on the site | — | `hand` |
 | `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
 

@@ -189,3 +189,22 @@ def test_every_line_of_the_map_says_what_the_file_is():
         assert node.about, node.path
         if node.kind is Kind.GENERATED:
             assert node.made_from and "freetier-render" in node.written_by, node.path
+
+
+def test_the_indexnow_ping_fires_on_every_file_the_site_publishes():
+    """A push to main that changes a published file pings IndexNow, so the
+    engines hear of a hand-made change the day it lands rather than on the
+    next scheduled run. The workflow's path filter is the map's `published`
+    lines, in the map's order: a new published file reaches the ping by being
+    put on the map, and a filter that drifts from it is a failed check."""
+    workflow = yaml.safe_load((ROOT / ".github" / "workflows" / "indexnow.yml")
+                              .read_text(encoding="utf-8"))
+    on = workflow.get("on", workflow.get(True))  # YAML 1.1 reads the key `on` as true
+    assert on["push"]["branches"] == ["main"]
+    assert on["push"]["paths"] == [n.path for n in MAP if n.published]
+
+
+def test_the_published_pages_are_kept():
+    """A page the site published stays (gate.page_problems): the provider
+    pages and the model pages, and no other file."""
+    assert [n.path for n in MAP if n.kept] == ["providers/*.md", "models/*.md"]

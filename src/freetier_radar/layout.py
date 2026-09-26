@@ -151,7 +151,8 @@ MAP: tuple[Node, ...] = (
     Node(".gitignore", Kind.CONFIG, "what git leaves alone"),
     Node(".githooks/*", Kind.CONFIG,
          "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),
-    Node(".github/workflows/*.yml", Kind.CONFIG, "CI, the scheduled run and read-page"),
+    Node(".github/workflows/*.yml", Kind.CONFIG,
+         "CI, the scheduled run, read-page and the IndexNow ping on a push"),
     Node(".github/dependabot.yml", Kind.CONFIG, "the pinned actions' watcher"),
     Node(".github/ISSUE_TEMPLATE/*.yml", Kind.CONFIG, "the suggest-a-service form"),
 )
