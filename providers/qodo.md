@@ -26,7 +26,7 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Connect
 
-No API endpoint to paste: this row is a tool you install or sign in to.
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 

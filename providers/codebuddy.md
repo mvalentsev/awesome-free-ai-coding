@@ -26,7 +26,7 @@ The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus
 
 ## Connect
 
-No API endpoint to paste: this row is a tool you install or sign in to.
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 

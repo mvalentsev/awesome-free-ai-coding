@@ -23,7 +23,7 @@ last_modified_at: 2026-09-25
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours
 
 - Limits, in the vendor's words: "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash, Solar Mini 4 or the stealth Space Bunny Alpha, whose "Anonymous provider retains prompts", 10 of DeepSeek V4.1 Flash or MiMo 2.6 Flash, or 6 of Muse Spark 1.2; they refill at midnight Pacific and do not carry over. The rest of the picker is paid: "GPT-6 Luna and MiMo 2.6 Pro and Gemini 3.8 Flash are included with a paid plan". "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Read 2026-09-23
-- Inside Freebuff itself: no API endpoint to paste
+- No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/)).
 
 ## Related models

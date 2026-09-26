@@ -163,9 +163,9 @@ def test_a_model_page_opens_with_the_answer():
 
 def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     """What a reader copies: the ids of this model and no other, the base URL,
-    the key and where it comes from — or that there is no key, or that the
-    model lives inside an agent with no endpoint to paste. The limits are the
-    row's own, whole; the row's page has the evidence."""
+    the key and where it comes from — or that there is no key, or that there is
+    no endpoint to paste. The limits are the row's own, whole; the row's page
+    has the evidence."""
     entries = [groq(), keyless(), agent()]
     page = build_model_page("qwen3.8-27b", entries, [], TODAY)
     groq_block = page.split("### [Groq]")[1].split("\n### ")[0]
@@ -174,15 +174,58 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     assert "Fast inference on a free plan" in groq_block
     assert ("- Limits, in the vendor's words: 30 requests a minute and 1,000 a day on "
             "qwen/qwen3.8-27b") in groq_block
-    assert ("- Call it: `qwen/qwen3.8-27b` at `https://api.groq.com/openai/v1`, with a key in "
-            "`GROQ_API_KEY` from <https://console.groq.com/keys>") in groq_block
+    assert ("- Base URL: `https://api.groq.com/openai/v1`\n"
+            "- Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>\n"
+            "- Callable ids: `qwen/qwen3.8-27b`\n") in groq_block
     assert "gpt-oss-120b" not in groq_block
     open_block = page.split("### [Open Lane]")[1].split("\n### ")[0]
-    assert "- Call it: `Qwen/Qwen3.8-27B` at `https://free.example/v1`, with no key" in open_block
+    assert "- Key: none — the lane is anonymous\n- Callable ids: `Qwen/Qwen3.8-27B`" in open_block
     agent_block = page.split("### [Some Agent]")[1].split("\n## ")[0]
     assert "🤖 Coding agents & CLIs · card required · verified 2026-07-19" in agent_block
-    assert "- Inside Some Agent itself: no API endpoint to paste" in agent_block
+    assert "- No API endpoint to paste: this row is a tool you install or sign in to." in agent_block
     assert "The vendor publishes no figure for this tier." in agent_block
+
+
+def test_a_model_page_says_how_to_connect_in_the_row_pages_own_lines():
+    """The model page does not word a connection its own way: every line the
+    row's page gives under Connect — a key the vendor prints for anyone, the
+    User-Agent and the session header a lane asks for, the Anthropic route —
+    is the model page's line too, from the same function, so a way in added
+    to one page cannot be missing from the other. Only the ids differ: the row
+    page lists them all, the model page this model's."""
+    row = groq(api={"base_url": "https://api.groq.com/openai/v1", "auth": "api-key",
+                    "key_url": "https://console.groq.com/keys", "public_key": "sk-shared",
+                    "client_user_agent": True, "session_header": "x-session",
+                    "anthropic_base_url": "https://api.groq.com/anthropic",
+                    "model_ids": ["qwen/qwen3.8-27b", "openai/gpt-oss-120b"], "note": "A note."})
+    def lines(block: str) -> set[str]:
+        return {line for line in block.splitlines() if line.startswith("- ")
+                and not line.startswith(("- Callable ids:", "- Note:", "- Limits,"))
+                and "train" not in line}
+    connect = build_provider_page(row, [], TODAY).split("## Connect")[1].split("\n## ")[0]
+    model = build_model_page("qwen3.8-27b", [row, keyless()], [], TODAY)
+    block = model.split("### [Groq]")[1].split("\n### ")[0]
+    assert len(lines(connect)) == 5
+    assert lines(block) == lines(connect)
+    assert "- Callable ids: `qwen/qwen3.8-27b`" in block
+    assert "- Callable ids: `qwen/qwen3.8-27b`, `openai/gpt-oss-120b`" in connect
+
+
+def test_a_lane_served_inside_its_client_names_the_ids_to_pick_there():
+    """Cline's free models are picked in Cline's own model list; both the row's
+    page and the model's name the ids there, from the same lines."""
+    cline = make(id="cline", name="Cline", category="agent-cli", free_part="models",
+                 models=[{"family": "muse-spark-1.3-contributor"}, {"family": "glm-5.3-flash"}],
+                 client_lane={"model_ids": ["cline-free/muse-spark-1.3-contributor",
+                                            "cline-free/glm-5.3-flash"]},
+                 probe={"type": "api-models", "endpoint": "https://api.cline.bot/models",
+                        "lane": "free"})
+    row_page = build_provider_page(cline, [], TODAY)
+    assert ("- In Cline's own model list: `cline-free/muse-spark-1.3-contributor`, "
+            "`cline-free/glm-5.3-flash`") in row_page
+    model = build_model_page("glm-5.3-flash", [cline, keyless(models=[{"family": "glm-5.3-flash"}])],
+                             [], TODAY)
+    assert "- In Cline's own model list: `cline-free/glm-5.3-flash`\n" in model
 
 
 def test_a_row_says_what_the_vendor_does_with_what_a_reader_sends():
@@ -219,7 +262,7 @@ def test_a_lane_that_does_not_work_says_so_on_the_model_page_too():
     block = page.split("### [Open Lane]")[1]
     assert ("> ⚠️ **Does not work as published since [2026-07-10](https://x.ai/issue).** "
             "The vendor refuses every call.") in block
-    assert block.index("⚠️") < block.index("- Call it:"), "before the base URL, as on its page"
+    assert block.index("⚠️") < block.index("- Base URL:"), "before the base URL, as on its page"
 
 
 def test_related_models_with_a_page_of_their_own_are_linked():
@@ -299,10 +342,35 @@ def test_a_provider_page_is_dated_for_the_sitemap_by_its_newest_change():
 
 def test_every_family_is_a_path_segment():
     """The family is the page's file name and URL: a slash or a space would put
-    the page somewhere its links do not point."""
+    the page somewhere its links do not point. The registry refuses it where it
+    is read — freetier-check, the probe, the scout — not the render halfway
+    through a scheduled run."""
     import pytest
     with pytest.raises(ValueError, match="not a page name"):
-        build_model_page("Qwen 3/8", [make(models=[{"family": "Qwen 3/8"}])], [], TODAY)
+        make(models=[{"family": "Qwen 3/8"}])
+    make(models=[{"family": "qwen3.8-2.4t-a95b"}])
+
+
+def test_every_page_the_render_writes_is_one_indexnow_submits(tmp_path):
+    """The render writes the pages; IndexNow tells the engines about them, from
+    index.json. A page kind the second forgot would never be announced, and an
+    address it sent that the render no longer writes is a 404 an engine is
+    asked to read. So the two are held to one set: every page's permalink, as
+    the URL its links use."""
+    from freetier_radar.indexnow import site_urls
+    import json
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="a", name="A", models=[{"family": "kimi-k3"}, {"family": "solo"}]),
+                        make(id="b", name="B", models=[{"family": "kimi-k3"}]),
+                        make(id="gone", name="Gone", probe_failures=3)])
+    render_artifacts(reg, tmp_path, today=TODAY)
+    pages = [p for d in ("providers", MODELS_DIR) for p in (tmp_path / d).glob("*.md")]
+    written = {PAGES_URL + front(p.read_text(encoding="utf-8"))["permalink"] for p in pages}
+    assert len(written) == len(pages) == 7, "a, b, gone, the checked page, the provider index, kimi-k3, the model index"
+    index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
+    others = {f"{PAGES_URL}/", f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt",
+              f"{PAGES_URL}/browse.html"}
+    assert set(site_urls(index)) - others == written
 
 
 def test_the_render_dates_are_utc_days():

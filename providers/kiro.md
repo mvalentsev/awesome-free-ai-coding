@@ -30,7 +30,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## Connect
 
-No API endpoint to paste: this row is a tool you install or sign in to.
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 

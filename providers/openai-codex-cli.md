@@ -26,7 +26,7 @@ The pricing page: "ChatGPT Work and Codex are included in your ChatGPT Free, Go,
 
 ## Connect
 
-No API endpoint to paste: this row is a tool you install or sign in to.
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 

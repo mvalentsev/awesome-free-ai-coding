@@ -30,7 +30,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## Connect
 
-No API endpoint to paste: this row is a tool you install or sign in to.
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- In Cline's own model list: `stealth/space-bunny-alpha`, `cline-free/mimo-v2.6-flash`, `cline-free/deepseek-v4.1-flash`, `cline-free/gemini-3.8-flash`, `cline-free/muse-spark-1.3-contributor`
 
 ## Evidence
 

@@ -26,7 +26,7 @@ The Free plan is the trial — "The 2-week Pro Trial includes 300 credits" — a
 
 ## Connect
 
-No API endpoint to paste: this row is a tool you install or sign in to.
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ## Evidence
 

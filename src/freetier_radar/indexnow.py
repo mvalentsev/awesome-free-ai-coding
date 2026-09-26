@@ -16,7 +16,7 @@ from pathlib import Path
 
 import httpx
 
-from .render import MODELS_DIR, PAGES_URL, PROVIDERS_DIR, checked_page_url
+from .render import PAGES_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
 HOST = "mvalentsev.github.io"
@@ -31,9 +31,9 @@ def site_urls(index: dict) -> list[str]:
     says "archived" is exactly the change worth reading), the index of every
     model and a page per model that has one, the feed and the text and table
     views."""
-    urls = [f"{PAGES_URL}/", f"{PAGES_URL}/{PROVIDERS_DIR}/", checked_page_url()]
+    urls = [f"{PAGES_URL}/", providers_index_url(), checked_page_url()]
     urls += [e["page"] for e in index.get("entries", [])]
-    urls += [f"{PAGES_URL}/{MODELS_DIR}/"]
+    urls += [models_index_url()]
     urls += [m["page"] for m in index.get("models", []) if m.get("page")]
     urls += [f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt", f"{PAGES_URL}/browse.html"]
     return list(dict.fromkeys(urls))

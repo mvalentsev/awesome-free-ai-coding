@@ -32,25 +32,11 @@ from .render import (CATEGORY_TITLES, MODEL_PAGE_ROWS, PAGES_URL, QUICKSTART_USE
                      README_MODELS, README_PICKS, README_STARTERS, README_STRONG)
 from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 from .validate import PROSE_LIMITS
+# The render's own words for a figure, so a sentence held here and the page
+# printing the same constant can never spell it two ways.
+from .words import number as _word, ordinal as _ordinal, weeks as _weeks
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
-
-_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven",
-          8: "eight", 9: "nine", 10: "ten"}
-_WEEKS = {7: "a week", 14: "two weeks", 21: "three weeks", 28: "four weeks"}
-
-
-def _word(n: int) -> str:
-    return _WORDS.get(n, str(n))
-
-
-_ORDINALS = {1: "first", 2: "second", 3: "third", 4: "fourth", 5: "fifth", 6: "sixth",
-             7: "seventh", 8: "eighth", 9: "ninth", 10: "tenth"}
-
-
-def _ordinal(n: int) -> str:
-    return _ORDINALS.get(n, f"{n}th")
-
 
 @dataclass(frozen=True)
 class Claim:
@@ -114,9 +100,9 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"read (\w+) names deep per section",
           lambda root: (_word(README_PICKS),), "render.README_PICKS"),
     Claim("CONTRIBUTING.md", r"A lane that rotates names a model once it has stayed (\w+ weeks|a week)",
-          lambda root: (_WEEKS.get(BAR_DAYS, f"{BAR_DAYS} days"),), "bars.BAR_DAYS"),
+          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS"),
     Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
-          lambda root: (_WEEKS.get(BAR_DAYS, f"{BAR_DAYS} days"),), "bars.BAR_DAYS"),
+          lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS"),
     Claim("CONTRIBUTING.md", r"`offering`, the first (\w+)\s+model families and the date",
           lambda root: (_word(README_MODELS),), "render.README_MODELS"),
     Claim("CONTRIBUTING.md", r"every family past the (\w+), one click from their count",
@@ -149,7 +135,7 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("browse.html", r"listed for less than (\w+ weeks|a week)",
-          lambda root: (_WEEKS.get(PROVISIONAL_PROMOTE_DAYS, f"{PROVISIONAL_PROMOTE_DAYS} days"),),
+          lambda root: (_weeks(PROVISIONAL_PROMOTE_DAYS),),
           "prober.PROVISIONAL_PROMOTE_DAYS"),
     Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',
           lambda root: (PAGES_URL,), "render.PAGES_URL"),

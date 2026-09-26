@@ -31,8 +31,8 @@ import httpx
 
 from .history import Event, EventType, load_history
 from .models import Entry, is_archived, live_families, load_registry, probe_frequency
-from .render import (CATEGORY_TITLES, EVENT_WORDS, PAGES_URL, REPO_URL, event_detail, picks,
-                     provider_page_url)
+from .render import (CATEGORY_TITLES, EVENT_WORDS, REPO_URL, event_detail, picks,
+                     provider_page_url, providers_index_url)
 
 __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
            "channels_from_env", "devto_from_env", "compose", "event_key", "link_facets",
@@ -212,7 +212,7 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
         f"row's own page with the vendor's words, the connection details and the evidence.*",
         "",
         f"**{len(active)} live offers · {no_card} ask for no card · one page each at "
-        f"{PAGES_URL}/providers/**",
+        f"{providers_index_url()}**",
         "",
         "## Pick by what you need", "",
         "| I want… | Start with |", "|---|---|",

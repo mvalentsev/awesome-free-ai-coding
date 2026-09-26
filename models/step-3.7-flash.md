@@ -23,7 +23,9 @@ last_modified_at: 2026-09-24
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
 - Limits, in the vendor's words: $0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
-- Call it: `stepfun/step-3.7-flash:free` at `https://api.kilo.ai/api/gateway`, with no key
+- Base URL: `https://api.kilo.ai/api/gateway`
+- Key: none — the lane is anonymous
+- Callable ids: `stepfun/step-3.7-flash:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
@@ -33,7 +35,9 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API
 
 - Limits, in the vendor's words: The portal's plan table reads "Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The :free tag is what keeps it on the no-cost plan". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices seven rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-18
-- Call it: `stepfun/step-3.7-flash:free` at `https://inference-api.nousresearch.com/v1`, with a key in `NOUS_PORTAL_API_KEY` from <https://portal.nousresearch.com>
+- Base URL: `https://inference-api.nousresearch.com/v1`
+- Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
+- Callable ids: `stepfun/step-3.7-flash:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
 
 ---

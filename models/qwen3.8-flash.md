@@ -23,7 +23,9 @@ last_modified_at: 2026-09-25
 A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
 - Limits, in the vendor's words: 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions", and the quota "is independent per model and cannot be shared across models", a dated snapshot counting as a model of its own. The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later". The last column of each Singapore table, "Free quota", gives it to every Qwen text model from Qwen3.8 Max down to Qwen3 8B, the Coder and VL lines among them, to DeepSeek V4.1 Flash, V4 Pro, V4 Flash and V3.2, and to GLM-5.3, 5.2 and 5.1; the Kimi table has no such column, glm-5.2-fast-preview reads "None", and its translation, OCR, omni and realtime models are not ones to code with (read 2026-09-25). Since 2026-09-15 "you must complete your account information before activating Model Studio", and past the quota "you are automatically billed on a pay-as-you-go basis" unless Free Quota Only, which "is disabled by default", is switched on per model (read 2026-09-23)
-- Call it: `qwen3.8-flash` at `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`, with a key in `ALIBABA_MODEL_STUDIO_API_KEY` from <https://modelstudio.console.alibabacloud.com>
+- Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
+- Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
+- Callable ids: `qwen3.8-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
 
 ### [Yolo-Auto](https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/)
@@ -33,7 +35,9 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on the vendor's own flat-rate API for coding agents; the free plan is 15 requests a week with no card
 
 - Limits, in the vendor's words: "15 free requests a week. No card required. Resets Monday at 00:00 UTC." on the home page and "No card required, free forever" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a week. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto "runs the model-serving stack rather than reselling a third-party model API". The FAQ calls the free tier "for testing" where the plan card says "free forever", and the terms forbid using "multiple accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are "not stored or retained". Read 2026-09-25
-- Call it: `qwen3.8-flash` at `https://yolo-auto.com/v1`, with a key in `YOLO_AUTO_API_KEY` from <https://yolo-auto.com/app>
+- Base URL: `https://yolo-auto.com/v1`
+- Key: `YOLO_AUTO_API_KEY` — get one at <https://yolo-auto.com/app>
+- Callable ids: `qwen3.8-flash`
 - What you send is not used to train models ([the vendor's words](https://yolo-auto.com/pricing)).
 
 ## Related models

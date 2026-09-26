@@ -23,8 +23,10 @@ last_modified_at: 2026-09-25
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
 - Limits, in the vendor's words: per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
-- Call it: `coding-glm-5.2-free` at `https://aihubmix.com/v1`, with a key in `AIHUBMIX_API_KEY` from <https://aihubmix.com/token>
+- Base URL: `https://aihubmix.com/v1`
+- Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
+- Callable ids: `coding-glm-5.2-free`
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
@@ -33,7 +35,9 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
 - Limits, in the vendor's words: "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
-- Call it: `glm5.2` at `https://api.regolo.ai/v1`, with a key in `REGOLO_API_KEY` from <https://dashboard.regolo.ai>
+- Base URL: `https://api.regolo.ai/v1`
+- Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
+- Callable ids: `glm5.2`
 - What you send is not used to train models ([the vendor's words](https://regolo.ai/faq/)).
 
 ## Related models

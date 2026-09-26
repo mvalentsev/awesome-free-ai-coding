@@ -200,6 +200,17 @@ class ModelFamily(BaseModel):
     # on artificialanalysis.ai/models/, for the variant the lane actually serves.
     aa_model: str | None = None
 
+    @field_validator("family")
+    @classmethod
+    def _family_is_a_page_name(cls, value: str) -> str:
+        """A family names a page of its own on the site (models/<family>/) and
+        the file it is written to, so it is refused here, where the registry is
+        read, rather than by the render halfway through a scheduled run."""
+        if not re.fullmatch(r"[a-z0-9][a-z0-9.\-]*", value):
+            raise ValueError(f"family {value!r} is not a page name — lower case, digits, dots "
+                             "and hyphens, the way the registry spells every family")
+        return value
+
     @field_validator("aa_model")
     @classmethod
     def _aa_model_is_a_slug(cls, value: str | None) -> str | None:
