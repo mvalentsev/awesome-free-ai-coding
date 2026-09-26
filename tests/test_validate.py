@@ -153,6 +153,35 @@ def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
         "keep what a reader needs to use the offer, and leave its history to history.jsonl"]
 
 
+def test_a_row_of_models_leaves_its_models_to_the_models_line(tmp_path: Path):
+    """Every page prints `offering` beside the row's Models line. On 2026-09-26
+    twenty-eight rows of `models` named models in it: opencode all six of its
+    families, the line the reader reads next, and ten rows models the line
+    holds back — ids short of their two weeks, ids kept out with a reason — so
+    the prose promised what the column had decided not to. A sum has no line
+    to repeat and names what its amount buys; a maker's name is not a model's;
+    an archived row's families name nothing on the list."""
+    def row(i: str, **kw) -> dict:
+        return {**ENTRY, "id": i, "name": i.upper(), "url": f"https://{i}.ai",
+                "probe": {**ENTRY["probe"], "endpoint": f"https://{i}.ai"},
+                "border": {**ENTRY["border"], "source": f"https://{i}.ai/terms"}, **kw}
+    rows = [row("own", offering="A free lane — X Mini among its models"),
+            row("held", offering="A free lane with Big Pickle and more"),
+            row("wait", offering="A free lane, Y Max 2 among its ids",
+                api={"base_url": "https://wait.ai/v1", "model_ids": ["x-mini-2", "v/y-max-2:free"]}),
+            row("fine", offering="A free lane on Claude and open-weight models, X Minimal aside"),
+            row("sum", offering="A $5 credit that buys Big Pickle, among others",
+                free_part="sum", models=[]),
+            row("other", models=[{"family": "big-pickle"}]),
+            row("gone", models=[{"family": "claude"}], retired_on="2026-08-01")]
+    problems = [p for p in check(build(tmp_path, entries=rows, watched=[WATCHED]), TODAY)
+                if "offering names" in p]
+    assert [p.split(" — ")[0] for p in problems] == [
+        "registry: own offering names x-mini",
+        "registry: held offering names big-pickle",
+        "registry: wait offering names v/y-max-2:free"], problems
+
+
 def test_a_listed_entry_may_not_sit_on_a_blocklisted_domain(tmp_path: Path):
     root = build(tmp_path, blocklist=[{"domain": "x.ai", "reason": "rejected"}])
     assert any("blocklisted domain" in p for p in check(root, TODAY))

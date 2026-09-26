@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Kiro free tier: limits, free models, verified 2026-09-24'
-description: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models. 50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from…
+description: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models. 50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US.…
 permalink: /providers/kiro/
 last_modified_at: 2026-09-26
 crumb: Kiro
@@ -15,7 +15,7 @@ crumb: Kiro
 
 ## What you get
 
-Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models
+Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
 ## Free models
 

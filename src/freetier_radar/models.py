@@ -179,6 +179,27 @@ def _id_squash(s: str) -> str:
     return re.sub(r"[\s_.\-]+", "", s.lower())
 
 
+def prose_names(text: str, name: str) -> bool:
+    """Whether a sentence names a model, written the way a reader writes it:
+    case and separators aside, so "Nemotron 3 Ultra" is nemotron-3-ultra, and
+    as a whole word, so "GLM-5.3" names glm-5.3 but not glm-5 and "X Minimal"
+    names no x-mini. The dot stays, as in _squash: a version is part of the
+    name."""
+    kept = [(i, c.lower() if len(c.lower()) == 1 else c) for i, c in enumerate(text)
+            if not re.match(r"[\s_-]", c)]
+    squashed, target = "".join(c for _, c in kept), _squash(name)
+    at = squashed.find(target) if target else -1
+    while at != -1:
+        first, last = kept[at][0], kept[at + len(target) - 1][0]
+        before, after = text[first - 1:first], text[last + 1:last + 2]
+        # "5.3" goes on past "5": a dot with a digit after it is inside a version
+        version_goes_on = after == "." and text[last + 2:last + 3].isdigit()
+        if not before.isalnum() and not after.isalnum() and not version_goes_on:
+            return True
+        at = squashed.find(target, at + 1)
+    return False
+
+
 def family_names(family: str, model_id: str) -> bool:
     """Whether a catalog id is one of a family's, the one way every part of the
     project decides it: the probe demanding a family back from a catalog, the

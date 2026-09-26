@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-09-24'
-description: Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Trial keys are "limited to 1,000 API calls a month" and rate-limited per model — 20 req/min on every Chat model, Command A and North…
+description: Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Trial keys are "limited to 1,000 API calls a month" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code…
 permalink: /providers/cohere/
 last_modified_at: 2026-09-26
 crumb: Cohere (trial keys)
@@ -15,7 +15,7 @@ crumb: Cohere (trial keys)
 
 ## What you get
 
-Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type
+Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type
 
 ## Free models
 

@@ -127,7 +127,8 @@ FIX_PROMPT = SYSTEM_RULES + """
 TASK: FIX-FAILED probes. For each flagged entry, using its failure detail and
 official page text below, propose corrected values (e.g. a working probe endpoint,
 updated limits). Allowed keys per update: id (unchanged), offering, limits,
-card_required, probe, models.
+card_required, probe, models. An offering says what the offer is; on an entry of
+free_part: models it names no model, since the models list does.
 A "stale-models" failure means the probe passed and the offer is alive, but the
 entry's model list is in doubt — every family listed for it was marked
 superseded, the page no longer names a family the entry lists, or the catalog
@@ -215,7 +216,8 @@ new_entries:
     url: <official site>
     source_urls: [...]
     card_required: false
-    offering: ...
+    offering: ...          # what the offer is — the product, how it is reached, what it
+                           #   asks; with free_part: models it names no model: models does
     limits: ...
     free_part: models | sum | unnamed
                            # models: the vendor names the models its free part serves — a

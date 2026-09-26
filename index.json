@@ -811,7 +811,7 @@
         "https://dev.meta.ai/docs/reasoning.md"
       ],
       "card_required": false,
-      "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — Big Pickle, MiMo-V2.5, Ling 3.0 Flash Fin, Nemotron 3 Ultra, Nemotron 3.5 Lightning, Muse Spark 1.3 Contributor — inside OpenCode only, no sign-in; any provider via BYOK",
+      "offering": "Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK",
       "limits": "The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer wrote \"You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)\", so this row publishes no base URL. Inside OpenCode the ids are `opencode/<model-id>`, and all six answered the official 1.18.31 CLI, signed out, on 2026-09-18. Zen calls each one \"available on OpenCode for a limited time\", and the price is data: of the free models \"collected data may be used to improve the model\", the NVIDIA-backed ones are \"Trial use only — do not submit personal or confidential data\", and Muse Spark 1.3 Contributor trades \"heavily discounted token pricing in exchange for permission to use your prompts and completions to train future Meta models\". Mind the suffix: plain muse-spark-1.3 is a paid row; the contributor id's best allowed effort, xhigh, scores 45 on the Artificial Analysis Intelligence Index — max is \"Standard-tier `muse-spark-1.3` only\". Billing is for the metered ids. Read 2026-09-18",
       "free_part": "models",
       "models": [
@@ -1458,7 +1458,7 @@
         "https://jules.google/docs/changelog/2026-03-09/"
       ],
       "card_required": false,
-      "offering": "Free tier of Google's async cloud coding agent, on Gemini 3 Flash — its base model on every tier — beside the Gemini 2.5 Pro its plan card names; connects to GitHub repos and works autonomously",
+      "offering": "Free tier of Google's async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously",
       "limits": "15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free plan \"Gemini 2.5 Pro\" and both paid rows \"starting with Gemini 3 Pro\", but the changelog of 2026-01-30 reads \"Today we’re launching Gemini 3 Flash in Jules for all users on all tiers\", \"our new base model\", and Pro users default to Gemini 3.1 Pro since 2026-03-09. Upgrading runs through a Google AI plan, \"currently available only for individual Google Accounts (ending in @gmail.com)\"; task limits are \"not shared or pooled\" on a family plan; and Google states it \"may adjust limits and features as we learn how people are using the product\" (read 2026-09-23)",
       "free_part": "models",
       "models": [
@@ -1509,7 +1509,7 @@
         "https://kiro.dev/docs/models"
       ],
       "card_required": false,
-      "offering": "Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models",
+      "offering": "Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models",
       "limits": "50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US. Kiro's docs settle what those credits reach, in a table with a Free column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku 4.5 and all three GPT-5.6 tiers. The pricing page contradicts itself on exactly that point — its plan card and footnote both say Sonnet 4.5, its FAQ prose says the free tier includes Sonnet 4.6 — so read the docs table, not the FAQ (checked 2026-09-25)",
       "free_part": "models",
       "models": [
@@ -1593,7 +1593,7 @@
         "https://cursor.com/docs/account/pricing"
       ],
       "card_required": false,
-      "offering": "Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor's own Composer model and Tab completions, no credit card",
+      "offering": "Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor's own model and Tab completions, no credit card",
       "limits": "Cursor publishes no figure for Hobby anywhere. Its pricing card reads \"No credit card required\", \"Limited Agent requests\" and \"Access to Composer\", the one model it names — Cursor's own, listed as Composer 2.5 in the Cursor Models pool of its model docs, where the Pro card names Grok and frontier models — and the help page adds only that \"the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model\". Usage \"resets monthly with your billing cycle\" and \"does not roll over\"; at the cap Cursor shows a notification and offers on-demand usage or an upgrade. Cursor Router has not reached individual plans yet (read 2026-09-25)",
       "free_part": "models",
       "models": [
@@ -2200,7 +2200,7 @@
         "https://raw.githubusercontent.com/pollinations/pollinations/HEAD/APIDOCS.md"
       ],
       "card_required": false,
-      "offering": "Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B",
+      "offering": "Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model",
       "limits": "The keyless catalog publishes exactly one model and tags it with the tier it belongs to — \"openai-fast\", described as \"GPT-OSS 20B Reasoning LLM (OVH)\", tier \"anonymous\", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-09-21. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — \"Get an API key\" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate",
       "free_part": "models",
       "models": [
@@ -2256,7 +2256,7 @@
         "https://www.alibabacloud.com/help/en/model-studio/new-free-quota"
       ],
       "card_required": false,
-      "offering": "A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible",
+      "offering": "A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible",
       "limits": "1,000,000 free tokens per model, on the Singapore (international) region alone: \"the following models offer a free quota only in Singapore. No free quota is available in other regions\", and the quota \"is independent per model and cannot be shared across models\", a dated snapshot counting as a model of its own. The grant is \"valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later\". The last column of each Singapore table, \"Free quota\", gives it to every Qwen text model from Qwen3.8 Max down to Qwen3 8B, the Coder and VL lines among them, to DeepSeek V4.1 Flash, V4 Pro, V4 Flash and V3.2, and to GLM-5.3, 5.2 and 5.1; the Kimi table has no such column, glm-5.2-fast-preview reads \"None\", and its translation, OCR, omni and realtime models are not ones to code with (read 2026-09-25). Since 2026-09-15 \"you must complete your account information before activating Model Studio\", and past the quota \"you are automatically billed on a pay-as-you-go basis\" unless Free Quota Only, which \"is disabled by default\", is switched on per model (read 2026-09-23)",
       "free_part": "models",
       "models": [
@@ -2771,7 +2771,7 @@
         "https://docs.cohere.com/docs/models"
       ],
       "card_required": false,
-      "offering": "Cohere Command models via free trial API keys that never expire, plus North Mini Code — a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type",
+      "offering": "Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type",
       "limits": "Trial keys are \"limited to 1,000 API calls a month\" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys \"are not permitted to be used for production or commercial purposes\", and that every account \"begins as a personal account and only has access to Trial API keys\" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that \"for both trial keys and production keys, North Mini Code is free until rate limits are reached\", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)",
       "free_part": "models",
       "models": [
@@ -3034,7 +3034,7 @@
         "https://bazaarlink.ai/en/docs"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14 — Qwen3.7 Flash and DeepSeek V4 Flash 0731 — beside the auto:free router",
+      "offering": "OpenAI-compatible gateway to a 173-id catalog whose free page counts two models on 2026-09-14, beside the auto:free router",
       "limits": "BazaarLink prints the figures on its free page: 10 requests per minute and 50 per day, ×1 for an account without credit and ×2 for one that has topped up, against the models it counts as free. Past the quota \"requests on free-quota models continue at the normal paid rate if you have credit; otherwise they are rate-limited until the quota resets\"; everything else in the catalog is metered at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog's own id deepseek/deepseek-v4-flash-0731free:free, described as \"Rate-limited free tier.\" and listed on the free page as \"Deepseek V4 Flash 0731free\" at $0 against $0.20/$0.40, beside a metered deepseek-v4-flash-0731free twin at those rates",
       "free_part": "models",
       "models": [
@@ -3091,7 +3091,7 @@
         "https://api.tokenrouter.com/api/pricing"
       ],
       "card_required": false,
-      "offering": "One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest",
+      "offering": "One zero-priced id, in the default group, inside a 140-row catalog that meters the rest",
       "limits": "the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free ids have come and gone beside it: the zero-priced Kimi K3 this entry was registered for — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered",
       "free_part": "models",
       "models": [
@@ -3231,7 +3231,7 @@
         "https://docs.routeway.ai/getting-started/rate-limits"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog",
+      "offering": "OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog",
       "limits": "Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates, ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency",
       "free_part": "models",
       "models": [
@@ -3886,7 +3886,7 @@
         "https://docs.aihubmix.com/en/api/Claude-Code"
       ],
       "card_required": false,
-      "offering": "One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code",
+      "offering": "One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code",
       "limits": "per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are \"limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day\", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says \"the developer advises against using this model for agentic coding tasks\". Every free id carries a -free suffix and the paid twin beside it is metered at list rates",
       "free_part": "models",
       "models": [
@@ -4580,7 +4580,7 @@
         "https://freebuff.com/terms-of-service"
       ],
       "card_required": false,
-      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours",
+      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours",
       "limits": "\"Freebuff is supported by text ads.\" The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash, Solar Mini 4 or the stealth Space Bunny Alpha, whose \"Anonymous provider retains prompts\", 10 of DeepSeek V4.1 Flash or MiMo 2.6 Flash, or 6 of Muse Spark 1.2; they refill at midnight Pacific and do not carry over. The rest of the picker is paid: \"GPT-6 Luna and MiMo 2.6 Pro and Gemini 3.8 Flash are included with a paid plan\". \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked \"May use data for AI training\". Read 2026-09-23",
       "free_part": "models",
       "models": [
@@ -4645,7 +4645,7 @@
         "https://api.meganova.ai/v1/models"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across its free rows",
+      "offering": "OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of its free rows — a chat model and the house Manta routers among them — 550 a day in all",
       "limits": "Tier 1 is \"Free registration — no credit card required\", with \"Free Access Models (<100B), including Manta Mini\". The Free Model Quota table gives a Tier 1 account 50 requests a day (\"50 RPD (Requests Per Day)\") on each of Mistral-Small-3.2-24B, Manta Mini and Manta Flash, and on several roleplay fine-tunes, an embedding model and a reranker — \"Total Free Quota per day 550\", with a \"daily reset at 00:00 UTC\" — and 0 on GLM-4.7-Flash and Manta Pro until a \"$1 deposit\" moves the account to Tier 2. The terms say \"Free modules are for evaluation and interactive use only and are not designed for production or unattended batch workloads\". The operator is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16",
       "free_part": "models",
       "models": [
@@ -4909,7 +4909,7 @@
         "https://llmtr.com/v1/models"
       ],
       "card_required": false,
-      "offering": "Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them",
+      "offering": "Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23",
       "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a chat model marked free in the catalog), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (this step checks that the gateway and usage logging work on a zero balance). Four free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B, Ling 3.0 Flash Fin); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\"; dots-3-note-preview closes on 30 September 2026. Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\" and \"We never modify model prices\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Read 2026-09-21",
       "free_part": "models",
       "models": [
@@ -5095,7 +5095,7 @@
         "https://freeinference.org/v1/models"
       ],
       "card_required": false,
-      "offering": "Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup",
+      "offering": "Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup",
       "limits": "No quota figure is published: the landing page says \"Free to use\", \"No credit card required\" and \"Generous quota for research and prototyping\", and the terms say \"Quotas, rate limits, model access, and usage limits may change based on usage, demand, infrastructure capacity, abuse prevention, operational needs, and individual or aggregate activity\". It is \"an experimental research service\", and prompts are not private: \"All prompts and responses may be logged for research purposes\" and \"sanitized prompts and responses, usage statistics, and routing metrics — may be published or open-sourced\". The models page splits the catalog: \"Free accounts can use models marked Free. Models marked Pro require a Pro-enabled key\" — seven chat ids Free and three Pro (glm-5.2, glm-5.3, kimi-k2.7-code), read 2026-09-05",
       "free_part": "models",
       "models": [
@@ -5729,7 +5729,7 @@
         "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
       ],
       "card_required": false,
-      "offering": "One model, Qwen3.8 Flash — Qwen's open-weight Qwen3.8-Flash-Next — served on the vendor's own flat-rate API for coding agents; the free plan is 15 requests a week with no card",
+      "offering": "One open-weight Qwen model served on the vendor's own flat-rate API for coding agents; the free plan is 15 requests a week with no card",
       "limits": "\"15 free requests a week. No card required. Resets Monday at 00:00 UTC.\" on the home page and \"No card required, free forever\" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a week. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto \"runs the model-serving stack rather than reselling a third-party model API\". The FAQ calls the free tier \"for testing\" where the plan card says \"free forever\", and the terms forbid using \"multiple accounts ... to combine capacity\". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are \"not stored or retained\". Read 2026-09-25",
       "free_part": "models",
       "models": [
@@ -5794,7 +5794,7 @@
         "https://www.jetbrains.com/legal/docs/terms/jetbrains-ai/service-territory/"
       ],
       "card_required": false,
-      "offering": "AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents",
+      "offering": "AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents",
       "limits": "JetBrains' plans table lists \"AI Free Free 3 AI Credits per 30-days\" beside AI Pro's 10 for $10, and \"Each AI Credit equals $1 USD\"; one credit is \"about: ~10 requests to generate code in AI Chat. ~40 requests to generate code in the editor\", and the quota resets every 30 days from first use. AI Free also carries \"Unlimited code completion (powered by JetBrains’ Mellum model)\" and unlimited local models through Ollama or LM Studio. It needs an IDE licence: \"AI Free is available to all users with active JetBrains IDE licenses, including educational licenses, classroom licenses, open source licenses, IDE trial licenses\", but not in IntelliJ IDEA without Ultimate, PyCharm without Pro, or Android Studio — for someone paying nothing, an educational or open-source licence, or the free non-commercial licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial asks for a card. The tier is \"only available in the serviceable territories, with the exception of Mainland China\"; on 2026-09-25 that list, which JetBrains says its model providers set, also left out Hong Kong, Macao, Russia, Belarus, Venezuela, Iran, Cuba, Syria and North Korea, among others. Read 2026-09-25",
       "free_part": "models",
       "models": [
@@ -6048,7 +6048,7 @@
         "https://zed.dev/docs/account/plans-and-pricing"
       ],
       "card_required": false,
-      "offering": "Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan",
+      "offering": "Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan",
       "limits": "\"We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit predictions. No credit card is required. The trial ends when you use the $5 balance or 14 days pass, whichever comes first.\" \"GPT-5.6 Luna is the only hosted model available during the free trial\", and the balance is shared with Delta, Zed's other app. Trials \"automatically convert to Zed Free\" — the $0 Personal plan, whose \"2,000 accepted edit predictions\" carry no period on the page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-16",
       "free_part": "models",
       "models": [
@@ -6106,7 +6106,7 @@
         "https://tokenharbor.ai/terms"
       ],
       "card_required": false,
-      "offering": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card",
+      "offering": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
       "limits": "\"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page\", and \"That set changes as models are added or retired\". \"Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests\" — no figure is published, and the dashboard shows only a percentage. \"No per-minute request cap\"; \"Free routes stop accepting new requests when the period allowance is exhausted\", and \"Free routes never charge your balance\". \"No card required\". \"Free routes are disabled by default\" until you consent to them, \"Token Harbor may retain prompts and responses sent through explicit free routes after you opt in\", and \"Upstream providers separately process free-route content under their own terms\". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-18",
       "free_part": "models",
       "models": [
@@ -6176,7 +6176,7 @@
         "https://inference-api.nousresearch.com/v1/models"
       ],
       "card_required": false,
-      "offering": "Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API",
+      "offering": "Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18 — on an OpenAI-compatible API",
       "limits": "The portal's plan table reads \"Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes\", and the Hermes Agent guide has you \"create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes\" — \"The :free tag is what keeps it on the no-cost plan\". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices seven rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-18",
       "free_part": "models",
       "models": [
@@ -6288,7 +6288,7 @@
         "https://github.com/chigwell/llm7.io/blob/main/TERMS.md"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it",
+      "offering": "OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models; a free token doubles it",
       "limits": "The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and \"500,000 tokens per 24 hours\"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and \"1,000,000 tokens per 24 hours\", and Pro is $12 a month. The free models are a tier of the catalog — \"`turbo` models are fast models available to anonymous and free-token users\" — though two turbo rows marked usage_based_only, DeepSeek V4 Flash and Gemini 3.1 Flash Lite, answered a keyless call with 401 `Missing API key.` The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-16",
       "free_part": "models",
       "models": [],
@@ -6417,7 +6417,7 @@
         "https://docs.vlm.run/gateway/introduction"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha",
+      "offering": "OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha",
       "limits": "The authentication page says it plainly: \"The VLM Run Gateway serves anonymous callers on a small free quota, keyed by client IP\", and \"Every GPU-served model is public and reachable anonymously\", while \"The frontier models carry the paid access tier\". The rate-limit table gives the anonymous tier \"10/min, 30/hr, 100/day\" per client IP, the three windows stacking, against 240 a minute with a key. The FAQ calls the gateway alpha, with a model catalog kept intentionally small: its chat models on VLM Run GPUs are Qwen3.8 27B, Qwen3.5 0.8B and DiffusionGemma 26B, beside OCR, embedding and speech models. The published request schema has no tools field, yet a keyless call carrying one tool was answered with a tool call on 2026-09-17. The operator is Autonomi AI Inc.; its terms render only in a browser. Read 2026-09-23",
       "free_part": "models",
       "models": [
@@ -6481,7 +6481,7 @@
         "https://cloud.tencent.com/document/product/1823/131903"
       ],
       "card_required": false,
-      "offering": "Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification",
+      "offering": "Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification",
       "limits": "The free package page, updated 2026-09-04, gives each main account one grant while the promotion runs, 本期活动时间截至 2026 年 12 月 31 日 (until 31 December 2026): 所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年, a million tokens on every language model, valid a year from claiming. The grant is per model: packages are ticked model by model in the model square or claimed on a model's first call, 免费体验包每个账号每个模型仅可领取一次 (each account claims each model's package once), and the quickstart speaks of 各模型免费体验额度, each model's free quota — against one note that 同一账号下的所有模型共享额度 (the account's models share it), with the figures 以控制台显示为准 (as the console shows). When the grant is spent the service stops unless post-payment is switched on, so nothing is billed without it. The quickstart requires registering on Tencent Cloud and passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民 — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are sent to the international site. Read 2026-09-25",
       "free_part": "models",
       "models": [],
@@ -6664,7 +6664,7 @@
         "https://docs.opper.ai/guides/claude-code-router.md"
       ],
       "card_required": false,
-      "offering": "EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits",
+      "offering": "EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits",
       "limits": "The pricing FAQ: \"Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum.\" The llms.txt names one of them — \"gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route.\" — and the model directory at opper.ai/models flags five rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1 and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with \"a 3% fee on credit purchases\". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-17",
       "free_part": "models",
       "models": [
@@ -6795,7 +6795,7 @@
         "https://docs.mixlayer.com/introduction.md"
       ],
       "card_required": false,
-      "offering": "Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit",
+      "offering": "Serverless open models priced per token, one of them at $0 and callable without prepaid credit",
       "limits": "The pricing page says \"Free models stay free; pay-as-you-go for everything else.\" and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision and text. The billing docs: \"Free models do not require prepaid credit.\" — a paid model on an empty prepaid balance answers `402`. Rate limits are set per organization and per model, and \"Mixlayer does not publish fixed limit values because limits can differ by organization and model\". The docs' introduction sends its first request to the free model. The operator is Mixlayer Labs Inc. Read 2026-09-17",
       "free_part": "models",
       "models": [
@@ -7741,7 +7741,7 @@
         "https://api.llmtech.eu/v1/models"
       ],
       "card_required": false,
-      "offering": "EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account",
+      "offering": "EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account",
       "limits": "The quickstart prints the key itself: \"Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on.\" A personal key — \"64 concurrent and no daily limit\" — is paid per token and asked for by email. The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context, tool calling, structured outputs and image input. Prompts and completions are held in \"volatile memory only — never persisted\" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-23",
       "free_part": "models",
       "models": [
@@ -7808,7 +7808,7 @@
         "https://docs.siliconflow.cn/docs/api/messages-post"
       ],
       "card_required": false,
-      "offering": "China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers",
+      "offering": "China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers",
       "limits": "The rate-limit FAQ: free models cost nothing (\"免费模型调用免费\", billed at 0), their limits are fixed per model (\"免费模型的 Rate Limits 固定\", shown in the client-rendered model square), and \"实名认证后使用全部的免费模型\" — they open only after real-name verification. That is an Alipay face scan taking a mainland ID card, a Hong Kong, Macau or Taiwan travel or residence permit, or China's permanent-residence card for foreigners; without one \"暂时不支持线上个人认证\", and the FAQ offers a form to the staff instead. Sign-in is by SMS or email. The free rows are in the price list's own data, each at ¥0 in and out: Qwen3-8B, GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct, Qwen3.5-4B, DeepSeek-R1-0528-Qwen3-8B, Hunyuan-MT-7B and Xing4.0-29B, the last two also marked 免费 in the table the page renders. Read 2026-09-18",
       "free_part": "models",
       "models": [
@@ -8043,7 +8043,7 @@
         "https://zcode.z.ai/en/docs/qa"
       ],
       "card_required": false,
-      "offering": "Z.ai's desktop coding agent built around GLM-5.3, free as an app, with five days of GLM-5.3 and GLM-5-turbo for a new user and no card",
+      "offering": "Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card",
       "limits": "The docs: \"First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup\" — GLM-5.3 at \"3M tokens / day\" and GLM-5-turbo at \"2M tokens / day\", and \"the daily quotas below are granted only during these 5 days — they expire afterwards and are not an ongoing daily allowance\". A BigModel (mainland China) account gets its own trial instead: \"no payment required, with 8 million tokens per day for the first 5 days\". After that the app runs on a GLM Coding Plan or a key of your own: \"The ZCode application itself is completely free. As a developer, you still need your own API Key or a model service plan\". Read 2026-09-26",
       "free_part": "models",
       "models": [

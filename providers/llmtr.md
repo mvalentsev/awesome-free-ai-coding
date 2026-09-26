@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-24'
-description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
+description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a chat model marked…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-09-26
 crumb: LLMTR
@@ -15,7 +15,7 @@ crumb: LLMTR
 
 ## What you get
 
-Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them
+Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23
 
 ## Free models
 

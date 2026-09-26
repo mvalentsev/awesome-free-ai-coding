@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-09-24'
-description: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated…
+description: Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated 2026-09-04, gives each main account one grant while the promotion…
 permalink: /providers/tencent-tokenhub/
 last_modified_at: 2026-09-26
 crumb: Tencent Cloud TokenHub
@@ -15,7 +15,7 @@ crumb: Tencent Cloud TokenHub
 
 ## What you get
 
-Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification
+Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification
 
 ## Free models
 

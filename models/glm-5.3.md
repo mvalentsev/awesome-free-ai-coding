@@ -21,7 +21,7 @@ crumb: glm-5.3
 
 🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-16
 
-One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code
+One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
 - Limits, in the vendor's words: per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
 - Base URL: `https://aihubmix.com/v1`
@@ -33,7 +33,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 🎁 Trials (no card when possible) · no card · provisional since 2026-09-26 · verified 2026-09-26 · listed since 2026-09-26
 
-Z.ai's desktop coding agent built around GLM-5.3, free as an app, with five days of GLM-5.3 and GLM-5-turbo for a new user and no card
+Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card
 
 - Limits, in the vendor's words: The docs: "First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo at "2M tokens / day", and "the daily quotas below are granted only during these 5 days — they expire afterwards and are not an ongoing daily allowance". A BigModel (mainland China) account gets its own trial instead: "no payment required, with 8 million tokens per day for the first 5 days". After that the app runs on a GLM Coding Plan or a key of your own: "The ZCode application itself is completely free. As a developer, you still need your own API Key or a model service plan". Read 2026-09-26
 - No API endpoint to paste: this row is a tool you install or sign in to.

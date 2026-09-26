@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Mixlayer free tier: limits, free models, verified 2026-09-24'
-description: Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit. The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00…
+description: Serverless open models priced per token, one of them at $0 and callable without prepaid credit. The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision and text. The billing…
 permalink: /providers/mixlayer/
 last_modified_at: 2026-09-26
 crumb: Mixlayer
@@ -15,7 +15,7 @@ crumb: Mixlayer
 
 ## What you get
 
-Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B as qwen/qwen3.5-4b-free, at 131K context — callable without prepaid credit
+Serverless open models priced per token, one of them at $0 and callable without prepaid credit
 
 ## Free models
 

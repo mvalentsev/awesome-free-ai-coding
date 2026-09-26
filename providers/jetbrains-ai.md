@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'JetBrains AI (AI Free) free tier: limits, free models, verified 2026-09-24'
-description: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents. JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one…
+description: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents. JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one credit…
 permalink: /providers/jetbrains-ai/
 last_modified_at: 2026-09-26
 crumb: JetBrains AI (AI Free)
@@ -15,7 +15,7 @@ crumb: JetBrains AI (AI Free)
 
 ## What you get
 
-AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents
+AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents
 
 ## Free models
 

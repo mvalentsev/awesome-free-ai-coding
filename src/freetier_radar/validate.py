@@ -29,8 +29,9 @@ from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, load_history
-from .models import (Entry, family_names, is_archived, is_blocked, lane_ids, load_blocklist,
-                     load_dismissed, load_registry, load_sources, load_watchlist, save_registry)
+from .models import (Entry, FreePart, family_names, is_archived, is_blocked, lane_ids,
+                     load_blocklist, load_dismissed, load_registry, load_sources, load_watchlist,
+                     prose_names, save_registry)
 
 __all__ = ["check", "check_repository", "registry_form_problems", "main"]
 
@@ -314,6 +315,32 @@ def check(root: Path, today: date | None = None) -> list[str]:
         if e.delisted and e.delisted.on < e.first_seen:
             problems.append(f"registry: {e.id} delisted.on {e.delisted.on.isoformat()} is before "
                             f"first_seen {e.first_seen.isoformat()}")
+
+    # Every page prints `offering` beside a row's Models line, the one list of its
+    # models the probe reads back and the two-week bar holds. On 2026-09-26
+    # twenty-eight rows of `models` named models in it anyway: opencode all six of
+    # its families, and ten rows models the line holds back — Freebuff two still
+    # inside their two weeks, LLM7 the ids it keeps out with a reason. A family
+    # any live row carries counts, and so does one of the row's own ids; a sum
+    # has no line to repeat and names what its amount buys.
+    known = {m.family for e in entries if not is_archived(e, today) for m in e.models}
+    for e in entries:
+        if e.free_part is not FreePart.MODELS or is_archived(e, today):
+            continue
+        lane = lane_ids(e)
+        bases = {i: re.sub(r"(:free|-free|-latest)$", "", i.rsplit("/", 1)[-1], flags=re.I)
+                 for i in (lane.model_ids if lane else [])}
+        named = sorted(f for f in known if prose_names(e.offering, f))
+        named += [i for i, base in bases.items()
+                  if len(re.sub(r"[\s_-]+", "", base)) >= 5 and prose_names(e.offering, base)
+                  and not any(prose_names(base, f) for f in named)]
+        # "GLM-5.3-Flash" names glm-5.3-flash; saying it names glm-5.3 too adds nothing
+        named = [n for n in named if not any(n != m and n in m for m in named)]
+        if named:
+            problems.append(
+                f"registry: {e.id} offering names {', '.join(named)} — its Models line names "
+                f"the models, held to the probe and the two-week bar; the offering says what "
+                f"the offer is")
 
     # ---- registry against blocklist.yaml
     # We list it and we say it must never be proposed. One of the two is wrong.

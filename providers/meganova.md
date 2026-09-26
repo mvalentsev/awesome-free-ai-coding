@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'MegaNova free tier: limits, free models, verified 2026-09-24'
-description: OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across its free rows. Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free…
+description: OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of its free rows — a chat model and the house Manta routers among them — 550 a day in all. Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini".…
 permalink: /providers/meganova/
 last_modified_at: 2026-09-26
 crumb: MegaNova
@@ -15,7 +15,7 @@ crumb: MegaNova
 
 ## What you get
 
-OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of Mistral Small 3.2 and the house Manta routers — 550 a day across its free rows
+OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of its free rows — a chat model and the house Manta routers among them — 550 a day in all
 
 ## Free models
 

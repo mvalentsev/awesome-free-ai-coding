@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Opper free tier: limits, free models, verified 2026-09-24'
-description: 'EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google''s route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits. The pricing FAQ: "Sign up needs no credit card: you get an API key…'
+description: 'EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits. The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use…'
 permalink: /providers/opper/
 last_modified_at: 2026-09-26
 crumb: Opper
@@ -15,7 +15,7 @@ crumb: Opper
 
 ## What you get
 
-EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google's route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits
+EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits
 
 ## Free models
 

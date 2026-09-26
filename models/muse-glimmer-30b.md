@@ -46,7 +46,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-14
 
-OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog
+OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog
 
 - Limits, in the vendor's words: Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates, ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency
 - Base URL: `https://api.routeway.ai/v1`

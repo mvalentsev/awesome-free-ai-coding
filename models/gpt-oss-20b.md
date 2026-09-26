@@ -45,7 +45,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-25
 
-Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B
+Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model
 
 - Limits, in the vendor's words: The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-09-21. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — "Get an API key" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate
 - Base URL: `https://text.pollinations.ai/openai`

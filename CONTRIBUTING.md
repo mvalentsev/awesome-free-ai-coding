@@ -852,6 +852,16 @@ characters to 813, most of it dated lane counts, and the README to 260 KB.
 is `offering`, the models and the date, and the quota is on the row's own page and
 the site, one click from the date.
 
+**A row of free models leaves them to its Models line.** Every page prints
+`offering` beside that line, which the probe reads back and the two-week bar
+holds, so a model named in the prose either repeats the line or names one it holds
+back. On 2026-09-26 twenty-eight rows of `models` did one or both — opencode spelled
+out all six of its models, Freebuff two still short of their two weeks — and
+`freetier-check` now refuses, in such a row's `offering`, a family any live row
+carries or one of the row's own ids. A maker's name is not a model's: "Claude and
+open-weight models" says what Kiro serves without listing it. A sum has no Models
+line, so its prose names what the amount buys.
+
 **A phrase in quotation marks is a claim that the vendor published those words.**
 `freetier-quotes` fetches a row's `source_urls`, its probe endpoint and its
 catalog, and reports every quote of three words or more that none of them

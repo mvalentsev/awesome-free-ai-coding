@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLM7.io free tier: limits, free models, verified 2026-09-24'
-description: OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it. The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000…
+description: OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models; a free token doubles it. The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io…
 permalink: /providers/llm7/
 last_modified_at: 2026-09-26
 crumb: LLM7.io
@@ -15,7 +15,7 @@ crumb: LLM7.io
 
 ## What you get
 
-OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it
+OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models; a free token doubles it
 
 ## Free models
 

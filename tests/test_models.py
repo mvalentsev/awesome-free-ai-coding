@@ -9,7 +9,7 @@ import yaml
 from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Watched,
                                     id_family, is_anchor, is_covered, is_source_current,
                                     known_domains, load_registry, load_sources, load_watchlist,
-                                    save_registry, watch_match)
+                                    prose_names, save_registry, watch_match)
 
 
 def save_yaml(path: Path, data: dict) -> None:
@@ -737,3 +737,18 @@ def test_an_id_is_the_most_specific_family_that_names_it():
     assert id_family(families, "z-ai/glm-5.3:free") == "glm-5.3"
     assert id_family(families, "coding-glm-5-free") == "glm-5"
     assert id_family(families, "moonshotai/kimi-k3") is None
+
+
+def test_a_sentence_names_a_model_as_a_reader_writes_it():
+    """Prose spells a model as its vendor does — "Nemotron 3 Ultra", "MiMo-V2.5",
+    "GLM 5.3 Flash" — so case and separators go, but the name stays a whole
+    word: "GLM-5.3" is not glm-5, whose version it goes on past, and
+    "X Minimal" is no x-mini."""
+    assert prose_names("Big Pickle, Nemotron 3 Ultra and MiMo-V2.5", "nemotron-3-ultra")
+    assert prose_names("Big Pickle, Nemotron 3 Ultra and MiMo-V2.5", "mimo-v2.5")
+    assert prose_names("GLM 5.3 Flash by default", "glm-5.3-flash")
+    assert prose_names("GLM-5.3-Flash", "glm-5.3")
+    assert not prose_names("GLM-5.3 and Kimi K3", "glm-5")
+    assert not prose_names("X Minimal aside", "x-mini")
+    assert not prose_names("Claude and open-weight models", "claude-sonnet-4.5")
+    assert prose_names("on Qwen3.8 27B.", "qwen3.8-27b")

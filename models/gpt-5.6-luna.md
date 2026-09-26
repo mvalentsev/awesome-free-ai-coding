@@ -21,7 +21,7 @@ crumb: gpt-5.6-luna
 
 🎁 Trials (no card when possible) · no card · provisional since 2026-09-16 · verified 2026-09-24 · listed since 2026-09-16
 
-Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
+Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
 
 - Limits, in the vendor's words: "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit predictions. No credit card is required. The trial ends when you use the $5 balance or 14 days pass, whichever comes first." "GPT-5.6 Luna is the only hosted model available during the free trial", and the balance is shared with Delta, Zed's other app. Trials "automatically convert to Zed Free" — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period on the page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-16
 - No API endpoint to paste: this row is a tool you install or sign in to.

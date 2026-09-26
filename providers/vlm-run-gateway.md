@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'VLM Run Gateway free tier: limits, free models, verified 2026-09-24'
-description: 'OpenAI-compatible gateway for vision and language models whose models on VLM Run''s own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha. The authentication page says it plainly: "The VLM Run Gateway serves anonymous callers on a…'
+description: 'OpenAI-compatible gateway for vision and language models whose models on VLM Run''s own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha. The authentication page says it plainly: "The VLM Run Gateway serves anonymous callers on a small free quota, keyed…'
 permalink: /providers/vlm-run-gateway/
 last_modified_at: 2026-09-26
 crumb: VLM Run Gateway
@@ -15,7 +15,7 @@ crumb: VLM Run Gateway
 
 ## What you get
 
-OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
+OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
 
 ## Free models
 

@@ -33,7 +33,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 🔌 LLM APIs with free tier · no card · provisional since 2026-09-18 · verified 2026-09-24 · listed since 2026-09-18
 
-EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account
+EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account
 
 - Limits, in the vendor's words: The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key — "64 concurrent and no daily limit" — is paid per token and asked for by email. The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context, tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-23
 - Base URL: `https://api.llmtech.eu/v1`
@@ -57,7 +57,7 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-24 · listed since 2026-09-25
 
-A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible
+A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
 - Limits, in the vendor's words: 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions", and the quota "is independent per model and cannot be shared across models", a dated snapshot counting as a model of its own. The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later". The last column of each Singapore table, "Free quota", gives it to every Qwen text model from Qwen3.8 Max down to Qwen3 8B, the Coder and VL lines among them, to DeepSeek V4.1 Flash, V4 Pro, V4 Flash and V3.2, and to GLM-5.3, 5.2 and 5.1; the Kimi table has no such column, glm-5.2-fast-preview reads "None", and its translation, OCR, omni and realtime models are not ones to code with (read 2026-09-25). Since 2026-09-15 "you must complete your account information before activating Model Studio", and past the quota "you are automatically billed on a pay-as-you-go basis" unless Free Quota Only, which "is disabled by default", is switched on per model (read 2026-09-23)
 - Base URL: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`
@@ -81,7 +81,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 🔌 LLM APIs with free tier · no card · provisional since 2026-09-17 · verified 2026-09-24 · listed since 2026-09-17
 
-OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs, Qwen3.8 27B among them, answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
+OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
 
 - Limits, in the vendor's words: The authentication page says it plainly: "The VLM Run Gateway serves anonymous callers on a small free quota, keyed by client IP", and "Every GPU-served model is public and reachable anonymously", while "The frontier models carry the paid access tier". The rate-limit table gives the anonymous tier "10/min, 30/hr, 100/day" per client IP, the three windows stacking, against 240 a minute with a key. The FAQ calls the gateway alpha, with a model catalog kept intentionally small: its chat models on VLM Run GPUs are Qwen3.8 27B, Qwen3.5 0.8B and DiffusionGemma 26B, beside OCR, embedding and speech models. The published request schema has no tools field, yet a keyless call carrying one tool was answered with a tool call on 2026-09-17. The operator is Autonomi AI Inc.; its terms render only in a browser. Read 2026-09-23
 - Base URL: `https://gateway.vlm.run/v1/openai`

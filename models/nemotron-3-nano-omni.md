@@ -71,7 +71,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-24
 
-One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code
+One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
 - Limits, in the vendor's words: per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
 - Base URL: `https://aihubmix.com/v1`
@@ -83,7 +83,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · verified 2026-09-24 · listed since 2026-08-05
 
-One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest
+One zero-priced id, in the default group, inside a 140-row catalog that meters the rest
 
 - Limits, in the vendor's words: the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free ids have come and gone beside it: the zero-priced Kimi K3 this entry was registered for — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered
 - Base URL: `https://api.tokenrouter.com/v1`

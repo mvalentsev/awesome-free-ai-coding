@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-24'
-description: One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code. per-model caps, spelled out in each model's catalog…
+description: 'One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code. per-model caps, spelled out in each model''s catalog description: the newest coding routes — GLM-5.3,…'
 permalink: /providers/aihubmix/
 last_modified_at: 2026-09-26
 crumb: AIHubMix (free models)
@@ -15,7 +15,7 @@ crumb: AIHubMix (free models)
 
 ## What you get
 
-One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code
+One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
 ## Free models
 
