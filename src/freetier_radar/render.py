@@ -2083,7 +2083,10 @@ def build_checked_page(watchlist: list[Watched], today: date) -> str:
                           "title": "Services checked and not listed on the free AI coding list",
                           "description": "Every service this list checked and did not list, with the "
                                          "reason on the date it was read and what would change the answer.",
-                          "permalink": f"/{PROVIDERS_DIR}/{CHECKED_PAGE}/"}),
+                          "permalink": f"/{PROVIDERS_DIR}/{CHECKED_PAGE}/",
+                          # The newest verdict: what a reader could see change.
+                          "last_modified_at": max((w.checked_on for w in watchlist),
+                                                  default=today)}),
            "{% raw %}", "", "# Checked and not listed", "",
            f"{len(rows)} services whose free tier [the list]({PAGES_URL}/) could not find or could not "
            "verify on the date checked. Nothing here is disqualified — domains rejected for cause are "

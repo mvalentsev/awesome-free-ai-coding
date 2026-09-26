@@ -894,7 +894,13 @@ def test_the_watchlist_is_a_page_of_its_own_and_the_readme_links_it(tmp_path: Pa
     from freetier_radar.render import build_checked_page
     old = watched("Old", (TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat())
     page = build_checked_page([old, watched("New", TODAY.isoformat())], TODAY)
-    assert yaml.safe_load(page.split("---\n")[1])["permalink"] == "/providers/checked/"
+    meta = yaml.safe_load(page.split("---\n")[1])
+    assert meta["permalink"] == "/providers/checked/"
+    # Dated for the sitemap like every other page under providers/: by its
+    # newest verdict, not by the day it was rendered.
+    assert meta["last_modified_at"] == TODAY
+    assert yaml.safe_load(build_checked_page([old], TODAY).split("---\n")[1])[
+        "last_modified_at"] == TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)
     assert page.index("**New**") < page.index("**Old**")
     assert "no free tier today <sub>**Reopens if:** they publish one</sub>" in page
     assert f"`{(TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat()}` ⏰" in page

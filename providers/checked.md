@@ -3,6 +3,7 @@ layout: default
 title: Services checked and not listed on the free AI coding list
 description: Every service this list checked and did not list, with the reason on the date it was read and what would change the answer.
 permalink: /providers/checked/
+last_modified_at: 2026-09-23
 ---
 
 {% raw %}
