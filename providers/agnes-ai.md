@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Agnes AI free tier: limits, free models, verified 2026-09-24'
-description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash…'
+description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-3.0-flash, agnes-2.5-flash. "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the…'
 permalink: /providers/agnes-ai/
 last_modified_at: 2026-09-26
 crumb: Agnes AI

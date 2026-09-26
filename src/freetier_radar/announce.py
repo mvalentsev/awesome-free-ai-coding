@@ -69,19 +69,39 @@ def _cut(text: str, room: int) -> str:
     return text[:cut if cut > 0 else room - 1].rstrip(" ,;:.—-") + "…"
 
 
+def _listed(prefix: str, names: list[str], room: int) -> str:
+    """As many of a row's models as fit in `room` after `prefix`, then how many
+    more. A column runs to dozens — AIHubMix's to thirty-five — and a post
+    naming them all would run past the channel's limit, link and all."""
+    for shown in range(len(names), 0, -1):
+        more = len(names) - shown
+        line = prefix + ", ".join(names[:shown]) + (f" +{more} more" if more else "")
+        if len(line) <= room:
+            return line
+    return prefix + names[0] + (f" +{len(names) - 1} more" if len(names) > 1 else "")
+
+
 def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT) -> str:
     """The post: what happened, to whom, in the row's words, and one link.
 
     The link is the row's own page — the evidence, the limits, the history —
     and for a row deleted from the registry, which has no page any more, the
-    list itself. The link is never cut: the body is what gives way.
+    list itself. The link is never cut: the body is what gives way, and a list
+    of models takes at most half of the room the two leave.
     """
     e = entries_by_id.get(ev.id)
     link = provider_page_url(ev.id) if e is not None else REPO_URL
+
+    def half(lead: str) -> int:
+        return (limit - len(f"{lead} — .\n → {link}")) // 2
+
     if ev.event is EventType.ADDED:
-        lead, body, tail = (f"New on the free-LLM radar: {ev.name}",
-                            e.offering if e is not None else ev.detail,
-                            "Verified by a live probe")
+        # The models come off the history line, the column a probe reads back:
+        # `offering` names none on a row of free models since 2026-09-26.
+        lead = f"New on the free-LLM radar: {ev.name}"
+        body = e.offering if e is not None else ev.detail
+        tail = (_listed("Free models: ", ev.models, half(lead)) if ev.models
+                else "Verified by a live probe")
     elif ev.event is EventType.ARCHIVED:
         lead, body, tail = f"Archived: {ev.name}", ev.detail, "Moved to the list's Archive"
     elif ev.event is EventType.RESTORED:
@@ -93,7 +113,7 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
     else:
         lead = f"{ev.name}: free models changed"
         body = ev.detail
-        tail = ("Now: " + ", ".join(ev.models)) if ev.models else "The row keeps no free model"
+        tail = _listed("Now: ", ev.models, half(lead)) if ev.models else "The row keeps no free model"
     fixed = f"{lead} — .\n{tail} → {link}"
     room = limit - len(fixed)
     text_body = _cut(body, room) if body and room > 1 else ""

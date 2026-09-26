@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-24'
-description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Vercel''s FAQ, in its error table: "The team must add a valid payment method before using free…'
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Free models: laguna-s-2.1, ling-3.0-flash-sante. Vercel''s FAQ, in its error table: "The team…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-09-26
 crumb: Vercel AI Gateway

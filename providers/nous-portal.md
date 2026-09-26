@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-09-24'
-description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18 — on an OpenAI-compatible API. The portal''s plan table reads "Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes", and the Hermes Agent…'
+description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18 — on an OpenAI-compatible API. Free models: step-3.7-flash, laguna-s-2.1. The portal''s plan table reads "Free $0 Free models only Standard rate limits $0 monthly…'
 permalink: /providers/nous-portal/
 last_modified_at: 2026-09-26
 crumb: Nous Portal (Hermes Agent)

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cursor (Hobby) free tier: limits, free models, verified 2026-09-24'
-description: Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor's own model and Tab completions, no credit card. Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer", the one model it…
+description: 'Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor''s own model and Tab completions, no credit card. Free models: composer. Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to…'
 permalink: /providers/cursor-hobby/
 last_modified_at: 2026-09-26
 crumb: Cursor (Hobby)

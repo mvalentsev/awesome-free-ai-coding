@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'DeepSeek Platform free tier (archived): what it offered, and why it left the list'
-description: Official DeepSeek API; every new account gets a one-time free token grant, no card required. 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models
+description: 'Official DeepSeek API; every new account gets a one-time free token grant, no card required. Free models: deepseek-chat, deepseek-reasoner. 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models'
 permalink: /providers/deepseek/
 last_modified_at: 2026-07-27
 crumb: DeepSeek Platform

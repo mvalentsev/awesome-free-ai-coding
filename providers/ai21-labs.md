@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'AI21 Labs (Jamba) free tier (archived): what it offered, and why it left the list'
-description: 'AI21''s Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio''s, and the vendor sunset Studio''s Jamba API on 2026-08-09. Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every…'
+description: 'AI21''s Jamba models on a no-card trial credit — hybrid Mamba/attention models built for 256K-token context. The trial was AI21 Studio''s, and the vendor sunset Studio''s Jamba API on 2026-08-09. Free models: jamba-mini, jamba-large. Retired. The $10 no-card trial belonged to AI21 Studio, and…'
 permalink: /providers/ai21-labs/
 last_modified_at: 2026-09-05
 crumb: AI21 Labs (Jamba)

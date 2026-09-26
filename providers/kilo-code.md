@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-09-24'
-description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. $0 a month, and no account for the free lane: "The gateway allows…'
+description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. Free models: nemotron-3-ultra, nemotron-3-super, north-mini-code,…'
 permalink: /providers/kilo-code/
 last_modified_at: 2026-09-26
 crumb: Kilo Code

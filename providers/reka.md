@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Reka AI free tier (archived): what it offered, and why it left the list'
-description: Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month. $10 free credits at the start of every month, usable on any API feature
+description: 'Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month. Free models: reka-core, reka-flash. $10 free credits at the start of every month, usable on any API feature'
 permalink: /providers/reka/
 last_modified_at: 2026-08-11
 crumb: Reka AI

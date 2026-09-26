@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google Jules free tier: limits, free models, verified 2026-09-24'
-description: Free tier of Google's async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously. 15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free plan "Gemini 2.5 Pro"…
+description: 'Free tier of Google''s async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously. Free models: gemini-2.5. 15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the…'
 permalink: /providers/google-jules/
 last_modified_at: 2026-09-26
 crumb: Google Jules

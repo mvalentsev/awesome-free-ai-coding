@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Opper free tier: limits, free models, verified 2026-09-24'
-description: 'EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits. The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use…'
+description: 'EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits. Free models: gemma-4-31b. The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the…'
 permalink: /providers/opper/
 last_modified_at: 2026-09-26
 crumb: Opper

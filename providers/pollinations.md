@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Pollinations.AI free tier: limits, free models, verified 2026-09-24'
-description: Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model. The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai /…
+description: 'Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model. Free models: gpt-oss-20b. The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier…'
 permalink: /providers/pollinations/
 last_modified_at: 2026-09-26
 crumb: Pollinations.AI

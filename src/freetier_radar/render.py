@@ -1770,11 +1770,17 @@ def _front_matter(fields: dict) -> str:
 
 
 def _page_description(e: Entry) -> str:
-    """The <meta> description: the offer first, then the figures, cut at a word."""
+    """The <meta> description: the offer first, then the free models, then the
+    figures, cut at a word. The models come off the column, the list a probe
+    reads back: `offering` names none on a row of free models, and until
+    2026-09-26 the description named them only where it did."""
     offer = e.offering.strip()
     if offer and offer[-1] not in ".!?":
         offer += "."
-    return _description(f"{offer} {e.limits}")
+    shown, more = _readme_families(e)
+    named = (f" Free models: {', '.join(shown)}{f' and {more} more' if more else ''}."
+             if shown else "")
+    return _description(f"{offer}{named} {e.limits}")
 
 
 def _description(text: str) -> str:

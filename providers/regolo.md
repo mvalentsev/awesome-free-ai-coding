@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
-description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and…'
+description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access…'
 permalink: /providers/regolo/
 last_modified_at: 2026-09-26
 crumb: Regolo AI

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SambaNova Cloud free tier (archived): what it offered, and why it left the list'
-description: Open models on SambaNova's RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it. 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3…
+description: 'Open models on SambaNova''s RDU hardware, OpenAI-compatible; the free tier is the one that applies while no payment method is linked, so linking a card is what ends it. Free models: deepseek, gpt-oss, gemma-4. 20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models…'
 permalink: /providers/sambanova-cloud/
 last_modified_at: 2026-09-23
 crumb: SambaNova Cloud

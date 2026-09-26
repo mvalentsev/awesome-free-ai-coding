@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-24'
-description: One zero-priced id, in the default group, inside a 140-row catalog that meters the rest. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free…
+description: 'One zero-priced id, in the default group, inside a 140-row catalog that meters the rest. Free models: nemotron-3-nano-omni. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free…'
 permalink: /providers/tokenrouter/
 last_modified_at: 2026-09-26
 crumb: TokenRouter (PaleBlueDot)

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-09-24'
-description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to…'
+description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. Free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash. The express mode overview: "New…'
 permalink: /providers/vertex-ai-express/
 last_modified_at: 2026-09-26
 crumb: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)

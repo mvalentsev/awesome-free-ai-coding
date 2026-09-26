@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Groq free tier: limits, free models, verified 2026-09-24'
-description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K /…'
+description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Free models: gpt-oss-120b, gpt-oss-20b, qwen3.6, qwen3.8-27b. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b,…'
 permalink: /providers/groq-free/
 last_modified_at: 2026-09-26
 crumb: Groq

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-24'
-description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated…'
+description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder. OVHcloud documents the anonymous lane: "Anonymous:…'
 permalink: /providers/ovh-ai-endpoints/
 last_modified_at: 2026-09-26
 crumb: OVHcloud AI Endpoints

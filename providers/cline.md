@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cline free tier: limits, free models, verified 2026-09-24'
-description: Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. "Cline periodically offers free model promotions that let…
+description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: muse-spark-1.3-contributor. "Cline periodically…'
 permalink: /providers/cline/
 last_modified_at: 2026-09-26
 crumb: Cline

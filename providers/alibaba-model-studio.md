@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Alibaba Cloud Model Studio (DashScope, international) free tier: limits, free models, verified 2026-09-24'
-description: 'A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model''s release; OpenAI-compatible. 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a…'
+description: 'A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model''s release; OpenAI-compatible. Free models: qwen3.8-max, qwen3.8-flash, qwen3.8-2.4t-a95b, qwen3.8-27b, deepseek-v4-pro, deepseek-v4-flash,…'
 permalink: /providers/alibaba-model-studio/
 last_modified_at: 2026-09-26
 crumb: Alibaba Cloud Model Studio (DashScope, international)

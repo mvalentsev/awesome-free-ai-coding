@@ -46,6 +46,30 @@ def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
     assert "zero price" not in page
 
 
+def test_a_provider_page_description_names_the_free_models_from_the_column():
+    """The description is what a search result shows under the page's title.
+    It said the offer and the quota, and the models only where `offering`
+    listed them — twenty-eight rows' did until 2026-09-26, when the rule gave
+    the models to the Models line alone. So the description names them from
+    that line, the one a probe reads back, and every page with a column says
+    them the same way; a long column ends in how many more."""
+    from freetier_radar.render import README_MODELS, build_provider_page
+
+    def description(**kw) -> str:
+        page = build_provider_page(make(**kw), [], TODAY)
+        return yaml.safe_load(page.split("---\n")[1])["description"]
+
+    assert description(id="few", offering="A free lane, no card", limits="20 requests a minute",
+                       models=[{"family": "kimi-k3"}, {"family": "glm-5.3"}]) == (
+        "A free lane, no card. Free models: kimi-k3, glm-5.3. 20 requests a minute")
+    many = [{"family": f"m-{i}"} for i in range(README_MODELS + 3)]
+    shown = ", ".join(f"m-{i}" for i in range(README_MODELS))
+    assert description(id="many", offering="A catalog", models=many).startswith(
+        f"A catalog. Free models: {shown} and 3 more.")
+    assert description(id="sum", free_part="sum", offering="A credit",
+                       limits="$5 a month") == "A credit. $5 a month"
+
+
 def test_a_provider_page_says_why_its_row_names_no_model():
     """An empty column read the same on every page — "the page this row is
     verified against names no free model" — which a credit made false: Sail

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLM Tech free tier: limits, free models, verified 2026-09-24'
-description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted…'
+description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. Free models: qwen3.8-27b. The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens…'
 permalink: /providers/llmtech/
 last_modified_at: 2026-09-26
 crumb: LLM Tech

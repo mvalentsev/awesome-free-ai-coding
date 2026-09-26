@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-09-24'
-description: 'China''s SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model ("免费模型的 Rate Limits 固定", shown in the client-rendered model…'
+description: 'China''s SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. Free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414. The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model ("免费模型的…'
 permalink: /providers/siliconflow-cn/
 last_modified_at: 2026-09-26
 crumb: SiliconFlow (China)

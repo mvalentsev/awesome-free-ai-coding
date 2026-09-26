@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-09-24'
-description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in…'
+description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours. Free models: glm-5.3-flash, deepseek-v4.1-flash, muse-spark-1.2. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on…'
 permalink: /providers/freebuff/
 last_modified_at: 2026-09-26
 crumb: Freebuff

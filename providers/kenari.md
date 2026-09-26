@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Kenari free tier (archived): what it offered, and why it left the list'
-description: Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — sixteen on 2026-09-16, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them. "Models with the :free suffix, for example step-3-7-flash:free, are billed at…
+description: 'Indonesian OpenAI- and Anthropic-compatible gateway whose :free ids are billed Rp 0 behind a per-minute and a daily cap — sixteen on 2026-09-16, GLM-4.7-Flash, Nemotron 3 Ultra, Hy3 and Mistral Medium 3.5 among them. Free models: nemotron-3-ultra, nemotron-3-super, step-3.7-flash, laguna-s-2.1.…'
 permalink: /providers/kenari/
 last_modified_at: 2026-09-16
 crumb: Kenari

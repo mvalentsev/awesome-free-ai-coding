@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-09-26'
-description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. The docs: "First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo at "2M tokens / day", and "the daily…'
+description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5-turbo. The docs: "First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo at…'
 permalink: /providers/zcode/
 last_modified_at: 2026-09-26
 crumb: ZCode (Z.ai)

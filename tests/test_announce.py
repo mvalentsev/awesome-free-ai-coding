@@ -66,6 +66,25 @@ def test_a_long_offer_is_cut_at_a_word_and_the_link_always_survives():
     assert "…" in text and "wor…" not in text
 
 
+def test_a_post_names_the_free_models_from_the_log_and_still_fits():
+    """A new row's post carried its models only where `offering` listed them,
+    and on 2026-09-26 the rule gave the models to the Models line alone — so
+    the post names them from the history line, as a change of models already
+    did. A row of dozens, AIHubMix's thirty-five, names as many as fit and how
+    many more, since the link is never the part that gives way."""
+    by_id = {"x": entry()}
+    added = compose(event(EventType.ADDED, models=["kimi-k3", "glm-5.3"]), by_id)
+    assert "Free models: kimi-k3, glm-5.3" in added and "Free inference on open models" in added
+    plain = compose(event(EventType.ADDED), by_id)
+    assert "Verified by a live probe" in plain
+    many = [f"model-number-{i}" for i in range(35)]
+    for kind in (EventType.ADDED, EventType.MODELS):
+        text = compose(event(kind, models=many), by_id)
+        assert len(text) <= POST_LIMIT, (kind, len(text))
+        assert text.endswith(PAGE + "x/") and "model-number-0" in text
+        assert " more" in text, text
+
+
 def test_link_facets_use_utf8_byte_offsets():
     """Bluesky addresses rich text by byte, not by character; a dash before the
     URL is three bytes, and an offset counted in characters would point the

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'GitHub Models free tier (archived): what it offered, and why it left the list'
-description: Free playground+API for catalog models with GitHub account. Per-model rate limits, free tier; closed to new customers on 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30
+description: 'Free playground+API for catalog models with GitHub account. Free models: gpt-4.1. Per-model rate limits, free tier; closed to new customers on 2026-06-16 and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30'
 permalink: /providers/github-models/
 last_modified_at: 2026-07-30
 crumb: GitHub Models

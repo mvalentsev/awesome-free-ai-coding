@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-24'
-description: Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). No card; the API key needs a free NVIDIA Developer Program account verified…
+description: 'Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). Free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1,…'
 permalink: /providers/nvidia-nim/
 last_modified_at: 2026-09-26
 crumb: NVIDIA NIM (build.nvidia.com)
