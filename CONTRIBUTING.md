@@ -585,7 +585,13 @@ plus an index — the verified date of a live README row links to it, and
 so does the name of an archived one. The
 pages exist for the reader who arrives from a search about one vendor, so their
 titles name the vendor, the tier and the date; `_config.yml` names the site so
-Jekyll writes canonical URLs and a sitemap. **Never edit them by hand** — the
+Jekyll writes canonical URLs and a sitemap, and gives every page the list's
+preview card. Jekyll serves them, and the model pages below, in
+[`_layouts/default.html`](_layouts/default.html): one heading a page, the title
+as the render wrote it, a line back to the list and its indexes, a breadcrumb
+for search results. An address the site does not have gets
+[`404.html`](404.html), which offers the rows that name what the address asked
+for. **Never edit them by hand** — the
 render rewrites every one, an archived row's included, and the body sits inside
 `{% raw %}` so a vendor's own sentence can never break the build.
 
