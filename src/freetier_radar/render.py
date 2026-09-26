@@ -16,13 +16,11 @@ from .history import (Event, EventType, archive_reason, load_history, pending_ch
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
                      WATCH_RECHECK_DAYS, Category, Entry, FreePart,
-                     ModelFamily, Notice, ProbeType, Tier, Watched, _id_squash, domain_of,
-                     family_names, folded_into, is_archived,
+                     ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
+                     folded_into, id_family, is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
                      load_blocklist, load_registry, load_watchlist, probe_frequency)
-# How the probe decides which of a row's families a catalog id is: the configs
-# group ids by tier with the same rule, so the two can never disagree. The
-# promotion day is the probe's too, and the pages say how far off it is.
+# The promotion day is the probe's, and the pages say how far off it is.
 from .prober import PROVISIONAL_PROMOTE_DAYS
 # The bars a family's score must clear to be called frontier or strong, which
 # the picks table and the strong models state beside the answer.
@@ -1409,13 +1407,10 @@ def _litellm_ids(e: Entry) -> list[str]:
 
 
 def _tier_of_id(e: Entry, model_id: str) -> Tier | None:
-    """The measured tier of the family an id belongs to: the most specific of
-    the row's families the id names, matched the way the probe matches a family
-    against a catalog id (zai-org/GLM-5.3-Flash is glm-5.3-flash, not glm-5.3)."""
-    named = [m for m in e.models if m.superseded_by is None
-             and family_names(m.family, model_id)]
-    best = max(named, key=lambda m: len(_id_squash(m.family)), default=None)
-    return best.tier if best else None
+    """The measured tier of the family an id belongs to (`id_family`:
+    zai-org/GLM-5.3-Flash is glm-5.3-flash, not glm-5.3)."""
+    family = id_family(live_families(e), model_id)
+    return next((m.tier for m in e.models if m.family == family and m.superseded_by is None), None)
 
 
 def _litellm_key(e: Entry) -> str:
@@ -2065,10 +2060,11 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
         out += [_notice_quote(e.api.notice), ""]
     out.append(f"- Limits, in the vendor's words: {e.limits}" if e.limits
                else "- The vendor publishes no figure for this tier.")
-    # This model's ids and no other's, read with the one matcher the probe and
-    # the checks use, then the row page's own connection lines.
+    # This model's ids and no other's — an id is the most specific of the row's
+    # families that names it, as the probe reads it — then the row page's own
+    # connection lines.
     lane = lane_ids(e)
-    ids = [i for i in (lane.model_ids if lane else []) if family_names(family, i)]
+    ids = [i for i in (lane.model_ids if lane else []) if id_family(_families(e), i) == family]
     out += _connect_lines(e, ids)
     if e.api and e.api.base_url and not ids:
         out.append("- Callable ids: the row lists none for this model")

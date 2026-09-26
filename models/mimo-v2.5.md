@@ -37,7 +37,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Base URL: `https://aihubmix.com/v1`
 - Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
-- Callable ids: `xiaomi-mimo-v2.5-free`, `xiaomi-mimo-v2.5-pro-free`
+- Callable ids: `xiaomi-mimo-v2.5-free`
 
 ## Rows that listed it before
 

@@ -194,6 +194,22 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     assert "The vendor publishes no figure for this tier." in agent_block
 
 
+def test_a_model_page_lists_its_own_ids_and_not_a_newer_versions():
+    """A row that serves glm-5 beside glm-5.2 and glm-5-turbo lists an id for
+    each, and every one of them contains glm-5. The glm-5 page offered all six
+    of AIHubMix's GLM ids on 2026-09-26, so a reader could copy GLM-5.2 off the
+    page of GLM-5. Each id is the most specific family's that names it."""
+    hub = make(id="hub", name="Hub", category="aggregator", free_part="models",
+               models=[{"family": "glm-5"}, {"family": "glm-5.2"}, {"family": "glm-5-turbo"}],
+               api={"base_url": "https://hub.example/v1", "key_url": "https://hub.example/keys",
+                    "auth": "api-key", "model_ids": ["coding-glm-5.2-free", "coding-glm-5-free",
+                                                     "coding-glm-5-turbo-free"]})
+    for family, own in [("glm-5", "coding-glm-5-free"), ("glm-5.2", "coding-glm-5.2-free"),
+                        ("glm-5-turbo", "coding-glm-5-turbo-free")]:
+        block = build_model_page(family, [hub], [], TODAY).split("### [Hub]")[1].split("\n## ")[0]
+        assert f"- Callable ids: `{own}`\n" in block, family
+
+
 def test_a_model_page_says_how_to_connect_in_the_row_pages_own_lines():
     """The model page does not word a connection its own way: every line the
     row's page gives under Connect — a key the vendor prints for anyone, the

@@ -7,9 +7,9 @@ from pydantic import ValidationError
 import yaml
 
 from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Watched,
-                                    is_anchor, is_covered, is_source_current, known_domains,
-                                    load_registry, load_sources, load_watchlist, save_registry,
-                                    watch_match)
+                                    id_family, is_anchor, is_covered, is_source_current,
+                                    known_domains, load_registry, load_sources, load_watchlist,
+                                    save_registry, watch_match)
 
 
 def save_yaml(path: Path, data: dict) -> None:
@@ -723,3 +723,17 @@ def test_folded_into_is_the_row_the_registry_holds_the_service_under():
     assert folded_into([holder, folded], folded) is holder
     assert folded_into([holder, folded], holder) is None
     assert folded_into([folded], folded) is None
+
+
+def test_an_id_is_the_most_specific_family_that_names_it():
+    """`family_names` reads a family as a substring of the squashed id, so
+    `glm-5` names coding-glm-5.2-free and `glm-5.3` names zai-org/GLM-5.3-Flash.
+    On a row that carries both, the id is the longer family's: the glm-5 page
+    offered all six of AIHubMix's GLM ids until 2026-09-26, and a catalog could
+    go on vouching for glm-5 with glm-5.2's id after glm-5's own had left."""
+    families = ["glm-5", "glm-5.2", "glm-5.3", "glm-5.3-flash"]
+    assert id_family(families, "coding-glm-5.2-free") == "glm-5.2"
+    assert id_family(families, "zai-org/GLM-5.3-Flash") == "glm-5.3-flash"
+    assert id_family(families, "z-ai/glm-5.3:free") == "glm-5.3"
+    assert id_family(families, "coding-glm-5-free") == "glm-5"
+    assert id_family(families, "moonshotai/kimi-k3") is None

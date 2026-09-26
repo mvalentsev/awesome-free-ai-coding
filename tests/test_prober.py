@@ -143,6 +143,23 @@ async def test_a_column_flagged_on_a_catalog_still_carries_what_it_says_about_th
                                  "answers for: meta/llama-4-70b:free is not in the catalog")
 
 
+@respx.mock
+async def test_a_family_is_not_kept_alive_by_a_more_specific_familys_id():
+    """AIHubMix serves glm-5 beside glm-5.2, and a family is a substring of the
+    squashed id: coding-glm-5.2-free named glm-5 too, so had coding-glm-5-free
+    left the catalog the run would have gone on reading glm-5 as served free.
+    An id vouches for the most specific of the row's families that names it."""
+    entry = Entry.model_validate({**BASE, "models": [{"family": "glm-5"}, {"family": "glm-5.2"}],
+                                  "probe": {"type": "api-models", "require_zero_price": True,
+                                            "endpoint": "https://api.x.ai/v1/models"}})
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "coding-glm-5.2-free",
+                             "pricing": {"prompt": "0", "completion": "0"}}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result == ProbeResult(ProbeStatus.STALE_MODELS, "missing families: glm-5")
+
+
 def test_a_repair_is_still_held_to_every_family_it_lists():
     """What the scout writes is checked with check_content, and that check stays
     whole: a reply that keeps a family the lane no longer serves is refused, or

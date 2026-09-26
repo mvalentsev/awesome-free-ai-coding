@@ -14,7 +14,7 @@ import httpx
 
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
-    _id_squash, _squash, family_names, is_archived_for_good, lane_ids, load_registry,
+    _id_squash, _squash, id_family, is_archived_for_good, lane_ids, load_registry,
     notice_holds, save_registry,
 )
 
@@ -1075,10 +1075,13 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         return "no model ids in response"
     marker = entry.probe.free_marker.lower()
     missing, withdrawn, priced = [], [], []
+    families = [f.family for f in entry.models]
     for family in entry.models:
+        # An id vouches for the most specific family it names: coding-glm-5.2-free
+        # is glm-5.2's, and must not keep glm-5 alive after glm-5's own id left.
         matches = [
             m for m in items
-            if family_names(family.family, _model_id(m))
+            if id_family(families, _model_id(m)) == family.family
             and (not marker or marker in _model_id(m).lower())
         ]
         if not matches:

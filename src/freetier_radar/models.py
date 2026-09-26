@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import date
 from enum import Enum
@@ -183,6 +184,17 @@ def family_names(family: str, model_id: str) -> bool:
     `glm-5.3` also names a `glm-5.3-flash` id — give a family the most
     specific name the lane serves."""
     return _id_squash(family) in _id_squash(model_id)
+
+
+def id_family(families: Iterable[str], model_id: str) -> str | None:
+    """The family an id is, among a row's families: the most specific one that
+    names it. A family names every id it is a substring of, so where a row
+    carries glm-5 beside glm-5.2, coding-glm-5.2-free names both — and until
+    2026-09-26 the glm-5 page offered it as a glm-5 id, and a catalog could go
+    on vouching for glm-5 with it after glm-5's own id had left. Whose id it is
+    — on a model page, for a tier, for the probe — is decided here."""
+    named = [f for f in families if family_names(f, model_id)]
+    return max(named, key=lambda f: len(_id_squash(f)), default=None)
 
 
 class ModelFamily(BaseModel):

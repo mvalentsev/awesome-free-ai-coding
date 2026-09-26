@@ -27,7 +27,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Base URL: `https://aihubmix.com/v1`
 - Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
-- Callable ids: `coding-glm-5.3-flash-free`, `coding-glm-5.3-free`
+- Callable ids: `coding-glm-5.3-free`
 
 ## Rows that listed it before
 
