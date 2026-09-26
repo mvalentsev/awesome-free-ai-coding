@@ -29,11 +29,12 @@ import json
 import re
 import sys
 from dataclasses import dataclass, replace
+from datetime import date
 from pathlib import Path
 
 import httpx
 
-from .models import Entry, Tier, load_registry, save_registry
+from .models import Entry, Tier, is_archived, load_registry, save_registry
 from .prober import UA
 
 LEADERBOARD_URL = "https://artificialanalysis.ai/leaderboards/models"
@@ -139,6 +140,31 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
     return top, sorted(marks.values(), key=lambda k: k.family)
 
 
+def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[str, Scored]]:
+    """Families no row measures (no row names an aa_model for them) whose name,
+    read the way the board spells a slug — a hyphen for a dot, GLM-5.3 as
+    glm-5-3 — is a model the board scores into a tier.
+
+    A family added bare carries no tier, so a new strong model stayed off the
+    strong list, and off a page of its own while one row served it, until a
+    reviewer remembered to measure it. This names it on the next run. Only a
+    slug the board lists is offered — never a guess — and only a score that
+    reaches a tier, since measuring a model below the bar changes nothing a
+    page says (twenty such families sat bare on 2026-09-26, all of them old
+    Qwen, GLM, MiMo and Gemini models the top has left behind). The reviewer
+    names, as the family's aa_model, the variant the lane actually serves."""
+    top = index_top(models)
+    measured = {m.family for e in entries for m in e.models if m.aa_model}
+    found: dict[str, Scored] = {}
+    for e in entries:
+        for m in e.models:
+            if m.superseded_by is None and m.family not in measured and m.family not in found:
+                scored = models.get(m.family.replace(".", "-"))
+                if scored is not None and measured_tier(scored.index, top.index) is not None:
+                    found[m.family] = scored
+    return sorted(found.items())
+
+
 def _tier_name(tier: Tier | None) -> str:
     return tier.value if tier else "no tier"
 
@@ -148,7 +174,9 @@ async def _amain(registry: Path, write: bool) -> int:
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         resp = await client.get(LEADERBOARD_URL)
     resp.raise_for_status()
-    top, marks = review(entries, parse_leaderboard(resp.text))
+    board = parse_leaderboard(resp.text)
+    top, marks = review(entries, board)
+    live = [e for e in entries if not is_archived(e, date.today())]
     print(f"top of the index: {top.name}, {top.index:.1f} — frontier from "
           f"{top.index - FRONTIER_WITHIN:.1f}, strong from {top.index - STRONG_WITHIN:.1f}")
     moved = [m for m in marks if m.moved]
@@ -160,6 +188,11 @@ async def _amain(registry: Path, write: bool) -> int:
     for m in unknown:
         print(f"  {m.family}: {m.aa_model} is not on the leaderboard — the mark stays "
               f"{_tier_name(m.registered)} until the family names a model that is")
+    bare = unmeasured(live, board)
+    for family, scored in bare:
+        print(f"  {family}: no aa_model — the leaderboard scores {scored.slug} at "
+              f"{scored.index:.1f} ({_tier_name(measured_tier(scored.index, top.index))}); name it "
+              "as the family's aa_model if that is the model the lane serves")
     if write and moved:
         tiers = {m.family: m.measured for m in moved}
         for e in entries:
@@ -168,7 +201,8 @@ async def _amain(registry: Path, write: bool) -> int:
                     fam.tier = tiers[fam.family]
         save_registry(registry, entries)
     print(f"{len(marks)} families measured, {len(moved)} marks "
-          f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard")
+          f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
+          f"{len(bare)} unmeasured that would reach a tier")
     return 1 if unknown or (moved and not write) else 0
 
 

@@ -228,7 +228,7 @@ new_entries:
     models:                # ONLY with free_part: models, and ONLY models actually usable for
                            # free on the free tier/plan, never the vendor's paid catalog; omit
                            # when the evidence is silent
-      - {{family: <substring of the vendor's API model ids>, released: 'YYYY-MM'}}
+      - {{family: <substring of the vendor's API model ids, the most specific one>}}
                            # no tier: tiers are measured on Artificial Analysis, never proposed
     probe: {{type: page-keywords, endpoint: <official url>,
              keywords: ["<free model id / quota figure / price row>", "free"]}}

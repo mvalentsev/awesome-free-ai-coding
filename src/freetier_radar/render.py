@@ -15,7 +15,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
-                     SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, FreePart,
+                     WATCH_RECHECK_DAYS, Category, Entry, FreePart,
                      ModelFamily, Notice, ProbeType, Tier, Watched, _id_squash, domain_of,
                      family_names, folded_into, is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
@@ -983,10 +983,6 @@ def build_context(entries: list[Entry], today: date,
             # scout filters proposals with, so the page and the machinery can
             # never drift apart.
             "watchlist": _watch_rows(watchlist or [], today),
-            # sources.yaml itself is not rendered — the page says how the
-            # verdicts work and the file holds them, the way it does for
-            # dismissed.yaml.
-            "source_recheck_days": SOURCE_RECHECK_DAYS,
             # The only part of this page that is not a statement about today.
             # Everything else is regenerated from scratch each run and remembers
             # nothing, which left "did anything change?" answerable only from
@@ -1076,9 +1072,11 @@ def _site_fold(text: str) -> dict[str, str]:
 def _site_row(e: Entry) -> dict:
     """A row of a section table: the facts, with every judgement already made.
 
-    The same five answers browse.html filters on — card, key, OpenAI-compatible,
-    an Anthropic route, a frontier family — because a reader who narrows the
-    filterable table and a reader who scans this page are asking one question.
+    The answers browse.html filters on that a card can show beside the name —
+    card, key, an Anthropic route, a frontier family, the vendor training on
+    what it is sent — because a reader who narrows the filterable table and a
+    reader who scans this page are asking one question. Whether the API is
+    OpenAI-compatible is the connection table's to say, where the base URL is.
     """
     families = [m for m in e.models if m.superseded_by is None]
     chips = [{"family": m.family, "tier": m.tier.value if m.tier else ""} for m in families]
@@ -1098,7 +1096,6 @@ def _site_row(e: Entry) -> dict:
         "trains": e.data_use.trains if _trains(e) else "",
         "no_key": bool(api and api.base_url and api.key_kind == "none"),
         "public_key": bool(api and api.base_url and api.key_kind == "public"),
-        "openai": bool(api and api.base_url and api.openai_compatible),
         "claude_code": bool(api and api.anthropic_base_url),
         "frontier": any(m.tier is Tier.FRONTIER for m in families),
         # A row whose published lane is known not to work says so where it is

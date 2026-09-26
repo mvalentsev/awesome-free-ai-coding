@@ -20,68 +20,54 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "gemma-4-31b",
-          "released": "2026-04",
           "aa_model": "gemma-4-31b"
         },
         {
           "family": "gemma-4-26b-a4b",
-          "released": "2026-04",
           "aa_model": "gemma-4-26b-a4b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
           "family": "north-mini-code",
-          "released": "2026-06",
           "aa_model": "north-mini-code"
         },
         {
-          "family": "laguna-s-2.1",
-          "released": "2026-07"
+          "family": "laguna-s-2.1"
         },
         {
-          "family": "laguna-xs-2.1",
-          "released": "2026-07"
+          "family": "laguna-xs-2.1"
         },
         {
           "family": "nemotron-3.5-lightning",
-          "released": "2026-08",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
           "family": "inkling",
-          "released": "2026-07",
           "aa_model": "inkling"
         },
         {
           "family": "inkling-small",
-          "released": "2026-07",
           "aa_model": "inkling-small"
         },
         {
-          "family": "dots-3-note",
-          "released": "2026-08"
+          "family": "dots-3-note"
         },
         {
           "family": "ling-3.0-flash-fin",
-          "released": "2026-09",
           "aa_model": "ling-3-0-flash-fin"
         },
         {
-          "family": "ling-3.0-flash-sante",
-          "released": "2026-09"
+          "family": "ling-3.0-flash-sante"
         },
         {
           "family": "nemotron-3-nano-omni",
-          "released": "2026-04",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
@@ -161,43 +147,35 @@
         {
           "family": "gemini-3.8-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "gemini-3-8-flash"
         },
         {
           "family": "gemini-3.7-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "gemini-3-7-flash"
         },
         {
           "family": "gemini-3.6-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "gemini-3-6-flash"
         },
         {
           "family": "gemini-3.5-flash",
-          "released": "",
           "aa_model": "gemini-3-5-flash"
         },
         {
           "family": "gemini-3.5-flash-lite",
-          "released": "",
           "aa_model": "gemini-3-5-flash-lite"
         },
         {
           "family": "gemini-3.1-flash-lite",
-          "released": "",
           "aa_model": "gemini-3-1-flash-lite-preview"
         },
         {
-          "family": "gemini-3-flash",
-          "released": ""
+          "family": "gemini-3-flash"
         },
         {
-          "family": "gemma-4",
-          "released": ""
+          "family": "gemma-4"
         }
       ],
       "api": {
@@ -258,22 +236,18 @@
       "models": [
         {
           "family": "gpt-oss-120b",
-          "released": "2025-08",
           "aa_model": "gpt-oss-120b"
         },
         {
           "family": "gpt-oss-20b",
-          "released": "2025-08",
           "aa_model": "gpt-oss-20b"
         },
         {
-          "family": "qwen3.6",
-          "released": ""
+          "family": "qwen3.6"
         },
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -381,7 +355,6 @@
       "models": [
         {
           "family": "gpt-4.1",
-          "released": "2025-04",
           "aa_model": "gpt-4-1"
         }
       ],
@@ -531,33 +504,27 @@
       "free_part": "models",
       "models": [
         {
-          "family": "big-pickle",
-          "released": ""
+          "family": "big-pickle"
         },
         {
           "family": "mimo-v2.5",
-          "released": "",
           "aa_model": "mimo-v2-5-0424"
         },
         {
           "family": "ling-3.0-flash-fin",
-          "released": "",
           "aa_model": "ling-3-0-flash-fin"
         },
         {
           "family": "nemotron-3-ultra",
-          "released": "",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3.5-lightning",
-          "released": "",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
           "family": "muse-spark-1.3-contributor",
           "tier": "strong",
-          "released": "2026-09",
           "aa_model": "muse-spark-1-3-xhigh"
         }
       ],
@@ -604,58 +571,46 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
           "family": "north-mini-code",
-          "released": "2026-06",
           "aa_model": "north-mini-code"
         },
         {
           "family": "step-3.7-flash",
-          "released": "2026-06",
           "aa_model": "step-3-7-flash"
         },
         {
-          "family": "laguna-s-2.1",
-          "released": "2026-07"
+          "family": "laguna-s-2.1"
         },
         {
-          "family": "laguna-xs-2.1",
-          "released": "2026-07"
+          "family": "laguna-xs-2.1"
         },
         {
           "family": "nemotron-3.5-lightning",
-          "released": "2026-08",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
           "family": "inkling-small",
-          "released": "2026-07",
           "aa_model": "inkling-small"
         },
         {
-          "family": "dots-3-note",
-          "released": "2026-08"
+          "family": "dots-3-note"
         },
         {
           "family": "ling-3.0-flash-fin",
-          "released": "2026-09",
           "aa_model": "ling-3-0-flash-fin"
         },
         {
-          "family": "ling-3.0-flash-sante",
-          "released": "2026-09"
+          "family": "ling-3.0-flash-sante"
         },
         {
           "family": "nemotron-3-nano-omni",
-          "released": "2026-04",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
@@ -816,7 +771,6 @@
       "models": [
         {
           "family": "mimo-v2.5",
-          "released": "",
           "aa_model": "mimo-v2-5-0424"
         }
       ],
@@ -897,8 +851,7 @@
       "free_part": "models",
       "models": [
         {
-          "family": "gemini-2.5",
-          "released": ""
+          "family": "gemini-2.5"
         }
       ],
       "data_use": {
@@ -942,37 +895,30 @@
       "models": [
         {
           "family": "claude-sonnet-4.5",
-          "released": "",
           "aa_model": "claude-4-5-sonnet"
         },
         {
           "family": "claude-sonnet-4",
-          "released": "",
           "aa_model": "claude-4-sonnet"
         },
         {
           "family": "glm-5",
-          "released": "",
           "aa_model": "glm-5"
         },
         {
           "family": "minimax-m2.5",
-          "released": "",
           "aa_model": "minimax-m2-5"
         },
         {
           "family": "deepseek-v3.2",
-          "released": "",
           "aa_model": "deepseek-v3-2"
         },
         {
           "family": "qwen3-coder-next",
-          "released": "",
           "aa_model": "qwen3-coder-next"
         },
         {
           "family": "minimax-m2.1",
-          "released": "",
           "aa_model": "minimax-m2-1"
         }
       ],
@@ -1018,8 +964,7 @@
       "free_part": "models",
       "models": [
         {
-          "family": "composer",
-          "released": ""
+          "family": "composer"
         }
       ],
       "data_use": {
@@ -1101,63 +1046,50 @@
         {
           "family": "kimi-k3",
           "tier": "strong",
-          "released": "",
           "aa_model": "kimi-k3"
         },
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
-          "family": "laguna-xs-2.1",
-          "released": "2026-07"
+          "family": "laguna-xs-2.1"
         },
         {
           "family": "muse-glimmer-30b",
-          "released": "2026-08",
           "aa_model": "muse-glimmer"
         },
         {
           "family": "nemotron-3.5-lightning",
-          "released": "2026-08",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
           "family": "gemma-4-31b",
-          "released": "",
           "aa_model": "gemma-4-31b"
         },
         {
           "family": "gpt-oss-20b",
-          "released": "2025-08",
           "aa_model": "gpt-oss-20b"
         },
         {
-          "family": "mistral-nemotron",
-          "released": "2025-06"
+          "family": "mistral-nemotron"
         },
         {
           "family": "nemotron-3-nano-omni",
-          "released": "2026-04",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         },
         {
-          "family": "diffusiongemma",
-          "released": "2026-06"
+          "family": "diffusiongemma"
         },
         {
-          "family": "llama-3.2-90b-vision",
-          "released": "2024-09"
+          "family": "llama-3.2-90b-vision"
         },
         {
-          "family": "llama-3.2-11b-vision",
-          "released": "2024-09"
+          "family": "llama-3.2-11b-vision"
         }
       ],
       "api": {
@@ -1233,16 +1165,13 @@
       "models": [
         {
           "family": "glm-4.7-flash",
-          "released": "2026-01",
           "aa_model": "glm-4-7-flash"
         },
         {
-          "family": "glm-4.5-flash",
-          "released": "2025-07"
+          "family": "glm-4.5-flash"
         },
         {
-          "family": "glm-4.6v-flash",
-          "released": "2026-01"
+          "family": "glm-4.6v-flash"
         }
       ],
       "api": {
@@ -1302,22 +1231,18 @@
       "models": [
         {
           "family": "gpt-oss-120b",
-          "released": "2025-08",
           "aa_model": "gpt-oss-120b"
         },
         {
-          "family": "qwen3.6",
-          "released": ""
+          "family": "qwen3.6"
         },
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         },
         {
-          "family": "qwen3-coder",
-          "released": "2025-07"
+          "family": "qwen3-coder"
         }
       ],
       "api": {
@@ -1371,7 +1296,6 @@
       "models": [
         {
           "family": "gpt-oss-20b",
-          "released": "2025-08",
           "aa_model": "gpt-oss-20b"
         }
       ],
@@ -1421,251 +1345,194 @@
         {
           "family": "qwen3.8-max",
           "tier": "strong",
-          "released": "2026-09",
           "aa_model": "qwen3-8-max"
         },
         {
           "family": "qwen3.8-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-flash-next"
         },
         {
           "family": "qwen3.8-2.4t-a95b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-2-4t-a95b"
         },
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         },
         {
           "family": "deepseek-v4-pro",
           "tier": "strong",
-          "released": "",
           "aa_model": "deepseek-v4-pro"
         },
         {
           "family": "deepseek-v4-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "deepseek-v4-flash"
         },
         {
-          "family": "qwen3-coder-plus",
-          "released": ""
+          "family": "qwen3-coder-plus"
         },
         {
           "family": "qwen3-coder-next",
-          "released": "",
           "aa_model": "qwen3-coder-next"
         },
         {
-          "family": "qwen3.7-max",
-          "released": ""
+          "family": "qwen3.7-max"
         },
         {
           "family": "qwen3.7-plus",
-          "released": "",
           "aa_model": "qwen3-7-plus"
         },
         {
-          "family": "qwen3.7-flash",
-          "released": ""
+          "family": "qwen3.7-flash"
         },
         {
-          "family": "qwen3.6-max",
-          "released": ""
+          "family": "qwen3.6-max"
         },
         {
-          "family": "qwen3.6-plus",
-          "released": ""
+          "family": "qwen3.6-plus"
         },
         {
-          "family": "qwen3.6-flash",
-          "released": ""
+          "family": "qwen3.6-flash"
         },
         {
           "family": "qwen3.6-35b-a3b",
-          "released": "",
           "aa_model": "qwen3-6-35b-a3b"
         },
         {
-          "family": "qwen3.6-27b",
-          "released": ""
+          "family": "qwen3.6-27b"
         },
         {
-          "family": "qwen3.5-plus",
-          "released": ""
+          "family": "qwen3.5-plus"
         },
         {
-          "family": "qwen3.5-flash",
-          "released": ""
+          "family": "qwen3.5-flash"
         },
         {
           "family": "qwen3.5-397b-a17b",
-          "released": "",
           "aa_model": "qwen3-5-397b-a17b"
         },
         {
           "family": "qwen3.5-122b-a10b",
-          "released": "",
           "aa_model": "qwen3-5-122b-a10b"
         },
         {
-          "family": "qwen3.5-35b-a3b",
-          "released": ""
+          "family": "qwen3.5-35b-a3b"
         },
         {
-          "family": "qwen3.5-27b",
-          "released": ""
+          "family": "qwen3.5-27b"
         },
         {
           "family": "qwen3-max",
-          "released": "2026-04",
           "aa_model": "qwen3-max"
         },
         {
-          "family": "qwen3-coder-flash",
-          "released": ""
+          "family": "qwen3-coder-flash"
         },
         {
-          "family": "qwen3-coder-480b-a35b",
-          "released": ""
+          "family": "qwen3-coder-480b-a35b"
         },
         {
-          "family": "qwen3-coder-30b-a3b",
-          "released": ""
+          "family": "qwen3-coder-30b-a3b"
         },
         {
           "family": "qwen3-next-80b-a3b-thinking",
-          "released": "",
           "aa_model": "qwen3-next-80b-a3b-reasoning"
         },
         {
           "family": "qwen3-next-80b-a3b-instruct",
-          "released": "",
           "aa_model": "qwen3-next-80b-a3b-instruct"
         },
         {
-          "family": "qwen3-235b-a22b-thinking-2507",
-          "released": ""
+          "family": "qwen3-235b-a22b-thinking-2507"
         },
         {
-          "family": "qwen3-235b-a22b-instruct-2507",
-          "released": ""
+          "family": "qwen3-235b-a22b-instruct-2507"
         },
         {
-          "family": "qwen3-235b-a22b",
-          "released": ""
+          "family": "qwen3-235b-a22b"
         },
         {
-          "family": "qwen3-30b-a3b-thinking-2507",
-          "released": ""
+          "family": "qwen3-30b-a3b-thinking-2507"
         },
         {
-          "family": "qwen3-30b-a3b-instruct-2507",
-          "released": ""
+          "family": "qwen3-30b-a3b-instruct-2507"
         },
         {
-          "family": "qwen3-30b-a3b",
-          "released": ""
+          "family": "qwen3-30b-a3b"
         },
         {
-          "family": "qwen3-32b",
-          "released": ""
+          "family": "qwen3-32b"
         },
         {
-          "family": "qwen3-14b",
-          "released": ""
+          "family": "qwen3-14b"
         },
         {
-          "family": "qwen3-8b",
-          "released": ""
+          "family": "qwen3-8b"
         },
         {
-          "family": "qwen-max",
-          "released": ""
+          "family": "qwen-max"
         },
         {
-          "family": "qwen-plus",
-          "released": ""
+          "family": "qwen-plus"
         },
         {
-          "family": "qwen-flash",
-          "released": ""
+          "family": "qwen-flash"
         },
         {
-          "family": "qwen-turbo",
-          "released": ""
+          "family": "qwen-turbo"
         },
         {
-          "family": "qwq-plus",
-          "released": ""
+          "family": "qwq-plus"
         },
         {
-          "family": "qvq-max",
-          "released": ""
+          "family": "qvq-max"
         },
         {
-          "family": "qwen3-vl-plus",
-          "released": ""
+          "family": "qwen3-vl-plus"
         },
         {
-          "family": "qwen3-vl-flash",
-          "released": ""
+          "family": "qwen3-vl-flash"
         },
         {
-          "family": "qwen3-vl-235b-a22b-thinking",
-          "released": ""
+          "family": "qwen3-vl-235b-a22b-thinking"
         },
         {
-          "family": "qwen3-vl-235b-a22b-instruct",
-          "released": ""
+          "family": "qwen3-vl-235b-a22b-instruct"
         },
         {
-          "family": "qwen3-vl-32b-thinking",
-          "released": ""
+          "family": "qwen3-vl-32b-thinking"
         },
         {
-          "family": "qwen3-vl-32b-instruct",
-          "released": ""
+          "family": "qwen3-vl-32b-instruct"
         },
         {
-          "family": "qwen3-vl-30b-a3b-thinking",
-          "released": ""
+          "family": "qwen3-vl-30b-a3b-thinking"
         },
         {
-          "family": "qwen3-vl-30b-a3b-instruct",
-          "released": ""
+          "family": "qwen3-vl-30b-a3b-instruct"
         },
         {
-          "family": "qwen3-vl-8b-thinking",
-          "released": ""
+          "family": "qwen3-vl-8b-thinking"
         },
         {
-          "family": "qwen3-vl-8b-instruct",
-          "released": ""
+          "family": "qwen3-vl-8b-instruct"
         },
         {
-          "family": "qwen-vl-max",
-          "released": ""
+          "family": "qwen-vl-max"
         },
         {
-          "family": "qwen-vl-plus",
-          "released": ""
+          "family": "qwen-vl-plus"
         },
         {
           "family": "deepseek-v3.2",
-          "released": "",
           "aa_model": "deepseek-v3-2"
         },
         {
           "family": "glm-5.1",
-          "released": "",
           "aa_model": "glm-5-1"
         }
       ],
@@ -1930,38 +1797,30 @@
       "models": [
         {
           "family": "command-a-plus",
-          "released": "",
           "aa_model": "command-a-plus"
         },
         {
-          "family": "command-a-reasoning",
-          "released": ""
+          "family": "command-a-reasoning"
         },
         {
           "family": "north-mini-code",
-          "released": "",
           "aa_model": "north-mini-code"
         },
         {
           "family": "command-a",
-          "released": "",
           "aa_model": "command-a"
         },
         {
-          "family": "command-a-vision",
-          "released": ""
+          "family": "command-a-vision"
         },
         {
-          "family": "command-r-plus",
-          "released": ""
+          "family": "command-r-plus"
         },
         {
-          "family": "command-r",
-          "released": ""
+          "family": "command-r"
         },
         {
-          "family": "command-r7b",
-          "released": ""
+          "family": "command-r7b"
         }
       ],
       "api": {
@@ -2097,17 +1956,14 @@
       "free_part": "models",
       "models": [
         {
-          "family": "laguna-s-2.1",
-          "released": "2026-07"
+          "family": "laguna-s-2.1"
         },
         {
           "family": "ling-3.0-flash-fin",
-          "released": "2026-09",
           "aa_model": "ling-3-0-flash-fin"
         },
         {
-          "family": "ling-3.0-flash-sante",
-          "released": "2026-09"
+          "family": "ling-3.0-flash-sante"
         }
       ],
       "api": {
@@ -2162,8 +2018,7 @@
       "free_part": "models",
       "models": [
         {
-          "family": "qwen3.7-flash",
-          "released": "2026-07"
+          "family": "qwen3.7-flash"
         }
       ],
       "api": {
@@ -2213,7 +2068,6 @@
       "models": [
         {
           "family": "nemotron-3-nano-omni",
-          "released": "2026-04",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
@@ -2257,16 +2111,13 @@
       "limits": "20 req/min, 20 req/day and 200,000 tokens/day per model on the free tier; five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)",
       "models": [
         {
-          "family": "deepseek",
-          "released": "2025-12"
+          "family": "deepseek"
         },
         {
-          "family": "gpt-oss",
-          "released": "2025-08"
+          "family": "gpt-oss"
         },
         {
-          "family": "gemma-4",
-          "released": "2026-04"
+          "family": "gemma-4"
         }
       ],
       "api": {
@@ -2333,17 +2184,14 @@
         {
           "family": "deepseek-v4-flash",
           "tier": "strong",
-          "released": "2026-04",
           "aa_model": "deepseek-v4-flash"
         },
         {
           "family": "minimax-m2.7",
-          "released": "2026-03",
           "aa_model": "minimax-m2-7"
         },
         {
           "family": "muse-glimmer-30b",
-          "released": "2026-08",
           "aa_model": "muse-glimmer"
         }
       ],
@@ -2402,53 +2250,42 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
           "family": "gemma-4-31b",
-          "released": "2026-04",
           "aa_model": "gemma-4-31b"
         },
         {
           "family": "ling-3.0-tiny",
-          "released": "2026-08",
           "aa_model": "ling-3-0-tiny"
         },
         {
           "family": "muse-glimmer-30b",
-          "released": "2026-08",
           "aa_model": "muse-glimmer"
         },
         {
           "family": "nemotron-3.5-lightning",
-          "released": "2026-08",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "laguna-xs.2",
-          "released": "2026-04"
+          "family": "laguna-xs.2"
         },
         {
-          "family": "laguna-m.1",
-          "released": ""
+          "family": "laguna-m.1"
         },
         {
-          "family": "leanstral-1.5",
-          "released": ""
+          "family": "leanstral-1.5"
         },
         {
-          "family": "nemotron-3-nano-30b",
-          "released": ""
+          "family": "nemotron-3-nano-30b"
         },
         {
           "family": "nemotron-3-nano-omni",
-          "released": "2026-04",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         }
       ],
@@ -2516,40 +2353,33 @@
       "models": [
         {
           "family": "gemini-3.1-pro",
-          "released": "",
           "aa_model": "gemini-3-1-pro-preview"
         },
         {
           "family": "gemini-3.8-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "gemini-3-8-flash"
         },
         {
           "family": "gemini-3.7-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "gemini-3-7-flash"
         },
         {
           "family": "gemini-3.6-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "gemini-3-6-flash"
         },
         {
           "family": "claude-opus-4.6",
-          "released": "",
           "aa_model": "claude-opus-4-6"
         },
         {
           "family": "claude-sonnet-4.6",
-          "released": "",
           "aa_model": "claude-sonnet-4-6"
         },
         {
           "family": "gpt-oss-120b",
-          "released": "2025-08",
           "aa_model": "gpt-oss-120b"
         }
       ],
@@ -2646,12 +2476,10 @@
       "limits": "Retired. The $10 no-card trial belonged to AI21 Studio, and Studio is gone: on 2026-09-05 every studio.ai21.com route landed on the www.ai21.com homepage, and the catalog route answered 410 `This API has been retired. The AI21 Gateway is available at https://app.ai21.com`. The vendor's notice named the day: \"On August 9, 2026, we will officially deprecate and sunset the following APIs in our platform: Jamba API, AI21 Maestro API, File library\". What stands at app.ai21.com is not a model API but a bring-your-own-key gateway in front of OpenAI and Anthropic, with nothing AI21-hosted or free to call",
       "models": [
         {
-          "family": "jamba-mini",
-          "released": "2026-01"
+          "family": "jamba-mini"
         },
         {
-          "family": "jamba-large",
-          "released": "2025-07"
+          "family": "jamba-large"
         }
       ],
       "api": {
@@ -2739,168 +2567,133 @@
         {
           "family": "glm-5.3",
           "tier": "strong",
-          "released": "",
           "aa_model": "glm-5-3"
         },
         {
           "family": "glm-5.3-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "kimi-k3",
           "tier": "strong",
-          "released": "",
           "aa_model": "kimi-k3"
         },
         {
           "family": "glm-5.2",
           "tier": "strong",
-          "released": "",
           "aa_model": "glm-5-2"
         },
         {
           "family": "glm-5.1",
-          "released": "",
           "aa_model": "glm-5-1"
         },
         {
           "family": "glm-5",
-          "released": "2026-02",
           "aa_model": "glm-5"
         },
         {
           "family": "glm-5-turbo",
-          "released": "",
           "aa_model": "glm-5-turbo"
         },
         {
           "family": "mimo-v2.5-pro",
-          "released": "",
           "aa_model": "mimo-v2-5-pro"
         },
         {
           "family": "mimo-v2.5",
-          "released": "",
           "aa_model": "mimo-v2-5-0424"
         },
         {
           "family": "north-mini-code",
-          "released": "2026-06",
           "aa_model": "north-mini-code"
         },
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
           "family": "minimax-m3",
-          "released": "",
           "aa_model": "minimax-m3"
         },
         {
           "family": "minimax-m2.7",
-          "released": "2026-03",
           "aa_model": "minimax-m2-7"
         },
         {
           "family": "hy3",
-          "released": "",
           "aa_model": "hy3"
         },
         {
-          "family": "laguna-s-2.1",
-          "released": "2026-07"
+          "family": "laguna-s-2.1"
         },
         {
-          "family": "laguna-xs-2.1",
-          "released": "2026-07"
+          "family": "laguna-xs-2.1"
         },
         {
-          "family": "kimi-for-coding",
-          "released": ""
+          "family": "kimi-for-coding"
         },
         {
           "family": "ling-3.0-flash",
-          "released": "",
           "aa_model": "ling-3-0-flash"
         },
         {
           "family": "ling-3.0-tiny",
-          "released": "2026-08",
           "aa_model": "ling-3-0-tiny"
         },
         {
-          "family": "glm-4.7",
-          "released": ""
+          "family": "glm-4.7"
         },
         {
           "family": "glm-4.7-flash",
-          "released": "2026-01",
           "aa_model": "glm-4-7-flash"
         },
         {
-          "family": "glm-4.6",
-          "released": ""
+          "family": "glm-4.6"
         },
         {
           "family": "minimax-m2.5",
-          "released": "",
           "aa_model": "minimax-m2-5"
         },
         {
           "family": "minimax-m2.1",
-          "released": "",
           "aa_model": "minimax-m2-1"
         },
         {
-          "family": "minimax-m2",
-          "released": ""
+          "family": "minimax-m2"
         },
         {
-          "family": "mimo-v2-pro",
-          "released": ""
+          "family": "mimo-v2-pro"
         },
         {
-          "family": "mimo-v2-flash",
-          "released": ""
+          "family": "mimo-v2-flash"
         },
         {
-          "family": "mimo-v2-omni",
-          "released": ""
+          "family": "mimo-v2-omni"
         },
         {
-          "family": "dots-3-note",
-          "released": "2026-08"
+          "family": "dots-3-note"
         },
         {
           "family": "nemotron-3.5-lightning",
-          "released": "2026-08",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "nemotron-3-nano-30b",
-          "released": ""
+          "family": "nemotron-3-nano-30b"
         },
         {
           "family": "nemotron-3-nano-omni",
-          "released": "2026-04",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
         },
         {
-          "family": "nemotron-nano-12b-v2-vl",
-          "released": ""
+          "family": "nemotron-nano-12b-v2-vl"
         },
         {
-          "family": "nemotron-nano-9b-v2",
-          "released": ""
+          "family": "nemotron-nano-9b-v2"
         }
       ],
       "api": {
@@ -3193,13 +2986,11 @@
       "free_part": "models",
       "models": [
         {
-          "family": "qwen3.6",
-          "released": ""
+          "family": "qwen3.6"
         },
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -3300,23 +3091,19 @@
         {
           "family": "glm-5.2",
           "tier": "strong",
-          "released": "",
           "aa_model": "glm-5-2"
         },
         {
           "family": "gpt-oss-120b",
-          "released": "",
           "aa_model": "gpt-oss-120b"
         },
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         },
         {
           "family": "apertus-70b",
-          "released": "",
           "aa_model": "apertus-70b-instruct"
         }
       ],
@@ -3381,19 +3168,16 @@
         {
           "family": "glm-5.3-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "deepseek-v4.1-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "deepseek-v4-1-flash"
         },
         {
           "family": "muse-spark-1.2",
           "tier": "strong",
-          "released": "",
           "aa_model": "muse-spark-1-2"
         }
       ],
@@ -3440,7 +3224,6 @@
       "models": [
         {
           "family": "mistral-small-3.2",
-          "released": "2025-06",
           "aa_model": "mistral-small-3-2"
         }
       ],
@@ -3509,21 +3292,17 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
-          "family": "laguna-xs-2.1",
-          "released": "2026-07"
+          "family": "laguna-xs-2.1"
         },
         {
           "family": "ling-3.0-flash-fin",
-          "released": "2026-09",
           "aa_model": "ling-3-0-flash-fin"
         }
       ],
@@ -3670,37 +3449,30 @@
         {
           "family": "deepseek-v4-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "deepseek-v4-flash"
         },
         {
           "family": "glm-5.1",
-          "released": "",
           "aa_model": "glm-5-1"
         },
         {
           "family": "glm-5.3-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "glm-5-3-flash"
         },
         {
           "family": "minimax-m3",
-          "released": "",
           "aa_model": "minimax-m3"
         },
         {
-          "family": "qwen3.6",
-          "released": ""
+          "family": "qwen3.6"
         },
         {
           "family": "minimax-m2.5",
-          "released": "",
           "aa_model": "minimax-m2-5"
         },
         {
-          "family": "diffusiongemma",
-          "released": "2026-06"
+          "family": "diffusiongemma"
         }
       ],
       "api": {
@@ -4067,7 +3839,6 @@
         {
           "family": "muse-spark-1.3-contributor",
           "tier": "strong",
-          "released": "2026-09",
           "aa_model": "muse-spark-1-3-xhigh"
         }
       ],
@@ -4136,12 +3907,10 @@
       "free_part": "models",
       "models": [
         {
-          "family": "agnes-3.0-flash",
-          "released": ""
+          "family": "agnes-3.0-flash"
         },
         {
-          "family": "agnes-2.5-flash",
-          "released": ""
+          "family": "agnes-2.5-flash"
         }
       ],
       "api": {
@@ -4203,7 +3972,6 @@
         {
           "family": "qwen3.8-flash",
           "tier": "strong",
-          "released": "2026-08",
           "aa_model": "qwen3-8-flash-next"
         }
       ],
@@ -4259,8 +4027,7 @@
       "free_part": "models",
       "models": [
         {
-          "family": "mellum",
-          "released": ""
+          "family": "mellum"
         }
       ],
       "data_use": {
@@ -4305,7 +4072,6 @@
         {
           "family": "gpt-5.6-luna",
           "tier": "strong",
-          "released": "",
           "aa_model": "gpt-5-6-luna"
         }
       ],
@@ -4356,7 +4122,6 @@
         {
           "family": "deepseek-v4.1-flash",
           "tier": "strong",
-          "released": "",
           "aa_model": "deepseek-v4-1-flash"
         }
       ],
@@ -4418,12 +4183,10 @@
       "models": [
         {
           "family": "step-3.7-flash",
-          "released": "",
           "aa_model": "step-3-7-flash"
         },
         {
-          "family": "laguna-s-2.1",
-          "released": ""
+          "family": "laguna-s-2.1"
         }
       ],
       "api": {
@@ -4637,7 +4400,6 @@
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -4846,7 +4608,6 @@
       "models": [
         {
           "family": "gemma-4-31b",
-          "released": "",
           "aa_model": "gemma-4-31b"
         }
       ],
@@ -4961,7 +4722,6 @@
       "models": [
         {
           "family": "qwen3.5-4b",
-          "released": "",
           "aa_model": "qwen3-5-4b"
         }
       ],
@@ -5384,12 +5144,10 @@
       "limits": "10M free tokens on signup (one-time trial, no card); paid usage billed in crypto",
       "models": [
         {
-          "family": "minimax-m2",
-          "released": ""
+          "family": "minimax-m2"
         },
         {
-          "family": "kimi-k2",
-          "released": ""
+          "family": "kimi-k2"
         }
       ],
       "probe": {
@@ -5430,12 +5188,10 @@
       "limits": "5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models",
       "models": [
         {
-          "family": "deepseek-chat",
-          "released": ""
+          "family": "deepseek-chat"
         },
         {
-          "family": "deepseek-reasoner",
-          "released": ""
+          "family": "deepseek-reasoner"
         }
       ],
       "api": {
@@ -5487,12 +5243,10 @@
       "limits": "$10 free credits at the start of every month, usable on any API feature",
       "models": [
         {
-          "family": "reka-core",
-          "released": ""
+          "family": "reka-core"
         },
         {
-          "family": "reka-flash",
-          "released": ""
+          "family": "reka-flash"
         }
       ],
       "api": {
@@ -5594,12 +5348,10 @@
       "limits": "100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout",
       "models": [
         {
-          "family": "longcat-2.0",
-          "released": "2026-06"
+          "family": "longcat-2.0"
         },
         {
-          "family": "longcat-flash",
-          "released": "2025-09"
+          "family": "longcat-flash"
         }
       ],
       "api": {
@@ -5652,12 +5404,10 @@
       "limits": "Cerebras' own docs: \"New accounts receive $5 in free credits after adding a verified payment method\", credits \"expire 30 days after they're granted\", and \"If you skip adding a payment method at sign-up, Playground and API access remain inactive until you do\". Asked \"Is there a permanently free tier?\" the same page answers \"No\". Free Trial rate limits are per model and the same on both the public catalog now lists — 5 RPM, 30K uncached TPM, 90K total TPM, 1M TPH, 1M TPD each (read 2026-09-03), the two TPM figures being the dual bucket the page describes. That catalog has turned over twice: GLM 4.7 was deprecated on 2026-08-17 exactly as it announced, and Gemma 4 31B left between the 09:55 UTC probe on 2026-09-03, which still found it named, and a re-read eleven hours later — replaced by Qwen 3.8 27B, the one model here that reads images, 2 per request on this tier. The marketing pricing page still promises the credits \"after making an account\" and mentions no card — that was the old API tier, which accounts opened before the change kept until 2026-08-17 and which is now gone",
       "models": [
         {
-          "family": "gpt-oss",
-          "released": "2025-08"
+          "family": "gpt-oss"
         },
         {
-          "family": "qwen3.8",
-          "released": ""
+          "family": "qwen3.8"
         }
       ],
       "api": {
@@ -5759,22 +5509,18 @@
       "models": [
         {
           "family": "nemotron-3-ultra",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"
         },
         {
           "family": "nemotron-3-super",
-          "released": "2026-03",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
           "family": "step-3.7-flash",
-          "released": "2026-07",
           "aa_model": "step-3-7-flash"
         },
         {
-          "family": "laguna-s-2.1",
-          "released": "2026-07"
+          "family": "laguna-s-2.1"
         }
       ],
       "probe": {
@@ -5864,7 +5610,6 @@
         {
           "family": "qwen3.8-27b",
           "tier": "strong",
-          "released": "",
           "aa_model": "qwen3-8-27b"
         }
       ],
@@ -5922,16 +5667,13 @@
       "free_part": "models",
       "models": [
         {
-          "family": "xing4.0-29b",
-          "released": ""
+          "family": "xing4.0-29b"
         },
         {
-          "family": "qwen3-8b",
-          "released": ""
+          "family": "qwen3-8b"
         },
         {
-          "family": "glm-4-9b-0414",
-          "released": ""
+          "family": "glm-4-9b-0414"
         }
       ],
       "api": {
@@ -6058,21 +5800,17 @@
       "models": [
         {
           "family": "gemini-3.1-pro",
-          "released": "",
           "aa_model": "gemini-3-1-pro-preview"
         },
         {
-          "family": "gemini-3-flash",
-          "released": ""
+          "family": "gemini-3-flash"
         },
         {
           "family": "gemini-2.5-pro",
-          "released": "",
           "aa_model": "gemini-2-5-pro"
         },
         {
-          "family": "gemini-2.5-flash",
-          "released": ""
+          "family": "gemini-2.5-flash"
         }
       ],
       "api": {

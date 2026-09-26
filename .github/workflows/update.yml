@@ -61,10 +61,14 @@ jobs:
       # models ship. Re-read on every run, so the frontier answer at the top of the
       # README follows the index instead of the day a mark was typed. Best effort:
       # the leaderboard being down or reshaped is not a reason to stop a run that
-      # has probes to record, and the marks stay as they were.
+      # has probes to record, and the marks stay as they were. In the summary
+      # beside the bars report: a new model the board scores into a tier with no
+      # aa_model on its family is named there, for the reviewer to measure.
       - name: Re-read tier marks from the Artificial Analysis index
         continue-on-error: true
-        run: uv run freetier-tiers --registry registry.yaml --write
+        run: |
+          set -o pipefail
+          uv run freetier-tiers --registry registry.yaml --write | tee -a "$GITHUB_STEP_SUMMARY"
 
       # Which ids a free lane has carried for two weeks with no Models-column
       # family, and when the rest fall due. A report for the reviewer, never a

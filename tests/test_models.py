@@ -27,8 +27,8 @@ def sample_entry() -> dict:
         "offering": "Free variants of frontier models via one API",
         "limits": "50 req/day free",
         "models": [
-            {"family": "deepseek", "tier": "frontier", "released": "2025-12"},
-            {"family": "qwen3-coder", "tier": "strong", "released": "2025-07"},
+            {"family": "deepseek", "tier": "frontier"},
+            {"family": "qwen3-coder", "tier": "strong"},
         ],
         "probe": {
             "type": "api-models",

@@ -22,42 +22,28 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: gemma-4-31b
-    released: 2026-04
     aa_model: gemma-4-31b
   - family: gemma-4-26b-a4b
-    released: 2026-04
     aa_model: gemma-4-26b-a4b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
-    released: 2026-06
     aa_model: north-mini-code
   - family: laguna-s-2.1
-    released: 2026-07
   - family: laguna-xs-2.1
-    released: 2026-07
   - family: nemotron-3.5-lightning
-    released: 2026-08
     aa_model: nemotron-3-5-lightning
   - family: inkling
-    released: 2026-07
     aa_model: inkling
   - family: inkling-small
-    released: 2026-07
     aa_model: inkling-small
   - family: dots-3-note
-    released: 2026-08
   - family: ling-3.0-flash-fin
-    released: 2026-09
     aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
-    released: 2026-09
   - family: nemotron-3-nano-omni
-    released: 2026-04
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://openrouter.ai/api/v1
@@ -145,29 +131,21 @@ entries:
   models:
   - family: gemini-3.8-flash
     tier: strong
-    released: ''
     aa_model: gemini-3-8-flash
   - family: gemini-3.7-flash
     tier: strong
-    released: ''
     aa_model: gemini-3-7-flash
   - family: gemini-3.6-flash
     tier: strong
-    released: ''
     aa_model: gemini-3-6-flash
   - family: gemini-3.5-flash
-    released: ''
     aa_model: gemini-3-5-flash
   - family: gemini-3.5-flash-lite
-    released: ''
     aa_model: gemini-3-5-flash-lite
   - family: gemini-3.1-flash-lite
-    released: ''
     aa_model: gemini-3-1-flash-lite-preview
   - family: gemini-3-flash
-    released: ''
   - family: gemma-4
-    released: ''
   api:
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
     key_url: https://aistudio.google.com/apikey
@@ -227,16 +205,12 @@ entries:
   free_part: models
   models:
   - family: gpt-oss-120b
-    released: 2025-08
     aa_model: gpt-oss-120b
   - family: gpt-oss-20b
-    released: 2025-08
     aa_model: gpt-oss-20b
   - family: qwen3.6
-    released: ''
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   api:
     base_url: https://api.groq.com/openai/v1
@@ -345,7 +319,6 @@ entries:
     and fully retired (playground, catalog, inference API, BYOK) on 2026-07-30
   models:
   - family: gpt-4.1
-    released: 2025-04
     aa_model: gpt-4-1
   api:
     base_url: https://models.github.ai/inference
@@ -507,22 +480,16 @@ entries:
   free_part: models
   models:
   - family: big-pickle
-    released: ''
   - family: mimo-v2.5
-    released: ''
     aa_model: mimo-v2-5-0424
   - family: ling-3.0-flash-fin
-    released: ''
     aa_model: ling-3-0-flash-fin
   - family: nemotron-3-ultra
-    released: ''
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
-    released: ''
     aa_model: nemotron-3-5-lightning
   - family: muse-spark-1.3-contributor
     tier: strong
-    released: 2026-09
     aa_model: muse-spark-1-3-xhigh
   data_use:
     trains: 'yes'
@@ -568,36 +535,24 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
-    released: 2026-06
     aa_model: north-mini-code
   - family: step-3.7-flash
-    released: 2026-06
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
-    released: 2026-07
   - family: laguna-xs-2.1
-    released: 2026-07
   - family: nemotron-3.5-lightning
-    released: 2026-08
     aa_model: nemotron-3-5-lightning
   - family: inkling-small
-    released: 2026-07
     aa_model: inkling-small
   - family: dots-3-note
-    released: 2026-08
   - family: ling-3.0-flash-fin
-    released: 2026-09
     aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
-    released: 2026-09
   - family: nemotron-3-nano-omni
-    released: 2026-04
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://api.kilo.ai/api/gateway
@@ -767,7 +722,6 @@ entries:
     read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17'
   models:
   - family: mimo-v2.5
-    released: ''
     aa_model: mimo-v2-5-0424
   probe:
     type: page-keywords
@@ -856,7 +810,6 @@ entries:
   free_part: models
   models:
   - family: gemini-2.5
-    released: ''
   data_use:
     trains: opt-out
     quote: Let Google use your future Jules conversations and code on content Jules
@@ -900,25 +853,18 @@ entries:
   free_part: models
   models:
   - family: claude-sonnet-4.5
-    released: ''
     aa_model: claude-4-5-sonnet
   - family: claude-sonnet-4
-    released: ''
     aa_model: claude-4-sonnet
   - family: glm-5
-    released: ''
     aa_model: glm-5
   - family: minimax-m2.5
-    released: ''
     aa_model: minimax-m2-5
   - family: deepseek-v3.2
-    released: ''
     aa_model: deepseek-v3-2
   - family: qwen3-coder-next
-    released: ''
     aa_model: qwen3-coder-next
   - family: minimax-m2.1
-    released: ''
     aa_model: minimax-m2-1
   data_use:
     trains: opt-out
@@ -966,7 +912,6 @@ entries:
   free_part: models
   models:
   - family: composer
-    released: ''
   data_use:
     trains: opt-out
     quote: we may use and store codebase data, prompts, editor actions, code snippets,
@@ -1056,39 +1001,26 @@ entries:
   models:
   - family: kimi-k3
     tier: strong
-    released: ''
     aa_model: kimi-k3
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
-    released: 2026-07
   - family: muse-glimmer-30b
-    released: 2026-08
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
-    released: 2026-08
     aa_model: nemotron-3-5-lightning
   - family: gemma-4-31b
-    released: ''
     aa_model: gemma-4-31b
   - family: gpt-oss-20b
-    released: 2025-08
     aa_model: gpt-oss-20b
   - family: mistral-nemotron
-    released: 2025-06
   - family: nemotron-3-nano-omni
-    released: 2026-04
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: diffusiongemma
-    released: 2026-06
   - family: llama-3.2-90b-vision
-    released: 2024-09
   - family: llama-3.2-11b-vision
-    released: 2024-09
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
@@ -1161,12 +1093,9 @@ entries:
   free_part: models
   models:
   - family: glm-4.7-flash
-    released: 2026-01
     aa_model: glm-4-7-flash
   - family: glm-4.5-flash
-    released: 2025-07
   - family: glm-4.6v-flash
-    released: 2026-01
   api:
     base_url: https://api.z.ai/api/paas/v4
     key_url: https://z.ai/manage-apikey/apikey-list
@@ -1232,16 +1161,12 @@ entries:
   free_part: models
   models:
   - family: gpt-oss-120b
-    released: 2025-08
     aa_model: gpt-oss-120b
   - family: qwen3.6
-    released: ''
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   - family: qwen3-coder
-    released: 2025-07
   api:
     base_url: https://oai.endpoints.kepler.ai.cloud.ovh.net/v1
     auth: none
@@ -1295,7 +1220,6 @@ entries:
   free_part: models
   models:
   - family: gpt-oss-20b
-    released: 2025-08
     aa_model: gpt-oss-20b
   api:
     base_url: https://text.pollinations.ai/openai
@@ -1350,139 +1274,82 @@ entries:
   models:
   - family: qwen3.8-max
     tier: strong
-    released: 2026-09
     aa_model: qwen3-8-max
   - family: qwen3.8-flash
     tier: strong
-    released: ''
     aa_model: qwen3-8-flash-next
   - family: qwen3.8-2.4t-a95b
     tier: strong
-    released: ''
     aa_model: qwen3-8-2-4t-a95b
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   - family: deepseek-v4-pro
     tier: strong
-    released: ''
     aa_model: deepseek-v4-pro
   - family: deepseek-v4-flash
     tier: strong
-    released: ''
     aa_model: deepseek-v4-flash
   - family: qwen3-coder-plus
-    released: ''
   - family: qwen3-coder-next
-    released: ''
     aa_model: qwen3-coder-next
   - family: qwen3.7-max
-    released: ''
   - family: qwen3.7-plus
-    released: ''
     aa_model: qwen3-7-plus
   - family: qwen3.7-flash
-    released: ''
   - family: qwen3.6-max
-    released: ''
   - family: qwen3.6-plus
-    released: ''
   - family: qwen3.6-flash
-    released: ''
   - family: qwen3.6-35b-a3b
-    released: ''
     aa_model: qwen3-6-35b-a3b
   - family: qwen3.6-27b
-    released: ''
   - family: qwen3.5-plus
-    released: ''
   - family: qwen3.5-flash
-    released: ''
   - family: qwen3.5-397b-a17b
-    released: ''
     aa_model: qwen3-5-397b-a17b
   - family: qwen3.5-122b-a10b
-    released: ''
     aa_model: qwen3-5-122b-a10b
   - family: qwen3.5-35b-a3b
-    released: ''
   - family: qwen3.5-27b
-    released: ''
   - family: qwen3-max
-    released: 2026-04
     aa_model: qwen3-max
   - family: qwen3-coder-flash
-    released: ''
   - family: qwen3-coder-480b-a35b
-    released: ''
   - family: qwen3-coder-30b-a3b
-    released: ''
   - family: qwen3-next-80b-a3b-thinking
-    released: ''
     aa_model: qwen3-next-80b-a3b-reasoning
   - family: qwen3-next-80b-a3b-instruct
-    released: ''
     aa_model: qwen3-next-80b-a3b-instruct
   - family: qwen3-235b-a22b-thinking-2507
-    released: ''
   - family: qwen3-235b-a22b-instruct-2507
-    released: ''
   - family: qwen3-235b-a22b
-    released: ''
   - family: qwen3-30b-a3b-thinking-2507
-    released: ''
   - family: qwen3-30b-a3b-instruct-2507
-    released: ''
   - family: qwen3-30b-a3b
-    released: ''
   - family: qwen3-32b
-    released: ''
   - family: qwen3-14b
-    released: ''
   - family: qwen3-8b
-    released: ''
   - family: qwen-max
-    released: ''
   - family: qwen-plus
-    released: ''
   - family: qwen-flash
-    released: ''
   - family: qwen-turbo
-    released: ''
   - family: qwq-plus
-    released: ''
   - family: qvq-max
-    released: ''
   - family: qwen3-vl-plus
-    released: ''
   - family: qwen3-vl-flash
-    released: ''
   - family: qwen3-vl-235b-a22b-thinking
-    released: ''
   - family: qwen3-vl-235b-a22b-instruct
-    released: ''
   - family: qwen3-vl-32b-thinking
-    released: ''
   - family: qwen3-vl-32b-instruct
-    released: ''
   - family: qwen3-vl-30b-a3b-thinking
-    released: ''
   - family: qwen3-vl-30b-a3b-instruct
-    released: ''
   - family: qwen3-vl-8b-thinking
-    released: ''
   - family: qwen3-vl-8b-instruct
-    released: ''
   - family: qwen-vl-max
-    released: ''
   - family: qwen-vl-plus
-    released: ''
   - family: deepseek-v3.2
-    released: ''
     aa_model: deepseek-v3-2
   - family: glm-5.1
-    released: ''
     aa_model: glm-5-1
   api:
     base_url: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
@@ -1738,24 +1605,16 @@ entries:
   free_part: models
   models:
   - family: command-a-plus
-    released: ''
     aa_model: command-a-plus
   - family: command-a-reasoning
-    released: ''
   - family: north-mini-code
-    released: ''
     aa_model: north-mini-code
   - family: command-a
-    released: ''
     aa_model: command-a
   - family: command-a-vision
-    released: ''
   - family: command-r-plus
-    released: ''
   - family: command-r
-    released: ''
   - family: command-r7b
-    released: ''
   api:
     base_url: https://api.cohere.com/compatibility/v1
     key_url: https://dashboard.cohere.com/api-keys
@@ -1891,12 +1750,9 @@ entries:
   free_part: models
   models:
   - family: laguna-s-2.1
-    released: 2026-07
   - family: ling-3.0-flash-fin
-    released: 2026-09
     aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
-    released: 2026-09
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -1959,7 +1815,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.7-flash
-    released: 2026-07
   api:
     base_url: https://api.bazaarlink.ai/v1
     key_url: https://bazaarlink.ai/keys
@@ -2008,7 +1863,6 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-nano-omni
-    released: 2026-04
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://api.tokenrouter.com/v1
@@ -2050,11 +1904,8 @@ entries:
     five models carry it (DeepSeek V3.1/V3.2, Llama 3.3 70B, gpt-oss-120b, Gemma 4)
   models:
   - family: deepseek
-    released: 2025-12
   - family: gpt-oss
-    released: 2025-08
   - family: gemma-4
-    released: 2026-04
   api:
     base_url: https://api.sambanova.ai/v1
     key_url: https://cloud.sambanova.ai/apis
@@ -2118,13 +1969,10 @@ entries:
   models:
   - family: deepseek-v4-flash
     tier: strong
-    released: 2026-04
     aa_model: deepseek-v4-flash
   - family: minimax-m2.7
-    released: 2026-03
     aa_model: minimax-m2-7
   - family: muse-glimmer-30b
-    released: 2026-08
     aa_model: muse-glimmer
   api:
     base_url: https://api.routeway.ai/v1
@@ -2180,33 +2028,22 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4-31b
-    released: 2026-04
     aa_model: gemma-4-31b
   - family: ling-3.0-tiny
-    released: 2026-08
     aa_model: ling-3-0-tiny
   - family: muse-glimmer-30b
-    released: 2026-08
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
-    released: 2026-08
     aa_model: nemotron-3-5-lightning
   - family: laguna-xs.2
-    released: 2026-04
   - family: laguna-m.1
-    released: ''
   - family: leanstral-1.5
-    released: ''
   - family: nemotron-3-nano-30b
-    released: ''
   - family: nemotron-3-nano-omni
-    released: 2026-04
     aa_model: nemotron-3-nano-omni-30b-a3b
   api:
     base_url: https://router.requesty.ai/v1
@@ -2280,28 +2117,21 @@ entries:
   free_part: models
   models:
   - family: gemini-3.1-pro
-    released: ''
     aa_model: gemini-3-1-pro-preview
   - family: gemini-3.8-flash
     tier: strong
-    released: ''
     aa_model: gemini-3-8-flash
   - family: gemini-3.7-flash
     tier: strong
-    released: ''
     aa_model: gemini-3-7-flash
   - family: gemini-3.6-flash
     tier: strong
-    released: ''
     aa_model: gemini-3-6-flash
   - family: claude-opus-4.6
-    released: ''
     aa_model: claude-opus-4-6
   - family: claude-sonnet-4.6
-    released: ''
     aa_model: claude-sonnet-4-6
   - family: gpt-oss-120b
-    released: 2025-08
     aa_model: gpt-oss-120b
   data_use:
     trains: opt-out
@@ -2400,9 +2230,7 @@ entries:
     with nothing AI21-hosted or free to call'
   models:
   - family: jamba-mini
-    released: 2026-01
   - family: jamba-large
-    released: 2025-07
   api:
     base_url: https://api.ai21.com/studio/v1
     key_url: https://studio.ai21.com/sign-up
@@ -2491,100 +2319,65 @@ entries:
   models:
   - family: glm-5.3
     tier: strong
-    released: ''
     aa_model: glm-5-3
   - family: glm-5.3-flash
     tier: strong
-    released: ''
     aa_model: glm-5-3-flash
   - family: kimi-k3
     tier: strong
-    released: ''
     aa_model: kimi-k3
   - family: glm-5.2
     tier: strong
-    released: ''
     aa_model: glm-5-2
   - family: glm-5.1
-    released: ''
     aa_model: glm-5-1
   - family: glm-5
-    released: 2026-02
     aa_model: glm-5
   - family: glm-5-turbo
-    released: ''
     aa_model: glm-5-turbo
   - family: mimo-v2.5-pro
-    released: ''
     aa_model: mimo-v2-5-pro
   - family: mimo-v2.5
-    released: ''
     aa_model: mimo-v2-5-0424
   - family: north-mini-code
-    released: 2026-06
     aa_model: north-mini-code
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: minimax-m3
-    released: ''
     aa_model: minimax-m3
   - family: minimax-m2.7
-    released: 2026-03
     aa_model: minimax-m2-7
   - family: hy3
-    released: ''
     aa_model: hy3
   - family: laguna-s-2.1
-    released: 2026-07
   - family: laguna-xs-2.1
-    released: 2026-07
   - family: kimi-for-coding
-    released: ''
   - family: ling-3.0-flash
-    released: ''
     aa_model: ling-3-0-flash
   - family: ling-3.0-tiny
-    released: 2026-08
     aa_model: ling-3-0-tiny
   - family: glm-4.7
-    released: ''
   - family: glm-4.7-flash
-    released: 2026-01
     aa_model: glm-4-7-flash
   - family: glm-4.6
-    released: ''
   - family: minimax-m2.5
-    released: ''
     aa_model: minimax-m2-5
   - family: minimax-m2.1
-    released: ''
     aa_model: minimax-m2-1
   - family: minimax-m2
-    released: ''
   - family: mimo-v2-pro
-    released: ''
   - family: mimo-v2-flash
-    released: ''
   - family: mimo-v2-omni
-    released: ''
   - family: dots-3-note
-    released: 2026-08
   - family: nemotron-3.5-lightning
-    released: 2026-08
     aa_model: nemotron-3-5-lightning
   - family: nemotron-3-nano-30b
-    released: ''
   - family: nemotron-3-nano-omni
-    released: 2026-04
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: nemotron-nano-12b-v2-vl
-    released: ''
   - family: nemotron-nano-9b-v2
-    released: ''
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://aihubmix.com/token
@@ -2898,10 +2691,8 @@ entries:
   free_part: models
   models:
   - family: qwen3.6
-    released: ''
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   api:
     base_url: https://inference.hetzner.com/api/v1
@@ -3008,17 +2799,13 @@ entries:
   models:
   - family: glm-5.2
     tier: strong
-    released: ''
     aa_model: glm-5-2
   - family: gpt-oss-120b
-    released: ''
     aa_model: gpt-oss-120b
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   - family: apertus-70b
-    released: ''
     aa_model: apertus-70b-instruct
   api:
     base_url: https://api.regolo.ai/v1
@@ -3089,15 +2876,12 @@ entries:
   models:
   - family: glm-5.3-flash
     tier: strong
-    released: ''
     aa_model: glm-5-3-flash
   - family: deepseek-v4.1-flash
     tier: strong
-    released: ''
     aa_model: deepseek-v4-1-flash
   - family: muse-spark-1.2
     tier: strong
-    released: ''
     aa_model: muse-spark-1-2
   data_use:
     trains: 'yes'
@@ -3144,7 +2928,6 @@ entries:
   free_part: models
   models:
   - family: mistral-small-3.2
-    released: 2025-06
     aa_model: mistral-small-3-2
   api:
     base_url: https://api.meganova.ai/v1
@@ -3220,15 +3003,11 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
-    released: 2026-07
   - family: ling-3.0-flash-fin
-    released: 2026-09
     aa_model: ling-3-0-flash-fin
   api:
     base_url: https://llmtr.com/v1
@@ -3394,25 +3173,18 @@ entries:
   models:
   - family: deepseek-v4-flash
     tier: strong
-    released: ''
     aa_model: deepseek-v4-flash
   - family: glm-5.1
-    released: ''
     aa_model: glm-5-1
   - family: glm-5.3-flash
     tier: strong
-    released: ''
     aa_model: glm-5-3-flash
   - family: minimax-m3
-    released: ''
     aa_model: minimax-m3
   - family: qwen3.6
-    released: ''
   - family: minimax-m2.5
-    released: ''
     aa_model: minimax-m2-5
   - family: diffusiongemma
-    released: 2026-06
   api:
     base_url: https://freeinference.org/v1
     key_url: https://freeinference.org
@@ -3828,7 +3600,6 @@ entries:
   models:
   - family: muse-spark-1.3-contributor
     tier: strong
-    released: 2026-09
     aa_model: muse-spark-1-3-xhigh
   client_lane:
     model_ids:
@@ -3893,9 +3664,7 @@ entries:
   free_part: models
   models:
   - family: agnes-3.0-flash
-    released: ''
   - family: agnes-2.5-flash
-    released: ''
   api:
     base_url: https://apihub.agnes-ai.com/v1
     key_url: https://platform.agnes-ai.com
@@ -3963,7 +3732,6 @@ entries:
   models:
   - family: qwen3.8-flash
     tier: strong
-    released: 2026-08
     aa_model: qwen3-8-flash-next
   api:
     base_url: https://yolo-auto.com/v1
@@ -4027,7 +3795,6 @@ entries:
   free_part: models
   models:
   - family: mellum
-    released: ''
   data_use:
     trains: opt-out
     quote: For licenses that are for non-commercial use, this setting is enabled by
@@ -4072,7 +3839,6 @@ entries:
   models:
   - family: gpt-5.6-luna
     tier: strong
-    released: ''
     aa_model: gpt-5-6-luna
   data_use:
     trains: 'no'
@@ -4127,7 +3893,6 @@ entries:
   models:
   - family: deepseek-v4.1-flash
     tier: strong
-    released: ''
     aa_model: deepseek-v4-1-flash
   api:
     base_url: https://tokenharbor.ai/v1
@@ -4189,10 +3954,8 @@ entries:
   free_part: models
   models:
   - family: step-3.7-flash
-    released: ''
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
-    released: ''
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com
@@ -4423,7 +4186,6 @@ entries:
   models:
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   api:
     base_url: https://gateway.vlm.run/v1/openai
@@ -4659,7 +4421,6 @@ entries:
   free_part: models
   models:
   - family: gemma-4-31b
-    released: ''
     aa_model: gemma-4-31b
   api:
     base_url: https://api.opper.ai/v3/compat
@@ -4778,7 +4539,6 @@ entries:
   free_part: models
   models:
   - family: qwen3.5-4b
-    released: ''
     aa_model: qwen3-5-4b
   api:
     base_url: https://models.mixlayer.ai/v1
@@ -5196,9 +4956,7 @@ entries:
     crypto
   models:
   - family: minimax-m2
-    released: ''
   - family: kimi-k2
-    released: ''
   probe:
     type: page-keywords
     endpoint: https://gonka-api.org/
@@ -5231,9 +4989,7 @@ entries:
     free models
   models:
   - family: deepseek-chat
-    released: ''
   - family: deepseek-reasoner
-    released: ''
   api:
     base_url: https://api.deepseek.com
     key_url: https://platform.deepseek.com/api_keys
@@ -5274,9 +5030,7 @@ entries:
   limits: $10 free credits at the start of every month, usable on any API feature
   models:
   - family: reka-core
-    released: ''
   - family: reka-flash
-    released: ''
   api:
     base_url: https://api.reka.ai/v1
     key_url: https://platform.reka.ai
@@ -5362,9 +5116,7 @@ entries:
     is announced and the model is uncapped during rollout
   models:
   - family: longcat-2.0
-    released: 2026-06
   - family: longcat-flash
-    released: 2025-09
   api:
     base_url: https://api.longcat.chat/openai/v1
     key_url: https://longcat.chat/platform
@@ -5421,9 +5173,7 @@ entries:
     change kept until 2026-08-17 and which is now gone'
   models:
   - family: gpt-oss
-    released: 2025-08
   - family: qwen3.8
-    released: ''
   api:
     base_url: https://api.cerebras.ai/v1
     key_url: https://cloud.cerebras.ai
@@ -5538,16 +5288,12 @@ entries:
     mirror under /en/docs'
   models:
   - family: nemotron-3-ultra
-    released: 2026-03
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
-    released: 2026-03
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: step-3.7-flash
-    released: 2026-07
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
-    released: 2026-07
   probe:
     type: api-models
     endpoint: https://kenari.id/v1/models
@@ -5636,7 +5382,6 @@ entries:
   models:
   - family: qwen3.8-27b
     tier: strong
-    released: ''
     aa_model: qwen3-8-27b
   api:
     base_url: https://api.llmtech.eu/v1
@@ -5697,11 +5442,8 @@ entries:
   free_part: models
   models:
   - family: xing4.0-29b
-    released: ''
   - family: qwen3-8b
-    released: ''
   - family: glm-4-9b-0414
-    released: ''
   api:
     base_url: https://api.siliconflow.cn/v1
     key_url: https://cloud.siliconflow.cn/account/ak
@@ -5833,15 +5575,11 @@ entries:
   free_part: models
   models:
   - family: gemini-3.1-pro
-    released: ''
     aa_model: gemini-3-1-pro-preview
   - family: gemini-3-flash
-    released: ''
   - family: gemini-2.5-pro
-    released: ''
     aa_model: gemini-2-5-pro
   - family: gemini-2.5-flash
-    released: ''
   api:
     base_url: https://aiplatform.googleapis.com/v1
     key_url: https://console.cloud.google.com/expressmode

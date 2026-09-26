@@ -359,6 +359,11 @@ def test_every_family_is_a_path_segment():
     with pytest.raises(ValueError, match="the index of every model"):
         make(models=[{"family": "index"}])
     make(models=[{"family": "qwen3.8-2.4t-a95b"}])
+    # A vendor's capitals — a scout proposal copying "GLM-5.4 Flash" off a
+    # pricing page — make the family, in the registry's one spelling, not a
+    # refusal that would drop the whole proposal.
+    spelled = make(models=[{"family": "GLM-5.4 Flash", "superseded_by": "GLM-5.5 Flash"}]).models[0]
+    assert (spelled.family, spelled.superseded_by) == ("glm-5.4-flash", "glm-5.5-flash")
 
 
 def test_every_page_the_render_writes_is_one_indexnow_submits(tmp_path):

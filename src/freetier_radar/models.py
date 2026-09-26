@@ -194,11 +194,22 @@ class ModelFamily(BaseModel):
     # 2026-09-17 every family defaulted to `strong`, so Apertus 70B at 5 points
     # and GLM 5.3 Flash at 42 carried the same word.
     tier: Tier | None = None
-    released: str = ""
     superseded_by: str | None = None
     # The Artificial Analysis model the tier was read from: the slug of its page
     # on artificialanalysis.ai/models/, for the variant the lane actually serves.
     aa_model: str | None = None
+
+    @field_validator("family", "superseded_by", mode="before")
+    @classmethod
+    def _family_is_spelled_one_way(cls, value):
+        """A family is matched against catalog ids with case and spacing
+        ignored (`family_names`), so "GLM-5.4 Flash" and glm-5.4-flash are one
+        family — and one page. It is kept in the registry's one spelling, lower
+        case with a hyphen for a space, so a vendor's capitals in a proposal
+        make a family rather than a refusal."""
+        if isinstance(value, str):
+            return re.sub(r"\s+", "-", value.strip().lower())
+        return value
 
     @field_validator("family")
     @classmethod

@@ -145,3 +145,23 @@ async def test_a_row_that_disagrees_with_the_measurement_moves_whatever_the_file
 
     assert await _amain(registry, write=True) == 0
     assert [m.tier for e in load_registry(registry) for m in e.models] == [Tier.FRONTIER] * 2
+
+
+def test_a_new_model_the_board_scores_is_named_for_the_reviewer():
+    """A family added with no aa_model carries no tier, and until 2026-09-26
+    nothing said so: a new strong model stayed off the strong list, and off a
+    page of its own while one row served it, until someone remembered. The
+    review names every family no row measures whose name, read the way the
+    board spells a slug — a hyphen for a dot — is a model the board scores.
+    Only a slug the board lists is offered, never a guess, and the reviewer
+    names the variant the lane serves."""
+    from freetier_radar.tiers import unmeasured
+    entries = [
+        entry("a", {"family": "glm-5.3"}, {"family": "gemini-3.8-flash", "aa_model": "gemini-3-8-flash"},
+              {"family": "no-such-model"}, {"family": "nvidia-nemotron-3-ultra-550b-a55b"}),
+        entry("b", {"family": "gemini-3.8-flash"}),
+    ]
+    found = unmeasured(entries, parse_leaderboard(page()))
+    # gemini-3.8-flash is measured on row a; nemotron scores below every bar,
+    # so measuring it would change nothing a page says.
+    assert [(family, scored.slug) for family, scored in found] == [("glm-5.3", "glm-5-3")]
