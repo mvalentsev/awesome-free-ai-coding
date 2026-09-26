@@ -307,8 +307,17 @@ def _trains(e: Entry) -> bool:
     return e.data_use is not None and e.data_use.trains in ("yes", "opt-out")
 
 
+def _row_models(e: Entry, pages: set[str]) -> str:
+    """A row's models as a Markdown line names them — the README's list and the
+    provider index alike: the first README_MODELS, each linking its own page
+    where it has one (what a reader who stops on a model name came for), then
+    a count linking the row's page for the rest — Alibaba's fifty-seven."""
+    shown, more = _readme_families(e)
+    return " · ".join(([_family_links(shown, pages, " · ")] if shown else [])
+                      + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else []))
+
+
 def _row(e: Entry, pages: set[str]) -> dict[str, str]:
-    fams, more = _readme_families(e)
     return {
         "name": e.name,
         "url": e.url,
@@ -334,11 +343,7 @@ def _row(e: Entry, pages: set[str]) -> dict[str, str]:
         # Backticked, because a model id is something the reader will paste into
         # a config rather than read as prose. A row that names no model has the
         # date alone on its small line.
-        # A model with a page of its own links it — every row that serves it,
-        # with the limits — which is what a reader who stops on a model name
-        # in a row came for.
-        "models": " · ".join(([_family_links(fams, pages, " · ")] if fams else [])
-                             + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else [])),
+        "models": _row_models(e, pages),
     }
 
 
@@ -1956,17 +1961,23 @@ def build_providers_index(entries: list[Entry], today: date,
     live = [e for e in entries if not is_archived(e, today)]
     archived = _archive(entries, today)
     pages = model_pages(entries, events or [], today) if pages is None else pages
-    out += ["| Provider | Section | Free models | Last verified |", "|---|---|---|---|"]
+    # A list per section rather than one table: a four-column table with a run
+    # of models in one cell stood wider than a phone on 2026-09-26, and the
+    # README had learned the same a day earlier.
     for cat, title in CATEGORY_TITLES.items():
-        for e in _ordered(live, cat):
-            fams = _family_links(live_families(e), pages) or "—"
-            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {title} | {fams} "
-                       f"| `{e.last_verified.isoformat()}` |")
+        rows = _ordered(live, cat)
+        if not rows:
+            continue
+        out += [f"## {title}", ""]
+        for e in rows:
+            fams = _row_models(e, pages)
+            out.append(f"- [{e.name}]({provider_page_url(e.id)}){_card_flag(e)} — verified "
+                       f"{e.last_verified.isoformat()}" + (f" · {fams}" if fams else ""))
+        out.append("")
     if archived:
-        out += ["", "## Archived", "", "| Provider | Why it left |", "|---|---|"]
+        out += ["## Archived", ""]
         for e in sorted(archived, key=lambda e: (_departure(e), e.name.lower()), reverse=True):
-            why = archive_reason(e, today).replace("|", r"\|")
-            out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {why} |")
+            out.append(f"- [{e.name}]({provider_page_url(e.id)}) — {archive_reason(e, today)}")
     out += ["", "{% endraw %}", ""]
     return "\n".join(out)
 
@@ -2278,12 +2289,13 @@ def build_checked_page(watchlist: list[Watched], today: date) -> str:
            "verify on the date checked. Nothing here is disqualified — domains rejected for cause are "
            f"in [`blocklist.yaml`]({REPO_URL}/blob/main/blocklist.yaml) — and each verdict expires after "
            f"{WATCH_RECHECK_DAYS} days and is asked again. The records live in "
-           f"[`watchlist.yaml`]({REPO_URL}/blob/main/watchlist.yaml).", "",
-           "| Service | Why it is not on the list | Checked |", "|---|---|---|"]
+           f"[`watchlist.yaml`]({REPO_URL}/blob/main/watchlist.yaml).", ""]
+    # A list rather than a table: a reason runs to a paragraph, and a table of
+    # them stood wider than a phone (2026-09-26).
     for w in rows:
         reopen = f" <sub>**Reopens if:** {w['reopen_if']}</sub>" if w["reopen_if"] else ""
         stale = "" if w["current"] else " ⏰"
-        out.append(f"| **{w['name']}** | {w['reason']}{reopen} | `{w['checked_on']}`{stale} |")
+        out.append(f"- **{w['name']}**, checked `{w['checked_on']}`{stale} — {w['reason']}{reopen}")
     out += ["", f"<sub>⏰ — the verdict is older than {WATCH_RECHECK_DAYS} days, no longer suppresses "
                 "anything, and is due for a fresh look.</sub>", "", "{% endraw %}", ""]
     return "\n".join(out)

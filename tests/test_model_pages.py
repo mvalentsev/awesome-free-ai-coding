@@ -509,3 +509,23 @@ def test_every_chip_on_the_site_that_names_a_model_with_a_page_links_it(tmp_path
     assert not re.search(r'<span class="chip[^"]*">(kimi-k3|glm-5\.3)</span>', html)
     assert html.count(f'<a class="chip" href="{PAGES_URL}/models/kimi-k3/">kimi-k3</a>') >= 3
     assert '<span class="chip">solo</span>' in html
+
+
+def test_the_provider_index_and_the_checked_page_are_lists_a_phone_can_read():
+    """A four-column table with a run of models in one cell, and a table of
+    paragraph-long reasons, stood wider than a phone on 2026-09-26; the README
+    had learned the same. Each is a list now — the index a list per section,
+    each row's models as its README line names them."""
+    from freetier_radar.render import build_checked_page, build_providers_index
+    from test_render import watched
+    entries = [make(id="a", name="A", category="agent-cli",
+                    models=[{"family": f"m-{i}"} for i in range(1, 11)])]
+    index = build_providers_index(entries, TODAY)
+    assert "| Provider |" not in index
+    assert "## 🤖 Coding agents & CLIs" in index
+    assert (f"- [A]({PAGES_URL}/providers/a/) — verified 2026-07-19 · `m-1` · `m-2` · `m-3` · "
+            f"`m-4` · `m-5` · `m-6` · `m-7` · `m-8` · [+2 more]({PAGES_URL}/providers/a/)") in index
+    checked = build_checked_page([watched("New", TODAY.isoformat())], TODAY)
+    assert "| Service |" not in checked
+    assert ("- **New**, checked `2026-07-19` — no free tier today <sub>**Reopens if:** they "
+            "publish one</sub>") in checked
