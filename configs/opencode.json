@@ -91,9 +91,6 @@
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         },
-        "z-ai/glm-5.2:free": {
-          "name": "z-ai/glm-5.2:free"
-        },
         "qwen/qwen3.8-27b:free": {
           "name": "qwen/qwen3.8-27b:free"
         },
@@ -175,9 +172,6 @@
         },
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
-        },
-        "z-ai/glm-5.2:free": {
-          "name": "z-ai/glm-5.2:free"
         },
         "qwen/qwen3.8-27b:free": {
           "name": "qwen/qwen3.8-27b:free"
@@ -566,17 +560,14 @@
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
         },
-        "inclusionai/ling-3.0-flash-fin": {
-          "name": "inclusionai/ling-3.0-flash-fin"
-        },
-        "inclusionai/ling-3.0-flash-fin-free": {
-          "name": "inclusionai/ling-3.0-flash-fin-free"
-        },
         "inclusionai/ling-3.0-flash-sante": {
           "name": "inclusionai/ling-3.0-flash-sante"
         },
         "inclusionai/ling-3.0-flash-sante-free": {
           "name": "inclusionai/ling-3.0-flash-sante-free"
+        },
+        "stealth/pixel-canary": {
+          "name": "stealth/pixel-canary"
         }
       }
     },

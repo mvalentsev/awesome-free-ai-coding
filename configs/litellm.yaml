@@ -134,11 +134,6 @@ model_list:
     model: openai/liquid/lfm-2.5-2.6b:free
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
-- model_name: openrouter-free/z-ai/glm-5.2:free
-  litellm_params:
-    model: openai/z-ai/glm-5.2:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
 - model_name: openrouter-free/qwen/qwen3.8-27b:free
   litellm_params:
     model: openai/qwen/qwen3.8-27b:free
@@ -639,16 +634,6 @@ model_list:
     model: openai/poolside/laguna-s-2.1-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-fin
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-fin
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-fin-free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-fin-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
 - model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-sante
@@ -657,6 +642,11 @@ model_list:
 - model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante-free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-sante-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+- model_name: vercel-ai-gateway/stealth/pixel-canary
+  litellm_params:
+    model: openai/stealth/pixel-canary
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
 - model_name: hetzner-inference/Qwen/Qwen3.6-35B-A3B-FP8

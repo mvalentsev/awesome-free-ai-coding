@@ -48,7 +48,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Related models
 
-- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, OpenRouter (free models), Kilo Code, LLMTR and Vercel AI Gateway
+- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, OpenRouter (free models), Kilo Code and LLMTR
 - [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/) — free at OpenRouter (free models), Kilo Code and Vercel AI Gateway
 
 ---

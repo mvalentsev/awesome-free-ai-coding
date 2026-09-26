@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, verified 2026-09-24'
 description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last…
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: ling-3.0-flash-sante
 ---
 
@@ -48,7 +48,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit
 
-- Limits, in the vendor's words: Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free and the Ling 3.0 Flash Fin and Sante rows, each with and without its -free suffix, on 2026-09-23. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
+- Limits, in the vendor's words: Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free, Ling 3.0 Flash Sante with and without its -free suffix, and the anonymous stealth/pixel-canary, on 2026-09-26. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
 - Base URL: `https://ai-gateway.vercel.sh/v1`
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
@@ -57,7 +57,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Related models
 
-- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, OpenRouter (free models), Kilo Code, LLMTR and Vercel AI Gateway
+- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, OpenRouter (free models), Kilo Code and LLMTR
 - [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) — free at Requesty and AIHubMix (free models)
 
 ---
