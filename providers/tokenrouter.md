@@ -3,6 +3,7 @@ layout: default
 title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-24'
 description: One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 140-row catalog that meters the rest. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the…
 permalink: /providers/tokenrouter/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 1
 
 ## Free models
 
-`nemotron-3-nano-omni`
+[`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
 
 ## Limits, in the vendor's words
 
@@ -44,6 +45,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

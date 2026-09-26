@@ -3,6 +3,7 @@ layout: default
 title: 'Alibaba Cloud Model Studio (DashScope, international) free tier: limits, free models, verified 2026-09-24'
 description: A million free tokens on each of its chat models in the Singapore region — Qwen3.8 Max, DeepSeek V4 Pro and V4.1 Flash, GLM-5.3 among them — valid 90 days from activation or the model's release; OpenAI-compatible. 1,000,000 free tokens per model, on the Singapore (international) region alone:…
 permalink: /providers/alibaba-model-studio/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ## Free models
 
-`qwen3.8-max`, `qwen3.8-flash`, `qwen3.8-2.4t-a95b`, `qwen3.8-27b`, `deepseek-v4-pro`, `deepseek-v4-flash`, `qwen3-coder-plus`, `qwen3-coder-next`, `qwen3.7-max`, `qwen3.7-plus`, `qwen3.7-flash`, `qwen3.6-max`, `qwen3.6-plus`, `qwen3.6-flash`, `qwen3.6-35b-a3b`, `qwen3.6-27b`, `qwen3.5-plus`, `qwen3.5-flash`, `qwen3.5-397b-a17b`, `qwen3.5-122b-a10b`, `qwen3.5-35b-a3b`, `qwen3.5-27b`, `qwen3-max`, `qwen3-coder-flash`, `qwen3-coder-480b-a35b`, `qwen3-coder-30b-a3b`, `qwen3-next-80b-a3b-thinking`, `qwen3-next-80b-a3b-instruct`, `qwen3-235b-a22b-thinking-2507`, `qwen3-235b-a22b-instruct-2507`, `qwen3-235b-a22b`, `qwen3-30b-a3b-thinking-2507`, `qwen3-30b-a3b-instruct-2507`, `qwen3-30b-a3b`, `qwen3-32b`, `qwen3-14b`, `qwen3-8b`, `qwen-max`, `qwen-plus`, `qwen-flash`, `qwen-turbo`, `qwq-plus`, `qvq-max`, `qwen3-vl-plus`, `qwen3-vl-flash`, `qwen3-vl-235b-a22b-thinking`, `qwen3-vl-235b-a22b-instruct`, `qwen3-vl-32b-thinking`, `qwen3-vl-32b-instruct`, `qwen3-vl-30b-a3b-thinking`, `qwen3-vl-30b-a3b-instruct`, `qwen3-vl-8b-thinking`, `qwen3-vl-8b-instruct`, `qwen-vl-max`, `qwen-vl-plus`, `deepseek-v3.2`, `glm-5.1`
+[`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/), [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/), [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/), [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), `qwen3-coder-plus`, [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/), `qwen3.7-max`, `qwen3.7-plus`, [`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/), `qwen3.6-max`, `qwen3.6-plus`, `qwen3.6-flash`, `qwen3.6-35b-a3b`, `qwen3.6-27b`, `qwen3.5-plus`, `qwen3.5-flash`, `qwen3.5-397b-a17b`, `qwen3.5-122b-a10b`, `qwen3.5-35b-a3b`, `qwen3.5-27b`, `qwen3-max`, `qwen3-coder-flash`, `qwen3-coder-480b-a35b`, `qwen3-coder-30b-a3b`, `qwen3-next-80b-a3b-thinking`, `qwen3-next-80b-a3b-instruct`, `qwen3-235b-a22b-thinking-2507`, `qwen3-235b-a22b-instruct-2507`, `qwen3-235b-a22b`, `qwen3-30b-a3b-thinking-2507`, `qwen3-30b-a3b-instruct-2507`, `qwen3-30b-a3b`, `qwen3-32b`, `qwen3-14b`, [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `qwen-max`, `qwen-plus`, `qwen-flash`, `qwen-turbo`, `qwq-plus`, `qvq-max`, `qwen3-vl-plus`, `qwen3-vl-flash`, `qwen3-vl-235b-a22b-thinking`, `qwen3-vl-235b-a22b-instruct`, `qwen3-vl-32b-thinking`, `qwen3-vl-32b-instruct`, `qwen3-vl-30b-a3b-thinking`, `qwen3-vl-30b-a3b-instruct`, `qwen3-vl-8b-thinking`, `qwen3-vl-8b-instruct`, `qwen-vl-max`, `qwen-vl-plus`, [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/), [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/)
 
 ## Limits, in the vendor's words
 
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

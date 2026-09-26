@@ -3,6 +3,7 @@ layout: default
 title: 'Standard Compute free tier: limits, free models, verified 2026-09-24'
 description: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. "Eligible new accounts receive $0.25 of trial compute after activation. This is a finite…
 permalink: /providers/standardcompute/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

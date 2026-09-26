@@ -3,6 +3,7 @@ layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-24'
 description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23, Nemotron 3 Ultra, Qwen3.8 27B and Agnes 3.0 Flash among them. A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak…'
 permalink: /providers/llmtr/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — n
 
 ## Free models
 
-`nemotron-3-ultra`, `nemotron-3-super`, `laguna-xs-2.1`, `ling-3.0-flash-fin`
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/)
 
 ## Limits, in the vendor's words
 
@@ -55,6 +56,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

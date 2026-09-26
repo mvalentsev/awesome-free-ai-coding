@@ -3,6 +3,7 @@ layout: default
 title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-09-24'
 description: 'China''s SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model…'
 permalink: /providers/siliconflow-cn/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B
 
 ## Free models
 
-`xing4.0-29b`, `qwen3-8b`, `glm-4-9b-0414`
+`xing4.0-29b`, [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `glm-4-9b-0414`
 
 ## Limits, in the vendor's words
 
@@ -52,6 +53,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

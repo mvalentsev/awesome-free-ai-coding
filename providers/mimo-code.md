@@ -3,6 +3,7 @@ layout: default
 title: 'MiMo Code free tier (archived): what it offered, and why it left the list'
 description: 'Xiaomi''s open-source (MIT) terminal coding agent; its built-in "MiMo Auto" channel used to run Xiaomi''s MiMo models with no login, API key, or card. Anonymous MiMo Auto channel ended 2026-07-26 10:00 UTC — the client blocks it past that timestamp (FREE_API_SUNSET_AT) and prompts: "The free API…'
 permalink: /providers/mimo-code/
+last_modified_at: 2026-08-03
 ---
 
 {% raw %}
@@ -19,7 +20,7 @@ Xiaomi's open-source (MIT) terminal coding agent; its built-in "MiMo Auto" chann
 
 ## Free models it listed
 
-`mimo-v2.5`
+[`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/)
 
 ## Limits, in the vendor's words
 
@@ -44,6 +45,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

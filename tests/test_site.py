@@ -269,6 +269,8 @@ def test_the_shell_function_every_page_names_is_one_the_file_defines(tmp_path):
     ("ARCHIVE_AFTER_FAILURES", 4, "fail ×4", "fails 4 probes", "fail ×3"),
     ("ARCHIVE_AFTER_DAYS", 45, "stale 45d", "goes 45\n          days", "stale 60d"),
     ("PROBE_WEEKDAYS", (1,), "once a week", "once a week", "twice a week"),
+    ("MODEL_PAGE_ROWS", 3, "three rows or more serve it free", "three rows or more serve it free",
+     "two rows or more"),
 ])
 def test_every_page_states_the_rule_the_code_applies(tmp_path, monkeypatch, name, value,
                                                       readme_says, site_says, unsaid):

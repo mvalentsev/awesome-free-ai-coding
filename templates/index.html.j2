@@ -319,7 +319,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <tbody>
           {% for m in strong_models %}
           <tr>
-            <th scope="row"><span class="chip{{ ' top' if m.frontier }}">{{ m.family }}</span></th>
+            <th scope="row"><a class="chip{{ ' top' if m.frontier }}" href="{{ m.page }}">{{ m.family }}</a></th>
             <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}</td>
           </tr>
           {% endfor %}
@@ -486,7 +486,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   <div class="wrap">
     <header>
       <h2>🧠 Looking for one model in particular?</h2>
-      <p class="sub">{{ family_count }} model families, and everyone who serves each one free.</p>
+      <p class="sub">{{ family_count }} model families, and everyone who serves each one free. A
+        model has <a href="{{ models_url }}">a page of its own</a> where {{ model_page_rule }}.</p>
     </header>
     <details id="model-index" class="fold">
       <summary>Show the model index</summary>
@@ -495,7 +496,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
           <tbody>
             {% for m in model_index %}
             <tr>
-              <th scope="row"><code>{{ m.family }}</code></th>
+              <th scope="row">{% if m.page %}<a href="{{ m.page }}"><code>{{ m.family }}</code></a>{% else %}<code>{{ m.family }}</code>{% endif %}</th>
               <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %}</td>
             </tr>
             {% endfor %}

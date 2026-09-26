@@ -3,6 +3,7 @@ layout: default
 title: 'Opper free tier: limits, free models, verified 2026-09-24'
 description: 'EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4 26B on Google''s route, Laguna S 2.1 and XS 2.1 through Poolside — answer an account with no card on file; every other model needs a card and credits. The pricing FAQ: "Sign up needs no credit card: you get an API key…'
 permalink: /providers/opper/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4
 
 ## Free models
 
-`gemma-4-31b`
+[`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/)
 
 ## Limits, in the vendor's words
 
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

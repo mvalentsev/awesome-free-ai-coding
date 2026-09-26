@@ -3,6 +3,7 @@ layout: default
 title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-09-24'
 description: 'Harvard SEAS''s MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GLM 5.3 Flash, MiniMax M3, Qwen3.6 35B — free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. No quota figure is published: the landing page says "Free…'
 permalink: /providers/freeinference/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Harvard SEAS's MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1, GL
 
 ## Free models
 
-`deepseek-v4-flash`, `glm-5.1`, `glm-5.3-flash`, `minimax-m3`, `qwen3.6`, `minimax-m2.5`, `diffusiongemma`
+[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/)
 
 ## Limits, in the vendor's words
 
@@ -49,6 +50,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,6 +3,7 @@ layout: default
 title: 'LLM7.io free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models, GLM 5.3 Flash, MiniMax M2.7 and Codestral among them; a free token doubles it. The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000…
 permalink: /providers/llm7/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -46,6 +47,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

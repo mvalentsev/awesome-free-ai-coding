@@ -3,6 +3,7 @@ layout: default
 title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-09-24'
 description: Tencent Cloud's model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 among its models — with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated…
 permalink: /providers/tencent-tokenhub/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -52,6 +53,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,6 +3,7 @@ layout: default
 title: 'Zed free tier: limits, free models, verified 2026-09-24'
 description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GPT-5.6 Luna and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. "We offer a 14-day free trial of Pro with $5 of GPT-5.6 Luna usage and unlimited accepted edit…'
 permalink: /providers/zed/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GP
 
 ## Free models
 
-`gpt-5.6-luna`
+[`gpt-5.6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/)
 
 ## Limits, in the vendor's words
 
@@ -47,6 +48,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

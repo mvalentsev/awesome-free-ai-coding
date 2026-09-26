@@ -115,6 +115,10 @@ MAP: tuple[Node, ...] = (
          "a page per row, the provider index and the page of services checked",
          made_from=("registry.yaml", "history.jsonl", "watchlist.yaml", "blocklist.yaml"),
          written_by=("freetier-render",), published=True),
+    Node("models/*.md", Kind.GENERATED,
+         "a page per widely served or strong free model, and the index of every free model",
+         made_from=("registry.yaml", "history.jsonl"), written_by=("freetier-render",),
+         published=True),
     # ---- hand-written pages
     Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
          made_from=("index.json",), published=True),

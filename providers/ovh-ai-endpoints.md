@@ -3,6 +3,7 @@ layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-09-24'
 description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated…'
 permalink: /providers/ovh-ai-endpoints/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Free models
 
-`gpt-oss-120b`, `qwen3.6`, `qwen3.8-27b`, `qwen3-coder`
+[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `qwen3-coder`
 
 ## Limits, in the vendor's words
 
@@ -54,6 +55,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

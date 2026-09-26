@@ -17,12 +17,15 @@ def test_the_key_is_published_at_the_site_root_under_its_own_name():
 
 
 def test_site_urls_cover_what_a_search_engine_should_recrawl():
-    index = build_index([make(id="x"), make(id="y", probe_failures=3)], TODAY)
+    index = build_index([make(id="x", models=[{"family": "kimi-k3"}, {"family": "solo"}]),
+                         make(id="w", models=[{"family": "kimi-k3"}]),
+                         make(id="y", probe_failures=3)], TODAY)
     urls = site_urls(index)
     assert urls[0] == PAGES_URL + "/"
     for path in ("providers/", "providers/checked/", "providers/x/", "providers/y/", "feed.xml", "llms.txt",
-                 "browse.html"):
+                 "browse.html", "models/", "models/kimi-k3/"):
         assert f"{PAGES_URL}/{path}" in urls, path
+    assert f"{PAGES_URL}/models/solo/" not in urls, "one row and no tier: no page"
     assert len(urls) == len(set(urls))
 
 

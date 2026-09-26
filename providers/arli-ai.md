@@ -3,6 +3,7 @@ layout: default
 title: 'Arli AI free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. The pricing page's Free plan, "Test out the Arli platform" at $0, lists only what it withholds — "Delayed Response",…
 permalink: /providers/arli-ai/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -49,6 +50,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

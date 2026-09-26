@@ -3,6 +3,7 @@ layout: default
 title: 'Reka AI free tier (archived): what it offered, and why it left the list'
 description: Reka multimodal API (chat, research, vision) with free credits refreshed automatically every month. $10 free credits at the start of every month, usable on any API feature
 permalink: /providers/reka/
+last_modified_at: 2026-08-11
 ---
 
 {% raw %}
@@ -38,6 +39,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

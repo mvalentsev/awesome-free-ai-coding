@@ -36,23 +36,23 @@
 
 **Strong models, free.** Each of these scores within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read twice a week, and every row beside it serves it free:
 
-- `qwen3.8-27b` — [Groq](https://groq.com) · [LLM Tech](https://llmtech.eu) · [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Regolo AI](https://regolo.ai/pricing/) · [VLM Run Gateway](https://vlm.run) · [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)
-- `deepseek-v4-flash` — [Routeway](https://routeway.ai) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [FreeInference (Harvard SEAS)](https://freeinference.org)
-- `glm-5.3-flash` — [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [FreeInference (Harvard SEAS)](https://freeinference.org)
-- `deepseek-v4.1-flash` — [Freebuff](https://freebuff.com) · [Token Harbor](https://tokenharbor.ai)
-- `gemini-3.6-flash` — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
-- `gemini-3.7-flash` — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
-- `gemini-3.8-flash` — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
-- `glm-5.2` — [AIHubMix (free models)](https://aihubmix.com) · [Regolo AI](https://regolo.ai/pricing/)
-- `kimi-k3` — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [AIHubMix (free models)](https://aihubmix.com)
-- `muse-spark-1.3-contributor` — [opencode](https://opencode.ai) · [Cline](https://cline.bot)
-- `qwen3.8-flash` — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Yolo-Auto](https://yolo-auto.com)
-- `deepseek-v4-pro` — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
-- `glm-5.3` — [AIHubMix (free models)](https://aihubmix.com)
-- `gpt-5.6-luna` — [Zed](https://zed.dev)
-- `muse-spark-1.2` — [Freebuff](https://freebuff.com)
-- `qwen3.8-2.4t-a95b` — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
-- `qwen3.8-max` — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — [Groq](https://groq.com) · [LLM Tech](https://llmtech.eu) · [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Regolo AI](https://regolo.ai/pricing/) · [VLM Run Gateway](https://vlm.run) · [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)
+- [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — [Routeway](https://routeway.ai) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [FreeInference (Harvard SEAS)](https://freeinference.org)
+- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [FreeInference (Harvard SEAS)](https://freeinference.org)
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — [Freebuff](https://freebuff.com) · [Token Harbor](https://tokenharbor.ai)
+- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
+- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
+- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
+- [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) — [AIHubMix (free models)](https://aihubmix.com) · [Regolo AI](https://regolo.ai/pricing/)
+- [`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/) — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [AIHubMix (free models)](https://aihubmix.com)
+- [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) — [opencode](https://opencode.ai) · [Cline](https://cline.bot)
+- [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Yolo-Auto](https://yolo-auto.com)
+- [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — [AIHubMix (free models)](https://aihubmix.com)
+- [`gpt-5.6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/) — [Zed](https://zed.dev)
+- [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/) — [Freebuff](https://freebuff.com)
+- [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
 
 **Or pick by what you need:**
 
@@ -174,7 +174,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Moark (Gitee AI)](https://moark.com)** 🧪 — Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought<br><sub>[verified 2026-09-24](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 🧪 — An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check<br><sub>[verified 2026-09-24](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 149 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here).
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 149 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model has [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) where two rows or more serve it free, or it measures strong or frontier.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>

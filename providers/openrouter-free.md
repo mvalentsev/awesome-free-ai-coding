@@ -3,6 +3,7 @@ layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-09-24'
 description: One API key for a rotating set of :free model variants, open-weight and stealth models among them. 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants —…
 permalink: /providers/openrouter-free/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ## Free models
 
-`nemotron-3-ultra`, `gemma-4-31b`, `gemma-4-26b-a4b`, `nemotron-3-super`, `north-mini-code`, `laguna-s-2.1`, `laguna-xs-2.1`, `nemotron-3.5-lightning`, `inkling`, `inkling-small`, `dots-3-note`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante`, `nemotron-3-nano-omni`
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), `gemma-4-26b-a4b`, [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), `inkling`, [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
 
 ## Limits, in the vendor's words
 
@@ -54,6 +55,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

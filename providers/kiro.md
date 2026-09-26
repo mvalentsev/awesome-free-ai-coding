@@ -3,6 +3,7 @@ layout: default
 title: 'Kiro free tier: limits, free models, verified 2026-09-24'
 description: Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude Sonnet 4.5 and open-weight models. 50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from…
 permalink: /providers/kiro/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 ## Free models
 
-`claude-sonnet-4.5`, `claude-sonnet-4`, `glm-5`, `minimax-m2.5`, `deepseek-v3.2`, `qwen3-coder-next`, `minimax-m2.1`
+`claude-sonnet-4.5`, `claude-sonnet-4`, [`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/), [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/), [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/), [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/), [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/)
 
 ## Limits, in the vendor's words
 
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

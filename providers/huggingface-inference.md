@@ -3,6 +3,7 @@ layout: default
 title: 'Hugging Face Inference Providers free tier: limits, free models, verified 2026-09-24'
 description: Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account. Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across…
 permalink: /providers/huggingface-inference/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -43,6 +44,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -583,6 +583,20 @@ Jekyll writes canonical URLs and a sitemap. **Never edit them by hand** — the
 render rewrites every one, an archived row's included, and the body sits inside
 `{% raw %}` so a vendor's own sentence can never break the build.
 
+`models/` is generated with them: a page for every model two rows or more serve
+free, or that measures strong or frontier, and an index of every model the live
+rows serve. A reader — or a model answering one — arrives with a model in mind
+as often as with a vendor: where is Kimi K3 free. A model page's title is that
+question, and its body is every live row that serves the model, in the list's
+order: what the row asks for, the day a probe last confirmed it, the day the
+list started carrying the model there, the limits in the vendor's words and the
+ids of that model to call. A model one row serves and nothing measures has no
+page — it would repeat the row's — and stays on the index beside the row. Every
+page under `providers/` and `models/` carries `last_modified_at`, the newest of
+its rows' verified dates and history lines, which Jekyll writes into the
+sitemap as `<lastmod>` and into the page's structured data as `dateModified`.
+**Never edit them by hand** either.
+
 [`index.html`](index.html) is the site's own front page, rendered from the
 registry by the same command from [`templates/index.html.j2`](templates/index.html.j2)
 — **never edit it by hand.** It exists because GitHub Pages renders Markdown
@@ -667,6 +681,7 @@ cannot print two versions of it.
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
+| `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
 | `assets/*.svg` | **page** — the banners and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |

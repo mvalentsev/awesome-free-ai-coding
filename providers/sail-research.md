@@ -3,6 +3,7 @@ layout: default
 title: 'Sail Research free tier: limits, free models, verified 2026-09-24'
 description: 'Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account. The home page: "$5 in free credits every month when you attach a payment method", and its FAQ…'
 permalink: /providers/sail-research/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

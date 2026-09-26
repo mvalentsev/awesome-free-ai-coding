@@ -3,6 +3,7 @@ layout: default
 title: 'Cerebras Inference free tier (archived): what it offered, and why it left the list'
 description: 'Very fast inference; $5 in trial credits that expire in 30 days, card required before the API answers at all. Cerebras'' own docs: "New accounts receive $5 in free credits after adding a verified payment method", credits "expire 30 days after they''re granted", and "If you skip adding a payment…'
 permalink: /providers/cerebras-free/
+last_modified_at: 2026-09-16
 ---
 
 {% raw %}
@@ -42,6 +43,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

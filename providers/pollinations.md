@@ -3,6 +3,7 @@ layout: default
 title: 'Pollinations.AI free tier: limits, free models, verified 2026-09-24'
 description: Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model — GPT-OSS 20B. The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to…
 permalink: /providers/pollinations/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/op
 
 ## Free models
 
-`gpt-oss-20b`
+[`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
 
 ## Limits, in the vendor's words
 
@@ -45,6 +46,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,6 +3,7 @@ layout: default
 title: 'Impossibl free tier: limits, free models, verified 2026-09-24'
 description: 'Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an…'
 permalink: /providers/impossibl/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -47,6 +48,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,6 +3,7 @@ layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-09-24'
 description: OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23, Meta's Muse Glimmer 30B, DeepSeek V4 Flash and MiniMax M2.7 — beside 269 metered rows in the same catalog. Free models — every id ending :free — are capped at 5 requests per minute and 200 per day…
 permalink: /providers/routeway/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 
 ## Free models
 
-`deepseek-v4-flash`, `minimax-m2.7`, `muse-glimmer-30b`
+[`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/), [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/)
 
 ## Limits, in the vendor's words
 
@@ -51,6 +52,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

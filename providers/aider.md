@@ -3,6 +3,7 @@ layout: default
 title: 'Aider free tier (archived): what it offered, and why it left the list'
 description: Free, open-source terminal coding agent with tight git integration; BYOK — works with free-tier provider keys or local models via Ollama. Tool is free and open-source; model usage is BYOK (no bundled free-model quota)
 permalink: /providers/aider/
+last_modified_at: 2026-07-19
 ---
 
 {% raw %}
@@ -38,6 +39,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

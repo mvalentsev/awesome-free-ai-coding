@@ -3,6 +3,7 @@ layout: default
 title: 'DeepSeek Platform free tier (archived): what it offered, and why it left the list'
 description: Official DeepSeek API; every new account gets a one-time free token grant, no card required. 5M free tokens on signup (~30-day validity), then pay-as-you-go; no perpetually free models
 permalink: /providers/deepseek/
+last_modified_at: 2026-07-27
 ---
 
 {% raw %}
@@ -38,6 +39,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

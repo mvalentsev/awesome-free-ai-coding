@@ -3,6 +3,7 @@ layout: default
 title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-09-24'
 description: A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls. 100 million tokens on every new account, no…
 permalink: /providers/inception-labs/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -52,6 +53,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

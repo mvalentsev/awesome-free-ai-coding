@@ -3,6 +3,7 @@ layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-09-24'
 description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API. The portal''s plan table reads "Free $0 Free models only Standard rate limits $0…'
 permalink: /providers/nous-portal/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 
 ## Free models
 
-`step-3.7-flash`, `laguna-s-2.1`
+[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)
 
 ## Limits, in the vendor's words
 
@@ -49,6 +50,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

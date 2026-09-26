@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-25",
+  "generated": "2026-09-26",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -6112,6 +6112,1062 @@
       "rank": 45,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/"
+    }
+  ],
+  "models": [
+    {
+      "family": "nemotron-3-ultra",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
+    },
+    {
+      "family": "qwen3.8-27b",
+      "rows": [
+        "groq-free",
+        "llmtech",
+        "hetzner-inference",
+        "alibaba-model-studio",
+        "regolo",
+        "vlm-run-gateway",
+        "ovh-ai-endpoints"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
+    },
+    {
+      "family": "nemotron-3-nano-omni",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "tokenrouter"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"
+    },
+    {
+      "family": "nemotron-3-super",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
+    },
+    {
+      "family": "nemotron-3.5-lightning",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "requesty",
+        "nvidia-nim",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
+    },
+    {
+      "family": "laguna-s-2.1",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix",
+        "vercel-ai-gateway",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
+    },
+    {
+      "family": "laguna-xs-2.1",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "nvidia-nim",
+        "aihubmix",
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
+    },
+    {
+      "family": "ling-3.0-flash-fin",
+      "rows": [
+        "opencode",
+        "openrouter-free",
+        "kilo-code",
+        "llmtr",
+        "vercel-ai-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
+    },
+    {
+      "family": "gemma-4-31b",
+      "rows": [
+        "openrouter-free",
+        "requesty",
+        "nvidia-nim",
+        "opper"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
+    },
+    {
+      "family": "gpt-oss-120b",
+      "rows": [
+        "groq-free",
+        "antigravity",
+        "regolo",
+        "ovh-ai-endpoints"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/"
+    },
+    {
+      "family": "north-mini-code",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix",
+        "cohere"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
+    },
+    {
+      "family": "qwen3.6",
+      "rows": [
+        "groq-free",
+        "hetzner-inference",
+        "freeinference",
+        "ovh-ai-endpoints"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
+    },
+    {
+      "family": "deepseek-v4-flash",
+      "rows": [
+        "routeway",
+        "alibaba-model-studio",
+        "freeinference"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
+    },
+    {
+      "family": "dots-3-note",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
+    },
+    {
+      "family": "glm-5.1",
+      "rows": [
+        "aihubmix",
+        "alibaba-model-studio",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
+    },
+    {
+      "family": "glm-5.3-flash",
+      "rows": [
+        "freebuff",
+        "aihubmix",
+        "freeinference"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
+    },
+    {
+      "family": "gpt-oss-20b",
+      "rows": [
+        "groq-free",
+        "nvidia-nim",
+        "pollinations"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
+    },
+    {
+      "family": "ling-3.0-flash-sante",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "vercel-ai-gateway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
+      "family": "minimax-m2.5",
+      "rows": [
+        "kiro",
+        "aihubmix",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"
+    },
+    {
+      "family": "muse-glimmer-30b",
+      "rows": [
+        "requesty",
+        "nvidia-nim",
+        "routeway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"
+    },
+    {
+      "family": "deepseek-v3.2",
+      "rows": [
+        "kiro",
+        "alibaba-model-studio"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "freebuff",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
+    },
+    {
+      "family": "diffusiongemma",
+      "rows": [
+        "nvidia-nim",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
+    },
+    {
+      "family": "gemini-3-flash",
+      "rows": [
+        "google-ai-studio",
+        "vertex-ai-express"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/"
+    },
+    {
+      "family": "gemini-3.1-pro",
+      "rows": [
+        "antigravity",
+        "vertex-ai-express"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/"
+    },
+    {
+      "family": "gemini-3.6-flash",
+      "rows": [
+        "google-ai-studio",
+        "antigravity"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/"
+    },
+    {
+      "family": "gemini-3.7-flash",
+      "rows": [
+        "google-ai-studio",
+        "antigravity"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/"
+    },
+    {
+      "family": "gemini-3.8-flash",
+      "rows": [
+        "google-ai-studio",
+        "antigravity"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
+    },
+    {
+      "family": "glm-4.7-flash",
+      "rows": [
+        "aihubmix",
+        "zai-glm"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
+    },
+    {
+      "family": "glm-5",
+      "rows": [
+        "kiro",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/"
+    },
+    {
+      "family": "glm-5.2",
+      "rows": [
+        "aihubmix",
+        "regolo"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
+    },
+    {
+      "family": "inkling-small",
+      "rows": [
+        "openrouter-free",
+        "kilo-code"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"
+    },
+    {
+      "family": "kimi-k3",
+      "rows": [
+        "nvidia-nim",
+        "aihubmix"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
+    },
+    {
+      "family": "ling-3.0-tiny",
+      "rows": [
+        "requesty",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/"
+    },
+    {
+      "family": "mimo-v2.5",
+      "rows": [
+        "opencode",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/"
+    },
+    {
+      "family": "minimax-m2.1",
+      "rows": [
+        "kiro",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/"
+    },
+    {
+      "family": "minimax-m2.7",
+      "rows": [
+        "aihubmix",
+        "routeway"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"
+    },
+    {
+      "family": "minimax-m3",
+      "rows": [
+        "aihubmix",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"
+    },
+    {
+      "family": "muse-spark-1.3-contributor",
+      "rows": [
+        "opencode",
+        "cline"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"
+    },
+    {
+      "family": "nemotron-3-nano-30b",
+      "rows": [
+        "requesty",
+        "aihubmix"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/"
+    },
+    {
+      "family": "qwen3-8b",
+      "rows": [
+        "alibaba-model-studio",
+        "siliconflow-cn"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/"
+    },
+    {
+      "family": "qwen3-coder-next",
+      "rows": [
+        "kiro",
+        "alibaba-model-studio"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/"
+    },
+    {
+      "family": "qwen3.7-flash",
+      "rows": [
+        "alibaba-model-studio",
+        "bazaarlink"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/"
+    },
+    {
+      "family": "qwen3.8-flash",
+      "rows": [
+        "alibaba-model-studio",
+        "yolo-auto"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
+    },
+    {
+      "family": "step-3.7-flash",
+      "rows": [
+        "kilo-code",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
+    },
+    {
+      "family": "agnes-2.5-flash",
+      "rows": [
+        "agnes-ai"
+      ]
+    },
+    {
+      "family": "agnes-3.0-flash",
+      "rows": [
+        "agnes-ai"
+      ]
+    },
+    {
+      "family": "apertus-70b",
+      "rows": [
+        "regolo"
+      ]
+    },
+    {
+      "family": "big-pickle",
+      "rows": [
+        "opencode"
+      ]
+    },
+    {
+      "family": "claude-opus-4.6",
+      "rows": [
+        "antigravity"
+      ]
+    },
+    {
+      "family": "claude-sonnet-4",
+      "rows": [
+        "kiro"
+      ]
+    },
+    {
+      "family": "claude-sonnet-4.5",
+      "rows": [
+        "kiro"
+      ]
+    },
+    {
+      "family": "claude-sonnet-4.6",
+      "rows": [
+        "antigravity"
+      ]
+    },
+    {
+      "family": "command-a",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "command-a-plus",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "command-a-reasoning",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "command-a-vision",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "command-r",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "command-r-plus",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "command-r7b",
+      "rows": [
+        "cohere"
+      ]
+    },
+    {
+      "family": "composer",
+      "rows": [
+        "cursor-hobby"
+      ]
+    },
+    {
+      "family": "deepseek-v4-pro",
+      "rows": [
+        "alibaba-model-studio"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"
+    },
+    {
+      "family": "gemini-2.5",
+      "rows": [
+        "google-jules"
+      ]
+    },
+    {
+      "family": "gemini-2.5-flash",
+      "rows": [
+        "vertex-ai-express"
+      ]
+    },
+    {
+      "family": "gemini-2.5-pro",
+      "rows": [
+        "vertex-ai-express"
+      ]
+    },
+    {
+      "family": "gemini-3.1-flash-lite",
+      "rows": [
+        "google-ai-studio"
+      ]
+    },
+    {
+      "family": "gemini-3.5-flash",
+      "rows": [
+        "google-ai-studio"
+      ]
+    },
+    {
+      "family": "gemini-3.5-flash-lite",
+      "rows": [
+        "google-ai-studio"
+      ]
+    },
+    {
+      "family": "gemma-4",
+      "rows": [
+        "google-ai-studio"
+      ]
+    },
+    {
+      "family": "gemma-4-26b-a4b",
+      "rows": [
+        "openrouter-free"
+      ]
+    },
+    {
+      "family": "glm-4-9b-0414",
+      "rows": [
+        "siliconflow-cn"
+      ]
+    },
+    {
+      "family": "glm-4.5-flash",
+      "rows": [
+        "zai-glm"
+      ]
+    },
+    {
+      "family": "glm-4.6",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "glm-4.6v-flash",
+      "rows": [
+        "zai-glm"
+      ]
+    },
+    {
+      "family": "glm-4.7",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "glm-5-turbo",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "glm-5.3",
+      "rows": [
+        "aihubmix"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+    },
+    {
+      "family": "gpt-5.6-luna",
+      "rows": [
+        "zed"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/"
+    },
+    {
+      "family": "hy3",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "inkling",
+      "rows": [
+        "openrouter-free"
+      ]
+    },
+    {
+      "family": "kimi-for-coding",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "laguna-m.1",
+      "rows": [
+        "requesty"
+      ]
+    },
+    {
+      "family": "laguna-xs.2",
+      "rows": [
+        "requesty"
+      ]
+    },
+    {
+      "family": "leanstral-1.5",
+      "rows": [
+        "requesty"
+      ]
+    },
+    {
+      "family": "ling-3.0-flash",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "llama-3.2-11b-vision",
+      "rows": [
+        "nvidia-nim"
+      ]
+    },
+    {
+      "family": "llama-3.2-90b-vision",
+      "rows": [
+        "nvidia-nim"
+      ]
+    },
+    {
+      "family": "mellum",
+      "rows": [
+        "jetbrains-ai"
+      ]
+    },
+    {
+      "family": "mimo-v2-flash",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "mimo-v2-omni",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "mimo-v2-pro",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "mimo-v2.5-pro",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "minimax-m2",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "mistral-nemotron",
+      "rows": [
+        "nvidia-nim"
+      ]
+    },
+    {
+      "family": "mistral-small-3.2",
+      "rows": [
+        "meganova"
+      ]
+    },
+    {
+      "family": "muse-spark-1.2",
+      "rows": [
+        "freebuff"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/"
+    },
+    {
+      "family": "nemotron-nano-12b-v2-vl",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "nemotron-nano-9b-v2",
+      "rows": [
+        "aihubmix"
+      ]
+    },
+    {
+      "family": "qvq-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-turbo",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-vl-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen-vl-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-14b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-235b-a22b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-235b-a22b-instruct-2507",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-235b-a22b-thinking-2507",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-30b-a3b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-30b-a3b-instruct-2507",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-30b-a3b-thinking-2507",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-32b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-coder",
+      "rows": [
+        "ovh-ai-endpoints"
+      ]
+    },
+    {
+      "family": "qwen3-coder-30b-a3b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-coder-480b-a35b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-coder-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-coder-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-next-80b-a3b-instruct",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-next-80b-a3b-thinking",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-235b-a22b-instruct",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-235b-a22b-thinking",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-30b-a3b-instruct",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-30b-a3b-thinking",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-32b-instruct",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-32b-thinking",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-8b-instruct",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-8b-thinking",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3-vl-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-122b-a10b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-27b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-35b-a3b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-397b-a17b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-4b",
+      "rows": [
+        "mixlayer"
+      ]
+    },
+    {
+      "family": "qwen3.5-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.6-27b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.6-35b-a3b",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.6-flash",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.6-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.6-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.7-max",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.7-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.8-2.4t-a95b",
+      "rows": [
+        "alibaba-model-studio"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/"
+    },
+    {
+      "family": "qwen3.8-max",
+      "rows": [
+        "alibaba-model-studio"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"
+    },
+    {
+      "family": "qwq-plus",
+      "rows": [
+        "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "xing4.0-29b",
+      "rows": [
+        "siliconflow-cn"
+      ]
     }
   ],
   "watchlist": [

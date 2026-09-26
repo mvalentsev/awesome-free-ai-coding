@@ -3,6 +3,7 @@ layout: default
 title: 'Blue Claw Network free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start. The home page: "Every new account starts with a $5 welcome credit. After that, you run on prepaid USD…'
 permalink: /providers/blue-claw/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -46,6 +47,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -39,7 +39,7 @@
 **Strong models, free.** Each of these scores within {{ strong_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read {{ schedule }}, and every row beside it serves it free{% if strong_card %} — 💳 where the row wants a card on file{% endif %}:
 
 {# The '' keeps the line's newline, which trim_blocks takes from a line that ends in a block tag. #}
-{% for m in readme_strong %}- `{{ m.family }}`{% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}{{ '' }}
+{% for m in readme_strong %}- [`{{ m.family }}`]({{ m.page }}){% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}{{ '' }}
 {% endfor %}
 {% if strong_more %}
 
@@ -95,7 +95,7 @@ _Nothing verified right now._
 {% endfor %}
 
 {% if model_index %}
-**🧠 Looking for one model in particular?** [The website's model index]({{ pages_url }}/#model-index) names all {{ family_count }} model famil{{ 'y' if family_count == 1 else 'ies' }} on the list and everyone who serves each one free{% if readme_strong %}; the strong ones are [under Start here](#-start-here){% endif %}.
+**🧠 Looking for one model in particular?** [The website's model index]({{ pages_url }}/#model-index) names all {{ family_count }} model famil{{ 'y' if family_count == 1 else 'ies' }} on the list and everyone who serves each one free{% if readme_strong %}; the strong ones are [under Start here](#-start-here){% endif %}. A model has [a page of its own]({{ models_url }}) where {{ model_page_rule }}.
 {% endif %}
 
 {% if changes %}

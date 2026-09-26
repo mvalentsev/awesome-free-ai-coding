@@ -3,6 +3,7 @@ layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-09-24'
 description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check. The Free plan is "500 credits a month once you verify a card (a one-time $1…
 permalink: /providers/experiential-labs/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -44,6 +45,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

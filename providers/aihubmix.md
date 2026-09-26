@@ -3,6 +3,7 @@ layout: default
 title: 'AIHubMix (free models) free tier: limits, free models, verified 2026-09-24'
 description: One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself — GLM-5.3 and Kimi K3 coding routes among them — with an Anthropic-format /v1/messages too, so a free id can back Claude Code. per-model caps, spelled out in each model's catalog…
 permalink: /providers/aihubmix/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Free models
 
-`glm-5.3`, `glm-5.3-flash`, `kimi-k3`, `glm-5.2`, `glm-5.1`, `glm-5`, `glm-5-turbo`, `mimo-v2.5-pro`, `mimo-v2.5`, `north-mini-code`, `nemotron-3-ultra`, `nemotron-3-super`, `minimax-m3`, `minimax-m2.7`, `hy3`, `laguna-s-2.1`, `laguna-xs-2.1`, `kimi-for-coding`, `ling-3.0-flash`, `ling-3.0-tiny`, `glm-4.7`, `glm-4.7-flash`, `glm-4.6`, `minimax-m2.5`, `minimax-m2.1`, `minimax-m2`, `mimo-v2-pro`, `mimo-v2-flash`, `mimo-v2-omni`, `dots-3-note`, `nemotron-3.5-lightning`, `nemotron-3-nano-30b`, `nemotron-3-nano-omni`, `nemotron-nano-12b-v2-vl`, `nemotron-nano-9b-v2`
+[`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/), [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/), [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/), [`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/), `glm-5-turbo`, `mimo-v2.5-pro`, [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/), [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/), `hy3`, [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), `kimi-for-coding`, `ling-3.0-flash`, [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/), `glm-4.7`, [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/), `glm-4.6`, [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/), [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/), `minimax-m2`, `mimo-v2-pro`, `mimo-v2-flash`, `mimo-v2-omni`, [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`nemotron-3-nano-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), `nemotron-nano-12b-v2-vl`, `nemotron-nano-9b-v2`
 
 ## Limits, in the vendor's words
 
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,6 +3,7 @@ layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-09-24'
 description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外,…'
 permalink: /providers/sensenova/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -42,6 +43,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -3,6 +3,7 @@ layout: default
 title: 'abliteration.ai free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect…'
 permalink: /providers/abliteration-ai/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -52,6 +53,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

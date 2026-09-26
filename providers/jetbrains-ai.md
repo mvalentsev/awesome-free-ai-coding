@@ -3,6 +3,7 @@ layout: default
 title: 'JetBrains AI (AI Free) free tier: limits, free models, verified 2026-09-24'
 description: AI Free in JetBrains IDEs — unlimited code completion on JetBrains' Mellum model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents. JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one…
 permalink: /providers/jetbrains-ai/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -48,6 +49,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

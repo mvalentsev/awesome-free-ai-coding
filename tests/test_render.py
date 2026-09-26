@@ -8,7 +8,7 @@ import yaml
 from freetier_radar.history import Event, EventType
 from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, README_CHANGES, README_NOTE_TEASER,
+    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, PAGES_URL, README_CHANGES, README_NOTE_TEASER,
     build_context, build_env_example, build_feed, build_index, build_litellm_config,
     build_opencode_config, env_var, is_archived, render_artifacts, render_readme,
 )
@@ -651,8 +651,11 @@ def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_pa
     start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
     # A list, as the rows are: in a table the model's column took a third of a
     # phone's width, and seventeen models stood two screens tall.
-    assert "\n- `big` <sub>frontier</sub> — [C](https://x.ai)\n" in start
-    assert "\n- `kimi-k3` — [A](https://x.ai) · [B](https://x.ai) 💳\n" in start
+    # Each model links its own page, where every row that serves it has its
+    # limits and the ids to call.
+    assert f"\n- [`big`]({PAGES_URL}/models/big/) <sub>frontier</sub> — [C](https://x.ai)\n" in start
+    assert (f"\n- [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) — [A](https://x.ai) · "
+            "[B](https://x.ai) 💳\n") in start
     assert "`small`" not in start
 
 
@@ -668,8 +671,8 @@ def test_the_strong_models_on_the_readme_are_capped_and_the_rest_linked(tmp_path
     save_registry(reg, entries)
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
-    shown = [line for line in start.splitlines() if line.startswith("- `")]
-    assert shown == ["- `glm-5.3` — [A](https://x.ai)"]
+    shown = [line for line in start.splitlines() if line.startswith("- [`")]
+    assert shown == [f"- [`glm-5.3`]({PAGES_URL}/models/glm-5.3/) — [A](https://x.ai)"]
     assert "the other strong one is in [the website's model index]" in start
 
 

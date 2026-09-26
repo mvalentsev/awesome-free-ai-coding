@@ -3,6 +3,7 @@ layout: default
 title: 'Scaleway Generative APIs free tier (archived): what it offered, and why it left the list'
 description: EU-made serverless LLM API (OpenAI-compatible); 1M free tokens for every new customer. 1,000,000 free tokens then pay-per-token; a valid payment method is required. The allowance is not a model lane — "The Free Tier is applied to the most expensive tokens first", across the whole serverless…
 permalink: /providers/scaleway-generative/
+last_modified_at: 2026-09-16
 ---
 
 {% raw %}
@@ -38,6 +39,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

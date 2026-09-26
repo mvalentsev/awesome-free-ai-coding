@@ -3,6 +3,7 @@ layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-09-24'
 description: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card; GLM 5.3 Flash by default, with DeepSeek V4.1 Flash, MiMo 2.6 Flash and Solar Mini 4 among the free hours. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on…
 permalink: /providers/freebuff/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 ## Free models
 
-`glm-5.3-flash`, `deepseek-v4.1-flash`, `muse-spark-1.2`
+[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/), [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/)
 
 ## Limits, in the vendor's words
 
@@ -50,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

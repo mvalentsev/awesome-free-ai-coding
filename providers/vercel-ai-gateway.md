@@ -3,6 +3,7 @@ layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-09-24'
 description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Vercel''s FAQ, in its error table: "The team must add a valid payment method before using free…'
 permalink: /providers/vercel-ai-gateway/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Free models
 
-`laguna-s-2.1`, `ling-3.0-flash-fin`, `ling-3.0-flash-sante`
+[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/)
 
 ## Limits, in the vendor's words
 
@@ -57,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

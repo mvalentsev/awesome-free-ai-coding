@@ -3,6 +3,7 @@ layout: default
 title: 'LongCat API Platform free tier (archived): what it offered, and why it left the list'
 description: Meituan's LongCat platform — OpenAI- and Anthropic-compatible API with a recurring daily free token quota. 100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout
 permalink: /providers/longcat/
+last_modified_at: 2026-08-14
 ---
 
 {% raw %}
@@ -38,6 +39,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26. No probe reads this row any more — it left the list for good unless a reviewer brings it back; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

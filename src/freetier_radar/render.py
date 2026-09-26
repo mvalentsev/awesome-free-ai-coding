@@ -15,10 +15,10 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
-                     SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, FreePart, Notice,
-                     ProbeType, Tier, Watched, _id_squash, domain_of, family_names, folded_into,
-                     is_archived,
-                     is_archived_for_good, is_blocked, is_watch_current, live_families,
+                     SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Category, Entry, FreePart,
+                     ModelFamily, Notice, ProbeType, Tier, Watched, _id_squash, domain_of,
+                     family_names, folded_into, is_archived,
+                     is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
                      load_blocklist, load_registry, load_watchlist, probe_frequency)
 # How the probe decides which of a row's families a catalog id is: the configs
 # group ids by tier with the same rule, so the two can never disagree. The
@@ -38,6 +38,8 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_folded_page", "build_providers_index",
            "provider_page_url", "PAGES_URL",
+           "MODELS_DIR", "MODEL_PAGE_ROWS", "build_model_page", "build_models_index",
+           "model_page_url",
            "build_llms_txt",
            "picks",
            "SITE_MODELS", "SITE_PAGE", "build_site_context", "render_site",
@@ -64,6 +66,21 @@ FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
 # same registry, so a page can never outlive its row or say what the row does not.
 PAGES_URL = "https://mvalentsev.github.io/awesome-free-ai-coding"
 PROVIDERS_DIR = "providers"
+# And where a model gets one. A reader — or a model answering one — arrives as
+# often with a model in mind as with a vendor: where is Kimi K3 free, where is
+# GLM-5.3-Flash. The provider pages answer for one vendor, and the site's model
+# index answered for every model inside one fold of the front page, where no
+# search engine matches a title to the question. On 2026-09-26 the sites that
+# came up for those questions were per-model pages built on a fraction of this
+# list's evidence, and none of this site's pages came up at all.
+MODELS_DIR = "models"
+# Which models get a page of their own: those this many live rows serve free,
+# and those that measure strong or frontier. A page earns its place by saying
+# what no row's page says alone — who else serves the model — or by covering a
+# model readers come for. A model one row serves and nothing measures would get
+# a page repeating that row's, fifty-seven times over for Alibaba's catalog
+# alone on 2026-09-26; it stays on the index of every model, beside its row.
+MODEL_PAGE_ROWS = 2
 FEED_ENTRIES = 50
 README_CHANGES = 10
 # Where a prose cell stops showing and starts folding. The teaser is a cut at a
@@ -250,6 +267,20 @@ def provider_page_url(entry_id: str) -> str:
     return f"{PAGES_URL}/{PROVIDERS_DIR}/{entry_id}/"
 
 
+def model_page_url(family: str) -> str:
+    return f"{PAGES_URL}/{MODELS_DIR}/{family}/"
+
+
+_COUNT_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five"}
+
+
+def _model_page_rule() -> str:
+    """Which models have a page, as every page that says so says it — from the
+    constant that decides it."""
+    return (f"{_COUNT_WORDS.get(MODEL_PAGE_ROWS, str(MODEL_PAGE_ROWS))} rows or more serve it "
+            "free, or it measures strong or frontier")
+
+
 # How a row's page and llms.txt say what the vendor does with what a reader
 # sends, before the vendor's own sentence.
 DATA_USE_WORDS = {
@@ -388,17 +419,41 @@ def _model_index(active: list[Entry]) -> list[dict]:
     which five entries carry it. A row that needs a card carries its 💳 here
     too: "free at" beside a name with no mark reads as free without one.
     """
+    return [
+        {"family": family,
+         "page": model_page_url(family) if _has_model_page(family, ps) else "",
+         "providers": [{"name": p.name, "url": p.url,
+                        "card_flag": " 💳" if p.card_required else ""}
+                       for p in ps]}
+        for family, ps in _rows_by_family(active).items()
+    ]
+
+
+def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
+    """Every family the live rows publish, and the rows that serve it free —
+    the most widely served family first, then by name, and each family's rows
+    in the order the list reads them. The one grouping behind the model index,
+    the model pages and index.json's `models`, so the three name the same
+    families with the same rows."""
     by_family: dict[str, list[Entry]] = {}
     for e in active:
         for family in _families(e):
             by_family.setdefault(family, []).append(e)
-    return [
-        {"family": family,
-         "providers": [{"name": p.name, "url": p.url,
-                        "card_flag": " 💳" if p.card_required else ""}
-                       for p in sorted(ps, key=_by_rank)]}
-        for family, ps in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))
-    ]
+    return {family: sorted(rows, key=_by_rank)
+            for family, rows in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))}
+
+
+def _measured(family: str, rows: list[Entry]) -> ModelFamily | None:
+    """The tier mark a family carries on its rows, frontier over strong — the
+    same model measured the same way, so the rows agree, and where two lanes
+    serve variants that measure apart the page says the better of the two."""
+    marks = [m for e in rows for m in e.models
+             if m.family == family and m.superseded_by is None and m.tier is not None]
+    return min(marks, key=lambda m: m.tier is not Tier.FRONTIER, default=None)
+
+
+def _has_model_page(family: str, rows: list[Entry]) -> bool:
+    return len(rows) >= MODEL_PAGE_ROWS or _measured(family, rows) is not None
 
 
 def _strong_models(active: list[Entry]) -> list[dict]:
@@ -420,8 +475,9 @@ def _strong_models(active: list[Entry]) -> list[dict]:
             if m.superseded_by is None and m.tier in (Tier.FRONTIER, Tier.STRONG):
                 by_family.setdefault(m.family, (m.tier is Tier.FRONTIER, []))[1].append(e)
     ordered = sorted(by_family.items(), key=lambda kv: (not kv[1][0], -len(kv[1][1]), kv[0]))
+    # Every family here measures strong or better, so every one has a page.
     return [
-        {"family": family, "frontier": frontier,
+        {"family": family, "frontier": frontier, "page": model_page_url(family),
          "providers": [{"name": p.name, "url": p.url,
                         "card_flag": " 💳" if p.card_required else ""}
                        for p in sorted(ps, key=_by_rank)]}
@@ -772,6 +828,8 @@ def _shared_facts(entries: list[Entry], today: date,
         "endpoint_count": len(connectable),
         "family_count": len(model_index),
         "model_index": model_index,
+        "models_url": f"{PAGES_URL}/{MODELS_DIR}/",
+        "model_page_rule": _model_page_rule(),
         "strong_models": _strong_models(active),
         "starters": _starters(active),
         "picks": _picks(active, connectable),
@@ -864,6 +922,10 @@ def build_index(entries: list[Entry], today: date,
              "page": provider_page_url(e.id)}
             for e in entries
         ],
+        # Additive, like the watchlist: which rows serve each model free, the
+        # question a machine asks of this list as often as a reader does, and
+        # the page a model has where it has one.
+        "models": _index_models(entries, today),
         # Additive: a consumer reading .entries is unaffected. Here because
         # "considered and not listed, on this date, for this reason" is an answer
         # worth publishing in machine-readable form, not only in the README.
@@ -1163,6 +1225,20 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
             continue
         lines += ["", f"## {_plain_title(title)}", ""]
         lines += [_llms_line(e) for e in rows]
+    # The same rows turned inside out, for the question that starts from a
+    # model: every model with a page, and who serves it.
+    paged = [(f, rows) for f, rows in _rows_by_family(live).items() if _has_model_page(f, rows)]
+    if paged:
+        lines += ["", "## Free models by name", "",
+                  f"A model has a page of its own where {_model_page_rule()}: every row that "
+                  "serves it, the limits in the vendor's words and the ids to call. Every other "
+                  "model is named on the one row above that serves it.", ""]
+        for family, rows in paged:
+            mark = _measured(family, rows)
+            lines.append(f"- [{family}]({model_page_url(family)}): "
+                         + (f"{mark.tier.value}; " if mark is not None else "")
+                         + ", ".join(e.name + (" (card required)" if e.card_required else "")
+                                     for e in rows))
     if gone:
         lines += ["", "## Archived", ""]
         for e in gone:
@@ -1175,6 +1251,8 @@ def build_llms_txt(entries: list[Entry], today: date) -> str:
         f"- [feed.xml]({FEED_URL}): Atom feed of every change — rows arriving, leaving and "
         "changing their free models",
         f"- [Provider pages]({PAGES_URL}/{PROVIDERS_DIR}/): one page per row, live and archived",
+        f"- [Model pages]({PAGES_URL}/{MODELS_DIR}/): every free model on the list and the rows "
+        f"that serve it, and a page of its own for each model where {_model_page_rule()}",
         f"- [Filterable table]({PAGES_URL}/browse.html): the same rows filtered by category, "
         "card, key and API format",
         f"- [configs/opencode.json]({REPO_URL}/blob/main/configs/opencode.json): opencode "
@@ -1442,8 +1520,39 @@ def _page_description(e: Entry) -> str:
     offer = e.offering.strip()
     if offer and offer[-1] not in ".!?":
         offer += "."
-    text = " ".join(f"{offer} {e.limits}".split())
+    return _description(f"{offer} {e.limits}")
+
+
+def _description(text: str) -> str:
+    text = " ".join(text.split())
     return text if len(text) <= 300 else text[:297].rsplit(" ", 1)[0] + "…"
+
+
+def _last_modified(e: Entry, events: list[Event]) -> date:
+    """The newest day a row's page changed for a reader: the last probe that
+    passed it or its newest history line, whichever came later, as a UTC day.
+
+    It goes in the page's front matter as `last_modified_at`, which
+    jekyll-sitemap writes as the URL's <lastmod> and jekyll-seo-tag as the
+    page's `dateModified`. Without it 98 of the sitemap's 100 URLs carried no
+    date on 2026-09-26, and a crawler deciding what to read again had only the
+    two pages Jekyll copies verbatim to go on. The footer's render date is not
+    it: a render changes no fact on the page."""
+    return max([e.last_verified, *(ev.ts.astimezone(timezone.utc).date()
+                                   for ev in events if ev.id == e.id)])
+
+
+def _model_page_families(entries: list[Entry], today: date) -> set[str]:
+    active = [e for e in entries if not is_archived(e, today)]
+    return {f for f, rows in _rows_by_family(active).items() if _has_model_page(f, rows)}
+
+
+def _family_links(families: list[str], pages: set[str]) -> str:
+    """Families as the pages print them, each linking its own page where it has
+    one — the row's page is a way in to the model's, as the model's is to the
+    row's."""
+    return ", ".join(f"[`{f}`]({model_page_url(f)})" if f in pages else f"`{f}`"
+                     for f in families)
 
 
 def _connect_section(e: Entry) -> list[str]:
@@ -1565,7 +1674,8 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
                           "description": f"{e.name} and {name} are one project. The list carried "
                                          f"it twice and now keeps one row: the free tier, the "
                                          f"evidence and the history are on the {name} page.",
-                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/"}),
+                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/",
+                          "last_modified_at": _last_modified(e, events)}),
            "{% raw %}", "", f"# {e.name}", "",
            " · ".join([CATEGORY_TITLES[e.category],
                        f"**folded into [{name}]({page})** — one project, one row",
@@ -1618,7 +1728,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         title = f"{e.name} free tier: limits, free models, verified {verified}"
     out = [_front_matter({"layout": "default", "title": title,
                           "description": _page_description(e),
-                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/"}),
+                          "permalink": f"/{PROVIDERS_DIR}/{e.id}/",
+                          "last_modified_at": _last_modified(e, events)}),
            "{% raw %}", "", f"# {e.name}", ""]
     flags = [CATEGORY_TITLES[e.category]]
     flags.append("card required" if e.card_required else "no card")
@@ -1677,7 +1788,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         named = ("The row names no free model family; the ids its lane serves, where the row has "
                  "them, are under Connect.")
     out += ["## Free models it listed" if archived else "## Free models", "",
-            ", ".join(f"`{f}`" for f in fams) if fams else named, ""]
+            _family_links(fams, _model_page_families(registry or [], today)) if fams else named,
+            ""]
     out += ["## Limits, in the vendor's words", "",
             e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
     if e.data_use is not None and not archived:
@@ -1703,7 +1815,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     return "\n".join(out)
 
 
-def build_providers_index(entries: list[Entry], today: date) -> str:
+def build_providers_index(entries: list[Entry], today: date,
+                          events: list[Event] | None = None) -> str:
     """The page that links every provider page — live rows first, in section
     order, the archive after — so a crawler that lands anywhere finds the rest."""
     out = [_front_matter({"layout": "default",
@@ -1711,16 +1824,19 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
                           "description": "One page per provider: the free tier in the vendor's own "
                                          "words, connection details, the evidence a live probe reads "
                                          f"{_schedule()}, and the row's history.",
-                          "permalink": f"/{PROVIDERS_DIR}/"}),
+                          "permalink": f"/{PROVIDERS_DIR}/",
+                          "last_modified_at": max((_last_modified(e, events or [])
+                                                   for e in entries), default=today)}),
            "{% raw %}", "", "# Every provider, one page each", "",
            f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
            f"row is re-verified {_schedule()}, and an archived one says why it left.", ""]
     live = [e for e in entries if not is_archived(e, today)]
     archived = _archive(entries, today)
+    pages = _model_page_families(entries, today)
     out += ["| Provider | Section | Free models | Last verified |", "|---|---|---|---|"]
     for cat, title in CATEGORY_TITLES.items():
         for e in _ordered(live, cat):
-            fams = ", ".join(f"`{f}`" for f in live_families(e)) or "—"
+            fams = _family_links(live_families(e), pages) or "—"
             out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {title} | {fams} "
                        f"| `{e.last_verified.isoformat()}` |")
     if archived:
@@ -1730,6 +1846,220 @@ def build_providers_index(entries: list[Entry], today: date) -> str:
             out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {why} |")
     out += ["", "{% endraw %}", ""]
     return "\n".join(out)
+
+
+def _and(names: list[str]) -> str:
+    """"a", "a and b", "a, b and c"."""
+    return names[0] if len(names) == 1 else ", ".join(names[:-1]) + " and " + names[-1]
+
+
+def _floor(rows: list[Entry], today: date) -> str:
+    """The date a set of rows was verified on, as the badge states one: the
+    oldest, and "or later" where the rows carry more than one date."""
+    days = sorted({e.last_verified for e in rows}) or [today]
+    return days[0].isoformat() + (" or later" if len(days) > 1 else "")
+
+
+def _listed_since(events: list[Event], entry_id: str, family: str) -> date | None:
+    """The UTC day the row's published free models last took the family in, by
+    the history — the list's own date, never the vendor's. A family that left
+    and came back counts from its return, a row that went to the Archive and
+    came back from its restoring, and a row the history never saw with the
+    family says nothing."""
+    since = None
+    for ev in events:
+        if ev.id != entry_id:
+            continue
+        if ev.event in (EventType.ARCHIVED, EventType.REMOVED) or family not in ev.models:
+            since = None
+        elif since is None:
+            since = ev.ts.astimezone(timezone.utc).date()
+    return since
+
+
+def _model_call(e: Entry, family: str) -> str:
+    """How a reader reaches this model on this row: the ids of this model and no
+    other, where to send them and with what key — or the tool it lives in."""
+    lane = lane_ids(e)
+    ids = ", ".join(f"`{i}`" for i in (lane.model_ids if lane else []) if family_names(family, i))
+    api = e.api
+    if api and api.base_url:
+        where = f"`{api.base_url}`" + ("" if api.openai_compatible else " (not OpenAI-shaped)")
+        if api.auth == "none":
+            key = "with no key"
+        elif api.public_key:
+            key = (f"with the key the vendor prints for anyone at <{api.key_url}>, "
+                   f"`{api.public_key}`")
+        else:
+            key = f"with a key in `{env_var(e.id)}`" + (f" from <{api.key_url}>" if api.key_url else "")
+        asks = []
+        if api.client_user_agent:
+            asks.append("names its client in its own User-Agent")
+        if api.session_header:
+            asks.append(f"carries a stable id per conversation in `{api.session_header}`")
+        tail = f"; every request {' and '.join(asks)}" if asks else ""
+        if ids:
+            return f"Call it: {ids} at {where}, {key}{tail}"
+        return f"Call it at {where}, {key}{tail} — the row lists no id for this model"
+    if lane is not None:
+        return f"Inside {e.name}: pick {ids} in its model list" if ids else f"Inside {e.name}"
+    return f"Inside {e.name} itself: no API endpoint to paste"
+
+
+def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
+    """One row's part of a model page: what it is, what it asks, when the list
+    last confirmed it and since when it has carried the model, the limits in
+    the vendor's words and how to call this model there. The evidence and the
+    history stay on the row's own page, one click from its name."""
+    flags = [CATEGORY_TITLES[e.category], "card required" if e.card_required else "no card"]
+    if e.provisional:
+        flags.append(f"provisional since {e.first_seen.isoformat()}")
+    flags.append(f"verified {e.last_verified.isoformat()}")
+    since = _listed_since(events, e.id, family)
+    if since is not None:
+        flags.append(f"listed since {since.isoformat()}")
+    out = [f"### [{e.name}]({provider_page_url(e.id)})", "", " · ".join(flags), "", e.offering, ""]
+    if e.api and e.api.notice:
+        # First, as on the row's page: the one thing a reader about to copy a
+        # base URL needs before the base URL.
+        out += [f"> ⚠️ **Does not work as published since {_notice_since(e.api.notice)}.** "
+                f"{e.api.notice.text}", ""]
+    out.append(f"- Limits, in the vendor's words: {e.limits}" if e.limits
+               else "- The vendor publishes no figure for this tier.")
+    out.append(f"- {_model_call(e, family)}")
+    if e.api and e.api.base_url and e.api.anthropic_base_url:
+        out.append("- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): "
+                   f"`{e.api.anthropic_base_url}`")
+    if e.data_use is not None:
+        out.append(f"- {DATA_USE_WORDS[e.data_use.trains].rstrip('.')} "
+                   f"([the vendor's words]({e.data_use.url})).")
+    return out + [""]
+
+
+def build_model_page(family: str, entries: list[Entry], events: list[Event], today: date) -> str:
+    """One page per model the list can say something about across its rows.
+
+    A reader arrives with a model in mind as often as with a vendor — where is
+    Kimi K3 free — and a search engine answers that with a page whose title is
+    the question. This is that page: the model, "free", how many rows serve it
+    and the date a probe confirmed them in the title; then every live row that
+    serves it, in the list's order, with what a reader needs to use it there.
+    Every word is the registry's or the history's, and the body sits inside
+    {% raw %} for the reason the provider pages' does.
+    """
+    if not re.fullmatch(r"[a-z0-9][a-z0-9.\-]*", family):
+        raise ValueError(f"{family!r} is not a page name: a model page is named after its "
+                         "family, which has to be lower case, digits, dots and hyphens")
+    active = [e for e in entries if not is_archived(e, today)]
+    by_family = _rows_by_family(active)
+    rows = by_family.get(family)
+    if not rows:
+        raise ValueError(f"no live row serves {family!r} free, so it has no page")
+    n, names = len(rows), [e.name for e in rows]
+    floor = _floor(rows, today)
+    card = [e.name for e in rows if e.card_required]
+    if not card:
+        asks = "It asks for no card" if n == 1 else "None asks for a card"
+    elif len(card) == n:
+        asks = "It asks for a card on file" if n == 1 else "Each asks for a card on file"
+    else:
+        asks = f"{_and(card)} {'asks' if len(card) == 1 else 'ask'} for a card on file, the rest for none"
+    anonymous = [e.name for e in rows if needs_no_account(e)]
+    if anonymous:
+        asks += ("; it answers with no account at all" if n == 1 else
+                 f"; {_and(anonymous)} {'answers' if len(anonymous) == 1 else 'answer'} with no "
+                 "account at all")
+    asks += "."
+    served = ("**One row on the list serves" if n == 1 else f"**{n} rows on the list serve")
+    summary = [f"{served} `{family}` free:** {_and(names)}.", asks,
+               (f"A live probe confirmed it on {floor} and reads it again {_schedule()}." if n == 1
+                else f"A live probe confirmed each one on {floor} and reads them again "
+                     f"{_schedule()}.")]
+    mark = _measured(family, rows)
+    if mark is not None:
+        within = FRONTIER_WITHIN if mark.tier is Tier.FRONTIER else STRONG_WITHIN
+        board = (f"https://artificialanalysis.ai/models/{mark.aa_model}" if mark.aa_model
+                 else "https://artificialanalysis.ai/leaderboards/models")
+        summary.append(f"It measures **{mark.tier.value}**: within {within:g} points of the top "
+                       f"of the [Artificial Analysis Intelligence Index]({board}).")
+    title = (f"{family} free: {n} provider{'' if n == 1 else 's'}, limits and ids, "
+             f"verified {floor}")
+    description = _description(f"{family} is served free by {_and(names)}. {asks} Each one's "
+                               "limits in the vendor's words, the ids to call and the day a live "
+                               "probe last confirmed it.")
+    out = [_front_matter({"layout": "default", "title": title, "description": description,
+                          "permalink": f"/{MODELS_DIR}/{family}/",
+                          "last_modified_at": max(_last_modified(e, events) for e in rows)}),
+           "{% raw %}", "", f"# Where {family} is free", "", " ".join(summary), "",
+           f"[Every free model]({PAGES_URL}/{MODELS_DIR}/) · [the whole list]({PAGES_URL}/)", "",
+           "## Who serves it free", ""]
+    for e in rows:
+        out += _model_row(e, family, events)
+    # The same name before the first hyphen — glm, gemini, qwen3.8 — is the
+    # family a reader who came for one of them is likeliest to ask about next.
+    stem = family.split("-")[0]
+    related = [f for f, rs in by_family.items()
+               if f != family and f.split("-")[0] == stem and _has_model_page(f, rs)]
+    if related:
+        out += ["## Related models", "",
+                *(f"- [`{f}`]({model_page_url(f)}) — free at {_and([e.name for e in by_family[f]])}"
+                  for f in related), ""]
+    out += ["---", "",
+            f"Generated from `registry.yaml` on {today.isoformat()} and re-verified {_schedule()}; "
+            f"every free model on the list is at <{PAGES_URL}/{MODELS_DIR}/>, and the full list, "
+            f"the Atom feed and the machinery at <{REPO_URL}>.", "", "{% endraw %}", ""]
+    return "\n".join(out)
+
+
+def build_models_index(entries: list[Entry], today: date,
+                       events: list[Event] | None = None) -> str:
+    """Every model the live rows serve free and every row that serves each one —
+    the site's model index as a page of its own, for the reader who searched
+    for a list of free models rather than for one of them. A model with a page
+    links to it; any other links the row that serves it."""
+    active = [e for e in entries if not is_archived(e, today)]
+    by_family = _rows_by_family(active)
+    pages = [f for f, rows in by_family.items() if _has_model_page(f, rows)]
+    title = f"Free LLM models by name: who serves each one free, verified {_floor(active, today)}"
+    description = _description(
+        f"{len(by_family)} model families the list's {len(active)} live rows serve free, and every "
+        f"row that serves each one; {len(pages)} of them have a page of their own with the limits "
+        "in the vendor's words and the ids to call.")
+    out = [_front_matter({"layout": "default", "title": title, "description": description,
+                          "permalink": f"/{MODELS_DIR}/",
+                          "last_modified_at": max((_last_modified(e, events or []) for e in active),
+                                                  default=today)}),
+           "{% raw %}", "", "# Every free model on the list", "",
+           f"{len(by_family)} model families, and every row that serves each one free, the most "
+           f"widely served first. A model has a page of its own where {_model_page_rule()}: every "
+           "row that serves it, the limits in the vendor's words and the ids to call. A live probe "
+           f"reads every row again {_schedule()}.", "",
+           f"[The whole list]({PAGES_URL}/) · [Every provider]({PAGES_URL}/{PROVIDERS_DIR}/)", "",
+           "| Model | Free at |", "|---|---|"]
+    for family, rows in by_family.items():
+        cell = f"[`{family}`]({model_page_url(family)})" if family in pages else f"`{family}`"
+        mark = _measured(family, rows)
+        if mark is not None:
+            cell += f" · {mark.tier.value}"
+        at = ", ".join("[{}]({}){}".format(e.name.replace("|", r"\|"), provider_page_url(e.id),
+                                           " 💳" if e.card_required else "") for e in rows)
+        out.append(f"| {cell} | {at} |")
+    out += ["", "{% endraw %}", ""]
+    return "\n".join(out)
+
+
+def _index_models(entries: list[Entry], today: date) -> list[dict]:
+    """index.json's model index: every family the live rows serve free, the ids
+    of the rows that serve it, its tier where it has one and its page where it
+    has one — the question a machine asks as often as a reader."""
+    active = [e for e in entries if not is_archived(e, today)]
+    out = []
+    for family, rows in _rows_by_family(active).items():
+        mark = _measured(family, rows)
+        out.append({"family": family, "rows": [e.id for e in rows],
+                    **({"tier": mark.tier.value} if mark is not None else {}),
+                    **({"page": model_page_url(family)} if _has_model_page(family, rows) else {})})
+    return out
 
 
 CHECKED_PAGE = "checked"
@@ -1906,8 +2236,24 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         (providers / f"{e.id}.md").write_text(
             build_provider_page(e, history, today, blocked, registry=entries), encoding="utf-8")
         wanted.add(f"{e.id}.md")
-    (providers / "index.md").write_text(build_providers_index(entries, today), encoding="utf-8")
+    (providers / "index.md").write_text(build_providers_index(entries, today, history),
+                                        encoding="utf-8")
     for stale in providers.glob("*.md"):
+        if stale.name not in wanted:
+            stale.unlink()
+    # A page per model that has one, and the index of every model — and the
+    # page of a model that no longer has one goes, the same way and with the
+    # same care as a row's.
+    models = root / MODELS_DIR
+    models.mkdir(parents=True, exist_ok=True)
+    wanted = {"index.md"}
+    for family in sorted(_model_page_families(entries, today)):
+        (models / f"{family}.md").write_text(build_model_page(family, entries, history, today),
+                                             encoding="utf-8")
+        wanted.add(f"{family}.md")
+    (models / "index.md").write_text(build_models_index(entries, today, history),
+                                     encoding="utf-8")
+    for stale in models.glob("*.md"):
         if stale.name not in wanted:
             stale.unlink()
     (root / "index.json").write_text(
@@ -2052,10 +2398,12 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     # that does not would publish a change no page lists and no feed announces.
     if pending_changes(load_registry(registry_path), _history_beside(registry_path), pinned):
         stale.append(HISTORY)
-    # render_artifacts deletes the page of a row that left, but only in the
-    # directory it wrote; a page left behind in the repository is still served,
-    # so the absent half of the comparison counts too.
-    stale += [p.relative_to(root).as_posix() for p in (root / PROVIDERS_DIR).glob("*.md")
+    # render_artifacts deletes the page of a row that left, and of a model that
+    # no longer has one, but only in the directory it wrote; a page left behind
+    # in the repository is still served, so the absent half of the comparison
+    # counts too.
+    stale += [p.relative_to(root).as_posix()
+              for pages in (PROVIDERS_DIR, MODELS_DIR) for p in (root / pages).glob("*.md")
               if p.relative_to(root).as_posix() not in fresh]
     return sorted(stale)
 

@@ -3,6 +3,7 @@ layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
 description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and…'
 permalink: /providers/regolo/
+last_modified_at: 2026-09-25
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Free models
 
-`glm-5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`
+[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `apertus-70b`
 
 ## Limits, in the vendor's words
 
@@ -53,6 +54,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

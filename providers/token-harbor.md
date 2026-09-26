@@ -3,6 +3,7 @@ layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-09-24'
 description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids, DeepSeek V4.1 Flash and MiMo V2.6 Flash among them, on a value-based allowance per rolling 7-day period, no card. "Models on permanent free routes carry an explicit :free model ID and are listed…'
 permalink: /providers/token-harbor/
+last_modified_at: 2026-09-24
 ---
 
 {% raw %}
@@ -17,7 +18,7 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ## Free models
 
-`deepseek-v4.1-flash`
+[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 
 ## Limits, in the vendor's words
 
@@ -56,6 +57,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-25 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
