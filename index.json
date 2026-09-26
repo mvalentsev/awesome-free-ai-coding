@@ -9231,8 +9231,8 @@
         "siliconflow.com"
       ],
       "name": "SiliconFlow (international)",
-      "checked_on": "2026-09-18",
-      "reason": "The international site prices every model and offers \"postpaid billing—plus $1 in free credits to get you started!\", a one-off grant, and no page read says whether the dollar can be spent before a payment method is added (2026-09-18). The Chinese site, siliconflow.cn, is a row: its free chat models open to an account verified with Chinese, Hong Kong, Macau or Taiwan papers, which is rank and not a reason to leave it off, as for Tencent TokenHub.",
+      "checked_on": "2026-09-26",
+      "reason": "The international site prices every model and offers \"postpaid billing—plus $1 in free credits to get you started!\", a one-off grant, and no page read says whether the dollar can be spent before a payment method is added (2026-09-18). Read again 2026-09-26: all 87 models on its models page carry a price (from $0.003 per million input tokens), the console's sign-in says \"Get started now and enjoy $1 credit to explore our platform!\", and still no page says whether a card is asked first. The Chinese site, siliconflow.cn, is a row: its free chat models open to an account verified with Chinese, Hong Kong, Macau or Taiwan papers, which is rank and not a reason to leave it off, as for Tencent TokenHub.",
       "reopen_if": "A siliconflow.com page says the $1 needs no payment method, or a model there is priced at zero.",
       "current": true
     },
