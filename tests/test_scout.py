@@ -481,6 +481,19 @@ def test_an_archived_entry_gets_no_generation_bumps():
     assert not any("MODEL-GENERATIONS" in p for p in llm.prompts)
 
 
+def test_a_family_an_archived_row_shares_with_a_live_one_is_bumped_on_the_live_row_only():
+    """The families asked about came from live rows only, but the bumps were
+    matched against every row: on 2026-09-26 a minimax-m2 bump drew a line for
+    easy-gonka-api, rejected for cause in July, and the check behind it read
+    that row's probe page — the one that carried a prompt injection."""
+    llm = StubLLM({"MODEL-GENERATIONS":
+                   "```yaml\nsupersede:\n  - family: old\n    superseded_by: cur\n```"})
+    entries = [make(id="live", models=[{"family": "old"}]),
+               make(id="gone", models=[{"family": "old"}], retired_on=date(2026, 6, 1))]
+    result = run_scout(llm, entries, [], lambda urls: {}, TODAY)
+    assert result["supersede"] == ["live: old → cur"]
+
+
 def test_apply_retirements_needs_the_quote_on_the_page():
     pages = {"https://x.ai": "we are shutting the free tier down on 30 september 2026, thanks"}
     entries = [make(source_urls=["https://x.ai"])]

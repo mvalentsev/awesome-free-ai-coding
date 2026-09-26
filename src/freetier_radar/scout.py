@@ -1241,15 +1241,19 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     # Archived entries are excluded: their families belong to a product that is
     # gone, so any bump proposed for them is noise a reviewer can only ignore.
     # GitHub Models kept drawing "gpt-4.1 → gpt-5.6" months after GitHub shut
-    # the product down.
-    families = sorted({m.family for e in entries if not is_archived(e, today) for m in e.models})
+    # the product down. Both halves: the families asked about, and the rows a
+    # bump is matched against — a family a live row shares drew a line for the
+    # archived one too, and a read of its probe page (easy-gonka-api's, which
+    # carried a prompt injection, 2026-09-26).
+    current = [e for e in entries if not is_archived(e, today)]
+    families = sorted({m.family for e in current for m in e.models})
     if families and within_budget("generation check"):
         # Pure suggestions for the PR body — the cheapest thing in the run to
         # lose, and it runs last, so it must never discard what came before it.
         try:
             data = _ask(llm, GENERATIONS_PROMPT.format(families=", ".join(families)))
             result["supersede"], result["suppressed"], result["supersede_filtered"] = \
-                supersede_proposals(entries, data.get("supersede") or [], dismissed, named)
+                supersede_proposals(current, data.get("supersede") or [], dismissed, named)
         except RuntimeError as exc:
             lost_to_backends("generation check", exc)
 
