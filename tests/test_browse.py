@@ -87,3 +87,23 @@ def test_browse_page_links_a_model_to_its_page_from_the_index():
                          make(id="b", models=[{"family": "kimi-k3"}])], TODAY)
     fields = {k for m in index["models"] for k in m}
     assert used == {"family", "page"} and used <= fields, used - fields
+
+
+def test_browse_page_filters_on_tier_values_the_registry_has():
+    """The strong chip keeps rows whose families measure strong or frontier,
+    compared as strings in the browser — a tier renamed in the registry would
+    leave the chip matching nothing, as a Frontier chip alone did the week no
+    free model reached the frontier (2026-09-26). Every tier the page names is
+    one the registry has, and it names both that a family can carry."""
+    from freetier_radar.models import Tier
+
+    html = _html()
+    named = set(re.findall(r'm\.tier === "([a-z]+)"', html))
+    assert named == {t.value for t in Tier}, named
+
+
+def test_browse_page_says_so_when_nothing_matches():
+    html = _html()
+    assert "No row matches all of these filters" in html
+    # the Frontier chip is shown only while a live row carries a frontier family
+    assert 'id="frontier-chip" hidden' in html

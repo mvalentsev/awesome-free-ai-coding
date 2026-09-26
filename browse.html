@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Browse free LLM APIs &amp; coding agents — awesome-free-ai-coding</title>
-<meta name="description" content="Every legal free LLM API, no-card trial and coding agent from awesome-free-ai-coding as one filterable table: by category, no card, no account, OpenAI-compatible, Claude Code route, frontier models.">
+<meta name="description" content="Every legal free LLM API, no-card trial and coding agent from awesome-free-ai-coding as one filterable table: by category, no card, no account, OpenAI-compatible, Claude Code route, strong models.">
 <link rel="canonical" href="https://mvalentsev.github.io/awesome-free-ai-coding/browse.html">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="alternate" type="application/atom+xml" title="awesome-free-ai-coding changes" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">
@@ -32,7 +32,8 @@ code { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
 .ok { color: var(--ok); }
 .warn { color: var(--warn); }
 .muted { color: var(--muted); }
-.frontier { font-weight: 600; }
+.strong { font-weight: 600; }
+td.empty { padding: 18px 10px; }
 tr.archived td { opacity: .6; }
 footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
 @media (max-width: 600px) { body { padding: 16px 12px 32px; } table { min-width: 720px; } }
@@ -55,7 +56,8 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   <label class="chip"><input type="checkbox" id="nokey"> No account needed</label>
   <label class="chip"><input type="checkbox" id="openai"> OpenAI-compatible</label>
   <label class="chip"><input type="checkbox" id="claude"> Claude Code route</label>
-  <label class="chip"><input type="checkbox" id="frontier"> Frontier models</label>
+  <label class="chip"><input type="checkbox" id="strong"> Strong models</label>
+  <label class="chip" id="frontier-chip" hidden><input type="checkbox" id="frontier"> Frontier models</label>
   <label class="chip"><input type="checkbox" id="notrain"> Not trained on</label>
   <label class="chip"><input type="checkbox" id="archived"> Show archived</label>
 </div>
@@ -64,14 +66,14 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
 <thead><tr><th>Provider</th><th>Category</th><th>Free offer</th><th>Free models</th><th>Connect</th><th>Verified</th></tr></thead>
 <tbody id="rows"></tbody>
 </table></div>
-<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · "Verified" is the day the row last answered its probe, and for an archived row why it left; 🧪 marks a row listed for less than two weeks; 👁 a vendor that may train on what you send, and "Not trained on" keeps the ones that say they do not; bold model families are frontier-tier.</footer>
+<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · "Verified" is the day the row last answered its probe, and for an archived row why it left; 🧪 marks a row listed for less than two weeks; 👁 a vendor that may train on what you send, and "Not trained on" keeps the ones that say they do not; bold model families measure strong or frontier on the Artificial Analysis Intelligence Index, and a frontier one says so.</footer>
 </main>
 <script>
 (function () {
   "use strict";
   var ORDER = { "agent-cli": 0, "api-free-tier": 1, "trial": 2, "aggregator": 3 };
   var LABEL = { "agent-cli": "Agent / CLI", "api-free-tier": "API free tier", "trial": "Trial", "aggregator": "Aggregator" };
-  var FILTERS = ["nocard", "nokey", "openai", "claude", "frontier", "notrain", "archived"];
+  var FILTERS = ["nocard", "nokey", "openai", "claude", "strong", "frontier", "notrain", "archived"];
   var els = {};
   ["q", "cat", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
   var entries = [];
@@ -87,7 +89,15 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   function noAccount(e) { return keyless(e) || publicKey(e); }
   function openaiCompatible(e) { return !!(e.api && e.api.base_url && e.api.openai_compatible); }
   function claudeRoute(e) { return !!(e.api && e.api.anthropic_base_url); }
-  function hasFrontier(e) { return families(e).some(function (m) { return m.tier === "frontier"; }); }
+  // The models a reader comes for: a family the index measures strong or
+  // frontier, the set the front page's "Strong models, free" names. Frontier is
+  // the top ten points of the index, and some weeks no free model reaches it —
+  // a Frontier chip alone then emptied the table with no word why (2026-09-26),
+  // so it shows only while a live row carries such a family.
+  function isFrontier(m) { return m.tier === "frontier"; }
+  function isStrong(m) { return m.tier === "strong" || isFrontier(m); }
+  function hasStrong(e) { return families(e).some(isStrong); }
+  function hasFrontier(e) { return families(e).some(isFrontier); }
   // The vendor's word on training on what a reader sends: marked where it may,
   // kept by the filter only where it says it does not.
   function trains(e) { return !!(e.data_use && e.data_use.trains !== "no"); }
@@ -156,7 +166,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     var models = el("td");
     var fams = families(e);
     fams.forEach(function (m, i) {
-      var name = el("span", m.tier === "frontier" ? "frontier" : "", m.family);
+      var name = el("span", isStrong(m) ? "strong" : "", m.family);
       if (modelPages[m.family]) {
         var link = el("a");
         link.href = modelPages[m.family];
@@ -164,6 +174,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
         name = link;
       }
       models.appendChild(name);
+      if (isFrontier(m)) models.appendChild(text(" (frontier)"));
       if (i < fams.length - 1) models.appendChild(text(", "));
     });
     if (!fams.length) models.appendChild(el("span", "muted", "—"));
@@ -213,6 +224,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
       if (els.nokey.checked && !noAccount(e)) return false;
       if (els.openai.checked && !openaiCompatible(e)) return false;
       if (els.claude.checked && !claudeRoute(e)) return false;
+      if (els.strong.checked && !hasStrong(e)) return false;
       if (els.frontier.checked && !hasFrontier(e)) return false;
       if (els.notrain.checked && !notTrained(e)) return false;
       if (q && haystack(e).indexOf(q) === -1) return false;
@@ -220,6 +232,11 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     });
     els.rows.textContent = "";
     shown.forEach(function (e) { els.rows.appendChild(row(e)); });
+    if (!shown.length) {
+      var none = el("td", "muted empty", "No row matches all of these filters — clear one to see more.");
+      none.colSpan = 6;
+      els.rows.appendChild(el("tr")).appendChild(none);
+    }
     var live = entries.filter(function (e) { return !e.archived; }).length;
     els.count.textContent = shown.length + " of " + live + " live offers shown" +
       (els.archived.checked ? " (archive included)" : "");
@@ -244,6 +261,14 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
       return 0;
     });
     readState();
+    // A link that asked for frontier models on a week none is free asks for the
+    // strong ones, the nearest answer the list has, instead of an empty table.
+    if (entries.some(function (e) { return !e.archived && hasFrontier(e); })) {
+      document.getElementById("frontier-chip").hidden = false;
+    } else if (els.frontier.checked) {
+      els.frontier.checked = false;
+      els.strong.checked = true;
+    }
     ["q", "cat"].concat(FILTERS).forEach(function (id) { els[id].addEventListener("input", render); });
     render();
     els.count.textContent += " · index generated " + data.generated;
