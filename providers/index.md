@@ -72,6 +72,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-09-24
 - [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) — verified 2026-09-24 · [`gpt-5.6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/)
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-09-21
+- [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) — verified 2026-09-26 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/)
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-09-24
 - [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-09-24
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — verified 2026-09-24

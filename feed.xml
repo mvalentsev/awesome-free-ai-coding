@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-26T08:23:18Z</updated>
+  <updated>2026-09-26T08:51:35Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/zcode/20260926T085135Z</id>
+    <title>Added: ZCode (Z.ai)</title>
+    <link rel="alternate" href="https://zcode.z.ai/en"/>
+    <updated>2026-09-26T08:51:35Z</updated>
+    <summary type="text">Z.ai's desktop coding agent built around GLM-5.3, free as an app, with five days of GLM-5.3 and GLM-5-turbo for a new user and no card · free models: glm-5.3, glm-5-turbo</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vercel-ai-gateway/20260926T082318Z</id>
     <title>Free models changed: Vercel AI Gateway</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://aihubmix.com"/>
     <updated>2026-09-21T11:41:14Z</updated>
     <summary type="text">dropped gpt-oss · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260921T114114Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-21T11:41:14Z</updated>
-    <summary type="text">dropped llama-3.3 · free models: glm-5, gpt-oss, qwen3.8-27b, apertus-70b</summary>
   </entry>
 </feed>

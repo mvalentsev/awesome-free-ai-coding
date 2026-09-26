@@ -235,3 +235,4 @@
 {"ts": "2026-09-25T13:41:16.724945Z", "event": "models", "id": "cursor-hobby", "name": "Cursor (Hobby)", "url": "https://cursor.com/", "models": ["composer"], "detail": "added composer"}
 {"ts": "2026-09-25T13:41:16.724945Z", "event": "models", "id": "jetbrains-ai", "name": "JetBrains AI (AI Free)", "url": "https://www.jetbrains.com/ai/", "models": ["mellum"], "detail": "added mellum"}
 {"ts": "2026-09-26T08:23:18.129884Z", "event": "models", "id": "vercel-ai-gateway", "name": "Vercel AI Gateway", "url": "https://vercel.com/ai-gateway", "models": ["laguna-s-2.1", "ling-3.0-flash-sante"], "detail": "dropped ling-3.0-flash-fin"}
+{"ts": "2026-09-26T08:51:35.458508Z", "event": "added", "id": "zcode", "name": "ZCode (Z.ai)", "url": "https://zcode.z.ai/en", "models": ["glm-5.3", "glm-5-turbo"], "detail": "Z.ai's desktop coding agent built around GLM-5.3, free as an app, with five days of GLM-5.3 and GLM-5-turbo for a new user and no card"}

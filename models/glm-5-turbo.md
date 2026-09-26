@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5-turbo free: 1 provider, limits and ids, verified 2026-09-24'
-description: glm-5-turbo is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'glm-5-turbo free: 2 providers, limits and ids, verified 2026-09-24 or later'
+description: glm-5-turbo is served free by AIHubMix (free models) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-5-turbo/
-last_modified_at: 2026-09-25
+last_modified_at: 2026-09-26
 crumb: glm-5-turbo
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5-turbo
 
 # Where glm-5-turbo is free
 
-**One row on the list serves `glm-5-turbo` free:** AIHubMix (free models). It asks for no card. A live probe confirmed it on 2026-09-24 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-turbo), below its strong bar.
+**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. A live probe confirmed each one on 2026-09-24 or later and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-turbo), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -29,6 +29,16 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Callable ids: `coding-glm-5-turbo-free`
 
+### [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/)
+
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-26 · verified 2026-09-26 · listed since 2026-09-26
+
+Z.ai's desktop coding agent built around GLM-5.3, free as an app, with five days of GLM-5.3 and GLM-5-turbo for a new user and no card
+
+- Limits, in the vendor's words: The docs: "First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo at "2M tokens / day", and "the daily quotas below are granted only during these 5 days — they expire afterwards and are not an ongoing daily allowance". A BigModel (mainland China) account gets its own trial instead: "no payment required, with 8 million tokens per day for the first 5 days". After that the app runs on a GLM Coding Plan or a key of your own: "The ZCode application itself is completely free. As a developer, you still need your own API Key or a model service plan". Read 2026-09-26
+- No API endpoint to paste: this row is a tool you install or sign in to.
+- What you send is not used to train models ([the vendor's words](https://zcode.z.ai/en/privacy)).
+
 ## Related models
 
 - [`glm-5.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/) — free at AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS)
@@ -36,9 +46,9 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) — free at AIHubMix (free models) and Z.ai (Zhipu GLM)
 - [`glm-5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/) — free at Kiro and AIHubMix (free models)
 - [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) — free at AIHubMix (free models) and Regolo AI
+- [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — free at AIHubMix (free models) and ZCode (Z.ai)
 - [`glm-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/) — free at AIHubMix (free models)
 - [`glm-4.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/) — free at AIHubMix (free models)
-- [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — free at AIHubMix (free models)
 
 ---
 

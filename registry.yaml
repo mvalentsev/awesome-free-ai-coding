@@ -5714,3 +5714,52 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 45
+- id: zcode
+  name: ZCode (Z.ai)
+  category: trial
+  url: https://zcode.z.ai/en
+  source_urls:
+  - https://zcode.z.ai/en/docs/welcome
+  - https://zcode.z.ai/en/docs/configuration
+  - https://zcode.z.ai/en/docs/qa
+  card_required: false
+  offering: Z.ai's desktop coding agent built around GLM-5.3, free as an app, with
+    five days of GLM-5.3 and GLM-5-turbo for a new user and no card
+  limits: 'The docs: "First-time ZCode users get 5 days of free benefits, ready to
+    use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo
+    at "2M tokens / day", and "the daily quotas below are granted only during these
+    5 days — they expire afterwards and are not an ongoing daily allowance". A BigModel
+    (mainland China) account gets its own trial instead: "no payment required, with
+    8 million tokens per day for the first 5 days". After that the app runs on a GLM
+    Coding Plan or a key of your own: "The ZCode application itself is completely
+    free. As a developer, you still need your own API Key or a model service plan".
+    Read 2026-09-26'
+  free_part: models
+  models:
+  - family: glm-5.3
+    tier: strong
+    aa_model: glm-5-3
+  - family: glm-5-turbo
+    tier: notable
+    aa_model: glm-5-turbo
+  data_use:
+    trains: 'no'
+    quote: The Optimization Program is turned off by default. Before you actively
+      opt in, we will not use your input information, generated content, or product
+      usage data for product or model training and optimization.
+    url: https://zcode.z.ai/en/privacy
+  probe:
+    type: page-keywords
+    endpoint: https://zcode.z.ai/en/docs/welcome
+    keywords:
+    - 5-day free trial
+    - 3M tokens / day
+    free_marker: ''
+    dead_markers: []
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-26'
+  last_verified: '2026-09-26'
+  probe_failures: 0
+  provisional: true
+  rank: 84
