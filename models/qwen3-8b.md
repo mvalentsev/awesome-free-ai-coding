@@ -45,6 +45,7 @@ China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B
 ## Related models
 
 - [`qwen3-coder-next`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/) — free at Kiro and Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
 

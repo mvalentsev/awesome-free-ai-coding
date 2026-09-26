@@ -11,7 +11,7 @@ crumb: deepseek-v3.2
 
 # Where deepseek-v3.2 is free
 
-**2 rows on the list serve `deepseek-v3.2` free:** Kiro and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**2 rows on the list serve `deepseek-v3.2` free:** Kiro and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v3-2), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

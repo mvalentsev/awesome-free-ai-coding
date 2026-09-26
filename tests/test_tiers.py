@@ -8,8 +8,9 @@ import httpx
 import respx
 
 from freetier_radar.models import Entry, Tier, load_registry, save_registry
-from freetier_radar.tiers import (FRONTIER_WITHIN, LEADERBOARD_URL, STRONG_WITHIN, _amain,
-                                  index_top, measured_tier, parse_leaderboard, review)
+from freetier_radar.tiers import (FRONTIER_WITHIN, LEADERBOARD_URL, STRONG_WITHIN, Scored, _amain,
+                                  index_median, index_top, measured_tier, parse_leaderboard,
+                                  review)
 
 SCORED = [
     {"slug": "claude-fable-5-1", "name": "Claude Fable 5.1 (max)", "deprecated": False,
@@ -66,11 +67,32 @@ def test_the_top_of_the_index_counts_current_models_only():
 
 
 def test_a_tier_is_how_close_the_lane_s_model_scores_to_the_top():
-    top = 53.37
-    assert measured_tier(top - FRONTIER_WITHIN, top) is Tier.FRONTIER
-    assert measured_tier(top - FRONTIER_WITHIN - 0.01, top) is Tier.STRONG
-    assert measured_tier(top - STRONG_WITHIN, top) is Tier.STRONG
-    assert measured_tier(top - STRONG_WITHIN - 0.01, top) is None
+    top, median = 53.37, 13.2
+    assert measured_tier(top - FRONTIER_WITHIN, top, median) is Tier.FRONTIER
+    assert measured_tier(top - FRONTIER_WITHIN - 0.01, top, median) is Tier.STRONG
+    assert measured_tier(top - STRONG_WITHIN, top, median) is Tier.STRONG
+    assert measured_tier(top - STRONG_WITHIN - 0.01, top, median) is Tier.NOTABLE
+
+
+def test_below_the_strong_bar_the_upper_half_of_the_index_is_notable():
+    """A model below the strong bar can still be one readers come looking for:
+    on 2026-09-26 the top was Claude Opus 5.5 at 57.6, and Claude Opus 4.6
+    (26.4), Claude Sonnet 4.6 (24.7) and Gemini 3.5 Flash (32.6, a hair under
+    the bar) each had no page. `notable` is a score at or above the median of
+    the current models the index scores — its upper half — and below that no
+    tier at all, so the weakest models a catalog lists stay marks-free."""
+    top, median = 57.6, 13.2
+    assert measured_tier(26.4, top, median) is Tier.NOTABLE
+    assert measured_tier(median, top, median) is Tier.NOTABLE
+    assert measured_tier(median - 0.01, top, median) is None
+    # a median above the strong bar leaves no room between them: strong wins
+    assert measured_tier(40.0, 53.37, 41.2) is Tier.STRONG
+
+
+def test_the_median_counts_current_models_only():
+    """The same population as the top: a deprecated model is on the board as
+    history, not as one of the models a score is measured against."""
+    assert index_median(parse_leaderboard(page())) == 41.2
 
 
 def entry(id: str, *families: dict) -> Entry:
@@ -121,7 +143,8 @@ async def test_write_re_marks_every_row_that_carries_the_family(tmp_path: Path, 
     assert tiers == {("a", "gemini-3.8-flash"): Tier.STRONG, ("b", "gemini-3.8-flash"): Tier.STRONG,
                      ("b", "glm-5.3"): Tier.FRONTIER}
     out = capsys.readouterr().out
-    assert "top of the index: Claude Fable 5.1 (max), 53.4 — frontier from 43.4, strong from 28.4" in out
+    assert ("top of the index: Claude Fable 5.1 (max), 53.4 — frontier from 43.4, strong from 28.4, "
+            "notable from 41.2, the median of its 5 current models") in out
     assert "gemini-3.8-flash: frontier → strong (41.2 on gemini-3-8-flash)" in out
 
 
@@ -165,3 +188,20 @@ def test_a_new_model_the_board_scores_is_named_for_the_reviewer():
     # gemini-3.8-flash is measured on row a; nemotron scores below every bar,
     # so measuring it would change nothing a page says.
     assert [(family, scored.slug) for family, scored in found] == [("glm-5.3", "glm-5-3")]
+
+
+def test_the_reviewer_is_told_of_a_model_that_would_be_notable():
+    """Measuring a model below the strong bar changes what a page says now —
+    whether the model has one — so the review names a bare family the board
+    scores in its upper half, and still not one below it."""
+    from freetier_radar.tiers import unmeasured
+
+    board = {s.slug: s for s in [
+        Scored("claude-opus-5-5", "Claude Opus 5.5", 57.6, False, False),
+        Scored("claude-opus-4-6", "Claude Opus 4.6", 26.4, True, False),
+        Scored("qwen3-7-max", "Qwen3.7 Max", 29.5, False, False),
+        Scored("tiny-1b", "Tiny 1B", 4.0, False, False),
+        Scored("small-3b", "Small 3B", 9.0, False, False)]}
+    assert index_median(board) == 19.25  # 4, 9, 29.5, 57.6 — the deprecated one sits out
+    entries = [entry("a", {"family": "qwen3.7-max"}, {"family": "tiny-1b"})]
+    assert [(f, s.slug) for f, s in unmeasured(entries, board)] == [("qwen3.7-max", "qwen3-7-max")]

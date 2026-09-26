@@ -153,6 +153,9 @@ class FreePart(str, Enum):
 class Tier(str, Enum):
     FRONTIER = "frontier"
     STRONG = "strong"
+    # The upper half of the index below the strong bar: a model readers still
+    # come looking for, which earns a page of its own and no strong mark.
+    NOTABLE = "notable"
 
 
 class ProbeType(str, Enum):

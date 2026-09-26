@@ -11,7 +11,7 @@ crumb: inkling-small
 
 # Where inkling-small is free
 
-**2 rows on the list serve `inkling-small` free:** OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**2 rows on the list serve `inkling-small` free:** OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -41,6 +41,10 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 - Key: none — the lane is anonymous
 - Callable ids: `thinkingmachines/inkling-small:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
+
+## Related models
+
+- [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/) — free at OpenRouter (free models)
 
 ---
 

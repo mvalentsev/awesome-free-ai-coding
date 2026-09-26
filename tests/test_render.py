@@ -481,6 +481,11 @@ def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
         make(id="trial", name="Trial", rank=4, models=[{"family": "qwen3.8", "tier": "strong"}],
              api={"base_url": "https://trial.example/v1", "key_url": "https://trial.example/key",
                   "public_key": "pk-123", "model_ids": ["qwen3.8-27b"]}),
+        # notable decides a page, not a pool: free/strong is the bar a caller asked for
+        make(id="mid", name="Mid", rank=5, models=[{"family": "glm-5", "tier": "notable",
+                                                     "aa_model": "glm-5"}],
+             api={"base_url": "https://mid.example/v1", "key_url": "https://mid.example/key",
+                  "model_ids": ["zai/glm-5"]}),
     ]
     cfg = build_litellm_config(entries, TODAY)
     groups: dict[str, list[tuple[str, str, str]]] = {}

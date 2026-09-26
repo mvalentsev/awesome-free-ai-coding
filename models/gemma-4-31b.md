@@ -11,7 +11,7 @@ crumb: gemma-4-31b
 
 # Where gemma-4-31b is free
 
-**4 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com) and Opper. None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**4 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com) and Opper. None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-31b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -67,6 +67,10 @@ EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`
 - Callable ids: `gemini/gemma-4-31b`
 - What you send is not used to train models ([the vendor's words](https://opper.ai/pricing)).
+
+## Related models
+
+- [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/) — free at OpenRouter (free models)
 
 ---
 

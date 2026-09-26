@@ -42,6 +42,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 ## Related models
 
 - [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) — free at Alibaba Cloud Model Studio (DashScope, international) and SiliconFlow (China)
+- [`qwen3-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
 

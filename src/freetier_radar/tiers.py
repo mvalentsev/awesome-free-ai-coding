@@ -13,10 +13,15 @@ and this reads every score off the leaderboard the site publishes:
 
 - `frontier` — within FRONTIER_WITHIN points of the top of the index;
 - `strong` — within STRONG_WITHIN points;
+- `notable` — below that, but at or above the median of the current models
+  the index scores: its upper half, where a model readers still look for sits
+  once the top has moved on (Claude Opus 4.6 at 26.4 when the top was 57.6).
+  It earns the model a page of its own, not a strong mark;
 - no tier — further down, or not measured at all.
 
-The top counts current models only: a deprecated model is not a bar anything
-can be expected to reach. Run it with `--write` and the marks that moved are
+The top and the median count current models only: a deprecated model is not a
+bar anything can be expected to reach, nor one of the models a score is
+measured among. Run it with `--write` and the marks that moved are
 re-written on every row that carries the family, since a family carries one
 tier. A slug the leaderboard no longer knows keeps its mark and fails the run:
 a guess is not a measurement.
@@ -27,6 +32,7 @@ import argparse
 import asyncio
 import json
 import re
+import statistics
 import sys
 from dataclasses import dataclass, replace
 from datetime import date
@@ -89,11 +95,23 @@ def index_top(models: dict[str, Scored]) -> Scored:
     return max((m for m in models.values() if not m.deprecated), key=lambda m: m.index)
 
 
-def measured_tier(score: float, top: float) -> Tier | None:
+def _current(models: dict[str, Scored]) -> list[float]:
+    return [m.index for m in models.values() if not m.deprecated]
+
+
+def index_median(models: dict[str, Scored]) -> float:
+    """The median score of the current models on the board: where its upper
+    half, and the `notable` mark, begins."""
+    return statistics.median(_current(models))
+
+
+def measured_tier(score: float, top: float, median: float) -> Tier | None:
     if score >= top - FRONTIER_WITHIN:
         return Tier.FRONTIER
     if score >= top - STRONG_WITHIN:
         return Tier.STRONG
+    if score >= median:
+        return Tier.NOTABLE
     return None
 
 
@@ -122,7 +140,7 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
     measurement, if any row does: read off the first row alone, a new row that
     came in bare beside an older, correct one was never re-marked (Dahl
     Inference's deepseek-v4-flash, 2026-09-21)."""
-    top = index_top(models)
+    top, median = index_top(models), index_median(models)
     marks: dict[str, Mark] = {}
     for e in entries:
         for m in e.models:
@@ -133,7 +151,7 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
                 scored = models.get(m.aa_model)
                 marks[m.family] = Mark(
                     family=m.family, aa_model=m.aa_model, registered=m.tier,
-                    measured=measured_tier(scored.index, top.index) if scored else None,
+                    measured=measured_tier(scored.index, top.index, median) if scored else None,
                     score=scored)
             elif not mark.moved and m.tier is not mark.registered:
                 marks[m.family] = replace(mark, registered=m.tier)
@@ -149,18 +167,19 @@ def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[st
     strong list, and off a page of its own while one row served it, until a
     reviewer remembered to measure it. This names it on the next run. Only a
     slug the board lists is offered — never a guess — and only a score that
-    reaches a tier, since measuring a model below the bar changes nothing a
-    page says (twenty such families sat bare on 2026-09-26, all of them old
-    Qwen, GLM, MiMo and Gemini models the top has left behind). The reviewer
-    names, as the family's aa_model, the variant the lane actually serves."""
-    top = index_top(models)
+    reaches a tier, `notable` included, since that one decides whether the
+    model has a page (twenty families sat bare on 2026-09-26, twelve of them in
+    the index's upper half, Qwen3.7 Max at 29.5 among them); below the median,
+    measuring changes nothing a page says. The reviewer names, as the family's
+    aa_model, the variant the lane actually serves."""
+    top, median = index_top(models), index_median(models)
     measured = {m.family for e in entries for m in e.models if m.aa_model}
     found: dict[str, Scored] = {}
     for e in entries:
         for m in e.models:
             if m.superseded_by is None and m.family not in measured and m.family not in found:
                 scored = models.get(m.family.replace(".", "-"))
-                if scored is not None and measured_tier(scored.index, top.index) is not None:
+                if scored is not None and measured_tier(scored.index, top.index, median) is not None:
                     found[m.family] = scored
     return sorted(found.items())
 
@@ -177,8 +196,10 @@ async def _amain(registry: Path, write: bool) -> int:
     board = parse_leaderboard(resp.text)
     top, marks = review(entries, board)
     live = [e for e in entries if not is_archived(e, date.today())]
+    median = index_median(board)
     print(f"top of the index: {top.name}, {top.index:.1f} — frontier from "
-          f"{top.index - FRONTIER_WITHIN:.1f}, strong from {top.index - STRONG_WITHIN:.1f}")
+          f"{top.index - FRONTIER_WITHIN:.1f}, strong from {top.index - STRONG_WITHIN:.1f}, "
+          f"notable from {median:.1f}, the median of its {len(_current(board))} current models")
     moved = [m for m in marks if m.moved]
     unknown = [m for m in marks if m.unknown]
     for m in moved:
@@ -191,7 +212,7 @@ async def _amain(registry: Path, write: bool) -> int:
     bare = unmeasured(live, board)
     for family, scored in bare:
         print(f"  {family}: no aa_model — the leaderboard scores {scored.slug} at "
-              f"{scored.index:.1f} ({_tier_name(measured_tier(scored.index, top.index))}); name it "
+              f"{scored.index:.1f} ({_tier_name(measured_tier(scored.index, top.index, median))}); name it "
               "as the family's aa_model if that is the model the lane serves")
     if write and moved:
         tiers = {m.family: m.measured for m in moved}

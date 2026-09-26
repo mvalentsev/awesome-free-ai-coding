@@ -76,11 +76,13 @@ PROVIDERS_DIR = "providers"
 # list's evidence, and none of this site's pages came up at all.
 MODELS_DIR = "models"
 # Which models get a page of their own: those this many live rows serve free,
-# and those that measure strong or frontier. A page earns its place by saying
-# what no row's page says alone — who else serves the model — or by covering a
-# model readers come for. A model one row serves and nothing measures would get
-# a page repeating that row's, fifty-seven times over for Alibaba's catalog
-# alone on 2026-09-26; it stays on the index of every model, beside its row.
+# and those that measure notable, strong or frontier. A page earns its place by
+# saying what no row's page says alone — who else serves the model — or by
+# covering a model readers come for, which the index's upper half stands for:
+# on 2026-09-26 the strong bar alone left Claude Opus 4.6 and Sonnet 4.6 without
+# a page. A model one row serves below that would get a page repeating the
+# row's, forty-odd times over for Alibaba's catalog alone; it stays on the index
+# of every model, beside its row.
 MODEL_PAGE_ROWS = 2
 FEED_ENTRIES = 50
 README_CHANGES = 10
@@ -286,7 +288,7 @@ def _model_page_rule() -> str:
     """Which models have a page, as every page that says so says it — from the
     constant that decides it."""
     return (f"{number(MODEL_PAGE_ROWS)} rows or more serve it "
-            "free, or it measures strong or frontier")
+            "free, or it measures notable, strong or frontier")
 
 
 # How a row's page and llms.txt say what the vendor does with what a reader
@@ -493,13 +495,17 @@ def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
             for family, rows in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))}
 
 
+# Best first: where two lanes serve variants that measure apart, a page says
+# the better of the two.
+_TIER_ORDER = (Tier.FRONTIER, Tier.STRONG, Tier.NOTABLE)
+
+
 def _measured(family: str, rows: list[Entry]) -> ModelFamily | None:
-    """The tier mark a family carries on its rows, frontier over strong — the
-    same model measured the same way, so the rows agree, and where two lanes
-    serve variants that measure apart the page says the better of the two."""
+    """The tier mark a family carries on its rows — the same model measured
+    the same way, so the rows agree — the best of them where they do not."""
     marks = [m for e in rows for m in e.models
              if m.family == family and m.superseded_by is None and m.tier is not None]
-    return min(marks, key=lambda m: m.tier is not Tier.FRONTIER, default=None)
+    return min(marks, key=lambda m: _TIER_ORDER.index(m.tier), default=None)
 
 
 def _has_model_page(family: str, rows: list[Entry]) -> bool:
@@ -1446,8 +1452,10 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
             params = {"model": f"openai/{model_id}", "api_base": e.api.base_url,
                       "api_key": _litellm_key(e)}
             models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params})
+            # notable decides a model's page, not a pool: a caller asking for
+            # free/strong asked for the strong bar.
             tier = _tier_of_id(e, model_id)
-            names = ([f"free/{tier.value}"] if tier else []) + (
+            names = ([f"free/{tier.value}"] if tier in (Tier.FRONTIER, Tier.STRONG) else []) + (
                 ["free/nokey"] if needs_no_account(e) else [])
             for name in names:
                 groups[name].append({
@@ -2129,11 +2137,15 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                                    f"again {_schedule()}.")]
         mark = _measured(family, rows)
         if mark is not None:
-            within = FRONTIER_WITHIN if mark.tier is Tier.FRONTIER else STRONG_WITHIN
             board = (f"https://artificialanalysis.ai/models/{mark.aa_model}" if mark.aa_model
                      else "https://artificialanalysis.ai/leaderboards/models")
-            summary.append(f"It measures **{mark.tier.value}**: within {within:g} points of the "
-                           f"top of the [Artificial Analysis Intelligence Index]({board}).")
+            index = f"[Artificial Analysis Intelligence Index]({board})"
+            if mark.tier is Tier.NOTABLE:
+                where = f"in the upper half of the {index}, below its strong bar"
+            else:
+                within = FRONTIER_WITHIN if mark.tier is Tier.FRONTIER else STRONG_WITHIN
+                where = f"within {within:g} points of the top of the {index}"
+            summary.append(f"It measures **{mark.tier.value}**: {where}.")
         title = (f"{family} free: {n} provider{'' if n == 1 else 's'}, limits and ids, "
                  f"verified {floor}")
         description = _description(f"{family} is served free by {series(names)}. {asks} Each "

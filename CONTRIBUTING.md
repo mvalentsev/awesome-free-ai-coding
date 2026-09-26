@@ -101,8 +101,14 @@ two of them.
 **A tier is a measurement, not a reputation.** A family's `tier` is read from
 the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models):
 `frontier` when the model its free lane serves scores within 10 points of the top
-of the index, counting current models only, `strong` within 25, and no tier below
-that or where nothing was measured. The family names what was read in `aa_model`,
+of the index, counting current models only, `strong` within 25, `notable` below
+that but at or above the median of the current models the index scores — its
+upper half, which earns the model a page of its own and no strong mark — and no
+tier below the median or where nothing was measured. `notable` exists because
+the top moves: on 2026-09-26 Claude Opus 5.5 set it at 57.6, and Claude Opus 4.6
+(26.4), Claude Sonnet 4.6 (24.7) and Gemini 3.5 Flash (32.6, a hair under the
+strong bar) were models readers still look for, free on the list and with no
+page. The family names what was read in `aa_model`,
 the slug of the model's page on artificialanalysis.ai, for the variant the lane
 serves: where the lane restricts it, that variant — Meta's contributor tier has no
 max effort, so Muse Spark 1.3 Contributor is read as `muse-spark-1-3-xhigh` — and
@@ -596,15 +602,15 @@ render rewrites every one, an archived row's included, and the body sits inside
 `{% raw %}` so a vendor's own sentence can never break the build.
 
 `models/` is generated with them: a page for every model two rows or more serve
-free, or that measures strong or frontier, and an index of every model the live
+free, or that measures notable, strong or frontier, and an index of every model the live
 rows serve. A reader — or a model answering one — arrives with a model in mind
 as often as with a vendor: where is Kimi K3 free. A model page's title is that
 question, and its body is every live row that serves the model, in the list's
 order: what the row asks for, the day a probe last confirmed it, the day the
 list started carrying the model there, the limits in the vendor's words and the
 ids of that model to call, then the rows that listed it before and the days
-they did. A model one row serves and nothing measures gets no page — it would
-repeat the row's — and stays on the index beside the row. **A page, once
+they did. A model one row serves and nothing measures in the index's upper half
+gets no page — it would repeat the row's — and stays on the index beside the row. **A page, once
 published, stays**: a model that falls below the bar keeps its page, and a model
 no row serves any more keeps one that says so in its title, since when, and
 which rows listed it — the list never takes back an address a search engine

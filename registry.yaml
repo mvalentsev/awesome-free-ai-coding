@@ -22,10 +22,13 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: gemma-4-31b
+    tier: notable
     aa_model: gemma-4-31b
   - family: gemma-4-26b-a4b
+    tier: notable
     aa_model: gemma-4-26b-a4b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
@@ -36,11 +39,14 @@ entries:
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: inkling
+    tier: notable
     aa_model: inkling
   - family: inkling-small
+    tier: notable
     aa_model: inkling-small
   - family: dots-3-note
   - family: ling-3.0-flash-fin
+    tier: notable
     aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
@@ -138,12 +144,17 @@ entries:
     tier: strong
     aa_model: gemini-3-6-flash
   - family: gemini-3.5-flash
+    tier: notable
     aa_model: gemini-3-5-flash
   - family: gemini-3.5-flash-lite
+    tier: notable
     aa_model: gemini-3-5-flash-lite
   - family: gemini-3.1-flash-lite
+    tier: notable
     aa_model: gemini-3-1-flash-lite-preview
   - family: gemini-3-flash
+    tier: notable
+    aa_model: gemini-3-flash
   - family: gemma-4
   api:
     base_url: https://generativelanguage.googleapis.com/v1beta/openai/
@@ -480,10 +491,13 @@ entries:
   models:
   - family: big-pickle
   - family: mimo-v2.5
+    tier: notable
     aa_model: mimo-v2-5-0424
   - family: ling-3.0-flash-fin
+    tier: notable
     aa_model: ling-3-0-flash-fin
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
@@ -534,21 +548,25 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
   - family: step-3.7-flash
+    tier: notable
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: inkling-small
+    tier: notable
     aa_model: inkling-small
   - family: dots-3-note
   - family: ling-3.0-flash-fin
+    tier: notable
     aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
@@ -720,6 +738,7 @@ entries:
     read 无需登录，开箱即用，免费体验 (no login, free to try) on 2026-09-17'
   models:
   - family: mimo-v2.5
+    tier: notable
     aa_model: mimo-v2-5-0424
   probe:
     type: page-keywords
@@ -851,18 +870,24 @@ entries:
   free_part: models
   models:
   - family: claude-sonnet-4.5
+    tier: notable
     aa_model: claude-4-5-sonnet
   - family: claude-sonnet-4
+    tier: notable
     aa_model: claude-4-sonnet
   - family: glm-5
+    tier: notable
     aa_model: glm-5
   - family: minimax-m2.5
+    tier: notable
     aa_model: minimax-m2-5
   - family: deepseek-v3.2
+    tier: notable
     aa_model: deepseek-v3-2
   - family: qwen3-coder-next
     aa_model: qwen3-coder-next
   - family: minimax-m2.1
+    tier: notable
     aa_model: minimax-m2-1
   data_use:
     trains: opt-out
@@ -1001,15 +1026,18 @@ entries:
     tier: strong
     aa_model: kimi-k3
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
   - family: muse-glimmer-30b
+    tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
   - family: gemma-4-31b
+    tier: notable
     aa_model: gemma-4-31b
   - family: gpt-oss-20b
     aa_model: gpt-oss-20b
@@ -1091,6 +1119,7 @@ entries:
   free_part: models
   models:
   - family: glm-4.7-flash
+    tier: notable
     aa_model: glm-4-7-flash
   - family: glm-4.5-flash
   - family: glm-4.6v-flash
@@ -1292,24 +1321,41 @@ entries:
   - family: qwen3-coder-next
     aa_model: qwen3-coder-next
   - family: qwen3.7-max
+    tier: notable
+    aa_model: qwen3-7-max
   - family: qwen3.7-plus
+    tier: notable
     aa_model: qwen3-7-plus
   - family: qwen3.7-flash
   - family: qwen3.6-max
+    tier: notable
+    aa_model: qwen3-6-max
   - family: qwen3.6-plus
+    tier: notable
+    aa_model: qwen3-6-plus
   - family: qwen3.6-flash
   - family: qwen3.6-35b-a3b
+    tier: notable
     aa_model: qwen3-6-35b-a3b
   - family: qwen3.6-27b
+    tier: notable
+    aa_model: qwen3-6-27b
   - family: qwen3.5-plus
   - family: qwen3.5-flash
   - family: qwen3.5-397b-a17b
+    tier: notable
     aa_model: qwen3-5-397b-a17b
   - family: qwen3.5-122b-a10b
+    tier: notable
     aa_model: qwen3-5-122b-a10b
   - family: qwen3.5-35b-a3b
+    tier: notable
+    aa_model: qwen3-5-35b-a3b
   - family: qwen3.5-27b
+    tier: notable
+    aa_model: qwen3-5-27b
   - family: qwen3-max
+    tier: notable
     aa_model: qwen3-max
   - family: qwen3-coder-flash
   - family: qwen3-coder-480b-a35b
@@ -1346,8 +1392,10 @@ entries:
   - family: qwen-vl-max
   - family: qwen-vl-plus
   - family: deepseek-v3.2
+    tier: notable
     aa_model: deepseek-v3-2
   - family: glm-5.1
+    tier: notable
     aa_model: glm-5-1
   api:
     base_url: https://dashscope-intl.aliyuncs.com/compatible-mode/v1
@@ -1969,8 +2017,10 @@ entries:
     tier: strong
     aa_model: deepseek-v4-flash
   - family: minimax-m2.7
+    tier: notable
     aa_model: minimax-m2-7
   - family: muse-glimmer-30b
+    tier: notable
     aa_model: muse-glimmer
   api:
     base_url: https://api.routeway.ai/v1
@@ -2026,14 +2076,18 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4-31b
+    tier: notable
     aa_model: gemma-4-31b
   - family: ling-3.0-tiny
+    tier: notable
     aa_model: ling-3-0-tiny
   - family: muse-glimmer-30b
+    tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
@@ -2115,6 +2169,7 @@ entries:
   free_part: models
   models:
   - family: gemini-3.1-pro
+    tier: notable
     aa_model: gemini-3-1-pro-preview
   - family: gemini-3.8-flash
     tier: strong
@@ -2126,8 +2181,10 @@ entries:
     tier: strong
     aa_model: gemini-3-6-flash
   - family: claude-opus-4.6
+    tier: notable
     aa_model: claude-opus-4-6
   - family: claude-sonnet-4.6
+    tier: notable
     aa_model: claude-sonnet-4-6
   - family: gpt-oss-120b
     aa_model: gpt-oss-120b
@@ -2328,46 +2385,72 @@ entries:
     tier: strong
     aa_model: glm-5-2
   - family: glm-5.1
+    tier: notable
     aa_model: glm-5-1
   - family: glm-5
+    tier: notable
     aa_model: glm-5
   - family: glm-5-turbo
+    tier: notable
     aa_model: glm-5-turbo
   - family: mimo-v2.5-pro
+    tier: notable
     aa_model: mimo-v2-5-pro
   - family: mimo-v2.5
+    tier: notable
     aa_model: mimo-v2-5-0424
   - family: north-mini-code
     aa_model: north-mini-code
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: minimax-m3
+    tier: notable
     aa_model: minimax-m3
   - family: minimax-m2.7
+    tier: notable
     aa_model: minimax-m2-7
   - family: hy3
+    tier: notable
     aa_model: hy3
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: kimi-for-coding
   - family: ling-3.0-flash
+    tier: notable
     aa_model: ling-3-0-flash
   - family: ling-3.0-tiny
+    tier: notable
     aa_model: ling-3-0-tiny
   - family: glm-4.7
+    tier: notable
+    aa_model: glm-4-7
   - family: glm-4.7-flash
+    tier: notable
     aa_model: glm-4-7-flash
   - family: glm-4.6
+    tier: notable
+    aa_model: glm-4-6
   - family: minimax-m2.5
+    tier: notable
     aa_model: minimax-m2-5
   - family: minimax-m2.1
+    tier: notable
     aa_model: minimax-m2-1
   - family: minimax-m2
+    tier: notable
+    aa_model: minimax-m2
   - family: mimo-v2-pro
+    tier: notable
+    aa_model: mimo-v2-pro
   - family: mimo-v2-flash
+    tier: notable
+    aa_model: mimo-v2-flash
   - family: mimo-v2-omni
+    tier: notable
+    aa_model: mimo-v2-omni
   - family: dots-3-note
   - family: nemotron-3.5-lightning
     aa_model: nemotron-3-5-lightning
@@ -3001,11 +3084,13 @@ entries:
   free_part: models
   models:
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
   - family: ling-3.0-flash-fin
+    tier: notable
     aa_model: ling-3-0-flash-fin
   api:
     base_url: https://llmtr.com/v1
@@ -3173,14 +3258,17 @@ entries:
     tier: strong
     aa_model: deepseek-v4-flash
   - family: glm-5.1
+    tier: notable
     aa_model: glm-5-1
   - family: glm-5.3-flash
     tier: strong
     aa_model: glm-5-3-flash
   - family: minimax-m3
+    tier: notable
     aa_model: minimax-m3
   - family: qwen3.6
   - family: minimax-m2.5
+    tier: notable
     aa_model: minimax-m2-5
   - family: diffusiongemma
   api:
@@ -3954,6 +4042,7 @@ entries:
   free_part: models
   models:
   - family: step-3.7-flash
+    tier: notable
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   api:
@@ -4421,6 +4510,7 @@ entries:
   free_part: models
   models:
   - family: gemma-4-31b
+    tier: notable
     aa_model: gemma-4-31b
   api:
     base_url: https://api.opper.ai/v3/compat
@@ -4956,6 +5046,8 @@ entries:
     crypto
   models:
   - family: minimax-m2
+    tier: notable
+    aa_model: minimax-m2
   - family: kimi-k2
   probe:
     type: page-keywords
@@ -5288,10 +5380,12 @@ entries:
     mirror under /en/docs'
   models:
   - family: nemotron-3-ultra
+    tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: step-3.7-flash
+    tier: notable
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
   probe:
@@ -5575,9 +5669,13 @@ entries:
   free_part: models
   models:
   - family: gemini-3.1-pro
+    tier: notable
     aa_model: gemini-3-1-pro-preview
   - family: gemini-3-flash
+    tier: notable
+    aa_model: gemini-3-flash
   - family: gemini-2.5-pro
+    tier: notable
     aa_model: gemini-2-5-pro
   - family: gemini-2.5-flash
   api:

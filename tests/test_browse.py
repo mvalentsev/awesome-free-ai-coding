@@ -94,12 +94,13 @@ def test_browse_page_filters_on_tier_values_the_registry_has():
     compared as strings in the browser — a tier renamed in the registry would
     leave the chip matching nothing, as a Frontier chip alone did the week no
     free model reached the frontier (2026-09-26). Every tier the page names is
-    one the registry has, and it names both that a family can carry."""
+    one the registry has; notable decides a model's page, not a strong mark."""
     from freetier_radar.models import Tier
 
     html = _html()
     named = set(re.findall(r'm\.tier === "([a-z]+)"', html))
-    assert named == {t.value for t in Tier}, named
+    assert named <= {t.value for t in Tier}, named
+    assert named == {Tier.FRONTIER.value, Tier.STRONG.value}, named
 
 
 def test_browse_page_says_so_when_nothing_matches():

@@ -19,7 +19,7 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 ## Free models
 
-[`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/), [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/), `gemini-2.5-pro`, `gemini-2.5-flash`
+[`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/), [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/), [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/), `gemini-2.5-flash`
 
 ## Limits, in the vendor's words
 

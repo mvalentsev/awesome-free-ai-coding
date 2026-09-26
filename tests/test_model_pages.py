@@ -88,6 +88,23 @@ def test_a_model_has_a_page_where_rows_compare_or_where_it_measures_strong():
     assert models["solo"] == {"family": "solo", "rows": ["a"]}
 
 
+def test_a_notable_model_one_row_serves_has_a_page_that_says_where_it_measures():
+    """Claude Opus 4.6 is free in one row, and on 2026-09-26 it scored 26.4
+    with the top at 57.6: below the strong bar, in the index's upper half. A
+    reader looking for it free found it only in a row of a list — `notable`
+    gives it a page, and the page says where it measures."""
+    opus = {"family": "claude-opus-4.6", "tier": "notable", "aa_model": "claude-opus-4-6"}
+    entries = [agent(models=[opus, {"family": "solo"}])]
+    models = {m["family"]: m for m in build_index(entries, TODAY)["models"]}
+    assert models["claude-opus-4.6"] == {"family": "claude-opus-4.6", "rows": ["some-agent"],
+                                         "tier": "notable",
+                                         "page": model_page_url("claude-opus-4.6")}
+    assert "page" not in models["solo"]
+    page = build_model_page("claude-opus-4.6", entries, [], TODAY)
+    assert ("It measures **notable**: in the upper half of the [Artificial Analysis Intelligence "
+            "Index](https://artificialanalysis.ai/models/claude-opus-4-6), below its strong bar.") in page
+
+
 def test_the_render_writes_a_page_per_model_and_keeps_one_that_fell_below_the_bar(tmp_path):
     reg = tmp_path / "registry.yaml"
     both = [make(id="a", name="A", models=[{"family": "kimi-k3"}]),
@@ -317,7 +334,7 @@ def test_the_models_index_names_every_family_and_links_the_pages():
     assert (f"| [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) | [A]({PAGES_URL}/providers/a/), "
             f"[B]({PAGES_URL}/providers/b/) 💳 |") in page
     assert f"| `solo` | [A]({PAGES_URL}/providers/a/) |" in page
-    assert "two rows or more serve it free, or it measures strong or frontier" in page
+    assert "two rows or more serve it free, or it measures notable, strong or frontier" in page
 
 
 # ---- where the pages are linked from ---------------------------------------------

@@ -19,7 +19,7 @@ Third-party OpenAI-compatible broker to the permissionless Gonka decentralized i
 
 ## Free models it listed
 
-`minimax-m2`, `kimi-k2`
+[`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/), `kimi-k2`
 
 ## Limits, in the vendor's words
 

@@ -40,6 +40,11 @@ OpenAI-compatible gateway to a 173-id catalog whose free page counts two models 
 - Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
 - Callable ids: `qwen/qwen3.7-flash:free`
 
+## Related models
+
+- [`qwen3.7-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3.7-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-plus/) — free at Alibaba Cloud Model Studio (DashScope, international)
+
 ---
 
 Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
