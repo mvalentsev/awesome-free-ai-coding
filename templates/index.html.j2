@@ -283,6 +283,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     {% for s in sections %}
     <a href="#{{ s.id }}">{{ s.emoji }} {{ s.short }} <span class="n">{{ s.count }}</span></a>
     {% endfor %}
+    {% if model_index %}<a href="#models">🧠 Models <span class="n">{{ family_count }}</span></a>{% endif %}
     <a href="#plug">🔧 Plug it in</a>
     <a href="#machinery">📡 How it works</a>
     <a href="#archive">📦 Archive</a>

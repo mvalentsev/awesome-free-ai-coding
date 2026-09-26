@@ -307,7 +307,7 @@ def _trains(e: Entry) -> bool:
     return e.data_use is not None and e.data_use.trains in ("yes", "opt-out")
 
 
-def _row(e: Entry) -> dict[str, str]:
+def _row(e: Entry, pages: set[str]) -> dict[str, str]:
     fams, more = _readme_families(e)
     return {
         "name": e.name,
@@ -334,7 +334,10 @@ def _row(e: Entry) -> dict[str, str]:
         # Backticked, because a model id is something the reader will paste into
         # a config rather than read as prose. A row that names no model has the
         # date alone on its small line.
-        "models": " · ".join([f"`{f}`" for f in fams]
+        # A model with a page of its own links it — every row that serves it,
+        # with the limits — which is what a reader who stops on a model name
+        # in a row came for.
+        "models": " · ".join(([_family_links(fams, pages, " · ")] if fams else [])
                              + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else [])),
     }
 
@@ -944,6 +947,7 @@ def build_context(entries: list[Entry], today: date,
                   history: list[Event] | None = None,
                   pages: set[str] | None = None) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
+    pages = model_pages(entries, history or [], today) if pages is None else pages
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
@@ -954,7 +958,7 @@ def build_context(entries: list[Entry], today: date,
         no_card = sum(1 for e in rows if not e.card_required)
         sections.append({
             "title": title,
-            "rows": [_row(e) for e in rows],
+            "rows": [_row(e, pages) for e in rows],
             "count": len(rows),
             "no_card": no_card,
             "all_no_card": bool(rows) and no_card == len(rows),
@@ -1640,12 +1644,13 @@ def _last_modified(e: Entry, events: list[Event]) -> date:
                                    for ev in events if ev.id == e.id)])
 
 
-def _family_links(families: list[str], pages: set[str]) -> str:
-    """Families as the pages print them, each linking its own page where it has
-    one — the row's page is a way in to the model's, as the model's is to the
-    row's."""
-    return ", ".join(f"[`{f}`]({model_page_url(f)})" if f in pages else f"`{f}`"
-                     for f in families)
+def _family_links(families: list[str], pages: set[str], sep: str = ", ") -> str:
+    """Families as the Markdown pages print them, each linking its own page
+    where it has one — the row's page is a way in to the model's, as the
+    model's is to the row's. The README's row line and the provider pages both
+    print them this way."""
+    return sep.join(f"[`{f}`]({model_page_url(f)})" if f in pages else f"`{f}`"
+                    for f in families)
 
 
 # Each ask as a line of Connect on the row's page and on every model page.

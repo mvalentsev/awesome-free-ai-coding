@@ -317,6 +317,8 @@ def test_the_pages_that_name_a_model_link_its_page(tmp_path):
     readme = render_readme(reg, TEMPLATES, tmp_path / "README.md", today=TODAY)
     assert f"\n- [`glm-5.3`]({PAGES_URL}/models/glm-5.3/) — [A](https://x.ai)\n" in readme
     assert f"({PAGES_URL}/models/)" in readme
+    # the row's own line in the list, where a reader meets the model by name
+    assert f" · [`glm-5.3`]({PAGES_URL}/models/glm-5.3/) · `solo`</sub>" in readme
     html = render_site(reg, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY)
     assert f'<a class="chip" href="{PAGES_URL}/models/glm-5.3/">glm-5.3</a>' in html
     assert f'<a href="{PAGES_URL}/models/glm-5.3/"><code>glm-5.3</code></a>' in html
