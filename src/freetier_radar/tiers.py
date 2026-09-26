@@ -9,7 +9,9 @@ written down, and `strong` on every other family whatever it scored: Apertus
 
 So a tier is read, not written. Each family that carries one names the
 Artificial Analysis model it was measured as (`aa_model`, the slug of its page),
-and this reads every score off the leaderboard the site publishes:
+and this reads every score off the leaderboard the site publishes — and names
+the slug itself for a new family the board scores by exactly its name, so a
+model's mark follows the index as models come out, not as reviewers remember:
 
 - `frontier` — within FRONTIER_WITHIN points of the top of the index;
 - `strong` — within STRONG_WITHIN points;
@@ -170,8 +172,9 @@ def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[st
     reaches a tier, `notable` included, since that one decides whether the
     model has a page (twenty families sat bare on 2026-09-26, twelve of them in
     the index's upper half, Qwen3.7 Max at 29.5 among them); below the median,
-    measuring changes nothing a page says. The reviewer names, as the family's
-    aa_model, the variant the lane actually serves."""
+    measuring changes nothing a page says. `--write` measures each as the slug
+    found — the model's own page — and a reviewer whose lane serves another
+    variant names that one instead."""
     top, median = index_top(models), index_median(models)
     measured = {m.family for e in entries for m in e.models if m.aa_model}
     found: dict[str, Scored] = {}
@@ -209,21 +212,35 @@ async def _amain(registry: Path, write: bool) -> int:
     for m in unknown:
         print(f"  {m.family}: {m.aa_model} is not on the leaderboard — the mark stays "
               f"{_tier_name(m.registered)} until the family names a model that is")
+    # A new model comes in bare. The board's model of exactly its name is the
+    # model's own page — what CONTRIBUTING reads where the lane names no
+    # variant — so --write measures it as that, and the mark follows the index
+    # from the next run on without a reviewer; a lane serving another variant
+    # names it by hand, and a hand-named aa_model is never replaced.
     bare = unmeasured(live, board)
     for family, scored in bare:
-        print(f"  {family}: no aa_model — the leaderboard scores {scored.slug} at "
-              f"{scored.index:.1f} ({_tier_name(measured_tier(scored.index, top.index, median))}); name it "
-              "as the family's aa_model if that is the model the lane serves")
-    if write and moved:
+        tier = _tier_name(measured_tier(scored.index, top.index, median))
+        if write:
+            print(f"  {family}: measured as {scored.slug} — {scored.index:.1f}, {tier}; name "
+                  "another aa_model if the lane serves another variant")
+        else:
+            print(f"  {family}: no aa_model — the leaderboard scores {scored.slug} at "
+                  f"{scored.index:.1f} ({tier}); --write measures it as that")
+    if write and (moved or bare):
         tiers = {m.family: m.measured for m in moved}
+        named = {family: scored for family, scored in bare}
         for e in entries:
             for fam in e.models:
-                if fam.family in tiers:
+                if fam.family in named and fam.aa_model is None:
+                    fam.aa_model = named[fam.family].slug
+                    fam.tier = measured_tier(named[fam.family].index, top.index, median)
+                elif fam.family in tiers:
                     fam.tier = tiers[fam.family]
         save_registry(registry, entries)
     print(f"{len(marks)} families measured, {len(moved)} marks "
           f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
-          f"{len(bare)} unmeasured that would reach a tier")
+          f"{len(bare)} unmeasured that would reach a tier"
+          f"{' — measured now' if write and bare else ''}")
     return 1 if unknown or (moved and not write) else 0
 
 
@@ -231,6 +248,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
     parser.add_argument("--write", action="store_true",
-                        help="re-write the marks that moved on every row carrying the family")
+                        help="re-write the marks that moved on every row carrying the family, "
+                             "and measure a bare family the board scores by its own name")
     args = parser.parse_args()
     sys.exit(asyncio.run(_amain(args.registry, args.write)))

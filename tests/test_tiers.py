@@ -205,3 +205,26 @@ def test_the_reviewer_is_told_of_a_model_that_would_be_notable():
     assert index_median(board) == 19.25  # 4, 9, 29.5, 57.6 — the deprecated one sits out
     entries = [entry("a", {"family": "qwen3.7-max"}, {"family": "tiny-1b"})]
     assert [(f, s.slug) for f, s in unmeasured(entries, board)] == [("qwen3.7-max", "qwen3-7-max")]
+
+
+@respx.mock
+async def test_write_measures_a_bare_family_the_board_scores_by_its_own_name(tmp_path: Path, capsys):
+    """A new model reaches the list bare, and until 2026-09-26 its mark waited
+    for a reviewer to name its aa_model: the frontier would not follow the
+    index as models came out. Where the board scores a model of exactly the
+    family's name — the model's own page, which CONTRIBUTING reads where the
+    lane names no variant — --write names it on every row that carries the
+    family and marks it; a lane serving another variant is named by hand, and
+    a model below every bar is left as it is."""
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [
+        entry("a", {"family": "glm-5.3"}, {"family": "nvidia-nemotron-3-ultra-550b-a55b"}),
+        entry("b", {"family": "glm-5.3"}),
+    ])
+    assert await _amain(registry, write=True) == 0
+    marks = {(e.id, m.family): (m.aa_model, m.tier) for e in load_registry(registry) for m in e.models}
+    assert marks == {("a", "glm-5.3"): ("glm-5-3", Tier.FRONTIER),
+                     ("a", "nvidia-nemotron-3-ultra-550b-a55b"): (None, None),
+                     ("b", "glm-5.3"): ("glm-5-3", Tier.FRONTIER)}
+    assert "glm-5.3: measured as glm-5-3 — 44.9, frontier" in capsys.readouterr().out

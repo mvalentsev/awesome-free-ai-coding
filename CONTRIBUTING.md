@@ -118,7 +118,12 @@ one row, or a bare `nemotron`, carries no tier. `freetier-check` refuses a tier 
 `aa_model`, and two rows naming different models for one family; `uv run
 freetier-tiers` reads every score back off the leaderboard, prints the marks the
 index no longer backs, and with `--write` re-marks every row that carries the
-family — the scheduled run does that twice a week. On 2026-09-17 the top was 53.4
+family — the scheduled run does that twice a week. A family that comes in bare is
+measured the same way: where the board scores a model of exactly its name, `--write`
+names that slug as its `aa_model` — the model's own page, as above — so a new
+model's mark follows the index as models come out, not as reviewers remember; a
+lane that serves another variant names that one by hand, and a hand-named
+`aa_model` is never replaced. On 2026-09-17 the top was 53.4
 (Claude Fable 5.1), frontier started at 43.4 and strong at 28.4. Until that day
 every family without a mark was `strong`, Apertus 70B at 5 points beside GLM 5.3
 Flash at 42, and nineteen of twenty-two frontier marks set by hand no longer met
