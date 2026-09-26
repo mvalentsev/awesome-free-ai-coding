@@ -512,7 +512,7 @@ tr.flash { animation: flash 1.6s ease-out; }
         <tbody>
           {% for r in s.rows %}
           <tr id="row-{{ r.id }}" data-id="{{ r.id }}" data-section="{{ s.id }}"
-              data-flags="{{ r.flags | join(' ') }}" data-page="{{ r.page }}">
+              data-flags="{{ r.flags | join(' ') }}">
             <th class="who" scope="row">
               <a class="name" href="{{ r.url }}">{{ r.name }}</a>
               <div class="tags">
@@ -581,7 +581,7 @@ tr.flash { animation: flash 1.6s ease-out; }
           <tbody>
             {% for m in model_index %}
             <tr id="model-{{ m.family }}" data-family="{{ m.family }}" data-tier="{{ m.tier }}"
-                data-page="{{ m.page }}" data-rows="{{ m.providers | map(attribute='id') | join(' ') }}">
+                data-rows="{{ m.providers | map(attribute='id') | join(' ') }}">
               <th scope="row">{% if m.page %}<a href="{{ m.page }}"><code>{{ m.family }}</code></a>{% else %}<code>{{ m.family }}</code>{% endif %}</th>
               <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %}</td>
             </tr>
@@ -740,7 +740,7 @@ tr.flash { animation: flash 1.6s ease-out; }
         </thead>
         <tbody>
           {% for r in archived %}
-          <tr data-id="{{ r.id }}" data-page="{{ r.page }}">
+          <tr data-id="{{ r.id }}">
             <th class="who" scope="row"><a class="name" href="{{ r.page }}">{{ r.name }}</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
               {% if r.why.teaser %}
@@ -884,7 +884,8 @@ tr.flash { animation: flash 1.6s ease-out; }
       var name = tr.querySelector("a.name");
       var models = [].map.call(tr.querySelectorAll("td.models .chip"), textOf)
         .filter(function (t) { return !/^\+\d+ more$/.test(t); });
-      return { kind: "offer", id: tr.dataset.id, order: i, row: tr, page: tr.dataset.page,
+      return { kind: "offer", id: tr.dataset.id, order: i, row: tr,
+               page: tr.querySelector("td.when a").getAttribute("href"),
                section: sections[tr.dataset.section], flags: tr.dataset.flags.split(" "),
                name: textOf(name), tags: tr.querySelector(".tags"), models: models,
                what: full(tr.querySelector("td.what")), limits: full(tr.querySelector("td.limits")) };
@@ -893,11 +894,13 @@ tr.flash { animation: flash 1.6s ease-out; }
     offers.forEach(function (o) { byId[o.id] = o; });
     var models = [].map.call(document.querySelectorAll("#model-index tr[data-family]"), function (tr, i) {
       var rows = tr.dataset.rows.split(" ").map(function (id) { return byId[id]; }).filter(Boolean);
+      var own = tr.querySelector("th a");
       return { kind: "model", order: i, family: tr.dataset.family, tier: tr.dataset.tier,
-               page: tr.dataset.page, row: tr, rows: rows };
+               page: own ? own.getAttribute("href") : "", row: tr, rows: rows };
     });
     var gone = [].map.call(document.querySelectorAll("#archive tbody tr[data-id]"), function (tr, i) {
-      return { kind: "gone", order: i, id: tr.dataset.id, page: tr.dataset.page,
+      return { kind: "gone", order: i, id: tr.dataset.id,
+               page: tr.querySelector("a.name").getAttribute("href"),
                name: textOf(tr.querySelector("a.name")), why: full(tr.querySelector("td.what")) };
     });
     offers.forEach(function (o) {

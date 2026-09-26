@@ -466,18 +466,20 @@ def test_the_search_reads_what_the_page_renders(tmp_path):
                make(id="gone", name="Gone", retired_on=TODAY)]
     html = _render(entries, tmp_path)
     row = re.search(r'<tr id="row-a" data-id="a" data-section="api-free-tier"\s+'
-                    r'data-flags="([^"]*)" data-page="[^"]+/providers/a/">', html)
+                    r'data-flags="([^"]*)">', html)
     assert row and row.group(1).split() == ["nocard", "nokey", "strong"], row
     assert re.search(r'<tr id="row-b" data-id="b" [^>]*data-flags=""', html)
-    assert re.search(r'<tr id="model-m1" data-family="m1" data-tier="strong"\s+data-page="[^"]+"'
-                     r' data-rows="a b">', html)
-    assert re.search(r'<tr data-id="gone" data-page="[^"]+/providers/gone/">', html)
+    assert re.search(r'<tr id="model-m1" data-family="m1" data-tier="strong"\s+'
+                     r'data-rows="a b">', html)
+    assert '<tr data-id="gone">' in html
+    # The pages are read off the links the rows already carry.
+    assert re.search(r'<td class="when" data-label="Verified">\s*<a href="[^"]+/providers/a/">', html)
     script = html.split('id="search-config">')[1]
     for selector in ('"section.listing tbody tr[data-id]"', '"#model-index tr[data-family]"',
                      '"#archive tbody tr[data-id]"', '"a.name"', '"td.what"', '"td.limits"',
-                     '"td.models .chip"', '".tags"'):
+                     '"td.models .chip"', '".tags"', '"td.when a"', '"th a"'):
         assert selector in script, selector
-    for attr in ("id", "section", "flags", "page"):
+    for attr in ("id", "section", "flags"):
         assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
     for attr in ("family", "tier", "rows"):
         assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
