@@ -453,3 +453,58 @@ def test_the_page_has_one_heading_and_it_is_the_banner(tmp_path):
     assert html.count("<h1") == 1
     heading = html.split("<h1>")[1].split("</h1>")[0]
     assert 'alt="awesome-free-ai-coding — legal free LLM APIs and coding agents' in heading
+
+
+def test_the_search_reads_what_the_page_renders(tmp_path):
+    """The search builds its answers out of the page's own rows, model index and
+    Archive, so a renamed class or a dropped attribute would leave it quietly
+    empty. Every attribute its script reads is held to the rendered page here,
+    the way browse.html is held to index.json."""
+    entries = [make(id="a", name="A", models=[{"family": "m1", "tier": "strong", "aa_model": "m1"}],
+                    api={"base_url": "https://a.ai/v1", "auth": "none", "model_ids": ["m1"]}),
+               make(id="b", name="B", card_required=True, models=[{"family": "m1"}]),
+               make(id="gone", name="Gone", retired_on=TODAY)]
+    html = _render(entries, tmp_path)
+    row = re.search(r'<tr id="row-a" data-id="a" data-section="api-free-tier"\s+'
+                    r'data-flags="([^"]*)" data-page="[^"]+/providers/a/">', html)
+    assert row and row.group(1).split() == ["nocard", "nokey", "strong"], row
+    assert re.search(r'<tr id="row-b" data-id="b" [^>]*data-flags=""', html)
+    assert re.search(r'<tr id="model-m1" data-family="m1" data-tier="strong"\s+data-page="[^"]+"'
+                     r' data-rows="a b">', html)
+    assert re.search(r'<tr data-id="gone" data-page="[^"]+/providers/gone/">', html)
+    script = html.split('id="search-config">')[1]
+    for selector in ('"section.listing tbody tr[data-id]"', '"#model-index tr[data-family]"',
+                     '"#archive tbody tr[data-id]"', '"a.name"', '"td.what"', '"td.limits"',
+                     '"td.models .chip"', '".tags"'):
+        assert selector in script, selector
+    for attr in ("id", "section", "flags", "page"):
+        assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
+    for attr in ("family", "tier", "rows"):
+        assert f'data-{attr}="' in html and f"dataset.{attr}" in script, attr
+
+
+def test_the_search_filters_on_the_answers_the_rows_carry(tmp_path):
+    """Its filters are generated from the categories and the four answers a
+    row's flags carry, so a filter can never ask for a flag no row has."""
+    from freetier_radar.render import SEARCH_FILTERS, SEARCH_SECTION_WORDS
+    assert set(SEARCH_SECTION_WORDS) == set(Category)
+    html = _render([make(id="a", name="A")], tmp_path)
+    config = json.loads(re.search(r'id="search-config">(.*?)</script>', html, re.S).group(1))
+    assert [s["id"] for s in config["sections"]] == [c.value for c in Category]
+    assert [s["label"] for s in config["sections"]] == [SITE_NAV_LABELS[c] for c in Category]
+    assert [f["id"] for f in config["filters"]] == [f[0] for f in SEARCH_FILTERS]
+    flags = {f for m in re.finditer(r'data-flags="([^"]*)"', html) for f in m.group(1).split()}
+    assert flags <= {f[0] for f in SEARCH_FILTERS}
+    words = [w for group in (*config["sections"], *config["filters"]) for w in group["words"]]
+    assert len(words) == len(set(words)), "a word selects one filter"
+
+
+def test_without_a_script_the_page_shows_no_search_it_cannot_run(tmp_path):
+    """Progressive enhancement: the dialog and the three ways into it are hidden
+    in the markup and shown by the script, like the copy buttons; and the box
+    that filtered rows two screens below itself is gone."""
+    html = _render([make()], tmp_path)
+    assert re.search(r'<div id="search" class="palette" [^>]*hidden>', html)
+    opens = re.findall(r'<button class="(\w+)" type="button" data-search-open hidden', html)
+    assert opens == ["searchbox", "navsearch"]
+    assert 'id="find"' not in html and 'class="shown"' not in html

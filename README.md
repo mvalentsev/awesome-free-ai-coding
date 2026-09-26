@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
+**[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎 Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 | **80** | **76** | **7** | **149** |
 |:---:|:---:|:---:|:---:|
@@ -21,7 +21,7 @@
 
 </div>
 
-> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) once 3 runs in a row find it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website](https://mvalentsev.github.io/awesome-free-ai-coding/) has every row with a filter box and dark mode.
+> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) once 3 runs in a row find it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website](https://mvalentsev.github.io/awesome-free-ai-coding/) has every row, dark mode and [a search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) that finds any model or vendor as you type.
 
 ## 🚀 Start here
 

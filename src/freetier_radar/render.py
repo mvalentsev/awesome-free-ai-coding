@@ -557,14 +557,16 @@ def _model_index(active: list[Entry], pages: set[str]) -> list[dict]:
     which five entries carry it. A row that needs a card carries its 💳 here
     too: "free at" beside a name with no mark reads as free without one.
     """
-    return [
-        {"family": family,
-         "page": model_page_url(family) if family in pages else "",
-         "providers": [{"name": p.name, "url": p.url,
-                        "card_flag": _card_flag(p)}
-                       for p in ps]}
-        for family, ps in _rows_by_family(active).items()
-    ]
+    out = []
+    for family, ps in _rows_by_family(active).items():
+        mark = _measured(family, ps)
+        out.append({"family": family,
+                    "page": model_page_url(family) if family in pages else "",
+                    "tier": mark.tier.value if mark is not None else "",
+                    "providers": [{"id": p.id, "name": p.name, "url": p.url,
+                                   "card_flag": _card_flag(p)}
+                                  for p in ps]})
+    return out
 
 
 def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
@@ -1146,6 +1148,37 @@ SITE_NAV_LABELS: dict[Category, str] = {
     Category.TRIAL: "Trials",
     Category.AGGREGATOR: "Aggregators",
 }
+# What the page's search understands as a filter rather than as text: each
+# section by the words a reader types for it, and the four answers a row's tags
+# carry. A reader who types "no card" or "claude code" is asking for rows
+# that are so, not for rows whose prose says it — the old type-to-narrow box
+# found 21 rows saying "no card" on 2026-09-26, while 70 asked for none.
+SEARCH_SECTION_WORDS: dict[Category, tuple[str, ...]] = {
+    Category.AGENT_CLI: ("agents", "agent", "cli"),
+    Category.API_FREE_TIER: ("apis", "api"),
+    Category.TRIAL: ("trials", "trial"),
+    Category.AGGREGATOR: ("aggregators", "aggregator", "gateways", "gateway", "routers", "router"),
+}
+SEARCH_FILTERS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
+    ("nocard", "No card", ("no card", "nocard", "no credit card", "without a card")),
+    ("nokey", "No key", ("no key", "keyless", "no account", "no signup", "anonymous")),
+    ("claude", "Claude Code", ("claude code", "claude-code")),
+    ("strong", "Strong models", ("strong models", "strong", "frontier")),
+)
+
+
+def _search_config() -> dict:
+    """The search's filters, in the page as JSON: the sections the nav names and
+    the four row answers, each with the words that select it."""
+    return {
+        "sections": [{"id": cat.value, "label": SITE_NAV_LABELS[cat],
+                      "emoji": CATEGORY_TITLES[cat].partition(" ")[0],
+                      "words": list(SEARCH_SECTION_WORDS[cat])} for cat in CATEGORY_TITLES],
+        "filters": [{"id": fid, "label": label, "words": list(words)}
+                    for fid, label, words in SEARCH_FILTERS],
+    }
+
+
 # Shorter than the README's ten: the page shows the changes as cards rather than
 # table rows, and the feed is one click away under them.
 SITE_CHANGES = 8
@@ -1198,6 +1231,13 @@ def _site_row(e: Entry) -> dict:
         "public_key": bool(api and api.base_url and api.key_kind == "public"),
         "claude_code": bool(api and api.anthropic_base_url),
         "frontier": any(m.tier is Tier.FRONTIER for m in families),
+        # The same answers as the words the page's search filters on, one per
+        # filter it offers (SEARCH_FILTERS) — held to them by a test.
+        "flags": [flag for flag, on in (
+            ("nocard", not e.card_required),
+            ("nokey", bool(api and api.base_url and api.key_kind in ("none", "public"))),
+            ("claude", bool(api and api.anthropic_base_url)),
+            ("strong", any(m.tier in (Tier.FRONTIER, Tier.STRONG) for m in families))) if on],
         # A row whose published lane is known not to work says so where it is
         # read, not only on its own page: the notice is the one thing a reader
         # about to copy a base URL needs before the base URL.
@@ -1247,7 +1287,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
 def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
     gone = sorted(_archive(entries, today),
                   key=lambda e: (_departure(e), e.name.lower()), reverse=True)
-    return [{"name": e.name, "page": provider_page_url(e.id),
+    return [{"id": e.id, "name": e.name, "page": provider_page_url(e.id),
              "when": _departure(e).isoformat(), "why": _site_fold(archive_reason(e, today))}
             for e in gone]
 
@@ -1327,6 +1367,9 @@ def build_site_context(entries: list[Entry], today: date,
         "archived": _site_archived_rows(entries, today),
         "changes": _site_changes(history or [], entries, today),
         "providers_url": providers_index_url(),
+        # Serialised here, like the structured data: autoescaping would turn a
+        # JSON document's quotes into entities.
+        "search_config": json.dumps(_search_config(), ensure_ascii=False).replace("<", "\\u003c"),
     }
 
 

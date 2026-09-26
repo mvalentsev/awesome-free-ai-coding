@@ -151,9 +151,11 @@ p { margin: 0 0 12px; }
 .nav a { color: var(--fg); font-size: .92rem; font-weight: 500; white-space: nowrap; }
 .nav a:hover { color: var(--accent); text-decoration: none; }
 .nav a .n { color: var(--muted); font-size: .8rem; }
-.nav form { margin-left: auto; display: none; }
-.nav input { width: 210px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
-  background: var(--surface); color: var(--fg); font: inherit; font-size: .88rem; }
+/* The search's way in from anywhere on the page: first in the bar, so a phone
+   shows it without scrolling the bar sideways. */
+.nav .navsearch { flex: none; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); font: inherit; font-size: .88rem; cursor: pointer; }
+.nav .navsearch:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ── sections ─────────────────────────────────────────────────────────── */
 section { padding: 44px 0 4px; }
@@ -255,6 +257,68 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 .empty { color: var(--muted); font-style: italic; }
 .hidden { display: none !important; }
 
+/* ── search ───────────────────────────────────────────────────────────── */
+/* One surface wherever it is opened from — the box in the hero, the bar, "/"
+   or Ctrl+K — and its answers under the box a reader is typing into. The box
+   it replaced filtered the tables two screens below itself, so a keystroke
+   changed nothing a reader could see (2026-09-26). */
+.searchbox { display: flex; align-items: center; gap: 10px; width: min(100%, 640px);
+  margin: 0 auto 20px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--raised); color: var(--muted); font: inherit; font-size: 1rem; text-align: left;
+  box-shadow: var(--shadow); cursor: text; }
+.searchbox:hover { border-color: var(--accent); }
+.searchbox .ph { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A key to press means nothing on a screen with no keyboard. */
+@media (hover: none) { .searchbox kbd { display: none; } }
+kbd.key { font-size: .76rem; line-height: 1.5; padding: 0 6px; border: 1px solid var(--line);
+  border-bottom-width: 2px; border-radius: 6px; color: var(--muted); background: var(--surface); }
+.palette { position: fixed; inset: 0; z-index: 60; display: flex; justify-content: center;
+  align-items: flex-start; padding: 7vh 16px 16px;
+  background: color-mix(in srgb, var(--bg) 40%, rgba(1, 4, 9, .55)); }
+.palette[hidden] { display: none; }
+.palette-box { display: flex; flex-direction: column; width: min(100%, 740px); max-height: 86vh;
+  background: var(--raised); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 16px 56px rgba(1, 4, 9, .35); overflow: hidden; }
+.palette-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft); }
+.palette-head input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+  color: var(--fg); font: inherit; font-size: 1.1rem; padding: 6px 0; }
+.palette-head input::-webkit-search-cancel-button { display: none; }
+.palette-head button { flex: none; font: inherit; font-size: .8rem; padding: 3px 9px;
+  border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  cursor: pointer; }
+.palette-head button:hover { color: var(--accent); border-color: var(--accent); }
+.palette-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft); }
+.fchip { font: inherit; font-size: .82rem; line-height: 1.5; padding: 2px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.fchip:hover { border-color: var(--accent); }
+.fchip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.palette-results { flex: 1; overflow-y: auto; padding: 4px 0 8px; overscroll-behavior: contain; }
+.palette-results .hint { padding: 14px 16px 6px; margin: 0; color: var(--muted); font-size: .92rem; }
+.palette-results .tries { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 16px 14px; }
+.pgroup { padding: 10px 16px 4px; font-size: .72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--muted); }
+.presult { display: block; padding: 8px 16px 9px 13px; border-left: 3px solid transparent;
+  color: var(--fg); cursor: pointer; }
+.presult:hover { text-decoration: none; }
+.presult[aria-selected="true"] { background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-left-color: var(--accent); }
+.presult .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.presult .pname { font-weight: 600; }
+.presult .psec { font-size: .8rem; color: var(--muted); }
+.presult .tags { display: inline-flex; margin: 0; }
+.presult .snip { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; margin-top: 2px; font-size: .86rem; color: var(--muted); }
+.presult.gone .pname { color: var(--muted); }
+.presult mark { background: color-mix(in srgb, var(--warn) 28%, transparent); color: inherit;
+  border-radius: 3px; padding: 0 1px; }
+.presult code { font-size: .92em; }
+.palette-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px;
+  padding: 9px 16px; border-top: 1px solid var(--line-soft); font-size: .8rem; color: var(--muted); }
+tr.flash { animation: flash 1.6s ease-out; }
+@keyframes flash { from { background: color-mix(in srgb, var(--accent) 22%, transparent); } }
+
 @media (max-width: 900px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
   .cols-3, .cols-2 { grid-template-columns: 1fr; }
@@ -280,7 +344,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   .files tr { border-top: 1px solid var(--line-soft); padding: 10px 0; }
   .files th, .files td { border-top: 0; padding: 0; white-space: normal; }
   .files td { color: var(--muted); font-size: .88rem; margin-top: 2px; }
-  .nav form { display: none !important; }
+  .searchbox .eg, .searchbox kbd { display: none; }
+  .palette { padding: 0; }
+  .palette-box { width: 100%; height: 100%; max-height: none; border-radius: 0; border: 0; }
+  .palette-foot .keys { display: none; }
 }
 </style>
 </head>
@@ -302,9 +369,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       every row verified <b>2026-09-21</b> or later (fresh)
       · 80 live offers · MIT · no tracking, no ads, no affiliate links
     </p>
+    <button class="searchbox" type="button" data-search-open hidden aria-haspopup="dialog">
+      <span aria-hidden="true">🔎</span>
+      <span class="ph">Search 80 offers and 149 models<span class="eg"> — kimi, groq, no card, claude code</span></span>
+      <kbd class="key">/</kbd>
+    </button>
     <div class="cta">
       <a class="btn primary" href="#start">Start here</a>
-      <a class="btn" href="browse.html">🔎 Filter the list</a>
+      <a class="btn" href="browse.html">▦ Table with filters</a>
       <a class="btn" href="https://github.com/mvalentsev/awesome-free-ai-coding">★ GitHub</a>
       <a class="btn" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">📡 Atom feed</a>
       <a class="btn" href="llms.txt">🤖 llms.txt</a>
@@ -321,6 +393,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
+    <button class="navsearch" type="button" data-search-open hidden aria-haspopup="dialog"
+            aria-label="Search the list">🔎 Search</button>
     <a href="#start">🚀 Start</a>
     <a href="#agent-cli">🤖 Agents <span class="n">8</span></a>
     <a href="#api-free-tier">🔌 APIs <span class="n">31</span></a>
@@ -329,9 +403,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 <a href="#models">🧠 Models <span class="n">149</span></a>    <a href="#plug">🔧 Plug it in</a>
     <a href="#machinery">📡 How it works</a>
     <a href="#archive">📦 Archive</a>
-    <form id="findform" role="search" onsubmit="return false">
-      <input id="find" type="search" placeholder="Filter rows…" aria-label="Filter rows on this page">
-    </form>
   </div>
 </nav>
 
@@ -502,7 +573,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     <header>
       <h2>🤖 Coding agents &amp; CLIs</h2>
       <p class="sub"><b>8</b> live ·
-not one of them asks for a card        · sorted by how much work you can get done for free<span class="shown"></span></p>
+not one of them asks for a card        · sorted by how much work you can get done for free</p>
     </header>
     <div class="scroll">
       <table class="rows">
@@ -516,7 +587,8 @@ not one of them asks for a card        · sorted by how much work you can get do
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="row-opencode" data-id="opencode" data-section="agent-cli"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/">
             <th class="who" scope="row">
               <a class="name" href="https://opencode.ai">opencode</a>
               <div class="tags">
@@ -536,7 +608,8 @@ not one of them asks for a card        · sorted by how much work you can get do
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-kilo-code" data-id="kilo-code" data-section="agent-cli"
+              data-flags="nocard nokey" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/">
             <th class="who" scope="row">
               <a class="name" href="https://kilo.ai">Kilo Code</a>
               <div class="tags">
@@ -556,7 +629,8 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes &#34;Auto Free&
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-antigravity" data-id="antigravity" data-section="agent-cli"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/">
             <th class="who" scope="row">
               <a class="name" href="https://antigravity.google">Google Antigravity</a>
               <div class="tags">
@@ -575,7 +649,8 @@ Google&#39;s agent-first IDE and CLI, and where the Gemini CLI free tier went �
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-freebuff" data-id="freebuff" data-section="agent-cli"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/">
             <th class="who" scope="row">
               <a class="name" href="https://freebuff.com">Freebuff</a>
               <div class="tags">
@@ -594,7 +669,8 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-cline" data-id="cline" data-section="agent-cli"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/">
             <th class="who" scope="row">
               <a class="name" href="https://cline.bot">Cline</a>
               <div class="tags">
@@ -613,7 +689,8 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-charm-hyper" data-id="charm-hyper" data-section="agent-cli"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/">
             <th class="who" scope="row">
               <a class="name" href="https://hyper.charm.land">Crush + Charm Hyper</a>
               <div class="tags">
@@ -629,7 +706,8 @@ Charm&#39;s Crush terminal agent with Hyper, its official hosted model gateway; 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-openai-codex-cli" data-id="openai-codex-cli" data-section="agent-cli"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/">
             <th class="who" scope="row">
               <a class="name" href="https://learn.chatgpt.com/docs/codex/cli">OpenAI Codex CLI</a>
               <div class="tags">
@@ -646,7 +724,8 @@ Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-codegpt" data-id="codegpt" data-section="agent-cli"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/">
             <th class="who" scope="row">
               <a class="name" href="https://www.codegpt.co">CodeGPT</a>
               <div class="tags">
@@ -673,7 +752,7 @@ VS Code / JetBrains coding agent whose $0 plan includes model usage rather than 
     <header>
       <h2>🔌 LLM APIs with free tier</h2>
       <p class="sub"><b>31</b> live ·
-<b>29</b> of them ask for no card        · sorted by how much work you can get done for free<span class="shown"></span></p>
+<b>29</b> of them ask for no card        · sorted by how much work you can get done for free</p>
     </header>
     <div class="scroll">
       <table class="rows">
@@ -687,7 +766,8 @@ VS Code / JetBrains coding agent whose $0 plan includes model usage rather than 
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="row-google-ai-studio" data-id="google-ai-studio" data-section="api-free-tier"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/">
             <th class="who" scope="row">
               <a class="name" href="https://aistudio.google.com">Google AI Studio (Gemini API)</a>
               <div class="tags">
@@ -706,7 +786,8 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-groq-free" data-id="groq-free" data-section="api-free-tier"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/">
             <th class="who" scope="row">
               <a class="name" href="https://groq.com">Groq</a>
               <div class="tags">
@@ -725,7 +806,8 @@ Fast inference against a free plan Groq publishes as a per-model rate table     
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-nvidia-nim" data-id="nvidia-nim" data-section="api-free-tier"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/">
             <th class="who" scope="row">
               <a class="name" href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>
               <div class="tags">
@@ -745,7 +827,8 @@ Free endpoints for the models build.nvidia.com marks &#34;Free Endpoint&#34;, op
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-zai-glm" data-id="zai-glm" data-section="api-free-tier"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/">
             <th class="who" scope="row">
               <a class="name" href="https://z.ai">Z.ai (Zhipu GLM)</a>
               <div class="tags">
@@ -763,7 +846,8 @@ GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three r
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-cloudflare-workers-ai" data-id="cloudflare-workers-ai" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://www.cloudflare.com/products/workers-ai/">Cloudflare Workers AI</a>
               <div class="tags">
@@ -780,7 +864,8 @@ GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three r
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-llm7" data-id="llm7" data-section="api-free-tier"
+              data-flags="nocard nokey" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/">
             <th class="who" scope="row">
               <a class="name" href="https://llm7.io">LLM7.io</a>
               <div class="tags">
@@ -797,7 +882,8 @@ OpenAI-compatible API with an anonymous tier — no account, no key — of 500,0
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-llmtech" data-id="llmtech" data-section="api-free-tier"
+              data-flags="nocard nokey strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/">
             <th class="who" scope="row">
               <a class="name" href="https://llmtech.eu">LLM Tech</a>
               <div class="tags">
@@ -816,7 +902,8 @@ EU provider of one model, Qwen3.8 27B, whose quickstart prints a shared trial ke
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-hetzner-inference" data-id="hetzner-inference" data-section="api-free-tier"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/">
             <th class="who" scope="row">
               <a class="name" href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a>
               <div class="tags">
@@ -835,7 +922,8 @@ OpenAI-compatible API on Hetzner&#39;s own EU hardware, free for as long as the 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-alibaba-model-studio" data-id="alibaba-model-studio" data-section="api-free-tier"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/">
             <th class="who" scope="row">
               <a class="name" href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>
               <div class="tags">
@@ -855,7 +943,8 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-mistral-free" data-id="mistral-free" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/">
             <th class="who" scope="row">
               <a class="name" href="https://mistral.ai">Mistral Studio</a>
               <div class="tags">
@@ -872,7 +961,8 @@ Mistral&#39;s Free plan — API keys with $10 a month of included usage, shared 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-vlm-run-gateway" data-id="vlm-run-gateway" data-section="api-free-tier"
+              data-flags="nocard nokey strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/">
             <th class="who" scope="row">
               <a class="name" href="https://vlm.run">VLM Run Gateway</a>
               <div class="tags">
@@ -891,7 +981,8 @@ OpenAI-compatible gateway for vision and language models whose models on VLM Run
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-cohere" data-id="cohere" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/">
             <th class="who" scope="row">
               <a class="name" href="https://cohere.com">Cohere (trial keys)</a>
               <div class="tags">
@@ -910,7 +1001,8 @@ Cohere Command models via free trial API keys that never expire, plus North Mini
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-sea-lion" data-id="sea-lion" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/">
             <th class="who" scope="row">
               <a class="name" href="https://sea-lion.ai">SEA-LION (AI Singapore)</a>
               <div class="tags">
@@ -927,7 +1019,8 @@ AI Singapore&#39;s open Southeast-Asian model family behind a first-party OpenAI
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-opentyphoon" data-id="opentyphoon" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/">
             <th class="who" scope="row">
               <a class="name" href="https://opentyphoon.ai">OpenTyphoon (SCB 10X)</a>
               <div class="tags">
@@ -944,7 +1037,8 @@ Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, be
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-agnes-ai" data-id="agnes-ai" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://agnes-ai.com">Agnes AI</a>
               <div class="tags">
@@ -963,7 +1057,8 @@ Agnes AI&#39;s own models behind an OpenAI-compatible API, with its Flash text m
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-freeinference" data-id="freeinference" data-section="api-free-tier"
+              data-flags="nocard claude strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/">
             <th class="who" scope="row">
               <a class="name" href="https://freeinference.org">FreeInference (Harvard SEAS)</a>
               <div class="tags">
@@ -982,7 +1077,8 @@ Harvard SEAS&#39;s MadSys Lab serving open models — DeepSeek V4 Flash, GLM-5.1
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-ollama-cloud" data-id="ollama-cloud" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/">
             <th class="who" scope="row">
               <a class="name" href="https://ollama.com/cloud">Ollama Cloud</a>
               <div class="tags">
@@ -999,7 +1095,8 @@ Cloud-hosted open models on a $0 plan that grants starter usage credits for a st
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-ovh-ai-endpoints" data-id="ovh-ai-endpoints" data-section="api-free-tier"
+              data-flags="nocard nokey strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/">
             <th class="who" scope="row">
               <a class="name" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a>
               <div class="tags">
@@ -1018,7 +1115,8 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-poolside" data-id="poolside" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/">
             <th class="who" scope="row">
               <a class="name" href="https://poolside.ai">Poolside Platform</a>
               <div class="tags">
@@ -1035,7 +1133,8 @@ Free self-serve developer access to the Laguna coding models, direct from the ve
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-sail-research" data-id="sail-research" data-section="api-free-tier"
+              data-flags="" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/">
             <th class="who" scope="row">
               <a class="name" href="https://www.sailresearch.com">Sail Research</a>
               <div class="tags">
@@ -1052,7 +1151,8 @@ Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-uncloseai" data-id="uncloseai" data-section="api-free-tier"
+              data-flags="nocard nokey" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/">
             <th class="who" scope="row">
               <a class="name" href="https://uncloseai.com">uncloseai (unturf)</a>
               <div class="tags">
@@ -1069,7 +1169,8 @@ Keyless OpenAI-compatible chat endpoint — no signup, no key, no account       
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-pollinations" data-id="pollinations" data-section="api-free-tier"
+              data-flags="nocard nokey" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/">
             <th class="who" scope="row">
               <a class="name" href="https://pollinations.ai">Pollinations.AI</a>
               <div class="tags">
@@ -1088,7 +1189,8 @@ Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/op
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-ibm-watsonx-ai" data-id="ibm-watsonx-ai" data-section="api-free-tier"
+              data-flags="" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://www.ibm.com/products/watsonx-ai">IBM watsonx.ai (Lite plan)</a>
               <div class="tags">
@@ -1105,7 +1207,8 @@ IBM&#39;s watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foun
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-arli-ai" data-id="arli-ai" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://www.arliai.com">Arli AI</a>
               <div class="tags">
@@ -1122,7 +1225,8 @@ OpenAI-compatible inference on open models and their fine-tunes, whose Free plan
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-bytez" data-id="bytez" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/">
             <th class="who" scope="row">
               <a class="name" href="https://bytez.com">Bytez</a>
               <div class="tags">
@@ -1139,7 +1243,8 @@ Serverless API over open models, whose Free plan grants $1 of credit every four 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-mixlayer" data-id="mixlayer" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/">
             <th class="who" scope="row">
               <a class="name" href="https://www.mixlayer.com">Mixlayer</a>
               <div class="tags">
@@ -1158,7 +1263,8 @@ Serverless open models priced per token, with one of them at $0 — Qwen3.5 4B a
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-yolo-auto" data-id="yolo-auto" data-section="api-free-tier"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/">
             <th class="who" scope="row">
               <a class="name" href="https://yolo-auto.com">Yolo-Auto</a>
               <div class="tags">
@@ -1177,7 +1283,8 @@ One model, Qwen3.8 Flash — Qwen&#39;s open-weight Qwen3.8-Flash-Next — serve
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-modelscope" data-id="modelscope" data-section="api-free-tier"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/">
             <th class="who" scope="row">
               <a class="name" href="https://modelscope.cn">ModelScope API-Inference (Alibaba)</a>
               <div class="tags">
@@ -1194,7 +1301,8 @@ Alibaba&#39;s model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-sensenova" data-id="sensenova" data-section="api-free-tier"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/">
             <th class="who" scope="row">
               <a class="name" href="https://www.sensenova.cn">SenseNova (SenseTime 商汤)</a>
               <div class="tags">
@@ -1211,7 +1319,8 @@ SenseTime&#39;s own SenseNova models behind an OpenAI-compatible url, free for e
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-tencent-tokenhub" data-id="tencent-tokenhub" data-section="api-free-tier"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/">
             <th class="who" scope="row">
               <a class="name" href="https://cloud.tencent.com/document/product/1823">Tencent Cloud TokenHub</a>
               <div class="tags">
@@ -1228,7 +1337,8 @@ Tencent Cloud&#39;s model platform — Hy3, Kimi K3, GLM-5.3 and MiniMax-M3 amon
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-siliconflow-cn" data-id="siliconflow-cn" data-section="api-free-tier"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/">
             <th class="who" scope="row">
               <a class="name" href="https://siliconflow.cn">SiliconFlow (China)</a>
               <div class="tags">
@@ -1257,7 +1367,7 @@ China&#39;s SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-
     <header>
       <h2>🎁 Trials (no card when possible)</h2>
       <p class="sub"><b>26</b> live ·
-not one of them asks for a card        · sorted by how much work you can get done for free<span class="shown"></span></p>
+not one of them asks for a card        · sorted by how much work you can get done for free</p>
     </header>
     <div class="scroll">
       <table class="rows">
@@ -1271,7 +1381,8 @@ not one of them asks for a card        · sorted by how much work you can get do
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="row-github-copilot-free" data-id="github-copilot-free" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/">
             <th class="who" scope="row">
               <a class="name" href="https://github.com/features/copilot">GitHub Copilot Free</a>
               <div class="tags">
@@ -1288,7 +1399,8 @@ Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-kiro" data-id="kiro" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/">
             <th class="who" scope="row">
               <a class="name" href="https://kiro.dev/">Kiro</a>
               <div class="tags">
@@ -1307,7 +1419,8 @@ Perpetual free tier of AWS&#39;s spec-driven agentic IDE (successor to Amazon Q 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-google-jules" data-id="google-jules" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/">
             <th class="who" scope="row">
               <a class="name" href="https://jules.google/">Google Jules</a>
               <div class="tags">
@@ -1326,7 +1439,8 @@ Free tier of Google&#39;s async cloud coding agent, on Gemini 3 Flash — its ba
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-cursor-hobby" data-id="cursor-hobby" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/">
             <th class="who" scope="row">
               <a class="name" href="https://cursor.com/">Cursor (Hobby)</a>
               <div class="tags">
@@ -1345,7 +1459,8 @@ Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Curso
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-vertex-ai-express" data-id="vertex-ai-express" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/">
             <th class="who" scope="row">
               <a class="name" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</a>
               <div class="tags">
@@ -1364,7 +1479,8 @@ Google Cloud&#39;s express mode: an API key and 90 days of Gemini models within 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-windsurf" data-id="windsurf" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/">
             <th class="who" scope="row">
               <a class="name" href="https://devin.ai/desktop">Devin Desktop (formerly Windsurf)</a>
               <div class="tags">
@@ -1381,7 +1497,8 @@ Free plan of Cognition&#39;s desktop coding agent — the IDE that shipped as Wi
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-qoder" data-id="qoder" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/">
             <th class="who" scope="row">
               <a class="name" href="https://qoder.com">Qoder</a>
               <div class="tags">
@@ -1398,7 +1515,8 @@ Alibaba&#39;s agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-jetbrains-ai" data-id="jetbrains-ai" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://www.jetbrains.com/ai/">JetBrains AI (AI Free)</a>
               <div class="tags">
@@ -1417,7 +1535,8 @@ AI Free in JetBrains IDEs — unlimited code completion on JetBrains&#39; Mellum
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-regolo" data-id="regolo" data-section="trial"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/">
             <th class="who" scope="row">
               <a class="name" href="https://regolo.ai/pricing/">Regolo AI</a>
               <div class="tags">
@@ -1436,7 +1555,8 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-trae" data-id="trae" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/">
             <th class="who" scope="row">
               <a class="name" href="https://www.trae.ai">TRAE (TraeCode)</a>
               <div class="tags">
@@ -1453,7 +1573,8 @@ TRAE&#39;s AI IDE, TraeCode, whose Free plan runs Auto mode only — no model ch
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-upstage" data-id="upstage" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/">
             <th class="who" scope="row">
               <a class="name" href="https://console.upstage.ai/">Upstage (Solar API)</a>
               <div class="tags">
@@ -1470,7 +1591,8 @@ Upstage Solar LLM API; $10 free credit on signup, no card            </td>
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-zed" data-id="zed" data-section="trial"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/">
             <th class="who" scope="row">
               <a class="name" href="https://zed.dev">Zed</a>
               <div class="tags">
@@ -1489,7 +1611,8 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GP
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-codebuddy" data-id="codebuddy" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/">
             <th class="who" scope="row">
               <a class="name" href="https://www.codebuddy.ai">CodeBuddy (Tencent)</a>
               <div class="tags">
@@ -1507,7 +1630,8 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of GP
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/"><time datetime="2026-09-21">2026-09-21</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-zcode" data-id="zcode" data-section="trial"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/">
             <th class="who" scope="row">
               <a class="name" href="https://zcode.z.ai/en">ZCode (Z.ai)</a>
               <div class="tags">
@@ -1526,7 +1650,8 @@ Z.ai&#39;s desktop coding agent built around GLM-5.3, free as an app, with five 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/"><time datetime="2026-09-26">2026-09-26</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-qodo" data-id="qodo" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/">
             <th class="who" scope="row">
               <a class="name" href="https://www.qodo.ai">Qodo</a>
               <div class="tags">
@@ -1543,7 +1668,8 @@ Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-the-grid" data-id="the-grid" data-section="trial"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/">
             <th class="who" scope="row">
               <a class="name" href="https://thegrid.ai">The Grid</a>
               <div class="tags">
@@ -1560,7 +1686,8 @@ OpenAI- and Anthropic-compatible inference market that sells quality tiers rathe
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-dahl-inference" data-id="dahl-inference" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/">
             <th class="who" scope="row">
               <a class="name" href="https://inference.dahl.global">Dahl Inference</a>
               <div class="tags">
@@ -1577,7 +1704,8 @@ An OpenAI-compatible gateway to open models served by the Gonka decentralized GP
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-sarvam" data-id="sarvam" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/">
             <th class="who" scope="row">
               <a class="name" href="https://www.sarvam.ai">Sarvam AI</a>
               <div class="tags">
@@ -1594,7 +1722,8 @@ India&#39;s Sarvam AI credits every new account ₹100 that never expire, spenda
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-inception-labs" data-id="inception-labs" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/">
             <th class="who" scope="row">
               <a class="name" href="https://platform.inceptionlabs.ai">Inception Labs (Mercury)</a>
               <div class="tags">
@@ -1611,7 +1740,8 @@ A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-blue-claw" data-id="blue-claw" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/">
             <th class="who" scope="row">
               <a class="name" href="https://blueclaw.network">Blue Claw Network</a>
               <div class="tags">
@@ -1628,7 +1758,8 @@ OpenAI-compatible endpoint that routes calls to a network of independent GPU ope
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-hpc-ai" data-id="hpc-ai" data-section="trial"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://www.hpc-ai.com/model-apis">HPC-AI Model APIs</a>
               <div class="tags">
@@ -1645,7 +1776,8 @@ OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 amo
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-fireworks-ai" data-id="fireworks-ai" data-section="trial"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://fireworks.ai">Fireworks AI</a>
               <div class="tags">
@@ -1662,7 +1794,8 @@ Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 F
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-routerplex" data-id="routerplex" data-section="trial"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/">
             <th class="who" scope="row">
               <a class="name" href="https://routerplex.com">RouterPlex</a>
               <div class="tags">
@@ -1679,7 +1812,8 @@ A one-time $1 of free credit on a prepaid reseller that bills 56 models at catal
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-abliteration-ai" data-id="abliteration-ai" data-section="trial"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/">
             <th class="who" scope="row">
               <a class="name" href="https://abliteration.ai">abliteration.ai</a>
               <div class="tags">
@@ -1696,7 +1830,8 @@ OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-impossibl" data-id="impossibl" data-section="trial"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/">
             <th class="who" scope="row">
               <a class="name" href="https://impossibl.com">Impossibl</a>
               <div class="tags">
@@ -1713,7 +1848,8 @@ Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, De
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-standardcompute" data-id="standardcompute" data-section="trial"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/">
             <th class="who" scope="row">
               <a class="name" href="https://standardcompute.com">Standard Compute</a>
               <div class="tags">
@@ -1740,7 +1876,7 @@ A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card �
     <header>
       <h2>🧭 Aggregators (one key, many providers)</h2>
       <p class="sub"><b>15</b> live ·
-<b>13</b> of them ask for no card        · sorted by how much work you can get done for free<span class="shown"></span></p>
+<b>13</b> of them ask for no card        · sorted by how much work you can get done for free</p>
     </header>
     <div class="scroll">
       <table class="rows">
@@ -1754,7 +1890,8 @@ A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card �
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr id="row-openrouter-free" data-id="openrouter-free" data-section="aggregator"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/">
             <th class="who" scope="row">
               <a class="name" href="https://openrouter.ai">OpenRouter (free models)</a>
               <div class="tags">
@@ -1774,7 +1911,8 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-requesty" data-id="requesty" data-section="aggregator"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/">
             <th class="who" scope="row">
               <a class="name" href="https://www.requesty.ai">Requesty</a>
               <div class="tags">
@@ -1793,7 +1931,8 @@ Free plan is $0 with no credit card — 200 requests a day, free models only, wi
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-aihubmix" data-id="aihubmix" data-section="aggregator"
+              data-flags="nocard claude strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/">
             <th class="who" scope="row">
               <a class="name" href="https://aihubmix.com">AIHubMix (free models)</a>
               <div class="tags">
@@ -1813,7 +1952,8 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-routeway" data-id="routeway" data-section="aggregator"
+              data-flags="nocard strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/">
             <th class="who" scope="row">
               <a class="name" href="https://routeway.ai">Routeway</a>
               <div class="tags">
@@ -1832,7 +1972,8 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-llmtr" data-id="llmtr" data-section="aggregator"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/">
             <th class="who" scope="row">
               <a class="name" href="https://llmtr.com">LLMTR</a>
               <div class="tags">
@@ -1851,7 +1992,8 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — n
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-vercel-ai-gateway" data-id="vercel-ai-gateway" data-section="aggregator"
+              data-flags="claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/">
             <th class="who" scope="row">
               <a class="name" href="https://vercel.com/ai-gateway">Vercel AI Gateway</a>
               <div class="tags">
@@ -1870,7 +2012,8 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-bazaarlink" data-id="bazaarlink" data-section="aggregator"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/">
             <th class="who" scope="row">
               <a class="name" href="https://bazaarlink.ai">BazaarLink</a>
               <div class="tags">
@@ -1889,7 +2032,8 @@ OpenAI-compatible gateway to a 173-id catalog whose free page counts two models 
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-nous-portal" data-id="nous-portal" data-section="aggregator"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/">
             <th class="who" scope="row">
               <a class="name" href="https://portal.nousresearch.com">Nous Portal (Hermes Agent)</a>
               <div class="tags">
@@ -1908,7 +2052,8 @@ Nous Research&#39;s inference portal behind its Hermes Agent: a $0 Free plan lim
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-token-harbor" data-id="token-harbor" data-section="aggregator"
+              data-flags="nocard claude strong" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/">
             <th class="who" scope="row">
               <a class="name" href="https://tokenharbor.ai">Token Harbor</a>
               <div class="tags">
@@ -1927,7 +2072,8 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-tokenrouter" data-id="tokenrouter" data-section="aggregator"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/">
             <th class="who" scope="row">
               <a class="name" href="https://www.tokenrouter.com">TokenRouter (PaleBlueDot)</a>
               <div class="tags">
@@ -1946,7 +2092,8 @@ One zero-priced id — Nemotron 3 Nano Omni, in the default group — inside a 1
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-huggingface-inference" data-id="huggingface-inference" data-section="aggregator"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/">
             <th class="who" scope="row">
               <a class="name" href="https://huggingface.co/docs/inference-providers">Hugging Face Inference Providers</a>
               <div class="tags">
@@ -1963,7 +2110,8 @@ Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) w
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-opper" data-id="opper" data-section="aggregator"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/">
             <th class="who" scope="row">
               <a class="name" href="https://opper.ai">Opper</a>
               <div class="tags">
@@ -1982,7 +2130,8 @@ EU-hosted gateway over 700+ models whose free models — Gemma 4 31B and Gemma 4
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-meganova" data-id="meganova" data-section="aggregator"
+              data-flags="nocard" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/">
             <th class="who" scope="row">
               <a class="name" href="https://meganova.ai">MegaNova</a>
               <div class="tags">
@@ -2001,7 +2150,8 @@ OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a d
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-moark" data-id="moark" data-section="aggregator"
+              data-flags="nocard claude" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/">
             <th class="who" scope="row">
               <a class="name" href="https://moark.com">Moark (Gitee AI)</a>
               <div class="tags">
@@ -2018,7 +2168,8 @@ Gitee&#39;s model platform, formerly Gitee AI — 200+ open models behind OpenAI
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/"><time datetime="2026-09-24">2026-09-24</time></a>
             </td>
           </tr>
-          <tr>
+          <tr id="row-experiential-labs" data-id="experiential-labs" data-section="aggregator"
+              data-flags="" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/">
             <th class="who" scope="row">
               <a class="name" href="https://www.experientiallabs.ai">Experiential Labs</a>
               <div class="tags">
@@ -2053,599 +2204,748 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
       <div class="scroll" style="padding: 4px 16px">
         <table class="files">
           <tbody>
-            <tr>
+            <tr id="model-nemotron-3-ultra" data-family="nemotron-3-ultra" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/" data-rows="opencode openrouter-free kilo-code requesty nvidia-nim aihubmix llmtr">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"><code>nemotron-3-ultra</code></a></th>
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://llmtr.com">LLMTR</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.8-27b" data-family="qwen3.8-27b" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/" data-rows="groq-free llmtech hetzner-inference alibaba-model-studio regolo vlm-run-gateway ovh-ai-endpoints">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"><code>qwen3.8-27b</code></a></th>
               <td><a href="https://groq.com">Groq</a>, <a href="https://llmtech.eu">LLM Tech</a>, <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://regolo.ai/pricing/">Regolo AI</a>, <a href="https://vlm.run">VLM Run Gateway</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
             </tr>
-            <tr>
+            <tr id="model-nemotron-3-nano-omni" data-family="nemotron-3-nano-omni" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/" data-rows="openrouter-free kilo-code requesty nvidia-nim aihubmix tokenrouter">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/"><code>nemotron-3-nano-omni</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://www.tokenrouter.com">TokenRouter (PaleBlueDot)</a></td>
             </tr>
-            <tr>
+            <tr id="model-nemotron-3-super" data-family="nemotron-3-super" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/" data-rows="openrouter-free kilo-code requesty nvidia-nim aihubmix llmtr">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"><code>nemotron-3-super</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://llmtr.com">LLMTR</a></td>
             </tr>
-            <tr>
+            <tr id="model-nemotron-3.5-lightning" data-family="nemotron-3.5-lightning" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/" data-rows="opencode openrouter-free kilo-code requesty nvidia-nim aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"><code>nemotron-3.5-lightning</code></a></th>
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-laguna-s-2.1" data-family="laguna-s-2.1" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/" data-rows="openrouter-free kilo-code aihubmix vercel-ai-gateway nous-portal">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"><code>laguna-s-2.1</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳, <a href="https://portal.nousresearch.com">Nous Portal (Hermes Agent)</a></td>
             </tr>
-            <tr>
+            <tr id="model-laguna-xs-2.1" data-family="laguna-xs-2.1" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/" data-rows="openrouter-free kilo-code nvidia-nim aihubmix llmtr">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"><code>laguna-xs-2.1</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://llmtr.com">LLMTR</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemma-4-31b" data-family="gemma-4-31b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/" data-rows="openrouter-free requesty nvidia-nim opper">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"><code>gemma-4-31b</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://opper.ai">Opper</a></td>
             </tr>
-            <tr>
+            <tr id="model-gpt-oss-120b" data-family="gpt-oss-120b" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/" data-rows="groq-free antigravity regolo ovh-ai-endpoints">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/"><code>gpt-oss-120b</code></a></th>
               <td><a href="https://groq.com">Groq</a>, <a href="https://antigravity.google">Google Antigravity</a>, <a href="https://regolo.ai/pricing/">Regolo AI</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
             </tr>
-            <tr>
+            <tr id="model-ling-3.0-flash-fin" data-family="ling-3.0-flash-fin" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/" data-rows="opencode openrouter-free kilo-code llmtr">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"><code>ling-3.0-flash-fin</code></a></th>
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://llmtr.com">LLMTR</a></td>
             </tr>
-            <tr>
+            <tr id="model-north-mini-code" data-family="north-mini-code" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/" data-rows="openrouter-free kilo-code aihubmix cohere">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"><code>north-mini-code</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.6" data-family="qwen3.6" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/" data-rows="groq-free hetzner-inference freeinference ovh-ai-endpoints">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"><code>qwen3.6</code></a></th>
               <td><a href="https://groq.com">Groq</a>, <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a>, <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
             </tr>
-            <tr>
+            <tr id="model-deepseek-v4-flash" data-family="deepseek-v4-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/" data-rows="routeway alibaba-model-studio freeinference">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"><code>deepseek-v4-flash</code></a></th>
               <td><a href="https://routeway.ai">Routeway</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
-            <tr>
+            <tr id="model-dots-3-note" data-family="dots-3-note" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/" data-rows="openrouter-free kilo-code aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"><code>dots-3-note</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-5.1" data-family="glm-5.1" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/" data-rows="aihubmix alibaba-model-studio freeinference">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"><code>glm-5.1</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-5.3-flash" data-family="glm-5.3-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/" data-rows="freebuff aihubmix freeinference">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"><code>glm-5.3-flash</code></a></th>
               <td><a href="https://freebuff.com">Freebuff</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gpt-oss-20b" data-family="gpt-oss-20b" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/" data-rows="groq-free nvidia-nim pollinations">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"><code>gpt-oss-20b</code></a></th>
               <td><a href="https://groq.com">Groq</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://pollinations.ai">Pollinations.AI</a></td>
             </tr>
-            <tr>
+            <tr id="model-ling-3.0-flash-sante" data-family="ling-3.0-flash-sante" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/" data-rows="openrouter-free kilo-code vercel-ai-gateway">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"><code>ling-3.0-flash-sante</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://vercel.com/ai-gateway">Vercel AI Gateway</a> 💳</td>
             </tr>
-            <tr>
+            <tr id="model-minimax-m2.5" data-family="minimax-m2.5" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/" data-rows="kiro aihubmix freeinference">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/"><code>minimax-m2.5</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
-            <tr>
+            <tr id="model-muse-glimmer-30b" data-family="muse-glimmer-30b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/" data-rows="requesty nvidia-nim routeway">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"><code>muse-glimmer-30b</code></a></th>
               <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://routeway.ai">Routeway</a></td>
             </tr>
-            <tr>
+            <tr id="model-deepseek-v3.2" data-family="deepseek-v3.2" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/" data-rows="kiro alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"><code>deepseek-v3.2</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-deepseek-v4.1-flash" data-family="deepseek-v4.1-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/" data-rows="freebuff token-harbor">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"><code>deepseek-v4.1-flash</code></a></th>
               <td><a href="https://freebuff.com">Freebuff</a>, <a href="https://tokenharbor.ai">Token Harbor</a></td>
             </tr>
-            <tr>
+            <tr id="model-diffusiongemma" data-family="diffusiongemma" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/" data-rows="nvidia-nim freeinference">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"><code>diffusiongemma</code></a></th>
               <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3-flash" data-family="gemini-3-flash" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/" data-rows="google-ai-studio vertex-ai-express">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/"><code>gemini-3-flash</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.1-pro" data-family="gemini-3.1-pro" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/" data-rows="antigravity vertex-ai-express">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/"><code>gemini-3.1-pro</code></a></th>
               <td><a href="https://antigravity.google">Google Antigravity</a>, <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.6-flash" data-family="gemini-3.6-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/" data-rows="google-ai-studio antigravity">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/"><code>gemini-3.6-flash</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a>, <a href="https://antigravity.google">Google Antigravity</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.7-flash" data-family="gemini-3.7-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/" data-rows="google-ai-studio antigravity">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/"><code>gemini-3.7-flash</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a>, <a href="https://antigravity.google">Google Antigravity</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.8-flash" data-family="gemini-3.8-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/" data-rows="google-ai-studio antigravity">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"><code>gemini-3.8-flash</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a>, <a href="https://antigravity.google">Google Antigravity</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-4.7-flash" data-family="glm-4.7-flash" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/" data-rows="aihubmix zai-glm">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"><code>glm-4.7-flash</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-5" data-family="glm-5" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/" data-rows="kiro aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5/"><code>glm-5</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-5-turbo" data-family="glm-5-turbo" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/" data-rows="aihubmix zcode">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"><code>glm-5-turbo</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://zcode.z.ai/en">ZCode (Z.ai)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-5.2" data-family="glm-5.2" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/" data-rows="aihubmix regolo">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"><code>glm-5.2</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://regolo.ai/pricing/">Regolo AI</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-5.3" data-family="glm-5.3" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/" data-rows="aihubmix zcode">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"><code>glm-5.3</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://zcode.z.ai/en">ZCode (Z.ai)</a></td>
             </tr>
-            <tr>
+            <tr id="model-inkling-small" data-family="inkling-small" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/" data-rows="openrouter-free kilo-code">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/"><code>inkling-small</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a></td>
             </tr>
-            <tr>
+            <tr id="model-kimi-k3" data-family="kimi-k3" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/" data-rows="nvidia-nim aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"><code>kimi-k3</code></a></th>
               <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-ling-3.0-tiny" data-family="ling-3.0-tiny" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/" data-rows="requesty aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/"><code>ling-3.0-tiny</code></a></th>
               <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mimo-v2.5" data-family="mimo-v2.5" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/" data-rows="opencode aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/"><code>mimo-v2.5</code></a></th>
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-minimax-m2.1" data-family="minimax-m2.1" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/" data-rows="kiro aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/"><code>minimax-m2.1</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-minimax-m2.7" data-family="minimax-m2.7" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/" data-rows="aihubmix routeway">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/"><code>minimax-m2.7</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://routeway.ai">Routeway</a></td>
             </tr>
-            <tr>
+            <tr id="model-minimax-m3" data-family="minimax-m3" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/" data-rows="aihubmix freeinference">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/"><code>minimax-m3</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
-            <tr>
+            <tr id="model-muse-spark-1.3-contributor" data-family="muse-spark-1.3-contributor" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/" data-rows="opencode cline">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/"><code>muse-spark-1.3-contributor</code></a></th>
               <td><a href="https://opencode.ai">opencode</a>, <a href="https://cline.bot">Cline</a></td>
             </tr>
-            <tr>
+            <tr id="model-nemotron-3-nano-30b" data-family="nemotron-3-nano-30b" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/" data-rows="requesty aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-30b/"><code>nemotron-3-nano-30b</code></a></th>
               <td><a href="https://www.requesty.ai">Requesty</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-8b" data-family="qwen3-8b" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/" data-rows="alibaba-model-studio siliconflow-cn">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/"><code>qwen3-8b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://siliconflow.cn">SiliconFlow (China)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-coder-next" data-family="qwen3-coder-next" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/" data-rows="kiro alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-coder-next/"><code>qwen3-coder-next</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.7-flash" data-family="qwen3.7-flash" data-tier=""
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/" data-rows="alibaba-model-studio bazaarlink">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/"><code>qwen3.7-flash</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://bazaarlink.ai">BazaarLink</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.8-flash" data-family="qwen3.8-flash" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/" data-rows="alibaba-model-studio yolo-auto">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"><code>qwen3.8-flash</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://yolo-auto.com">Yolo-Auto</a></td>
             </tr>
-            <tr>
+            <tr id="model-step-3.7-flash" data-family="step-3.7-flash" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/" data-rows="kilo-code nous-portal">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"><code>step-3.7-flash</code></a></th>
               <td><a href="https://kilo.ai">Kilo Code</a>, <a href="https://portal.nousresearch.com">Nous Portal (Hermes Agent)</a></td>
             </tr>
-            <tr>
+            <tr id="model-agnes-2.5-flash" data-family="agnes-2.5-flash" data-tier=""
+                data-page="" data-rows="agnes-ai">
               <th scope="row"><code>agnes-2.5-flash</code></th>
               <td><a href="https://agnes-ai.com">Agnes AI</a></td>
             </tr>
-            <tr>
+            <tr id="model-agnes-3.0-flash" data-family="agnes-3.0-flash" data-tier=""
+                data-page="" data-rows="agnes-ai">
               <th scope="row"><code>agnes-3.0-flash</code></th>
               <td><a href="https://agnes-ai.com">Agnes AI</a></td>
             </tr>
-            <tr>
+            <tr id="model-apertus-70b" data-family="apertus-70b" data-tier=""
+                data-page="" data-rows="regolo">
               <th scope="row"><code>apertus-70b</code></th>
               <td><a href="https://regolo.ai/pricing/">Regolo AI</a></td>
             </tr>
-            <tr>
+            <tr id="model-big-pickle" data-family="big-pickle" data-tier=""
+                data-page="" data-rows="opencode">
               <th scope="row"><code>big-pickle</code></th>
               <td><a href="https://opencode.ai">opencode</a></td>
             </tr>
-            <tr>
+            <tr id="model-claude-opus-4.6" data-family="claude-opus-4.6" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/" data-rows="antigravity">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/"><code>claude-opus-4.6</code></a></th>
               <td><a href="https://antigravity.google">Google Antigravity</a></td>
             </tr>
-            <tr>
+            <tr id="model-claude-sonnet-4" data-family="claude-sonnet-4" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/" data-rows="kiro">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/"><code>claude-sonnet-4</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a></td>
             </tr>
-            <tr>
+            <tr id="model-claude-sonnet-4.5" data-family="claude-sonnet-4.5" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/" data-rows="kiro">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/"><code>claude-sonnet-4.5</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a></td>
             </tr>
-            <tr>
+            <tr id="model-claude-sonnet-4.6" data-family="claude-sonnet-4.6" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/" data-rows="antigravity">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/"><code>claude-sonnet-4.6</code></a></th>
               <td><a href="https://antigravity.google">Google Antigravity</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-a" data-family="command-a" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-a</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-a-plus" data-family="command-a-plus" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-a-plus</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-a-reasoning" data-family="command-a-reasoning" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-a-reasoning</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-a-vision" data-family="command-a-vision" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-a-vision</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-r" data-family="command-r" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-r</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-r-plus" data-family="command-r-plus" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-r-plus</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-command-r7b" data-family="command-r7b" data-tier=""
+                data-page="" data-rows="cohere">
               <th scope="row"><code>command-r7b</code></th>
               <td><a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
-            <tr>
+            <tr id="model-composer" data-family="composer" data-tier=""
+                data-page="" data-rows="cursor-hobby">
               <th scope="row"><code>composer</code></th>
               <td><a href="https://cursor.com/">Cursor (Hobby)</a></td>
             </tr>
-            <tr>
+            <tr id="model-deepseek-v4-pro" data-family="deepseek-v4-pro" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"><code>deepseek-v4-pro</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-2.5" data-family="gemini-2.5" data-tier=""
+                data-page="" data-rows="google-jules">
               <th scope="row"><code>gemini-2.5</code></th>
               <td><a href="https://jules.google/">Google Jules</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-2.5-flash" data-family="gemini-2.5-flash" data-tier=""
+                data-page="" data-rows="vertex-ai-express">
               <th scope="row"><code>gemini-2.5-flash</code></th>
               <td><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-2.5-pro" data-family="gemini-2.5-pro" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/" data-rows="vertex-ai-express">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/"><code>gemini-2.5-pro</code></a></th>
               <td><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview">Gemini Enterprise Agent Platform express mode (formerly Vertex AI)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.1-flash-lite" data-family="gemini-3.1-flash-lite" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/" data-rows="google-ai-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-flash-lite/"><code>gemini-3.1-flash-lite</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.5-flash" data-family="gemini-3.5-flash" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash/" data-rows="google-ai-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash/"><code>gemini-3.5-flash</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemini-3.5-flash-lite" data-family="gemini-3.5-flash-lite" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/" data-rows="google-ai-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.5-flash-lite/"><code>gemini-3.5-flash-lite</code></a></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemma-4" data-family="gemma-4" data-tier=""
+                data-page="" data-rows="google-ai-studio">
               <th scope="row"><code>gemma-4</code></th>
               <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gemma-4-26b-a4b" data-family="gemma-4-26b-a4b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/" data-rows="openrouter-free">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/"><code>gemma-4-26b-a4b</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-4-9b-0414" data-family="glm-4-9b-0414" data-tier=""
+                data-page="" data-rows="siliconflow-cn">
               <th scope="row"><code>glm-4-9b-0414</code></th>
               <td><a href="https://siliconflow.cn">SiliconFlow (China)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-4.5-flash" data-family="glm-4.5-flash" data-tier=""
+                data-page="" data-rows="zai-glm">
               <th scope="row"><code>glm-4.5-flash</code></th>
               <td><a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-4.6" data-family="glm-4.6" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.6/"><code>glm-4.6</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-4.6v-flash" data-family="glm-4.6v-flash" data-tier=""
+                data-page="" data-rows="zai-glm">
               <th scope="row"><code>glm-4.6v-flash</code></th>
               <td><a href="https://z.ai">Z.ai (Zhipu GLM)</a></td>
             </tr>
-            <tr>
+            <tr id="model-glm-4.7" data-family="glm-4.7" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/"><code>glm-4.7</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-gpt-5.6-luna" data-family="gpt-5.6-luna" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/" data-rows="zed">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/"><code>gpt-5.6-luna</code></a></th>
               <td><a href="https://zed.dev">Zed</a></td>
             </tr>
-            <tr>
+            <tr id="model-hy3" data-family="hy3" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/hy3/"><code>hy3</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-inkling" data-family="inkling" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/" data-rows="openrouter-free">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/"><code>inkling</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-kimi-for-coding" data-family="kimi-for-coding" data-tier=""
+                data-page="" data-rows="aihubmix">
               <th scope="row"><code>kimi-for-coding</code></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-laguna-m.1" data-family="laguna-m.1" data-tier=""
+                data-page="" data-rows="requesty">
               <th scope="row"><code>laguna-m.1</code></th>
               <td><a href="https://www.requesty.ai">Requesty</a></td>
             </tr>
-            <tr>
+            <tr id="model-laguna-xs.2" data-family="laguna-xs.2" data-tier=""
+                data-page="" data-rows="requesty">
               <th scope="row"><code>laguna-xs.2</code></th>
               <td><a href="https://www.requesty.ai">Requesty</a></td>
             </tr>
-            <tr>
+            <tr id="model-leanstral-1.5" data-family="leanstral-1.5" data-tier=""
+                data-page="" data-rows="requesty">
               <th scope="row"><code>leanstral-1.5</code></th>
               <td><a href="https://www.requesty.ai">Requesty</a></td>
             </tr>
-            <tr>
+            <tr id="model-ling-3.0-flash" data-family="ling-3.0-flash" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"><code>ling-3.0-flash</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-llama-3.2-11b-vision" data-family="llama-3.2-11b-vision" data-tier=""
+                data-page="" data-rows="nvidia-nim">
               <th scope="row"><code>llama-3.2-11b-vision</code></th>
               <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
             </tr>
-            <tr>
+            <tr id="model-llama-3.2-90b-vision" data-family="llama-3.2-90b-vision" data-tier=""
+                data-page="" data-rows="nvidia-nim">
               <th scope="row"><code>llama-3.2-90b-vision</code></th>
               <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mellum" data-family="mellum" data-tier=""
+                data-page="" data-rows="jetbrains-ai">
               <th scope="row"><code>mellum</code></th>
               <td><a href="https://www.jetbrains.com/ai/">JetBrains AI (AI Free)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mimo-v2-flash" data-family="mimo-v2-flash" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/"><code>mimo-v2-flash</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mimo-v2-omni" data-family="mimo-v2-omni" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-omni/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-omni/"><code>mimo-v2-omni</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mimo-v2-pro" data-family="mimo-v2-pro" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-pro/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-pro/"><code>mimo-v2-pro</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mimo-v2.5-pro" data-family="mimo-v2.5-pro" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5-pro/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5-pro/"><code>mimo-v2.5-pro</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-minimax-m2" data-family="minimax-m2" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/" data-rows="aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/"><code>minimax-m2</code></a></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mistral-nemotron" data-family="mistral-nemotron" data-tier=""
+                data-page="" data-rows="nvidia-nim">
               <th scope="row"><code>mistral-nemotron</code></th>
               <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></td>
             </tr>
-            <tr>
+            <tr id="model-mistral-small-3.2" data-family="mistral-small-3.2" data-tier=""
+                data-page="" data-rows="meganova">
               <th scope="row"><code>mistral-small-3.2</code></th>
               <td><a href="https://meganova.ai">MegaNova</a></td>
             </tr>
-            <tr>
+            <tr id="model-muse-spark-1.2" data-family="muse-spark-1.2" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/" data-rows="freebuff">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/"><code>muse-spark-1.2</code></a></th>
               <td><a href="https://freebuff.com">Freebuff</a></td>
             </tr>
-            <tr>
+            <tr id="model-nemotron-nano-12b-v2-vl" data-family="nemotron-nano-12b-v2-vl" data-tier=""
+                data-page="" data-rows="aihubmix">
               <th scope="row"><code>nemotron-nano-12b-v2-vl</code></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-nemotron-nano-9b-v2" data-family="nemotron-nano-9b-v2" data-tier=""
+                data-page="" data-rows="aihubmix">
               <th scope="row"><code>nemotron-nano-9b-v2</code></th>
               <td><a href="https://aihubmix.com">AIHubMix (free models)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qvq-max" data-family="qvq-max" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qvq-max</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen-flash" data-family="qwen-flash" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen-flash</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen-max" data-family="qwen-max" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen-max</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen-plus" data-family="qwen-plus" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen-turbo" data-family="qwen-turbo" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen-turbo</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen-vl-max" data-family="qwen-vl-max" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen-vl-max</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen-vl-plus" data-family="qwen-vl-plus" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen-vl-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-14b" data-family="qwen3-14b" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-14b</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-235b-a22b" data-family="qwen3-235b-a22b" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-235b-a22b</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-235b-a22b-instruct-2507" data-family="qwen3-235b-a22b-instruct-2507" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-235b-a22b-instruct-2507</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-235b-a22b-thinking-2507" data-family="qwen3-235b-a22b-thinking-2507" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-235b-a22b-thinking-2507</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-30b-a3b" data-family="qwen3-30b-a3b" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-30b-a3b</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-30b-a3b-instruct-2507" data-family="qwen3-30b-a3b-instruct-2507" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-30b-a3b-instruct-2507</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-30b-a3b-thinking-2507" data-family="qwen3-30b-a3b-thinking-2507" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-30b-a3b-thinking-2507</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-32b" data-family="qwen3-32b" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-32b</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-coder" data-family="qwen3-coder" data-tier=""
+                data-page="" data-rows="ovh-ai-endpoints">
               <th scope="row"><code>qwen3-coder</code></th>
               <td><a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-coder-30b-a3b" data-family="qwen3-coder-30b-a3b" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-coder-30b-a3b</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-coder-480b-a35b" data-family="qwen3-coder-480b-a35b" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-coder-480b-a35b</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-coder-flash" data-family="qwen3-coder-flash" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-coder-flash</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-coder-plus" data-family="qwen3-coder-plus" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-coder-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-max" data-family="qwen3-max" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-max/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-max/"><code>qwen3-max</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-next-80b-a3b-instruct" data-family="qwen3-next-80b-a3b-instruct" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-next-80b-a3b-instruct</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-next-80b-a3b-thinking" data-family="qwen3-next-80b-a3b-thinking" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-next-80b-a3b-thinking</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-235b-a22b-instruct" data-family="qwen3-vl-235b-a22b-instruct" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-235b-a22b-instruct</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-235b-a22b-thinking" data-family="qwen3-vl-235b-a22b-thinking" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-235b-a22b-thinking</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-30b-a3b-instruct" data-family="qwen3-vl-30b-a3b-instruct" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-30b-a3b-instruct</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-30b-a3b-thinking" data-family="qwen3-vl-30b-a3b-thinking" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-30b-a3b-thinking</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-32b-instruct" data-family="qwen3-vl-32b-instruct" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-32b-instruct</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-32b-thinking" data-family="qwen3-vl-32b-thinking" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-32b-thinking</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-8b-instruct" data-family="qwen3-vl-8b-instruct" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-8b-instruct</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-8b-thinking" data-family="qwen3-vl-8b-thinking" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-8b-thinking</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-flash" data-family="qwen3-vl-flash" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-flash</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3-vl-plus" data-family="qwen3-vl-plus" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3-vl-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-122b-a10b" data-family="qwen3.5-122b-a10b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/"><code>qwen3.5-122b-a10b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-27b" data-family="qwen3.5-27b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-27b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-27b/"><code>qwen3.5-27b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-35b-a3b" data-family="qwen3.5-35b-a3b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-35b-a3b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-35b-a3b/"><code>qwen3.5-35b-a3b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-397b-a17b" data-family="qwen3.5-397b-a17b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-397b-a17b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-397b-a17b/"><code>qwen3.5-397b-a17b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-4b" data-family="qwen3.5-4b" data-tier=""
+                data-page="" data-rows="mixlayer">
               <th scope="row"><code>qwen3.5-4b</code></th>
               <td><a href="https://www.mixlayer.com">Mixlayer</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-flash" data-family="qwen3.5-flash" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3.5-flash</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.5-plus" data-family="qwen3.5-plus" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3.5-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.6-27b" data-family="qwen3.6-27b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-27b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-27b/"><code>qwen3.6-27b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.6-35b-a3b" data-family="qwen3.6-35b-a3b" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/"><code>qwen3.6-35b-a3b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.6-flash" data-family="qwen3.6-flash" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwen3.6-flash</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.6-max" data-family="qwen3.6-max" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/"><code>qwen3.6-max</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.6-plus" data-family="qwen3.6-plus" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-plus/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-plus/"><code>qwen3.6-plus</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.7-max" data-family="qwen3.7-max" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-max/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-max/"><code>qwen3.7-max</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.7-plus" data-family="qwen3.7-plus" data-tier="notable"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-plus/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-plus/"><code>qwen3.7-plus</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.8-2.4t-a95b" data-family="qwen3.8-2.4t-a95b" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/"><code>qwen3.8-2.4t-a95b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwen3.8-max" data-family="qwen3.8-max" data-tier="strong"
+                data-page="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/" data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/"><code>qwen3.8-max</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-qwq-plus" data-family="qwq-plus" data-tier=""
+                data-page="" data-rows="alibaba-model-studio">
               <th scope="row"><code>qwq-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
-            <tr>
+            <tr id="model-xing4.0-29b" data-family="xing4.0-29b" data-tier=""
+                data-page="" data-rows="siliconflow-cn">
               <th scope="row"><code>xing4.0-29b</code></th>
               <td><a href="https://siliconflow.cn">SiliconFlow (China)</a></td>
             </tr>
@@ -3591,98 +3891,98 @@ A <span class="tag card">👁</span> tag means what you send may be used to
           <tr><th scope="col">Tool</th><th scope="col">Why it left</th><th scope="col">Left</th></tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-id="sambanova-cloud" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/">SambaNova Cloud</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
               <details><summary>delisted on 2026-09-23: new accounts get no free usage — the console&#39;s Free plan has read &#34;Add a payment method and purchase credits to run your …</summary><span class="full">delisted on 2026-09-23: new accounts get no free usage — the console&#39;s Free plan has read &#34;Add a payment method and purchase credits to run your first requests&#34; since 2026-08, where until 2026-06-20 it read &#34;free API credits. No credit card required&#34;; only the docs still describe a free tier</span></details>
             </td>
             <td class="when" data-label="Left"><time datetime="2026-09-23">2026-09-23</time></td>
           </tr>
-          <tr>
+          <tr data-id="scaleway-generative" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/">Scaleway Generative APIs</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-09-16: 1,000,000 free tokens once per customer, and &#34;Ordering Scaleway resources requires a valid credit card&#34; — a one-off credit behind a card, which CONTRIBUTING does not admit            </td>
             <td class="when" data-label="Left"><time datetime="2026-09-16">2026-09-16</time></td>
           </tr>
-          <tr>
+          <tr data-id="kenari" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/">Kenari</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-09-16: rejected for cause — the operator&#39;s own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas            </td>
             <td class="when" data-label="Left"><time datetime="2026-09-16">2026-09-16</time></td>
           </tr>
-          <tr>
+          <tr data-id="infomaniak-ai" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/">Infomaniak AI Services</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-09-16: a one-month wallet of a million credits, and &#34;A credit card is required to start using the API&#34; — a one-off credit behind a card, which CONTRIBUTING does not admit            </td>
             <td class="when" data-label="Left"><time datetime="2026-09-16">2026-09-16</time></td>
           </tr>
-          <tr>
+          <tr data-id="cerebras-free" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/">Cerebras Inference</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit            </td>
             <td class="when" data-label="Left"><time datetime="2026-09-16">2026-09-16</time></td>
           </tr>
-          <tr>
+          <tr data-id="novita" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/">Novita AI</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero            </td>
             <td class="when" data-label="Left"><time datetime="2026-08-14">2026-08-14</time></td>
           </tr>
-          <tr>
+          <tr data-id="longcat" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/">LongCat API Platform</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day            </td>
             <td class="when" data-label="Left"><time datetime="2026-08-14">2026-08-14</time></td>
           </tr>
-          <tr>
+          <tr data-id="reka" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/reka/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/reka/">Reka AI</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits            </td>
             <td class="when" data-label="Left"><time datetime="2026-08-11">2026-08-11</time></td>
           </tr>
-          <tr>
+          <tr data-id="ai21-labs" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/">AI21 Labs (Jamba)</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 vendor-announced shutdown on 2026-08-09            </td>
             <td class="when" data-label="Left"><time datetime="2026-08-09">2026-08-09</time></td>
           </tr>
-          <tr>
+          <tr data-id="deepseek" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/">DeepSeek Platform</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek&#39;s own pricing page prices every model and names no free grant            </td>
             <td class="when" data-label="Left"><time datetime="2026-07-27">2026-07-27</time></td>
           </tr>
-          <tr>
+          <tr data-id="mimo-code" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/">MiMo Code</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 vendor-announced shutdown on 2026-07-26            </td>
             <td class="when" data-label="Left"><time datetime="2026-07-26">2026-07-26</time></td>
           </tr>
-          <tr>
+          <tr data-id="puter-free" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/">Puter.js (free LLM API)</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-07-19: a browser SDK billed to each end user&#39;s Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan            </td>
             <td class="when" data-label="Left"><time datetime="2026-07-19">2026-07-19</time></td>
           </tr>
-          <tr>
+          <tr data-id="easy-gonka-api" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/">Easy GonkaAI API</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)            </td>
             <td class="when" data-label="Left"><time datetime="2026-07-19">2026-07-19</time></td>
           </tr>
-          <tr>
+          <tr data-id="aider" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/">Aider</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors&#39; free tiers, which this list carries directly            </td>
             <td class="when" data-label="Left"><time datetime="2026-07-19">2026-07-19</time></td>
           </tr>
-          <tr>
+          <tr data-id="github-models" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/">GitHub Models</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 vendor-announced shutdown on 2026-06-16            </td>
             <td class="when" data-label="Left"><time datetime="2026-06-16">2026-06-16</time></td>
           </tr>
-          <tr>
+          <tr data-id="amazon-q-developer" data-page="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/">
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/">Amazon Q Developer</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
 vendor-announced shutdown on 2026-05-15            </td>
@@ -3759,6 +4059,27 @@ vendor-announced shutdown on 2026-05-15            </td>
   </div>
 </footer>
 
+<div id="search" class="palette" role="dialog" aria-modal="true" aria-label="Search the list" hidden>
+  <div class="palette-box">
+    <div class="palette-head">
+      <span aria-hidden="true">🔎</span>
+      <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="Search a model or a vendor"
+             role="combobox" aria-expanded="true" aria-controls="results" aria-autocomplete="list"
+             aria-label="Search the offers, the models and the Archive">
+      <button type="button" data-search-close aria-label="Close the search">✕</button>
+    </div>
+    <div class="palette-chips" role="group" aria-label="Filters"></div>
+    <div id="results" class="palette-results" role="listbox" aria-label="Results"></div>
+    <div class="palette-foot">
+      <span class="keys"><kbd class="key">↑</kbd> <kbd class="key">↓</kbd> to move ·
+        <kbd class="key">Enter</kbd> to open · <kbd class="key">Esc</kbd> to close</span>
+      <a id="to-table" href="browse.html">The same search as a table →</a>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="search-config">{"sections": [{"id": "agent-cli", "label": "Agents", "emoji": "🤖", "words": ["agents", "agent", "cli"]}, {"id": "api-free-tier", "label": "APIs", "emoji": "🔌", "words": ["apis", "api"]}, {"id": "trial", "label": "Trials", "emoji": "🎁", "words": ["trials", "trial"]}, {"id": "aggregator", "label": "Aggregators", "emoji": "🧭", "words": ["aggregators", "aggregator", "gateways", "gateway", "routers", "router"]}], "filters": [{"id": "nocard", "label": "No card", "words": ["no card", "nocard", "no credit card", "without a card"]}, {"id": "nokey", "label": "No key", "words": ["no key", "keyless", "no account", "no signup", "anonymous"]}, {"id": "claude", "label": "Claude Code", "words": ["claude code", "claude-code"]}, {"id": "strong", "label": "Strong models", "words": ["strong models", "strong", "frontier"]}]}</script>
+
 <script>
 // Progressive enhancement only: the page is complete without a line of this.
 (function () {
@@ -3786,40 +4107,422 @@ vendor-announced shutdown on 2026-05-15            </td>
   }
   window.addEventListener("hashchange", openNamedFold);
   openNamedFold();
-  // Type-to-narrow over the rows already in the page. browse.html is the full
-  // filter (category, card, key, wire format); this is the one-box version for
-  // a reader who arrived knowing the name or the model they want.
-  var find = document.getElementById("find");
-  if (!find) { return; }
-  document.getElementById("findform").style.display = "block";
-  var listings = [].map.call(document.querySelectorAll("section.listing"), function (section) {
-    return {
-      section: section,
-      shown: section.querySelector(".shown"),
-      rows: [].map.call(section.querySelectorAll("tbody tr"), function (row) {
-        return { row: row, text: row.textContent.toLowerCase() };
-      })
-    };
+  // The search. It reads the rows, the model index and the Archive out of this
+  // page — every fact it shows is one the page already carries, so it can
+  // never disagree with the tables — and answers under the box being typed
+  // into: the box it replaced hid rows two screens away and changed nothing a
+  // reader could see (2026-09-26).
+  var dialog = document.getElementById("search");
+  if (!dialog) { return; }
+  var CONFIG = JSON.parse(document.getElementById("search-config").textContent);
+  var input = document.getElementById("q");
+  var results = document.getElementById("results");
+  var chipsBox = dialog.querySelector(".palette-chips");
+  var toTable = document.getElementById("to-table");
+  var opener = null, active = -1, options = [], index = null, timer = null;
+  var state = { section: "", filters: {} };
+  // What an empty box offers to try: the most-served model families on the
+  // page, one of each line (not three Nemotrons), then a vendor and the
+  // answers a reader most often wants.
+  var EXAMPLES = [], stems = {};
+  [].forEach.call(document.querySelectorAll("#model-index tr[data-family]"), function (tr) {
+    var stem = (tr.dataset.family.match(/^[a-z]+/) || [""])[0];
+    if (EXAMPLES.length < 4 && !stems[stem]) { stems[stem] = true; EXAMPLES.push(tr.dataset.family); }
   });
-  function narrow() {
-    var needle = find.value.trim().toLowerCase();
-    listings.forEach(function (listing) {
-      var kept = 0;
-      listing.rows.forEach(function (entry) {
-        var match = !needle || entry.text.indexOf(needle) !== -1;
-        entry.row.classList.toggle("hidden", !match);
-        if (match) { kept += 1; }
-      });
-      if (listing.shown) {
-        listing.shown.textContent = needle
-          ? " · " + kept + " of " + listing.rows.length + " match “" + needle + "”"
-          : "";
-      }
-      listing.section.classList.toggle("hidden", needle !== "" && kept === 0);
+  EXAMPLES = EXAMPLES.concat(["groq", "no card", "claude code"]);
+
+  // Case and accents away, one character for one, so a place found in the
+  // folded text is the same place in the text shown: "Côte" finds "cote", and
+  // the "…" a snippet starts with stays one character long.
+  function fold(text) {
+    return (text || "").replace(/[\s\S]/g, function (c) {
+      var low = c.toLowerCase(), base = low.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return base.length === 1 ? base : low.length === 1 ? low : c;
     });
   }
-  find.addEventListener("input", narrow);
-  narrow();
+  function textOf(el) { return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
+  function full(cell) { return cell ? textOf(cell.querySelector(".full") || cell) : ""; }
+
+  function readPage() {
+    var sections = {};
+    CONFIG.sections.forEach(function (sec) { sections[sec.id] = sec; });
+    var offers = [].map.call(document.querySelectorAll("section.listing tbody tr[data-id]"), function (tr, i) {
+      var name = tr.querySelector("a.name");
+      var models = [].map.call(tr.querySelectorAll("td.models .chip"), textOf)
+        .filter(function (t) { return !/^\+\d+ more$/.test(t); });
+      return { kind: "offer", id: tr.dataset.id, order: i, row: tr, page: tr.dataset.page,
+               section: sections[tr.dataset.section], flags: tr.dataset.flags.split(" "),
+               name: textOf(name), tags: tr.querySelector(".tags"), models: models,
+               what: full(tr.querySelector("td.what")), limits: full(tr.querySelector("td.limits")) };
+    });
+    var byId = {};
+    offers.forEach(function (o) { byId[o.id] = o; });
+    var models = [].map.call(document.querySelectorAll("#model-index tr[data-family]"), function (tr, i) {
+      var rows = tr.dataset.rows.split(" ").map(function (id) { return byId[id]; }).filter(Boolean);
+      return { kind: "model", order: i, family: tr.dataset.family, tier: tr.dataset.tier,
+               page: tr.dataset.page, row: tr, rows: rows };
+    });
+    var gone = [].map.call(document.querySelectorAll("#archive tbody tr[data-id]"), function (tr, i) {
+      return { kind: "gone", order: i, id: tr.dataset.id, page: tr.dataset.page,
+               name: textOf(tr.querySelector("a.name")), why: full(tr.querySelector("td.what")) };
+    });
+    offers.forEach(function (o) {
+      o.fName = fold(o.name); o.fModels = o.models.map(fold);
+      o.fWhat = fold(o.what); o.fLimits = fold(o.limits);
+    });
+    models.forEach(function (m) { m.fFamily = fold(m.family); });
+    gone.forEach(function (g) { g.fName = fold(g.name); g.fWhy = fold(g.why); });
+    return { offers: offers, models: models, gone: gone };
+  }
+
+  // Words that name a filter become the filter: "no card" asks for the rows
+  // that ask for none, not for rows whose prose says so.
+  function parse(raw) {
+    var text = " " + fold(raw).replace(/\s+/g, " ") + " ";
+    var picked = { section: "", filters: {} };
+    function take(words, apply) {
+      words.slice().sort(function (a, b) { return b.length - a.length; }).forEach(function (w) {
+        var at = text.indexOf(" " + w + " ");
+        if (at !== -1) { text = text.slice(0, at) + " " + text.slice(at + w.length + 1); apply(); }
+      });
+    }
+    CONFIG.filters.forEach(function (f) { take(f.words, function () { picked.filters[f.id] = true; }); });
+    CONFIG.sections.forEach(function (sec) { take(sec.words, function () { picked.section = sec.id; }); });
+    return { terms: text.split(" ").filter(Boolean), picked: picked };
+  }
+
+  function wanted(o, section, filters) {
+    if (section && o.section.id !== section) { return false; }
+    return Object.keys(filters).every(function (f) { return !filters[f] || o.flags.indexOf(f) !== -1; });
+  }
+
+  // Each term has to be somewhere; the best field it is in decides the order.
+  // A single letter is the start of a name, not a letter anywhere in a quote.
+  function scoreOffer(o, terms) {
+    var total = 0;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i], best = 0;
+      if (t.length === 1) {
+        best = o.fName.indexOf(t) === 0 ? 12
+          : o.fModels.some(function (m) { return m.indexOf(t) === 0; }) ? 6 : 0;
+      } else if (o.fName.indexOf(t) === 0) { best = 12; }
+      else if (o.fName.indexOf(t) !== -1) { best = 9; }
+      else if (o.fModels.some(function (m) { return m.indexOf(t) !== -1; })) { best = 6; }
+      else if (o.fWhat.indexOf(t) !== -1) { best = 3; }
+      else if (o.fLimits.indexOf(t) !== -1) { best = 1; }
+      if (!best) { return 0; }
+      total += best;
+    }
+    return total;
+  }
+  function squash(text) { return text.replace(/[\s._-]+/g, ""); }
+  function scoreModel(m, terms) {
+    var whole = squash(terms.join("")), total = squash(m.fFamily) === whole ? 20 : 0;
+    for (var i = 0; i < terms.length; i++) {
+      var at = m.fFamily.indexOf(terms[i]);
+      if (at === -1 || (terms[i].length === 1 && at !== 0)) { return 0; }
+      total += m.fFamily === terms[i] ? 12 : at === 0 ? 8 : 5;
+    }
+    return total;
+  }
+
+  // A run of text with every term marked, built as nodes: a vendor's sentence
+  // is text here as it is everywhere else on the page.
+  function marked(text, terms) {
+    var span = document.createElement("span");
+    var folded = fold(text), from = 0, spans = [];
+    terms.forEach(function (t) {
+      var at = folded.indexOf(t);
+      while (at !== -1 && t) { spans.push([at, at + t.length]); at = folded.indexOf(t, at + t.length); }
+    });
+    spans.sort(function (a, b) { return a[0] - b[0]; });
+    spans.forEach(function (sp) {
+      if (sp[0] < from) { return; }
+      span.appendChild(document.createTextNode(text.slice(from, sp[0])));
+      var mark = document.createElement("mark");
+      mark.textContent = text.slice(sp[0], sp[1]);
+      span.appendChild(mark);
+      from = sp[1];
+    });
+    span.appendChild(document.createTextNode(text.slice(from)));
+    return span;
+  }
+  // Why a row came up, in a line: its free models where a term names one of
+  // them, else the sentence a match sits in, cut short around it at a word —
+  // not the first two hundred characters of a paragraph.
+  function snippet(o, terms) {
+    var named = o.models.filter(function (m) {
+      return terms.some(function (t) { return fold(m).indexOf(t) !== -1; });
+    });
+    if (named.length && !terms.some(function (t) { return o.fName.indexOf(t) !== -1; })) {
+      var rest = o.models.filter(function (m) { return named.indexOf(m) === -1; });
+      return "Free models: " + named.concat(rest).slice(0, 8).join(", ")
+        + (o.models.length > 8 ? " …" : "");
+    }
+    var fields = [o.what, o.limits];
+    for (var f = 0; f < fields.length; f++) {
+      var folded = fold(fields[f]), at = -1;
+      for (var i = 0; i < terms.length && at === -1; i++) { at = folded.indexOf(terms[i]); }
+      if (at !== -1) {
+        var dot = fields[f].lastIndexOf(". ", at), start = dot === -1 ? 0 : dot + 2;
+        if (at - start > 90) { start = fields[f].indexOf(" ", at - 70) + 1; }
+        return (start > 0 ? "… " : "") + fields[f].slice(start, start + 240);
+      }
+    }
+    return o.what;
+  }
+
+  function option(href, build, cls) {
+    var a = document.createElement("a");
+    a.className = "presult" + (cls ? " " + cls : "");
+    a.href = href;
+    a.id = "opt-" + options.length;
+    a.setAttribute("role", "option");
+    build(a);
+    a.addEventListener("mousemove", function () { select(options.indexOf(a)); });
+    a.addEventListener("click", function (ev) { go(a, ev); });
+    options.push(a);
+    return a;
+  }
+  function line(parent, cls, content) {
+    var el = document.createElement("span");
+    el.className = cls;
+    if (typeof content === "string") { el.textContent = content; } else { el.appendChild(content); }
+    parent.appendChild(el);
+    return el;
+  }
+  function group(title, count) {
+    var h = document.createElement("div");
+    h.className = "pgroup";
+    h.textContent = title + " · " + count;
+    results.appendChild(h);
+  }
+  function hint(text) {
+    var p = document.createElement("p");
+    p.className = "hint";
+    p.textContent = text;
+    results.appendChild(p);
+  }
+
+  function render() {
+    index = index || readPage();
+    var q = parse(input.value);
+    var section = q.picked.section || state.section;
+    var filters = {};
+    Object.keys(state.filters).forEach(function (f) { if (state.filters[f]) { filters[f] = true; } });
+    Object.keys(q.picked.filters).forEach(function (f) { filters[f] = true; });
+    chipsBox.querySelectorAll(".fchip").forEach(function (b) {
+      var on = b.dataset.section ? b.dataset.section === section : !!filters[b.dataset.filter];
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    var terms = q.terms, narrowed = section || Object.keys(filters).length;
+    results.textContent = "";
+    options = [];
+    active = -1;
+    if (!terms.length && !narrowed) {
+      hint("A model, a vendor, or what you need — try one:");
+      var tries = document.createElement("div");
+      tries.className = "tries";
+      EXAMPLES.forEach(function (word) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "fchip";
+        b.textContent = word;
+        b.addEventListener("click", function () { input.value = word; input.focus(); render(); });
+        tries.appendChild(b);
+      });
+      results.appendChild(tries);
+      sync(section, filters);
+      return;
+    }
+    var offers = index.offers.filter(function (o) { return wanted(o, section, filters); })
+      .map(function (o) { return { o: o, score: terms.length ? scoreOffer(o, terms) : 1 }; })
+      .filter(function (x) { return x.score > 0; })
+      .sort(function (a, b) { return b.score - a.score || a.o.order - b.o.order; });
+    var models = !terms.length ? [] : index.models
+      .map(function (m) {
+        var rows = m.rows.filter(function (o) { return wanted(o, section, filters); });
+        return { m: m, rows: rows, score: rows.length ? scoreModel(m, terms) : 0 };
+      })
+      .filter(function (x) { return x.score > 0; })
+      .sort(function (a, b) { return b.score - a.score || a.m.order - b.m.order; });
+    var gone = !terms.length || narrowed ? [] : index.gone
+      .filter(function (g) {
+        return terms.every(function (t) {
+          return t.length === 1 ? g.fName.indexOf(t) === 0
+            : g.fName.indexOf(t) !== -1 || g.fWhy.indexOf(t) !== -1;
+        });
+      });
+    if (models.length) {
+      group("Models", models.length);
+      models.slice(0, 8).forEach(function (x) {
+        var m = x.m;
+        results.appendChild(option(m.page || "#model-" + m.family, function (a) {
+          var top = line(a, "top", "");
+          var code = document.createElement("code");
+          code.appendChild(marked(m.family, terms));
+          top.appendChild(code);
+          if (m.tier) { line(top, "tag" + (m.tier === "frontier" ? " front" : ""), m.tier); }
+          line(top, "psec", "free on " + x.rows.length + (x.rows.length === 1 ? " offer" : " offers"));
+          line(a, "snip", x.rows.map(function (o) { return o.name; }).join(" · "));
+        }));
+      });
+    }
+    if (offers.length) {
+      group("Offers", offers.length);
+      offers.forEach(function (x) {
+        var o = x.o;
+        results.appendChild(option(o.page, function (a) {
+          var top = line(a, "top", "");
+          top.appendChild(marked(o.name, terms)).className = "pname";
+          line(top, "psec", o.section.emoji + " " + o.section.label);
+          if (o.tags && o.tags.children.length) { top.appendChild(o.tags.cloneNode(true)); }
+          var snip = document.createElement("span");
+          snip.className = "snip";
+          snip.appendChild(marked(terms.length ? snippet(o, terms) : o.what, terms));
+          a.appendChild(snip);
+        }));
+      });
+    }
+    if (gone.length) {
+      group("Archived", gone.length);
+      gone.forEach(function (g) {
+        results.appendChild(option(g.page, function (a) {
+          line(a, "top", "").appendChild(marked(g.name, terms)).className = "pname";
+          line(a, "snip", g.why);
+        }, "gone"));
+      });
+    }
+    if (!options.length) {
+      hint("Nothing on the list matches “" + input.value.trim() + "”. The full table, filtered "
+           + "the same way, is one link below.");
+    }
+    select(options.length ? 0 : -1);
+    sync(section, filters);
+  }
+
+  // The query lives in the address, so a search can be sent to someone.
+  function sync(section, filters) {
+    var params = new URLSearchParams();
+    if (input.value.trim()) { params.set("q", input.value.trim()); }
+    if (section) { params.set("s", section); }
+    Object.keys(filters).forEach(function (f) { params.set(f, "1"); });
+    history.replaceState(null, "", location.pathname + (params.toString() ? "?" + params : "") + "#search");
+    var table = new URLSearchParams();
+    if (input.value.trim()) { table.set("q", parse(input.value).terms.join(" ")); }
+    if (section) { table.set("cat", section); }
+    if (filters.nocard) { table.set("nocard", "1"); }
+    if (filters.nokey) { table.set("nokey", "1"); }
+    if (filters.claude) { table.set("claude", "1"); }
+    if (filters.strong) { table.set("strong", "1"); }
+    toTable.href = "browse.html" + (table.toString() ? "?" + table : "");
+  }
+
+  function select(i) {
+    options.forEach(function (o, n) { o.setAttribute("aria-selected", n === i ? "true" : "false"); });
+    active = i;
+    if (i >= 0) {
+      input.setAttribute("aria-activedescendant", options[i].id);
+      options[i].scrollIntoView({ block: "nearest" });
+    } else {
+      input.removeAttribute("aria-activedescendant");
+    }
+  }
+  function go(a, ev) {
+    var href = a.getAttribute("href");
+    if (href.charAt(0) !== "#") { return; }
+    // A model with no page of its own is shown in the model index, open.
+    if (ev) { ev.preventDefault(); }
+    close(false);
+    var target = document.getElementById(href.slice(1));
+    var fold = document.getElementById("model-index");
+    if (fold) { fold.open = true; }
+    if (target) {
+      target.scrollIntoView({ block: "center" });
+      target.classList.remove("flash");
+      void target.offsetWidth;
+      target.classList.add("flash");
+    }
+  }
+
+  function open(from, text) {
+    opener = from || document.activeElement;
+    dialog.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+    if (typeof text === "string") { input.value = text; }
+    input.focus();
+    input.select();
+    render();
+  }
+  // Each opening starts fresh: a filter left on from the last search would
+  // quietly hide rows from the next one.
+  function close(restore) {
+    dialog.hidden = true;
+    state = { section: "", filters: {} };
+    input.value = "";
+    document.documentElement.style.overflow = "";
+    history.replaceState(null, "", location.pathname);
+    if (restore !== false && opener && opener.focus) { opener.focus(); }
+  }
+
+  CONFIG.sections.concat(CONFIG.filters).forEach(function (f) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fchip";
+    b.textContent = f.emoji ? f.emoji + " " + f.label : f.label;
+    if (f.emoji) { b.dataset.section = f.id; } else { b.dataset.filter = f.id; }
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      var q = parse(input.value);
+      if (f.emoji) {
+        state.section = (q.picked.section || state.section) === f.id ? "" : f.id;
+      } else {
+        state.filters[f.id] = !(state.filters[f.id] || q.picked.filters[f.id]);
+      }
+      // A filter typed as words and switched off by its chip leaves the words.
+      input.value = q.terms.join(" ");
+      input.focus();
+      render();
+    });
+    chipsBox.appendChild(b);
+  });
+
+  input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(render, 60); });
+  input.addEventListener("keydown", function (ev) {
+    if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+      ev.preventDefault();
+      if (!options.length) { return; }
+      var step = ev.key === "ArrowDown" ? 1 : -1;
+      select((active + step + options.length) % options.length);
+    } else if (ev.key === "Enter" && active >= 0) {
+      ev.preventDefault();
+      var a = options[active];
+      if (a.getAttribute("href").charAt(0) === "#") { go(a); } else { location.href = a.href; }
+    }
+  });
+  dialog.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { close(); } });
+  dialog.addEventListener("click", function (ev) { if (ev.target === dialog) { close(); } });
+  dialog.querySelector("[data-search-close]").addEventListener("click", function () { close(); });
+  document.querySelectorAll("[data-search-open]").forEach(function (b) {
+    b.hidden = false;
+    b.addEventListener("click", function () { open(b); });
+  });
+  document.addEventListener("keydown", function (ev) {
+    var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)
+      || document.activeElement.isContentEditable;
+    if (!dialog.hidden) { return; }
+    if ((ev.key === "/" && !typing) || (ev.key.toLowerCase() === "k" && (ev.ctrlKey || ev.metaKey))) {
+      ev.preventDefault();
+      open(null);
+    }
+  });
+  // A search sent as a link opens as it was left.
+  var params = new URLSearchParams(location.search);
+  if (location.hash === "#search" || params.has("q")) {
+    state.section = params.get("s") || "";
+    CONFIG.filters.forEach(function (f) { state.filters[f.id] = params.get(f.id) === "1"; });
+    open(null, params.get("q") || "");
+  }
 })();
 </script>
 </body>

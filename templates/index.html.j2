@@ -110,9 +110,11 @@ p { margin: 0 0 12px; }
 .nav a { color: var(--fg); font-size: .92rem; font-weight: 500; white-space: nowrap; }
 .nav a:hover { color: var(--accent); text-decoration: none; }
 .nav a .n { color: var(--muted); font-size: .8rem; }
-.nav form { margin-left: auto; display: none; }
-.nav input { width: 210px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px;
-  background: var(--surface); color: var(--fg); font: inherit; font-size: .88rem; }
+/* The search's way in from anywhere on the page: first in the bar, so a phone
+   shows it without scrolling the bar sideways. */
+.nav .navsearch { flex: none; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); font: inherit; font-size: .88rem; cursor: pointer; }
+.nav .navsearch:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ── sections ─────────────────────────────────────────────────────────── */
 section { padding: 44px 0 4px; }
@@ -214,6 +216,68 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 .empty { color: var(--muted); font-style: italic; }
 .hidden { display: none !important; }
 
+/* ── search ───────────────────────────────────────────────────────────── */
+/* One surface wherever it is opened from — the box in the hero, the bar, "/"
+   or Ctrl+K — and its answers under the box a reader is typing into. The box
+   it replaced filtered the tables two screens below itself, so a keystroke
+   changed nothing a reader could see (2026-09-26). */
+.searchbox { display: flex; align-items: center; gap: 10px; width: min(100%, 640px);
+  margin: 0 auto 20px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--raised); color: var(--muted); font: inherit; font-size: 1rem; text-align: left;
+  box-shadow: var(--shadow); cursor: text; }
+.searchbox:hover { border-color: var(--accent); }
+.searchbox .ph { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A key to press means nothing on a screen with no keyboard. */
+@media (hover: none) { .searchbox kbd { display: none; } }
+kbd.key { font-size: .76rem; line-height: 1.5; padding: 0 6px; border: 1px solid var(--line);
+  border-bottom-width: 2px; border-radius: 6px; color: var(--muted); background: var(--surface); }
+.palette { position: fixed; inset: 0; z-index: 60; display: flex; justify-content: center;
+  align-items: flex-start; padding: 7vh 16px 16px;
+  background: color-mix(in srgb, var(--bg) 40%, rgba(1, 4, 9, .55)); }
+.palette[hidden] { display: none; }
+.palette-box { display: flex; flex-direction: column; width: min(100%, 740px); max-height: 86vh;
+  background: var(--raised); border: 1px solid var(--line); border-radius: 14px;
+  box-shadow: 0 16px 56px rgba(1, 4, 9, .35); overflow: hidden; }
+.palette-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft); }
+.palette-head input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+  color: var(--fg); font: inherit; font-size: 1.1rem; padding: 6px 0; }
+.palette-head input::-webkit-search-cancel-button { display: none; }
+.palette-head button { flex: none; font: inherit; font-size: .8rem; padding: 3px 9px;
+  border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  cursor: pointer; }
+.palette-head button:hover { color: var(--accent); border-color: var(--accent); }
+.palette-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft); }
+.fchip { font: inherit; font-size: .82rem; line-height: 1.5; padding: 2px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.fchip:hover { border-color: var(--accent); }
+.fchip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.palette-results { flex: 1; overflow-y: auto; padding: 4px 0 8px; overscroll-behavior: contain; }
+.palette-results .hint { padding: 14px 16px 6px; margin: 0; color: var(--muted); font-size: .92rem; }
+.palette-results .tries { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 16px 14px; }
+.pgroup { padding: 10px 16px 4px; font-size: .72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--muted); }
+.presult { display: block; padding: 8px 16px 9px 13px; border-left: 3px solid transparent;
+  color: var(--fg); cursor: pointer; }
+.presult:hover { text-decoration: none; }
+.presult[aria-selected="true"] { background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-left-color: var(--accent); }
+.presult .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.presult .pname { font-weight: 600; }
+.presult .psec { font-size: .8rem; color: var(--muted); }
+.presult .tags { display: inline-flex; margin: 0; }
+.presult .snip { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; margin-top: 2px; font-size: .86rem; color: var(--muted); }
+.presult.gone .pname { color: var(--muted); }
+.presult mark { background: color-mix(in srgb, var(--warn) 28%, transparent); color: inherit;
+  border-radius: 3px; padding: 0 1px; }
+.presult code { font-size: .92em; }
+.palette-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px;
+  padding: 9px 16px; border-top: 1px solid var(--line-soft); font-size: .8rem; color: var(--muted); }
+tr.flash { animation: flash 1.6s ease-out; }
+@keyframes flash { from { background: color-mix(in srgb, var(--accent) 22%, transparent); } }
+
 @media (max-width: 900px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
   .cols-3, .cols-2 { grid-template-columns: 1fr; }
@@ -239,7 +303,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   .files tr { border-top: 1px solid var(--line-soft); padding: 10px 0; }
   .files th, .files td { border-top: 0; padding: 0; white-space: normal; }
   .files td { color: var(--muted); font-size: .88rem; margin-top: 2px; }
-  .nav form { display: none !important; }
+  .searchbox .eg, .searchbox kbd { display: none; }
+  .palette { padding: 0; }
+  .palette-box { width: 100%; height: 100%; max-height: none; border-radius: 0; border: 0; }
+  .palette-foot .keys { display: none; }
 }
 </style>
 </head>
@@ -261,9 +328,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       every row verified <b>{{ verified_through }}</b> or later ({{ verified_word }})
       · {{ active_count }} live offers · MIT · no tracking, no ads, no affiliate links
     </p>
+    <button class="searchbox" type="button" data-search-open hidden aria-haspopup="dialog">
+      <span aria-hidden="true">🔎</span>
+      <span class="ph">Search {{ active_count }} offers and {{ family_count }} models<span class="eg"> — kimi, groq, no card, claude code</span></span>
+      <kbd class="key">/</kbd>
+    </button>
     <div class="cta">
       <a class="btn primary" href="#start">Start here</a>
-      <a class="btn" href="browse.html">🔎 Filter the list</a>
+      <a class="btn" href="browse.html">▦ Table with filters</a>
       <a class="btn" href="{{ repo_url }}">★ GitHub</a>
       <a class="btn" href="{{ feed_url }}">📡 Atom feed</a>
       <a class="btn" href="llms.txt">🤖 llms.txt</a>
@@ -280,6 +352,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
+    <button class="navsearch" type="button" data-search-open hidden aria-haspopup="dialog"
+            aria-label="Search the list">🔎 Search</button>
     <a href="#start">🚀 Start</a>
     {# Short labels: the bar is one line by design (the sticky table headers are
        positioned under it), and the section's own heading carries its full name. #}
@@ -290,9 +364,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
     <a href="#plug">🔧 Plug it in</a>
     <a href="#machinery">📡 How it works</a>
     <a href="#archive">📦 Archive</a>
-    <form id="findform" role="search" onsubmit="return false">
-      <input id="find" type="search" placeholder="Filter rows…" aria-label="Filter rows on this page">
-    </form>
   </div>
 </nav>
 
@@ -423,7 +494,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
       {% if s.rows %}
       <p class="sub"><b>{{ s.count }}</b> live ·
         {% if s.all_no_card %}not one of them asks for a card{% else %}<b>{{ s.no_card }}</b> of them ask for no card{% endif %}
-        · sorted by how much work you can get done for free<span class="shown"></span></p>
+        · sorted by how much work you can get done for free</p>
       {% endif %}
     </header>
     {% if s.rows %}
@@ -440,7 +511,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         </thead>
         <tbody>
           {% for r in s.rows %}
-          <tr>
+          <tr id="row-{{ r.id }}" data-id="{{ r.id }}" data-section="{{ s.id }}"
+              data-flags="{{ r.flags | join(' ') }}" data-page="{{ r.page }}">
             <th class="who" scope="row">
               <a class="name" href="{{ r.url }}">{{ r.name }}</a>
               <div class="tags">
@@ -508,7 +580,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         <table class="files">
           <tbody>
             {% for m in model_index %}
-            <tr>
+            <tr id="model-{{ m.family }}" data-family="{{ m.family }}" data-tier="{{ m.tier }}"
+                data-page="{{ m.page }}" data-rows="{{ m.providers | map(attribute='id') | join(' ') }}">
               <th scope="row">{% if m.page %}<a href="{{ m.page }}"><code>{{ m.family }}</code></a>{% else %}<code>{{ m.family }}</code>{% endif %}</th>
               <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ ", " if not loop.last }}{% endfor %}</td>
             </tr>
@@ -667,7 +740,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
         </thead>
         <tbody>
           {% for r in archived %}
-          <tr>
+          <tr data-id="{{ r.id }}" data-page="{{ r.page }}">
             <th class="who" scope="row"><a class="name" href="{{ r.page }}">{{ r.name }}</a></th>
             <td class="what" data-label="Why it left" style="width:auto">
               {% if r.why.teaser %}
@@ -720,6 +793,27 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   </div>
 </footer>
 
+<div id="search" class="palette" role="dialog" aria-modal="true" aria-label="Search the list" hidden>
+  <div class="palette-box">
+    <div class="palette-head">
+      <span aria-hidden="true">🔎</span>
+      <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false"
+             placeholder="Search a model or a vendor"
+             role="combobox" aria-expanded="true" aria-controls="results" aria-autocomplete="list"
+             aria-label="Search the offers, the models and the Archive">
+      <button type="button" data-search-close aria-label="Close the search">✕</button>
+    </div>
+    <div class="palette-chips" role="group" aria-label="Filters"></div>
+    <div id="results" class="palette-results" role="listbox" aria-label="Results"></div>
+    <div class="palette-foot">
+      <span class="keys"><kbd class="key">↑</kbd> <kbd class="key">↓</kbd> to move ·
+        <kbd class="key">Enter</kbd> to open · <kbd class="key">Esc</kbd> to close</span>
+      <a id="to-table" href="browse.html">The same search as a table →</a>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="search-config">{{ search_config | safe }}</script>
+
 <script>
 // Progressive enhancement only: the page is complete without a line of this.
 (function () {
@@ -747,40 +841,422 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
   }
   window.addEventListener("hashchange", openNamedFold);
   openNamedFold();
-  // Type-to-narrow over the rows already in the page. browse.html is the full
-  // filter (category, card, key, wire format); this is the one-box version for
-  // a reader who arrived knowing the name or the model they want.
-  var find = document.getElementById("find");
-  if (!find) { return; }
-  document.getElementById("findform").style.display = "block";
-  var listings = [].map.call(document.querySelectorAll("section.listing"), function (section) {
-    return {
-      section: section,
-      shown: section.querySelector(".shown"),
-      rows: [].map.call(section.querySelectorAll("tbody tr"), function (row) {
-        return { row: row, text: row.textContent.toLowerCase() };
-      })
-    };
+  // The search. It reads the rows, the model index and the Archive out of this
+  // page — every fact it shows is one the page already carries, so it can
+  // never disagree with the tables — and answers under the box being typed
+  // into: the box it replaced hid rows two screens away and changed nothing a
+  // reader could see (2026-09-26).
+  var dialog = document.getElementById("search");
+  if (!dialog) { return; }
+  var CONFIG = JSON.parse(document.getElementById("search-config").textContent);
+  var input = document.getElementById("q");
+  var results = document.getElementById("results");
+  var chipsBox = dialog.querySelector(".palette-chips");
+  var toTable = document.getElementById("to-table");
+  var opener = null, active = -1, options = [], index = null, timer = null;
+  var state = { section: "", filters: {} };
+  // What an empty box offers to try: the most-served model families on the
+  // page, one of each line (not three Nemotrons), then a vendor and the
+  // answers a reader most often wants.
+  var EXAMPLES = [], stems = {};
+  [].forEach.call(document.querySelectorAll("#model-index tr[data-family]"), function (tr) {
+    var stem = (tr.dataset.family.match(/^[a-z]+/) || [""])[0];
+    if (EXAMPLES.length < 4 && !stems[stem]) { stems[stem] = true; EXAMPLES.push(tr.dataset.family); }
   });
-  function narrow() {
-    var needle = find.value.trim().toLowerCase();
-    listings.forEach(function (listing) {
-      var kept = 0;
-      listing.rows.forEach(function (entry) {
-        var match = !needle || entry.text.indexOf(needle) !== -1;
-        entry.row.classList.toggle("hidden", !match);
-        if (match) { kept += 1; }
-      });
-      if (listing.shown) {
-        listing.shown.textContent = needle
-          ? " · " + kept + " of " + listing.rows.length + " match “" + needle + "”"
-          : "";
-      }
-      listing.section.classList.toggle("hidden", needle !== "" && kept === 0);
+  EXAMPLES = EXAMPLES.concat(["groq", "no card", "claude code"]);
+
+  // Case and accents away, one character for one, so a place found in the
+  // folded text is the same place in the text shown: "Côte" finds "cote", and
+  // the "…" a snippet starts with stays one character long.
+  function fold(text) {
+    return (text || "").replace(/[\s\S]/g, function (c) {
+      var low = c.toLowerCase(), base = low.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return base.length === 1 ? base : low.length === 1 ? low : c;
     });
   }
-  find.addEventListener("input", narrow);
-  narrow();
+  function textOf(el) { return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
+  function full(cell) { return cell ? textOf(cell.querySelector(".full") || cell) : ""; }
+
+  function readPage() {
+    var sections = {};
+    CONFIG.sections.forEach(function (sec) { sections[sec.id] = sec; });
+    var offers = [].map.call(document.querySelectorAll("section.listing tbody tr[data-id]"), function (tr, i) {
+      var name = tr.querySelector("a.name");
+      var models = [].map.call(tr.querySelectorAll("td.models .chip"), textOf)
+        .filter(function (t) { return !/^\+\d+ more$/.test(t); });
+      return { kind: "offer", id: tr.dataset.id, order: i, row: tr, page: tr.dataset.page,
+               section: sections[tr.dataset.section], flags: tr.dataset.flags.split(" "),
+               name: textOf(name), tags: tr.querySelector(".tags"), models: models,
+               what: full(tr.querySelector("td.what")), limits: full(tr.querySelector("td.limits")) };
+    });
+    var byId = {};
+    offers.forEach(function (o) { byId[o.id] = o; });
+    var models = [].map.call(document.querySelectorAll("#model-index tr[data-family]"), function (tr, i) {
+      var rows = tr.dataset.rows.split(" ").map(function (id) { return byId[id]; }).filter(Boolean);
+      return { kind: "model", order: i, family: tr.dataset.family, tier: tr.dataset.tier,
+               page: tr.dataset.page, row: tr, rows: rows };
+    });
+    var gone = [].map.call(document.querySelectorAll("#archive tbody tr[data-id]"), function (tr, i) {
+      return { kind: "gone", order: i, id: tr.dataset.id, page: tr.dataset.page,
+               name: textOf(tr.querySelector("a.name")), why: full(tr.querySelector("td.what")) };
+    });
+    offers.forEach(function (o) {
+      o.fName = fold(o.name); o.fModels = o.models.map(fold);
+      o.fWhat = fold(o.what); o.fLimits = fold(o.limits);
+    });
+    models.forEach(function (m) { m.fFamily = fold(m.family); });
+    gone.forEach(function (g) { g.fName = fold(g.name); g.fWhy = fold(g.why); });
+    return { offers: offers, models: models, gone: gone };
+  }
+
+  // Words that name a filter become the filter: "no card" asks for the rows
+  // that ask for none, not for rows whose prose says so.
+  function parse(raw) {
+    var text = " " + fold(raw).replace(/\s+/g, " ") + " ";
+    var picked = { section: "", filters: {} };
+    function take(words, apply) {
+      words.slice().sort(function (a, b) { return b.length - a.length; }).forEach(function (w) {
+        var at = text.indexOf(" " + w + " ");
+        if (at !== -1) { text = text.slice(0, at) + " " + text.slice(at + w.length + 1); apply(); }
+      });
+    }
+    CONFIG.filters.forEach(function (f) { take(f.words, function () { picked.filters[f.id] = true; }); });
+    CONFIG.sections.forEach(function (sec) { take(sec.words, function () { picked.section = sec.id; }); });
+    return { terms: text.split(" ").filter(Boolean), picked: picked };
+  }
+
+  function wanted(o, section, filters) {
+    if (section && o.section.id !== section) { return false; }
+    return Object.keys(filters).every(function (f) { return !filters[f] || o.flags.indexOf(f) !== -1; });
+  }
+
+  // Each term has to be somewhere; the best field it is in decides the order.
+  // A single letter is the start of a name, not a letter anywhere in a quote.
+  function scoreOffer(o, terms) {
+    var total = 0;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i], best = 0;
+      if (t.length === 1) {
+        best = o.fName.indexOf(t) === 0 ? 12
+          : o.fModels.some(function (m) { return m.indexOf(t) === 0; }) ? 6 : 0;
+      } else if (o.fName.indexOf(t) === 0) { best = 12; }
+      else if (o.fName.indexOf(t) !== -1) { best = 9; }
+      else if (o.fModels.some(function (m) { return m.indexOf(t) !== -1; })) { best = 6; }
+      else if (o.fWhat.indexOf(t) !== -1) { best = 3; }
+      else if (o.fLimits.indexOf(t) !== -1) { best = 1; }
+      if (!best) { return 0; }
+      total += best;
+    }
+    return total;
+  }
+  function squash(text) { return text.replace(/[\s._-]+/g, ""); }
+  function scoreModel(m, terms) {
+    var whole = squash(terms.join("")), total = squash(m.fFamily) === whole ? 20 : 0;
+    for (var i = 0; i < terms.length; i++) {
+      var at = m.fFamily.indexOf(terms[i]);
+      if (at === -1 || (terms[i].length === 1 && at !== 0)) { return 0; }
+      total += m.fFamily === terms[i] ? 12 : at === 0 ? 8 : 5;
+    }
+    return total;
+  }
+
+  // A run of text with every term marked, built as nodes: a vendor's sentence
+  // is text here as it is everywhere else on the page.
+  function marked(text, terms) {
+    var span = document.createElement("span");
+    var folded = fold(text), from = 0, spans = [];
+    terms.forEach(function (t) {
+      var at = folded.indexOf(t);
+      while (at !== -1 && t) { spans.push([at, at + t.length]); at = folded.indexOf(t, at + t.length); }
+    });
+    spans.sort(function (a, b) { return a[0] - b[0]; });
+    spans.forEach(function (sp) {
+      if (sp[0] < from) { return; }
+      span.appendChild(document.createTextNode(text.slice(from, sp[0])));
+      var mark = document.createElement("mark");
+      mark.textContent = text.slice(sp[0], sp[1]);
+      span.appendChild(mark);
+      from = sp[1];
+    });
+    span.appendChild(document.createTextNode(text.slice(from)));
+    return span;
+  }
+  // Why a row came up, in a line: its free models where a term names one of
+  // them, else the sentence a match sits in, cut short around it at a word —
+  // not the first two hundred characters of a paragraph.
+  function snippet(o, terms) {
+    var named = o.models.filter(function (m) {
+      return terms.some(function (t) { return fold(m).indexOf(t) !== -1; });
+    });
+    if (named.length && !terms.some(function (t) { return o.fName.indexOf(t) !== -1; })) {
+      var rest = o.models.filter(function (m) { return named.indexOf(m) === -1; });
+      return "Free models: " + named.concat(rest).slice(0, 8).join(", ")
+        + (o.models.length > 8 ? " …" : "");
+    }
+    var fields = [o.what, o.limits];
+    for (var f = 0; f < fields.length; f++) {
+      var folded = fold(fields[f]), at = -1;
+      for (var i = 0; i < terms.length && at === -1; i++) { at = folded.indexOf(terms[i]); }
+      if (at !== -1) {
+        var dot = fields[f].lastIndexOf(". ", at), start = dot === -1 ? 0 : dot + 2;
+        if (at - start > 90) { start = fields[f].indexOf(" ", at - 70) + 1; }
+        return (start > 0 ? "… " : "") + fields[f].slice(start, start + 240);
+      }
+    }
+    return o.what;
+  }
+
+  function option(href, build, cls) {
+    var a = document.createElement("a");
+    a.className = "presult" + (cls ? " " + cls : "");
+    a.href = href;
+    a.id = "opt-" + options.length;
+    a.setAttribute("role", "option");
+    build(a);
+    a.addEventListener("mousemove", function () { select(options.indexOf(a)); });
+    a.addEventListener("click", function (ev) { go(a, ev); });
+    options.push(a);
+    return a;
+  }
+  function line(parent, cls, content) {
+    var el = document.createElement("span");
+    el.className = cls;
+    if (typeof content === "string") { el.textContent = content; } else { el.appendChild(content); }
+    parent.appendChild(el);
+    return el;
+  }
+  function group(title, count) {
+    var h = document.createElement("div");
+    h.className = "pgroup";
+    h.textContent = title + " · " + count;
+    results.appendChild(h);
+  }
+  function hint(text) {
+    var p = document.createElement("p");
+    p.className = "hint";
+    p.textContent = text;
+    results.appendChild(p);
+  }
+
+  function render() {
+    index = index || readPage();
+    var q = parse(input.value);
+    var section = q.picked.section || state.section;
+    var filters = {};
+    Object.keys(state.filters).forEach(function (f) { if (state.filters[f]) { filters[f] = true; } });
+    Object.keys(q.picked.filters).forEach(function (f) { filters[f] = true; });
+    chipsBox.querySelectorAll(".fchip").forEach(function (b) {
+      var on = b.dataset.section ? b.dataset.section === section : !!filters[b.dataset.filter];
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    var terms = q.terms, narrowed = section || Object.keys(filters).length;
+    results.textContent = "";
+    options = [];
+    active = -1;
+    if (!terms.length && !narrowed) {
+      hint("A model, a vendor, or what you need — try one:");
+      var tries = document.createElement("div");
+      tries.className = "tries";
+      EXAMPLES.forEach(function (word) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "fchip";
+        b.textContent = word;
+        b.addEventListener("click", function () { input.value = word; input.focus(); render(); });
+        tries.appendChild(b);
+      });
+      results.appendChild(tries);
+      sync(section, filters);
+      return;
+    }
+    var offers = index.offers.filter(function (o) { return wanted(o, section, filters); })
+      .map(function (o) { return { o: o, score: terms.length ? scoreOffer(o, terms) : 1 }; })
+      .filter(function (x) { return x.score > 0; })
+      .sort(function (a, b) { return b.score - a.score || a.o.order - b.o.order; });
+    var models = !terms.length ? [] : index.models
+      .map(function (m) {
+        var rows = m.rows.filter(function (o) { return wanted(o, section, filters); });
+        return { m: m, rows: rows, score: rows.length ? scoreModel(m, terms) : 0 };
+      })
+      .filter(function (x) { return x.score > 0; })
+      .sort(function (a, b) { return b.score - a.score || a.m.order - b.m.order; });
+    var gone = !terms.length || narrowed ? [] : index.gone
+      .filter(function (g) {
+        return terms.every(function (t) {
+          return t.length === 1 ? g.fName.indexOf(t) === 0
+            : g.fName.indexOf(t) !== -1 || g.fWhy.indexOf(t) !== -1;
+        });
+      });
+    if (models.length) {
+      group("Models", models.length);
+      models.slice(0, 8).forEach(function (x) {
+        var m = x.m;
+        results.appendChild(option(m.page || "#model-" + m.family, function (a) {
+          var top = line(a, "top", "");
+          var code = document.createElement("code");
+          code.appendChild(marked(m.family, terms));
+          top.appendChild(code);
+          if (m.tier) { line(top, "tag" + (m.tier === "frontier" ? " front" : ""), m.tier); }
+          line(top, "psec", "free on " + x.rows.length + (x.rows.length === 1 ? " offer" : " offers"));
+          line(a, "snip", x.rows.map(function (o) { return o.name; }).join(" · "));
+        }));
+      });
+    }
+    if (offers.length) {
+      group("Offers", offers.length);
+      offers.forEach(function (x) {
+        var o = x.o;
+        results.appendChild(option(o.page, function (a) {
+          var top = line(a, "top", "");
+          top.appendChild(marked(o.name, terms)).className = "pname";
+          line(top, "psec", o.section.emoji + " " + o.section.label);
+          if (o.tags && o.tags.children.length) { top.appendChild(o.tags.cloneNode(true)); }
+          var snip = document.createElement("span");
+          snip.className = "snip";
+          snip.appendChild(marked(terms.length ? snippet(o, terms) : o.what, terms));
+          a.appendChild(snip);
+        }));
+      });
+    }
+    if (gone.length) {
+      group("Archived", gone.length);
+      gone.forEach(function (g) {
+        results.appendChild(option(g.page, function (a) {
+          line(a, "top", "").appendChild(marked(g.name, terms)).className = "pname";
+          line(a, "snip", g.why);
+        }, "gone"));
+      });
+    }
+    if (!options.length) {
+      hint("Nothing on the list matches “" + input.value.trim() + "”. The full table, filtered "
+           + "the same way, is one link below.");
+    }
+    select(options.length ? 0 : -1);
+    sync(section, filters);
+  }
+
+  // The query lives in the address, so a search can be sent to someone.
+  function sync(section, filters) {
+    var params = new URLSearchParams();
+    if (input.value.trim()) { params.set("q", input.value.trim()); }
+    if (section) { params.set("s", section); }
+    Object.keys(filters).forEach(function (f) { params.set(f, "1"); });
+    history.replaceState(null, "", location.pathname + (params.toString() ? "?" + params : "") + "#search");
+    var table = new URLSearchParams();
+    if (input.value.trim()) { table.set("q", parse(input.value).terms.join(" ")); }
+    if (section) { table.set("cat", section); }
+    if (filters.nocard) { table.set("nocard", "1"); }
+    if (filters.nokey) { table.set("nokey", "1"); }
+    if (filters.claude) { table.set("claude", "1"); }
+    if (filters.strong) { table.set("strong", "1"); }
+    toTable.href = "browse.html" + (table.toString() ? "?" + table : "");
+  }
+
+  function select(i) {
+    options.forEach(function (o, n) { o.setAttribute("aria-selected", n === i ? "true" : "false"); });
+    active = i;
+    if (i >= 0) {
+      input.setAttribute("aria-activedescendant", options[i].id);
+      options[i].scrollIntoView({ block: "nearest" });
+    } else {
+      input.removeAttribute("aria-activedescendant");
+    }
+  }
+  function go(a, ev) {
+    var href = a.getAttribute("href");
+    if (href.charAt(0) !== "#") { return; }
+    // A model with no page of its own is shown in the model index, open.
+    if (ev) { ev.preventDefault(); }
+    close(false);
+    var target = document.getElementById(href.slice(1));
+    var fold = document.getElementById("model-index");
+    if (fold) { fold.open = true; }
+    if (target) {
+      target.scrollIntoView({ block: "center" });
+      target.classList.remove("flash");
+      void target.offsetWidth;
+      target.classList.add("flash");
+    }
+  }
+
+  function open(from, text) {
+    opener = from || document.activeElement;
+    dialog.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+    if (typeof text === "string") { input.value = text; }
+    input.focus();
+    input.select();
+    render();
+  }
+  // Each opening starts fresh: a filter left on from the last search would
+  // quietly hide rows from the next one.
+  function close(restore) {
+    dialog.hidden = true;
+    state = { section: "", filters: {} };
+    input.value = "";
+    document.documentElement.style.overflow = "";
+    history.replaceState(null, "", location.pathname);
+    if (restore !== false && opener && opener.focus) { opener.focus(); }
+  }
+
+  CONFIG.sections.concat(CONFIG.filters).forEach(function (f) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fchip";
+    b.textContent = f.emoji ? f.emoji + " " + f.label : f.label;
+    if (f.emoji) { b.dataset.section = f.id; } else { b.dataset.filter = f.id; }
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function () {
+      var q = parse(input.value);
+      if (f.emoji) {
+        state.section = (q.picked.section || state.section) === f.id ? "" : f.id;
+      } else {
+        state.filters[f.id] = !(state.filters[f.id] || q.picked.filters[f.id]);
+      }
+      // A filter typed as words and switched off by its chip leaves the words.
+      input.value = q.terms.join(" ");
+      input.focus();
+      render();
+    });
+    chipsBox.appendChild(b);
+  });
+
+  input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(render, 60); });
+  input.addEventListener("keydown", function (ev) {
+    if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+      ev.preventDefault();
+      if (!options.length) { return; }
+      var step = ev.key === "ArrowDown" ? 1 : -1;
+      select((active + step + options.length) % options.length);
+    } else if (ev.key === "Enter" && active >= 0) {
+      ev.preventDefault();
+      var a = options[active];
+      if (a.getAttribute("href").charAt(0) === "#") { go(a); } else { location.href = a.href; }
+    }
+  });
+  dialog.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { close(); } });
+  dialog.addEventListener("click", function (ev) { if (ev.target === dialog) { close(); } });
+  dialog.querySelector("[data-search-close]").addEventListener("click", function () { close(); });
+  document.querySelectorAll("[data-search-open]").forEach(function (b) {
+    b.hidden = false;
+    b.addEventListener("click", function () { open(b); });
+  });
+  document.addEventListener("keydown", function (ev) {
+    var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)
+      || document.activeElement.isContentEditable;
+    if (!dialog.hidden) { return; }
+    if ((ev.key === "/" && !typing) || (ev.key.toLowerCase() === "k" && (ev.ctrlKey || ev.metaKey))) {
+      ev.preventDefault();
+      open(null);
+    }
+  });
+  // A search sent as a link opens as it was left.
+  var params = new URLSearchParams(location.search);
+  if (location.hash === "#search" || params.has("q")) {
+    state.section = params.get("s") || "";
+    CONFIG.filters.forEach(function (f) { state.filters[f.id] = params.get(f.id) === "1"; });
+    open(null, params.get("q") || "");
+  }
 })();
 </script>
 </body>
