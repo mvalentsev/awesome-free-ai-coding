@@ -663,6 +663,15 @@ ping reads the new page; the key it proves
 ownership with is the file named after it at the repository root, and it is
 not a secret.
 
+Google takes a sitemap from Search Console or from the `Sitemap:` line of a
+`robots.txt`, and a crawler reads `robots.txt` only at the root of a host,
+where a project site cannot serve one — the copy Jekyll writes beside this
+site's sitemap is never read. The host's own lives in the account's user site,
+[`mvalentsev/mvalentsev.github.io`](https://github.com/mvalentsev/mvalentsev.github.io),
+beside a placeholder front page kept out of search results; its `Sitemap:` line
+names this site's sitemap, so that repository stays, and a custom domain set
+on it would move this site with it.
+
 Every change to what the list publishes — a row arriving, dropping to the
 Archive, coming back, or changing its free models — is appended to
 [`history.jsonl`](history.jsonl) by `freetier-render`, in the commit that makes
