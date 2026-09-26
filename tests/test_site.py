@@ -443,3 +443,13 @@ def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
     keyless_row = next(line for line in table.splitlines() if line.startswith("| **[Keyless]"))
     assert "not needed" not in keyed_row
     assert keyless_row.endswith("| not needed |")
+
+
+def test_the_page_has_one_heading_and_it_is_the_banner(tmp_path):
+    """The front page had no <h1>: the banner image stood where the heading
+    belongs. It is the heading now, its alt text the words a search engine and
+    a screen reader take for the page's name."""
+    html = _render([make(models=[{"family": "a"}])], tmp_path)
+    assert html.count("<h1") == 1
+    heading = html.split("<h1>")[1].split("</h1>")[0]
+    assert 'alt="awesome-free-ai-coding — legal free LLM APIs and coding agents' in heading

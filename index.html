@@ -116,6 +116,9 @@ p { margin: 0 0 12px; }
   radial-gradient(1100px 380px at 50% -140px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
   border-bottom: 1px solid var(--line-soft); text-align: center; }
 .hero img.banner { width: min(100%, 720px); height: auto; }
+/* The banner is the page's heading: its alt text is the heading a search
+   engine and a screen reader read, and the heading adds no space of its own. */
+.hero h1 { margin: 0; font-size: inherit; line-height: 0; }
 .lede { font-size: 1.15rem; color: var(--fg); max-width: 760px; margin: 18px auto 14px; }
 .lede b { font-weight: 650; }
 .meta { color: var(--muted); font-size: .9rem; margin: 0 0 18px; }
@@ -286,11 +289,11 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 
 <header class="hero" id="top">
   <div class="wrap">
-    <picture>
+    <h1><picture>
       <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
       <img class="banner" src="assets/banner-light.svg" width="1160" height="300"
            alt="awesome-free-ai-coding — legal free LLM APIs and coding agents, probe-verified">
-    </picture>
+    </picture></h1>
     <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
       free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages;
       an offer that dies drops to the <a href="#archive">Archive</a> once 3 runs in a row find it gone.</p>
