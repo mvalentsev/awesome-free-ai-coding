@@ -944,6 +944,7 @@ def _shared_facts(entries: list[Entry], today: date,
         "checked_url": checked_page_url(),
         "feed_url": FEED_URL,
         "pages_url": PAGES_URL,
+        "repo_url": REPO_URL,
     }
 
 
@@ -1236,7 +1237,6 @@ def build_site_context(entries: list[Entry], today: date,
         "archived": _site_archived_rows(entries, today),
         "changes": _site_changes(history or [], entries, today),
         "providers_url": providers_index_url(),
-        "repo_url": REPO_URL,
     }
 
 
