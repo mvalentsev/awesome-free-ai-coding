@@ -75,16 +75,6 @@ claude-opper() {
   claude "$@"
 }
 
-# ── ModelScope API-Inference (Alibaba) · get a key: https://modelscope.cn/my/myaccesstoken
-#    free ids: deepseek-ai/DeepSeek-V4.1-Flash, deepseek-ai/DeepSeek-V4-Pro, ZhipuAI/GLM-5.2, MiniMax/MiniMax-M3, Qwen/Qwen3.8-27B, Qwen/Qwen3.8-Flash-Next, stepfun-ai/Step-3.7-Flash, Qwen/Qwen3.5-397B-A17B, nex-agi/Nex-N2.5-Pro, deepseek-ai/DeepSeek-V4-Flash-0731, ZhipuAI/GLM-4.7-Flash
-claude-modelscope() {
-  ANTHROPIC_BASE_URL="https://api-inference.modelscope.cn" \
-  ANTHROPIC_AUTH_TOKEN="$MODELSCOPE_API_KEY" \
-  ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="deepseek-ai/DeepSeek-V4.1-Flash" \
-  claude "$@"
-}
-
 # ── The Grid · get a key: https://app.thegrid.ai/profile
 #    free ids: agent-prime, code-prime, agent-max
 claude-the-grid() {
@@ -102,16 +92,6 @@ claude-moark() {
   ANTHROPIC_AUTH_TOKEN="$MOARK_API_KEY" \
   ANTHROPIC_API_KEY="" \
   ANTHROPIC_MODEL="deepseek-v4-flash-0731" \
-  claude "$@"
-}
-
-# ── Tencent Cloud TokenHub · get a key: https://console.cloud.tencent.com/tokenhub/apikey
-#    free ids: kimi-k3, glm-5.3, hy3, minimax-m3
-claude-tencent-tokenhub() {
-  ANTHROPIC_BASE_URL="https://tokenhub.tencentmaas.com" \
-  ANTHROPIC_AUTH_TOKEN="$TENCENT_TOKENHUB_API_KEY" \
-  ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="kimi-k3" \
   claude "$@"
 }
 
@@ -172,6 +152,26 @@ claude-standardcompute() {
   ANTHROPIC_AUTH_TOKEN="$STANDARDCOMPUTE_API_KEY" \
   ANTHROPIC_API_KEY="" \
   ANTHROPIC_MODEL="anthropic/claude-standardcompute" \
+  claude "$@"
+}
+
+# ── ModelScope API-Inference (Alibaba) · get a key: https://modelscope.cn/my/myaccesstoken
+#    free ids: deepseek-ai/DeepSeek-V4.1-Flash, deepseek-ai/DeepSeek-V4-Pro, ZhipuAI/GLM-5.2, MiniMax/MiniMax-M3, Qwen/Qwen3.8-27B, Qwen/Qwen3.8-Flash-Next, stepfun-ai/Step-3.7-Flash, Qwen/Qwen3.5-397B-A17B, nex-agi/Nex-N2.5-Pro, deepseek-ai/DeepSeek-V4-Flash-0731, ZhipuAI/GLM-4.7-Flash
+claude-modelscope() {
+  ANTHROPIC_BASE_URL="https://api-inference.modelscope.cn" \
+  ANTHROPIC_AUTH_TOKEN="$MODELSCOPE_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="deepseek-ai/DeepSeek-V4.1-Flash" \
+  claude "$@"
+}
+
+# ── Tencent Cloud TokenHub · get a key: https://console.cloud.tencent.com/tokenhub/apikey
+#    free ids: kimi-k3, glm-5.3, hy3, minimax-m3
+claude-tencent-tokenhub() {
+  ANTHROPIC_BASE_URL="https://tokenhub.tencentmaas.com" \
+  ANTHROPIC_AUTH_TOKEN="$TENCENT_TOKENHUB_API_KEY" \
+  ANTHROPIC_API_KEY="" \
+  ANTHROPIC_MODEL="kimi-k3" \
   claude "$@"
 }
 

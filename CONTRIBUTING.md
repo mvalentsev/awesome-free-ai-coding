@@ -89,7 +89,10 @@ States, India and Russia and resolved in the seventeen other countries and
 territories asked; with the two largest developer populations on GitHub left out
 ([Octoverse 2025](https://github.blog/news-insights/octoverse/octoverse-a-new-developer-joins-github-every-second-as-ai-leads-typescript-to-1/)),
 it went from 65, among the recurring agent plans, to 82, below the trials and
-credits that reach them.
+credits that reach them. An offer only one market's residents can sign up for —
+ModelScope, SenseNova, TokenHub and SiliconFlow take mainland Chinese papers or
+phone numbers — leaves out nine readers in ten and sits at the foot of its
+section, below every offer that reaches the rest.
 
 **Every live row records its border**, in `border`, the way its vendor states
 it: `served`, the countries of an allow-list (Google's region list, a sign-up

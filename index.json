@@ -1291,7 +1291,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 70,
+      "rank": 78,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/"
     },
@@ -1878,7 +1878,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 40,
+      "rank": 55,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/"
     },
@@ -2851,7 +2851,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 75,
+      "rank": 80,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/"
     },
@@ -3139,7 +3139,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 70,
+      "rank": 76,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/"
     },
@@ -4351,7 +4351,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": false,
-      "rank": 88,
+      "rank": 101,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/"
     },
@@ -6024,7 +6024,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 55,
+      "rank": 65,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/"
     },
@@ -6529,7 +6529,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 89,
+      "rank": 102,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/"
     },
@@ -7139,7 +7139,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 90,
+      "rank": 91,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/"
     },
@@ -7862,7 +7862,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 97,
+      "rank": 103,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/"
     },
@@ -7934,7 +7934,7 @@
       "last_verified": "2026-09-24",
       "probe_failures": 0,
       "provisional": true,
-      "rank": 84,
+      "rank": 100,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/"
     },

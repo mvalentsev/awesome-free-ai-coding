@@ -827,53 +827,6 @@
         }
       }
     },
-    "tokenrouter": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "TokenRouter (PaleBlueDot)",
-      "options": {
-        "baseURL": "https://api.tokenrouter.com/v1",
-        "apiKey": "{env:TOKENROUTER_API_KEY}"
-      },
-      "models": {
-        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
-          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
-        }
-      }
-    },
-    "cohere": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Cohere (trial keys)",
-      "options": {
-        "baseURL": "https://api.cohere.com/compatibility/v1",
-        "apiKey": "{env:COHERE_API_KEY}"
-      },
-      "models": {
-        "north-mini-code-1-0": {
-          "name": "north-mini-code-1-0"
-        },
-        "command-a-plus-05-2026": {
-          "name": "command-a-plus-05-2026"
-        },
-        "command-a-reasoning-08-2025": {
-          "name": "command-a-reasoning-08-2025"
-        },
-        "command-a-03-2025": {
-          "name": "command-a-03-2025"
-        },
-        "command-a-vision-07-2025": {
-          "name": "command-a-vision-07-2025"
-        },
-        "command-r-plus-08-2024": {
-          "name": "command-r-plus-08-2024"
-        },
-        "command-r-08-2024": {
-          "name": "command-r-08-2024"
-        },
-        "command-r7b-12-2024": {
-          "name": "command-r7b-12-2024"
-        }
-      }
-    },
     "regolo": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Regolo AI",
@@ -918,6 +871,19 @@
         }
       }
     },
+    "tokenrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "TokenRouter (PaleBlueDot)",
+      "options": {
+        "baseURL": "https://api.tokenrouter.com/v1",
+        "apiKey": "{env:TOKENROUTER_API_KEY}"
+      },
+      "models": {
+        "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+          "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+        }
+      }
+    },
     "mistral-free": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Mistral Studio",
@@ -942,6 +908,40 @@
         },
         "google/diffusiongemma-26b-a4b-it": {
           "name": "google/diffusiongemma-26b-a4b-it"
+        }
+      }
+    },
+    "cohere": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Cohere (trial keys)",
+      "options": {
+        "baseURL": "https://api.cohere.com/compatibility/v1",
+        "apiKey": "{env:COHERE_API_KEY}"
+      },
+      "models": {
+        "north-mini-code-1-0": {
+          "name": "north-mini-code-1-0"
+        },
+        "command-a-plus-05-2026": {
+          "name": "command-a-plus-05-2026"
+        },
+        "command-a-reasoning-08-2025": {
+          "name": "command-a-reasoning-08-2025"
+        },
+        "command-a-03-2025": {
+          "name": "command-a-03-2025"
+        },
+        "command-a-vision-07-2025": {
+          "name": "command-a-vision-07-2025"
+        },
+        "command-r-plus-08-2024": {
+          "name": "command-r-plus-08-2024"
+        },
+        "command-r-08-2024": {
+          "name": "command-r-08-2024"
+        },
+        "command-r7b-12-2024": {
+          "name": "command-r7b-12-2024"
         }
       }
     },
@@ -989,49 +989,6 @@
         },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
-        }
-      }
-    },
-    "modelscope": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "ModelScope API-Inference (Alibaba)",
-      "options": {
-        "baseURL": "https://api-inference.modelscope.cn/v1",
-        "apiKey": "{env:MODELSCOPE_API_KEY}"
-      },
-      "models": {
-        "deepseek-ai/DeepSeek-V4.1-Flash": {
-          "name": "deepseek-ai/DeepSeek-V4.1-Flash"
-        },
-        "deepseek-ai/DeepSeek-V4-Pro": {
-          "name": "deepseek-ai/DeepSeek-V4-Pro"
-        },
-        "ZhipuAI/GLM-5.2": {
-          "name": "ZhipuAI/GLM-5.2"
-        },
-        "MiniMax/MiniMax-M3": {
-          "name": "MiniMax/MiniMax-M3"
-        },
-        "Qwen/Qwen3.8-27B": {
-          "name": "Qwen/Qwen3.8-27B"
-        },
-        "Qwen/Qwen3.8-Flash-Next": {
-          "name": "Qwen/Qwen3.8-Flash-Next"
-        },
-        "stepfun-ai/Step-3.7-Flash": {
-          "name": "stepfun-ai/Step-3.7-Flash"
-        },
-        "Qwen/Qwen3.5-397B-A17B": {
-          "name": "Qwen/Qwen3.5-397B-A17B"
-        },
-        "nex-agi/Nex-N2.5-Pro": {
-          "name": "nex-agi/Nex-N2.5-Pro"
-        },
-        "deepseek-ai/DeepSeek-V4-Flash-0731": {
-          "name": "deepseek-ai/DeepSeek-V4-Flash-0731"
-        },
-        "ZhipuAI/GLM-4.7-Flash": {
-          "name": "ZhipuAI/GLM-4.7-Flash"
         }
       }
     },
@@ -1163,56 +1120,6 @@
         }
       }
     },
-    "sensenova": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "SenseNova (SenseTime 商汤)",
-      "options": {
-        "baseURL": "https://token.sensenova.cn/v1",
-        "apiKey": "{env:SENSENOVA_API_KEY}"
-      },
-      "models": {}
-    },
-    "tencent-tokenhub": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Tencent Cloud TokenHub",
-      "options": {
-        "baseURL": "https://tokenhub.tencentmaas.com/v1",
-        "apiKey": "{env:TENCENT_TOKENHUB_API_KEY}"
-      },
-      "models": {
-        "kimi-k3": {
-          "name": "kimi-k3"
-        },
-        "glm-5.3": {
-          "name": "glm-5.3"
-        },
-        "hy3": {
-          "name": "hy3"
-        },
-        "minimax-m3": {
-          "name": "minimax-m3"
-        }
-      }
-    },
-    "hpc-ai": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "HPC-AI Model APIs",
-      "options": {
-        "baseURL": "https://api.hpc-ai.com/inference/v1",
-        "apiKey": "{env:HPC_AI_API_KEY}"
-      },
-      "models": {
-        "zai-org/glm-5.3-flash": {
-          "name": "zai-org/glm-5.3-flash"
-        },
-        "moonshotai/kimi-k2.7-code": {
-          "name": "moonshotai/kimi-k2.7-code"
-        },
-        "minimax/minimax-m3": {
-          "name": "minimax/minimax-m3"
-        }
-      }
-    },
     "inception-labs": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Inception Labs (Mercury)",
@@ -1261,6 +1168,25 @@
         },
         "diffusiongemma": {
           "name": "diffusiongemma"
+        }
+      }
+    },
+    "hpc-ai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "HPC-AI Model APIs",
+      "options": {
+        "baseURL": "https://api.hpc-ai.com/inference/v1",
+        "apiKey": "{env:HPC_AI_API_KEY}"
+      },
+      "models": {
+        "zai-org/glm-5.3-flash": {
+          "name": "zai-org/glm-5.3-flash"
+        },
+        "moonshotai/kimi-k2.7-code": {
+          "name": "moonshotai/kimi-k2.7-code"
+        },
+        "minimax/minimax-m3": {
+          "name": "minimax/minimax-m3"
         }
       }
     },
@@ -1452,37 +1378,6 @@
         }
       }
     },
-    "siliconflow-cn": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "SiliconFlow (China)",
-      "options": {
-        "baseURL": "https://api.siliconflow.cn/v1",
-        "apiKey": "{env:SILICONFLOW_CN_API_KEY}"
-      },
-      "models": {
-        "XingChenAGI/Xing4.0-29B": {
-          "name": "XingChenAGI/Xing4.0-29B"
-        },
-        "Qwen/Qwen3-8B": {
-          "name": "Qwen/Qwen3-8B"
-        },
-        "THUDM/GLM-4-9B-0414": {
-          "name": "THUDM/GLM-4-9B-0414"
-        },
-        "THUDM/GLM-Z1-9B-0414": {
-          "name": "THUDM/GLM-Z1-9B-0414"
-        },
-        "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
-          "name": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
-        },
-        "Qwen/Qwen3.5-4B": {
-          "name": "Qwen/Qwen3.5-4B"
-        },
-        "Qwen/Qwen2.5-7B-Instruct": {
-          "name": "Qwen/Qwen2.5-7B-Instruct"
-        }
-      }
-    },
     "uncloseai": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "uncloseai (unturf)",
@@ -1552,6 +1447,111 @@
       "models": {
         "qwen3.8-flash": {
           "name": "qwen3.8-flash"
+        }
+      }
+    },
+    "modelscope": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "ModelScope API-Inference (Alibaba)",
+      "options": {
+        "baseURL": "https://api-inference.modelscope.cn/v1",
+        "apiKey": "{env:MODELSCOPE_API_KEY}"
+      },
+      "models": {
+        "deepseek-ai/DeepSeek-V4.1-Flash": {
+          "name": "deepseek-ai/DeepSeek-V4.1-Flash"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "deepseek-ai/DeepSeek-V4-Pro"
+        },
+        "ZhipuAI/GLM-5.2": {
+          "name": "ZhipuAI/GLM-5.2"
+        },
+        "MiniMax/MiniMax-M3": {
+          "name": "MiniMax/MiniMax-M3"
+        },
+        "Qwen/Qwen3.8-27B": {
+          "name": "Qwen/Qwen3.8-27B"
+        },
+        "Qwen/Qwen3.8-Flash-Next": {
+          "name": "Qwen/Qwen3.8-Flash-Next"
+        },
+        "stepfun-ai/Step-3.7-Flash": {
+          "name": "stepfun-ai/Step-3.7-Flash"
+        },
+        "Qwen/Qwen3.5-397B-A17B": {
+          "name": "Qwen/Qwen3.5-397B-A17B"
+        },
+        "nex-agi/Nex-N2.5-Pro": {
+          "name": "nex-agi/Nex-N2.5-Pro"
+        },
+        "deepseek-ai/DeepSeek-V4-Flash-0731": {
+          "name": "deepseek-ai/DeepSeek-V4-Flash-0731"
+        },
+        "ZhipuAI/GLM-4.7-Flash": {
+          "name": "ZhipuAI/GLM-4.7-Flash"
+        }
+      }
+    },
+    "sensenova": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SenseNova (SenseTime 商汤)",
+      "options": {
+        "baseURL": "https://token.sensenova.cn/v1",
+        "apiKey": "{env:SENSENOVA_API_KEY}"
+      },
+      "models": {}
+    },
+    "tencent-tokenhub": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Tencent Cloud TokenHub",
+      "options": {
+        "baseURL": "https://tokenhub.tencentmaas.com/v1",
+        "apiKey": "{env:TENCENT_TOKENHUB_API_KEY}"
+      },
+      "models": {
+        "kimi-k3": {
+          "name": "kimi-k3"
+        },
+        "glm-5.3": {
+          "name": "glm-5.3"
+        },
+        "hy3": {
+          "name": "hy3"
+        },
+        "minimax-m3": {
+          "name": "minimax-m3"
+        }
+      }
+    },
+    "siliconflow-cn": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "SiliconFlow (China)",
+      "options": {
+        "baseURL": "https://api.siliconflow.cn/v1",
+        "apiKey": "{env:SILICONFLOW_CN_API_KEY}"
+      },
+      "models": {
+        "XingChenAGI/Xing4.0-29B": {
+          "name": "XingChenAGI/Xing4.0-29B"
+        },
+        "Qwen/Qwen3-8B": {
+          "name": "Qwen/Qwen3-8B"
+        },
+        "THUDM/GLM-4-9B-0414": {
+          "name": "THUDM/GLM-4-9B-0414"
+        },
+        "THUDM/GLM-Z1-9B-0414": {
+          "name": "THUDM/GLM-Z1-9B-0414"
+        },
+        "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+          "name": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+        },
+        "Qwen/Qwen3.5-4B": {
+          "name": "Qwen/Qwen3.5-4B"
+        },
+        "Qwen/Qwen2.5-7B-Instruct": {
+          "name": "Qwen/Qwen2.5-7B-Instruct"
         }
       }
     }

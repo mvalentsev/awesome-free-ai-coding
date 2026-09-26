@@ -741,7 +741,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: false
-  rank: 70
+  rank: 78
 - id: windsurf
   name: Devin Desktop (formerly Windsurf)
   category: trial
@@ -1100,7 +1100,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: false
-  rank: 40
+  rank: 55
 - id: nvidia-nim
   name: NVIDIA NIM (build.nvidia.com)
   category: api-free-tier
@@ -1854,7 +1854,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: false
-  rank: 75
+  rank: 80
 - id: qoder
   name: Qoder
   category: trial
@@ -2116,7 +2116,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: false
-  rank: 70
+  rank: 76
 - id: sambanova-cloud
   name: SambaNova Cloud
   category: api-free-tier
@@ -2986,7 +2986,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: false
-  rank: 88
+  rank: 101
 - id: hetzner-inference
   name: Hetzner Inference API
   category: api-free-tier
@@ -4247,7 +4247,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: true
-  rank: 55
+  rank: 65
 - id: zed
   name: Zed
   category: trial
@@ -4749,7 +4749,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: true
-  rank: 89
+  rank: 102
 - id: bytez
   name: Bytez
   category: api-free-tier
@@ -5355,7 +5355,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: true
-  rank: 90
+  rank: 91
 - id: mimocode
   name: MiMoCode
   category: agent-cli
@@ -6001,7 +6001,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: true
-  rank: 97
+  rank: 103
 - id: modelscope
   name: ModelScope API-Inference (Alibaba)
   category: api-free-tier
@@ -6073,7 +6073,7 @@ entries:
   last_verified: '2026-09-24'
   probe_failures: 0
   provisional: true
-  rank: 84
+  rank: 100
 - id: vertex-ai-express
   name: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
   category: trial

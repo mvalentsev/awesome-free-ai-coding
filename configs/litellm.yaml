@@ -1009,6 +1009,46 @@ model_list:
     model: openai/meituan/longcat-2.0:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
+- model_name: regolo/glm5.2
+  litellm_params:
+    model: openai/glm5.2
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/gpt-oss-120b
+  litellm_params:
+    model: openai/gpt-oss-120b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/qwen3.8-27b
+  litellm_params:
+    model: openai/qwen3.8-27b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/apertus-70b
+  litellm_params:
+    model: openai/apertus-70b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/brick-v1-beta
+  litellm_params:
+    model: openai/brick-v1-beta
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: token-harbor/deepseek-v4.1-flash:free
+  litellm_params:
+    model: openai/deepseek-v4.1-flash:free
+    api_base: https://tokenharbor.ai/v1
+    api_key: os.environ/TOKEN_HARBOR_API_KEY
+- model_name: token-harbor/mimo-v2.6-flash:free
+  litellm_params:
+    model: openai/mimo-v2.6-flash:free
+    api_base: https://tokenharbor.ai/v1
+    api_key: os.environ/TOKEN_HARBOR_API_KEY
+- model_name: token-harbor/qwen3.8-flash:free
+  litellm_params:
+    model: openai/qwen3.8-flash:free
+    api_base: https://tokenharbor.ai/v1
+    api_key: os.environ/TOKEN_HARBOR_API_KEY
 - model_name: tokenrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
@@ -1054,46 +1094,6 @@ model_list:
     model: openai/command-r7b-12-2024
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
-- model_name: regolo/glm5.2
-  litellm_params:
-    model: openai/glm5.2
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-- model_name: regolo/gpt-oss-120b
-  litellm_params:
-    model: openai/gpt-oss-120b
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-- model_name: regolo/qwen3.8-27b
-  litellm_params:
-    model: openai/qwen3.8-27b
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-- model_name: regolo/apertus-70b
-  litellm_params:
-    model: openai/apertus-70b
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-- model_name: regolo/brick-v1-beta
-  litellm_params:
-    model: openai/brick-v1-beta
-    api_base: https://api.regolo.ai/v1
-    api_key: os.environ/REGOLO_API_KEY
-- model_name: token-harbor/deepseek-v4.1-flash:free
-  litellm_params:
-    model: openai/deepseek-v4.1-flash:free
-    api_base: https://tokenharbor.ai/v1
-    api_key: os.environ/TOKEN_HARBOR_API_KEY
-- model_name: token-harbor/mimo-v2.6-flash:free
-  litellm_params:
-    model: openai/mimo-v2.6-flash:free
-    api_base: https://tokenharbor.ai/v1
-    api_key: os.environ/TOKEN_HARBOR_API_KEY
-- model_name: token-harbor/qwen3.8-flash:free
-  litellm_params:
-    model: openai/qwen3.8-flash:free
-    api_base: https://tokenharbor.ai/v1
-    api_key: os.environ/TOKEN_HARBOR_API_KEY
 - model_name: upstage/solar-pro4
   litellm_params:
     model: openai/solar-pro4
@@ -1124,61 +1124,6 @@ model_list:
     model: openai/poolside/laguna-xs-2.1
     api_base: https://api.opper.ai/v3/compat
     api_key: os.environ/OPPER_API_KEY
-- model_name: modelscope/deepseek-ai/DeepSeek-V4.1-Flash
-  litellm_params:
-    model: openai/deepseek-ai/DeepSeek-V4.1-Flash
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/deepseek-ai/DeepSeek-V4-Pro
-  litellm_params:
-    model: openai/deepseek-ai/DeepSeek-V4-Pro
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/ZhipuAI/GLM-5.2
-  litellm_params:
-    model: openai/ZhipuAI/GLM-5.2
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/MiniMax/MiniMax-M3
-  litellm_params:
-    model: openai/MiniMax/MiniMax-M3
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/Qwen/Qwen3.8-27B
-  litellm_params:
-    model: openai/Qwen/Qwen3.8-27B
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/Qwen/Qwen3.8-Flash-Next
-  litellm_params:
-    model: openai/Qwen/Qwen3.8-Flash-Next
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/stepfun-ai/Step-3.7-Flash
-  litellm_params:
-    model: openai/stepfun-ai/Step-3.7-Flash
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/Qwen/Qwen3.5-397B-A17B
-  litellm_params:
-    model: openai/Qwen/Qwen3.5-397B-A17B
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/nex-agi/Nex-N2.5-Pro
-  litellm_params:
-    model: openai/nex-agi/Nex-N2.5-Pro
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/deepseek-ai/DeepSeek-V4-Flash-0731
-  litellm_params:
-    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
-- model_name: modelscope/ZhipuAI/GLM-4.7-Flash
-  litellm_params:
-    model: openai/ZhipuAI/GLM-4.7-Flash
-    api_base: https://api-inference.modelscope.cn/v1
-    api_key: os.environ/MODELSCOPE_API_KEY
 - model_name: meganova/mistralai/Mistral-Small-3.2-24B-Instruct-2506
   litellm_params:
     model: openai/mistralai/Mistral-Small-3.2-24B-Instruct-2506
@@ -1259,41 +1204,6 @@ model_list:
     model: openai/sarvam-105b
     api_base: https://api.sarvam.ai/v1
     api_key: os.environ/SARVAM_API_KEY
-- model_name: tencent-tokenhub/kimi-k3
-  litellm_params:
-    model: openai/kimi-k3
-    api_base: https://tokenhub.tencentmaas.com/v1
-    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
-- model_name: tencent-tokenhub/glm-5.3
-  litellm_params:
-    model: openai/glm-5.3
-    api_base: https://tokenhub.tencentmaas.com/v1
-    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
-- model_name: tencent-tokenhub/hy3
-  litellm_params:
-    model: openai/hy3
-    api_base: https://tokenhub.tencentmaas.com/v1
-    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
-- model_name: tencent-tokenhub/minimax-m3
-  litellm_params:
-    model: openai/minimax-m3
-    api_base: https://tokenhub.tencentmaas.com/v1
-    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
-- model_name: hpc-ai/zai-org/glm-5.3-flash
-  litellm_params:
-    model: openai/zai-org/glm-5.3-flash
-    api_base: https://api.hpc-ai.com/inference/v1
-    api_key: os.environ/HPC_AI_API_KEY
-- model_name: hpc-ai/moonshotai/kimi-k2.7-code
-  litellm_params:
-    model: openai/moonshotai/kimi-k2.7-code
-    api_base: https://api.hpc-ai.com/inference/v1
-    api_key: os.environ/HPC_AI_API_KEY
-- model_name: hpc-ai/minimax/minimax-m3
-  litellm_params:
-    model: openai/minimax/minimax-m3
-    api_base: https://api.hpc-ai.com/inference/v1
-    api_key: os.environ/HPC_AI_API_KEY
 - model_name: inception-labs/mercury-2.5
   litellm_params:
     model: openai/mercury-2.5
@@ -1329,6 +1239,21 @@ model_list:
     model: openai/diffusiongemma
     api_base: https://freeinference.org/v1
     api_key: os.environ/FREEINFERENCE_API_KEY
+- model_name: hpc-ai/zai-org/glm-5.3-flash
+  litellm_params:
+    model: openai/zai-org/glm-5.3-flash
+    api_base: https://api.hpc-ai.com/inference/v1
+    api_key: os.environ/HPC_AI_API_KEY
+- model_name: hpc-ai/moonshotai/kimi-k2.7-code
+  litellm_params:
+    model: openai/moonshotai/kimi-k2.7-code
+    api_base: https://api.hpc-ai.com/inference/v1
+    api_key: os.environ/HPC_AI_API_KEY
+- model_name: hpc-ai/minimax/minimax-m3
+  litellm_params:
+    model: openai/minimax/minimax-m3
+    api_base: https://api.hpc-ai.com/inference/v1
+    api_key: os.environ/HPC_AI_API_KEY
 - model_name: fireworks-ai/accounts/fireworks/models/deepseek-v4p1-flash
   litellm_params:
     model: openai/accounts/fireworks/models/deepseek-v4p1-flash
@@ -1459,6 +1384,106 @@ model_list:
     model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
     api_base: https://api.sailresearch.com/v1
     api_key: os.environ/SAIL_RESEARCH_API_KEY
+- model_name: uncloseai/turboderp/Qwen3.8-27B-exl3
+  litellm_params:
+    model: openai/turboderp/Qwen3.8-27B-exl3
+    api_base: https://hermes.ai.unturf.com/v1
+    api_key: none
+- model_name: pollinations/gpt-oss-20b
+  litellm_params:
+    model: openai/gpt-oss-20b
+    api_base: https://text.pollinations.ai/openai
+    api_key: none
+- model_name: bytez/Qwen/Qwen3-4B
+  litellm_params:
+    model: openai/Qwen/Qwen3-4B
+    api_base: https://api.bytez.com/models/v2/openai/v1
+    api_key: os.environ/BYTEZ_API_KEY
+- model_name: mixlayer/qwen/qwen3.5-4b-free
+  litellm_params:
+    model: openai/qwen/qwen3.5-4b-free
+    api_base: https://models.mixlayer.ai/v1
+    api_key: os.environ/MIXLAYER_API_KEY
+- model_name: yolo-auto/qwen3.8-flash
+  litellm_params:
+    model: openai/qwen3.8-flash
+    api_base: https://yolo-auto.com/v1
+    api_key: os.environ/YOLO_AUTO_API_KEY
+- model_name: modelscope/deepseek-ai/DeepSeek-V4.1-Flash
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4.1-Flash
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/deepseek-ai/DeepSeek-V4-Pro
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Pro
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/ZhipuAI/GLM-5.2
+  litellm_params:
+    model: openai/ZhipuAI/GLM-5.2
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/MiniMax/MiniMax-M3
+  litellm_params:
+    model: openai/MiniMax/MiniMax-M3
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/Qwen/Qwen3.8-27B
+  litellm_params:
+    model: openai/Qwen/Qwen3.8-27B
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/Qwen/Qwen3.8-Flash-Next
+  litellm_params:
+    model: openai/Qwen/Qwen3.8-Flash-Next
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/stepfun-ai/Step-3.7-Flash
+  litellm_params:
+    model: openai/stepfun-ai/Step-3.7-Flash
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/Qwen/Qwen3.5-397B-A17B
+  litellm_params:
+    model: openai/Qwen/Qwen3.5-397B-A17B
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/nex-agi/Nex-N2.5-Pro
+  litellm_params:
+    model: openai/nex-agi/Nex-N2.5-Pro
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/deepseek-ai/DeepSeek-V4-Flash-0731
+  litellm_params:
+    model: openai/deepseek-ai/DeepSeek-V4-Flash-0731
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: modelscope/ZhipuAI/GLM-4.7-Flash
+  litellm_params:
+    model: openai/ZhipuAI/GLM-4.7-Flash
+    api_base: https://api-inference.modelscope.cn/v1
+    api_key: os.environ/MODELSCOPE_API_KEY
+- model_name: tencent-tokenhub/kimi-k3
+  litellm_params:
+    model: openai/kimi-k3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: tencent-tokenhub/glm-5.3
+  litellm_params:
+    model: openai/glm-5.3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: tencent-tokenhub/hy3
+  litellm_params:
+    model: openai/hy3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
+- model_name: tencent-tokenhub/minimax-m3
+  litellm_params:
+    model: openai/minimax-m3
+    api_base: https://tokenhub.tencentmaas.com/v1
+    api_key: os.environ/TENCENT_TOKENHUB_API_KEY
 - model_name: siliconflow-cn/XingChenAGI/Xing4.0-29B
   litellm_params:
     model: openai/XingChenAGI/Xing4.0-29B
@@ -1494,31 +1519,6 @@ model_list:
     model: openai/Qwen/Qwen2.5-7B-Instruct
     api_base: https://api.siliconflow.cn/v1
     api_key: os.environ/SILICONFLOW_CN_API_KEY
-- model_name: uncloseai/turboderp/Qwen3.8-27B-exl3
-  litellm_params:
-    model: openai/turboderp/Qwen3.8-27B-exl3
-    api_base: https://hermes.ai.unturf.com/v1
-    api_key: none
-- model_name: pollinations/gpt-oss-20b
-  litellm_params:
-    model: openai/gpt-oss-20b
-    api_base: https://text.pollinations.ai/openai
-    api_key: none
-- model_name: bytez/Qwen/Qwen3-4B
-  litellm_params:
-    model: openai/Qwen/Qwen3-4B
-    api_base: https://api.bytez.com/models/v2/openai/v1
-    api_key: os.environ/BYTEZ_API_KEY
-- model_name: mixlayer/qwen/qwen3.5-4b-free
-  litellm_params:
-    model: openai/qwen/qwen3.5-4b-free
-    api_base: https://models.mixlayer.ai/v1
-    api_key: os.environ/MIXLAYER_API_KEY
-- model_name: yolo-auto/qwen3.8-flash
-  litellm_params:
-    model: openai/qwen3.8-flash
-    api_base: https://yolo-auto.com/v1
-    api_key: os.environ/YOLO_AUTO_API_KEY
 - model_name: free/strong
   litellm_params:
     model: openai/gemini-3.8-flash
