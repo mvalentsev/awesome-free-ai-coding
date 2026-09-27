@@ -491,9 +491,11 @@ def env_var(entry_id: str) -> str:
 
 
 def needs_no_account(e: Entry) -> bool:
-    """Whether a reader calls the lane without making an account: it takes no
-    key, or the vendor prints one for anyone (`api.public_key`)."""
-    return bool(e.api) and e.api.key_kind in ("none", "public")
+    """Whether a reader calls the lane without making an account: there is a
+    lane to call, and it takes no key or the vendor prints one for anyone
+    (`api.public_key`). The README's picks, the LiteLLM group and the site's
+    filter all ask this."""
+    return bool(e.api and e.api.base_url) and e.api.key_kind in ("none", "public")
 
 
 # Why a config written once — litellm.yaml, opencode.json, claude-code.sh —
@@ -1326,7 +1328,7 @@ def _site_row(e: Entry) -> dict:
         # filter it offers (SEARCH_FILTERS) — held to them by a test.
         "flags": [flag for flag, on in (
             ("nocard", not e.card_required),
-            ("nokey", bool(api and api.base_url and api.key_kind in ("none", "public"))),
+            ("nokey", needs_no_account(e)),
             ("claude", bool(api and api.anthropic_base_url)),
             ("strong", any(m.tier in (Tier.FRONTIER, Tier.STRONG) for m in families))) if on],
         # A row whose published lane is known not to work says so where it is

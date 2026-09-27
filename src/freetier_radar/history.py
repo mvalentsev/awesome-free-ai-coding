@@ -25,6 +25,7 @@ to exactly that (`block_problems`).
 from __future__ import annotations
 
 import json
+from collections.abc import Iterator
 from dataclasses import dataclass
 from datetime import date, datetime, time, timezone
 from enum import Enum
@@ -36,7 +37,7 @@ from .models import ARCHIVE_AFTER_FAILURES, Entry, is_archived, live_families, l
 
 __all__ = ["EventType", "Event", "State", "archive_reason", "registry_state", "replay",
            "diff_state", "deleted_row_problem", "deleted_rows", "refuse_deleted_rows",
-           "parse_history", "load_history", "record_changes",
+           "jsonl_lines", "parse_history", "load_history", "record_changes",
            "pending_changes", "block_problems"]
 
 
@@ -186,14 +187,20 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
     return events
 
 
+def jsonl_lines(text: str, first_line: int = 1) -> Iterator[tuple[int, str]]:
+    """The non-blank lines of a JSON Lines text, each with its line number:
+    the history and the announcer's ledger alike."""
+    for number, line in enumerate(text.splitlines(), start=first_line):
+        if line.strip():
+            yield number, line
+
+
 def parse_history(text: str, where: str = "history.jsonl", first_line: int = 1) -> list[Event]:
     """The events in `text`, whose first line is line `first_line` of `where`.
     A malformed line raises and names itself: the log cannot be regenerated,
     so a line that will not parse stops a run rather than being skipped."""
     events: list[Event] = []
-    for number, line in enumerate(text.splitlines(), start=first_line):
-        if not line.strip():
-            continue
+    for number, line in jsonl_lines(text, first_line):
         try:
             events.append(Event.model_validate(json.loads(line)))
         except Exception as exc:

@@ -25,7 +25,7 @@ from pathlib import Path
 
 import httpx
 
-from .history import Event, EventType, load_history
+from .history import Event, EventType, jsonl_lines, load_history
 from .models import Entry, is_archived, live_families, load_registry, probe_frequency
 from .render import (EVENT_WORDS, REPO_URL, event_detail, picks, provider_page_url,
                      providers_index_url, sections)
@@ -305,9 +305,7 @@ def load_ledger(path: Path) -> set[tuple[str, str]]:
     if not path.exists():
         return set()
     done: set[tuple[str, str]] = set()
-    for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
-        if not line.strip():
-            continue
+    for number, line in jsonl_lines(path.read_text(encoding="utf-8")):
         try:
             row = json.loads(line)
             done.add((row["key"], row["channel"]))

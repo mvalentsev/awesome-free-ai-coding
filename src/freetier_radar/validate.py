@@ -14,7 +14,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
-from .history import EventType, deleted_row_problem, deleted_rows, load_history
+from .history import EventType, deleted_row_problem, deleted_rows, jsonl_lines, load_history
 from .models import (Entry, FreePart, domain_of, family_names, is_archived, is_blocked,
                      is_connectable, lane_ids, load_blocklist, load_dismissed, load_registry,
                      load_sources, load_watchlist, prose_names, save_registry, under)
@@ -471,9 +471,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
     # nothing regenerates it.
     ledger = root / "announced.jsonl"
     if ledger.exists():
-        for number, line in enumerate(ledger.read_text(encoding="utf-8").splitlines(), start=1):
-            if not line.strip():
-                continue
+        for number, line in jsonl_lines(ledger.read_text(encoding="utf-8")):
             try:
                 row = json.loads(line)
             except ValueError:
