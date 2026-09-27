@@ -20,7 +20,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      probe_frequency, watch_match)
-from .prober import (ProbeStatus, challenge_marker_hit, check_content, family_named,
+from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, probe_page_url_sync,
                      unevidenced_families)
 
@@ -1221,7 +1221,7 @@ def main() -> None:
 
     try:
         with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
-                          headers={"User-Agent": "freetier-radar/0.2"}) as probe_client:
+                          headers=UA) as probe_client:
             # Bound here rather than inside run_scout, which knows the fetcher
             # only as a callable: the retirement sweep asks for one page per live
             # entry, each at its own 30s read timeout, inside a phase that checks

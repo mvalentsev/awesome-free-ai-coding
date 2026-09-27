@@ -13,6 +13,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
+from .words import number
+
 # Words every vendor keeps on the page long after the offer is gone. A probe
 # built out of these alone verifies that the page loads, nothing more.
 GENERIC_KEYWORDS = frozenset({
@@ -955,7 +957,7 @@ class Entry(BaseModel):
                 raise ValueError(
                     f"probe {probe.endpoint}: none of the keywords {every} anchors on "
                     "the offer — use a free model id, a quota or price figure, or a phrase "
-                    "of four or more words quoted from the page"
+                    f"of {number(ANCHOR_PHRASE_WORDS)} or more words quoted from the page"
                 )
         return self
 
@@ -1189,14 +1191,14 @@ ARCHIVE_AFTER_DAYS = 60
 # says how often a row is checked reads the phrase from here, and freetier-check
 # holds the workflow's cron and the hand-written files to it (see claims).
 PROBE_WEEKDAYS = (1, 4)
-_TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
+TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
                  4: "four times a week", 5: "five times a week", 6: "six times a week",
                  7: "every day"}
 
 
 def probe_frequency(weekdays: tuple[int, ...] = PROBE_WEEKDAYS) -> str:
     """How often the list says a row is checked, in the words its pages use."""
-    return _TIMES_A_WEEK[len(set(weekdays))]
+    return TIMES_A_WEEK[len(set(weekdays))]
 
 
 # Consecutive FAILs before a row is buried. Two is a vendor reshuffling a

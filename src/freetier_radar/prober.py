@@ -351,6 +351,9 @@ CODEX_PROBE_TOOL = {
 # ends a turn it can use.
 CODEX_DONE = "response.completed"
 CODEX_BROKEN = ("response.failed", "response.incomplete", "error")
+# What a read of the stream stops at: "error" is left to the parse, being a
+# word any text can hold.
+CODEX_STREAM_ENDS = (CODEX_DONE, *CODEX_BROKEN[:2])
 # How much of a stream is read before the turn counts as unfinished.
 CODEX_READ_CAP = 256 * 1024
 
@@ -403,7 +406,7 @@ def _codex_said(answer: tuple[int, str] | str) -> str:
     if status < 300:
         return (f"HTTP {status}, a stream ending in {events[-1]}" if events
                 else f"HTTP {status} without a Responses stream")
-    said = " ".join(text.split())[:160]
+    said = _said(text)
     return f"HTTP {status}" + (f": {said}" if said else "")
 
 
@@ -426,11 +429,7 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
                 text = ""
                 async for chunk in resp.aiter_text():
                     text += chunk
-                    # The events that end a stream; "error" is left to the parse,
-                    # being a word any text can hold.
-                    if (len(text) > CODEX_READ_CAP or any(
-                            e in text for e in (CODEX_DONE, "response.failed",
-                                                "response.incomplete"))):
+                    if len(text) > CODEX_READ_CAP or any(e in text for e in CODEX_STREAM_ENDS):
                         break
                 return resp.status_code, text
         except httpx.HTTPError as exc:
@@ -928,11 +927,17 @@ async def _border_dns(client: httpx.AsyncClient, entry: Entry, attempts: int,
     return " | ".join(notes) or None
 
 
+def _said(text: str) -> str:
+    """The start of a body a note quotes, whitespace folded: enough to tell an
+    error's words, short enough for one line of the report."""
+    return " ".join(text.split())[:160]
+
+
 def _keyless_said(answer: httpx.Response | str) -> str:
     """A non-answer as the run reports it; a 2xx here is one without a completion."""
     if isinstance(answer, str):
         return answer
-    said = " ".join(answer.text.split())[:160]
+    said = _said(answer.text)
     return (f"HTTP {answer.status_code}" + (" without a completion" if answer.status_code < 300 else "")
             + (f": {said}" if said else ""))
 

@@ -22,9 +22,9 @@ from urllib.parse import urlparse
 import httpx
 
 from .models import domain_of, is_covered, under
+from .prober import UA
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
-UA = {"User-Agent": "freetier-radar/0.2"}
 
 # The lists read on every run. Their opposite is sources.yaml: lists read once
 # and put down, with the date and the reason. A candidate feed belongs in one

@@ -24,8 +24,8 @@ from .gate import EARNED
 from .layout import MAP, Kind
 from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
                      CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
-                     PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, load_registry,
-                     probe_frequency)
+                     PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, TIMES_A_WEEK, WATCH_RECHECK_DAYS,
+                     load_registry, probe_frequency)
 from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
@@ -167,8 +167,7 @@ CLAIMS: tuple[Claim, ...] = (
 # The hand-written files that say how often the list is checked.
 SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/banner-dark.svg",
              "assets/banner-light.svg", "assets/social-preview.svg")
-_FREQUENCY = re.compile(r"\b(?:once|twice|three times|four times|five times|six times) a week\b"
-                        r"|\bevery day\b")
+_FREQUENCY = re.compile(r"\b(?:" + "|".join(map(re.escape, TIMES_A_WEEK.values())) + r")\b")
 
 
 def _line(text: str, at: int) -> int:
