@@ -1072,13 +1072,20 @@ def test_a_trickling_backend_is_cut_off_at_its_wall_clock_deadline():
 
 def test_an_expired_run_budget_stops_a_backend_being_called_at_all():
     """The budget belongs to the run, not to the call: once it is gone, opening
-    another connection only delays the report the workflow still has to write."""
+    another connection only delays the report the workflow still has to write —
+    and that includes the catalog a backend reads to pick its model."""
+    def refuse(request):
+        raise AssertionError(f"a spent budget opened a connection to {request.url}")
+
     spent = Deadline(0.0, clock=ticking(1.0))
-    with httpx.Client() as http:
+    with httpx.Client(transport=httpx.MockTransport(refuse)) as http:
         llm = LLMClient(custom_base_url="https://x.example/v1", custom_model="m",
-                        http=http, deadline=spent)
-        with pytest.raises(RuntimeError, match="no wall-clock budget left"):
-            llm.complete("hi")  # _post checks the budget before it opens a connection
+                        openrouter_key="k", http=http, deadline=spent)
+        with pytest.raises(RuntimeError, match="all LLM backends failed") as failed:
+            llm.complete("hi")
+    said = str(failed.value)
+    assert "opened a connection" not in said, said
+    assert said.count("no wall-clock budget left") == 3, said  # custom, openrouter, ovh
 
 
 def test_a_phase_budget_is_a_slice_of_the_run_and_expires_before_it():

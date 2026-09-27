@@ -613,25 +613,31 @@ class LLMClient:
 
     def _openrouter(self, prompt: str) -> str:
         if self._or_model is None:
-            self._or_model = pick_openrouter_model(self._http)
+            self._or_model = pick_openrouter_model(self._http, self._list_timeout())
         return self._chat(OPENROUTER_BASE_URL, self._or_model, self._or_key, prompt)
 
     def _ovh(self, prompt: str) -> str:
         if self._ovh_model is None:
-            self._ovh_model = pick_ovh_model(self._http)
+            self._ovh_model = pick_ovh_model(self._http, self._list_timeout())
         return self._chat(OVH_BASE_URL, self._ovh_model, None, prompt)
 
+    def _list_timeout(self) -> float:
+        """The catalog read a backend picks its model from is held to the run's
+        budget like the call itself: a spent budget reads no catalog."""
+        return min(MODELS_LIST_TIMEOUT, self._budget())
 
-def _list_model_ids(http: httpx.Client, base_url: str) -> list[str]:
-    r = http.get(f"{base_url}/models", timeout=MODELS_LIST_TIMEOUT)
+
+def _list_model_ids(http: httpx.Client, base_url: str,
+                    timeout: float = MODELS_LIST_TIMEOUT) -> list[str]:
+    r = http.get(f"{base_url}/models", timeout=timeout)
     r.raise_for_status()
     return [str(m.get("id", "")) for m in r.json().get("data", []) if isinstance(m, dict)]
 
 
-def pick_openrouter_model(http: httpx.Client) -> str:
+def pick_openrouter_model(http: httpx.Client, timeout: float = MODELS_LIST_TIMEOUT) -> str:
     """Pick a currently-listed :free model so the fallback never rots."""
     try:
-        ids = _list_model_ids(http, OPENROUTER_BASE_URL)
+        ids = _list_model_ids(http, OPENROUTER_BASE_URL, timeout)
     except (httpx.HTTPError, json.JSONDecodeError):
         return FALLBACK_OPENROUTER_MODEL
     free = [i for i in ids if i.endswith(":free")]
@@ -642,9 +648,9 @@ def pick_openrouter_model(http: httpx.Client) -> str:
     return free[0] if free else FALLBACK_OPENROUTER_MODEL
 
 
-def pick_ovh_model(http: httpx.Client) -> str:
+def pick_ovh_model(http: httpx.Client, timeout: float = MODELS_LIST_TIMEOUT) -> str:
     """Pick a live model on the anonymous OVH endpoint (errors fail the backend over)."""
-    ids = _list_model_ids(http, OVH_BASE_URL)
+    ids = _list_model_ids(http, OVH_BASE_URL, timeout)
     for hint in OVH_PREFERRED_HINTS:
         for model_id in ids:
             if hint in model_id.lower():
