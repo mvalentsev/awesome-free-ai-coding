@@ -5253,9 +5253,9 @@ entries:
   - https://impossibl.com/docs/billing
   - https://impossibl.com/docs/integrations
   card_required: false
-  offering: Prepaid gateway at provider list prices over 128 models, Claude, GPT,
-    Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with
-    $0.05 and adds $1 once a person claims it by email — no card
+  offering: Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek
+    and GLM among its models, whose keyless sign-up funds an account with $0.05 and
+    adds $1 once a person claims it by email — no card
   limits: 'An account is one POST with no key, and the llms.txt says what it carries:
     "an agent-created account has $0.05; claiming adds an extra $1" — the claim is
     an email sign-in, the dollar "granted once per human". The billing page narrows

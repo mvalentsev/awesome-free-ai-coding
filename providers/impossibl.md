@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Impossibl free tier: limits, free models, verified 2026-09-27'
-description: 'Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an…'
+description: 'Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an agent-created…'
 permalink: /providers/impossibl/
 last_modified_at: 2026-09-27
 crumb: Impossibl
@@ -15,7 +15,7 @@ crumb: Impossibl
 
 ## What you get
 
-Prepaid gateway at provider list prices over 128 models, Claude, GPT, Gemini, DeepSeek and GLM among them, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card
+Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card
 
 ## Free models
 
