@@ -307,3 +307,126 @@
     A pool of keys rotated past each key's rate limit is key sharing in the
     operator's own words, and its "Free plan for all users — 100k tokens/day,
     forever" runs on that pool (read 2026-09-21).
+# Read 2026-09-27 from the originals of a promoter's forks of free-AI-API lists
+# (gekoan/awesome-free-ai-api-credits, YoannDev90/awesome-free-ai-api and the
+# directories they cite): relays that state their supply in their own words or
+# their own published code. A relay on those lists that states nothing is not
+# here — a price, a sign-up bonus or a check-in reward is not a cause.
+- domain: 8s.hk
+  reason: >-
+    A new-api relay whose own notices and group labels name its supply: "新上线分组：
+    源头GPT，plus订阅纯官方逆向" (a new group: GPT through a Plus subscription on a
+    reverse-engineered official client) and "由于号池及渠道成本上涨" (as the account
+    pool and channel costs rose) at 8s.hk/api/status, and the groups "codex plus号池"
+    (a Codex Plus account pool) and image2-chatgpt, "web的逆向" (reverse-engineered
+    from the web app), at 8s.hk/api/pricing (read 2026-09-27).
+- domain: jucodex.com
+  reason: >-
+    A new-api relay on pooled consumer subscriptions in its own words: its notice
+    says it "搜刮了一批美国实体信用卡订阅了少量美区200$的pro" (gathered a batch of US
+    physical credit cards to subscribe a few US $200 Pro plans) and guards "这批号"
+    (this batch of accounts) against bans (jucodex.com/api/status), and its groups
+    are "plus+team混合号池" (a mixed Plus and Team account pool) and "OpenRouter/ZeroCode
+    反代" (a reverse proxy of OpenRouter and ZeroCode) at jucodex.com/api/pricing
+    (read 2026-09-27).
+- domain: futureppo.top
+  reason: >-
+    The relay at api.futureppo.top labels its groups by their supply:
+    "openrouter免费key号池" (a pool of free OpenRouter keys), "一些万key号池" (pools of
+    tens of thousands of keys) and "GrokHeavy逆向" (a reverse-engineered Grok Heavy)
+    at api.futureppo.top/api/pricing, the last one also announced at
+    /api/status (read 2026-09-27). Key pools and reverse engineering in the
+    operator's own labels.
+- domain: soulecho.cc
+  reason: >-
+    The relay at ai.soulecho.cc announces "kiro claude 反代 4 号池分组" (a group of
+    Claude through Kiro, reverse-proxied over four account pools) and a "team pro
+    x5 号池" (a pool of Team and Pro accounts) at ai.soulecho.cc/api/status, and
+    sells a "ChatGPT Pro号池" (a ChatGPT Pro account pool) group at /api/pricing
+    (read 2026-09-27).
+- domain: ourchat.shop
+  reason: >-
+    States it in its notice at ourchat.shop/api/notice: "企业组为官key，其他组为反代"
+    (the enterprise group runs on official keys; every other group is a reverse
+    proxy), read 2026-09-27.
+- domain: aipm9527.online
+  reason: >-
+    The relay at emtf.aipm9527.online announces "号池问题已修复完毕" (the account-pool
+    problem is fixed) and "claude仅限cc使用" (Claude for Claude Code only) at
+    emtf.aipm9527.online/api/status (read 2026-09-27): an account pool in the
+    operator's own words.
+- domain: qianxing.pro
+  reason: >-
+    The relay at fast.qianxing.pro warns its users that abuse "已造成号池账号大批量封禁"
+    (has got the pool's accounts banned in bulk), at fast.qianxing.pro/api/status
+    (read 2026-09-27): its supply is a pool of accounts.
+- domain: tokenbom.com
+  reason: >-
+    Key sharing by design, in its own page description: "闲置 AI API 额度共享市场：
+    提供者接入用不完的额度赚积分" (a market for sharing idle AI API quota: providers
+    connect the quota they cannot use up and earn points), and developers call it
+    through an OpenAI-compatible endpoint (tokenbom.com, read 2026-09-27).
+- domain: paxsenix.org
+  reason: >-
+    Says so on its own front page: "Several PaxSenix API endpoints leverage public
+    scraping and compatibility-focused reverse engineering" — and its free tier
+    serves proprietary models (api.paxsenix.org, read 2026-09-27).
+- domain: ohmygpt.com
+  reason: >-
+    Its announcements tie its Claude Code and Codex channels to consumer
+    subscriptions: "we are currently unable to register new Claude subscription
+    accounts. Therefore, the CC service on this site will be temporarily
+    suspended" (2025-11-26) and "since the 5-hour limit for the CodeX subscription
+    plan was recently restored … the CodeX" channel is back (2026-09-05), both on
+    ohmygpt.com/announcements, read 2026-09-27. Pooled consumer accounts in the
+    operator's own words, whatever its other routes run on.
+- domain: anymodel.org
+  reason: >-
+    Resells a consumer coding subscription as an API, in its own blog: "Upstream
+    Kimi K3 основан на подписочной ёмкости" (the Kimi K3 upstream runs on
+    subscription capacity) and the model "обслуживается через подключённую ёмкость
+    Kimi Code" (is served through connected Kimi Code capacity) —
+    anymodel.org/ru/blog/kimi-k3-api-pricing-context-window-and-best-use-cases,
+    read 2026-09-27.
+- domain: vyceai.com
+  reason: >-
+    Its own published code farms free tiers: the site's bundle
+    (vyceai.com/assets/index-CY9qGVzm.js, read 2026-09-27) ships the calls
+    bulk_import_grok_accounts, generate_agnes_accounts, start_tokenharbor_provision
+    and fetch_free_proxies — accounts generated in bulk on Agnes AI and Token
+    Harbor, two offers this list carries, behind a pool of free proxies.
+- domain: apinex.bond
+  reason: >-
+    Resells the account farms above: its bundle (apinex.bond/assets/index-CiF0pRKL.js,
+    read 2026-09-27) lists AnyModel, VyceAI (Media) and a "Th3ryks Pool" among its
+    upstreams and keeps VyceAI session cookies because they "are used for automatic
+    daily reward claims (10$/day at 00:01:00 UTC)".
+- domain: crax.lol
+  reason: >-
+    Serves GLM through Z.ai's consumer chat: its script at gpt.crax.lol/script.js
+    reads "Z.ai GLM chat models (chat.z.ai web client)", and its other models "were
+    removed 2026-09-26 with the OneCompiler backend, which was their only serving
+    path" — another product's web client in both cases (read 2026-09-27).
+- domain: tokenreply.com
+  reason: >-
+    Names its channels after consumer IDE and CLI accounts: "Limited-time access
+    via: claude_kiro, gemini_antigravity, gemini_cli" at tokenreply.com/api/status
+    (read 2026-09-27) — Claude through Kiro, Gemini through Antigravity and through
+    Gemini CLI, none of which is an API a vendor sells for resale.
+- domain: resurge.one
+  reason: >-
+    Redirects to www.tokenreply.com, the relay above, and is listed by directories
+    under its own name (read 2026-09-27).
+- domain: anyrouter.dev
+  reason: >-
+    Key sharing by design, on its front page: members sign up for providers'
+    free and trial tiers and donate the keys "into one big shared pool — free
+    tokens for everyone. Donate a key, grow the pool, ride free" (anyrouter.dev,
+    read 2026-09-27).
+- domain: xiu.ai
+  reason: >-
+    XiuRouter (router.xiu.ai) is a new-api relay selling Claude and GPT at up to
+    93% off, and its operator's own docs sell consumer accounts and verification
+    around them: order types "直接购买账号" (buy an account outright) and one-time
+    services "接码、身份认证协助" (receiving SMS codes, help with identity checks) at
+    docs.xiu.ai/glossary (read 2026-09-27).
