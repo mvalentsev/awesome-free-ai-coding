@@ -377,6 +377,19 @@ def test_the_page_names_the_strong_models_the_readme_does(tmp_path):
     assert "within 25 points" in start
 
 
+def test_the_page_ranks_the_strong_models_as_the_readme_chart_does(tmp_path):
+    """The page's strong models run in the README chart's order, the highest
+    score first, each with its score — one ranking, not a second by breadth."""
+    from test_render import SCORES, _strong_rows
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, _strong_rows())
+    html = render_site(registry, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY, scores=SCORES)
+    start = html.split('<section id="start">')[1].split("</section>")[0]
+    # glm-5.3 has two rows and kimi-k3 one, but kimi-k3 scores higher
+    assert start.index(">kimi-k3<") < start.index(">glm-5.3<")
+    assert '<span class="score">45.9</span>' in start and '<span class="score">44.8</span>' in start
+
+
 def test_a_link_to_the_model_index_opens_it(tmp_path):
     """The model index is folded on the page, and the README sends a reader
     after one model straight to it: the fold carries the id the link names, and

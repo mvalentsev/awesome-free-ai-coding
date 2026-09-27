@@ -253,6 +253,7 @@ details.more[open] { flex-basis: 100%; }
 .files th, .files td { text-align: left; vertical-align: top; padding: 10px 12px;
   border-top: 1px solid var(--line-soft); }
 .files th { width: 26%; white-space: nowrap; font-weight: 600; }
+.score { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
 .changes { list-style: none; margin: 0; padding: 0; }
 .changes li { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 10px 0;
   border-top: 1px solid var(--line-soft); font-size: .93rem; }
@@ -473,77 +474,78 @@ tr.flash { animation: flash 1.6s ease-out; }
     <h3 style="margin-top:26px">Strong models, free</h3>
     <p class="sub" style="margin-bottom:10px">Each of these scores within 25 points of the top of the
       <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
-      Index</a>, re-read twice a week, and every row beside it serves it free.</p>
+      Index</a>, re-read twice a week, and every row beside it serves it free — the highest
+      score first.</p>
     <div class="scroll">
       <table class="files">
         <tbody>
           <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/">qwen3.8-27b</a></th>
-            <td><a href="https://groq.com">Groq</a> · <a href="https://llmtech.eu">LLM Tech</a> · <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a> · <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://regolo.ai/pricing/">Regolo AI</a> · <a href="https://vlm.run">VLM Run Gateway</a> · <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/">qwen3.8-max</a> <span class="score">45.4</span></th>
+            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
           </tr>
           <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/">deepseek-v4-flash</a></th>
-            <td><a href="https://routeway.ai">Routeway</a> · <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://atomcode.atomgit.com/">AtomCode</a> · <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/">glm-5.3-flash</a></th>
-            <td><a href="https://freebuff.com">Freebuff</a> · <a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/">deepseek-v4.1-flash</a></th>
-            <td><a href="https://freebuff.com">Freebuff</a> · <a href="https://tokenharbor.ai">Token Harbor</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/">gemini-3.6-flash</a></th>
-            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/">gemini-3.7-flash</a></th>
-            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/">gemini-3.8-flash</a></th>
-            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/">glm-5.2</a></th>
-            <td><a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://regolo.ai/pricing/">Regolo AI</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/">glm-5.3</a></th>
-            <td><a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://zcode.z.ai/en">ZCode (Z.ai)</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/">kimi-k3</a></th>
-            <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a> · <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/">muse-spark-1.3-contributor</a></th>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/">muse-spark-1.3-contributor</a> <span class="score">45.1</span></th>
             <td><a href="https://opencode.ai">opencode</a> · <a href="https://cline.bot">Cline</a></td>
           </tr>
           <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/">qwen3.8-flash</a></th>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/">glm-5.3</a> <span class="score">44.8</span></th>
+            <td><a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://zcode.z.ai/en">ZCode (Z.ai)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/">kimi-k3</a> <span class="score">43.6</span></th>
+            <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a> · <a href="https://aihubmix.com">AIHubMix (free models)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/">glm-5.3-flash</a> <span class="score">41.8</span></th>
+            <td><a href="https://freebuff.com">Freebuff</a> · <a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/">gemini-3.8-flash</a> <span class="score">40.9</span></th>
+            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/">qwen3.8-2.4t-a95b</a> <span class="score">39.9</span></th>
+            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/">qwen3.8-flash</a> <span class="score">39.8</span></th>
             <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://yolo-auto.com">Yolo-Auto</a></td>
           </tr>
           <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/">deepseek-v4-pro</a></th>
-            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/">gpt-6-luna</a></th>
-            <td><a href="https://zed.dev">Zed</a></td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/">muse-spark-1.2</a></th>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/">muse-spark-1.2</a> <span class="score">39.6</span></th>
             <td><a href="https://freebuff.com">Freebuff</a></td>
           </tr>
           <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/">qwen3.8-2.4t-a95b</a></th>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/">deepseek-v4.1-flash</a> <span class="score">39.5</span></th>
+            <td><a href="https://freebuff.com">Freebuff</a> · <a href="https://tokenharbor.ai">Token Harbor</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/">gemini-3.7-flash</a> <span class="score">39.1</span></th>
+            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/">gpt-6-luna</a> <span class="score">37.3</span></th>
+            <td><a href="https://zed.dev">Zed</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/">deepseek-v4-pro</a> <span class="score">36.0</span></th>
             <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
           </tr>
           <tr>
-            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/">qwen3.8-max</a></th>
-            <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/">deepseek-v4-flash</a> <span class="score">34.3</span></th>
+            <td><a href="https://routeway.ai">Routeway</a> · <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://atomcode.atomgit.com/">AtomCode</a> · <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/">gemini-3.6-flash</a> <span class="score">34.0</span></th>
+            <td><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a> · <a href="https://antigravity.google">Google Antigravity</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/">glm-5.2</a> <span class="score">33.7</span></th>
+            <td><a href="https://aihubmix.com">AIHubMix (free models)</a> · <a href="https://regolo.ai/pricing/">Regolo AI</a></td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/">qwen3.8-27b</a> <span class="score">33.7</span></th>
+            <td><a href="https://groq.com">Groq</a> · <a href="https://llmtech.eu">LLM Tech</a> · <a href="https://docs.hetzner.com/general/company-and-policy/experiments/inference/">Hetzner Inference API</a> · <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a> · <a href="https://regolo.ai/pricing/">Regolo AI</a> · <a href="https://vlm.run">VLM Run Gateway</a> · <a href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/">OVHcloud AI Endpoints</a></td>
           </tr>
         </tbody>
       </table>

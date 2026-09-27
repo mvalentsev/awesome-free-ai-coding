@@ -212,6 +212,7 @@ details.more[open] { flex-basis: 100%; }
 .files th, .files td { text-align: left; vertical-align: top; padding: 10px 12px;
   border-top: 1px solid var(--line-soft); }
 .files th { width: 26%; white-space: nowrap; font-weight: 600; }
+.score { color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
 .changes { list-style: none; margin: 0; padding: 0; }
 .changes li { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 10px 0;
   border-top: 1px solid var(--line-soft); font-size: .93rem; }
@@ -422,13 +423,14 @@ tr.flash { animation: flash 1.6s ease-out; }
     <h3 style="margin-top:26px">Strong models, free</h3>
     <p class="sub" style="margin-bottom:10px">Each of these scores within {{ strong_within }} points of the top of the
       <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
-      Index</a>, re-read {{ schedule }}, and every row beside it serves it free.</p>
+      Index</a>, re-read {{ schedule }}, and every row beside it serves it free — the highest
+      score first.</p>
     <div class="scroll">
       <table class="files">
         <tbody>
           {% for m in strong_models %}
           <tr>
-            <th scope="row">{{ chip(m.family, m.frontier) }}</th>
+            <th scope="row">{{ chip(m.family, m.frontier) }}{% if m.score is not none %} <span class="score">{{ '%.1f' % m.score }}</span>{% endif %}</th>
             <td>{% for p in m.providers %}<a href="{{ p.url }}">{{ p.name }}</a>{{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}</td>
           </tr>
           {% endfor %}

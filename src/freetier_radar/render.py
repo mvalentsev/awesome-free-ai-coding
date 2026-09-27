@@ -682,6 +682,18 @@ def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
     return pictures
 
 
+def _in_chart_order(strong: list[dict], scores: dict | None) -> list[dict]:
+    """The strong models as the chart ranks them (Chart.ranked) — the highest
+    score first, each with its `score` — and a model no score is kept for after
+    them, in its own order: one ranking for the README's chart, the list under
+    it and the site."""
+    kept = (scores or {}).get("families") or {}
+    scored = [{**m, "score": kept[m["family"]]["index"] if m["family"] in kept else None}
+              for m in strong]
+    return sorted(scored, key=lambda m: (m["score"] is None, -(m["score"] or 0),
+                                         m["family"] if m["score"] is not None else ""))
+
+
 def _strong_models(active: list[Entry]) -> list[dict]:
     """The models a reader comes for, and every row that serves each one free.
 
@@ -1101,13 +1113,11 @@ def build_context(entries: list[Entry], today: date,
     ]
     shared = _shared_facts(entries, today, watchlist, pages)
     hero = _hero(active, shared)
-    strong = shared["strong_models"][:README_STRONG]
-    chart = _chart(strong, load_scores() if scores is None else scores)
-    if chart is not None:
-        # The list folded under the chart answers "where" for the same bars, in
-        # the same order.
-        order = {b.family: i for i, b in enumerate(chart.ranked())}
-        strong = sorted(strong, key=lambda m: order.get(m["family"], len(order)))
+    scores = load_scores() if scores is None else scores
+    # The list folded under the chart answers "where" for the same bars, in
+    # the same order.
+    strong = _in_chart_order(shared["strong_models"][:README_STRONG], scores)
+    chart = _chart(strong, scores)
     return {**shared,
             "dot": DOT,
             "hero": hero,
@@ -1401,7 +1411,8 @@ def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
 def build_site_context(entries: list[Entry], today: date,
                        watchlist: list[Watched] | None = None,
                        history: list[Event] | None = None,
-                       pages: set[str] | None = None) -> dict:
+                       pages: set[str] | None = None,
+                       scores: dict | None = None) -> dict:
     """Everything index.html shows, derived from the registry the README is.
 
     The figures, the picks, the quickstart and the rules the page states are
@@ -1414,6 +1425,9 @@ def build_site_context(entries: list[Entry], today: date,
     facts = _shared_facts(entries, today, watchlist, pages)
     return {
         **facts,
+        # The README chart's ranking, with each model's score beside it.
+        "strong_models": _in_chart_order(facts["strong_models"],
+                                         load_scores() if scores is None else scores),
         "sections": _site_sections(active),
         "jsonld": _site_jsonld(facts["active_count"], facts["family_count"], today),
         "connections": _site_connections(_connectable(entries, today)),
@@ -2772,7 +2786,8 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
 
 
 def render_site(registry_path: Path, template_dir: Path, out_path: Path,
-                today: date | None = None, watchlist_path: Path | None = None) -> str:
+                today: date | None = None, watchlist_path: Path | None = None,
+                scores: dict | None = None) -> str:
     """index.html — what the Pages site serves at its root.
 
     Unlike the README's environment, this one autoescapes: every string on the
@@ -2794,7 +2809,7 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     context = build_site_context(entries, today,
                                  _watchlist_beside(registry_path, watchlist_path), history,
                                  model_pages(entries, history, today,
-                                             _published_beside(registry_path)))
+                                             _published_beside(registry_path)), scores)
     text = env.get_template(SITE_TEMPLATE).render(**context)
     out_path.write_text(text, encoding="utf-8")
     return text
