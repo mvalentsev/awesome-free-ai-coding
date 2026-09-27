@@ -31,7 +31,7 @@
 {% if starters %}
 **Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
 
-{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }} more]({{ s.page }}){% endif %}{{ '' }}
+{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }}&nbsp;more]({{ s.page }}){% endif %}{{ '' }}
 {% endfor %}
 
 {% endif %}

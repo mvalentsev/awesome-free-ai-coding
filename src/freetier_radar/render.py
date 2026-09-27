@@ -399,7 +399,7 @@ def _row_models(e: Entry, pages: set[str]) -> str:
     a count linking the row's page for the rest."""
     shown, more = _readme_families(e)
     return DOT.join(([_family_links(shown, pages, DOT)] if shown else [])
-                      + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else []))
+                      + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else []))
 
 
 def _row(e: Entry, pages: set[str]) -> dict[str, str]:

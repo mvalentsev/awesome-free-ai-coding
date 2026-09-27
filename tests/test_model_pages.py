@@ -552,7 +552,7 @@ def test_the_provider_index_and_the_checked_page_are_lists_a_phone_can_read():
     assert "| Provider |" not in index
     assert "## 🤖 Coding agents & CLIs" in index
     assert (f"- [A]({PAGES_URL}/providers/a/) — verified 2026-07-19\u00a0· `m-1`\u00a0· `m-2`\u00a0· `m-3`\u00a0· "
-            f"`m-4`\u00a0· `m-5`\u00a0· `m-6`\u00a0· `m-7`\u00a0· `m-8`\u00a0· [+2 more]({PAGES_URL}/providers/a/)") in index
+            f"`m-4`\u00a0· `m-5`\u00a0· `m-6`\u00a0· `m-7`\u00a0· `m-8`\u00a0· [+2\u00a0more]({PAGES_URL}/providers/a/)") in index
     checked = build_checked_page([watched("New", TODAY.isoformat())], TODAY)
     assert "| Service |" not in checked
     assert ("- **New**, checked `2026-07-19` — no free tier today <sub>**Reopens if:** they "
