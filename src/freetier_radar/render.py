@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import unicodedata
 import tempfile
 import textwrap
 from datetime import date, datetime, time, timedelta, timezone
@@ -13,7 +14,7 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .borders import SHARED, beyond_shared, left_out_of, load_yardstick, share
-from .countries import country_name
+from .countries import COUNTRIES, country_name
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
 from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
@@ -1103,6 +1104,21 @@ def build_context(entries: list[Entry], today: date,
             "changes": _change_rows(history or [], entries, today)}
 
 
+def _country_key(name: str) -> str:
+    """Where a reader looks for a country in a list: "mainland China" under C,
+    Åland under A."""
+    plain = unicodedata.normalize("NFKD", name.removeprefix("mainland ")).encode("ascii", "ignore")
+    return plain.decode().casefold()
+
+
+def _index_countries() -> list[dict]:
+    """Every country and territory a border can name, under the name a reader
+    looks for — "United Arab Emirates", not the article a sentence needs — in
+    the order a reader scans."""
+    named = [{"code": code, "name": country_name(code).removeprefix("the ")} for code in COUNTRIES]
+    return sorted(named, key=lambda c: _country_key(c["name"]))
+
+
 def build_index(entries: list[Entry], today: date,
                 watchlist: list[Watched] | None = None,
                 pages: set[str] | None = None) -> dict:
@@ -1116,6 +1132,9 @@ def build_index(entries: list[Entry], today: date,
              "page": provider_page_url(e.id)}
             for e in entries
         ],
+        # Every country a border can name, for a page that asks where the reader
+        # is (browse.html's picker): the codes the borders are recorded in.
+        "countries": _index_countries(),
         # Additive, like the watchlist: which rows serve each model free, the
         # question a machine asks of this list as often as a reader does, and
         # the page a model has where it has one.

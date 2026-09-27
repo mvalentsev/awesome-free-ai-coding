@@ -39,7 +39,8 @@ def test_browse_page_reads_only_fields_index_json_publishes():
                      "key_url": "https://x.ai/keys", "model_ids": ["a"],
                      "anthropic_base_url": "https://x.ai", "note": "n", "public_key": "k"},
                 data_use={"trains": "no", "quote": "We never train on your prompts",
-                          "url": "https://x.ai/privacy"})
+                          "url": "https://x.ai/privacy"},
+                border={"left_out": ["RU"], "on": TODAY, "source": "https://x.ai/terms"})
     live, gone, folded = build_index(
         [full, make(id="gone", retired_on=TODAY),
          make(id="folded", url="https://folded.example", duplicate_of="gone",
@@ -53,6 +54,9 @@ def test_browse_page_reads_only_fields_index_json_publishes():
     assert "e.archived_because" in html
     api_used = set(re.findall(r"\be\.api\.([a-z_]+)\b", html))
     assert api_used and api_used <= set(entry["api"]), api_used - set(entry["api"])
+    from freetier_radar.models import Border
+    border_used = set(re.findall(r"\be\.border\.([a-z_]+)\b", html))
+    assert border_used and border_used <= set(Border.model_fields), border_used - set(Border.model_fields)
     family_fields = {k for m in entry["models"] for k in m}
     family_used = set(re.findall(r"\bm\.([a-z_]+)\b", html))
     assert family_used and family_used <= family_fields, family_used - family_fields
@@ -137,3 +141,45 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
     run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
     assert run.returncode == 0, run.stderr
     assert json.loads(run.stdout) == [True, True, True, False, True]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_browse_page_keeps_to_the_offers_that_reach_where_the_reader_is():
+    """Every live row records its border since 2026-09-26 — the countries a
+    vendor serves, or the ones it leaves out — and until 2026-09-27 no page let
+    a reader ask "what here works where I am?". Where they are is picked from
+    the countries index.json names, and a row stays when its allow-list names
+    the country or its deny-list does not; a row with no border answers
+    anywhere."""
+    from test_site import _js_function
+
+    html = _html()
+    assert 'id="where"' in html and 'params.get("where")' in html
+    allow = build_index([make(border={"served": ["US", "CA"], "on": TODAY,
+                                      "source": "https://x.ai/regions"})], TODAY)["entries"][0]
+    deny = build_index([make(border={"left_out": ["RU", "CN"], "on": TODAY,
+                                     "source": "https://x.ai/terms"})], TODAY)["entries"][0]
+    harness = _js_function(html, "reaches") + f"""
+    var allow = {json.dumps(allow)}, deny = {json.dumps(deny)}, none = {{}};
+    console.log(JSON.stringify([reaches(allow, "US"), reaches(allow, "RU"), reaches(deny, "RU"),
+                                reaches(deny, "DE"), reaches(none, "RU"), reaches(allow, "")]));"""
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    assert json.loads(run.stdout) == [True, False, False, True, True, True]
+
+
+def test_the_index_names_every_country_a_border_can_name():
+    """The picker offers every country and territory the borders are recorded
+    in, under the name a reader looks for — not "the United Arab Emirates"
+    filed under T."""
+    from freetier_radar.countries import COUNTRIES
+    countries = build_index([make()], TODAY)["countries"]
+    assert [c["code"] for c in countries if c["code"] in COUNTRIES] == [c["code"] for c in countries]
+    assert {c["code"] for c in countries} == set(COUNTRIES)
+    names = {c["code"]: c["name"] for c in countries}
+    assert names["AE"] == "United Arab Emirates" and names["RU"] == "Russia"
+    from freetier_radar.render import _country_key
+    keys = [_country_key(c["name"]) for c in countries]
+    assert keys == sorted(keys)
+    order = [c["code"] for c in countries]
+    assert order.index("AX") < order.index("AL") and order.index("CN") < order.index("CO")

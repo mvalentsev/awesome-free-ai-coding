@@ -110,7 +110,10 @@ every border back — the names still on its page, the codes a vendor publishes 
 data, a host still silent from inside a country — and reports a change beside a
 row that stays verified; it never fails one. `freetier-borders` prints every
 row's share, the figure a rank is argued from, and `--refresh` reads the
-Innovation Graph's newest quarter into the committed snapshot.
+Innovation Graph's newest quarter into the committed snapshot. A reader asks the same
+data from browse.html's "Where you are" picker: a row stays when its allow-list
+names the country or its deny-list does not, out of the countries `index.json`
+lists — every one a border can name.
 
 The first four no-card agents are also the top of the README, with the models
 they hand you, so this ordering is the page's answer to "what do I use, then?"
