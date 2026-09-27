@@ -29,6 +29,7 @@ on:
       - "index.json"
       - "feed.xml"
       - "llms.txt"
+      - "assets/readme/*.svg"
       - "providers/*.md"
       - "models/*.md"
       - "browse.html"

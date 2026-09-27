@@ -30,7 +30,7 @@ from .prober import PROVISIONAL_PROMOTE_DAYS
 from .tiers import FRONTIER_WITHIN, SCORES_PATH, STRONG_WITHIN
 # The README's pictures, drawn from the figures below.
 from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Hero, chart_svg,
-                       chart_words, hero_svg, hero_words)
+                       chart_words, hero_svg, hero_words, radar_svg)
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import number, series, weeks
@@ -98,6 +98,8 @@ README_BUDGET = 80_000
 # GitHub serves an image the README names by a relative path from the same
 # commit, so the picture and the page it tops are always the same render.
 README_PICTURES = "assets/readme"
+# The site's mark beside its name: the README hero's radar, drawn with it.
+SITE_RADAR = f"{README_PICTURES}/radar.svg"
 # How far back the top of the README names the rows the list added.
 NEW_ROWS_DAYS = 7
 # The width the README asks for a picture at; GitHub scales it to the column.
@@ -668,13 +670,16 @@ def _chart(strong: list[dict], scores: dict | None) -> Chart | None:
 
 def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
     """Every picture the README names, by its path beside the README, in each
-    of its VARIANTS: the wide pair one palette each, the narrow one with both."""
+    of its VARIANTS: the wide pair one palette each, the narrow one with both —
+    and the site's mark, the hero's radar alone (SITE_RADAR)."""
     drawers = {"hero": lambda palette, narrow: hero_svg(hero, palette, narrow=narrow)}
     if chart is not None:
         drawers["strong"] = lambda palette, narrow: chart_svg(chart, palette, narrow=narrow)
     palettes = {"light": (LIGHT, False), "dark": (DARK, False), "narrow": (None, True)}
-    return {f"{README_PICTURES}/{name}-{variant}.svg": draw(*palettes[variant])
-            for name, draw in drawers.items() for variant in VARIANTS}
+    pictures = {f"{README_PICTURES}/{name}-{variant}.svg": draw(*palettes[variant])
+                for name, draw in drawers.items() for variant in VARIANTS}
+    pictures[SITE_RADAR] = radar_svg(hero)
+    return pictures
 
 
 def _strong_models(active: list[Entry]) -> list[dict]:
@@ -1415,6 +1420,7 @@ def build_site_context(entries: list[Entry], today: date,
         "archived": _site_archived_rows(entries, today),
         "changes": _site_changes(history or [], entries, today),
         "providers_url": providers_index_url(),
+        "radar": SITE_RADAR,
         # Serialised here, like the structured data: autoescaping would turn a
         # JSON document's quotes into entities.
         "search_config": json.dumps(_search_config(), ensure_ascii=False).replace("<", "\\u003c"),

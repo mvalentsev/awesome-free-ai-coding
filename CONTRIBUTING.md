@@ -830,12 +830,12 @@ cannot print two versions of it.
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
-| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and the strong models drawn against the top of the index, in each width and theme the README serves · not on the site | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
+| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and the strong models drawn against the top of the index, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
-| `assets/*.svg` | **page** — the banners and the social preview's source | — | `hand` |
+| `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
@@ -851,7 +851,7 @@ cannot print two versions of it.
 | `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
 | `_layouts/*.html` | **config** — the page every generated Markdown page is served in: one heading, the way back to the indexes, the breadcrumb · not on the site | — | `hand` |
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
-| `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the banners and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
+| `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
 | `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page and the IndexNow ping on a push · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the pinned actions' watcher · not on the site | — | `hand` |

@@ -438,13 +438,16 @@ def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
     assert keyless_row.endswith("| not needed |")
 
 
-def test_the_page_has_one_heading_and_it_is_the_banner(tmp_path):
-    """The front page has one <h1>, the banner image, whose alt text is the
-    words a search engine and a screen reader take for the page's name."""
+def test_the_page_has_one_heading_and_it_names_the_list(tmp_path):
+    """The heading is text — the list's name and what it is, beside the radar
+    the README's hero draws — so a search engine, a screen reader and a phone
+    all read it at any width."""
     html = _render([make(models=[{"family": "a"}])], tmp_path)
     assert html.count("<h1") == 1
     heading = html.split("<h1>")[1].split("</h1>")[0]
-    assert 'alt="awesome-free-ai-coding — legal free LLM APIs and coding agents' in heading
+    assert '<span class="name">awesome-free-ai-coding</span>' in heading
+    assert "Legal free LLM APIs &amp; coding agents" in heading
+    assert '<img src="assets/readme/radar.svg" width="300" height="300" alt="">' in html
 
 
 def test_the_search_reads_what_the_page_renders(tmp_path):

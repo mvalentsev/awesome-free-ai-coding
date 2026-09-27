@@ -31,9 +31,6 @@ exclude:
   # rendered under configs/ on GitHub, would arrive here with every folded note
   # unfolded. The site carries the same table on its own page.
   - configs/README.md
-  # The README's pictures, drawn for it and named by it alone; the site has its
-  # own banner.
-  - assets/readme
   - src
   - tests
   - templates

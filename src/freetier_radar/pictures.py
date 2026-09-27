@@ -23,8 +23,8 @@ from datetime import date
 from xml.sax.saxutils import escape
 
 __all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_UNTIL", "NARROW_BARS", "VARIANTS",
-           "Palette", "LIGHT", "DARK", "TONES", "Arc", "Hero", "hero_svg", "hero_words", "Bar",
-           "Chart", "chart_svg", "chart_words"]
+           "Palette", "LIGHT", "DARK", "TONES", "Arc", "Hero", "hero_svg", "hero_words",
+           "radar_svg", "Bar", "Chart", "chart_svg", "chart_words"]
 
 # One turn of the beam, in seconds.
 BEAM_PERIOD = 6.0
@@ -106,6 +106,7 @@ class _Frame:
 
 _WIDE = _Frame(width=1160, height=330, cx=178, cy=165, radius=128, dot=4.5)
 _NARROW = _Frame(width=600, height=820, cx=300, cy=200, radius=160, dot=5.5)
+_RADAR = _Frame(width=300, height=300, cx=150, cy=150, radius=128, dot=5.5)
 
 
 def _num(v: float) -> str:
@@ -194,15 +195,15 @@ def _style(palette: Palette | None) -> str:
 
 def _radar(frame: _Frame, arcs: tuple[Arc, ...]) -> list[str]:
     cx, cy, R = frame.cx, frame.cy, frame.radius
-    out = [f'<defs><radialGradient id="glow"><stop class="g0" offset="0"/>'
-           f'<stop class="g1" offset="1"/></radialGradient></defs>',
+    out = ['<defs><radialGradient id="glow"><stop class="g0" offset="0"/>'
+           '<stop class="g1" offset="1"/></radialGradient></defs>',
            f'<circle cx="{_num(cx)}" cy="{_num(cy)}" r="{_num(R)}" fill="url(#glow)"/>']
     out += [f'<circle class="ring" cx="{_num(cx)}" cy="{_num(cy)}" r="{_num(R * f)}" '
            f'fill="none" stroke-width="2" stroke-opacity="{o}"/>'
            for f, o in ((1 / 3, ".5"), (2 / 3, ".35"), (1, ".25"))]
     out.append(f'<path class="ring" d="M{_num(cx - R)} {_num(cy)}H{_num(cx + R)}'
                f'M{_num(cx)} {_num(cy - R)}V{_num(cy + R)}" stroke-width="2" '
-               f'stroke-opacity=".15"/>')
+               'stroke-opacity=".15"/>')
     # A rim segment per section, as long as its share of the rows.
     total = sum(a.count for a in arcs) or 1
     start, rim = 0.0, R + frame.dot + 5
@@ -316,6 +317,21 @@ def hero_svg(hero: Hero, palette: Palette | None, narrow: bool = False) -> str:
              *(_narrow_words(hero) if narrow else _wide_words(hero)),
              "</svg>"]
     return "\n".join(parts) + "\n"
+
+
+def radar_svg(hero: Hero) -> str:
+    """The hero's radar alone, square, both palettes in one file and the
+    reader's theme choosing: the site's mark beside its name, which the page
+    prints as text."""
+    frame = _RADAR
+    return "\n".join([
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{frame.width}" '
+        f'height="{frame.height}" viewBox="0 0 {frame.width} {frame.height}" role="img" '
+        f'aria-labelledby="title">',
+        f'<title id="title">{escape(hero_words(hero))}</title>',
+        _style(None),
+        *_radar(frame, hero.arcs),
+        "</svg>"]) + "\n"
 
 
 @dataclass(frozen=True)

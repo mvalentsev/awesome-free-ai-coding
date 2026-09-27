@@ -1,8 +1,8 @@
 """What the hand-written files say about the code and the data, held to them.
 
 The pages are generated and state every rule from the constant that applies
-it; CONTRIBUTING.md, the site's config, the banners and browse.html are written
-by hand and cannot. So each sentence that states a figure the code applies is
+it; CONTRIBUTING.md, the site's config, the social preview's source and
+browse.html are written by hand and cannot. So each sentence that states a figure the code applies is
 listed here with the constant it states, how often the files in SCHEDULED say
 the list is checked is held to models.PROBE_WEEKDAYS (and so is the workflow's
 cron), and `freetier-check` refuses the sentence — or the constant — the day
@@ -165,8 +165,7 @@ CLAIMS: tuple[Claim, ...] = (
 
 
 # The hand-written files that say how often the list is checked.
-SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/banner-dark.svg",
-             "assets/banner-light.svg", "assets/social-preview.svg")
+SCHEDULED = ("CONTRIBUTING.md", "_config.yml", "browse.html", "assets/social-preview.svg")
 _FREQUENCY = re.compile(r"\b(?:" + "|".join(map(re.escape, TIMES_A_WEEK.values())) + r")\b")
 
 

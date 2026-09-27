@@ -74,10 +74,17 @@ p { margin: 0 0 12px; }
 .hero { padding: 40px 0 24px; background:
   radial-gradient(1100px 380px at 50% -140px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
   border-bottom: 1px solid var(--line-soft); text-align: center; }
-.hero img.banner { width: min(100%, 720px); height: auto; }
-/* The banner is the page's heading: its alt text is the heading a search
-   engine and a screen reader read, and the heading adds no space of its own. */
-.hero h1 { margin: 0; font-size: inherit; line-height: 0; }
+/* The list's name as text beside its radar, a dot per live offer: a phone reads
+   the name and the tagline at any width, which a picture of them scaled down lost. */
+.brand { display: flex; align-items: center; justify-content: center; gap: 24px; }
+.brand img { width: 148px; height: 148px; flex: none; }
+.brand h1 { margin: 0; text-align: left; font-size: inherit; }
+.brand .name { display: block; white-space: nowrap; letter-spacing: -.01em;
+  font: 700 clamp(1.1rem, 4.6vw, 2.5rem)/1.15 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+.brand .name::after { content: ""; display: block; height: 4px; margin-top: 8px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--ok), var(--accent)); }
+.brand .tagline { display: block; margin-top: 8px; font-size: 1.05rem; font-weight: 500; line-height: 1.35;
+  color: var(--muted); text-wrap: balance; }
 .lede { font-size: 1.15rem; color: var(--fg); max-width: 760px; margin: 18px auto 14px; }
 .lede b { font-weight: 650; }
 .meta { color: var(--muted); font-size: .9rem; margin: 0 0 18px; }
@@ -206,8 +213,10 @@ details.more[open] { flex-basis: 100%; }
   border-top: 1px solid var(--line-soft); }
 .files th { width: 26%; white-space: nowrap; font-weight: 600; }
 .changes { list-style: none; margin: 0; padding: 0; }
-.changes li { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line-soft);
-  font-size: .93rem; }
+.changes li { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 10px 0;
+  border-top: 1px solid var(--line-soft); font-size: .93rem; }
+/* The change itself takes the rest of the line, or a line of its own on a phone. */
+.changes li > span:last-child { flex: 1 1 220px; min-width: 0; }
 .changes time { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .changes .label { white-space: nowrap; }
 footer { margin-top: 56px; padding: 28px 0 40px; border-top: 1px solid var(--line-soft);
@@ -280,6 +289,7 @@ tr.flash { animation: flash 1.6s ease-out; }
 
 @media (max-width: 900px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats li:last-child { grid-column: 1 / -1; }
   .cols-3, .cols-2 { grid-template-columns: 1fr; }
   h2 { font-size: 1.35rem; }
 }
@@ -308,6 +318,21 @@ tr.flash { animation: flash 1.6s ease-out; }
   .palette-box { width: 100%; height: 100%; max-height: none; border-radius: 0; border: 0; }
   .palette-foot .keys { display: none; }
 }
+/* A phone: the radar shrinks beside the name, the three secondary links share
+   the second row of buttons, and the counters sit three to a row. */
+@media (max-width: 600px) {
+  .hero { padding-top: 28px; }
+  .brand { gap: 14px; }
+  .brand img { width: 84px; height: 84px; }
+  .brand .tagline { font-size: .86rem; }
+  .lede { font-size: 1.02rem; margin-top: 16px; }
+  .cta { gap: 8px; }
+  .btn { padding: 8px 12px; font-size: .9rem; }
+  .btn.minor { padding: 6px 10px; font-size: .84rem; box-shadow: none; }
+  .stats { gap: 8px; }
+  .stats li { padding: 10px 6px; }
+  .stats b { font-size: 1.4rem; }
+}
 </style>
 </head>
 <body>
@@ -315,11 +340,11 @@ tr.flash { animation: flash 1.6s ease-out; }
 
 <header class="hero" id="top">
   <div class="wrap">
-    <h1><picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-      <img class="banner" src="assets/banner-light.svg" width="1160" height="300"
-           alt="awesome-free-ai-coding — legal free LLM APIs and coding agents, probe-verified">
-    </picture></h1>
+    <div class="brand">
+      <img src="{{ radar }}" width="300" height="300" alt="">
+      <h1><span class="name">awesome-free-ai-coding</span>
+        <span class="tagline">Legal free LLM APIs &amp; coding agents</span></h1>
+    </div>
     <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
       free-model APIs for AI coding — probed {{ schedule }} against live model APIs and pricing pages;
       an offer that dies drops to the <a href="#archive">Archive</a> once {{ archive_after_failures }} runs in a row find it gone.</p>
@@ -337,8 +362,8 @@ tr.flash { animation: flash 1.6s ease-out; }
       <a class="btn primary" href="#start">Start here</a>
       <a class="btn" href="browse.html">▦ Table with filters</a>
       <a class="btn" href="{{ repo_url }}">★ GitHub</a>
-      <a class="btn" href="{{ feed_url }}">📡 Atom feed</a>
-      <a class="btn" href="llms.txt">🤖 llms.txt</a>
+      <a class="btn minor" href="{{ feed_url }}">📡 Atom feed</a>
+      <a class="btn minor" href="llms.txt">🤖 llms.txt</a>
     </div>
     <ul class="stats">
       <li><b>{{ active_count }}</b><span>live offers</span></li>

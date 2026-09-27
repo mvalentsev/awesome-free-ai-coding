@@ -5,7 +5,8 @@ from datetime import date
 import pytest
 
 from freetier_radar.pictures import (
-    BEAM_PERIOD, DARK, LIGHT, NARROW_SHOWN, WIDE_SHOWN, Arc, Hero, hero_svg,
+    BEAM_PERIOD, DARK, LIGHT, NARROW_SHOWN, WIDE_SHOWN, Arc, Hero, hero_svg, hero_words,
+    radar_svg,
 )
 
 HERO = Hero(live=80, no_card=76, models=150, strong=17, schedule="twice a week",
@@ -39,6 +40,20 @@ def test_the_radar_draws_one_dot_per_live_offer_in_its_section_colour(narrow):
     assert {tone: sum(1 for d in dots if d[0] == tone) for tone in
             ("agents", "apis", "trials", "aggregators")} == {
         "agents": 8, "apis": 31, "trials": 26, "aggregators": 15}
+
+
+def test_the_sites_mark_is_the_heros_radar_without_its_words():
+    """The site's mark beside its name is the hero's radar alone: a dot per live
+    offer in its section's colour, both palettes in one file for the reader's
+    theme, and no word to shrink on a phone."""
+    svg = radar_svg(HERO)
+    dots = _dots(svg)
+    assert len(dots) == 80 and {d[0] for d in dots} == {"agents", "apis", "trials", "aggregators"}
+    assert "@media (prefers-color-scheme: dark)" in svg
+    assert "<text" not in svg
+    assert re.search(r"<title[^>]*>(.*?)</title>", svg).group(1) == hero_words(HERO)
+    x, y = _centre(svg)
+    assert (x, y) == (_view_width(svg) / 2, _view_width(svg) / 2)
 
 
 @pytest.mark.parametrize("narrow", [False, True])

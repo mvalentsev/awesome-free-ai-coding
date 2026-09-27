@@ -117,8 +117,9 @@ MAP: tuple[Node, ...] = (
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("assets/readme/*.svg", Kind.GENERATED,
          "the README's pictures: the radar at the top, a dot per live row, and the strong models "
-         "drawn against the top of the index, in each width and theme the README serves",
-         made_from=("registry.yaml", _SCORES), written_by=("freetier-render",)),
+         "drawn against the top of the index, in each width and theme the README serves — and "
+         "the radar alone, the site's mark beside its name",
+         made_from=("registry.yaml", _SCORES), written_by=("freetier-render",), published=True),
     Node("providers/*.md", Kind.GENERATED,
          "a page per row, the provider index and the page of services checked",
          made_from=("registry.yaml", "history.jsonl", "watchlist.yaml", "blocklist.yaml"),
@@ -133,7 +134,7 @@ MAP: tuple[Node, ...] = (
     Node("404.html", Kind.PAGE,
          "what Pages serves for an address the site does not have, offering the rows that "
          "name what the address asked for", published=True),
-    Node("assets/*.svg", Kind.PAGE, "the banners and the social preview's source",
+    Node("assets/*.svg", Kind.PAGE, "the favicon and the social preview's source",
          published=True),
     Node("assets/*.png", Kind.PAGE, "the social preview", published=True),
     Node("eb68c254f1e03877b906ccc800002691.txt", Kind.PAGE,
@@ -166,7 +167,7 @@ MAP: tuple[Node, ...] = (
     Node(".gitignore", Kind.CONFIG, "what git leaves alone"),
     Node(".imgbotconfig", Kind.CONFIG,
          "the images ImgBot leaves alone — all of them: the README's pictures are generated, the "
-         "banners and the preview's source keep their comments, and the preview's PNG is the one "
+         "favicon and the preview's source keep their comments, and the preview's PNG is the one "
          "uploaded to GitHub"),
     Node(".githooks/*", Kind.CONFIG,
          "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),
