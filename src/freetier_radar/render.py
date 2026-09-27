@@ -40,7 +40,8 @@ from .gate import committed_log
 from .layout import MAP, markdown_table
 
 __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
-           "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS", "README_STRONG",
+           "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS",
+           "README_STARTER_MODELS", "README_STRONG",
            "badge_colour",
            "is_archived", "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
@@ -130,6 +131,9 @@ README_NOTE_COLLAPSE = 300
 # the list starts. Four is what fits above the fold beside the quickstart; the
 # fifth-ranked agent is one section down either way.
 README_STARTERS = 4
+# How many of a starter's families Start here names, the strongest first, before
+# it links the row's page for the rest: a phone shows the line at a glance.
+README_STARTER_MODELS = 4
 # How many names answer each "I want…" line of the picks table. Three reads as
 # a choice; a fourth is the section itself, which starts one heading down.
 README_PICKS = 3
@@ -744,9 +748,15 @@ def _starters(active: list[Entry]) -> list[dict]:
     return [_starter(e) for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
 
 
+# The order a starter names its families in: the tiers a reader comes for first.
+_TIER_FIRST = {Tier.FRONTIER: 0, Tier.STRONG: 1, Tier.NOTABLE: 2}
+
+
 def _starter(e: Entry) -> dict:
-    families, more = _readme_families(e)
-    return {"name": e.name, "url": e.url, "families": families, "more": more,
+    tiers = {m.family: m.tier for m in e.models}
+    families = sorted(_families(e), key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
+    return {"name": e.name, "url": e.url, "families": families[:README_STARTER_MODELS],
+            "more": max(0, len(families) - README_STARTER_MODELS),
             "page": provider_page_url(e.id)}
 
 

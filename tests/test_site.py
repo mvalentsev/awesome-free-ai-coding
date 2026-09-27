@@ -317,14 +317,19 @@ def test_eight_families_or_fewer_are_all_on_the_readme_row(tmp_path):
     assert "`m-8`" in row and "more](" not in row
 
 
-def test_an_agent_in_the_start_block_names_eight_families_there_too(tmp_path):
+def test_an_agent_in_the_start_block_names_the_same_families_on_both_pages(tmp_path):
+    """The README's Start here and the site's name a starter's first
+    README_STARTER_MODELS families and link its page for the rest, alike."""
+    from freetier_radar.render import README_STARTER_MODELS
+    last, first_left = f"m-{README_STARTER_MODELS}", f"m-{README_STARTER_MODELS + 1}"
+    more = f"+{len(TEN) - README_STARTER_MODELS} more"
     pages = _render_everything([make(id="ag", category="agent-cli", models=TEN)], tmp_path)
-    start = pages["README.md"].split("## 🚀 Start here")[1].split("<sub>Every model name above")[0]
-    assert "`m-8`" in start and "`m-9`" not in start
-    assert "[+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/)" in start
+    start = pages["README.md"].split("## 🚀 Start here")[1].split("## ")[0]
+    assert f"`{last}`" in start and f"`{first_left}`" not in start
+    assert f"[{more}](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/)" in start
     card = pages[SITE_PAGE].split("Agent · no card")[1].split('<p class="sub"')[0]
-    assert ">m-8<" in card and ">m-9<" not in card
-    assert 'href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/">+2 more<' in card
+    assert f">{last}<" in card and f">{first_left}<" not in card
+    assert f'href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/ag/">{more}<' in card
 
 
 def test_a_row_that_needs_a_card_never_leads_the_no_card_rows_it_ties_with(tmp_path):

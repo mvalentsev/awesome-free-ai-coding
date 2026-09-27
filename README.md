@@ -23,9 +23,9 @@
 
 **Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
 
-- **[opencode](https://opencode.ai)** — `big-pickle` · `mimo-v2.5` · `ling-3.0-flash-fin` · `nemotron-3-ultra` · `nemotron-3.5-lightning` · `muse-spark-1.3-contributor`
-- **[Kilo Code](https://kilo.ai)** — `nemotron-3-ultra` · `nemotron-3-super` · `north-mini-code` · `step-3.7-flash` · `laguna-s-2.1` · `laguna-xs-2.1` · `nemotron-3.5-lightning` · `inkling-small` · [+4 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
-- **[Google Antigravity](https://antigravity.google)** — `gemini-3.1-pro` · `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss-120b`
+- **[opencode](https://opencode.ai)** — `muse-spark-1.3-contributor` · `mimo-v2.5` · `ling-3.0-flash-fin` · `nemotron-3-ultra` · [+2 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
+- **[Kilo Code](https://kilo.ai)** — `nemotron-3-ultra` · `step-3.7-flash` · `inkling-small` · `ling-3.0-flash-fin` · [+8 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
+- **[Google Antigravity](https://antigravity.google)** — `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` · `gemini-3.1-pro` · [+3 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 - **[Freebuff](https://freebuff.com)** — `glm-5.3-flash` · `deepseek-v4.1-flash` · `muse-spark-1.2`
 
 **Strong models, free.** Each of these scores within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read twice a week, and every row beside it serves it free:

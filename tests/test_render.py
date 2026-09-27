@@ -1325,6 +1325,21 @@ def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
     assert "| Agent |" not in start and "| I want… |" not in start
 
 
+def test_a_starter_names_its_strongest_models_first_and_links_the_rest():
+    """An agent in Start here leads with the models a reader comes for — frontier
+    and strong, then notable, each group in the row's order — and names a few,
+    linking its page for the rest, so a phone shows the line at a glance."""
+    from freetier_radar.render import README_STARTER_MODELS, _shared_facts
+    families = [{"family": "plain-1"}, {"family": "good", "tier": "notable", "aa_model": "good"},
+                {"family": "plain-2"}, {"family": "best", "tier": "strong", "aa_model": "best"},
+                {"family": "plain-3"}, {"family": "plain-4"}]
+    starter, = _shared_facts([make(id="ag", name="Ag", category="agent-cli", models=families)],
+                             TODAY)["starters"]
+    assert README_STARTER_MODELS == 4
+    assert starter["families"] == ["best", "good", "plain-1", "plain-2"]
+    assert starter["more"] == 2
+
+
 def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"

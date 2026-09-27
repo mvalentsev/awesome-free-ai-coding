@@ -116,7 +116,8 @@ names the country or its deny-list does not, out of the countries `index.json`
 lists — every one a border can name.
 
 The first four no-card agents are also the top of the README, with the models
-they hand you, so this ordering is the page's answer to "what do I use, then?"
+they hand you, the strongest first, so this ordering is the page's answer to
+"what do I use, then?"
 Nothing about it is typed by hand: change `rank` and both the section and that
 block follow. The "pick by what you need" table under it is the same ordering
 read three names deep per section, card-required rows left out; its frontier
