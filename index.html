@@ -121,7 +121,7 @@ p { margin: 0 0 12px; }
 .brand img { width: 148px; height: 148px; flex: none; }
 .brand h1 { margin: 0; text-align: left; font-size: inherit; }
 .brand .name { display: block; white-space: nowrap; letter-spacing: -.01em;
-  font: 700 clamp(1.1rem, 4.6vw, 2.5rem)/1.15 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  font: 700 clamp(0.9rem, 4.6vw, 2.5rem)/1.15 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
 .brand .name::after { content: ""; display: block; height: 4px; margin-top: 8px; border-radius: 2px;
   background: linear-gradient(90deg, var(--ok), var(--accent)); }
 .brand .tagline { display: block; margin-top: 8px; font-size: 1.05rem; font-weight: 500; line-height: 1.35;
@@ -373,6 +373,10 @@ tr.flash { animation: flash 1.6s ease-out; }
   .stats { gap: 8px; }
   .stats li { padding: 10px 6px; }
   .stats b { font-size: 1.4rem; }
+}
+@media (max-width: 360px) {
+  .brand { gap: 12px; }
+  .brand img { width: 72px; height: 72px; }
 }
 </style>
 </head>
