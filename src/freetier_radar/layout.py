@@ -1,19 +1,13 @@
 """The map of this repository: every file it tracks, what the file is, what it
 is made from and what writes it.
 
-The files here depend on each other the way a build does. The registry feeds
+The files here depend on each other the way a build does: the registry feeds
 every generated page and config, the history feeds the feed and the provider
 pages, the watchlist feeds the count on both front pages, and the scheduled run
-commits a list of them. Until 2026-09-24 that graph lived in people's heads and
-in CONTRIBUTING's prose, and every edge nobody wrote down was a slip waiting to
-happen: a watchlist commit that left the pages' count one behind (b1c7f4b), a fix
-that reached three of the five pages naming the LiteLLM groups (2717f60), a
-README edit the site never saw.
-
-So it is written down, once, here. `freetier-check` refuses a tracked file the
-map does not name, a line that names no file and a page the site serves or
-leaves out against the map; `freetier-render` prints the map into
-CONTRIBUTING.md; the scheduled run commits the files the map says it writes
+commits a list of them. `freetier-check` refuses a tracked file the map does
+not name, a line that names no file and a page the site serves or leaves out
+against the map; `freetier-render` prints the map into CONTRIBUTING.md; the
+scheduled run commits the files the map says it writes
 (`freetier-map paths run`); and the hand-edit guard asks the map before anyone
 edits a file only a command may write (`freetier-map may-edit`).
 """

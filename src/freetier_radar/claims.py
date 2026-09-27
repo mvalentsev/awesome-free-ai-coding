@@ -1,14 +1,13 @@
 """What the hand-written files say about the code and the data, held to them.
 
-The pages are generated, and state every rule from the constant that applies
-it. CONTRIBUTING.md, the site's config, the banners and browse.html are written
-by hand and cannot: CONTRIBUTING said "Three rows use it (`trae`, `upstage`,
-`siliconflow-cn`)" for a week after hpc-ai became the fourth, and "twice a
-week" is painted into three images. So each sentence that states a figure the
-code applies is listed here with the constant it states, the schedule is read
-off every hand-written file, and `freetier-check` refuses the sentence — or the
-constant — the day the two part. A claim whose sentence was reworded is
-reported too, since a claim that matches nothing checks nothing.
+The pages are generated and state every rule from the constant that applies
+it; CONTRIBUTING.md, the site's config, the banners and browse.html are written
+by hand and cannot. So each sentence that states a figure the code applies is
+listed here with the constant it states, how often the files in SCHEDULED say
+the list is checked is held to models.PROBE_WEEKDAYS (and so is the workflow's
+cron), and `freetier-check` refuses the sentence — or the constant — the day
+the two part. A claim whose sentence was reworded is reported too, since a
+claim that matches nothing checks nothing.
 """
 from __future__ import annotations
 
@@ -34,8 +33,7 @@ from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_P
                      README_STARTERS, README_STRONG)
 from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 from .validate import PROSE_LIMITS
-# The render's own words for a figure, so a sentence held here and the page
-# printing the same constant can never spell it two ways.
+# The render's own words for a figure (see words.py).
 from .words import number as _word, ordinal as _ordinal, series as _series, weeks as _weeks
 from .borders import SHARED
 from .countries import country_name
@@ -54,7 +52,8 @@ class Claim:
 
 
 def _no_row_sets(field: str) -> Callable[[Path], tuple[str, ...]]:
-    """"No row sets the field today" is true while no row does."""
+    """The truth of "No row sets the field today": "No" while no row sets
+    `field`, else the ids of the rows that do."""
     def truth(root: Path) -> tuple[str, ...]:
         rows = [e.id for e in load_registry(root / "registry.yaml")
                 if e.api and getattr(e.api, field)]

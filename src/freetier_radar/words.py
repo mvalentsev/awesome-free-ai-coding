@@ -3,10 +3,8 @@ span of days, a run of names.
 
 The render prints a rule's figure from its constant ("where two rows or more
 serve it free"), and `claims` holds a hand-written sentence to the same
-constant. Each kept its own table of number words until 2026-09-26, and two
-tables are two answers: a constant moved to six would have been "six" in
-CONTRIBUTING, held there by its claim, and "6" on every page the render
-wrote. One table here, for both.
+constant. Both take their words from here, so a figure is spelled one way on
+the pages and in CONTRIBUTING.
 """
 from __future__ import annotations
 

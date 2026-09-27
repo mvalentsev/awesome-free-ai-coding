@@ -4,11 +4,9 @@ under, Kosovo's XK included — with the name the pages print first and the
 spellings vendors use for it.
 
 A border is recorded as codes and read back off the vendor's page as names, so
-the table has two jobs, and the second one is where lists break. On 2026-09-25 a
-first mapping of Google's region list lost Côte d'Ivoire to its apostrophe,
-"Congo (DRC)" to its brackets and Cyprus to the words "Republic of"; every
-spelling a vendor has been read using is here, and a name the matcher cannot
-place is reported rather than guessed.
+every spelling a vendor has been read using is here — "Côte d'Ivoire" and
+"Cote d'Ivoire", "Congo (DRC)", "Republic of Cyprus" — and a name the matcher
+cannot place is reported rather than guessed.
 
 `codes_named` reads a page the way a person reads a list: the longest name at a
 place wins, so Guinea-Bissau, Papua New Guinea and Equatorial Guinea are not
@@ -285,9 +283,9 @@ NOT_COUNTRIES = ("New Jersey", "New Mexico", "Northern Ireland", "New Guinea", "
                  "Jersey City", "Turkey Point")
 
 # A client subnet inside the country, for asking a resolver what a host answers
-# there (EDNS Client Subnet): how CodeBuddy's border was measured on 2026-09-25,
-# when www.codebuddy.ai answered 0.0.0.1 to the first three and an address to
-# the fourth. A border measured this way can only name countries listed here.
+# there (EDNS Client Subnet) — how the run reads back a `read: dns` border such
+# as CodeBuddy's (prober._border_dns). Such a border can only name countries
+# listed here.
 DNS_SUBNETS = {
     "US": "73.0.0.0/24",    # Comcast
     "IN": "49.36.0.0/24",   # Reliance Jio

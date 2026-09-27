@@ -1,21 +1,7 @@
-"""Repository consistency check — every file this repo curates by hand, and the
-rules that hold *between* them.
-
-Why this exists as its own entry point rather than as more tests: `registry.yaml`
-was already validated on every push, because `freetier-render` loads it through
-pydantic and CI renders. `blocklist.yaml`, `dismissed.yaml` and `watchlist.yaml`
-were not loaded by anything except the scout — the optional half of the run,
-wrapped in a catch-all so an upstream failure cannot sink it. So a malformed one
-reached main and turned into a green workflow that had quietly done nothing
-(2026-08-14: a colon inside a plain YAML scalar).
-
-The cross-file rules are the second half. Each one is a contradiction that a
-human can hold in two files without noticing, and each one was found by hand at
-least once before it was written down here.
-
-`history.jsonl` joined them for a stronger reason: it is the one file here that
-cannot be regenerated from any other, and the only one whose line *order* is
-part of its meaning.
+"""Repository consistency check (`freetier-check`) — every file this repo
+curates by hand, and the rules that hold *between* them: each a contradiction
+a person can hold in two files without noticing. `check_repository` adds the
+rules about the repository as a whole.
 """
 from __future__ import annotations
 
@@ -93,11 +79,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(f"registry: duplicate {field} {v!r}")
             seen.add(v)
 
-    # Two rows for one service. A row is never deleted, so the second one is
-    # folded instead: it keeps its id, which is its page's URL, and names the
-    # row that holds the offer, the evidence and the history. Pointed at an id
-    # the registry does not have, the fold sends a reader to a page that is not
-    # built; pointed at another fold, to a pointer.
+    # A fold (duplicate_of, see Entry) names a row the registry holds that is
+    # not itself a fold: pointed at a missing id it sends a reader to a page
+    # that is not built; pointed at another fold, to a pointer.
     held = {e.id: e for e in entries}
     for e in entries:
         if e.duplicate_of is None:
@@ -113,11 +97,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 f"{target.duplicate_of} — duplicate_of names the row that keeps the service, "
                 f"not another pointer to it")
 
-    # And the way two rows for one service got here: MiMo Code and MiMoCode sat
-    # in the Archive two lines apart for two months — Xiaomi's agent, whose own
-    # README prints the name as one word, and a placeholder from the first day's
-    # seed at mimocode.ai, a domain that has never resolved. A spelling is not a
-    # service, and nothing compared the two names.
+    # Two names that differ only in case, spaces or punctuation read as one
+    # name: fold one row into the other, or name them apart.
     by_name: dict[str, Entry] = {}
     for e in entries:
         first = by_name.setdefault(re.sub(r"[^a-z0-9]", "", e.name.lower()), e)
@@ -128,12 +109,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
             f"they are one service, fold one into the other with duplicate_of; if they are "
             f"two, give them names a reader can tell apart")
 
-    # One family, one tier. The scout assigns the tier per proposal and nothing
-    # ever compared two rows, so the same model could be frontier on one vendor
-    # and strong on the next — nemotron-3-ultra was, across four rows, until
-    # 2026-08-19. It reads as a judgement about the vendor when it is a
-    # judgement about the model, and any page that ever sorts by it would sort
-    # the same model two ways.
+    # One family, one tier: a tier is a judgement about the model, not the
+    # vendor, and a page sorting by it would sort one model two ways.
     tiers: dict[str, tuple[str, str]] = {}
     for e in entries:
         for m in e.models:
@@ -146,11 +123,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"registry: family {m.family!r} is {first[0]} on {first[1]} and "
                     f"{tier} on {e.id} — a family carries one tier")
 
-    # And the tier is a measurement: nineteen of twenty-two frontier marks were
-    # below the bar by 2026-09-16, because nothing recorded what had been read.
-    # A family that carries a tier names the Artificial Analysis model it was
-    # read from, so `freetier-tiers` can read it again — and a family is one
-    # model, so every row names the same one.
+    # And the tier is a measurement: a family that carries one names the
+    # Artificial Analysis model it was read from, so `freetier-tiers` can read
+    # it again — and a family is one model, so every row names the same one.
     measured_as: dict[str, tuple[str, str]] = {}
     for e in entries:
         for m in e.models:
@@ -168,9 +143,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"registry: family {m.family!r} is measured as {first[0]} on {first[1]} and "
                     f"{m.aa_model} on {e.id} — a family is one model")
 
-    # An id kept out of the Models column on purpose is one the row lists and no
-    # family names: a router, a stealth codename, a model its own developer
-    # advises against agentic coding. Anything else is a decision about nothing,
+    # An id kept out of the Models column on purpose (no_family_ids) is one the
+    # row lists and no family names. Anything else is a decision about nothing,
     # and freetier-bars would go on asking for a family the row already has.
     for e in entries:
         lane = lane_ids(e)
@@ -209,8 +183,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
             if n.on > today:
                 problems.append(f"registry: {e.id} newcomers dates {n.family} {n.on}, after today")
 
-    # "A sum to spend names no model" was applied on 2026-09-25 by reading rows,
-    # and three were missed. Entry holds the rule wherever a row says which kind
+    # Entry holds "a sum to spend names no model" wherever a row says which kind
     # of free it is, so a live row has to say it.
     for e in entries:
         if e.free_part is None and not is_archived(e, today):
@@ -220,10 +193,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 "none (unnamed)")
 
     # CONTRIBUTING's border rule ranks an offer by the readers it leaves out, and
-    # until 2026-09-26 three rows said so in prose while Google, OpenAI and TRAE
-    # carried theirs unnamed. A rank argued from a share needs every row's
-    # border, so a live row says where its offer reaches, read on a day that
-    # has happened.
+    # a rank argued from a share needs every row's border: a live row says where
+    # its offer reaches, read on a day that has happened.
     for e in entries:
         if is_archived(e, today):
             continue
@@ -237,9 +208,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
 
     # The configs are written from api.model_ids alone: a family names a model,
     # an id is what a request carries. A connectable row whose column names
-    # families and lists no id would hand a reader nothing to call — and until
-    # 2026-09-25 the render wrote the family names in their place, `llama-4`
-    # for Cloudflare, whose ids are @cf/ paths.
+    # families and lists no id would hand a reader nothing to call.
     for e in entries:
         if (e.api and e.api.base_url and e.api.openai_compatible and e.models
                 and not e.api.model_ids and not is_archived(e, today)):
@@ -247,11 +216,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 f"registry: {e.id} names families but no api.model_ids — the configs call ids, "
                 f"never family names; list the vendor's exact ids")
 
-    # And any live connectable row lists an id, or says why it cannot: the
-    # configs are written from the ids and the row's page checks a reader's key
-    # with a call to one. Three rows whose free part is a sum had none until
-    # 2026-09-26, though CONTRIBUTING says such a row keeps a few to paste, and
-    # nothing asked.
+    # And any live connectable row lists an id, or says in api.no_ids why it
+    # cannot: the configs are written from the ids and the row's page checks a
+    # reader's key with a call to one.
     for e in entries:
         if (e.api and e.api.base_url and e.api.openai_compatible and not e.api.model_ids
                 and not e.api.no_ids and not is_archived(e, today)):
@@ -266,13 +233,11 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(
                 f"registry: {e.id} first_seen {e.first_seen} is after "
                 f"last_verified {e.last_verified}")
-        # README.md is published through GitHub Pages, which builds it with
-        # Jekyll — measured, not assumed: the root of the Pages site serves the
-        # README rendered by jekyll-readme-index even with a .nojekyll file
-        # beside it. So every vendor sentence copied into an entry passes through
-        # Liquid, and two adjacent braces in one of them fail the build. A failed
-        # build is the quiet kind: the previous deploy keeps serving, so the
-        # Atom feed simply stops moving with nothing on the page to say why.
+        # GitHub Pages builds README.md with Jekyll (jekyll-readme-index serves it
+        # at the site's root), so every vendor sentence copied into an entry
+        # passes through Liquid, and `{{` or `{%` in one fails the build. The
+        # failure is quiet: the previous deploy keeps serving, and the Atom feed
+        # stops moving with nothing on the page to say why.
         for field, text in (("offering", e.offering), ("limits", e.limits),
                             ("name", e.name), ("api.note", e.api.note if e.api else ""),
                             ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
@@ -283,9 +248,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"renders README.md with Jekyll and would fail to build it")
 
     # GitHub's sanitizer drops anything shaped like an HTML tag from README.md, and
-    # Jekyll passes it through to the provider page as markup nobody sees. opencode's
-    # note read "inside OpenCode the ids are opencode/<model-id>" in the registry and
-    # "opencode/." on the page for a week. Inside backticks it is code and survives.
+    # Jekyll passes it through to the provider page as markup nobody sees
+    # (opencode/<model-id> shows as "opencode/"). Inside backticks it is code and
+    # survives.
     for e in entries:
         for field, text in (("offering", e.offering), ("limits", e.limits), ("name", e.name),
                             ("api.note", e.api.note if e.api else ""),
@@ -297,10 +262,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
                     f"the page as an HTML tag; put it in backticks")
 
     # A row's prose is for the reader deciding whether to use the offer: the
-    # quota, the conditions, what happens to the data. By 2026-09-16 it had become
-    # the maintainer's log — the median `limits` grew from 87 characters in July
-    # to 813, the longest to 3,712, dated lane counts and which id left when —
-    # and README.md reached 260 KB. History lives in history.jsonl and git log.
+    # quota, the conditions, what happens to the data — not dated lane counts or
+    # which id left when. History lives in history.jsonl and git log.
     for e in entries:
         for field, text, limit in (("offering", e.offering, PROSE_LIMITS["offering"]),
                                    ("limits", e.limits, PROSE_LIMITS["limits"]),
@@ -327,12 +290,11 @@ def check(root: Path, today: date | None = None) -> list[str]:
                             f"first_seen {e.first_seen.isoformat()}")
 
     # Every page prints `offering` beside a row's Models line, the one list of its
-    # models the probe reads back and the two-week bar holds. On 2026-09-26
-    # twenty-eight rows of `models` named models in it anyway: opencode all six of
-    # its families, and ten rows models the line holds back — Freebuff two still
-    # inside their two weeks, LLM7 the ids it keeps out with a reason. A family
-    # any live row carries counts, and so does one of the row's own ids; a sum
-    # has no line to repeat and names what its amount buys.
+    # models the probe reads back and the two-week bar holds, so the offering
+    # names none — nor one the line holds back, still inside its two weeks or
+    # kept out with a reason. A family any live row carries counts, and so does
+    # one of the row's own ids; a sum has no line to repeat and names what its
+    # amount buys.
     known = {m.family for e in entries if not is_archived(e, today) for m in e.models}
     for e in entries:
         if e.free_part is not FreePart.MODELS or is_archived(e, today):
@@ -353,9 +315,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 f"the offer is")
 
     # ---- registry against blocklist.yaml
-    # We list it and we say it must never be proposed. One of the two is wrong.
-    # Archived rows are exempt for the watchlist's reason below: a row taken off
-    # the list and then rejected for cause — Kenari — is the intended sequence.
+    # A live row on a blocklisted domain is listed and refused at once. Archived
+    # rows are exempt: a row taken off the list and then rejected for cause is
+    # the intended sequence.
     for e in entries:
         if is_archived(e, today):
             continue
@@ -366,9 +328,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
     # A row a reviewer takes off keeps one line in the Archive; the account of
     # why lives in the file the scout reads before it proposes the vendor again —
     # the blocklist for a service rejected for cause, the watchlist for an offer
-    # that ended or never qualified. Kenari and easy-gonka-api each took three
-    # edits in one commit (delisted, blocklisted, api block dropped), and nothing
-    # held the three together.
+    # that ended or never qualified. A row rejected for cause keeps no api block.
     watched_domains = {d.lower() for w in watchlist for d in w.domains}
     for e in entries:
         if e.delisted is None or e.duplicate_of is not None:
@@ -437,9 +397,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
             seen_domains.add(d.lower())
 
     # ---- sources.yaml against discovery.py
-    # A list is either read on every run or written down as not worth reading.
-    # Holding both is the same contradiction the blocklist and the watchlist
-    # can hold about a vendor, and it costs a fetch twice a week to keep.
+    # A list is either read on every run or written down as not worth reading,
+    # never both: the same contradiction the blocklist and the watchlist can
+    # hold about a vendor.
     feed_keys = {_source_key(f) for f in CURATED_FEEDS}
     seen_sources: set[str] = set()
     for s in sources:
@@ -459,10 +419,10 @@ def check(root: Path, today: date | None = None) -> list[str]:
         seen_sources.add(key)
 
     # ---- history.jsonl
-    # The only file here that cannot be regenerated from another one, and the
-    # only one whose *order* carries meaning. Everything below is a way the log
-    # can stop being a faithful account of what was published — a replay built
-    # on a broken log silently re-announces events subscribers have already had.
+    # The log cannot be regenerated from another file, and its *order* carries
+    # meaning. Everything below is a way it can stop being a faithful account of
+    # what was published — a replay built on a broken log silently re-announces
+    # events subscribers have already had.
     history = load_history(root / "history.jsonl")
     live_ids: set[str] = set()
     previous = None
@@ -489,11 +449,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for entry_id in deleted_rows(entries, history):
         problems.append(f"registry: {deleted_row_problem(entry_id)}")
     # The day a row arrived, twice over: its page says "added on" from
-    # first_seen and "Added" from the log. Until 2026-09-24 the two disagreed on
-    # 61 of 96 rows — the run recorded a hand-added row up to four days late,
-    # and fifteen first_seen days were typed in local time.
-    # And the day it left, where a reviewer's delisting is what took it off:
-    # "delisted on" in the page's header, "Delisted" or "Archived" in its History.
+    # first_seen and "Added" from the log. And the day it left, where a
+    # reviewer's delisting is what took it off: "delisted on" in the page's
+    # header, "Delisted" or "Archived" in its History.
     added: dict[str, date] = {}
     left: dict[str, date] = {}
     for ev in history:
@@ -567,7 +525,7 @@ def check_repository(root: Path) -> list[str]:
     """The rules about the repository as a whole, beyond the curated files: the
     map (layout.MAP), what the hand-written files state (claims.CLAIMS), the
     map's own section in CONTRIBUTING.md and the registry's form."""
-    # Imported here: both read the constants this module defines.
+    # Imported here: claims imports PROSE_LIMITS from this module.
     from .claims import check_claims
     from .layout import check_layout
     from .render import CONTRIBUTING, MAP_BEGIN, MAP_END

@@ -21,10 +21,9 @@ GENERIC_KEYWORDS = frozenset({
     "no credit card required", "sign up", "get started",
 })
 
-# The same words on their own. A phrase is only as specific as the words it is
-# built from: "sign up for free and get started" is six words long and says
-# exactly as little as "free". Used to judge phrases the frozen set above cannot
-# enumerate — vendors word the same nothing in endless ways.
+# The same words on their own, to judge the phrases the frozen set above cannot
+# enumerate: a phrase is only as specific as the words it is built from, and
+# "sign up for free and get started" says as little as "free".
 GENERIC_WORDS = frozenset({
     "a", "access", "an", "and", "any", "api", "apis", "are", "available", "card",
     "credit", "credits", "for", "free", "get", "getting", "in", "is", "it", "limit",
@@ -103,10 +102,8 @@ DEAD_MARKERS = (
 
 # A bot wall answering HTTP 200. Cloudflare, Vercel's Security Checkpoint and
 # their kin serve a challenge page in place of the vendor's own; it carries none
-# of the probe keywords, so without this the check reads as "the free offer is
-# gone" and three runs later archives a service that never stopped working.
-# cto.new taught the mirror image — a probe that passes on the runner and
-# nowhere else — so a challenge is not a pass either: it is not an answer at all,
+# of the probe keywords, so taken for the vendor's page it would fail an offer
+# that never stopped working. Nor is it a pass: a challenge is no answer at all,
 # which is what INCONCLUSIVE is for.
 CHALLENGE_MARKERS = (
     "enable javascript to continue",
@@ -171,11 +168,9 @@ def _squash(s: str) -> str:
 
 def _id_squash(s: str) -> str:
     """_squash for a catalog id, where the dot goes too: Kenari lists the
-    registry's glm-4.7-flash, step-3.7-flash and laguna-s-2.1 as
-    glm-4-7-flash:free, step-3-7-flash:free and laguna-s-2-1:free. A page is
-    prose and keeps its dots — "Qwen 3 6B" must not read as qwen3.6 — but an
-    id is one token, and a version written with a hyphen is the same
-    version."""
+    registry's glm-4.7-flash as glm-4-7-flash:free. A page is prose and keeps
+    its dots — "Qwen 3 6B" must not read as qwen3.6 — but an id is one token,
+    and a version written with a hyphen is the same version."""
     return re.sub(r"[\s_.\-]+", "", s.lower())
 
 
@@ -207,13 +202,12 @@ _ANOTHER_COUNT = re.compile(r"a\d+b")
 
 
 def names_family(family: str, squashed: str, squash: Callable[[str], str]) -> bool:
-    """Whether `squashed` — a text already squashed with `squash` — names `family`: the family as a
-    substring, or — for a mixture-of-experts family — its name without the
-    active-parameter count, where no other count follows it. Regolo's price
-    table and id say qwen3.5-122b and Alibaba's page qwen3.5-122b-a10b, one
-    model; held to the longer spelling Regolo's row could not carry the
-    model's family, and held to the shorter one the model would have two pages
-    for good. qwen3-30b-a6b is not qwen3-30b-a3b."""
+    """Whether `squashed` — a text already squashed with `squash` — names
+    `family`: the family as a substring, or, for a mixture-of-experts family,
+    its name without the active-parameter count where no other count follows
+    it. So Alibaba's qwen3.5-122b-a10b also names Regolo's id for the same
+    model, qwen3.5-122b, and the model keeps one family and one page; but
+    qwen3-30b-a6b is not qwen3-30b-a3b."""
     if squash(family) in squashed:
         return True
     cut = _ACTIVE_PARAMETERS.search(family)
@@ -238,10 +232,9 @@ def family_names(family: str, model_id: str) -> bool:
 def id_family(families: Iterable[str], model_id: str) -> str | None:
     """The family an id is, among a row's families: the most specific one that
     names it. A family names every id it is a substring of, so where a row
-    carries glm-5 beside glm-5.2, coding-glm-5.2-free names both — and until
-    2026-09-26 the glm-5 page offered it as a glm-5 id, and a catalog could go
-    on vouching for glm-5 with it after glm-5's own id had left. Whose id it is
-    — on a model page, for a tier, for the probe — is decided here."""
+    carries glm-5 beside glm-5.2, coding-glm-5.2-free names both and is
+    glm-5.2's. Whose id it is — on a model page, for a tier, for the probe — is
+    decided here."""
     named = [f for f in families if family_names(f, model_id)]
     return max(named, key=lambda f: len(_id_squash(f)), default=None)
 
@@ -251,9 +244,8 @@ class ModelFamily(BaseModel):
     # A measurement, never a reputation (CONTRIBUTING, "tier: frontier is a
     # measurement"): how close the model this lane serves scores to the top of
     # the Artificial Analysis Intelligence Index, read by `freetier-tiers`. No
-    # tier means not measured, or measured below the strong bar. Until
-    # 2026-09-17 every family defaulted to `strong`, so Apertus 70B at 5 points
-    # and GLM 5.3 Flash at 42 carried the same word.
+    # tier means not measured, or measured below the notable bar (see
+    # tiers.measured_tier).
     tier: Tier | None = None
     superseded_by: str | None = None
     # The Artificial Analysis model the tier was read from: the slug of its page
@@ -337,22 +329,20 @@ class Probe(BaseModel):
     # page-keywords: keywords the vendor serves only inside the page's machinery
     # — a framework state blob, an OpenAPI enum, an i18n bundle. `keywords` is
     # read against what the page renders, because an id left behind in a script
-    # tag outlives the offer it was anchoring (Groq, 2026-09-08). Where the data
-    # blob IS the evidence, say so here and the whole response is searched.
+    # tag outlives the offer it was anchoring. Where the data blob IS the
+    # evidence, say so here and the whole response is searched.
     machinery_keywords: list[str] = []
     # api-models: the key a vendor lists its free lane under, for a document
     # that publishes lanes side by side instead of flagging rows. Cline's
     # recommended-models answers `recommended`, `free`, `clinePass` and
-    # `clineCloud` with no price anywhere, and one model can sit in two of them
-    # — DeepSeek V4 Flash was in the free lane and in the $9.99 plan on
-    # 2026-09-14 — so the lane is named rather than every array read. Unset,
-    # the rows are the document itself or its `data`, as in an OpenAI catalog.
+    # `clineCloud` with no price anywhere, and one model can sit in two of them,
+    # so the lane is named rather than every array read. Unset, the rows are the
+    # document itself or its `data`, as in an OpenAI catalog.
     lane: str | None = None
     # api-models: a keyless document in which the vendor marks which of the
-    # catalog's models are free, for a catalog that publishes no price. NVIDIA's
-    # /v1/models answered 82 ids on 2026-09-23 with nothing but the id and its
-    # owner, while build.nvidia.com marked 39 endpoints "Free Endpoint", and
-    # NGC's catalog search returns those marks for all of them in one call. The
+    # catalog's models are free, for a catalog that publishes no price: NVIDIA's
+    # /v1/models gives nothing but the id and its owner, and NGC's catalog
+    # search returns build.nvidia.com's "Free Endpoint" marks in one call. The
     # probe joins the list onto the catalog and reads it as it reads a price
     # (see prober.join_free_list), so it takes require_zero_price with it.
     free_list: str | None = None
@@ -383,8 +373,8 @@ class Probe(BaseModel):
     @model_validator(mode="after")
     def _zero_price_needs_a_price_list(self) -> Probe:
         """Only a models API publishes prices. Set on a page-keywords probe the
-        flag would silently do nothing, which is the worst outcome for a check
-        whose whole job is to notice a free model quietly acquiring a price."""
+        flag would silently do nothing, and a free model acquiring a price would
+        go unnoticed."""
         if self.require_zero_price and self.type is not ProbeType.API_MODELS:
             raise ValueError(
                 f"probe {self.endpoint}: require_zero_price needs an api-models probe"
@@ -416,24 +406,16 @@ class Probe(BaseModel):
         return self
 
 
-# How long an `api.notice` holds a refused keyless lane off the failure count.
-# Three FAILs archive a row in about ten days; a maintainer who has chosen to wait
-# for a vendor's word needs longer than that, and a vendor that has said nothing
-# for a month about breaking every other client has answered by its silence.
+# How long an `api.notice` holds a refused keyless lane off the failure count:
+# longer than the ARCHIVE_AFTER_FAILURES runs that would archive the row, to
+# wait for the vendor's word, and a vendor silent this long has answered.
 NOTICE_HOLD_DAYS = 30
 
 
 class Notice(BaseModel):
     """The list owning up, in its own voice, to a lane that does not work as
-    published while it waits for the vendor to say why.
-
-    opencode Zen began refusing every client but OpenCode itself on 2026-09-17
-    with `403 FreeTierError`, and OpenCode said nothing: no docs change, no
-    answer on the issues. The row could not honestly go on printing its curl as
-    the page's first command without a word, and removing a lane on a change the
-    vendor may yet walk back was a call the maintainer chose to wait on. This is
-    that word — dated, because it must be able to go stale, and linked to where
-    the problem is followed."""
+    published while it waits for the vendor to say why — dated, so it can go
+    stale (NOTICE_HOLD_DAYS), and linked to where the problem is followed."""
     since: date
     text: str
     url: str | None = None
@@ -462,10 +444,7 @@ class FreeSince(BaseModel):
     """A record older than this registry's own first read that shows an id
     free: a Wayback snapshot of the vendor's free list, the vendor's own
     snapshot of its lane. freetier-bars counts the two-week bar from the
-    earliest day it knows, and until 2026-09-25 it knew only the registry's
-    history and NVIDIA's free list, so the bars such a record set lived in a
-    maintainer's notes — Cline's DeepSeek V4.1 Flash in its lane since 09-14,
-    Alibaba's since 09-14 by Wayback, both dated 10-09 by the report."""
+    earliest day it knows, this record's included."""
     id: str
     on: date
     source: str  # the record itself, one a reader can open
@@ -492,10 +471,8 @@ class Newcomer(BaseModel):
     name yet: the family it will join as, the first day a record shows it free
     and that record — a Wayback snapshot of the page, the commit of this list
     that first named it in prose. A lane dates its ids from this registry's
-    history; a page row has no ids, so until 2026-09-27 the two weeks Freebuff's
-    and opencode's newcomers wait were counted in a maintainer's notes.
-    freetier-bars counts them from here, and the record goes when the family
-    joins."""
+    history; a page row has no ids, so freetier-bars counts a newcomer's two
+    weeks from here, and the record goes when the family joins."""
     family: str
     on: date
     source: str  # the record itself, one a reader can open
@@ -554,11 +531,7 @@ class ApiInfo(BaseModel):
     # Why the row lists no id to call, where it can list none: the vendor's
     # catalog answers only a key and no page it publishes names the ids
     # (SenseNova keeps them in a JavaScript console). Every other connectable
-    # row carries at least one — the configs are written from them, and the
-    # row's page checks a reader's key with a call to one. Until 2026-09-26
-    # nothing asked: three rows whose free part is a sum to spend had none,
-    # though CONTRIBUTING says such a row keeps a few to paste. Written only
-    # where set.
+    # row carries at least one (see freetier-check). Written only where set.
     no_ids: str = Field(default="", exclude_if=lambda v: not v)
     # The base of the vendor's Anthropic-format Messages API — the value Claude
     # Code's ANTHROPIC_BASE_URL takes, the client appending /v1/messages itself.
@@ -568,15 +541,12 @@ class ApiInfo(BaseModel):
     # same kind of fact, a connection detail this list publishes and the world
     # stopped backing.
     anthropic_base_url: str | None = None
-    # The header in which the vendor wants a stable id for each conversation.
-    # opencode Zen has answered a free id without x-opencode-session with 400
-    # MissingSessionID since 2026-09-07, and the rule OpenCode's team gives
-    # other clients is "any stable UUID per conversation". A LiteLLM entry is
-    # written once and cannot mint one, and OpenCode sends such a header only
-    # for its own built-in provider, so a row that sets this stays out of
-    # litellm.yaml and opencode.json; every place that tells a reader how to
-    # connect names the header, and the keyless probe and the README's
-    # quickstart curl send a fresh id.
+    # The header in which the vendor wants a stable id for each conversation,
+    # such as opencode Zen's x-opencode-session ("any stable UUID per
+    # conversation"). A config written once cannot mint one, so a row that sets
+    # this stays out of litellm.yaml and opencode.json (see render._configurable);
+    # every place that tells a reader how to connect names the header, and the
+    # keyless probe and the README's quickstart curl send a fresh id.
     session_header: str | None = None
     # The vendor asks every client to name itself in the User-Agent. OpenCode's
     # client rules read "Identify itself with its own user agent, such as
@@ -601,18 +571,15 @@ class ApiInfo(BaseModel):
     # the call, and OVHcloud answers an empty header value with 400 — so a lane
     # that sets this is left out of litellm.yaml; opencode's
     # @ai-sdk/openai-compatible adds the header only when given a key, and keeps
-    # the lane. Measured 2026-09-21: OVHcloud's anonymous lane and VLM Run's
-    # answered "Bearer none" with 403, Kilo's with 401 "Your authentication token
-    # is invalid". The keyless probe asks again every run and says when it
+    # the lane. The keyless probe asks again every run and says when it
     # changes, both ways. Written only where set.
     refuses_bearer: bool = Field(default=False, exclude_if=lambda v: not v)
-    # The lane takes the request Codex CLI sends, at base_url + /responses:
-    # Codex speaks only the OpenAI Responses API, and on 2026-09-27 Kilo's
-    # gateway answered it keyless while seventeen of the list's lanes answered
-    # 404. Set where a keyless call of that request completes, or where the
-    # vendor documents Codex; the row then gets a Codex profile of its own, and
-    # every run asks again — the whole request on a keyless lane, the route on a
-    # keyed one. Written only where set.
+    # The lane takes the request Codex CLI sends, at base_url + /responses
+    # (Codex speaks only the OpenAI Responses API). Set where a keyless call of
+    # that request completes, or where the vendor documents Codex; the row then
+    # gets a Codex profile of its own, and every run asks again — the whole
+    # request on a keyless lane, the route on a keyed one. Written only where
+    # set.
     responses_api: bool = Field(default=False, exclude_if=lambda v: not v)
     note: str = ""
     # A lane that does not work as published right now, owned up to while the
@@ -753,13 +720,10 @@ class ClientLane(BaseModel):
     Cline's free models are picked in Cline's own model picker — "Free model
     usage is not supported through the Cline API. Free models are only
     available in the Cline IDE Extension and CLI" — so the row has no endpoint
-    to paste and no `api` block, and until 2026-09-25 nothing recorded which
-    ids its lane carried. Nine ids came or went between 2026-09-10 and 09-25 by
-    the vendor's own snapshots of the lane: no run said so, and freetier-bars
-    could not date one of them. The ids are recorded here, held to the lane on
-    every run in both directions as `api.model_ids` are held to a catalog, and
-    dated from this list's history for the two-week bar. Nothing a reader
-    pastes is written from them: there is nothing to connect to."""
+    to paste and no `api` block. The ids are held to the lane on every run in
+    both directions, as `api.model_ids` are held to a catalog, and dated from
+    this list's history for the two-week bar. Nothing a reader pastes is
+    written from them: there is nothing to connect to."""
     model_ids: list[str]
     # Ids the lane carries that no Models-column family will name, on purpose —
     # a stealth codename, a router — with the reason in `note`, as
@@ -848,18 +812,13 @@ class Border(BaseModel):
     source the run reads back.
 
     CONTRIBUTING's "A border counts like a wall" ranks an offer lower the more
-    of the list's readers it keeps out. Until 2026-09-26 the border lived in the
-    prose of three rows — NVIDIA's phone step, JetBrains' territory list,
-    CodeBuddy's DNS — while Google, OpenAI and TRAE carried theirs unnamed, and
-    nothing read any of them again. The sweep of every live row's territory
-    words that day found about seventeen that leave out more than the
-    embargoed countries every vendor leaves out.
+    of the list's readers it keeps out (see borders.share).
 
     It is recorded in the vendor's own form, never a computed one: `served` is a
     vendor's allow-list (Google's region list, a sign-up that takes mainland
     Chinese papers only), `left_out` a deny-list — every country it names,
-    sanctioned ones too, so a reader in Russia can tell a vendor that names
-    Russia from one that does not. A generic "sanctioned jurisdictions" clause
+    sanctioned ones too, so a reader can tell a vendor that names their country
+    from one that does not. A generic "sanctioned jurisdictions" clause
     names no country, and neither does a vendor that says nothing: both are
     `left_out: []`.
 
@@ -936,14 +895,8 @@ class Border(BaseModel):
 
 class Delisting(BaseModel):
     """A row a reviewer took off the list, kept in the registry as the record of
-    what the list published.
-
-    Before 2026-09-17 a row came off by being deleted: twelve of them — Cerebras,
-    Novita, LongCat and Kenari among them — left nothing on the page but a
-    "Delisted" line with a dash where the reason goes, while the Archive promised
-    that a dead tier is never silently forgotten. A row now leaves through the
-    Archive and nowhere else, with the day and the reason; `freetier-check`, the
-    probe run and the render all refuse a registry that has lost a row.
+    what the list published: a row leaves through the Archive, with the day and
+    the reason, and never by deletion (see history.deleted_rows).
     """
     on: date
     reason: str  # what the Archive prints beside the row; the long account is the verdict's
@@ -991,19 +944,12 @@ class Entry(BaseModel):
     @model_validator(mode="after")
     def _keywords_must_anchor(self) -> Entry:
         """A page-keywords probe needs at least one keyword that dies with the
-        offer — the free model's id, its quota figure, or the vendor's own
-        sentence about it. Generic words alone keep passing for months after a
-        free tier is withdrawn.
-
-        The first version of this rule only rejected keywords listed verbatim in
-        GENERIC_KEYWORDS, which let `hobby`, `free quota`, `no signup` and
-        `monthly credits` through — words that sit on a pricing page whatever
-        the page is currently offering. is_anchor() asks the question the list
-        cannot: would this string still be there once the free tier is gone?
+        offer (see is_anchor) — the free model's id, its quota figure, or the
+        vendor's own sentence about it. Generic words alone keep passing for
+        months after a free tier is withdrawn.
 
         A delisted row is exempt. No probe reads it again, and it keeps the probe
-        it was published with as part of the record — on the list's first day
-        that was the bare word "free", which is how aider and Puter got listed.
+        it was published with as part of the record.
         """
         probe = self.probe
         if self.delisted is None and probe.type is ProbeType.PAGE_KEYWORDS:
@@ -1020,12 +966,7 @@ class Entry(BaseModel):
     def _only_a_free_part_of_models_names_models(self) -> Entry:
         """The Models column lists models the vendor serves free in their own
         right. A sum to spend makes none of them free by itself, and a free part
-        the vendor names no model for makes no claim a family could repeat.
-
-        Until 2026-09-25 this was a sentence in CONTRIBUTING, applied by reading
-        rows: the pass that emptied Cloudflare's, Upstage's and Dahl's columns
-        said they were the only ones, and Inception, Sail Research and Sarvam
-        went on naming the models their credit is spent on."""
+        the vendor names no model for makes no claim a family could repeat."""
         if self.models and self.free_part is FreePart.SUM:
             raise ValueError(
                 f"{self.id}: free_part is sum — a sum to spend names no model, since no model is "
@@ -1059,13 +1000,6 @@ class Entry(BaseModel):
     @model_validator(mode="after")
     def _a_fold_is_a_reviewers_decision_about_another_row(self) -> Entry:
         """`duplicate_of` is for two rows that named one service.
-
-        The list ran with two for two months: `mimocode`, a placeholder from
-        the first day's seed — "Coding agent with free tier", limits "TBD by
-        scout", at mimocode.ai, a domain that has never resolved — and
-        `mimo-code`, Xiaomi's agent, added that evening with its README, its
-        models and its shutdown date. Xiaomi's own README prints the name as
-        one word, so the Archive showed one project twice, two lines apart.
 
         A row is never deleted, so the fold is recorded rather than applied:
         the duplicate keeps its id, since the id is its page's URL, and names
@@ -1215,9 +1149,8 @@ def is_covered(url: str, known: set[str]) -> bool:
     """Whether a URL belongs to a vendor `known` already names.
 
     A host is covered by itself, by any host it is a subdomain of and by any it
-    is the parent of: api.z.ai and nvidia.com are Z.ai and NVIDIA, both of which
-    the scout proposed back on 2026-09-14 while their rows were listed at z.ai
-    and build.nvidia.com. A sibling is not covered — docs.api.nvidia.com is not
+    is the parent of: with rows at z.ai and build.nvidia.com, api.z.ai and
+    nvidia.com are covered. A sibling is not — docs.api.nvidia.com is not
     integrate.api.nvidia.com — and on a shared host only the same owner is,
     since github.com is the parent of docs.github.com and of every repository.
     """
@@ -1233,13 +1166,9 @@ def is_covered(url: str, known: set[str]) -> bool:
 
 def known_domains(entries: list[Entry]) -> set[str]:
     """Every site the registry already reaches an entry at — a host, or an
-    owner on a shared host (see `site_of`).
-
-    All three matter, which is what makes this a function rather than a set
-    comprehension at the call site: NVIDIA is listed at build.nvidia.com,
-    documented at docs.api.nvidia.com and served at integrate.api.nvidia.com,
-    and a set built from the url alone reported our own entry back to us as an
-    undiscovered provider.
+    owner on a shared host (see `site_of`) — through a row's url, its
+    source_urls and its api.base_url: NVIDIA is listed at build.nvidia.com,
+    documented at docs.api.nvidia.com and served at integrate.api.nvidia.com.
 
     A delisted row reaches nothing: it is the record of a row, and the verdict
     that took it off lives in the watchlist or the blocklist, which answer for
@@ -1255,9 +1184,7 @@ ARCHIVE_AFTER_DAYS = 60
 # The weekdays the scheduled run probes every row on, numbered the way the cron
 # in .github/workflows/update.yml numbers them (0 is Sunday). Every page that
 # says how often a row is checked reads the phrase from here, and freetier-check
-# holds the workflow's cron and the hand-written files to it: "twice a week" was
-# typed into two dozen places, each of which would have gone on saying it the
-# day the cron moved.
+# holds the workflow's cron and the hand-written files to it (see claims).
 PROBE_WEEKDAYS = (1, 4)
 _TIMES_A_WEEK = {1: "once a week", 2: "twice a week", 3: "three times a week",
                  4: "four times a week", 5: "five times a week", 6: "six times a week",
@@ -1270,7 +1197,7 @@ def probe_frequency(weekdays: tuple[int, ...] = PROBE_WEEKDAYS) -> str:
 
 
 # Consecutive FAILs before a row is buried. Two is a vendor reshuffling a
-# page between Monday and Thursday; three is the offer being gone. The
+# page between two runs; three is the offer being gone. The
 # provider page quotes it, so the countdown a reader is shown and the rule
 # that ends it are the same number.
 ARCHIVE_AFTER_FAILURES = 3
@@ -1281,10 +1208,6 @@ def is_archived(entry: Entry, today: date) -> bool:
     reviewer's delisting — never from model generations. A provider whose catalog
     moves on is still free, so a superseded family means "bump the row", not
     "bury the entry".
-
-    Lives with the model rather than with the renderer because it answers a
-    question about the entry, not about the README: the scout needs it too, to
-    keep from proposing work on entries the registry has already buried.
     """
     if is_archived_for_good(entry, today):
         return True
@@ -1316,11 +1239,10 @@ def is_archived_for_good(entry: Entry, today: date) -> bool:
 
 
 # ---- the files this repository curates by hand ----------------------------
-# All four loaders live here rather than in scout.py, where the first three
-# grew: they are read by the scout, by the renderer and by freetier-check, and
-# a validator that had to import the scout would drag an LLM client and an HTTP
-# stack in behind it. A missing file always means "empty", never an error — each
-# of these is optional to a caller that has no opinion about it.
+# The loaders live here rather than in scout.py: the scout, the renderer and
+# freetier-check read them, and importing the scout would drag an LLM client
+# and an HTTP stack in behind them. A missing file always means "empty", never
+# an error — each of these is optional to a caller that has no opinion about it.
 
 def load_blocklist(path: Path) -> dict[str, str]:
     """domain -> reason; missing file means an empty blocklist."""
@@ -1338,11 +1260,10 @@ def is_blocked(domain: str, blocklist: dict[str, str]) -> bool:
 def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
     """(entry id, family, newer family) triples a human has already rejected.
 
-    Since supersede became proposal-only the registry never records a decision
-    about a bump, so every run re-proposes the ones a reviewer threw out — z.a
-    i's free glm-4.7-flash "superseded by" the paid glm-5.2 came back in each PR.
-    This file is that memory: the proposal is a suggestion, and a suggestion
-    declined stays declined until a human removes the line.
+    A supersede bump is only ever proposed, so the registry records no decision
+    about one, and every run would propose again the bumps a reviewer threw
+    out. This file is that memory: a suggestion declined stays declined until a
+    human removes the line.
     """
     if not path.exists():
         return set()
@@ -1359,16 +1280,11 @@ class Watched(BaseModel):
     """A service that belongs on neither list yet: legitimate, but with no free
     tier a developer can reach today.
 
-    The registry had two states and needed three. `blocklist.yaml` is a verdict
-    on the *service* — pooled piracy, spoofed clients, hostile to agents, a
-    product that is gone — and it is meant to be permanent, so putting a
-    legitimate vendor there buries it on the day it opens a free lane. BYOK-only
-    was on that list once and is the proof: Cline sat on the blocklist as a tool
-    with no bundled usage for two months while its own provider handed out free
-    models, because a permanent verdict is never read again. Leaving it in
-    neither file is what actually happened to tokenrouter.io and LLM7: nothing
-    recorded the decision, so the scout re-proposed them and a reviewer
-    re-derived the same "no" from scratch.
+    `blocklist.yaml` is a verdict on the *service* — pooled piracy, spoofed
+    clients, hostile to agents, a product that is gone — and it is meant to be
+    permanent, so putting a legitimate vendor there buries it on the day it
+    opens a free lane; leaving it in neither file has the scout propose it
+    again and a reviewer re-derive the same "no".
 
     This is a verdict on the *offer, on a date*. `checked_on` is what makes it
     different from a quiet blocklist — it expires. `reopen_if` names the evidence
@@ -1393,9 +1309,9 @@ class Watched(BaseModel):
 
 
 # How long a "no free tier today" verdict is worth trusting. Long enough that a
-# lead does not churn through every twice-weekly run, short enough that a tier
-# opened in the meantime is noticed within a quarter. Past this the entry stops
-# suppressing proposals and is reported as due for a re-check instead.
+# lead does not churn through every run, short enough that a tier opened in the
+# meantime is noticed within a quarter. Past this the entry stops suppressing
+# proposals and is reported as due for a re-check instead.
 WATCH_RECHECK_DAYS = 90
 
 
@@ -1413,12 +1329,10 @@ class Source(BaseModel):
     """A list, catalog or directory read as a possible feed and not adopted.
 
     `Watched` records a verdict on a service; this is the same record one level
-    up, on the thing that *proposes* services. CURATED_FEEDS in discovery.py is
-    the positive half — the lists the scout reads every run — and nothing
-    held the negative half, so the cost of opening a list that carries no
-    provider data was paid again every time the link resurfaced. Three lists
-    went through that in a single week and left no trace in the repository:
-    the reasoning existed only in whichever conversation happened to have it.
+    up, on the thing that *proposes* services — the negative half of
+    CURATED_FEEDS in discovery.py, the lists the scout reads every run, so a
+    list that carries no provider data is not opened again every time the link
+    resurfaces.
 
     A verdict on a SOURCE, on a DATE, for the same reason `Watched` is: a
     directory can start carrying endpoints long after someone first opened it.
@@ -1430,10 +1344,9 @@ class Source(BaseModel):
     reopen_if: str = ""
 
 
-# Deliberately longer than WATCH_RECHECK_DAYS. A vendor can open a free tier in
-# any given week, so 90 days is the most a "nothing free here" verdict is worth
-# trusting — but a directory rarely changes what kind of directory it is, and
-# re-reading one every quarter would spend a session to re-learn the same thing.
+# Longer than WATCH_RECHECK_DAYS: a vendor can open a free tier in any given
+# week, but a directory rarely changes what kind of directory it is, and
+# re-reading one as often would spend a session to re-learn the same thing.
 # Twice a year is often enough to catch a list that grew into a feed.
 SOURCE_RECHECK_DAYS = 180
 
@@ -1448,8 +1361,8 @@ def load_sources(path: Path) -> list[Source]:
 
 
 def is_source_current(source: Source, today: date) -> bool:
-    """Past this the verdict is not wrong, only old enough to be worth asking
-    again — which is all this file ever claims."""
+    """Whether the verdict is at most SOURCE_RECHECK_DAYS old. Past that it is
+    not wrong, only old enough to be worth asking again."""
     return (today - source.checked_on).days <= SOURCE_RECHECK_DAYS
 
 
@@ -1462,8 +1375,8 @@ def watch_match(domain: str, watchlist: list[Watched], today: date) -> Watched |
     """The current verdict covering this domain, if there is one.
 
     Suffix-matched like the blocklist, so `siliconflow.com` also covers
-    `api.siliconflow.com`. An expired verdict deliberately matches nothing: that
-    is the whole difference between watching a service and burying it.
+    `api.siliconflow.com`. An expired verdict matches nothing, so the service
+    can be proposed again: it is watched, not buried.
     """
     for w in watchlist:
         if not is_watch_current(w, today):
@@ -1481,9 +1394,9 @@ def load_registry(path: Path) -> list[Entry]:
 
 
 class _FlowList(list):
-    """A list the registry writes as one wrapped line: a border's country codes.
-    Google's allow-list is 230 codes, and one code a line made the border the
-    longest thing in the file, longer than the row it belongs to."""
+    """A list the registry writes as one wrapped line: a border's country codes,
+    which one to a line would run longer than the row they belong to (Google's
+    allow-list is 230 codes)."""
 
 
 class _RegistryDumper(yaml.SafeDumper):
@@ -1497,8 +1410,8 @@ _RegistryDumper.add_representer(
 def _row_payload(e: Entry) -> dict:
     row = e.model_dump(mode="json", exclude_none=True)
     if e.border is not None:
-        # Only what the row says: an unset quote, a page read and no names
-        # outside the list are the defaults, and eighty rows repeat them.
+        # Only what the row says: the defaults — no quote, a page read, no names
+        # outside the list — are left out.
         border = e.border.model_dump(mode="json", exclude_defaults=True)
         for field in ("served", "left_out", "also_named"):
             if field in border:

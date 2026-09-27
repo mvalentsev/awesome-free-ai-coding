@@ -1,15 +1,12 @@
 """What this list published, and when it changed.
 
-Every other file here answers "what is true today". This one answers "what
-happened", which is the question a reader who already knows the list keeps
-asking: did anything arrive, did anything die, did a provider quietly drop half
-its free models. `README.md` and `index.json` are regenerated from scratch on
-every run and carry no memory at all, so until now the only record of a
-withdrawn free tier was a line in `git log`.
+Every other file here answers "what is true today"; `history.jsonl` answers
+"what happened": did anything arrive, did anything die, did a provider drop
+half its free models.
 
-The diff is against the HISTORY, not against the registry as it was before an
-edit. That matters for three reasons, each of which a before/after diff of the
-file gets wrong:
+The diff is against the state the history replays to, not against the
+registry as it was before an edit, for three reasons a before/after diff of
+the file gets wrong:
 
 - the registry is edited by hand, by the probe run and by the scout, and the
   render that records a change is not the command that made it — a diff of
@@ -19,13 +16,11 @@ file gets wrong:
 - a state machine cannot report the same transition twice, so a feed built on it
   cannot ping a subscriber about the same event on two consecutive runs.
 
-The file is append-only and is the first thing here that cannot be
-regenerated from `registry.yaml`. Until 2026-09-24 only the scheduled run wrote
-it, so a change committed by hand reached the README the day it landed and the
-log at the next run, up to four days later, dated that day. Now `freetier-render`
-records every change before it writes a page — the lines a commit carries are
-the changes that commit makes, at the time it makes them — and `freetier-gate`
-holds each commit's lines to exactly that (`block_problems`).
+The file is append-only and cannot be regenerated from `registry.yaml`.
+`freetier-render` records every change before it writes a page
+(`record_changes`), so the lines a commit carries are the changes that commit
+makes, at the time it makes them, and `freetier-gate` holds each commit's lines
+to exactly that (`block_problems`).
 """
 from __future__ import annotations
 
@@ -49,9 +44,9 @@ class EventType(str, Enum):
     ADDED = "added"          # a row a reader could not see before
     ARCHIVED = "archived"    # it moved to the Archive: its vendor's date, its probe, or a reviewer
     RESTORED = "restored"    # it started passing again
-    # Deleted from the registry by hand. Only ever read back: until 2026-09-17 a
-    # reviewer took a row off this way, and since then a row leaves through the
-    # Archive and a deletion is refused before it can be recorded.
+    # Deleted from the registry by hand. Old lines only: a row leaves through
+    # the Archive, and a deletion is refused before it is recorded (see
+    # deleted_rows).
     REMOVED = "removed"
     MODELS = "models"        # the free-model list of a live row changed
 
@@ -60,8 +55,7 @@ class Event(BaseModel):
     """One line of `history.jsonl`.
 
     `models` carries the entry's published families *after* the event, not the
-    delta: it is what lets the file be replayed into the state the history
-    believes the list is in, which is the whole basis of the next diff.
+    delta, so the file replays into the state the next diff starts from.
     """
     ts: datetime      # when the render recorded it, UTC — the list's clock, not the vendor's
     event: EventType
@@ -75,9 +69,9 @@ class Event(BaseModel):
 class Status(str, Enum):
     LIVE = "live"
     ARCHIVED = "archived"
-    # The history's own word for a row it last saw deleted. Such a row is back in
-    # the registry as delisted, and its departure was announced when it happened,
-    # so the Archive taking it in is not news the second time.
+    # The history's own word for a row whose last event is `removed`. Such a row
+    # is back in the registry (see deleted_rows); back in the Archive, it is not
+    # news a second time — its departure was announced when it happened.
     DELETED = "deleted"
 
 
@@ -95,8 +89,9 @@ class State:
 
 
 def archive_reason(entry: Entry, today: date) -> str:
-    """Why this row is in the Archive — read off the same three rules that put
-    it there, so the feed cannot describe an archival the renderer disagrees
+    """Why this row is in the Archive, by the rules `is_archived` applies — a
+    reviewer's delisting, the vendor's shutdown date, the failure count,
+    staleness — so the feed cannot describe an archival the renderer disagrees
     with."""
     if entry.delisted is not None:
         return f"delisted on {entry.delisted.on.isoformat()}: {entry.delisted.reason}"
@@ -168,8 +163,7 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
                 events.append(Event(ts=now, event=EventType.REMOVED, id=entry_id,
                                     name=was.name, url=was.url, models=list(was.models)))
         elif was is not None and was.status is Status.DELETED and now_.status is Status.ARCHIVED:
-            # Deleted before rows were archived, and back as the record the
-            # Archive keeps: "Delisted" already said the row left.
+            # Its departure is already announced (see Status.DELETED).
             continue
         elif was is None or was.status is Status.DELETED:
             kind = EventType.ADDED if now_.status is Status.LIVE else EventType.ARCHIVED
@@ -193,9 +187,9 @@ def diff_state(recorded: dict[str, State], current: dict[str, State],
 
 
 def parse_history(text: str, where: str = "history.jsonl", first_line: int = 1) -> list[Event]:
-    """A malformed line is an error and names itself: this file is the only one
-    in the repository that cannot be regenerated, so a line that will not parse
-    must stop a run rather than be skipped past."""
+    """The events in `text`, whose first line is line `first_line` of `where`.
+    A malformed line raises and names itself: the log cannot be regenerated,
+    so a line that will not parse stops a run rather than being skipped."""
     events: list[Event] = []
     for number, line in enumerate(text.splitlines(), start=first_line):
         if not line.strip():
@@ -220,10 +214,8 @@ def _line(ev: Event) -> str:
 
 
 def append_history(path: Path, events: list[Event]) -> None:
-    """Append, never rewrite. `save_registry` re-serialises its whole file and
-    would be the obvious model to copy here; it is the wrong one — rewriting a
-    log turns every concurrent append into a merge conflict and every bug into
-    a lost month."""
+    """Append `events` without rewriting the lines already there: a rewritten
+    log turns every concurrent append into a merge conflict."""
     if not events:
         return
     with path.open("a", encoding="utf-8") as fh:
@@ -236,10 +228,9 @@ def deleted_rows(entries: list[Entry], events: list[Event]) -> list[str]:
 
     A row leaves the list through the Archive — its vendor's date, its probe, or
     a reviewer's `delisted` — and stays in the registry as the record of what
-    was published. Deleting it instead is how twelve rows left before
-    2026-09-17 with nothing on the page but "Delisted —", so a registry that
-    has lost a row is refused wherever it would be published: `freetier-check`,
-    the render's record of it and the render's pages."""
+    was published, so a registry that has lost a row is refused wherever it
+    would be published: `freetier-check`, the render's record of it and the
+    render's pages."""
     held = {e.id for e in entries}
     return sorted(set(replay(events)) - held)
 
@@ -262,20 +253,17 @@ def _unstamped(events: list[Event]) -> list[dict]:
 
 def record_changes(registry_path: Path, history_path: Path, today: date, now: datetime,
                    committed: str | None = None) -> list[Event]:
-    """Compare the registry against the history and write the difference.
+    """Compare the registry against the history, write the difference and
+    return its lines.
 
-    `freetier-render` calls it before it writes a page, so every commit that
-    changes what the list publishes carries the lines for that change. With
-    `committed` — the log as the commit being made will find it, read from git
-    — the lines are the difference from that: whatever an earlier render of
+    With `committed` — the log as the commit being made will find it, read from
+    git — the lines are the difference from that: whatever an earlier render of
     the same uncommitted work wrote after it is replaced, since a row added and
     taken back out before the commit never reached the list, and lines that
     already say the same thing are kept as they are, clock and all, so a second
-    render changes no byte. Without it, the difference from the file as it
-    stands is appended.
-
-    A deleted row stops the render here, before anything is written: the
-    history would call it delisted and the page would lose it.
+    render changes no byte. Without it, or where the file does not start with
+    it, the difference from the file as it stands is appended. A deleted row
+    raises before anything is written (see deleted_rows).
     """
     entries = load_registry(registry_path)
     text = history_path.read_text(encoding="utf-8") if history_path.exists() else ""
@@ -303,11 +291,10 @@ def pending_changes(entries: list[Entry], events: list[Event], today: date) -> l
 
 def block_problems(base: list[Event], block: list[Event], entries: list[Entry], day: date,
                    now: datetime) -> list[str]:
-    """What is wrong with the lines a commit appends to the log it found: they
-    are the render's own record of the changes the commit makes, or they are
-    not. `day` is the day the commit's pages were rendered on (index.json's
-    `generated`), `now` the latest a render of it could have run — the commit's
-    own time."""
+    """Every way the lines a commit appends to the log it found differ from the
+    render's own record of the changes the commit makes. `day` is the day the
+    commit's pages were rendered on (index.json's `generated`), `now` the latest
+    a render of it could have run — the commit's own time."""
     problems = []
     stamps = sorted({ev.ts for ev in block})
     if len(stamps) > 1:

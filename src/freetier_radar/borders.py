@@ -1,14 +1,12 @@
 """How far a border reaches: the share of the world's developers a row's free
 offer leaves out, counted on GitHub's Innovation Graph, and the command that
-refreshes the count and prints every row's.
+refreshes the count and prints every row's (`freetier-borders`).
 
 CONTRIBUTING's "A border counts like a wall" ranks an offer lower the more of
-the list's readers it leaves out, and counts readers as developers. On
-2026-09-25 that count was done in a scratchpad, for three rows, and a rank argued
-from it could be reproduced by nobody who did not redo it. It is code now, over
-a snapshot of the Innovation Graph committed beside it — the render never
-reaches the network — so every share a page prints and every rank argued from
-one can be read again with `freetier-borders`.
+the list's readers it leaves out, and counts readers as developers. The count
+runs over a snapshot of the Innovation Graph committed beside this module, so
+the render never reaches the network, and every share a page prints and every
+rank argued from one can be read again with `freetier-borders`.
 """
 from __future__ import annotations
 
@@ -31,16 +29,12 @@ YARDSTICK_URL = "https://raw.githubusercontent.com/github/innovationgraph/main/d
 YARDSTICK_SOURCE = "https://github.com/github/innovationgraph/blob/main/data/developers.csv"
 YARDSTICK_PATH = Path(__file__).with_name("developers.json")
 
-# The exclusions that set no row apart: the countries under comprehensive US
-# embargo, which a sanctions clause covers whether it names them or not — seventeen
-# live rows carry one that names no country, and the rows that name any name
-# these first. CONTRIBUTING's rule says "an exclusion most vendors share", and
-# until the sweep of 2026-09-26 its example, "the countries under US sanctions",
-# was read to take in Russia, Belarus and Venezuela as well. The sweep counted
-# the vendors' own words: fifteen of eighty live rows leave Russia out, and no
-# embargo clause reaches it — not most, so a border that leaves out Russia is
-# counted. The suite holds the set to the registry: no country outside it is
-# left out by most rows.
+# The exclusions that set no row apart ("an exclusion most vendors share",
+# CONTRIBUTING): the countries under comprehensive US embargo, which a
+# sanctions clause covers whether it names them or not. Any other country a
+# border leaves out is counted, Russia included: no embargo clause reaches it,
+# and most rows do not leave it out. See
+# test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows.
 SHARED = frozenset({"CU", "IR", "KP", "SY"})
 
 
