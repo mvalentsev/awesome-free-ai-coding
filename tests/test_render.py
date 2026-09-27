@@ -354,7 +354,7 @@ def test_the_badge_dates_the_evidence_not_the_render():
                make(id="older", last_verified=TODAY - timedelta(days=9)),
                make(id="buried", last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1))]
     ctx = build_context(entries, TODAY)
-    assert ctx["verified_through"] == (TODAY - timedelta(days=9)).isoformat()
+    assert ctx["verified_floor"] == f"{(TODAY - timedelta(days=9)).isoformat()} or later"
     assert ctx["date"] == TODAY.isoformat()
 
 
@@ -380,6 +380,43 @@ def test_the_badge_says_the_date_is_a_floor_and_colours_itself_by_its_age(tmp_pa
     assert line.endswith(f"-{BADGE_GREEN})")
     assert badge(BADGE_FRESH_DAYS + 1).endswith(f"-{BADGE_AMBER})")
     assert badge(ARCHIVE_AFTER_DAYS - 1).endswith(f"-{BADGE_RED})")
+
+
+def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(tmp_path: Path):
+    """The hero printed the newest verified date and the badge under it the
+    oldest: on 2026-09-27 a run confirmed 83 of 84 rows, uncloseai answered 502
+    and kept 09-24, and the first screen said "last verified 2026-09-27" over
+    "every row verified 2026-09-24 or later". Each was true of something; side
+    by side they read as a contradiction, and the hero had computed a date of
+    its own instead of taking the list's. The list has one date, the floor, and
+    the README states it once, on the badge: the picture is the list, the badges
+    its health. "Or later" is the floor's own word — it goes where the rows
+    carry more than one date, on every page that dates them."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_site
+
+    reg = tmp_path / "registry.yaml"
+    floor = (TODAY - timedelta(days=3)).isoformat()
+    save_registry(reg, [make(id="fresh"), make(id="lagging", last_verified=TODAY - timedelta(days=3))])
+    top = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY).split(
+        "## 🚀 Start here")[0]
+    assert {d.replace("--", "-") for d in re.findall(r"\d{4}-{1,2}\d{2}-{1,2}\d{2}", top)} == {floor}
+    assert f"![Every row verified {floor} or later](" in top
+    for svg in sorted((tmp_path / "assets" / "readme").glob("hero-*.svg")):
+        assert not re.search(r"\d{4}-\d{2}-\d{2}", svg.read_text(encoding="utf-8")), svg.name
+    html = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
+    assert f"every row verified <b>{floor} or later</b>" in html
+
+    # Every live row confirmed the same day: that day is no floor under later ones.
+    save_registry(reg, [make(id="fresh"), make(id="also-fresh")])
+    top = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY).split(
+        "## 🚀 Start here")[0]
+    day = TODAY.isoformat()
+    assert f"![Every row verified {day}](" in top
+    assert f"every%20row%20verified-{day.replace('-', '--')}-" in top
+    assert "or later" not in top and "or%20later" not in top
+    html = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
+    assert f"every row verified <b>{day}</b>" in html
 
 
 def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(tmp_path: Path):
@@ -893,7 +930,8 @@ def test_render_readme(tmp_path: Path):
     save_registry(reg, [make(), make(id="dead", name="Dead Tool", probe_failures=5)])
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
-    assert "every%20row%20verified-2026--07--19%20or%20later" in text
+    # One live row: its date is the list's, with no later one to be a floor under.
+    assert "every%20row%20verified-2026--07--19-" in text
     assert "— 1 live offers, 1 need no card" in text
     assert "Coding agents & CLIs" in text
     assert "LLM APIs with free tier" in text
@@ -1314,7 +1352,6 @@ def test_the_render_draws_the_pictures_beside_the_readme(tmp_path: Path):
         assert svg.count('<circle class="dot agents"') == 2
         assert svg.count('<circle class="dot apis"') == 1
         assert svg.count('<circle class="dot ') == 3
-        assert f"last verified {TODAY.isoformat()}" in svg
 
 
 def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):

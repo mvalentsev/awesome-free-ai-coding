@@ -8,8 +8,7 @@ from freetier_radar.pictures import (
     BEAM_PERIOD, DARK, LIGHT, NARROW_SHOWN, WIDE_SHOWN, Arc, Hero, hero_svg,
 )
 
-HERO = Hero(live=80, no_card=76, models=150, strong=17, last_verified=date(2026, 9, 27),
-            schedule="twice a week",
+HERO = Hero(live=80, no_card=76, models=150, strong=17, schedule="twice a week",
             arcs=(Arc("agents", "agents", 8), Arc("APIs", "apis", 31),
                   Arc("trials", "trials", 26), Arc("aggregators", "aggregators", 15)))
 
@@ -56,8 +55,7 @@ def test_a_dot_lights_up_when_the_beam_reaches_its_bearing(narrow):
 @pytest.mark.parametrize("counts", [(8, 31, 26, 15), (1, 1, 1, 77), (40, 0, 40, 0), (3, 0, 0, 0)])
 def test_no_two_dots_overlap(counts):
     """A dot hidden under another is a row the picture does not show."""
-    hero = Hero(live=sum(counts), no_card=0, models=0, strong=0, last_verified=date(2026, 9, 27),
-                schedule="twice a week",
+    hero = Hero(live=sum(counts), no_card=0, models=0, strong=0, schedule="twice a week",
                 arcs=tuple(Arc(t, t, n) for t, n in zip(
                     ("agents", "apis", "trials", "aggregators"), counts)))
     for narrow in (False, True):
@@ -74,7 +72,7 @@ def test_the_counters_are_the_figures_they_are_given(narrow):
     for figure, label in (("80", "live offers"), ("76", "need no card"),
                           ("150", "free models"), ("17", "strong models")):
         assert f">{figure}</text>" in svg and f">{label}</text>" in svg
-    assert "twice a week" in svg and "2026-09-27" in svg
+    assert "twice a week" in svg
 
 
 def test_every_word_reads_at_the_width_a_reader_sees_it():

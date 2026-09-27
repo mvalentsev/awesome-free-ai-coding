@@ -93,7 +93,6 @@ class Hero:
     no_card: int
     models: int
     strong: int
-    last_verified: date
     schedule: str
     # In the list's own order; a section's rows in its own order too, since the
     # first of them sit nearest the centre.
@@ -255,10 +254,12 @@ def _counters(hero: Hero) -> list[tuple[str, str]]:
 
 def hero_words(hero: Hero) -> str:
     """The hero in one sentence: its <title> for a screen reader, and the
-    README's alt text for the picture — one sentence, so the two cannot differ."""
+    README's alt text for the picture — one sentence, so the two cannot differ.
+    No date: the badge under the picture dates the list, by its oldest verified
+    row, and a second date here was the newest — two dates for one list."""
     figures = ", ".join(f"{figure} {label}" for figure, label in _counters(hero))
-    return (f"awesome-free-ai-coding — {figures}; every offer probed {hero.schedule}, last verified "
-            f"{hero.last_verified.isoformat()}; one dot per live offer")
+    return (f"awesome-free-ai-coding — {figures}; every offer probed {hero.schedule}; "
+            "one dot per live offer")
 
 
 def _wide_words(hero: Hero) -> list[str]:
@@ -275,8 +276,7 @@ def _wide_words(hero: Hero) -> list[str]:
         out.append(f'<text class="m" x="{cx}" y="252" font-family="{SANS}" '
                    f'font-size="18">{label}</text>')
     out.append(f'<text class="m" x="{x}" y="300" font-family="{SANS}" font-size="17">one dot '
-               f'per live offer: {_legend(hero.arcs)} · last verified '
-               f'{hero.last_verified.isoformat()}</text>')
+               f'per live offer: {_legend(hero.arcs)}</text>')
     return out
 
 
@@ -291,8 +291,7 @@ def _narrow_words(hero: Hero) -> list[str]:
            f'<text class="t" x="{_num(mid)}" y="540" text-anchor="middle" font-family="{SANS}" '
            f'font-size="26">Legal free LLM APIs &amp; coding agents</text>',
            f'<text class="m" x="{_num(mid)}" y="574" text-anchor="middle" font-family="{SANS}" '
-           f'font-size="22">probed {escape(hero.schedule)} · last verified '
-           f'{hero.last_verified.isoformat()}</text>']
+           f'font-size="22">probed {escape(hero.schedule)}</text>']
     for i, (figure, label) in enumerate(_counters(hero)):
         cx = mid + (-135 if i % 2 == 0 else 135)
         top = 668 + (i // 2) * 104

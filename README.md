@@ -4,12 +4,12 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 84 live offers, 80 need no card, 151 free models, 17 strong models; every offer probed twice a week, last verified 2026-09-27; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 84 live offers, 80 need no card, 151 free models, 17 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
-![Every row verified](https://img.shields.io/badge/every%20row%20verified-2026--09--24%20or%20later-3fb950)
+![Every row verified 2026-09-24 or later](https://img.shields.io/badge/every%20row%20verified-2026--09--24%20or%20later-3fb950)
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎 Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 

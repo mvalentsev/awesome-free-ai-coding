@@ -672,14 +672,15 @@ def _new_rows(active: list[Entry], history: list[Event], today: date) -> list[di
     return list(seen.values())
 
 
-def _hero(active: list[Entry], shared: dict, today: date) -> Hero:
+def _hero(active: list[Entry], shared: dict) -> Hero:
     """What the picture at the top of the README shows: the counters the text
-    states, and a dot per live row in its section. "Last verified" is the
-    newest day a row was confirmed — by a probe, or the day a row was added on
-    its evidence — never the render's: a render changes no fact."""
+    states, and a dot per live row in its section. It shows no date. It printed
+    the newest verified one until 2026-09-27, computed here, above the badge
+    that prints the list's floor from the shared facts — "last verified
+    2026-09-27" over "every row verified 2026-09-24 or later" the day one row of
+    84 missed a run. The badge is the list's one date."""
     return Hero(live=shared["active_count"], no_card=shared["no_card_count"],
                 models=shared["family_count"], strong=len(shared["strong_models"]),
-                last_verified=max((e.last_verified for e in active), default=today),
                 schedule=shared["schedule"],
                 arcs=tuple(Arc(label, tone, sum(1 for e in active if e.category is cat))
                            for cat, (label, tone) in HERO_ARCS.items()))
@@ -1099,15 +1100,17 @@ def _shared_facts(entries: list[Entry], today: date,
     # as a single check date it understates the page badly, because one lagging
     # row drags the whole claim back. On 2026-09-12 it read 2026-09-07 while
     # fifty-four of fifty-six rows had passed a probe two days earlier and only
-    # trae and inception-labs, both mid-re-anchor, were holding it there.
-    verified_through = _oldest_verified(active, today)
-    colour = badge_colour(verified_through, today)
+    # trae and inception-labs, both mid-re-anchor, were holding it there. The
+    # floor's words are `_floor`'s, the ones every page dates its rows in: the
+    # badge and the site typed "or later" after the date themselves, and said
+    # it on a day every row shared.
+    colour = badge_colour(_oldest_verified(active, today), today)
     pages = model_pages(entries, [], today) if pages is None else pages
     model_index = _model_index(active, pages)
     anthropic = _anthropic_ready(entries, today)
     return {
         "date": today.isoformat(),
-        "verified_through": verified_through.isoformat(),
+        "verified_floor": _floor(active, today),
         "verified_colour": colour,
         "verified_word": BADGE_WORDS[colour],
         # The headline counts. Every one of them is derived, so the page can
@@ -1193,7 +1196,7 @@ def build_context(entries: list[Entry], today: date,
         for e in _connectable(entries, today)
     ]
     shared = _shared_facts(entries, today, watchlist, pages)
-    hero = _hero(active, shared, today)
+    hero = _hero(active, shared)
     strong = shared["strong_models"][:README_STRONG]
     chart = _chart(strong, load_scores() if scores is None else scores)
     if chart is not None:
