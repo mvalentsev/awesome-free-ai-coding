@@ -100,17 +100,29 @@ def test_browse_page_links_a_model_to_its_page_from_the_index():
 
 
 def test_browse_page_filters_on_tier_values_the_registry_has():
-    """The strong chip keeps rows whose families measure strong or frontier,
-    compared as strings in the browser — a tier renamed in the registry would
-    leave the chip matching nothing, as a Frontier chip alone did the week no
-    free model reached the frontier (2026-09-26). Every tier the page names is
-    one the registry has; notable decides a model's page, not a strong mark."""
+    """The strong chip compares tiers as strings in the browser, so a tier
+    renamed in the registry would leave it matching nothing. Every tier the
+    page names is one the registry has; notable decides a model's page, not a
+    strong mark."""
     from freetier_radar.models import Tier
 
     html = _html()
     named = set(re.findall(r'm\.tier === "([a-z]+)"', html))
     assert named <= {t.value for t in Tier}, named
     assert named == {Tier.FRONTIER.value, Tier.STRONG.value}, named
+
+
+def test_a_name_a_date_or_an_address_never_breaks_inside_a_word_and_a_phone_gets_cards():
+    """A model name or a date is one word to a reader, and an address breaks
+    after a slash; a phone gets a card per row instead of a table wider than
+    its screen."""
+    html = _html()
+    assert "break-all" not in html
+    assert ".fam, .nowrap { white-space: nowrap; }" in html
+    assert 'el("span", "fam")' in html and 'el("span", "nowrap", e.last_verified)' in html
+    assert 'el("wbr")' in html and "address(e.api.base_url)" in html
+    phone = html[html.index("@media (max-width: 760px)"):]
+    assert "thead { display: none; }" in phone and "td[data-label]::before" in phone
 
 
 def test_browse_page_says_so_when_nothing_matches():
@@ -122,11 +134,9 @@ def test_browse_page_says_so_when_nothing_matches():
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
 def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
-    """The site's search sends "the same search as a table" here, and the 404
-    page sends the name off an address. Until 2026-09-26 "nemotron 3 ultra"
-    found the two rows whose offering spelled it out and none that only listed
-    nemotron-3-ultra; since that day no offering spells a model out. The
-    page's own functions run here on a row index.json publishes."""
+    """The site's search and the 404 page send a model name here as a reader
+    writes it: "nemotron 3 ultra" finds a row that lists nemotron-3-ultra. The
+    page's own functions run on a row index.json publishes."""
     from test_site import _js_function
 
     html = _html()
@@ -145,12 +155,9 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
 def test_browse_page_keeps_to_the_offers_that_reach_where_the_reader_is():
-    """Every live row records its border since 2026-09-26 — the countries a
-    vendor serves, or the ones it leaves out — and until 2026-09-27 no page let
-    a reader ask "what here works where I am?". Where they are is picked from
-    the countries index.json names, and a row stays when its allow-list names
-    the country or its deny-list does not; a row with no border answers
-    anywhere."""
+    """Where a reader is comes from the countries index.json names; a row
+    stays when its allow-list names the country or its deny-list does not, and
+    a row with no border answers anywhere."""
     from test_site import _js_function
 
     html = _html()

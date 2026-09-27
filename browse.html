@@ -26,17 +26,37 @@ label.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 1
 table { border-collapse: collapse; width: 100%; min-width: 900px; }
 th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-top: 1px solid var(--line); }
 th { position: sticky; top: 0; background: var(--chip); border-top: 0; font-weight: 600; white-space: nowrap; }
-td.offer { max-width: 440px; }
-code { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--chip); padding: 1px 5px; border-radius: 4px; word-break: break-all; }
+td.provider { width: 15%; }
+td.offer { width: 30%; }
+td.models { width: 24%; }
+td.connect { min-width: 280px; }
+code { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--chip); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+/* A model name, a date or a tag is one word to a reader: a line breaks between them, never inside. */
+.fam, .nowrap { white-space: nowrap; }
 .tag { display: inline-block; font-size: 12px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); margin-right: 4px; white-space: nowrap; }
 .ok { color: var(--ok); }
 .warn { color: var(--warn); }
 .muted { color: var(--muted); }
 .strong { font-weight: 600; }
 td.empty { padding: 18px 10px; }
-tr.archived td { opacity: .6; }
+tr.archived { opacity: .6; }
 footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
-@media (max-width: 600px) { body { padding: 16px 12px 32px; } table { min-width: 720px; } }
+footer ul { margin: 6px 0 0; padding-left: 18px; }
+/* A phone gets a card per row instead of a table wider than the screen. */
+@media (max-width: 760px) {
+  body { padding: 16px 12px 32px; }
+  .controls { gap: 8px; }
+  label.chip { padding: 4px 9px; font-size: 14px; }
+  .wrap { overflow: visible; border: 0; border-radius: 0; }
+  table, tbody { display: block; min-width: 0; }
+  thead { display: none; }
+  tr { display: grid; grid-template-columns: 1fr auto; gap: 0 10px; padding: 12px; margin: 0 0 10px; border: 1px solid var(--line); border-radius: 10px; }
+  td { display: block; padding: 0; border: 0; max-width: none; min-width: 0; }
+  td.cat { text-align: right; }
+  td.offer, td.models, td.connect, td.verified, td.empty { grid-column: 1 / -1; margin-top: 8px; }
+  td[data-label]::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
+  td.verified::before { display: inline; content: attr(data-label) " "; }
+}
 </style>
 </head>
 <body>
@@ -69,7 +89,14 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
 <thead><tr><th>Provider</th><th>Category</th><th>Free offer</th><th>Free models</th><th>Connect</th><th>Verified</th></tr></thead>
 <tbody id="rows"></tbody>
 </table></div>
-<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a> · "Verified" is the day the row last answered its probe, and for an archived row why it left; 🧪 marks a row listed for less than two weeks; 👁 a vendor that may train on what you send, and "Not trained on" keeps the ones that say they do not; bold model families measure strong or frontier on the Artificial Analysis Intelligence Index, and a frontier one says so; "Where you are" keeps the offers whose vendor serves that country, by the border each row records from the vendor's own words.</footer>
+<footer>Generated from <a href="https://github.com/mvalentsev/awesome-free-ai-coding">the registry</a> · <a href="feed.xml">Atom feed</a> · <a href="llms.txt">llms.txt</a>
+<ul>
+<li><b>Verified</b> — the day the row last answered its probe; an archived row says why it left.</li>
+<li>🧪 — a row listed for less than two weeks.</li>
+<li>👁 — a vendor that may train on what you send; <b>Not trained on</b> keeps the ones that say they do not.</li>
+<li><b>Bold</b> models measure strong or frontier on the Artificial Analysis Intelligence Index.</li>
+<li><b>Where you are</b> keeps the offers whose vendor serves that country, by the border each row records from the vendor's own words.</li>
+</ul></footer>
 </main>
 <script>
 (function () {
@@ -80,6 +107,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   var els = {};
   ["q", "cat", "where", "count", "rows"].concat(FILTERS).forEach(function (id) { els[id] = document.getElementById(id); });
   var entries = [];
+  var generated = "";
   // A model's own page, where it has one: index.json's `models` names each.
   var modelPages = {};
 
@@ -92,20 +120,15 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
   function noAccount(e) { return keyless(e) || publicKey(e); }
   function openaiCompatible(e) { return !!(e.api && e.api.base_url && e.api.openai_compatible); }
   function claudeRoute(e) { return !!(e.api && e.api.anthropic_base_url); }
-  // The models a reader comes for: a family the index measures strong or
-  // frontier, the set the front page's "Strong models, free" names. Frontier is
-  // the top ten points of the index, and some weeks no free model reaches it —
-  // a Frontier chip alone then emptied the table with no word why (2026-09-26),
-  // so it shows only while a live row carries such a family.
+  // The models a reader comes for, the set the front page's "Strong models,
+  // free" names. Some weeks no free model reaches the frontier, so its chip
+  // shows only while a live row carries a frontier family.
   function isFrontier(m) { return m.tier === "frontier"; }
   function isStrong(m) { return m.tier === "strong" || isFrontier(m); }
   function hasStrong(e) { return families(e).some(isStrong); }
   function hasFrontier(e) { return families(e).some(isFrontier); }
-  // The vendor's word on training on what a reader sends: marked where it may,
-  // kept by the filter only where it says it does not.
-  // Whether a row's offer reaches a country, by the border it records: its
-  // allow-list names the country, or its deny-list does not. A row with no
-  // border recorded answers anywhere.
+  // A row reaches a country its allow-list names or its deny-list leaves out;
+  // a row with no border recorded reaches anywhere.
   function reaches(e, code) {
     if (!code || !e.border) return true;
     if (e.border.served) return e.border.served.indexOf(code) !== -1;
@@ -118,8 +141,7 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     return written([e.name, e.offering, e.category, names].join(" ").toLowerCase());
   }
   // Separators aside, as a reader writes a name: "nemotron 3 ultra" finds
-  // nemotron-3-ultra, and the dot stays, so "qwen 3.8" is not qwen3-8b. Since
-  // 2026-09-26 no offering spells a model out, so the families have to answer.
+  // nemotron-3-ultra, and the dot stays, so "qwen 3.8" is not qwen3-8b.
   function written(text) { return text.replace(/[\s_-]+/g, ""); }
 
   function readState() {
@@ -152,27 +174,43 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     return a;
   }
   function text(s) { return document.createTextNode(s); }
+  // A cell, labelled for the card a phone shows instead of the table.
+  function cell(cls, label) {
+    var td = el("td", cls);
+    if (label) td.setAttribute("data-label", label);
+    return td;
+  }
+  // An address breaks after a slash, the way a reader splits one, not
+  // wherever the column ends.
+  function address(url) {
+    var code = el("code");
+    (url.match(/^\w+:\/\/[^\/]*\/?|[^\/]+\/?/g) || [url]).forEach(function (part, i) {
+      if (i) code.appendChild(el("wbr"));
+      code.appendChild(text(part));
+    });
+    return code;
+  }
 
   function row(e) {
     var tr = el("tr", e.archived ? "archived" : "");
 
-    var name = el("td");
+    var name = cell("provider");
     name.appendChild(link(e.page, e.name));
-    if (trains(e)) name.appendChild(text(" 👁"));
-    if (e.provisional) name.appendChild(text(" 🧪"));
+    if (trains(e)) name.appendChild(text("\u00a0👁"));
+    if (e.provisional && !e.archived) name.appendChild(text("\u00a0🧪"));
     name.appendChild(el("br"));
     // An archived row's service is named, not linked: it is dead, or for a row
     // rejected for cause, somewhere this list will not send anyone.
-    var host = e.url.replace(/^https?:\/\//, "");
+    var host = e.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "");
     name.appendChild(e.archived ? el("span", "muted", host) : link(e.url, host, "muted"));
     tr.appendChild(name);
 
-    var cat = el("td");
+    var cat = cell("cat");
     cat.appendChild(el("span", "tag", LABEL[e.category] || e.category));
     if (e.archived) cat.appendChild(el("span", "tag warn", "archived"));
     tr.appendChild(cat);
 
-    var offer = el("td", "offer");
+    var offer = cell("offer", "Free offer");
     offer.appendChild(text(e.offering));
     offer.appendChild(el("br"));
     offer.appendChild(el("span", e.card_required ? "warn" : "ok", e.card_required ? "card required" : "no card"));
@@ -180,32 +218,34 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     else if (publicKey(e)) { offer.appendChild(text(" · ")); offer.appendChild(el("span", "ok", "no account")); }
     tr.appendChild(offer);
 
-    var models = el("td");
+    var models = cell("models", "Free models");
     var fams = families(e);
     fams.forEach(function (m, i) {
+      var fam = el("span", "fam");
       var name = el("span", isStrong(m) ? "strong" : "", m.family);
       if (modelPages[m.family]) {
-        var link = el("a");
-        link.href = modelPages[m.family];
-        link.appendChild(name);
-        name = link;
+        var page = el("a");
+        page.href = modelPages[m.family];
+        page.appendChild(name);
+        name = page;
       }
-      models.appendChild(name);
-      if (isFrontier(m)) models.appendChild(text(" (frontier)"));
+      fam.appendChild(name);
+      if (isFrontier(m)) fam.appendChild(text(" (frontier)"));
+      models.appendChild(fam);
       if (i < fams.length - 1) models.appendChild(text(", "));
     });
     if (!fams.length) models.appendChild(el("span", "muted", "—"));
     tr.appendChild(models);
 
-    var connect = el("td");
+    var connect = cell("connect", "Connect");
     if (e.archived) {
       connect.appendChild(el("span", "muted", "archived — nothing to connect to"));
     } else if (e.api && e.api.base_url) {
-      connect.appendChild(el("code", "", e.api.base_url));
+      connect.appendChild(address(e.api.base_url));
       if (e.api.anthropic_base_url) {
         connect.appendChild(el("br"));
         connect.appendChild(el("span", "muted", "Anthropic format: "));
-        connect.appendChild(el("code", "", e.api.anthropic_base_url));
+        connect.appendChild(address(e.api.anthropic_base_url));
       }
       connect.appendChild(el("br"));
       if (keyless(e)) connect.appendChild(el("span", "ok", "no key needed"));
@@ -221,10 +261,11 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     }
     tr.appendChild(connect);
 
-    // Why an archived row left, not the last date its probe passed: on
-    // 2026-09-17 all three archived rows showed a pass later than the day their
-    // vendors ended the offers.
-    tr.appendChild(el("td", e.archived ? "muted" : "", e.archived ? e.archived_because : e.last_verified));
+    // An archived row says why it left: the last date its probe passed can
+    // postdate the day its vendor ended the offer.
+    var verified = cell("verified", e.archived ? "Archived:" : "Verified");
+    verified.appendChild(e.archived ? el("span", "muted", e.archived_because) : el("span", "nowrap", e.last_verified));
+    tr.appendChild(verified);
     return tr;
   }
 
@@ -260,6 +301,10 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
     els.count.textContent = shown.length + " of " + live + " live offers shown" +
       (where ? ", the ones offered in " + where : "") +
       (els.archived.checked ? " (archive included)" : "");
+    if (generated) {
+      els.count.appendChild(text(" · "));
+      els.count.appendChild(el("span", "nowrap", "index generated " + generated));
+    }
     writeState();
   }
 
@@ -296,8 +341,8 @@ footer { margin-top: 16px; color: var(--muted); font-size: 13px; }
       els.strong.checked = true;
     }
     ["q", "cat", "where"].concat(FILTERS).forEach(function (id) { els[id].addEventListener("input", render); });
+    generated = data.generated;
     render();
-    els.count.textContent += " · index generated " + data.generated;
   }).catch(function (err) {
     els.count.textContent = "Could not load index.json (" + err.message + ") — the table lives at https://mvalentsev.github.io/awesome-free-ai-coding/browse.html";
   });
