@@ -10,7 +10,6 @@
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Every row verified](https://img.shields.io/badge/every%20row%20verified-2026--09--24%20or%20later-3fb950)
-[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
 **[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎 Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
