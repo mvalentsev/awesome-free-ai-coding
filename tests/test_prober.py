@@ -2087,6 +2087,25 @@ async def test_a_keyless_lane_that_answers_is_a_pass():
     assert call.calls[1].request.headers["authorization"] == "Bearer none"
 
 
+
+@respx.mock
+async def test_every_keyless_call_asks_something_no_cache_has_answered_before():
+    """Pollinations' old host caches its answers: on 2026-09-27 a repeated prompt
+    came back stamped 2026-09-16, and the probe's prompt had been the same "ping"
+    on every call of every run. A lane whose backend had died behind such a cache
+    would go on passing on a stored reply. Each call asks something new, so the
+    answer can only come from a model."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
+    async with httpx.AsyncClient() as client:
+        await probe_entry(client, keyless_entry(), backoff=0)
+        await probe_entry(client, keyless_entry(), backoff=0)
+    prompts = [json.loads(c.request.content)["messages"][0]["content"] for c in call.calls]
+    assert len(prompts) == 4
+    assert len(set(prompts)) == len(prompts)
+    assert all(json.loads(c.request.content)["max_tokens"] == 1 for c in call.calls)
+
 def _refuses_a_bearer(status_with_bearer: int):
     def answer(request: httpx.Request) -> httpx.Response:
         if "authorization" in request.headers:

@@ -361,6 +361,16 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
 # the body is a completion and the model it names, never the message, and one
 # token is all it costs the vendor.
 KEYLESS_PROBE_BODY = {"max_tokens": 1, "messages": [{"role": "user", "content": "ping"}]}
+
+
+def keyless_probe_body() -> dict:
+    """KEYLESS_PROBE_BODY asking something no cache has answered before.
+    Pollinations' old host caches its answers — on 2026-09-27 a repeated prompt
+    came back stamped 2026-09-16 — and with the same "ping" on every call a
+    lane whose backend had died behind such a cache would go on passing on a
+    stored reply."""
+    return {**KEYLESS_PROBE_BODY,
+            "messages": [{"role": "user", "content": f"ping {uuid.uuid4().hex[:12]}"}]}
 KEYLESS_REFUSED = (401, 403)
 # The Authorization header LiteLLM puts on a call to a lane its config marks
 # `api_key: none` — the one proxy this list writes a config for, and one that
@@ -384,7 +394,7 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
         if i:
             await asyncio.sleep(backoff * i)
         try:
-            resp = await client.post(url, json={"model": model, **KEYLESS_PROBE_BODY},
+            resp = await client.post(url, json={"model": model, **keyless_probe_body()},
                                      headers=headers, timeout=TIMEOUT, follow_redirects=True)
         except httpx.HTTPError as exc:
             last = f"network error: {exc}"
