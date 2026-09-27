@@ -5,8 +5,36 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-27T05:38:50Z</updated>
+  <updated>2026-09-27T09:00:27Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/atomcode/20260927T090027Z</id>
+    <title>Added: AtomCode</title>
+    <link rel="alternate" href="https://atomcode.atomgit.com/"/>
+    <updated>2026-09-27T09:00:27Z</updated>
+    <summary type="text">Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day · free models: deepseek-v4-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/autohand-code/20260927T090027Z</id>
+    <title>Added: Autohand Code</title>
+    <link rel="alternate" href="https://www.autohand.ai/code/"/>
+    <updated>2026-09-27T09:00:27Z</updated>
+    <summary type="text">Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, its messages counted per five hours and per week · free models: fantail</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/baidu-comate/20260927T090027Z</id>
+    <title>Added: Baidu Comate (文心快码)</title>
+    <link rel="alternate" href="https://comate.baidu.com"/>
+    <updated>2026-09-27T09:00:27Z</updated>
+    <summary type="text">Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI, whose free Personal Standard plan keeps code completion free and adds a one-time ¥10 voucher for agent requests</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/qoder-cn/20260927T090027Z</id>
+    <title>Added: Qoder CN (formerly Lingma)</title>
+    <link rel="alternate" href="https://qoder.cn"/>
+    <updated>2026-09-27T09:00:27Z</updated>
+    <summary type="text">Alibaba Cloud's agentic coding apps for China — Qoder CN IDE, JetBrains plugin and CLI, formerly Tongyi Lingma — with a two-week trial of 300 credits, then 100 credits a day to claim while that promotion runs, and limited completions on a basic model after</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260927T053850Z</id>
     <title>Free models changed: Regolo AI</title>
@@ -328,33 +356,5 @@
     <link rel="alternate" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview"/>
     <updated>2026-09-23T21:23:43Z</updated>
     <summary type="text">Google Cloud's express mode for the Gemini Enterprise Agent Platform, formerly Vertex AI: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account · free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260923T203616Z</id>
-    <title>Free models changed: Cline</title>
-    <link rel="alternate" href="https://cline.bot"/>
-    <updated>2026-09-23T20:36:16Z</updated>
-    <summary type="text">dropped laguna-s-2.1</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260922T174825Z</id>
-    <title>Free models changed: Freebuff</title>
-    <link rel="alternate" href="https://freebuff.com"/>
-    <updated>2026-09-22T17:48:25Z</updated>
-    <summary type="text">dropped mimo-v2.5 · free models: glm-5.3-flash, deepseek-v4.1-flash, gpt-5.6-luna</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/token-harbor/20260922T174825Z</id>
-    <title>Free models changed: Token Harbor</title>
-    <link rel="alternate" href="https://tokenharbor.ai"/>
-    <updated>2026-09-22T17:48:25Z</updated>
-    <summary type="text">dropped deepseek-v4-flash, mimo-v2.5 · free models: deepseek-v4.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260922T172647Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-22T17:26:47Z</updated>
-    <summary type="text">added glm-5.2; dropped glm-5 · free models: glm-5.2, gpt-oss, qwen3.8-27b, apertus-70b</summary>
   </entry>
 </feed>

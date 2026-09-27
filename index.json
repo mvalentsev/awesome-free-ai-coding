@@ -8167,6 +8167,184 @@
       "rank": 84,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/"
+    },
+    {
+      "id": "autohand-code",
+      "name": "Autohand Code",
+      "category": "agent-cli",
+      "url": "https://www.autohand.ai/code/",
+      "source_urls": [
+        "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
+        "https://autohand.ai/terms-of-service"
+      ],
+      "card_required": false,
+      "offering": "Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, its messages counted per five hours and per week",
+      "limits": "The Free plan \"includes 20 messages per five-hour window, 200 messages per week, and 10 requests per minute\", is \"designed for evaluation and light use\", and \"provides ongoing access rather than a one time trial\". \"A credit card is not required to use the Free plan\": access takes one of a linked GitHub account \"at least 30 days old\", an invite, a grant from Autohand, or a card on file that \"is not charged\". Its larger model and more than 200 messages a week are the Pro plan. Read 2026-09-27",
+      "free_part": "models",
+      "models": [
+        {
+          "family": "fantail"
+        }
+      ],
+      "border": {
+        "left_out": [],
+        "on": "2026-09-27",
+        "source": "https://autohand.ai/terms-of-service",
+        "quote": "",
+        "read": "none",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
+        "keywords": [
+          "20 messages per five-hour window",
+          "ongoing access rather than a one time trial"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-27",
+      "last_verified": "2026-09-27",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 52,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/"
+    },
+    {
+      "id": "qoder-cn",
+      "name": "Qoder CN (formerly Lingma)",
+      "category": "trial",
+      "url": "https://qoder.cn",
+      "source_urls": [
+        "https://docs.qoder.cn/product-overview/billing-description",
+        "https://docs.qoder.cn/product-overview/credits",
+        "https://docs.qoder.cn/events/100credits",
+        "https://docs.qoder.cn/product-overview/account-and-subscription"
+      ],
+      "card_required": false,
+      "offering": "Alibaba Cloud's agentic coding apps for China — Qoder CN IDE, JetBrains plugin and CLI, formerly Tongyi Lingma — with a two-week trial of 300 credits, then 100 credits a day to claim while that promotion runs, and limited completions on a basic model after",
+      "limits": "The free plan, 个人体验版, gives \"有限的体验额度，含为期 2 周的试用及 300 Credits\" (a limited trial allowance: a two-week trial and 300 Credits) and \"有限次数的补全\" (a limited number of completions); when the Credits run out \"系统自动切换到基础模型，继续提供有限的代码补全等基础能力\" (the system switches to a basic model and keeps providing limited code completion). Since 2026-09-18 \"Qoder CN 个人用户每天可在 Qoder CN 桌面端内主动领取 100 通用 Credits\" (individual users can claim 100 general Credits a day in the Qoder CN desktop app), free users included, each claim \"自领取之日起 30 天内有效\" (valid for 30 days from the claim), its end \"另行公告\" (to be announced). An individual account is \"手机号绑定的阿里云账号\" (an Alibaba Cloud account bound to a phone number); real-name verification is asked only to buy. The same apps outside China are Qoder, a separate company, account and price list. Read 2026-09-27",
+      "free_part": "sum",
+      "models": [],
+      "border": {
+        "left_out": [],
+        "on": "2026-09-27",
+        "source": "https://docs.qoder.cn/product-overview/account-and-subscription",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://docs.qoder.cn/product-overview/billing-description",
+        "keywords": [
+          "为期 2 周的试用及 300 Credits",
+          "有限次数的补全"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-27",
+      "last_verified": "2026-09-27",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 83,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/"
+    },
+    {
+      "id": "baidu-comate",
+      "name": "Baidu Comate (文心快码)",
+      "category": "trial",
+      "url": "https://comate.baidu.com",
+      "source_urls": [
+        "https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a"
+      ],
+      "card_required": false,
+      "offering": "Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI, whose free Personal Standard plan keeps code completion free and adds a one-time ¥10 voucher for agent requests",
+      "limits": "The Personal Standard plan, 个人标准版, is free: \"智能补全 免费\" (smart completion: free) and \"赠智能体请求券¥10（首次）\" (a ¥10 agent-request voucher, the first time only). The Auto-Free mode the paid plans fall back to when their vouchers run out — 150k tokens an hour on Pro — is not on it, and Baidu does not name the model completion runs on. Read 2026-09-27",
+      "free_part": "unnamed",
+      "models": [],
+      "border": {
+        "left_out": [],
+        "on": "2026-09-27",
+        "source": "https://cloud.baidu.com/doc/COMATE/s/glxiygwdx",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a",
+        "keywords": [
+          "个人标准版",
+          "赠智能体请求券¥10（首次）"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-27",
+      "last_verified": "2026-09-27",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 76,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/"
+    },
+    {
+      "id": "atomcode",
+      "name": "AtomCode",
+      "category": "trial",
+      "url": "https://atomcode.atomgit.com/",
+      "source_urls": [
+        "https://atomcode.atomgit.com/docs/en/login.html"
+      ],
+      "card_required": false,
+      "offering": "Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day",
+      "limits": "CodingPlan \"offers three tiers\" and \"Quota is measured on a rolling 5-hour window\": Lite, \"30 days\" on a \"Free claim, 1,000 slots/day\"; a 7-day Pro Trial on \"100 slots/day at 10:00\" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model, left out of the Models column. Read 2026-09-27",
+      "free_part": "models",
+      "models": [
+        {
+          "family": "deepseek-v4-flash",
+          "tier": "strong",
+          "aa_model": "deepseek-v4-flash"
+        }
+      ],
+      "border": {
+        "left_out": [],
+        "on": "2026-09-27",
+        "source": "https://atomcode.atomgit.com/docs/en/login.html",
+        "quote": "",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://atomcode.atomgit.com/docs/en/login.html",
+        "keywords": [
+          "Free claim, 1,000 slots/day",
+          "rolling 5-hour window"
+        ],
+        "free_marker": "",
+        "dead_markers": [],
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-27",
+      "last_verified": "2026-09-27",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 81,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/"
     }
   ],
   "countries": [
@@ -9271,6 +9449,17 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
     },
     {
+      "family": "deepseek-v4-flash",
+      "rows": [
+        "routeway",
+        "alibaba-model-studio",
+        "atomcode",
+        "freeinference"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
+    },
+    {
       "family": "gpt-oss-120b",
       "rows": [
         "groq-free",
@@ -9310,16 +9499,6 @@
         "cohere"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
-    },
-    {
-      "family": "deepseek-v4-flash",
-      "rows": [
-        "routeway",
-        "alibaba-model-studio",
-        "freeinference"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
       "family": "dots-3-note",
@@ -9746,6 +9925,12 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/"
+    },
+    {
+      "family": "fantail",
+      "rows": [
+        "autohand-code"
+      ]
     },
     {
       "family": "gemini-2.5",

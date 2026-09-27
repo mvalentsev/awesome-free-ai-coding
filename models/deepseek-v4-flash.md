@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'deepseek-v4-flash free: 3 providers, limits and ids, verified 2026-09-27'
-description: deepseek-v4-flash is served free by Routeway, Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'deepseek-v4-flash free: 4 providers, limits and ids, verified 2026-09-27'
+description: deepseek-v4-flash is served free by Routeway, Alibaba Cloud Model Studio (DashScope, international), AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/deepseek-v4-flash/
 last_modified_at: 2026-09-27
 crumb: deepseek-v4-flash
@@ -11,7 +11,7 @@ crumb: deepseek-v4-flash
 
 # Where deepseek-v4-flash is free
 
-**3 rows on the list serve `deepseek-v4-flash` free:** Routeway, Alibaba Cloud Model Studio (DashScope, international) and FreeInference (Harvard SEAS). None asks for a card. A live probe confirmed each one on 2026-09-27 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-flash).
+**4 rows on the list serve `deepseek-v4-flash` free:** Routeway, Alibaba Cloud Model Studio (DashScope, international), AtomCode and FreeInference (Harvard SEAS). None asks for a card. A live probe confirmed each one on 2026-09-27 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -39,6 +39,15 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 - Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
 - Callable ids: `deepseek-v4-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
+
+### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
+
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-27 · verified 2026-09-27 · listed since 2026-09-27
+
+Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
+
+- Limits, in the vendor's words: CodingPlan "offers three tiers" and "Quota is measured on a rolling 5-hour window": Lite, "30 days" on a "Free claim, 1,000 slots/day"; a 7-day Pro Trial on "100 slots/day at 10:00" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model, left out of the Models column. Read 2026-09-27
+- No API endpoint to paste: this row is a tool you install or sign in to.
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 

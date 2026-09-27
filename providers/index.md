@@ -20,6 +20,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — verified 2026-09-27 · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) · [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/)
 - [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — verified 2026-09-27 · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/)
 - [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) — verified 2026-09-27
+- [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) — verified 2026-09-27 · `fantail`
 - [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) — verified 2026-09-27
 - [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) — verified 2026-09-27
 
@@ -68,10 +69,13 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — verified 2026-09-27
 - [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) — verified 2026-09-27 · `mellum`
 - [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) — verified 2026-09-27 · [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · `apertus-70b` · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · `mistral-small-4` · [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/) · [+1 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
+- [Baidu Comate (文心快码)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/) — verified 2026-09-27
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-09-27
 - [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-09-27
 - [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) — verified 2026-09-27 · [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)
+- [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/) — verified 2026-09-27 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-09-27
+- [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) — verified 2026-09-27
 - [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) — verified 2026-09-27 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/)
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-09-27
 - [The Grid](https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/) — verified 2026-09-27
