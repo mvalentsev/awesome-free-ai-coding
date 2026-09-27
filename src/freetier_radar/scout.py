@@ -14,9 +14,9 @@ from typing import Callable
 import httpx
 import yaml
 
-from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
+from .discovery import Evidence, fetch_page_texts, format_evidence, gather_evidence
 from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Watched,
-                     is_archived, is_blocked, is_covered, is_source_current,
+                     domain_of, is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      probe_frequency, watch_match)

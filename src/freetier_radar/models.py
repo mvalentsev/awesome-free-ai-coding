@@ -1121,6 +1121,12 @@ def domain_of(url: str) -> str:
     return urlparse(url).netloc.lower().removeprefix("www.")
 
 
+def under(host: str, domain: str) -> bool:
+    """Whether `host` is `domain` or one of its subdomains: api.siliconflow.com
+    is under siliconflow.com, and notsiliconflow.com is not."""
+    return host == domain or host.endswith("." + domain)
+
+
 # Hosts that serve anyone's repository, where the path names the publisher and
 # the host names nobody. Each maps to the host its owners are counted under, so
 # a raw file and the repository it came from are the same owner.
@@ -1229,6 +1235,13 @@ def folded_into(entries: list[Entry], entry: Entry) -> Entry | None:
     return next((e for e in entries if e.id == entry.duplicate_of), None)
 
 
+def is_connectable(entry: Entry, today: date) -> bool:
+    """A live row a reader can point an OpenAI client at: the rows the configs,
+    the connection table and the key check are written from."""
+    return (not is_archived(entry, today) and entry.api is not None
+            and bool(entry.api.base_url) and entry.api.openai_compatible)
+
+
 def is_archived_for_good(entry: Entry, today: date) -> bool:
     """Archived by a date or by a reviewer rather than by the probe — so no probe
     result can bring the row back, and none is asked for. A row the probe
@@ -1254,7 +1267,7 @@ def load_blocklist(path: Path) -> dict[str, str]:
 
 
 def is_blocked(domain: str, blocklist: dict[str, str]) -> bool:
-    return any(domain == b or domain.endswith("." + b) for b in blocklist)
+    return any(under(domain, b) for b in blocklist)
 
 
 def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
@@ -1383,7 +1396,7 @@ def watch_match(domain: str, watchlist: list[Watched], today: date) -> Watched |
             continue
         for raw in w.domains:
             d = raw.lower()
-            if domain == d or domain.endswith("." + d):
+            if under(domain, d):
                 return w
     return None
 

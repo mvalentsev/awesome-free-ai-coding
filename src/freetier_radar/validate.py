@@ -15,9 +15,9 @@ from urllib.parse import urlparse
 
 from .discovery import CURATED_FEEDS
 from .history import EventType, deleted_row_problem, deleted_rows, load_history
-from .models import (Entry, FreePart, family_names, is_archived, is_blocked, lane_ids,
-                     load_blocklist, load_dismissed, load_registry, load_sources, load_watchlist,
-                     prose_names, save_registry)
+from .models import (Entry, FreePart, domain_of, family_names, is_archived, is_blocked,
+                     is_connectable, lane_ids, load_blocklist, load_dismissed, load_registry,
+                     load_sources, load_watchlist, prose_names, save_registry, under)
 
 __all__ = ["check", "check_repository", "registry_form_problems", "main"]
 
@@ -37,10 +37,6 @@ FOR_CAUSE = "rejected for cause"
 _TAG = re.compile(r"<[A-Za-z/!][^<>]*>")
 
 
-def _domain(url: str) -> str:
-    return urlparse(url).netloc.lower().removeprefix("www.")
-
-
 def _source_key(url: str) -> str:
     """One identity for a source however it happens to be spelled.
 
@@ -50,7 +46,7 @@ def _source_key(url: str) -> str:
     never say so.
     """
     parsed = urlparse(url)
-    host = _domain(url)
+    host = domain_of(url)
     parts = [p for p in parsed.path.split("/") if p]
     if host in _GITHUB_HOSTS and len(parts) >= 2:
         return f"github:{parts[0].lower()}/{parts[1].lower()}"
@@ -206,22 +202,19 @@ def check(root: Path, today: date | None = None) -> list[str]:
         elif e.border.on > today:
             problems.append(f"registry: {e.id} border was read on {e.border.on}, after today")
 
-    # The configs are written from api.model_ids alone: a family names a model,
-    # an id is what a request carries. A connectable row whose column names
-    # families and lists no id would hand a reader nothing to call.
+    # A live connectable row lists an id: the configs are written from the ids
+    # alone, and the row's page checks a reader's key with a call to one. A
+    # family names a model, an id is what a request carries, so a row whose
+    # column names families lists their ids; any other may say in api.no_ids
+    # why no page it publishes names one.
     for e in entries:
-        if (e.api and e.api.base_url and e.api.openai_compatible and e.models
-                and not e.api.model_ids and not is_archived(e, today)):
+        if not is_connectable(e, today) or e.api.model_ids:
+            continue
+        if e.models:
             problems.append(
                 f"registry: {e.id} names families but no api.model_ids — the configs call ids, "
                 f"never family names; list the vendor's exact ids")
-
-    # And any live connectable row lists an id, or says in api.no_ids why it
-    # cannot: the configs are written from the ids and the row's page checks a
-    # reader's key with a call to one.
-    for e in entries:
-        if (e.api and e.api.base_url and e.api.openai_compatible and not e.api.model_ids
-                and not e.api.no_ids and not is_archived(e, today)):
+        elif not e.api.no_ids:
             problems.append(
                 f"registry: {e.id} lists no api.model_ids — list a few of the vendor's exact "
                 f"ids, or say in api.no_ids why no page it publishes names them")
@@ -321,8 +314,8 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for e in entries:
         if is_archived(e, today):
             continue
-        if is_blocked(_domain(e.url), blocklist):
-            problems.append(f"registry: {e.id} sits on blocklisted domain {_domain(e.url)}")
+        if is_blocked(domain_of(e.url), blocklist):
+            problems.append(f"registry: {e.id} sits on blocklisted domain {domain_of(e.url)}")
 
     # ---- a delisting and the verdict behind it
     # A row a reviewer takes off keeps one line in the Archive; the account of
@@ -333,7 +326,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for e in entries:
         if e.delisted is None or e.duplicate_of is not None:
             continue
-        d = _domain(e.url)
+        d = domain_of(e.url)
         for_cause = e.delisted.reason.lower().startswith(FOR_CAUSE)
         if for_cause and not is_blocked(d, blocklist):
             problems.append(f"registry: {e.id} is delisted for cause and {d} is not on the "
@@ -345,7 +338,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(f"registry: {e.id} sits on blocklisted domain {d} and its delisting "
                             f"says `{e.delisted.reason}` — a row on the blocklist is delisted as "
                             f"`{FOR_CAUSE} — …`")
-        elif not for_cause and not any(d == wd or d.endswith("." + wd) for wd in watched_domains):
+        elif not for_cause and not any(under(d, wd) for wd in watched_domains):
             problems.append(f"registry: {e.id} is delisted and no watchlist verdict covers {d} — "
                             "the account of why the offer ended goes to watchlist.yaml (or, for "
                             "cause, blocklist.yaml)")
@@ -357,9 +350,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
     for e in entries:
         if is_archived(e, today):
             continue
-        d = _domain(e.url)
+        d = domain_of(e.url)
         for wd in watched_domains:
-            if d == wd or d.endswith("." + wd):
+            if under(d, wd):
                 problems.append(
                     f"registry: live entry {e.id} ({d}) is also on the watchlist as "
                     f"having no free tier")

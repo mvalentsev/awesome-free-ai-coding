@@ -21,8 +21,7 @@ from urllib.parse import urlparse
 
 import httpx
 
-# Defined in models.py; scout and the tests import domain_of from here.
-from .models import domain_of, is_covered  # noqa: F401
+from .models import domain_of, is_covered, under
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 UA = {"User-Agent": "freetier-radar/0.2"}
@@ -405,7 +404,7 @@ def models_dev_digest(client: httpx.Client, known_domains: set[str],
         host = domain_of(endpoint).split(":")[0]
         if not host or host in LOCAL_HOSTS or host in CODE_HOSTS:
             continue
-        if any(host == k or host.endswith("." + k) for k in known_domains if k):
+        if any(under(host, k) for k in known_domains if k):
             continue
         ids = ", ".join(str(m.get("id") or "?") for m in free[:3])
         rows.append((len(free), f"- {pid} ({p.get('name') or pid}) api {p.get('api') or '—'} "

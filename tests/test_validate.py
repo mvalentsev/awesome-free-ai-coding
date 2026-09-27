@@ -588,3 +588,9 @@ def test_a_connectable_row_lists_an_id_or_says_why_it_cannot(tmp_path: Path):
     said = {**bare, "api": {"base_url": "https://x.ai/v1", "no_ids": "the catalog answers only a key"}}
     problems = check(build(tmp_path, entries=[said], watched=[WATCHED]), TODAY)
     assert not any("api.model_ids" in p for p in problems), problems
+    # a row that names families and lists no id is told once, the families' way
+    named = {**ENTRY, "api": {"base_url": "https://x.ai/v1"}}
+    problems = check(build(tmp_path, entries=[named], watched=[WATCHED]), TODAY)
+    assert [p for p in problems if "api.model_ids" in p] == [
+        "registry: x names families but no api.model_ids — the configs call ids, never family "
+        "names; list the vendor's exact ids"], problems
