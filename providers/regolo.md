@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
-description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b. "Start your 30-day free trial ... No credit card required, no commitment":…'
+description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b and 1 more. "Start your 30-day free trial ... No credit card required, no…'
 permalink: /providers/regolo/
 last_modified_at: 2026-09-27
 crumb: Regolo AI
@@ -19,7 +19,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Free models
 
-[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `apertus-70b`, [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), `mistral-small-4`, [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/)
+[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `apertus-70b`, [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), `mistral-small-4`, [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/), [`qwen3.5-122b-a10b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/)
 
 ## Limits, in the vendor's words
 
@@ -60,6 +60,7 @@ curl -s https://api.regolo.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-27` — Free models changed: added qwen3.5-122b-a10b
 - `2026-09-27` — Free models changed: added gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b
 - `2026-09-25` — Free models changed: added gpt-oss-120b; dropped gpt-oss
 - `2026-09-22` — Free models changed: added glm-5.2; dropped glm-5

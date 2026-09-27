@@ -14,7 +14,7 @@ import httpx
 
 from .models import (
     CHALLENGE_MARKERS, DEAD_MARKERS, NOTICE_HOLD_DAYS, Entry, Follow, ModelFamily, Probe, ProbeType,
-    _id_squash, _squash, id_family, is_archived_for_good, lane_ids, load_registry,
+    _id_squash, _squash, id_family, names_family, is_archived_for_good, lane_ids, load_registry,
     notice_holds, save_registry,
 )
 
@@ -1496,7 +1496,7 @@ def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
         return []
     squashed, text = _squash(resp.text), resp.text.lower()
     return [m.family for m in entry.models
-            if _squash(m.family) not in squashed and not _named_in_parts(m.family, text)]
+            if not names_family(m.family, squashed, _squash) and not _named_in_parts(m.family, text)]
 
 
 def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None:

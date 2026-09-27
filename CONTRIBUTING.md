@@ -159,7 +159,12 @@ model index, from the tier marks and from freetier-bars, which counts an id as
 named once any family names it. On 2026-09-25 AIHubMix's `glm-5` stood for
 GLM-5.2, 5.1, 5 and 5-Turbo, so its strong GLM-5.2 was in no pick; eight rows
 split their families that day. A family stays broader than one model only where
-the evidence names nothing narrower.
+the evidence names nothing narrower. A mixture-of-experts model keeps its full
+name, active parameters and all (`qwen3.5-122b-a10b`), and a page or an id that
+leaves the count off still names it, where no other count follows: Regolo sells
+Qwen3.5-122B-A10B as `qwen3.5-122b` and Alibaba names it in full, and until
+2026-09-27 the two spellings could not be one family — one row went without the
+model, or the model would have had two pages for good.
 
 ## How a row leaves the list
 

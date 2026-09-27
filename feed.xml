@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-27T04:51:59Z</updated>
+  <updated>2026-09-27T05:38:50Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260927T053850Z</id>
+    <title>Free models changed: Regolo AI</title>
+    <link rel="alternate" href="https://regolo.ai/pricing/"/>
+    <updated>2026-09-27T05:38:50Z</updated>
+    <summary type="text">added qwen3.5-122b-a10b · free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b, qwen3.5-122b-a10b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20260927T045159Z</id>
     <title>Free models changed: Devin Desktop (formerly Windsurf)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://regolo.ai/pricing/"/>
     <updated>2026-09-22T17:26:47Z</updated>
     <summary type="text">added glm-5.2; dropped glm-5 · free models: glm-5.2, gpt-oss, qwen3.8-27b, apertus-70b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260922T172011Z</id>
-    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
-    <link rel="alternate" href="https://build.nvidia.com"/>
-    <updated>2026-09-22T17:20:11Z</updated>
-    <summary type="text">added kimi-k3, laguna-xs-2.1, nemotron-3-super, nemotron-3-ultra; dropped nemotron · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1</summary>
   </entry>
 </feed>

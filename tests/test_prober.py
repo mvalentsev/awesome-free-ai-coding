@@ -1125,6 +1125,29 @@ async def test_a_family_the_page_spells_with_spaces_is_evidenced():
     assert result.status is ProbeStatus.PASS
 
 
+
+@respx.mock
+async def test_a_mixture_of_experts_named_without_its_active_parameters_is_evidenced():
+    """A mixture-of-experts name ends in its active parameters, and vendors drop
+    them as often as they write them: Regolo's price table sells qwen3.5-122b,
+    Alibaba's page qwen3.5-122b-a10b, one model. Held to the longer spelling,
+    Regolo's row could not carry the model's family, and held to the shorter
+    one the model would have had two pages for good. A different count is a
+    different model, though."""
+    entry = listing_entry()
+    entry.probe.keywords = ["free tier", "no credit card"]
+    entry.models = [entry.models[0].model_copy(update={"family": "qwen3.5-122b-a10b"})]
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3.5-122b €1.00 €4.20 Included, no credit card, free tier"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="qwen3.5-122b-a6b €1.00 €4.20 Included, no credit card, free tier"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_MODELS
+
 @respx.mock
 async def test_a_family_folded_into_a_shared_suffix_is_evidenced():
     """Antigravity's pricing page enumerates its free agent models as "Claude

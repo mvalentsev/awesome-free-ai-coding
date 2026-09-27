@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import re
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from datetime import date
 from enum import Enum
@@ -200,14 +200,39 @@ def prose_names(text: str, name: str) -> bool:
     return False
 
 
+# A mixture-of-experts name ends in its active parameters — Qwen's 122B-A10B,
+# Gemma's 26B-A4B — and vendors leave them off as often as they write them.
+_ACTIVE_PARAMETERS = re.compile(r"-a\d+b$")
+_ANOTHER_COUNT = re.compile(r"a\d+b")
+
+
+def names_family(family: str, squashed: str, squash: Callable[[str], str]) -> bool:
+    """Whether `squashed` — a text already squashed with `squash` — names `family`: the family as a
+    substring, or — for a mixture-of-experts family — its name without the
+    active-parameter count, where no other count follows it. Regolo's price
+    table and id say qwen3.5-122b and Alibaba's page qwen3.5-122b-a10b, one
+    model; held to the longer spelling Regolo's row could not carry the
+    model's family, and held to the shorter one the model would have two pages
+    for good. qwen3-30b-a6b is not qwen3-30b-a3b."""
+    if squash(family) in squashed:
+        return True
+    cut = _ACTIVE_PARAMETERS.search(family)
+    if cut is None:
+        return False
+    base = squash(family[:cut.start()])
+    return any(not _ANOTHER_COUNT.match(squashed, m.end())
+               for m in re.finditer(re.escape(base), squashed))
+
+
 def family_names(family: str, model_id: str) -> bool:
     """Whether a catalog id is one of a family's, the one way every part of the
     project decides it: the probe demanding a family back from a catalog, the
     render reading an id's tier, freetier-check and freetier-bars asking which
     ids a row's column already names. A substring of the squashed id, so
     `glm-5.3` also names a `glm-5.3-flash` id — give a family the most
-    specific name the lane serves."""
-    return _id_squash(family) in _id_squash(model_id)
+    specific name the lane serves — and see names_family for a
+    mixture-of-experts name without its active parameters."""
+    return names_family(family, _id_squash(model_id), _id_squash)
 
 
 def id_family(families: Iterable[str], model_id: str) -> str | None:
