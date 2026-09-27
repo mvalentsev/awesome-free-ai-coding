@@ -47,7 +47,7 @@ read:
 
   - url: https://github.com/ShaikhWarsi/free-ai-tools
     name: ShaikhWarsi/free-ai-tools
-    checked_on: '2026-08-14'
+    checked_on: '2026-09-27'
     reason: >-
       A general free-AI-tools directory, not a model-endpoint list. Of the 105
       hosts in its 76KB README, 52 are already carried; the remainder is
@@ -68,6 +68,9 @@ read:
       Commercial Use Summary marks Cohere "Yes", while its changelog removed
       Cohere as "non-commercial only". Cohere's pricing page settles it
       against the table, and this registry's row now carries the restriction.
+      Read again 2026-09-27 as one of the originals of a promoter's forks: its last
+      commit is still 2026-08-09, and of its 124 sites 66 are known here; nothing
+      new in scope.
     reopen_if: >-
       It splits the LLM-API rows into their own machine-readable file, or its
       uncovered hosts stop being non-API tools.
@@ -295,7 +298,7 @@ read:
 
   - url: https://github.com/YoannDev90/awesome-free-ai-api
     name: YoannDev90/awesome-free-ai-api
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-27'
     reason: >-
       90 stars, pushed 2026-09-05, "78 APIs". 85 hosts, 51 with no verdict
       here, and the 51 are the relay and pool ecosystem — A4F, AI Pooled,
@@ -309,6 +312,13 @@ read:
       gateways did not, because a blocklist line needs the operator's own
       words or a measured price gap, and a directory that links to another
       directory supplies neither.
+      Read again 2026-09-27 as one of the originals of a promoter's forks: of its 93
+      sites 58 are known here. Most of the rest are free proxies of proprietary
+      models listed through gratisfy.xyz; five of them state their supply in their
+      own words or code and went on the blocklist that day — paxsenix.org (scraping
+      and reverse engineering), crax.lol (Z.ai's web chat client), ohmygpt.com
+      (Claude and Codex subscriptions), tokenreply.com and resurge.one (channels
+      named after Kiro, Antigravity and Gemini CLI) — and the others state nothing.
     reopen_if: >-
       It starts linking vendor terms pages, or names a first-party vendor with
       a free tier this registry has no verdict on.
@@ -353,7 +363,7 @@ read:
 
   - url: https://github.com/peter123023/awesome-free-llm-api
     name: peter123023/awesome-free-llm-api
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-27'
     reason: >-
       A Chinese table worth reading: 86 stars, pushed 2026-09-04, rows sorted
       by model with an "API 质量" column that records observed behaviour (NVIDIA
@@ -366,6 +376,11 @@ read:
       since 2026-09-17 and 2026-09-16. Its figures for carried rows agree with
       the registry (SenseNova "每 5 小时 1500 次", Ollama Cloud's unpublished
       starter credit, OpenRouter's 50-a-day-then-1,000).
+      Read again 2026-09-27 as one of the originals of a promoter's forks: of its 53
+      sites 49 are known here. AtomGit's serverless-API page it links now redirects
+      to AtomCode's coding plan, a row since that day; LongCat has billed since
+      2026-06-30 and stays archived; Onomeo, a gateway over other vendors' free
+      tiers, is in the watchlist.
     reopen_if: >-
       A row outside the mainland consoles that links a vendor page this
       registry has no verdict on.
@@ -426,12 +441,15 @@ read:
 
   - url: https://github.com/freellms/awesome-freellm-apis
     name: freellms/awesome-freellm-apis
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-27'
     reason: >-
       A README mirror of freellms.org, 11 stars, pushed 2026-08-10. 50 hosts,
       45 carried; the five others are GitHub Models' retired Azure host,
       kluster.ai (does not resolve), and three local runtimes (GPT4All, Jan,
       LM Studio).
+      Read again 2026-09-27 as one of the originals of a promoter's forks: of its 61
+      sites 54 are known here, the rest local runtimes (LM Studio, Jan, GPT4All,
+      llama.cpp, KoboldCPP).
     reopen_if: >-
       A vendor row this registry has no verdict on.
 
@@ -817,7 +835,7 @@ read:
 
   - url: https://github.com/cuihuan/awesome-ai-gateway
     name: cuihuan/awesome-ai-gateway
-    checked_on: '2026-09-11'
+    checked_on: '2026-09-27'
     reason: >-
       160+ AI gateways with a decision tree, a cost benchmark and dated
       evidence, 108 stars, CC0, pushed 2026-09-11 by a daily job that
@@ -832,6 +850,9 @@ read:
       were read from their own pages on 2026-09-11. Its maintainer discloses
       running a commercial gateway, Runix. The source of two ideas taken
       here the same day, llms.txt and the IndexNow ping.
+      Read again 2026-09-27 as one of the originals of a promoter's forks: of its
+      282 sites 46 are known here, and its free-tier table carries no provider this
+      list lacks; the rest is gateway software and paid hosted gateways.
     reopen_if: >-
       free_tiers.json gains a provider with no verdict here.
 
@@ -1028,3 +1049,1056 @@ read:
     reopen_if: >-
       It lists a chat platform with no verdict here, or the repository's key
       list stops naming every chat platform the catalog serves.
+
+  # Read 2026-09-27: the originals of a promoter's 97 forks of AI-tool, free-API,
+  # gateway and relay lists (ankita37105 on GitHub), every link of every README
+  # matched against the registry, the archive, the watchlist, the blocklist and
+  # the lists already read. Counts are sites: a host, or an owner on GitHub.
+  - url: https://freellm.net/feed.json
+    name: FreeLLM.net JSON Feed
+    checked_on: '2026-09-27'
+    reason: >-
+      The JSON Feed of freellm.net, whose README the scout already reads as a feed
+      (open-free-llm-api/awesome-freellm-apis): fifty events of "New free model",
+      "Now free" and "No longer free" across the 31 providers it tracks, all of them
+      rows or verdicts here. Not adopted: those providers' catalogs are what this
+      list's own probes read twice a week, and its events need the same check a
+      probe makes — on 2026-09-26 it had GPT-OSS 120B and 20B "free→paid" on Groq,
+      while Groq's Free Plan Limits table carried both on 2026-09-27. Its model
+      table is HTML at freellm.net/models/, with no JSON API. Read 2026-09-27.
+    reopen_if: >-
+      It tracks providers this list carries no row or verdict for, or its events
+      lead this list's probes.
+
+  - url: https://github.com/12britz/awesome-free-models
+    name: 12britz/awesome-free-models
+    checked_on: '2026-09-27'
+    reason: >-
+      A broad free-AI list (2,322 stars, last pushed 2026-09-20) — open-weight
+      models, free API providers and routers, coding assistants, courses and
+      hosting. Of its 291 sites 71 are known here — 30 as rows, 6 as archived rows,
+      29 in the watchlist, 3 on the blocklist, 1 as a list already read and 2 as
+      feeds the scout reads. Its Free API Providers section added nothing this list
+      can carry: Black Forest Labs (image models), Qwen Studio (a chat app), Anakin
+      (30 web credits a day on Gemini, API integration on paid plans), Azure ($200
+      of trial credit with a card), RunPod and Lightning (GPU credits), DashScope in
+      China (the Bailian verdict), FreeTheAi (blocklisted as freetheai.xyz) and
+      TypeSafe (not a chat model); its coding assistants are rows or verdicts here,
+      Sourcegraph Cody's among them since this read. Read 2026-09-27.
+    reopen_if: >-
+      It lists a free LLM API or a coding agent with bundled free usage that has no
+      row or verdict here.
+
+  - url: https://github.com/Claws-ZH/awesome-ai-api
+    name: Claws-ZH/awesome-ai-api
+    checked_on: '2026-09-27'
+    reason: >-
+      Rankings and reviews of 200+ API relays and gateways (55 stars, last pushed
+      2026-09-27), each probed daily for an OpenAI-compatible /v1/models — a relay
+      directory, not a list of free tiers. Of its 67 sites 10 are known here — 4 as
+      rows, 5 in the watchlist and 1 on the blocklist; the rest are relays and
+      resellers of proprietary models. Its daily probe of every listed gateway is
+      the same idea as this list's run. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/foss42/awesome-generative-ai-apis
+    name: foss42/awesome-generative-ai-apis
+    checked_on: '2026-09-27'
+    reason: >-
+      Generative-AI APIs (224 stars, last pushed 2026-09-05), most of them voice,
+      video, image and music APIs, the rest paid LLM gateways. Of its 125 sites 34
+      are known here — 14 as rows, 16 in the watchlist, 3 on the blocklist and 1 as
+      a feed the scout reads; the rest, by the list's own descriptions, are media
+      APIs and paid gateways, XiuRouter among them, blocklisted on this read for an
+      operator that sells accounts. Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/gekoan/awesome-free-ai-api-credits
+    name: gekoan/awesome-free-ai-api-credits
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API relays with sign-up credits, check-in rewards and referral
+      codes (2 stars, last pushed 2026-09-11). Of its 25 sites 17 are known here — 4
+      in the watchlist and 13 on the blocklist: eleven of its relays went on the
+      blocklist on 2026-09-27, each for account pools, reverse engineering or key
+      sharing stated in its own words or code, and the rest state nothing about
+      their supply — a bonus is neither a free tier nor a cause. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers or credits.
+
+  - url: https://github.com/howardpen9/awesome-ai-api-proxy
+    name: howardpen9/awesome-ai-api-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      A map of AI API relay stations and LLM gateways (86 stars, last pushed
+      2026-09-27), graded by payment method: resellers of proprietary models on
+      prepaid wallets. Of its 41 sites 7 are known here — 2 as rows, 4 in the
+      watchlist and 1 on the blocklist; the rest are prepaid aggregators, Atlas
+      Cloud among them, in the watchlist since this read for a $25 minimum top-up.
+      Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/ishandutta2007/awesome-ai-apis
+    name: ishandutta2007/awesome-ai-apis
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (4 stars, last pushed 2026-07-25): of its 23 sites,
+      12 are known here — 5 as rows, 6 in the watchlist and 1 as a list already
+      read; the rest are paid APIs, media APIs or gateways with no free model lane.
+      Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/kyogai-contact/awesome-ai-api-providers
+    name: kyogai-contact/awesome-ai-api-providers
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (0 stars, last pushed 2026-04-14): of its 11 sites,
+      7 are known here — 3 as rows, 1 as an archived row and 3 in the watchlist; the
+      rest are paid APIs, media APIs or gateways with no free model lane. Read
+      2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/LancerXiao/awesome-llm-api
+    name: LancerXiao/awesome-llm-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (0 stars, last pushed 2026-06-19): of its 14 sites,
+      10 are known here — 2 as rows, 2 as archived rows and 6 in the watchlist; the
+      rest are paid APIs, media APIs or gateways with no free model lane. Read
+      2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/mountsea-ai/awesome-ai-api-plus
+    name: mountsea-ai/awesome-ai-api-plus
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (1 stars, last pushed 2026-05-27): of its 1 sites,
+      0 are known here — none of them known here; the rest are paid APIs, media APIs
+      or gateways with no free model lane. Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/mrtnrocks/awesome-ai-coding-on-a-budget
+    name: mrtnrocks/awesome-ai-coding-on-a-budget
+    checked_on: '2026-09-27'
+    reason: >-
+      Coding on a budget (2 stars, last pushed 2026-08-03): gateways, MCP servers,
+      codebase indexers and local runtimes, with free-tier strategies that point at
+      providers this list carries. Of its 72 sites 14 are known here — 4 as rows, 1
+      as an archived row, 4 in the watchlist, 1 on the blocklist, 3 as lists already
+      read and 1 as a feed the scout reads; the rest are tools, not model access.
+      Read 2026-09-27.
+    reopen_if: >-
+      It lists a free model lane with no row or verdict here.
+
+  - url: https://github.com/OpenRouterTeam/awesome-openrouter
+    name: OpenRouterTeam/awesome-openrouter
+    checked_on: '2026-09-27'
+    reason: >-
+      Apps that work with OpenRouter (490 stars, last pushed 2026-09-01) — clients a
+      reader points at an OpenRouter key, whose free models are the openrouter-free
+      row here. Of its 126 sites 14 are known here — 7 as rows, 1 as an archived
+      row, 4 in the watchlist and 2 on the blocklist, Autohand Code among the rows
+      since this read, for a free plan on its own model. Read 2026-09-27.
+    reopen_if: >-
+      It lists an app with bundled free model usage that has no row or verdict here.
+
+  - url: https://github.com/PowerTokens/awesome-chinese-model-apis
+    name: PowerTokens/awesome-chinese-model-apis
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (0 stars, last pushed 2026-09-21): of its 5 sites,
+      1 are known here — 1 as a row; the rest are paid APIs, media APIs or gateways
+      with no free model lane. Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/shanhai-geo/awesome-llm-api
+    name: shanhai-geo/awesome-llm-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (0 stars, last pushed 2026-09-03): of its 16 sites,
+      8 are known here — 3 as rows, 1 as an archived row and 4 in the watchlist; the
+      rest are paid APIs, media APIs or gateways with no free model lane. Read
+      2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/vadimen/awesome_llm_api_with_web_search
+    name: vadimen/awesome_llm_api_with_web_search
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (88 stars, last pushed 2026-09-26): of its 8 sites,
+      2 are known here — 1 as a row and 1 in the watchlist; the rest are paid APIs,
+      media APIs or gateways with no free model lane. Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/weilimao/awesome-ai-proxy-list
+    name: weilimao/awesome-ai-proxy-list
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of low-cost network proxy nodes for reaching AI services from behind a
+      firewall (0 stars, last pushed 2026-09-25) — network access, not model access,
+      so outside this list's category; of its 2 sites 0 are known here. Read
+      2026-09-27.
+    reopen_if: >-
+      It starts listing model providers.
+
+  - url: https://github.com/wuzenghai616-lang/awesome-chinese-llm-apis
+    name: wuzenghai616-lang/awesome-chinese-llm-apis
+    checked_on: '2026-09-27'
+    reason: >-
+      An empty list (0 stars, last pushed 2026-07-30): its README links no site
+      (read 2026-09-27).
+    reopen_if: >-
+      It starts listing services.
+
+  - url: https://github.com/XGL2019/awesome-chinese-ai-api
+    name: XGL2019/awesome-chinese-ai-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (0 stars, last pushed 2026-07-26): of its 2 sites,
+      0 are known here — none of them known here; the rest are paid APIs, media APIs
+      or gateways with no free model lane. Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/XueyanZhang/awesome-ai-mode-api
+    name: XueyanZhang/awesome-ai-mode-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI API providers (29 stars, last pushed 2026-09-14): of its 21
+      sites, 9 are known here — 2 as rows, 5 in the watchlist and 2 on the
+      blocklist; the rest are paid APIs, media APIs or gateways with no free model
+      lane. Read 2026-09-27.
+    reopen_if: >-
+      It carries a free LLM API with no row or verdict here.
+
+  - url: https://github.com/ai-for-developers/awesome-ai-coding-tools
+    name: ai-for-developers/awesome-ai-coding-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (2,110 stars, last pushed 2026-09-18): of its 496
+      sites, 44 are known here — 18 as rows, 1 as an archived row, 23 in the
+      watchlist and 2 on the blocklist. Its coding agents with bundled free usage
+      are rows or verdicts here as of this read; the rest are bring-your-own-key or
+      local tools, app builders and utilities. Read 2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/CaseBuilding/awesome-ai-dev-tools
+    name: CaseBuilding/awesome-ai-dev-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (0 stars, last pushed 2026-09-27): of its 1450
+      sites, 17 are known here — 7 as rows, 1 as an archived row, 1 in the
+      watchlist, 6 as lists already read and 2 as feeds the scout reads. Its coding
+      agents with bundled free usage are rows or verdicts here as of this read; the
+      rest are bring-your-own-key or local tools, app builders and utilities. Read
+      2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/ColinEberhardt/awesome-ai-developer-tools
+    name: ColinEberhardt/awesome-ai-developer-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (36 stars, archived, last pushed 2026-01-19): of its
+      19 sites, 15 are known here — 7 as rows and 8 in the watchlist. Its coding
+      agents with bundled free usage are rows or verdicts here as of this read; the
+      rest are bring-your-own-key or local tools, app builders and utilities. Read
+      2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/eltociear/awesome-AI-driven-development
+    name: eltociear/awesome-AI-driven-development
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (548 stars, last pushed 2026-09-23): of its 567
+      sites, 4 are known here — 4 as rows. Its coding agents with bundled free usage
+      are rows or verdicts here as of this read; the rest are bring-your-own-key or
+      local tools, app builders and utilities. Read 2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/jamesmurdza/awesome-ai-devtools
+    name: jamesmurdza/awesome-ai-devtools
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (3,949 stars, last pushed 2026-08-27): of its 270
+      sites, 37 are known here — 14 as rows, 1 as an archived row, 21 in the
+      watchlist and 1 on the blocklist. Its coding agents with bundled free usage
+      are rows or verdicts here as of this read; the rest are bring-your-own-key or
+      local tools, app builders and utilities. Read 2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/open-ai-jobs/awesome-claude-code-api
+    name: open-ai-jobs/awesome-claude-code-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (15 stars, last pushed 2026-09-22): of its 6 sites,
+      4 are known here — 4 in the watchlist. Its coding agents with bundled free
+      usage are rows or verdicts here as of this read; the rest are bring-your-own-
+      key or local tools, app builders and utilities. Read 2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/QAInsights/awesome-ai-tools
+    name: QAInsights/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of AI coding tools (24 stars, last pushed 2026-09-27): of its 353
+      sites, 59 are known here — 29 as rows, 2 as archived rows, 22 in the
+      watchlist, 5 on the blocklist and 1 as a list already read. Its coding agents
+      with bundled free usage are rows or verdicts here as of this read; the rest
+      are bring-your-own-key or local tools, app builders and utilities. Read
+      2026-09-27.
+    reopen_if: >-
+      It carries a coding agent with bundled free usage that has no row or verdict
+      here.
+
+  - url: https://github.com/12britz/awesome-ai-gateways
+    name: 12britz/awesome-ai-gateways
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (10 stars, last pushed 2026-07-14): of its
+      148 sites, 12 are known here — 7 as rows and 5 in the watchlist. The hosted
+      gateways it names are paid or bring-your-own-key and the rest is self-hosted
+      gateway software, so it carries no free model lane this list lacks. Read
+      2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/937bb/awesome-ai-api-gateway
+    name: 937bb/awesome-ai-api-gateway
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-06-24): of its 3
+      sites, 0 are known here — none of them known here. The hosted gateways it
+      names are paid or bring-your-own-key and the rest is self-hosted gateway
+      software, so it carries no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/aigateway-sh/awesome-ai-gateway
+    name: aigateway-sh/awesome-ai-gateway
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-04-22): of its
+      42 sites, 9 are known here — 5 as rows, 1 as an archived row, 2 in the
+      watchlist and 1 on the blocklist. The hosted gateways it names are paid or
+      bring-your-own-key and the rest is self-hosted gateway software, so it carries
+      no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/buildnotes/Awesome-Multi-Model-AI-Gateways-Routing-Patterns-and-Tools
+    name: buildnotes/Awesome-Multi-Model-AI-Gateways-Routing-Patterns-and-Tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-08-26): of its 1
+      sites, 0 are known here — none of them known here. The hosted gateways it
+      names are paid or bring-your-own-key and the rest is self-hosted gateway
+      software, so it carries no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/ishandutta2007/Awesome-AI-Gateway-Platform
+    name: ishandutta2007/Awesome-AI-Gateway-Platform
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-09-01): of its
+      23 sites, 5 are known here — 3 as rows, 1 in the watchlist and 1 on the
+      blocklist. The hosted gateways it names are paid or bring-your-own-key and the
+      rest is self-hosted gateway software, so it carries no free model lane this
+      list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/ishandutta2007/Awesome-AI-Gateways
+    name: ishandutta2007/Awesome-AI-Gateways
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (3 stars, last pushed 2026-09-10): of its
+      25 sites, 5 are known here — 3 as rows, 1 in the watchlist and 1 on the
+      blocklist. The hosted gateways it names are paid or bring-your-own-key and the
+      rest is self-hosted gateway software, so it carries no free model lane this
+      list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/ishandutta2007/Awesome-LLM-Gateway
+    name: ishandutta2007/Awesome-LLM-Gateway
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (2 stars, last pushed 2026-09-10): of its
+      26 sites, 3 are known here — 2 as rows and 1 in the watchlist. The hosted
+      gateways it names are paid or bring-your-own-key and the rest is self-hosted
+      gateway software, so it carries no free model lane this list lacks. Read
+      2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/leonis-ai/awesome-ai-api-gateway
+    name: leonis-ai/awesome-ai-api-gateway
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-07-27): of its
+      27 sites, 4 are known here — 4 as rows. The hosted gateways it names are paid
+      or bring-your-own-key and the rest is self-hosted gateway software, so it
+      carries no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/Neighboth/awesome-ai-gateways
+    name: Neighboth/awesome-ai-gateways
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (1 stars, last pushed 2026-09-26): of its
+      16 sites, 1 are known here — 1 as a list already read. The hosted gateways it
+      names are paid or bring-your-own-key and the rest is self-hosted gateway
+      software, so it carries no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/QuotaCheap/awesome-openai-compatible
+    name: QuotaCheap/awesome-openai-compatible
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-06-12): of its 9
+      sites, 1 are known here — 1 as a row. The hosted gateways it names are paid or
+      bring-your-own-key and the rest is self-hosted gateway software, so it carries
+      no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/rizzdev/awesome-llm-gateways
+    name: rizzdev/awesome-llm-gateways
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-07-23): of its
+      23 sites, 0 are known here — none of them known here. The hosted gateways it
+      names are paid or bring-your-own-key and the rest is self-hosted gateway
+      software, so it carries no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/Router-One/awesome-llm-gateway
+    name: Router-One/awesome-llm-gateway
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-07-06): of its
+      21 sites, 5 are known here — 4 as rows and 1 in the watchlist. The hosted
+      gateways it names are paid or bring-your-own-key and the rest is self-hosted
+      gateway software, so it carries no free model lane this list lacks. Read
+      2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/stormfire-io/awesome-ai-proxy
+    name: stormfire-io/awesome-ai-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (1 stars, last pushed 2026-06-28): of its
+      37 sites, 20 are known here — 6 as rows, 1 as an archived row, 10 in the
+      watchlist, 1 as a list already read and 2 as feeds the scout reads. The hosted
+      gateways it names are paid or bring-your-own-key and the rest is self-hosted
+      gateway software, so it carries no free model lane this list lacks. Read
+      2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/vivian254338489/tken-awesome-openai-compatible
+    name: vivian254338489/tken-awesome-openai-compatible
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (0 stars, last pushed 2026-05-08): of its 9
+      sites, 2 are known here — 1 as a row and 1 in the watchlist. The hosted
+      gateways it names are paid or bring-your-own-key and the rest is self-hosted
+      gateway software, so it carries no free model lane this list lacks. Read
+      2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/wauputr4/awesome-llm-gateways
+    name: wauputr4/awesome-llm-gateways
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (3 stars, last pushed 2026-06-07): of its
+      53 sites, 4 are known here — 2 in the watchlist, 1 on the blocklist and 1 as a
+      feed the scout reads. The hosted gateways it names are paid or bring-your-own-
+      key and the rest is self-hosted gateway software, so it carries no free model
+      lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/yangtao309/awesome-api-gateway
+    name: yangtao309/awesome-api-gateway
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (4 stars, last pushed 2025-09-22): of its
+      12 sites, 0 are known here — none of them known here. The hosted gateways it
+      names are paid or bring-your-own-key and the rest is self-hosted gateway
+      software, so it carries no free model lane this list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/yenanjing/awesome-model-routing
+    name: yenanjing/awesome-model-routing
+    checked_on: '2026-09-27'
+    reason: >-
+      A list of LLM gateways and routers (25 stars, last pushed 2026-09-26): of its
+      108 sites, 4 are known here — 2 as lists already read and 2 as feeds the scout
+      reads. The hosted gateways it names are paid or bring-your-own-key and the
+      rest is self-hosted gateway software, so it carries no free model lane this
+      list lacks. Read 2026-09-27.
+    reopen_if: >-
+      It lists a hosted gateway with a free model lane of its own.
+
+  - url: https://github.com/alicekellings/awesome-ai-api-proxy
+    name: alicekellings/awesome-ai-api-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (0 stars, last pushed 2026-06-12) — resellers of
+      proprietary models, most of them Chinese 中转站, whose supply is theirs to state.
+      Of its 2 sites, 0 are known here — none of them known here. The rest were not
+      read one by one: a relay goes on the blocklist on its own words about its
+      supply — account pools, reverse engineering, shared keys — never on a price or
+      a sign-up bonus, and neither is a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/apiranking/awesome-api-relay
+    name: apiranking/awesome-api-relay
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (2 stars, last pushed 2026-09-27) — resellers of
+      proprietary models, most of them Chinese 中转站, whose supply is theirs to state.
+      Of its 1 sites, 0 are known here — none of them known here. The rest were not
+      read one by one: a relay goes on the blocklist on its own words about its
+      supply — account pools, reverse engineering, shared keys — never on a price or
+      a sign-up bonus, and neither is a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/bhapsalapitra/awesome-ai-proxy
+    name: bhapsalapitra/awesome-ai-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      An empty list (0 stars, last pushed 2026-04-18): its README links no site
+      (read 2026-09-27).
+    reopen_if: >-
+      It starts listing services.
+
+  - url: https://github.com/daheiai/awesome-api-proxy
+    name: daheiai/awesome-api-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (0 stars, last pushed 2026-08-09) — resellers of
+      proprietary models, most of them Chinese 中转站, whose supply is theirs to state.
+      Of its 595 sites, 17 are known here — 3 as rows, 5 in the watchlist and 9 on
+      the blocklist. The rest were not read one by one: a relay goes on the
+      blocklist on its own words about its supply — account pools, reverse
+      engineering, shared keys — never on a price or a sign-up bonus, and neither is
+      a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/hvoyai/awesome-ai-api
+    name: hvoyai/awesome-ai-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (21 stars, last pushed 2026-09-27) — resellers of
+      proprietary models, most of them Chinese 中转站, whose supply is theirs to state.
+      Of its 3 sites, 0 are known here — none of them known here. The rest were not
+      read one by one: a relay goes on the blocklist on its own words about its
+      supply — account pools, reverse engineering, shared keys — never on a price or
+      a sign-up bonus, and neither is a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/Joss-fml/awesome-ai-api-relay
+    name: Joss-fml/awesome-ai-api-relay
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (0 stars, last pushed 2026-09-27) — resellers of
+      proprietary models, most of them Chinese 中转站, whose supply is theirs to state.
+      Of its 9 sites, 4 are known here — 3 as rows and 1 in the watchlist. The rest
+      were not read one by one: a relay goes on the blocklist on its own words about
+      its supply — account pools, reverse engineering, shared keys — never on a
+      price or a sign-up bonus, and neither is a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/mn-api/awesome-ai-proxy
+    name: mn-api/awesome-ai-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (975 stars, last pushed 2025-02-09) — resellers
+      of proprietary models, most of them Chinese 中转站, whose supply is theirs to
+      state. Of its 33 sites, 0 are known here — none of them known here. The rest
+      were not read one by one: a relay goes on the blocklist on its own words about
+      its supply — account pools, reverse engineering, shared keys — never on a
+      price or a sign-up bonus, and neither is a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/newaiproxy/awesome-ai-proxy
+    name: newaiproxy/awesome-ai-proxy
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (15 stars, last pushed 2025-10-17) — resellers of
+      proprietary models, most of them Chinese 中转站, whose supply is theirs to state.
+      Of its 3 sites, 0 are known here — none of them known here. The rest were not
+      read one by one: a relay goes on the blocklist on its own words about its
+      supply — account pools, reverse engineering, shared keys — never on a price or
+      a sign-up bonus, and neither is a free tier. Read 2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/peter123023/awesome-claude-api
+    name: peter123023/awesome-claude-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A directory of AI API relays (430 stars, last pushed 2026-08-25) — resellers
+      of proprietary models, most of them Chinese 中转站, whose supply is theirs to
+      state. Of its 16 sites, 5 are known here — 2 as rows and 3 in the watchlist.
+      The rest were not read one by one: a relay goes on the blocklist on its own
+      words about its supply — account pools, reverse engineering, shared keys —
+      never on a price or a sign-up bonus, and neither is a free tier. Read
+      2026-09-27.
+    reopen_if: >-
+      It lists official providers' free tiers.
+
+  - url: https://github.com/ahdpe/awesome-ai-tools-2025
+    name: ahdpe/awesome-ai-tools-2025
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (4 stars, last pushed 2026-07-29), not a list of
+      model endpoints: of the 21 sites its README links, 5 are known here — 2 as
+      rows and 3 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/aitoollist/awesome-ai-tool-list
+    name: aitoollist/awesome-ai-tool-list
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (21 stars, last pushed 2025-05-07), not a list of
+      model endpoints: of the 32 sites its README links, 1 are known here — 1 as a
+      row — and the rest are consumer apps, courses, papers and open-source projects
+      outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/Alex0x47/awesome-indie-hackers-tools
+    name: Alex0x47/awesome-indie-hackers-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (63 stars, last pushed 2024-12-06), not a list of
+      model endpoints: of the 82 sites its README links, 0 are known here — none of
+      them known here — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/aliammari1/awesome-ai-tools
+    name: aliammari1/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (99 stars, last pushed 2026-09-25), not a list of
+      model endpoints: of the 358 sites its README links, 38 are known here — 13 as
+      rows, 2 as archived rows, 22 in the watchlist and 1 on the blocklist — and the
+      rest are consumer apps, courses, papers and open-source projects outside this
+      list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/Ar9av/awesome-agent-control-plane
+    name: Ar9av/awesome-agent-control-plane
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (3 stars, last pushed 2026-08-07), not a list of
+      model endpoints: of the 33 sites its README links, 1 are known here — 1 as a
+      row — and the rest are consumer apps, courses, papers and open-source projects
+      outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/arinagrawal05/awesome-ai
+    name: arinagrawal05/awesome-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (3 stars, last pushed 2025-11-23), not a list of
+      model endpoints: of the 140 sites its README links, 15 are known here — 5 as
+      rows and 10 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/boxabirds/awesome-ai-engineering
+    name: boxabirds/awesome-ai-engineering
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (48 stars, last pushed 2026-05-31), not a list of
+      model endpoints: of the 62 sites its README links, 8 are known here — 6 as
+      rows and 2 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/charmgene/Awesome-ChatGPT-Tools
+    name: charmgene/Awesome-ChatGPT-Tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (3 stars, last pushed 2023-03-18), not a list of
+      model endpoints: of the 5 sites its README links, 0 are known here — none of
+      them known here — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/Correia-jpv/fucking-awesome-ai-tools
+    name: Correia-jpv/fucking-awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (27 stars, last pushed 2026-09-26), not a list of
+      model endpoints: of the 50 sites its README links, 4 are known here — 3 as
+      rows and 1 as a list already read — and the rest are consumer apps, courses,
+      papers and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/dresnite/awesome-chatgpt-api
+    name: dresnite/awesome-chatgpt-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (10 stars, last pushed 2023-03-06), not a list of
+      model endpoints: of the 24 sites its README links, 1 are known here — 1 in the
+      watchlist — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/edwardtay/awesome-ai
+    name: edwardtay/awesome-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (4 stars, last pushed 2026-09-21), not a list of
+      model endpoints: of the 333 sites its README links, 56 are known here — 20 as
+      rows, 6 as archived rows, 27 in the watchlist, 2 on the blocklist and 1 as a
+      list already read — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/eudk/awesome-ai-tools
+    name: eudk/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (586 stars, last pushed 2026-06-07), not a list
+      of model endpoints: of the 593 sites its README links, 48 are known here — 18
+      as rows, 4 as archived rows, 25 in the watchlist and 1 as a feed the scout
+      reads — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/farol-team/awesome-agent-services
+    name: farol-team/awesome-agent-services
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (5 stars, last pushed 2026-07-31), not a list of
+      model endpoints: of the 86 sites its README links, 6 are known here — 4 as
+      rows and 2 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/filipecalegario/awesome-generative-ai
+    name: filipecalegario/awesome-generative-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (3,542 stars, last pushed 2025-12-18), not a list
+      of model endpoints: of the 802 sites its README links, 29 are known here — 11
+      as rows and 18 in the watchlist — and the rest are consumer apps, courses,
+      papers and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/hades217/awesome-ai
+    name: hades217/awesome-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (552 stars, last pushed 2026-09-03), not a list
+      of model endpoints: of the 369 sites its README links, 53 are known here — 16
+      as rows, 5 as archived rows, 31 in the watchlist and 1 on the blocklist — and
+      the rest are consumer apps, courses, papers and open-source projects outside
+      this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/ikaijua/Awesome-AITools
+    name: ikaijua/Awesome-AITools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (6,195 stars, last pushed 2026-09-25), not a list
+      of model endpoints: of the 263 sites its README links, 31 are known here — 13
+      as rows, 2 as archived rows, 14 in the watchlist, 1 as a list already read and
+      1 as a feed the scout reads — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/InftyAI/Awesome-LLMOps
+    name: InftyAI/Awesome-LLMOps
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (264 stars, last pushed 2026-09-27), not a list
+      of model endpoints: of the 202 sites its README links, 3 are known here — 3 as
+      rows — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/lubanproj/awesome-profitable-ai
+    name: lubanproj/awesome-profitable-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (7 stars, last pushed 2026-08-30), not a list of
+      model endpoints: of the 89 sites its README links, 19 are known here — 10 as
+      rows and 9 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/mahseema/awesome-ai-tools
+    name: mahseema/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (6,287 stars, last pushed 2025-12-31), not a list
+      of model endpoints: of the 417 sites its README links, 20 are known here — 8
+      as rows, 1 as an archived row, 10 in the watchlist and 1 as a list already
+      read — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/mdanikhasan-me/awesome-ai-engineering-stack
+    name: mdanikhasan-me/awesome-ai-engineering-stack
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (0 stars, last pushed 2026-09-05), not a list of
+      model endpoints: of the 90 sites its README links, 2 are known here — 2 as
+      rows — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/michielhdoteth/awesome-ai-agent-tools
+    name: michielhdoteth/awesome-ai-agent-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (27 stars, last pushed 2026-09-26), not a list of
+      model endpoints: of the 4 sites its README links, 0 are known here — none of
+      them known here — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/mohabdelkarim/awesome-ai-resources
+    name: mohabdelkarim/awesome-ai-resources
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (3 stars, last pushed 2026-09-24), not a list of
+      model endpoints: of the 111 sites its README links, 21 are known here — 11 as
+      rows, 9 in the watchlist and 1 on the blocklist — and the rest are consumer
+      apps, courses, papers and open-source projects outside this list's category.
+      Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/nanogiants/awesome-ai-tools
+    name: nanogiants/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (28 stars, last pushed 2024-08-19), not a list of
+      model endpoints: of the 22 sites its README links, 2 are known here — 2 in the
+      watchlist — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/openbestof/awesome-ai
+    name: openbestof/awesome-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (595 stars, last pushed 2024-05-04), not a list
+      of model endpoints: of the 152 sites its README links, 2 are known here — 1 as
+      a row and 1 as a list already read — and the rest are consumer apps, courses,
+      papers and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/pingan8787/awesome-ai-tools
+    name: pingan8787/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (369 stars, last pushed 2026-06-22), not a list
+      of model endpoints: of the 1630 sites its README links, 18 are known here — 6
+      as rows and 12 in the watchlist — and the rest are consumer apps, courses,
+      papers and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/Quratulain-bilal/awesome-openclaw-
+    name: Quratulain-bilal/awesome-openclaw-
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (2 stars, last pushed 2026-04-26), not a list of
+      model endpoints: of the 7 sites its README links, 0 are known here — none of
+      them known here — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/re50urces/Awesome-AI
+    name: re50urces/Awesome-AI
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (889 stars, last pushed 2024-08-05), not a list
+      of model endpoints: of the 403 sites its README links, 17 are known here — 8
+      as rows and 9 in the watchlist — and the rest are consumer apps, courses,
+      papers and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/reorx/awesome-chatgpt-api
+    name: reorx/awesome-chatgpt-api
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (6,418 stars, last pushed 2026-03-23), not a list
+      of model endpoints: of the 129 sites its README links, 3 are known here — 2 as
+      rows and 1 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/sajadh76/awesome-AI-tools
+    name: sajadh76/awesome-AI-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (21 stars, last pushed 2026-09-26), not a list of
+      model endpoints: of the 98 sites its README links, 7 are known here — 4 as
+      rows, 1 as an archived row and 2 in the watchlist — and the rest are consumer
+      apps, courses, papers and open-source projects outside this list's category.
+      Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/sarat9/awesome-ai-saas
+    name: sarat9/awesome-ai-saas
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (18 stars, last pushed 2026-06-08), not a list of
+      model endpoints: of the 90 sites its README links, 7 are known here — 2 as
+      rows and 5 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/steven2358/awesome-generative-ai
+    name: steven2358/awesome-generative-ai
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (12,686 stars, last pushed 2026-09-16), not a
+      list of model endpoints: of the 356 sites its README links, 46 are known here
+      — 24 as rows, 2 as archived rows, 18 in the watchlist, 1 on the blocklist and
+      1 as a list already read — and the rest are consumer apps, courses, papers and
+      open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/taishi-i/awesome-ChatGPT-repositories
+    name: taishi-i/awesome-ChatGPT-repositories
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (3,262 stars, last pushed 2026-09-25), not a list
+      of model endpoints: of the 2260 sites its README links, 11 are known here — 2
+      as rows, 1 in the watchlist, 7 as lists already read and 1 as a feed the scout
+      reads — and the rest are consumer apps, courses, papers and open-source
+      projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/tensorchord/Awesome-LLMOps
+    name: tensorchord/Awesome-LLMOps
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (5,950 stars, last pushed 2026-05-21), not a list
+      of model endpoints: of the 318 sites its README links, 2 are known here — 1 as
+      a row and 1 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/ToolkitlyAI/awesome-ai-tools
+    name: ToolkitlyAI/awesome-ai-tools
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (26 stars, last pushed 2026-09-26), not a list of
+      model endpoints: of the 1 sites its README links, 0 are known here — none of
+      them known here — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/tools-collection/apis-collection
+    name: tools-collection/apis-collection
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (258 stars, last pushed 2026-05-23), not a list
+      of model endpoints: of the 7 sites its README links, 1 are known here — 1 as a
+      list already read — and the rest are consumer apps, courses, papers and open-
+      source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/XiaomingX/awesome-llm
+    name: XiaomingX/awesome-llm
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (66 stars, last pushed 2026-02-03), not a list of
+      model endpoints: of the 75 sites its README links, 10 are known here — 7 as
+      rows and 3 in the watchlist — and the rest are consumer apps, courses, papers
+      and open-source projects outside this list's category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/XiaomingX/indie-hacker-tools-plus
+    name: XiaomingX/indie-hacker-tools-plus
+    checked_on: '2026-09-27'
+    reason: >-
+      A general AI-tools directory (1,864 stars, last pushed 2026-09-27), not a list
+      of model endpoints: of the 147 sites its README links, 28 are known here — 17
+      as rows, 1 as an archived row and 10 in the watchlist — and the rest are
+      consumer apps, courses, papers and open-source projects outside this list's
+      category. Read 2026-09-27.
+    reopen_if: >-
+      It adds a section of LLM APIs or coding agents with free model usage.
