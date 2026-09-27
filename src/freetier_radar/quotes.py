@@ -1,24 +1,14 @@
 """Every phrase a row puts in quotation marks, read back against the pages it cites.
 
 A probe checks its keywords and nothing else. The prose around them —
-`offering`, `limits`, `api.note` — is written by hand, much of it from research
-that quoted the vendor, and nothing ever read it back. On 2026-09-16 an audit of
-the seventeen provisional rows found quotes that were on none of the vendor's
-pages: MegaNova's "Free, no credit card required" (its page says "Free
-registration — no credit card required"), LLMTR's "Prompt ve yanıt içeriği
-saklanmaz" (its privacy page promises something narrower), and a Freebuff data
-policy quoted after the vendor had reversed it. Quotation marks say the words
-are the vendor's, and this checks that claim.
-
-For each row it reads the `source_urls` and the probe endpoint, keeps both the
-rendered text and the raw body — a quote can live in JSON-LD or a framework
-payload — and looks for every quote of three words or more in them, with the
-typography flattened: entities, tags, markdown emphasis and links, curly quotes
-and apostrophes, dashes and whitespace. Chinese and Japanese are written without
-spaces, so there two characters count as a word and no space beside them counts
-at all. A quote joined across an ellipsis is checked fragment by fragment. What is not found is printed with its row and field, and
-the fix is one of two things: the vendor's exact words, or a source URL that
-carries them.
+`offering`, `limits`, `api.note` — is written by hand, and quotation marks say
+its words are the vendor's; this checks that claim. For each live row it reads
+the row's pages (see `row_urls`), keeps both the rendered text and the raw body
+— a quote can live in JSON-LD or a framework payload — and looks for every
+quote of three words or more in them, with the typography flattened (see
+`flatten`). A quote joined across an ellipsis is checked fragment by fragment.
+What is not found is printed with its row and field, and the fix is one of two
+things: the vendor's exact words, or a source URL that carries them.
 """
 from __future__ import annotations
 
@@ -66,8 +56,8 @@ class Missing:
     field: str
     quote: str
     # Not on the pages that answered, while another of the row's sources did not
-    # answer at all. Qodo's terms page refuses some reads with 403 and serves the
-    # next, and a refused read made its quote look like a vendor rewording.
+    # answer at all: a refused read (Qodo's terms page refuses some with 403) is
+    # not a vendor rewording.
     unverified: bool = False
 
 
@@ -78,8 +68,8 @@ def flatten(text: str) -> str:
     character — a sentence there has none, and a link inside it leaves one —
     lower case."""
     text = text.replace('\\"', '"').replace("\\n", " ")
-    # Page data escapes the way JSON does: Freebuff's FAQ, JSON-LD only, carries
-    # "Smart & Fast" as `Smart \u0026 Fast` since 2026-09-27.
+    # Page data escapes the way JSON does: Freebuff's JSON-LD FAQ carries
+    # "Smart & Fast" as `Smart \u0026 Fast`.
     text = html.unescape(_JSON_ESCAPE.sub(lambda m: chr(int(m.group(1), 16)), text))
     text = _plain_spaces(_MARKDOWN_LINK.sub(r"\1", text)).translate(_TYPOGRAPHY)
     text = _SPACE_BEFORE_PUNCTUATION.sub(r"\1", " ".join(text.split()))
@@ -94,10 +84,8 @@ def page_texts(body: str) -> list[str]:
 
 def words(text: str) -> float:
     """How many words a phrase holds. Chinese and Japanese put no space between
-    words, so `str.split()` counts a whole sentence of them as one: every Chinese
-    quote on the list went unread that way until 2026-09-22, the data-use
-    sentences of SiliconFlow, Moark and TokenHub among them. There, two
-    characters count as a word, about what one runs to."""
+    words, so `str.split()` would count a whole sentence of them as one; there,
+    two characters count as a word, about what one runs to."""
     return len(_CJK_WORD_CHAR.sub(" ", text).split()) + len(_CJK_WORD_CHAR.findall(text)) / 2
 
 

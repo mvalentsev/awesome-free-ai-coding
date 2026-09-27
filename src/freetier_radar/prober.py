@@ -30,8 +30,15 @@ class ProbeStatus(str, Enum):
     PASS = "pass"
     FAIL = "fail"  # page reachable but the free offer is no longer evidenced
     INCONCLUSIVE = "inconclusive"  # could not check: blocked, down, network error
-    STALE_MODELS = "stale-models"  # offer verified, but not the Models column: a family its page no longer names, one its catalog no longer serves free beside one it does, or every family superseded
-    STALE_IDS = "stale-ids"  # offer and families verified, but a published detail is not backed: api.model_ids against the catalog, the Anthropic route, a public key its page stopped printing, the data-use sentence or the border
+    # Offer verified, but not the Models column: a family its page no longer
+    # names, one its catalog no longer serves free beside one it does, or every
+    # family superseded.
+    STALE_MODELS = "stale-models"
+    # Offer and families verified, but a published detail is not backed: the ids
+    # against the catalog, the keyless or public-key lane, the Anthropic or Codex
+    # route, a public key its page stopped printing, the data-use sentence or the
+    # border.
+    STALE_IDS = "stale-ids"
 
 
 @dataclass
@@ -59,13 +66,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             return stop
     detail = check_content(resp, entry)
     # A catalog that still serves one of the row's families free is a live
-    # lane, and the families it stopped serving are the Models column's
-    # problem, not the offer's. Until 2026-09-24 one model leaving failed the
-    # whole row, three runs of that archive it, and so a rotating lane's column
-    # was kept short: OpenRouter's named two families for a month while its
-    # catalog served a dozen more free. The column verdict is the same words
-    # check_content wrote, flagged the way a page row's missing family is; a
-    # lane that serves none of them still fails.
+    # lane: the families it stopped serving are a Models-column note (the
+    # words check_content wrote), not a failure. A lane serving none fails.
     column = ""
     if (detail is not None and entry.probe.type is ProbeType.API_MODELS
             and any(family_named(resp, entry, m.family) for m in entry.models)):
@@ -83,17 +85,11 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                                                  today or date.today())
             if keyless is not None and keyless.status is not ProbeStatus.STALE_IDS:
                 return keyless
-        # The offer is evidenced. Whether the models the README hangs off it
-        # still are is a second question: a catalog answered it above, a page
-        # is asked here — see unevidenced_families. A flagged column is the
-        # verdict, but it no longer ends the read: until 2026-09-21 it returned
-        # here, and every question below went unasked on the rows most likely
-        # to need them. Regolo dropped Llama 3.3 from its price table and its
-        # catalog at once; the run flagged the family, the scout dropped it,
-        # and the id stayed in the configs because the catalog was never read.
-        # So the column's note leads, and whatever the rest of the read finds
-        # follows it after " | ", where the fix prompt already looks for the
-        # half that is not the model's to repair.
+        # The offer is evidenced. Whether the Models column is, a catalog
+        # answered above and a page answers here (see unevidenced_families). A
+        # flagged column leads the verdict and the read goes on: every later
+        # note follows it after " | ", where the fix prompt looks for the half
+        # that is not the model's to repair (see for_a_human).
         unevidenced = unevidenced_families(resp, entry)
         if unevidenced:
             column = "listed families the page does not name: " + ", ".join(unevidenced)
@@ -104,15 +100,10 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                                    f"{column} | {note}" if note else column)
             return ProbeResult(status, note)
 
-        # A third question, and the last field here that nothing read back
-        # — asked in both directions, since a config that hands out a dead
-        # id and a config that misses a live one are the same list being
-        # out of date. An api-models probe asks it of the bytes it already
-        # has; a page-keywords row asks it of the catalog it names, if any,
-        # fetched now. A catalog that does not answer is said so, not
-        # skipped: the row stays verified by its page, and the line in the
-        # pull request is the whole difference between a check that ran
-        # and one that quietly did not.
+        # The row's ids, asked in both directions (see stale_ids): an api-models
+        # probe asks the bytes it already has, a page-keywords row the catalog
+        # it names in probe.catalog, fetched now. A catalog that does not
+        # answer is a note, not a skip: the row stays verified by its page.
         if entry.probe.type is ProbeType.API_MODELS:
             catalog = resp
         elif entry.probe.catalog:
@@ -129,10 +120,8 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 if keyless is not None:
                     stale = f"{stale} | {keyless.detail}"
                 return verdict(ProbeStatus.STALE_IDS, stale)
-        # The last published connection detail, and the only one a GET
-        # cannot see: the Anthropic-format route a row names for Claude
-        # Code. Asked keyless, so the answer is never a message — it is
-        # whether anything is listening at that path.
+        # The Anthropic-format route a row names for Claude Code, asked keyless:
+        # the answer is only whether anything listens at that path.
         if entry.api and entry.api.anthropic_base_url:
             missing = await anthropic_route_missing(client, entry, attempts, backoff)
             if missing:
@@ -151,10 +140,9 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 if keyless is not None:
                     unprinted = f"{unprinted} | {keyless.detail}"
                 return verdict(ProbeStatus.STALE_IDS, unprinted)
-        # The row's word on what the vendor does with what a reader sends rests
-        # on one sentence on one page — see data_use_moved — and its word on
-        # where the offer reaches on the vendor's list — see border_moved.
-        # Both are read, and both notes kept: one does not answer the other.
+        # The data-use sentence (see data_use_moved) and the border (see
+        # border_moved) are both read, and both notes kept: one does not answer
+        # the other.
         moved = []
         if entry.data_use is not None:
             moved.append(await data_use_moved(client, entry, page, attempts, backoff))
@@ -168,29 +156,16 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         if keyless is not None:
             return verdict(keyless.status, keyless.detail)
         return verdict(ProbeStatus.PASS)
-    # Only asked once the content check has already failed. Plenty of live
-    # pages carry a <noscript> asking for JavaScript while serving the offer
-    # perfectly well above it — on those the keywords match and this never
-    # runs. It is when they do NOT match that the wording matters: a bot wall
-    # means we did not see the vendor's page, not that the offer is gone.
+    # Asked only once the content check has failed, since a live page can carry
+    # a <noscript> asking for JavaScript beside the offer. A bot wall means the
+    # vendor's page was not seen, not that the offer is gone.
     challenge = challenge_marker_hit(page.text)
     if challenge is not None:
         return ProbeResult(ProbeStatus.INCONCLUSIVE, f'bot challenge: page says "{challenge}"')
-    # A failing api-models row is where a dead id hides best, and until
-    # 2026-09-08 this return was the reason: the id check lives above, on
-    # the path a passing row takes. On 2026-09-07 LLMTR failed because
-    # minimax/minimax-m3-free had left its catalog and only the metered
-    # minimax/minimax-m3 answered for the family — and the same read had
-    # taken three ids out of `api.model_ids`, which the report never said.
-    # The scout dropped the family, the pull request read as a whole
-    # repair, and all three ids stayed in the generated configs.
-    #
-    # The catalog that failed the family is this same response, so asking
-    # costs nothing and the answer belongs beside the failure: one lane
-    # moved, and a human is about to edit that row. Deliberately not asked
-    # of a page row — see test_a_dead_offer_outranks_a_catalog_check. There
-    # the failure IS the offer, the catalog is a second fetch, and the row
-    # is repaired or archived whole rather than field by field.
+    # A failing catalog row still reports its dead ids: this response is the
+    # catalog, so asking costs nothing, and a human is about to edit the row.
+    # Page rows are repaired or archived whole — see
+    # test_a_dead_offer_outranks_a_catalog_check.
     if entry.probe.type is ProbeType.API_MODELS:
         beside = stale_ids(resp, entry)
         if beside:
@@ -328,19 +303,14 @@ ROUTE_GONE = (404, 405, 410)
 async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
                                   backoff: float) -> str | None:
     """Why the Anthropic-format route a row publishes is not to be trusted, or
-    None while it answers. Set beside `api.anthropic_base_url` only where the
-    vendor documents the route; this check is the twice-weekly half, and it is
-    deliberately shallow — a 401 from an auth wall is the same 401 a real route
-    gives — because the deep half already happened when the field was set.
-    A route that cannot be reached is said so rather than skipped, like a
-    catalog that stops answering: the row stays verified by its page, and the
-    line in the pull request is the difference between a check that ran and
-    one that quietly did not."""
+    None while it answers. Deliberately shallow — an auth wall's 401 is the
+    same 401 a real route gives — because the field is set only where the
+    vendor documents the route. A route that cannot be reached is a note, not a
+    skip: the row stays verified by its page."""
     url = entry.api.anthropic_base_url.rstrip("/") + "/v1/messages"
-    # A model the row publishes, not a placeholder: Fireworks checks the model
-    # before the key and answered a made-up one with 404 "Model not found" on
-    # 2026-09-17 — the status this check reads as a route that is gone — and a
-    # model it serves with 401. Every other route answered both the same way.
+    # A model the row publishes, not the placeholder: Fireworks checks the
+    # model before the key and answers an unknown one 404, which reads here as
+    # a route gone.
     body = ({**ANTHROPIC_PROBE_BODY, "model": entry.api.model_ids[0]}
             if entry.api.model_ids else ANTHROPIC_PROBE_BODY)
     last = ""
@@ -363,12 +333,11 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
     return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
 
 
-# The request Codex CLI sends a provider under this list's profiles, cut to one
-# tool and one message: captured from Codex 0.157.1 behind a mock provider on
-# 2026-09-27, the profiles' three settings on. Every field is one a lane could
-# refuse — OVHcloud's /responses refused `include`, which Codex sends on every
-# call and no setting removes — so none is left out, and it asks for the stream
-# Codex reads.
+# The request Codex CLI sends a provider under this list's profiles (captured
+# from Codex 0.157.1 with the profiles' settings on), cut to one tool and one
+# message. Every field is one a lane could refuse — OVHcloud's /responses
+# refused `include`, which Codex sends on every call and no setting removes —
+# so none is left out, and it asks for the stream Codex reads.
 CODEX_PROBE_TOOL = {
     "type": "function", "name": "exec_command", "strict": False,
     "description": "Runs a command in a PTY, returning output or a session ID for ongoing "
@@ -456,7 +425,7 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
                 text = ""
                 async for chunk in resp.aiter_text():
                     text += chunk
-                        # The events that end a stream; "error" is left to the parse,
+                    # The events that end a stream; "error" is left to the parse,
                     # being a word any text can hold.
                     if (len(text) > CODEX_READ_CAP or any(
                             e in text for e in (CODEX_DONE, "response.failed",
@@ -492,11 +461,9 @@ KEYLESS_PROBE_BODY = {"max_tokens": 1, "messages": [{"role": "user", "content": 
 
 
 def keyless_probe_body() -> dict:
-    """KEYLESS_PROBE_BODY asking something no cache has answered before.
-    Pollinations' old host caches its answers — on 2026-09-27 a repeated prompt
-    came back stamped 2026-09-16 — and with the same "ping" on every call a
-    lane whose backend had died behind such a cache would go on passing on a
-    stored reply."""
+    """KEYLESS_PROBE_BODY asking something no cache has answered before: behind
+    a host that caches its answers (Pollinations' old host does), a lane whose
+    backend had died would go on passing on a stored reply."""
     return {**KEYLESS_PROBE_BODY,
             "messages": [{"role": "user", "content": f"ping {uuid.uuid4().hex[:12]}"}]}
 KEYLESS_REFUSED = (401, 403)
@@ -540,17 +507,12 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
 def _completion(answer: httpx.Response | str) -> dict | None:
     """The chat completion a 2xx answer carries, or None where it carries none.
 
-    A 2xx was the whole test until 2026-09-21, and a gateway can say no with
-    one. OpenRouter's docs say why, and Kilo's gateway answers in OpenRouter's
-    format: the 200 goes out before the first token, so "the status stays 200
-    even when every provider fails — the last error reaches you in the
-    response body", and a provider error after that is the choice's, as
-    `finish_reason: error` beside whatever message came first — "Check the
-    body for an error field even on a 200". freellmapi's ElectronHub adapter
-    throws out a proxy-error banner served as HTTP 200, and mnfst's verifier
-    counts a 200 without choices[] as unknown. The content is not read — one
-    token, often reasoning with no content yet — only that a choice holds a
-    message and no error."""
+    A gateway can say no with a 200. OpenRouter's format, which Kilo's gateway
+    answers in too, sends the status before the first token, so a failure
+    arrives as an `error` field in the body or as a choice with
+    `finish_reason: error`. The content is not read — one token is often
+    reasoning with no content yet — only that a choice holds a message and no
+    error."""
     if isinstance(answer, str) or answer.status_code >= 300:
         return None
     try:
@@ -583,15 +545,12 @@ def _model_key(model_id: str) -> str:
 def _answered_as(asked: str, completion: dict) -> str | None:
     """The model a completion names where it is not the one asked, else None.
 
-    freellmapi's key tests caught gateways answering an id with a model it
-    does not name — every Lucidity open/* route as synth-2.5-preview, eleven
-    Septor -free aliases as minimax-m2.5-free (2026-09-18), Sail's legacy
-    GLM-5.2 id as GLM-5.3. What a vendor calls the model it serves is compared
-    by key, and one key running on into the other is the same model: vendors
-    cut a served name short (LLM Tech answers nvidia/Qwen3.8-27B-NVFP4 as
-    qwen38) and add a dated revision (Router9's deepseek-v4-flash as -0731),
-    but a size or a version that differs is another model. A router id names
-    none, and a completion that names none is taken at its word."""
+    The two names are compared by `_model_key`, and one key running on into the
+    other is the same model: vendors cut a served name short (LLM Tech answers
+    nvidia/Qwen3.8-27B-NVFP4 as qwen38) and add a dated revision (Router9's
+    deepseek-v4-flash as -0731), but a size or a version that differs is
+    another model. A router id names none, and a completion that names none is
+    taken at its word."""
     served = completion.get("model")
     if not isinstance(served, str):
         return None
@@ -619,52 +578,42 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     """Whether a lane this list publishes as keyless still answers without a key,
     or None while its first id does.
 
-    `api.auth: none` is not a connection detail like the rest of the api block;
-    on a row that sets it, it is the offer. OVHcloud is listed for its anonymous
-    lane, and the README's zero-signup curl and its "No account at all" answer
-    are both built from that one field. Until 2026-09-14 nothing called it: the
-    probe read the keyless /v1/models, which says the models exist and not that
-    anyone may call them, so a vendor closing its anonymous lane would have left
-    the first command on the page answering 401 behind a green run.
-
-    So the first id in `api.model_ids` gets one completion, one token, no
-    Authorization header, and a 2xx carrying a completion is the only answer
-    that leaves nothing to say — a 200 without one is a non-answer like any
-    other (see `_completion`), and a completion from a model the id does not
-    name is a note (see `_answered_as`). A 429 used to count as an answer too
-    — an anonymous lane is rate-limited instead of keyed — and that is how the
-    README's first command sat on opencode's big-pickle while it answered 429
-    FreeUsageLimitError to every call, from here and from readers, and
-    ling-3.0-flash-fin-free beside it answered 200 three times out of three
-    (2026-09-16). A rate limit does not end the offer, but it does end the
-    command, so any other answer sends the check on to the next id, up to
-    KEYLESS_IDS_TRIED:
+    On a row that sets `api.auth: none` the field is the offer: the README's
+    zero-signup curl and its "No account at all" answer are built from it, and
+    a keyless /v1/models says only that the models exist, not that anyone may
+    call them. So the first id in `api.model_ids` gets one completion, one
+    token, no Authorization header, and a 2xx carrying a completion is the only
+    answer that leaves nothing to say — a 200 without one is a non-answer like
+    any other (see `_completion`), and a completion from a model the id does not
+    name is a note (see `_answered_as`). A rate limit does not end the offer,
+    but it does end the command, so any other answer sends the check on to the
+    next id, up to KEYLESS_IDS_TRIED:
 
     - a later id answering is a note naming it, since the fix is to put it first;
     - every id answering 429 is a note that the lane is rate-limited from here;
     - with no id answering, a 401 or 403 on the first is the vendor asking for a
-      key, which FAILs the row, and three runs of it archive the row and take the
-      command off the page — unless the body is a bot wall, which is no answer at
-      all. Any other 4xx is about the request rather than the lane: vLLM answers
-      404 for a model id that has rotated out, and uncloseai serves one id at a
-      time. That, and a lane that could not be reached, is a note beside a row
-      that stays verified, the way a dead id or a missing Anthropic route is.
+      key, which FAILs the row — unless the body is a bot wall, which is no
+      answer at all. Any other 4xx is about the request rather than the lane
+      (vLLM answers 404 for a model id that has rotated out), and it, like a
+      lane that could not be reached, is a note beside a row that stays
+      verified.
 
-    A refusal the list has already owned up to is the one exception. Where the
+    When the first id answers, a keyless lane is asked the same call again with
+    the bearer token LiteLLM sends (see `_bearer_drift`), and either kind is
+    asked the request Codex CLI sends (see `_codex_drift`).
+
+    A refusal the list has already owned up to is the one exception: where the
     row carries an `api.notice` that still holds, the maintainer has chosen to
-    wait for the vendor's word with a warning on the page — opencode Zen refused
-    every client but OpenCode from 2026-09-17 and said nothing — and three runs
-    of FAIL would overrule that choice by calendar in ten days. So the refusal is
-    a note naming the notice and the day it stops holding, and past that day it
-    fails the row as before. The day a noticed lane answers again the notice is
-    the stale sentence on the page, and the run says to take it down.
+    wait for the vendor's word with a warning on the page, so the refusal is a
+    note naming the day the notice stops holding, and past that day it fails
+    the row. The day a noticed lane answers again, the run says to take the
+    notice down.
 
     A lane the vendor prints a key for is the same question asked with that
-    key. LLM Tech's quickstart hands everyone "a shared free trial key", so the
-    row needs no account, and `api.public_key` is to it what the missing key is
-    to a keyless row: the call carries it as a bearer token, and a lane that
-    refuses it is the no-account offer ending — or a key the vendor replaced,
-    which only a person reading its page can copy — so it fails the same way."""
+    key: the call carries `api.public_key` (LLM Tech's shared free trial key)
+    as a bearer token, and a lane that refuses it — the no-account offer
+    ending, or a key the vendor replaced, which only a person reading its page
+    can copy — fails the same way."""
     url = entry.api.base_url.rstrip("/") + "/chat/completions"
     # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
     # answers a call without one with 400, so the call carries a fresh id of its own
@@ -687,10 +636,9 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
         if tried:
             await asyncio.sleep(backoff)
         # The README's id is asked again after a 429 the way it would be after a
-        # 5xx: on 2026-09-17 kilo-auto/free answered 429 from its upstream to the
-        # runner and 200 elsewhere within the hour, LLM7's first id the reverse,
-        # and each run named a different id to put first. The ids after it only
-        # tell a rate-limited first id from a rate-limited lane, and are asked once.
+        # 5xx, or an upstream's passing 429 would name a different id to put
+        # first on every run. A 429 on the ids after it is final: they only tell
+        # a rate-limited first id from a rate-limited lane.
         answer = await _keyless_call(client, url, model, headers, attempts, backoff,
                                      patient_with_429=not tried)
         completion = _completion(answer)
@@ -757,15 +705,16 @@ async def _codex_drift(client: httpx.AsyncClient, entry: Entry, model: str, head
     """Whether `api.responses_api` still says what a lane without an account
     does, asked on the id that has just answered a chat call: the request Codex
     CLI sends, at base_url + /responses, with the same headers. The whole turn
-    is asked, not the route: OVHcloud's route answered and refused the request.
+    is asked, not the route: a route can answer and refuse the request (see
+    CODEX_PROBE_TOOL).
 
     An answer on a row without the field is a lane Codex could call directly,
-    with a profile of its own — Kilo's gateway was one on 2026-09-27, and nothing
-    in its row said so — and a row with the field that stops taking the request
-    hands readers a profile that fails the same way. Asked once where the field
-    is not set, since a refusal there is the ordinary answer, and patiently
-    where it is, since there a refusal is news. A lane that wants an id per
-    conversation in its own header is not asked: no Codex profile could send it."""
+    with a profile of its own, and a row with the field that stops taking the
+    request hands readers a profile that fails the same way. Asked once where
+    the field is not set, since a refusal there is the ordinary answer, and
+    patiently where it is, since there a refusal is news. A lane that wants an
+    id per conversation in its own header is not asked: no Codex profile could
+    send it."""
     if entry.api.session_header:
         return None
     url = entry.api.base_url.rstrip("/") + "/responses"
@@ -810,14 +759,13 @@ async def public_key_unprinted(client: httpx.AsyncClient, entry: Entry, probed: 
     """Why the key a row publishes as the vendor's own is not to be trusted as
     that, or None while the vendor's page still prints it.
 
-    `api.public_key` is the vendor's to hand out only as long as the vendor's
-    own page prints it: that page, `api.key_url`, is the whole difference
-    between a key the vendor gives everyone — LLM Tech's shared trial key — and
-    a key someone passed around, which is key sharing and does not qualify. A
-    key that still works after its page stopped printing it is one the vendor
-    may revoke any day or has already replaced, and either way the fix is a
-    person reading the page, so it is a note beside a row its page keeps
-    verified. Where the key's page is the page the probe reads it is read once.
+    `api.public_key` is the vendor's to hand out only while the vendor's own
+    page, `api.key_url`, prints it; otherwise it is a key someone passed around,
+    which is key sharing and does not qualify. A key that still works after its
+    page stopped printing it may be revoked any day or already replaced, and
+    only a person reading the page can fix that, so it is a note beside a row
+    its page keeps verified. Where the key's page is the page the probe reads
+    it is read once.
     """
     url = entry.api.key_url
     if url == entry.probe.endpoint and entry.probe.follow is None:
@@ -837,13 +785,11 @@ async def data_use_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.
     """Why the row's word on training no longer stands, or None while the
     vendor's page still says it.
 
-    The README marks a vendor that may train on what a reader sends with one
-    glyph, and the row's page quotes the sentence it rests on: "Content used to
-    improve our products" in the Gemini API's free column, a data policy's "we
-    never train on your prompts". A vendor that rewrites that page changes what
-    a reader pays for the free tier, so the sentence is read back every run,
-    typography flattened the way freetier-quotes reads every quote. A page that
-    cannot be read is said so rather than skipped."""
+    The README marks a vendor that may train on what a reader sends, and the
+    row's page quotes the sentence the mark rests on. A vendor that rewrites
+    that page changes what a reader pays for the free tier, so the sentence is
+    read back every run, typography flattened the way freetier-quotes reads
+    every quote. A page that cannot be read is said so rather than skipped."""
     from .quotes import page_texts, quote_found  # quotes reads pages through this module
     url = entry.data_use.url
     if url == entry.probe.endpoint and entry.probe.follow is None:
@@ -869,10 +815,9 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
 
     The border rests on the vendor's own list or sentence — Google's region
     list, NVIDIA's list of the countries its phone step refuses, a clause in a
-    SaaS agreement — and vendors move them: NVIDIA's forum threads name
-    countries its list no longer holds. So it is read back every run the way
-    it was read the day it was recorded: every recorded country still named on
-    the page and no new one beside them, the quote still there, the codes a
+    SaaS agreement — and vendors move them, so it is read back every run the
+    way it was read the day it was recorded: every recorded country still named
+    on the page and no new one beside them, the quote still there, the codes a
     vendor publishes as data unchanged, the host still not answering from
     inside each country it leaves out. A change is a note beside a row that
     stays verified, never a failure: the offer is still there, and which
@@ -955,9 +900,9 @@ def _listed_codes(body: str) -> set[str] | None:
 async def _border_dns(client: httpx.AsyncClient, entry: Entry, attempts: int,
                       backoff: float) -> str | None:
     """The host still answering 0.0.0.1, or nothing, from inside every country
-    the border leaves out — the way CodeBuddy's border was measured on
-    2026-09-25, a public resolver asked on behalf of a subnet in each country.
-    A real address from one of them is the border lifting there."""
+    the border leaves out, asked of a public resolver on behalf of a subnet in
+    each country (DNS_SUBNETS). A real address from one of them is the border
+    lifting there."""
     from .countries import DNS_SUBNETS, country_name
     border = entry.border
     lifted, unread = [], []
@@ -1085,13 +1030,8 @@ def _price_row(value: object) -> float | None:
 def _tiered_price_of(tiers: list) -> list[float] | None:
     """Requesty publishes one price row per usage tier, as a list of
     `{prompt_tokens_threshold, input_price, output_price}` rather than a single
-    pricing object.
-
-    Every tier is read, because the question is whether the row is a zero all
-    the way up. A lane that costs nothing below a threshold and bills above it
-    is a discount, not a free model, and taking only the first row — the
-    cheapest one, since the list is ordered by threshold — would file it as
-    free."""
+    pricing object. Every tier is read: a lane that costs nothing below a
+    threshold and bills above it is a discount, not a free model."""
     prices = []
     for tier in tiers:
         if not isinstance(tier, dict):
@@ -1108,9 +1048,10 @@ def _tiered_price_of(tiers: list) -> list[float] | None:
 def _price_of(model: dict) -> list[float] | None:
     """What one plain completion costs, as the vendor publishes it, or None when
     it publishes nothing we understand. OpenRouter and BazaarLink name the rows
-    prompt/completion, Vercel input/output, Requesty ships a tier per row; cache,
-    image and request rows are ignored — a free lane is defined by the price of
-    ordinary tokens."""
+    prompt/completion, Vercel input/output, Requesty ships a tier per row, and
+    the new-api family publishes multipliers instead (see _multiplier_price_of).
+    Of a pricing object only the token rows are read; a per-call charge is
+    _charges_elsewhere's question."""
     pricing = model.get("pricing")
     if isinstance(pricing, list):
         return _tiered_price_of(pricing)
@@ -1147,23 +1088,19 @@ def _multiplier_price_of(model: dict) -> list[float] | None:
 
 
 def _is_withdrawn(model: dict) -> bool:
-    """The vendor's own verdict that a row cannot be called right now.
-
-    Of the catalogs probed here only Routeway publishes one — `available`, on all
-    239 of its rows, false on exactly one, and that one a zero-priced `:free` id.
-    That is the whole hole: the price stays 0 while the lane goes away, so a
-    price-only check vouches for it forever.
+    """The vendor's own verdict that a row cannot be called right now: an
+    `available` flag that is false — Routeway's catalog carries one, and a free
+    list's retirement mark sets it (see join_free_list) — or a retirement date
+    the row carries that has come (see _retired_on). A price can stay 0 while
+    the lane goes away, so a price-only check would vouch for it forever.
 
     Read loosely, like `quota_type`: a gateway that stringifies the boolean would
     otherwise turn this into a check that can never fire. A missing or null field
     means the vendor said nothing, which is not a withdrawal.
 
-    `outdated` is deliberately not read. The same catalog sets it on eight models
-    that are `available: true` and callable — a model's age is is_model_stale's
-    question, and answering it here would fail live entries over it.
-
-    A retirement date the row itself carries is read, once the day has come:
-    see _retired_on.
+    `outdated` is deliberately not read: Routeway sets it on models that are
+    `available: true` and callable, and a model's age is is_model_stale's
+    question.
     """
     if _retired_on(model) is not None:
         return True
@@ -1185,12 +1122,9 @@ RETIREMENT_FIELDS = ("retires", "expiration_date")
 def _retired_on(model: dict, today: date | None = None) -> date | None:
     """The day a catalog row says it retired, once that day has come — or None.
 
-    Requesty keeps a row in its catalog after the day the row says it retires:
-    on 2026-09-27 poolside/laguna-xs.2 and laguna-m.1 still sat there at a price
-    of 0 with `"retires": 1789948800` (2026-09-21), and a check that read only
-    `available` kept vouching for both. A date still to come is notice, not a
-    withdrawal: the id answers until then, and the two-week bar already keeps an
-    id dated to end from joining the Models column."""
+    Requesty keeps a row in its catalog, still priced 0, after the day its
+    `retires` names. A date still to come is notice, not a withdrawal: the id
+    answers until then."""
     today = today or datetime.now(timezone.utc).date()
     for key in RETIREMENT_FIELDS:
         value = model.get(key)
@@ -1241,8 +1175,8 @@ def _catalog_items(resp: httpx.Response, lane: str | None = None) -> list[dict] 
     other terms, and a family found there is not a family found free.
 
     Otherwise the rows are the document itself, its OpenAI `data`, or — where
-    there is no `data` — its `models`: Opper's keyless catalog answers
-    `{"models": [...]}`, and read as `data` alone it was an empty catalog."""
+    there is no `data` — its `models`, the way Opper's keyless catalog answers
+    (`{"models": [...]}`)."""
     try:
         data = resp.json()
     except json.JSONDecodeError:
@@ -1318,9 +1252,9 @@ def free_list_marks(resp: httpx.Response) -> dict[str, str] | str:
     """The endpoints a free list marks free, keyed as `_free_endpoints` keys
     them, each with the date the vendor retires it or "" — or, where the
     document cannot be read as a free list, why. A retirement is a DEPRECATION
-    attribute holding the last day the endpoint is supported:
-    deepseek-v4-flash-0731 carried "09/21/2026" while its page read "Free
-    Endpoint: Deprecated"."""
+    attribute holding the last day the endpoint is supported, as the vendor
+    writes it ("09/21/2026"); the model's page then reads "Free Endpoint:
+    Deprecated"."""
     endpoints = _free_endpoints(resp)
     if isinstance(endpoints, str):
         return endpoints
@@ -1338,12 +1272,10 @@ def free_list_dates(resp: httpx.Response, model_ids: list[str]) -> dict[str, dat
     the list marks free — or, where the document cannot be read as a free list,
     why.
 
-    The two-week bar before a free id joins the Models column counts from the
-    read that found it or from the vendor's own date for the free id, the
-    earlier. NGC stamps every endpoint with the moment NVIDIA created it, and
-    the list is NVIDIA's word on which endpoints are free, so the stamp on a
-    marked endpoint is the day the free id began: z-ai/glm-5.3's reads
-    "2026-09-15T19:47:58.961Z", and the row listed the id on 2026-09-22. An
+    NGC stamps every endpoint with the moment NVIDIA created it (`dateCreated`),
+    and the list is NVIDIA's word on which endpoints are free, so the stamp on
+    a marked endpoint is the day the free id began — the vendor's date the
+    two-week bar counts from where it is earlier (see freetier_radar.bars). An
     endpoint with no readable stamp gives no date rather than a guess."""
     endpoints = _free_endpoints(resp)
     if isinstance(endpoints, str):
@@ -1440,9 +1372,8 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
             withdrawn.append(", ".join(_withdrawn_note(m) or family.family for m in matches[:3]))
             continue
         # Presence in the catalog is not the offer: an aggregator can leave a
-        # free model's id exactly where it was and start charging for it, and a
-        # substring check would keep passing forever. Where the vendor publishes
-        # prices, the zero is the offer.
+        # free model's id where it was and start charging for it. Where the
+        # vendor publishes prices, the zero is the offer.
         if entry.probe.require_zero_price and not any(_is_free(m) for m in live):
             priced.append(", ".join(_price_note(m, entry.probe.free_list is not None)
                                     for m in live[:3]))
@@ -1462,12 +1393,11 @@ _FREE_FLAGS = ("isFree", "is_free", "free")
 def _free_flag(model: dict) -> bool | None:
     """The vendor's own word on whether a row is free, where it gives one. Kilo
     marks every row isFree and prices Google's Lyria previews at 0 with the
-    flag false; Kenari puts `free` inside `pricing` and prints the metered
-    rate beside it, because a :free call "is billed Rp 0" and the price rows
-    are what the same model costs without the suffix. Where the catalog says
-    in so many words whether a row is free, that is the answer, and the prices
-    are read only where it does not. A boolean only: a string or a number
-    under one of these keys is not a verdict."""
+    flag false; Kenari puts `free` inside `pricing` beside the metered rate
+    the same model costs without its :free suffix. Where the catalog says
+    whether a row is free, that is the answer, and the prices are read only
+    where it does not. A boolean only: a string or a number under one of these
+    keys is not a verdict."""
     for holder in (model, model.get("pricing")):
         if isinstance(holder, dict):
             for key in _FREE_FLAGS:
@@ -1478,23 +1408,19 @@ def _free_flag(model: dict) -> bool | None:
 
 
 # Price rows that bill every ordinary call of the model, whatever it is priced
-# per token: a flat charge per request, or a charge per unit of the model's
-# own medium. Vercel prices spacexai/grok-stt at 0 per token and 0.000028 per
-# second of audio; EmpirioLabs prices gemma-3-27b at 0 per token and $0.004
-# per message. Reading the token rows alone called both free.
+# per token: a flat charge per request (EmpirioLabs prices gemma-3-27b per
+# message) or a charge per unit of the model's own medium (Vercel prices
+# spacexai/grok-stt per second of audio), both beside 0 per token.
 _PER_CALL_KEYS = ("request", "per_request", "request_price", "price_per_request")
 _PER_UNIT_MARKERS = ("per_second", "per_minute", "duration", "per_hour")
 
 
 def _charges_elsewhere(model: dict) -> bool:
     """A non-zero price on the row that every ordinary call pays. Cache, image
-    and web-search rows stay ignored, as they always were: they price an
-    optional input, and a free text lane is still free without it. The list
-    is deliberately narrow — a stricter reading fails the offer check, and
-    three failed probes archive a live row, so an unknown add-on key must not
-    be able to do that. Measured 2026-09-02 across the eight live rows whose
-    prices are read: no listed id carries a non-zero price outside the token
-    rows, so nothing live turns on this."""
+    and web-search rows are not read: they price an optional input, and a free
+    text lane is still free without it. The list is deliberately narrow — a
+    stricter reading fails the offer check, and three failed probes archive a
+    live row, so an unknown add-on key must not be able to do that."""
     pricing = model.get("pricing")
     if not isinstance(pricing, dict):
         return False
@@ -1539,22 +1465,20 @@ _SPACE_LOOKALIKES = str.maketrans(dict.fromkeys(
 
 
 def _plain_spaces(text: str) -> str:
-    """The typographic spaces a CMS puts between words a designer did not want
-    broken across lines. They are invisible in a browser and in a copy-paste, so
-    a keyword quoted off the page — "100 million free tokens" on Inception Labs'
-    own page — simply never occurs in the bytes, and the probe reports a
-    withdrawn offer over a non-breaking space."""
+    """Text with plain spaces for the typographic ones a CMS puts between words
+    a designer did not want broken across lines. They are invisible in a
+    browser and in a copy-paste, so a keyword quoted off the page ("100 million
+    free tokens" on Inception Labs' page) would otherwise never occur in the
+    bytes."""
     return text.translate(_SPACE_LOOKALIKES)
 
 
 def _as_read(text: str) -> str:
     """Text the way a reader meets it and a keyword is quoted from it: plain
     spaces, every run of whitespace one space, case folded. HTML renders a line
-    break in the page's source as a space, so a sentence a template wraps at
-    eighty columns reads whole in a browser and in a copy-paste — and LLM Tech's
-    quickstart, serving "2M tokens" and "per day per address" on two source
-    lines, failed a keyword quoted straight off the page on 2026-09-18, while
-    freetier-quotes, which already read whitespace this way, found the quote."""
+    break in the page's source as a space, so a sentence a template wraps reads
+    whole in a browser and in a copy-paste; freetier-quotes reads whitespace the
+    same way."""
     return " ".join(_plain_spaces(text).split()).lower()
 
 
@@ -1568,14 +1492,8 @@ def _rendered(text: str) -> str:
     browser that a reader never sees.
 
     An anchor keyword is a promise that the string dies with the offer, and a
-    script tag is exactly where a string does not. Groq's Free Plan Limits table
-    lost llama-3.3-70b-versatile and llama-3.1-8b-instant somewhere between
-    2026-08-14 and 2026-09-08, and the id this list anchored on went on matching
-    ten times over, in an OpenAPI enum and a set of response samples; the probe
-    passed every run while the README published a model the vendor had stopped
-    giving away. The same shape had already been found twice by hand — Groq's
-    llama-4 and Mistral's i18n bundle, both fixed in the registry because
-    nothing here could tell them apart from the page.
+    script tag is where a string outlives it: an id in an OpenAPI enum or a
+    response sample goes on matching after the vendor's table dropped the model.
 
     JSON-LD is kept. It sits in a script tag like the rest, but structured data
     is the vendor answering a question — Freebuff's whole offer is a JSON-LD FAQ
@@ -1600,60 +1518,38 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     absent = [k for k in entry.probe.keywords if _as_read(k) not in rendered]
     whole = (_as_read(resp.text)
              if absent or entry.probe.machinery_keywords else "")
-    # Which half of the response was missing it is the question a runner-only
-    # failure turns on, and the one nothing can answer afterwards: no copy of
-    # the page survives the run. A keyword the bytes still carry means our own
-    # stripping ate it and the row wants machinery_keywords; a keyword absent
-    # from the bytes means the origin served something else, which is what trae
-    # did on 2026-09-10 while passing from every other address.
+    # Which half of the response lacked a keyword is what a runner-only failure
+    # turns on, and no copy of the page survives the run: a keyword the bytes
+    # still carry means the stripping ate it and the row wants
+    # machinery_keywords; one absent from the bytes means the origin served
+    # something else.
     missing = [k if _as_read(k) not in whole else f"{k} (in the page's machinery only)"
                for k in absent]
     if entry.probe.machinery_keywords:
         missing += [k for k in entry.probe.machinery_keywords if _as_read(k) not in whole]
     if not missing:
         return None
-    # And the size, because a page that answers 200 with a shell or a variant is
-    # a different size, and that is the only trace of it left in the log.
+    # And the size: a page that answers 200 with a shell or a variant is a
+    # different size, the only trace of it left in the log.
     return f"missing keywords: {', '.join(missing)} — {len(resp.text):,} bytes read"
 
 
 def unevidenced_families(resp: httpx.Response, entry: Entry) -> list[str]:
     """Families the README publishes that the probed page does not even name.
 
-    `_check_api_models` demands every listed family back from the catalog, and on
-    that half of the registry a model that quietly leaves is flagged by the run.
-    A page-keywords probe had no equivalent: its keywords anchor the OFFER, and
-    nothing ever asked whether the models listed beside that offer are still
-    there. Measured 2026-08-14 across every live page-keywords entry, a third of
-    the published families appeared nowhere in the page their probe reads.
+    What `_check_api_models` asks of a catalog, asked of a page: the keywords
+    anchor the offer, and this asks whether the models listed beside it are
+    still there. Deliberately weak. It reads the raw body, not the rendered
+    text the keywords are held to, so a name the vendor serves only inside its
+    page data counts; whether the page names the model as free is the stronger
+    question, and the one an anchor keyword answers. A family also counts where
+    its parts are named close together (see _named_in_parts).
 
-    Deliberately weak, in two ways that are both the point:
-
-    It reads the same bytes the keywords do, so a name the vendor serves inside
-    its page data counts. Whether the page names the model AS FREE is the
-    stronger question, and the one an anchor keyword answers — novita's id sat
-    next to a price for weeks before anyone noticed, and no presence check would
-    have caught that.
-
-    That weakness was measured the other way round on 2026-08-14, by byte
-    location rather than presence: of the 32 live page-keywords entries, four
-    match only in bytes a reader never sees, and every one of the four is
-    deliberate — trae's `"name":"free"`, cursor's `"name":"hobby","price":"0"`,
-    z.ai's ids glued to their price cells, and Upstage's own section heading
-    inside a client-rendered payload. What the same pass did catch is the shape
-    this docstring cannot: a family evidenced by an OpenAPI enum the page embeds
-    (Groq's llama-4, absent from the Free Plan Limits table beside it) and one
-    evidenced by an i18n bundle linking a 2025 blog post (Mistral). Both were
-    fixed in the registry rather than here, because from this function the two
-    cases are the same bytes.
-
-    And it never fails an entry. Three failures archive a row, so a marketing
-    page that drops a model name in a restyle would bury a live service inside a
-    week. Since 2026-09-24 a catalog row is held to the same line, a family
-    leaving a lane that still serves another one free being a flag and not a
-    failure (see probe_entry). STALE_MODELS is what "the offer is alive, the
-    Models column is not trustworthy" already means here, and it is what the
-    scout's FIX_PROMPT already knows how to repair.
+    It never fails an entry: three failures archive a row, and a marketing page
+    that drops a model name in a restyle must not bury a live service. The
+    verdict is STALE_MODELS — the offer is alive, the Models column is not
+    trustworthy — which the scout's FIX_PROMPT repairs; a catalog row is held
+    to the same line (see probe_entry).
     """
     if entry.probe.type is not ProbeType.PAGE_KEYWORDS:
         return []
@@ -1667,10 +1563,9 @@ def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None
     families are held to: named on the page, or served free in the catalog lane.
     None when the response cannot answer — not JSON, or no rows to look in.
 
-    What a generation bump is measured against before a human reads it: a newer
-    generation this vendor does not serve cannot supersede one it does. On
-    2026-09-14 the scout pointed Groq, Hetzner, OVH, LLMTR and FreeInference at
-    qwen3.7-flash, which none of their pages or catalogs names."""
+    The probe asks it of a catalog row whose content check failed (see
+    probe_entry), and the scout of a generation bump before a human reads it: a
+    newer generation this vendor does not serve cannot supersede one it does."""
     asked = entry.model_copy(update={"models": [ModelFamily(family=family)]})
     if entry.probe.type is ProbeType.API_MODELS:
         items = _catalog_items(resp, entry.probe.lane)
@@ -1681,47 +1576,27 @@ def family_named(resp: httpx.Response, entry: Entry, family: str) -> bool | None
 
 
 def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
-    """Ids in `api.model_ids` that the catalog no longer answers for.
+    """Ids in `api.model_ids` that the catalog no longer answers for: not in it,
+    retired by its own date, marked unavailable, or — where the row reads
+    prices — no longer free.
 
-    This is the last curated field here that nothing ever read back. It is not
-    the Models column, so neither `_check_api_models` nor `unevidenced_families`
-    looks at it, and it is not on any page, so no keyword anchors it — yet it is
-    the field that fills `configs/litellm.yaml`, `configs/opencode.json` and
-    `configs/free-llm.env.example`, which is what a reader actually pastes into
-    a client. Three scout pull requests running dropped a family from `models[]`
-    and left its id here — bazaarlink in #10, opencode and vercel-ai-gateway in
-    #11, openrouter-free in #12 — and each time the configs went on handing out
-    an id that 404s until somebody happened to look. Measured 2026-08-28 across
-    the ten live api-models entries: 7 of their 72 ids were already dead, spread
-    over two rows whose probes were passing that morning.
+    No family or keyword check reads this field, and it fills the generated
+    configs a reader pastes into a client. It is never asked of a page: a name
+    missing from prose is not a withdrawal, and here the consequence would be a
+    deletion from a config file. A page row that names a keyless catalog in
+    `probe.catalog` is asked of that catalog instead. A lane served only inside
+    the vendor's own client keeps its ids in `client_lane`, and is asked the
+    same question of the lane its probe reads.
 
-    It is never asked of a page, for the reason `unevidenced_families` is
-    deliberately weak: a page-keywords probe reads prose, and a name missing
-    from prose is not a withdrawal. Here the consequence would be worse — a
-    deletion from a config file rather than a flag on a column. A page row
-    that names a keyless catalog in `probe.catalog` is asked of that catalog
-    instead: on 2026-09-02 four of the twelve page rows carrying ids had one
-    (Ollama, opencode Zen, SambaNova, Regolo), 18 of their 37 ids between them.
-    Inception is deliberately not among them — mercury-edit-2 answers
-    /v1/edit/completions and is absent from /v1/models by design, and a check
-    that cannot tell that apart would call it dead on every run. A lane served
-    only inside the vendor's own client keeps its ids in `client_lane`, and is
-    asked the same question of the lane its probe reads.
-
-    The match is exact, because `api.model_ids` holds what goes in the request
-    body. `deepseek-ai/deepseek-v4-flash` and its live successor
+    The match is exact, because the id is what goes in the request body:
+    `deepseek-ai/deepseek-v4-flash` and its successor
     `deepseek-ai/deepseek-v4-flash-0731` are one model and two ids, and only the
-    second one answers; a substring test would call the row healthy forever.
-    That is also why a missing id is reported with any catalog id that extends
-    it: NVIDIA re-versioned that row rather than dropping it, so the repair is a
-    rename, and the two cases are indistinguishable without the hint.
+    second answers. A missing id is reported with any catalog id it may have
+    become (see _successor_hint), since a re-versioned id wants a rename.
 
-    It never fails an entry and never repairs one. A free lane rotating its ids
-    is this list doing its job — kilo-code's own note says so — so archiving a
-    row over it would be the mistake `unevidenced_families` exists to avoid.
-    And the repair is an exact string copied from a catalog, which is the last
-    thing to let an LLM guess at: the scout is told to leave these rows for a
-    human rather than sent off to fix them.
+    It never fails an entry and never repairs one: a free lane rotating its ids
+    is this list doing its job, and the repair is an exact string copied from a
+    catalog, which the scout leaves to a human (see for_a_human).
     """
     lane = lane_ids(entry)
     if lane is None:
@@ -1746,42 +1621,27 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
 
 
 def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
-    """Ids the catalog prices at zero that `api.model_ids` does not carry.
-
-    The other direction of dead_model_ids, and the one that stayed invisible
-    after it was written: a check that reads only the ids the registry already
-    has cannot see a lane grow. Measured 2026-09-02 across the eight live
-    api-models rows whose prices the probe reads, eleven zero-priced ids sat
-    unlisted on four rows whose probes were passing — Vercel 5, Routeway 3,
-    Requesty 2, TokenRouter 1 — and the six Kilo had added that week had been
-    found by hand. Each is a model a reader could have been calling.
+    """Ids the catalog serves free that `api.model_ids` does not carry — the
+    other direction of dead_model_ids, and the one that sees a lane grow.
 
     The lane is the row's own definition of it, not a bare zero. An id is in
-    it when it carries `probe.free_marker` where the row sets one, is priced 0
-    on ordinary tokens, and is not marked unavailable — the three tests the
-    offer check and dead_model_ids already apply. The marker matters:
-    OpenRouter and Kilo both price Google's Lyria music previews at 0 with no
-    :free suffix, and Kilo marks them isFree: false; TokenRouter's
-    stealth/ox-alpha is a zero-priced preview outside its lane. The check is
-    asked only where prices are read, because on a catalog that publishes
-    none — NVIDIA NIM, OVHcloud — every id would be free and the report would
-    be the catalog.
+    it when it carries `probe.free_marker` where the row sets one, is free by
+    the catalog's own account (see _is_free), and is not marked unavailable —
+    the tests the offer check and dead_model_ids already apply. The marker
+    matters: OpenRouter and Kilo both price Google's Lyria music previews at 0
+    with no :free suffix. The check is asked only where prices are read, since
+    on a catalog that publishes none every id would be free, or where the
+    vendor lists its free lane under a key of its own (`probe.lane`): that lane
+    is the vendor's whole account of what is free, so its ids count without a
+    price unless the row reads prices too.
 
     Ids in `api.ignored_ids` are left out: a zero somebody has read and left
-    unlisted, with the reason in `api.note` — AIHubMix's two image generators,
-    and a row whose own description says it was removed from the platform.
-    Without the list those would print on every run, and a report that always
-    prints is a report nobody reads.
-
-    A lane the vendor lists under a key of its own (`probe.lane`) is asked
-    too, prices or none: Cline's free lane is the vendor's whole account of
-    what is free, so every id in it is in the lane, and ids in the paid lanes
-    beside it are not.
+    unlisted, with the reason in `api.note`, that would otherwise print on
+    every run.
 
     Like dead_model_ids it never fails a row and is never handed to the
-    scout: an id to add is an exact string copied out of a catalog, and
-    whether to add it — or to record it as ignored — is a judgement about what
-    the row is for.
+    scout: whether to add an id, or record it as ignored, is a judgement about
+    what the row is for.
     """
     lane = lane_ids(entry)
     if (entry.probe.type is not ProbeType.API_MODELS or lane is None
@@ -1800,13 +1660,13 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
 
 
 def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str:
-    """One line for a human with both directions on it. A rename that changed
+    """One line for a human with both directions on it: a rename that changed
     the words of an id — the case _successor_hint cannot see — is a dead id on
-    one side and an unlisted one on the other, and they belong together. On a
-    row read with a free list the unlisted ids are the ones the list marks, and
-    the line says so: that catalog prices nothing to be zero. The line names
-    the list the ids belong in, `api` or `client_lane`, and a client lane has
-    no ignored ids: it writes no config to keep an id out of."""
+    one side and an unlisted one on the other. On a row read with a free list
+    the unlisted ids are the ones the list marks, and the line says so, since
+    that catalog prices nothing. The line names the list the ids belong in,
+    `api` or `client_lane`; a client lane has no ignored ids, as it writes no
+    config to keep an id out of."""
     field = lane_ids(entry).field
     parts = []
     if dead:
@@ -1825,11 +1685,10 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str
     return " | ".join(parts)
 
 
-# How every note about a row's connection details opens — its ids against the
-# catalog, its keyless or public-key lane, its Anthropic route, the page that
-# prints its public key — and about its word on training, which only a person
-# re-reading the vendor's data page can restate. Each follows a family verdict
-# after " | ".
+# How a note for a human opens: the ids against the catalog, the keyless or
+# public-key lane, the Anthropic route, the page that prints the public key,
+# and the data-use sentence, which only a person re-reading the vendor's data
+# page can restate. Each follows a family verdict after " | ".
 _FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in the catalog ",
                 "ids the free list ", "ids in the ",
                 "api.public_key ", "keyless ", "public-key ", "anthropic route ", "data_use ")
@@ -1838,9 +1697,8 @@ _FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in 
 def for_a_human(detail: str) -> str:
     """The part of a verdict's detail the fix prompt tells the model to leave
     alone, or "" where there is none: whatever follows the family verdict once
-    a note about the connection details begins. A row the scout repaired can
-    still carry it to the pull request — on 2026-09-21 aihubmix's eight dead
-    ids left with the family half the model did answer for."""
+    a note for a human begins (see _FOR_A_HUMAN). A row the scout repaired
+    still carries it to the pull request."""
     parts = detail.split(" | ")
     for i, part in enumerate(parts):
         if part.startswith(_FOR_A_HUMAN):
@@ -1850,12 +1708,9 @@ def for_a_human(detail: str) -> str:
 
 def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     """What the catalog says about this row's published ids, in both
-    directions, or "" while they are all backed.
-
-    The verdict a passing row gets and the sentence a failing one carries
-    beside its own failure are the same question asked of the same bytes, so
-    they are the same call: whether the row is being verified or repaired says
-    nothing about whether `api.model_ids` is still true.
+    directions, or "" while they are all backed. A passing row gets it as its
+    verdict and a failing api-models row beside its failure: whether a row is
+    being verified or repaired says nothing about whether its ids are true.
     """
     dead = dead_model_ids(catalog, entry)
     unlisted = unlisted_free_ids(catalog, entry)
@@ -1864,20 +1719,16 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:
     """The catalog ids a missing one may have turned into, when a vendor
-    re-versioned or renamed the row instead of withdrawing it. A withdrawal and
-    a rename want opposite edits, and they are indistinguishable without this.
+    re-versioned or renamed the row instead of withdrawing it: a withdrawal and
+    a rename want opposite edits.
 
-    Two shapes count and nothing else. An id that *extends* the missing one:
-    NVIDIA re-dated `deepseek-ai/deepseek-v4-flash` as
-    `deepseek-ai/deepseek-v4-flash-0731`. And an id built from exactly the same
-    words in a different order: on 2026-09-02 `nvidia/nemotron-3-nano-30b-a3b`
-    left that same catalog while `nvidia/nemotron-nano-3-30b-a3b` sat in it,
-    which no prefix test can see because the vendor moved the version into the
-    middle of the name. Both stay honest in the case that matters — Routeway's
-    `llama-3.1-8b-instruct:free` left its free lane while the metered
-    `llama-3.1-8b-instruct` went on being served, and calling that twin the
-    successor is exactly the confusion `require_zero_price` was added to stop.
-    It neither extends the missing id nor carries the same words."""
+    Two shapes count and nothing else: an id that extends the missing one
+    (`deepseek-ai/deepseek-v4-flash` as `deepseek-ai/deepseek-v4-flash-0731`),
+    and one built from exactly the same words in another order
+    (`nvidia/nemotron-3-nano-30b-a3b` as `nvidia/nemotron-nano-3-30b-a3b`). The
+    metered twin of a free id (`llama-3.1-8b-instruct` beside Routeway's
+    `llama-3.1-8b-instruct:free`) is neither, so it is never offered as the
+    successor."""
     words = _id_words(wanted)
     heirs = sorted(mid for mid in catalog
                    if mid != wanted and (mid.startswith(wanted) or _id_words(mid) == words))
@@ -1898,33 +1749,17 @@ NAME_SPREAD = 48
 
 
 def _named_in_parts(family: str, text: str) -> bool:
-    """Antigravity enumerates its free agent models as "Claude Sonnet & Opus
-    4.6": two models sharing one version number, and neither of them a substring
-    of the page. A warning that fires on entries that are correct is a warning
-    that gets ignored, so a family also counts as named when its parts appear in
-    order and close together.
+    """Whether a family's parts appear in order and within NAME_SPREAD of each
+    other, for a page that names models that way — Antigravity's "Claude Sonnet
+    & Opus 4.6" is two models sharing one version, neither a substring of the
+    page.
 
-    Each part must start where a name starts. Without that, the version half of
-    a family name matches inside a *different* version and the check vouches for
-    a model nobody offers: kiro.dev/pricing, which serves Sonnet 4.5 free and
-    sells 4.6, named opus-5 for this function through the "5" in "Opus 4.5",
-    and glm-5 through a "GLM" in a country-support FAQ and a "5" in the minified
-    markup after it. Anchoring on the left is enough — anchoring on the right
-    too would unname minimax-2.1, which that same page writes at the end of a
-    sentence as "MiniMax 2.1.". Measured against every live page-keywords entry
-    on 2026-08-14: no family this repository publishes changes verdict.
-
-    The letter in front of a version number is the vendor's, and it moves. On
-    2026-08-20 the same Kiro page restyled the free-tier footnote it had written
-    as "DeepSeek v3.2 and MiniMax 2.1." into "DeepSeek 3.2, and MiniMax M2.1" —
-    same two models, same sentence, same free tier, and both families unnamed
-    for this function. That is not a Models column going stale, it is a caption
-    being retyped, and it reached a scout PR proposing to delete two models the
-    vendor still hands out for free. So a version part is matched through
-    _version_pattern, which lets that prefix letter differ on either side.
-    Measured the same way on 2026-08-20, across all 18 live page-keywords
-    entries that publish a family: kiro is the only verdict that moves, and it
-    moves to none.
+    Each part must start where a name starts, or the version half of a family
+    matches inside a different version and vouches for a model nobody offers:
+    "Opus 4.5" would name opus-5. Only the left edge is anchored, since a name
+    can end a sentence ("MiniMax 2.1."). A dotted version part is matched
+    through _version_pattern, because the letter in front of a version number
+    is the vendor's and moves: "MiniMax 2.1" and "MiniMax M2.1" are one model.
     """
     parts = [p for p in re.split(r"[\s_-]+", family.lower()) if p]
     if len(parts) < 2:
@@ -1936,21 +1771,16 @@ def _named_in_parts(family: str, text: str) -> bool:
 
 # A generation number the vendor may or may not put a letter in front of:
 # "v3.2", "3.2" and "M2.1" are one part each, and the letter is the vendor's.
-# The dot is required. A bare number carries no letter here, because a hashed
-# "h5" in minified markup would then name glm-5 for any page that says GLM
-# nearby — the exact failure the left anchor in _named_in_parts exists to stop,
-# walked back in through the number.
+# The dot is required: a bare number with a letter allowed in front would let
+# a hashed "h5" in minified markup name glm-5 on any page that says GLM nearby.
 DOTTED_VERSION = re.compile(r"[a-z]?(\d+(?:\.\d+)+)")
 
 
 def _version_pattern(part: str) -> str | None:
-    """How a dotted version part may be spelled, or None for any other part.
-
-    Three vendors write one generation three ways — "v3.2", "3.2", "M2.1" — and
-    the registry has to write it once, so the prefix letter is optional on both
-    sides. Nothing else about the part is relaxed: "2.1" still has to start
-    where a name starts, and still has to sit within NAME_SPREAD of the part
-    before it.
+    """How a dotted version part may be spelled (see DOTTED_VERSION), or None
+    for any other part. Only the prefix letter is relaxed, on both sides: "2.1"
+    still has to start where a name starts and sit within NAME_SPREAD of the
+    part before it.
     """
     match = DOTTED_VERSION.fullmatch(part)
     return None if match is None else r"[a-z]?" + re.escape(match.group(1))
@@ -1972,8 +1802,8 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
     vendor-announced retirement date, or delisted by a reviewer, is left alone
     entirely.
     Returns (entry, result) pairs needing scout attention: FAIL, INCONCLUSIVE,
-    passing entries whose model families are all superseded, and passing entries
-    flagged for their Models column or their `api.model_ids`."""
+    passing entries whose model families are all superseded, and passes flagged
+    STALE_MODELS or STALE_IDS."""
     needs_attention = []
     for e in entries:
         result = results.get(e.id)
@@ -1982,16 +1812,14 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
         # The vendor's own shutdown date has passed, or a reviewer took the row
         # off: the entry is archived for good and its endpoint is meant to be
         # dead. Re-verifying it would keep moving last_verified forward on a
-        # service that is gone, and flagging it sends the scout off to "fix" the
-        # probe — which is how GitHub Models' HTTP 410 crashed the 2026-08-03 run.
+        # service that is gone, and flagging it would send the scout off to
+        # "fix" the probe.
         if is_archived_for_good(e, today):
             continue
-        # STALE_MODELS and STALE_IDS are passes with a note: the probe reached
-        # the page and the offer was evidenced there, so the liveness
-        # bookkeeping is the same one a PASS gets. Letting last_verified freeze
-        # instead would archive the row by staleness in ARCHIVE_AFTER_DAYS over
-        # a question about its Models column or its config ids — which is the
-        # opposite of what either flag is for.
+        # STALE_MODELS and STALE_IDS are passes with a note: the offer was
+        # evidenced, so the liveness bookkeeping is a PASS's. A frozen
+        # last_verified would archive the row by staleness in ARCHIVE_AFTER_DAYS
+        # over a note.
         if result.status in (ProbeStatus.PASS, ProbeStatus.STALE_MODELS, ProbeStatus.STALE_IDS):
             e.last_verified = today
             e.probe_failures = 0
@@ -2013,11 +1841,9 @@ def apply_results(entries: list[Entry], results: dict[str, ProbeResult],
 
 async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False) -> int:
     """Returns the number of rows that FAILED, so a dry run can refuse to be
-    chained past: on 2026-09-02 a new row went into a commit with a keyword
-    its page did not carry, because the dry run printed the failure and
-    exited 0 and the `&&` after it never noticed. Flags that verify a row —
-    stale-ids, stale-models — are not counted; neither is INCONCLUSIVE, which
-    is the row's problem to report and not the run's."""
+    chained past with `&&`. Flags that verify a row — stale-ids, stale-models —
+    are not counted; neither is INCONCLUSIVE, which is the row's problem to
+    report and not the run's."""
     entries = load_registry(registry_path)
     sem = asyncio.Semaphore(CONCURRENCY)
 
@@ -2053,9 +1879,9 @@ async def _amain(registry_path: Path, failures_dir: Path, dry_run: bool = False)
     ]
     (failures_dir / "failures.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False))
     print(f"probed {len(probed)} entries, {len(flagged)} need attention")
-    # failures.json never leaves the runner, so the count alone was the whole
-    # public account of a probe that fails from CI and passes from a laptop —
-    # the one class of failure that cannot be reproduced locally.
+    # failures.json never leaves the runner, so each flagged row is printed: a
+    # probe that fails from CI and passes from a laptop cannot be reproduced
+    # locally.
     for row in payload:
         print(f"  {row['id']}: {row['status']} — {row['detail'] or 'no detail'}")
     return sum(1 for _, r in flagged if r.status is ProbeStatus.FAIL)

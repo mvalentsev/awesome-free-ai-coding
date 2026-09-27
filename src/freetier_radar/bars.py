@@ -1,23 +1,15 @@
 """freetier-bars: when a model a rotating lane serves free is owed its family.
 
 CONTRIBUTING's rule for a lane that rotates: a new id is callable from the read
-that finds it and joins `models[]` two weeks later. Until 2026-09-24 the dates
-lived in a maintainer's notes, and the ids that came before the notes were never
-dated at all. OpenRouter served north-mini-code free from July while its Models
-column named two families, and the list of who serves each model free left
-OpenRouter off it. The registry's own history already knows when each id
-entered a row's `api.model_ids` — or `client_lane.model_ids`, for a lane served
-only inside the vendor's own client — because every committed registry.yaml is
-in git. So the dates are read from there, and the report says which ids are owed a
-family today and when the rest fall due. Where the vendor dates the free id
-itself, the earlier of the two days counts: NVIDIA created glm-5.3's free
-endpoint on 2026-09-15 and the row listed it on 09-22, so counted from the row
-alone the bar fell a week after the rule's. The report reads those dates off
-the same free list the probe reads (`probe.free_list`), and a list it cannot
-read is named in the report rather than silently counted from the row. A row
-can also record an older record of an id being free itself — a Wayback snapshot
-of the vendor's free list, the vendor's own snapshot of its lane — in
-`free_since`, and the report counts from the earliest day it knows.
+that finds it and joins `models[]` two weeks later. The day an id entered a
+row's `api.model_ids` — or `client_lane.model_ids`, for a lane served only
+inside the vendor's own client — is read from the registry's git history, and
+the report says which ids are owed a family today and when the rest fall due.
+An earlier day counts where one is known: the vendor's own date for the free
+id, read off the free list the probe reads (`probe.free_list`; a list that
+cannot be read is named in the report), or an older record the row names in
+`free_since` — a Wayback snapshot of the vendor's free list, the vendor's own
+snapshot of its lane.
 
 It is a report, not a check. The calendar moves an id from waiting to due
 without anyone touching the file, and a commit gate that failed on a date would
@@ -82,10 +74,7 @@ def _free_lane(e: Entry) -> bool:
     """Whether a row's ids are a lane of named free models, which the row says
     itself: its free part is models. A credit or an allowance names no free
     model, nor does a free part the vendor names none for, and their ids are
-    examples to paste. Until 2026-09-25 the answer was read off the row's shape
-    — a family in its column, or a probe reading each model's free mark — so a
-    page row with free models and an empty column was never asked about its
-    ids."""
+    examples to paste."""
     return e.free_part is FreePart.MODELS
 
 
@@ -114,9 +103,9 @@ class Waiting:
 def vendor_dates(entries: list[Entry], fetch: Callable[[str], httpx.Response],
                  today: date) -> tuple[dict[tuple[str, str], date], list[str]]:
     """(row id, model id) → the day the vendor's own free list dates the free id,
-    for every live row that reads one (`probe.free_list`), and a line for each
-    list that could not be read. One read per list: the probe reads the same
-    document, and a list is the vendor's word on which endpoints are free."""
+    for every live row that reads one (`probe.free_list`, the document the probe
+    reads), and a line for each list that could not be read. Each row's list is
+    fetched once, with no retry."""
     dates: dict[tuple[str, str], date] = {}
     unread: list[str] = []
     for e in entries:

@@ -1,32 +1,27 @@
 """Tier marks, measured against the Artificial Analysis Intelligence Index.
 
-A tier on a model family is a claim that reaches the top of the README — the
-"Frontier-tier models on a $0 plan" answer is built from it — and until
-2026-09-17 it was typed once and never read again. The 2026-09-16 audit found
-nineteen of twenty-two `frontier` marks below the bar CONTRIBUTING had just
-written down, and `strong` on every other family whatever it scored: Apertus
-70B at 5 points beside GLM 5.3 Flash at 42.
-
-So a tier is read, not written. Each family that carries one names the
-Artificial Analysis model it was measured as (`aa_model`, the slug of its page),
-and this reads every score off the leaderboard the site publishes — and names
-the slug itself for a new family the board scores by exactly its name, so a
-model's mark follows the index as models come out, not as reviewers remember:
+A tier on a model family reaches the top of the README — the "Frontier-tier
+models on a $0 plan" answer is built from it — so it is read, not written. Each
+family that carries one names the Artificial Analysis model it is measured as
+(`aa_model`, the slug of its page), and this reads every score off the
+leaderboard the site publishes, so a model's mark follows the index as models
+come out:
 
 - `frontier` — within FRONTIER_WITHIN points of the top of the index;
 - `strong` — within STRONG_WITHIN points;
 - `notable` — below that, but at or above the median of the current models
   the index scores: its upper half, where a model readers still look for sits
-  once the top has moved on (Claude Opus 4.6 at 26.4 when the top was 57.6).
-  It earns the model a page of its own, not a strong mark;
+  once the top has moved on. It earns the model a page of its own, not a
+  strong mark;
 - no tier — further down, or not measured at all.
 
 The top and the median count current models only: a deprecated model is not a
 bar anything can be expected to reach, nor one of the models a score is
-measured among. Run it with `--write` and the marks that moved are
-re-written on every row that carries the family, since a family carries one
-tier. A slug the leaderboard no longer knows keeps its mark and fails the run:
-a guess is not a measurement.
+measured among. Run it with `--write` and the marks that moved are re-written
+on every row that carries the family, since a family carries one tier, and a
+bare family the board scores by its own name is measured (see `unmeasured`). A
+slug the leaderboard no longer knows keeps its mark and fails the run: a guess
+is not a measurement.
 """
 from __future__ import annotations
 
@@ -143,9 +138,8 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
     families that name none have nothing to measure and carry no tier.
 
     A family's registered mark is the one a row carries against the
-    measurement, if any row does: read off the first row alone, a new row that
-    came in bare beside an older, correct one was never re-marked (Dahl
-    Inference's deepseek-v4-flash, 2026-09-21)."""
+    measurement, if any row does, so a row that came in bare beside an older,
+    correct one is re-marked too."""
     top, median = index_top(models), index_median(models)
     marks: dict[str, Mark] = {}
     for e in entries:
@@ -165,20 +159,16 @@ def review(entries: list[Entry], models: dict[str, Scored]) -> tuple[Scored, lis
 
 
 def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[str, Scored]]:
-    """Families no row measures (no row names an aa_model for them) whose name,
-    read the way the board spells a slug — a hyphen for a dot, GLM-5.3 as
-    glm-5-3 — is a model the board scores into a tier.
+    """Unsuperseded families no row measures (no row names an aa_model for them)
+    whose name, read the way the board spells a slug — a hyphen for a dot,
+    GLM-5.3 as glm-5-3 — is a model the board scores into a tier.
 
-    A family added bare carries no tier, so a new strong model stayed off the
-    strong list, and off a page of its own while one row served it, until a
-    reviewer remembered to measure it. This names it on the next run. Only a
-    slug the board lists is offered — never a guess — and only a score that
+    Only a slug the board lists is offered, never a guess, and only a score that
     reaches a tier, `notable` included, since that one decides whether the
-    model has a page (twenty families sat bare on 2026-09-26, twelve of them in
-    the index's upper half, Qwen3.7 Max at 29.5 among them); below the median,
-    measuring changes nothing a page says. `--write` measures each as the slug
-    found — the model's own page — and a reviewer whose lane serves another
-    variant names that one instead."""
+    model has a page; below the median, measuring changes nothing a page says.
+    `--write` measures each as the slug found — the model's own page, which
+    CONTRIBUTING reads where the lane names no variant — and a reviewer whose
+    lane serves another variant names that one instead."""
     top, median = index_top(models), index_median(models)
     measured = {m.family for e in entries for m in e.models if m.aa_model}
     found: dict[str, Scored] = {}
@@ -235,11 +225,8 @@ async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int
     for m in unknown:
         print(f"  {m.family}: {m.aa_model} is not on the leaderboard — the mark stays "
               f"{_tier_name(m.registered)} until the family names a model that is")
-    # A new model comes in bare. The board's model of exactly its name is the
-    # model's own page — what CONTRIBUTING reads where the lane names no
-    # variant — so --write measures it as that, and the mark follows the index
-    # from the next run on without a reviewer; a lane serving another variant
-    # names it by hand, and a hand-named aa_model is never replaced.
+    # A bare family is measured as the board's model of its name (see
+    # unmeasured); an aa_model named by hand is never replaced.
     bare = unmeasured(live, board)
     for family, scored in bare:
         tier = _tier_name(measured_tier(scored.index, top.index, median))
