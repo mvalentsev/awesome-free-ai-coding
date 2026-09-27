@@ -198,6 +198,16 @@ def check(root: Path, today: date | None = None) -> list[str]:
             if s.on > today:
                 problems.append(
                     f"registry: {e.id} {lane.field}.free_since dates {s.id} {s.on}, after today")
+        # The same holds a page row's newcomer: it waits for its family, and the
+        # record goes once the family is in the column.
+        named = {m.family for m in e.models}
+        for n in e.newcomers:
+            if n.family in named:
+                problems.append(
+                    f"registry: {e.id} newcomers dates {n.family}, which the Models column names — "
+                    "its bar is behind it, so take the record out")
+            if n.on > today:
+                problems.append(f"registry: {e.id} newcomers dates {n.family} {n.on}, after today")
 
     # "A sum to spend names no model" was applied on 2026-09-25 by reading rows,
     # and three were missed. Entry holds the rule wherever a row says which kind

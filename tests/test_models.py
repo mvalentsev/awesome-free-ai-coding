@@ -382,6 +382,33 @@ def test_an_earlier_record_of_a_free_id_is_one_the_lane_lists(tmp_path: Path):
     assert p.read_text(encoding="utf-8").count("free_since") == 1
 
 
+
+def test_a_page_rows_newcomer_is_dated_by_a_record_where_no_lane_dates_it(tmp_path: Path):
+    """Freebuff's hour table and opencode's Zen page name their free models on a
+    page, with no ids for a lane to list, so until 2026-09-27 the two weeks each
+    newcomer waits for the Models column were counted in a maintainer's notes. A
+    page row of free models names the family it will join as, the first day a
+    record shows it free, and the record; a row with a lane dates its ids there,
+    and a sum names no model at all."""
+    page = {**sample_entry(), "free_part": "models",
+            "probe": {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
+                      "keywords": ["one million free tokens"]}}
+    seen = {"family": "solar-pro-4", "on": "2026-09-26", "source": WAYBACK}
+    row = Entry.model_validate({**page, "newcomers": [seen]})
+    assert (row.newcomers[0].family, row.newcomers[0].on) == ("solar-pro-4", date(2026, 9, 26))
+    for wrong in ({**seen, "source": "web.archive.org/web/2026"}, {**seen, "family": "Solar Pro+4"}):
+        with pytest.raises(ValidationError):
+            Entry.model_validate({**page, "newcomers": [wrong]})
+    laned = {**page, "api": {"base_url": "https://api.x.ai/v1", "model_ids": ["m-1"]}}
+    with pytest.raises(ValidationError, match="newcomers"):
+        Entry.model_validate({**laned, "newcomers": [seen]})
+    with pytest.raises(ValidationError, match="newcomers"):
+        Entry.model_validate({**page, "free_part": "sum", "models": [], "newcomers": [seen]})
+    p = tmp_path / "registry.yaml"
+    save_registry(p, [row, Entry.model_validate({**page, "id": "plain"})])
+    assert p.read_text(encoding="utf-8").count("newcomers") == 1
+    assert load_registry(p)[0].newcomers == row.newcomers
+
 def test_registry_roundtrip(tmp_path: Path):
     p = tmp_path / "registry.yaml"
     save_registry(p, [Entry.model_validate(sample_entry())])

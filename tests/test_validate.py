@@ -123,6 +123,21 @@ def test_a_live_row_says_where_its_offer_reaches(tmp_path: Path):
     assert not any("border" in p for p in problems), problems
 
 
+
+def test_a_newcomer_record_goes_once_its_family_joins(tmp_path: Path):
+    """A newcomer waits for its family; once the family is in the column the
+    record dates nothing, and a day after today is a typo."""
+    seen = {"family": "x-mini", "on": "2026-08-01",
+            "source": "https://web.archive.org/web/20260801000000/https://x.ai/pricing"}
+    problems = check(build(tmp_path, entries=[{**ENTRY, "newcomers": [seen]}], watched=[WATCHED]), TODAY)
+    assert any("newcomers" in p and "x-mini" in p for p in problems), problems
+    ahead = {**ENTRY, "newcomers": [{**seen, "family": "x-max", "on": "2026-08-20"}]}
+    problems = check(build(tmp_path, entries=[ahead], watched=[WATCHED]), TODAY)
+    assert any("x-max" in p and "2026-08-20" in p for p in problems), problems
+    fine = {**ENTRY, "newcomers": [{**seen, "family": "x-max"}]}
+    assert not any("newcomers" in p
+                   for p in check(build(tmp_path, entries=[fine], watched=[WATCHED]), TODAY))
+
 def test_an_earlier_record_of_a_free_id_stops_once_its_family_joins(tmp_path: Path):
     """The record exists to bring a bar forward; once a family names the id it
     dates nothing, and a day after today is a typo."""

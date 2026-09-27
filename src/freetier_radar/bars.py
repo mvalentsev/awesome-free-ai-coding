@@ -148,7 +148,13 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
     out = []
     for e in entries:
         lane = lane_ids(e)
-        if lane is None or is_archived(e, today) or not _free_lane(e):
+        if is_archived(e, today) or not _free_lane(e):
+            continue
+        # A page row has no ids to date: its newcomers carry their own record.
+        named = {m.family for m in e.models}
+        out += [Waiting(e.id, n.family, n.on, None, "newcomers", f"<{n.source}>")
+                for n in e.newcomers if n.family not in named]
+        if lane is None:
             continue
         recorded = {s.id: s for s in lane.free_since}
         for model_id in lane.model_ids:
@@ -165,6 +171,8 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
 
 
 def _dated(w: Waiting) -> str:
+    if w.field == "newcomers":
+        return f"free on {w.vendor_source} since {w.listed}"
     listed = f"in {w.field}.model_ids since {w.listed}"
     if w.vendor is not None and w.vendor < w.listed:
         return f"free on {w.vendor_source} since {w.vendor}, {listed}"

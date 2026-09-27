@@ -125,6 +125,24 @@ def test_an_earlier_record_of_a_free_id_brings_its_bar_forward():
         [page], since, TODAY)
 
 
+
+def test_a_page_rows_newcomer_waits_two_weeks_from_its_record():
+    """Freebuff's hour table took Solar Pro 4, GPT-6 Luna and MiMo 2.6 Pro onto the
+    free budget by 2026-09-26 by Wayback, and opencode's Zen page MiMo-V2.6-Flash
+    Free by 09-22 — rows with no ids to date, whose bars lived in a maintainer's
+    notes until 2026-09-27. The report counts a newcomer's two weeks from its
+    record, as it does an id's."""
+    snap = "https://web.archive.org/web/20260926080857/https://freebuff.com/"
+    page = make(id="page", models=[{"family": "glm-5.3-flash"}],
+                newcomers=[{"family": "solar-pro-4", "on": "2026-09-26", "source": snap},
+                           {"family": "mimo-v2.6-flash", "on": "2026-09-08", "source": snap}])
+    rows = waiting([page], {}, TODAY)
+    assert [(w.model_id, w.due_on) for w in rows] == [("mimo-v2.6-flash", date(2026, 9, 22)),
+                                                      ("solar-pro-4", date(2026, 10, 10))]
+    text = report([page], {}, TODAY)
+    assert f"page: `mimo-v2.6-flash`, free on <{snap}> since 2026-09-08 (16 days)" in text
+    assert f"- 2026-10-10 page: `solar-pro-4`, free on <{snap}> since 2026-09-26" in text
+
 def test_an_archived_row_has_no_bars():
     gone = make(id="gone", models=[{"family": "big-1"}], probe=LANE, retired_on=date(2026, 9, 1),
                 api={"base_url": "https://x.ai/v1", "model_ids": ["v/new-2:free"]})

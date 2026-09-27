@@ -396,6 +396,14 @@ the day and the record, which the report counts from. Alibaba's pricing page
 gave DeepSeek V4.1 Flash its quota by 2026-09-14 by Wayback while the row listed
 the id on 09-25, and until that day such bars lived in a maintainer's notes. A
 record goes when the family joins, and `freetier-check` says so.
+A row with no lane has no ids to date — Freebuff's hour table and opencode's
+Zen page name their free models in prose — so a model such a page takes on free
+is recorded in `newcomers`: the family it will join as, the first day a record
+shows it free, and the record, a Wayback snapshot or the commit of this list that
+first named it. The report counts its two weeks from there, validation refuses
+the list on a row with a lane or on a sum, and `freetier-check` refuses a record
+whose family the column already names. Until 2026-09-27 these bars, too, lived in
+a maintainer's notes.
 
 **The configs call ids, never family names.** `configs/litellm.yaml` and
 `configs/opencode.json` are written from `api.model_ids` alone: a family names a

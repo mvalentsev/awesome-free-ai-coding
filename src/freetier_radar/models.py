@@ -461,6 +461,33 @@ def _dated_ids_are_listed(field: str, model_ids: list[str], free_since: list[Fre
                          "does not list — a date for an id the lane does not carry dates nothing")
 
 
+
+class Newcomer(BaseModel):
+    """A model a page row's own page serves free that its Models column does not
+    name yet: the family it will join as, the first day a record shows it free
+    and that record — a Wayback snapshot of the page, the commit of this list
+    that first named it in prose. A lane dates its ids from this registry's
+    history; a page row has no ids, so until 2026-09-27 the two weeks Freebuff's
+    and opencode's newcomers wait were counted in a maintainer's notes.
+    freetier-bars counts them from here, and the record goes when the family
+    joins."""
+    family: str
+    on: date
+    source: str  # the record itself, one a reader can open
+
+    @field_validator("family")
+    @classmethod
+    def _family_is_a_page_name(cls, value: str) -> str:
+        return ModelFamily._family_is_a_page_name(value)
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_a_page(cls, value: str) -> str:
+        if not value.startswith("https://"):
+            raise ValueError(f"newcomer source {value!r} is not an https URL — name the record "
+                             "that shows the model free: a Wayback snapshot, a commit of this list")
+        return value
+
 # How a lane lets a client in: no key at all, the key the vendor prints for
 # anyone, or the reader's own — `ApiInfo.key_kind`, the one place that decides.
 KEY_KINDS = ("none", "public", "own")
@@ -885,6 +912,8 @@ class Entry(BaseModel):
     # Which kind of free this is; freetier-check refuses a live row without it.
     free_part: FreePart | None = None
     models: list[ModelFamily] = []
+    # Models a page row's page serves free, waiting for their family — see Newcomer.
+    newcomers: list[Newcomer] = Field(default_factory=list, exclude_if=lambda v: not v)
     api: ApiInfo | None = None
     client_lane: ClientLane | None = None
     data_use: DataUse | None = None
@@ -1018,6 +1047,24 @@ class Entry(BaseModel):
             raise ValueError(
                 f"{self.id}: {', '.join(both)} cannot sit in both api.model_ids and "
                 "api.ignored_ids")
+        return self
+
+    @model_validator(mode="after")
+    def _newcomers_wait_on_a_page_row_of_models(self) -> Entry:
+        """A newcomer is dated where nothing else dates it: on a row with no lane,
+        whose free part is models. A lane's ids are dated from the registry's own
+        history, with `free_since` for an older record; and a sum names no model
+        for a newcomer to join."""
+        if not self.newcomers:
+            return self
+        if self.api is not None or self.client_lane is not None:
+            raise ValueError(
+                f"{self.id}: newcomers date the models of a row with no lane — this row's lane "
+                "dates its ids itself, with free_since for an older record")
+        if self.free_part is not FreePart.MODELS:
+            raise ValueError(
+                f"{self.id}: newcomers wait for the Models column of a row whose free part is "
+                "models — a sum or an unnamed part names no model to join it")
         return self
 
     @model_validator(mode="after")
