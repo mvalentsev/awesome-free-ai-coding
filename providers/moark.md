@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-09-24'
+title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-09-27'
 description: 'Gitee''s model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought. The FAQ: 选择“免费体验访问令牌”即可享受免费体验，每位用户每日拥有 100 次免费调用次数 — take the free experience…'
 permalink: /providers/moark/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Moark (Gitee AI)
 ---
 
@@ -11,7 +11,7 @@ crumb: Moark (Gitee AI)
 
 # Moark (Gitee AI) free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [moark.com](https://moark.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-27 · [moark.com](https://moark.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

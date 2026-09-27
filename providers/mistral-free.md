@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Mistral Studio free tier: limits, free models, verified 2026-09-24'
+title: 'Mistral Studio free tier: limits, free models, verified 2026-09-27'
 description: Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card. The Free card on mistral.ai/pricing lists "Limited coding sessions", "Test Mistral models in Studio" and "$10 /mo in API credits", where Pro's card says $30. The docs…
 permalink: /providers/mistral-free/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Mistral Studio
 ---
 
@@ -11,7 +11,7 @@ crumb: Mistral Studio
 
 # Mistral Studio free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

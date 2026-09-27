@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'gpt-oss-120b free: 4 providers, limits and ids, verified 2026-09-24'
+title: 'gpt-oss-120b free: 4 providers, limits and ids, verified 2026-09-27'
 description: gpt-oss-120b is served free by Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-oss-120b/
 last_modified_at: 2026-09-27
@@ -11,7 +11,7 @@ crumb: gpt-oss-120b
 
 # Where gpt-oss-120b is free
 
-**4 rows on the list serve `gpt-oss-120b` free:** Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**4 rows on the list serve `gpt-oss-120b` free:** Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. A live probe confirmed each one on 2026-09-27 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gpt-oss-120b
 
 ### [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-25
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
@@ -31,7 +31,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-24 · listed since 2026-09-25
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-27 · listed since 2026-09-25
 
 Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 
@@ -41,7 +41,7 @@ Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Ge
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-24 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-25
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -53,7 +53,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-25
 
 EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller
 

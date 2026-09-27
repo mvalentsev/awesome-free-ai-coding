@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-09-24'
+title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-09-27'
 description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. Free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash. The express mode overview: "New…'
 permalink: /providers/vertex-ai-express/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 ---
 
@@ -11,7 +11,7 @@ crumb: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
 
 # Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-23, a regular row from the first probe it passes on or after 2026-10-07 · **live** — last verified by a probe on 2026-09-24 · [docs.cloud.google.com](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-23, a regular row from the first probe it passes on or after 2026-10-07 · **live** — last verified by a probe on 2026-09-27 · [docs.cloud.google.com](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

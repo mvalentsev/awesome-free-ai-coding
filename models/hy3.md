@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'hy3 free: 1 provider, limits and ids, verified 2026-09-24'
+title: 'hy3 free: 1 provider, limits and ids, verified 2026-09-27'
 description: hy3 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/hy3/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: hy3
 ---
 
@@ -11,7 +11,7 @@ crumb: hy3
 
 # Where hy3 is free
 
-**One row on the list serves `hy3` free:** AIHubMix (free models). It asks for no card. A live probe confirmed it on 2026-09-24 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/hy3), below its strong bar.
+**One row on the list serves `hy3` free:** AIHubMix (free models). It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/hy3), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: hy3
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

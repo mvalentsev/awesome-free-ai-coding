@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-09-24'
+title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-09-27'
 description: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use. Rate limits are the published ceiling — 5 requests per second and 200 per minute on typhoon-v2.5-30b-a3b-instruct, 2 and 20 on…
 permalink: /providers/opentyphoon/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: OpenTyphoon (SCB 10X)
 ---
 
@@ -11,7 +11,7 @@ crumb: OpenTyphoon (SCB 10X)
 
 # OpenTyphoon (SCB 10X) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

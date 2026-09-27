@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-2.4t-a95b free: 1 provider, limits and ids, verified 2026-09-24'
+title: 'qwen3.8-2.4t-a95b free: 1 provider, limits and ids, verified 2026-09-27'
 description: qwen3.8-2.4t-a95b is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.8-2.4t-a95b/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: qwen3.8-2.4t-a95b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-2.4t-a95b
 
 # Where qwen3.8-2.4t-a95b is free
 
-**One row on the list serves `qwen3.8-2.4t-a95b` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. A live probe confirmed it on 2026-09-24 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b).
+**One row on the list serves `qwen3.8-2.4t-a95b` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.8-2.4t-a95b
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-24 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 

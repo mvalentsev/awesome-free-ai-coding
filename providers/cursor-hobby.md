@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cursor (Hobby) free tier: limits, free models, verified 2026-09-24'
+title: 'Cursor (Hobby) free tier: limits, free models, verified 2026-09-27'
 description: 'Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor''s own model and Tab completions, no credit card. Free models: composer. Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to…'
 permalink: /providers/cursor-hobby/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Cursor (Hobby)
 ---
 
@@ -11,7 +11,7 @@ crumb: Cursor (Hobby)
 
 # Cursor (Hobby) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-24 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-27 · [cursor.com](https://cursor.com/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

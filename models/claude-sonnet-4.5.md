@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, verified 2026-09-24'
+title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, verified 2026-09-27'
 description: claude-sonnet-4.5 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/claude-sonnet-4.5/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: claude-sonnet-4.5
 ---
 
@@ -11,7 +11,7 @@ crumb: claude-sonnet-4.5
 
 # Where claude-sonnet-4.5 is free
 
-**One row on the list serves `claude-sonnet-4.5` free:** Kiro. It asks for no card. A live probe confirmed it on 2026-09-24 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-4-5-sonnet), below its strong bar.
+**One row on the list serves `claude-sonnet-4.5` free:** Kiro. It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-4-5-sonnet), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: claude-sonnet-4.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-24 · listed since 2026-07-19
+🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-07-19
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 

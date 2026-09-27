@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 3 providers, limits and ids, verified 2026-09-24'
+title: 'glm-5.3-flash free: 3 providers, limits and ids, verified 2026-09-27'
 description: glm-5.3-flash is served free by Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: glm-5.3-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**3 rows on the list serve `glm-5.3-flash` free:** Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3-flash).
+**3 rows on the list serve `glm-5.3-flash` free:** Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. A live probe confirmed each one on 2026-09-27 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5.3-flash
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-24 · listed since 2026-09-02
+🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-09-02
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
 
@@ -29,7 +29,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-25
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -41,7 +41,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-09-05
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-05
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 

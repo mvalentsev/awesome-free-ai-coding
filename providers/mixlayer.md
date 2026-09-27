@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Mixlayer free tier: limits, free models, verified 2026-09-24'
+title: 'Mixlayer free tier: limits, free models, verified 2026-09-27'
 description: 'Serverless open models priced per token, one of them at $0 and callable without prepaid credit. Free models: qwen3.5-4b. The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision…'
 permalink: /providers/mixlayer/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Mixlayer
 ---
 
@@ -11,7 +11,7 @@ crumb: Mixlayer
 
 # Mixlayer free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-24 · [mixlayer.com](https://www.mixlayer.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-27 · [mixlayer.com](https://www.mixlayer.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

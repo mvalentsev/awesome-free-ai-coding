@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'BazaarLink free tier: limits, free models, verified 2026-09-24'
+title: 'BazaarLink free tier: limits, free models, verified 2026-09-27'
 description: 'OpenAI-compatible gateway to a 128-id catalog whose free page counts two models on 2026-09-27, beside the auto:free router. Free models: qwen3.7-flash. BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 50 weighted units/day. With…'
 permalink: /providers/bazaarlink/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: BazaarLink
 ---
 
@@ -11,7 +11,7 @@ crumb: BazaarLink
 
 # BazaarLink free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-27 · [bazaarlink.ai](https://bazaarlink.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

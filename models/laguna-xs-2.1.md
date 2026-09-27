@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'laguna-xs-2.1 free: 5 providers, limits and ids, verified 2026-09-24'
+title: 'laguna-xs-2.1 free: 5 providers, limits and ids, verified 2026-09-27'
 description: laguna-xs-2.1 is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: laguna-xs-2.1
 ---
 
@@ -11,7 +11,7 @@ crumb: laguna-xs-2.1
 
 # Where laguna-xs-2.1 is free
 
-**5 rows on the list serve `laguna-xs-2.1` free:** OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**5 rows on the list serve `laguna-xs-2.1` free:** OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-27 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: laguna-xs-2.1
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -32,7 +32,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-24 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-08-11
 
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
@@ -44,7 +44,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-24 · listed since 2026-09-22
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-27 · listed since 2026-09-22
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -56,7 +56,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -68,7 +68,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-24 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — nine zero-priced chat ids on 2026-09-23
 

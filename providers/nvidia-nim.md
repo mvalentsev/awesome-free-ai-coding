@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-24'
+title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-27'
 description: 'Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). Free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1,…'
 permalink: /providers/nvidia-nim/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: NVIDIA NIM (build.nvidia.com)
 ---
 
@@ -11,7 +11,7 @@ crumb: NVIDIA NIM (build.nvidia.com)
 
 # NVIDIA NIM (build.nvidia.com) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · **live** — last verified by a probe on 2026-09-24 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · **live** — last verified by a probe on 2026-09-27 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

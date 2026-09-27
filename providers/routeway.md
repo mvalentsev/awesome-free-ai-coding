@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Routeway free tier: limits, free models, verified 2026-09-24'
+title: 'Routeway free tier: limits, free models, verified 2026-09-27'
 description: 'OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. Free models — every id ending :free — cost nothing and "are rate-limited to 20…'
 permalink: /providers/routeway/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Routeway
 ---
 
@@ -11,7 +11,7 @@ crumb: Routeway
 
 # Routeway free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-24 · [routeway.ai](https://routeway.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-27 · [routeway.ai](https://routeway.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

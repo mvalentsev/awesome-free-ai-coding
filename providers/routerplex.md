@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'RouterPlex free tier: limits, free models, verified 2026-09-24'
+title: 'RouterPlex free tier: limits, free models, verified 2026-09-27'
 description: 'A one-time $1 of free credit on a prepaid reseller that bills its catalog at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. The home page: "Get $1 in free credit", granted "once…'
 permalink: /providers/routerplex/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: RouterPlex
 ---
 
@@ -11,7 +11,7 @@ crumb: RouterPlex
 
 # RouterPlex free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-11, a regular row from the first probe it passes on or after 2026-09-25 · **live** — last verified by a probe on 2026-09-24 · [routerplex.com](https://routerplex.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-27 · [routerplex.com](https://routerplex.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
