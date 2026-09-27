@@ -42,10 +42,10 @@ jobs:
       - name: Registry renders, and the committed files are that render
         run: uv run freetier-render --registry registry.yaml --templates templates --check
 
-      # The four curated files beside the registry are read only by the scout,
-      # which runs behind a catch-all — so a malformed one used to reach main and
-      # turn into a green run that had silently done nothing. This is where that
-      # gets caught now, together with the contradictions that span two files.
+      # The curated files beside the registry are read by the scout, which runs
+      # behind a catch-all, so a malformed one would reach main as a green run
+      # that had silently done nothing. This is where it is caught, together
+      # with the contradictions that span two files.
       - name: Curated files + cross-file consistency
         run: uv run freetier-check
 

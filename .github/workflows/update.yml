@@ -51,8 +51,8 @@ jobs:
       # A real run's probe exits 0 whatever it finds and hands its failures to
       # the scout. A dry run's exits 1 on a failing row, and without this one
       # FAIL would skip every step after it — the checks a dry run is
-      # dispatched to try among them (Yolo-Auto's, 2026-09-25). A scheduled
-      # run has no inputs, so null == true is false and nothing changes there.
+      # dispatched to try among them. A scheduled run has no inputs, so
+      # null == true is false and nothing changes there.
       - name: Probe all entries
         continue-on-error: ${{ inputs.dry_run == true }}
         run: uv run freetier-probe --registry registry.yaml --failures failures ${{ inputs.dry_run && '--dry-run' || '' }}
@@ -77,13 +77,11 @@ jobs:
         continue-on-error: true
         run: uv run freetier-bars | tee -a "$GITHUB_STEP_SUMMARY"
 
-      # Every phrase a row quotes, read back against the row's own pages. A quote
-      # is the vendor's words only while a page carries them, and until
-      # 2026-09-27 nothing read one back unless a person ran this by hand: that
-      # day five were gone, and Qoder's rank rested on a promotion's end-time
-      # line no probe reads. A report like the one above — the rows it names are
-      # read again by a person — so a quote gone never stops the commit, while a
-      # crash still shows as a failed step.
+      # Every phrase a row quotes, read back against the row's own pages: a
+      # quote is the vendor's words only while a page carries them. A report
+      # like the one above — the rows it names are read again by a person — so
+      # a quote gone never stops the commit, while a crash still shows as a
+      # failed step.
       - name: Read every quoted phrase back against its pages
         continue-on-error: true
         run: |
@@ -184,9 +182,8 @@ jobs:
       - name: Record the scout's changes and render every page
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
-      # A pull request this workflow opens starts no CI run (GITHUB_TOKEN), and
-      # PR #17 went up failing freetier-check with nothing on it saying so. The
-      # checks run here on the branch's tree, earned fields and new rows
+      # A pull request this workflow opens starts no CI run (GITHUB_TOKEN), so
+      # the checks run here on the branch's tree, earned fields and new rows
       # included, and their result heads the PR body and the run summary.
       - name: Check the scout's branch
         run: |
@@ -232,9 +229,8 @@ jobs:
       # because a red run here is a notification and not an invitation to rerun:
       # a rerun checks out the old SHA and its push is refused as
       # non-fast-forward. A scout that could not think and a scout that found
-      # nothing produce the same empty report, and on 2026-08-31 the difference
-      # went unnoticed for four days behind a green tick — every backend in the
-      # chain was down and the generation check never ran.
+      # nothing produce the same empty report, and only this step tells them
+      # apart.
       - name: Check the scout actually had a backend
         if: always()
         run: |

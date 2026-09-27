@@ -74,8 +74,8 @@ p { margin: 0 0 12px; }
 .hero { padding: 40px 0 24px; background:
   radial-gradient(1100px 380px at 50% -140px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%);
   border-bottom: 1px solid var(--line-soft); text-align: center; }
-/* The list's name as text beside its radar, a dot per live offer: a phone reads
-   the name and the tagline at any width, which a picture of them scaled down lost. */
+/* The list's name as text beside its radar, a dot per live offer, so a phone
+   reads the name and the tagline at any width. */
 .brand { display: flex; align-items: center; justify-content: center; gap: 24px; }
 .brand img { width: 148px; height: 148px; flex: none; }
 .brand h1 { margin: 0; text-align: left; font-size: inherit; }
@@ -228,9 +228,8 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: s
 
 /* ── search ───────────────────────────────────────────────────────────── */
 /* One surface wherever it is opened from — the box in the hero, the bar, "/"
-   or Ctrl+K — and its answers under the box a reader is typing into. The box
-   it replaced filtered the tables two screens below itself, so a keystroke
-   changed nothing a reader could see (2026-09-26). */
+   or Ctrl+K — with its answers under the box a reader is typing into, where
+   each keystroke shows. */
 .searchbox { display: flex; align-items: center; gap: 10px; width: min(100%, 640px);
   margin: 0 auto 20px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line);
   background: var(--raised); color: var(--muted); font: inherit; font-size: 1rem; text-align: left;
@@ -308,8 +307,8 @@ tr.flash { animation: flash 1.6s ease-out; }
     text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 2px; }
   td.what, td.models, td.limits, td.when, th.who { width: auto; }
   /* The two-column tables (the files, the model index) stack the same way: a
-     26% column of file names never survives a phone, and `nowrap` on it pushed
-     the whole page sideways. */
+     26% column of file names does not fit a phone, and kept on one line it
+     would push the page sideways. */
   .files, .files tbody, .files tr, .files th, .files td { display: block; width: auto; }
   .files tr { border-top: 1px solid var(--line-soft); padding: 10px 0; }
   .files th, .files td { border-top: 0; padding: 0; white-space: normal; }
@@ -319,8 +318,8 @@ tr.flash { animation: flash 1.6s ease-out; }
   .palette-box { width: 100%; height: 100%; max-height: none; border-radius: 0; border: 0; }
   .palette-foot .keys { display: none; }
 }
-/* A phone: the radar shrinks beside the name, the three secondary links share
-   the second row of buttons, and the counters sit three to a row. */
+/* A phone: the radar shrinks beside the name and the three secondary links
+   share the second row of buttons. */
 @media (max-width: 600px) {
   .hero { padding-top: 28px; }
   .brand { gap: 14px; }
@@ -883,8 +882,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   // The search. It reads the rows, the model index and the Archive out of this
   // page — every fact it shows is one the page already carries, so it can
   // never disagree with the tables — and answers under the box being typed
-  // into: the box it replaced hid rows two screens away and changed nothing a
-  // reader could see (2026-09-26).
+  // into.
   var dialog = document.getElementById("search");
   if (!dialog) { return; }
   var CONFIG = JSON.parse(document.getElementById("search-config").textContent);

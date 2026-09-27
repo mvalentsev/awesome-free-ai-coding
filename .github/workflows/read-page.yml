@@ -1,16 +1,13 @@
 name: read-page
 
-# A page this machine cannot reach is not a verdict. clarifai.com answered
-# nothing but connect timeouts and NXDOMAIN from the maintainer's network on
-# 2026-09-05, 2026-09-11 and 2026-09-12, and the free tier behind it has been
-# sitting in sources.yaml without one ever since. A runner reaches the open
-# internet from a different address, so the read moves here.
+# A page the maintainer's machine cannot reach is not a verdict: a runner
+# reaches the open internet from a different address, so the read moves here.
 #
 # It reads with the prober's own client, User-Agent and stripping, which is the
-# point: `curl -o` saves a gzip body that looks exactly like an empty SPA shell
-# and once nearly cost a live free tier its listing. What this prints is what a
-# probe would match against — the rendered text and the raw bytes reported
-# separately, because a keyword can live in only one of them.
+# point: `curl -o` saves a gzip body that looks exactly like an empty SPA shell.
+# What this prints is what a probe would match against — the rendered text and
+# the raw bytes reported separately, because a keyword can live in only one of
+# them.
 
 on:
   workflow_dispatch:
@@ -99,11 +96,10 @@ jobs:
                       if challenge:
                           print(f"- ⚠ **bot wall**: the page carries `{challenge}`, so this is the "
                                 f"challenge and not the vendor's words")
-                      # Matched as the probe matches: every run of whitespace one
-                      # space, typographic spaces plain. Read as they are, the two
-                      # keywords of Google's express mode overview, which its source
-                      # wraps across lines, printed as absent on 2026-09-23 while
-                      # the probe found both on the same bytes.
+                      # Matched as the probe matches (prober._as_read): entities
+                      # read, every run of whitespace one space, typographic
+                      # spaces plain — or a keyword a source wraps across lines
+                      # reads as absent where the probe finds it.
                       seen_text, seen_raw = _as_read(text), _as_read(raw)
                       for kw in keywords:
                           in_text, in_raw = _as_read(kw) in seen_text, _as_read(kw) in seen_raw
