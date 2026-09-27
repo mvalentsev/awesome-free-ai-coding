@@ -24,10 +24,9 @@ from pathlib import Path
 import httpx
 
 from .models import Entry, is_archived, load_registry
-from .prober import UA, _plain_spaces, _rendered, probe_page_url
+from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, probe_page_url
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
-CONCURRENCY = 8
 MIN_WORDS = 3
 
 _QUOTED = re.compile(r'"([^"]+)"|“([^”]+)”')
@@ -40,7 +39,6 @@ _HAN_OR_KANA = "぀-ヿ㐀-䶿一-鿿豈-﫿"
 _CJK = _HAN_OR_KANA + "、-〿＀-￯"
 _CJK_WORD_CHAR = re.compile(f"[{_HAN_OR_KANA}]")
 _SPACE_BESIDE_CJK = re.compile(f"\\s+(?=[{_CJK}])|(?<=[{_CJK}])\\s+")
-_TAG = re.compile(r"<[^>]+>")
 _JSON_ESCAPE = re.compile(r"\\u([0-9a-fA-F]{4})")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:!?)])")
 _TYPOGRAPHY = str.maketrans({
@@ -79,7 +77,7 @@ def flatten(text: str) -> str:
 def page_texts(body: str) -> list[str]:
     """What a quote is looked for in on one page: the rendered text and the raw
     body, both flattened — a quote can live in JSON-LD or a framework payload."""
-    return [flatten(_TAG.sub(" ", _rendered(body))), flatten(_TAG.sub(" ", body))]
+    return [flatten(TAG.sub(" ", _rendered(body))), flatten(TAG.sub(" ", body))]
 
 
 def words(text: str) -> float:

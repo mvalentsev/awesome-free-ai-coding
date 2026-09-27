@@ -898,6 +898,23 @@ async def test_a_non_breaking_space_does_not_hide_the_keyword():
 
 
 @respx.mock
+async def test_an_entity_in_the_page_source_reads_as_its_character():
+    """A page source that writes a space, an apostrophe or an ampersand as an
+    entity shows the reader the character, and the keyword quoted from what the
+    reader sees still matches — a framework that starts escaping apostrophes does
+    not end the offer."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="<p>qwen3-coder free&nbsp;tier, no credit card &amp; it&#39;s free "
+                  "for R&amp;D &#x2014; 100&#160;million tokens</p>"))
+    entry = page_entry()
+    entry.probe.keywords = ["qwen3-coder free tier", "it's free for R&D",
+                            "\u2014 100 million tokens"]
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS, result.detail
+
+
+@respx.mock
 async def test_a_keyword_the_page_source_wraps_across_lines_still_matches():
     """Any run of whitespace in the source reads as one space, as a browser renders
     it, for keywords and dead markers alike — the way freetier-quotes reads it."""

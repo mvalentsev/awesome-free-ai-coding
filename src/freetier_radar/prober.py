@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import html
 import json
 import re
 import uuid
@@ -875,9 +876,8 @@ def _country_texts(body: str) -> tuple[str, str]:
     country and "chad" is not. A name only in the raw body (a framework's
     payload) still counts as on the page; only the rendered text can add one,
     so a country picker in a script is not a list growing."""
-    import html
     def plain(text: str) -> str:
-        return " ".join(html.unescape(re.sub(r"<[^>]+>", " ", text)).split())
+        return " ".join(html.unescape(TAG.sub(" ", text)).split())
     return plain(_rendered(body)), plain(body)
 
 
@@ -1474,14 +1474,17 @@ def _plain_spaces(text: str) -> str:
 
 
 def _as_read(text: str) -> str:
-    """Text the way a reader meets it and a keyword is quoted from it: plain
-    spaces, every run of whitespace one space, case folded. HTML renders a line
-    break in the page's source as a space, so a sentence a template wraps reads
-    whole in a browser and in a copy-paste; freetier-quotes reads whitespace the
-    same way."""
-    return " ".join(_plain_spaces(text).split()).lower()
+    """Text the way a reader meets it and a keyword is quoted from it: entities
+    read as their characters, plain spaces, every run of whitespace one space,
+    case folded. HTML renders `&#39;` as an apostrophe and a line break in the
+    page's source as a space, so a sentence a template escapes or wraps reads
+    whole in a browser and in a copy-paste; freetier-quotes reads it the same
+    way."""
+    return " ".join(_plain_spaces(html.unescape(text)).split()).lower()
 
 
+# A tag, taken out where a page is read as the text a reader sees.
+TAG = re.compile(r"<[^>]+>")
 _SCRIPT_OR_STYLE = re.compile(
     r"<script\b([^>]*)>.*?</script\s*>|<style\b[^>]*>.*?</style\s*>", re.S | re.I)
 
