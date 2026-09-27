@@ -106,7 +106,8 @@ README_LIMITS_COLLAPSE = 260
 # fifty-one on a phone, sixteen and thirty-one of them tables. A row is one line
 # now — 54 KB with 77 rows on 2026-09-21, about 400 bytes a row — so the page
 # grows a line per row, and the budget is what keeps the reference job from
-# creeping back: sixty rows of headroom, and less than the connection table
+# creeping back: sixty rows of headroom then, about thirty on 2026-09-27 (84
+# rows, a key link on each keyed one, 70.6 KB), and less than the connection table
 # alone (38 KB) or the limits column (83 KB) would put back. A test renders the
 # committed registry against it. What the page carries has to grow with the
 # rows and no faster: the index of every family and who serves it grew with
@@ -673,11 +674,12 @@ def _new_rows(active: list[Entry], history: list[Event], today: date) -> list[di
 
 def _hero(active: list[Entry], shared: dict, today: date) -> Hero:
     """What the picture at the top of the README shows: the counters the text
-    states, and a dot per live row in its section. "Last run" is the newest day
-    a probe confirmed a row, never the render's — a render changes no fact."""
+    states, and a dot per live row in its section. "Last verified" is the
+    newest day a row was confirmed — by a probe, or the day a row was added on
+    its evidence — never the render's: a render changes no fact."""
     return Hero(live=shared["active_count"], no_card=shared["no_card_count"],
                 models=shared["family_count"], strong=len(shared["strong_models"]),
-                last_run=max((e.last_verified for e in active), default=today),
+                last_verified=max((e.last_verified for e in active), default=today),
                 schedule=shared["schedule"],
                 arcs=tuple(Arc(label, tone, sum(1 for e in active if e.category is cat))
                            for cat, (label, tone) in HERO_ARCS.items()))

@@ -6,7 +6,8 @@ touches them.
 
 | File | Purpose |
 |---|---|
-| `banner-light.svg` / `banner-dark.svg` | README hero banner, theme-switched via `<picture>` |
+| `banner-light.svg` / `banner-dark.svg` | The website's hero banner (`index.html`), theme-switched via `<picture>` |
+| `readme/*.svg` | **Generated** — the README's pictures (the radar hero and the strong-models chart, each wide in light and dark and narrow for phones), drawn by `freetier-render` from the registry (`src/freetier_radar/pictures.py`); never edit them by hand |
 | `social-preview.svg` | Source of the social preview card |
 | `social-preview.png` | 1280×640 render for GitHub's social preview, and every Pages page's preview card (`_config.yml` defaults) |
 | `favicon.svg` | The site's icon, on `index.html`, `browse.html` and every page `_layouts/default.html` serves |

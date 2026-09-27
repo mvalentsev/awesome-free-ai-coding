@@ -1312,7 +1312,7 @@ def test_the_render_draws_the_pictures_beside_the_readme(tmp_path: Path):
         assert svg.count('<circle class="dot agents"') == 2
         assert svg.count('<circle class="dot apis"') == 1
         assert svg.count('<circle class="dot ') == 3
-        assert f"last run {TODAY.isoformat()}" in svg
+        assert f"last verified {TODAY.isoformat()}" in svg
 
 
 def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):
