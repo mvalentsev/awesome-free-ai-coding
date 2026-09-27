@@ -1042,9 +1042,11 @@ async def test_bot_challenge_is_inconclusive_not_a_dead_offer():
 
 
 @respx.mock
-async def test_a_noscript_notice_does_not_shield_a_dead_offer():
+async def test_a_noscript_notice_beside_a_live_offer_still_passes():
     """A page that serves its offer beside a <noscript> JavaScript notice passes:
-    the challenge markers are read only once the keywords have failed."""
+    the challenge markers are read only once the keywords have failed. (A page
+    whose offer is gone and which carries such a notice reads as a wall, and so
+    INCONCLUSIVE, until the staleness rule archives it.)"""
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
         200, text="<noscript>Please enable JavaScript to view this site</noscript>"
                   "qwen3-coder on the free tier, no credit card"))
@@ -1641,6 +1643,12 @@ def test_the_half_of_a_line_for_a_human_is_what_follows_the_models_half():
     # the row's word on training is restated by a person reading the data page
     moved = "data_use quote is no longer on https://x.ai/privacy — read what the vendor says now"
     assert for_a_human(f"listed families the page does not name: x | {moved}") == moved
+    # and so are the Codex route and the border, which only a person can re-read
+    for note in ("codex route gone: POST https://x.ai/v1/responses answered HTTP 404",
+                 "codex route could not be checked: POST https://x.ai/v1/responses timed out",
+                 "border: https://x.ai/terms no longer names Chad — re-read the terms",
+                 "border could not be checked against https://x.ai/terms: HTTP 503"):
+        assert for_a_human(f"listed families the page does not name: x | {note}") == note, note
 
 
 @respx.mock

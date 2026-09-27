@@ -159,14 +159,19 @@ async def fetch_pages(client: httpx.AsyncClient, urls: list[str]) -> tuple[list[
     return pages, unread
 
 
-async def check_entries(entries: list[Entry], client: httpx.AsyncClient
+def live_rows(entries: list[Entry], today: date) -> list[Entry]:
+    """The rows whose quotes are read: an archived row's pages are the ones that
+    ended, and its quotes are history. A shutdown still to come archives
+    nothing yet."""
+    return [e for e in entries if not is_archived(e, today)]
+
+
+async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
+                        today: date | None = None
                         ) -> tuple[list[Missing], dict[str, list[str]]]:
     missing: list[Missing] = []
     unread: dict[str, list[str]] = {}
-    for entry in entries:
-        # An archived row's pages are the ones that ended; its quotes are history.
-        if entry.retired_on is not None or is_archived(entry, date.today()):
-            continue
+    for entry in live_rows(entries, today or date.today()):
         quotes = row_quotes(entry)
         if not quotes:
             continue
@@ -224,10 +229,10 @@ async def _amain(registry: Path, ids: list[str], report: bool = False) -> int:
     entries = load_registry(registry)
     if ids:
         entries = [e for e in entries if e.id in ids]
-    async with httpx.AsyncClient(headers=UA) as client:
-        missing, unread = await check_entries(entries, client)
     today = date.today()
-    read = [e for e in entries if e.retired_on is None and not is_archived(e, today)]
+    async with httpx.AsyncClient(headers=UA) as client:
+        missing, unread = await check_entries(entries, client, today)
+    read = live_rows(entries, today)
     quotes = sum(len(row_quotes(e)) for e in read)
     if report:
         # A report, not a check: the run that prints it carries on to commit

@@ -1119,13 +1119,14 @@ def _is_withdrawn(model: dict) -> bool:
 RETIREMENT_FIELDS = ("retires", "expiration_date")
 
 
-def _retired_on(model: dict, today: date | None = None) -> date | None:
-    """The day a catalog row says it retired, once that day has come — or None.
+def _retired_on(model: dict) -> date | None:
+    """The day a catalog row says it retired, once that day has come in UTC,
+    the zone the catalogs date in — or None.
 
     Requesty keeps a row in its catalog, still priced 0, after the day its
     `retires` names. A date still to come is notice, not a withdrawal: the id
     answers until then."""
-    today = today or datetime.now(timezone.utc).date()
+    today = datetime.now(timezone.utc).date()
     for key in RETIREMENT_FIELDS:
         value = model.get(key)
         if isinstance(value, bool):
@@ -1689,12 +1690,14 @@ def _stale_ids_detail(dead: list[str], unlisted: list[str], entry: Entry) -> str
 
 
 # How a note for a human opens: the ids against the catalog, the keyless or
-# public-key lane, the Anthropic route, the page that prints the public key,
-# and the data-use sentence, which only a person re-reading the vendor's data
-# page can restate. Each follows a family verdict after " | ".
+# public-key lane, the Anthropic and Codex routes, the page that prints the
+# public key, the data-use sentence and the border — each only a person
+# re-reading the vendor's page can restate. Each follows a family verdict
+# after " | ".
 _FOR_A_HUMAN = ("api.model_ids ", "client_lane.model_ids ", "zero-priced ids in the catalog ",
                 "ids the free list ", "ids in the ",
-                "api.public_key ", "keyless ", "public-key ", "anthropic route ", "data_use ")
+                "api.public_key ", "keyless ", "public-key ", "anthropic route ", "codex route ",
+                "data_use ", "border: ", "border could ")
 
 
 def for_a_human(detail: str) -> str:

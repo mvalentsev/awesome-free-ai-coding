@@ -108,9 +108,21 @@ async def test_an_archived_row_is_history_and_is_not_read():
     entry = quoted_entry('"a quote from a page that ended"')
     entry.retired_on = date(2026, 1, 2)
     async with httpx.AsyncClient() as client:
-        missing, unread = await check_entries([entry], client)
+        missing, unread = await check_entries([entry], client, today=date(2026, 1, 2))
     assert missing == [] and unread == {}
     assert not call.called
+
+
+@respx.mock
+async def test_a_row_whose_shutdown_is_still_to_come_is_read():
+    """A vendor's announced shutdown archives the row on that day, not before:
+    until then the row is live, and its quotes are read like any other's."""
+    respx.get(url__regex=r".*").mock(return_value=httpx.Response(200, text="another sentence"))
+    entry = quoted_entry('"a quote the vendor has since reworded"')
+    entry.retired_on = date(2026, 1, 2)
+    async with httpx.AsyncClient() as client:
+        missing, unread = await check_entries([entry], client, today=date(2026, 1, 1))
+    assert [m.quote for m in missing] == ["a quote the vendor has since reworded"]
 
 
 @respx.mock
