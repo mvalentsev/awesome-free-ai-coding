@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-09-27'
-description: TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions. Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and on some networks 5,000…
+description: TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions. Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and on some…
 permalink: /providers/trae/
 last_modified_at: 2026-09-27
 crumb: TRAE (TraeCode)
@@ -15,7 +15,7 @@ crumb: TRAE (TraeCode)
 
 ## What you get
 
-TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a monthly Basic usage allowance of a few dollars and 5,000 autocompletions
+TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions
 
 ## Free models
 
@@ -23,7 +23,7 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and on some networks 5,000 autocompletions a month and two concurrent cloud tasks — and as numbers in the page payload, where basic_usage_limit is the dollar figure the paid plans print as $20 of usage a month. That figure depends on where the page is served: on 2026-09-16 a GitHub runner read $3 of Basic usage on Free and another network $1, with different paid-plan figures and prices too. Both versions carry 5,000 autocompletions and 1,000 advanced-model requests on Free. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload because trae.ai renders per request and its table can arrive without the Free column
+Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and on some networks 5,000 autocompletions a month and two concurrent cloud tasks — and as numbers in the page payload, where basic_usage_limit is the dollar figure the paid plans print as $20 of usage a month. That figure depends on where the page is served: on 2026-09-16 a GitHub runner read $3 of Basic usage on Free and another network $1, with different paid-plan figures and prices too, and on 2026-09-27 a runner read $1. On Free the allowance does not come back: the pricing page's FAQ, read from a runner on 2026-09-27, says the Basic usage balance refreshes each subscription period on the paid plans and is a one-time allowance for free users that does not reset monthly. Both versions carry 5,000 autocompletions and 1,000 advanced-model requests on Free. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload because trae.ai renders per request and its table can arrive without the Free column
 
 ## Where it is offered
 
