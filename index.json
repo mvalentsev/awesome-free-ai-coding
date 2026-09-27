@@ -12860,6 +12860,136 @@
       "reason": "The international site's New User Free Trial Package gives each language model a million tokens valid a year, in a campaign to 2026-12-31, but \"Each time you claim a free resource package for a model or enable postpaid service for a model, USD 1 will be automatically frozen in your account. If your account balance or credit limit is insufficient, the claim or enablement will fail\" — a funded account, model by model (read 2026-09-26 in a browser). Its docs answer the project's client and the runners alike with EdgeOne's JavaScript challenge, so no probe could read a row back. The Chinese site, cloud.tencent.com, is a row (tencent-tokenhub) for accounts verified with mainland, Hong Kong, Macau or Taiwan papers.",
       "reopen_if": "The package can be claimed without a balance, or the offer is published on a page a probe can read.",
       "current": true
+    },
+    {
+      "domains": [
+        "fittentech.com"
+      ],
+      "name": "Fitten Code",
+      "checked_on": "2026-09-27",
+      "reason": "A VS Code, JetBrains, Visual Studio and Vim coding assistant on Fitten's own model with no bring-your-own-key, whose individual use is free by its home page's pricing section and its FAQ — both rendered by script, which no probe can read: code.fittentech.com serves the project's client a 1 KB shell, and neither its VS Code nor its JetBrains marketplace description mentions a free plan (read 2026-09-27).",
+      "reopen_if": "A page the project's client can read — a static pricing or docs page, a marketplace description — states the free individual plan.",
+      "current": true
+    },
+    {
+      "domains": [
+        "codegeex.cn"
+      ],
+      "name": "CodeGeeX",
+      "checked_on": "2026-09-27",
+      "reason": "Zhipu's IDE plugin says \"CodeGeeX is available for free to all developers as a plugin product on your IDEs\" in its VS Code and JetBrains marketplace descriptions, but its last VS Code release is 2025-09-01 and its last JetBrains one 2025-12-11, codegeex.cn serves a script shell, and nothing a probe reads would change the day the free service stopped answering — the descriptions are a year old (read 2026-09-27). Zhipu's current coding agent is the ZCode row.",
+      "reopen_if": "A release after 2025-12-11, or a page the client reads that states the free plugin plan today.",
+      "current": true
+    },
+    {
+      "domains": [
+        "codebuff.com"
+      ],
+      "name": "Codebuff",
+      "checked_on": "2026-09-27",
+      "reason": "Paid only: subscriptions or \"Pay just 1¢ per credit\" on codebuff.com/pricing (read 2026-09-27). The same company's free product is Freebuff, a row.",
+      "reopen_if": "codebuff.com publishes a free allowance of its own.",
+      "current": true
+    },
+    {
+      "domains": [
+        "pieces.app"
+      ],
+      "name": "Pieces for Developers",
+      "checked_on": "2026-09-27",
+      "reason": "\"Is Pieces free to use? No. … New users start with a 7-day free trial on any plan\", and \"Starting the 7-day Pro trial takes a card on file\" (pieces.app/pricing, read 2026-09-27) — a trial behind a card, which CONTRIBUTING excludes.",
+      "reopen_if": "A plan or trial without a card on file.",
+      "current": true
+    },
+    {
+      "domains": [
+        "gocodeo.com"
+      ],
+      "name": "GoCodeo",
+      "checked_on": "2026-09-27",
+      "reason": "Its pricing page still offers a Hobby plan that \"Includes 50 premium model requests per month 1000 autocompletions 100 basic model requests\" and calls the VS Code agent \"free forever with limited requests\", but the extension's last release is 2025-07-09, fourteen months before this read, and a page that stands still is no sign the service answers — the probe would vouch for a product that may be gone (read 2026-09-27).",
+      "reopen_if": "A release after 2025-07-09, or other evidence that the agent still serves its free requests.",
+      "current": true
+    },
+    {
+      "domains": [
+        "goose-docs.ai"
+      ],
+      "name": "goose (Block, now Agentic AI Foundation)",
+      "checked_on": "2026-09-27",
+      "reason": "An open-source agent that brings no model of its own: \"Works with 15+ providers … Use API keys or your existing Claude, ChatGPT, or Gemini subscriptions via ACP\" (goose-docs.ai), and its free options are other vendors' free tiers — \"not all supported LLM Providers provide a free tier\" (goose-docs.ai/docs/getting-started/providers/, read 2026-09-27). BYOK only.",
+      "reopen_if": "goose ships a hosted model lane of its own with a free allowance.",
+      "current": true
+    },
+    {
+      "domains": [
+        "pi.dev"
+      ],
+      "name": "Pi coding agent",
+      "checked_on": "2026-09-27",
+      "reason": "\"15+ providers, hundreds of models … Authenticate via API keys or OAuth\" (pi.dev, read 2026-09-27): bring your own key or subscription, no bundled model usage.",
+      "reopen_if": "Pi bundles a free model allowance of its own.",
+      "current": true
+    },
+    {
+      "domains": [
+        "sourcegraph.com"
+      ],
+      "name": "Sourcegraph Cody",
+      "checked_on": "2026-09-27",
+      "reason": "\"As of July 23, 2025, the following plans will no longer be available: Cody Free, Cody Pro\" (Sourcegraph's blog, read 2026-09-27); Cody is an Enterprise product now. Lists still carry the free tier.",
+      "reopen_if": "Sourcegraph offers an individual plan with free Cody usage again.",
+      "current": true
+    },
+    {
+      "domains": [
+        "onomeo.com"
+      ],
+      "name": "Onomeo",
+      "checked_on": "2026-09-27",
+      "reason": "A one-person gateway over other vendors' free tiers: \"The free-route models run on the free tier each provider offers; onomeo puts them behind one key\", and \"Big models such as Claude and GPT are paid for by onomeo, within a shared daily budget\" (onomeo.com/models, read 2026-09-27). The free tiers it routes to are rows here in their own right; a gateway's free plan over them is a watchlist verdict, never a row.",
+      "reopen_if": "Onomeo serves models of its own, or buys the capacity it gives away, and says so.",
+      "current": true
+    },
+    {
+      "domains": [
+        "yingsuan.top"
+      ],
+      "name": "YingSuan AI",
+      "checked_on": "2026-09-27",
+      "reason": "A reseller of other vendors' models whose free offer is a one-off trial: \"Start free with 100 requests — no credit card, no payment required\" (yingsuan.top/payment.html, read 2026-09-27) — a hundred calls, then paid.",
+      "reopen_if": "A recurring free allowance, or free models it serves itself.",
+      "current": true
+    },
+    {
+      "domains": [
+        "kiraai.vn"
+      ],
+      "name": "Kira AI",
+      "checked_on": "2026-09-27",
+      "reason": "A Vietnamese gateway whose own \"Kira\" models, by its FAQ, combine in-house open-source models with \"OpenAI (GPT 5.5), Claude (Claude 4.8) và Gemini (Gemini 3 trở lên)\", its packages apply \"chỉ áp dụng cho model Kira\" (only to the kira- models), and partner models are paid from a VND wallet (kiraai.vn/faq/, read 2026-09-27). No chat model is free in its own right.",
+      "reopen_if": "A kira- chat model is priced at zero, with the models behind it named.",
+      "current": true
+    },
+    {
+      "domains": [
+        "atlascloud.ai"
+      ],
+      "name": "Atlas Cloud",
+      "checked_on": "2026-09-27",
+      "reason": "Its get-started guide asks for money first — \"The minimum top-up amount is $25\" (atlascloud.ai/docs/en/get-started, read 2026-09-27) — while its model pages say \"New users receive free credits to explore the platform and test models\", of no stated size and with no stated way to reach them before paying: the SiliconFlow record.",
+      "reopen_if": "A page states the free credit's size and that it is spent before any payment step.",
+      "current": true
+    },
+    {
+      "domains": [
+        "databricks.com"
+      ],
+      "name": "Databricks Free Edition",
+      "checked_on": "2026-09-27",
+      "reason": "Free and non-commercial (\"Free Edition accounts may not be used for commercial purposes\"), in a \"serverless-only, quota-limited environment\" where you can \"experiment with foundation models\", but its limits page names no model and no quota for them — \"Certain models not available\" — and the endpoint is each workspace's own (docs.databricks.com/aws/en/getting-started/free-edition and free-edition-limitations, read 2026-09-27). A reader cannot tell what they would be calling.",
+      "reopen_if": "Databricks documents which foundation models a Free Edition workspace can query and at what limits.",
+      "current": true
     }
   ]
 }
