@@ -51,6 +51,7 @@ _CJK = _HAN_OR_KANA + "、-〿＀-￯"
 _CJK_WORD_CHAR = re.compile(f"[{_HAN_OR_KANA}]")
 _SPACE_BESIDE_CJK = re.compile(f"\\s+(?=[{_CJK}])|(?<=[{_CJK}])\\s+")
 _TAG = re.compile(r"<[^>]+>")
+_JSON_ESCAPE = re.compile(r"\\u([0-9a-fA-F]{4})")
 _SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:!?)])")
 _TYPOGRAPHY = str.maketrans({
     "“": '"', "”": '"', "„": '"', "’": "'", "‘": "'", "`": "'",
@@ -76,7 +77,10 @@ def flatten(text: str) -> str:
     a stripped tag left before punctuation or beside a Chinese or Japanese
     character — a sentence there has none, and a link inside it leaves one —
     lower case."""
-    text = html.unescape(text.replace('\\"', '"').replace("\\n", " "))
+    text = text.replace('\\"', '"').replace("\\n", " ")
+    # Page data escapes the way JSON does: Freebuff's FAQ, JSON-LD only, carries
+    # "Smart & Fast" as `Smart \u0026 Fast` since 2026-09-27.
+    text = html.unescape(_JSON_ESCAPE.sub(lambda m: chr(int(m.group(1), 16)), text))
     text = _plain_spaces(_MARKDOWN_LINK.sub(r"\1", text)).translate(_TYPOGRAPHY)
     text = _SPACE_BEFORE_PUNCTUATION.sub(r"\1", " ".join(text.split()))
     return _SPACE_BESIDE_CJK.sub("", text).lower()

@@ -56,6 +56,16 @@ def test_typography_does_not_hide_a_quote_that_is_there():
     assert quote_found("It's the account's first step", [page])
 
 
+
+def test_a_quote_inside_page_data_is_read_with_its_json_escapes_decoded():
+    """Freebuff's FAQ lives in JSON-LD, and on 2026-09-27 its "Smart & Fast"
+    reached the page only as `Smart \\u0026 Fast` — the same words, escaped the
+    way JSON escapes them — so the row's quote on training read as gone, from
+    the run's data-use check and its quote pass alike."""
+    body = ('<script type="application/ld+json">{"text": "- DeepSeek V4.1 Flash: Smart \\u0026 Fast. '
+            'May use data for AI training.\\n- GPT-6 Luna"}</script>')
+    assert quote_found("DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.", page_texts(body))
+
 def test_a_chinese_quote_is_read_like_any_other():
     """Chinese puts no space between words, so a whole sentence of it was one
     word to the three-word rule, and quote_found passed it unread: the data-use
