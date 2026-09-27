@@ -142,7 +142,7 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run freetier-indexnow --index index.json --after-pages-build "$(git rev-parse HEAD)"
+        run: uv run freetier-indexnow --index index.json --after-pages-build "$(git rev-parse HEAD)" --before "$(git rev-parse HEAD^)"
 
       # Says what the history just recorded, from the project's own accounts,
       # once per event and channel (announced.jsonl is the ledger). With no

@@ -692,14 +692,18 @@ table is on `index.html`. **Never edit it by hand.**
 shape LLM search and agents read — and `browse.html` is a hand-written static
 page that reads `index.json` in the browser, so it changes only when a field
 does; `tests/test_browse.py` holds the two to the same field names. After the
-scheduled run pushes, `freetier-indexnow` submits the site's URLs to IndexNow
-(Bing, Yandex and the engines that share their index), and so does
+scheduled run pushes, `freetier-indexnow` submits to IndexNow (Bing, Yandex and
+the engines that share their index) the pages whose data changed — a row's page
+and the pages of its models, a model's page, and the pages that list every row
+— read off `index.json` before and after the push, and so does
 `.github/workflows/indexnow.yml` after any other push to `main` that changes a
 file the site publishes — its path filter is the map's published lines, held
 to them by a test, and the run's own push starts no workflow, so a commit is
-never announced twice. Both wait until Pages has built the commit they ping
-for (`freetier-indexnow --after-pages-build`), so an engine that fetches on the
-ping reads the new page; the key it proves
+never announced twice; a hand push counts from the last ping that went out,
+since a push that lands while one waits cancels it. Until 2026-09-27 every
+ping sent every URL, 186 of them for a commit that touched three rows. Both
+wait until Pages has built the commit they ping for (`freetier-indexnow
+--after-pages-build`), so an engine that fetches on the ping reads the new page; the key it proves
 ownership with is the file named after it at the repository root, and it is
 not a secret.
 

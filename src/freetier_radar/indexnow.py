@@ -12,6 +12,7 @@ crawl our own pages.
 import argparse
 import json
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -45,6 +46,67 @@ def site_urls(index: dict) -> list[str]:
     urls += [f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt", f"{PAGES_URL}/browse.html"]
     return list(dict.fromkeys(urls))
 
+
+
+def changed_urls(before: dict | None, after: dict) -> list[str]:
+    """The pages whose data changed between two readings of index.json — the
+    index as the push found it and as it left it — in site_urls' order.
+
+    Until 2026-09-27 every push that published a file submitted every url of the
+    site, 186 of them four times that day for commits that each touched a
+    handful of rows, where the protocol asks for the urls that changed. A row
+    whose record moved sends its own page and the pages of the models it lists,
+    which print it; a model whose record moved sends its page and the models
+    index; the pages that list every row — the home page, the providers index,
+    the feed, llms.txt and browse.html — go whenever a row did, and the checked
+    page when the watchlist did. The index's `generated` day is no change, nor
+    is the render date in every page's footer. With no earlier index to read,
+    every page is new to the engine."""
+    if before is None:
+        return site_urls(after)
+    old_rows = {e["id"]: e for e in before.get("entries", [])}
+    old_models = {m["family"]: m for m in before.get("models", [])}
+    new_models = {m["family"]: m for m in after.get("models", [])}
+    model_pages = {f: m["page"] for f, m in {**old_models, **new_models}.items() if m.get("page")}
+    wanted: set[str] = set()
+    rows_moved = False
+    for e in after.get("entries", []):
+        old = old_rows.get(e["id"])
+        if old == e:
+            continue
+        rows_moved = True
+        wanted.add(e["page"])
+        families = {m["family"] for m in e.get("models", [])}
+        families |= {m["family"] for m in (old or {}).get("models", [])}
+        wanted |= {model_pages[f] for f in families if f in model_pages}
+    models_moved = [f for f in set(old_models) | set(new_models)
+                    if old_models.get(f) != new_models.get(f)]
+    wanted |= {model_pages[f] for f in models_moved if f in model_pages}
+    watch_moved = before.get("watchlist") != after.get("watchlist")
+    if rows_moved or models_moved or watch_moved:
+        wanted.add(f"{PAGES_URL}/")
+    if rows_moved:
+        wanted |= {providers_index_url(), f"{PAGES_URL}/feed.xml", f"{PAGES_URL}/llms.txt",
+                   f"{PAGES_URL}/browse.html"}
+    if models_moved:
+        wanted.add(models_index_url())
+    if watch_moved:
+        wanted.add(checked_page_url())
+    ordered = [u for u in site_urls(after) if u in wanted]
+    return ordered + sorted(wanted - set(ordered))
+
+
+def index_at(rev: str, path: str = "index.json", repo: Path = Path(".")) -> dict | None:
+    """index.json as commit `rev` holds it, or None where git has no such commit
+    or file there — a new branch's all-zero `before`, a clone too shallow to
+    reach it."""
+    run = subprocess.run(["git", "show", f"{rev}:{path}"], cwd=repo, capture_output=True, text=True)
+    if run.returncode != 0:
+        return None
+    try:
+        return json.loads(run.stdout)
+    except json.JSONDecodeError:
+        return None
 
 def submit(urls: list[str], post=httpx.post) -> int:
     """One POST for the whole list; returns the HTTP status. 200 and 202 both
@@ -97,6 +159,8 @@ def main() -> None:
     parser.add_argument("--index", type=Path, default=Path("index.json"))
     parser.add_argument("--after-pages-build", metavar="SHA",
                         help="wait until GitHub Pages has built this commit before pinging")
+    parser.add_argument("--before", metavar="SHA",
+                        help="submit only the pages whose data changed since this commit's index.json")
     args = parser.parse_args()
     if args.after_pages_build:
         waited = wait_for_pages(args.after_pages_build)
@@ -104,7 +168,10 @@ def main() -> None:
         if waited == "errored":
             sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
-    urls = site_urls(index)
+    urls = changed_urls(index_at(args.before, args.index.as_posix()), index) if args.before else site_urls(index)
+    if not urls:
+        print(f"indexnow: no page's data changed since {args.before[:7]}, nothing submitted")
+        sys.exit(0)
     status = submit(urls)
     print(f"indexnow: submitted {len(urls)} urls, HTTP {status}")
     sys.exit(0 if status in (200, 202) else 1)

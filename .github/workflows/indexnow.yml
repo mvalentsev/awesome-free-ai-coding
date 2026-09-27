@@ -41,8 +41,11 @@ on:
 permissions:
   contents: read
   pages: read
+  # The ping lists this workflow's own runs for the last one that went out.
+  actions: read
 
-# A newer push publishes a newer site; the older ping has nothing left to say.
+# A newer push publishes a newer site, and its ping carries what the cancelled
+# one would have sent: it counts from the last ping that went out (see the step).
 concurrency:
   group: indexnow
   cancel-in-progress: true
@@ -52,7 +55,11 @@ jobs:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     timeout-minutes: 25
     steps:
+      # The whole history: the ping reads index.json as the push found it, at
+      # github.event.before, however many commits the push carried.
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       # Exact by necessity — see the note in ci.yml.
       - uses: astral-sh/setup-uv@v10.0.1
@@ -71,4 +78,11 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run freetier-indexnow --index index.json --after-pages-build "${{ github.sha }}"
+        # What to send is what changed since the last ping that went out: a push
+        # that lands meanwhile cancels this job, and the next one has to carry
+        # the pages the cancelled one would have sent. Where the last successful
+        # run cannot be read, since the commit this push started from.
+        run: |
+          since=$(gh api "repos/${{ github.repository }}/actions/workflows/indexnow.yml/runs?status=success&branch=main&per_page=1" \
+            --jq '.workflow_runs[0].head_sha // empty' || true)
+          uv run freetier-indexnow --index index.json --after-pages-build "${{ github.sha }}" --before "${since:-${{ github.event.before }}}"
