@@ -2320,6 +2320,21 @@ async def test_a_lane_rate_limited_on_every_id_is_a_note_and_not_a_failure():
 
 
 @respx.mock
+async def test_a_keyless_note_rides_with_every_other_note_the_read_finds():
+    """A keyless lane's note is not dropped when another part of the read has a
+    note of its own — here a gone Anthropic route: the verdict carries both."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(429, json={}))
+    respx.post("https://open.x.ai/anthropic/v1/messages").mock(return_value=httpx.Response(404))
+    entry = keyless_entry()
+    entry.api.anthropic_base_url = "https://open.x.ai/anthropic"
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "anthropic route gone" in result.detail and "rate-limited" in result.detail
+
+
+@respx.mock
 async def test_a_refused_first_id_beside_one_that_answers_is_a_note_not_a_failure():
     """A key asked for on one id while another answers keyless is a row that
     lists a metered id first, not a lane that closed."""

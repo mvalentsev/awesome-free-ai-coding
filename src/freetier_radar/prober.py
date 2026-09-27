@@ -96,6 +96,10 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             column = "listed families the page does not name: " + ", ".join(unevidenced)
 
         def verdict(status: ProbeStatus, note: str = "") -> ProbeResult:
+            # The keyless or public-key lane's note rides with whatever else
+            # the read found, after it.
+            if keyless is not None:
+                note = f"{note} | {keyless.detail}" if note else keyless.detail
             if column:
                 return ProbeResult(ProbeStatus.STALE_MODELS,
                                    f"{column} | {note}" if note else column)
@@ -118,8 +122,6 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         if catalog is not None:
             stale = stale_ids(catalog, entry)
             if stale:
-                if keyless is not None:
-                    stale = f"{stale} | {keyless.detail}"
                 return verdict(ProbeStatus.STALE_IDS, stale)
         # The Anthropic-format route a row names for Claude Code, asked keyless:
         # the answer is only whether anything listens at that path.
@@ -138,8 +140,6 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         if entry.api and entry.api.public_key:
             unprinted = await public_key_unprinted(client, entry, page, attempts, backoff)
             if unprinted:
-                if keyless is not None:
-                    unprinted = f"{unprinted} | {keyless.detail}"
                 return verdict(ProbeStatus.STALE_IDS, unprinted)
         # The data-use sentence (see data_use_moved) and the border (see
         # border_moved) are both read, and both notes kept: one does not answer
@@ -150,12 +150,9 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         if entry.border is not None:
             moved.append(await border_moved(client, entry, page, attempts, backoff))
         if any(moved):
-            note = " | ".join(m for m in moved if m)
-            if keyless is not None:
-                note = f"{note} | {keyless.detail}"
-            return verdict(ProbeStatus.STALE_IDS, note)
+            return verdict(ProbeStatus.STALE_IDS, " | ".join(m for m in moved if m))
         if keyless is not None:
-            return verdict(keyless.status, keyless.detail)
+            return verdict(keyless.status)
         return verdict(ProbeStatus.PASS)
     # Asked only once the content check has failed, since a live page can carry
     # a <noscript> asking for JavaScript beside the offer. A bot wall means the
