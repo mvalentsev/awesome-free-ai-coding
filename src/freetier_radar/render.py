@@ -17,8 +17,8 @@ from .borders import SHARED, beyond_shared, left_out_of, load_yardstick, share
 from .countries import COUNTRIES, country_name
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
-from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
-                     WATCH_RECHECK_DAYS, Category, Entry, FreePart,
+from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CODEX_LITELLM_PROFILE,
+                     PROBE_WEEKDAYS, WATCH_RECHECK_DAYS, Category, Entry, FreePart,
                      ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
                      folded_into, id_family, is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
@@ -835,6 +835,10 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
         # rank order, since a free lane behind that route is what matters.
         "claude_code": [_pick(e) for e in ranked
                         if e.api and e.api.anthropic_base_url][:README_PICKS],
+        # Codex's answer: a lane that takes the request Codex sends, called
+        # directly with the row's own profile, in rank order across sections.
+        "codex": [{**_pick(e), "command": f"codex -p {e.id}"}
+                  for e in ranked if codex_ready(e)][:README_PICKS],
     }
 
 
@@ -1179,6 +1183,9 @@ def build_context(entries: list[Entry], today: date,
         {"name": e.name, "base_url": e.api.base_url,
          "page": provider_page_url(e.id),
          "anthropic_base_url": e.api.anthropic_base_url or "",
+         "codex": f"codex -p {e.id}" if codex_ready(e) else "",
+         "codex_profile": (codex_profile_path(e).removeprefix("configs/")
+                           if codex_ready(e) else ""),
          "auth": _auth_cell(e),
          "key_url": e.api.key_url or "",
          "keyless": e.api.key_kind == "none",
@@ -1379,6 +1386,7 @@ def _site_row(e: Entry) -> dict:
         "no_key": bool(api and api.base_url and api.key_kind == "none"),
         "public_key": bool(api and api.base_url and api.key_kind == "public"),
         "claude_code": bool(api and api.anthropic_base_url),
+        "codex": codex_ready(e),
         "frontier": any(m.tier is Tier.FRONTIER for m in families),
         # The same answers as the words the page's search filters on, one per
         # filter it offers (SEARCH_FILTERS) — held to them by a test.
@@ -1423,6 +1431,8 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
         rows.append({
             "name": e.name, "page": provider_page_url(e.id),
             "base_url": e.api.base_url, "anthropic_base_url": e.api.anthropic_base_url or "",
+            "codex": f"codex -p {e.id}" if codex_ready(e) else "",
+            "codex_profile": codex_profile_path(e) if codex_ready(e) else "",
             "keyless": e.api.key_kind == "none", "env_var": env_var(e.id),
             "public_key": e.api.public_key or "",
             "key_url": e.api.key_url or "", "asks": asks,
@@ -1563,6 +1573,8 @@ def _llms_line(e: Entry) -> str:
         parts += [_ASK_TEXT[name].format(value) for name, value in api.asks()]
         if api.anthropic_base_url:
             parts.append(f"Anthropic Messages at {api.anthropic_base_url}")
+        if codex_ready(e):
+            parts.append(f"Codex CLI profile at {REPO_URL}/blob/main/{codex_profile_path(e)}")
     fams = _families(e)
     if fams:
         parts.append("free models: " + ", ".join(f"`{f}`" for f in fams))
@@ -1693,7 +1705,6 @@ GROUP_WORDS = {"free/frontier": "every frontier lane", "free/strong": "every str
 LITELLM_BRIDGE_SINCE = "1.89"
 CODEX_SINCE = "0.134"
 CODEX_DIR = "configs/codex"
-CODEX_LITELLM_PROFILE = "litellm"
 CODEX_LITELLM_PATH = f"{CODEX_DIR}/{CODEX_LITELLM_PROFILE}.config.toml"
 # Where the proxy listens when started the way this repo prints the command:
 # on the loopback address, at LiteLLM's own default port.
@@ -1869,23 +1880,88 @@ def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
                   "metadata for the name, as it does for any model outside OpenAI's."),
         *([f"model = {json.dumps(model)}"] if model else []),
         f"model_provider = {json.dumps(CODEX_LITELLM_PROFILE)}",
-        *_comment("Reasoning summaries off: LiteLLM hands Codex's summary setting to the lane "
-                  "as a reasoning_effort value, and the lanes tried refuse it."),
-        'model_reasoning_summary = "none"',
-        *_comment("Web search off: it is a tool OpenAI's servers run, which LiteLLM passes on "
-                  "to the lane as web_search_options."),
-        'web_search = "disabled"',
-        "",
-        "[features]",
-        *_comment("Sub-agents off: Codex sends their tools as a namespace, a tool type some "
-                  "lanes refuse."),
-        "multi_agent = false",
-        "",
+        *_codex_settings(),
         *_comment("No key: the proxy runs without a master key (see litellm.yaml's header)."),
         f"[model_providers.{CODEX_LITELLM_PROFILE}]",
         'name = "LiteLLM over the free lanes"',
         f"base_url = {json.dumps(LITELLM_LOCAL_URL)}",
         'wire_api = "responses"',
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def _codex_settings() -> list[str]:
+    """The three settings every Codex profile here carries, so the request Codex
+    sends through any of them is the one the run sends (prober.codex_probe_body).
+    Each was measured on 2026-09-27 to break a lane otherwise — see CONTRIBUTING."""
+    return [
+        *_comment("The same three settings in every Codex profile here, so the request Codex "
+                  "sends is the one the list's run checks; each is off for lanes that refuse it "
+                  "or cannot run it. Reasoning summaries: LiteLLM hands them to a lane as a "
+                  "reasoning_effort value, and the lanes tried refuse it."),
+        'model_reasoning_summary = "none"',
+        *_comment("Web search: a tool OpenAI's servers run, which LiteLLM passes on to a lane "
+                  "as web_search_options."),
+        'web_search = "disabled"',
+        "",
+        "[features]",
+        *_comment("Sub-agents: Codex sends their tools as a namespace, a tool type some lanes "
+                  "refuse."),
+        "multi_agent = false",
+        "",
+    ]
+
+
+def codex_ready(e: Entry) -> bool:
+    """Whether a row's lane gets a Codex profile of its own: it takes the request
+    Codex sends (`api.responses_api`), and a profile written once can carry
+    every ask it makes — Codex names itself in its own User-Agent, and sends no
+    header of a vendor's naming."""
+    return bool(e.api and e.api.base_url and e.api.responses_api and not _static_blockers(e))
+
+
+def codex_profile_path(e: Entry) -> str:
+    return f"{CODEX_DIR}/{e.id}.config.toml"
+
+
+def _codex_direct(entries: list[Entry], today: date) -> list[Entry]:
+    """The live rows Codex calls directly, in rank order."""
+    return sorted((e for e in entries if not is_archived(e, today) and codex_ready(e)),
+                  key=_by_rank)
+
+
+def build_codex_profile(e: Entry) -> str:
+    """A row's own Codex profile: its lane, called directly, with the settings
+    every profile here carries. The model is the first id the row lists, the
+    one the run calls; the key comes from the variable free-llm.env.example
+    exports, and a keyless lane is given none, so Codex sends no Authorization
+    header — the one a lane that refuses a bearer (Kilo's) answers."""
+    api = e.api
+    key = ("No key: the lane is anonymous." if api.key_kind == "none" else
+           f"The key comes from ${env_var(e.id)}, the variable free-llm.env.example exports"
+           + (f"; the vendor prints one for anyone at {api.key_url}." if api.key_kind == "public"
+              else f"; get one at {api.key_url}." if api.key_url else "."))
+    lines = [
+        f"# Codex CLI on {e.name}'s free lane — generated from registry.yaml, do not",
+        "# edit by hand.",
+        *_comment("The lane takes the request Codex sends, and every run of the list sends it "
+                  f"again. Needs Codex CLI {CODEX_SINCE} or later; the file goes where Codex "
+                  "keeps its config, ~/.codex unless CODEX_HOME says otherwise:"),
+        "#",
+        f"#   cp {codex_profile_path(e)} ~/.codex/",
+        f"#   codex -p {e.id}",
+        "#",
+        *_comment(f"{key} The model is the first free id the row lists; the quota and "
+                  f"every free id are on the row's page, {provider_page_url(e.id)} — codex -p "
+                  f"{e.id} -m <id> takes another."),
+        f"model = {json.dumps(api.model_ids[0])}",
+        f"model_provider = {json.dumps(e.id)}",
+        *_codex_settings(),
+        f"[model_providers.{e.id}]",
+        f"name = {json.dumps(e.name)}",
+        f"base_url = {json.dumps(api.base_url)}",
+        'wire_api = "responses"',
+        *([f"env_key = {json.dumps(env_var(e.id))}"] if api.key_kind != "none" else []),
     ]
     return "\n".join(lines) + "\n"
 
@@ -2065,12 +2141,13 @@ _ASK_PAGE = {"user-agent": ("- User-Agent: your client's own name and version, s
                             "vendor asks clients not to send"),
              "session-header": ("- Session header: `{}` — a stable id per conversation on every "
                                 "request, which the calling client sends itself; the generated "
-                                "LiteLLM, opencode and Claude Code configs leave this row out")}
+                                "LiteLLM, opencode, Claude Code and Codex configs leave this row "
+                                "out")}
 
 
 def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
     """How to reach a row, a list item a fact: the base URL, the key, what every
-    request carries, the Anthropic route and the ids — every id the row lists
+    request carries, the Anthropic route, Codex's profile and the ids — every id the row lists
     on the row's own page, one model's ids on that model's page. One function
     for both pages, so a new way in (a key the vendor prints, a header every
     request carries) reaches every page that says how to connect, and none
@@ -2096,6 +2173,10 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
     if api.anthropic_base_url:
         out.append(f"- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): "
                    f"`{api.anthropic_base_url}`")
+    if codex_ready(e):
+        path = codex_profile_path(e)
+        out.append(f"- Codex CLI: [`{path}`]({REPO_URL}/blob/main/{path}) — copy it to "
+                   f"`~/.codex/`, then `codex -p {e.id}`")
     if ids:
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
     elif api.no_ids:
@@ -2950,9 +3031,20 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         + yaml.safe_dump(build_litellm_config(entries, today), sort_keys=False,
                          allow_unicode=True),
         encoding="utf-8")
-    (root / CODEX_DIR).mkdir(parents=True, exist_ok=True)
+    # Codex's profiles: the one over litellm.yaml and one per lane it calls
+    # directly. A profile whose row stopped qualifying goes, as a row's page
+    # would; only the *.config.toml files here are this function's to remove.
+    codex = root / CODEX_DIR
+    codex.mkdir(parents=True, exist_ok=True)
     (root / CODEX_LITELLM_PATH).write_text(build_codex_litellm_profile(entries, today),
                                            encoding="utf-8")
+    wanted = {Path(CODEX_LITELLM_PATH).name}
+    for e in _codex_direct(entries, today):
+        (root / codex_profile_path(e)).write_text(build_codex_profile(e), encoding="utf-8")
+        wanted.add(Path(codex_profile_path(e)).name)
+    for stale in codex.glob("*.config.toml"):
+        if stale.name not in wanted:
+            stale.unlink()
 
 
 # CONTRIBUTING.md is written by hand except for its map section, which is the
@@ -3070,7 +3162,7 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     # counts too.
     stale += [p.relative_to(root).as_posix()
               for pages, kind in ((PROVIDERS_DIR, "*.md"), (MODELS_DIR, "*.md"),
-                                  (README_PICTURES, "*.svg"))
+                                  (README_PICTURES, "*.svg"), (CODEX_DIR, "*.config.toml"))
               for p in (root / pages).glob(kind)
               if p.relative_to(root).as_posix() not in fresh]
     return sorted(stale)

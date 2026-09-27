@@ -545,11 +545,15 @@ tr.flash { animation: flash 1.6s ease-out; }
         <h3>Claude Code on a free lane</h3>
         <ul><li><span class="who"><a href="https://openrouter.ai">OpenRouter (free models)</a></span></li><li><span class="who"><a href="https://www.requesty.ai">Requesty</a></span></li><li><span class="who"><a href="https://aihubmix.com">AIHubMix (free models)</a></span></li></ul>
       </div>
+      <div class="card">
+        <h3>Codex CLI on a free lane</h3>
+        <ul><li><span class="who"><a href="https://kilo.ai">Kilo Code</a></span> <code style="white-space:nowrap">codex -p kilo-code</code></li>          <li><span class="who"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/litellm.config.toml">Any lane of the LiteLLM config</a></span> <code style="white-space:nowrap">codex -p litellm</code></li></ul>
+      </div>
     </div>
     <p class="sub" style="margin-top:12px">Every answer is the registry's own ranking,
       <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md#how-rows-are-ordered">explained in
       CONTRIBUTING</a>, read from the top — of its section, or of every section for no account at
-      all and Claude Code — so a row that stops
+      all, Claude Code and Codex CLI — so a row that stops
       verifying leaves these cards on the same run it leaves the list.</p>
 
     <h3 style="margin-top:26px">No account at all? Paste this.</h3>
@@ -612,7 +616,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
             <th class="who" scope="row">
               <a class="name" href="https://kilo.ai">Kilo Code</a>
               <div class="tags">
-<span class="tag card" title="What you send may be used to train models; the vendor's words are on the row's page">👁 may train on prompts</span><span class="tag nokey">no key</span>              </div>
+<span class="tag card" title="What you send may be used to train models; the vendor's words are on the row's page">👁 may train on prompts</span><span class="tag nokey">no key</span><span class="tag">Codex CLI</span>              </div>
             </th>
             <td class="what" data-label="What you get">
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes &#34;Auto Free&#34; to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside            </td>
@@ -3114,6 +3118,7 @@ the chat models Groq&#39;s own Free Plan Limits table names; its safeguard and p
               <code>https://api.kilo.ai/api/gateway</code>
               <button class="copy" type="button" data-copy="https://api.kilo.ai/api/gateway" hidden
                       style="position:static;margin-left:6px">Copy</button>
+              <div class="sub" style="margin-top:6px">Codex CLI: <code>codex -p kilo-code</code> with <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml">its profile</a></div>
             </td>
             <td class="models" data-label="Key">
 <span class="tag nokey">none — the lane is anonymous</span>

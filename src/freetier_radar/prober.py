@@ -137,6 +137,12 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             missing = await anthropic_route_missing(client, entry, attempts, backoff)
             if missing:
                 return verdict(ProbeStatus.STALE_IDS, missing)
+        # And the route a keyed row names for Codex CLI, asked the same way; a
+        # row without an account was asked Codex's whole request above.
+        if entry.api and entry.api.responses_api and entry.api.key_kind == "own":
+            missing = await codex_route_missing(client, entry, attempts, backoff)
+            if missing:
+                return verdict(ProbeStatus.STALE_IDS, missing)
         # A key handed to everyone is the vendor's only while the vendor's
         # page prints it — see public_key_unprinted.
         if entry.api and entry.api.public_key:
@@ -316,7 +322,7 @@ def probe_page_url_sync(client: httpx.Client, probe: Probe) -> str:
 # limit — while a path nothing serves answers 404, 405 or 410.
 ANTHROPIC_PROBE_BODY = {"model": "freetier-radar", "max_tokens": 1,
                         "messages": [{"role": "user", "content": "ping"}]}
-ANTHROPIC_GONE = (404, 405, 410)
+ROUTE_GONE = (404, 405, 410)
 
 
 async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
@@ -351,10 +357,132 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
         if resp.status_code >= 500:
             last = f"HTTP {resp.status_code}"
             continue
-        if resp.status_code in ANTHROPIC_GONE:
+        if resp.status_code in ROUTE_GONE:
             return f"anthropic route gone: POST {url} answered HTTP {resp.status_code}"
         return None
     return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
+
+
+# The request Codex CLI sends a provider under this list's profiles, cut to one
+# tool and one message: captured from Codex 0.157.1 behind a mock provider on
+# 2026-09-27, the profiles' three settings on. Every field is one a lane could
+# refuse — OVHcloud's /responses refused `include`, which Codex sends on every
+# call and no setting removes — so none is left out, and it asks for the stream
+# Codex reads.
+CODEX_PROBE_TOOL = {
+    "type": "function", "name": "exec_command", "strict": False,
+    "description": "Runs a command in a PTY, returning output or a session ID for ongoing "
+                   "interaction.",
+    "parameters": {"type": "object", "additionalProperties": False, "required": ["cmd"],
+                   "properties": {"cmd": {"type": "string",
+                                          "description": "Shell command to execute."}}},
+}
+# The events that end a Responses stream, as Codex reads them: only the first
+# ends a turn it can use.
+CODEX_DONE = "response.completed"
+CODEX_BROKEN = ("response.failed", "response.incomplete", "error")
+# How much of a stream is read before the turn counts as unfinished.
+CODEX_READ_CAP = 256 * 1024
+
+
+def codex_probe_body(model: str) -> dict:
+    """The request, asking something no cache has answered before (see
+    keyless_probe_body)."""
+    conversation = str(uuid.uuid4())
+    return {"model": model, "instructions": "You are a coding agent. Answer in one word.",
+            "input": [{"type": "message", "role": "user", "content": [
+                {"type": "input_text",
+                 "text": f"Reply with the word pong. ({uuid.uuid4().hex[:12]})"}]}],
+            "tools": [CODEX_PROBE_TOOL], "tool_choice": "auto", "parallel_tool_calls": True,
+            "reasoning": {}, "store": False, "stream": True,
+            "include": ["reasoning.encrypted_content"],
+            "prompt_cache_key": conversation, "client_metadata": {"session_id": conversation}}
+
+
+def _codex_events(text: str) -> list[str]:
+    """The event types a Responses stream carries, in order: the `type` of each
+    `data:` line's JSON, since Kilo's gateway sends no `event:` lines."""
+    types = []
+    for line in text.splitlines():
+        if not line.startswith("data:"):
+            continue
+        try:
+            event = json.loads(line[5:].strip())
+        except ValueError:
+            continue
+        if isinstance(event, dict) and isinstance(event.get("type"), str):
+            types.append(event["type"])
+    return types
+
+
+def _codex_completed(answer: tuple[int, str] | str) -> bool:
+    """Whether a turn ended the way Codex can use: a 2xx stream reaching
+    response.completed with nothing broken before it. A whole JSON response to
+    a request for a stream is not one — Codex reads events, not a body."""
+    if isinstance(answer, str) or answer[0] >= 300:
+        return False
+    events = _codex_events(answer[1])
+    return CODEX_DONE in events and not any(e in CODEX_BROKEN for e in events)
+
+
+def _codex_said(answer: tuple[int, str] | str) -> str:
+    if isinstance(answer, str):
+        return answer
+    status, text = answer
+    events = _codex_events(text)
+    if status < 300:
+        return (f"HTTP {status}, a stream ending in {events[-1]}" if events
+                else f"HTTP {status} without a Responses stream")
+    said = " ".join(text.split())[:160]
+    return f"HTTP {status}" + (f": {said}" if said else "")
+
+
+async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: dict,
+                      attempts: int, backoff: float) -> tuple[int, str] | str:
+    """One Codex turn's request and the stream it gets, read to its end or to
+    CODEX_READ_CAP: (status, text), or why there was none. A 5xx and a network
+    error are retried."""
+    last = ""
+    for i in range(attempts):
+        if i:
+            await asyncio.sleep(backoff * i)
+        try:
+            async with client.stream("POST", url, json=codex_probe_body(model),
+                                     headers={**headers, "Accept": "text/event-stream"},
+                                     timeout=TIMEOUT, follow_redirects=True) as resp:
+                if resp.status_code >= 500:
+                    last = f"HTTP {resp.status_code}"
+                    continue
+                text = ""
+                async for chunk in resp.aiter_text():
+                    text += chunk
+                        # The events that end a stream; "error" is left to the parse,
+                    # being a word any text can hold.
+                    if (len(text) > CODEX_READ_CAP or any(
+                            e in text for e in (CODEX_DONE, "response.failed",
+                                                "response.incomplete"))):
+                        break
+                return resp.status_code, text
+        except httpx.HTTPError as exc:
+            last = f"network error: {exc}"
+    return last or "did not answer"
+
+
+async def codex_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
+                              backoff: float) -> str | None:
+    """Why the Responses route a keyed row publishes for Codex CLI is not to be
+    trusted, or None while it answers. Read the way anthropic_route_missing
+    reads its route, and for its reasons: a keyless call cannot finish a keyed
+    lane's turn, a 401 is the route saying it exists, a 404, 405 or 410 is a
+    route that is gone, and one that cannot be reached is said so. A keyless
+    row is asked the whole request instead (see _codex_drift)."""
+    url = entry.api.base_url.rstrip("/") + "/responses"
+    answer = await _codex_call(client, url, entry.api.model_ids[0], {}, attempts, backoff)
+    if isinstance(answer, str):
+        return f"codex route could not be checked: POST {url} {answer}"
+    if answer[0] in ROUTE_GONE:
+        return f"codex route gone: POST {url} answered HTTP {answer[0]}"
+    return None
 
 
 # The smallest chat call there is. What it reads is the status line, whether
@@ -580,6 +708,9 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                     await asyncio.sleep(backoff)
                     drift = await _bearer_drift(client, entry, url, model, headers, backoff)
                     notes += [drift] if drift else []
+                await asyncio.sleep(backoff)
+                codex = await _codex_drift(client, entry, model, headers, attempts, backoff)
+                notes += [codex] if codex else []
                 if not notes:
                     return None
                 return ProbeResult(ProbeStatus.STALE_IDS, " | ".join(notes))
@@ -619,6 +750,38 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
                               else "the README's curl on this row answers 429 too"))
     return ProbeResult(ProbeStatus.STALE_IDS,
                        f"{lane} call to {first} answered {_keyless_said(first_answer)}")
+
+
+async def _codex_drift(client: httpx.AsyncClient, entry: Entry, model: str, headers: dict,
+                       attempts: int, backoff: float) -> str | None:
+    """Whether `api.responses_api` still says what a lane without an account
+    does, asked on the id that has just answered a chat call: the request Codex
+    CLI sends, at base_url + /responses, with the same headers. The whole turn
+    is asked, not the route: OVHcloud's route answered and refused the request.
+
+    An answer on a row without the field is a lane Codex could call directly,
+    with a profile of its own — Kilo's gateway was one on 2026-09-27, and nothing
+    in its row said so — and a row with the field that stops taking the request
+    hands readers a profile that fails the same way. Asked once where the field
+    is not set, since a refusal there is the ordinary answer, and patiently
+    where it is, since there a refusal is news. A lane that wants an id per
+    conversation in its own header is not asked: no Codex profile could send it."""
+    if entry.api.session_header:
+        return None
+    url = entry.api.base_url.rstrip("/") + "/responses"
+    lane = "public-key" if entry.api.public_key else "keyless"
+    claimed = entry.api.responses_api
+    answer = await _codex_call(client, url, model, headers, attempts if claimed else 1, backoff)
+    took = _codex_completed(answer)
+    if took and not claimed:
+        return (f"{lane} POST {url} took the request Codex CLI sends — set "
+                "api.responses_api: true and the row gets a Codex profile of its own")
+    if claimed and not took:
+        if isinstance(answer, str) or answer[0] == 429:
+            return f"codex route could not be checked: POST {url} {_codex_said(answer)}"
+        return (f"{lane} POST {url} no longer takes the request Codex CLI sends: it answered "
+                f"{_codex_said(answer)}, and the row's Codex profile fails the same way")
+    return None
 
 
 async def _bearer_drift(client: httpx.AsyncClient, entry: Entry, url: str, model: str,

@@ -6,7 +6,7 @@ Connection details for every live OpenAI-compatible API in the list — {{ conne
 
 | Provider | Base URL | Key env var | Get a key |
 |---|---|---|---|
-{% for c in connections %}| **[{{ c.name }}]({{ c.page }})**{% if c.note %}<br>{{ c.note }}{% endif %} | `{{ c.base_url }}`{% if c.anthropic_base_url %}<br><sub>Anthropic format: `{{ c.anthropic_base_url }}`</sub>{% endif %} | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% elif c.keyless %}not needed{% else %}from the vendor's console{% endif %} |
+{% for c in connections %}| **[{{ c.name }}]({{ c.page }})**{% if c.note %}<br>{{ c.note }}{% endif %} | `{{ c.base_url }}`{% if c.anthropic_base_url %}<br><sub>Anthropic format: `{{ c.anthropic_base_url }}`</sub>{% endif %}{% if c.codex %}<br><sub>Codex CLI: `{{ c.codex }}` with [its profile]({{ c.codex_profile }})</sub>{% endif %} | {{ c.auth }} | {% if c.key_url %}[key]({{ c.key_url }}){% elif c.keyless %}not needed{% else %}from the vendor's console{% endif %} |
 {% endfor %}
 
 ## Ready-made files, regenerated on every update

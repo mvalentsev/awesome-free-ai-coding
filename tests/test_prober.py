@@ -2091,11 +2091,20 @@ def completion(model: str) -> dict:
             "usage": {"prompt_tokens": 53, "completion_tokens": 1, "total_tokens": 54}}
 
 
+def no_codex_route(base: str = "https://open.x.ai/v1") -> respx.Route:
+    """A lane with no Responses route, the ordinary answer: every lane without
+    an account that has just answered a chat call is asked the request Codex
+    CLI sends (see test_codex.py), and seventeen lanes answered 404 on
+    2026-09-27."""
+    return respx.post(f"{base}/responses").mock(return_value=httpx.Response(404))
+
+
 @respx.mock
 async def test_a_keyless_lane_that_answers_is_a_pass():
     """The catalog saying a model exists is not the lane letting anyone call it,
     so a row published as keyless is called, keylessly, on its first id."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     async with httpx.AsyncClient() as client:
@@ -2119,6 +2128,7 @@ async def test_every_keyless_call_asks_something_no_cache_has_answered_before():
     would go on passing on a stored reply. Each call asks something new, so the
     answer can only come from a model."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     async with httpx.AsyncClient() as client:
@@ -2146,6 +2156,7 @@ async def test_a_keyless_lane_that_refuses_a_bearer_token_is_a_note_for_the_prox
     which field keeps it out of that config; the field is then measured every
     run, both ways."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
     route = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=_refuses_a_bearer(403))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
@@ -2268,6 +2279,7 @@ async def test_an_id_answered_as_another_model_is_a_note():
     for asked, served in ANSWERED_AS_ANOTHER:
         entry, catalog = keyless_lane(asked)
         respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=catalog))
+        no_codex_route()
         respx.post("https://open.x.ai/v1/chat/completions").mock(
             return_value=httpx.Response(200, json=completion(served)))
         async with httpx.AsyncClient() as client:
@@ -2313,6 +2325,7 @@ async def test_a_model_answering_under_its_own_spelling_or_a_router_s_pick_is_th
     for asked, served in ANSWERED_AS_ITSELF:
         entry, catalog = keyless_lane(asked)
         respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=catalog))
+        no_codex_route()
         respx.post("https://open.x.ai/v1/chat/completions").mock(
             return_value=httpx.Response(200, json=completion(served)))
         async with httpx.AsyncClient() as client:
@@ -2324,6 +2337,7 @@ async def test_a_model_answering_under_its_own_spelling_or_a_router_s_pick_is_th
 async def test_a_completion_that_names_no_model_is_taken_at_its_word():
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     unnamed = {k: v for k, v in completion("gpt-oss-120b").items() if k != "model"}
+    no_codex_route()
     respx.post("https://open.x.ai/v1/chat/completions").mock(return_value=httpx.Response(200, json=unnamed))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, keyless_entry(), backoff=0)
@@ -2340,6 +2354,7 @@ async def test_a_bearer_call_answered_without_a_completion_says_nothing_about_th
         if "authorization" in request.headers:
             return httpx.Response(200, json={"error": {"message": "Your authentication token is invalid"}})
         return httpx.Response(200, json=completion(json.loads(request.content)["model"]))
+    no_codex_route()
     respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=answer)
     marked = keyless_entry()
     marked.api.refuses_bearer = True
@@ -2405,6 +2420,7 @@ async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_anothe
     reorder the row the other run had just passed. The README's id gets the
     patience a 5xx gets before the check walks on to name another."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
         side_effect=[httpx.Response(429, json={}), httpx.Response(200, json=completion("gpt-oss-120b")),
                      httpx.Response(200, json=completion("gpt-oss-120b"))])
@@ -2548,6 +2564,7 @@ async def test_a_lane_that_answers_again_under_a_notice_asks_for_the_notice_to_c
     answers again that sentence is the stale thing on the page, so the run says
     so instead of passing quietly beside it."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
     respx.post("https://open.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
     async with httpx.AsyncClient() as client:
@@ -2668,6 +2685,7 @@ async def test_a_lane_the_vendor_prints_a_key_for_is_called_with_that_key():
     lane letting anyone in, so the run calls it the way a reader is told to —
     with that key, one token, on the first id."""
     respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
+    no_codex_route("https://api.trial.x.ai/v1")
     call = respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
@@ -2702,6 +2720,7 @@ async def test_a_public_key_the_vendor_no_longer_prints_is_a_note():
     respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(
         200, text="<p>Shared trial key <code>lt-trial-new</code>: 2M tokens per day per address "
                   "on Qwen3.8-27B.</p>"))
+    no_codex_route("https://api.trial.x.ai/v1")
     respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
@@ -2715,6 +2734,7 @@ async def test_a_public_key_is_read_back_off_its_own_page_when_the_probe_reads_a
     respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
     keys = respx.get("https://trial.x.ai/keys").mock(return_value=httpx.Response(
         200, text="<pre>Authorization: Bearer lt-trial-abc</pre>"))
+    no_codex_route("https://api.trial.x.ai/v1")
     respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
@@ -2727,6 +2747,7 @@ async def test_a_public_key_is_read_back_off_its_own_page_when_the_probe_reads_a
 async def test_a_public_key_whose_page_cannot_be_read_is_said_so():
     respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
     respx.get("https://trial.x.ai/keys").mock(return_value=httpx.Response(503))
+    no_codex_route("https://api.trial.x.ai/v1")
     respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:

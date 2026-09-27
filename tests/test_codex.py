@@ -119,3 +119,257 @@ def test_no_page_tells_a_reader_to_paste_a_chat_base_url_into_codex(tmp_path):
         text = (tmp_path / rel).read_text(encoding="utf-8")
         assert not re.search(r"base\s+URL\s+into[^.]*Codex", text), rel
         assert "codex/litellm.config.toml" in text, rel
+
+
+# ---- lanes that take the request Codex sends, called directly
+
+import json
+
+import httpx
+import pytest
+import respx
+from pydantic import ValidationError
+
+from freetier_radar.models import ApiInfo, Entry, load_registry
+from freetier_radar.prober import ProbeStatus, probe_entry
+from test_prober import BASE, KEYLESS_CATALOG, completion
+
+
+def _sse(*events: dict) -> httpx.Response:
+    """A Responses stream as Kilo's gateway sent it on 2026-09-27: data lines
+    only, no `event:` lines."""
+    body = "".join(f"data: {json.dumps(e)}\n\n" for e in events)
+    return httpx.Response(200, text=body, headers={"content-type": "text/event-stream"})
+
+
+COMPLETED = _sse({"type": "response.created", "response": {"id": "resp_1"}},
+                 {"type": "response.output_text.delta", "delta": "pong"},
+                 {"type": "response.completed", "response": {"id": "resp_1", "status": "completed"}})
+
+
+def codex_keyless(**api) -> Entry:
+    return Entry.model_validate({
+        **BASE, "id": "open", "name": "Open",
+        "models": [{"family": "gpt-oss", "tier": "strong"}],
+        "api": {"base_url": "https://open.x.ai/v1", "auth": "none",
+                "model_ids": ["gpt-oss-120b", "qwen3-coder-30b"], **api},
+        "probe": {"type": "api-models", "endpoint": "https://open.x.ai/v1/models"},
+    })
+
+
+def codex_keyed(**api) -> Entry:
+    return Entry.model_validate({
+        **BASE, "id": "gate", "name": "Gate",
+        "api": {"base_url": "https://gate.x.ai/v1", "model_ids": ["glm-5.3"], **api},
+        "probe": {"type": "page-keywords", "endpoint": "https://gate.x.ai/pricing",
+                  "keywords": ["qwen3-coder"]},
+    })
+
+
+def _keyless_lane_answers():
+    respx.get("https://open.x.ai/v1/models").mock(
+        return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(
+        return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
+
+
+def test_responses_api_is_said_only_of_an_openai_shaped_lane_codex_can_call():
+    """The Responses API is OpenAI's; the profile names the row's first id; and
+    Codex sends no header of a vendor's naming, so a lane that wants an id per
+    conversation in one cannot take a profile."""
+    with pytest.raises(ValidationError, match="responses_api"):
+        ApiInfo(base_url="https://x/v1", model_ids=["m"], openai_compatible=False,
+                responses_api=True)
+    with pytest.raises(ValidationError, match="responses_api"):
+        ApiInfo(base_url="https://x/v1", responses_api=True)
+    with pytest.raises(ValidationError, match="responses_api"):
+        ApiInfo(base_url="https://x/v1", model_ids=["m"], auth="none",
+                session_header="x-session", responses_api=True)
+    assert "responses_api" not in ApiInfo(base_url="https://x/v1").model_dump()
+    assert ApiInfo(base_url="https://x/v1", model_ids=["m"],
+                   responses_api=True).model_dump()["responses_api"] is True
+
+
+def test_no_row_that_takes_codexs_request_is_named_like_the_litellm_profile():
+    """Its profile would be written over the one for LiteLLM."""
+    with pytest.raises(ValidationError, match=render.CODEX_LITELLM_PROFILE):
+        Entry.model_validate({**codex_keyless(responses_api=True).model_dump(),
+                              "id": render.CODEX_LITELLM_PROFILE})
+
+
+@respx.mock
+async def test_a_keyless_lane_that_takes_codexs_request_is_a_note_to_say_so():
+    """Kilo's gateway answered the request Codex sends, keyless, on 2026-09-27,
+    and nothing in the row said so: the run asks every keyless lane that has
+    just answered a chat call, the way it asks about a bearer token."""
+    _keyless_lane_answers()
+    respx.post("https://open.x.ai/v1/responses").mock(return_value=COMPLETED)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "set api.responses_api: true" in result.detail
+
+
+@respx.mock
+async def test_the_call_is_the_request_codex_sends_under_this_lists_profiles():
+    """Every field Codex sends is one a lane could refuse — OVHcloud's
+    /responses refused `include`, which Codex sends on every call — so the call
+    carries them all, as a stream, with the settings the profiles make."""
+    _keyless_lane_answers()
+    route = respx.post("https://open.x.ai/v1/responses").mock(return_value=COMPLETED)
+    async with httpx.AsyncClient() as client:
+        await probe_entry(client, codex_keyless(responses_api=True), backoff=0)
+    sent = route.calls.last.request
+    body = json.loads(sent.content)
+    assert body["model"] == "gpt-oss-120b"
+    assert body["stream"] is True and body["store"] is False
+    assert body["include"] == ["reasoning.encrypted_content"]
+    assert body["reasoning"] == {}
+    assert body["tool_choice"] == "auto" and body["parallel_tool_calls"] is True
+    assert [t["type"] for t in body["tools"]] == ["function"]
+    assert body["input"][0]["content"][0]["type"] == "input_text"
+    assert body["prompt_cache_key"] and body["client_metadata"]["session_id"]
+    assert sent.headers["accept"] == "text/event-stream"
+    assert "authorization" not in sent.headers
+
+
+@respx.mock
+async def test_a_lane_that_still_takes_codexs_request_is_a_pass():
+    _keyless_lane_answers()
+    route = respx.post("https://open.x.ai/v1/responses").mock(return_value=COMPLETED)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(responses_api=True), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert route.called
+
+
+@pytest.mark.parametrize("answer", [
+    httpx.Response(422, text="include[0]: unknown variant `reasoning.encrypted_content`"),
+    _sse({"type": "response.created", "response": {"id": "r"}},
+         {"type": "response.failed", "response": {"id": "r", "status": "failed"}}),
+    httpx.Response(200, json={"object": "response", "status": "completed"}),
+])
+@respx.mock
+async def test_a_lane_that_stops_taking_codexs_request_is_a_note(answer):
+    """A refusal, a stream that fails, and a whole JSON answer to a request for
+    a stream all end Codex's turn the same way. The row stays verified by its
+    page; what broke is a connection detail the list publishes."""
+    _keyless_lane_answers()
+    respx.post("https://open.x.ai/v1/responses").mock(return_value=answer)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(responses_api=True), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "no longer takes the request Codex CLI sends" in result.detail
+
+
+@respx.mock
+async def test_a_keyless_lane_without_the_route_says_nothing():
+    """Seventeen lanes answered 404 on 2026-09-27; that is the ordinary answer
+    of a lane nothing says serves Codex."""
+    _keyless_lane_answers()
+    route = respx.post("https://open.x.ai/v1/responses").mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert route.called
+
+
+@respx.mock
+async def test_a_keyed_route_answering_anything_but_gone_is_a_pass():
+    """A keyless call cannot complete a keyed lane's turn and does not try to:
+    a 401 is the route saying it exists, the Anthropic check's reading."""
+    respx.get("https://gate.x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    route = respx.post("https://gate.x.ai/v1/responses").mock(return_value=httpx.Response(401))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyed(responses_api=True), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert json.loads(route.calls.last.request.content)["model"] == "glm-5.3"
+
+
+@respx.mock
+async def test_a_keyed_route_that_is_gone_is_a_note_not_a_failure():
+    respx.get("https://gate.x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    respx.post("https://gate.x.ai/v1/responses").mock(return_value=httpx.Response(404))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyed(responses_api=True), backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "codex route gone" in result.detail and "HTTP 404" in result.detail
+
+
+@respx.mock
+async def test_a_keyed_route_that_cannot_be_checked_is_said_so():
+    respx.get("https://gate.x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    respx.post("https://gate.x.ai/v1/responses").mock(side_effect=httpx.ConnectError("boom"))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyed(responses_api=True), backoff=0, attempts=2)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "could not be checked" in result.detail
+
+
+def _direct(**over):
+    return make(id=over.pop("id", "kilo"), name=over.pop("name", "Kilo"), rank=over.pop("rank", 1),
+                models=[{"family": "gpt-oss"}],
+                api={"base_url": "https://kilo.example/api/gateway", "auth": "none",
+                     "model_ids": ["kilo-auto/free", "gpt-oss-20b"], "responses_api": True,
+                     **over.pop("api", {})}, **over)
+
+
+def test_a_row_that_takes_codexs_request_gets_a_profile_of_its_own(tmp_path):
+    """The same three settings as the LiteLLM profile, so the request Codex
+    sends through either is the one the run sends; the key, where the lane
+    takes one, from the variable free-llm.env.example exports."""
+    keyed = _direct(id="gate", name="Gate", rank=2,
+                    api={"auth": "api-key", "base_url": "https://gate.example/v1"})
+    root = _rendered(tmp_path, [_direct(), keyed])
+    _, over_litellm = _profile(root)
+    for e, env in (("kilo", None), ("gate", "GATE_API_KEY")):
+        profile = tomllib.loads((root / render.CODEX_DIR / f"{e}.config.toml").read_text(
+            encoding="utf-8"))
+        assert profile["model_provider"] == e
+        provider = profile["model_providers"][e]
+        assert provider["wire_api"] == "responses"
+        assert provider.get("env_key") == env
+        for key in ("model_reasoning_summary", "web_search", "features"):
+            assert profile[key] == over_litellm[key]
+    kilo = tomllib.loads((root / render.CODEX_DIR / "kilo.config.toml").read_text(encoding="utf-8"))
+    assert kilo["model"] == "kilo-auto/free"
+    assert kilo["model_providers"]["kilo"]["base_url"] == "https://kilo.example/api/gateway"
+
+
+def test_a_profile_is_taken_away_with_the_field_and_its_absence_is_checked(tmp_path):
+    root = _rendered(tmp_path, [_direct()])
+    stray = root / render.CODEX_DIR / "gone.config.toml"
+    stray.write_text("model = \"x\"\n", encoding="utf-8")
+    render.render_artifacts(root / "registry.yaml", root, today=TODAY)
+    assert not stray.exists()
+    stray.write_text("model = \"x\"\n", encoding="utf-8")
+    stale = render.check_rendered(root / "registry.yaml", Path("templates"), root, today=TODAY)
+    assert f"{render.CODEX_DIR}/gone.config.toml" in stale
+
+
+def test_the_pages_that_say_how_to_connect_name_the_rows_codex_profile(tmp_path):
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [_direct(), make(id="other", name="Other", rank=2,
+                                        models=[{"family": "gpt-oss"}],
+                                        api={"base_url": "https://o.example/v1",
+                                             "model_ids": ["gpt-oss-20b"]})])
+    render.render_all(reg, Path("templates"), tmp_path, today=TODAY)
+    command = "codex -p kilo"
+    profile = f"{render.CODEX_DIR}/kilo.config.toml"
+    page = (tmp_path / "providers" / "kilo.md").read_text(encoding="utf-8")
+    assert command in page and profile in page
+    assert "codex -p" not in (tmp_path / "providers" / "other.md").read_text(encoding="utf-8")
+    for rel in ("configs/README.md", "index.html", "README.md"):
+        text = (tmp_path / rel).read_text(encoding="utf-8")
+        assert command in text, rel
+    assert profile in (tmp_path / "llms.txt").read_text(encoding="utf-8")
+    index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
+    kilo = next(e for e in index["entries"] if e["id"] == "kilo")
+    assert kilo["api"]["responses_api"] is True
+
+
+def test_the_codex_pick_names_the_rows_that_take_its_request_in_rank_order():
+    rows = [_direct(id="b", name="B", rank=2), _direct(id="a", name="A", rank=1),
+            _direct(id="c", name="C", rank=3, card_required=True)]
+    picks = render.picks(rows, TODAY)
+    assert [p["name"] for p in picks["codex"]] == ["A", "B"]

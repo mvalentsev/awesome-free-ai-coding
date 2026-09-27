@@ -474,7 +474,7 @@ lost ids beside it — on 2026-09-07 LLMTR failed on `minimax-m3` while three of
 its ids went unreported and stayed in the generated configs. A failing
 `page-keywords` row is not: there the failure is the offer itself, and the row is
 repaired or archived whole. A `stale-models` flag, on the other hand, ends nothing:
-the ids, the keyless lane and the Anthropic route are still asked, and what they
+the ids, the keyless lane, the Anthropic route and Codex's are still asked, and what they
 say follows the flag after a `|` — on 2026-09-21 Regolo's Llama 3.3 left its price
 table and its catalog together, and the flag alone had hidden the dead id.
 
@@ -500,6 +500,27 @@ page, and a route that cannot be reached is reported rather than skipped. The
 field feeds the Claude Code line of the picks table, the second URL in the
 connection table and [`configs/claude-code.sh`](configs/claude-code.sh), and
 `index.json` carries it as written.
+
+**`api.responses_api` is the Codex CLI answer, for a lane Codex calls
+directly.** Set it where a keyless call of the request Codex sends completes, or
+where the vendor documents Codex — never on a 401 alone. The request is the one
+Codex CLI 0.157.1 sent a provider under this list's profiles, cut to one tool
+and one message; a lane that takes it gets a profile of its own,
+`configs/codex/<id>.config.toml`, with the row's first id, the key from the
+variable `free-llm.env.example` exports and the same three settings as the
+LiteLLM profile, and the provider page, both connection tables, the picks and
+`llms.txt` name `codex -p <id>`. On 2026-09-27 Kilo's gateway was the one lane
+that took it keyless, and Codex ran a shell command on `kilo-auto/free` and read
+its output back. Every run asks again. A lane without an account is asked the
+whole request once its first id has answered a chat call, both ways, as with a
+bearer token: a row without the field that takes it is reported so, and a row
+with the field that stops taking it — a refusal, a stream that fails, a whole
+JSON answer to a request for a stream — is reported as `stale-ids` while the row
+stays verified. A keyed row with the field is asked the route keyless, the
+Anthropic check's way: a 404, 405 or 410 is a route that is gone. The field
+needs an OpenAI-shaped lane with an id and is refused beside `session_header`,
+since Codex sends no header of a vendor's naming; the one id a row with it
+cannot take is `litellm`, the LiteLLM profile's name.
 
 **`api.session_header` is for a lane that wants an id per conversation.** Set it
 to the header name when the vendor requires every request to carry a stable id
@@ -805,7 +826,7 @@ cannot print two versions of it.
 | `configs/litellm.yaml` | **generated** — the LiteLLM proxy config and its groups | `registry.yaml` | `freetier-render` |
 | `configs/free-llm.env.example` | **generated** — one export per key | `registry.yaml` | `freetier-render` |
 | `configs/claude-code.sh` | **generated** — one Claude Code shell function per Anthropic-format lane | `registry.yaml` | `freetier-render` |
-| `configs/codex/*.config.toml` | **generated** — Codex CLI profiles: litellm.config.toml over the LiteLLM config | `registry.yaml` | `freetier-render` |
+| `configs/codex/*.config.toml` | **generated** — Codex CLI profiles: one over the LiteLLM config, one per lane taking Codex's request | `registry.yaml` | `freetier-render` |
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |

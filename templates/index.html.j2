@@ -455,6 +455,11 @@ tr.flash { animation: flash 1.6s ease-out; }
         <ul>{% for p in picks.claude_code %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
       </div>
       {% endif %}
+      <div class="card">
+        <h3>Codex CLI on a free lane</h3>
+        <ul>{% for p in picks.codex %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span> <code style="white-space:nowrap">{{ p.command }}</code></li>{% endfor %}
+          <li><span class="who"><a href="{{ repo_url }}/blob/main/{{ codex.path }}">Any lane of the LiteLLM config</a></span> <code style="white-space:nowrap">codex -p {{ codex.name }}</code></li></ul>
+      </div>
     </div>
     <p class="sub" style="margin-top:12px">{% if picks.frontier %}“Frontier” is a tier measured on the
       <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis Intelligence
@@ -462,7 +467,7 @@ tr.flash { animation: flash 1.6s ease-out; }
       {{ schedule }}. {% endif %}Every answer is the registry's own ranking,
       <a href="{{ repo_url }}/blob/main/CONTRIBUTING.md#how-rows-are-ordered">explained in
       CONTRIBUTING</a>, read from the top — of its section, or of every section for no account at
-      all{% if picks.frontier %}, frontier models{% endif %}{% if picks.claude_code %} and Claude Code{% endif %} — so a row that stops
+      all{% if picks.frontier %}, frontier models{% endif %}{% if picks.claude_code %}, Claude Code{% endif %} and Codex CLI — so a row that stops
       verifying leaves these cards on the same run it leaves the list.</p>
 
     {% if quickstart %}
@@ -523,6 +528,7 @@ tr.flash { animation: flash 1.6s ease-out; }
                 {% if r.provisional %}<span class="tag new">🧪 new</span>{% endif %}
                 {% if r.frontier %}<span class="tag front">frontier</span>{% endif %}
                 {% if r.claude_code %}<span class="tag">Claude Code</span>{% endif %}
+                {% if r.codex %}<span class="tag">Codex CLI</span>{% endif %}
               </div>
               {% if r.notice %}
               <span class="notice"><b>Does not work as published</b> since
@@ -626,6 +632,9 @@ tr.flash { animation: flash 1.6s ease-out; }
                       style="position:static;margin-left:6px">Copy</button>
               {% if c.anthropic_base_url %}
               <div class="sub" style="margin-top:6px">Anthropic format: <code>{{ c.anthropic_base_url }}</code></div>
+              {% endif %}
+              {% if c.codex %}
+              <div class="sub" style="margin-top:6px">Codex CLI: <code>{{ c.codex }}</code> with <a href="{{ repo_url }}/blob/main/{{ c.codex_profile }}">its profile</a></div>
               {% endif %}
             </td>
             <td class="models" data-label="Key">

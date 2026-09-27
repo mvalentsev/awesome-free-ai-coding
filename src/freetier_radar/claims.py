@@ -23,10 +23,11 @@ from .announce import MAX_AGE_DAYS, POSTS_PER_RUN
 from .bars import BAR_DAYS
 from .gate import EARNED
 from .layout import MAP, Kind
-from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, NOTICE_HOLD_DAYS,
+from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES,
+                     CODEX_LITELLM_PROFILE, NOTICE_HOLD_DAYS,
                      PROBE_WEEKDAYS, SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, load_registry,
                      probe_frequency)
-from .prober import ANTHROPIC_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
+from .prober import ROUTE_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
 from .quotes import MIN_WORDS
 from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
                      PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
@@ -125,7 +126,7 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"reports every quote of (\w+) words or more",
           lambda root: (_word(MIN_WORDS),), "quotes.MIN_WORDS"),
     Claim("CONTRIBUTING.md", r"is a route, a (\d+), (\d+) or (\d+)\s+is reported",
-          lambda root: tuple(str(c) for c in ANTHROPIC_GONE), "prober.ANTHROPIC_GONE"),
+          lambda root: tuple(str(c) for c in ROUTE_GONE), "prober.ROUTE_GONE"),
     Claim("CONTRIBUTING.md", r"beside the (\w+) configs it describes",
           lambda root: (_word(len([n for n in MAP if n.kind is Kind.GENERATED
                                    and n.path.startswith("configs/")
@@ -135,6 +136,10 @@ CLAIMS: tuple[Claim, ...] = (
           r"a hand edit of `(\w+)`,\s+`(\w+)`, `(\w+)` or `(\w+)`, which only the run's probe",
           lambda root: tuple(sorted(EARNED)), "gate.EARNED",
           read=lambda found: tuple(sorted(found.groups()))),
+    Claim("CONTRIBUTING.md", r"Anthropic check's way: a (\d+), (\d+) or (\d+) is",
+          lambda root: tuple(str(c) for c in ROUTE_GONE), "prober.ROUTE_GONE"),
+    Claim("CONTRIBUTING.md", r"cannot take is `(\w+)`, the LiteLLM profile's name",
+          lambda root: (CODEX_LITELLM_PROFILE,), "models.CODEX_LITELLM_PROFILE"),
     Claim("CONTRIBUTING.md", r"the header asks for\s+LiteLLM (\d+\.\d+) or later",
           lambda root: (LITELLM_BRIDGE_SINCE,), "render.LITELLM_BRIDGE_SINCE"),
     Claim("CONTRIBUTING.md", r"since\s+Codex CLI (\d+\.\d+)",

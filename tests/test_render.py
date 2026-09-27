@@ -865,7 +865,7 @@ def test_context_connections():
     ctx = build_context(entries, TODAY)
     assert ctx["connections"] == [{"name": "Groq", "base_url": "https://api.x.ai/v1",
                                    "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/",
-                                   "anthropic_base_url": "",
+                                   "anthropic_base_url": "", "codex": "", "codex_profile": "",
                                    "auth": "`GROQ_API_KEY`", "key_url": "https://x.ai/keys",
                                    "keyless": False, "note": ""}]
 

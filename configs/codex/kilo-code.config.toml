@@ -1,0 +1,33 @@
+# Codex CLI on Kilo Code's free lane — generated from registry.yaml, do not
+# edit by hand.
+# The lane takes the request Codex sends, and every run of the list sends it
+# again. Needs Codex CLI 0.134 or later; the file goes where Codex keeps its
+# config, ~/.codex unless CODEX_HOME says otherwise:
+#
+#   cp configs/codex/kilo-code.config.toml ~/.codex/
+#   codex -p kilo-code
+#
+# No key: the lane is anonymous. The model is the first free id the row lists;
+# the quota and every free id are on the row's page,
+# https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/ —
+# codex -p kilo-code -m <id> takes another.
+model = "kilo-auto/free"
+model_provider = "kilo-code"
+# The same three settings in every Codex profile here, so the request Codex
+# sends is the one the list's run checks; each is off for lanes that refuse it
+# or cannot run it. Reasoning summaries: LiteLLM hands them to a lane as a
+# reasoning_effort value, and the lanes tried refuse it.
+model_reasoning_summary = "none"
+# Web search: a tool OpenAI's servers run, which LiteLLM passes on to a lane
+# as web_search_options.
+web_search = "disabled"
+
+[features]
+# Sub-agents: Codex sends their tools as a namespace, a tool type some lanes
+# refuse.
+multi_agent = false
+
+[model_providers.kilo-code]
+name = "Kilo Code"
+base_url = "https://api.kilo.ai/api/gateway"
+wire_api = "responses"

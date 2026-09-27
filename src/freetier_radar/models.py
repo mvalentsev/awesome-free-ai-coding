@@ -521,6 +521,10 @@ KEY_KINDS = ("none", "public", "own")
 # and the render's tests refuse a table without one, so a new ask cannot reach
 # some pages and not others.
 ASKS = ("user-agent", "session-header")
+# The name `codex -p` takes for Codex CLI's profile over litellm.yaml, and so
+# the one id a row whose lane takes Codex's request cannot have: every other
+# Codex profile is named after its row.
+CODEX_LITELLM_PROFILE = "litellm"
 
 
 class ApiInfo(BaseModel):
@@ -602,6 +606,14 @@ class ApiInfo(BaseModel):
     # is invalid". The keyless probe asks again every run and says when it
     # changes, both ways. Written only where set.
     refuses_bearer: bool = Field(default=False, exclude_if=lambda v: not v)
+    # The lane takes the request Codex CLI sends, at base_url + /responses:
+    # Codex speaks only the OpenAI Responses API, and on 2026-09-27 Kilo's
+    # gateway answered it keyless while seventeen of the list's lanes answered
+    # 404. Set where a keyless call of that request completes, or where the
+    # vendor documents Codex; the row then gets a Codex profile of its own, and
+    # every run asks again — the whole request on a keyless lane, the route on a
+    # keyed one. Written only where set.
+    responses_api: bool = Field(default=False, exclude_if=lambda v: not v)
     note: str = ""
     # A lane that does not work as published right now, owned up to while the
     # list waits for the vendor (see Notice). Rendered under the README's
@@ -662,6 +674,25 @@ class ApiInfo(BaseModel):
         if self.refuses_bearer and self.auth != "none":
             raise ValueError("refuses_bearer is said of a keyless lane, and auth is not none — "
                              "a keyed lane is always called with a bearer token")
+        return self
+
+    @model_validator(mode="after")
+    def _responses_api_is_a_lane_codex_can_call(self) -> ApiInfo:
+        """The Responses API is OpenAI's; the profile names the first of
+        model_ids and the run calls it; and Codex sends no header of a vendor's
+        naming, so a lane that wants an id per conversation in one cannot take a
+        profile at all."""
+        if not self.responses_api:
+            return self
+        if not self.openai_compatible:
+            raise ValueError("responses_api is said of an OpenAI-shaped lane, and "
+                             "openai_compatible is false")
+        if not self.model_ids:
+            raise ValueError("responses_api needs a callable id: the Codex profile names the "
+                             "first of model_ids, and the run calls it")
+        if self.session_header:
+            raise ValueError("responses_api beside session_header: Codex sends no header of a "
+                             "vendor's naming, so no profile carries the id the lane asks for")
         return self
 
     @model_validator(mode="after")
@@ -1112,6 +1143,14 @@ class Entry(BaseModel):
             raise ValueError(
                 f"{self.id}: client_lane.model_ids are held to the lane an api-models probe "
                 "reads — name it in probe.lane, or read prices with require_zero_price")
+        return self
+
+    @model_validator(mode="after")
+    def _a_codex_profile_is_not_the_litellm_one(self) -> Entry:
+        if self.api and self.api.responses_api and self.id == CODEX_LITELLM_PROFILE:
+            raise ValueError(f"a row named {CODEX_LITELLM_PROFILE} that sets api.responses_api "
+                             "would have its Codex profile written over the one for LiteLLM — "
+                             "an id is its page's URL, so rename the LiteLLM profile")
         return self
 
     @model_validator(mode="after")
