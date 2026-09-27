@@ -6,7 +6,7 @@ import respx
 
 from freetier_radar.announce import (
     MAX_AGE_DAYS, POST_LIMIT, POSTS_PER_RUN, Bluesky, Mastodon, channels_from_env, compose,
-    event_key, link_facets, load_ledger, run, select,
+    event_key, half_configured, link_facets, load_ledger, run, select,
 )
 from freetier_radar.history import Event, EventType, append_history
 from freetier_radar.models import Entry, save_registry
@@ -185,6 +185,20 @@ def test_channels_need_both_halves_of_their_credentials():
     assert [c.name for c in channels_from_env({"MASTODON_BASE_URL": "https://m.example", "MASTODON_ACCESS_TOKEN": "t"})] == ["mastodon"]
     assert isinstance(channels_from_env({"BLUESKY_HANDLE": "h", "BLUESKY_APP_PASSWORD": "p"})[0], Bluesky)
     assert isinstance(channels_from_env({"MASTODON_BASE_URL": "https://m.example", "MASTODON_ACCESS_TOKEN": "t"})[0], Mastodon)
+
+
+def test_half_a_credential_is_said_so_in_the_run_log(tmp_path, capsys):
+    """Half a channel's credentials configures nothing, and the run's log says
+    which half is missing: a secret mistyped in the repository settings would
+    otherwise post nothing and look like a quiet week."""
+    assert half_configured({"BLUESKY_HANDLE": "h", "MASTODON_ACCESS_TOKEN": "t"}) == [
+        "announce: bluesky posts nothing — BLUESKY_HANDLE is set and BLUESKY_APP_PASSWORD is not",
+        "announce: mastodon posts nothing — MASTODON_ACCESS_TOKEN is set and MASTODON_BASE_URL "
+        "is not"]
+    assert half_configured({"BLUESKY_HANDLE": "h", "BLUESKY_APP_PASSWORD": "p"}) == []
+    run(tmp_path / "history.jsonl", tmp_path / "registry.yaml", tmp_path / "announced.jsonl",
+        {"BLUESKY_HANDLE": "h"})
+    assert "bluesky posts nothing" in capsys.readouterr().out
 
 
 def _digest_fixture(tmp_path: Path):

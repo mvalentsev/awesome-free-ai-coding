@@ -46,7 +46,8 @@ from .layout import MAP, Kind, node_for
 from .models import Entry
 
 __all__ = ["log_problems", "earned_problems", "message_problems", "history_problems", "page_problems",
-           "snapshot_index", "log_base", "committed_log", "pre_commit", "diff", "main"]
+           "snapshot_index", "snapshot_commit", "log_base", "committed_log", "pre_commit", "pre_push",
+           "diff", "main"]
 
 LOGS = tuple(n.path for n in MAP if n.kind is Kind.LOG)
 LOG_WRITERS = {n.path: n.written_by for n in MAP if n.kind is Kind.LOG}
@@ -137,9 +138,10 @@ def earned_problems(before: list[Entry], after: list[Entry]) -> list[str]:
         for field in EARNED:
             a, b = getattr(was, field), getattr(e, field)
             if a != b:
-                problems.append(f"registry: {e.id} {field} {a} → {b} — it is earned by the "
-                                "scheduled run (prober.apply_results); a commit made anywhere "
-                                "else leaves it as it is")
+                how = ("set once, the day the row entered" if field == "first_seen" else
+                       "earned by the scheduled run (prober.apply_results)")
+                problems.append(f"registry: {e.id} {field} {a} → {b} — it is {how}; a commit "
+                                "made anywhere else leaves it as it is")
     held = {e.id for e in after}
     problems += [f"registry: {i} is gone — a row leaves the list through the Archive, never the "
                  "file" for i in old if i not in held]

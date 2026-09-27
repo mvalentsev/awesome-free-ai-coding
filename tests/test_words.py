@@ -5,6 +5,8 @@ from freetier_radar.words import number, ordinal, series, weeks
 def test_a_figure_is_a_word_up_to_ten_and_digits_past_it():
     assert [number(n) for n in (1, 2, 10, 11)] == ["one", "two", "ten", "11"]
     assert [ordinal(n) for n in (1, 8, 12)] == ["first", "eighth", "12th"]
+    assert [ordinal(n) for n in (21, 22, 23, 24, 111, 112, 113, 101)] == [
+        "21st", "22nd", "23rd", "24th", "111th", "112th", "113th", "101st"]
 
 
 def test_a_span_is_weeks_where_it_is_whole_weeks():

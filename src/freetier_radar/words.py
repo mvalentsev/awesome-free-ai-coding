@@ -23,7 +23,11 @@ def number(n: int) -> str:
 
 
 def ordinal(n: int) -> str:
-    return _ORDINALS.get(n, f"{n}th")
+    """"eighth"; past ten as digits with their suffix — 21st, 112th."""
+    if n in _ORDINALS:
+        return _ORDINALS[n]
+    suffix = "th" if n % 100 in (11, 12, 13) else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
 
 
 def weeks(days: int) -> str:

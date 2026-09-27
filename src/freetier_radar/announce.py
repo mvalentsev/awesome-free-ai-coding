@@ -31,8 +31,9 @@ from .render import (CATEGORY_TITLES, EVENT_WORDS, REPO_URL, event_detail, picks
                      provider_page_url, providers_index_url)
 
 __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
-           "channels_from_env", "devto_from_env", "compose", "event_key", "link_facets",
-           "load_ledger", "append_ledger", "select", "build_digest", "digest_key", "run", "main"]
+           "CREDENTIALS", "channels_from_env", "half_configured", "devto_from_env", "compose",
+           "event_key", "link_facets", "load_ledger", "append_ledger", "select", "build_digest",
+           "digest_key", "run", "main"]
 
 # Older than this and an event is news to nobody: a channel switched on late
 # starts from the last two weeks, not from the first line of the log.
@@ -275,16 +276,31 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
     return title, "\n".join(out)
 
 
+# The two credentials each channel needs, both or neither.
+CREDENTIALS = {"bluesky": ("BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD"),
+               "mastodon": ("MASTODON_BASE_URL", "MASTODON_ACCESS_TOKEN")}
+
+
 def channels_from_env(env: dict) -> list:
     """A channel exists when both halves of its credentials do; half a
-    credential configures nothing, silently."""
+    credential configures nothing (see half_configured)."""
     channels: list = []
-    if env.get("BLUESKY_HANDLE") and env.get("BLUESKY_APP_PASSWORD"):
+    if all(env.get(name) for name in CREDENTIALS["bluesky"]):
         channels.append(Bluesky(env["BLUESKY_HANDLE"], env["BLUESKY_APP_PASSWORD"],
                                 env.get("BLUESKY_PDS") or "https://bsky.social"))
-    if env.get("MASTODON_BASE_URL") and env.get("MASTODON_ACCESS_TOKEN"):
+    if all(env.get(name) for name in CREDENTIALS["mastodon"]):
         channels.append(Mastodon(env["MASTODON_BASE_URL"], env["MASTODON_ACCESS_TOKEN"]))
     return channels
+
+
+def half_configured(env: dict) -> list[str]:
+    """A line for each channel with one of its two credentials set, which posts
+    nothing — said in the run's log, where a mistyped secret would otherwise
+    read as a quiet week."""
+    return [f"announce: {channel} posts nothing — {have} is set and {lack} is not"
+            for channel, pair in CREDENTIALS.items()
+            for have, lack in (pair, pair[::-1])
+            if env.get(have) and not env.get(lack)]
 
 
 def load_ledger(path: Path) -> set[tuple[str, str]]:
@@ -328,6 +344,8 @@ def run(history_path: Path, registry_path: Path, ledger_path: Path, env: dict,
     """Post what is due on every configured channel; return the ledger rows written."""
     now = now or datetime.now(timezone.utc)
     channels, devto = channels_from_env(env), devto_from_env(env)
+    for line in half_configured(env):
+        print(line)
     if not channels and devto is None:
         print("announce: no channel configured (BLUESKY_HANDLE + BLUESKY_APP_PASSWORD, "
               "MASTODON_BASE_URL + MASTODON_ACCESS_TOKEN, DEVTO_API_KEY) — nothing to post")

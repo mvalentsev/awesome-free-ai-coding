@@ -54,8 +54,10 @@ def test_a_probe_earned_field_is_never_typed():
         "registry: x probe_failures 1 → 0 —")
     assert earned_problems([row(provisional=True)], [row()])[0].startswith(
         "registry: x provisional True → False —")
-    assert earned_problems([row()], [row(first_seen=date(2026, 9, 2))])[0].startswith(
-        "registry: x first_seen 2026-09-01 → 2026-09-02 —")
+    # first_seen is no probe's: the row set it the day it entered
+    assert earned_problems([row()], [row(first_seen=date(2026, 9, 2))]) == [
+        "registry: x first_seen 2026-09-01 → 2026-09-02 — it is set once, the day the row "
+        "entered; a commit made anywhere else leaves it as it is"]
     assert earned_problems([row()], [row(offering="new words")]) == []
 
 
