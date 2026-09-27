@@ -27,8 +27,8 @@ import httpx
 
 from .history import Event, EventType, load_history
 from .models import Entry, is_archived, live_families, load_registry, probe_frequency
-from .render import (CATEGORY_TITLES, EVENT_WORDS, REPO_URL, event_detail, picks,
-                     provider_page_url, providers_index_url)
+from .render import (EVENT_WORDS, REPO_URL, event_detail, picks, provider_page_url,
+                     providers_index_url, sections)
 
 __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
            "CREDENTIALS", "channels_from_env", "half_configured", "devto_from_env", "compose",
@@ -259,10 +259,7 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
     else:
         out.append("Nothing moved: every row that was live is still live, and none changed its models.")
     out += ["", "## Every live offer", ""]
-    for cat, cat_title in CATEGORY_TITLES.items():
-        rows = sorted((e for e in active if e.category is cat), key=lambda e: (e.rank, e.name.lower()))
-        if not rows:
-            continue
+    for cat_title, rows in sections(active):
         out += [f"### {cat_title}", "", "| Offer | Free models | Card | Verified |", "|---|---|---|---|"]
         for e in rows:
             fams = ", ".join(f"`{f}`" for f in live_families(e)) or "—"

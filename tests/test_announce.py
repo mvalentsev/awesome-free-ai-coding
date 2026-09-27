@@ -188,6 +188,17 @@ def test_channels_need_both_halves_of_their_credentials():
     assert isinstance(channels_from_env({"MASTODON_BASE_URL": "https://m.example", "MASTODON_ACCESS_TOKEN": "t"})[0], Mastodon)
 
 
+def test_the_digest_lists_the_rows_in_the_order_every_page_does():
+    """The digest's tables follow the list's own order, the card tie rule
+    included: a row that needs a card never leads the no-card rows it ties with."""
+    from freetier_radar.announce import build_digest
+    rows = [entry(id="card", name="A Card", rank=5, card_required=True),
+            entry(id="free", name="B Free", rank=5)]
+    _, body = build_digest(rows, [], TODAY)
+    table = body.split("## Every live offer")[1]
+    assert table.index("[B Free]") < table.index("[A Card]")
+
+
 def test_half_a_credential_is_said_so_in_the_run_log(tmp_path, capsys):
     """Half a channel's credentials configures nothing, and the run's log says
     which half is missing: a secret mistyped in the repository settings would

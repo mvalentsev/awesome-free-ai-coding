@@ -52,7 +52,8 @@ __all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED
            "picks",
            "SITE_MODELS", "SITE_PAGE", "build_site_context", "render_site",
            "CONFIGS_README", "README_BUDGET", "render_configs_readme",
-           "render_readme", "render_artifacts", "render_all", "render_contributing", "main"]
+           "render_readme", "render_artifacts", "render_all", "render_contributing", "sections",
+           "main"]
 
 CATEGORY_TITLES: dict[Category, str] = {
     Category.AGENT_CLI: "🤖 Coding agents & CLIs",
@@ -187,6 +188,15 @@ def _by_rank(e: Entry) -> tuple[int, bool, str]:
 def _ordered(active: list[Entry], category: Category) -> list[Entry]:
     """One section of the list, in the order every page prints it."""
     return sorted((e for e in active if e.category is category), key=_by_rank)
+
+
+def sections(active: list[Entry]) -> list[tuple[str, list[Entry]]]:
+    """The list's non-empty sections as a page prints them: (title, rows), in
+    CATEGORY_TITLES' order, each section's rows in _ordered's. The README and
+    the site keep an empty section to count it; a page that only lists rows
+    reads these."""
+    return [(title, rows) for cat, title in CATEGORY_TITLES.items()
+            if (rows := _ordered(active, cat))]
 
 
 # What each event is called wherever a human reads it — the row's page, the
@@ -1520,10 +1530,7 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
         "key anyone may call it with. Offers the list carried and carries no more "
         "are listed last, under Archived, each with why it left.",
     ]
-    for category, title in CATEGORY_TITLES.items():
-        rows = _ordered(live, category)
-        if not rows:
-            continue
+    for title, rows in sections(live):
         lines += ["", f"## {_plain_title(title)}", ""]
         lines += [_llms_line(e) for e in rows]
     # The same rows turned inside out, for the question that starts from a
@@ -2358,10 +2365,7 @@ def build_providers_index(entries: list[Entry], today: date,
     pages = model_pages(entries, events or [], today) if pages is None else pages
     # A list per section rather than one table: a table with a run of models in
     # one cell stands wider than a phone.
-    for cat, title in CATEGORY_TITLES.items():
-        rows = _ordered(live, cat)
-        if not rows:
-            continue
+    for title, rows in sections(live):
         out += [f"## {title}", ""]
         for e in rows:
             fams = _row_models(e, pages)
