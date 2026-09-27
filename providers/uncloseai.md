@@ -23,7 +23,7 @@ The row names no free model family; the ids its lane serves, where the row has t
 
 ## Limits, in the vendor's words
 
-No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the page names three endpoints, of which one serves text today: hermes.ai.unturf.com/v1 answered a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1 answers 403 `Access denied - This endpoint is closed`. The served id is not the one the page's own examples call, and the vendor says so — "See our Model Discovery docs to query the current model IDs being hosted" — so the id lives in api.model_ids and the Free models column stays empty
+No quota is published anywhere on the site. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the page names three endpoints, and which of them serves text moves: hermes.ai.unturf.com/v1 answered a keyless chat completion on 2026-08-30 while qwen.ai.unturf.com/v1 answered 403 `Access denied - This endpoint is closed`, and on 2026-09-27 qwen answered one keyless with the same model while hermes had answered 502 since 2026-09-26. The served id is not the one the page's own examples call, and the vendor says so — "See our Model Discovery docs to query the current model IDs being hosted" — so the id lives in api.model_ids and the Free models column stays empty
 
 ## Where it is offered
 
@@ -31,24 +31,24 @@ The vendor names no country it keeps the offer from ([source](https://uncloseai.
 
 ## Connect
 
-- Base URL: `https://hermes.ai.unturf.com/v1`
+- Base URL: `https://qwen.ai.unturf.com/v1`
 - Key: none — the lane is anonymous
 - Callable ids: `turboderp/Qwen3.8-27B-exl3`
-- Note: anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoint is named after Hermes and serves a Qwen build today — so treat the id as this week's, not the offer. It stays out of the Models column: a family would name this week's model, and the catalog serving none of the row's families fails the row at the next rotation
+- Note: anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoints are named after Hermes and Qwen and the model moves between them — so treat the id as this week's, not the offer. It stays out of the Models column: a family would name this week's model, and the catalog serving none of the row's families fails the row at the next rotation
 
 Try it from your terminal — the lane takes no key:
 
 ```sh
-curl -s https://hermes.ai.unturf.com/v1/chat/completions \
+curl -s https://qwen.ai.unturf.com/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{"model":"turboderp/Qwen3.8-27B-exl3","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
-- Probe: the models catalog at <https://hermes.ai.unturf.com/v1/models>
+- Probe: the models catalog at <https://qwen.ai.unturf.com/v1/models>
 - Source: <https://uncloseai.com/>
-- Source: <https://hermes.ai.unturf.com/v1/models>
+- Source: <https://qwen.ai.unturf.com/v1/models>
 
 ## History
 
@@ -58,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

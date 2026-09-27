@@ -2020,18 +2020,19 @@ entries:
   - https://bazaarlink.ai/free
   - https://bazaarlink.ai/en/docs
   card_required: false
-  offering: OpenAI-compatible gateway to a 173-id catalog whose free page counts two
-    models on 2026-09-14, beside the auto:free router
-  limits: 'BazaarLink prints the figures on its free page: 10 requests per minute
-    and 50 per day, ×1 for an account without credit and ×2 for one that has topped
-    up, against the models it counts as free. Past the quota "requests on free-quota
-    models continue at the normal paid rate if you have credit; otherwise they are
-    rate-limited until the quota resets"; everything else in the catalog is metered
-    at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek
-    V4 Flash, under the catalog''s own id deepseek/deepseek-v4-flash-0731free:free,
-    described as "Rate-limited free tier." and listed on the free page as "Deepseek
-    V4 Flash 0731free" at $0 against $0.20/$0.40, beside a metered deepseek-v4-flash-0731free
-    twin at those rates'
+  offering: OpenAI-compatible gateway to a 128-id catalog whose free page counts two
+    models on 2026-09-27, beside the auto:free router
+  limits: 'BazaarLink prints the figures on its free page, one allowance shared across
+    the free models: "No credit: 10 RPM and 50 weighted units/day. With credit: 20
+    RPM and 100 weighted units/day." Where weighted limits are on, "Longer inputs
+    consume more daily units"; the counter resets at 00:00 UTC, beside a "Site-wide
+    free cap: 10 RPM" and "Concurrent free requests per account: 2". "After a limit,
+    paid use is possible only when fallback is enabled and the account has sufficient
+    credit"; everything else in the catalog is metered at list rates. The free ids
+    are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog''s
+    own id deepseek/deepseek-v4-flash-0731free:free, described as "Rate-limited free
+    tier." and listed on the free page as "Deepseek V4 Flash 0731free", priced $0
+    beside a metered deepseek-v4-flash-0731free twin at $0.20/$0.40. Read 2026-09-27'
   free_part: models
   models:
   - family: qwen3.7-flash
@@ -3000,7 +3001,6 @@ entries:
   source_urls:
   - https://docs.hetzner.com/general/company-and-policy/experiments/inference/
   - https://experiments.hetzner.com/inference
-  - https://inference.hetzner.com/api/v1/models
   card_required: false
   offering: OpenAI-compatible API on Hetzner's own EU hardware, free for as long as
     the experiment runs
@@ -3062,22 +3062,23 @@ entries:
   url: https://uncloseai.com
   source_urls:
   - https://uncloseai.com/
-  - https://hermes.ai.unturf.com/v1/models
+  - https://qwen.ai.unturf.com/v1/models
   card_required: false
   offering: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account
   limits: 'No quota is published anywhere on the site. The offer is a sentence — "we
     offer free AI services powered by multiple AI models and a TTS (text-to-speech)
     endpoint … embodying the principles of both free as in beer & free as in freedom"
-    — and the page names three endpoints, of which one serves text today: hermes.ai.unturf.com/v1
-    answered a keyless chat completion on 2026-08-30, while qwen.ai.unturf.com/v1
-    answers 403 `Access denied - This endpoint is closed`. The served id is not the
-    one the page''s own examples call, and the vendor says so — "See our Model Discovery
-    docs to query the current model IDs being hosted" — so the id lives in api.model_ids
-    and the Free models column stays empty'
+    — and the page names three endpoints, and which of them serves text moves: hermes.ai.unturf.com/v1
+    answered a keyless chat completion on 2026-08-30 while qwen.ai.unturf.com/v1 answered
+    403 `Access denied - This endpoint is closed`, and on 2026-09-27 qwen answered
+    one keyless with the same model while hermes had answered 502 since 2026-09-26.
+    The served id is not the one the page''s own examples call, and the vendor says
+    so — "See our Model Discovery docs to query the current model IDs being hosted"
+    — so the id lives in api.model_ids and the Free models column stays empty'
   free_part: models
   models: []
   api:
-    base_url: https://hermes.ai.unturf.com/v1
+    base_url: https://qwen.ai.unturf.com/v1
     auth: none
     openai_compatible: true
     model_ids:
@@ -3085,18 +3086,18 @@ entries:
     no_family_ids:
     - turboderp/Qwen3.8-27B-exl3
     note: 'anonymous: the catalog and chat/completions both answer with no Authorization
-      header at all. One id is served at a time and it rotates — the endpoint is named
-      after Hermes and serves a Qwen build today — so treat the id as this week''s,
-      not the offer. It stays out of the Models column: a family would name this week''s
-      model, and the catalog serving none of the row''s families fails the row at
-      the next rotation'
+      header at all. One id is served at a time and it rotates — the endpoints are
+      named after Hermes and Qwen and the model moves between them — so treat the
+      id as this week''s, not the offer. It stays out of the Models column: a family
+      would name this week''s model, and the catalog serving none of the row''s families
+      fails the row at the next rotation'
   border:
     left_out: []
     'on': '2026-09-26'
     source: https://uncloseai.com/terms-of-use.html
   probe:
     type: api-models
-    endpoint: https://hermes.ai.unturf.com/v1/models
+    endpoint: https://qwen.ai.unturf.com/v1/models
     keywords: []
     free_marker: ''
     dead_markers: []
@@ -3201,14 +3202,16 @@ entries:
     100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland,
     Australia, New Zealand, South Korea and much of Western and Northern Europe),
     and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks
-    buy 20 hours of GLM 5.3 Flash, Solar Mini 4 or the stealth Space Bunny Alpha,
-    whose "Anonymous provider retains prompts", 10 of DeepSeek V4.1 Flash or MiMo
-    2.6 Flash, or 6 of Muse Spark 1.2; they refill at midnight Pacific and do not
-    carry over. The rest of the picker is paid: "GPT-6 Luna and MiMo 2.6 Pro and Gemini
-    3.8 Flash are included with a paid plan". "Freebuff collects prompts, messages,
-    code, files, repository data, and agent traces when you use features that need
-    them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for
-    AI training". Read 2026-09-23'
+    buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of DeepSeek V4.1 Flash, MiMo
+    2.6 Flash or Solar Pro 4, 6 of Muse Spark 1.2, 5 of GPT-6 Luna or 3 of MiMo 2.6
+    Pro; they refill at midnight Pacific and do not carry over. The stealth Space
+    Bunny Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn''t
+    use your daily allowance". The table moves from week to week — on 2026-09-23 GPT-6
+    Luna and MiMo 2.6 Pro came only with a paid plan — and now "Gemini 3.8 Flash is
+    included with a paid plan". "Freebuff collects prompts, messages, code, files,
+    repository data, and agent traces when you use features that need them", and DeepSeek
+    V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Read
+    2026-09-27'
   free_part: models
   models:
   - family: glm-5.3-flash
@@ -3917,8 +3920,8 @@ entries:
   - https://routerplex.com/terms
   - https://docs.routerplex.com/claude-code
   card_required: false
-  offering: A one-time $1 of free credit on a prepaid reseller that bills 56 models
-    at catalog rates with 0% markup, no card — one key on both wires, OpenAI-compatible
+  offering: A one-time $1 of free credit on a prepaid reseller that bills its catalog
+    at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible
     Chat Completions and an Anthropic Messages base Claude Code takes as it is
   limits: 'The home page: "Get $1 in free credit", granted "once during key creation,
     not immediately after signup" to an account with "no previous paid top-up, no
@@ -3931,10 +3934,10 @@ entries:
     account makes its first paid top-up, promotional credit may be usable only with
     a subset of models and at reduced rate limits", "no promotional credit is guaranteed",
     and one account per person. Which models the subset holds is on no page. Continuing
-    costs a top-up "from $5 by card or $12 by crypto". No legal entity is named on
+    costs a top-up "from $5 by card or $15 by crypto". No legal entity is named on
     /terms or /about, and /v1/models answers 403 without a key, so nothing here is
     read off the catalog. A connection test with a little work in it, one step above
-    the smallest trial on this list. Read 2026-09-18'
+    the smallest trial on this list. Read 2026-09-27'
   free_part: unnamed
   models: []
   api:
@@ -4318,13 +4321,14 @@ entries:
     or retired". "Your first free request starts a personal rolling 7×24-hour period;
     it is not tied to a calendar week or midnight UTC. The allowance is measured by
     the list-price value of the work rather than a fixed number of requests" — no
-    figure is published, and the dashboard shows only a percentage. "No per-minute
-    request cap"; "Free routes stop accepting new requests when the period allowance
-    is exhausted", and "Free routes never charge your balance". "No card required".
-    "Free routes are disabled by default" until you consent to them, "Token Harbor
-    may retain prompts and responses sent through explicit free routes after you opt
-    in", and "Upstream providers separately process free-route content under their
-    own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-18'
+    figure is published, and the dashboard shows only a percentage. There is "No separate
+    per-minute cap on free models — only the free-account API limit of 60 requests/minute
+    and 1,800/hour applies"; "Free routes stop accepting new requests when the period
+    allowance is exhausted", and "Free routes never charge your balance". "No card
+    required". "Free routes are disabled by default" until you consent to them, "Token
+    Harbor may retain prompts and responses sent through explicit free routes after
+    you opt in", and "Upstream providers separately process free-route content under
+    their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-27'
   free_part: models
   models:
   - family: deepseek-v4.1-flash
@@ -5876,6 +5880,7 @@ entries:
   - https://llmtech.eu/security/
   - https://llmtech.eu/about/
   - https://api.llmtech.eu/v1/models
+  - https://llmtech.eu/pricing/
   card_required: false
   offering: 'EU provider of one model whose quickstart prints a shared trial key for
     anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included,
@@ -5883,13 +5888,14 @@ entries:
   limits: 'The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent
     requests and 2M tokens per day per address, counted across prompt and completion
     and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal
-    key — "64 concurrent and no daily limit" — is paid per token and asked for by
-    email. The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context,
-    tool calling, structured outputs and image input. Prompts and completions are
-    held in "volatile memory only — never persisted" and never trained on; metadata,
+    key "with no daily limit is issued the same day" by email, paid "Per token. No
+    subscription, no minimums", and "it shares the endpoint''s 64 requests in flight
+    with other keys". The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token
+    context, tool calling, structured outputs and image input. Prompts and completions
+    are held in "volatile memory only — never persisted" and never trained on; metadata,
     the source IP among it, is kept 13 months as billing evidence. The operator is
     one person, Artem Burei, trading as a sole proprietorship in Poland, serving since
-    22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-23'
+    22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27'
   free_part: models
   models:
   - family: qwen3.8-27b

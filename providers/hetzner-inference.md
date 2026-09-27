@@ -54,7 +54,6 @@ curl -s https://inference.hetzner.com/api/v1/chat/completions \
 - Probe: the page at <https://docs.hetzner.com/general/company-and-policy/experiments/inference/>, anchored on `remains in experimental status, it is free of charge`, `https://inference.hetzner.com/api/v1`
 - Source: <https://docs.hetzner.com/general/company-and-policy/experiments/inference/>
 - Source: <https://experiments.hetzner.com/inference>
-- Source: <https://inference.hetzner.com/api/v1/models>
 
 ## History
 
@@ -65,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-26 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-27 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

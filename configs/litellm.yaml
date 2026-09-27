@@ -1412,7 +1412,7 @@ model_list:
 - model_name: uncloseai/turboderp/Qwen3.8-27B-exl3
   litellm_params:
     model: openai/turboderp/Qwen3.8-27B-exl3
-    api_base: https://hermes.ai.unturf.com/v1
+    api_base: https://qwen.ai.unturf.com/v1
     api_key: none
 - model_name: pollinations/gpt-oss-20b
   litellm_params:
@@ -1827,7 +1827,7 @@ model_list:
 - model_name: free/nokey
   litellm_params:
     model: openai/turboderp/Qwen3.8-27B-exl3
-    api_base: https://hermes.ai.unturf.com/v1
+    api_base: https://qwen.ai.unturf.com/v1
     api_key: none
   model_info:
     allowed_fails_policy:
