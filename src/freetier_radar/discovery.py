@@ -4,10 +4,12 @@ Sources, each optional and independent:
 - Tavily search                 (needs TAVILY_API_KEY)
 - Hacker News via Algolia       (keyless)
 - GitHub repository search      (keyless; GITHUB_TOKEN raises rate limits)
-- Curated awesome-list feeds    (keyless raw markdown)
+- Curated awesome-list feeds    (keyless raw files on GitHub)
+- models.dev catalog digest     (keyless)
 
 A source that has no key or errors out contributes nothing instead of failing
-the run, so the scout always gets the best evidence available.
+the run, so the scout always gets the best evidence available. Entry point:
+`gather_evidence`, rendered for the prompt by `format_evidence`.
 """
 from __future__ import annotations
 
@@ -19,9 +21,7 @@ from urllib.parse import urlparse
 
 import httpx
 
-# Lives with the model layer, which is where the registry's own idea of "a host
-# we already carry" belongs; re-exported here because every caller and test has
-# always reached for it through this module.
+# Defined in models.py; scout and the tests import domain_of from here.
 from .models import domain_of, is_covered  # noqa: F401
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
@@ -29,122 +29,52 @@ UA = {"User-Agent": "freetier-radar/0.2"}
 
 # The lists read on every run. Their opposite is sources.yaml: lists read once
 # and put down, with the date and the reason. A candidate feed belongs in one
-# file or the other, never both — freetier-check enforces exactly that.
+# file or the other, never both — freetier-check enforces that.
 # A feed on GitHub is read at HEAD, the branch its repository calls its own,
 # never at a branch named here: a project can move its work to another branch
-# and leave the named one standing, answering 200 with an old file (OmniRoute,
-# below).
+# and leave the named one standing, answering 200 with an old file (see
+# test_every_github_feed_is_read_at_the_branch_its_repository_works_on). A
+# fragment names the section of the file that is the list — see _section_bounds.
 CURATED_FEEDS = [
-    # cheahjs/free-llm-api-resources was here until 2026-08-11, when the repo
-    # turned out to be gone — GitHub 404s it, so raise_for_status dropped the
-    # feed on every run and nobody noticed. The one list still carrying that
-    # name (nherx/free-llm-api-resources) is a 6KB stub whose only links are
-    # "Download Latest Release" and "Report Issues", so it is not a successor.
-    # sourcegraph/awesome-code-ai followed it on 2026-09-21: archived on GitHub
-    # since February, read twice a week for seven months after its last change.
-    # It is in sources.yaml now, with what its last read found.
     # One entry per provider with its free tier in a phrase and its sign-up URL,
-    # generated from the project's own catalog (sources.js) by its own script.
-    # The feed read sources.js itself until 2026-09-21: 68,531 characters of
-    # per-model rows by then, of which the excerpt kept 29%, and the provider map
-    # the 2026-08-14 cut was measured for no longer sat at the end. This page is
-    # 8,690 characters and names all 24 providers, and what the catalog has
-    # REMOVED and why. Leads only, like the rest — it carried "1M tokens/day" for
-    # Cerebras while cerebras.ai/pricing said $5 in credits, and "daily Pollen
-    # grants" for Pollinations after the vendor's docs had made that balance
-    # Quest Pollen.
+    # generated from the project's own catalog (sources.js) by its own script,
+    # and what the catalog has removed and why. Leads only, like the rest.
     "https://raw.githubusercontent.com/vava-nessa/free-coding-models/HEAD/docs/providers.md",
     # Leads only: OmniRoute tracks free tiers aggressively but also ships spoofed
     # "no auth" channels for proprietary CLIs — claims still need official-page proof.
-    # This was docs/getting-started/PROVIDERS-GUIDE.md until 2026-08-30, when both
-    # files were measured against each other: the guide is a how-to that names one
-    # provider id in 13161 characters, while FREE_TIERS.md is the file the project
-    # edits when a free tier moves — 104 provider ids with a free type, a monthly
-    # figure and a ToS flag each, of which 70 survive the 20000-character excerpt,
-    # and the ones the cut loses are almost all already carried here. Its prose
-    # half is the useful half twice over: it names what it has just REMOVED
-    # (chutes, phind, kluster, aimlapi, yi) as well as what it has just added,
-    # which is the half a list normally leaves out.
-    # Read from its per-provider table on since 2026-09-14. By then the served file
-    # was 48,843 characters and both ends of the excerpt were prose — TL;DR and
-    # methodology at the head, the changelog's tail and a glossary at the end —
-    # while the table (from character 24,368) sat in the elided middle, so the
-    # scout had never seen the rows that made this a feed. The LLM vendors those
-    # rows and the changelog name without a verdict here got one the same day.
-    # Read at HEAD since 2026-09-21. OmniRoute works on a release branch that is
-    # also its default (release/v3.8.51 that day), and the main this URL named
-    # had stopped at the copy dated 2026-07-31: 48,843 characters against the
-    # default branch's 56,556, so every run read July's table. The gap measured
-    # on 2026-09-14 — 48,843 served, 55,699 in a clone — was that branch, not
-    # the network: a clone checks out the default branch. The read stops before
-    # the glossary: the table and the notes on what changed are 23,961 characters,
-    # 16% of them elided.
+    # FREE_TIERS.md is the file the project edits when a free tier moves: a row per
+    # provider with a free type, a monthly figure and a ToS flag, and notes on what
+    # it has just removed as well as added. Read from its per-provider table up to
+    # the glossary; the head is methodology.
     "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/HEAD/docs/reference/FREE_TIERS.md#per-provider-free-tier:glossary",
-    # A directory rather than a router: 30 providers in one table with a free-model
+    # A directory rather than a router: one table of providers with a free-model
     # count and a "Credit Card?" column per row, regenerated daily from freellm.net.
-    # The card column is the only machine-readable answer to that question anywhere
-    # in these feeds. Leads only — the same table still lists GitHub Models, retired
-    # 2026-07-30, and credits LLM7 with 15 free models when its catalog has none.
-    # Read from its provider directory to its per-model catalog since 2026-09-21:
-    # the file had grown to 37,578 characters, the head was spending 6,600 of the
-    # excerpt on a pitch and SDK snippets, and the directory and its base-URL
-    # table ran past it. Those two are 10,110 characters and reach the scout whole.
+    # Leads only. Read from its provider directory up to its per-model catalog: the
+    # directory and its base-URL table sit between a pitch and that catalog.
     "https://raw.githubusercontent.com/open-free-llm-api/awesome-freellm-apis/HEAD/README.md#provider-directory:best-free-models",
     # A router's own list of the providers it takes keys for: one line each with a
     # label that says what the free offer is ("daily free-model quota", "shared
     # monthly credits", "$5 monthly with payment method") and the page that issues
-    # the key, about sixty in 8,846 characters. Until 2026-09-21 the feed read
-    # server/src/providers/index.ts, which had been the base-URL table when it was
-    # adopted; the project has since moved every gateway with an adapter of its
-    # own into a module of its own, and index.ts named those only as class names —
-    # twelve providers, Sail Research, ACLIDE and CLōD among them, that no run
-    # ever saw a host for. Leads only, and for the most opinionated router here
-    # that cuts both ways. It said SambaNova's free tier was "permanently gone"
-    # while docs.sambanova.ai still keyed a Free Tier to "no payment method
-    # linked with your account" (checked 2026-08-06 and again 2026-08-14) — and
-    # it was right: the console's plans page had asked every new account for a
-    # card and a credit purchase since 2026-08, and the row came off on
-    # 2026-09-23. It also credited AINative with "a recurring ~10M tokens/month
-    # free allocation" that ainative.studio/pricing contradicts on its own page.
-    # Read a lead against the page where the plan is sold, not the docs about it.
+    # the key. Leads only, and opinionated: read a lead against the page where the
+    # plan is sold, not the docs about it.
     "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/client/src/components/keys/shared.tsx",
-    # The only feed here that looks east: of the nine providers it carries that
-    # nothing in this repository had a verdict on, seven appear in none of the
-    # five feeds above — Intern AI, SenseNova, iFlytek Spark, Inception Labs and
-    # three small Chinese resale gateways. Measured 2026-08-14 against all five.
-    # Its own criterion is "limit request rate rather than token count", which is
-    # why it surfaces recurring lanes rather than credit grants, and it accepts
-    # OpenAI-format APIs only, so every row arrives with a base URL.
-    # Leads only, and this one needs it twice over: its table is LLM-generated by
-    # the maintainer's own admission, one row names a domain that has never
-    # resolved (api.celebras.ai, a typo for Cerebras), and it lists gateways
-    # serving gpt-5.x and claude-* "free" — one of which, G4F, is already
-    # blocklisted here. It also credits Cerebras with a free lane at 30 RPM /
-    # 900 RPH / 1440 RPD: neither figure occurs anywhere on
-    # inference-docs.cerebras.ai/support/rate-limits, which on 2026-08-14 read
-    # 5 RPM / 30K TPM for the same models and answered its own question with
-    # "Is there a permanently free tier? No."
+    # It looks east: Chinese providers such as Intern AI, SenseNova and iFlytek
+    # Spark. Its criterion is "limit request rate rather than token count", so it
+    # surfaces recurring lanes rather than credit grants, and it takes
+    # OpenAI-format APIs only, so every row arrives with a base URL. Leads only,
+    # twice over: the maintainer says the table is LLM-generated, and it lists
+    # gateways serving gpt-5.x and claude-* "free", G4F (blocklisted here) among them.
     "https://raw.githubusercontent.com/for-the-zero/Free-LLM-Collection/HEAD/README.md",
-    # Read once on 2026-08-14 and declined — sources.yaml carried the verdict, and
-    # its reopen_if named the test it would have to pass: "its submissions start
-    # surfacing providers the six curated feeds do not carry." On 2026-08-30 it
-    # did. Its table had grown from 35 providers to 40 and one of the new rows is
-    # Hetzner's Inference API, which appears in none of the six feeds above and in
-    # no other list of the fourteen re-read that day. It keeps a "Credit Card?"
-    # column and a base URL per row, so a lead arrives here already shaped like an
-    # entry. Leads only, and this one has earned the warning: the Hetzner row it
-    # was promoted for prints limits the vendor's own docs contradict — "3M input
-    # / 60K output tokens per 60s" and a 24h row that does not exist, where
-    # docs.hetzner.com reads 4M / 100k per 60s and 10 requests per 60s.
-    # Read from its provider directory to its guides since 2026-09-21, when the
-    # whole file was 23,702 characters and the cut fell inside its base-URL table;
-    # the directory and that table are 13,441 and reach the scout whole.
+    # A "Credit Card?" column and a base URL per row, so a lead arrives already
+    # shaped like an entry. Leads only: its limits can contradict the vendor's own
+    # docs. Read from its provider directory up to its guides, which takes in the
+    # directory and its base-URL table.
     "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory:guides",
 ]
 
-# A machine catalog rather than a list: 185 providers, one object per model with
-# a published cost, maintained for the opencode/models.dev ecosystem. Read as a
-# digest instead of a feed — see models_dev_digest.
+# A machine catalog rather than a list: one object per model with a published
+# cost, maintained for the opencode/models.dev ecosystem. Read as a digest
+# instead of a feed — see models_dev_digest.
 MODELS_DEV_URL = "https://models.dev/api.json"
 MODELS_DEV_MAX_PROVIDERS = 50
 MODELS_DEV_CAVEAT = (
@@ -163,10 +93,7 @@ LOCAL_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0", "[::1]", "::1"}
 
 # A catalog entry whose only URL is a package page or a repository names a
 # client, not a vendor: nothing on these hosts can be matched to a registry
-# domain or probed as an offer. Measured 2026-09-05 over the 72 providers with
-# a zero-cost row: two — qvac, an npm package that spawns a local `qvac serve`,
-# and vercel, whose doc URL is a GitHub repo while the gateway itself is a row
-# this registry already carries and kept being proposed back.
+# domain or probed as an offer.
 CODE_HOSTS = {"github.com", "npmjs.com", "pypi.org"}
 
 NOISE_DOMAINS = {
@@ -175,18 +102,11 @@ NOISE_DOMAINS = {
 }
 
 PAGE_TEXT_LIMIT = 5000
-# Raised from 12000 on 2026-08-11. A code-shaped feed appends: the provider
-# added last sits at the bottom of the file, so the cut was landing exactly on
-# the newest leads — 12000 chars of freellmapi's table carried 16 of its 25
-# gateways and dropped Requesty, NavyAI, NaraRouter and SEA-LION, the four worth
-# reading. 20000 costs ~15K more characters across all four feeds together.
-# It stays at 20000: the cut moved to both ends of the file instead (see
-# _feed_excerpt), which covered the same blind spot without buying more prompt.
+# The characters of a feed's section that reach the prompt; a longer section
+# loses its middle (see _feed_excerpt).
 FEED_TEXT_LIMIT = 20000
 # Past this share of a feed's section falling in the elided middle, the run says
-# so. The excerpt's two ends were chosen for the files as they were; a list that
-# grows keeps its head and tail and loses its middle without a sound — 71% of
-# free-coding-models' catalog by 2026-09-21.
+# so: a list that grows keeps its head and tail and loses its middle unseen.
 FEED_ELIDED_WARN = 0.25
 
 
@@ -216,11 +136,9 @@ class Evidence:
         return not (self.hits or self.pages or self.feeds or self.digests)
 
     def describe_providers(self) -> str:
-        """Every source that answered, a search with the hits it kept.
-
-        A source is listed when it answers, before the filter decides what to
-        keep, so on its own the list read "tavily, hn, github" for two months in
-        which the GitHub search had given the model nothing."""
+        """Every source that answered, a search with the hits it kept: a source
+        is listed when it answers, before the filter decides what to keep, so
+        its name alone does not say the model got anything from it."""
         kept: dict[str, int] = {}
         for h in self.hits:
             kept[h.source] = kept.get(h.source, 0) + 1
@@ -279,19 +197,10 @@ def github_search(client: httpx.Client, query: str, token: str | None = None,
 def _feed_excerpt(text: str, limit: int = FEED_TEXT_LIMIT) -> str:
     """A window on a feed too long to send whole, taken from both of its ends.
 
-    Head-first was already known to cut the newest leads off an append-shaped
-    file, which is why the limit was raised on 2026-08-11. Measuring the feeds
-    again on 2026-08-14 showed the head is not simply the better half either:
-    free-coding-models keeps its provider-to-endpoint map in the last 5005
-    characters of `sources.js`, so reading 20000 from the top named 9 of its 20
-    providers and not one endpoint. Both ends of the same budget name all 20
-    with their endpoints, and the only other oversized feed lost no row it had
-    under the old cut.
-
-    The middle is what goes, and on these files the middle is per-model rows for
-    providers both ends already name. The cut is marked rather than silent: a
-    feed that reads as one continuous document invites the scout to conclude
-    things about a list it has only seen the ends of.
+    Three quarters from the head and one from the tail, since an append-shaped
+    file keeps its newest leads at the bottom. The middle is what goes, and the
+    cut is marked so the scout does not read the excerpt as one continuous
+    document.
     """
     if len(text) <= limit:
         return text
@@ -308,25 +217,16 @@ def _slug(heading: str) -> str:
 def _section_bounds(text: str, url: str) -> tuple[int, int] | None:
     """Where the section a feed's fragment names begins and ends: the whole file
     for a feed without a fragment, None for one whose start heading the file no
-    longer carries.
+    longer carries (`_read_feed` then reads the whole file and says so).
 
-    Both ends of a long file are not always where its leads are. OmniRoute's
-    FREE_TIERS.md opens with fifteen thousand characters of methodology and
-    closes on a glossary, and the per-provider table sat at character 31,042 of
-    55,699 — inside the elided middle on every run until 2026-09-14. A fragment
-    is how a feed says which section is the data, and it costs nothing: the
-    fetch drops it, and `_source_key` never read it. A heading is matched as a
-    prefix of its anchor, so a date the project appends to the title does not
-    break the match; a start heading that is gone falls back to the whole file,
-    and `_read_feed` says so.
-
-    `#from:until` also names where the list ends — the first heading after the
-    start whose anchor begins with `until`. A GitHub anchor carries no colon, so
-    the pair cannot be read as one heading. awesome-freellm-apis needs it: its
-    directory and base-URL table sit between a pitch and a per-model catalog
-    longer than both, and read from the directory on, 35% of it still fell in
-    the elided middle (2026-09-21). An end the file no longer carries reads on
-    to the end of the file, which the elision warning then measures."""
+    A fragment is how a feed says which section is the list when both ends of a
+    long file are prose; the fetch drops it and `_source_key` ignores it. A
+    heading is matched as a prefix of its GitHub anchor, so a date the project
+    appends to the title does not break the match. `#from:until` also names
+    where the list ends: the first heading after the start whose anchor begins
+    with `until` (an anchor carries no colon, so the pair cannot be read as one
+    heading). An end the file no longer carries reads on to the end of the file,
+    which the elision warning then measures."""
     fragment = urlparse(url).fragment.lower()
     if not fragment:
         return 0, len(text)
@@ -351,15 +251,10 @@ def _feed_name(url: str) -> str:
 
 
 def _read_feed(client: httpx.Client, feed: str, env: Mapping[str, str]) -> tuple[str | None, list[str]]:
-    """The excerpt of one curated feed the scout reads, and what is wrong with it.
-
-    Every way a feed has failed here failed without a sound. cheahjs's list
-    answered 404 on every run for weeks, dropped by a bare `continue`;
-    OmniRoute's table grew into the excerpt's elided middle; free-coding-models
-    grew until the scout saw 29% of it; sourcegraph's list sat archived for seven
-    months, answering 200 with a file that could not change. None of it is worth
-    failing a run over, and all of it is worth one line in the log saying what
-    to do about it."""
+    """The excerpt of one curated feed the scout reads, and what is wrong with it:
+    a feed that could not be read, a start heading gone, more than
+    FEED_ELIDED_WARN of its section elided, or an archived repository. None of
+    these fails the run; each is a line in the log saying what to do about it."""
     name = _feed_name(feed)
     try:
         r = client.get(feed)
@@ -421,11 +316,8 @@ def _timeout_within(left: float | None) -> httpx.Timeout:
 # What a reader never sees and a model should not be fed: the site's menus and
 # footer, stylesheets, the JavaScript-required notice, and scripts — except
 # JSON-LD, which is page content in a structured coat (Freebuff publishes its
-# FAQ there and nowhere else). Measured 2026-09-02 over the 45 live rows' first
-# source urls: script blocks were a median 30% of the raw HTML and 98% of the
-# worst page, and PAGE_TEXT_LIMIT was being spent on them and on the menus —
-# the retirement sweep's one signal was the word "Deprecations" in
-# ai.google.dev's sidebar, while three mentions in body text sat past the cap.
+# FAQ there and nowhere else). Left in, they spend PAGE_TEXT_LIMIT before the
+# body text, and a sidebar word can trip the retirement sweep.
 _NOISE_BLOCK = re.compile(r"<(script|style|nav|footer|noscript)\b[^>]*>.*?</\1\s*>", re.S | re.I)
 _LD_JSON = re.compile(r"""type\s*=\s*["']?application/ld\+json""", re.I)
 
@@ -450,11 +342,10 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
     """GET each URL, strip tags, collapse whitespace. Failures become empty strings.
 
     `time_left` returns the seconds the run has left (`Deadline.remaining`). Given
-    one, the loop stops rather than starting a fetch it cannot afford: ten
-    arbitrary hosts at 30 seconds of read timeout each is five minutes of run
-    riding on strangers' uptime. A URL left unfetched is simply absent from the
-    result — every caller already reads it with `.get(url, "")`, and claiming an
-    empty page would be claiming we looked.
+    one, the loop stops rather than starting a fetch it cannot afford, and each
+    fetch's timeout is capped by what is left. A URL left unfetched is absent
+    from the result — callers read it with `.get(url, "")` — since an empty
+    string would claim the page was read.
     """
     own = client is None
     client = client or httpx.Client(timeout=TIMEOUT, follow_redirects=True, headers=UA)
@@ -466,10 +357,8 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
                 break
             try:
                 r = client.get(u, timeout=_timeout_within(left))
-                # A catalog answers JSON, and JSON is not HTML: a "<" in one
-                # model's description is where the tag stripper would start
-                # eating, and Pollinations' 20-kilobyte catalog came back as
-                # 286 characters.
+                # A catalog answers JSON, which the tag stripper would eat from
+                # the first "<" in a model's description on.
                 is_json = "json" in r.headers.get("content-type", "").lower()
                 text = re.sub(r"\s+", " ", r.text) if is_json else page_text(r.text)
                 out[u] = text[:limit]
@@ -487,15 +376,11 @@ def models_dev_digest(client: httpx.Client, known_domains: set[str],
     """Providers on models.dev carrying at least one zero-cost row, minus the ones
     already answered by the curated files.
 
-    Not a feed: 3.7 MB and 185 providers cannot go in a prompt, and would be
-    mostly prices for models nobody here is looking for. What survives the read
-    is the one question this project asks — which vendor publishes a row at
-    zero — as a line per provider with the endpoint to probe. Measured
-    2026-08-14: 46 unknown providers, 6075 characters.
-
-    A zero here is a lead and never evidence, which the digest says out loud
-    because two failure modes were verified the day it was written and neither
-    is visible in the number itself.
+    Not a feed: the whole catalog is megabytes of prices and cannot go in a
+    prompt. What survives is the one question this project asks — which vendor
+    publishes a row at zero — as a line per provider with the endpoint to
+    probe, most zero-cost rows first, capped at `max_providers`. A zero is a
+    lead and never evidence, which MODELS_DEV_CAVEAT says to the model.
     """
     try:
         r = client.get(url)
@@ -567,22 +452,13 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
     vendor is noise. `answered_domains` is the watchlist's current verdicts and
     the blocklist, and they leave only the models.dev digest — a zero there is a
     lead, and these are leads a human already followed to a written answer.
-    Measured 2026-09-05: 27 of the digest's 44 lines were such, 8,820 characters
-    of prompt down to 3,976 without them, and at fifty lines the cut would have
-    fallen on an unanswered provider first. Search hits about the same vendors
-    stay in, because a `reopen_if` waits on exactly that kind of fresh evidence.
+    Search hits about the same vendors stay in, because a `reopen_if` waits on
+    exactly that kind of fresh evidence.
 
-    `time_left` returns the seconds this phase may still spend. It exists because
-    the phase runs before the first LLM call and used to be bounded only by the
-    per-request timeouts: a typical run gathers everything in ~20 seconds, but
-    three searchers over five queries plus ten pages plus the feeds can hold the
-    line open for the better part of an hour, and the run's whole budget with it.
-    Every phase after this one would then report "skipped" while the workflow
-    reported success — nothing found, nothing wrong, nothing to see.
-
-    Running out is not an error: what has been gathered is returned and the scout
-    reasons over that. The clock is read between calls, so the phase can overrun
-    by at most the one request already in flight.
+    `time_left` returns the seconds this phase may still spend (see
+    `scout.Deadline.share`). Running out is not an error: what has been gathered
+    is returned and the scout reasons over that. The clock is read between
+    calls, so the phase can overrun by at most the one request already in flight.
     """
     ev = Evidence()
     own = http is None

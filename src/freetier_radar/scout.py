@@ -15,8 +15,6 @@ import httpx
 import yaml
 
 from .discovery import Evidence, domain_of, fetch_page_texts, format_evidence, gather_evidence
-# The curated-file loaders live in models.py; re-exported here because this is
-# where callers and tests have always reached for them.
 from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Watched,
                      is_archived, is_blocked, is_covered, is_source_current,
                      is_watch_current, known_domains, load_blocklist, load_dismissed,
@@ -51,48 +49,31 @@ OVH_PREFERRED_HINTS = ("gpt-oss", "qwen3")
 RETRY_429_ATTEMPTS = 3
 RETRY_429_SLEEP = 20.0
 
-# Read timeout per backend call. The discovery prompt runs to ~78k characters
-# (~20k tokens) on a real evidence set, and a reasoning model can spend minutes
-# on it: measured 2026-08-03, minimax-m3 answered in 88s, gpt-oss:120b in 33s,
-# deepseek-v4-flash-free peaked at 202s, and nemotron-3-ultra — the scout's
-# primary model until that day — did not answer within 600s at all. Under the
-# old 90s it timed out on every scheduled run, silently, until the chain
-# started logging failures. The run is twice a week, so waiting is cheap and
-# the ceiling sits well above the slowest backend we would actually use.
+# Read timeout per backend call. The discovery prompt runs to ~20k tokens, and a
+# reasoning model can spend minutes on it (the slowest measured answer took
+# 202s); the run is twice a week, so waiting is cheap.
 LLM_READ_TIMEOUT = 300.0
 
-# Wall-clock ceiling for one backend call, which the read timeout above is not:
-# httpx restarts its clock on every byte received, so a backend that trickles
-# output holds the call open indefinitely. That is not theory — on 2026-08-03
-# OpenRouter streamed for ~9 minutes inside a 90-second timeout and then handed
-# over a truncated body. The ceiling sits above the slowest measured answer
-# (202s) with room to spare, and turns a trickle into a failure the chain can
-# step over.
+# Wall-clock ceiling for one backend call, which the read timeout is not — see
+# `LLMClient._post`. It sits well above the slowest measured answer.
 LLM_CALL_DEADLINE = 420.0
 
-# Wall-clock budget for the whole scout run. Four LLM phases over a five-backend
-# chain can multiply into hours of a job nobody is watching, and the scout is
-# the optional half of the run: a phase that has run out of time is worth
-# skipping, never worth hanging for. Overridable via SCOUT_DEADLINE_SECONDS.
+# Wall-clock budget for the whole scout run: four LLM phases over a five-backend
+# chain could otherwise run for hours, and the scout is the optional half of the
+# run, so a phase out of time is skipped. Overridable via SCOUT_DEADLINE_SECONDS.
 SCOUT_DEADLINE_SECONDS = 1800.0
 
-# The share of that budget the evidence phase may spend before the first LLM call.
-# Measured 2026-08-14 on a keyless run: two searchers 4.8s, ten page fetches 13.4s,
-# five curated feeds 1.2s — 19.5s all told. The ceiling is 22x that on the default
-# budget, so it can only ever fire on a hang, not on a slow-but-working run. Left
-# uncapped the same phase can hold the line for ~1100s of its own accord, and it
-# is spending the LLM phases' time to do it.
+# The share of what is left of that budget the evidence phase may spend before
+# the first LLM call (see `Deadline.share`). A working keyless run gathers its
+# evidence in ~20s, so the cap only ever fires on a hang.
 EVIDENCE_BUDGET_FRACTION = 0.25
 
 # Listing a backend's models is a small GET and must not inherit the long read
 # timeout meant for generation.
 MODELS_LIST_TIMEOUT = 30.0
 
-# What an OpenAI-compatible endpoint answers about a model it no longer serves.
-# opencode Zen returned 400 for deepseek-v4-flash-free on 2026-08-31, eleven
-# days after moving that id off its free pricing table; 404 is the same news
-# from a stricter router. Both say "not this model", never "not this endpoint",
-# which is why they cost a candidate rather than the whole backend.
+# What an OpenAI-compatible endpoint answers about a model it no longer serves:
+# 400 (opencode Zen) or 404 (a stricter router). See `LLMClient._chat_any`.
 BAD_MODEL_STATUS = (400, 404)
 
 # How much of a refusal's body is read, and how much of the vendor's sentence
@@ -106,11 +87,10 @@ REFUSAL_REASON_CHARS = 200
 RETIREMENT_PAGE_CHARS = 2500
 MIN_QUOTE_CHARS = 25
 
-# Only pages carrying one of these reach the LLM. Feeding all 30 live pages in
-# cost ~20k tokens for a question that is almost always "no" — and a prompt that
-# large can exceed a backend's context, failing the whole scout run over an
-# optional sweep. The words are deliberately broad: false positives cost a few
-# hundred tokens, a miss costs a retirement.
+# Only pages carrying one of these reach the LLM: every live page would cost tens
+# of thousands of tokens for a question that is almost always "no", and could
+# exceed a backend's context. The words are broad on purpose: a false positive
+# costs a few hundred tokens, a miss costs a retirement.
 RETIREMENT_SIGNALS = (
     "retir", "sunset", "discontinu", "deprecat", "shut down", "shutting down",
     "shutdown", "will end", "has ended", "end of life", "no longer available",
@@ -311,9 +291,9 @@ class DeadlineExceeded(RuntimeError):
 class Deadline:
     """The run's remaining wall-clock time, shared by every phase and every call.
 
-    Deliberately one budget rather than a per-phase allowance: the phases are
-    ordered by value — fixes first, then discovery, then the optional sweeps —
-    so a slow first phase should eat into the last one, not into the job.
+    One budget rather than a per-phase allowance: the phases run in order of
+    value — fixes, then discovery, then the optional sweeps — so a slow first
+    phase eats into the last one, not into the job.
     """
 
     def __init__(self, seconds: float, clock: Callable[[], float] = time.monotonic):
@@ -329,10 +309,10 @@ class Deadline:
     def share(self, fraction: float) -> "Deadline":
         """A sub-budget for a phase that must not be able to spend the run.
 
-        Taken from what is left rather than from the original allowance, so it
-        can never outlive the run it belongs to. The exception to the one-budget
-        rule above: the phases ordered by value are the LLM ones, and a phase
-        that merely feeds them is not entitled to starve them.
+        Taken from what is left, so it can never outlive the run. The exception
+        to the one-budget rule: the phases ordered by value are the LLM ones,
+        and a phase that only feeds them, like evidence gathering, must not be
+        able to starve them.
         """
         return Deadline(self.remaining() * fraction, self._clock)
 
@@ -393,34 +373,24 @@ class LLMClient:
     1. custom OpenAI-compatible endpoint (SCOUT_BASE_URL / SCOUT_MODEL /
        optional SCOUT_API_KEY) — point it at NVIDIA NIM, Groq, Cerebras, ...
     2. a second endpoint of the same kind (SCOUT_FALLBACK_BASE_URL /
-       SCOUT_FALLBACK_MODEL / SCOUT_FALLBACK_API_KEY). Two configured free
-       providers beat one: on 2026-08-03 the primary timed out and the run
-       landed on OpenRouter, which answered a truncated body and killed it.
+       SCOUT_FALLBACK_MODEL / SCOUT_FALLBACK_API_KEY)
     3. Gemini API                 (GEMINI_API_KEY)
     4. OpenRouter :free models    (OPENROUTER_API_KEY, model picked live)
     5. anonymous OVH AI Endpoints (no key at all)
 
-    The two custom backends were the only ones naming a fixed model, and both
-    ids rotted where nothing could see them: they are repository variables,
-    outside the registry this project maintains and outside review. On
-    2026-08-31 that cost the run every backend at once. SCOUT_FALLBACK_MODEL
-    was deepseek-v4-flash-free, an id opencode Zen had moved off its free
-    pricing table eleven days earlier — a demotion this repository had already
-    written down — and the Ollama primary answered 402 because its $0 plan had
-    become a starter wallet. So `models_by_base_url` hands each custom backend
-    the model_ids of the registry rows that publish its base url: the
-    configured model stays first, as a deliberate pin, and the lane the
-    registry certifies as free stands behind it. `pick_openrouter_model` has
-    resolved live since the beginning for the same stated reason — "so the
-    fallback never rots" — and this is that rule reaching the half of the chain
-    that was still typed by hand.
+    A custom backend's model is a repository variable, outside the registry and
+    outside review, so it can name an id the vendor has retired or stopped
+    serving free. `models_by_base_url` hands each custom backend the model_ids
+    of the registry rows that publish its base url: the configured model is
+    tried first, as a pin, and the ids the registry certifies as free stand
+    behind it.
     """
 
     def __init__(self, gemini_key: str | None = None, openrouter_key: str | None = None,
                  openrouter_model: str | None = None,
-                 # Google keeps the 2.5 models for keys that already used them
-                 # (changelog, 2026-09-18): "For any new projects, use our latest
-                 # models: 3.5 Flash-Lite or 3.8 Flash".
+                 # Google keeps the 2.5 models for keys that already used them;
+                 # its changelog: "For any new projects, use our latest models:
+                 # 3.5 Flash-Lite or 3.8 Flash".
                  gemini_model: str = "gemini-3.8-flash",
                  custom_base_url: str | None = None, custom_model: str | None = None,
                  custom_key: str | None = None,
@@ -453,13 +423,10 @@ class LLMClient:
             candidates = _model_candidates(model, published)
             if candidates:
                 self._customs.append((name, base, candidates, key))
-            # A pin the registry does not list as free is the state that broke
-            # the 2026-08-31 run, and it is now survivable rather than invisible
-            # — the chain drops it and carries on. Saying so in the PR body is
-            # what turns a silent recovery back into a decision: the answer is
-            # either "retype the variable" or "this row's ids are wrong", and
-            # only a human can tell which. Nothing is claimed when the registry
-            # does not describe the endpoint at all.
+            # A pin the registry does not list for its endpoint goes to the PR
+            # body: either the variable or the row's ids are wrong, and only a
+            # human can tell which. An endpoint the registry does not describe
+            # at all claims nothing.
             if model and published and model not in published:
                 self.unlisted_pins.append(f"{name}: {model} on {base}")
         # (base url, model) pairs the endpoint has disowned during this run.
@@ -492,11 +459,9 @@ class LLMClient:
     def complete(self, prompt: str) -> str:
         backends = self._backends()
         if self._force is not None:
-            # Forcing exists to exercise a backend that never gets its turn —
-            # the spare endpoint answered in a local test and has not run in CI
-            # once, because the primary has never failed on a scheduled run.
-            # Falling through to another backend would defeat that, so an
-            # unconfigured name is an error, not a silent chain run.
+            # Forcing exercises a backend that never gets its turn in the chain;
+            # falling through to another would defeat that, so an unconfigured
+            # name is an error, not a silent chain run.
             backends = [b for b in backends if b[0] == self._force]
             if not backends:
                 raise RuntimeError(
@@ -509,21 +474,14 @@ class LLMClient:
                 text = fn(prompt)
                 if not isinstance(text, str) or not text.strip():
                     raise RuntimeError("empty completion")
-                # Which backend actually answered is otherwise only visible as
-                # an absence — the run that quietly fell through to OpenRouter
-                # for weeks looked exactly like a healthy one in the log.
-                # The model is named as well as the backend: it is no longer a
-                # constant of the configuration, and which one answered is the
-                # first thing worth knowing when a chain starts misbehaving.
+                # Name the backend and the model that answered: a run that fell
+                # through the chain otherwise reads like a healthy one.
                 model = f" ({self.answered_model})" if self.answered_model else ""
                 print(f"scout backend {name}{model} answered in {self._clock() - started:.0f}s")
                 self.answered_by = name
                 return text
-            # Deliberately broad: the only thing this loop can usefully do with a
-            # misbehaving backend is move to the next one. A narrow tuple let a
-            # JSONDecodeError out on 2026-08-03 — OpenRouter answered HTTP 200
-            # with a truncated body, and the scout died mid-chain with three
-            # untried backends behind it.
+            # Broad on purpose: whatever a backend does wrong — a truncated
+            # body, invalid JSON — all this loop can do is move to the next one.
             except Exception as exc:
                 print(f"scout backend {name} failed: {type(exc).__name__}: {exc}")
                 errors.append(f"{name}: {type(exc).__name__}: {exc}")
@@ -551,15 +509,11 @@ class LLMClient:
     def _post(self, url: str, headers: dict[str, str], payload: dict) -> tuple[int, bytes]:
         """POST and read the body against the clock, returning (status, body).
 
-        httpx's timeout is per read, not per call, so it cannot answer "has this
-        backend had long enough?" — it only ever asks "has it been silent for
-        too long?". A backend answering HTTP 200 and then trickling bytes passes
-        that test forever: OpenRouter streamed for ~9 minutes inside a 90-second
-        timeout on 2026-08-03 and delivered a truncated body at the end of it.
-        Reading in chunks and checking the wall clock makes that an ordinary
-        backend failure, which the chain already knows how to step over. The
-        read timeout stays on top for the opposite failure — a backend that
-        says nothing at all — capped by the same budget.
+        httpx's timeout is per read, not per call, so a backend that answers
+        HTTP 200 and then trickles bytes never trips it. Reading in chunks
+        against the wall clock makes that an ordinary backend failure the chain
+        steps over. The read timeout, capped by the same budget, still catches
+        a backend that says nothing at all.
         """
         budget = self._budget()
         end = self._clock() + budget
@@ -581,13 +535,10 @@ class LLMClient:
     def _refusal(self, r: httpx.Response, end: float) -> httpx.HTTPStatusError:
         """The error for a refused call, carrying the start of the vendor's body.
 
-        httpx raises on a streamed response before a byte of it is read, so the
-        one sentence that says why never reached the log: on 2026-09-16 a forced
-        run reported a 400 from opencode Zen as a retired model id while the
-        body said the free tier had been locked to OpenCode's own client. Read
-        against the same clock as a success, and capped, since a refusal can be
-        a whole HTML page. The message leaves the url out: Gemini's carries the
-        key."""
+        A streamed response has none of its body read yet, and the body is where
+        the vendor says why. Read against the same clock as a success, and
+        capped, since a refusal can be a whole HTML page. The message leaves the
+        url out: Gemini's carries the key."""
         body = b""
         for chunk in r.iter_bytes():
             body += chunk
@@ -604,15 +555,12 @@ class LLMClient:
                   prompt: str) -> str:
         """Try this endpoint's models in turn, dropping the ones it disowns.
 
-        The model id is the one part of a backend a vendor can retire without
-        touching anything else: the endpoint is up, the key is good, and the
-        call comes back 400 for a name that used to work. Treating that as a
-        dead backend walks away from a working provider, so it costs a
-        candidate instead. So does an HTTP 200 with no choices in it, which is
-        how a gateway reports that the upstream behind one model failed. Every
-        other answer — 401, the 402 of a spent
-        wallet, 429, 5xx, a trickle — is the backend's own problem and belongs
-        to the chain above, which already knows how to step over it.
+        A vendor can retire a model id while the endpoint and the key stay good,
+        so a BAD_MODEL_STATUS answer costs a candidate, not the backend. So does
+        an HTTP 200 with no choices in it, a gateway's way of saying the
+        upstream behind one model failed. Every other answer — 401, the 402 of a
+        spent wallet, 429, 5xx, a trickle — is the backend's own problem and
+        goes to the chain above.
         """
         rejected = []
         for model in candidates:
@@ -727,12 +675,10 @@ def _ask(llm, prompt: str, attempts: int = 2) -> dict:
 
 
 def answered_domains(watchlist: list[Watched], blocklist: dict[str, str], today: date) -> set[str]:
-    """Domains the curated files have already answered for, as the models.dev
-    digest should leave them out: the watchlist's current verdicts and the
-    whole blocklist. An expired watchlist line is left in on purpose — it has
-    stopped answering for its service, by the same rule format_watchlist
-    applies, so its zero-cost rows go back into the digest and the question
-    comes round again instead of hardening into a verdict nobody revisits."""
+    """Domains the curated files have already answered for, which the models.dev
+    digest leaves out: the watchlist's current verdicts and the whole blocklist.
+    An expired verdict answers nothing, as in `format_watchlist`, so its
+    domains are not in the set and their zero-cost rows reach the digest again."""
     watched = {d.lower() for w in watchlist if is_watch_current(w, today) for d in w.domains}
     return watched | {b.lower() for b in blocklist}
 
@@ -740,11 +686,10 @@ def answered_domains(watchlist: list[Watched], blocklist: dict[str, str], today:
 def format_watchlist(watchlist: list[Watched], today: date) -> str:
     """The current verdicts, for the discovery prompt.
 
-    Expired ones are left out deliberately: telling the model a service has no
-    free tier on the strength of a verdict this file itself no longer trusts is
-    how a watchlist quietly becomes a blocklist. `reopen_if` goes in because the
-    useful instruction is not "never propose this" but "propose it when THIS
-    changed" — the model is reading fresh evidence the verdict never saw.
+    Expired ones are left out: a verdict the file no longer trusts must not keep
+    a service out, or the watchlist becomes a blocklist. `reopen_if` goes in,
+    since the instruction is "propose it when this changed" and the model is
+    reading evidence the verdict never saw.
     """
     current = [w for w in watchlist if is_watch_current(w, today)]
     if not current:
@@ -758,7 +703,8 @@ def format_watchlist(watchlist: list[Watched], today: date) -> str:
 
 
 def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
-    """Synchronous single-shot version of the weekly probe for vetting proposals."""
+    """The run's probe, synchronous and single-shot, for vetting a proposal or a
+    corrected row: None when the entry passes, else why it fails."""
     try:
         resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
     except httpx.HTTPError as exc:
@@ -771,17 +717,14 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
             return failure
     problem = check_content(resp, entry)
     if problem is None:
-        # An existing row only gets flagged for this — three failures archive it,
-        # and a live service must not go down over a Models column. A proposal is
-        # the other case entirely: nothing is protected yet, and a column the
-        # page cannot back is how bazaarlink arrived naming two families that
-        # matched no id the vendor served.
+        # The run only flags a live row for this (see `unevidenced_families`); a
+        # proposal or a correction has nothing live to protect and is refused.
         unevidenced = unevidenced_families(resp, entry)
         return ("listed families the page does not name: " + ", ".join(unevidenced)
                 if unevidenced else None)
-    # Name the bot wall in the rejection reason. "missing keywords" reads as a
-    # bad proposal; "bot challenge" tells the reviewer the endpoint answers a
-    # wall to everything that is not a browser — cto.new's lesson, in the PR body.
+    # Name a bot wall in the rejection: "missing keywords" reads as a bad
+    # proposal, while "bot challenge" tells the reviewer the endpoint walls off
+    # everything that is not a browser.
     challenge = challenge_marker_hit(resp.text)
     return f'bot challenge: page says "{challenge}"' if challenge else problem
 
@@ -790,12 +733,10 @@ def _measured_marks(models: object, entries: list[Entry]) -> object:
     """A proposal's models with the tiers the registry measured, and no others.
 
     A tier is read from Artificial Analysis by freetier-tiers, never taken on a
-    model's word: the scout's proposals once put the same Nemotron at frontier on
-    one vendor and strong on the next. So whatever tier or aa_model a proposal
-    writes is dropped, and a family the registry has already measured gets the
-    registry's marks back — which also keeps one tier per family true of the pull
-    request. Anything that is not a list of mappings is passed through for
-    validation to refuse."""
+    model's word, so whatever tier or aa_model a proposal writes is dropped, and
+    a family the registry has already measured gets the registry's marks back —
+    which also keeps one tier per family in the pull request. Anything that is
+    not a list of mappings is passed through for validation to refuse."""
     if not isinstance(models, list):
         return models
     marks = {m.family: (m.tier, m.aa_model) for e in entries for m in e.models if m.aa_model}
@@ -819,31 +760,17 @@ def apply_updates(entries: list[Entry], updates: list[dict],
     """Apply the LLM's corrections to flagged entries.
 
     Returns (applied ids, rejected "id: reason" strings). One bad update must
-    not sink the run: by the time the scout speaks, the verification commit is
-    already pushed, and a failed run cannot be rerun (it checks out the old SHA
-    and its push is refused as non-fast-forward). Three ways the model gets an
-    update wrong, all seen live: a null where the prompt told it to leave a
-    key alone (`probe: null` for the retired github-models entry, run
-    30798513182, 2026-08-03), a corrected value that does not validate, and a
-    value that validates and is still wrong.
+    not sink the run (see `main`): an update that does not validate is
+    rejected, and one that does is run through `verifier`, the check a proposal
+    passes — a fix that leaves the row failing is refused, the row keeps its
+    values, and the reason goes to the PR.
 
-    Only the third one needed the verifier. A proposal has been probe-checked
-    before it could enter since bazaarlink arrived naming families no id backed;
-    an edit to a row already in the file was written on the model's word alone,
-    which is how kenari came out of run 33741484383 listing claude-opus-5 as a
-    free model. The check is the same one, run on the corrected entry: a fix
-    that leaves the row failing is refused, the row keeps the values a human
-    last stood behind, and the reason goes to the pull request.
-
-    A shorter Models column always passes, though, so the verifier cannot see
-    a reply that deletes too much, and on 2026-09-21 aihubmix failed on one
-    family and the reply kept one of six: four of the five it dropped were
-    still free in the catalog the verdict came from. So a family the reply
-    drops is kept wherever `named` — the row's own probe, read the way the run
-    reads it — still finds it, unless a reviewer has marked it superseded, and
-    the pull request says which. On a page row that is presence on the page,
-    the standard the row is held to on every run; a family the page now names
-    only as paid is a reviewer's call, and the line in the PR puts it to one."""
+    A shorter Models column always passes, so the verifier cannot see a reply
+    that drops too much. A family the reply drops is kept wherever `named` —
+    the row's own probe, read the way the run reads it — still finds it, unless
+    a reviewer has marked it superseded, and the PR says which. On a page row
+    that is presence on the page, as on every run, so a family the page now
+    names only as paid is kept for the reviewer to judge."""
     applied, rejected = [], []
     for i, e in enumerate(entries):
         upd = next((u for u in updates if isinstance(u, dict) and u.get("id") == e.id), None)
@@ -885,14 +812,10 @@ def apply_updates(entries: list[Entry], updates: list[dict],
 
 
 def _why(exc: Exception) -> str:
-    """The rejection in one line, for the PR body rather than the run log.
-
-    A reviewer reads the PR; nobody reads the log of a run that succeeded. On
-    2026-08-20 the scout answered a failing github-copilot-free probe with a
-    table cell where a keyword string belongs, and all that reached the PR was
-    "invalid update (ValidationError)" — a live row failing its probe, the fix
-    for it found and thrown away, and no way to tell from the PR that either
-    had happened. Rejecting the value was right; hiding it was not."""
+    """The rejection in one line, for the PR body rather than the run log: a
+    reviewer reads the PR, and nobody reads the log of a run that succeeded.
+    A validation error gives its first three errors as `loc: msg`, anything else
+    its first line."""
     errors = getattr(exc, "errors", None)
     if not callable(errors):
         return str(exc).splitlines()[0]
@@ -914,11 +837,11 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
     The watchlist filter is checked after the blocklist and before the probe: a
     service with no free tier usually still serves a page, so its proposal would
     burn a live probe on a question a human already answered. An expired verdict
-    filters nothing on purpose — that is what makes it a watchlist."""
+    filters nothing (see `format_watchlist`)."""
     existing_ids = {e.id for e in entries}
-    # An id is a published page for good. A proposal under the id an archived
-    # row holds is a vendor coming back, which a reviewer answers by restoring
-    # that row — dropped as a duplicate, the lead would never reach anyone.
+    # An id is a published page for good. A proposal under an archived row's id
+    # is a vendor coming back: it is reported, for a reviewer to restore that
+    # row, rather than dropped as a duplicate.
     archived_ids = {e.id for e in entries if is_archived(e, today)}
     existing_sites = known_domains(entries)
     added, rejected = [], []
@@ -938,10 +861,6 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
             e = Entry.model_validate({**raw, "first_seen": today, "last_verified": today,
                                       "provisional": True, "probe_failures": 0})
         except Exception as exc:
-            # The same one-line reason the rejected-fix path gives, and for the
-            # same reason: on 2026-09-10 a proposal for the blocklisted llm7.io
-            # reached the run log as "llm7: invalid (ValidationError)", which
-            # says only that something was wrong somewhere in it.
             rejected.append(f"{rid}: invalid — {_why(exc)}")
             continue
         if blocklist and is_blocked(domain_of(e.url), blocklist):
@@ -952,9 +871,8 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
             continue
         watched = watch_match(domain_of(e.url), watchlist or [], today)
         if watched is not None:
-            # Truncated by length rather than at the first full stop: the reasons
-            # are full of hostnames and prices, so splitting on "." cuts
-            # "api.llm7.io" in half and reads as a typo in the PR body.
+            # Cut by length rather than at the first full stop: the reasons are
+            # full of hostnames and prices, which a split on "." cuts in half.
             reason = " ".join(watched.reason.split())
             if len(reason) > WATCH_REASON_IN_PR:
                 reason = reason[:WATCH_REASON_IN_PR].rsplit(" ", 1)[0] + "…"
@@ -979,32 +897,19 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict],
                         ) -> tuple[list[str], list[str], list[str]]:
     """Describe generation bumps for a human to accept — never write them.
 
-    The scout used to apply these straight to the registry, and three times
-    running it buried a free family behind a paid one: z.ai's glm-4.7-flash was
-    marked superseded by glm-5.2 while that entry's own limits say the GLM-5.x
-    flagships are not free. The mark decides what the README lists as free, but
-    the model proposing it sees only a list of family names — no entry, no
-    limits, no page. So it cannot answer the question that matters, which is
-    not "what is newer" but "what does this free tier serve today".
+    A superseded mark decides what the README lists as free, while the model
+    proposing it sees only family names — no entry, no limits, no page — so it
+    cannot tell what the free tier serves today.
 
     Returns (proposed, suppressed, filtered). Only bumps that would change
     something are reported, and a bump listed in dismissed.yaml is reported as
-    suppressed rather than silently dropped — a filter nobody can see is a
-    filter nobody can correct.
-
-    `filtered` is the same courtesy for what the scout can rule out itself, and
-    every rule is one a reviewer had already applied by hand; replayed over the
-    thirty bumps offered on 2026-09-14, they leave none for a human. A target
-    of the same family ("nemotron is not superseded by nemotron-3-ultra", the
-    prompt says, and the model did it eight times), a target the row already
-    lists (a mark would only hide a model the row still hands out), a target
-    `named` says the row's own probe page or catalog lane does not name — a
-    generation the vendor does not serve cannot supersede one it does — and a
-    family `named` still finds there, which a mark would hide while the vendor
-    hands it out. What is left is the bump that means something: the old family
+    suppressed rather than dropped, so the filter stays visible. `filtered` is
+    what the scout rules out itself: a target of the same family, a target the
+    row already lists, a target `named` says the row's own probe page or
+    catalog lane does not name, and a family `named` still finds there, which a
+    mark would hide while the vendor serves it. What is left is the old family
     gone from the row's evidence and the new one in it. `named` answering None
-    means the page could not be read, and the bump goes through as it always
-    did."""
+    means the page could not be read, and the bump goes through."""
     dismissed = dismissed or set()
     proposed, suppressed, filtered = [], [], []
     for s in supersede:
@@ -1033,7 +938,7 @@ def supersede_proposals(entries: list[Entry], supersede: list[dict],
 def named_by_row(client: httpx.Client, time_left: Callable[[], float] | None = None,
                  ) -> Callable[[Entry, str], bool | None]:
     """`family_named` against each row's own probe endpoint, read once a row
-    however many bumps name it. None — nothing known — when the endpoint cannot
+    however often it is asked. None — nothing known — when the endpoint cannot
     be read or the run's budget is spent, so an unchecked bump still reaches a
     human."""
     responses: dict[str, httpx.Response | None] = {}
@@ -1066,11 +971,9 @@ def _has_retirement_signal(text: str) -> bool:
 
 def _retirement_excerpt(text: str) -> str:
     """The RETIREMENT_PAGE_CHARS the model is shown, cut around the first
-    signal rather than from the top of the page. The signal is searched in
-    every character the fetcher keeps and the model has to copy the announcing
-    sentence verbatim from what it sees, so an announcement past the first
-    RETIREMENT_PAGE_CHARS used to trip the count on every run and could never
-    become a proposal."""
+    signal rather than from the top of the page: the signal is searched in
+    every character the fetcher keeps, and the model must copy the announcing
+    sentence verbatim from what it is shown."""
     lowered = text.lower()
     hits = [i for i in (lowered.find(s) for s in RETIREMENT_SIGNALS) if i != -1]
     start = max(0, min(hits, default=0) - RETIREMENT_PAGE_CHARS // 4)
@@ -1117,23 +1020,16 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     result = {"updates": [], "new": [], "rejected": [], "supersede": [], "suppressed": [],
               "supersede_filtered": [],
               "retired": [], "skipped": [],
-              # Phases that had budget, asked, and got nothing back because every
-              # backend in the chain failed. Without this a run that could not
-              # think is indistinguishable from a run that found nothing: on
-              # 2026-08-31 both custom backends were dead and OVH rate-limited
-              # the third call, the generation check never ran, and the job was
-              # green with an empty report.
+              # Phases on which every backend failed — see lost_to_backends.
               "llm_outages": [],
               # Filled in below, from what the fixes phase did not repair.
               "unfixed": [],
-              # Verdicts that have aged out of suppressing anything. Reported so
-              # the question reaches a human on a schedule instead of only when
-              # someone happens to re-read the file.
+              # Verdicts that have aged out of suppressing anything, so the
+              # question reaches a human on a schedule.
               "stale_watch": [f"{w.name} (checked {w.checked_on.isoformat()})"
                               for w in (watchlist or []) if not is_watch_current(w, today)],
-              # The same courier work for sources.yaml, which differs in that
-              # the scout never reads those lists and cannot act on this — the
-              # PR body is simply the only recurring channel to a human there is.
+              # The same for sources.yaml, whose lists the scout never reads:
+              # the PR body is the one recurring channel to a human.
               "stale_sources": [f"{s.name} (read {s.checked_on.isoformat()})"
                                 for s in (sources or []) if not is_source_current(s, today)],
               "providers": evidence.providers if evidence else []}
@@ -1150,19 +1046,15 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
     def lost_to_backends(phase: str, exc: Exception) -> None:
         """A phase that had budget, asked, and came back empty-handed because
         the whole chain was down. Reported apart from `skipped`, which never
-        asked at all — the two look the same in the registry and mean opposite
-        things about the run."""
+        asked at all, so a run whose chain was down does not read as one that
+        found nothing."""
         print(f"{phase} skipped: {exc}")
         result["llm_outages"].append(phase)
 
-    # A stale-ids row is flagged and deliberately not sent. What it needs is an
-    # exact model id copied out of a vendor catalog — taken out of
-    # `api.model_ids`, put into it, or recorded in `api.ignored_ids` as read
-    # and left out; `api` is not a key this
-    # prompt may write, and every key it may write — probe, models, limits — is
-    # still correct on that row, so anything the model returned would change
-    # something that is not broken. It falls through to `unfixed` below and
-    # reaches the pull request as a line for a human.
+    # A stale-ids row is not sent to the model. It needs an exact id copied out
+    # of a vendor catalog into or out of `api.model_ids` (or `api.ignored_ids`),
+    # `api` is not a key the prompt may write, and every key it may write is
+    # still correct on that row. It reaches the PR through `unfixed` below.
     fixable = {f["id"]: f for f in failures
                if f.get("status") != ProbeStatus.STALE_IDS.value}
     if fixable and within_budget("fixes"):
@@ -1181,15 +1073,11 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
                                                     named)
         result["rejected"] += rejected
 
-    # Everything the probe flagged that the run did not repair, carried into the
-    # PR with the verdict that flagged it. Without this a row can fail its probe
-    # and appear nowhere in the only artifact anyone reviews: the fixes phase
-    # can be skipped for budget, the model can decline to answer, and its answer
-    # can be rejected — and in all three cases the row goes on failing until
-    # three failures archive it. Reported after the phase so a repaired row
-    # drops off the list — all but the half of its line the model was told to
-    # leave alone, which no answer of its can have repaired: on 2026-09-21
-    # aihubmix's eight dead ids left the PR with the family half.
+    # Everything the probe flagged that the run did not repair goes into the PR
+    # with its verdict: the fixes phase can be skipped, the model can decline,
+    # and its answer can be rejected, and the row would otherwise appear nowhere
+    # a reviewer looks. A repaired row keeps the half of its detail addressed to
+    # a human (`for_a_human`), which no answer of the model can have repaired.
     repaired = set(result["updates"])
     for f in failures:
         detail = f.get("detail", "")
@@ -1216,9 +1104,8 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
         except RuntimeError as exc:
             lost_to_backends("discovery", exc)
 
-    # Sweep every live entry for a shutdown announcement. Without this the scout
-    # only ever looks at an entry after its probe fails, i.e. on the day the free
-    # tier dies — a retirement announced weeks ahead goes unnoticed until then.
+    # Sweep every live entry for a shutdown announcement, which the probe would
+    # otherwise only notice on the day the free tier dies.
     live = [e for e in entries if e.retired_on is None and e.delisted is None and e.source_urls]
     if live and within_budget("retirement sweep"):
         pages = page_fetcher([e.source_urls[0] for e in live])
@@ -1228,8 +1115,7 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             f"PAGE {e.source_urls[0]}:\n{_retirement_excerpt(pages.get(e.source_urls[0], ''))}"
             for e in candidates
         )
-        # Naming them costs one line and saves re-fetching every live entry's
-        # first source url to find out which one tripped a count of 1.
+        # Named, so a count of 1 does not mean re-fetching every page to find it.
         flagged = f" ({', '.join(e.id for e in candidates)})" if candidates else ""
         print(f"retirement sweep: {len(candidates)}/{len(live)} pages carry a signal{flagged}")
         if context:
@@ -1240,13 +1126,9 @@ def run_scout(llm, entries: list[Entry], failures: list[dict],
             except RuntimeError as exc:
                 lost_to_backends("retirement sweep", exc)
 
-    # Archived entries are excluded: their families belong to a product that is
-    # gone, so any bump proposed for them is noise a reviewer can only ignore.
-    # GitHub Models kept drawing "gpt-4.1 → gpt-5.6" months after GitHub shut
-    # the product down. Both halves: the families asked about, and the rows a
-    # bump is matched against — a family a live row shares drew a line for the
-    # archived one too, and a read of its probe page (easy-gonka-api's, which
-    # carried a prompt injection, 2026-09-26).
+    # Archived entries are left out of both halves — the families asked about
+    # and the rows a bump is matched against: a bump for a product that is gone
+    # is noise, and one matched against an archived row would read its page.
     current = [e for e in entries if not is_archived(e, today)]
     families = sorted({m.family for e in current for m in e.models})
     if families and within_budget("generation check"):
@@ -1267,19 +1149,11 @@ def _write_status(path: Path, outages: list[str], aborted: str | None,
     """The one machine-readable line the workflow reads once everything else is
     written and pushed.
 
-    The scout exits 0 whatever happens, on purpose: by the time it speaks the
-    verification commit is already on main, and a failed job cannot be rerun —
-    it checks out the old SHA and its push is refused as non-fast-forward. But
-    exiting 0 was also the only thing anyone was ever told. The run of
-    2026-08-31 lost every backend it had, proposed nothing, and reported
-    success; four days passed before a human noticed, and only by reading the
-    log by hand. So the job's colour is decided by a last step reading this
-    file, after the pull request exists — a notification, not an invitation to
-    rerun.
-
-    Feed warnings ride along as annotations and never turn the run red: a list
-    that went quiet costs leads, not the run, and the step that reads this file
-    prints each one where the run's page shows it (`_read_feed` in discovery)."""
+    The scout exits 0 whatever happens (see `main`), so the job's colour is
+    decided by a last step reading this file, after the pull request exists — a
+    notification, not an invitation to rerun. Feed warnings ride along as
+    annotations and never turn the run red: a list that went quiet costs leads,
+    not the run (`_read_feed` in discovery)."""
     path.write_text(json.dumps({"llm_outages": outages, "aborted": aborted,
                                 "feed_warnings": feed_warnings or []}),
                     encoding="utf-8")
@@ -1305,11 +1179,9 @@ def main() -> None:
     args = parser.parse_args()
 
     # This repository's own files load here, outside the catch-all below, and are
-    # meant to raise. The catch-all exists for what the scout cannot control — a
-    # backend down, a model answering HTML — and swallowing a config error into
-    # it makes a broken repo look like a quiet run: on 2026-08-14 a colon in a
-    # blocklist reason made yaml.safe_load throw, the scout aborted before its
-    # first LLM call, and the workflow still reported success.
+    # meant to raise: the catch-all is for what the scout cannot control, and a
+    # config error swallowed into it would make a broken repo look like a quiet
+    # run.
     entries = load_registry(args.registry)
     blocklist = load_blocklist(args.blocklist)
     dismissed = load_dismissed(args.dismissed)
@@ -1328,9 +1200,6 @@ def main() -> None:
         fallback_base_url=os.environ.get("SCOUT_FALLBACK_BASE_URL"),
         fallback_model=os.environ.get("SCOUT_FALLBACK_MODEL"),
         fallback_key=os.environ.get("SCOUT_FALLBACK_API_KEY"),
-        # Both custom backends are pointed at endpoints this registry already
-        # describes, so the ids it certifies as free are exactly what a retired
-        # pin should fall back to.
         models_by_base_url=published_model_ids(entries),
         deadline=deadline,
         force=os.environ.get("SCOUT_FORCE_BACKEND"),
@@ -1349,8 +1218,8 @@ def main() -> None:
                           headers={"User-Agent": "freetier-radar/0.2"}) as probe_client:
             # Bound here rather than inside run_scout, which knows the fetcher
             # only as a callable: the retirement sweep asks for one page per live
-            # entry — 39 of them today, each at its own 30s read timeout — inside
-            # a phase that checks the budget once, before any of them.
+            # entry, each at its own 30s read timeout, inside a phase that checks
+            # the budget once, before any of them.
             result = run_scout(llm, entries, failures,
                                partial(fetch_page_texts, time_left=deadline.remaining),
                                date.today(),
@@ -1363,17 +1232,13 @@ def main() -> None:
                                deadline=deadline,
                                named=named_by_row(probe_client, time_left=deadline.remaining))
     except Exception as exc:
-        # Last line of defence, and deliberately catch-all. The scout is the
-        # optional half of the run: by the time it speaks, the verification
-        # commit is already pushed, and a failed job cannot be rerun (it checks
-        # out the old SHA and its push is refused as non-fast-forward). So
-        # nothing the scout can hit — every backend down, a backend answering
-        # HTML, a proposal that will not validate — is worth *raising* out of
-        # here for: leave the registry untouched, say so in the PR body, let the
-        # traceback stand in the log, and exit 0 so that report still reaches a
-        # human. What an abort no longer does is pass unremarked — it goes in
-        # the status file, and the workflow's last step turns the run red on it
-        # once the pull request and the summary have landed.
+        # Catch-all on purpose. The scout is the optional half of the run: by
+        # the time it speaks, the verification commit is already pushed, and a
+        # failed job cannot be rerun (it checks out the old SHA and its push is
+        # refused as non-fast-forward). So an abort leaves the registry
+        # untouched, says so in the PR body and the status file, keeps the
+        # traceback in the log and exits 0; the workflow's last step turns the
+        # run red once the pull request and the summary have landed.
         traceback.print_exc()
         print(f"scout aborted: {exc}")
         args.pr_body.write_text(f"## Scout proposals\n\nScout aborted: {exc}\n", encoding="utf-8")
@@ -1384,7 +1249,7 @@ def main() -> None:
         print("dry run: registry left untouched")
     else:
         # history.jsonl is not written here: the render the workflow runs on
-        # the scout's changes records them, on the branch its pull request is.
+        # the scout's changes records them, on the pull request's branch.
         save_registry(args.registry, entries)
     args.pr_body.write_text(PR_BODY_TEMPLATE.format(
         providers=evidence.describe_providers() or "none",

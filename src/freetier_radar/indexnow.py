@@ -1,13 +1,11 @@
 """IndexNow: after a run publishes, tell the search engines which URLs changed.
 
 Bing, Yandex, Naver, Seznam and Yep share one submission protocol, and Bing's
-index is what DuckDuckGo and the search inside ChatGPT read — the second-largest
-referrer this site has. Without a ping they recrawl on their own schedule,
-which for a site this size is weeks; with one, the pages that changed on
-Monday are read on Monday. The key proves the site is ours: a file named
-after it at the site root, whose whole content is the key. It is not a
-secret — anyone can read it, and all it lets anyone do is ask an engine to
-crawl our own pages.
+index is what DuckDuckGo and the search inside ChatGPT read. Without a ping
+they recrawl on their own schedule, which for a site this size is weeks. The
+key proves the site is ours: a file named after it at the site root, whose
+whole content is the key. It is not a secret — all it lets anyone do is ask an
+engine to crawl our own pages. Entry point: `freetier-indexnow` (`main`).
 """
 import argparse
 import json
@@ -34,11 +32,11 @@ PAGES_EVERY = 15.0
 
 
 def site_urls(index: dict) -> list[str]:
-    """Every page a search engine should re-read after a run: the README, the
-    provider index, the page of services checked and not listed, one page per row (archived rows included — a page that now
-    says "archived" is exactly the change worth reading), the index of every
-    model and a page per model that has one, the feed and the text and table
-    views."""
+    """Every page a search engine should re-read after a run: the home page, the
+    provider index, the page of services checked and not listed, one page per
+    row (archived rows too: a page that now says "archived" is a change worth
+    reading), the index of every model and a page per model that has one, the
+    feed and the text and table views."""
     urls = [f"{PAGES_URL}/", providers_index_url(), checked_page_url()]
     urls += [e["page"] for e in index.get("entries", [])]
     urls += [models_index_url()]
@@ -52,16 +50,13 @@ def changed_urls(before: dict | None, after: dict) -> list[str]:
     """The pages whose data changed between two readings of index.json — the
     index as the push found it and as it left it — in site_urls' order.
 
-    Until 2026-09-27 every push that published a file submitted every url of the
-    site, 186 of them four times that day for commits that each touched a
-    handful of rows, where the protocol asks for the urls that changed. A row
-    whose record moved sends its own page and the pages of the models it lists,
-    which print it; a model whose record moved sends its page and the models
-    index; the pages that list every row — the home page, the providers index,
-    the feed, llms.txt and browse.html — go whenever a row did, and the checked
-    page when the watchlist did. The index's `generated` day is no change, nor
-    is the render date in every page's footer. With no earlier index to read,
-    every page is new to the engine."""
+    A row whose record moved sends its own page and the pages of the models it
+    lists, which print it; a model whose record moved sends its page and the
+    models index; the pages that list every row — the providers index, the
+    feed, llms.txt and browse.html — go whenever a row did, the checked page
+    when the watchlist did, and the home page on any of the three. The index's
+    `generated` day is no change, nor is the render date in every page's
+    footer. With no earlier index to read, every page is new to the engine."""
     if before is None:
         return site_urls(after)
     old_rows = {e["id"]: e for e in before.get("entries", [])}
@@ -119,11 +114,10 @@ def changed_since(before: str, now: dict, repo: Path = Path("."),
     """changed_urls from commit `before` to `now`, leaving out what each of the
     run's verification commits in between changed: the run pinged those pages
     itself when it pushed, and because its push starts no workflow the next
-    hand push counts from an older ping. On 2026-09-27 ab9ea18 sent the same
-    167 pages 8b89fd5's own ping had sent twenty minutes before. The commit
-    being pinged is never left out, so the run's own ping, from HEAD^, sends
-    its verification commit whole; and a `before` git cannot read sends every
-    page, as changed_urls does."""
+    hand push counts from an older ping. The commit being pinged is never left
+    out, so the run's own ping, from HEAD^, sends its verification commit
+    whole; and a `before` git cannot read sends every page, as changed_urls
+    does."""
     log = subprocess.run(["git", "log", "--reverse", "--first-parent", "--format=%H %s",
                           f"{before}..HEAD"], cwd=repo, capture_output=True, text=True)
     commits = [line.partition(" ") for line in log.stdout.splitlines()] if log.returncode == 0 else []

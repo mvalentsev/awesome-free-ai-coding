@@ -1,12 +1,9 @@
 """The gate a commit passes: the map's rules, run on what is about to be
 committed, before it is.
 
-CI ran every check on every push, and a push to main is a push that has
-already happened: a watchlist commit that left the pages' count one behind
-(b1c7f4b) was red in CI and on main until the next commit fixed it, and a
-subject that swallowed its paragraph (ccac77a) stays in main's history for
-good, since main refuses a force push. So the same checks run before the
-commit exists, from git's own hooks (`git config core.hooksPath .githooks`):
+CI checks a push to main after it has happened, and main refuses a force push,
+so a bad commit stays in its history. The same checks run before the commit
+exists, from git's own hooks (`git config core.hooksPath .githooks`):
 
 - `pre-commit` exports the index — what is staged, not what is on disk — and
   runs freetier-check, `freetier-render --check` and the test suite on it, with
@@ -14,16 +11,15 @@ commit exists, from git's own hooks (`git config core.hooksPath .githooks`):
   commit to what only a command may write: history.jsonl grows by exactly the
   lines the render records for the commit's own registry, the announcer's
   ledger changes on main on the scheduled run and nowhere else, no log is
-  rewritten, and the fields a probe earns (`last_verified`, `probe_failures`,
-  `provisional`, `first_seen`) are never typed — a new row enters provisional,
-  dated the day it is added. And no page the site has published is deleted:
-  a provider's or a model's address stays, and its page says what became of
-  its subject.
+  rewritten, and the earned fields (EARNED) are never typed — a new row enters
+  provisional, dated the day it is added. And no page the site has published
+  is deleted: a provider's or a model's address stays, and its page says what
+  became of its subject.
 - `commit-msg` refuses a subject with no kind and a body with no blank line
   before it.
-- `pre-push` runs the same checks on the commit being pushed, and the log and
-  earned-field rules over every commit the push adds, one by one, so a
-  `--no-verify` commit does not reach main unchecked.
+- `pre-push` runs the same checks on the commit being pushed, and the log,
+  page, history and earned-field rules over what the push adds — the last two
+  commit by commit — so a `--no-verify` commit does not reach main unchecked.
 
 `freetier-gate diff BASE` is the rules between BASE and the working tree for
 the places no hook runs: CI (against the push's parent, and on a pull request
@@ -58,10 +54,10 @@ LOG_WRITERS = {n.path: n.written_by for n in MAP if n.kind is Kind.LOG}
 # other log is written on the scheduled run alone.
 RECORDED = tuple(n.path for n in MAP if n.kind is Kind.LOG and "freetier-render" in n.written_by)
 
-# Written by the scheduled run's probe (prober.apply_results) and by nothing
-# else: the day a row last passed, the failures since, and whether it is still
-# on its first fortnight — plus the day it arrived, which its promotion and its
-# page count from.
+# Never typed by hand after a row enters: the day it arrived, which its
+# promotion and its page count from, and what the scheduled run's probe writes
+# (prober.apply_results) — the day it last passed, the failures since, and
+# whether it is still on its first fortnight.
 EARNED = ("first_seen", "last_verified", "probe_failures", "provisional")
 
 # Commits that rewrote a log or typed an earned field on purpose, each with why.
@@ -122,7 +118,9 @@ def history_problems(before: str | None, after: str | None, registry: str | None
 
 
 def earned_problems(before: list[Entry], after: list[Entry]) -> list[str]:
-    """What a commit made by hand does to the fields only the run writes."""
+    """What a commit made by hand does to the earned fields (EARNED): a new row
+    enters provisional with first_seen equal to last_verified, a row already
+    there keeps them as they were, and no row leaves the file."""
     problems = []
     old = {e.id: e for e in before}
     for e in after:
@@ -152,8 +150,8 @@ def page_problems(before: set[str], after: set[str]) -> list[str]:
     """What a commit does to the pages the site has published (layout.Node.kept):
     it may add them and never take one away. The render keeps every page it
     published and says on it what became of its row or its model, so a page
-    that leaves the tree is one somebody deleted — and an address a search
-    engine indexed, or an answer cited, that would now answer 404."""
+    that leaves the tree was deleted by hand, and its address, which a search
+    engine may have indexed, would answer 404."""
     return [f"{path} is deleted — the site published this page, and a published page stays: "
             "the render keeps it and says on it what became of its row or model; restore it"
             for path in sorted(before - after)]
@@ -281,8 +279,7 @@ def _run(snap: Path, *argv: str) -> str:
 
 def _command(module: str, *args: str) -> tuple[str, ...]:
     """A command of the package called through its `main` — not `python -m`,
-    which runs nothing in a module without a `__main__` guard and exits 0, the
-    way an unchecked render passed the first version of this gate."""
+    which runs nothing in a module without a `__main__` guard and exits 0."""
     call = (f"import sys; from freetier_radar.{module} import main; "
             f"sys.argv = {['freetier', *args]!r}; main()")
     return ("-c", call)

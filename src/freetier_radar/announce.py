@@ -1,21 +1,17 @@
-"""Tell the project's own accounts what the history just recorded.
+"""Post what the history just recorded from the project's own accounts.
 
-The list already keeps an append-only log of everything it publishes and an
-Atom feed of the same; this is the last step that makes them travel — a post
-per event from accounts the project owns, labelled as a bot, on networks whose
-API is meant for one. Nothing here goes near a community's front page: Hacker
-News forbids automated submissions and Reddit treats them as spam, and a repo
-that tried would spend its reputation to gain a ban. Those two are a person's
-job. This file's job is the slow, honest half: every arrival, archival and
-model change, said once, with the page that carries the evidence.
+A post per event — every arrival, archival, return, delisting and model change,
+with the row's page — on Bluesky and Mastodon, and a monthly digest article on
+Dev.to, from accounts the project owns and labels as bots. Hacker News forbids
+automated submissions and Reddit treats them as spam, so those are left to a
+person.
 
-Three rules keep it from being noise. It posts only what a channel has not
-seen (an append-only ledger keyed by event and channel, so a retried run
-cannot double-post and a channel that failed is simply retried next time).
-It posts only recent events, at most a few per run, oldest first — enabling a
-channel a month in must not replay the whole history into a fresh account.
-And it posts nothing at all until the credentials exist: with no channel
+A channel gets only what it has not seen (an append-only ledger keyed by event
+and channel, so a retried run cannot double-post and a failed post is retried
+next time), only recent events, at most a few per run, oldest first, so a
+channel enabled late does not replay the whole history. With no channel
 configured it says so and exits 0, which is what the workflow expects of it.
+Entry point: `freetier-announce` (`main`).
 """
 from __future__ import annotations
 
@@ -39,10 +35,9 @@ __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon",
            "load_ledger", "append_ledger", "select", "build_digest", "digest_key", "run", "main"]
 
 # Older than this and an event is news to nobody: a channel switched on late
-# starts from the last two runs, not from the first line of the log.
+# starts from the last two weeks, not from the first line of the log.
 MAX_AGE_DAYS = 14
-# Per channel, per run. A cron that found five things to say in one morning
-# has said enough; the rest keep until the next run.
+# Per channel, per run; the rest keep until the next run.
 POSTS_PER_RUN = 5
 # Bluesky's limit, the tightest of the channels, applied to every post so one
 # text serves them all.
@@ -71,8 +66,7 @@ def _cut(text: str, room: int) -> str:
 
 def _listed(prefix: str, names: list[str], room: int) -> str:
     """As many of a row's models as fit in `room` after `prefix`, then how many
-    more. A column runs to dozens — AIHubMix's to thirty-five — and a post
-    naming them all would run past the channel's limit, link and all."""
+    more: a Models column can run to dozens, past the channel's limit."""
     for shown in range(len(names), 0, -1):
         more = len(names) - shown
         line = prefix + ", ".join(names[:shown]) + (f" +{more} more" if more else "")
@@ -85,9 +79,9 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
     """The post: what happened, to whom, in the row's words, and one link.
 
     The link is the row's own page — the evidence, the limits, the history —
-    and for a row deleted from the registry, which has no page any more, the
-    list itself. The link is never cut: the body is what gives way, and a list
-    of models takes at most half of the room the two leave.
+    or the list itself for an id the registry does not hold. The link is never
+    cut: the body is what gives way, and a list of models takes at most half of
+    the room the lead and the link leave.
     """
     e = entries_by_id.get(ev.id)
     link = provider_page_url(ev.id) if e is not None else REPO_URL
@@ -97,7 +91,7 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
 
     if ev.event is EventType.ADDED:
         # The models come off the history line, the column a probe reads back:
-        # `offering` names none on a row of free models since 2026-09-26.
+        # on a row of free models `offering` names none.
         lead = f"New on the free-LLM radar: {ev.name}"
         body = e.offering if e is not None else ev.detail
         tail = (_listed("Free models: ", ev.models, half(lead)) if ev.models
@@ -184,10 +178,10 @@ DIGEST_TAGS = ["ai", "llm", "opensource", "free"]
 
 @dataclass
 class DevTo:
-    """One article a month, not one per event: Dev.to is read as a blog, and a
-    blog that posts a line every time a model rotates is one nobody follows.
-    The article is the whole list in the registry's own words plus what changed
-    last month, which is what a search for "free llm api <month> <year>" wants."""
+    """One article a month, not one per event, since Dev.to is read as a blog:
+    the whole list in the registry's own words plus what changed last month
+    (see `build_digest`), which is what a search for
+    "free llm api <month> <year>" wants."""
     api_key: str
     name: str = "devto"
 
@@ -283,8 +277,7 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
 
 def channels_from_env(env: dict) -> list:
     """A channel exists when both halves of its credentials do; half a
-    credential is a typo, and a typo must not read as "nothing configured"
-    for one channel while the other posts."""
+    credential configures nothing, silently."""
     channels: list = []
     if env.get("BLUESKY_HANDLE") and env.get("BLUESKY_APP_PASSWORD"):
         channels.append(Bluesky(env["BLUESKY_HANDLE"], env["BLUESKY_APP_PASSWORD"],
@@ -311,7 +304,7 @@ def load_ledger(path: Path) -> set[tuple[str, str]]:
 
 
 def append_ledger(path: Path, rows: list[dict]) -> None:
-    """Append, never rewrite — the same rule as history.jsonl, for the same reason."""
+    """Append, never rewrite — the same rule as history.jsonl (`append_history`)."""
     if not rows:
         return
     with path.open("a", encoding="utf-8") as fh:
