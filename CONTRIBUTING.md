@@ -708,7 +708,8 @@ and the pages of its models, a model's page, and the pages that list every row
 file the site publishes — its path filter is the map's published lines, held
 to them by a test, and the run's own push starts no workflow, so a commit is
 never announced twice; a hand push counts from the last ping that went out,
-since a push that lands while one waits cancels it. Until 2026-09-27 every
+since a push that lands while one waits cancels it, and leaves out what the
+run's verification commits in between changed, which the run pinged itself. Until 2026-09-27 every
 ping sent every URL, 186 of them for a commit that touched three rows. Both
 wait until Pages has built the commit they ping for (`freetier-indexnow
 --after-pages-build`), so an engine that fetches on the ping reads the new page; the key it proves

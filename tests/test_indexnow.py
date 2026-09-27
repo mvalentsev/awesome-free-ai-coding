@@ -135,3 +135,42 @@ def test_both_pings_send_only_what_their_push_changed():
     assert '--before "${since:-${{ github.event.before }}}"' in call["run"]
     checkout = next(s for s in steps if s.get("uses", "").startswith("actions/checkout"))
     assert checkout.get("with", {}).get("fetch-depth") == 0
+
+
+def test_a_hand_push_leaves_out_what_the_runs_own_ping_already_sent(tmp_path):
+    """The scheduled run pings its verification commit itself, and that push
+    starts no workflow, so the next hand push counts from an older ping: on
+    2026-09-27 ab9ea18 sent the same 167 pages 8b89fd5's own ping had sent
+    twenty minutes before. What a verification commit between the two changed
+    is left out — what the hand commits around it changed is not."""
+    import json
+    import subprocess
+    from freetier_radar.indexnow import changed_since
+
+    def commit(rows, message):
+        (tmp_path / "index.json").write_text(json.dumps(build_index(rows, TODAY)), encoding="utf-8")
+        subprocess.run(["git", "add", "index.json"], cwd=tmp_path, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", message],
+                       cwd=tmp_path, check=True)
+        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp_path, capture_output=True,
+                              text=True, check=True).stdout.strip()
+
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    rows = {k: make(id=k) for k in ("x", "w", "z")}
+    start = commit(list(rows.values()), "data: start")
+    rows["x"] = make(id="x", limits="changed by hand")
+    commit(list(rows.values()), "data: x by hand")
+    rows["w"] = make(id="w", limits="read again by the run")
+    commit(list(rows.values()), "chore: verification 2026-09-27")
+    rows["z"] = make(id="z", limits="changed by hand after the run")
+    commit(list(rows.values()), "data: z by hand")
+    now = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
+    urls = changed_since(start, now, repo=tmp_path)
+    assert f"{PAGES_URL}/providers/x/" in urls and f"{PAGES_URL}/providers/z/" in urls
+    assert f"{PAGES_URL}/providers/w/" not in urls
+    # the run's own ping, from the commit before its verification commit, sends it all
+    rows_head = subprocess.run(["git", "rev-parse", "HEAD~1"], cwd=tmp_path, capture_output=True,
+                               text=True, check=True).stdout.strip()
+    subprocess.run(["git", "checkout", "-q", rows_head], cwd=tmp_path, check=True)
+    at_run = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
+    assert f"{PAGES_URL}/providers/w/" in changed_since("HEAD^", at_run, repo=tmp_path)

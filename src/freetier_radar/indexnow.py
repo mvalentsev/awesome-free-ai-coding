@@ -108,6 +108,39 @@ def index_at(rev: str, path: str = "index.json", repo: Path = Path(".")) -> dict
     except json.JSONDecodeError:
         return None
 
+
+# The subject the scheduled run gives its verification commit. Its push pings
+# the pages that commit changed (update.yml) and starts no workflow.
+VERIFICATION_SUBJECT = "chore: verification"
+
+
+def changed_since(before: str, now: dict, repo: Path = Path("."),
+                  path: str = "index.json") -> list[str]:
+    """changed_urls from commit `before` to `now`, leaving out what each of the
+    run's verification commits in between changed: the run pinged those pages
+    itself when it pushed, and because its push starts no workflow the next
+    hand push counts from an older ping. On 2026-09-27 ab9ea18 sent the same
+    167 pages 8b89fd5's own ping had sent twenty minutes before. The commit
+    being pinged is never left out, so the run's own ping, from HEAD^, sends
+    its verification commit whole; and a `before` git cannot read sends every
+    page, as changed_urls does."""
+    log = subprocess.run(["git", "log", "--reverse", "--first-parent", "--format=%H %s",
+                          f"{before}..HEAD"], cwd=repo, capture_output=True, text=True)
+    commits = [line.partition(" ") for line in log.stdout.splitlines()] if log.returncode == 0 else []
+    head = commits[-1][0] if commits else None
+    cuts = [sha for sha, _, subject in commits
+            if subject.startswith(VERIFICATION_SUBJECT) and sha != head]
+    wanted: list[str] = []
+    start = before
+    for cut in cuts:
+        segment = index_at(f"{cut}^", path, repo)
+        if segment is not None:
+            wanted += changed_urls(index_at(start, path, repo), segment)
+        start = cut
+    wanted += changed_urls(index_at(start, path, repo), now)
+    order = site_urls(now)
+    return [u for u in order if u in set(wanted)] + [u for u in dict.fromkeys(wanted) if u not in order]
+
 def submit(urls: list[str], post=httpx.post) -> int:
     """One POST for the whole list; returns the HTTP status. 200 and 202 both
     mean accepted — the protocol answers before it crawls."""
@@ -168,7 +201,7 @@ def main() -> None:
         if waited == "errored":
             sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
-    urls = changed_urls(index_at(args.before, args.index.as_posix()), index) if args.before else site_urls(index)
+    urls = changed_since(args.before, index, path=args.index.as_posix()) if args.before else site_urls(index)
     if not urls:
         print(f"indexnow: no page's data changed since {args.before[:7]}, nothing submitted")
         sys.exit(0)
