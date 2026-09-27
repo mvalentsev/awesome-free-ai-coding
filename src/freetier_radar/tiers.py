@@ -46,6 +46,10 @@ from .models import Entry, Tier, is_archived, load_registry, save_registry
 from .prober import UA
 
 LEADERBOARD_URL = "https://artificialanalysis.ai/leaderboards/models"
+# What --write keeps of the board it read: the day, the top, the median and the
+# score of every family the list measures. The README draws the strong models
+# against the top of the index from it, and the render reads no network.
+SCORES_PATH = Path(__file__).with_name("intelligence-index.json")
 TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 FRONTIER_WITHIN = 10.0
 STRONG_WITHIN = 25.0
@@ -187,11 +191,30 @@ def unmeasured(entries: list[Entry], models: dict[str, Scored]) -> list[tuple[st
     return sorted(found.items())
 
 
+def keep_scores(path: Path, entries: list[Entry], board: dict[str, Scored], today: date) -> None:
+    """The scores the render draws, kept on every --write run whether or not a
+    mark moved: a score moves inside its tier as the index re-measures, and the
+    picture should say what the board says today. A family whose aa_model the
+    board no longer lists keeps its mark in the registry and has no score here."""
+    top = index_top(board)
+    measured = {m.family: board[m.aa_model] for e in entries for m in e.models
+                if m.aa_model and m.aa_model in board}
+    # To the tenth the pictures print: the board recomputes its decimals, and a
+    # file that changed on every run would bury the day a score really moved.
+    data = {"read_on": today.isoformat(), "source": LEADERBOARD_URL,
+            "top": {"slug": top.slug, "name": top.name, "index": round(top.index, 1)},
+            "median": round(index_median(board), 1),
+            "families": {family: {"slug": s.slug, "index": round(s.index, 1),
+                                  "estimated": s.estimated}
+                         for family, s in sorted(measured.items())}}
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
 def _tier_name(tier: Tier | None) -> str:
     return tier.value if tier else "no tier"
 
 
-async def _amain(registry: Path, write: bool) -> int:
+async def _amain(registry: Path, write: bool, scores: Path | None = None) -> int:
     entries = load_registry(registry)
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         resp = await client.get(LEADERBOARD_URL)
@@ -237,6 +260,10 @@ async def _amain(registry: Path, write: bool) -> int:
                 elif fam.family in tiers:
                     fam.tier = tiers[fam.family]
         save_registry(registry, entries)
+    # Only where the caller names the file: the command always does, and a test
+    # that measures a registry of its own never writes over the list's scores.
+    if write and scores is not None:
+        keep_scores(scores, entries, board, date.today())
     print(f"{len(marks)} families measured, {len(moved)} marks "
           f"{'re-written' if write else 'moved'}, {len(unknown)} not on the leaderboard, "
           f"{len(bare)} unmeasured that would reach a tier"
@@ -250,5 +277,7 @@ def main() -> None:
     parser.add_argument("--write", action="store_true",
                         help="re-write the marks that moved on every row carrying the family, "
                              "and measure a bare family the board scores by its own name")
+    parser.add_argument("--scores", type=Path, default=SCORES_PATH,
+                        help="where --write keeps the scores it read (the README draws them)")
     args = parser.parse_args()
-    sys.exit(asyncio.run(_amain(args.registry, args.write)))
+    sys.exit(asyncio.run(_amain(args.registry, args.write, args.scores)))

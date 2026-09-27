@@ -234,3 +234,36 @@ async def test_write_measures_a_bare_family_the_board_scores_by_its_own_name(tmp
                      ("b", "glm-5.3"): ("glm-5-3", Tier.FRONTIER),
                      ("gone", "glm-5.3"): ("glm-5-3", Tier.FRONTIER)}
     assert "glm-5.3: measured as glm-5-3 — 44.9, frontier" in capsys.readouterr().out
+
+
+@respx.mock
+async def test_write_keeps_every_score_it_read_for_the_readme_to_draw(tmp_path: Path):
+    """The README draws the strong models against the top of the index, and the
+    render reads no network, so --write keeps what it read: the day, the top,
+    the median and the score of every family measured — on every run, a mark
+    moved or not, since a score can move inside its tier. A report run keeps
+    nothing."""
+    respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
+    registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
+    save_registry(registry, [
+        entry("a", {"family": "glm-5.3", "tier": "frontier", "aa_model": "glm-5-3"},
+              {"family": "agnes-3.0-flash", "tier": "strong", "aa_model": "agnes-3-0-flash"},
+              {"family": "renamed", "tier": "strong", "aa_model": "no-longer-listed"}),
+        entry("b", {"family": "gemini-3.8-flash"}),
+    ])
+    assert await _amain(registry, write=False, scores=scores) == 1
+    assert not scores.exists()
+
+    await _amain(registry, write=True, scores=scores)
+    kept = json.loads(scores.read_text(encoding="utf-8"))
+    assert kept["read_on"] == date.today().isoformat()
+    assert kept["source"] == LEADERBOARD_URL
+    assert kept["top"] == {"slug": "claude-fable-5-1", "name": "Claude Fable 5.1 (max)", "index": 53.4}
+    assert kept["median"] == 41.2
+    # measured families, the bare one measured this run included; one the board
+    # lost keeps its mark in the registry and has no score to keep
+    assert kept["families"] == {
+        "agnes-3.0-flash": {"slug": "agnes-3-0-flash", "index": 35.5, "estimated": True},
+        "gemini-3.8-flash": {"slug": "gemini-3-8-flash", "index": 41.2, "estimated": False},
+        "glm-5.3": {"slug": "glm-5-3", "index": 44.9, "estimated": False}}
+    assert list(kept["families"]) == sorted(kept["families"])

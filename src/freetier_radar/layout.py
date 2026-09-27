@@ -71,6 +71,7 @@ class Node:
 RUN_WRITERS = ("freetier-probe", "freetier-tiers", "freetier-render")
 
 _PAGES = ("registry.yaml", "watchlist.yaml", "history.jsonl")
+_SCORES = "src/freetier_radar/intelligence-index.json"
 
 MAP: tuple[Node, ...] = (
     # ---- curated data
@@ -93,7 +94,7 @@ MAP: tuple[Node, ...] = (
          optional=True),
     # ---- generated
     Node("README.md", Kind.GENERATED, "the landing page GitHub shows under the file list",
-         made_from=("templates/README.md.j2", *_PAGES), written_by=("freetier-render",)),
+         made_from=("templates/README.md.j2", *_PAGES, _SCORES), written_by=("freetier-render",)),
     Node("index.html", Kind.GENERATED, "the Pages site's front page",
          made_from=("templates/index.html.j2", *_PAGES), written_by=("freetier-render",),
          published=True),
@@ -117,6 +118,10 @@ MAP: tuple[Node, ...] = (
          published=True),
     Node("llms.txt", Kind.GENERATED, "the whole list as one text file",
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
+    Node("assets/readme/*.svg", Kind.GENERATED,
+         "the README's pictures: the radar at the top, a dot per live row, and the strong models "
+         "drawn against the top of the index, in each width and theme the README serves",
+         made_from=("registry.yaml", _SCORES), written_by=("freetier-render",)),
     Node("providers/*.md", Kind.GENERATED,
          "a page per row, the provider index and the page of services checked",
          made_from=("registry.yaml", "history.jsonl", "watchlist.yaml", "blocklist.yaml"),
@@ -145,6 +150,10 @@ MAP: tuple[Node, ...] = (
     Node("assets/README.md", Kind.DOC, "what each asset is for"),
     # ---- code
     Node("src/freetier_radar/*.py", Kind.CODE, "the probe, the scout, the render and the checks"),
+    Node(_SCORES, Kind.DATA,
+         "the Artificial Analysis Intelligence Index as freetier-tiers last read it: the day, the "
+         "top, the median and the score of every family the list measures",
+         written_by=("freetier-tiers",)),
     Node("src/freetier_radar/developers.json", Kind.DATA,
          "the developers GitHub's Innovation Graph counts per country in its latest quarter — the "
          "yardstick a border's share is counted on", written_by=("freetier-borders",)),

@@ -2,26 +2,21 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img alt="awesome-free-ai-coding — legal free LLM APIs & coding agents, probe-verified" src="assets/banner-light.svg" width="860">
+  <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
+  <img alt="awesome-free-ai-coding — 80 live offers, 76 need no card, 150 free models, 17 strong models; every offer probed twice a week, last run 2026-09-27" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Every row verified](https://img.shields.io/badge/every%20row%20verified-2026--09--24%20or%20later-3fb950)
-![Live entries](https://img.shields.io/badge/live%20entries-80-58a6ff)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
-**[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎 Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🚀 Start here](#-start-here) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
-
-| **80** | **76** | **7** | **150** |
-|:---:|:---:|:---:|:---:|
-| <sub>live offers</sub> | <sub>need no card</sub> | <sub>need no signup</sub> | <sub>free model families</sub> |
+**[🌐 Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎 Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
 
 </div>
 
-> **Every row is machine-verified** — legal free tiers, trials and free-model APIs for AI coding, probed twice a week against live model APIs and pricing pages; an offer that dies drops to the [Archive](#-archive) once 3 runs in a row find it gone. Each date below links the row's own page: the quota in the vendor's words, the evidence the probe reads, the history. [The website](https://mvalentsev.github.io/awesome-free-ai-coding/) has every row, dark mode and [a search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) that finds any model or vendor as you type.
+> **Machine-verified, not copy-pasted.** A live probe re-reads every row against the vendor's own API or pricing page twice a week; an offer that dies drops to the [Archive](#-archive) on its own, and each date below opens the row's evidence.
 
 ## 🚀 Start here
 
@@ -32,27 +27,39 @@
 - **[Google Antigravity](https://antigravity.google)** — `gemini-3.1-pro` · `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` · `claude-opus-4.6` · `claude-sonnet-4.6` · `gpt-oss-120b`
 - **[Freebuff](https://freebuff.com)** — `glm-5.3-flash` · `deepseek-v4.1-flash` · `muse-spark-1.2`
 
-<sub>Every model name above is read back from the vendor's own API or pricing page twice a week; the quota that comes with it is one click from the [list below](#-coding-agents--clis), on the row's own page.</sub>
-
 **Strong models, free.** Each of these scores within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read twice a week, and every row beside it serves it free:
 
-- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — [Groq](https://groq.com) · [LLM Tech](https://llmtech.eu) · [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Regolo AI](https://regolo.ai/pricing/) · [VLM Run Gateway](https://vlm.run) · [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)
-- [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — [Routeway](https://routeway.ai) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [FreeInference (Harvard SEAS)](https://freeinference.org)
-- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [FreeInference (Harvard SEAS)](https://freeinference.org)
-- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — [Freebuff](https://freebuff.com) · [Token Harbor](https://tokenharbor.ai)
-- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
-- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
-- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
-- [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) — [AIHubMix (free models)](https://aihubmix.com) · [Regolo AI](https://regolo.ai/pricing/)
+<div align="center">
+<a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
+  <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
+  <img alt="Bar chart of the 17 strong models live offers here serve free, by Artificial Analysis Intelligence Index score: the strongest, qwen3.8-max, scores 45.4; the top of the index, Claude Opus 5.5, 57.6" src="assets/readme/strong-light.svg" width="860">
+</picture></a>
+</div>
+
+<details>
+<summary><b>Where each one is free</b> — every live offer beside its model, in the chart's order</summary>
+<br>
+
+- [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) — [opencode](https://opencode.ai) · [Cline](https://cline.bot)
 - [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) — [AIHubMix (free models)](https://aihubmix.com) · [ZCode (Z.ai)](https://zcode.z.ai/en)
 - [`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/) — [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com) · [AIHubMix (free models)](https://aihubmix.com)
-- [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) — [opencode](https://opencode.ai) · [Cline](https://cline.bot)
-- [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Yolo-Auto](https://yolo-auto.com)
-- [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
-- [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — [Zed](https://zed.dev)
-- [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/) — [Freebuff](https://freebuff.com)
+- [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) — [Freebuff](https://freebuff.com) · [AIHubMix (free models)](https://aihubmix.com) · [FreeInference (Harvard SEAS)](https://freeinference.org)
+- [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
 - [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
-- [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Yolo-Auto](https://yolo-auto.com)
+- [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/) — [Freebuff](https://freebuff.com)
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — [Freebuff](https://freebuff.com) · [Token Harbor](https://tokenharbor.ai)
+- [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
+- [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — [Zed](https://zed.dev)
+- [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)
+- [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) — [Routeway](https://routeway.ai) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [FreeInference (Harvard SEAS)](https://freeinference.org)
+- [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Google Antigravity](https://antigravity.google)
+- [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) — [AIHubMix (free models)](https://aihubmix.com) · [Regolo AI](https://regolo.ai/pricing/)
+- [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) — [Groq](https://groq.com) · [LLM Tech](https://llmtech.eu) · [Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio) · [Regolo AI](https://regolo.ai/pricing/) · [VLM Run Gateway](https://vlm.run) · [OVHcloud AI Endpoints](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/)
+
+</details>
 
 **Or pick by what you need:**
 
@@ -62,7 +69,7 @@
 - **A trial that asks for no card** — [GitHub Copilot Free](https://github.com/features/copilot) · [Kiro](https://kiro.dev/) · [Google Jules](https://jules.google/)
 - **Claude Code on a free lane** — [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com)
 
-<sub>Each answer is the registry's own order read from the top — of its section, or of every section for no account at all and Claude Code — so a row that stops verifying leaves these answers on the run it leaves the list, and the ranking is [explained in CONTRIBUTING](CONTRIBUTING.md#how-rows-are-ordered). The Claude Code line names gateways whose vendor documents an Anthropic-format route, which every run calls; [`configs/claude-code.sh`](configs/claude-code.sh) is one shell function per gateway.</sub>
+<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered); the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh).</sub>
 
 **No account at all?** [Kilo Code](https://kilo.ai) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 
@@ -77,7 +84,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** beside a name is the whole of the fine print about payment — 4 rows of 80 carry it, and nothing else here asks for a card · **👁** — what you send may be used to train models, in the vendor's own words on the row's page · **🧪** — added recently on fresh evidence, provisional until two weeks of probes confirm it · **verified** — the day a live probe last confirmed the offer, earned by passing it and never typed by hand; it links the row's own page with the quota in the vendor's words, the evidence and the history.</sub>
+<sub>**💳** — the row wants a card on file, 4 of 80, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 
 ### 🤖 Coding agents & CLIs
 <sub>**8** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>

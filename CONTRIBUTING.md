@@ -768,7 +768,7 @@ cannot print two versions of it.
 | `dismissed.yaml` | **data** — model-generation bumps a reviewer declined | — | `hand` |
 | `history.jsonl` | **log** — every change to what the list publishes, one event a line, append-only | `registry.yaml` | `freetier-render` |
 | `announced.jsonl` | **log** — the posts the announcer has sent, append-only | `history.jsonl` | `freetier-announce` |
-| `README.md` | **generated** — the landing page GitHub shows under the file list · not on the site | `templates/README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
+| `README.md` | **generated** — the landing page GitHub shows under the file list · not on the site | `templates/README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `configs/README.md` | **generated** — the connection table, beside the configs · not on the site | `templates/configs-README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `configs/opencode.json` | **generated** — the opencode config | `registry.yaml` | `freetier-render` |
@@ -778,6 +778,7 @@ cannot print two versions of it.
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
+| `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and the strong models drawn against the top of the index, in each width and theme the README serves · not on the site | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
 | `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
@@ -789,6 +790,7 @@ cannot print two versions of it.
 | `LICENSE` | **doc** — MIT | — | `hand` |
 | `assets/README.md` | **doc** — what each asset is for · not on the site | — | `hand` |
 | `src/freetier_radar/*.py` | **code** — the probe, the scout, the render and the checks · not on the site | — | `hand` |
+| `src/freetier_radar/intelligence-index.json` | **data** — the Artificial Analysis Intelligence Index as freetier-tiers last read it: the day, the top, the median and the score of every family the list measures · not on the site | — | `hand`, `freetier-tiers` |
 | `src/freetier_radar/developers.json` | **data** — the developers GitHub's Innovation Graph counts per country in its latest quarter — the yardstick a border's share is counted on · not on the site | — | `hand`, `freetier-borders` |
 | `templates/*.j2` | **code** — the page templates freetier-render fills · not on the site | — | `hand` |
 | `tests/*.py` | **code** — the test suite · not on the site | — | `hand` |

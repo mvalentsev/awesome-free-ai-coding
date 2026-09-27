@@ -27,7 +27,9 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, PROBE_WEEKDAYS,
 from .prober import PROVISIONAL_PROMOTE_DAYS
 # The bars a family's score must clear to be called frontier or strong, which
 # the picks table and the strong models state beside the answer.
-from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
+from .tiers import FRONTIER_WITHIN, SCORES_PATH, STRONG_WITHIN
+# The README's pictures, drawn from the figures below.
+from .pictures import DARK, LIGHT, Arc, Bar, Chart, Hero, chart_svg, hero_svg
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import number, series, weeks
@@ -110,6 +112,18 @@ README_LIMITS_COLLAPSE = 260
 # the families, 70 of them in 7 KB on 2026-09-20 and 149 in 18.7 KB on 09-25
 # with the page at 70 KB, and moved to the site that day.
 README_BUDGET = 80_000
+# Where the README's pictures are drawn, beside the README and relative to it:
+# GitHub serves an image the README names by a relative path from the same
+# commit, so the picture and the page it tops are always the same render.
+README_PICTURES = "assets/readme"
+# The radar's sections, in the list's order: the word the legend uses and the
+# colour (pictures.TONES) a section's dots take.
+HERO_ARCS: dict[Category, tuple[str, str]] = {
+    Category.AGENT_CLI: ("agents", "agents"),
+    Category.API_FREE_TIER: ("APIs", "apis"),
+    Category.TRIAL: ("trials", "trials"),
+    Category.AGGREGATOR: ("aggregators", "aggregators"),
+}
 # The connection table lives beside the files it describes. GitHub renders a
 # folder's README under its file list, so a reader who opens configs/ for the
 # opencode config finds the base URLs and key names on the same screen.
@@ -632,6 +646,77 @@ def _published_beside(registry_path: Path) -> frozenset[str]:
                      if p.stem != "index")
 
 
+def _hero(active: list[Entry], shared: dict, today: date) -> Hero:
+    """What the picture at the top of the README shows: the counters the text
+    states, and a dot per live row in its section. "Last run" is the newest day
+    a probe confirmed a row, never the render's — a render changes no fact."""
+    return Hero(live=shared["active_count"], no_card=shared["no_card_count"],
+                models=shared["family_count"], strong=len(shared["strong_models"]),
+                last_run=max((e.last_verified for e in active), default=today),
+                schedule=shared["schedule"],
+                arcs=tuple(Arc(label, tone, sum(1 for e in active if e.category is cat))
+                           for cat, (label, tone) in HERO_ARCS.items()))
+
+
+def _hero_alt(hero: Hero) -> str:
+    """The picture in words, for a reader who cannot see it and for search."""
+    return (f"awesome-free-ai-coding — {hero.live} live offers, {hero.no_card} need no card, "
+            f"{hero.models} free models, {hero.strong} strong models; every offer probed "
+            f"{hero.schedule}, last run {hero.last_run.isoformat()}")
+
+
+def load_scores(path: Path = SCORES_PATH) -> dict | None:
+    """The scores freetier-tiers last read off the index, or None before the
+    first --write has kept any."""
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def _plain_model(name: str) -> str:
+    """The board names a model with its settings — "Claude Opus 5.5 (Adaptive
+    Reasoning, Max Effort, Default Fallback)" — and a label needs the model."""
+    return re.sub(r"\s*\(.*\)\s*$", "", name)
+
+
+def _chart(strong: list[dict], scores: dict | None) -> Chart | None:
+    """The strong models the README names, each with the score its tier was read
+    off; None where no score is kept for any of them, and the page stays a list."""
+    if not scores:
+        return None
+    kept = scores.get("families") or {}
+    bars = tuple(Bar(m["family"], kept[m["family"]]["index"], len(m["providers"]),
+                     m["frontier"], bool(kept[m["family"]].get("estimated")))
+                 for m in strong if m["family"] in kept)
+    if not bars:
+        return None
+    return Chart(bars=bars, top_name=_plain_model(scores["top"]["name"]),
+                 top_score=scores["top"]["index"], read_on=date.fromisoformat(scores["read_on"]),
+                 frontier_within=FRONTIER_WITHIN, strong_within=STRONG_WITHIN)
+
+
+def _chart_alt(chart: Chart) -> str:
+    best = chart.ranked()[0]
+    return (f"Bar chart of the {number(len(chart.bars))} strong models live offers here serve "
+            f"free, by Artificial Analysis Intelligence Index score: the strongest, {best.family}, "
+            f"scores {best.score:.1f}; the top of the index, {chart.top_name}, "
+            f"{chart.top_score:.1f}")
+
+
+def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
+    """Every picture the README names, by its path beside the README: the wide
+    hero and chart once per palette, the narrow ones with both."""
+    drawn = {f"{README_PICTURES}/hero-light.svg": hero_svg(hero, LIGHT),
+             f"{README_PICTURES}/hero-dark.svg": hero_svg(hero, DARK),
+             f"{README_PICTURES}/hero-narrow.svg": hero_svg(hero, None, narrow=True)}
+    if chart is not None:
+        drawn.update({f"{README_PICTURES}/strong-light.svg": chart_svg(chart, LIGHT),
+                      f"{README_PICTURES}/strong-dark.svg": chart_svg(chart, DARK),
+                      f"{README_PICTURES}/strong-narrow.svg": chart_svg(chart, None, narrow=True)})
+    return drawn
+
+
 def _strong_models(active: list[Entry]) -> list[dict]:
     """The models a reader comes for, and every row that serves each one free.
 
@@ -1055,7 +1140,8 @@ def _shared_facts(entries: list[Entry], today: date,
 def build_context(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
                   history: list[Event] | None = None,
-                  pages: set[str] | None = None) -> dict:
+                  pages: set[str] | None = None,
+                  scores: dict | None = None) -> dict:
     active = [e for e in entries if not is_archived(e, today)]
     pages = model_pages(entries, history or [], today) if pages is None else pages
     sections = []
@@ -1084,10 +1170,22 @@ def build_context(entries: list[Entry], today: date,
         for e in _connectable(entries, today)
     ]
     shared = _shared_facts(entries, today, watchlist, pages)
+    hero = _hero(active, shared, today)
+    strong = shared["strong_models"][:README_STRONG]
+    chart = _chart(strong, load_scores() if scores is None else scores)
+    if chart is not None:
+        # The list folded under the chart answers "where" for the same bars, in
+        # the same order.
+        order = {b.family: i for i, b in enumerate(chart.ranked())}
+        strong = sorted(strong, key=lambda m: order.get(m["family"], len(order)))
     return {**shared,
+            "hero": hero,
+            "hero_alt": _hero_alt(hero),
+            "chart": chart,
+            "chart_alt": _chart_alt(chart) if chart else "",
             # The README names the first README_STRONG strong models and links
             # the rest; the site has no budget and names them all.
-            "readme_strong": shared["strong_models"][:README_STRONG],
+            "readme_strong": strong,
             "strong_more": max(0, len(shared["strong_models"]) - README_STRONG),
             "sections": sections,
             "archived": _archived_rows(entries, today),
@@ -2566,21 +2664,26 @@ def _markdown_env(template_dir: Path) -> Environment:
 
 
 def _github_page_context(registry_path: Path, today: date,
-                         watchlist_path: Path | None) -> dict:
+                         watchlist_path: Path | None, scores: dict | None = None) -> dict:
     entries, history = load_registry(registry_path), _history_beside(registry_path)
     # The page is where a deleted row would quietly disappear from.
     refuse_deleted_rows(entries, history)
     return build_context(entries, today, _watchlist_beside(registry_path, watchlist_path),
                          history, model_pages(entries, history, today,
-                                              _published_beside(registry_path)))
+                                              _published_beside(registry_path)), scores)
 
 
 def render_readme(registry_path: Path, template_dir: Path, out_path: Path,
-                  today: date | None = None, watchlist_path: Path | None = None) -> str:
+                  today: date | None = None, watchlist_path: Path | None = None,
+                  scores: dict | None = None) -> str:
     today = today or date.today()
-    context = _github_page_context(registry_path, today, watchlist_path)
+    context = _github_page_context(registry_path, today, watchlist_path, scores)
     text = _markdown_env(template_dir).get_template("README.md.j2").render(**context)
     out_path.write_text(text, encoding="utf-8")
+    for rel, svg in readme_pictures(context["hero"], context["chart"]).items():
+        picture = out_path.parent / rel
+        picture.parent.mkdir(parents=True, exist_ok=True)
+        picture.write_text(svg, encoding="utf-8")
     return text
 
 
@@ -2829,7 +2932,9 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     # in the repository is still served, so the absent half of the comparison
     # counts too.
     stale += [p.relative_to(root).as_posix()
-              for pages in (PROVIDERS_DIR, MODELS_DIR) for p in (root / pages).glob("*.md")
+              for pages, kind in ((PROVIDERS_DIR, "*.md"), (MODELS_DIR, "*.md"),
+                                  (README_PICTURES, "*.svg"))
+              for p in (root / pages).glob(kind)
               if p.relative_to(root).as_posix() not in fresh]
     return sorted(stale)
 

@@ -1,3 +1,4 @@
+import re
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from xml.etree import ElementTree
@@ -891,12 +892,12 @@ def test_render_readme(tmp_path: Path):
     out = tmp_path / "README.md"
     text = render_readme(reg, Path("templates"), out, today=TODAY)
     assert "every%20row%20verified-2026--07--19%20or%20later" in text
-    assert "live%20entries-1-58a6ff" in text
+    assert "— 1 live offers, 1 need no card" in text
     assert "Coding agents & CLIs" in text
     assert "LLM APIs with free tier" in text
     assert "## 📡 How this list stays fresh" in text
     assert "```mermaid" in text
-    assert "banner-dark.svg" in text
+    assert 'srcset="assets/readme/hero-dark.svg"' in text
     assert "## 📦 Archive" in text
     assert "Dead Tool" in text.split("## 📦 Archive")[1]
     assert out.read_text(encoding="utf-8") == text
@@ -1272,21 +1273,60 @@ def test_picks_render_between_the_starters_and_the_list(tmp_path: Path):
     assert "asks for no card" not in hero.split("**Or pick by what you need:**")[1]
 
 
-def test_the_hero_counters_fit_a_phone(tmp_path: Path):
-    """GitHub pads every table cell thirteen pixels a side, so five counters
-    spent 130 of the 309 pixels a phone gives the README on padding alone, and
-    the table under the badges scrolled sideways with its last figure cut off
-    (2026-09-25, 390 pixels). Four fit with room to spare; the count of
-    OpenAI-compatible endpoints that the fifth carried is stated under Plug it
-    into your agent, where the connections are."""
+def test_the_readme_opens_on_the_hero_and_a_phone_is_served_the_narrow_one(tmp_path: Path):
+    """The counters were a table under a hand-drawn banner, and a phone gave
+    both the width of a 390-pixel screen: the banner's words at six pixels, the
+    table padded thirteen pixels a cell (2026-09-25, 2026-09-27). The top is one
+    picture now, drawn from the list, and the first <source> hands a phone the
+    narrow one — asked by width alone, since GitHub rewrites a <source> that
+    names the theme, and the narrow picture follows the theme itself. What the
+    picture shows is in its alt text, figures and all."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
-    save_registry(reg, [make(id="a", name="A", models=[{"family": "m"}])])
+    save_registry(reg, [make(id="a", name="A", models=[{"family": "m"}]),
+                        make(id="b", name="B", category="agent-cli", card_required=True)])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[0]
-    counters = next(line for line in hero.splitlines() if line.startswith("| **"))
-    assert counters.count("|") - 1 == 4
-    assert "<sub>live offers</sub>" in hero and "<sub>free model families</sub>" in hero
+    sources = re.findall(r'<source media="([^"]+)" srcset="([^"]+)">', hero)
+    assert sources == [("(max-width: 600px)", "assets/readme/hero-narrow.svg"),
+                       ("(prefers-color-scheme: dark)", "assets/readme/hero-dark.svg")]
+    img = re.search(r'<img alt="([^"]+)" src="assets/readme/hero-light.svg" width="860">', hero)
+    assert img and "2 live offers, 1 need no card, 1 free models" in img.group(1)
+    assert not any(line.startswith("| **") for line in hero.splitlines())
+
+
+def test_the_render_draws_the_pictures_beside_the_readme(tmp_path: Path):
+    """One dot per live row, a section to a colour: the render draws them from
+    the same rows the page lists, so the picture cannot show a row the list
+    dropped."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="a", name="A"), make(id="b", name="B", category="agent-cli"),
+                        make(id="c", name="C", category="agent-cli"),
+                        make(id="gone", name="Gone", probe_failures=5)])
+    render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    drawn = sorted(p.name for p in (tmp_path / "assets" / "readme").glob("hero-*.svg"))
+    assert drawn == ["hero-dark.svg", "hero-light.svg", "hero-narrow.svg"]
+    for name in drawn:
+        svg = (tmp_path / "assets" / "readme" / name).read_text(encoding="utf-8")
+        assert svg.count('<circle class="dot agents"') == 2
+        assert svg.count('<circle class="dot apis"') == 1
+        assert svg.count('<circle class="dot ') == 3
+        assert f"last run {TODAY.isoformat()}" in svg
+
+
+def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import check_rendered, render_all
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(id="a", name="A")])
+    render_all(reg, Path("templates"), tmp_path, today=TODAY, contributing_from=Path("."))
+    hero = tmp_path / "assets" / "readme" / "hero-dark.svg"
+    hero.write_text(hero.read_text(encoding="utf-8").replace("live offers", "live deals"),
+                    encoding="utf-8")
+    (tmp_path / "assets" / "readme" / "hero-old.svg").write_text("<svg/>", encoding="utf-8")
+    stale = check_rendered(reg, Path("templates"), tmp_path, today=TODAY)
+    assert "assets/readme/hero-dark.svg" in stale and "assets/readme/hero-old.svg" in stale
 
 
 def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
@@ -1974,3 +2014,53 @@ def test_a_row_that_can_list_no_id_says_why_and_checks_the_key_on_the_catalog():
             f'  -H "Authorization: Bearer ${env_var("shy")}"\n```') in page
     with pytest.raises(ValidationError, match="no_ids"):
         make(id="both", api={"base_url": "https://s.ai/v1", "model_ids": ["s-1"], "no_ids": "none"})
+
+
+SCORES = {"read_on": "2026-07-18", "source": "https://artificialanalysis.ai/leaderboards/models",
+          "top": {"slug": "claude-opus-5-5", "name": "Claude Opus 5.5 (Adaptive Reasoning, Max Effort)",
+                  "index": 57.6},
+          "median": 13.2,
+          "families": {"glm-5.3": {"slug": "glm-5-3", "index": 44.8, "estimated": False},
+                       "kimi-k3": {"slug": "kimi-k3", "index": 45.9, "estimated": True}}}
+
+
+def _strong_rows() -> list[Entry]:
+    return [make(id="a", name="A", models=[{"family": "glm-5.3", "tier": "strong", "aa_model": "glm-5-3"}]),
+            make(id="b", name="B", models=[{"family": "glm-5.3", "tier": "strong", "aa_model": "glm-5-3"},
+                                           {"family": "kimi-k3", "tier": "strong", "aa_model": "kimi-k3"}])]
+
+
+def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path):
+    """The strong models were seventeen lines of vendor names. They are a chart
+    now, a bar per model as long as its score, drawn from the scores the tiers
+    were read off — and the list of who serves each is folded under it, in the
+    chart's order, so the two are one answer."""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, _strong_rows())
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY, scores=SCORES)
+    strong = text.split("**Strong models, free.**")[1].split("**Or pick by what you need:**")[0]
+    assert '<source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">' in strong
+    # a line that opens on <a><picture> is a paragraph to GitHub, which empties the
+    # <picture> and serves every reader its fallback (2026-09-27, a dark phone was
+    # handed the light desktop chart): the picture sits in an HTML block
+    assert '<div align="center">\n<a href="' in strong
+    assert 'src="assets/readme/strong-light.svg" width="860"' in strong
+    assert "<details>" in strong and strong.index("<details>") < strong.index("[`kimi-k3`]")
+    # the chart's order: the higher score first
+    assert strong.index("[`kimi-k3`]") < strong.index("[`glm-5.3`]")
+    chart = (tmp_path / "assets" / "readme" / "strong-light.svg").read_text(encoding="utf-8")
+    assert ">45.9*<" in chart and " · 1 offer<" in chart and " · 2 offers<" in chart
+    assert "Claude Opus 5.5, 57.6" in chart and "(Adaptive" not in chart
+
+
+def test_without_a_measurement_the_strong_models_stay_a_list(tmp_path: Path):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, _strong_rows())
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY,
+                         scores={**SCORES, "families": {}})
+    strong = text.split("**Strong models, free.**")[1].split("**Or pick by what you need:**")[0]
+    assert "strong-light.svg" not in strong and "<details>" not in strong
+    assert "- [`glm-5.3`]" in strong
+    assert not (tmp_path / "assets" / "readme" / "strong-light.svg").exists()
