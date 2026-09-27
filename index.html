@@ -1162,7 +1162,7 @@ Keyless OpenAI-compatible chat endpoint — no signup, no key, no account       
             <td class="models" data-label="Free models">
 <span class="empty">—</span>            </td>
             <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>No quota is published anywhere on the site. The offer is a sentence — &#34;we offer free AI services powered by multiple AI models and a TTS …</summary><span class="full">No quota is published anywhere on the site. The offer is a sentence — &#34;we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer &amp; free as in freedom&#34; — and the page names three endpoints, and which of them serves text moves: hermes.ai.unturf.com/v1 answered a keyless chat completion on 2026-08-30 while qwen.ai.unturf.com/v1 answered 403 `Access denied - This endpoint is closed`, and on 2026-09-27 qwen answered one keyless with the same model while hermes had answered 502 since 2026-09-26. The served id is not the one the page&#39;s own examples call, and the vendor says so — &#34;See our Model Discovery docs to query the current model IDs being hosted&#34; — so the id lives in api.model_ids and the Free models column stays empty</span></details>
+                <details><summary>The offer is a sentence — &#34;we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of …</summary><span class="full">The offer is a sentence — &#34;we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer &amp; free as in freedom&#34; — and the inference page draws the line between its two text hostnames: &#34;hermes.ai.unturf.com : public, 3 requests per second per IP&#34; and &#34;qwen.ai.unturf.com : API key required; anonymous traffic gets 403&#34;. Hermes is the lane, and &#34;A hostname whose model is down gets a 502 instead of silently answering as whatever else is up&#34;: it has answered 502 since 2026-09-26, while qwen took anonymous calls on 2026-09-27 against its own page, which this list does not count as an offer. The served id is not the one the page&#39;s own examples call, and the vendor says so — &#34;See our Model Discovery docs to query the current model IDs being hosted&#34; — so the id lives in api.model_ids and the Free models column stays empty. Read 2026-09-27</span></details>
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/"><time datetime="2026-09-24">2026-09-24</time></a>
@@ -3671,15 +3671,15 @@ the catalog at /v1/models answers only a gateway key; the model list with prices
           <tr>
             <th class="who" scope="row"><a class="name" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/">uncloseai (unturf)</a></th>
             <td class="what" data-label="Base URL">
-              <code>https://qwen.ai.unturf.com/v1</code>
-              <button class="copy" type="button" data-copy="https://qwen.ai.unturf.com/v1" hidden
+              <code>https://hermes.ai.unturf.com/v1</code>
+              <button class="copy" type="button" data-copy="https://hermes.ai.unturf.com/v1" hidden
                       style="position:static;margin-left:6px">Copy</button>
             </td>
             <td class="models" data-label="Key">
 <span class="tag nokey">none — the lane is anonymous</span>
             </td>
             <td class="limits" data-label="Notes">
-                <details><summary>anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the …</summary><span class="full">anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — the endpoints are named after Hermes and Qwen and the model moves between them — so treat the id as this week&#39;s, not the offer. It stays out of the Models column: a family would name this week&#39;s model, and the catalog serving none of the row&#39;s families fails the row at the next rotation</span></details>
+                <details><summary>anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — &#34;Hostnames …</summary><span class="full">anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — &#34;Hostnames are routing labels&#34;, and hermes serves a Qwen build — so treat the id as this week&#39;s, not the offer. It stays out of the Models column: a family would name this week&#39;s model, and the catalog serving none of the row&#39;s families fails the row at the next rotation</span></details>
             </td>
           </tr>
           <tr>
