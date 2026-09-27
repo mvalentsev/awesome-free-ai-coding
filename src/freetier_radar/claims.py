@@ -28,8 +28,9 @@ from .models import (ANCHOR_PHRASE_WORDS, ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAIL
                      probe_frequency)
 from .prober import ANTHROPIC_GONE, KEYLESS_IDS_TRIED, PROVISIONAL_PROMOTE_DAYS, UA
 from .quotes import MIN_WORDS
-from .render import (CATEGORY_TITLES, MODEL_PAGE_ROWS, PAGES_URL, QUICKSTART_USER_AGENT,
-                     README_MODELS, README_PICKS, README_STARTERS, README_STRONG)
+from .render import (CATEGORY_TITLES, CODEX_SINCE, LITELLM_BRIDGE_SINCE, MODEL_PAGE_ROWS,
+                     PAGES_URL, QUICKSTART_USER_AGENT, README_MODELS, README_PICKS,
+                     README_STARTERS, README_STRONG)
 from .tiers import FRONTIER_WITHIN, STRONG_WITHIN
 from .validate import PROSE_LIMITS
 # The render's own words for a figure, so a sentence held here and the page
@@ -125,7 +126,7 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(MIN_WORDS),), "quotes.MIN_WORDS"),
     Claim("CONTRIBUTING.md", r"is a route, a (\d+), (\d+) or (\d+)\s+is reported",
           lambda root: tuple(str(c) for c in ANTHROPIC_GONE), "prober.ANTHROPIC_GONE"),
-    Claim("CONTRIBUTING.md", r"beside the (\w+) config files it describes",
+    Claim("CONTRIBUTING.md", r"beside the (\w+) configs it describes",
           lambda root: (_word(len([n for n in MAP if n.kind is Kind.GENERATED
                                    and n.path.startswith("configs/")
                                    and n.path != "configs/README.md"])),),
@@ -134,6 +135,10 @@ CLAIMS: tuple[Claim, ...] = (
           r"a hand edit of `(\w+)`,\s+`(\w+)`, `(\w+)` or `(\w+)`, which only the run's probe",
           lambda root: tuple(sorted(EARNED)), "gate.EARNED",
           read=lambda found: tuple(sorted(found.groups()))),
+    Claim("CONTRIBUTING.md", r"the header asks for\s+LiteLLM (\d+\.\d+) or later",
+          lambda root: (LITELLM_BRIDGE_SINCE,), "render.LITELLM_BRIDGE_SINCE"),
+    Claim("CONTRIBUTING.md", r"since\s+Codex CLI (\d+\.\d+)",
+          lambda root: (CODEX_SINCE,), "render.CODEX_SINCE"),
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",

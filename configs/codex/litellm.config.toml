@@ -1,0 +1,38 @@
+# Codex CLI on the free lanes of litellm.yaml — generated from registry.yaml,
+# do not edit by hand.
+# Codex speaks only the OpenAI Responses API, which few free lanes serve; the
+# LiteLLM proxy answers it for every lane in litellm.yaml by calling the
+# lane's chat completions. Needs Codex CLI 0.134 or later and LiteLLM 1.89 or
+# later; the file goes where Codex keeps its config, ~/.codex unless
+# CODEX_HOME says otherwise:
+#
+#   litellm --config configs/litellm.yaml --host 127.0.0.1
+#   cp configs/codex/litellm.config.toml ~/.codex/
+#   codex -p litellm
+#
+# The model is free/strong: LiteLLM spreads the calls over every strong lane
+# and falls back to free/nokey. A lane whose key is not set is skipped, and
+# free/nokey needs none, so the profile answers before you set any. Any
+# model_name in litellm.yaml works too — codex -p litellm -m <model_name> — as
+# long as the model calls tools, since every Codex turn offers them. Codex
+# warns that it has no metadata for the name, as it does for any model outside
+# OpenAI's.
+model = "free/strong"
+model_provider = "litellm"
+# Reasoning summaries off: LiteLLM hands Codex's summary setting to the lane
+# as a reasoning_effort value, and the lanes tried refuse it.
+model_reasoning_summary = "none"
+# Web search off: it is a tool OpenAI's servers run, which LiteLLM passes on
+# to the lane as web_search_options.
+web_search = "disabled"
+
+[features]
+# Sub-agents off: Codex sends their tools as a namespace, a tool type some
+# lanes refuse.
+multi_agent = false
+
+# No key: the proxy runs without a master key (see litellm.yaml's header).
+[model_providers.litellm]
+name = "LiteLLM over the free lanes"
+base_url = "http://127.0.0.1:4000/v1"
+wire_api = "responses"

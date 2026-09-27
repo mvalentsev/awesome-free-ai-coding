@@ -599,7 +599,8 @@ tr.flash { animation: flash 1.6s ease-out; }
     <header>
       <h2>🔧 Plug it into your agent</h2>
       <p class="sub">Connection details for every live OpenAI-compatible API above — paste the base
-        URL into opencode, Codex CLI, aider, Cline or any OpenAI SDK. Where a second URL is shown,
+        URL into opencode, aider, Cline or any OpenAI SDK. Codex CLI speaks only the OpenAI Responses
+        API and reaches these lanes through LiteLLM, with the profile below. Where a second URL is shown,
         the same key also serves the Anthropic Messages format: that one is Claude Code's
         <code>ANTHROPIC_BASE_URL</code>, and the probe checks it answers.</p>
     </header>
@@ -668,6 +669,8 @@ tr.flash { animation: flash 1.6s ease-out; }
           <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and {% if claude_example %}<code>{{ claude_example }}</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane{% else %}run the function named after a row to start <a href="https://code.claude.com/docs">Claude Code</a> on its lane{% endif %}.</td></tr>
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
           <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model LiteLLM can call behind one local endpoint{% if litellm_groups %}; ask for {% for g in litellm_groups %}<code>{{ g }}</code>{{ ', ' if loop.revindex > 2 else (' or ' if loop.revindex == 2 else '') }}{% endfor %} instead of a model and a call moves to the next free lane when one runs out{% endif %}. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
+        <tr><th scope="row"><a href="{{ repo_url }}/blob/main/{{ codex.path }}">{{ codex.path }}</a></th>
+          <td><a href="https://developers.openai.com/codex">Codex CLI</a> profile over <code>configs/litellm.yaml</code> — Codex speaks only the OpenAI Responses API, and the LiteLLM proxy answers it for every lane in that file by calling the lane's chat completions: run the proxy, copy the file to <code>~/.codex/</code>, then <code>codex -p {{ codex.name }}</code> (Codex CLI {{ codex.since }} and LiteLLM {{ codex.litellm_since }} or later).</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
           <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
         <tr><th scope="row"><a href="index.json">index.json</a></th>

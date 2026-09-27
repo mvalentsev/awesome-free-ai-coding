@@ -421,6 +421,32 @@ place — Cloudflare's config handed out `llama-4`, which Workers AI does not kn
 and Upstage's `solar-pro-3` for the id `solar-pro3` — so `freetier-check` now
 refuses a connectable row whose column names families with no ids beside them.
 
+**Codex CLI reaches the lanes through LiteLLM.** Codex speaks only the OpenAI
+Responses API — a provider given `wire_api = "chat"` has been a config error
+since its discussion #7782 — and on 2026-09-27 seventeen of the list's 61 lanes
+answered POST `/responses` with 404, while OVHcloud's refused the request Codex
+sends. LiteLLM's `/v1/responses` sends an `openai/` deployment's call on to the
+lane's own `/responses` unless the deployment carries `use_chat_completions_api`;
+then it builds the call from the lane's chat completions, the format every lane
+here is verified in. So every entry of `configs/litellm.yaml` carries the flag,
+and the header asks for LiteLLM 1.89 or later: 1.88.0 still wrote the flag into
+the vendor's request body, where a strict vendor refuses a field it does not
+know. [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) is
+Codex's profile for the proxy — `--profile NAME` has read
+`$CODEX_HOME/NAME.config.toml` since Codex CLI 0.134 — and its three settings are
+the ones measured that day, with Codex 0.157.1 and LiteLLM 1.102.1, to break a
+lane otherwise: reasoning summaries off, since LiteLLM hands Codex's summary
+setting to the lane as a `reasoning_effort` object, which all four lanes tried
+refused; sub-agents off, since Codex sends their tools as a `namespace`, which
+LLM7 refused through LiteLLM and OVHcloud directly; and web search off, a tool
+OpenAI's servers run, which LiteLLM passes on as `web_search_options`. With
+those, Codex ran a shell command through the proxy on LLM7 and read its output
+back, and `free/strong` with no key set answered from the keyless lanes. A lane
+whose chat template takes a single system message — LLM Tech's Qwen answered
+"System message must be at the beginning" to the second one Codex sends — or a
+model that takes no tools, such as LLM7's Mistral Nemo, answers 400, and a group
+moves on to the next lane.
+
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —
 where `require_zero_price` is set — priced 0; a dead id is reported as
@@ -694,7 +720,7 @@ prose. The README keeps its GitHub features, the site gets HTML, and
 [`templates/configs-README.md.j2`](templates/configs-README.md.j2) and the README's
 own context: the connection table — base URL, key env var, the note that matters,
 the Anthropic-format route where the vendor documents one — for every live
-OpenAI-compatible API, beside the four config files it describes. GitHub renders a
+OpenAI-compatible API, beside the five configs it describes. GitHub renders a
 folder's README under its file list, which is where a reader who came for
 `opencode.json` finds the base URLs. It is written for GitHub's renderer like the
 root README, so `_config.yml` leaves it off the site too; the site's own copy of the
@@ -779,6 +805,7 @@ cannot print two versions of it.
 | `configs/litellm.yaml` | **generated** — the LiteLLM proxy config and its groups | `registry.yaml` | `freetier-render` |
 | `configs/free-llm.env.example` | **generated** — one export per key | `registry.yaml` | `freetier-render` |
 | `configs/claude-code.sh` | **generated** — one Claude Code shell function per Anthropic-format lane | `registry.yaml` | `freetier-render` |
+| `configs/codex/*.config.toml` | **generated** — Codex CLI profiles: litellm.config.toml over the LiteLLM config | `registry.yaml` | `freetier-render` |
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |

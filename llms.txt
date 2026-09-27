@@ -217,5 +217,6 @@ A model gets a page of its own once two rows or more serve it free, or it measur
 - [configs/opencode.json](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/opencode.json): opencode config with every OpenAI-compatible row wired up
 - [configs/claude-code.sh](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh): one shell function per gateway that serves the Anthropic Messages format, for Claude Code
 - [configs/litellm.yaml](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml): LiteLLM proxy config over the same rows, with one-name fallback groups (free/strong, free/nokey)
+- [configs/codex/litellm.config.toml](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/litellm.config.toml): Codex CLI profile over litellm.yaml — Codex speaks only the Responses API, which the proxy answers from each lane's chat completions
 - [README](https://github.com/mvalentsev/awesome-free-ai-coding): the list itself, with the picks table and how it stays fresh
 - [CONTRIBUTING](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md): what qualifies, how rows are ranked, how the probes work

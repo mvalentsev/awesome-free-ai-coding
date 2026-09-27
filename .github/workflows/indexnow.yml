@@ -25,6 +25,7 @@ on:
       - "configs/litellm.yaml"
       - "configs/free-llm.env.example"
       - "configs/claude-code.sh"
+      - "configs/codex/*.config.toml"
       - "index.json"
       - "feed.xml"
       - "llms.txt"

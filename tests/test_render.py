@@ -471,11 +471,13 @@ def test_litellm_config_names_every_free_model_of_every_connectable_entry():
         {"model_name": "groq-free/llama-4",
          "litellm_params": {"model": "openai/llama-4",
                             "api_base": "https://api.x.ai/v1",
-                            "api_key": "os.environ/GROQ_API_KEY"}},
+                            "api_key": "os.environ/GROQ_API_KEY",
+                            "use_chat_completions_api": True}},
         {"model_name": "keyless/gpt-oss-120b",
          "litellm_params": {"model": "openai/gpt-oss-120b",
                             "api_base": "https://free.example/v1",
-                            "api_key": "none"}},  # LiteLLM's own spelling for "no key"
+                            "api_key": "none",  # LiteLLM's own spelling for "no key"
+                            "use_chat_completions_api": True}},
     ]
 
 
@@ -1584,7 +1586,7 @@ def test_the_litellm_command_this_repo_prints_listens_on_localhost_only(tmp_path
     it in proxy_cli.py), and the config this repo generates sets no master key —
     the reader's own provider keys ride in from the environment. Run as printed,
     it put every one of those keys in front of the whole network the laptop was
-    on. Both places the command is printed name the loopback address."""
+    on. Every place the command is printed names the loopback address."""
     import re
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
@@ -1592,7 +1594,8 @@ def test_the_litellm_command_this_repo_prints_listens_on_localhost_only(tmp_path
     render_artifacts(reg, tmp_path, today=TODAY)
     readme = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     header = (tmp_path / "configs" / "litellm.yaml").read_text(encoding="utf-8")
-    for text in (header, readme):
+    codex = (tmp_path / "configs" / "codex" / "litellm.config.toml").read_text(encoding="utf-8")
+    for text in (header, readme, codex):
         commands = re.findall(r"litellm --config \S+[^`\n]*", text)
         assert commands and all("--host 127.0.0.1" in c for c in commands), commands
 

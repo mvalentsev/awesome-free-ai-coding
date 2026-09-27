@@ -1131,6 +1131,12 @@ def _shared_facts(entries: list[Entry], today: date,
         # reader is shown as the example: both are read off the files they name.
         "litellm_groups": litellm_groups(entries, today),
         "claude_example": f"claude-{anthropic[0].id}" if anthropic else "",
+        # Codex's profile over litellm.yaml: its path from the repository's root
+        # and from configs/, the name `codex -p` takes, and the versions it needs.
+        "codex": {"path": CODEX_LITELLM_PATH,
+                  "here": CODEX_LITELLM_PATH.removeprefix("configs/"),
+                  "name": CODEX_LITELLM_PROFILE, "since": CODEX_SINCE,
+                  "litellm_since": LITELLM_BRIDGE_SINCE},
         "has_provisional": any(e.provisional for e in active),
         "has_trains": any(_trains(e) for e in active),
         "schedule": _schedule(),
@@ -1640,6 +1646,9 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
         f"- [configs/litellm.yaml]({REPO_URL}/blob/main/configs/litellm.yaml): LiteLLM proxy "
         "config over the same rows"
         + (f", with one-name fallback groups ({', '.join(groups)})" if groups else ""),
+        f"- [{CODEX_LITELLM_PATH}]({REPO_URL}/blob/main/{CODEX_LITELLM_PATH}): Codex CLI "
+        "profile over litellm.yaml — Codex speaks only the Responses API, which the proxy "
+        "answers from each lane's chat completions",
         f"- [README]({REPO_URL}): the list itself, with the picks table and how it stays fresh",
         f"- [CONTRIBUTING]({REPO_URL}/blob/main/CONTRIBUTING.md): what qualifies, how rows are "
         "ranked, how the probes work",
@@ -1669,6 +1678,26 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
 # them: the strongest models first, then any strong one, then the lanes that
 # need no account at all.
 FREE_GROUPS = ("free/frontier", "free/strong", "free/nokey")
+# What a group pools, in the words the Codex profile explains its model with.
+GROUP_WORDS = {"free/frontier": "every frontier lane", "free/strong": "every strong lane",
+               "free/nokey": "the lanes that need no account"}
+
+# Codex CLI on the free lanes. Codex speaks only the OpenAI Responses API — a
+# provider given `wire_api = "chat"` has been a config error since its
+# discussion #7782 — and LiteLLM's /v1/responses builds a call from a lane's
+# chat completions when the deployment carries `use_chat_completions_api`.
+# 1.89.0 is the first LiteLLM that keeps the flag to itself: 1.88.0 still wrote
+# it into the vendor's request body (`all_litellm_params` on both wheels,
+# 2026-09-27). `--profile NAME` has read $CODEX_HOME/NAME.config.toml since
+# Codex 0.134.0 (2026-05-26); before it, a [profiles] table in config.toml.
+LITELLM_BRIDGE_SINCE = "1.89"
+CODEX_SINCE = "0.134"
+CODEX_DIR = "configs/codex"
+CODEX_LITELLM_PROFILE = "litellm"
+CODEX_LITELLM_PATH = f"{CODEX_DIR}/{CODEX_LITELLM_PROFILE}.config.toml"
+# Where the proxy listens when started the way this repo prints the command:
+# on the loopback address, at LiteLLM's own default port.
+LITELLM_LOCAL_URL = "http://127.0.0.1:4000/v1"
 
 
 def _litellm_lanes(entries: list[Entry], today: date) -> list[Entry]:
@@ -1720,13 +1749,20 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
     cooldown (LiteLLM 1.102, 2026-09-21). Each deployment carries a dict of its
     own: a shared one is written as a YAML anchor, and LiteLLM then gives every
     deployment the same id.
+
+    Every deployment also carries `use_chat_completions_api`, for Codex CLI,
+    which speaks only the Responses API. LiteLLM answers /v1/responses for an
+    `openai/` deployment by sending the call on to the lane's own /responses,
+    and on 2026-09-27 seventeen of the list's lanes answered that route with
+    404; with the flag it builds the call from the lane's chat completions, the
+    format every lane here is verified in (see LITELLM_BRIDGE_SINCE).
     """
     models: list[dict] = []
     groups: dict[str, list[dict]] = {name: [] for name in FREE_GROUPS}
     for e in _litellm_lanes(entries, today):
         for model_id in _litellm_ids(e):
             params = {"model": f"openai/{model_id}", "api_base": e.api.base_url,
-                      "api_key": _litellm_key(e)}
+                      "api_key": _litellm_key(e), "use_chat_completions_api": True}
             models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params})
             # notable decides a model's page, not a pool: a caller asking for
             # free/strong asked for the strong bar.
@@ -1775,6 +1811,83 @@ def _litellm_groups_note(groups: list[str]) -> str:
                 "the keys you have, and a lane without one is skipped.")
     lines = textwrap.wrap(sentence, width=73, break_long_words=False, break_on_hyphens=False)
     return "#\n" + "".join(f"# {line}\n" for line in lines)
+
+
+def _comment(text: str) -> list[str]:
+    """A paragraph as the lines of a `#` comment, wrapped the way the config
+    headers are."""
+    return [f"# {line}" for line in textwrap.wrap(text, width=76, break_long_words=False,
+                                                  break_on_hyphens=False)]
+
+
+def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
+    """Codex CLI's profile over litellm.yaml: the file a reader copies into
+    ~/.codex, after which `codex -p litellm` works on every lane the proxy
+    serves.
+
+    Codex speaks only the Responses API and few free lanes do — on 2026-09-27
+    seventeen of the list's 61 answered POST /responses with 404, and OVHcloud's
+    refused the request Codex sends — so the proxy answers Codex for all of them
+    from each lane's chat completions (`use_chat_completions_api`). The three
+    settings are what that bridge needs, each measured to break a lane
+    otherwise with Codex 0.157.1 and LiteLLM 1.102.1 the same day. The provider
+    names no key: the proxy runs without a master key, as its header says.
+
+    The model is the first group the file defines, from which a call falls back
+    down the rest to the lanes that need no account, so the profile answers
+    before the reader has set a single key. A file without a group names the
+    first model the proxy serves; one without a lane names none."""
+    groups = litellm_groups(entries, today)
+    served = [d["model_name"] for d in build_litellm_config(entries, today)["model_list"]]
+    model = groups[0] if groups else (served[0] if served else None)
+    if groups:
+        falls = f" and falls back to {series(groups[1:])}" if groups[1:] else ""
+        about = (f"The model is {model}: LiteLLM spreads the calls over "
+                 f"{GROUP_WORDS[model]}{falls}. A lane whose key is not set is skipped"
+                 + (", and free/nokey needs none, so the profile answers before you set any."
+                    if "free/nokey" in groups else "."))
+    elif model:
+        about = f"The model is {model}, the first one litellm.yaml serves."
+    else:
+        about = "litellm.yaml serves no model today: name one with -m once it does."
+    lines = [
+        "# Codex CLI on the free lanes of litellm.yaml — generated from registry.yaml,",
+        "# do not edit by hand.",
+        *_comment("Codex speaks only the OpenAI Responses API, which few free lanes serve; "
+                  "the LiteLLM proxy answers it for every lane in litellm.yaml by calling "
+                  f"the lane's chat completions. Needs Codex CLI {CODEX_SINCE} or later and "
+                  f"LiteLLM {LITELLM_BRIDGE_SINCE} or later; the file goes where Codex keeps "
+                  "its config, ~/.codex unless CODEX_HOME says otherwise:"),
+        "#",
+        "#   litellm --config configs/litellm.yaml --host 127.0.0.1",
+        f"#   cp {CODEX_LITELLM_PATH} ~/.codex/",
+        f"#   codex -p {CODEX_LITELLM_PROFILE}",
+        "#",
+        *_comment(f"{about} Any model_name in litellm.yaml works too — codex -p "
+                  f"{CODEX_LITELLM_PROFILE} -m <model_name> — as long as the model calls "
+                  "tools, since every Codex turn offers them. Codex warns that it has no "
+                  "metadata for the name, as it does for any model outside OpenAI's."),
+        *([f"model = {json.dumps(model)}"] if model else []),
+        f"model_provider = {json.dumps(CODEX_LITELLM_PROFILE)}",
+        *_comment("Reasoning summaries off: LiteLLM hands Codex's summary setting to the lane "
+                  "as a reasoning_effort value, and the lanes tried refuse it."),
+        'model_reasoning_summary = "none"',
+        *_comment("Web search off: it is a tool OpenAI's servers run, which LiteLLM passes on "
+                  "to the lane as web_search_options."),
+        'web_search = "disabled"',
+        "",
+        "[features]",
+        *_comment("Sub-agents off: Codex sends their tools as a namespace, a tool type some "
+                  "lanes refuse."),
+        "multi_agent = false",
+        "",
+        *_comment("No key: the proxy runs without a master key (see litellm.yaml's header)."),
+        f"[model_providers.{CODEX_LITELLM_PROFILE}]",
+        'name = "LiteLLM over the free lanes"',
+        f"base_url = {json.dumps(LITELLM_LOCAL_URL)}",
+        'wire_api = "responses"',
+    ]
+    return "\n".join(lines) + "\n"
 
 
 # Each ask as the env example notes it under the row's key; empty where the
@@ -2709,7 +2822,7 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
     Base URL, key name and the notes that matter for every live OpenAI-compatible
     API: 34 KB of the README's 161 on 2026-09-20, read by someone who has already
     decided, while the README's job is the visitor who has not. GitHub renders a
-    folder's README under its file list, so the table now sits next to the four
+    folder's README under its file list, so the table now sits next to the
     configs generated from the same rows, and every link in it is written from
     there. It is rendered from the README's own context, so the two pages cannot
     disagree about a lane, and checked and committed like everything else.
@@ -2822,6 +2935,12 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# sets no master_key, so without that flag anyone on your network can spend\n"
         "# the keys it reads from the environment (see free-llm.env.example).\n"
         "# Entries marked `api_key: none` need no account at all.\n"
+        + "".join(f"{line}\n" for line in _comment(
+            f"Needs LiteLLM {LITELLM_BRIDGE_SINCE} or later: every entry carries "
+            "use_chat_completions_api, which older versions send on to the vendor, and a "
+            "strict vendor refuses a field it does not know. The flag makes the proxy's "
+            "/v1/responses — the only API Codex CLI speaks — call each lane's chat "
+            "completions; codex/litellm.config.toml is Codex's profile for this file."))
         + _litellm_groups_note(litellm_groups(entries, today))
         + "".join(f"# Left out: {e.name} — {why}.\n"
                   for e in _connectable(entries, today) for why in _static_blockers(e))
@@ -2831,6 +2950,9 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         + yaml.safe_dump(build_litellm_config(entries, today), sort_keys=False,
                          allow_unicode=True),
         encoding="utf-8")
+    (root / CODEX_DIR).mkdir(parents=True, exist_ok=True)
+    (root / CODEX_LITELLM_PATH).write_text(build_codex_litellm_profile(entries, today),
+                                           encoding="utf-8")
 
 
 # CONTRIBUTING.md is written by hand except for its map section, which is the
@@ -2918,7 +3040,7 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     """Paths under `root` the registry no longer renders to what is committed.
 
     Every published file here is generated and every one of them is committed:
-    the README, the site's front page, index.json, the feed, llms.txt, the four
+    the README, the site's front page, index.json, the feed, llms.txt, the
     configs and the README beside them, and a page per row. The workflow
     renders after it probes, so a scheduled run heals a forgotten render within
     three days — and for those three days the page, the JSON an LLM reads and
