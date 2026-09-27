@@ -167,6 +167,10 @@ MAP: tuple[Node, ...] = (
          "the page every generated Markdown page is served in: one heading, the way back to "
          "the indexes, the breadcrumb"),
     Node(".gitignore", Kind.CONFIG, "what git leaves alone"),
+    Node(".imgbotconfig", Kind.CONFIG,
+         "the images ImgBot leaves alone — all of them: the README's pictures are generated, the "
+         "banners and the preview's source keep their comments, and the preview's PNG is the one "
+         "uploaded to GitHub"),
     Node(".githooks/*", Kind.CONFIG,
          "the git hooks that run freetier-gate — `git config core.hooksPath .githooks`"),
     Node(".github/workflows/*.yml", Kind.CONFIG,

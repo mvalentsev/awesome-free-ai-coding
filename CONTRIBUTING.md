@@ -803,6 +803,7 @@ cannot print two versions of it.
 | `_config.yml` | **config** — the Pages site: its name, its plugins, what it leaves out · not on the site | — | `hand` |
 | `_layouts/*.html` | **config** — the page every generated Markdown page is served in: one heading, the way back to the indexes, the breadcrumb · not on the site | — | `hand` |
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
+| `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the banners and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
 | `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page and the IndexNow ping on a push · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the pinned actions' watcher · not on the site | — | `hand` |
