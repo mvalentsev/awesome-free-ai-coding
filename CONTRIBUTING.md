@@ -814,7 +814,7 @@ uv run freetier-map               # the map: what every file is, what it is made
 uv run freetier-probe --dry-run   # live-probe all entries, record nothing
 uv run freetier-render            # regenerate every file the map above marks generated, and the map
 uv run freetier-check             # validate the curated files against each other
-uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources
+uv run freetier-quotes [ids…]     # read every quoted phrase back against the row's own sources (--report: the run's summary)
 uv run freetier-bars              # which ids a free lane has carried two weeks with no family
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
@@ -873,6 +873,17 @@ page refuses some reads with 403 and serves the next — and read again later. O
 LLMTR promising a privacy guarantee its policy does not make. What an endpoint
 or a client answered — an error body, a refusal, a status line — is not a
 published sentence: write it in backticks, which the check does not read.
+
+The scheduled run prints the same pass in its summary (`freetier-quotes
+--report`), beside the models owed a family. Until 2026-09-27 nothing read a
+quote back unless someone ran the command, and a full pass that day found five
+gone: BazaarLink's allowance had turned into weighted units, Token Harbor's "No
+per-minute request cap" into 60 requests a minute. A quote gone from its page is
+a row to read again, never a failed run. **A promotion is quoted with the words
+that say when it ends** — Qoder's daily credits with "End time: To be
+announced", CodeBuddy's bonus with "The end date of this promotion will be
+announced separately" — so the run notices the day those words change, which is
+the day a rank resting on the promotion moves back.
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
 `blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Two of

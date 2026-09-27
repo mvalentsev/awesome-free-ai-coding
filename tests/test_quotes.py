@@ -145,7 +145,7 @@ async def test_a_quote_missing_while_a_source_did_not_answer_is_unverified_not_m
     out = capsys.readouterr().out
     assert ('  vendor limits: unverified — not on the sources that answered, and '
             'https://vendor.example/pricing: HTTP 403 — "a sentence only the pricing page has"') in out
-    assert out.rstrip().endswith("checked 2 quotes in 1 rows — 0 not found on the rows' own sources, "
+    assert out.rstrip().endswith("checked 2 quotes in 1 row — 0 not found on the rows' own sources, "
                                  "1 unverified because a source did not answer")
 
 
@@ -166,3 +166,64 @@ async def test_a_probe_that_follows_an_index_has_its_quotes_read_on_the_page_the
     async with httpx.AsyncClient() as client:
         missing, unread = await check_entries([entry], client)
     assert missing == [] and unread == {}
+
+
+@respx.mock
+async def test_the_run_reports_a_quote_gone_from_its_page_in_its_summary_and_never_fails(tmp_path, capsys):
+    """Until 2026-09-27 nothing read a quote back unless someone ran this by hand,
+    and a full pass that day found five that their pages no longer carried —
+    Token Harbor's "No per-minute request cap" among them, where its FAQ had come
+    to give free accounts 60 requests a minute. Qoder's rank rested on a
+    promotion whose page says "End time : To be announced", a page no probe
+    reads. The scheduled run prints the report in its summary: a quote gone from
+    its page is a row to read again, not a failed run."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.quotes import _amain
+    respx.get("https://vendor.example/pricing").mock(
+        return_value=httpx.Response(200, text="<p>End time: October 31, 2026</p>"))
+    respx.get("https://vendor.example/docs").mock(
+        return_value=httpx.Response(200, text="one million free tokens a day"))
+    entry = quoted_entry('"one million free tokens a day" while the promotion runs, with '
+                         '"End time: To be announced"')
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [entry])
+    assert await _amain(registry, [], report=True) == 0
+    out = capsys.readouterr().out
+    assert out.startswith("## Quotes no longer on their pages\n")
+    assert '- vendor limits: "End time: To be announced"' in out
+    assert out.rstrip().endswith("checked 2 quotes in 1 row — 1 not found on the rows' own sources")
+
+
+@respx.mock
+async def test_a_clean_pass_says_every_quote_was_found(tmp_path, capsys):
+    from freetier_radar.models import save_registry
+    from freetier_radar.quotes import _amain
+    respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(200, text=""))
+    respx.get("https://vendor.example/docs").mock(
+        return_value=httpx.Response(200, text="one million free tokens a day"))
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [quoted_entry('"one million free tokens a day"')])
+    assert await _amain(registry, [], report=True) == 0
+    out = capsys.readouterr().out
+    assert "Every quoted phrase is on its row's own pages." in out
+    assert "not on its sources" not in out
+
+
+@respx.mock
+async def test_the_count_is_of_the_rows_whose_quotes_were_read(tmp_path, capsys):
+    """The pass of 2026-09-27 said "388 quotes in 97 rows": 97 was every row in
+    the file, the seventeen archived ones among them, whose quotes it leaves
+    alone."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.quotes import _amain
+    respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(200, text=""))
+    respx.get("https://vendor.example/docs").mock(
+        return_value=httpx.Response(200, text="one million free tokens a day"))
+    live = quoted_entry('"one million free tokens a day"')
+    gone = quoted_entry('"a quote from a page that ended"').model_copy(
+        update={"id": "gone", "retired_on": date(2026, 1, 2)})
+    registry = tmp_path / "registry.yaml"
+    save_registry(registry, [live, gone])
+    assert await _amain(registry, []) == 0
+    assert capsys.readouterr().out.rstrip().endswith(
+        "checked 1 quote in 1 row — 0 not found on the rows' own sources")

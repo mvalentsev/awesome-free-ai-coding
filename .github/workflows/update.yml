@@ -77,6 +77,19 @@ jobs:
         continue-on-error: true
         run: uv run freetier-bars | tee -a "$GITHUB_STEP_SUMMARY"
 
+      # Every phrase a row quotes, read back against the row's own pages. A quote
+      # is the vendor's words only while a page carries them, and until
+      # 2026-09-27 nothing read one back unless a person ran this by hand: that
+      # day five were gone, and Qoder's rank rested on a promotion's end-time
+      # line no probe reads. A report like the one above — the rows it names are
+      # read again by a person — so a quote gone never stops the commit, while a
+      # crash still shows as a failed step.
+      - name: Read every quoted phrase back against its pages
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          uv run freetier-quotes --report | tee -a "$GITHUB_STEP_SUMMARY"
+
       # The render records what this run changed in history.jsonl — with any
       # change the calendar made since the last commit — before it writes a page.
       - name: Record what changed and render every page

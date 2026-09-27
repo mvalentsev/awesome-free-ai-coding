@@ -149,6 +149,22 @@ def test_a_dry_run_reaches_the_checks_when_a_row_fails():
     assert probe.get("continue-on-error") == "${{ inputs.dry_run == true }}"
 
 
+
+def test_the_run_reads_every_quote_back_into_its_summary():
+    """A quote is the vendor's words only while its page still carries them, and
+    until 2026-09-27 only a person running freetier-quotes found out otherwise:
+    that day a full pass found five gone, and Qoder's rank rested on a
+    promotion's "End time : To be announced" on a page no probe reads. The run
+    prints the report in its summary — dry runs too — beside the models owed a
+    family, and a quote gone never stops the commit that follows."""
+    workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
+    steps = workflow["jobs"]["update"]["steps"]
+    quotes = next(s for s in steps if "freetier-quotes" in s.get("run", ""))
+    assert "--report" in quotes["run"] and "GITHUB_STEP_SUMMARY" in quotes["run"]
+    assert "if" not in quotes
+    commit = next(s for s in steps if s.get("id") == "commit")
+    assert steps.index(quotes) < steps.index(commit)
+
 def test_the_map_is_printed_as_a_table_with_one_row_per_line():
     table = markdown_table(TINY)
     lines = table.splitlines()

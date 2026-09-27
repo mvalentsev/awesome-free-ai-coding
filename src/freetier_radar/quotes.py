@@ -190,12 +190,60 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient
     return missing, unread
 
 
-async def _amain(registry: Path, ids: list[str]) -> int:
+def _count(n: int, noun: str) -> str:
+    return f"{n} {noun}" if n == 1 else f"{n} {noun}s"
+
+
+def summary(missing: list[Missing], quotes: int, rows: int) -> str:
+    """The line a pass ends on: how much it read and what it did not find."""
+    confirmed = sum(not m.unverified for m in missing)
+    unverified = len(missing) - confirmed
+    return (f"checked {_count(quotes, 'quote')} in {_count(rows, 'row')} — {confirmed} not found on "
+            f"the rows' own sources"
+            + (f", {unverified} unverified because a source did not answer" if unverified else ""))
+
+
+def markdown(missing: list[Missing], unread: dict[str, list[str]], quotes: int, rows: int) -> str:
+    """The pass as the scheduled run prints it in its summary, beside the models
+    owed a family: each quote gone from its row's pages, each one no page that
+    answered carries while another did not answer, each source that did not
+    answer — a list of rows to read again, not a verdict on any of them."""
+    lines = ["## Quotes no longer on their pages", ""]
+    gone = [m for m in missing if not m.unverified]
+    unsure = [m for m in missing if m.unverified]
+    if not missing and not unread:
+        lines += ["Every quoted phrase is on its row's own pages.", ""]
+    if gone:
+        lines += ["**Not on its sources** — read the vendor's page again, then quote its words as "
+                  "they stand or point `source_urls` at the page that has them:", ""]
+        lines += [f'- {m.entry_id} {m.field}: "{m.quote}"' for m in gone]
+        lines.append("")
+    if unsure:
+        lines += ["**Unverified** — not on the sources that answered, while another did not:", ""]
+        lines += [f'- {m.entry_id} {m.field}: "{m.quote}"' for m in unsure]
+        lines.append("")
+    if unread:
+        lines += ["**Sources not read:**", ""]
+        lines += [f"- {entry_id}: {line}" for entry_id, failed in unread.items() for line in failed]
+        lines.append("")
+    lines.append(summary(missing, quotes, rows))
+    return "\n".join(lines) + "\n"
+
+
+async def _amain(registry: Path, ids: list[str], report: bool = False) -> int:
     entries = load_registry(registry)
     if ids:
         entries = [e for e in entries if e.id in ids]
     async with httpx.AsyncClient(headers=UA) as client:
         missing, unread = await check_entries(entries, client)
+    today = date.today()
+    read = [e for e in entries if e.retired_on is None and not is_archived(e, today)]
+    quotes = sum(len(row_quotes(e)) for e in read)
+    if report:
+        # A report, not a check: the run that prints it carries on to commit
+        # what it verified, and the rows it names are read again by a person.
+        print(markdown(missing, unread, quotes, len(read)), end="")
+        return 0
     for entry_id, lines in unread.items():
         for line in lines:
             print(f"  {entry_id}: source not read — {line}")
@@ -205,19 +253,16 @@ async def _amain(registry: Path, ids: list[str]) -> int:
                   f"{'; '.join(unread[m.entry_id])} — \"{m.quote}\"")
         else:
             print(f"  {m.entry_id} {m.field}: not on its sources — \"{m.quote}\"")
-    checked = sum(len(row_quotes(e)) for e in entries
-                  if e.retired_on is None and not is_archived(e, date.today()))
-    confirmed = [m for m in missing if not m.unverified]
-    unverified = len(missing) - len(confirmed)
-    print(f"checked {checked} quotes in {len(entries)} rows — {len(confirmed)} not found on the rows' own sources"
-          + (f", {unverified} unverified because a source did not answer" if unverified else ""))
+    print(summary(missing, quotes, len(read)))
     # A refused read is a reason to read again, not a quote to rewrite.
-    return len(confirmed)
+    return sum(not m.unverified for m in missing)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--registry", type=Path, default=Path("registry.yaml"))
     parser.add_argument("ids", nargs="*", help="only these rows")
+    parser.add_argument("--report", action="store_true",
+                        help="print the pass as markdown for a run summary, and exit 0")
     args = parser.parse_args()
-    sys.exit(1 if asyncio.run(_amain(args.registry, args.ids)) else 0)
+    sys.exit(1 if asyncio.run(_amain(args.registry, args.ids, args.report)) else 0)
