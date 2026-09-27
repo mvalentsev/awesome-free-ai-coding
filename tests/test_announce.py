@@ -8,8 +8,9 @@ from freetier_radar.announce import (
     MAX_AGE_DAYS, POST_LIMIT, POSTS_PER_RUN, Bluesky, Mastodon, channels_from_env, compose,
     event_key, half_configured, link_facets, load_ledger, run, select,
 )
-from freetier_radar.history import Event, EventType, append_history
+from freetier_radar.history import Event, EventType
 from freetier_radar.models import Entry, save_registry
+from test_history import append_history
 
 TODAY = date(2026, 9, 6)
 NOW = datetime(2026, 9, 6, 5, 30, tzinfo=timezone.utc)

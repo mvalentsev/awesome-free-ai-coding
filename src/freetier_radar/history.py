@@ -36,7 +36,7 @@ from .models import ARCHIVE_AFTER_FAILURES, Entry, is_archived, live_families, l
 
 __all__ = ["EventType", "Event", "State", "archive_reason", "registry_state", "replay",
            "diff_state", "deleted_row_problem", "deleted_rows", "refuse_deleted_rows",
-           "parse_history", "load_history", "append_history", "record_changes",
+           "parse_history", "load_history", "record_changes",
            "pending_changes", "block_problems"]
 
 
@@ -211,16 +211,6 @@ def load_history(path: Path) -> list[Event]:
 
 def _line(ev: Event) -> str:
     return json.dumps(ev.model_dump(mode="json"), ensure_ascii=False) + "\n"
-
-
-def append_history(path: Path, events: list[Event]) -> None:
-    """Append `events` without rewriting the lines already there: a rewritten
-    log turns every concurrent append into a merge conflict."""
-    if not events:
-        return
-    with path.open("a", encoding="utf-8") as fh:
-        for ev in events:
-            fh.write(_line(ev))
 
 
 def deleted_rows(entries: list[Entry], events: list[Event]) -> list[str]:

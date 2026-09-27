@@ -8,7 +8,7 @@ words an ask keeps its words in a table keyed by `models.ASKS`, and these tests
 refuse a table that is missing one, so a new ask reaches every place or none.
 """
 from freetier_radar import render
-from freetier_radar.models import ASKS, KEY_KINDS, ApiInfo
+from freetier_radar.models import ASKS, ApiInfo
 from test_render import TODAY, make
 
 
@@ -28,7 +28,6 @@ def test_the_key_kind_is_decided_in_one_place():
     assert ApiInfo(base_url="https://x/v1", key_url="https://x/k", public_key="sk-1",
                    model_ids=["m"]).key_kind == "public"
     assert ApiInfo(base_url="https://x/v1").key_kind == "own"
-    assert KEY_KINDS == ("none", "public", "own")
 
 
 def _lane(entry_id: str, **api):

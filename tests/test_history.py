@@ -5,8 +5,7 @@ from pathlib import Path
 import pytest
 
 from freetier_radar.history import (
-    Event, EventType, append_history, diff_state, load_history, record_changes,
-    registry_state, replay,
+    Event, EventType, _line, diff_state, load_history, record_changes, registry_state, replay,
 )
 from freetier_radar.models import ARCHIVE_AFTER_DAYS, Entry, save_registry
 
@@ -22,6 +21,13 @@ BASE = {
     "probe": {"type": "page-keywords", "endpoint": "https://example.com",
               "keywords": ["example-mini-2", "free"]},
 }
+
+
+def append_history(path: Path, events: list[Event]) -> None:
+    """A log with these events after the lines already there, written the way
+    the render records them."""
+    with path.open("a", encoding="utf-8") as fh:
+        fh.writelines(_line(ev) for ev in events)
 
 
 def make(entry_id: str = "example", **kw) -> Entry:

@@ -1088,7 +1088,7 @@ def test_an_empty_history_still_produces_a_valid_feed():
 
 
 def test_render_writes_the_feed_beside_the_other_artifacts(tmp_path: Path):
-    from freetier_radar.history import append_history
+    from test_history import append_history
     from freetier_radar.models import save_registry
     save_registry(tmp_path / "registry.yaml", [make()])
     append_history(tmp_path / "history.jsonl", [ev()])
@@ -1101,7 +1101,7 @@ def test_render_writes_the_feed_beside_the_other_artifacts(tmp_path: Path):
 
 
 def test_the_readme_shows_what_changed_and_links_the_feed(tmp_path: Path):
-    from freetier_radar.history import append_history
+    from test_history import append_history
     from freetier_radar.models import save_registry
     save_registry(tmp_path / "registry.yaml", [make()])
     append_history(tmp_path / "history.jsonl", [ev(name="Newcomer", detail="10 free calls")])
@@ -1237,7 +1237,7 @@ def test_the_archive_lists_the_latest_departure_first():
 def test_rendering_refuses_a_registry_that_lost_a_row_the_history_recorded(tmp_path: Path):
     """The page is where a deleted row would silently disappear from, so the
     render is the last place that can refuse it: a row leaves through the Archive."""
-    from freetier_radar.history import append_history
+    from test_history import append_history
     from freetier_radar.models import save_registry
     save_registry(tmp_path / "registry.yaml", [make()])
     append_history(tmp_path / "history.jsonl", [ev(), ev(id="gone", name="Gone")])

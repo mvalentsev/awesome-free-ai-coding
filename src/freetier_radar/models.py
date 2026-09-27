@@ -489,9 +489,6 @@ class Newcomer(BaseModel):
                              "that shows the model free: a Wayback snapshot, a commit of this list")
         return value
 
-# How a lane lets a client in: no key at all, the key the vendor prints for
-# anyone, or the reader's own — `ApiInfo.key_kind`, the one place that decides.
-KEY_KINDS = ("none", "public", "own")
 # What a lane can ask every request to carry besides its key — `ApiInfo.asks`.
 # Each page and config that says how to connect keys its words by these names,
 # and the render's tests refuse a table without one, so a new ask cannot reach
@@ -592,9 +589,10 @@ class ApiInfo(BaseModel):
     @property
     def key_kind(self) -> str:
         """How a client is let in, decided once for every page, config and probe
-        that says it or acts on it — one of KEY_KINDS. A key the vendor prints
-        for anyone rides on a keyed lane, so it is its own kind: no account,
-        and still a key on every request."""
+        that says it or acts on it: "none" (no key at all), "public" (the key
+        the vendor prints for anyone) or "own" (the reader's). A key the vendor
+        prints for anyone rides on a keyed lane, so it is its own kind: no
+        account, and still a key on every request."""
         if self.auth == "none":
             return "none"
         return "public" if self.public_key is not None else "own"

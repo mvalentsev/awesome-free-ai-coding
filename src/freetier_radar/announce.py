@@ -320,7 +320,8 @@ def load_ledger(path: Path) -> set[tuple[str, str]]:
 
 
 def append_ledger(path: Path, rows: list[dict]) -> None:
-    """Append, never rewrite — the same rule as history.jsonl (`append_history`)."""
+    """Append, never rewrite: a line already posted stays as it was, as in
+    history.jsonl."""
     if not rows:
         return
     with path.open("a", encoding="utf-8") as fh:
