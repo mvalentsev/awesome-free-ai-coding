@@ -36,9 +36,9 @@ Not offered in the United States, India and Russia ([the host's DNS answer](http
 ## Evidence
 
 - Probe: the page at <https://www.workbuddy.ai/docs/ide/Account/pricing>, anchored on `100 credits`, `Base and bonus credits are issued monthly and are valid for that month`, `Individual Plans`, `CodeBuddy offers the following plans`
-- Source: <https://www.codebuddy.ai/docs/ide/Account/pricing>
-- Source: <https://www.codebuddy.ai/docs/ide/Account/Subscription>
-- Source: <https://www.codebuddy.ai/document/term>
+- Source: <https://www.workbuddy.ai/docs/ide/Account/pricing>
+- Source: <https://www.workbuddy.ai/docs/ide/Account/Subscription>
+- Source: <https://www.workbuddy.ai/document/term>
 
 ## History
 
