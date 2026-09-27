@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-27T04:36:24Z</updated>
+  <updated>2026-09-27T04:51:59Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20260927T045159Z</id>
+    <title>Free models changed: Devin Desktop (formerly Windsurf)</title>
+    <link rel="alternate" href="https://devin.ai/desktop"/>
+    <updated>2026-09-27T04:51:59Z</updated>
+    <summary type="text">added swe-1.6 · free models: swe-1.6</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/zed/20260927T045159Z</id>
+    <title>Free models changed: Zed</title>
+    <link rel="alternate" href="https://zed.dev"/>
+    <updated>2026-09-27T04:51:59Z</updated>
+    <summary type="text">added gpt-6-luna; dropped gpt-5.6-luna · free models: gpt-6-luna</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260927T043624Z</id>
     <title>Free models changed: Groq</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://build.nvidia.com"/>
     <updated>2026-09-22T17:20:11Z</updated>
     <summary type="text">added kimi-k3, laguna-xs-2.1, nemotron-3-super, nemotron-3-ultra; dropped nemotron · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260921T223027Z</id>
-    <title>Free models changed: LLMTR</title>
-    <link rel="alternate" href="https://llmtr.com"/>
-    <updated>2026-09-21T22:30:27Z</updated>
-    <summary type="text">dropped qwen3.6 · free models: nemotron-3-ultra</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/experiential-labs/20260921T182157Z</id>
-    <title>Added: Experiential Labs</title>
-    <link rel="alternate" href="https://www.experientiallabs.ai"/>
-    <updated>2026-09-21T18:21:57Z</updated>
-    <summary type="text">An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check</summary>
   </entry>
 </feed>

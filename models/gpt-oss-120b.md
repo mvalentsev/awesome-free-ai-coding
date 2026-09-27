@@ -66,7 +66,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 ## Related models
 
 - [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) — free at Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI
-- [`gpt-5.6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/) — free at Zed
+- [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/) — free at Zed
 
 ---
 

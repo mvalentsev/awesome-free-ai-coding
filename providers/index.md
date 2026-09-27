@@ -64,13 +64,13 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Google Jules](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/) — verified 2026-09-24 · `gemini-2.5`
 - [Cursor (Hobby)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/) — verified 2026-09-24 · `composer`
 - [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/) — verified 2026-09-24 · [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) · [`gemini-3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3-flash/) · [`gemini-2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-2.5-pro/) · `gemini-2.5-flash`
-- [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) — verified 2026-09-24
+- [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) — verified 2026-09-24 · `swe-1.6`
 - [Qoder](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/) — verified 2026-09-24
 - [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) — verified 2026-09-24 · `mellum`
 - [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) — verified 2026-09-24 · [`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · `apertus-70b` · [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/) · `mistral-small-4` · [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/)
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-09-24
 - [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-09-24
-- [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) — verified 2026-09-24 · [`gpt-5.6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-5.6-luna/)
+- [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) — verified 2026-09-24 · [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-09-21
 - [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) — verified 2026-09-26 · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [`glm-5-turbo`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/)
 - [Qodo](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/) — verified 2026-09-24

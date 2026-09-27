@@ -23,7 +23,7 @@ crumb: deepseek-v4-flash
 
 OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog
 
-- Limits, in the vendor's words: Free models — every id ending :free — are capped at 5 requests per minute and 200 per day and answer 429 past either; the pay-as-you-go ids beside them have no API-level rate limits, only edge DDoS protection (docs.routeway.ai, read 2026-08-30). The lane itself rotates, ids joining and leaving within days while their metered twins stay. The gateway publishes no legal entity or terms of service and is supported through Discord alone: a fallback lane, not a dependency
+- Limits, in the vendor's words: Free models — every id ending :free — cost nothing and "are rate-limited to 20 requests/minute and 200 requests/day", the FAQ says, where the rate-limits page gives "5 Requests Per Minute (RPM)" and "200 Requests Per Day (RPD)"; past either they answer 429, and the pay-as-you-go ids beside them "require a positive account balance". The lane itself rotates, ids joining and leaving within days while their metered twins stay, and free models "can be removed at any time". A key is sign-up and Create API Key with no payment step in the FAQ, while the terms, last updated 31.05.2025 behind a bot wall this list's client cannot pass, count a payment method among what any account needs. No legal entity is named, and support is by email and Discord. Read 2026-09-27
 - Base URL: `https://api.routeway.ai/v1`
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Callable ids: `deepseek-v4-flash:free`

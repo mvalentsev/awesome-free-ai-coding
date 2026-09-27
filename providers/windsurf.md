@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-24'
-description: Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsurf. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint…
+description: 'Free plan of Cognition''s desktop coding agent — the IDE that shipped as Windsurf. Free models: swe-1.6. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai. Its pricing page gives the $0 plan "Light quota…'
 permalink: /providers/windsurf/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Devin Desktop (formerly Windsurf)
 ---
 
@@ -19,11 +19,11 @@ Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsu
 
 ## Free models
 
-The vendor does not say which models the free part reaches, so the column names none.
+`swe-1.6`
 
 ## Limits, in the vendor's words
 
-Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai, whose every path now answers HTTP 429 with a Vercel Security Checkpoint (`Enable JavaScript to continue`), from CI and from a laptop alike, so the pricing page cannot be read. Cognition's docs are open and describe the $0 plan: a "daily and weekly usage allowance that refreshes automatically", where Free means "Wait until your next daily or weekly reset" and only the paid plans can buy their way past it. Which models that allowance reaches is published nowhere readable; the one tier-tagged model catalogue, docs.devin.ai/desktop/models, carried only Pro and Enterprise tiers when it was read (2026-08-19). Read 2026-09-16
+Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai. Its pricing page gives the $0 plan "Light quota to code with agents", "Limited model availability", "Unlimited inline edits" and "Unlimited Tab completions", and the models page says which model that is: "Free tier users only have access to SWE-1.6." The docs describe the quota, a "daily and weekly usage allowance that refreshes automatically", where Free means "Wait until your next daily or weekly reset" and only the paid plans can buy their way past it. Read 2026-09-27
 
 ## Where it is offered
 
@@ -39,18 +39,20 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 ## Evidence
 
-- Probe: the page at <https://docs.devin.ai/desktop/accounts/quota.md>, anchored on `**Free**: Wait until your next daily or weekly reset`, `daily and weekly usage allowance that refreshes automatically`
+- Probe: the page at <https://docs.devin.ai/desktop/models.md>, anchored on `Free tier users only have access to`
 - Source: <https://devin.ai/pricing>
 - Source: <https://docs.devin.ai/desktop/accounts/quota>
 - Source: <https://docs.devin.ai/desktop/accounts/usage>
 - Source: <https://devin.ai/blog/windsurf-is-now-devin-desktop>
 - Source: <https://windsurf.com>
 - Source: <https://codeium.com>
+- Source: <https://docs.devin.ai/desktop/models.md>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-27` — Free models changed: added swe-1.6
 - `2026-08-14` — Free models changed: dropped claude-haiku, gpt-5.2-mini, kimi-k2.5
 - `2026-07-19` — Free models changed: added claude-haiku, gpt-5.2-mini, kimi-k2.5
 - `2026-07-19` — Added: Free plan + trial of paid tiers
