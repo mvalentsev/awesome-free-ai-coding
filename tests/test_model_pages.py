@@ -1,15 +1,13 @@
 """A page per model, beside the page per row.
 
 A reader — or a model answering one — often arrives with a model in mind
-rather than a vendor: where is Kimi K3 free, where is GLM-5.3-Flash. The
-provider pages answer for one vendor, and the site's model index answers for
-every model in one fold of the front page, where no search engine can match a
-title to the question. So a model the list can say something about across rows
-gets a page whose title is the question, and the index of every model is a page
-too. What these tests hold them to: the same families the model index names,
-every row with what a reader needs to call it, dates that are the evidence's,
-and a place in the sitemap, the feed of URLs sent to IndexNow and the links
-from every page that names the model.
+rather than a vendor, and a search engine matches a page's title to that
+question, not a fold of the front page. So a model the list can say something
+about across rows gets a page whose title is the question, and the index of
+every model is a page too. What these tests hold them to: the same families the
+model index names, every row with what a reader needs to call it, dates that
+are the evidence's, and a place in the sitemap, the URLs sent to IndexNow and
+the links from every page that names the model.
 """
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -70,8 +68,8 @@ def test_a_model_has_a_page_where_rows_compare_or_where_it_measures_strong():
     """A page earns its place by saying what no row's page says alone — who
     else serves the model — or by covering a model readers come for. A model
     one row serves and nothing measures would get a page that repeats that
-    row's, fifty-seven times over for Alibaba's catalog alone: it stays on the
-    index, beside its row. Only live rows count; an archived one serves no one."""
+    row's: it stays on the index, beside its row. Only live rows count; an
+    archived one serves no one."""
     assert MODEL_PAGE_ROWS == 2
     entries = [
         make(id="a", name="A", rank=1, models=[{"family": "kimi-k3"}, {"family": "solo"},
@@ -89,10 +87,9 @@ def test_a_model_has_a_page_where_rows_compare_or_where_it_measures_strong():
 
 
 def test_a_notable_model_one_row_serves_has_a_page_that_says_where_it_measures():
-    """Claude Opus 4.6 is free in one row, and on 2026-09-26 it scored 26.4
-    with the top at 57.6: below the strong bar, in the index's upper half. A
-    reader looking for it free found it only in a row of a list — `notable`
-    gives it a page, and the page says where it measures."""
+    """A model one row serves that measures `notable` — below the strong bar,
+    in the index's upper half — is one readers come for: it gets a page, and
+    the page says where it measures."""
     opus = {"family": "claude-opus-4.6", "tier": "notable", "aa_model": "claude-opus-4-6"}
     entries = [agent(models=[opus, {"family": "solo"}])]
     models = {m["family"]: m for m in build_index(entries, TODAY)["models"]}
@@ -213,9 +210,8 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
 
 def test_a_model_page_lists_its_own_ids_and_not_a_newer_versions():
     """A row that serves glm-5 beside glm-5.2 and glm-5-turbo lists an id for
-    each, and every one of them contains glm-5. The glm-5 page offered all six
-    of AIHubMix's GLM ids on 2026-09-26, so a reader could copy GLM-5.2 off the
-    page of GLM-5. Each id is the most specific family's that names it."""
+    each, and every one of them contains glm-5. Each id is the most specific
+    family's that names it, so the glm-5 page offers no id of GLM-5.2."""
     hub = make(id="hub", name="Hub", category="aggregator", free_part="models",
                models=[{"family": "glm-5"}, {"family": "glm-5.2"}, {"family": "glm-5-turbo"}],
                api={"base_url": "https://hub.example/v1", "key_url": "https://hub.example/keys",
@@ -374,8 +370,8 @@ def test_llms_txt_names_the_model_pages():
 
 def test_a_provider_page_is_dated_for_the_sitemap_by_its_newest_change():
     """jekyll-sitemap writes <lastmod> and jekyll-seo-tag `dateModified` from
-    `last_modified_at`; without it 98 of the sitemap's 100 URLs carried no date,
-    and a crawler deciding what to re-read had nothing to go on."""
+    `last_modified_at`, which a crawler reads to decide what to re-read: the
+    row's newest change, a probe pass or a history line of its own."""
     e = groq(last_verified=date(2026, 7, 15))
     assert front(build_provider_page(e, [], TODAY))["last_modified_at"] == date(2026, 7, 15)
     later = at("2026-07-17", id="groq-free", name="Groq", models=["qwen3.8-27b"])
@@ -517,8 +513,8 @@ def test_a_page_links_to_a_model_page_that_stays_as_well(tmp_path):
 
 
 def test_a_same_day_correction_is_not_a_stretch_the_model_was_listed(tmp_path):
-    """A family added and taken back on one day — Jules' on 2026-09-23 — was a
-    correction, not a day a reader could have used the model there."""
+    """A family added and taken back on one day is a correction, not a day a
+    reader could have used the model there."""
     events = [at("2026-07-10", event="added", id="b", name="B", models=["kimi-k3"]),
               at("2026-07-10", id="b", name="B", models=["glm-5"])]
     page = build_model_page("kimi-k3", [serving("a", "kimi-k3"), serving("b", "glm-5")],
@@ -545,9 +541,8 @@ def test_every_chip_on_the_site_that_names_a_model_with_a_page_links_it(tmp_path
 
 
 def test_the_provider_index_and_the_checked_page_are_lists_a_phone_can_read():
-    """A four-column table with a run of models in one cell, and a table of
-    paragraph-long reasons, stood wider than a phone on 2026-09-26; the README
-    had learned the same. Each is a list now — the index a list per section,
+    """A table with a run of models in one cell, or of paragraph-long reasons,
+    stands wider than a phone, so each is a list: the index a list per section,
     each row's models as its README line names them."""
     from freetier_radar.render import build_checked_page, build_providers_index
     from test_render import watched

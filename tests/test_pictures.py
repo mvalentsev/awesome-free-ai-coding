@@ -78,7 +78,7 @@ def test_the_counters_are_the_figures_they_are_given(narrow):
 def test_every_word_reads_at_the_width_a_reader_sees_it():
     """GitHub scales an image down to the column: about 830 pixels on a
     desktop, 358 on a 390-pixel phone. Scaled that far, a label drawn at
-    fifteen units in the wide banner would be ten pixels on the desktop — so
+    fifteen units in the wide hero would be ten pixels on the desktop — so
     the wide hero draws nothing that lands under eleven on the desktop, and
     the narrow one, the only one a phone is served, nothing under eleven there."""
     for narrow, shown in ((False, WIDE_SHOWN), (True, NARROW_SHOWN)):

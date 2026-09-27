@@ -59,8 +59,8 @@ def test_structured_data_is_valid_json_and_cannot_close_its_own_script(tmp_path)
 
 
 def test_a_vendors_sentence_arrives_as_text(tmp_path):
-    """The one thing this page must never do. Every string on it is copied out
-    of the registry, where a vendor's own wording lives."""
+    """Every string on the page is copied out of the registry, where a vendor's
+    own wording lives, and reaches the reader as text, never as markup."""
     nasty = make(name="X <script>alert(1)</script>",
                  offering='free "quota" <b>&</b> more',
                  limits="1 < 2 & 3 > 2")
@@ -150,8 +150,8 @@ def test_the_quickstart_command_survives_both_places_it_is_printed(tmp_path):
 
 def test_the_readme_and_the_page_ask_the_quickstart_lane_the_same_question(tmp_path):
     """The command is written once (`_quickstart_curl`) and printed by both
-    pages; until 2026-09-24 each wrote it out in full. A reader who copies it
-    from either one sends the same prompt, the accuracy requirement included."""
+    pages, so a reader who copies it from either one sends the same prompt, the
+    accuracy requirement included."""
     registry = tmp_path / "registry.yaml"
     save_registry(registry, [make(api={"base_url": "https://x.ai/v1/", "auth": "none",
                                        "model_ids": ["m-free"]})])
@@ -195,19 +195,18 @@ def test_the_committed_page_is_what_the_committed_registry_renders(tmp_path):
 
 def test_jekyll_leaves_every_markdown_written_for_github_off_the_site():
     """kramdown does not read Markdown inside a block-level <div>, does not know
-    GitHub's alert syntax and escapes a <summary> it meets inside a table cell:
-    the root README was served half-rendered until _config.yml excluded it, and
-    configs/README.md is written for GitHub's renderer the same way."""
+    GitHub's alert syntax and escapes a <summary> it meets inside a table cell,
+    so the README and configs/README.md, written for GitHub's renderer, stay
+    off the site (_config.yml's exclude)."""
     config = yaml.safe_load((TEMPLATES.parent / "_config.yml").read_text(encoding="utf-8"))
     assert "README.md" in config["exclude"]
     assert "configs/README.md" in config["exclude"]
 
 
 def test_a_card_cell_breaks_a_token_with_no_space_in_it():
-    """On a phone the tables become cards whose cells no longer scroll, so a
-    note carrying `ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com` ran 74
-    px past its card and the whole page moved sideways at 390 px (found
-    2026-09-22)."""
+    """On a phone the tables become cards whose cells do not scroll, so a token
+    with no space in it, such as a URL in a note, has to break or it pushes the
+    whole page sideways."""
     css = (TEMPLATES / "index.html.j2").read_text(encoding="utf-8")
     phone = css[css.index("@media (max-width: 760px)"):]
     phone = phone[:phone.index("\n}\n")]
@@ -236,10 +235,8 @@ def _render_everything(entries, tmp_path, watchlist=None, today=TODAY) -> dict[s
 
 def test_the_readme_and_the_page_count_the_services_checked_alike(tmp_path):
     """Both pages link the same list of services checked and not listed, and
-    that page counts every verdict on it, a verdict due for a fresh look
-    included. The README counted them all and the site only the current ones,
-    so from the day the oldest verdict aged past the recheck limit the two pages
-    would have printed two numbers for one list."""
+    count every verdict on it as that page does, a verdict due for a fresh look
+    included, so the two never print two numbers for one list."""
     current = {"domains": ["a.example"], "name": "A", "checked_on": "2026-07-01",
                "reason": "nothing free today", "reopen_if": "a free lane"}
     expired = {**current, "domains": ["b.example"], "name": "B", "checked_on": "2026-01-02"}
@@ -250,10 +247,9 @@ def test_the_readme_and_the_page_count_the_services_checked_alike(tmp_path):
 
 
 def test_the_shell_function_every_page_names_is_one_the_file_defines(tmp_path):
-    """The site, the configs README and the file's own header told a reader to
-    run `claude-openrouter-free` — typed by hand, so the day OpenRouter's row
-    lost its Anthropic route or left the list, three pages would have named a
-    function configs/claude-code.sh no longer defines."""
+    """The site, the configs README and the file's own header name a shell
+    function read off configs/claude-code.sh, never a typed one, so no page
+    names a function the file no longer defines."""
     entries = [make(id="gw-one", name="GwOne", category="aggregator",
                     api={"base_url": "https://one.example/v1",
                          "anthropic_base_url": "https://one.example", "model_ids": ["m"]})]
@@ -276,11 +272,9 @@ def test_the_shell_function_every_page_names_is_one_the_file_defines(tmp_path):
 ])
 def test_every_page_states_the_rule_the_code_applies(tmp_path, monkeypatch, name, value,
                                                       readme_says, site_says, unsaid):
-    """A rule the pages describe is a constant in the code, and a page that
-    typed the constant's value kept describing the old rule after the code
-    moved: the diagram's `fail ×3 · stale 60d`, the frontier bar's "within 10
-    points", the provisional "two weeks" and "twice a week" in two dozen places.
-    Each page reads the constant, so changing it changes every page."""
+    """A rule the pages describe is a constant in the code, and each page reads
+    the constant rather than typing its value, so changing it changes every
+    page and leaves no page describing the old rule."""
     import freetier_radar.render as render
     monkeypatch.setattr(render, name, value)
     entries = [
@@ -304,10 +298,8 @@ def _readme_row(readme: str) -> str:
 
 
 def test_a_readme_row_names_eight_families_and_links_the_rest(tmp_path):
-    """The README is the landing page and a row is one list item: the name, the
-    offering, the date and the models. A rotating lane names every model it has
-    served free for two weeks, and on 2026-09-24 that was fourteen on OpenRouter
-    and twenty-seven on AIHubMix, so the README shows the first eight in the
+    """A README row is one list item, and a rotating lane names every model it
+    has served free for two weeks, so the README shows the first eight in the
     row's own order and links the rest to the row's page. The row's page and
     the site, its model index included, keep every family."""
     pages = _render_everything([make(id="gw", category="aggregator", models=TEN)], tmp_path)
@@ -336,9 +328,9 @@ def test_an_agent_in_the_start_block_names_eight_families_there_too(tmp_path):
 
 
 def test_a_row_that_needs_a_card_never_leads_the_no_card_rows_it_ties_with(tmp_path):
-    """CONTRIBUTING's rule, which every sort ignored: on 2026-09-23 IBM
-    watsonx.ai (card, rank 98) sat above Pollinations.AI (no card, rank 98)
-    because the name broke the tie."""
+    """CONTRIBUTING's rule, on the README, the site and llms.txt alike: between
+    two rows of one rank, the one that asks for no card comes first, whatever
+    the names."""
     entries = [make(id="ibm", name="IBM", rank=98, card_required=True),
                make(id="poll", name="Pollinations", rank=98)]
     pages = _render_everything(entries, tmp_path)
@@ -349,8 +341,9 @@ def test_a_row_that_needs_a_card_never_leads_the_no_card_rows_it_ties_with(tmp_p
 
 
 def test_a_provisional_page_says_the_day_its_promotion_can_come(tmp_path):
-    """"Two weeks of probes still to pass" was printed on every provisional
-    page, twelve days into the fortnight as on the first."""
+    """A provisional page names the day its promotion can come, not a fixed
+    "two weeks of probes still to pass" that reads the same on every day of
+    the fortnight."""
     from datetime import timedelta
     row = make(id="young", name="Young", provisional=True, first_seen=TODAY - timedelta(days=5))
     page = _render_everything([row], tmp_path)["providers/young.md"]
@@ -361,7 +354,7 @@ def test_a_provisional_page_says_the_day_its_promotion_can_come(tmp_path):
 
 def test_the_frontier_bar_is_explained_only_where_a_frontier_line_is_shown(tmp_path):
     """With no free lane measured frontier the picks table has no Frontier line,
-    and both pages went on explaining one."""
+    and neither page explains the bar for one."""
     plain = [make(id="a", name="A", category="api-free-tier")]
     pages = _render_everything(plain, tmp_path / "plain")
     assert "Frontier" not in pages["README.md"].split("## 📋")[0]
@@ -385,10 +378,10 @@ def test_the_page_names_the_strong_models_the_readme_does(tmp_path):
 
 
 def test_a_link_to_the_model_index_opens_it(tmp_path):
-    """The index is folded on the page — 149 rows on 2026-09-25 — and the README
-    sends a reader after one model straight to it, where a link naming the
-    section would land on a closed summary. The fold carries the id the link
-    names, and the page's script opens a fold a link names."""
+    """The model index is folded on the page, and the README sends a reader
+    after one model straight to it: the fold carries the id the link names, and
+    the page's script opens a fold a link names rather than landing on a closed
+    summary."""
     html = _render([make(models=[{"family": "a"}])], tmp_path)
     assert '<details id="model-index" class="fold">' in html
     script = html.split("<script>")[1]
@@ -396,11 +389,10 @@ def test_a_link_to_the_model_index_opens_it(tmp_path):
 
 
 def test_a_link_to_the_connection_table_opens_it(tmp_path):
-    """Fifty-nine connection cards were twenty-four of the page's eighty-nine
-    phone screens on 2026-09-25, between the list and the rest of the page, for
-    the reader who came to wire up one agent. The table is folded like the model
-    index, the files that wire every lane at once stay in view, and the README
-    and configs/README.md link the fold itself, which the page's script opens."""
+    """The connection table is folded like the model index, since on a phone its
+    cards would stand between the list and the rest of the page; the files that
+    wire every lane at once stay in view, and the README and configs/README.md
+    link the fold itself, which the page's script opens."""
     from freetier_radar.render import PAGES_URL
     rows = [make(id="k", name="Keyed", api={"base_url": "https://k.example/v1"})]
     pages = _render_everything(rows, tmp_path)
@@ -415,11 +407,10 @@ def test_a_link_to_the_connection_table_opens_it(tmp_path):
 
 
 def test_a_row_names_its_first_families_and_folds_the_rest(tmp_path):
-    """Alibaba's row named 57 families on 2026-09-25 and stood 1,681 px tall on
-    a desktop and 1,423 on a phone, a column of chips beside three lines of
-    offer. A row shows the families its README line names and folds the rest
-    under their count, still in the page, where the filter box and a browser's
-    find reach them."""
+    """A row shows the families its README line names and folds the rest under
+    their count, rather than standing a column of chips tall beside a few lines
+    of offer; the folded ones stay in the page, where the search and a
+    browser's find reach them."""
     from freetier_radar.render import SITE_MODELS
     families = [f"fam-{i}" for i in range(SITE_MODELS + 4)]
     html = _render([make(id="wide", name="Wide",
@@ -436,8 +427,8 @@ def test_a_row_names_its_first_families_and_folds_the_rest(tmp_path):
 
 
 def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
-    """The connection table printed "not needed" wherever a row named no key
-    page, keyed or not."""
+    """The connection table says a key is "not needed" only for a keyless lane,
+    not for a keyed one that names no key page."""
     keyed = make(id="k", name="Keyed", api={"base_url": "https://k.example/v1"})
     keyless = make(id="n", name="Keyless", api={"base_url": "https://n.example/v1", "auth": "none"})
     table = _render_everything([keyed, keyless], tmp_path)["configs/README.md"]
@@ -448,9 +439,8 @@ def test_a_keyed_lane_with_no_key_page_is_not_called_keyless(tmp_path):
 
 
 def test_the_page_has_one_heading_and_it_is_the_banner(tmp_path):
-    """The front page had no <h1>: the banner image stood where the heading
-    belongs. It is the heading now, its alt text the words a search engine and
-    a screen reader take for the page's name."""
+    """The front page has one <h1>, the banner image, whose alt text is the
+    words a search engine and a screen reader take for the page's name."""
     html = _render([make(models=[{"family": "a"}])], tmp_path)
     assert html.count("<h1") == 1
     heading = html.split("<h1>")[1].split("</h1>")[0]
@@ -500,11 +490,10 @@ def _js_function(script: str, name: str) -> str:
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
 def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path):
-    """A reader types "Nemotron 3 Ultra", not nemotron-3-ultra, and until
-    2026-09-26 the search found nothing for it: every term had to be found on
-    its own, and a lone "3" may only start a name. Since the same day no
-    description spells a model out, so the name the vendor writes has to find
-    the row's models and the model itself. The page's own functions run here."""
+    """A reader types "Nemotron 3 Ultra", not nemotron-3-ultra, and no
+    description spells a model out, so the name as the vendor writes it has to
+    find the row's models and the model itself, though a lone "3" may only
+    start a name. The page's own functions run here."""
     script = _render([make()], tmp_path).split('id="search-config">')[1]
     names = ("fold", "squash", "written", "prepareOffer", "prepareModel",
              "scoreOffer", "wholeOffer", "scoreModel", "spelled", "snippet")
@@ -548,10 +537,10 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
 
 @pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
 def test_tab_keeps_to_the_search_dialog_it_promises_is_modal(tmp_path):
-    """The dialog says aria-modal, and until 2026-09-27 Tab walked out of it onto
-    the page behind while Esc and a click outside closed it. Tab past the last
-    control comes back to the first, Shift+Tab before the first goes to the
-    last, and anywhere in between the browser moves focus itself."""
+    """The dialog says aria-modal, so Tab never walks out of it onto the page
+    behind: Tab past the last control comes back to the first, Shift+Tab before
+    the first goes to the last, and anywhere in between the browser moves focus
+    itself."""
     script = _render([make()], tmp_path).split('id="search-config">')[1]
     harness = _js_function(script, "wrapFocus") + """
     console.log(JSON.stringify([wrapFocus(4, 3, false), wrapFocus(4, 0, true),
@@ -578,9 +567,10 @@ def test_the_search_filters_on_the_answers_the_rows_carry(tmp_path):
 
 
 def test_without_a_script_the_page_shows_no_search_it_cannot_run(tmp_path):
-    """Progressive enhancement: the dialog and the three ways into it are hidden
-    in the markup and shown by the script, like the copy buttons; and the box
-    that filtered rows two screens below itself is gone."""
+    """Progressive enhancement: the dialog and the ways into it are hidden in
+    the markup and shown by the script, like the copy buttons; and the search
+    is the page's one filter, with no `find` box and no `shown` rows beside
+    it."""
     html = _render([make()], tmp_path)
     assert re.search(r'<div id="search" class="palette" [^>]*hidden>', html)
     opens = re.findall(r'<button class="(\w+)" type="button" data-search-open hidden', html)

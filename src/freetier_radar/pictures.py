@@ -1,16 +1,10 @@
-"""The README's pictures, drawn as SVG from figures the render already has.
+"""The README's pictures, drawn as SVG from figures the render already has:
+the hero at the top of the page (`hero_svg`) and the strong models' chart
+(`chart_svg`).
 
-The README opened on a banner drawn by hand in August — a radar with four
-decorative contacts — then a table of four counters and a six-line paragraph.
-On a phone that was the whole first screen: GitHub scales an image to the
-column, so the 1160-unit banner arrived 358 pixels wide with its tagline at six
-pixels, and the counters sat in a table GitHub pads thirteen pixels a cell.
-
-So the top of the page is one picture, and every mark in it is a fact the
-registry backs. The radar is the list: one dot per live offer, a section to a
-colour, the offers that get the most work done for free nearest the centre, so
-a row that dies takes its dot with it on the next render. The counters are the
-same figures the README's text states, and nothing here is typed.
+Every mark in the hero is a fact the registry backs. The radar is the list: one
+dot per live offer, a section to a colour, so a row that dies takes its dot with
+it on the next render. The counters are the figures the README's text states.
 
 Two widths, because one aspect ratio cannot serve both screens: the wide hero
 for a desktop column, the narrow one — served to a phone through the README's
@@ -32,7 +26,7 @@ __all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_UNTIL", "NARROW_
            "Palette", "LIGHT", "DARK", "TONES", "Arc", "Hero", "hero_svg", "hero_words", "Bar",
            "Chart", "chart_svg", "chart_words"]
 
-# One turn of the beam, in seconds — the same as the hand-drawn banners'.
+# One turn of the beam, in seconds.
 BEAM_PERIOD = 6.0
 # The width GitHub shows a README image at: the desktop column (1280-pixel
 # window) and a 390-pixel phone. The tests hold every word to eleven pixels at
@@ -94,8 +88,8 @@ class Hero:
     models: int
     strong: int
     schedule: str
-    # In the list's own order; a section's rows in its own order too, since the
-    # first of them sit nearest the centre.
+    # In the list's own order: the sections go round the radar from north, and
+    # the legend names them, in it.
     arcs: tuple[Arc, ...]
 
 
@@ -128,11 +122,11 @@ def _dots(frame: _Frame, arcs: tuple[Arc, ...]) -> list[tuple[str, float, float,
     """(tone, x, y, bearing) for every live row.
 
     Each section takes a share of the circle as large as its share of the
-    rows. Within it the k-th row sits at the k-th distance of an even spread
-    over the disc's area — the best offers nearest the centre — at a bearing the
-    golden ratio picks. Where a dot would touch one already placed it moves
-    along its arc, then outward, in fixed steps: a picture is compared byte by
-    byte, so nothing here may depend on anything but the counts."""
+    rows. Within it the k-th dot sits at the k-th distance of an even spread
+    over the disc's area, at a bearing the golden ratio picks. Where a dot would
+    touch one already placed it moves along its arc, then outward, in fixed
+    steps: a picture is compared byte by byte, so nothing here may depend on
+    anything but the counts."""
     total = sum(a.count for a in arcs)
     placed: list[tuple[str, float, float, float]] = []
     if not total:
@@ -256,7 +250,7 @@ def hero_words(hero: Hero) -> str:
     """The hero in one sentence: its <title> for a screen reader, and the
     README's alt text for the picture — one sentence, so the two cannot differ.
     No date: the badge under the picture dates the list, by its oldest verified
-    row, and a second date here was the newest — two dates for one list."""
+    row."""
     figures = ", ".join(f"{figure} {label}" for figure, label in _counters(hero))
     return (f"awesome-free-ai-coding — {figures}; every offer probed {hero.schedule}; "
             "one dot per live offer")

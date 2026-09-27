@@ -117,12 +117,11 @@ def test_the_workflow_commits_the_maps_list():
 
 def test_the_run_checks_what_ci_would_before_it_commits():
     """CI never runs on the scheduled run's own push — GITHUB_TOKEN starts no
-    workflow — so a commit that broke a test CI runs would have sat on main
-    until the maintainer's next commit met it at the pre-commit gate, with
-    nothing to say which change did it. On 2026-09-25 the README stood at 70 KB
-    of the 80 KB ceiling a test holds, and the part growing was one the run
-    commits. What CI runs, the run runs before it commits, and the scout's
-    branch reports it in the pull request CI does not run on either."""
+    workflow — so a commit that broke a test CI runs would sit on main until
+    the maintainer's next commit met it at the pre-commit gate, with nothing to
+    say which change did it. What CI runs, the run runs before it commits, and
+    the scout's branch reports it in the pull request CI does not run on
+    either."""
     workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     ci = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
     steps = workflow["jobs"]["update"]["steps"]
@@ -139,10 +138,10 @@ def test_the_run_checks_what_ci_would_before_it_commits():
 def test_a_dry_run_reaches_the_checks_when_a_row_fails():
     """A dry run is how a change to the workflow is tried before a real run,
     and the probe exits 1 on a dry run that finds a failing row — which a person
-    chaining it in a shell wants. On 2026-09-25 one FAIL, Yolo-Auto's, skipped
-    every step after the probe, the checks the dry run was dispatched to try
-    among them. In a dry run the probe step carries on; a real run's probe
-    exits 0 whatever it finds, and a scheduled run has no inputs at all."""
+    chaining it in a shell wants — so in a dry run the probe step carries on,
+    and one failing row does not skip the checks the dry run was dispatched to
+    try. A real run's probe exits 0 whatever it finds, and a scheduled run has
+    no inputs at all."""
     workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     probe = next(s for s in workflow["jobs"]["update"]["steps"]
                  if s.get("name") == "Probe all entries")
@@ -151,12 +150,10 @@ def test_a_dry_run_reaches_the_checks_when_a_row_fails():
 
 
 def test_the_run_reads_every_quote_back_into_its_summary():
-    """A quote is the vendor's words only while its page still carries them, and
-    until 2026-09-27 only a person running freetier-quotes found out otherwise:
-    that day a full pass found five gone, and Qoder's rank rested on a
-    promotion's "End time : To be announced" on a page no probe reads. The run
-    prints the report in its summary — dry runs too — beside the models owed a
-    family, and a quote gone never stops the commit that follows."""
+    """A quote is the vendor's words only while its page still carries them,
+    and many of those pages are ones no probe reads, so the run reads every
+    quote back and prints the report in its summary — dry runs too — beside the
+    models owed a family; a quote gone never stops the commit that follows."""
     workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     steps = workflow["jobs"]["update"]["steps"]
     quotes = next(s for s in steps if "freetier-quotes" in s.get("run", ""))

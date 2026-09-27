@@ -48,12 +48,9 @@ def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
 
 
 def test_a_provider_page_description_names_the_free_models_from_the_column():
-    """The description is what a search result shows under the page's title.
-    It said the offer and the quota, and the models only where `offering`
-    listed them — twenty-eight rows' did until 2026-09-26, when the rule gave
-    the models to the Models line alone. So the description names them from
-    that line, the one a probe reads back, and every page with a column says
-    them the same way; a long column ends in how many more."""
+    """The description a search result shows under the page's title names the
+    free models from the Models column, the list a probe reads back, since
+    `offering` names none; a long column ends in how many more."""
     from freetier_radar.render import README_MODELS, build_provider_page
 
     def description(**kw) -> str:
@@ -72,10 +69,9 @@ def test_a_provider_page_description_names_the_free_models_from_the_column():
 
 
 def test_a_provider_page_says_why_its_row_names_no_model():
-    """An empty column read the same on every page — "the page this row is
-    verified against names no free model" — which a credit made false: Sail
-    Research's page names Kimi K3 beside the $5 a month spent on it. The row's
-    free part says which empty column it is."""
+    """Why a row's Models column is empty depends on its free part — a sum to
+    spend, models the vendor does not name, a page that names none — and the
+    page gives the reason that fits, not one sentence for all three."""
     from freetier_radar.render import build_provider_page
 
     credit = build_provider_page(make(id="credit", free_part="sum"), [], TODAY)
@@ -89,9 +85,9 @@ def test_a_provider_page_says_why_its_row_names_no_model():
 
 
 def test_a_provider_page_says_the_families_are_checked_not_that_one_fails_the_row():
-    """Since 2026-09-24 a family a catalog stopped serving free flags the Models
-    column while another family stands, so "required" no longer says what one
-    missing family does; each is still checked, on every run."""
+    """A family a catalog stops serving free flags the Models column while
+    another family stands, so the Evidence line says each family is checked,
+    not that each is required."""
     from freetier_radar.render import build_provider_page
 
     page = build_provider_page(make(id="lane", models=[{"family": "kimi-k3"}], probe={
@@ -137,9 +133,9 @@ def test_build_context_rows():
 
 
 def test_a_card_is_marked_where_it_is_asked_for_and_nowhere_else():
-    """39 of 41 rows said "✅ No" in a column of their own. The exception is what
-    a reader needs to see, and it is easier to see beside a name than inside a
-    column of agreement."""
+    """A card is the exception, so it is a mark beside the name of a row that
+    asks for one and nothing on the rest: easier to see than a column of
+    agreement."""
     ctx = build_context([make(id="free", name="Free"),
                          make(id="paid", name="Paid", card_required=True)], TODAY)
     flags = {r["name"]: r["card_flag"]
@@ -156,12 +152,9 @@ def test_rank_orders_rows_within_section():
 
 
 def test_the_readme_row_prints_what_you_get_whole_and_leaves_the_quota_to_the_row_page():
-    """The README is the landing page. On 2026-09-20 it was 161 KB, 83 KB of it
-    inside 93 <details> folds, and the median `limits` cell ran to 926
-    characters: sixteen desktop screens of tables, thirty-one on a phone with
-    the table scrolling sideways. A row on the README is one line — what the
-    offer is, the models, the date — and the quota in the vendor's words is on
-    the row's own page and the site, where a fold folds."""
+    """A README row is one line — what the offer is, whole and unfolded, the
+    models, the date — and the quota in the vendor's words is on the row's own
+    page and the site."""
     long_offering = ("Open-source coding agent whose gateway prices a rotating set of "
                      "models at zero — one, two, three, four, five and six of them — "
                      "inside the tool only, no sign-in; any provider via BYOK, and a "
@@ -178,13 +171,9 @@ def test_the_readme_row_prints_what_you_get_whole_and_leaves_the_quota_to_the_ro
 
 
 def test_the_list_is_one_item_per_row_with_no_table_no_fold_and_no_limits(tmp_path: Path):
-    """On 2026-09-25 the list's four tables ran to thirty-one phone screens:
-    GitHub gives a table no more than the screen, so the offer got a column a
-    word or two wide, a row stood a screen tall, and the models and the dates
-    sat off the right edge behind a sideways scroll. The same rows as list
-    items measured eighteen phone screens with nothing off the edge, and eight
-    desktop screens where the tables took eleven (github-markdown-css, 390 and
-    1280 pixels). A row is one list item, and the quota is on its own page."""
+    """A row is one list item, with no table, fold or quota: GitHub gives a
+    table no more than the screen's width, so on a phone a table row stands a
+    screen tall with its models and date behind a sideways scroll."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="l", name="L", limits="a quota figure, read on a date. " * 40)])
@@ -198,9 +187,8 @@ def test_the_list_is_one_item_per_row_with_no_table_no_fold_and_no_limits(tmp_pa
 
 def test_a_list_item_is_the_name_the_offer_and_a_small_line_of_date_and_models(tmp_path: Path):
     """The flags stay beside the name, where the eye lands first. The date
-    leads the small line under the offer: at the line's end a break fell inside
-    it, `2026-` above `09-24`, which the narrow date column had done in every
-    row. A row that names no model has the date alone."""
+    leads the small line under the offer, since a wrap at the line's end can
+    split it; a row that names no model has the date alone."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="x", name="X", offering="An offer", card_required=True,
@@ -216,8 +204,8 @@ def test_a_list_item_is_the_name_the_offer_and_a_small_line_of_date_and_models(t
 
 def test_the_readme_keeps_the_plug_it_in_heading_and_sends_the_reader_to_configs(tmp_path: Path):
     """The heading stays — its anchor is what the nav and any link from outside
-    point at — and the connection table moved to configs/README.md, beside the
-    files it describes, so the README lists the files and nothing else."""
+    point at — and the connection table is configs/README.md, beside the files
+    it describes, so the README lists the files and nothing else."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import PAGES_URL
     reg = tmp_path / "registry.yaml"
@@ -231,10 +219,9 @@ def test_the_readme_keeps_the_plug_it_in_heading_and_sends_the_reader_to_configs
 
 
 def test_the_readme_lists_the_ready_made_files_as_list_items(tmp_path: Path):
-    """The files were a two-column table until 2026-09-26, and GitHub gives a
-    table the screen's width and no more: on a phone the LiteLLM line's
-    `litellm --config … --host 127.0.0.1` held its cell open past the edge and
-    the table scrolled sideways under the reader's thumb. A list item wraps."""
+    """The ready-made files are list items, not a table: GitHub gives a table
+    the screen's width and no more, and on a phone a long command in a cell
+    scrolls the table sideways. A list item wraps."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [api_entry(id="groq-free", name="Groq")])
@@ -249,11 +236,8 @@ def test_the_readme_lists_the_ready_made_files_as_list_items(tmp_path: Path):
 def test_a_teaser_is_never_cut_inside_a_code_span():
     """GitHub pairs a backtick the teaser leaves open with the next one it meets,
     which is the same span's opening backtick in the full text, and turns all
-    between them into code: `</sub></summary>` included. The fold then shows the
-    whole cell with its tags printed as text. opencode's lane notice from
-    2026-09-17 and its limits from 09-18 did that on the README, both cut inside
-    `403 FreeTierError: …`. The README's rows fold nothing since 2026-09-21; the
-    connection notes beside the configs and the archive's reasons still do."""
+    between them into code: `</sub></summary>` included. The fold would then
+    show the whole cell with its tags printed as text."""
     long = ("The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has "
             "answered every other client with `403 FreeTierError: OpenCode's free tier can "
             "only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer "
@@ -300,8 +284,8 @@ def test_provisional_marker_and_flag():
                          make(id="solid", name="Solid")], TODAY)
     section = next(s for s in ctx["sections"] if "LLM APIs" in s["title"])
     rows = {r["name"]: r for r in section["rows"]}
-    # the marker rides beside the name, where the card marker is; the date
-    # column is the narrowest on the page and a second glyph wrapped it in two
+    # the marker rides beside the name, where the card marker is, not beside
+    # the date
     assert rows["Prov"]["new_flag"] == " 🧪"
     assert rows["Prov"]["verified"] == TODAY.isoformat()
     assert rows["Solid"]["new_flag"] == ""
@@ -345,11 +329,9 @@ def test_opencode_config_and_env_example():
 
 
 def test_the_badge_dates_the_evidence_not_the_render():
-    """Rendering the README does not verify anything. The badge used to carry
-    today's date regardless, so a regeneration between probe runs claimed a
-    freshness no entry had; the oldest live probe is what the page can honestly
-    stand behind. An entry stale enough to be archived does not drag it down —
-    it is not on the page any more."""
+    """Rendering the README verifies nothing, so the badge carries the oldest
+    live probe, never the render's date; a row stale enough to be archived is
+    off the page and does not drag it down."""
     entries = [make(last_verified=TODAY - timedelta(days=3)),
                make(id="older", last_verified=TODAY - timedelta(days=9)),
                make(id="buried", last_verified=TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1))]
@@ -359,11 +341,9 @@ def test_the_badge_dates_the_evidence_not_the_render():
 
 
 def test_the_badge_says_the_date_is_a_floor_and_colours_itself_by_its_age(tmp_path: Path):
-    """`min` over the live rows is a floor, and the badge read as a single check
-    date: on 2026-09-12 it said "all entries verified 2026-09-07" while all but
-    two rows had passed a probe two days earlier. "or later" is the whole fix to
-    the reading; the colour is the fix to the other half, a hard-coded green
-    that called a floor of any age fresh."""
+    """The badge's date is a floor over the live rows, so it says "or later",
+    and its colour turns amber and then red as the floor ages: a fixed green
+    would call a floor of any age fresh."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import BADGE_AMBER, BADGE_FRESH_DAYS, BADGE_GREEN, BADGE_RED
 
@@ -383,15 +363,10 @@ def test_the_badge_says_the_date_is_a_floor_and_colours_itself_by_its_age(tmp_pa
 
 
 def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(tmp_path: Path):
-    """The hero printed the newest verified date and the badge under it the
-    oldest: on 2026-09-27 a run confirmed 83 of 84 rows, uncloseai answered 502
-    and kept 09-24, and the first screen said "last verified 2026-09-27" over
-    "every row verified 2026-09-24 or later". Each was true of something; side
-    by side they read as a contradiction, and the hero had computed a date of
-    its own instead of taking the list's. The list has one date, the floor, and
-    the README states it once, on the badge: the picture is the list, the badges
-    its health. "Or later" is the floor's own word — it goes where the rows
-    carry more than one date, on every page that dates them."""
+    """The list has one date, the floor, and the README states it once, on the
+    badge; the hero picture carries none, since a second date beside the floor
+    reads as a contradiction. "Or later" goes where the rows carry more than one
+    date, on the README and the site alike."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import render_site
 
@@ -420,11 +395,10 @@ def test_the_readme_dates_the_list_once_by_its_floor_and_the_site_the_same_way(t
 
 
 def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(tmp_path: Path):
-    """Every file this repository publishes is generated, and all of them are
-    committed: a registry edit that skipped the render leaves the README, the
-    index, the configs and the provider pages advertising what the registry
-    stopped saying, until the next scheduled run happens to fix it. CI rendered
-    to /tmp to prove rendering works and compared nothing."""
+    """Every file this repository publishes is generated and committed, so a
+    registry edit that skipped the render leaves the README, the index, the
+    configs and the provider pages advertising what the registry stopped
+    saying, until the next scheduled run renders."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import (
         CONFIGS_README, SITE_PAGE, check_rendered, render_configs_readme, render_site,
@@ -461,9 +435,9 @@ def test_check_rendered_catches_an_edit_that_never_reached_the_published_files(t
 
 
 def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path):
-    """The date alone made a row mid-failure look merely unlucky in the
-    scheduling. trae and inception-labs read 2026-09-07 beside rows reading
-    2026-09-10 for two days with nothing saying why."""
+    """A row whose probe has started missing says how many misses since its
+    last pass and how many archive it: the date alone looks merely late in the
+    schedule."""
     from freetier_radar.models import ARCHIVE_AFTER_FAILURES
     from freetier_radar.render import build_provider_page
 
@@ -479,12 +453,9 @@ def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path)
 
 
 def test_configs_call_the_ids_a_row_lists_never_its_family_names():
-    """A family names a model; an id is what a request carries. Until 2026-09-25
-    a row with no api.model_ids had its family names written into litellm.yaml
-    and opencode.json as ids, which is right only where a family happens to be
-    one: Cloudflare's config handed out `llama-4`, which Workers AI does not
-    know (its ids are @cf/ paths), and Upstage's `solar-pro-3` for the id
-    solar-pro3."""
+    """A family names a model; an id is what a request carries. A row with
+    families and no api.model_ids gives litellm.yaml and opencode.json nothing
+    to call, never its family names, which are ids only by accident."""
     row = api_entry(id="cf", name="CF", models=[{"family": "llama-4", "tier": "strong"}])
     assert [d for d in build_litellm_config([row], TODAY)["model_list"]
             if "llama-4" in d["litellm_params"]["model"]] == []
@@ -519,17 +490,14 @@ def test_litellm_config_names_every_free_model_of_every_connectable_entry():
 
 
 def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
-    """OmniRoute's pitch is one model name that keeps answering when a free tier
-    runs out; LiteLLM does that with a model group and fallbacks, on lanes this
-    list vouches for. free/frontier and free/strong hold every id whose family
-    the registry measured at that tier, free/nokey every lane that needs no
-    account. A group deployment benches itself after its first failure — a key
-    the reader never set fails before any request leaves, a 429 is the quota
-    spent — while a model asked for by name keeps LiteLLM's defaults: measured
-    on LiteLLM 1.102 on 2026-09-21, twelve unset keys and one working lane
-    answered 8 calls of 8, and one 429 on a lone model otherwise shut it for the
-    whole cooldown. A keyless lane that refuses any bearer token is in none of
-    it, because LiteLLM sends one on every call."""
+    """One model name keeps answering when a free tier runs out: free/frontier
+    and free/strong hold every id whose family the registry measured at that
+    tier, free/nokey every lane that needs no account, and a call falls back in
+    that order. A group deployment benches itself after its first failure — a
+    key the reader never set fails before any request leaves, a 429 is the
+    quota spent — while a model asked for by name keeps LiteLLM's defaults. A
+    keyless lane that refuses any bearer token is in none of it, because
+    LiteLLM sends one on every call."""
     glm = {"api": {"base_url": "https://glm.example/v1", "auth": "api-key",
                    "model_ids": ["zai/glm-5.3", "zai/glm-5.3-flash"]},
            "models": [{"family": "glm-5.3", "tier": "frontier", "aa_model": "glm-5-3"},
@@ -576,17 +544,15 @@ def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
                       {"free/strong": ["free/nokey"]}]}
     # One dict per deployment: PyYAML writes a shared one as an &anchor, LiteLLM
     # then hands every deployment the same model_info and the same id, and the
-    # group answered 429 to every call (measured the same day).
+    # group answers 429 to every call.
     assert "&id" not in yaml.safe_dump(cfg)
 
 
 def test_every_page_offers_only_the_litellm_groups_the_config_defines(tmp_path: Path):
-    """A group exists only while some lane is measured at its tier. On 2026-09-22
-    Claude Opus 5.5 took the top of the index to 57.6, no free lane stayed within
-    ten points of it, and free/frontier left litellm.yaml — while its header,
-    llms.txt and the configs README went on telling readers to ask for it, a
-    call LiteLLM answers with "model not found". The fix reached those three and
-    left `free/strong` typed into the README's and the site's file tables."""
+    """A group exists only while some lane is measured at its tier, and a group
+    litellm.yaml lacks is a call LiteLLM answers with "model not found": the
+    config's header, the configs README, llms.txt, the README and the site name
+    only the groups the config defines."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import (SITE_PAGE, build_llms_txt, render_configs_readme,
                                        render_site)
@@ -623,9 +589,9 @@ def test_every_page_offers_only_the_litellm_groups_the_config_defines(tmp_path: 
 
 
 def test_headline_counts_are_derived_from_the_registry():
-    """The numbers at the top of the page are a claim about the list, so they are
-    counted from it — a hand-typed "31 need no card" is one merged PR away from
-    being a lie, and the archived rows must not prop any of them up."""
+    """The numbers at the top of the page are counted from the live rows: a
+    hand-typed count goes stale with the next merged row, and an archived row
+    props none of them up."""
     entries = [
         api_entry(id="groq-free", name="Groq"),
         api_entry(id="keyless", name="Keyless",
@@ -641,9 +607,8 @@ def test_headline_counts_are_derived_from_the_registry():
 
 
 def test_model_index_groups_providers_by_family():
-    """The per-provider tables cannot answer "who serves qwen3 for free?" — this
-    index does, most-served family first. Superseded families stay out of it:
-    they are not callable any more."""
+    """The model index answers "who serves qwen3 for free?", most-served family
+    first. Superseded families stay out of it: they are not callable any more."""
     entries = [
         make(id="a", name="A", rank=1, models=[{"family": "qwen3"}, {"family": "gpt-oss"}]),
         make(id="b", name="B", rank=2, models=[{"family": "qwen3"},
@@ -657,9 +622,8 @@ def test_model_index_groups_providers_by_family():
 
 
 def test_the_model_index_marks_a_card_where_the_rows_do(tmp_path: Path):
-    """"💳 beside a name is the whole of the fine print about payment", the README
-    says — and the model index named Sail Research beside kimi-k3 as free with
-    no mark, while its $5 a month needs a payment method on the account."""
+    """A row that needs a card carries its 💳 in the model index too: "free at"
+    beside a name with no mark reads as free without one."""
     from freetier_radar.models import save_registry
     entries = [make(id="a", name="A", rank=1, models=[{"family": "kimi-k3"}]),
                make(id="b", name="B", rank=2, card_required=True, models=[{"family": "kimi-k3"}])]
@@ -674,14 +638,9 @@ def test_the_model_index_marks_a_card_where_the_rows_do(tmp_path: Path):
 
 
 def test_a_reader_after_one_model_is_sent_to_the_websites_index(tmp_path: Path):
-    """The README carried every family and everyone who serves it free, and
-    that index grows with the families rather than the rows: 70 families in
-    7 KB on 2026-09-20, 149 in 18.7 KB on 09-25 — of a 70 KB page, 80 KB the
-    ceiling — with thirty-six more ids due a family within two weeks. Nothing a
-    scheduled run committed was checked against the ceiling, so the first a
-    maintainer would have heard of it is a test refusing an unrelated commit.
-    The whole index is the site's; the README names the strong models and
-    links the rest."""
+    """The index of every family grows with the families rather than the rows,
+    so it is the site's and not the README's, which has a budget: the README
+    names the strong models and links the rest."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import PAGES_URL
     reg = tmp_path / "registry.yaml"
@@ -693,13 +652,10 @@ def test_a_reader_after_one_model_is_sent_to_the_websites_index(tmp_path: Path):
 
 
 def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_path: Path):
-    """The question a reader brings is often a model, not a vendor: where is
-    Kimi K3 free, where is DeepSeek V4 Pro. The tier marks answer it for the
-    models worth coming for — measured, never typed — and the bar keeps the set
-    short where the whole index is not: seventeen families of 149 on
-    2026-09-25. Frontier first, then the most widely served, since every row
-    beside a model is another free quota of it; a row that needs a card says so
-    here as it does in the list."""
+    """The README's Start here names the frontier and strong models with every
+    row that serves each one free: frontier first, then the most widely served,
+    since every row beside a model is another free quota of it; a row that
+    needs a card says so here as it does in the list."""
     from freetier_radar.models import save_registry
     strong = {"tier": "strong", "aa_model": "kimi-k3"}
     entries = [
@@ -718,8 +674,7 @@ def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_pa
     save_registry(reg, entries)
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
-    # A list, as the rows are: in a table the model's column took a third of a
-    # phone's width, and seventeen models stood two screens tall.
+    # A list, as the rows are, not a table a phone squeezes.
     # Each model links its own page, where every row that serves it has its
     # limits and the ids to call.
     assert f"\n- [`big`]({PAGES_URL}/models/big/) <sub>frontier</sub> — [C](https://x.ai)\n" in start
@@ -746,11 +701,10 @@ def test_the_strong_models_on_the_readme_are_capped_and_the_rest_linked(tmp_path
 
 
 def test_a_row_whose_vendor_trains_on_what_you_send_says_so_beside_its_name(tmp_path: Path):
-    """What a free offer costs besides money is often what a reader sends it:
-    the Gemini API's free tier lists "Content used to improve our products"
-    where the paid one says the opposite. The README carries it as one glyph
-    beside the name, like the card — the vendor's sentence is on the row's page
-    — and a vendor that says it does not train gets no glyph, only the page."""
+    """What a free offer costs besides money is often what a reader sends it.
+    The README carries it as one glyph beside the name, like the card — the
+    vendor's sentence is on the row's page — and a vendor that says it does not
+    train gets no glyph, only the page."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import build_provider_page
     yes = make(id="yes", name="Yes", rank=1, data_use={
@@ -825,10 +779,9 @@ def test_quickstart_is_a_registry_entry_not_a_typed_snippet():
 
 
 def test_the_quickstart_curl_sends_the_session_header_its_lane_asks_for(tmp_path: Path):
-    """A keyless lane that wants an id per conversation — opencode Zen answers
-    400 MissingSessionID without x-opencode-session — would make the README's
-    first command fail as printed. The curl carries the header, and the id is
-    made in the reader's shell, so every reader sends their own and the page
+    """A keyless lane that wants an id per conversation refuses the README's
+    first command without the header, so the curl carries it, and the id is
+    made in the reader's shell: every reader sends their own and the page
     renders the same twice."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
@@ -860,10 +813,9 @@ def test_quickstart_note_reaches_the_page(tmp_path: Path):
 
 
 def test_starters_answer_what_to_code_with_before_the_reference_table(tmp_path: Path):
-    """The page opened on the keyless curl alone, which is the weakest offer on
-    it — a demo capped at a couple of requests a minute. What a reader wants
-    first is the agents that run on a $0 plan and the models they hand over, and
-    the registry already knows both."""
+    """What a reader wants first is the agents that run on a $0 plan and the
+    models they hand over, not the keyless demo curl: live agents with families
+    that ask for no card, in rank order."""
     from freetier_radar.models import save_registry
     agent = dict(category="agent-cli", api={"base_url": "https://b.example/v1"})
     entries = [
@@ -871,7 +823,7 @@ def test_starters_answer_what_to_code_with_before_the_reference_table(tmp_path: 
         make(id="first", name="First", rank=10, **{**agent, "models": [{"family": "m-1"}]}),
         # free and good and silent about its models — nothing to put in the row
         make(id="modelless", name="Modelless", rank=15, **agent),
-        # a card is the one thing this block promises nobody needs
+        # a card is what this block promises nobody needs
         make(id="paid", name="Paid", rank=1, card_required=True,
              **{**agent, "models": [{"family": "m-3"}]}),
         # an API is not an agent: it answers a different question, further down
@@ -908,10 +860,8 @@ def test_context_connections():
 
 
 def test_a_long_connection_note_folds_like_the_prose_columns():
-    """The one table `_fold` never reached, and the one cell that keeps growing:
-    the note is where a rotating lane, an id spelling or a caveat gets explained.
-    Kenari's reached 1,364 characters against a median of 280 and made its row
-    four times the width of the table's median."""
+    """The connection note is the cell that keeps growing — a rotating lane, an
+    id spelling, a caveat — so a long one folds, every character kept."""
     long = ("Every :free id the catalog carries is listed, and the vendor's own flag "
             "is what the probe reads. " * 5).strip()
     ctx = build_context([api_entry(id="long", name="L", api={
@@ -958,9 +908,9 @@ def test_watchlist_rows_are_newest_first_and_carry_their_own_freshness():
 
 
 def test_the_watchlist_is_a_page_of_its_own_and_the_readme_links_it(tmp_path: Path):
-    """140 verdicts were 108 KB of a 260 KB README on 2026-09-16, loaded by every
-    reader who came for the list above them. They live on one page now, with the
-    reason, what would reopen it and whether the verdict is still current."""
+    """The verdicts live on a page of their own — the reason, what would reopen
+    it and whether the verdict is still current — which the README links
+    instead of carrying them."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import build_checked_page
     old = watched("Old", (TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat())
@@ -1128,9 +1078,8 @@ def test_an_event_with_nothing_to_say_renders_a_dash_like_every_other_empty_cell
 
 
 def test_a_delisting_event_says_why_from_the_row_the_archive_keeps():
-    """"➖ Delisted Kenari —" was all the page said about four rows on
-    2026-09-17. The rows are in the Archive now, each with its reason, and the
-    events the history already holds read it from there."""
+    """A delisting event recorded with no detail reads the reason from the row
+    the Archive keeps, in the changes table and the feed alike."""
     gone = make(id="gone", name="Gone", delisted={"on": TODAY, "reason": "the free lane is gone"})
     delisting = ev(event="removed", id="gone", name="Gone", detail="")
     rows = build_context([make(), gone], TODAY, history=[delisting])["changes"]
@@ -1141,9 +1090,9 @@ def test_a_delisting_event_says_why_from_the_row_the_archive_keeps():
 
 
 def test_an_event_about_an_archived_row_links_its_page_not_the_vendor():
-    """Kenari is on the blocklist for pooled consumer accounts, and on 2026-09-17
-    "What changed" and three feed entries still linked kenari.id. An event about
-    a row in the Archive links the row's page, like the Archive does."""
+    """An event about a row in the Archive links the row's page, like the
+    Archive does: the vendor of a row that left is dead or, for a row rejected
+    for cause, somewhere the list sends no one."""
     gone = make(id="gone", name="Gone", url="https://gone.example",
                 delisted={"on": TODAY, "reason": "rejected for cause"})
     events = [ev(id="gone", name="Gone", url="https://gone.example"),
@@ -1157,10 +1106,10 @@ def test_an_event_about_an_archived_row_links_its_page_not_the_vendor():
 
 
 def test_a_provider_page_says_why_a_row_was_delisted_once_and_not_which_models_it_had():
-    """The header says why the row left, with the reviewer's date. A deletion
-    recorded before rows were archived carries no reason of its own, and the
-    page used to borrow the header's under the older date — Puter's history
-    read "2026-07-19 — Delisted: … the endpoint read on 2026-09-14 …"."""
+    """The header says why the row left, with the reviewer's date. The history
+    line of a deletion that carries no reason of its own says "Delisted" alone:
+    not the header's reason under an older date, and not the models the row
+    had."""
     from freetier_radar.render import build_provider_page
     gone = make(id="gone", name="Gone", models=[{"family": "a"}],
                 delisted={"on": TODAY, "reason": "the free lane is gone"})
@@ -1176,9 +1125,9 @@ def test_a_provider_page_says_why_a_row_was_delisted_once_and_not_which_models_i
     ("added", "Added"), ("archived", "Archived"), ("restored", "Restored"),
     ("removed", "Delisted"), ("models", "Free models changed")])
 def test_an_event_goes_by_one_word_wherever_it_is_named(kind, word):
-    """The README said "➕ Added", the row's page "Added to the list" and the
-    feed "New:", each from a table of its own: four tables for five events, and
-    a word changed in one never reached the others."""
+    """Each event has one word, from EVENT_WORDS, on the README, the row's page,
+    the feed and the monthly digest alike, so a word changed once changes
+    everywhere."""
     from freetier_radar.announce import build_digest
     from freetier_radar.render import build_provider_page
 
@@ -1196,9 +1145,8 @@ def test_an_event_goes_by_one_word_wherever_it_is_named(kind, word):
 
 
 def test_the_digest_says_why_a_row_was_delisted_as_the_readme_does():
-    """The monthly digest composed its lines on its own and printed a deletion
-    recorded before rows were archived as a bare "Delisted", where the README
-    and the feed read the reason the Archive keeps."""
+    """The monthly digest reads the reason of a delisting that carries none
+    from the row the Archive keeps, as the README and the feed do."""
     from freetier_radar.announce import build_digest
     gone = make(id="gone", name="Gone", delisted={"on": TODAY, "reason": "the free lane is gone"})
     removal = ev(event="removed", id="gone", name="Gone", detail="")
@@ -1207,13 +1155,11 @@ def test_the_digest_says_why_a_row_was_delisted_as_the_readme_does():
 
 
 def test_the_archive_says_why_each_row_left_and_links_its_page_not_the_vendor(tmp_path: Path):
-    """On 2026-09-17 every row in the Archive showed a "Last verified" date later
-    than the day its vendor had ended the offer: the probes anchored on pages
-    that outlived the offers and kept passing until a reviewer entered the
-    vendor's date. And the heading said the rows had "stopped verifying" when
-    all three were archived by that date with their probes still passing. A row
-    in the Archive says why it left, and links the page carrying the evidence
-    rather than a vendor page that is dead, or worse."""
+    """A row in the Archive says why it left and links the page carrying the
+    evidence, not a vendor page that is dead, or worse. It shows no last probe
+    pass — a probe anchored on a page that outlives the offer passes after the
+    vendor's end date — and never says a row its vendor's date archived
+    "stopped verifying"."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     retired = make(id="gone", name="Gone", url="https://gone.example",
@@ -1248,11 +1194,9 @@ def test_rendering_refuses_a_registry_that_lost_a_row_the_history_recorded(tmp_p
 
 
 def test_picks_answer_by_need_from_the_registry():
-    """The question a reader arrives with is rarely "what is on the list" and
-    usually "which one, for me" — the strongest models, the key that gets the
-    most done, no account at all. Other lists type that table by hand and it
-    rots; here every cell is the top of a section in the registry's own order,
-    so a row that dies takes its recommendation with it."""
+    """Every pick is the top of a section in the registry's own order, card rows
+    left out, so a row that dies takes its recommendation with it; frontier
+    crosses sections, ordered by how many frontier families a row hands over."""
     entries = [
         make(id="api-1", name="Api1", rank=10, models=[{"family": "f-1", "tier": "frontier"}]),
         # rank orders a row inside its section only; across sections the
@@ -1261,7 +1205,7 @@ def test_picks_answer_by_need_from_the_registry():
              models=[{"family": "f-4", "tier": "frontier"}, {"family": "f-5", "tier": "frontier"}]),
         make(id="api-3", name="Api3", rank=30),
         make(id="api-4", name="Api4", rank=40),
-        # a card is the one thing this block promises nobody needs
+        # a card is what this block promises nobody needs
         make(id="api-card", name="ApiCard", rank=1, card_required=True,
              models=[{"family": "f-2", "tier": "frontier"}]),
         make(id="agent", name="Agent", rank=5, category="agent-cli",
@@ -1314,13 +1258,10 @@ def test_picks_render_between_the_starters_and_the_list(tmp_path: Path):
 
 
 def test_the_readme_opens_on_the_hero_and_a_phone_is_served_the_narrow_one(tmp_path: Path):
-    """The counters were a table under a hand-drawn banner, and a phone gave
-    both the width of a 390-pixel screen: the banner's words at six pixels, the
-    table padded thirteen pixels a cell (2026-09-25, 2026-09-27). The top is one
-    picture now, drawn from the list, and the first <source> hands a phone the
-    narrow one — asked by width alone, since GitHub rewrites a <source> that
-    names the theme, and the narrow picture follows the theme itself. What the
-    picture shows is in its alt text, figures and all."""
+    """The top of the README is one picture drawn from the list, and the first
+    <source> hands a phone the narrow one — asked by width alone, since GitHub
+    rewrites a <source> that names the theme, and the narrow picture follows the
+    theme itself. What the picture shows is in its alt text, figures and all."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="a", name="A", models=[{"family": "m"}]),
@@ -1369,10 +1310,9 @@ def test_the_check_reports_a_picture_drawn_from_another_list(tmp_path: Path):
 
 
 def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
-    """The agents and the picks were tables, and a phone gives a table the
-    screen's width and no more: the agents' models broke at every hyphen,
-    `mimo-` above `v2.5`, in a column a third of the screen wide, and four
-    agents stood 773 pixels tall. As list items they take the whole width."""
+    """The agents and the picks are list items, not tables: a phone gives a
+    table the screen's width and no more, and a models column a third of it
+    wide breaks the models at every hyphen. A list item takes the whole width."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="ag", name="Ag", category="agent-cli",
@@ -1395,12 +1335,10 @@ def test_a_registry_with_nothing_to_pick_renders_no_picks_table(tmp_path: Path):
 
 def test_a_lane_that_wants_a_session_id_per_conversation_stays_out_of_the_static_configs(
         tmp_path: Path):
-    """opencode Zen has answered a free id without x-opencode-session with 400
-    MissingSessionID since 2026-09-07, and the rule OpenCode's team gives other
-    clients is a stable id per conversation. A LiteLLM or opencode.json entry is
-    written once and cannot mint one, so either would hand a reader a model
-    that fails on its first call. The row is left out of both, and everything
-    that tells a reader how to connect names the header instead."""
+    """A lane that wants a stable id per conversation in a header of its own
+    cannot be called by an entry written once, which cannot mint one: the row
+    is left out of litellm.yaml and opencode.json, and everything that tells a
+    reader how to connect names the header instead."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import build_llms_txt, build_provider_page
     zen = api_entry(id="zen", name="Zen", api={
@@ -1435,11 +1373,10 @@ def test_a_lane_that_wants_a_session_id_per_conversation_stays_out_of_the_static
 
 
 def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_path: Path):
-    """"Claude Code on a free lane" is the question the 27,000-star routers
-    answer by re-exposing paid sessions. The legal answer is a gateway whose
-    vendor documents an Anthropic-format route, and the registry now names it
-    per row — so the picks table, the connection table and the shell file all
-    read the same field, and a route the probe reports gone leaves all three."""
+    """"Claude Code on a free lane" is a gateway whose vendor documents an
+    Anthropic-format route: the picks table, the connection table and the shell
+    file all read the row's `anthropic_base_url`, so a route the probe reports
+    gone leaves all three."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import build_claude_code_sh
     entries = [
@@ -1485,7 +1422,7 @@ def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_pat
 
 def test_a_provider_page_carries_the_evidence_and_the_history():
     """Search lands on a question — "groq free tier limits" — not on a list of
-    fifty rows. A page per provider answers it with the row's own fields, the
+    rows. A page per provider answers it with the row's own fields, the
     evidence the probe reads and the row's history, and it is generated, so it
     can never say something the registry stopped backing."""
     from freetier_radar.render import build_provider_page, provider_page_url
@@ -1522,12 +1459,9 @@ def _history_lines(page: str) -> list[str]:
 
 
 def test_the_render_records_a_change_before_it_writes_the_pages(tmp_path: Path):
-    """history.jsonl was written by the scheduled run alone, so a row added by
-    hand was on the README the day it was committed and in its own page's
-    history days later: Sail Research read "added on 2026-09-21" above
-    "2026-09-24 — Added to the list", and the lines between a commit and the
-    run were a guess without a date. The render records every change the
-    commit makes, before it writes a page that shows it."""
+    """The render records every change the commit makes in history.jsonl before
+    it writes a page that shows it, so a row added by hand has its history line
+    on its page, and in the README's changes, from the first render."""
     from freetier_radar.history import load_history
     from freetier_radar.models import save_registry
     from freetier_radar.render import render_repository
@@ -1572,11 +1506,9 @@ def test_an_archived_provider_page_says_so_and_why():
 
 
 def test_an_archived_page_is_an_epitaph_not_instructions():
-    """On 2026-09-17 an archived page still carried a Connect section — AI21's
-    sent a reader to a sign-up that now lands on a homepage — flagged a dead row
-    as provisional, and closed with "re-verified twice a week" about a row no
-    probe reads. The title said "when it stopped verifying" of three rows that
-    were still passing their probes when their vendors' dates archived them."""
+    """An archived row's page carries no Connect section, no provisional flag
+    and no "re-verified twice a week" about a row no probe reads, and its title
+    never says "stopped verifying" of a row its vendor's date archived."""
     from freetier_radar.render import build_provider_page
     gone = make(id="gone", name="Gone", provisional=True, retired_on=TODAY,
                 api={"base_url": "https://api.gone.example/v1", "key_url": "https://gone.example/signup"})
@@ -1596,9 +1528,9 @@ def test_a_row_its_probe_archived_is_still_read_and_its_page_says_so():
 
 
 def test_the_page_of_a_row_on_a_blocklisted_domain_links_nowhere_near_it():
-    """Two archived rows sit on the blocklist, one of them a page that plants
-    instructions for AI agents. The Archive keeps the record as text: no link on
-    this site sends a reader, or an agent reading along, to the service."""
+    """A row on a blocklisted domain keeps its record as text: no link on this
+    site sends a reader, or an agent reading along, to the service, since such
+    a page can plant instructions for AI agents."""
     from freetier_radar.render import build_provider_page
     row = make(id="bad", name="Bad", url="https://bad.example", source_urls=["https://bad.example/docs"],
                delisted={"on": TODAY, "reason": "rejected for cause"},
@@ -1620,10 +1552,9 @@ def test_the_providers_index_says_why_each_archived_row_left():
 
 def test_the_litellm_command_this_repo_prints_listens_on_localhost_only(tmp_path: Path):
     """LiteLLM's proxy binds 0.0.0.0 unless told otherwise (`--host` defaults to
-    it in proxy_cli.py), and the config this repo generates sets no master key —
-    the reader's own provider keys ride in from the environment. Run as printed,
-    it put every one of those keys in front of the whole network the laptop was
-    on. Every place the command is printed names the loopback address."""
+    it in proxy_cli.py), and the config this repo generates sets no master key,
+    so the reader's own provider keys would be open to the whole network: every
+    place the command is printed names the loopback address."""
     import re
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
@@ -1667,8 +1598,8 @@ def test_the_readme_dates_link_to_the_provider_pages(tmp_path: Path):
 
 
 def test_the_evidence_line_names_the_keywords_that_live_in_the_page_data():
-    """Upstage and trae anchor entirely on bytes a reader never sees, and the
-    evidence line rendered "anchored on " and stopped there."""
+    """A row anchored on bytes a reader never sees, the page's own data, names
+    those keywords in its evidence line, not an empty "anchored on "."""
     from freetier_radar.render import build_provider_page
     probe = {"type": "page-keywords", "endpoint": "https://x.ai", "keywords": [],
              "machinery_keywords": ['"name":"free"', '"basic_usage_limit":3']}
@@ -1680,9 +1611,9 @@ def test_the_evidence_line_names_the_keywords_that_live_in_the_page_data():
 
 
 def test_the_evidence_line_names_the_lane_a_family_must_sit_in():
-    """A lane document lists paid models too — Cline's names the ClinePass plan
-    beside the free lane — so "the models catalog at" that URL would tell a
-    reader every model in it is the evidence."""
+    """A lane document lists paid models too, so the evidence line names the
+    lane: "the models catalog at" that URL would tell a reader every model in it
+    is the evidence."""
     from freetier_radar.render import build_provider_page
     probe = {"type": "api-models", "endpoint": "https://x.ai/recommended-models", "lane": "free"}
     page = build_provider_page(make(probe=probe), [], TODAY)
@@ -1774,10 +1705,9 @@ def _noticed(**api) -> Entry:
 
 def test_a_notice_on_the_quickstart_lane_is_a_warning_right_under_the_curl(tmp_path: Path):
     """The README's first command is where a reader finds out a lane stopped
-    working. When the list knows — opencode Zen refusing every client but
-    OpenCode from 2026-09-17, with the vendor silent — the page says so in a
-    callout directly under the command, dated and linked, above the lane's
-    usual caveat; and a lane with nothing to own up to renders no callout."""
+    working. When the list knows, the page says so in a callout directly under
+    the command, dated and linked, above the lane's usual caveat; a lane with no
+    notice renders no callout."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [_noticed()])
@@ -1832,10 +1762,10 @@ def _own_ua(**api) -> Entry:
 
 
 def test_the_quickstart_curl_names_its_own_user_agent_where_the_lane_asks_for_one(tmp_path: Path):
-    """curl sends `curl/8.x` unless told otherwise — exactly the "generic SDK or
-    HTTP-library name" OpenCode's client rules exclude — so a README command for
-    such a lane would break the vendor's rules as printed. It names itself, and a
-    lane that does not ask for it keeps the shorter command."""
+    """curl sends `curl/8.x` unless told otherwise — the "generic SDK or
+    HTTP-library name" OpenCode's client rules exclude — so on a lane that asks
+    for a client's own User-Agent the command names itself; a lane that does
+    not ask keeps the shorter command."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import QUICKSTART_USER_AGENT
     reg = tmp_path / "registry.yaml"
@@ -1921,9 +1851,8 @@ def test_the_evidence_line_names_the_index_a_probe_follows():
 
 
 def _mimo_rows() -> list[Entry]:
-    """The two rows that named one project: Xiaomi's agent, archived on the day
-    its anonymous channel ended, and the placeholder from the list's first day
-    at a domain that has never resolved, folded into it."""
+    """Two rows that name one project: the row that holds it, archived, and a
+    placeholder folded into it (`duplicate_of`)."""
     holder = make(id="mimo-code", name="MiMo Code", url="https://mimo.xiaomi.com/coder",
                   offering="Xiaomi's terminal coding agent", retired_on=TODAY)
     folded = make(id="mimocode", name="MiMoCode", url="https://mimocode.ai",
@@ -1934,9 +1863,9 @@ def _mimo_rows() -> list[Entry]:
 
 
 def test_a_folded_row_is_not_a_second_line_in_the_archive():
-    """The Archive is what the list carried, one line per service. MiMo Code and
-    MiMoCode sat in it two lines apart for two months, and a reader counting
-    dead offers counted Xiaomi's agent twice."""
+    """The Archive is what the list carried, one line per service: a row folded
+    into another is no second line in it, in llms.txt or in the providers
+    index."""
     from freetier_radar.render import build_llms_txt, build_providers_index, build_site_context
     entries = _mimo_rows()
     assert [r["name"] for r in build_context(entries, TODAY)["archived"]] == ["MiMo Code"]
@@ -1969,10 +1898,9 @@ def test_the_row_that_holds_the_service_names_the_id_folded_into_it():
 
 def test_the_connection_table_is_a_readme_beside_the_configs(tmp_path: Path):
     """Base URL, key name and the notes that matter, for every live
-    OpenAI-compatible API — the table the README carried as 34 KB of reference
-    for a reader who has already decided. GitHub renders a folder's README under
-    its file list, so it sits beside the four files it describes, and every
-    link in it is written from there."""
+    OpenAI-compatible API, in configs/README.md: GitHub renders a folder's
+    README under its file list, so it sits beside the four files it describes,
+    and every link in it is written from there."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import CONFIGS_README, PAGES_URL, render_configs_readme
     assert CONFIGS_README == "configs/README.md"
@@ -2001,10 +1929,9 @@ def test_the_connection_table_is_a_readme_beside_the_configs(tmp_path: Path):
 
 def test_the_published_readme_stays_a_landing_page(tmp_path: Path):
     """A visitor scrolls the README on GitHub; the site is where a row is read
-    whole. On 2026-09-20 the README ran to 161 KB and thirty-one desktop
-    screens, sixteen of them tables, and the file list above it was the first
-    thing on the page. The list grows a row at a time and a row is one line, so
-    the budget is what keeps the reference job from creeping back in."""
+    whole. The committed registry renders a README within README_BUDGET, which
+    keeps the reference job from creeping back as the list grows a row at a
+    time."""
     import json
     from freetier_radar.render import README_BUDGET
     pinned = date.fromisoformat(json.loads(Path("index.json").read_text(encoding="utf-8"))["generated"])
@@ -2016,9 +1943,9 @@ def test_the_published_readme_stays_a_landing_page(tmp_path: Path):
 def test_a_provider_page_offers_the_call_that_checks_a_key_in_the_readers_own_terminal():
     """"Does my key work here?" is answered by a command the reader runs, with
     the key read from their own environment — never by a page that asks for
-    it (turned down on 2026-09-26). A keyless lane needs no header, a key the
-    vendor prints for anyone is its own, and an endpoint that is not
-    OpenAI-shaped gets no command a reader could not run."""
+    it. A keyless lane needs no header, a key the vendor prints for anyone is
+    its own, and an endpoint that is not OpenAI-shaped gets no command a reader
+    could not run."""
     from freetier_radar.render import build_provider_page, env_var
     keyed = build_provider_page(make(id="keyed-free", api={
         "base_url": "https://k.ai/v1/", "key_url": "https://k.ai/keys", "model_ids": ["k-1", "k-2"]}),
@@ -2071,10 +1998,9 @@ def _strong_rows() -> list[Entry]:
 
 
 def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path):
-    """The strong models were seventeen lines of vendor names. They are a chart
-    now, a bar per model as long as its score, drawn from the scores the tiers
-    were read off — and the list of who serves each is folded under it, in the
-    chart's order, so the two are one answer."""
+    """The strong models are a chart, a bar per model as long as its score,
+    drawn from the scores the tiers were read off — and the list of who serves
+    each is folded under it, in the chart's order, so the two are one answer."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, _strong_rows())
@@ -2082,8 +2008,8 @@ def test_the_strong_models_are_drawn_against_the_top_of_the_index(tmp_path: Path
     strong = text.split("**Strong models, free.**")[1].split("**Or pick by what you need:**")[0]
     assert '<source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">' in strong
     # a line that opens on <a><picture> is a paragraph to GitHub, which empties the
-    # <picture> and serves every reader its fallback (2026-09-27, a dark phone was
-    # handed the light desktop chart): the picture sits in an HTML block
+    # <picture> and serves every reader its fallback: the picture sits in an HTML
+    # block
     assert '<div align="center">\n<a href="' in strong
     assert 'src="assets/readme/strong-light.svg" width="860"' in strong
     assert "<details>" in strong and strong.index("<details>") < strong.index("[`kimi-k3`]")
@@ -2143,9 +2069,9 @@ def test_a_row_that_needs_a_key_links_where_to_get_one(tmp_path: Path):
 
 
 def test_the_top_names_the_rows_added_this_week():
-    """A list is worth a second visit when it moves, and the Archive's changes
-    table is at the bottom, folded: the rows added in the last seven days are
-    named under the nav, each linking its page, the newest first."""
+    """A list is worth a second visit when it moves, and its changes table is
+    folded at the foot of the list: the rows added in the last seven days are
+    named near the top, each linking its page, the newest first."""
     rows = [make(id="new", name="New (formerly Newer)"), make(id="older", name="Older"), make(id="old", name="Old")]
     events = [Event(ts=datetime(2026, 7, 18, 9, tzinfo=timezone.utc), event=EventType.ADDED, id="new", name="New"),
               Event(ts=datetime(2026, 7, 13, 9, tzinfo=timezone.utc), event=EventType.ADDED, id="older",

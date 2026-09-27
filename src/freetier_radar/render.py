@@ -26,7 +26,7 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CODEX_LITELLM_P
 # The promotion day is the probe's, and the pages say how far off it is.
 from .prober import PROVISIONAL_PROMOTE_DAYS
 # The bars a family's score must clear to be called frontier or strong, which
-# the picks table and the strong models state beside the answer.
+# the pages state beside the answer, and the scores the tiers were read off.
 from .tiers import FRONTIER_WITHIN, SCORES_PATH, STRONG_WITHIN
 # The README's pictures, drawn from the figures below.
 from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Hero, chart_svg,
@@ -34,7 +34,8 @@ from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Her
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import number, series, weeks
-# The map of the repository, which CONTRIBUTING.md prints.
+# The log a commit will be made on, and the map of the repository, which
+# CONTRIBUTING.md prints.
 from .gate import committed_log
 from .layout import MAP, markdown_table
 
@@ -62,57 +63,36 @@ CATEGORY_TITLES: dict[Category, str] = {
 
 REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
 # GitHub Pages rather than raw.githubusercontent.com, which serves every file as
-# text/plain and is documented as not being a CDN — a feed is polled hourly by
-# every subscriber, which is exactly the hotlinking that asks for. The URL is
-# baked into the feed's own <id> and <link rel="self">, so it cannot be changed
-# later without breaking every subscription that ever read it.
+# text/plain and is documented as not being a CDN, for a file every subscriber
+# polls. The URL is the feed's own <id> and <link rel="self">: changing it breaks
+# every subscription.
 FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
-# The Pages site the feed lives on, and where each row gets a page of its own.
-# A reader arrives from a search with a question about one vendor — "groq free
-# tier limits" — and a README row is not a URL. The pages are generated from the
-# same registry, so a page can never outlive its row or say what the row does not.
+# The Pages site the feed lives on, where each row gets a page of its own
+# (`build_provider_page`).
 PAGES_URL = "https://mvalentsev.github.io/awesome-free-ai-coding"
 PROVIDERS_DIR = "providers"
-# And where a model gets one. A reader — or a model answering one — arrives as
-# often with a model in mind as with a vendor: where is Kimi K3 free, where is
-# GLM-5.3-Flash. The provider pages answer for one vendor, and the site's model
-# index answered for every model inside one fold of the front page, where no
-# search engine matches a title to the question. On 2026-09-26 the sites that
-# came up for those questions were per-model pages built on a fraction of this
-# list's evidence, and none of this site's pages came up at all.
+# And where a model gets one (`build_model_page`).
 MODELS_DIR = "models"
 # Which models get a page of their own: those this many live rows serve free,
-# and those that measure notable, strong or frontier. A page earns its place by
-# saying what no row's page says alone — who else serves the model — or by
-# covering a model readers come for, which the index's upper half stands for:
-# on 2026-09-26 the strong bar alone left Claude Opus 4.6 and Sonnet 4.6 without
-# a page. A model one row serves below that would get a page repeating the
-# row's, forty-odd times over for Alibaba's catalog alone; it stays on the index
-# of every model, beside its row.
+# and those that measure notable, strong or frontier (`_has_model_page`). A page
+# earns its place by saying what no row's page says alone — who else serves the
+# model — or by covering a model readers come for, which the index's upper half
+# stands for. Any other model would get a page repeating its one row's; it stays
+# on the index of every model, beside its row.
 MODEL_PAGE_ROWS = 2
 FEED_ENTRIES = 50
 README_CHANGES = 10
-# Where a prose cell stops showing and starts folding. The teaser is a cut at a
-# word boundary, so the gap between the two is what keeps a row from folding away
-# a line and a half of text to save half a line. The README's own rows no longer
-# fold anything: `limits` left the page for the row's own page and the site on
-# 2026-09-21, and `offering` prints whole. The archive's reasons and the
-# connection notes still fold at these marks.
+# Where a prose cell stops showing and starts folding: the README's Archive
+# reasons, and every long cell on the site (`_site_fold`). The teaser is a cut at
+# a word boundary, so the gap between the two is what keeps a cell from folding
+# away a line and a half of text to save half a line.
 README_LIMITS_TEASER = 150
 README_LIMITS_COLLAPSE = 260
-# The README is the landing page and the site is the reference. On 2026-09-20
-# the README ran to 161 KB — 83 KB of it inside 93 <details> folds, the median
-# `limits` cell 926 characters — which was thirty-one desktop screens and
-# fifty-one on a phone, sixteen and thirty-one of them tables. A row is one line
-# now — 54 KB with 77 rows on 2026-09-21, about 400 bytes a row — so the page
-# grows a line per row, and the budget is what keeps the reference job from
-# creeping back: sixty rows of headroom then, about thirty on 2026-09-27 (84
-# rows, a key link on each keyed one, 70.6 KB), and less than the connection table
-# alone (38 KB) or the limits column (83 KB) would put back. A test renders the
-# committed registry against it. What the page carries has to grow with the
-# rows and no faster: the index of every family and who serves it grew with
-# the families, 70 of them in 7 KB on 2026-09-20 and 149 in 18.7 KB on 09-25
-# with the page at 70 KB, and moved to the site that day.
+# The README is the landing page and the site is the reference. A row is one
+# line, so the page grows a line per row, and the budget keeps what the site
+# carries — the limits, the connection table, the index of every model — from
+# creeping back: what the page carries has to grow with the rows and no faster.
+# A test renders the committed registry against it.
 README_BUDGET = 80_000
 # Where the README's pictures are drawn, beside the README and relative to it:
 # GitHub serves an image the README names by a relative path from the same
@@ -130,9 +110,7 @@ HERO_ARCS: dict[Category, tuple[str, str]] = {
     Category.TRIAL: ("trials", "trials"),
     Category.AGGREGATOR: ("aggregators", "aggregators"),
 }
-# The connection table lives beside the files it describes. GitHub renders a
-# folder's README under its file list, so a reader who opens configs/ for the
-# opencode config finds the base URLs and key names on the same screen.
+# The connection table, beside the files it describes (`render_configs_readme`).
 CONFIGS_README = "configs/README.md"
 CONFIGS_TEMPLATE = "configs-README.md.j2"
 # A code span as CommonMark reads one: a run of backticks, closed only by a run
@@ -140,47 +118,42 @@ CONFIGS_TEMPLATE = "configs-README.md.j2"
 _CODE_SPAN = re.compile(r"(?<!`)(`+)(?!`).*?(?<!`)\1(?!`)", re.S)
 # The connection table's note sits in the same cell as the vendor's name, and is
 # the cell that grows: a rotating lane, an id spelling, a caveat about which of
-# two endpoints the probe reads. Kenari's reached 1,364 characters against a
-# median of 280, four times the width of the median row. Folded a little later
-# than `limits`, because half of these notes are one sentence and a fold that
-# hides a single line is worse than the line.
+# two endpoints the probe reads. It folds a little later than a prose cell,
+# because half of these notes are one sentence and a fold that hides a single
+# line is worse than the line.
 README_NOTE_TEASER = 150
 README_NOTE_COLLAPSE = 300
 # How many agents the page answers "what do I code with, then?" by name before
-# the list starts. Four is what fits above the fold beside the
-# quickstart; the fifth-ranked agent is one section down either way.
+# the list starts. Four is what fits above the fold beside the quickstart; the
+# fifth-ranked agent is one section down either way.
 README_STARTERS = 4
 # How many names answer each "I want…" line of the picks table. Three reads as
 # a choice; a fourth is the section itself, which starts one heading down.
 README_PICKS = 3
 # How many of a row's model families a README line names before it links the
 # rest: a lane that rotates names every model it has served free for two weeks,
-# fourteen on OpenRouter on 2026-09-24, and a README row is one line. The row's
-# page and the site, its model index among them, name them all.
+# and a README row is one line. The row's page and the site name them all.
 README_MODELS = 8
 # The separator between names on a line. The no-break space keeps the dot with the
 # name before it, so a wrapped line never starts with one.
 DOT = "\u00a0· "
-# How many strong models the README names in its Start here, the most widely
-# served first. The tier bar keeps the set short — seventeen families of 149 on
-# 2026-09-25 — and the cap keeps it short whatever the bar lets through; the
-# rest are one click away in the site's model index.
+# How many strong models the README names in its Start here, frontier first and
+# then the most widely served (`_strong_models`). The tier bar keeps the set
+# short and the cap keeps it short whatever the bar lets through; the rest are
+# one click away in the site's model index.
 README_STRONG = 20
 # What the README's quickstart curl calls itself on a lane that asks every client
 # for a User-Agent of its own: the command is this page's, so it says so, in the
 # name/version shape the vendors' own example uses.
 QUICKSTART_USER_AGENT = "awesome-free-ai-coding-quickstart/1.0"
 
-# The freshness badge carries the age of the *oldest* live verification, and
-# its colour has to be able to disagree with it. Probes run Mondays and
-# Thursdays, so a healthy floor is three or four days old and one missed run
-# puts it at a week; three consecutive FAILs bury a row, which caps a failing
-# row's drag at about ten days. A floor older than that is being held back by
-# something no probe result clears on its own — a row answering INCONCLUSIVE
-# run after run keeps its date frozen for the full sixty days before staleness
-# archives it, and a workflow that stopped firing looks exactly the same. A
-# hard-coded green read "fresh" for a floor of any age, which is the one thing
-# a freshness badge must never do.
+# The freshness badge dates the list by its *oldest* live verification, and its
+# colour says whether that age is healthy. Probes run twice a week, so a healthy
+# floor is three or four days old and one missed run puts it at a week; three
+# failed probes in a row bury a row, which caps a failing row's drag at about
+# ten days. A floor older than that is held back by something no probe result
+# clears on its own: a row answering INCONCLUSIVE run after run keeps its date
+# until staleness archives it, and a workflow that stopped firing looks the same.
 BADGE_FRESH_DAYS = 11
 BADGE_AGEING_DAYS = 30
 BADGE_GREEN, BADGE_AMBER, BADGE_RED = "3fb950", "d29922", "f85149"
@@ -214,10 +187,9 @@ def _ordered(active: list[Entry], category: Category) -> list[Entry]:
     return sorted((e for e in active if e.category is category), key=_by_rank)
 
 
-# What each event is called wherever a human reads it: the row's page, the
-# "What changed" tables, the feed and the monthly digest. One word each — until
-# 2026-09-24 four tables named the five events, and "Added to the list", "New"
-# and "➕ Added" were one event. The tables put a mark before the word.
+# What each event is called wherever a human reads it — the row's page, the
+# "What changed" tables, the feed and the monthly digest — one word each, from
+# this table alone. The tables put a mark before the word.
 EVENT_WORDS: dict[EventType, str] = {
     EventType.ADDED: "Added",
     EventType.ARCHIVED: "Archived",
@@ -245,19 +217,11 @@ def _readme_families(e: Entry) -> tuple[list[str], int]:
 
 
 def _fold(text: str, teaser_at: int, collapse_over: int, small: bool = False) -> str:
-    """A long cell without the wall: what it says first, then all of it.
+    """A long cell without the wall: what it says first, then all of it, in a
+    <details> fold that keeps every character; `small` sets both in <sub>.
 
-    The two prose columns carry what this list is worth — what the offer is, and
-    the vendor's own figures with the page and date they were read on — and they
-    run to 251 and 1,268 characters. Six of those stacked in one column is not a
-    table anyone scans. Folding the tail keeps every character and gives the
-    page back its shape.
-
-    The teaser is a cut, not a summary: no sentence is composed here, and the cut
-    lands on a word boundary. It works because these rows are written
-    figure-first and subject-first — "20 requests per minute on any :free id",
-    "Open-source TUI/desktop coding agent with seven zero-priced models" — so
-    what a reader came for survives the cut and the sourcing is one click away.
+    The teaser is a cut at a word boundary (`_cut`), not a summary: no sentence
+    is composed here.
     """
     open_, close = ("<sub>", "</sub>") if small else ("", "")
     if len(text) <= collapse_over:
@@ -273,10 +237,8 @@ def _cut(text: str, at: int) -> str:
     the teaser leaves open with the next one it meets — the same span's opening
     backtick in the full text — and makes code of everything between them, the
     `</sub></summary>` that closes the teaser included: the fold then prints the
-    whole cell, its tags as text. opencode's lane notice and then its limits
-    did that from 2026-09-17, both cut inside `403 FreeTierError: …`. A span
-    that runs past `at` with no word before it is kept whole, because a teaser
-    has to show something.
+    whole cell, its tags as text. A span that runs past `at` with no word before
+    it is kept whole, because a teaser has to show something.
     """
     spans = [m.span() for m in _CODE_SPAN.finditer(text)]
     words = [i for i, ch in enumerate(text[:at])
@@ -421,7 +383,7 @@ def _row_models(e: Entry, pages: set[str]) -> str:
     """A row's models as a Markdown line names them — the README's list and the
     provider index alike: the first README_MODELS, each linking its own page
     where it has one (what a reader who stops on a model name came for), then
-    a count linking the row's page for the rest — Alibaba's fifty-seven."""
+    a count linking the row's page for the rest."""
     shown, more = _readme_families(e)
     return DOT.join(([_family_links(shown, pages, DOT)] if shown else [])
                       + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else []))
@@ -436,15 +398,11 @@ def _row(e: Entry, pages: set[str]) -> dict[str, str]:
         # README's row is this sentence, the models and the date. The quota is on
         # the row's page, one click from the date.
         "offering": e.offering,
-        # The one column that was 39 identical ticks out of 41 rows. What a
-        # reader needs from it is the exception, and an exception is easier to
-        # see beside the name than in a column of agreement — the section
-        # headings carry the count in words.
+        # A mark beside the name: the card is the exception, easier to see there
+        # than in a column of agreement, and the section headings count it in
+        # words.
         "card_flag": _card_flag(e),
-        # Both markers sit beside the name for the same reason: they are facts
-        # about the row, not values beside the date — when the list was a table
-        # the date had the narrowest column on the page, and a second glyph in it
-        # wrapped the date onto two lines in every row that carried one.
+        # Beside the name too: a fact about the row, not a value beside the date.
         "new_flag": " 🧪" if e.provisional else "",
         # What the reader pays besides money: the vendor may train on what they
         # send. One glyph like the card's; the vendor's sentence is on the page.
@@ -453,9 +411,8 @@ def _row(e: Entry, pages: set[str]) -> dict[str, str]:
         # The step between reading a row and calling it: where to get the key,
         # for a lane that takes one (a vendor's printed key is on that page too).
         "key_url": e.api.key_url if e.api and e.api.key_url and e.api.key_kind != "none" else "",
-        # Backticked, because a model id is something the reader will paste into
-        # a config rather than read as prose. A row that names no model has the
-        # date alone on its small line.
+        # The row's families, as `_row_models` names them; a row that names none
+        # has the date alone on its small line.
         "models": _row_models(e, pages),
     }
 
@@ -471,24 +428,21 @@ def _departure(e: Entry) -> date:
 def _archive(entries: list[Entry], today: date) -> list[Entry]:
     """The archived rows a reader is shown: one line per service.
 
-    A row folded into another (`duplicate_of`) named a service the Archive
-    already holds — MiMoCode and MiMo Code were Xiaomi's agent twice, two lines
-    apart, from the list's first day until 2026-09-20 — so it is left out of
-    every list that counts services. Nothing is lost by that: the row stays in
-    the registry, its page stays at its own URL pointing at the row that holds
-    the service, and that row names it back."""
+    A row folded into another (`duplicate_of`) names a service the Archive
+    already holds, so it is left out of every list that counts services. It
+    stays in the registry, its page stays at its own URL pointing at the row
+    that holds the service (`build_folded_page`), and that row names it back."""
     return [e for e in entries if is_archived(e, today) and e.duplicate_of is None]
 
 
 def _archived_rows(entries: list[Entry], today: date) -> list[dict[str, str]]:
-    """The Archive: each row's name linking its own page, and why it left.
+    """The Archive: each row's name linking its own page, and why it left, the
+    latest departure first.
 
-    The name used to link the vendor and the second column showed the row's
-    last probe pass. On 2026-09-17 all three archived rows showed a pass later
-    than the day their vendors had ended the offers — probes anchored on pages
-    that outlived the offers — and two of the rows had been added after that
-    day. The page carries the evidence; a vendor link for a row that left is at
-    best dead and at worst, for a row rejected for cause, a referral."""
+    The page carries the evidence; a vendor link for a row that left is at best
+    dead and at worst, for a row rejected for cause, a referral. No last probe
+    pass either: a probe anchored on a page that outlives the offer goes on
+    passing after the vendor's end date."""
     gone = sorted(_archive(entries, today),
                   key=lambda e: (_departure(e), e.name.lower()), reverse=True)
     return [{"name": e.name, "page": provider_page_url(e.id),
@@ -554,17 +508,12 @@ def _connectable(entries: list[Entry], today: date) -> list[Entry]:
 
 
 def _configurable(entries: list[Entry], today: date) -> list[Entry]:
-    """The connectable rows a config written once can actually call.
-
-    A lane that wants a stable id per conversation in a header of its own
-    (`api.session_header`) is not one of them. A litellm.yaml entry is static:
-    it either omits the header — opencode Zen's free ids answered that with 400
-    MissingSessionID — or pins one id for every conversation, which is not what
-    the vendor asked for. OpenCode does send x-opencode-session, but only for
-    its own built-in provider, which a reader of opencode.json already has, and
-    it sends no other vendor's header. Those rows are connected by a client that
-    sends the header, and the connection table, the provider page, the env
-    example and llms.txt say which header."""
+    """The connectable rows a config written once can actually call: none whose
+    ask it cannot carry (`_static_blockers`). OpenCode sends x-opencode-session
+    only for its own built-in provider, never for an opencode.json one, so a
+    session header rules out opencode.json too. Those rows are connected by a
+    client that sends the header, which the connection table, the provider page,
+    the env example and llms.txt name."""
     return [e for e in _connectable(entries, today) if not _static_blockers(e)]
 
 
@@ -577,12 +526,11 @@ def _notice_since(notice: Notice) -> str:
 
 
 def _model_index(active: list[Entry], pages: set[str]) -> list[dict]:
-    """Model family → everyone who serves it free, most-served first.
+    """Model family → everyone who serves it free, most-served first
+    (`_rows_by_family`), with the family's page and tier where it has them.
 
-    Answers the question the per-provider tables cannot: a reader who wants
-    `qwen3` does not know, and should not have to scan twenty rows to learn,
-    which five entries carry it. A row that needs a card carries its 💳 here
-    too: "free at" beside a name with no mark reads as free without one.
+    A row that needs a card carries its 💳 here too: "free at" beside a name
+    with no mark reads as free without one.
     """
     out = []
     for family, ps in _rows_by_family(active).items():
@@ -629,16 +577,14 @@ def _has_model_page(family: str, rows: list[Entry]) -> bool:
 
 def model_pages(entries: list[Entry], events: list[Event], today: date,
                 published: frozenset[str] = frozenset()) -> set[str]:
-    """Every model with a page: each the rule gives one today, and each page
-    already published whose family the list has named.
+    """Every model with a page: each the rule gives one today
+    (`_has_model_page`), and each page already published whose family the list
+    has named.
 
-    The second half is what keeps an address. A model that drops below the
-    rule — one row left where two served it — or that no row serves free any
-    more would otherwise lose its page, and the URL a search engine indexed
-    and an answer cited would be a 404 the day the list learned the news. The
-    list never takes back what it published: a row leaves through the Archive
-    and its page stays, and a model's page stays and says what became of the
-    model. `published` is the directory of pages the repository holds
+    The second half keeps an address: a model that drops below the rule, or
+    that no row serves free any more, keeps its page, which says what became of
+    the model, rather than turning a URL a search engine indexed into a 404.
+    `published` is the directory of pages the repository holds
     (`_published_beside`), which freetier-gate never lets a commit shrink; a
     file there whose family no row and no history line ever named is nobody's
     page, and the render takes it away."""
@@ -661,7 +607,7 @@ def _published_beside(registry_path: Path) -> frozenset[str]:
 def _new_rows(active: list[Entry], history: list[Event], today: date) -> list[dict]:
     """The live rows the list added in the last NEW_ROWS_DAYS, newest first: a
     list is worth a second visit when it moves, and its changes table sits at
-    the foot of the page, folded."""
+    the foot of the list, folded."""
     live = {e.id: e for e in active}
     since = today - timedelta(days=NEW_ROWS_DAYS)
     added = sorted((ev for ev in history if ev.event is EventType.ADDED and ev.id in live
@@ -680,11 +626,8 @@ def _new_rows(active: list[Entry], history: list[Event], today: date) -> list[di
 
 def _hero(active: list[Entry], shared: dict) -> Hero:
     """What the picture at the top of the README shows: the counters the text
-    states, and a dot per live row in its section. It shows no date. It printed
-    the newest verified one until 2026-09-27, computed here, above the badge
-    that prints the list's floor from the shared facts — "last verified
-    2026-09-27" over "every row verified 2026-09-24 or later" the day one row of
-    84 missed a run. The badge is the list's one date."""
+    states, and a dot per live row in its section. No date: the badge under it
+    carries the list's one date, its floor (`_floor`)."""
     return Hero(live=shared["active_count"], no_card=shared["no_card_count"],
                 models=shared["family_count"], strong=len(shared["strong_models"]),
                 schedule=shared["schedule"],
@@ -737,16 +680,11 @@ def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
 def _strong_models(active: list[Entry]) -> list[dict]:
     """The models a reader comes for, and every row that serves each one free.
 
-    A reader often arrives with a model rather than a vendor in mind — where is
-    Kimi K3 free, where is DeepSeek V4 Pro — and the model index answers that
-    for all of them, which is what made it the one part of the README growing
-    faster than the list: 149 families on 2026-09-25, eighteen kilobytes and
-    counting. The tier marks pick out the ones worth the trip, measured against
-    the Artificial Analysis index and never typed, and the bar keeps the set
-    short on its own: seventeen of the 149 that day. Frontier first, then the
-    most widely served — every row beside a model is one more free quota of it
-    — and the name to break a tie. A row that needs a card carries its 💳 here
-    as in the list."""
+    The frontier and strong families, their tier marks measured against the
+    Artificial Analysis index and never typed; the bar keeps the set short.
+    Frontier first, then the most widely served — every row beside a model is
+    one more free quota of it — and the name to break a tie. A row that needs a
+    card carries its 💳 here as in the list."""
     by_family: dict[str, tuple[bool, list[Entry]]] = {}
     for e in active:
         for m in e.models:
@@ -766,18 +704,13 @@ def _strong_models(active: list[Entry]) -> list[dict]:
 def _starters(active: list[Entry]) -> list[dict]:
     """The agents a reader can code with today, named before the list.
 
-    The page used to open on the keyless curl alone, and that reads as an offer:
-    the one lane on this list that needs no account is also the weakest thing on
-    it — a demo rate-limited to a couple of requests a minute — so the first
-    impression of "free AI coding" became a toy nobody would write code with.
     The answer to "what do I actually use?" is the agents that run on a $0 plan,
-    and it is already in the registry: category, `rank` (the maintainer's order
-    within it), `card_required`, and the model families a probe re-reads twice a
-    week. Nothing here is typed by hand, so the promise cannot outlive the row.
+    not the keyless quickstart, a rate-limited demo: live agent rows that ask for
+    no card, in `rank` order, at most README_STARTERS of them. Nothing here is
+    typed by hand, so the promise cannot outlive the row.
 
-    A row with no families is skipped rather than ranked down. CodeGPT and Charm
-    Hyper are free and good and say nothing about which models they route to,
-    and the whole point of this block is naming models.
+    A row with no families is skipped rather than ranked down: the block exists
+    to name models.
     """
     rows = [e for e in active
             if e.category is Category.AGENT_CLI and not e.card_required and live_families(e)]
@@ -795,28 +728,20 @@ def _pick(e: Entry, families: list[str] | None = None) -> dict:
 
 
 def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict]]:
-    """The answers to "which one, for me", each the top of a section.
+    """The answers to "which one, for me": the strongest models for nothing, the
+    key that gets the most work done, no account at all, a trial that will not
+    ask for a card. A section's answer is its own `rank` order with the
+    card-required rows removed, capped at README_PICKS, so a row that stops
+    verifying leaves the table on the run it leaves the list.
 
-    A reader arrives with a need, not with time to read fifty rows: the
-    strongest models for nothing, the key that gets the most work done, no
-    account at all, a trial that will not ask for a card. Every list in this
-    space answers that with a table someone typed once, and it is the first
-    thing on those pages to rot — a recommendation outlives the offer behind it
-    by months. Here each cell is derived: the section's own `rank` order with
-    the card-required rows removed, capped at README_PICKS, so a row that stops
-    verifying leaves the table on the same run it leaves the list.
+    "Frontier" crosses sections. It names the families that earned the tier
+    mark (one tier per family, enforced by freetier-check), and since `rank`
+    orders a row only within its own category, it is ordered by how many
+    frontier families the entry hands over, and only then by rank.
 
-    "Frontier" is the one answer that crosses sections. It is the registry's own
-    tier mark on a family — one tier per family, enforced by freetier-check —
-    and the row carries the families that earned it, because "frontier models
-    free" is only an answer if it says which. Across sections `rank` compares
-    nothing (it orders a row within its own category), so this row is ordered
-    by how many frontier families the entry hands over, and only then by rank:
-    an agent bundling five is a better answer than a gateway bundling one.
-
-    Keyless rows come from the connection table's order rather than a category:
-    "no account" is a property of the endpoint, and it is the same property the
-    quickstart curl below the table is chosen by.
+    Keyless rows come from the connection table's order rather than a section's,
+    card rows not taken out: "no account" is a property of the endpoint, the
+    same one the quickstart is chosen by.
     """
     ranked = [e for e in sorted(active, key=_by_rank) if not e.card_required]
 
@@ -836,10 +761,8 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
         "aggregators": top(Category.AGGREGATOR),
         "keyless": [_pick(e) for e in connectable if needs_no_account(e)][:README_PICKS],
         "trials": top(Category.TRIAL),
-        # The question the 27,000-star routers answer by re-exposing paid
-        # sessions. The legal answer is a gateway whose vendor documents an
-        # Anthropic-format route, and the row names it — across sections, in
-        # rank order, since a free lane behind that route is what matters.
+        # A gateway whose vendor documents an Anthropic-format route, across
+        # sections, in rank order.
         "claude_code": [_pick(e) for e in ranked
                         if e.api and e.api.anthropic_base_url][:README_PICKS],
         # Codex's answer: a lane that takes the request Codex sends, called
@@ -856,18 +779,12 @@ def picks(entries: list[Entry], today: date) -> dict[str, list[dict]]:
 
 
 def _quickstart(connectable: list[Entry]) -> dict | None:
-    """The one call a reader can make before deciding to trust any of this:
-    keyless, OpenAI-compatible, with a model id the registry knows is callable.
+    """The one call a reader can make before deciding to trust any of this: the
+    first connectable lane that takes no key and lists a callable id, or None.
+    Generated, so the command is archived along with its row.
 
-    Generated rather than typed, so the snippet is archived along with its entry
-    instead of sitting on the page as a command that stopped working.
-
-    The entry's api note rides along with it. A keyless lane is keyless because
-    it is rate-limited instead, and the first command in the README is exactly
-    where a reader meets that limit — an unexplained 429 on the one call the
-    page promises reads as "this list is stale", which is the opposite of what
-    it is. The caveat belongs in the registry beside the evidence for it, not
-    typed into the template, or it would outlive the entry it describes.
+    It carries the lane's api note: a keyless lane is rate-limited instead, and
+    the README's first command is where a reader meets that limit.
     """
     for e in connectable:
         if e.api.key_kind == "none" and e.api.model_ids:
@@ -887,16 +804,13 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
 
 
 def _quickstart_curl(start: dict) -> str:
-    """The command itself, written once for both pages that print it.
+    """The command itself, built once for both pages that print it.
 
-    The README printed it from its template and the site from here, so the
-    question it asks was typed twice and a test held the two copies together.
-    The site shows it twice more — in a <pre> and in the copy button's
-    attribute — and an attribute is the one place a shell command must not be
-    assembled by a template: this one carries both quote characters, and a
-    fragment Jinja had already marked safe would close the attribute on the
-    first of them. Built as one string here, it is printed as it is in the
-    README's code block and escaped correctly in both places on the site.
+    The site prints it twice, in a <pre> and in the copy button's attribute, and
+    it carries both quote characters: assembled by the template, a fragment
+    Jinja had marked safe would close the attribute on the first of them. Built
+    as one string here, it prints as it is in the README's code block and
+    escaped correctly in both places on the site.
     """
     return _curl(start["base_url"], start["model_id"], start["asks"])
 
@@ -906,7 +820,7 @@ def _curl(base_url: str, model_id: str, asks: list[tuple[str, str]],
     """One chat call to a lane, as a shell command: the quickstart's, and the
     one each provider page offers for checking a key — with the key read from
     the reader's own environment, since a key belongs in their terminal and
-    nowhere else (a page that asks for it was turned down on 2026-09-26)."""
+    nowhere else (`_try_it`)."""
     lines = [f"curl -s {base_url.rstrip('/')}/chat/completions \\"]
     if key:
         lines.append(f'  -H "Authorization: Bearer {key}" \\')
@@ -946,12 +860,10 @@ def _event_link(ev: Event, entries: list[Entry] | None, today: date) -> str:
 
 
 def event_detail(ev: Event, entries: list[Entry] | None) -> str:
-    """What an event says after its name. A row deleted before rows were
-    archived carries no detail in the history — "➖ Delisted Kenari —" was all
-    the page said about four rows on 2026-09-17 — and the row is back in the
-    registry as delisted, so the reason the Archive keeps answers for it, on
-    every page that lists events of many rows. The row's own page says it once,
-    in its header."""
+    """What an event says after its name: its detail, or, for a delisting that
+    carries none (a row deleted before rows were archived), the reason the
+    row's `delisted` keeps — on every page that lists events of many rows. The
+    row's own page says it once, in its header."""
     if ev.detail or ev.event is not EventType.REMOVED:
         return ev.detail
     row = next((e for e in entries or [] if e.id == ev.id), None)
@@ -977,9 +889,9 @@ def _change_rows(events: list[Event], entries: list[Entry] | None = None,
 
 
 def _rfc3339(stamp: datetime) -> str:
-    """Atom demands a full timestamp with an offset. A naive one can only have
-    come from a hand-written line; read it as UTC rather than as this runner's
-    local time, which is the one thing it certainly is not."""
+    """A full timestamp with an offset, as Atom demands. A naive one can only
+    have come from a hand-written line, and is read as UTC, never as the
+    runner's local time."""
     if stamp.tzinfo is None:
         stamp = stamp.replace(tzinfo=timezone.utc)
     return stamp.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1070,7 +982,7 @@ def _auth_cell(e: Entry) -> str:
 def _connection_note(e: Entry) -> str:
     """The cell under a provider's name in the connection table: a notice first,
     since it is what a reader copying the base URL most needs to know, then the
-    note, each folded like the prose columns."""
+    note, each folded at the README_NOTE_* marks."""
     parts = []
     if e.api.notice:
         parts.append(f"⚠️ <sub>**Does not work as published since {_notice_since(e.api.notice)}.**</sub>"
@@ -1085,31 +997,15 @@ def _shared_facts(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
                   pages: set[str] | None = None) -> dict:
     """Every figure and every stated rule the README and the site both print,
-    worked out once.
-
-    Each page used to count for itself: the site kept its own tally of the
-    services checked (the current verdicts only, where the README and the page
-    both link counted them all), and the README typed `free/strong` into its
-    file table after the configs README, llms.txt and litellm.yaml had started
-    reading the groups off the config. A figure computed in one place cannot be
-    two figures, and a rule the code applies — the frontier bar, the provisional
-    fortnight, how often a row is probed, how a row leaves — is printed from
-    the constant that applies it.
+    worked out once: a figure computed in one place cannot be two figures, and a
+    rule the code applies — the frontier bar, the provisional fortnight, how
+    often a row is probed, how a row leaves — is printed from the constant that
+    applies it.
     """
     active = [e for e in entries if not is_archived(e, today)]
     connectable = _connectable(entries, today)
-    # The badge dates the evidence, not the render. Using today's date moved it
-    # forward whenever the README was regenerated without a probe run —
-    # claiming a freshness no entry had. The oldest passing probe among live
-    # entries is the honest reading: everything on this page has been confirmed
-    # at least this recently. It is a floor, and the badge has to say so — read
-    # as a single check date it understates the page badly, because one lagging
-    # row drags the whole claim back. On 2026-09-12 it read 2026-09-07 while
-    # fifty-four of fifty-six rows had passed a probe two days earlier and only
-    # trae and inception-labs, both mid-re-anchor, were holding it there. The
-    # floor's words are `_floor`'s, the ones every page dates its rows in: the
-    # badge and the site typed "or later" after the date themselves, and said
-    # it on a day every row shared.
+    # The badge dates the evidence, not the render: the oldest passing probe
+    # among live rows, a floor every row on the page meets, in `_floor`'s words.
     colour = badge_colour(_oldest_verified(active, today), today)
     pages = model_pages(entries, [], today) if pages is None else pages
     model_index = _model_index(active, pages)
@@ -1119,8 +1015,7 @@ def _shared_facts(entries: list[Entry], today: date,
         "verified_floor": _floor(active, today),
         "verified_colour": colour,
         "verified_word": BADGE_WORDS[colour],
-        # The headline counts. Every one of them is derived, so the page can
-        # never advertise a number the registry stopped backing.
+        # The headline counts.
         "active_count": len(active),
         "no_card_count": sum(1 for e in active if not e.card_required),
         "card_count": sum(1 for e in active if e.card_required),
@@ -1176,10 +1071,8 @@ def build_context(entries: list[Entry], today: date,
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
-        # Counted here rather than in the template: the "no card" number is the
-        # one a reader is actually shopping for, and a section where it equals
-        # the row count should say so in those words instead of making them
-        # compare two figures.
+        # A section whose rows all ask for no card says so in words rather than
+        # leaving the reader to compare two figures.
         no_card = sum(1 for e in rows if not e.card_required)
         sections.append({
             "title": title,
@@ -1228,15 +1121,12 @@ def build_context(entries: list[Entry], today: date,
             "new_rows": _new_rows(active, history or [], today),
             "archived": _archived_rows(entries, today),
             "connections": connections,
-            # The answer to "why isn't X here?", which a list like this is asked
-            # more often than anything else. Rendered from the same file the
-            # scout filters proposals with, so the page and the machinery can
-            # never drift apart.
+            # The answer to "why isn't X here?", read from the file the scout
+            # filters proposals with. The README only asks whether there is
+            # one and links the checked page (`build_checked_page`).
             "watchlist": _watch_rows(watchlist or [], today),
-            # The only part of this page that is not a statement about today.
-            # Everything else is regenerated from scratch each run and remembers
-            # nothing, which left "did anything change?" answerable only from
-            # git log.
+            # The only part of the page that is not a statement about today:
+            # the tail of history.jsonl.
             "changes": _change_rows(history or [], entries, today)}
 
 
@@ -1276,9 +1166,9 @@ def build_index(entries: list[Entry], today: date,
         # the page a model has where it has one.
         "models": _index_models(entries, today,
                                 model_pages(entries, [], today) if pages is None else pages),
-        # Additive: a consumer reading .entries is unaffected. Here because
-        # "considered and not listed, on this date, for this reason" is an answer
-        # worth publishing in machine-readable form, not only in the README.
+        # Additive: a consumer reading .entries is unaffected. "Considered and
+        # not listed, on this date, for this reason" is an answer worth
+        # publishing in machine-readable form too.
         "watchlist": [
             {**w.model_dump(mode="json"), "current": is_watch_current(w, today)}
             for w in (watchlist or [])
@@ -1286,20 +1176,13 @@ def build_index(entries: list[Entry], today: date,
     }
 
 
-# The site's own front page. GitHub renders README.md with its own Markdown
-# parser; GitHub Pages renders it with kramdown, which does not read Markdown
-# inside a block-level <div>, does not know GitHub's alert syntax, and escapes a
-# <summary> it meets inside a table cell. The README is written for GitHub and
-# stays that way — which is why, served through Jekyll, its whole hero (banner,
-# badges, nav, the counters) arrived as literal `[![pipeline](…)]` text, its
-# warning as the word "[!WARNING]", and every one of its 117 folded cells as a
-# wall of prose.
-#
-# So the site gets a page of its own: index.html at the repository root, which
-# Pages serves in place of the README (jekyll-readme-index only steps in where
-# no index exists). It is rendered from the same registry on the same run as
-# everything else published here and held to it by `freetier-render --check`, so
-# nothing on it is typed by hand and no claim on it can outlive a row.
+# The site's own front page. GitHub Pages renders Markdown with kramdown, which
+# does not read Markdown inside a block-level <div>, does not know GitHub's
+# alert syntax and escapes a <summary> it meets inside a table cell, so the
+# README, written for GitHub's renderer, cannot be the site's front page.
+# index.html at the repository root is: Pages serves it in place of the README
+# (jekyll-readme-index only steps in where no index exists), and it is rendered
+# from the same registry on the same run, held to it by `freetier-render --check`.
 SITE_TEMPLATE = "index.html.j2"
 SITE_PAGE = "index.html"
 # What the page's nav bar calls each section. The bar is one line at every width
@@ -1317,8 +1200,7 @@ SITE_NAV_LABELS: dict[Category, str] = {
 # What the page's search understands as a filter rather than as text: each
 # section by the words a reader types for it, and the four answers a row's tags
 # carry. A reader who types "no card" or "claude code" is asking for rows
-# that are so, not for rows whose prose says it — the old type-to-narrow box
-# found 21 rows saying "no card" on 2026-09-26, while 70 asked for none.
+# that are so, not for rows whose prose says it.
 SEARCH_SECTION_WORDS: dict[Category, tuple[str, ...]] = {
     Category.AGENT_CLI: ("agents", "agent", "cli"),
     Category.API_FREE_TIER: ("apis", "api"),
@@ -1350,8 +1232,7 @@ def _search_config() -> dict:
 SITE_CHANGES = 8
 # How many of a row's families the page shows before it folds the rest under
 # their count — the README line's number, so the two read the same row alike.
-# Every family stays in the page: Alibaba's 57 stood as a column of chips
-# 1,681 px tall on a desktop on 2026-09-25, beside three lines of offer.
+# Every family stays in the page, where the search and a browser's find reach it.
 SITE_MODELS = README_MODELS
 # How fresh the floor date reads in words, beside the colour badge_colour gives
 # it — a colour alone is not an answer for a reader who cannot see it.
@@ -1406,8 +1287,7 @@ def _site_row(e: Entry) -> dict:
             ("claude", bool(api and api.anthropic_base_url)),
             ("strong", any(m.tier in (Tier.FRONTIER, Tier.STRONG) for m in families))) if on],
         # A row whose published lane is known not to work says so where it is
-        # read, not only on its own page: the notice is the one thing a reader
-        # about to copy a base URL needs before the base URL.
+        # read, not only on its own page, before a reader copies the base URL.
         "notice": ({"since": api.notice.since.isoformat(), "text": api.notice.text,
                     "url": api.notice.url or ""} if api and api.notice else None),
     }
@@ -1521,10 +1401,9 @@ def build_site_context(entries: list[Entry], today: date,
 
     The figures, the picks, the quickstart and the rules the page states are
     the README's own (`_shared_facts`). The rows are a second reading of the
-    same entries rather than a reshaping of `build_context`'s: that context is
-    Markdown — folded cells, backticked ids, escaped pipes — and an HTML page
-    that unpicked it would be one renderer's output squeezed through another's,
-    which is the very failure this page exists to end.
+    same entries rather than a reshaping of `build_context`'s, which is
+    Markdown — folded cells, backticked ids, escaped pipes — that an HTML page
+    would have to unpick.
     """
     active = [e for e in entries if not is_archived(e, today)]
     facts = _shared_facts(entries, today, watchlist, pages)
@@ -1597,12 +1476,9 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
     """The list as one text file in the llms.txt shape — a title, a summary in a
     blockquote, then sections of links with a note each.
 
-    An LLM answering "is there a free API for X" reads a page the way a
-    crawler does, and the README is 60 KB of tables built for eyes; this is
-    the same registry in the form that reads best as text, one line per
-    offer with what it needs (card, key) and where it answers. Search that
-    runs on a model already sends readers here, and this is the page to
-    hand it.
+    An LLM answering "is there a free API for X" reads a page the way a crawler
+    does; this is the registry in the form that reads best as text, one line
+    per offer with what it needs (card, key) and where it answers.
     """
     live = [e for e in entries if not is_archived(e, today)]
     groups = litellm_groups(entries, today)
@@ -1704,14 +1580,13 @@ FREE_GROUPS = ("free/frontier", "free/strong", "free/nokey")
 GROUP_WORDS = {"free/frontier": "every frontier lane", "free/strong": "every strong lane",
                "free/nokey": "the lanes that need no account"}
 
-# Codex CLI on the free lanes. Codex speaks only the OpenAI Responses API — a
-# provider given `wire_api = "chat"` has been a config error since its
-# discussion #7782 — and LiteLLM's /v1/responses builds a call from a lane's
-# chat completions when the deployment carries `use_chat_completions_api`.
-# 1.89.0 is the first LiteLLM that keeps the flag to itself: 1.88.0 still wrote
-# it into the vendor's request body (`all_litellm_params` on both wheels,
-# 2026-09-27). `--profile NAME` has read $CODEX_HOME/NAME.config.toml since
-# Codex 0.134.0 (2026-05-26); before it, a [profiles] table in config.toml.
+# Codex CLI on the free lanes. Codex speaks only the OpenAI Responses API (a
+# provider given `wire_api = "chat"` is a config error, its discussion #7782),
+# and LiteLLM's /v1/responses builds a call from a lane's chat completions when
+# the deployment carries `use_chat_completions_api`. LiteLLM 1.89.0 is the
+# first that keeps the flag to itself instead of writing it into the vendor's
+# request body; Codex 0.134.0 is the first whose `--profile NAME` reads
+# $CODEX_HOME/NAME.config.toml.
 LITELLM_BRIDGE_SINCE = "1.89"
 CODEX_SINCE = "0.134"
 CODEX_DIR = "configs/codex"
@@ -1729,12 +1604,10 @@ def _litellm_lanes(entries: list[Entry], today: date) -> list[Entry]:
 
 
 def _litellm_ids(e: Entry) -> list[str]:
-    """The ids a config calls: the row's own, exactly. Until 2026-09-25 a row
-    with none had its family names written in their place, which is right only
-    where a family happens to be an id — Cloudflare's config handed out
-    `llama-4`, which Workers AI does not know, and Upstage's `solar-pro-3` for
-    the id solar-pro3. freetier-check now refuses a connectable row whose
-    column names families with no ids beside them."""
+    """The ids a config calls: the row's own, exactly, never its family names —
+    a family names a model, and is an id only by accident. freetier-check
+    refuses a connectable row whose column names families with no ids beside
+    them."""
     return e.api.model_ids
 
 
@@ -1761,22 +1634,20 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
 
     Then the groups (FREE_GROUPS): the same deployments again under one name
     each, so a caller asks for `free/strong` and LiteLLM shuffles across every
-    lane of that tier and falls back down the list when they run out — what
-    OmniRoute sells as "never stop coding", on lanes this list vouches for. A
-    group deployment benches itself after its first failure: a key the reader
-    never set fails before any request leaves, and a 429 means that quota is
-    spent. A model asked for by name keeps LiteLLM's defaults, because one 429
-    on a lone deployment benched with the same policy shut it for the whole
-    cooldown (LiteLLM 1.102, 2026-09-21). Each deployment carries a dict of its
-    own: a shared one is written as a YAML anchor, and LiteLLM then gives every
-    deployment the same id.
+    lane of that tier and falls back down the list when they run out. A group
+    deployment benches itself after its first failure: a key the reader never
+    set fails before any request leaves, and a 429 means that quota is spent. A
+    model asked for by name keeps LiteLLM's defaults, because under the same
+    policy one 429 on a lone deployment shuts it for the whole cooldown. Each
+    deployment carries a dict of its own: a shared one is written as a YAML
+    anchor, and LiteLLM then gives every deployment the same id.
 
     Every deployment also carries `use_chat_completions_api`, for Codex CLI,
-    which speaks only the Responses API. LiteLLM answers /v1/responses for an
-    `openai/` deployment by sending the call on to the lane's own /responses,
-    and on 2026-09-27 seventeen of the list's lanes answered that route with
-    404; with the flag it builds the call from the lane's chat completions, the
-    format every lane here is verified in (see LITELLM_BRIDGE_SINCE).
+    which speaks only the Responses API. Without it LiteLLM answers
+    /v1/responses for an `openai/` deployment by sending the call on to the
+    lane's own /responses, which many free lanes answer with 404; with it the
+    call is built from the lane's chat completions, the format every lane here
+    is verified in (see LITELLM_BRIDGE_SINCE).
     """
     models: list[dict] = []
     groups: dict[str, list[dict]] = {name: [] for name in FREE_GROUPS}
@@ -1811,12 +1682,9 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
 def litellm_groups(entries: list[Entry], today: date) -> list[str]:
     """The groups litellm.yaml defines today, in the order a call falls back.
 
-    A group is there only while some lane is measured at its tier. On
-    2026-09-22 Claude Opus 5.5 took the top of the index to 57.6, no free lane
-    stayed within ten points of it, and free/frontier left the config — while
-    the config's own header, llms.txt and the configs README went on offering
-    it, a name LiteLLM answers with "model not found". Every page that names a
-    group reads it from here."""
+    A group is there only while some lane is measured at its tier, so every page
+    that names a group reads it from here: a group the config lacks is a name
+    LiteLLM answers with "model not found"."""
     names = {d["model_name"] for d in build_litellm_config(entries, today)["model_list"]}
     return [name for name in FREE_GROUPS if name in names]
 
@@ -1846,13 +1714,10 @@ def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
     ~/.codex, after which `codex -p litellm` works on every lane the proxy
     serves.
 
-    Codex speaks only the Responses API and few free lanes do — on 2026-09-27
-    seventeen of the list's 61 answered POST /responses with 404, and OVHcloud's
-    refused the request Codex sends — so the proxy answers Codex for all of them
-    from each lane's chat completions (`use_chat_completions_api`). The three
-    settings are what that bridge needs, each measured to break a lane
-    otherwise with Codex 0.157.1 and LiteLLM 1.102.1 the same day. The provider
-    names no key: the proxy runs without a master key, as its header says.
+    The proxy answers Codex's Responses calls from each lane's chat completions
+    (`build_litellm_config`), and the profile carries the settings that bridge
+    needs (`_codex_settings`). The provider names no key: the proxy runs without
+    a master key, as its header says.
 
     The model is the first group the file defines, from which a call falls back
     down the rest to the lanes that need no account, so the profile answers
@@ -1903,7 +1768,7 @@ def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
 def _codex_settings() -> list[str]:
     """The three settings every Codex profile here carries, so the request Codex
     sends through any of them is the one the run sends (prober.codex_probe_body).
-    Each was measured on 2026-09-27 to break a lane otherwise — see CONTRIBUTING."""
+    Without any one of them some lane breaks — see CONTRIBUTING."""
     return [
         *_comment("The same three settings in every Codex profile here, so the request Codex "
                   "sends is the one the list's run checks; each is off for lanes that refuse it "
@@ -1945,7 +1810,7 @@ def build_codex_profile(e: Entry) -> str:
     every profile here carries. The model is the first id the row lists, the
     one the run calls; the key comes from the variable free-llm.env.example
     exports, and a keyless lane is given none, so Codex sends no Authorization
-    header — the one a lane that refuses a bearer (Kilo's) answers."""
+    header, which a lane that refuses a bearer needs."""
     api = e.api
     key = ("No key: the lane is anonymous." if api.key_kind == "none" else
            f"The key comes from ${env_var(e.id)}, the variable free-llm.env.example exports"
@@ -2019,10 +1884,7 @@ def _anthropic_ready(entries: list[Entry], today: date) -> list[Entry]:
     The function is a config written once, like litellm.yaml: a lane whose ask
     it cannot carry (`_static_blockers`) is left out, and so is a keyless lane
     that refuses any Authorization header, since the function hands Claude
-    Code a token of "none" and Claude Code sends it as a bearer. Until
-    2026-09-26 the file took every Anthropic route, so the first lane with a
-    session header or a refused bearer would have been a function that
-    failed on its first call."""
+    Code a token of "none" and Claude Code sends it as a bearer."""
     return sorted(
         (e for e in entries
          if not is_archived(e, today) and e.api and e.api.anthropic_base_url
@@ -2103,8 +1965,7 @@ def _front_matter(fields: dict) -> str:
 def _page_description(e: Entry) -> str:
     """The <meta> description: the offer first, then the free models, then the
     figures, cut at a word. The models come off the column, the list a probe
-    reads back: `offering` names none on a row of free models, and until
-    2026-09-26 the description named them only where it did."""
+    reads back, since `offering` names none on a row of free models."""
     offer = e.offering.strip()
     if offer and offer[-1] not in ".!?":
         offer += "."
@@ -2126,10 +1987,8 @@ def _last_modified(e: Entry, events: list[Event]) -> date:
 
     It goes in the page's front matter as `last_modified_at`, which
     jekyll-sitemap writes as the URL's <lastmod> and jekyll-seo-tag as the
-    page's `dateModified`. Without it 98 of the sitemap's 100 URLs carried no
-    date on 2026-09-26, and a crawler deciding what to read again had only the
-    two pages Jekyll copies verbatim to go on. The footer's render date is not
-    it: a render changes no fact on the page."""
+    page's `dateModified`, for a crawler deciding what to read again. The
+    footer's render date is not it: a render changes no fact on the page."""
     # A border read is a fact the page gained that day, with no history line.
     read = [e.border.on] if e.border is not None else []
     return max([e.last_verified, *read, *(ev.ts.astimezone(timezone.utc).date()
@@ -2157,11 +2016,11 @@ _ASK_PAGE = {"user-agent": ("- User-Agent: your client's own name and version, s
 
 def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
     """How to reach a row, a list item a fact: the base URL, the key, what every
-    request carries, the Anthropic route, Codex's profile and the ids — every id the row lists
-    on the row's own page, one model's ids on that model's page. One function
-    for both pages, so a new way in (a key the vendor prints, a header every
-    request carries) reaches every page that says how to connect, and none
-    says it its own way."""
+    request carries, the Anthropic route, Codex's profile and the ids — every id
+    the row lists on the row's own page, one model's ids on that model's page.
+    One function for both pages, so a new way in (a key the vendor prints, a
+    header every request carries) reaches every page that says how to connect,
+    and none says it its own way."""
     api = e.api
     if not (api and api.base_url):
         out = ["- No API endpoint to paste: this row is a tool you install or sign in to."]
@@ -2204,12 +2063,11 @@ def _connect_section(e: Entry) -> list[str]:
 
 def _try_it(e: Entry) -> list[str]:
     """The call that answers "does my key work here?", for a reader to paste
-    into their own terminal. The page that asked for the key itself — the
-    browser-side checker other lists run — was turned down on 2026-09-26: a
-    form that takes a secret reads as a card checker whatever its code does,
-    and OpenAI's API reference says a key "should never be exposed in
-    client-side code". Here the key never leaves the reader's machine: the
-    command reads it from the environment variable the configs name."""
+    into their own terminal: the command reads the key from the environment
+    variable the configs name, so it never leaves the reader's machine. No page
+    here takes a key itself — a form that takes a secret reads as a card
+    checker whatever its code does, and OpenAI's API reference says a key
+    "should never be exposed in client-side code"."""
     api = e.api
     if not (api and api.base_url and api.openai_compatible and (api.model_ids or api.no_ids)):
         return []
@@ -2253,10 +2111,9 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
         elif probe.require_zero_price:
             how += ", each listed family checked for a zero price"
     else:
-        # A page-keywords row can carry its whole anchor in the page's data —
-        # trae's plan blob, Upstage's client-rendered heading — and this line
-        # named `keywords` alone, so those two rows published "anchored on "
-        # and stopped. Where the evidence lives is part of the evidence.
+        # A page-keywords row can carry its whole anchor in the page's own data
+        # (`machinery_keywords`), so the line names both kinds: where the
+        # evidence lives is part of the evidence.
         shown = []
         if probe.keywords:
             shown.append(", ".join(f"`{k}`" for k in probe.keywords))
@@ -2282,10 +2139,8 @@ def _evidence_section(e: Entry, blocked: bool) -> list[str]:
 def _history_section(e: Entry, events: list[Event]) -> list[str]:
     """Every event of this row, newest first, as history.jsonl holds it.
 
-    The render records a change before it writes the page, so the newest line
-    is the commit's own. Until 2026-09-24 only the scheduled run recorded, and
-    the page guessed at the line it would write — Cline, back on 2026-09-14,
-    read "Delisted" as its newest event under a header that said live.
+    The render records a change before it writes the page (`render_repository`),
+    so the newest line is the commit's own.
     """
     out = ["", "## History", "",
            "Each line is a change to what this page publishes, dated the day it reached "
@@ -2300,13 +2155,11 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
     """The page of a row folded into another: where the service is, and the
     record of the name the list once used for it.
 
-    Two rows named Xiaomi's coding agent from the list's first day — `mimocode`,
-    a placeholder at a domain that publishes no site, and `mimo-code`, the row
-    with the README, the models and the shutdown date. A row is never deleted,
-    and this id is a published URL, so the page stays and says what it is. What
-    it does not do is repeat the offer, the limits or the evidence: one service
-    is described in one place, and a claim nothing ever verified is not
-    published a second time as though the list had stood behind it.
+    A row is never deleted, and this id is a published URL, so the page stays
+    and says what it is. It does not repeat the offer, the limits or the
+    evidence: one service is described in one place, and a claim nothing ever
+    verified is not published a second time as though the list had stood
+    behind it.
     """
     name = holder.name if holder else e.duplicate_of
     page = provider_page_url(e.duplicate_of)
@@ -2340,13 +2193,12 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
                         pages: set[str] | None = None) -> str:
     """One page per row on the Pages site, in the row's own words.
 
-    It exists for the reader who arrives with a question about one vendor and
-    for the crawler that indexes that question: a title that names the vendor,
-    the tier and the date, a description that carries the figures, and a body
-    that is the row — offer, models, limits quoted from the vendor, connection
-    details, the evidence the probe reads, the row's history. Nothing here is
-    typed; it is rendered from the registry and the history on every run, and
-    since a row never leaves the registry its page stays too, as an archived one.
+    It is for the reader who arrives with a question about one vendor and for
+    the crawler that indexes that question: a title that names the vendor, the
+    tier and the date, a description that carries the figures, and a body that
+    is the row — offer, models, limits quoted from the vendor, connection
+    details, the evidence the probe reads, the row's history. A row never leaves
+    the registry, so its page stays too, as an archived one.
 
     The body sits inside {% raw %}: GitHub Pages builds this with Jekyll, and
     a vendor sentence with two braces in it would otherwise fail the whole
@@ -2358,8 +2210,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     blocklisted domain (`blocked`) it names the service as text and links
     nowhere near it: one of those pages plants instructions for AI agents.
 
-    A row folded into another is a page of its own kind, `build_folded_page`:
-    one service is described in one place, and this one points at it.
+    A row folded into another gets a page of its own kind, `build_folded_page`.
     """
     if e.duplicate_of is not None:
         return build_folded_page(e, events, today, folded_into(registry or [], e))
@@ -2394,12 +2245,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     else:
         live = f"**live** — last verified by a probe on {verified}"
         if e.probe_failures:
-            # A row mid-failure used to be indistinguishable from a row the
-            # scheduler happened to reach later: trae and inception-labs sat on
-            # the front page reading 2026-09-07 beside rows reading 2026-09-10,
-            # with nothing anywhere saying their probe had stopped finding the
-            # evidence. The count is the part a reader cannot infer from the
-            # date, and it is also the countdown.
+            # The misses since the last pass are what a reader cannot infer
+            # from the date, and the countdown to the Archive.
             n = e.probe_failures
             misses = ("the probe since has not found that evidence" if n == 1
                       else f"the {n} probes since have not found that evidence")
@@ -2489,9 +2336,8 @@ def build_providers_index(entries: list[Entry], today: date,
     live = [e for e in entries if not is_archived(e, today)]
     archived = _archive(entries, today)
     pages = model_pages(entries, events or [], today) if pages is None else pages
-    # A list per section rather than one table: a four-column table with a run
-    # of models in one cell stood wider than a phone on 2026-09-26, and the
-    # README had learned the same a day earlier.
+    # A list per section rather than one table: a table with a run of models in
+    # one cell stands wider than a phone.
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(live, cat)
         if not rows:
@@ -2558,11 +2404,10 @@ def _served_before(events: list[Event], family: str, serving: set[str]
                    ) -> list[tuple[str, list[tuple[date, date]]]]:
     """The rows that carried the family and carry it no more, each with the
     stretches it did, the most recent departure first. A stretch that opened
-    and closed on one day is a correction — Jules' family, added and reverted on
-    2026-09-23 — not a day a reader could have used the model, and is left out.
-    The list's word is "listed": a row can stop listing a model it still
-    serves, as Sail Research did when its free part was reread as a sum to
-    spend, so the pages never say the row stopped serving it."""
+    and closed on one day is a correction, not a day a reader could have used
+    the model, and is left out. The list's word is "listed": a row can stop
+    listing a model it still serves (a free part reread as a sum to spend), so
+    the pages never say the row stopped serving it."""
     out = []
     for entry_id in dict.fromkeys(ev.id for ev in events if family in ev.models):
         if entry_id in serving:
@@ -2590,8 +2435,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
         flags.append(f"listed since {since.isoformat()}")
     out = [f"### [{e.name}]({provider_page_url(e.id)})", "", DOT.join(flags), "", e.offering, ""]
     if e.api and e.api.notice:
-        # First, as on the row's page: the one thing a reader about to copy a
-        # base URL needs before the base URL.
+        # First, as on the row's page: before a reader copies the base URL.
         out += [_notice_quote(e.api.notice), ""]
     out.append(f"- Limits, in the vendor's words: {e.limits}" if e.limits
                else "- The vendor publishes no figure for this tier.")
@@ -2803,13 +2647,9 @@ def checked_page_url() -> str:
 
 def build_checked_page(watchlist: list[Watched], today: date) -> str:
     """Every service checked and not listed, with its reason and what would
-    change the answer — the watchlist as a page of its own.
-
-    It used to be a collapsed table at the foot of the README, and by 2026-09-16
-    it was 108 KB of that page's 260 KB: 140 verdicts under a list of 60 offers,
-    loaded by everyone who opened the README for the list. A reader who wants to
-    know why a service is missing follows one link to it; the README stays the
-    list."""
+    change the answer — the watchlist as a page of its own. A reader who wants
+    to know why a service is missing follows one link to it; the README stays
+    the list."""
     rows = _watch_rows(watchlist, today)
     out = [_front_matter({"layout": "default",
                           "title": "Services checked and not listed on the free AI coding list",
@@ -2826,7 +2666,7 @@ def build_checked_page(watchlist: list[Watched], today: date) -> str:
            f"{WATCH_RECHECK_DAYS} days and is asked again. The records live in "
            f"[`watchlist.yaml`]({REPO_URL}/blob/main/watchlist.yaml).", ""]
     # A list rather than a table: a reason runs to a paragraph, and a table of
-    # them stood wider than a phone (2026-09-26).
+    # them stands wider than a phone.
     for w in rows:
         reopen = f" <sub>**Reopens if:** {w['reopen_if']}</sub>" if w["reopen_if"] else ""
         stale = "" if w["current"] else " ⏰"
@@ -2838,8 +2678,8 @@ def build_checked_page(watchlist: list[Watched], today: date) -> str:
 
 def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[Watched]:
     """The watchlist that belongs to this registry — its sibling unless told
-    otherwise. Missing file means an empty list, so a caller that has no
-    watchlist (tests, a bare registry) renders exactly as it did before."""
+    otherwise. A missing file is an empty list, so a bare registry renders with
+    no watchlist."""
     return load_watchlist(watchlist_path or registry_path.parent / "watchlist.yaml")
 
 
@@ -2871,10 +2711,10 @@ def _markdown_env(template_dir: Path) -> Environment:
         trim_blocks=True,
         lstrip_blocks=True,
     )
-    # The quickstart's caveat is the lane's own api note, and Kilo's ran to 600
-    # characters under the curl. The site prints the note whole in a paragraph
-    # of its own; the README folds it like the connection notes, and keeps the
-    # sentence in the context so the two pages read the same registry field.
+    # The quickstart's caveat is the lane's own api note, which can run to a
+    # paragraph under the curl. The site prints it whole; the README folds it
+    # like the connection notes, and the context keeps the sentence whole so the
+    # two pages read the same registry field.
     env.filters["fold_note"] = lambda text: _fold(text, README_NOTE_TEASER,
                                                   README_NOTE_COLLAPSE, small=True)
     # A list of names as a sentence of code spans: "`a`", "`a` or `b`".
@@ -2911,12 +2751,11 @@ def render_configs_readme(registry_path: Path, template_dir: Path, out_path: Pat
     """configs/README.md — the connection table, beside the files it describes.
 
     Base URL, key name and the notes that matter for every live OpenAI-compatible
-    API: 34 KB of the README's 161 on 2026-09-20, read by someone who has already
-    decided, while the README's job is the visitor who has not. GitHub renders a
-    folder's README under its file list, so the table now sits next to the
-    configs generated from the same rows, and every link in it is written from
-    there. It is rendered from the README's own context, so the two pages cannot
-    disagree about a lane, and checked and committed like everything else.
+    API, read by someone who has already decided, while the README's job is the
+    visitor who has not. GitHub renders a folder's README under its file list,
+    so the table sits next to the configs generated from the same rows, and
+    every link in it is written from there. It is rendered from the README's own
+    context, so the two pages cannot disagree about a lane.
     """
     today = today or date.today()
     context = _github_page_context(registry_path, today, watchlist_path)
@@ -2930,11 +2769,10 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
                 today: date | None = None, watchlist_path: Path | None = None) -> str:
     """index.html — what the Pages site serves at its root.
 
-    Autoescaping is the whole difference from the README's environment: every
-    string on this page is a vendor's own sentence, a model id or a URL read out
-    of the registry, and the one thing an HTML page must never do is hand a
-    reader markup a vendor wrote. The provider pages get the same guarantee from
-    `{% raw %}`; here Jinja gives it.
+    Unlike the README's environment, this one autoescapes: every string on the
+    page is a vendor's own sentence, a model id or a URL read out of the
+    registry, and none may reach a reader as markup. The provider pages get the
+    same guarantee from `{% raw %}`.
     """
     today = today or date.today()
     env = Environment(
@@ -2958,8 +2796,9 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
 
 def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                      watchlist_path: Path | None = None) -> None:
-    """index.json + configs/ + feed.xml — the machine-usable outputs, regenerated
-    with the README."""
+    """Everything the render writes besides the README, the site's front page and
+    configs/README.md: the feed, the provider and model pages, index.json,
+    llms.txt, and the configs with the Codex profiles."""
     today = today or date.today()
     entries = load_registry(registry_path)
     watchlist = _watchlist_beside(registry_path, watchlist_path)
@@ -2970,9 +2809,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     # rule's, and every page already published beside the registry.
     pages = model_pages(entries, history, today, _published_beside(registry_path))
     (root / "feed.xml").write_text(build_feed(history, today, entries=entries), encoding="utf-8")
-    # A page per row, and the page of a row that left goes with it: only the
-    # .md files this function wrote are ever removed, so a stray file someone
-    # drops in the directory is not this function's to delete.
+    # A page per row, the checked page and the index. Any other .md file here
+    # is removed; a file of another kind is not this function's to delete.
     providers = root / PROVIDERS_DIR
     providers.mkdir(parents=True, exist_ok=True)
     wanted = {"index.md", f"{CHECKED_PAGE}.md"}
@@ -3042,8 +2880,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                          allow_unicode=True),
         encoding="utf-8")
     # Codex's profiles: the one over litellm.yaml and one per lane it calls
-    # directly. A profile whose row stopped qualifying goes, as a row's page
-    # would; only the *.config.toml files here are this function's to remove.
+    # directly. A profile whose row stopped qualifying is removed; only the
+    # *.config.toml files here are this function's to remove.
     codex = root / CODEX_DIR
     codex.mkdir(parents=True, exist_ok=True)
     (root / CODEX_LITELLM_PATH).write_text(build_codex_litellm_profile(entries, today),
@@ -3123,11 +2961,9 @@ def _generated_on(root: Path, today: date) -> date:
     """The day the committed artifacts were rendered on, read back off them.
 
     Rendering stamps the day into index.json, the feed and every provider
-    page's footer, so a straight re-render-and-diff would disagree on the date
-    alone — every day, on a repository nobody had touched. Pinning the
-    comparison to the date the artifacts themselves carry asks the only
-    question worth asking: given the registry as it stands now, is this what
-    that day's render produced?
+    page's footer, so a re-render on a later day would differ on the date alone.
+    The check renders on the day the artifacts carry, and asks whether the
+    registry as it stands renders to what that day's render produced.
     """
     try:
         stamped = json.loads((root / "index.json").read_text(encoding="utf-8"))["generated"]
@@ -3142,12 +2978,11 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     """Paths under `root` the registry no longer renders to what is committed.
 
     Every published file here is generated and every one of them is committed:
-    the README, the site's front page, index.json, the feed, llms.txt, the
-    configs and the README beside them, and a page per row. The workflow
-    renders after it probes, so a scheduled run heals a forgotten render within
-    three days — and for those three days the page, the JSON an LLM reads and
-    the config a reader pastes all advertise a registry that has moved on. CI
-    rendered to /tmp, which proved the templates parse and compared nothing.
+    the README and its pictures, the site's front page, index.json, the feed,
+    llms.txt, the configs and the README beside them, and the pages per row and
+    per model. A commit that skipped the render would otherwise publish — on the
+    page, in the JSON an LLM reads, in the config a reader pastes — a registry
+    that has moved on, until the next scheduled run renders.
     """
     today = today or date.today()
     with tempfile.TemporaryDirectory() as tmp_name:
@@ -3166,10 +3001,9 @@ def check_rendered(registry_path: Path, template_dir: Path, root: Path,
     # that does not would publish a change no page lists and no feed announces.
     if pending_changes(load_registry(registry_path), _history_beside(registry_path), pinned):
         stale.append(HISTORY)
-    # render_artifacts deletes the page of a row that left, and of a model that
-    # no longer has one, but only in the directory it wrote; a page left behind
-    # in the repository is still served, so the absent half of the comparison
-    # counts too.
+    # render_artifacts removes a page it no longer writes only in the directory
+    # it wrote to; a page left behind in the repository is still served, so the
+    # absent half of the comparison counts too.
     stale += [p.relative_to(root).as_posix()
               for pages, kind in ((PROVIDERS_DIR, "*.md"), (MODELS_DIR, "*.md"),
                                   (README_PICTURES, "*.svg"), (CODEX_DIR, "*.config.toml"))
@@ -3199,9 +3033,7 @@ def main() -> None:
             print(f"stale: {rel}")
         print(f"checked {written} — {len(stale)} out of date")
         if stale:
-            # The remedy is one command and it is the same one every time, so
-            # the failure says it rather than leaving a contributor to find it
-            # in CONTRIBUTING.
+            # The remedy is always the same command, so the failure says it.
             print("run `TZ=UTC uv run freetier-render` and commit what it writes")
             raise SystemExit(1)
         return
