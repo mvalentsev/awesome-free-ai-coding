@@ -28,8 +28,9 @@ from dataclasses import dataclass
 from datetime import date
 from xml.sax.saxutils import escape
 
-__all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_BARS", "Palette", "LIGHT", "DARK",
-           "TONES", "Arc", "Hero", "hero_svg", "Bar", "Chart", "chart_svg"]
+__all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_UNTIL", "NARROW_BARS", "VARIANTS",
+           "Palette", "LIGHT", "DARK", "TONES", "Arc", "Hero", "hero_svg", "hero_words", "Bar",
+           "Chart", "chart_svg", "chart_words"]
 
 # One turn of the beam, in seconds — the same as the hand-drawn banners'.
 BEAM_PERIOD = 6.0
@@ -38,6 +39,11 @@ BEAM_PERIOD = 6.0
 # these widths.
 WIDE_SHOWN = 830
 NARROW_SHOWN = 358
+# The widest screen the README serves the narrow pictures to.
+NARROW_UNTIL = 600
+# The files each picture is drawn as: the wide pair, one palette each, and the
+# narrow one with both.
+VARIANTS = ("light", "dark", "narrow")
 # A phone scrolls a picture a screen at a time: its chart draws the strongest
 # ten and names how many more the list under it has.
 NARROW_BARS = 10
@@ -247,10 +253,12 @@ def _counters(hero: Hero) -> list[tuple[str, str]]:
             (str(hero.models), "free models"), (str(hero.strong), "strong models")]
 
 
-def _title(hero: Hero) -> str:
-    return (f"awesome-free-ai-coding: {hero.live} live offers, {hero.no_card} need no card, "
-            f"{hero.models} free models, {hero.strong} strong models; every offer probed "
-            f"{hero.schedule}, last run {hero.last_run.isoformat()}; one dot per live offer")
+def hero_words(hero: Hero) -> str:
+    """The hero in one sentence: its <title> for a screen reader, and the
+    README's alt text for the picture — one sentence, so the two cannot differ."""
+    figures = ", ".join(f"{figure} {label}" for figure, label in _counters(hero))
+    return (f"awesome-free-ai-coding — {figures}; every offer probed {hero.schedule}, last run "
+            f"{hero.last_run.isoformat()}; one dot per live offer")
 
 
 def _wide_words(hero: Hero) -> list[str]:
@@ -299,7 +307,7 @@ def hero_svg(hero: Hero, palette: Palette | None, narrow: bool = False) -> str:
     """The top of the README. `palette` None draws both palettes and lets the
     reader's theme choose, which is what the narrow hero is served as."""
     frame = _NARROW if narrow else _WIDE
-    title = escape(_title(hero))
+    title = escape(hero_words(hero))
     accent_to = frame.width - 60
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{frame.width}" '
              f'height="{frame.height}" viewBox="0 0 {frame.width} {frame.height}" role="img" '
@@ -339,6 +347,16 @@ class Chart:
     def ranked(self) -> list[Bar]:
         """The bars as the chart draws them: the highest score first."""
         return sorted(self.bars, key=lambda b: (-b.score, b.family))
+
+
+def chart_words(chart: Chart) -> str:
+    """The chart in one sentence, for its <title> and the README's alt text."""
+    best = chart.ranked()[0]
+    return (f"Bar chart of the {len(chart.bars)} strong models live offers here serve free, by "
+            f"Artificial Analysis Intelligence Index score read {chart.read_on.isoformat()}: the "
+            f"strongest, {best.family}, scores {best.score:.1f} and is free on "
+            f"{_offers(best.offers)}; the top of the index, {chart.top_name}, "
+            f"{chart.top_score:.1f}")
 
 
 def _chart_rules(p: Palette) -> str:
@@ -388,10 +406,7 @@ def chart_svg(chart: Chart, palette: Palette | None, narrow: bool = False) -> st
     size = 19 if narrow else 16
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
              f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">',
-             f'<title id="title">Strong models you can use for $0, scored on the Artificial '
-             f'Analysis Intelligence Index on {chart.read_on.isoformat()}: '
-             + escape("; ".join(f"{b.family} {b.score:.1f}, free on {_offers(b.offers)}"
-                                for b in ranked)) + "</title>",
+             f'<title id="title">{escape(chart_words(chart))}</title>',
              "<style>" + _colours(palette, _chart_rules) + "</style>",
              f'<rect class="card" x="1" y="1" width="{width - 2}" height="{height - 2}" rx="18" '
              f'stroke-width="2"/>']

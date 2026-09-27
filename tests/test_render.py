@@ -2064,3 +2064,20 @@ def test_without_a_measurement_the_strong_models_stay_a_list(tmp_path: Path):
     assert "strong-light.svg" not in strong and "<details>" not in strong
     assert "- [`glm-5.3`]" in strong
     assert not (tmp_path / "assets" / "readme" / "strong-light.svg").exists()
+
+
+def test_a_picture_is_described_once_for_the_readme_and_for_itself(tmp_path: Path):
+    """The README's alt text and the <title> a screen reader finds in the file
+    are one sentence from pictures.py, so the two cannot drift apart; and each
+    <picture> names the files readme_pictures draws, which the check compares."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import README_PICTURES
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, _strong_rows())
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY, scores=SCORES)
+    for name in ("hero", "strong"):
+        alt = re.search(rf'<img alt="([^"]+)" src="{README_PICTURES}/{name}-light.svg"', text).group(1)
+        svg = (tmp_path / README_PICTURES / f"{name}-dark.svg").read_text(encoding="utf-8")
+        assert re.search(r"<title[^>]*>(.*?)</title>", svg).group(1) == alt.replace("&", "&amp;")
+        named = set(re.findall(rf'{README_PICTURES}/({name}-\w+\.svg)', text))
+        assert named == {p.name for p in (tmp_path / README_PICTURES).glob(f"{name}-*.svg")}

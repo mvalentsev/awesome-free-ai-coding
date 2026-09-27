@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 80 live offers, 76 need no card, 150 free models, 17 strong models; every offer probed twice a week, last run 2026-09-27" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 80 live offers, 76 need no card, 150 free models, 17 strong models; every offer probed twice a week, last run 2026-09-27; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -33,7 +33,7 @@
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
   <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
-  <img alt="Bar chart of the 17 strong models live offers here serve free, by Artificial Analysis Intelligence Index score: the strongest, qwen3.8-max, scores 45.4; the top of the index, Claude Opus 5.5, 57.6" src="assets/readme/strong-light.svg" width="860">
+  <img alt="Bar chart of the 17 strong models live offers here serve free, by Artificial Analysis Intelligence Index score read 2026-09-27: the strongest, qwen3.8-max, scores 45.4 and is free on 1 offer; the top of the index, Claude Opus 5.5, 57.6" src="assets/readme/strong-light.svg" width="860">
 </picture></a>
 </div>
 

@@ -1,11 +1,16 @@
+{#- One <picture> for every picture the README shows: a phone gets the narrow one by width
+    alone (it follows the reader's theme itself), the wide pair by the theme. -#}
+{% macro picture(name, alt) -%}
+<picture>
+  <source media="(max-width: {{ narrow_until }}px)" srcset="{{ pictures_dir }}/{{ name }}-narrow.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="{{ pictures_dir }}/{{ name }}-dark.svg">
+  <img alt="{{ alt }}" src="{{ pictures_dir }}/{{ name }}-light.svg" width="{{ picture_width }}">
+</picture>
+{%- endmacro %}
 <a name="top"></a>
 <div align="center">
 
-<picture>
-  <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="{{ hero_alt }}" src="assets/readme/hero-light.svg" width="860">
-</picture>
+{{ picture('hero', hero_alt) }}
 
 [![pipeline]({{ repo_url }}/actions/workflows/update.yml/badge.svg)]({{ repo_url }}/actions/workflows/update.yml)
 [![tests]({{ repo_url }}/actions/workflows/ci.yml/badge.svg)]({{ repo_url }}/actions/workflows/ci.yml)
@@ -35,11 +40,7 @@
 {# Inside a <div> block, or the line opening on <a><picture> is a paragraph and GitHub
    empties the <picture> and shows its fallback to every reader. #}
 <div align="center">
-<a href="{{ models_url }}"><picture>
-  <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
-  <img alt="{{ chart_alt }}" src="assets/readme/strong-light.svg" width="860">
-</picture></a>
+<a href="{{ models_url }}">{{ picture('strong', chart_alt) }}</a>
 </div>
 
 <details>

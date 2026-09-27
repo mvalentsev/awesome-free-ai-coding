@@ -168,7 +168,9 @@ def test_the_phone_chart_names_what_it_leaves_for_the_list():
 @pytest.mark.parametrize("narrow", [False, True])
 def test_each_bar_says_its_score_and_how_many_offers_serve_it_free(narrow):
     svg = chart_svg(CHART, DARK, narrow=narrow)
-    assert ">45.4<" in svg and "1 offer<" in svg and "7 offers<" in svg
+    assert ">45.4<" in svg and " · 1 offer<" in svg and " · 2 offers<" in svg
+    # the phone's ten leave the twelfth, the one seven offers serve, to the list
+    assert (" · 7 offers<" in svg) is not narrow
     # Artificial Analysis marks a score it estimated; so does the chart
     assert ">43.6*<" in svg and "* estimated by Artificial Analysis" in svg
     assert "Claude Opus 5.5" in svg and "57.6" in svg and "2026-09-27" in svg

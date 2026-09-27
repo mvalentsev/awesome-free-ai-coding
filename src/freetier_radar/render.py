@@ -29,7 +29,8 @@ from .prober import PROVISIONAL_PROMOTE_DAYS
 # the picks table and the strong models state beside the answer.
 from .tiers import FRONTIER_WITHIN, SCORES_PATH, STRONG_WITHIN
 # The README's pictures, drawn from the figures below.
-from .pictures import DARK, LIGHT, Arc, Bar, Chart, Hero, chart_svg, hero_svg
+from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Hero, chart_svg,
+                       chart_words, hero_svg, hero_words)
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import number, series, weeks
@@ -116,6 +117,8 @@ README_BUDGET = 80_000
 # GitHub serves an image the README names by a relative path from the same
 # commit, so the picture and the page it tops are always the same render.
 README_PICTURES = "assets/readme"
+# The width the README asks for a picture at; GitHub scales it to the column.
+PICTURE_WIDTH = 860
 # The radar's sections, in the list's order: the word the legend uses and the
 # colour (pictures.TONES) a section's dots take.
 HERO_ARCS: dict[Category, tuple[str, str]] = {
@@ -658,13 +661,6 @@ def _hero(active: list[Entry], shared: dict, today: date) -> Hero:
                            for cat, (label, tone) in HERO_ARCS.items()))
 
 
-def _hero_alt(hero: Hero) -> str:
-    """The picture in words, for a reader who cannot see it and for search."""
-    return (f"awesome-free-ai-coding — {hero.live} live offers, {hero.no_card} need no card, "
-            f"{hero.models} free models, {hero.strong} strong models; every offer probed "
-            f"{hero.schedule}, last run {hero.last_run.isoformat()}")
-
-
 def load_scores(path: Path = SCORES_PATH) -> dict | None:
     """The scores freetier-tiers last read off the index, or None before the
     first --write has kept any."""
@@ -696,25 +692,15 @@ def _chart(strong: list[dict], scores: dict | None) -> Chart | None:
                  frontier_within=FRONTIER_WITHIN, strong_within=STRONG_WITHIN)
 
 
-def _chart_alt(chart: Chart) -> str:
-    best = chart.ranked()[0]
-    return (f"Bar chart of the {number(len(chart.bars))} strong models live offers here serve "
-            f"free, by Artificial Analysis Intelligence Index score: the strongest, {best.family}, "
-            f"scores {best.score:.1f}; the top of the index, {chart.top_name}, "
-            f"{chart.top_score:.1f}")
-
-
 def readme_pictures(hero: Hero, chart: Chart | None = None) -> dict[str, str]:
-    """Every picture the README names, by its path beside the README: the wide
-    hero and chart once per palette, the narrow ones with both."""
-    drawn = {f"{README_PICTURES}/hero-light.svg": hero_svg(hero, LIGHT),
-             f"{README_PICTURES}/hero-dark.svg": hero_svg(hero, DARK),
-             f"{README_PICTURES}/hero-narrow.svg": hero_svg(hero, None, narrow=True)}
+    """Every picture the README names, by its path beside the README, in each
+    of its VARIANTS: the wide pair one palette each, the narrow one with both."""
+    drawers = {"hero": lambda palette, narrow: hero_svg(hero, palette, narrow=narrow)}
     if chart is not None:
-        drawn.update({f"{README_PICTURES}/strong-light.svg": chart_svg(chart, LIGHT),
-                      f"{README_PICTURES}/strong-dark.svg": chart_svg(chart, DARK),
-                      f"{README_PICTURES}/strong-narrow.svg": chart_svg(chart, None, narrow=True)})
-    return drawn
+        drawers["strong"] = lambda palette, narrow: chart_svg(chart, palette, narrow=narrow)
+    palettes = {"light": (LIGHT, False), "dark": (DARK, False), "narrow": (None, True)}
+    return {f"{README_PICTURES}/{name}-{variant}.svg": draw(*palettes[variant])
+            for name, draw in drawers.items() for variant in VARIANTS}
 
 
 def _strong_models(active: list[Entry]) -> list[dict]:
@@ -1180,9 +1166,13 @@ def build_context(entries: list[Entry], today: date,
         strong = sorted(strong, key=lambda m: order.get(m["family"], len(order)))
     return {**shared,
             "hero": hero,
-            "hero_alt": _hero_alt(hero),
+            "hero_alt": hero_words(hero),
             "chart": chart,
-            "chart_alt": _chart_alt(chart) if chart else "",
+            "chart_alt": chart_words(chart) if chart else "",
+            # How the README's <picture> serves each file readme_pictures draws.
+            "pictures_dir": README_PICTURES,
+            "narrow_until": NARROW_UNTIL,
+            "picture_width": PICTURE_WIDTH,
             # The README names the first README_STRONG strong models and links
             # the rest; the site has no budget and names them all.
             "readme_strong": strong,
