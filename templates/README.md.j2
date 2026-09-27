@@ -22,6 +22,10 @@
 </div>
 
 > **Machine-verified, not copy-pasted.** A live probe re-reads every row against the vendor's own API or pricing page {{ schedule }}; an offer that dies drops to the [Archive](#-archive) on its own, and each date below opens the row's evidence.
+{% if new_rows %}
+
+🆕 **New this week:** {% for r in new_rows %}[{{ r.name }}]({{ r.page }}){{ " · " if not loop.last }}{% endfor %}{{ '' }}
+{% endif %}
 
 ## 🚀 Start here
 
@@ -102,7 +106,7 @@
 {% if s.rows %}
 <sub>**{{ s.count }}** live · {% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %} · sorted by how much work you can get done for free</sub>
 
-{% for r in s.rows %}- **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} — {{ r.offering }}<br><sub>[verified {{ r.verified }}]({{ r.page }}){% if r.models %} · {{ r.models }}{% endif %}</sub>
+{% for r in s.rows %}- **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} — {{ r.offering }}<br><sub>[verified {{ r.verified }}]({{ r.page }}){% if r.key_url %} · [🔑 key]({{ r.key_url }}){% endif %}{% if r.models %} · {{ r.models }}{% endif %}</sub>
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}

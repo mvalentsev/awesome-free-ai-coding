@@ -117,6 +117,8 @@ README_BUDGET = 80_000
 # GitHub serves an image the README names by a relative path from the same
 # commit, so the picture and the page it tops are always the same render.
 README_PICTURES = "assets/readme"
+# How far back the top of the README names the rows the list added.
+NEW_ROWS_DAYS = 7
 # The width the README asks for a picture at; GitHub scales it to the column.
 PICTURE_WIDTH = 860
 # The radar's sections, in the list's order: the word the legend uses and the
@@ -444,6 +446,9 @@ def _row(e: Entry, pages: set[str]) -> dict[str, str]:
         # send. One glyph like the card's; the vendor's sentence is on the page.
         "data_flag": " 👁" if _trains(e) else "",
         "verified": e.last_verified.isoformat(),
+        # The step between reading a row and calling it: where to get the key,
+        # for a lane that takes one (a vendor's printed key is on that page too).
+        "key_url": e.api.key_url if e.api and e.api.key_url and e.api.key_kind != "none" else "",
         # Backticked, because a model id is something the reader will paste into
         # a config rather than read as prose. A row that names no model has the
         # date alone on its small line.
@@ -647,6 +652,23 @@ def _published_beside(registry_path: Path) -> frozenset[str]:
     render keeps in the repository."""
     return frozenset(p.stem for p in (registry_path.parent / MODELS_DIR).glob("*.md")
                      if p.stem != "index")
+
+
+def _new_rows(active: list[Entry], history: list[Event], today: date) -> list[dict]:
+    """The live rows the list added in the last NEW_ROWS_DAYS, newest first: a
+    list is worth a second visit when it moves, and its changes table sits at
+    the foot of the page, folded."""
+    live = {e.id: e for e in active}
+    since = today - timedelta(days=NEW_ROWS_DAYS)
+    added = sorted((ev for ev in history if ev.event is EventType.ADDED and ev.id in live
+                    and since < ev.ts.date() <= today), key=lambda ev: ev.ts, reverse=True)
+    seen: dict[str, dict] = {}
+    for ev in added:
+        # The name without its gloss — "(formerly Vertex AI)", "(free models)" — on a
+        # line that names up to a week of rows; the row itself keeps it.
+        seen.setdefault(ev.id, {"name": re.sub(r"\s*\([^()]*\)$", "", live[ev.id].name),
+                                "page": provider_page_url(ev.id)})
+    return list(seen.values())
 
 
 def _hero(active: list[Entry], shared: dict, today: date) -> Hero:
@@ -1178,6 +1200,7 @@ def build_context(entries: list[Entry], today: date,
             "readme_strong": strong,
             "strong_more": max(0, len(shared["strong_models"]) - README_STRONG),
             "sections": sections,
+            "new_rows": _new_rows(active, history or [], today),
             "archived": _archived_rows(entries, today),
             "connections": connections,
             # The answer to "why isn't X here?", which a list like this is asked

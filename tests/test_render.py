@@ -2081,3 +2081,36 @@ def test_a_picture_is_described_once_for_the_readme_and_for_itself(tmp_path: Pat
         assert re.search(r"<title[^>]*>(.*?)</title>", svg).group(1) == alt.replace("&", "&amp;")
         named = set(re.findall(rf'{README_PICTURES}/({name}-\w+\.svg)', text))
         assert named == {p.name for p in (tmp_path / README_PICTURES).glob(f"{name}-*.svg")}
+
+
+def test_a_row_that_needs_a_key_links_where_to_get_one(tmp_path: Path):
+    """The step between reading a row and calling it is the key, and the row's
+    page is one click from the date: the README line links the vendor's key page
+    beside the date, where there is a key to get."""
+    keyed = make(id="k", name="Keyed", api={"base_url": "https://api.k.ai/v1", "openai_compatible": True,
+                                            "key_url": "https://k.ai/keys", "model_ids": ["m"]})
+    keyless = make(id="n", name="Keyless", api={"base_url": "https://api.n.ai/v1", "openai_compatible": True,
+                                                "auth": "none", "key_url": "https://n.ai", "model_ids": ["m"]})
+    rows = {r["name"]: r for s in build_context([keyed, keyless], TODAY)["sections"] for r in s["rows"]}
+    assert rows["Keyed"]["key_url"] == "https://k.ai/keys"
+    assert rows["Keyless"]["key_url"] == ""
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [keyed, keyless])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "[verified 2026-07-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/k/) · [🔑 key](https://k.ai/keys)" in text
+    assert "(https://n.ai) ·" not in text
+
+
+def test_the_top_names_the_rows_added_this_week():
+    """A list is worth a second visit when it moves, and the Archive's changes
+    table is at the bottom, folded: the rows added in the last seven days are
+    named under the nav, each linking its page, the newest first."""
+    rows = [make(id="new", name="New (formerly Newer)"), make(id="older", name="Older"), make(id="old", name="Old")]
+    events = [Event(ts=datetime(2026, 7, 18, 9, tzinfo=timezone.utc), event=EventType.ADDED, id="new", name="New"),
+              Event(ts=datetime(2026, 7, 13, 9, tzinfo=timezone.utc), event=EventType.ADDED, id="older",
+                    name="Older"),
+              Event(ts=datetime(2026, 7, 1, 9, tzinfo=timezone.utc), event=EventType.ADDED, id="old", name="Old")]
+    ctx = build_context(rows, TODAY, history=events)
+    assert [r["name"] for r in ctx["new_rows"]] == ["New", "Older"]
+    assert ctx["new_rows"][0]["page"].endswith("/providers/new/")
