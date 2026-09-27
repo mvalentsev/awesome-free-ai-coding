@@ -18,9 +18,8 @@ TODAY = date(2026, 9, 24)
 
 
 def make(**kw):
-    """A row verified this week — one verified 60 days ago is archived, and an
-    archived row is owed nothing — whose free part is models unless the test
-    says otherwise."""
+    """A row verified this week, so not archived (an archived row is owed
+    nothing), whose free part is models unless the test says otherwise."""
     return _make(last_verified=kw.pop("last_verified", date(2026, 9, 21)),
                  free_part=kw.pop("free_part", "models"), **kw)
 LANE = {"type": "api-models", "endpoint": "https://x.ai/v1/models", "free_marker": ":free",
@@ -64,9 +63,8 @@ def _gateway(**api) -> object:
 
 
 def test_an_id_no_family_names_is_due_two_weeks_after_it_arrived():
-    """OpenRouter served north-mini-code free from July while its column named
-    two families: the dates lived in a maintainer's notes, and the ids that
-    came before the notes were never dated at all."""
+    """An id no family names, and no_family_ids does not excuse, is due BAR_DAYS
+    after it arrived; one still inside the two weeks is waiting."""
     e = _gateway(model_ids=["v/big-1:free", "v/new-2:free", "v/router", "v/fresh-3:free"],
                  no_family_ids=["v/router"])
     since = {("gw", "v/big-1:free"): date(2026, 8, 1), ("gw", "v/new-2:free"): date(2026, 9, 1),
@@ -98,21 +96,18 @@ def test_a_row_whose_ids_are_not_a_free_lane_has_no_bars():
 
 
 def test_a_page_row_whose_free_part_is_models_owes_its_ids_a_family_too():
-    """Until 2026-09-25 a row counted as a free lane only where its column named
-    a family or its probe read each model's free mark, so a page row with free
-    models and an empty column was never asked: SEA-LION's free API, OpenTyphoon's
-    research showcase and LLM7's anonymous tier listed ids no report dated. The
-    row's own `free_part` decides now."""
+    """The row's `free_part` decides whether its ids are a free lane, not its probe
+    or its column, so a page row with free models and an empty column is owed
+    families too."""
     page = make(id="page", api={"base_url": "https://p.ai/v1", "model_ids": ["p-1"]})
     assert [(w.row, w.model_id) for w in waiting([page], {("page", "p-1"): date(2026, 8, 1)},
                                                  TODAY)] == [("page", "p-1")]
 
 
 def test_an_earlier_record_of_a_free_id_brings_its_bar_forward():
-    """Alibaba's pricing page gave DeepSeek V4.1 Flash its free quota by
-    2026-09-14 by Wayback, and the row listed the id on 09-25: counted from the
-    row alone the bar fell on 10-09, and the true one lived in a maintainer's
-    notes, as Cline's did."""
+    """A free_since record earlier than the id's arrival (a Wayback snapshot of the
+    vendor's page) brings its bar forward and is named in the report; a later
+    one moves nothing."""
     snap = "https://web.archive.org/web/20260914103442/https://x.ai/pricing"
     page = make(id="page", api={"base_url": "https://p.ai/v1", "model_ids": ["p-1", "p-2"],
                                 "free_since": [{"id": "p-1", "on": "2026-09-14", "source": snap},
@@ -127,11 +122,8 @@ def test_an_earlier_record_of_a_free_id_brings_its_bar_forward():
 
 
 def test_a_page_rows_newcomer_waits_two_weeks_from_its_record():
-    """Freebuff's hour table took Solar Pro 4, GPT-6 Luna and MiMo 2.6 Pro onto the
-    free budget by 2026-09-26 by Wayback, and opencode's Zen page MiMo-V2.6-Flash
-    Free by 09-22 — rows with no ids to date, whose bars lived in a maintainer's
-    notes until 2026-09-27. The report counts a newcomer's two weeks from its
-    record, as it does an id's."""
+    """Each of a row's `newcomers`, a family with no id to date, waits two weeks
+    from its own record, as an id does from its arrival."""
     snap = "https://web.archive.org/web/20260926080857/https://freebuff.com/"
     page = make(id="page", models=[{"family": "glm-5.3-flash"}],
                 newcomers=[{"family": "solar-pro-4", "on": "2026-09-26", "source": snap},
@@ -180,11 +172,9 @@ def _answer(url: str, **body) -> httpx.Response:
 
 
 def test_the_vendor_s_date_for_a_free_id_brings_its_bar_forward():
-    """NVIDIA created glm-5.3's free endpoint on 2026-09-15 and the row listed
-    the id on 09-22. The two weeks count from the read or from the vendor's own
-    date for the free id, and counted from the row alone the report put the bar
-    at 10-06, a week late. A vendor date after the read moves nothing: the read
-    already found the model free."""
+    """The two weeks count from the read or from the vendor's own date for the free
+    id, whichever is earlier: a vendor date after the read moves nothing, since the
+    read already found the model free."""
     e = _gateway(model_ids=["v/big-1:free", "v/new-2:free", "v/old-3:free"])
     since = {("gw", "v/new-2:free"): date(2026, 9, 22), ("gw", "v/old-3:free"): date(2026, 9, 1)}
     vendor = {("gw", "v/new-2:free"): date(2026, 9, 15), ("gw", "v/old-3:free"): date(2026, 9, 5)}
@@ -195,7 +185,7 @@ def test_the_vendor_s_date_for_a_free_id_brings_its_bar_forward():
 
 
 def test_vendor_dates_are_read_off_the_free_list_each_live_row_names():
-    """One read per list, and only where a live row names one: a row with no
+    """A free list is read once for each live row that names one: a row with no
     free list has no vendor date to read, and an archived row is owed nothing."""
     fetched = []
 
@@ -213,8 +203,8 @@ def test_vendor_dates_are_read_off_the_free_list_each_live_row_names():
 
 
 def test_a_free_list_the_report_cannot_read_is_named_and_its_ids_keep_the_row_s_dates():
-    """Silence would read as a vendor that dates nothing, and the calendar would
-    quietly fall back a week on the ids that list dates earlier."""
+    """An unreadable free list is named in the report and its ids keep the row's
+    own dates: left silent, it would read as a vendor that dates nothing."""
     def timed_out(url: str) -> httpx.Response:
         raise httpx.ConnectTimeout("timed out", request=httpx.Request("GET", url))
 
@@ -258,9 +248,9 @@ def test_the_report_reads_the_vendor_s_free_list_itself(tmp_path, capsys):
 
 
 def test_a_client_lane_is_dated_from_the_registry_s_history_too(tmp_path):
-    """Cline is named in the rotating-lane rule beside OpenRouter, and it was the
-    lane the calendar could not see: with no api block, none of its ids sat in
-    a list the history could date."""
+    """client_lane.model_ids are dated from the registry's history like
+    api.model_ids: a lane served only inside the vendor's client has no api
+    block."""
     _git(tmp_path, "init", "-q")
     for day, ids in (("2026-09-14", ["x-free/a-1"]), ("2026-09-23", ["x-free/a-1", "x-free/b-2"])):
         entries = [{"id": "cl", "client_lane": {"model_ids": ids}}]

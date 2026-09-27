@@ -70,8 +70,8 @@ def test_apply_updates_only_editable():
 
 
 def test_apply_updates_reads_a_null_as_unchanged():
-    """"Leave the probe alone" comes back as `probe: null` — which used to reach
-    pydantic as "erase the probe" and crash the whole scout."""
+    """A model says "leave the probe alone" as `probe: null`, so a null reads as
+    unchanged, never as "erase the probe"."""
     entries = [make()]
     applied, rejected = apply_updates(entries, [{"id": "x", "probe": None, "limits": "new limits"}])
     assert applied == ["x"] and rejected == []
@@ -86,9 +86,8 @@ def test_apply_updates_with_nothing_to_change_is_a_no_op():
 
 
 def test_apply_updates_rejects_an_invalid_update_instead_of_raising():
-    """And says what it rejected and why. The reason goes in the PR body, which
-    is the artifact a human reads; the exception type alone sent a reviewer to
-    the log of a green run to find out that a fix had been found and dropped."""
+    """A rejected update names the field and pydantic's reason: the PR body is
+    what a human reads, and an exception type alone says nothing there."""
     entries = [make()]
     applied, rejected = apply_updates(entries, [{"id": "x", "probe": {"type": "telepathy"}}])
     assert applied == []
@@ -98,11 +97,8 @@ def test_apply_updates_rejects_an_invalid_update_instead_of_raising():
 
 
 def test_apply_updates_refuses_a_fix_that_leaves_the_row_failing():
-    """The shape of a correction was all anything checked, so a fix that made a
-    row worse was written and reported as a repair. On 2026-09-03 kenari failed
-    on one family its catalog had momentarily stopped serving, and the answer
-    named six the same catalog prices in the thousands — every one of them a
-    family the probe then could not find in the free lane."""
+    """A correction goes through the row's probe before it is written, so a
+    well-formed fix that still fails is rejected, not reported as a repair."""
     entries = [make()]
     applied, rejected = apply_updates(
         entries, [{"id": "x", "models": [{"family": "y-pro-1"}]}],
@@ -114,11 +110,8 @@ def test_apply_updates_refuses_a_fix_that_leaves_the_row_failing():
 
 
 def test_an_update_keeps_a_family_the_rows_own_probe_still_names():
-    """The verifier asks whether the corrected row passes, and a shorter Models
-    column always passes — so a reply that deletes too much was written as a
-    repair. On 2026-09-21 aihubmix failed on one family, gpt-oss, and the reply
-    cut the column to glm-5.3 alone: kimi-k3, glm-5, mimo-v2.5 and
-    north-mini-code were still free in the catalog the verdict was read from."""
+    """A shorter Models column always passes the verifier, so a family the update
+    drops is kept, and reported, while the row's own probe still names it."""
     entries = [make(models=[{"family": "x-mini-2", "tier": "strong"},
                             {"family": "x-pro-1"}, {"family": "x-old-1"}])]
     applied, rejected = apply_updates(
@@ -131,8 +124,8 @@ def test_an_update_keeps_a_family_the_rows_own_probe_still_names():
 
 
 def test_an_update_drops_a_family_the_probe_cannot_vouch_for():
-    """Kept only on a yes. A page that could not be read answers None, and the
-    drop goes through as it always did."""
+    """A family is kept only on a yes: a page that could not be read answers
+    None, and the drop goes through."""
     entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-pro-1"}, {"family": "x-old-1"}])]
     applied, rejected = apply_updates(
         entries, [{"id": "x", "models": [{"family": "x-mini-2"}]}],
@@ -209,11 +202,8 @@ def test_apply_new_rejects_covered_domain():
 
 
 def test_apply_new_rejects_a_listed_vendor_proposed_at_another_of_its_hosts():
-    """On 2026-09-14 the scout proposed nvidia-nim-free and zai-free, two vendors
-    this list already carries, and both reached a live probe: the check compared
-    the proposal's host with each row's url and nothing else, so a subdomain, a
-    parent or the api host of a listed row read as a new vendor. Both probes
-    failed, which is the only reason neither became a duplicate row."""
+    """A subdomain, a parent or the API host of a listed row is the same vendor,
+    so the proposal is turned away before it costs a probe."""
     entries = [make(url="https://z.ai", source_urls=["https://docs.z.ai/guides/overview/pricing"]),
                make(id="nvidia-nim", url="https://build.nvidia.com",
                     api={"base_url": "https://integrate.api.nvidia.com/v1"})]
@@ -236,8 +226,8 @@ def test_the_discovery_prompt_names_a_listed_repository_owner_and_not_the_whole_
 
 
 def test_apply_new_lets_a_new_repository_through_on_the_host_a_listed_row_uses():
-    """Copilot's row lives at github.com/features/copilot, so an open-source agent
-    proposed at its own repository was "domain already covered"."""
+    """A row at github.com/features/copilot covers that owner's pages, not an
+    open-source agent proposed at its own repository."""
     entries = [make(url="https://github.com/features/copilot")]
     added, rejected = apply_new(entries, [proposal(id="agent", url="https://github.com/newvendor/agent")],
                                 TODAY)
@@ -246,9 +236,8 @@ def test_apply_new_lets_a_new_repository_through_on_the_host_a_listed_row_uses()
 
 @respx.mock
 def test_probe_check_rejects_a_proposal_naming_a_family_the_page_does_not():
-    """bazaarlink's proposal invented two families that matched no id the vendor
-    served. A new entry is authored from scratch, so there is no live row to
-    protect and no reason to accept a Models column the page cannot back."""
+    """A new entry is authored from scratch, so there is no live row to protect
+    and no reason to accept a family the page does not name."""
     e = make(id="new1", models=[{"family": "x-mini-2", "tier": "strong"},
                                 {"family": "x-ultra-9", "tier": "strong"}])
     respx.get("https://x.ai").mock(return_value=httpx.Response(
@@ -288,10 +277,8 @@ def test_probe_check_reads_the_page_a_followed_index_names():
 @respx.mock
 def test_a_catalog_without_prices_is_read_with_its_free_list_by_the_scout_too():
     """A generation bump is measured against what the row serves free, and on a
-    catalog that prices nothing only the vendor's free list says what that is:
-    on 2026-09-23 NVIDIA's catalog answered moonshotai/kimi-k2.6 beside kimi-k3
-    and the list marked only kimi-k3, so the catalog alone would call a family
-    served that the row cannot offer."""
+    catalog that prices nothing only the vendor's free list says what that is;
+    a list that cannot be read fails the check and leaves the answer unknown."""
     e = make(id="nimmy", models=[{"family": "kimi-k3", "tier": "strong"}],
              probe={"type": "api-models", "endpoint": "https://integrate.x.ai/v1/models",
                     "require_zero_price": True, "free_list": "https://api.x.ai/search?q=free"})
@@ -327,8 +314,8 @@ def test_apply_new_uses_verifier():
 
 def test_supersede_is_proposed_never_written():
     """A mark decides what the README calls free, but the model proposing it sees
-    only family names. z.ai's free glm-4.7-flash got buried behind paid glm-5.2
-    that way, so the registry is left alone and a human decides."""
+    only family names and can bury a free family behind a paid one, so the
+    registry is left alone and a human decides."""
     entries = [make(models=[{"family": "old"}, {"family": "cur"}])]
     proposed, suppressed, filtered = supersede_proposals(
         entries, [{"family": "old", "superseded_by": "new"}, {"family": "nope", "superseded_by": "new"}])
@@ -338,7 +325,8 @@ def test_supersede_is_proposed_never_written():
 
 
 def test_supersede_proposals_skip_marks_already_in_place():
-    """PR #4 claimed four superseded families while its diff touched two."""
+    """A mark already in place is not proposed again: the PR claims only what its
+    diff changes."""
     entries = [make(models=[{"family": "old", "superseded_by": "cur"}, {"family": "cur"}])]
     assert supersede_proposals(entries, [{"family": "old", "superseded_by": "cur"}]) == ([], [], [])
     assert supersede_proposals(entries, [{"family": "cur", "superseded_by": "next"}]) \
@@ -346,10 +334,8 @@ def test_supersede_proposals_skip_marks_already_in_place():
 
 
 def test_a_dismissed_bump_is_reported_as_suppressed_not_proposed():
-    """Nothing in the registry records a rejected bump, so the scout re-proposed
-    z.ai's glm-4.7-flash → glm-5.2 in every PR. dismissed.yaml is that memory —
-    and the suppression is printed, because a filter nobody sees is a filter
-    nobody can correct."""
+    """dismissed.yaml remembers a rejected bump, which nothing in the registry
+    records, and the suppression is reported rather than hidden."""
     entries = [make(models=[{"family": "old"}])]
     proposed, suppressed, _ = supersede_proposals(
         entries, [{"family": "old", "superseded_by": "cur"}], {("x", "old", "cur")})
@@ -362,10 +348,8 @@ def test_a_dismissed_bump_is_reported_as_suppressed_not_proposed():
 
 
 def test_a_bump_to_a_family_the_row_already_lists_is_filtered_out():
-    """Nine of the thirty bumps on 2026-09-14 named a family already on the same
-    row — kilo-code, requesty and kenari each told to trade nemotron-3-super for
-    the nemotron-3-ultra they list beside it. A mark would only hide a model the
-    row still hands out, and 2026-09-08's reviewer dismissed that shape each time."""
+    """A bump to a family the row already lists would only hide a model the row
+    still hands out."""
     entries = [make(models=[{"family": "nemotron-3-super"}, {"family": "nemotron-3-ultra"}])]
     proposed, suppressed, filtered = supersede_proposals(
         entries, [{"family": "nemotron-3-super", "superseded_by": "nemotron-3-ultra"}])
@@ -374,9 +358,9 @@ def test_a_bump_to_a_family_the_row_already_lists_is_filtered_out():
 
 
 def test_a_bump_to_a_model_of_the_same_family_is_filtered_out():
-    """The prompt forbids it in so many words — "nemotron is not superseded by
-    nemotron-3-ultra" — and the model did it eight times on 2026-09-14, six of them
-    qwen3.8 → qwen3.8-max on rows that serve only the 27B."""
+    """The prompt forbids a bump to a model of the same family ("nemotron is not
+    superseded by nemotron-3-ultra"), and the filter holds the answers that
+    break it to the same rule."""
     entries = [make(models=[{"family": "qwen3.8"}, {"family": "nemotron"}])]
     proposed, _, filtered = supersede_proposals(
         entries, [{"family": "qwen3.8", "superseded_by": "qwen3.8-max"},
@@ -389,8 +373,8 @@ def test_a_bump_to_a_model_of_the_same_family_is_filtered_out():
 
 def test_a_bump_the_rows_own_probe_does_not_name_is_filtered_out_and_an_unread_one_is_not():
     """A newer generation this vendor does not serve cannot supersede one it
-    does. Where the row's page could not be read, nothing is known, and the
-    bump reaches a human as before."""
+    does. Where the row's page could not be read nothing is known, and the bump
+    reaches a human."""
     entries = [make(models=[{"family": "qwen3.6"}]), make(id="y", models=[{"family": "qwen3.6"}])]
     asked = []
 
@@ -406,13 +390,10 @@ def test_a_bump_the_rows_own_probe_does_not_name_is_filtered_out_and_an_unread_o
 
 
 def test_a_bump_is_ruled_out_while_the_row_still_serves_the_family_it_would_hide():
-    """Every Flash Google has made free kept its free column when the next one
-    arrived, and AIHubMix lists coding-glm-5-free beside coding-glm-5.1-free: a
-    mark there hides a model the vendor still hands out. The three bumps the
-    other rules left on 2026-09-14 were all this shape, and so were the 2026-09-08
-    dismissals they would have joined. What is left to propose is the bump that
-    means something — the old family gone from the row's evidence, the new one
-    there."""
+    """A vendor often keeps a family free after its successor arrives, and a mark
+    there hides a model it still hands out. What is left to propose is the bump
+    that means something: the old family gone from the row's evidence, the new
+    one there."""
     entries = [make(models=[{"family": "glm-5"}]), make(id="y", models=[{"family": "glm-5"}]),
                make(id="z", models=[{"family": "glm-5"}])]
     served = {("x", "glm-5"): True, ("y", "glm-5"): False, ("z", "glm-5"): None}
@@ -471,8 +452,8 @@ def test_load_dismissed_reads_triples_and_ignores_junk(tmp_path):
 
 
 def test_an_archived_entry_gets_no_generation_bumps():
-    """GitHub Models kept drawing "gpt-4.1 → gpt-5.6" in every PR body for
-    months after GitHub shut the product down."""
+    """An archived row serves nothing, so its families are not asked about and
+    the PR body carries no bump for them."""
     llm = StubLLM({"MODEL-GENERATIONS":
                    "```yaml\nsupersede:\n  - family: old\n    superseded_by: cur\n```"})
     entries = [make(models=[{"family": "old"}], retired_on=date(2026, 6, 1))]
@@ -482,10 +463,9 @@ def test_an_archived_entry_gets_no_generation_bumps():
 
 
 def test_a_family_an_archived_row_shares_with_a_live_one_is_bumped_on_the_live_row_only():
-    """The families asked about came from live rows only, but the bumps were
-    matched against every row: on 2026-09-26 a minimax-m2 bump drew a line for
-    easy-gonka-api, rejected for cause in July, and the check behind it read
-    that row's probe page — the one that carried a prompt injection."""
+    """Bumps are matched against the live rows the families were asked about: an
+    archived row's probe page may belong to a service rejected for cause, and
+    the check behind a bump would read it."""
     llm = StubLLM({"MODEL-GENERATIONS":
                    "```yaml\nsupersede:\n  - family: old\n    superseded_by: cur\n```"})
     entries = [make(id="live", models=[{"family": "old"}]),
@@ -521,8 +501,8 @@ def test_apply_retirements_ignores_bad_dates_and_short_quotes():
 
 
 def test_run_scout_sweeps_live_entries_for_retirements():
-    """GitHub Models announced its shutdown weeks ahead; the scout only ever saw
-    an entry once its probe failed, i.e. on the day the tier died."""
+    """Live rows are swept for an announced retirement, which a vendor makes
+    weeks ahead; a failing probe only notices on the day the tier dies."""
     page = "the free tier for github models will be retired on 2026-07-30, use the paid plan"
     llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire:\n  - id: x\n    retired_on: '2026-07-30'\n"
                                        f"    quote: {page[:60]}\n```"})
@@ -546,8 +526,9 @@ def test_the_retirement_sweep_reads_no_page_of_a_delisted_row():
 
 
 def test_run_scout_skips_the_llm_when_no_page_hints_at_a_retirement():
-    """Almost every sweep answers "nothing retiring". Sending 30 unremarkable
-    pages to the LLM cost ~20k tokens and risked blowing a backend's context."""
+    """Almost every sweep answers "nothing retiring", so pages with no signal
+    never reach the LLM: sending them all costs tokens and can overflow a
+    backend's context."""
     llm = StubLLM({})
     entries = [make(source_urls=["https://x.ai/blog"])]
     run_scout(llm, entries, [], lambda urls: {u: "our free tier, as always" for u in urls}, TODAY)
@@ -555,10 +536,8 @@ def test_run_scout_skips_the_llm_when_no_page_hints_at_a_retirement():
 
 
 def test_the_retirement_sweep_names_the_entries_it_flagged(capsys):
-    """The sweep reported a bare count, so learning which entry tripped it meant
-    re-fetching every live entry's first source url by hand. The one that trips
-    it today is google-ai-studio, on the word "Deprecations" sitting in the docs
-    sidebar — benign, and invisible until someone reproduced the sweep."""
+    """The sweep's log line names the rows whose page carries a signal, so which
+    one tripped it is known without re-fetching every page by hand."""
     llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire: []\n```"})
     pages = {"https://x.ai/blog": "our free tier, as always",
              "https://y.ai/docs": "release notes deprecations libraries migration"}
@@ -569,11 +548,9 @@ def test_the_retirement_sweep_names_the_entries_it_flagged(capsys):
 
 
 def test_the_retirement_excerpt_is_cut_around_the_signal_and_not_from_the_top():
-    """The signal was searched in every character the fetcher keeps while the
-    model was handed the first RETIREMENT_PAGE_CHARS, so an announcement in
-    the second half tripped the count on every run and could never become a
-    proposal — the sentence the model must copy verbatim was not in front of
-    it."""
+    """The signal is searched in every character the fetcher keeps, so the
+    excerpt is cut around it: the sentence the model must copy verbatim has to
+    be in front of it."""
     filler = " ".join(["pricing table row"] * 400)
     assert len(filler) > RETIREMENT_PAGE_CHARS
     notice = "the free tier will be retired on 2026-07-30, use the paid plan"
@@ -625,8 +602,8 @@ def test_run_scout_orchestration():
 
 
 def test_run_scout_survives_a_bad_fix_and_still_discovers():
-    """A single unusable correction used to abort the run — after the
-    verification commit was already pushed, so it could not even be rerun."""
+    """A single unusable correction does not abort the run, which cannot be
+    rerun (see test_main_reports_a_broken_scout_instead_of_failing_the_workflow)."""
     llm = StubLLM({
         "FIX-FAILED": "```yaml\nupdates:\n  - id: x\n    probe: null\n    offering: ''\n```",
         "DISCOVER-NEW": "```yaml\nnew_entries:\n"
@@ -657,9 +634,7 @@ def test_run_scout_reports_rejected_fixes_alongside_rejected_proposals():
                        lambda urls: {u: "page text" for u in urls}, TODAY,
                        evidence=evidence, verifier=lambda e: None)
     assert result["updates"] == []
-    # Both halves name the field that failed. A proposal used to reach the PR as
-    # "invalid (ValidationError)", which is the exception's class name and not a
-    # reason: on 2026-09-10 that was the whole public account of a rejected llm7.
+    # Both halves name the field that failed, not the exception's class.
     assert result["rejected"] == ["x: invalid update to probe — probe.type: Input should be "
                                   "'api-models' or 'page-keywords'; probe.endpoint: Field required",
                                   "broken: invalid — name: Field required; "
@@ -685,11 +660,9 @@ def test_a_fix_the_probe_rejects_leaves_the_row_on_the_unfixed_list():
 
 
 def test_a_repaired_row_keeps_its_ids_half_on_the_unfixed_list():
-    """The half of a failure line the fix prompt tells the model to leave alone
-    left the pull request with the row the model did answer for. On 2026-09-21
-    aihubmix's line named eight ids the catalog no longer served; the scout
-    answered the family half, the row dropped off `unfixed` whole, and the ids
-    went on in the configs with nothing in the PR to say so."""
+    """The fix prompt tells the model to leave a failure line's ids half alone, so
+    a row repaired on its families stays on `unfixed` with that half, which is a
+    human's to act on."""
     llm = StubLLM({"FIX-FAILED": "```yaml\nupdates:\n  - id: x\n"
                                  "    models: [{family: x-mini-2}]\n```"})
     entries = [make(models=[{"family": "x-mini-2"}, {"family": "x-old-1"}])]
@@ -823,8 +796,8 @@ def test_llm_chain_skips_backend_on_empty_content():
 
 @respx.mock
 def test_llm_chain_skips_a_backend_that_answers_something_other_than_json():
-    """OpenRouter returned HTTP 200 with a truncated body on 2026-08-03: the
-    JSONDecodeError escaped the chain and killed the scout with OVH untried."""
+    """A 200 whose body is not JSON (a truncated answer) fails that backend, and
+    the chain moves on to the next."""
     respx.get(f"{OPENROUTER_BASE_URL}/models").mock(return_value=httpx.Response(
         200, json={"data": [{"id": "qwen/qwen3-coder:free"}]}
     ))
@@ -899,11 +872,8 @@ def test_a_half_configured_fallback_is_ignored():
 
 @respx.mock
 def test_a_retired_pin_costs_a_candidate_and_not_the_endpoint():
-    """What took the whole chain down on 2026-08-31: SCOUT_FALLBACK_MODEL named
-    deepseek-v4-flash-free, an id opencode Zen had moved off its free pricing
-    table eleven days earlier — a demotion this registry had already written
-    down. A 400 is news about the model, so the ids the registry publishes for
-    that base url stand behind the pin."""
+    """A 400 is news about the model, not the endpoint, so the ids the registry
+    publishes for that base url stand behind a pin the vendor has retired."""
     route = respx.post("https://zen.example/v1/chat/completions")
     route.side_effect = [
         httpx.Response(400, json={"error": {"message": "unknown model"}}),
@@ -922,12 +892,9 @@ def test_a_retired_pin_costs_a_candidate_and_not_the_endpoint():
 
 @respx.mock
 def test_a_disowned_model_is_reported_with_the_vendor_s_reason():
-    """A 400 is read as news about the model, and on 2026-09-16 that reading
-    was wrong. The forced fallback run printed "no model this endpoint still
-    serves: nemotron-3-ultra-free (400)", which sends a reader to retype the
-    variable, while opencode Zen's body said why: the whole free tier had been
-    locked to OpenCode's own client since 2026-09-07. The status is the same
-    for both repairs; only the vendor's sentence tells them apart."""
+    """A 400 can mean a retired id or a lane closed to this client (opencode Zen's
+    free tier, locked to OpenCode), and only the vendor's sentence tells the two
+    repairs apart, so the failure carries it."""
     respx.post("https://zen.example/v1/chat/completions").mock(return_value=httpx.Response(
         400, json={"type": "error", "error": {
             "type": "MissingSessionID",
@@ -944,12 +911,10 @@ def test_a_disowned_model_is_reported_with_the_vendor_s_reason():
 
 @respx.mock
 def test_an_upstream_error_answered_as_200_costs_a_candidate_and_says_why():
-    """Kilo's gateway answers an overloaded upstream with HTTP 200 and an error
-    object instead of choices. On 2026-09-16 the forced fallback run read that
-    as "KeyError: 'choices'" and dropped the whole backend for the phase, while
-    the registry lists nineteen other free ids on the same base url. The error
-    is about the model it names, so it costs that candidate, and the vendor's
-    sentence is what the log keeps."""
+    """A gateway can answer an overloaded upstream with HTTP 200 and an error
+    object instead of choices (Kilo's does). The error is about the model it
+    names, so it costs that candidate, not the backend, and the log keeps the
+    vendor's sentence."""
     route = respx.post("https://gw.example/v1/chat/completions")
     route.side_effect = [
         httpx.Response(200, json={"error": {
@@ -993,10 +958,8 @@ def test_a_refusal_reason_fits_a_log_line():
 
 @respx.mock
 def test_a_spent_wallet_fails_the_backend_and_not_one_model():
-    """Ollama's $0 plan became a starter wallet between the 2026-08-27 and
-    2026-08-31 runs and answered 402 for a model that had worked all month.
-    Walking the endpoint's other ids on that is three more calls to a wallet
-    with nothing in it."""
+    """A 402 is about the account, not the model: walking the endpoint's other
+    ids would only spend more calls on a wallet with nothing in it."""
     route = respx.post("https://wallet.example/v1/chat/completions").mock(
         return_value=httpx.Response(402, json={"error": "payment required"}))
     respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
@@ -1045,7 +1008,8 @@ def test_a_backend_with_no_pin_runs_on_what_the_registry_publishes():
 
 
 def test_published_model_ids_leaves_out_the_rows_a_vendor_has_retired():
-    """A retired row's ids are precisely the ones that stopped being served."""
+    """An archived row's ids, retired or delisted, are not ones its lane serves
+    free."""
     entries = [
         make(id="live", api={"base_url": "https://a.example/v1", "model_ids": ["x", "y"]}),
         make(id="also-live", api={"base_url": "https://a.example/v1/", "model_ids": ["z"]}),
@@ -1060,9 +1024,9 @@ def test_published_model_ids_leaves_out_the_rows_a_vendor_has_retired():
 
 @respx.mock
 def test_a_pin_the_registry_does_not_list_is_named_in_the_report():
-    """The chain now survives a retired pin quietly, and a quiet recovery is
-    still a decision for a human: either the variable wants retyping or the
-    row's ids are wrong."""
+    """The chain survives a retired pin quietly, and a quiet recovery is still a
+    decision for a human: either the variable wants retyping or the row's ids
+    are wrong."""
     respx.post("https://zen.example/v1/chat/completions").mock(
         return_value=httpx.Response(200, json={"choices": [{"message": {"content": "zen"}}]}))
     with httpx.Client() as http:
@@ -1075,8 +1039,8 @@ def test_a_pin_the_registry_does_not_list_is_named_in_the_report():
 
 
 def test_no_claim_is_made_about_an_endpoint_the_registry_does_not_describe():
-    """Point SCOUT_BASE_URL at Groq or Cerebras and this registry has nothing to
-    say about the id — silence there is the only honest answer."""
+    """A base URL the registry does not describe (SCOUT_BASE_URL pointed at Groq,
+    say) has no listed ids to hold a pin to, so nothing is reported."""
     llm = LLMClient(custom_base_url="https://groq.example/v1", custom_model="whatever",
                     models_by_base_url={"https://elsewhere.example/v1": ["x"]})
     assert llm.unlisted_pins == []
@@ -1094,10 +1058,9 @@ def ticking(step: float):
 
 @respx.mock
 def test_a_trickling_backend_is_cut_off_at_its_wall_clock_deadline():
-    """httpx restarts its timeout on every byte, so a backend that dribbles
-    output is never "too slow" by that measure: OpenRouter streamed for ~9
-    minutes inside a 90-second timeout on 2026-08-03 and then handed over a
-    truncated body."""
+    """httpx restarts its read timeout on every byte, so a backend that dribbles
+    output is never "too slow" by that measure; the call's wall-clock deadline
+    cuts it off."""
     respx.post("https://slow.example/v1/chat/completions").mock(
         return_value=httpx.Response(200, content=iter([b'{"choi', b'ces": [', b'{}]}'])))
     with httpx.Client() as http:
@@ -1115,14 +1078,13 @@ def test_an_expired_run_budget_stops_a_backend_being_called_at_all():
         llm = LLMClient(custom_base_url="https://x.example/v1", custom_model="m",
                         http=http, deadline=spent)
         with pytest.raises(RuntimeError, match="no wall-clock budget left"):
-            llm.complete("hi")  # respx would raise on any unmocked request
+            llm.complete("hi")  # _post checks the budget before it opens a connection
 
 
 def test_a_phase_budget_is_a_slice_of_the_run_and_expires_before_it():
-    """The evidence phase runs before the first LLM call and answers to no clock
-    of its own: one hung host there spends the run, and every phase after it then
-    reports "skipped" while the workflow reports success. A share is how a phase
-    that must not be able to do that gets its own smaller deadline."""
+    """A share gives a phase a deadline of its own inside the run's: the evidence
+    phase runs before the first LLM call, and one hung host there must not spend
+    the run and leave every later phase "skipped"."""
     now = {"t": 0.0}
     run = Deadline(100.0, clock=lambda: now["t"])
     share = run.share(0.25)
@@ -1155,9 +1117,8 @@ def test_run_scout_skips_its_phases_when_the_budget_is_spent():
 
 @respx.mock
 def test_forcing_a_backend_skips_the_ones_before_it():
-    """The spare endpoint has never run in CI — the primary has answered every
-    scheduled run since it was wired up — so the only way to exercise it is to
-    ask for it by name."""
+    """A backend the chain never reaches while the primary answers is exercised
+    by asking for it by name, which skips the ones before it."""
     primary = respx.post("https://primary.example/v1/chat/completions")
     spare = respx.post("https://spare.example/v1/chat/completions").mock(
         return_value=httpx.Response(200, json={"choices": [{"message": {"content": "spare"}}]}))
@@ -1263,7 +1224,7 @@ def test_a_delisted_row_leaves_its_domain_to_its_verdict():
 def test_a_proposal_that_reuses_an_archived_rows_id_is_reported_not_dropped():
     """An id belongs to a published page for good. A vendor coming back under
     the id its archived row holds is news for the reviewer, who restores the
-    row — silently skipping it as a duplicate would lose exactly that lead."""
+    row — silently skipping it as a duplicate would lose that lead."""
     entries = [make(id="gone", url="https://n.ai", delisted={"on": TODAY, "reason": "no free lane"})]
     added, rejected = apply_new(entries, [proposal(id="gone", url="https://n.ai")], TODAY)
     assert added == []
@@ -1288,8 +1249,8 @@ def test_the_discovery_prompt_carries_only_verdicts_the_file_still_trusts():
 
 
 def test_run_scout_reports_verdicts_due_for_a_recheck():
-    """The loop-closer: an expired verdict stops suppressing silently and starts
-    appearing in the PR body instead, so the question reaches a human."""
+    """An expired verdict stops suppressing and appears in the PR body instead,
+    so the question reaches a human."""
     expired = (TODAY - timedelta(days=WATCH_RECHECK_DAYS + 1)).isoformat()
     result = scout.run_scout(StubLLM({}), [make()], [], lambda urls: {}, TODAY,
                              watchlist=[watch("fresh.ai"), watch("stale.ai", checked_on=expired)])
@@ -1297,9 +1258,8 @@ def test_run_scout_reports_verdicts_due_for_a_recheck():
 
 
 def test_run_scout_reports_sources_due_for_a_re_read():
-    """Nothing else ever re-opens sources.yaml. The scout does not read those
-    lists and cannot act on them — it carries the question to the PR body,
-    which is the only recurring channel this repo has to a human."""
+    """Nothing else reopens sources.yaml, and the scout does not read those
+    lists, so it carries the question to the PR body for a human."""
     expired = (TODAY - timedelta(days=SOURCE_RECHECK_DAYS + 1)).isoformat()
     result = scout.run_scout(StubLLM({}), [make()], [], lambda urls: {}, TODAY,
                              sources=[source(), source("stale/list", checked_on=expired)])
@@ -1319,10 +1279,9 @@ class DeadChainLLM:
 
 
 def test_a_phase_that_loses_every_backend_says_so_instead_of_going_quiet():
-    """A run that could not think and a run that found nothing write the same
-    empty result. On 2026-08-31 that difference sat behind a green tick for four
-    days: both custom backends were dead, OVH rate-limited the third call, and
-    the generation check never ran."""
+    """A run that could not think and a run that found nothing would write the
+    same empty result, so a phase that lost every backend is named in
+    `llm_outages`."""
     result = run_scout(DeadChainLLM(), [make(models=[{"family": "old"}])], [],
                        lambda urls: {}, TODAY)
 
@@ -1377,9 +1336,9 @@ def _scout_argv(tmp_path, *extra) -> list[str]:
 
 
 def test_the_pr_body_carries_every_line_the_template_promises(tmp_path, monkeypatch):
-    """The template is formatted once, in main, from the keys run_scout put in
-    the result. A key added to one and not the other fails nowhere else: on the
-    scheduled run, in CI, after the verification commit is already pushed."""
+    """The template is formatted once, in main, from the keys run_scout puts in
+    the result, so a key added to one and not the other would fail nowhere but
+    the scheduled run, after the verification commit is pushed."""
     save_registry(tmp_path / "registry.yaml", [make()])
     monkeypatch.setattr(scout, "gather_evidence", lambda *a, **k: Evidence())
     monkeypatch.setattr(scout, "run_scout", lambda *a, **k: {
@@ -1430,10 +1389,9 @@ def test_the_pr_body_says_how_many_hits_each_search_kept(tmp_path, monkeypatch):
 
 
 def test_answered_domains_are_the_current_watchlist_and_the_whole_blocklist():
-    """What leaves the models.dev digest: verdicts the curated files still
-    stand behind. An expired watchlist line has stopped answering for its
-    service — the same rule format_watchlist applies — so its domain goes back
-    into the digest and the question comes round again."""
+    """What leaves the models.dev digest: the watchlist's current verdicts and
+    the whole blocklist. An expired verdict's domain goes back in (see
+    `answered_domains`)."""
     today = date(2026, 9, 5)
     watchlist = [
         Watched(domains=["current.ai", "api.current.ai"], name="Current", checked_on=today,

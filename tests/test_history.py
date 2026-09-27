@@ -101,10 +101,8 @@ def test_a_delisted_row_says_the_day_and_the_reason_it_left():
 
 
 def test_a_row_deleted_before_rows_were_archived_joins_the_archive_without_a_second_event():
-    """Until 2026-09-17 a reviewer took a row off by deleting it, and the history
-    said so as "removed". Those rows are back in the registry as delisted — the
-    Archive now holds them — and their departure was announced the day it
-    happened, so bringing them back must not announce it again."""
+    """A row the history recorded as "removed" that comes back as delisted joins
+    the Archive with no new event: its departure was announced already."""
     added = diff_state({}, registry_state([make()], TODAY), NOW)
     removed = diff_state(replay(added), {}, NOW)
     assert [e.event for e in removed] == [EventType.REMOVED]
@@ -114,9 +112,9 @@ def test_a_row_deleted_before_rows_were_archived_joins_the_archive_without_a_sec
 
 
 def test_a_row_deleted_from_the_registry_is_refused_rather_than_recorded(tmp_path: Path):
-    """A row leaves the list through the Archive and nowhere else. The run that
-    finds one deleted stops before the history can call it "delisted", so the
-    deletion can never be published — only undone."""
+    """A row leaves the list through the Archive and nowhere else: a render that
+    finds one deleted stops before the history records its removal, so the
+    deletion is never published, only undone."""
     registry, history = tmp_path / "registry.yaml", tmp_path / "history.jsonl"
     save_registry(registry, [make(), make("second")])
     record_changes(registry, history, TODAY, NOW)
@@ -128,8 +126,8 @@ def test_a_row_deleted_from_the_registry_is_refused_rather_than_recorded(tmp_pat
 
 
 def test_an_entry_archived_by_the_calendar_alone_is_still_reported():
-    """No byte of the registry changes — the entry simply goes unverified past
-    the staleness limit. A before/after diff of the file would see nothing."""
+    """No byte of the registry changes — the entry goes unverified past the
+    staleness limit. A before/after diff of the file would see nothing."""
     entries = [make(last_verified=TODAY)]
     recorded = replay(diff_state({}, registry_state(entries, TODAY), NOW))
 
@@ -329,7 +327,7 @@ def test_the_lines_a_commit_appends_are_the_changes_its_registry_makes():
         "again on top of it"]
 
 
-# ---- the two callers -------------------------------------------------------
+# ---- record_changes, end to end --------------------------------------------
 
 def test_recording_reads_the_registry_and_writes_only_what_changed(tmp_path: Path):
     registry = tmp_path / "registry.yaml"

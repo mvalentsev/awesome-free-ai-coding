@@ -1,13 +1,10 @@
 """Codex CLI on the free lanes.
 
-Codex speaks only the OpenAI Responses API: a provider it is given with
-`wire_api = "chat"` has been a config error since its discussion #7782, and on
-2026-09-27 seventeen of the list's 61 lanes answered POST /responses with 404
-while OVHcloud's refused the request Codex sends. So Codex reaches the list
-through LiteLLM, whose /v1/responses builds each call from a lane's chat
-completions when the deployment says `use_chat_completions_api` — measured end
-to end that day with Codex 0.157.1 and LiteLLM 1.102.1 on keyless lanes, a tool
-call included.
+Codex speaks only the OpenAI Responses API, which few lanes serve, so it reaches
+the list through LiteLLM, whose /v1/responses builds each call from a lane's chat
+completions when the deployment sets `use_chat_completions_api`. A lane that takes
+Codex's request itself gets a profile of its own, and every run sends it that
+request again.
 """
 import re
 import tomllib
@@ -44,10 +41,9 @@ def _profile(root: Path) -> tuple[str, dict]:
 
 
 def test_every_litellm_deployment_answers_codex_through_the_lanes_chat_completions():
-    """LiteLLM answers /v1/responses for an `openai/` deployment by sending the
-    call on to the lane's own /responses — 404 on LLM7, LLM Tech and VLM Run, a
-    500 on Pollinations — unless the deployment carries the flag; grouped
-    deployments are called by Codex as much as named ones."""
+    """Every deployment, grouped or named, sets `use_chat_completions_api`: without
+    it LiteLLM passes Codex's call on to the lane's own /responses, which most
+    lanes do not serve."""
     cfg = render.build_litellm_config(_strong_and_keyless(), TODAY)
     assert {d["model_name"] for d in cfg["model_list"]} >= {"free/strong", "free/nokey"}
     assert all(d["litellm_params"]["use_chat_completions_api"] is True
@@ -55,9 +51,9 @@ def test_every_litellm_deployment_answers_codex_through_the_lanes_chat_completio
 
 
 def test_the_litellm_header_names_the_version_that_keeps_the_flag_to_the_proxy(tmp_path):
-    """LiteLLM 1.88 and older send `use_chat_completions_api` on to the vendor
-    in the request body, and a strict one refuses a field it does not know —
-    every chat call through the file, not only Codex's, would fail there."""
+    """The header names the first LiteLLM that keeps the flag to itself: older ones
+    forward `use_chat_completions_api` to the vendor, and a strict vendor refuses
+    every chat call that carries it, not only Codex's."""
     header = (_rendered(tmp_path, _strong_and_keyless()) / "configs" / "litellm.yaml"
               ).read_text(encoding="utf-8")
     assert f"LiteLLM {render.LITELLM_BRIDGE_SINCE} or later" in header
@@ -67,12 +63,9 @@ def test_the_litellm_header_names_the_version_that_keeps_the_flag_to_the_proxy(t
 
 def test_the_codex_profile_points_codex_at_the_proxy_with_the_settings_the_lanes_take(
         tmp_path):
-    """The three settings are the ones measured to break a lane otherwise:
-    LiteLLM hands Codex's reasoning summary to the lane as a `reasoning_effort`
-    object every lane tried refused, the sub-agent tools come as a `namespace`
-    that LLM7 refused through LiteLLM and OVHcloud directly, and web search is
-    OpenAI's hosted tool, which LiteLLM passes on as `web_search_options`.
-    The proxy has no master key, so the provider names no key either."""
+    """The LiteLLM profile points Codex at the proxy's local address with no key,
+    since the proxy runs without a master key, and carries only the three settings
+    that keep lanes from refusing the call (see render._codex_settings)."""
     text, profile = _profile(_rendered(tmp_path, _strong_and_keyless()))
     assert profile["model"] == render.litellm_groups(_strong_and_keyless(), TODAY)[0]
     provider = profile["model_providers"][profile["model_provider"]]
@@ -108,10 +101,8 @@ def test_a_codex_profile_with_no_lane_behind_it_names_no_model(tmp_path):
 
 
 def test_no_page_tells_a_reader_to_paste_a_chat_base_url_into_codex(tmp_path):
-    """Until 2026-09-27 the connection tables said to paste their base URLs into
-    "opencode, Codex CLI, aider, Cline or any OpenAI SDK" — Codex has taken
-    none of them since it dropped the chat format. Every page that lists the
-    configs names the profile instead."""
+    """Codex takes no chat base URL since it dropped the chat format, so every page
+    that lists the configs names the LiteLLM profile instead."""
     reg = tmp_path / "registry.yaml"
     save_registry(reg, _strong_and_keyless())
     render.render_all(reg, Path("templates"), tmp_path, today=TODAY)
@@ -136,8 +127,8 @@ from test_prober import BASE, KEYLESS_CATALOG, completion
 
 
 def _sse(*events: dict) -> httpx.Response:
-    """A Responses stream as Kilo's gateway sent it on 2026-09-27: data lines
-    only, no `event:` lines."""
+    """A Responses stream as Kilo's gateway sends it: data lines only, no
+    `event:` lines."""
     body = "".join(f"data: {json.dumps(e)}\n\n" for e in events)
     return httpx.Response(200, text=body, headers={"content-type": "text/event-stream"})
 
@@ -199,9 +190,9 @@ def test_no_row_that_takes_codexs_request_is_named_like_the_litellm_profile():
 
 @respx.mock
 async def test_a_keyless_lane_that_takes_codexs_request_is_a_note_to_say_so():
-    """Kilo's gateway answered the request Codex sends, keyless, on 2026-09-27,
-    and nothing in the row said so: the run asks every keyless lane that has
-    just answered a chat call, the way it asks about a bearer token."""
+    """A keyless lane that takes Codex's request without api.responses_api set is a
+    note to set it: the run asks every lane without an account that has just
+    answered a chat call, as it asks about a bearer token."""
     _keyless_lane_answers()
     respx.post("https://open.x.ai/v1/responses").mock(return_value=COMPLETED)
     async with httpx.AsyncClient() as client:
@@ -212,9 +203,8 @@ async def test_a_keyless_lane_that_takes_codexs_request_is_a_note_to_say_so():
 
 @respx.mock
 async def test_the_call_is_the_request_codex_sends_under_this_lists_profiles():
-    """Every field Codex sends is one a lane could refuse — OVHcloud's
-    /responses refused `include`, which Codex sends on every call — so the call
-    carries them all, as a stream, with the settings the profiles make."""
+    """The probe sends every field Codex sends, as a stream, with the profiles'
+    settings: a lane can refuse any one of them (OVHcloud refused `include`)."""
     _keyless_lane_answers()
     route = respx.post("https://open.x.ai/v1/responses").mock(return_value=COMPLETED)
     async with httpx.AsyncClient() as client:
@@ -264,8 +254,7 @@ async def test_a_lane_that_stops_taking_codexs_request_is_a_note(answer):
 
 @respx.mock
 async def test_a_keyless_lane_without_the_route_says_nothing():
-    """Seventeen lanes answered 404 on 2026-09-27; that is the ordinary answer
-    of a lane nothing says serves Codex."""
+    """A 404 is the ordinary answer of a lane nothing says serves Codex."""
     _keyless_lane_answers()
     route = respx.post("https://open.x.ai/v1/responses").mock(return_value=httpx.Response(404))
     async with httpx.AsyncClient() as client:

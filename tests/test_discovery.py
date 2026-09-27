@@ -91,8 +91,8 @@ def test_gather_evidence_keyless_dedup_and_filters(monkeypatch):
 @respx.mock
 def test_a_repository_hit_survives_when_the_registry_cites_other_repositories(monkeypatch):
     """What the GitHub search is for: an open-source gateway nobody has listed.
-    Copilot's row and the Codex row both sit on github.com, and until 2026-09-14
-    that made every repository hit read as a vendor this list already carries."""
+    Rows on github.com (Copilot's, the Codex row's source) cover their own
+    owners' repositories, not every repository on the host."""
     import freetier_radar.discovery as disc
     monkeypatch.setattr(disc, "CURATED_FEEDS", [])
     respx.get("https://hn.algolia.com/api/v1/search").mock(
@@ -124,9 +124,9 @@ def test_a_repository_hit_survives_when_the_registry_cites_other_repositories(mo
 
 
 def test_a_search_whose_every_hit_was_filtered_is_reported_with_zero_kept():
-    """"providers: tavily, hn, github" read as three searches feeding the model
-    while one of them had fed it nothing for two months: a source is listed
-    when it answers, before the filter decides what to keep."""
+    """A source is listed when it answers, with how many of its hits the filter
+    kept, so a search that feeds the model nothing reads as "0 hits kept", not
+    as a working source."""
     ev = Evidence(hits=[Hit("https://n.dev", "N", "", "hn"), Hit("https://m.dev", "M", "", "hn")],
                   providers=["hn", "github", "curated-feeds"])
     assert ev.describe_providers() == "hn (2 hits kept), github (0 hits kept), curated-feeds"
@@ -137,13 +137,9 @@ def test_a_feed_that_fits_the_limit_is_read_whole():
 
 
 def test_an_oversized_feed_is_read_from_both_ends():
-    """Measured 2026-08-14 against the feeds actually configured: read head-first
-    only, free-coding-models' sources.js gave up 9 of its 20 providers and none
-    of their endpoints, because the object mapping provider to URL is the last
-    5005 characters of the file. Both ends, same 20000-char budget: 20 of 20 with
-    endpoints, and the only other oversized feed lost no row it had before. What
-    the elision drops is the middle — model rows for providers both ends already
-    name."""
+    """A feed over the limit keeps both ends and drops the middle: a list can keep
+    its provider-to-URL map at the very end, and the middle is model rows for
+    providers both ends already name."""
     text = "HEAD" + "x" * 200 + "TAIL"
     excerpt = _feed_excerpt(text, limit=100)
     assert excerpt.startswith("HEAD") and excerpt.endswith("TAIL")
@@ -170,12 +166,10 @@ def test_gather_evidence_stores_the_excerpt_not_the_whole_feed(monkeypatch):
 
 @respx.mock
 def test_a_feed_url_fragment_starts_the_read_at_that_heading(monkeypatch):
-    """OmniRoute's FREE_TIERS.md, measured 2026-09-14: 55,699 characters, the
-    per-provider table at character 31,042 and its changelog after it — and
-    both ends of the budget are prose, so the scout had read the methodology
-    twice a week and the table never. A fragment names the heading the read
-    starts from; a heading the file no longer carries falls back to the whole
-    file rather than to nothing."""
+    """A fragment names the heading the read starts from, for a list whose table
+    sits mid-file with prose at both ends (OmniRoute's FREE_TIERS.md); a heading
+    the file no longer carries falls back to the whole file rather than to
+    nothing."""
     import freetier_radar.discovery as disc
     feed = "https://raw.example.com/FREE_TIERS.md#per-provider-free-tier"
     monkeypatch.setattr(disc, "CURATED_FEEDS", [feed])
@@ -211,10 +205,9 @@ def _quiet_searches():
 
 @respx.mock
 def test_a_feed_that_degrades_says_so_instead_of_going_quiet(monkeypatch):
-    """Every way a feed went wrong here went wrong silently. cheahjs's list 404'd
-    for weeks behind a bare `continue`; OmniRoute's table outgrew the excerpt and
-    then moved; free-coding-models grew until the scout read 29% of it. Each
-    reaches the run's log as one line saying what to do about it."""
+    """A feed that cannot be read, whose fragment's heading is gone, or that has
+    outgrown the excerpt reaches the run's log as one line saying what to do
+    about it."""
     import freetier_radar.discovery as disc
     gone = "https://raw.example.com/gone.md"
     moved = "https://raw.example.com/moved.md#provider-table"
@@ -242,12 +235,11 @@ def test_a_feed_that_degrades_says_so_instead_of_going_quiet(monkeypatch):
 
 @respx.mock
 def test_a_fragment_can_name_where_the_list_ends_too(monkeypatch):
-    """awesome-freellm-apis keeps its directory and base-URL table between a
-    pitch and a per-model catalog longer than both: read from the directory on,
-    35% of it still fell in the elided middle. `#from:until` stops at the first
-    heading after the start whose anchor begins with `until` — GitHub anchors
-    carry no colon, so the pair cannot be mistaken for one heading — and an end
-    the file no longer has reads on to the end rather than to nothing."""
+    """`#from:until` stops at the first heading after the start whose anchor
+    begins with `until`, for a list whose table sits between a pitch and a longer
+    catalog (awesome-freellm-apis). GitHub anchors carry no colon, so the pair
+    cannot be mistaken for one heading; an end the file no longer has reads on
+    to the end of the file."""
     import freetier_radar.discovery as disc
     feed = "https://raw.example.com/README.md#provider-directory:best-free-models"
     monkeypatch.setattr(disc, "CURATED_FEEDS", [feed])
@@ -271,8 +263,8 @@ def test_a_fragment_can_name_where_the_list_ends_too(monkeypatch):
 
 @respx.mock
 def test_an_archived_list_is_named_as_one(monkeypatch):
-    """sourcegraph/awesome-code-ai answered 200 on every run for seven months
-    after GitHub archived it: a list that cannot change, read twice a week."""
+    """A feed whose GitHub repository is archived still answers 200 on every run,
+    so the warning names it as a list that no longer changes."""
     import freetier_radar.discovery as disc
     old = "https://raw.githubusercontent.com/someone/old-list/HEAD/README.md"
     live = "https://raw.githubusercontent.com/someone/live-list/HEAD/README.md"
@@ -294,10 +286,9 @@ def test_an_archived_list_is_named_as_one(monkeypatch):
 
 
 def test_every_github_feed_is_read_at_the_branch_its_repository_works_on():
-    """OmniRoute moved its work to release/v3.8.x as the default branch and left
-    main standing: the feed named main, got a 200 on every run, and read the
-    copy of 2026-07-31 until 2026-09-21. A branch named in the URL fails
-    silently the day a project stops using it; HEAD follows the repository."""
+    """A branch named in the URL goes on answering 200 after a project moves its
+    work to another branch, serving a copy that no longer changes; HEAD follows
+    the repository's default branch."""
     from urllib.parse import urlparse
 
     from freetier_radar.discovery import CURATED_FEEDS
@@ -399,13 +390,10 @@ def test_a_page_fetch_keeps_its_own_timeout_when_the_budget_is_wide():
 
 @respx.mock
 def test_page_text_is_the_page_and_not_its_machinery():
-    """Measured 2026-09-02 across the 45 live rows' first source urls: script
-    blocks were a median 30% of the raw HTML and 98% of the worst page, and the
-    5000-character cap was being spent on them and on the site's menus — the
-    only retirement signal in the whole sweep was the word "Deprecations" in
-    ai.google.dev's sidebar, while three body-text mentions sat past the cap
-    unseen. Structured data stays: Freebuff publishes its FAQ as JSON-LD and
-    nowhere else."""
+    """Scripts, styles, menus, footers and the JavaScript-required notice are
+    dropped, so the character cap is spent on the page's own words and a menu's
+    "Deprecations" is no retirement signal. JSON-LD stays: Freebuff publishes its
+    FAQ there and nowhere else."""
     respx.get("https://p.dev").mock(return_value=httpx.Response(200, text=(
         '<html><head><style>.nav{color:red}</style>'
         '<script>window.__d={"retired":true}</script>'
@@ -424,9 +412,8 @@ def test_page_text_is_the_page_and_not_its_machinery():
 
 @respx.mock
 def test_a_json_page_is_kept_as_it_is():
-    """Pollinations' first source url is its model catalog, JSON with a "<" in
-    one description: the tag stripper ate everything from there to the next
-    ">" and the scout was handed 286 characters of a 20-kilobyte page."""
+    """A JSON body skips the tag stripper, which would read a "<" in a model's
+    description as a tag and eat everything up to the next ">"."""
     respx.get("https://c.dev/models").mock(return_value=httpx.Response(
         200, json=[{"name": "fast", "description": "for prompts < 4k tokens"},
                    {"name": "big", "description": "everything > that"}],
@@ -438,8 +425,9 @@ def test_a_json_page_is_kept_as_it_is():
 
 @respx.mock
 def test_the_digest_names_a_provider_with_a_zero_cost_row():
-    """The point of the source: 185 providers carrying a machine-readable price
-    per model, which is a lead stream no prose feed can match."""
+    """models.dev carries a machine-readable price per model, so a provider with
+    a zero-cost row is a lead: the digest names it with its API, its count of
+    free rows and their ids."""
     respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
         "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0), (1.5, 3.0),
                           doc="https://newgw.com/docs", name="NewGW"),
@@ -479,10 +467,9 @@ def test_the_digest_leaves_out_a_local_runtime():
 
 @respx.mock
 def test_the_digest_says_what_a_zero_in_this_catalog_does_not_mean():
-    """Verified 2026-08-14: kenari reads 38/38 at zero because it quotes IDR in a
-    unit models.dev could not parse, and every *-coding-plan provider reads zero
-    because the usage is inside a paid subscription. A lead stream that does not
-    carry its own caveat is a proposal generator."""
+    """A zero in models.dev can be a currency it could not parse or usage inside
+    a paid subscription (every *-coding-plan provider), so the digest carries
+    that caveat for the scout."""
     respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
         "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0)),
     }))
@@ -519,12 +506,9 @@ def test_format_evidence_and_is_empty():
 
 @respx.mock
 def test_the_digest_leaves_out_a_provider_whose_only_url_is_a_code_host():
-    """qvac's one URL is an npm package that spawns a local `qvac serve`, and
-    models.dev's vercel entry points at a GitHub repo — a package page or a
-    repository names a client, not a vendor, so nothing on it can be matched to
-    the registry or probed as an offer. Measured 2026-09-05: the two were the
-    only providers on such hosts, and one of them is a listed row the digest
-    kept proposing back."""
+    """A package page or a repository (an npm package, a GitHub repo) names a
+    client, not a vendor, so nothing on it can be matched to the registry or
+    probed as an offer."""
     respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
         "pkg": provider("pkg", None, (0, 0), doc="https://www.npmjs.com/package/@pkg/provider"),
         "repo": provider("repo", None, (0, 0), doc="https://github.com/org/repo"),

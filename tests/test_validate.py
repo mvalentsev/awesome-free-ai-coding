@@ -1,5 +1,5 @@
 """Every rule here is a contradiction a human can hold in two files without
-noticing. Each was found by hand at least once before it was written down."""
+noticing."""
 import json
 from datetime import date, timedelta
 from pathlib import Path
@@ -82,9 +82,9 @@ def test_an_id_a_client_lane_keeps_out_of_the_column_is_one_it_lists(tmp_path: P
 
 
 def test_a_row_with_an_endpoint_and_a_models_column_lists_the_ids_to_call(tmp_path: Path):
-    """The configs are written from api.model_ids alone, so a connectable row
-    whose column names families and whose ids are missing would hand a reader
-    nothing to call — and until 2026-09-25 it handed out the family names."""
+    """A family names a model and an id is what a request carries, so a
+    connectable row whose column names families and lists no id hands a reader
+    nothing to call."""
     bare = {**ENTRY, "api": {"base_url": "https://x.ai/v1"}}
     problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
     assert any("x" in p and "api.model_ids" in p and "family" in p for p in problems), problems
@@ -94,11 +94,9 @@ def test_a_row_with_an_endpoint_and_a_models_column_lists_the_ids_to_call(tmp_pa
 
 
 def test_a_live_row_says_what_its_free_part_is(tmp_path: Path):
-    """"A sum to spend names no model" was applied on 2026-09-25 by reading rows,
-    and three rows naming the models their credit is spent on were missed. A
-    rule a check can hold needs the row to say which kind of free it is, so a
-    live row without `free_part` is a problem; an archived one keeps its record
-    as it was."""
+    """Rules such as "a sum to spend names no model" hold only on a row that says
+    which kind of free it is, so a live row without `free_part` is a problem; an
+    archived one keeps its record as it was."""
     bare = {k: v for k, v in ENTRY.items() if k != "free_part"}
     problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
     assert any(p.startswith("registry: x ") and "free_part" in p for p in problems), problems
@@ -109,9 +107,8 @@ def test_a_live_row_says_what_its_free_part_is(tmp_path: Path):
 
 def test_a_live_row_says_where_its_offer_reaches(tmp_path: Path):
     """A rank argued from the readers a border leaves out needs every row's
-    border — Google's, OpenAI's and TRAE's went unnamed while three rows said
-    theirs in prose — so a live row without one is a problem, and so is a
-    border read on a day still to come. An archived row keeps its record."""
+    border, so a live row without one is a problem, and so is a border read on
+    a day still to come. An archived row keeps its record."""
     bare = {k: v for k, v in ENTRY.items() if k != "border"}
     problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
     assert any(p.startswith("registry: x has no border") for p in problems), problems
@@ -156,9 +153,8 @@ def test_an_earlier_record_of_a_free_id_stops_once_its_family_joins(tmp_path: Pa
 
 
 def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
-    """The median `limits` went from 87 characters in July to 813 by 2026-09-16,
-    the longest 3,712 — a research log in a README cell. The history belongs to
-    history.jsonl; the row keeps what a reader needs to use the offer."""
+    """A row's prose keeps what a reader needs to use the offer, within
+    PROSE_LIMITS; its history belongs to history.jsonl."""
     from freetier_radar.validate import PROSE_LIMITS
     long = {**ENTRY, "limits": "x" * (PROSE_LIMITS["limits"] + 1),
             "offering": "y" * PROSE_LIMITS["offering"]}
@@ -169,13 +165,11 @@ def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
 
 
 def test_a_row_of_models_leaves_its_models_to_the_models_line(tmp_path: Path):
-    """Every page prints `offering` beside the row's Models line. On 2026-09-26
-    twenty-eight rows of `models` named models in it: opencode all six of its
-    families, the line the reader reads next, and ten rows models the line
-    holds back — ids short of their two weeks, ids kept out with a reason — so
-    the prose promised what the column had decided not to. A sum has no line
-    to repeat and names what its amount buys; a maker's name is not a model's;
-    an archived row's families name nothing on the list."""
+    """Every page prints `offering` beside the row's Models line, so on a row of
+    `models` it names no model: it would repeat the line, or promise one the line
+    holds back. A sum has no line to repeat and names what its amount buys; a
+    maker's name is not a model's; an archived row's families name nothing on
+    the list."""
     def row(i: str, **kw) -> dict:
         return {**ENTRY, "id": i, "name": i.upper(), "url": f"https://{i}.ai",
                 "probe": {**ENTRY["probe"], "endpoint": f"https://{i}.ai"},
@@ -246,9 +240,8 @@ def test_duplicate_ids_urls_and_base_urls_are_caught(tmp_path: Path):
 
 
 def test_one_family_carries_one_tier(tmp_path: Path):
-    """The scout assigns a tier per proposal, so the same model arrived frontier
-    on one vendor and strong on the next — a judgement about the model recorded
-    as a judgement about the vendor."""
+    """A tier is a judgement about the model, not the vendor, so a family that is
+    frontier on one row and strong, or untiered, on another is a problem."""
     measured = {"family": "nemotron-3-ultra", "aa_model": "nvidia-nemotron-3-ultra-550b-a55b"}
     root = build(tmp_path, entries=[
         {**ENTRY, "models": [{**measured, "tier": "frontier"}]},
@@ -286,9 +279,9 @@ def test_a_pipe_would_break_the_readme_table(tmp_path: Path):
 # ---- sources.yaml against discovery.py ------------------------------------
 
 def test_a_source_may_not_be_declined_and_still_read_every_run(tmp_path: Path):
-    """The contradiction this file exists to catch. CURATED_FEEDS is a raw
-    githubusercontent URL and a human writes down the github.com one they were
-    actually sent, so a plain string compare would never notice."""
+    """CURATED_FEEDS holds raw githubusercontent URLs while a human writes down
+    the github.com one they were sent, so the two are compared by owner and
+    repository, not as strings."""
     feed = CURATED_FEEDS[0]
     owner_repo = "/".join(feed.split("/")[3:5])
     root = build(tmp_path, sources=[{**SOURCE, "url": f"https://github.com/{owner_repo}"}])
@@ -311,7 +304,7 @@ def test_a_missing_sources_file_is_not_a_problem(tmp_path: Path):
     assert check(root, TODAY) == []
 
 
-# ---- history.jsonl — the one file here that cannot be regenerated ----------
+# ---- history.jsonl — append-only, and nothing regenerates it ---------------
 
 def test_a_repository_with_a_history_reports_nothing(tmp_path: Path):
     root = build(tmp_path, entries=[{**ENTRY, "first_seen": "2026-08-10"}], watched=[WATCHED],
@@ -344,10 +337,9 @@ def test_adding_something_the_history_already_has_is_a_contradiction(tmp_path: P
 
 
 def test_a_row_is_first_seen_the_day_the_history_added_it(tmp_path: Path):
-    """A row's page says "added on" from first_seen and its History "Added"
-    from history.jsonl — two records of one day, which disagreed on 61 of 96
-    rows until 2026-09-24: the scheduled run recorded a row added by hand up
-    to four days late, and fifteen first_seen days were typed in local time."""
+    """A row's page says "added on" from first_seen and its History "Added" from
+    history.jsonl, so the two agree; a row that left and came back is dated by
+    its latest addition."""
     root = build(tmp_path, entries=[{**ENTRY, "first_seen": "2026-08-09"}],
                  history=[event()])
     assert check(root, TODAY) == [
@@ -359,10 +351,8 @@ def test_a_row_is_first_seen_the_day_the_history_added_it(tmp_path: Path):
 
 
 def test_a_delisted_row_left_the_list_the_day_its_delisting_says(tmp_path: Path):
-    """The header of an archived row's page reads "delisted on" from the
-    registry and its History "Archived" or "Delisted" from the log: Cerebras
-    read "delisted on 2026-09-16" above "2026-09-17 — Delisted" until the
-    log was rebuilt on 2026-09-24."""
+    """An archived row's page reads "delisted on" from the registry and its
+    History "Archived" or "Delisted" from the log, so the two dates agree."""
     gone = {**ENTRY, "first_seen": "2026-08-01",
             "delisted": {"on": "2026-08-12", "reason": "the free lane is gone"}}
     left = event(event="archived", ts="2026-08-13T05:23:00Z",
@@ -383,10 +373,8 @@ def test_a_delisted_row_left_the_list_the_day_its_delisting_says(tmp_path: Path)
 
 
 def test_a_row_the_history_recorded_may_not_be_deleted_from_the_registry(tmp_path: Path):
-    """Twelve rows left the list by deletion before 2026-09-17 — Cerebras,
-    Novita, LongCat, Kenari among them — and none of them reached the Archive;
-    the page kept only a "Delisted" line with nothing after it. A row leaves
-    through the Archive, so a registry missing a row the history knows is refused."""
+    """A row leaves the list through the Archive, so a registry missing a row the
+    history knows is refused."""
     root = build(tmp_path, history=[event(), event(id="gone", name="Gone")])
     assert ("registry: gone is in history.jsonl and missing from registry.yaml — a row leaves "
             "the list through the Archive: give it `delisted` (or `retired_on`) instead of "
@@ -395,7 +383,7 @@ def test_a_row_the_history_recorded_may_not_be_deleted_from_the_registry(tmp_pat
 
 def test_an_archived_row_may_sit_on_a_blocklisted_domain(tmp_path: Path):
     """Taking a row off the list and then rejecting its service for cause is the
-    intended sequence — Kenari's — and the row is the record of what was listed."""
+    intended sequence, and the row is the record of what was listed."""
     kept = {**ENTRY, "delisted": {"on": "2026-08-10", "reason": "rejected for cause"}}
     root = build(tmp_path, entries=[kept], blocklist=[{"domain": "x.ai", "reason": "rejected"}])
     assert check(root, TODAY) == []
@@ -430,8 +418,8 @@ def test_text_that_reads_as_liquid_would_break_the_published_page(tmp_path: Path
 
 
 def test_the_announcement_ledger_is_checked_like_the_history(tmp_path: Path):
-    """The ledger is the only thing standing between a retried run and a
-    double post; a line without its key is a line that protects nothing."""
+    """The ledger is what keeps a retried run from posting twice, so a line
+    without its key protects nothing."""
     root = build(tmp_path)
     (root / "announced.jsonl").write_text(
         '{"key": "2026-09-06T05:30:00+00:00|added|x", "channel": "bluesky", "ts": "2026-09-06T05:31:00Z"}\n'
@@ -466,9 +454,9 @@ def test_a_notice_carries_no_liquid_delimiters(tmp_path: Path):
 
 
 def test_prose_keeps_angle_brackets_inside_backticks(tmp_path: Path):
-    """GitHub strips anything shaped like an HTML tag from a README, so opencode's
-    note told readers for a week that its ids inside OpenCode are `opencode/` —
-    the `<model-id>` after the slash was never shown. In backticks it survives."""
+    """GitHub strips anything shaped like an HTML tag from a README, so
+    `opencode/<model-id>` outside backticks shows as `opencode/`; in backticks
+    it survives."""
     entry = {**ENTRY, "limits": "ids are opencode/<model-id> inside the app",
              "api": {"base_url": "https://x.ai/v1", "note": "call `vendor/<model-id>` here"}}
     problems = check(build(tmp_path, entries=[entry]), TODAY)
@@ -478,10 +466,9 @@ def test_prose_keeps_angle_brackets_inside_backticks(tmp_path: Path):
 
 
 def test_a_tier_names_the_artificial_analysis_model_it_was_read_from(tmp_path: Path):
-    """A tier is a measurement (CONTRIBUTING), and nineteen of twenty-two marks
-    were stale by 2026-09-16 because nothing recorded what had been measured.
-    A family with a tier carries the Artificial Analysis model it was read from,
-    and a family is one model, so every row agrees on it."""
+    """A tier is a measurement (CONTRIBUTING), so a family with a tier carries the
+    Artificial Analysis model it was read from, and a family is one model, so
+    every row agrees on it."""
     root = build(tmp_path, entries=[
         {**ENTRY, "models": [{"family": "glm-5.3", "tier": "frontier"}]},
         {**ENTRY, "id": "y", "url": "https://y.ai",
@@ -515,11 +502,9 @@ def test_a_fold_names_a_row_the_registry_holds_and_never_another_fold(tmp_path: 
 
 
 def test_two_rows_under_one_name_are_one_service_or_two_names(tmp_path: Path):
-    """MiMo Code and MiMoCode sat in the Archive two lines apart for two
-    months, one project on two rows: Xiaomi's agent and a placeholder from the
-    first day's seed, at a domain that has never resolved. A spelling is not a
-    service, so two rows whose names differ only in spacing and punctuation are
-    reported until one is folded into the other — or renamed apart."""
+    """A spelling is not a service: two rows whose names differ only in spacing
+    and punctuation are reported until one is folded into the other, or renamed
+    apart."""
     holder = {**ENTRY, "id": "mimo-code", "name": "MiMo Code", "url": "https://mimo.xiaomi.com/coder"}
     seed = {**ENTRY, "id": "mimocode", "name": "MiMoCode", "url": "https://mimocode.ai"}
     problems = check(build(tmp_path, entries=[holder, seed]), TODAY)
@@ -533,8 +518,8 @@ def test_two_rows_under_one_name_are_one_service_or_two_names(tmp_path: Path):
 def test_a_row_rejected_for_cause_is_blocklisted_and_keeps_no_connection(tmp_path: Path):
     """A reviewer's "rejected for cause" is a verdict about the service, which
     lives on the blocklist, and the row's page must not hand a reader the way
-    in: Kenari and easy-gonka-api were delisted, blocklisted and stripped of
-    their api blocks in one commit each — three edits nothing held together."""
+    in, so the delisting, the blocklist line and the dropped api block are held
+    together."""
     cause = {**ENTRY, "delisted": {"on": "2026-08-10", "reason": "rejected for cause — pooled OAuth"},
              "api": {"base_url": "https://x.ai/v1"}}
     problems = check(build(tmp_path, entries=[cause]), TODAY)
@@ -595,10 +580,8 @@ def test_the_committed_repository_holds_to_its_map_its_claims_and_its_form():
 
 def test_a_connectable_row_lists_an_id_or_says_why_it_cannot(tmp_path: Path):
     """The configs are written from api.model_ids and the row's page checks a
-    reader's key with a call to one. Three rows whose free part is a sum had
-    none until 2026-09-26, though CONTRIBUTING says such a row keeps a few to
-    paste — so a live connectable row without ids is a problem unless
-    `api.no_ids` says why the vendor names none."""
+    reader's key with a call to one, so a live connectable row without ids is a
+    problem unless `api.no_ids` says why the vendor names none."""
     bare = {**ENTRY, "models": [], "free_part": "sum", "api": {"base_url": "https://x.ai/v1"}}
     problems = check(build(tmp_path, entries=[bare], watched=[WATCHED]), TODAY)
     assert any(p.startswith("registry: x lists no api.model_ids") for p in problems), problems

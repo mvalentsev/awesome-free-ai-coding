@@ -58,21 +58,16 @@ def test_typography_does_not_hide_a_quote_that_is_there():
 
 
 def test_a_quote_inside_page_data_is_read_with_its_json_escapes_decoded():
-    """Freebuff's FAQ lives in JSON-LD, and on 2026-09-27 its "Smart & Fast"
-    reached the page only as `Smart \\u0026 Fast` — the same words, escaped the
-    way JSON escapes them — so the row's quote on training read as gone, from
-    the run's data-use check and its quote pass alike."""
+    """Page data is read with its JSON escapes decoded: a JSON-LD FAQ (Freebuff's)
+    can carry "Smart & Fast" only as `Smart \\u0026 Fast`."""
     body = ('<script type="application/ld+json">{"text": "- DeepSeek V4.1 Flash: Smart \\u0026 Fast. '
             'May use data for AI training.\\n- GPT-6 Luna"}</script>')
     assert quote_found("DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.", page_texts(body))
 
 def test_a_chinese_quote_is_read_like_any_other():
-    """Chinese puts no space between words, so a whole sentence of it was one
-    word to the three-word rule, and quote_found passed it unread: the data-use
-    sentences of SiliconFlow, Moark and TokenHub were "checked" that way until
-    2026-09-22. Two characters now count as a word, and the spaces markup leaves
-    beside them — a link inside the sentence, a markdown source — count for
-    nothing."""
+    """Chinese puts no space between words, so two characters count as a word for
+    the three-word rule, and the spaces markup leaves beside them (a link inside
+    the sentence, a markdown source) count for nothing."""
     assert quotes_in('标着 "免费" 的模型，"实名认证后使用全部的免费模型"') == ["实名认证后使用全部的免费模型"]
     page = page_texts('<p><a href="/auth">实名认证</a> 后使用全部的免费模型。</p>')
     assert quote_found("实名认证后使用全部的免费模型", page)
@@ -92,8 +87,8 @@ def test_a_quote_joined_across_an_ellipsis_is_checked_fragment_by_fragment():
 
 @respx.mock
 async def test_a_quote_on_none_of_the_rows_sources_is_reported_with_its_field():
-    """MegaNova's row quoted "Free, no credit card required" while its page said
-    "Free registration — no credit card required" (2026-09-16)."""
+    """A quote none of the row's sources carries is reported with the field it sits
+    in, though a near variant of it is on the page."""
     respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(
         200, text="<p><strong>Free registration</strong> — no credit card required</p>"))
     respx.get("https://vendor.example/docs").mock(return_value=httpx.Response(
@@ -132,12 +127,9 @@ async def test_a_source_that_does_not_answer_is_said_so_beside_the_quotes_it_cou
 
 @respx.mock
 async def test_a_quote_missing_while_a_source_did_not_answer_is_unverified_not_missing(tmp_path, capsys):
-    """Qodo's terms page answers some reads with 403 and the next with 200. On
-    2026-09-17 a full run happened to be refused and counted the terms quote as
-    "not on its sources", which reads as the vendor having changed its words — a
-    row edit — when nothing had changed but which read got through. A quote the
-    pages that answered do not carry is unverified while another source of the
-    row did not answer, and the run says which of the two it is."""
+    """A quote the answering pages do not carry is unverified, not missing, while
+    another of the row's sources did not answer: a flaky page (Qodo's terms answer
+    403 on some reads) must not read as the vendor changing its words."""
     from freetier_radar.models import save_registry
     from freetier_radar.quotes import _amain
     respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(403))
@@ -161,8 +153,8 @@ async def test_a_quote_missing_while_a_source_did_not_answer_is_unverified_not_m
 
 @respx.mock
 async def test_a_probe_that_follows_an_index_has_its_quotes_read_on_the_page_the_index_names():
-    """ModelScope's quotes are on the page its docs index names today, not on the
-    index itself — a JSON blob — nor on the dated page of an older release."""
+    """A row whose probe follows an index has its quotes read on the page the index
+    names (ModelScope's docs), not on the JSON index or an older release's page."""
     data = quoted_entry('"sign in for two hundred credits a day"').model_dump()
     data["source_urls"] = []
     data["probe"] = {"type": "page-keywords", "endpoint": "https://vendor.example/api/doc-index",
@@ -180,13 +172,8 @@ async def test_a_probe_that_follows_an_index_has_its_quotes_read_on_the_page_the
 
 @respx.mock
 async def test_the_run_reports_a_quote_gone_from_its_page_in_its_summary_and_never_fails(tmp_path, capsys):
-    """Until 2026-09-27 nothing read a quote back unless someone ran this by hand,
-    and a full pass that day found five that their pages no longer carried —
-    Token Harbor's "No per-minute request cap" among them, where its FAQ had come
-    to give free accounts 60 requests a minute. Qoder's rank rested on a
-    promotion whose page says "End time : To be announced", a page no probe
-    reads. The scheduled run prints the report in its summary: a quote gone from
-    its page is a row to read again, not a failed run."""
+    """The scheduled run prints the quotes gone from their pages in its summary and
+    exits 0: a vanished quote is a row to read again, not a failed run."""
     from freetier_radar.models import save_registry
     from freetier_radar.quotes import _amain
     respx.get("https://vendor.example/pricing").mock(
@@ -221,9 +208,8 @@ async def test_a_clean_pass_says_every_quote_was_found(tmp_path, capsys):
 
 @respx.mock
 async def test_the_count_is_of_the_rows_whose_quotes_were_read(tmp_path, capsys):
-    """The pass of 2026-09-27 said "388 quotes in 97 rows": 97 was every row in
-    the file, the seventeen archived ones among them, whose quotes it leaves
-    alone."""
+    """The summary counts only the rows whose quotes were read, not the archived
+    rows it leaves alone."""
     from freetier_radar.models import save_registry
     from freetier_radar.quotes import _amain
     respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(200, text=""))

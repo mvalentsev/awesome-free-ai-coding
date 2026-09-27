@@ -73,9 +73,7 @@ def test_a_build_that_cannot_be_read_is_waited_out_not_fatal():
 
 
 def test_only_the_pages_whose_data_changed_are_submitted():
-    """The ping submitted every url of the site on every push that published a
-    file — 186 of them four times on 2026-09-27, for commits that each touched a
-    handful of rows — where the protocol asks for the urls that changed, and an
+    """Only the urls whose data changed are submitted, as the protocol asks: an
     engine sent the same unchanged pages again and again has reason to discount
     the pings. What changed is read off index.json, the site's data, before and
     after the push; the footer's render date moves every page every day and is
@@ -104,7 +102,7 @@ def test_the_ping_reads_the_index_as_the_push_found_it(tmp_path):
     """The index before the push is the one at the commit the push started from:
     `git show <before>:index.json`. A commit that is not there — a new branch's
     all-zero `before`, a shallow clone — gives no earlier index, and every page
-    is sent, as before."""
+    is sent."""
     import json
     import subprocess
     from freetier_radar.indexnow import index_at
@@ -121,9 +119,9 @@ def test_both_pings_send_only_what_their_push_changed():
     """The scheduled run pings after its own verification commit, from the
     commit it started on. indexnow.yml pings after any other push, and a push
     that lands while it waits for Pages cancels it, so it sends what changed
-    since the last ping that went out — the head of its last successful run —
-    and only where that cannot be read since the commit its own push started
-    from; its checkout reaches back far enough to read either."""
+    since the head of its last successful run, or, where that cannot be read,
+    since its own push's `before`; its checkout reaches back far enough to read
+    either."""
     import yaml
     run = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     step = next(s for s in run["jobs"]["update"]["steps"] if "freetier-indexnow" in s.get("run", ""))
@@ -139,10 +137,9 @@ def test_both_pings_send_only_what_their_push_changed():
 
 def test_a_hand_push_leaves_out_what_the_runs_own_ping_already_sent(tmp_path):
     """The scheduled run pings its verification commit itself, and that push
-    starts no workflow, so the next hand push counts from an older ping: on
-    2026-09-27 ab9ea18 sent the same 167 pages 8b89fd5's own ping had sent
-    twenty minutes before. What a verification commit between the two changed
-    is left out — what the hand commits around it changed is not."""
+    starts no workflow, so the next hand push counts from an older ping. What a
+    verification commit in between changed is left out; what the hand commits
+    around it changed is not."""
     import json
     import subprocess
     from freetier_radar.indexnow import changed_since

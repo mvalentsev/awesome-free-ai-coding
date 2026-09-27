@@ -394,7 +394,7 @@ def test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows():
     """CONTRIBUTING: "an exclusion most vendors share sets no row apart". The
     shared set is the embargoes a sanctions clause covers unnamed; a country
     most live rows leave out in their own words would belong beside them, and
-    the day one does, this says so."""
+    this fails when one does."""
     from freetier_radar.models import is_archived, load_registry
     live = [e for e in load_registry(ROOT / "registry.yaml") if not is_archived(e, TODAY)]
     counts: dict[str, int] = {}
@@ -408,9 +408,9 @@ def test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows():
 
 
 def test_the_registry_writes_a_border_as_it_was_recorded_and_no_longer(tmp_path):
-    """Google's allow-list is 230 codes: one a line made the border longer than
-    the row it belongs to. Its lists are written as wrapped lines, and the
-    defaults every row shares are left out."""
+    """A border's lists are written as wrapped lines — Google's allow-list is 230
+    codes, and one a line would outgrow the row — and the defaults every row
+    shares are left out."""
     from freetier_radar.models import load_registry, save_registry
     path = tmp_path / "registry.yaml"
     rows = [bordered(served=sorted(COUNTRIES)[:40], quote="available in the following"),

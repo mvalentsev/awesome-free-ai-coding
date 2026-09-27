@@ -67,11 +67,9 @@ def test_a_long_offer_is_cut_at_a_word_and_the_link_always_survives():
 
 
 def test_a_post_names_the_free_models_from_the_log_and_still_fits():
-    """A new row's post carried its models only where `offering` listed them,
-    and on 2026-09-26 the rule gave the models to the Models line alone — so
-    the post names them from the history line, as a change of models already
-    did. A row of dozens, AIHubMix's thirty-five, names as many as fit and how
-    many more, since the link is never the part that gives way."""
+    """A post names the free models from the history line, as `offering` names
+    none. A row of dozens names as many as fit and how many more: the link is
+    never the part that gives way."""
     by_id = {"x": entry()}
     added = compose(event(EventType.ADDED, models=["kimi-k3", "glm-5.3"]), by_id)
     assert "Free models: kimi-k3, glm-5.3" in added and "Free inference on open models" in added
@@ -86,9 +84,9 @@ def test_a_post_names_the_free_models_from_the_log_and_still_fits():
 
 
 def test_link_facets_use_utf8_byte_offsets():
-    """Bluesky addresses rich text by byte, not by character; a dash before the
-    URL is three bytes, and an offset counted in characters would point the
-    facet one character short and leave the link dead."""
+    """Bluesky addresses rich text by UTF-8 byte, not by character: the dash
+    before the URL is one character and three bytes, so offsets counted in
+    characters would put the facet two bytes early."""
     text = "New — https://example.org/p/ · done"
     facets = link_facets(text)
     assert len(facets) == 1

@@ -49,8 +49,8 @@ def test_entry_validates():
 
 
 def test_blind_page_probe_is_rejected():
-    """Generic words alone outlive the offer — mimo-code kept passing on a
-    README that still advertised a channel the client had already cut off."""
+    """Generic words alone outlive the offer: a page that still advertises a
+    channel the vendor has cut off goes on matching them."""
     blind = {**sample_entry(), "probe": {"type": "page-keywords",
                                          "endpoint": "https://x.ai/pricing",
                                          "keywords": ["free", "no credit card required"]}}
@@ -85,10 +85,9 @@ def test_an_anchor_dies_with_the_offer(keyword):
     "get started for free today",
 ])
 def test_page_furniture_is_not_an_anchor(keyword):
-    """Every one of these was live in the registry, on a page that would keep
-    serving them for months after the free tier was withdrawn — `hobby` and
-    `free quota` outlive any offer, and the first version of the rule only
-    caught the handful of phrases listed verbatim in GENERIC_KEYWORDS."""
+    """What a page keeps serving for months after its free tier is withdrawn —
+    `hobby`, `free quota` — is furniture, whether or not GENERIC_KEYWORDS
+    lists it."""
     assert not is_anchor(keyword)
 
 
@@ -105,11 +104,9 @@ def test_a_weak_anchor_is_rejected_even_when_it_is_not_a_listed_generic():
 
 
 def test_a_delisted_row_keeps_the_probe_it_was_published_with():
-    """A row taken off the list stays in the registry as the record of what the
-    list once published, and on its first day the list published probes
-    anchored on the bare word "free". No probe reads a delisted row, so the
-    anchor rule — a rule about what may keep a live row live — has nothing
-    left to protect there; rewriting the old keywords would falsify the record."""
+    """A delisted row is the record of what the list once published, probe
+    included, and no probe reads it, so the anchor rule does not hold there:
+    rewriting its old keywords would falsify the record."""
     seed = {**sample_entry(), "probe": {"type": "page-keywords", "endpoint": "https://x.ai",
                                         "keywords": ["free"]}}
     with pytest.raises(ValidationError):
@@ -119,15 +116,15 @@ def test_a_delisted_row_keeps_the_probe_it_was_published_with():
 
 
 def test_a_delisting_says_why():
-    """The reason is what the Archive shows beside the row. A delisting without
-    one is a row that vanished with extra steps."""
+    """The reason is what the Archive shows beside the row, so a blank one is
+    refused."""
     with pytest.raises(ValidationError):
         Entry.model_validate({**sample_entry(), "delisted": {"on": date(2026, 7, 19), "reason": "  "}})
 
 
 def test_zero_price_flag_belongs_to_a_models_api():
-    """A pricing page publishes no machine-readable prices, so the flag would sit
-    there doing nothing — silent for a check whose job is to catch a price."""
+    """A pricing page publishes no machine-readable prices, so the flag there
+    would check nothing."""
     misplaced = {**sample_entry(), "probe": {"type": "page-keywords",
                                              "endpoint": "https://x.ai/pricing",
                                              "keywords": ["solar-mini", "free"],
@@ -140,10 +137,9 @@ def test_zero_price_flag_belongs_to_a_models_api():
 
 
 def test_ignored_ids_belong_beside_a_price_list():
-    """Same reasoning as require_zero_price: the list is read where the probe
-    compares a catalog's zero-priced rows with api.model_ids and nowhere else.
-    On a page probe, or on a catalog whose prices are not read, it would sit in
-    the registry recording a decision nothing ever acts on."""
+    """`api.ignored_ids` is read only where the probe compares a catalog's
+    zero-priced rows with api.model_ids; on a page probe, or on a catalog whose
+    prices are not read, nothing would act on it."""
     on_a_page = {**sample_entry(),
                  "probe": {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
                            "keywords": ["solar-mini", "free"]},
@@ -171,9 +167,7 @@ def test_an_id_is_listed_or_ignored_never_both():
 
 
 def test_ignored_ids_are_written_only_where_set(tmp_path: Path):
-    """Every api block in the registry already carries model_ids and note, empty
-    or not. A list that means something on eight rows should not add a blank
-    line to the other twenty-six."""
+    """A list that means something on a few rows adds no line to the others."""
     p = tmp_path / "registry.yaml"
     plain = Entry.model_validate({**sample_entry(), "api": {"base_url": "https://api.x.ai/v1"}})
     save_registry(p, [plain])
@@ -209,10 +203,9 @@ def test_a_catalog_url_belongs_to_a_page_probe_with_ids_to_check():
 
 
 def test_a_lane_belongs_to_an_api_models_probe():
-    """A lane is the key of a JSON document whose array is read as the catalog. A
-    page-keywords probe reads the response as text, so there the field would sit
-    in the registry doing nothing — the silence the other probe validators
-    refuse."""
+    """A lane is the key of a JSON document whose array is read as the catalog; a
+    page-keywords probe reads the response as text, so there the field would do
+    nothing."""
     on_a_page = {**sample_entry(), "probe": {"type": "page-keywords",
                                              "endpoint": "https://x.ai/pricing",
                                              "keywords": ["solar-mini", "free"],
@@ -230,11 +223,10 @@ CLIENT_LANE_PROBE = {"type": "api-models", "endpoint": "https://api.x.ai/api/v1/
 
 def test_a_lane_served_only_inside_the_vendor_s_client_records_its_ids_in_client_lane(
         tmp_path: Path):
-    """Cline's free models are picked inside Cline — "Free model usage is not
-    supported through the Cline API" — so the row has no endpoint to paste and
-    no `api` block, and until 2026-09-25 nothing recorded which ids its lane
-    carried: the run could not say one arrived and freetier-bars could not date
-    it. A row with no such lane writes nothing."""
+    """A lane served only inside the vendor's client (Cline's free models) has no
+    endpoint to paste and no `api` block, so `client_lane` records its ids, for
+    the run to notice an arrival and freetier-bars to date it. A row with no
+    such lane writes nothing."""
     p = tmp_path / "registry.yaml"
     row = Entry.model_validate({
         **sample_entry(), "category": "agent-cli", "probe": CLIENT_LANE_PROBE,
@@ -311,9 +303,7 @@ CREDIT_PAGE = {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
 def test_a_sum_to_spend_names_no_model():
     """A signup credit, a grant of tokens every model draws on, an allowance at
     each model's own price: no model is free by itself, so the column names
-    none. Until 2026-09-25 the rule lived in CONTRIBUTING alone, and the pass
-    that applied it by reading rows left three naming the models their
-    credit is spent on — Inception's, Sail Research's and Sarvam's."""
+    none."""
     credit = {**sample_entry(), "probe": CREDIT_PAGE, "free_part": "sum"}
     with pytest.raises(ValidationError, match="sum to spend"):
         Entry.model_validate(credit)
@@ -333,8 +323,8 @@ def test_a_free_part_the_vendor_names_no_model_for_names_none_here():
 def test_a_lane_the_probe_reads_free_is_models_whatever_else_the_row_offers():
     """A probe that reads each model's own free mark — a zero price, a free
     marker, a lane key, a free list — is reading free models, so the row's free
-    part cannot be a sum or unnamed: Vercel's $5 a month sits beside three
-    models it prices at zero, and those three are the column."""
+    part cannot be a sum or unnamed: Vercel's $5 a month sits beside models it
+    prices at zero, and those are the column."""
     marked = {**sample_entry(), "models": []}
     laned = {**sample_entry(), "models": [], "category": "agent-cli",
              "probe": CLIENT_LANE_PROBE, "client_lane": {"model_ids": ["cline-free/a-1"]}}
@@ -384,12 +374,10 @@ def test_an_earlier_record_of_a_free_id_is_one_the_lane_lists(tmp_path: Path):
 
 
 def test_a_page_rows_newcomer_is_dated_by_a_record_where_no_lane_dates_it(tmp_path: Path):
-    """Freebuff's hour table and opencode's Zen page name their free models on a
-    page, with no ids for a lane to list, so until 2026-09-27 the two weeks each
-    newcomer waits for the Models column were counted in a maintainer's notes. A
-    page row of free models names the family it will join as, the first day a
-    record shows it free, and the record; a row with a lane dates its ids there,
-    and a sum names no model at all."""
+    """A page row of free models has no ids for a lane to list (Freebuff's hour
+    table, opencode's Zen page), so `newcomers` names the family a model will
+    join as, the first day a record shows it free, and the record. A row with a
+    lane dates its ids there, and a sum names no model at all."""
     page = {**sample_entry(), "free_part": "models",
             "probe": {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
                       "keywords": ["one million free tokens"]}}
@@ -436,8 +424,8 @@ def test_a_watch_verdict_covers_subdomains_and_every_spelling(tmp_path: Path):
 
 
 def test_a_watch_verdict_expires_instead_of_burying_the_service(tmp_path: Path):
-    """The whole difference between this file and blocklist.yaml. A verdict that
-    kept suppressing forever would be a blocklist entry with softer wording."""
+    """A watch verdict expires after WATCH_RECHECK_DAYS, which is what sets it
+    apart from a blocklist entry."""
     path = tmp_path / "watchlist.yaml"
     save_yaml(path, {"watched": [watched(checked_on="2026-05-01")]})
     wl = load_watchlist(path)
@@ -462,9 +450,9 @@ def read_source(**kw) -> dict:
 
 
 def test_a_source_verdict_expires_so_a_list_gets_re_read(tmp_path: Path):
-    """watchlist.yaml's clock, one level up. A list that carried nothing in
-    August can be carrying a provider by February, and nobody re-opens a file
-    of verdicts on their own."""
+    """A source verdict expires like a watch verdict: a list that carried nothing
+    can start carrying a provider, and nobody reopens a file of verdicts
+    unprompted."""
     path = tmp_path / "sources.yaml"
     save_yaml(path, {"read": [read_source(checked_on="2026-05-01")]})
     (source,) = load_sources(path)
@@ -484,10 +472,9 @@ def test_a_missing_sources_file_is_an_empty_one(tmp_path: Path):
 
 
 def test_known_domains_covers_where_an_entry_is_actually_reached():
-    """NVIDIA is the case that made this a function. The registry reaches it at
-    build.nvidia.com while models.dev lists integrate.api.nvidia.com, and a
-    known-domain set built from the url alone reported our own entry as a new
-    lead. An entry is known at every host it publishes."""
+    """An entry is known at every host it publishes — url, source urls and API
+    base — since a catalog may list it at another one (NVIDIA's row is at
+    build.nvidia.com, models.dev lists integrate.api.nvidia.com)."""
     e = Entry.model_validate({
         **sample_entry(),
         "url": "https://build.nvidia.com",
@@ -505,12 +492,9 @@ def test_known_domains_of_an_entry_without_an_api_block():
 
 
 def test_known_domains_names_the_owner_on_a_host_many_owners_share():
-    """Copilot's row lives at github.com/features/copilot, so github.com was a
-    known domain — and every hit the scout's GitHub search returns is a
-    repository on github.com. Measured 2026-09-14: five repository hits for the
-    five discovery queries, none of them kept. On a host that serves anyone's
-    repository, what the registry knows is the owner, and a raw file is the
-    same owner's."""
+    """On a host that serves anyone's repository, what the registry knows is the
+    owner, and a raw file is the same owner's: a row at github.com/features
+    does not cover every repository the scout's GitHub search returns."""
     e = Entry.model_validate({
         **sample_entry(),
         "url": "https://github.com/features/copilot",
@@ -523,8 +507,7 @@ def test_known_domains_names_the_owner_on_a_host_many_owners_share():
 
 
 @pytest.mark.parametrize("url, known, covered", [
-    # A vendor proposed back at another of its own hosts: nvidia-nim-free and
-    # zai-free reached a live probe on 2026-09-14 that way.
+    # A vendor proposed back at another of its own hosts.
     ("https://api.z.ai/api/paas/v4", {"z.ai"}, True),
     ("https://nvidia.com/en-us/ai/", {"build.nvidia.com"}, True),
     ("https://www.x.ai/pricing", {"x.ai"}, True),
@@ -545,10 +528,9 @@ def test_a_url_is_covered_by_the_vendor_whose_host_or_repository_it_is(url, know
 
 def test_a_session_header_is_a_header_name_on_a_row_with_an_endpoint():
     """`api.session_header` names the header in which a vendor wants a stable id
-    for each conversation — opencode Zen's x-opencode-session, without which
-    its free ids have answered 400 MissingSessionID since 2026-09-07. It is
-    read as a header name wherever the list tells a reader how to connect, so
-    it has to be one, and it says how to call a base URL, so the row needs one."""
+    for each conversation (opencode Zen's x-opencode-session). It is printed as
+    a header name wherever the list tells a reader how to connect, so it has to
+    be one, and it says how to call a base URL, so the row needs one."""
     d = sample_entry()
     d["api"] = {"base_url": "https://x.ai/v1", "session_header": "x-opencode-session"}
     assert Entry.model_validate(d).api.session_header == "x-opencode-session"
@@ -578,12 +560,9 @@ def test_anthropic_base_url_is_the_base_claude_code_appends_to():
 
 def test_a_notice_is_a_dated_word_to_readers_about_a_lane():
     """`api.notice` is the list saying, in its own voice, that a lane it publishes
-    does not work as published right now while it waits for the vendor to say
-    why — opencode Zen started refusing every client but OpenCode on 2026-09-17
-    with no word from OpenCode. It is dated, because a note like this must be
-    able to go stale; it links where the problem is followed, and a link a reader
-    clicks from the README has to be https; and it speaks about a base URL, so
-    the row needs one."""
+    does not work as published right now. It is dated, so it can go stale; its
+    text is not blank; its link, clicked from the README, is https; and it
+    speaks about a base URL, so the row needs one."""
     d = sample_entry()
     d["api"] = {"base_url": "https://x.ai/v1", "auth": "none", "notice": {
         "since": "2026-09-17", "text": "Every client but the vendor's own is refused.",
@@ -643,13 +622,11 @@ def test_a_lane_that_wants_the_client_s_own_user_agent_says_so_on_a_row_with_an_
 
 
 def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_prints_it():
-    """LLM Tech's quickstart prints "a shared free trial key" for anyone to call
-    its lane with, so a reader needs no account — only the key the vendor hands
-    everyone. It is sent as a bearer token, so the lane is a keyed one (a lane
-    with auth none has no key to publish); it needs key_url, the vendor's page
-    that prints it, because that page is what makes it the vendor's key and not
-    a shared one; and the run calls the lane with it on the first of model_ids,
-    so there has to be one."""
+    """`api.public_key` is the key a vendor prints for anyone to call its lane
+    with (LLM Tech's "shared free trial key"). It is sent as a bearer token, so
+    the lane is keyed; key_url is the vendor's page that prints it, which is
+    what makes it the vendor's key; and the run calls the first of model_ids
+    with it, so there has to be one."""
     d = sample_entry()
     api = {"base_url": "https://x.ai/v1", "key_url": "https://x.ai/docs",
            "model_ids": ["m-1"], "public_key": "lt-trial-123"}
@@ -668,9 +645,8 @@ def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_pr
 
 def test_refusing_a_bearer_token_is_said_of_a_keyless_lane_only():
     """A keyed lane is always called with a bearer token, so a lane that refuses
-    one can only be a keyless lane: OVHcloud's anonymous lane answers "Bearer
-    none" with 403 and a bare call with 200 (2026-09-21). It is written only
-    where set."""
+    one can only be keyless (OVHcloud's anonymous lane answers "Bearer none"
+    with 403 and a bare call with 200). It is written only where set."""
     d = sample_entry()
     d["api"] = {"base_url": "https://x.ai/v1", "auth": "none", "refuses_bearer": True}
     entry = Entry.model_validate(d)
@@ -725,13 +701,10 @@ def test_a_probe_that_follows_an_index_names_a_field_and_reads_a_page():
 
 
 def test_a_row_folded_into_another_keeps_its_id_and_names_the_row_that_holds_it():
-    """Two rows named one project for two months: MiMoCode, a placeholder from
-    the list's first day at a domain that has never resolved, and MiMo Code,
-    Xiaomi's agent, whose own README prints the name as one word. A row is
-    never deleted, so the second one keeps its id — the id is its page's URL —
-    and `duplicate_of` names the row that holds the service. Folding is a
-    reviewer's decision, so the row carries the delisting that says why, and no
-    row is folded into itself."""
+    """A row is never deleted, so a row folded into another keeps its id — the id
+    is its page's URL — and `duplicate_of` names the row that holds the service.
+    Folding is a reviewer's decision, so the row carries the delisting that says
+    why, and no row is folded into itself."""
     d = {**sample_entry(), "id": "mimocode", "duplicate_of": "mimo-code"}
     with pytest.raises(ValidationError, match="delisted"):
         Entry.model_validate(d)
@@ -754,10 +727,8 @@ def test_folded_into_is_the_row_the_registry_holds_the_service_under():
 
 def test_an_id_is_the_most_specific_family_that_names_it():
     """`family_names` reads a family as a substring of the squashed id, so
-    `glm-5` names coding-glm-5.2-free and `glm-5.3` names zai-org/GLM-5.3-Flash.
-    On a row that carries both, the id is the longer family's: the glm-5 page
-    offered all six of AIHubMix's GLM ids until 2026-09-26, and a catalog could
-    go on vouching for glm-5 with glm-5.2's id after glm-5's own had left."""
+    `glm-5` names coding-glm-5.2-free and `glm-5.3` names zai-org/GLM-5.3-Flash;
+    among a row's families, an id is the most specific one's (see `id_family`)."""
     families = ["glm-5", "glm-5.2", "glm-5.3", "glm-5.3-flash"]
     assert id_family(families, "coding-glm-5.2-free") == "glm-5.2"
     assert id_family(families, "zai-org/GLM-5.3-Flash") == "glm-5.3-flash"

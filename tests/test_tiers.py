@@ -61,8 +61,7 @@ def test_a_page_with_no_scored_table_is_an_error_not_an_empty_index():
 
 
 def test_the_top_of_the_index_counts_current_models_only():
-    """A deprecated model scoring higher would set a bar nothing current can
-    reach, which is how a tier stops meaning anything."""
+    """A deprecated model scoring higher would set a bar nothing current can reach."""
     assert index_top(parse_leaderboard(page())).slug == "claude-fable-5-1"
 
 
@@ -75,12 +74,9 @@ def test_a_tier_is_how_close_the_lane_s_model_scores_to_the_top():
 
 
 def test_below_the_strong_bar_the_upper_half_of_the_index_is_notable():
-    """A model below the strong bar can still be one readers come looking for:
-    on 2026-09-26 the top was Claude Opus 5.5 at 57.6, and Claude Opus 4.6
-    (26.4), Claude Sonnet 4.6 (24.7) and Gemini 3.5 Flash (32.6, a hair under
-    the bar) each had no page. `notable` is a score at or above the median of
-    the current models the index scores — its upper half — and below that no
-    tier at all, so the weakest models a catalog lists stay marks-free."""
+    """Below the strong bar, a score at or above the median of the current models
+    is `notable` and one below it has no tier: a model readers still look for
+    gets a page, and a catalog's weakest models stay unmarked."""
     top, median = 57.6, 13.2
     assert measured_tier(26.4, top, median) is Tier.NOTABLE
     assert measured_tier(median, top, median) is Tier.NOTABLE
@@ -125,9 +121,8 @@ def test_review_says_which_marks_the_index_no_longer_backs():
 
 @respx.mock
 async def test_write_re_marks_every_row_that_carries_the_family(tmp_path: Path, capsys):
-    """One tier per family, so a mark that moves moves on every row at once —
-    and a family the board no longer knows keeps its mark and fails the run,
-    because a guess is not a measurement."""
+    """A family carries one tier, so --write moves a mark on every row that carries
+    the family; a run without --write only reports the move, and fails."""
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
     registry = tmp_path / "registry.yaml"
     save_registry(registry, [
@@ -151,11 +146,8 @@ async def test_write_re_marks_every_row_that_carries_the_family(tmp_path: Path, 
 @respx.mock
 async def test_a_row_that_disagrees_with_the_measurement_moves_whatever_the_file_order(
         tmp_path: Path):
-    """A new row carrying a family the registry already measured came in with no
-    tier on 2026-09-21 (Dahl Inference, deepseek-v4-flash), and the review read
-    the family's mark off the first row in the file — which agreed with the
-    board — so --write left the new row bare and freetier-check refused the
-    registry: one family, two marks. Any row off the measurement moves it."""
+    """Any row whose mark is off the measurement moves the family, wherever it sits
+    in the file: a new bare row beside an older, correct one is re-marked too."""
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
     registry = tmp_path / "registry.yaml"
     save_registry(registry, [
@@ -171,13 +163,9 @@ async def test_a_row_that_disagrees_with_the_measurement_moves_whatever_the_file
 
 
 def test_a_new_model_the_board_scores_is_named_for_the_reviewer():
-    """A family added with no aa_model carries no tier, and until 2026-09-26
-    nothing said so: a new strong model stayed off the strong list, and off a
-    page of its own while one row served it, until someone remembered. The
-    review names every family no row measures whose name, read the way the
-    board spells a slug — a hyphen for a dot — is a model the board scores.
-    Only a slug the board lists is offered, never a guess, and the reviewer
-    names the variant the lane serves."""
+    """The review names each family no row measures whose name, spelled as a slug
+    (a hyphen for a dot), is a model the board scores into a tier: only a listed
+    slug is offered, never a guess."""
     from freetier_radar.tiers import unmeasured
     entries = [
         entry("a", {"family": "glm-5.3"}, {"family": "gemini-3.8-flash", "aa_model": "gemini-3-8-flash"},
@@ -209,13 +197,9 @@ def test_the_reviewer_is_told_of_a_model_that_would_be_notable():
 
 @respx.mock
 async def test_write_measures_a_bare_family_the_board_scores_by_its_own_name(tmp_path: Path, capsys):
-    """A new model reaches the list bare, and until 2026-09-26 its mark waited
-    for a reviewer to name its aa_model: the frontier would not follow the
-    index as models came out. Where the board scores a model of exactly the
-    family's name — the model's own page, which CONTRIBUTING reads where the
-    lane names no variant — --write names it on every row that carries the
-    family and marks it; a lane serving another variant is named by hand, and
-    a model below every bar is left as it is."""
+    """Where the board scores a model of exactly a bare family's name, --write names
+    that slug on every row carrying the family and marks it, so marks follow the
+    index without a reviewer; a model below every bar is left bare."""
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
     registry = tmp_path / "registry.yaml"
     gone = entry("gone", {"family": "glm-5.3"})
@@ -238,11 +222,9 @@ async def test_write_measures_a_bare_family_the_board_scores_by_its_own_name(tmp
 
 @respx.mock
 async def test_write_keeps_every_score_it_read_for_the_readme_to_draw(tmp_path: Path):
-    """The README draws the strong models against the top of the index, and the
-    render reads no network, so --write keeps what it read: the day, the top,
-    the median and the score of every family measured — on every run, a mark
-    moved or not, since a score can move inside its tier. A report run keeps
-    nothing."""
+    """--write keeps what it read for the render, which reads no network: the day,
+    the top, the median and every measured family's score, on every run; a report
+    run keeps nothing."""
     respx.get(LEADERBOARD_URL).mock(return_value=httpx.Response(200, text=page()))
     registry, scores = tmp_path / "registry.yaml", tmp_path / "scores.json"
     save_registry(registry, [

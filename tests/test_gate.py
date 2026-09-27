@@ -86,8 +86,8 @@ def test_a_message_git_can_show_passes(text):
 
 
 def test_a_subject_that_swallowed_the_body_is_refused():
-    """ccac77a's subject ran on into its first paragraph: no blank line, and
-    main refuses the force push that could have fixed it."""
+    """Without a blank second line git reads the paragraph as part of the
+    subject, and main refuses the force push that could fix it afterwards."""
     assert message_problems("feat: a subject\nthat runs on\n") == [
         "the second line of the message is not blank — git would read the paragraph as part "
         "of the subject"]
@@ -157,9 +157,9 @@ def test_a_commit_on_main_appends_the_lines_its_render_records(tmp_path):
 
 
 def test_a_history_line_no_render_wrote_is_refused(tmp_path):
-    """Appending is what the render does on every commit now, so on main an
-    appended line is held to the change it records: a line typed by hand,
-    for a change the registry never made, is refused."""
+    """The render appends the history on every commit, so on main an appended
+    line is held to the change it records: a line typed by hand, for a change
+    the registry never made, is refused."""
     repo = _history_repo(tmp_path)
     with (repo / "history.jsonl").open("a", encoding="utf-8") as fh:
         fh.write(_line("archived", "x", detail="gone"))
@@ -219,11 +219,9 @@ def test_the_scheduled_run_holds_what_it_is_about_to_commit_to_the_same_rule(tmp
 
 
 def test_a_push_is_checked_from_the_commit_its_owner_ratified(tmp_path, monkeypatch):
-    """A rewrite the gate refuses to everyone — the log rebuilt from main's own
-    history, a first_seen typed to the day a row really arrived — is made once,
-    with the hooks off, by the repository's owner, and named in RATIFIED by the
-    commit after it. A push or a CI run that meets it checks from it on; the
-    commits after it are held as ever."""
+    """A push or a CI run that meets a commit named in `gate.RATIFIED` checks the
+    logs and the earned fields from it on, and holds the commits after it as
+    ever."""
     from freetier_radar import gate
     from freetier_radar.gate import pre_push
 
@@ -295,10 +293,9 @@ def test_the_commit_msg_hook_exits_non_zero_on_a_bad_message(tmp_path, capsys):
 
 
 def test_each_check_fails_on_a_snapshot_it_should_refuse(tmp_path):
-    """The first version called the render as `python -m freetier_radar.render`,
-    which runs nothing in a module with no `__main__` guard and exits 0: a hand
-    edit of the README passed the gate. Each step is run here on a copy of the
-    repository with a hand-edited README, and the render's step has to say so."""
+    """A step that runs nothing exits 0 and passes everything — as `python -m`
+    does on a module with no `__main__` guard — so the render's step is run on a
+    copy of the repository with a hand-edited README and has to report it."""
     import shutil
     from freetier_radar.gate import CHECKS
     from freetier_radar.layout import tracked_files
