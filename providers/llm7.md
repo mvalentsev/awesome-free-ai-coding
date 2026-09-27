@@ -23,7 +23,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models are fast models available to anonymous and free-token users" — though two turbo rows marked usage_based_only, DeepSeek V4 Flash and Gemini 3.1 Flash Lite, answered a keyless call with 401 `Missing API key.` The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-16
+The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models are fast models available to anonymous and free-token users" — though the turbo row marked usage_based_only, DeepSeek V4 Flash, answered a keyless call with 401 `Missing API key.`, and Gemini 3.1 Flash Lite, turbo on 2026-09-16, is in the pro tier by 2026-09-27. The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-16
 
 ## Where it is offered
 
@@ -34,7 +34,7 @@ The vendor names no country it keeps the offer from ([source](https://github.com
 - Base URL: `https://api.llm7.io/v1`
 - Key: none — the lane is anonymous
 - Callable ids: `GLM-5.3-Flash`, `minimax-m2.7`, `codestral-latest`, `mistral-Nemo-Instruct-2407`
-- Note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite need a token. The four stay out of the Models column: the limits page the probe reads names no model, and the catalog that marks the turbo tier prices every row for balance accounting
+- Note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 needs a token. The four stay out of the Models column: the limits page the probe reads names no model, and the catalog that marks the turbo tier prices every row for balance accounting
 
 Try it from your terminal — the lane takes no key:
 

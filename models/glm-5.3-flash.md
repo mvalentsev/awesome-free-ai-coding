@@ -49,7 +49,7 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 - Base URL: `https://freeinference.org/v1`
 - Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
-- Callable ids: the row lists none for this model
+- Callable ids: `glm-5.3-flash`
 
 ## Rows that listed it before
 

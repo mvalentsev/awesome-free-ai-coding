@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gpt-oss-20b free: 3 providers, limits and ids, verified 2026-09-24'
-description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com) and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'gpt-oss-20b free: 4 providers, limits and ids, verified 2026-09-24'
+description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-oss-20b/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: gpt-oss-20b
 ---
 
@@ -11,7 +11,7 @@ crumb: gpt-oss-20b
 
 # Where gpt-oss-20b is free
 
-**3 rows on the list serve `gpt-oss-20b` free:** Groq, NVIDIA NIM (build.nvidia.com) and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**4 rows on the list serve `gpt-oss-20b` free:** Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,7 +23,7 @@ crumb: gpt-oss-20b
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
-- Limits, in the vendor's words: Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
+- Limits, in the vendor's words: Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-27). Those ten rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. The deprecations page retired qwen/qwen3.6-27b on 2026-09-14 "in favor of qwen/qwen3.8-27b", noting "This deprecation applies to free and developer-tier usage", and groq/compound and compound-mini on 09-21. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
 - Base URL: `https://api.groq.com/openai/v1`
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
 - Callable ids: `openai/gpt-oss-20b`
@@ -40,6 +40,18 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
 - Callable ids: `openai/gpt-oss-20b`
 - What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
+
+### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
+
+🎁 Trials (no card when possible) · no card · verified 2026-09-24 · listed since 2026-09-27
+
+EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
+
+- Limits, in the vendor's words: "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
+- Base URL: `https://api.regolo.ai/v1`
+- Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
+- Callable ids: `gpt-oss-20b`
+- What you send is not used to train models ([the vendor's words](https://regolo.ai/faq/)).
 
 ### [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/)
 

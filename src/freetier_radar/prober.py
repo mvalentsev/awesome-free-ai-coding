@@ -988,7 +988,12 @@ def _is_withdrawn(model: dict) -> bool:
     `outdated` is deliberately not read. The same catalog sets it on eight models
     that are `available: true` and callable — a model's age is is_model_stale's
     question, and answering it here would fail live entries over it.
+
+    A retirement date the row itself carries is read, once the day has come:
+    see _retired_on.
     """
+    if _retired_on(model) is not None:
+        return True
     value = model.get("available", True)
     if isinstance(value, bool):
         return not value
@@ -997,6 +1002,41 @@ def _is_withdrawn(model: dict) -> bool:
     if isinstance(value, str):
         return value.strip().lower() in ("false", "no", "off", "0")
     return False
+
+
+# Where a catalog dates the end of a row itself: Requesty's `retires`, a Unix
+# time, and OpenRouter's and Kilo's `expiration_date`, a day.
+RETIREMENT_FIELDS = ("retires", "expiration_date")
+
+
+def _retired_on(model: dict, today: date | None = None) -> date | None:
+    """The day a catalog row says it retired, once that day has come — or None.
+
+    Requesty keeps a row in its catalog after the day the row says it retires:
+    on 2026-09-27 poolside/laguna-xs.2 and laguna-m.1 still sat there at a price
+    of 0 with `"retires": 1789948800` (2026-09-21), and a check that read only
+    `available` kept vouching for both. A date still to come is notice, not a
+    withdrawal: the id answers until then, and the two-week bar already keeps an
+    id dated to end from joining the Models column."""
+    today = today or datetime.now(timezone.utc).date()
+    for key in RETIREMENT_FIELDS:
+        value = model.get(key)
+        if isinstance(value, bool):
+            continue
+        if isinstance(value, (int, float)) and value > 0:
+            day = datetime.fromtimestamp(value, timezone.utc).date()
+        else:
+            day = _utc_day(value)
+        if day is not None and day <= today:
+            return day
+    return None
+
+
+def _withdrawn_note(model: dict) -> str:
+    """A withdrawn row as a run report names it: with the day it retired, where
+    the catalog dates that itself."""
+    retired = _retired_on(model)
+    return f"{_model_id(model)} retired on {retired}" if retired else _model_id(model)
 
 
 def _price_note(model: dict, listed: bool = False) -> str:
@@ -1224,7 +1264,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         # row has started billing.
         live = [m for m in matches if not _is_withdrawn(m)]
         if not live:
-            withdrawn.append(", ".join(_model_id(m) or family.family for m in matches[:3]))
+            withdrawn.append(", ".join(_withdrawn_note(m) or family.family for m in matches[:3]))
             continue
         # Presence in the catalog is not the offer: an aggregator can leave a
         # free model's id exactly where it was and start charging for it, and a
@@ -1523,6 +1563,8 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
         model = catalog.get(wanted)
         if model is None:
             dead.append(f"{wanted} is not in the catalog{_successor_hint(wanted, catalog)}")
+        elif _retired_on(model) is not None:
+            dead.append(f"{wanted} retired on {_retired_on(model)} by the catalog's own date")
         elif _is_withdrawn(model):
             dead.append(f"{wanted} is marked unavailable")
         elif entry.probe.require_zero_price and not _is_free(model):

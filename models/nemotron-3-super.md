@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3-super free: 6 providers, limits and ids, verified 2026-09-24'
 description: nemotron-3-super is served free by OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe…
 permalink: /models/nemotron-3-super/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: nemotron-3-super
 ---
 

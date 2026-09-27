@@ -408,7 +408,12 @@ refuses a connectable row whose column names families with no ids beside them.
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —
 where `require_zero_price` is set — priced 0; a dead id is reported as
-`stale-ids`, with any catalog id that reads like its successor. The same run
+`stale-ids`, with any catalog id that reads like its successor. Callable is the
+catalog's own word: a row it marks `available: false`, or one whose own
+retirement date has come — Requesty's `retires`, OpenRouter's and Kilo's
+`expiration_date` — is dead whatever its price says. Requesty kept
+poolside/laguna-xs.2 and laguna-m.1 at 0 for a week after the day both rows
+said they retired, 2026-09-21, and this list kept handing them out. The same run
 reports every zero-priced id the catalog carries that `model_ids` does not, so a
 lane that grows is visible without anyone re-reading the catalog. Both are notes
 for a human and never repairs: an id is an exact string, and whether a new one

@@ -342,6 +342,48 @@ async def test_a_free_id_the_catalog_marks_unavailable_is_fail():
     assert "marked unavailable" in result.detail and "qwen3-coder:free" in result.detail
 
 
+
+@respx.mock
+async def test_a_free_id_past_the_retirement_its_own_catalog_dates_is_withdrawn():
+    """Requesty keeps a row in its catalog after the day the same row says it
+    retires: on 2026-09-27 poolside/laguna-xs.2 and laguna-m.1 still sat there at
+    a price of 0 with `"retires": 1789948800`, 2026-09-21, and the row kept
+    handing both ids out, because the only verdict read was `available`. A
+    retirement date the catalog publishes, once it has come, is the vendor's
+    word that the id cannot be called — Requesty's Unix time, OpenRouter's and
+    Kilo's `expiration_date` day alike."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [
+            {"id": "qwen/qwen3-coder:free", "retires": 1789948800,
+             "pricing": {"prompt": "0", "completion": "0"}},
+            {"id": "qwen/qwen3-coder-next:free", "expiration_date": "2026-09-01",
+             "pricing": {"prompt": "0", "completion": "0"}},
+        ]}
+    ))
+    entry = zero_price_entry()
+    entry.api = ApiInfo(base_url="https://api.x.ai/v1",
+                        model_ids=["qwen/qwen3-coder:free", "qwen/qwen3-coder-next:free"])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "qwen/qwen3-coder:free retired on 2026-09-21" in result.detail
+    assert "qwen/qwen3-coder-next:free retired on 2026-09-01" in result.detail
+
+
+@respx.mock
+async def test_a_retirement_date_still_to_come_leaves_the_id_callable():
+    """A date ahead is notice, not a withdrawal: OpenRouter dates DeepSeek V3.2
+    to 2026-09-28 while it answers today, and the two-week bar already keeps a
+    free id that is dated to end from joining the column."""
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", "retires": 4102444800,
+                             "expiration_date": "2099-12-31",
+                             "pricing": {"prompt": "0", "completion": "0"}}]}
+    ))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
 @respx.mock
 async def test_a_withdrawn_row_does_not_vouch_for_a_family_that_now_bills():
     """The withdrawn row is the free one, the callable row is priced. Counting

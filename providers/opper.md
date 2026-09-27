@@ -23,7 +23,7 @@ EU-hosted gateway over 700+ models whose free models answer an account with no c
 
 ## Limits, in the vendor's words
 
-The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags five rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1 and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-17
+The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags six rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b (on 2026-09-27) and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-27
 
 ## Where it is offered
 
@@ -38,8 +38,8 @@ What you send is not used to train models. In the vendor's words: “Opper never
 - Base URL: `https://api.opper.ai/v3/compat`
 - Key: `OPPER_API_KEY` — get one at <https://platform.opper.ai/settings/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`
-- Callable ids: `gemini/gemma-4-31b`, `gemini/gemma-4-26b-moe`, `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`
-- Note: ids are four of the five rows the model directory flags free on 2026-09-17, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages
+- Callable ids: `gemini/gemma-4-31b`, `gemini/gemma-4-26b-moe`, `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`, `greenference/qwen3-14b`
+- Note: ids are five of the six rows the model directory flags free, greenference/qwen3-14b from 2026-09-27, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages
 
 Try it from your terminal with your key in `OPPER_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

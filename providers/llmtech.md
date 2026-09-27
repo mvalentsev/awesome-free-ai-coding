@@ -23,7 +23,7 @@ EU provider of one model whose quickstart prints a shared trial key for anyone: 
 
 ## Limits, in the vendor's words
 
-The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key "with no daily limit is issued the same day" by email, paid "Per token. No subscription, no minimums", and "it shares the endpoint's 64 requests in flight with other keys". The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context, tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27
+The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key "with no daily limit is issued the same day" by email, paid "Per token. No subscription, no minimums", and "it shares the endpoint's 64 requests in flight with other keys". The model is the NVFP4 build of Qwen3.8-27B — "the trial key allows 4 for everyone using it together and a context of 131,072 tokens. Other keys get the full 262,144." — with tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27
 
 ## Where it is offered
 
@@ -38,7 +38,7 @@ What you send is not used to train models. In the vendor's words: “We do not u
 - Base URL: `https://api.llmtech.eu/v1`
 - Key: `LLMTECH_API_KEY` — no account needed: the vendor prints one for anyone at <https://llmtech.eu/docs/>, `lt-trial-ba1ef28c6d32ed6980678d8d`
 - Callable ids: `nvidia/Qwen3.8-27B-NVFP4`
-- Note: reasoning is adaptive: `chat_template_kwargs: {"enable_thinking": false}` turns it off, and `reasoning_effort` takes low, medium or xhigh. Cline lists LLM Tech among its built-in providers; Claude Code "needs a translating proxy", LiteLLM in the vendor's own example
+- Note: since 2026-09-24 "Reasoning is off unless a request asks for it with reasoning_effort or enable_thinking", and `reasoning_effort` takes low, medium or xhigh. Cline lists LLM Tech among its built-in providers; Claude Code "needs a translating proxy", LiteLLM in the vendor's own example
 
 Try it from your terminal — the key is the vendor's printed one:
 
@@ -58,6 +58,7 @@ curl -s https://api.llmtech.eu/v1/chat/completions \
 - Source: <https://llmtech.eu/about/>
 - Source: <https://api.llmtech.eu/v1/models>
 - Source: <https://llmtech.eu/pricing/>
+- Source: <https://llmtech.eu/changelog/>
 
 ## History
 

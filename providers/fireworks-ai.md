@@ -23,7 +23,7 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The pricing page offers "Get started with $1 in free credits", and the billing FAQ says what happens to an account "Without payment method" when the dollar runs out: "Your account will be suspended until you add a payment method". Until then the account quotas put "No payment method or no credits" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits billing system". The dollar buys list prices, per 1M input and output tokens: DeepSeek V4.1 Flash $0.22 and $0.66, GLM 5.3 Flash $0.15 and $0.50, MiniMax M3 $0.30 and $1.20, Kimi K3 $3.00 and $15.00 — about 4.5M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-17
+The pricing page offers "Get started with $1 in free credits", and the billing FAQ says what happens to an account "Without payment method" when the dollar runs out: "Your account will be suspended until you add a payment method". Until then the account quotas put "No payment method or no credits" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits billing system". The dollar buys list prices, input / cached input / output per 1M tokens: "DeepSeek V4.1 Flash $0.30 / $0.006 / $1.20" from 2026-10-01 ("$0.22 / $0.007 / $0.66" until then, by the changelog), "GLM 5.3 Flash $0.15 / $0.03 / $0.50", "MiniMax M3 $0.30 / $0.06 / $1.20" and "Kimi K3 $3.00 / $0.30 / $15.00" — about 3.3M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-27
 
 ## Where it is offered
 
@@ -58,6 +58,7 @@ curl -s https://api.fireworks.ai/inference/v1/chat/completions \
 - Source: <https://docs.fireworks.ai/guides/quotas_usage/account-quotas>
 - Source: <https://docs.fireworks.ai/serverless/pricing>
 - Source: <https://docs.fireworks.ai/getting-started/quickstart>
+- Source: <https://docs.fireworks.ai/updates/changelog>
 
 ## History
 

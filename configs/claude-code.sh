@@ -16,7 +16,7 @@ claude-openrouter-free() {
 }
 
 # ── Requesty · get a key: https://app.requesty.ai/api-keys
-#    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-super-120b-a12b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, novita/inclusionai/ling-3.0-tiny, google/gemma-4-31b-it, poolside/laguna-xs.2, poolside/laguna-m.1, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b
+#    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-super-120b-a12b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, novita/inclusionai/ling-3.0-tiny, google/gemma-4-31b-it, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b
 claude-requesty() {
   ANTHROPIC_BASE_URL="https://router.requesty.ai" \
   ANTHROPIC_AUTH_TOKEN="$REQUESTY_API_KEY" \
@@ -66,7 +66,7 @@ claude-token-harbor() {
 }
 
 # ── Opper · get a key: https://platform.opper.ai/settings/api-keys
-#    free ids: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1
+#    free ids: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b
 claude-opper() {
   ANTHROPIC_BASE_URL="https://api.opper.ai/v3/compat" \
   ANTHROPIC_AUTH_TOKEN="$OPPER_API_KEY" \
@@ -96,12 +96,12 @@ claude-moark() {
 }
 
 # ── FreeInference (Harvard SEAS) · get a key: https://freeinference.org
-#    free ids: deepseek-v4-flash, qwen3.6-35b, diffusiongemma
+#    free ids: glm-5.3-flash, deepseek-v4-flash, qwen3.6-35b, diffusiongemma
 claude-freeinference() {
   ANTHROPIC_BASE_URL="https://freeinference.org/anthropic" \
   ANTHROPIC_AUTH_TOKEN="$FREEINFERENCE_API_KEY" \
   ANTHROPIC_API_KEY="" \
-  ANTHROPIC_MODEL="deepseek-v4-flash" \
+  ANTHROPIC_MODEL="glm-5.3-flash" \
   claude "$@"
 }
 

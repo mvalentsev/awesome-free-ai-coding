@@ -23,7 +23,7 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The quick start: "New accounts get a $25 signup credit (limited time), enough for millions of test calls on" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Concurrency counts deposits only, "a signup bonus of $25 and a deposit of $20 only counts as $20", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: "The specific model behind any given call can change between calls." The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-17
+The quick start: "New accounts get a $25 signup credit (limited time), enough for millions of test calls on" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Until a first deposit the credit is spent at a ceiling: "Free accounts have a daily request limit of 100 requests. Make your first deposit to lift all daily request limits." Concurrency counts deposits only, "a signup bonus of $25 and a deposit of $20 only counts as $20", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: "The specific model behind any given call can change between calls." The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-27
 
 ## Where it is offered
 

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Groq free tier: limits, free models, verified 2026-09-24'
-description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Free models: gpt-oss-120b, gpt-oss-20b, qwen3.6, qwen3.8-27b. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b,…'
+description: 'Fast inference against a free plan Groq publishes as a per-model rate table. Free models: gpt-oss-120b, gpt-oss-20b, qwen3.8-27b. Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b…'
 permalink: /providers/groq-free/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Groq
 ---
 
@@ -19,11 +19,11 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ## Free models
 
-[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
+[`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 
 ## Limits, in the vendor's words
 
-Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
+Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-27). Those ten rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. The deprecations page retired qwen/qwen3.6-27b on 2026-09-14 "in favor of qwen/qwen3.8-27b", noting "This deprecation applies to free and developer-tier usage", and groq/compound and compound-mini on 09-21. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
 
 ## Where it is offered
 
@@ -37,7 +37,7 @@ What you send is not used to train models. In the vendor's words: “For clarity
 
 - Base URL: `https://api.groq.com/openai/v1`
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
-- Callable ids: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.6-27b`, `qwen/qwen3.8-27b`
+- Callable ids: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.8-27b`
 - Note: the chat models Groq's own Free Plan Limits table names; its safeguard and prompt-guard classifiers, compound systems, whisper and orpheus rows are left out
 
 Try it from your terminal with your key in `GROQ_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -53,11 +53,13 @@ curl -s https://api.groq.com/openai/v1/chat/completions \
 
 - Probe: the page at <https://console.groq.com/docs/rate-limits>, anchored on `free plan limits`, `qwen/qwen3.8-27b`
 - Source: <https://console.groq.com/docs/rate-limits>
+- Source: <https://console.groq.com/docs/deprecations>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-27` — Free models changed: dropped qwen3.6
 - `2026-09-25` — Free models changed: added gpt-oss-120b, gpt-oss-20b; dropped gpt-oss
 - `2026-09-17` — Free models changed: added qwen3.8-27b; dropped qwen3.8
 - `2026-09-07` — Free models changed: added qwen3.8; dropped llama-3.3

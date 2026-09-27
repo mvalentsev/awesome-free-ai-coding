@@ -34,8 +34,8 @@ The vendor names no country it keeps the offer from ([source](https://freeinfere
 - Base URL: `https://freeinference.org/v1`
 - Key: `FREEINFERENCE_API_KEY` — get one at <https://freeinference.org>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://freeinference.org/anthropic`
-- Callable ids: `deepseek-v4-flash`, `qwen3.6-35b`, `diffusiongemma`
-- Note: the three ids are the chat rows the keyless catalog at freeinference.org/v1/models returned on 2026-09-05 (bge-m3, the fourth, is an embedding model); the docs mark four more chat ids Free, which stay out of the generated configs until a keyed read confirms them. The catalog's prices are upstream reference accounting, "not fees charged by FreeInference to users". The same key serves https://freeinference.org/anthropic, which the docs give as Claude Code's ANTHROPIC_BASE_URL
+- Callable ids: `glm-5.3-flash`, `deepseek-v4-flash`, `qwen3.6-35b`, `diffusiongemma`
+- Note: the four ids are the chat rows the keyless catalog at freeinference.org/v1/models returns on 2026-09-27, glm-5.3-flash among them since 2026-09-05 (bge-m3, the fifth, is an embedding model); the docs mark three more chat ids Free, which stay out of the generated configs until a keyed read confirms them. The catalog's prices are upstream reference accounting, "not fees charged by FreeInference to users". The same key serves https://freeinference.org/anthropic, which the docs give as Claude Code's ANTHROPIC_BASE_URL
 
 Try it from your terminal with your key in `FREEINFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -43,7 +43,7 @@ Try it from your terminal with your key in `FREEINFERENCE_API_KEY` — it goes f
 curl -s https://freeinference.org/v1/chat/completions \
   -H "Authorization: Bearer $FREEINFERENCE_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"deepseek-v4-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"glm-5.3-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Regolo AI free tier: limits, free models, verified 2026-09-24'
-description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b. "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access…'
+description: 'EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card. Free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b. "Start your 30-day free trial ... No credit card required, no commitment":…'
 permalink: /providers/regolo/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: Regolo AI
 ---
 
@@ -19,7 +19,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ## Free models
 
-[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `apertus-70b`
+[`glm-5.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/), [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/), `apertus-70b`, [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), `mistral-small-4`, [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/)
 
 ## Limits, in the vendor's words
 
@@ -37,8 +37,8 @@ What you send is not used to train models. In the vendor's words: “Zero Data R
 
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
-- Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `brick-v1-beta`
-- Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model
+- Callable ids: `glm5.2`, `gpt-oss-120b`, `qwen3.8-27b`, `apertus-70b`, `brick-v1-beta`, `gemma4-31b`, `gpt-oss-20b`, `mistral-small-4-119b`, `qwen3.5-122b`, `qwen3.5-9b`, `brick-complexity-pro`
+- Note: GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model; brick-complexity-pro, Included under Core, is the Brick router itself, which picks a model for you
 
 Try it from your terminal with your key in `REGOLO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -60,6 +60,7 @@ curl -s https://api.regolo.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-27` — Free models changed: added gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b
 - `2026-09-25` — Free models changed: added gpt-oss-120b; dropped gpt-oss
 - `2026-09-22` — Free models changed: added glm-5.2; dropped glm-5
 - `2026-09-21` — Free models changed: dropped llama-3.3

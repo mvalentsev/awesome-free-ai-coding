@@ -3,7 +3,7 @@ layout: default
 title: 'muse-glimmer-30b free: 3 providers, limits and ids, verified 2026-09-24'
 description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/muse-glimmer-30b/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: muse-glimmer-30b
 ---
 

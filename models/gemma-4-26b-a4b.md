@@ -32,7 +32,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ## Related models
 
-- [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) — free at OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com) and Opper
+- [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/) — free at OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper
 
 ---
 

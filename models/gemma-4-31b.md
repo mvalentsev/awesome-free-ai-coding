@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-31b free: 4 providers, limits and ids, verified 2026-09-24'
-description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com) and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'gemma-4-31b free: 5 providers, limits and ids, verified 2026-09-24'
+description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: gemma-4-31b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-31b
 
 # Where gemma-4-31b is free
 
-**4 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com) and Opper. None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-31b), below its strong bar.
+**5 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. A live probe confirmed each one on 2026-09-24 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-31b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -55,13 +55,25 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 - Callable ids: `google/gemma-4-31b-it`
 - What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
+### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
+
+🎁 Trials (no card when possible) · no card · verified 2026-09-24 · listed since 2026-09-27
+
+EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
+
+- Limits, in the vendor's words: "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
+- Base URL: `https://api.regolo.ai/v1`
+- Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
+- Callable ids: `gemma4-31b`
+- What you send is not used to train models ([the vendor's words](https://regolo.ai/faq/)).
+
 ### [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/)
 
 🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-17 · verified 2026-09-24 · listed since 2026-09-17
 
 EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits
 
-- Limits, in the vendor's words: The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags five rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1 and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-17
+- Limits, in the vendor's words: The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags six rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b (on 2026-09-27) and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-27
 - Base URL: `https://api.opper.ai/v3/compat`
 - Key: `OPPER_API_KEY` — get one at <https://platform.opper.ai/settings/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`

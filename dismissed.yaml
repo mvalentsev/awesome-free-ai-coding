@@ -392,15 +392,10 @@ dismissed:
       2026-09-22.
   # regolo llama-3.3 → llama-4 stood here from 2026-09-08 until 2026-09-21, when
   # Llama 3.3 left Regolo's price table and its catalog and the family left the row.
-  - entry: groq-free
-    family: qwen3.6
-    superseded_by: qwen3.8
-    dismissed_on: 2026-09-08
-    reason: >-
-      Both are in Groq's Free Plan Limits table on 2026-09-08, at the same
-      30 RPM / 1K RPD / 8K TPM / 200K TPD — qwen/qwen3.6-27b and qwen/qwen3.8-27b,
-      two rows apart. Qwen3.8 joined this row's Models column on that read; 3.6
-      did not leave it.
+  # groq-free qwen3.6 → qwen3.8 stood here from 2026-09-08, when both sat in Groq's
+  # Free Plan Limits table two rows apart, until 2026-09-27: Groq shut
+  # qwen/qwen3.6-27b down on 09-14 "in favor of qwen/qwen3.8-27b", the table
+  # dropped it, and the family left the row.
   - entry: alibaba-model-studio
     family: qwen3-max
     superseded_by: qwen3.8

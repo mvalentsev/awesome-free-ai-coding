@@ -113,9 +113,6 @@
         "openai/gpt-oss-20b": {
           "name": "openai/gpt-oss-20b"
         },
-        "qwen/qwen3.6-27b": {
-          "name": "qwen/qwen3.6-27b"
-        },
         "qwen/qwen3.8-27b": {
           "name": "qwen/qwen3.8-27b"
         }
@@ -206,12 +203,6 @@
         },
         "google/gemma-4-31b-it": {
           "name": "google/gemma-4-31b-it"
-        },
-        "poolside/laguna-xs.2": {
-          "name": "poolside/laguna-xs.2"
-        },
-        "poolside/laguna-m.1": {
-          "name": "poolside/laguna-m.1"
         },
         "mistral/leanstral-1-5": {
           "name": "mistral/leanstral-1-5"
@@ -448,9 +439,6 @@
         "apiKey": "{env:CLOUDFLARE_WORKERS_AI_API_KEY}"
       },
       "models": {
-        "@cf/zai-org/glm-5.3-flash": {
-          "name": "@cf/zai-org/glm-5.3-flash"
-        },
         "@cf/qwen/qwen3.8-27b": {
           "name": "@cf/qwen/qwen3.8-27b"
         },
@@ -849,6 +837,24 @@
         },
         "brick-v1-beta": {
           "name": "brick-v1-beta"
+        },
+        "gemma4-31b": {
+          "name": "gemma4-31b"
+        },
+        "gpt-oss-20b": {
+          "name": "gpt-oss-20b"
+        },
+        "mistral-small-4-119b": {
+          "name": "mistral-small-4-119b"
+        },
+        "qwen3.5-122b": {
+          "name": "qwen3.5-122b"
+        },
+        "qwen3.5-9b": {
+          "name": "qwen3.5-9b"
+        },
+        "brick-complexity-pro": {
+          "name": "brick-complexity-pro"
         }
       }
     },
@@ -1006,6 +1012,9 @@
         },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
+        },
+        "greenference/qwen3-14b": {
+          "name": "greenference/qwen3-14b"
         }
       }
     },
@@ -1177,6 +1186,9 @@
         "apiKey": "{env:FREEINFERENCE_API_KEY}"
       },
       "models": {
+        "glm-5.3-flash": {
+          "name": "glm-5.3-flash"
+        },
         "deepseek-v4-flash": {
           "name": "deepseek-v4-flash"
         },

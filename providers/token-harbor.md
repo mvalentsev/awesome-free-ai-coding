@@ -39,7 +39,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`
 - Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`, `qwen3.8-flash:free`
-- Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free is marked free until 27 September. For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
+- Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free carries a Limited time badge dated free to 2026-10-04 13:00 UTC, and the pricing page says "2× Boost on Qwen3.8 Flash runs through October 4, 2026". For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
 
 Try it from your terminal with your key in `TOKEN_HARBOR_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

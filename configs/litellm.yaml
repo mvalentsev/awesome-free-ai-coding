@@ -154,11 +154,6 @@ model_list:
     model: openai/openai/gpt-oss-20b
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
-- model_name: groq-free/qwen/qwen3.6-27b
-  litellm_params:
-    model: openai/qwen/qwen3.6-27b
-    api_base: https://api.groq.com/openai/v1
-    api_key: os.environ/GROQ_API_KEY
 - model_name: groq-free/qwen/qwen3.8-27b
   litellm_params:
     model: openai/qwen/qwen3.8-27b
@@ -192,16 +187,6 @@ model_list:
 - model_name: requesty/google/gemma-4-31b-it
   litellm_params:
     model: openai/google/gemma-4-31b-it
-    api_base: https://router.requesty.ai/v1
-    api_key: os.environ/REQUESTY_API_KEY
-- model_name: requesty/poolside/laguna-xs.2
-  litellm_params:
-    model: openai/poolside/laguna-xs.2
-    api_base: https://router.requesty.ai/v1
-    api_key: os.environ/REQUESTY_API_KEY
-- model_name: requesty/poolside/laguna-m.1
-  litellm_params:
-    model: openai/poolside/laguna-m.1
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
 - model_name: requesty/mistral/leanstral-1-5
@@ -529,11 +514,6 @@ model_list:
     model: openai/glm-4.6v-flash
     api_base: https://api.z.ai/api/paas/v4
     api_key: os.environ/ZAI_GLM_API_KEY
-- model_name: cloudflare-workers-ai/@cf/zai-org/glm-5.3-flash
-  litellm_params:
-    model: openai/@cf/zai-org/glm-5.3-flash
-    api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
-    api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
 - model_name: cloudflare-workers-ai/@cf/qwen/qwen3.8-27b
   litellm_params:
     model: openai/@cf/qwen/qwen3.8-27b
@@ -1034,6 +1014,36 @@ model_list:
     model: openai/brick-v1-beta
     api_base: https://api.regolo.ai/v1
     api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/gemma4-31b
+  litellm_params:
+    model: openai/gemma4-31b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/gpt-oss-20b
+  litellm_params:
+    model: openai/gpt-oss-20b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/mistral-small-4-119b
+  litellm_params:
+    model: openai/mistral-small-4-119b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/qwen3.5-122b
+  litellm_params:
+    model: openai/qwen3.5-122b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/qwen3.5-9b
+  litellm_params:
+    model: openai/qwen3.5-9b
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
+- model_name: regolo/brick-complexity-pro
+  litellm_params:
+    model: openai/brick-complexity-pro
+    api_base: https://api.regolo.ai/v1
+    api_key: os.environ/REGOLO_API_KEY
 - model_name: token-harbor/deepseek-v4.1-flash:free
   litellm_params:
     model: openai/deepseek-v4.1-flash:free
@@ -1149,6 +1159,11 @@ model_list:
     model: openai/poolside/laguna-xs-2.1
     api_base: https://api.opper.ai/v3/compat
     api_key: os.environ/OPPER_API_KEY
+- model_name: opper/greenference/qwen3-14b
+  litellm_params:
+    model: openai/greenference/qwen3-14b
+    api_base: https://api.opper.ai/v3/compat
+    api_key: os.environ/OPPER_API_KEY
 - model_name: meganova/mistralai/Mistral-Small-3.2-24B-Instruct-2506
   litellm_params:
     model: openai/mistralai/Mistral-Small-3.2-24B-Instruct-2506
@@ -1249,6 +1264,11 @@ model_list:
     model: openai/auto
     api_base: https://openai.blueclaw.network/v1
     api_key: os.environ/BLUE_CLAW_API_KEY
+- model_name: freeinference/glm-5.3-flash
+  litellm_params:
+    model: openai/glm-5.3-flash
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
 - model_name: freeinference/deepseek-v4-flash
   litellm_params:
     model: openai/deepseek-v4-flash
@@ -1749,6 +1769,16 @@ model_list:
     model: openai/deepseek-v4.1-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/glm-5.3-flash
+    api_base: https://freeinference.org/v1
+    api_key: os.environ/FREEINFERENCE_API_KEY
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0

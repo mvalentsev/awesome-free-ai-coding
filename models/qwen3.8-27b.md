@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-27b free: 7 providers, limits and ids, verified 2026-09-24'
 description: qwen3.8-27b is served free by Groq, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each one's…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: qwen3.8-27b
 ---
 
@@ -23,7 +23,7 @@ crumb: qwen3.8-27b
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
-- Limits, in the vendor's words: Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
+- Limits, in the vendor's words: Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-27). Those ten rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. The deprecations page retired qwen/qwen3.6-27b on 2026-09-14 "in favor of qwen/qwen3.8-27b", noting "This deprecation applies to free and developer-tier usage", and groq/compound and compound-mini on 09-21. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
 - Base URL: `https://api.groq.com/openai/v1`
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
 - Callable ids: `qwen/qwen3.8-27b`
@@ -35,7 +35,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account
 
-- Limits, in the vendor's words: The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key "with no daily limit is issued the same day" by email, paid "Per token. No subscription, no minimums", and "it shares the endpoint's 64 requests in flight with other keys". The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context, tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27
+- Limits, in the vendor's words: The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key "with no daily limit is issued the same day" by email, paid "Per token. No subscription, no minimums", and "it shares the endpoint's 64 requests in flight with other keys". The model is the NVFP4 build of Qwen3.8-27B — "the trial key allows 4 for everyone using it together and a context of 131,072 tokens. Other keys get the full 262,144." — with tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27
 - Base URL: `https://api.llmtech.eu/v1`
 - Key: `LLMTECH_API_KEY` — no account needed: the vendor prints one for anyone at <https://llmtech.eu/docs/>, `lt-trial-ba1ef28c6d32ed6980678d8d`
 - Callable ids: `nvidia/Qwen3.8-27B-NVFP4`

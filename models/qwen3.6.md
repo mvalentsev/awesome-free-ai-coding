@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.6 free: 4 providers, limits and ids, verified 2026-09-24'
-description: qwen3.6 is served free by Groq, Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'qwen3.6 free: 3 providers, limits and ids, verified 2026-09-24'
+description: qwen3.6 is served free by Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.6/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-09-27
 crumb: qwen3.6
 ---
 
@@ -11,23 +11,11 @@ crumb: qwen3.6
 
 # Where qwen3.6 is free
 
-**4 rows on the list serve `qwen3.6` free:** Groq, Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
+**3 rows on the list serve `qwen3.6` free:** Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. A live probe confirmed each one on 2026-09-24 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
-
-### [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/)
-
-🔌 LLM APIs with free tier · no card · verified 2026-09-24 · listed since 2026-08-14
-
-Fast inference against a free plan Groq publishes as a per-model rate table
-
-- Limits, in the vendor's words: Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table "a high level summary and there may be exceptions", and points at the limits page in an account for the exact figures
-- Base URL: `https://api.groq.com/openai/v1`
-- Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
-- Callable ids: `qwen/qwen3.6-27b`
-- What you send is not used to train models ([the vendor's words](https://console.groq.com/docs/legal/services-agreement)).
 
 ### [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/)
 
@@ -67,6 +55,7 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Rows that listed it before
 
+- [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/) — listed 2026-08-14 to 2026-09-27
 - [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) — listed 2026-09-02 to 2026-09-21
 
 ## Related models

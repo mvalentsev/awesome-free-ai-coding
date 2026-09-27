@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-26T08:51:35Z</updated>
+  <updated>2026-09-27T04:36:24Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/groq-free/20260927T043624Z</id>
+    <title>Free models changed: Groq</title>
+    <link rel="alternate" href="https://groq.com"/>
+    <updated>2026-09-27T04:36:24Z</updated>
+    <summary type="text">dropped qwen3.6 · free models: gpt-oss-120b, gpt-oss-20b, qwen3.8-27b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260927T043624Z</id>
+    <title>Free models changed: Regolo AI</title>
+    <link rel="alternate" href="https://regolo.ai/pricing/"/>
+    <updated>2026-09-27T04:36:24Z</updated>
+    <summary type="text">added gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b · free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260927T043624Z</id>
+    <title>Free models changed: Requesty</title>
+    <link rel="alternate" href="https://www.requesty.ai"/>
+    <updated>2026-09-27T04:36:24Z</updated>
+    <summary type="text">dropped laguna-m.1, laguna-xs.2 · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/zcode/20260926T085135Z</id>
     <title>Added: ZCode (Z.ai)</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://www.experientiallabs.ai"/>
     <updated>2026-09-21T18:21:57Z</updated>
     <summary type="text">An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/sail-research/20260921T182157Z</id>
-    <title>Added: Sail Research</title>
-    <link rel="alternate" href="https://www.sailresearch.com"/>
-    <updated>2026-09-21T18:21:57Z</updated>
-    <summary type="text">Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account · free models: kimi-k3, glm-5.3, deepseek-v4-pro, glm-5.3-flash, deepseek-v4-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/dahl-inference/20260921T174513Z</id>
-    <title>Added: Dahl Inference</title>
-    <link rel="alternate" href="https://inference.dahl.global"/>
-    <updated>2026-09-21T17:45:13Z</updated>
-    <summary type="text">An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account · free models: glm-5.3-flash, deepseek-v4-flash, minimax-m2.7</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20260921T114114Z</id>
-    <title>Free models changed: AIHubMix (free models)</title>
-    <link rel="alternate" href="https://aihubmix.com"/>
-    <updated>2026-09-21T11:41:14Z</updated>
-    <summary type="text">dropped gpt-oss · free models: glm-5.3, kimi-k3, glm-5, mimo-v2.5, north-mini-code</summary>
   </entry>
 </feed>

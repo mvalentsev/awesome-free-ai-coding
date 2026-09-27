@@ -484,11 +484,12 @@
       "category": "api-free-tier",
       "url": "https://groq.com",
       "source_urls": [
-        "https://console.groq.com/docs/rate-limits"
+        "https://console.groq.com/docs/rate-limits",
+        "https://console.groq.com/docs/deprecations"
       ],
       "card_required": false,
       "offering": "Fast inference against a free plan Groq publishes as a per-model rate table",
-      "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b, qwen/qwen3.6-27b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 30 / 250 / 70K on groq/compound and compound-mini, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-08). Those thirteen rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
+      "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-27). Those ten rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. The deprecations page retired qwen/qwen3.6-27b on 2026-09-14 \"in favor of qwen/qwen3.8-27b\", noting \"This deprecation applies to free and developer-tier usage\", and groq/compound and compound-mini on 09-21. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
       "free_part": "models",
       "models": [
         {
@@ -498,9 +499,6 @@
         {
           "family": "gpt-oss-20b",
           "aa_model": "gpt-oss-20b"
-        },
-        {
-          "family": "qwen3.6"
         },
         {
           "family": "qwen3.8-27b",
@@ -516,7 +514,6 @@
         "model_ids": [
           "openai/gpt-oss-120b",
           "openai/gpt-oss-20b",
-          "qwen/qwen3.6-27b",
           "qwen/qwen3.8-27b"
         ],
         "note": "the chat models Groq's own Free Plan Limits table names; its safeguard and prompt-guard classifiers, compound systems, whisper and orpheus rows are left out"
@@ -692,7 +689,7 @@
       ],
       "card_required": false,
       "offering": "10k neurons/day free",
-      "limits": "Cloudflare's free allocation \"allows anyone to use a total of 10,000 Neurons per day at no charge\", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. \"All limits reset daily at 00:00 UTC\", and past the cap \"further operations will fail with an error\" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Three catalog models sit outside the free lane whatever the neuron count: the same page notes that @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2 \"require a paid billing method\" (read 2026-08-14)",
+      "limits": "Cloudflare's free allocation \"allows anyone to use a total of 10,000 Neurons per day at no charge\", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. \"All limits reset daily at 00:00 UTC\", and past the cap \"further operations will fail with an error\" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Seven catalog models sit outside the free lane whatever the neuron count — \"Some models require a paid billing method. This applies to @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code, @cf/zai-org/glm-5.2, @cf/zai-org/glm-5.3, @cf/zai-org/glm-5.3-flash, @cf/deepseek-ai/deepseek-v4-flash-0731, and @cf/deepseek-ai/deepseek-v4-pro-0813\" (read 2026-09-27; GLM 5.3 Flash was free on 2026-08-14)",
       "free_part": "sum",
       "models": [],
       "api": {
@@ -701,7 +698,6 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
-          "@cf/zai-org/glm-5.3-flash",
           "@cf/qwen/qwen3.8-27b",
           "@cf/meta/llama-4-scout-17b-16e-instruct"
         ],
@@ -2914,11 +2910,13 @@
       "url": "https://hyper.charm.land",
       "source_urls": [
         "https://hyper.charm.land/faq",
-        "https://github.com/charmbracelet/crush"
+        "https://github.com/charmbracelet/crush",
+        "https://hyper.charm.land/docs/plans-billing.html",
+        "https://hyper.charm.land/docs"
       ],
       "card_required": false,
       "offering": "Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention",
-      "limits": "100 Hypercredits (≈$5) refreshed monthly; Hyper is in private beta (sign up from Crush or the site)",
+      "limits": "\"Every new Hyper account starts on the free plan with 100 hypercredits that refresh monthly\" (about $5), \"the default plan for all users\"; \"Sign up with Google, GitHub, or email.\" Read 2026-09-27",
       "free_part": "sum",
       "models": [],
       "data_use": {
@@ -3341,12 +3339,6 @@
           "aa_model": "nemotron-3-5-lightning"
         },
         {
-          "family": "laguna-xs.2"
-        },
-        {
-          "family": "laguna-m.1"
-        },
-        {
           "family": "leanstral-1.5"
         },
         {
@@ -3369,8 +3361,6 @@
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
           "novita/inclusionai/ling-3.0-tiny",
           "google/gemma-4-31b-it",
-          "poolside/laguna-xs.2",
-          "poolside/laguna-m.1",
           "mistral/leanstral-1-5",
           "nvidia/muse-glimmer-30b",
           "nvidia/nemotron-3.5-lightning-30b-a3b"
@@ -3379,7 +3369,7 @@
           "nvidia/nemotron-3.5-content-safety"
         ],
         "anthropic_base_url": "https://router.requesty.ai",
-        "note": "the eleven ids listed and the one ignored are every row the catalog prices at 0, and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA and Poolside row is marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety, a guardrail classifier, is left out. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)"
+        "note": "the nine ids listed and the one ignored are every row the catalog prices at 0 that its own `retires` date has not passed — poolside/laguna-xs.2 and laguna-m.1 stayed at 0 after retiring on 2026-09-21 — and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA row is marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety, a guardrail classifier, is left out. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)"
       },
       "data_use": {
         "trains": "yes",
@@ -4516,6 +4506,23 @@
         {
           "family": "apertus-70b",
           "aa_model": "apertus-70b-instruct"
+        },
+        {
+          "family": "gemma-4-31b",
+          "tier": "notable",
+          "aa_model": "gemma-4-31b"
+        },
+        {
+          "family": "gpt-oss-20b",
+          "aa_model": "gpt-oss-20b"
+        },
+        {
+          "family": "mistral-small-4"
+        },
+        {
+          "family": "qwen3.5-9b",
+          "tier": "notable",
+          "aa_model": "qwen3-5-9b"
         }
       ],
       "api": {
@@ -4528,12 +4535,19 @@
           "gpt-oss-120b",
           "qwen3.8-27b",
           "apertus-70b",
-          "brick-v1-beta"
+          "brick-v1-beta",
+          "gemma4-31b",
+          "gpt-oss-20b",
+          "mistral-small-4-119b",
+          "qwen3.5-122b",
+          "qwen3.5-9b",
+          "brick-complexity-pro"
         ],
         "no_family_ids": [
-          "brick-v1-beta"
+          "brick-v1-beta",
+          "brick-complexity-pro"
         ],
-        "note": "GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model"
+        "note": "GET /v1/models is public and needs no key, but it publishes ids only — the prices and the trial terms are on the pricing page this row probes. brick-v1-beta is the one id priced at zero on that page, and it is Brick's prompt-complexity classifier rather than a coding model; brick-complexity-pro, Included under Core, is the Brick router itself, which picks a model for you"
       },
       "data_use": {
         "trains": "no",
@@ -5137,12 +5151,13 @@
         "auth": "api-key",
         "openai_compatible": true,
         "model_ids": [
+          "glm-5.3-flash",
           "deepseek-v4-flash",
           "qwen3.6-35b",
           "diffusiongemma"
         ],
         "anthropic_base_url": "https://freeinference.org/anthropic",
-        "note": "the three ids are the chat rows the keyless catalog at freeinference.org/v1/models returned on 2026-09-05 (bge-m3, the fourth, is an embedding model); the docs mark four more chat ids Free, which stay out of the generated configs until a keyed read confirms them. The catalog's prices are upstream reference accounting, \"not fees charged by FreeInference to users\". The same key serves https://freeinference.org/anthropic, which the docs give as Claude Code's ANTHROPIC_BASE_URL"
+        "note": "the four ids are the chat rows the keyless catalog at freeinference.org/v1/models returns on 2026-09-27, glm-5.3-flash among them since 2026-09-05 (bge-m3, the fifth, is an embedding model); the docs mark three more chat ids Free, which stay out of the generated configs until a keyed read confirms them. The catalog's prices are upstream reference accounting, \"not fees charged by FreeInference to users\". The same key serves https://freeinference.org/anthropic, which the docs give as Claude Code's ANTHROPIC_BASE_URL"
       },
       "border": {
         "left_out": [],
@@ -5659,7 +5674,7 @@
       ],
       "card_required": false,
       "offering": "Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them",
-      "limits": "\"Is the API free to use? Yes. Our core AI models are free to use indefinitely\", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash and agnes-3.0-flash list at $0.05 in / $0.15 out per 1M and are charged $0 — \"Cached input, input tokens, and output tokens are currently free for agnes-2.5-flash and agnes-3.0-flash\" — while agnes-2.5-pro bills $0.45/$0.90 and the pro beta $0.10/$0.30. The page is candid that the zero is a current price rather than a contract: \"Promotional end dates are subject to Agnes AI platform announcements and your account bill\". The ceiling is a rate, not a quota: a key that is neither on a paid Token Plan nor enterprise-verified gets 30 requests a minute allowed and 20 effective on text models (Token Plan FAQ, effective 2026-06-22), and no daily figure is published. Image models are free at every resolution too. The terms are governed by Singapore law. The docs live on wiki.agnes-ai.com. Read 2026-09-14",
+      "limits": "\"Is the API free to use? Yes. Our core AI models are free to use indefinitely\", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash and agnes-3.0-flash list at $0.05 in / $0.15 out per 1M and are charged $0 — \"Cached input, input tokens, and output tokens are currently free for agnes-2.5-flash and agnes-3.0-flash\" — while agnes-2.5-pro bills $0.45/$0.90 and the pro beta $0.10/$0.30. The page is candid that the zero is a current price rather than a contract: \"Promotional end dates are subject to Agnes AI platform announcements and your account bill\". The ceiling is a rate, not a quota: a key that is neither on a paid Token Plan nor enterprise-verified gets 30 requests a minute allowed and 10 effective on text models since 2026-09-23, when \"effective text model RPM (requests per minute) limits for free and enterprise users have been reduced by 50%\", and no daily figure is published. Image models are free at every resolution too. The terms are governed by Singapore law. The docs live on wiki.agnes-ai.com. Read 2026-09-27",
       "free_part": "models",
       "models": [
         {
@@ -6130,7 +6145,7 @@
           "qwen3.8-flash:free"
         ],
         "anthropic_base_url": "https://tokenharbor.ai",
-        "note": "the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free is marked free until 27 September. For Claude Code the docs say \"a free account works\" and \"every gateway model works on both endpoints\""
+        "note": "the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free carries a Limited time badge dated free to 2026-10-04 13:00 UTC, and the pricing page says \"2× Boost on Qwen3.8 Flash runs through October 4, 2026\". For Claude Code the docs say \"a free account works\" and \"every gateway model works on both endpoints\""
       },
       "data_use": {
         "trains": "yes",
@@ -6289,7 +6304,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models; a free token doubles it",
-      "limits": "The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and \"500,000 tokens per 24 hours\"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and \"1,000,000 tokens per 24 hours\", and Pro is $12 a month. The free models are a tier of the catalog — \"`turbo` models are fast models available to anonymous and free-token users\" — though two turbo rows marked usage_based_only, DeepSeek V4 Flash and Gemini 3.1 Flash Lite, answered a keyless call with 401 `Missing API key.` The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-16",
+      "limits": "The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and \"500,000 tokens per 24 hours\"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and \"1,000,000 tokens per 24 hours\", and Pro is $12 a month. The free models are a tier of the catalog — \"`turbo` models are fast models available to anonymous and free-token users\" — though the turbo row marked usage_based_only, DeepSeek V4 Flash, answered a keyless call with 401 `Missing API key.`, and Gemini 3.1 Flash Lite, turbo on 2026-09-16, is in the pro tier by 2026-09-27. The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-16",
       "free_part": "models",
       "models": [],
       "api": {
@@ -6309,7 +6324,7 @@
           "codestral-latest",
           "mistral-Nemo-Instruct-2407"
         ],
-        "note": "no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 and gemini-3.1-flash-lite need a token. The four stay out of the Models column: the limits page the probe reads names no model, and the catalog that marks the turbo tier prices every row for balance accounting"
+        "note": "no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 needs a token. The four stay out of the Models column: the limits page the probe reads names no model, and the catalog that marks the turbo tier prices every row for balance accounting"
       },
       "border": {
         "left_out": [],
@@ -6350,11 +6365,12 @@
         "https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit",
         "https://docs.fireworks.ai/guides/quotas_usage/account-quotas",
         "https://docs.fireworks.ai/serverless/pricing",
-        "https://docs.fireworks.ai/getting-started/quickstart"
+        "https://docs.fireworks.ai/getting-started/quickstart",
+        "https://docs.fireworks.ai/updates/changelog"
       ],
       "card_required": false,
       "offering": "Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek V4.1 Flash among them — with a one-time $1 of credit that is spent without a card, at 10 requests a minute until a payment method is added",
-      "limits": "The pricing page offers \"Get started with $1 in free credits\", and the billing FAQ says what happens to an account \"Without payment method\" when the dollar runs out: \"Your account will be suspended until you add a payment method\". Until then the account quotas put \"No payment method or no credits\" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks \"operates on a pre-paid credits billing system\". The dollar buys list prices, per 1M input and output tokens: DeepSeek V4.1 Flash $0.22 and $0.66, GLM 5.3 Flash $0.15 and $0.50, MiniMax M3 $0.30 and $1.20, Kimi K3 $3.00 and $15.00 — about 4.5M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-17",
+      "limits": "The pricing page offers \"Get started with $1 in free credits\", and the billing FAQ says what happens to an account \"Without payment method\" when the dollar runs out: \"Your account will be suspended until you add a payment method\". Until then the account quotas put \"No payment method or no credits\" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks \"operates on a pre-paid credits billing system\". The dollar buys list prices, input / cached input / output per 1M tokens: \"DeepSeek V4.1 Flash $0.30 / $0.006 / $1.20\" from 2026-10-01 (\"$0.22 / $0.007 / $0.66\" until then, by the changelog), \"GLM 5.3 Flash $0.15 / $0.03 / $0.50\", \"MiniMax M3 $0.30 / $0.06 / $1.20\" and \"Kimi K3 $3.00 / $0.30 / $15.00\" — about 3.3M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read 2026-09-27",
       "free_part": "sum",
       "models": [],
       "api": {
@@ -6665,7 +6681,7 @@
       ],
       "card_required": false,
       "offering": "EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits",
-      "limits": "The pricing FAQ: \"Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum.\" The llms.txt names one of them — \"gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route.\" — and the model directory at opper.ai/models flags five rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1 and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with \"a 3% fee on credit purchases\". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-17",
+      "limits": "The pricing FAQ: \"Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum.\" The llms.txt names one of them — \"gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route.\" — and the model directory at opper.ai/models flags six rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b (on 2026-09-27) and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with \"a 3% fee on credit purchases\". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-27",
       "free_part": "models",
       "models": [
         {
@@ -6683,10 +6699,11 @@
           "gemini/gemma-4-31b",
           "gemini/gemma-4-26b-moe",
           "poolside/laguna-s-2.1",
-          "poolside/laguna-xs-2.1"
+          "poolside/laguna-xs-2.1",
+          "greenference/qwen3-14b"
         ],
         "anthropic_base_url": "https://api.opper.ai/v3/compat",
-        "note": "ids are four of the five rows the model directory flags free on 2026-09-17, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages"
+        "note": "ids are five of the six rows the model directory flags free, greenference/qwen3-14b from 2026-09-27, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages"
       },
       "data_use": {
         "trains": "no",
@@ -7035,7 +7052,7 @@
       ],
       "card_required": false,
       "offering": "OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time",
-      "limits": "The quick start: \"New accounts get a $25 signup credit (limited time), enough for millions of test calls on\" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Concurrency counts deposits only, \"a signup bonus of $25 and a deposit of $20 only counts as $20\", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: \"The specific model behind any given call can change between calls.\" The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-17",
+      "limits": "The quick start: \"New accounts get a $25 signup credit (limited time), enough for millions of test calls on\" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Until a first deposit the credit is spent at a ceiling: \"Free accounts have a daily request limit of 100 requests. Make your first deposit to lift all daily request limits.\" Concurrency counts deposits only, \"a signup bonus of $25 and a deposit of $20 only counts as $20\", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: \"The specific model behind any given call can change between calls.\" The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-27",
       "free_part": "unnamed",
       "models": [],
       "api": {
@@ -7739,11 +7756,12 @@
         "https://llmtech.eu/security/",
         "https://llmtech.eu/about/",
         "https://api.llmtech.eu/v1/models",
-        "https://llmtech.eu/pricing/"
+        "https://llmtech.eu/pricing/",
+        "https://llmtech.eu/changelog/"
       ],
       "card_required": false,
       "offering": "EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account",
-      "limits": "The quickstart prints the key itself: \"Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on.\" A personal key \"with no daily limit is issued the same day\" by email, paid \"Per token. No subscription, no minimums\", and \"it shares the endpoint's 64 requests in flight with other keys\". The model is the NVFP4 build of Qwen3.8-27B with a 262,144-token context, tool calling, structured outputs and image input. Prompts and completions are held in \"volatile memory only — never persisted\" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27",
+      "limits": "The quickstart prints the key itself: \"Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on.\" A personal key \"with no daily limit is issued the same day\" by email, paid \"Per token. No subscription, no minimums\", and \"it shares the endpoint's 64 requests in flight with other keys\". The model is the NVFP4 build of Qwen3.8-27B — \"the trial key allows 4 for everyone using it together and a context of 131,072 tokens. Other keys get the full 262,144.\" — with tool calling, structured outputs and image input. Prompts and completions are held in \"volatile memory only — never persisted\" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27",
       "free_part": "models",
       "models": [
         {
@@ -7761,7 +7779,7 @@
           "nvidia/Qwen3.8-27B-NVFP4"
         ],
         "public_key": "lt-trial-ba1ef28c6d32ed6980678d8d",
-        "note": "reasoning is adaptive: `chat_template_kwargs: {\"enable_thinking\": false}` turns it off, and `reasoning_effort` takes low, medium or xhigh. Cline lists LLM Tech among its built-in providers; Claude Code \"needs a translating proxy\", LiteLLM in the vendor's own example"
+        "note": "since 2026-09-24 \"Reasoning is off unless a request asks for it with reasoning_effort or enable_thinking\", and `reasoning_effort` takes low, medium or xhigh. Cline lists LLM Tech among its built-in providers; Claude Code \"needs a translating proxy\", LiteLLM in the vendor's own example"
       },
       "data_use": {
         "trains": "no",
@@ -8166,6 +8184,18 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
     },
     {
+      "family": "gemma-4-31b",
+      "rows": [
+        "openrouter-free",
+        "requesty",
+        "nvidia-nim",
+        "regolo",
+        "opper"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
+    },
+    {
       "family": "laguna-s-2.1",
       "rows": [
         "openrouter-free",
@@ -8188,17 +8218,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
     },
     {
-      "family": "gemma-4-31b",
-      "rows": [
-        "openrouter-free",
-        "requesty",
-        "nvidia-nim",
-        "opper"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/"
-    },
-    {
       "family": "gpt-oss-120b",
       "rows": [
         "groq-free",
@@ -8207,6 +8226,16 @@
         "ovh-ai-endpoints"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/"
+    },
+    {
+      "family": "gpt-oss-20b",
+      "rows": [
+        "groq-free",
+        "nvidia-nim",
+        "regolo",
+        "pollinations"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
     },
     {
       "family": "ling-3.0-flash-fin",
@@ -8228,16 +8257,6 @@
         "cohere"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
-    },
-    {
-      "family": "qwen3.6",
-      "rows": [
-        "groq-free",
-        "hetzner-inference",
-        "freeinference",
-        "ovh-ai-endpoints"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
     },
     {
       "family": "deepseek-v4-flash",
@@ -8279,15 +8298,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
-      "family": "gpt-oss-20b",
-      "rows": [
-        "groq-free",
-        "nvidia-nim",
-        "pollinations"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
-    },
-    {
       "family": "ling-3.0-flash-sante",
       "rows": [
         "openrouter-free",
@@ -8315,6 +8325,15 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/"
+    },
+    {
+      "family": "qwen3.6",
+      "rows": [
+        "hetzner-inference",
+        "freeinference",
+        "ovh-ai-endpoints"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/"
     },
     {
       "family": "deepseek-v3.2",
@@ -8789,18 +8808,6 @@
       ]
     },
     {
-      "family": "laguna-m.1",
-      "rows": [
-        "requesty"
-      ]
-    },
-    {
-      "family": "laguna-xs.2",
-      "rows": [
-        "requesty"
-      ]
-    },
-    {
       "family": "leanstral-1.5",
       "rows": [
         "requesty"
@@ -8882,6 +8889,12 @@
       "family": "mistral-small-3.2",
       "rows": [
         "meganova"
+      ]
+    },
+    {
+      "family": "mistral-small-4",
+      "rows": [
+        "regolo"
       ]
     },
     {
@@ -9141,6 +9154,14 @@
       "rows": [
         "mixlayer"
       ]
+    },
+    {
+      "family": "qwen3.5-9b",
+      "rows": [
+        "regolo"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/"
     },
     {
       "family": "qwen3.5-flash",

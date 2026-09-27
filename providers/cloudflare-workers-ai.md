@@ -23,7 +23,7 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-Cloudflare's free allocation "allows anyone to use a total of 10,000 Neurons per day at no charge", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. "All limits reset daily at 00:00 UTC", and past the cap "further operations will fail with an error" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Three catalog models sit outside the free lane whatever the neuron count: the same page notes that @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code and @cf/zai-org/glm-5.2 "require a paid billing method" (read 2026-08-14)
+Cloudflare's free allocation "allows anyone to use a total of 10,000 Neurons per day at no charge", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. "All limits reset daily at 00:00 UTC", and past the cap "further operations will fail with an error" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Seven catalog models sit outside the free lane whatever the neuron count — "Some models require a paid billing method. This applies to @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code, @cf/zai-org/glm-5.2, @cf/zai-org/glm-5.3, @cf/zai-org/glm-5.3-flash, @cf/deepseek-ai/deepseek-v4-flash-0731, and @cf/deepseek-ai/deepseek-v4-pro-0813" (read 2026-09-27; GLM 5.3 Flash was free on 2026-08-14)
 
 ## Where it is offered
 
@@ -37,7 +37,7 @@ What you send is not used to train models. In the vendor's words: “Cloudflare 
 
 - Base URL: `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1`
 - Key: `CLOUDFLARE_WORKERS_AI_API_KEY` — get one at <https://dash.cloudflare.com/profile/api-tokens>
-- Callable ids: `@cf/zai-org/glm-5.3-flash`, `@cf/qwen/qwen3.8-27b`, `@cf/meta/llama-4-scout-17b-16e-instruct`
+- Callable ids: `@cf/qwen/qwen3.8-27b`, `@cf/meta/llama-4-scout-17b-16e-instruct`
 - Note: substitute {account_id} with your Cloudflare account ID
 
 Try it from your terminal with your key in `CLOUDFLARE_WORKERS_AI_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -46,7 +46,7 @@ Try it from your terminal with your key in `CLOUDFLARE_WORKERS_AI_API_KEY` — i
 curl -s https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1/chat/completions \
   -H "Authorization: Bearer $CLOUDFLARE_WORKERS_AI_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"model":"@cf/zai-org/glm-5.3-flash","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"@cf/qwen/qwen3.8-27b","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence

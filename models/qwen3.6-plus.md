@@ -31,7 +31,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ## Related models
 
-- [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) — free at Groq, Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints
+- [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) — free at Hetzner Inference API, FreeInference (Harvard SEAS) and OVHcloud AI Endpoints
 - [`qwen3.6-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-27b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.6-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-35b-a3b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.6-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6-max/) — free at Alibaba Cloud Model Studio (DashScope, international)
