@@ -929,7 +929,6 @@ async def test_a_keyword_the_page_source_wraps_across_lines_still_matches():
 
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
         200, text=wrapped + "<p>The free tier has been\n  discontinued.</p>"))
-    entry.probe.dead_markers = ["free tier has been discontinued"]
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, entry, backoff=0)
     assert result.status is ProbeStatus.FAIL and "offer withdrawn" in result.detail
@@ -1016,17 +1015,6 @@ async def test_withdrawal_wording_fails_even_when_keywords_match():
         result = await probe_entry(client, page_entry(), backoff=0)
     assert result.status is ProbeStatus.FAIL
     assert "offer withdrawn" in result.detail and "free api service has ended" in result.detail
-
-
-@respx.mock
-async def test_entry_specific_dead_marker():
-    entry = page_entry()
-    entry.probe.dead_markers = ["mimo auto is gone"]
-    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
-        200, text="qwen3-coder on the free tier, no credit card. MiMo Auto is gone."))
-    async with httpx.AsyncClient() as client:
-        result = await probe_entry(client, entry, backoff=0)
-    assert result.status is ProbeStatus.FAIL and "mimo auto is gone" in result.detail
 
 
 @respx.mock

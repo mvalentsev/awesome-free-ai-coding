@@ -129,7 +129,6 @@
         "endpoint": "https://openrouter.ai/api/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -466,7 +465,6 @@
           "free of charge"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -539,7 +537,6 @@
           "qwen/qwen3.8-27b"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -619,7 +616,6 @@
           "Test Mistral models in Studio"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -664,7 +660,6 @@
         "endpoint": "https://models.github.ai/catalog/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -724,7 +719,6 @@
           "free allocation"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -782,7 +776,6 @@
           "Includes access to starter models"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://ollama.com/v1/models",
         "machinery_keywords": []
@@ -872,7 +865,6 @@
           "mimo-v2.5-free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1012,7 +1004,6 @@
         "endpoint": "https://api.kilo.ai/api/gateway/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -1291,7 +1282,6 @@
         "endpoint": "https://www.trae.ai/pricing",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": [
           "\"name\":\"Free\"",
@@ -1350,7 +1340,6 @@
           "Free tier users only have access to"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1390,7 +1379,6 @@
           "mimo-v2.5"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1448,7 +1436,6 @@
           "Copilot Free and Copilot Student both have an allowance of AI credits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1500,7 +1487,6 @@
           "gemini 2.5 pro"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1582,7 +1568,6 @@
           "50 credits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1635,7 +1620,6 @@
           "limited agent requests"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -1886,7 +1870,6 @@
           "codex are included in your chatgpt free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2034,7 +2017,6 @@
         "endpoint": "https://integrate.api.nvidia.com/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": [],
         "free_list": "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=%7B%22filters%22%3A%5B%7B%22field%22%3A%22label%22%2C%22value%22%3A%22nim_type_preview%22%7D%5D%2C%22page%22%3A0%2C%22pageSize%22%3A100%2C%22query%22%3A%22%2A%22%7D"
@@ -2116,7 +2098,6 @@
           "GLM-4.6V-Flash</td><td style=\"text-align:left\">Free</td>"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2191,7 +2172,6 @@
         "endpoint": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2247,7 +2227,6 @@
           "GPT-OSS 20B"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2598,7 +2577,6 @@
           "valid for 90 days"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2651,7 +2629,6 @@
           "$0.10, subject to change"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://router.huggingface.co/v1/models",
         "machinery_keywords": []
@@ -2703,7 +2680,6 @@
           "500 credits a month once you verify a card"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2758,7 +2734,6 @@
         "endpoint": "https://console.upstage.ai/docs/getting-started",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": [
           "$10 in free credit"
@@ -2865,7 +2840,6 @@
           "1,000"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2908,7 +2882,6 @@
           "14-day pro trial"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -2957,7 +2930,6 @@
           "refreshing monthly"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -3027,7 +2999,6 @@
         "endpoint": "https://ai-gateway.vercel.sh/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -3085,7 +3056,6 @@
         "endpoint": "https://api.bazaarlink.ai/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -3155,7 +3125,6 @@
         "endpoint": "https://api.tokenrouter.com/api/pricing",
         "keywords": [],
         "free_marker": "free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -3217,7 +3186,6 @@
           "200000"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.sambanova.ai/v1/models",
         "machinery_keywords": []
@@ -3300,7 +3268,6 @@
         "endpoint": "https://api.routeway.ai/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -3407,7 +3374,6 @@
         "endpoint": "https://router.requesty.ai/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -3715,7 +3681,6 @@
           "basic weekly rate limits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -3772,7 +3737,6 @@
           "prototype and test with our free api"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -3828,7 +3792,6 @@
           "Jamba Mini"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -3871,7 +3834,6 @@
           "$1.00 welcome credit for premium models"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4134,7 +4096,6 @@
         "endpoint": "https://aihubmix.com/api/v1/models",
         "keywords": [],
         "free_marker": "free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -4195,7 +4156,6 @@
           "no payment details required"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4250,7 +4210,6 @@
           "100 million tokens as a gift at signup"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://inference.dahl.global/v1/models",
         "machinery_keywords": []
@@ -4309,7 +4268,6 @@
           "fastest way to get a free Poolside API key"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4361,7 +4319,6 @@
           "60,000 积分 / 5 小时"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4428,7 +4385,6 @@
           "https://inference.hetzner.com/api/v1"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4480,7 +4436,6 @@
         "endpoint": "https://hermes.ai.unturf.com/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4593,7 +4548,6 @@
           "No credit card required, no commitment"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.regolo.ai/v1/models",
         "machinery_keywords": []
@@ -4685,7 +4639,6 @@
           "Freebucks every day"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -4948,7 +4901,6 @@
         "endpoint": "https://api.meganova.ai/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -5043,7 +4995,6 @@
         "endpoint": "https://llmtr.com/v1/models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -5085,7 +5036,6 @@
           "Unlimited credits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5134,7 +5084,6 @@
           "CodeBuddy offers the following plans"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5224,7 +5173,6 @@
           "free accounts can use models marked"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://freeinference.org/v1/models",
         "machinery_keywords": []
@@ -5286,7 +5234,6 @@
           "free to use"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.opentyphoon.ai/v1/models",
         "machinery_keywords": []
@@ -5371,7 +5318,6 @@
           "2 inference requests per second"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5438,7 +5384,6 @@
           "$5 in free credits every month when you attach a payment method"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5497,7 +5442,6 @@
           "Every new user receives ₹100 in credits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5557,7 +5501,6 @@
           "no card required"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5620,7 +5563,6 @@
           "Signup and guided setup have no payment step"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5698,7 +5640,6 @@
         "endpoint": "https://api.cline.bot/api/v1/ai/cline/recommended-models",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": [],
         "lane": "free"
@@ -5766,7 +5707,6 @@
           "agnes-3.0-flash"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -5835,7 +5775,6 @@
           "No card required, free forever"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6091,7 +6030,6 @@
           "A limited cloud quota for third-party models"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6146,7 +6084,6 @@
           "Trials automatically convert to Zed Free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6220,7 +6157,6 @@
           "Included every month (4 weeks)"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6290,7 +6226,6 @@
         "endpoint": "https://inference-api.nousresearch.com/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -6329,7 +6264,6 @@
           "perpetual Free Tier with monthly limits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6394,7 +6328,6 @@
           "1,000,000 tokens per 24 hours"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.llm7.io/v1/models",
         "machinery_keywords": []
@@ -6460,7 +6393,6 @@
           "Get started with $1 in free credits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6523,7 +6455,6 @@
           "qwen/qwen3.8-27b"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://gateway.vlm.run/v1/openai/models",
         "machinery_keywords": []
@@ -6599,7 +6530,6 @@
           "2026 年 12 月 31 日"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6652,7 +6582,6 @@
           "Run open models up to 7B parameters"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6709,7 +6638,6 @@
           "Free accounts are able to use each model for a maximum of 5 requests every 2 days"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6778,7 +6706,6 @@
           "the free models work in the playground and the API"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.opper.ai/v3/models?limit=0",
         "machinery_keywords": []
@@ -6840,7 +6767,6 @@
           "每位用户每日拥有 100 次免费调用次数"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.moark.com/v1/models",
         "machinery_keywords": []
@@ -6904,7 +6830,6 @@
           "Free models stay free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -6958,7 +6883,6 @@
           "No credit card required to start"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7020,7 +6944,6 @@
           "You can start with a one-credit free preview and no credit card"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7077,7 +7000,6 @@
           "a $0.05 signup bonus"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.impossibl.com/v1/models",
         "machinery_keywords": []
@@ -7140,7 +7062,6 @@
           "New accounts get a $25 signup credit"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.thegrid.ai/v1/models",
         "machinery_keywords": []
@@ -7208,7 +7129,6 @@
           "Do you offer a free trial for users?"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://www.hpc-ai.com/api/maas/v1/models",
         "machinery_keywords": [
@@ -7242,7 +7162,6 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7281,7 +7200,6 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7317,7 +7235,6 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7362,7 +7279,6 @@
           "free tokens"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7417,7 +7333,6 @@
           "deepseek-chat"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7473,7 +7388,6 @@
           "$10 in free credits"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7522,7 +7436,6 @@
           "free"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7577,7 +7490,6 @@
           "LongCat-2.0"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7634,7 +7546,6 @@
           "credits expire 30 days after"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7680,7 +7591,6 @@
           "A credit card is required to start using the API"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7735,7 +7645,6 @@
         "endpoint": "https://kenari.id/v1/models",
         "keywords": [],
         "free_marker": ":free",
-        "dead_markers": [],
         "require_zero_price": true,
         "machinery_keywords": []
       },
@@ -7780,7 +7689,6 @@
           "free tier"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -7853,7 +7761,6 @@
           "4 concurrent requests and 2M tokens per day per address"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api.llmtech.eu/v1/models",
         "machinery_keywords": []
@@ -7933,7 +7840,6 @@
         "endpoint": "https://siliconflow.cn/pricing",
         "keywords": [],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": [
           "Qwen2.5-7B-Instruct (Free)",
@@ -8003,7 +7909,6 @@
           "旗舰模型（2 魔粒/次）"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "catalog": "https://api-inference.modelscope.cn/v1/models",
         "machinery_keywords": [],
@@ -8091,7 +7996,6 @@
           "need to provide billing information to sign up in the free tier"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -8157,7 +8061,6 @@
           "3M tokens / day"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -8203,7 +8106,6 @@
           "ongoing access rather than a one time trial"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -8247,7 +8149,6 @@
           "有限次数的补全"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -8288,7 +8189,6 @@
           "赠智能体请求券¥10（首次）"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },
@@ -8335,7 +8235,6 @@
           "rolling 5-hour window"
         ],
         "free_marker": "",
-        "dead_markers": [],
         "require_zero_price": false,
         "machinery_keywords": []
       },

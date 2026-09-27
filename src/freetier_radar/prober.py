@@ -1453,9 +1453,9 @@ def challenge_marker_hit(text: str) -> str | None:
     return None
 
 
-def dead_marker_hit(text: str, probe: Probe) -> str | None:
+def dead_marker_hit(text: str) -> str | None:
     """The phrase a vendor uses to announce the offer is over, if the page has one."""
-    for marker in (*DEAD_MARKERS, *probe.dead_markers):
+    for marker in DEAD_MARKERS:
         if _as_read(marker) in text:
             return marker
     return None
@@ -1516,7 +1516,7 @@ def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
     # described on the page and add the bad news next to it. Read against the
     # rendered page for the same reason the keywords are: the sentence that
     # announces the end is one a reader is meant to see.
-    dead = dead_marker_hit(rendered, entry.probe)
+    dead = dead_marker_hit(rendered)
     if dead is not None:
         return f'offer withdrawn: page says "{dead}"'
     absent = [k for k in entry.probe.keywords if _as_read(k) not in rendered]

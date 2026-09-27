@@ -319,7 +319,6 @@ class Probe(BaseModel):
     endpoint: str
     keywords: list[str] = []
     free_marker: str = ""
-    dead_markers: list[str] = []  # entry-specific withdrawal wording, on top of DEAD_MARKERS
     # api-models: the matched id must still be free by the catalog's own account —
     # its free flag where it has one, else every price it publishes at zero
     require_zero_price: bool = False
