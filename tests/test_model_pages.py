@@ -195,7 +195,7 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     page = build_model_page("qwen3.8-27b", entries, [], TODAY)
     groq_block = page.split("### [Groq]")[1].split("\n### ")[0]
     assert groq_block.startswith(f"({PAGES_URL}/providers/groq-free/)")
-    assert "🔌 LLM APIs with free tier · no card · verified 2026-07-19" in groq_block
+    assert "🔌 LLM APIs with free tier\u00a0· no card\u00a0· verified 2026-07-19" in groq_block
     assert "Fast inference on a free plan" in groq_block
     assert ("- Limits, in the vendor's words: 30 requests a minute and 1,000 a day on "
             "qwen/qwen3.8-27b") in groq_block
@@ -206,7 +206,7 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     open_block = page.split("### [Open Lane]")[1].split("\n### ")[0]
     assert "- Key: none — the lane is anonymous\n- Callable ids: `Qwen/Qwen3.8-27B`" in open_block
     agent_block = page.split("### [Some Agent]")[1].split("\n## ")[0]
-    assert "🤖 Coding agents & CLIs · card required · verified 2026-07-19" in agent_block
+    assert "🤖 Coding agents & CLIs\u00a0· card required\u00a0· verified 2026-07-19" in agent_block
     assert "- No API endpoint to paste: this row is a tool you install or sign in to." in agent_block
     assert "The vendor publishes no figure for this tier." in agent_block
 
@@ -289,7 +289,7 @@ def test_a_row_says_since_when_the_list_has_carried_the_model_there():
     ]
     page = build_model_page("qwen3.8-27b", [groq(), keyless()], events, TODAY)
     groq_block = page.split("### [Groq]")[1].split("\n### ")[0]
-    assert "· verified 2026-07-19 · listed since 2026-07-09" in groq_block
+    assert "· verified 2026-07-19\u00a0· listed since 2026-07-09" in groq_block
     open_block = page.split("### [Open Lane]")[1]
     assert "listed since" not in open_block
 
@@ -351,7 +351,7 @@ def test_the_pages_that_name_a_model_link_its_page(tmp_path):
     assert f"\n- [`glm-5.3`]({PAGES_URL}/models/glm-5.3/) — [A](https://x.ai)\n" in readme
     assert f"({PAGES_URL}/models/)" in readme
     # the row's own line in the list, where a reader meets the model by name
-    assert f" · [`glm-5.3`]({PAGES_URL}/models/glm-5.3/) · `solo`</sub>" in readme
+    assert f"\u00a0· [`glm-5.3`]({PAGES_URL}/models/glm-5.3/)\u00a0· `solo`</sub>" in readme
     html = render_site(reg, TEMPLATES, tmp_path / SITE_PAGE, today=TODAY)
     assert f'<a class="chip" href="{PAGES_URL}/models/glm-5.3/">glm-5.3</a>' in html
     assert f'<a href="{PAGES_URL}/models/glm-5.3/"><code>glm-5.3</code></a>' in html
@@ -556,8 +556,8 @@ def test_the_provider_index_and_the_checked_page_are_lists_a_phone_can_read():
     index = build_providers_index(entries, TODAY)
     assert "| Provider |" not in index
     assert "## 🤖 Coding agents & CLIs" in index
-    assert (f"- [A]({PAGES_URL}/providers/a/) — verified 2026-07-19 · `m-1` · `m-2` · `m-3` · "
-            f"`m-4` · `m-5` · `m-6` · `m-7` · `m-8` · [+2 more]({PAGES_URL}/providers/a/)") in index
+    assert (f"- [A]({PAGES_URL}/providers/a/) — verified 2026-07-19\u00a0· `m-1`\u00a0· `m-2`\u00a0· `m-3`\u00a0· "
+            f"`m-4`\u00a0· `m-5`\u00a0· `m-6`\u00a0· `m-7`\u00a0· `m-8`\u00a0· [+2 more]({PAGES_URL}/providers/a/)") in index
     checked = build_checked_page([watched("New", TODAY.isoformat())], TODAY)
     assert "| Service |" not in checked
     assert ("- **New**, checked `2026-07-19` — no free tier today <sub>**Reopens if:** they "

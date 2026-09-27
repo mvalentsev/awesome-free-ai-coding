@@ -11,7 +11,7 @@ crumb: Puter.js (free LLM API)
 
 # Puter.js (free LLM API) free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan · [developer.puter.com](https://developer.puter.com/tutorials/free-llm-api/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan · [developer.puter.com](https://developer.puter.com/tutorials/free-llm-api/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

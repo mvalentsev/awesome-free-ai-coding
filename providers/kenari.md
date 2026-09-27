@@ -11,7 +11,7 @@ crumb: Kenari
 
 # Kenari free tier (archived)
 
-🧭 Aggregators (one key, many providers) · no card · **archived** — delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas · `kenari.id` · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **archived** — delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas · `kenari.id` · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

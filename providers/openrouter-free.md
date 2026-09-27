@@ -11,7 +11,7 @@ crumb: OpenRouter (free models)
 
 # OpenRouter (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-27 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-27 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

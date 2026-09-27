@@ -11,7 +11,7 @@ crumb: TRAE (TraeCode)
 
 # TRAE (TraeCode) free tier
 
-🎁 Trials (no card when possible) · no card · not offered in mainland China, Russia, Canada and 11 more places · **live** — last verified by a probe on 2026-09-27 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in mainland China, Russia, Canada and 11 more places · **live** — last verified by a probe on 2026-09-27 · [trae.ai](https://www.trae.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

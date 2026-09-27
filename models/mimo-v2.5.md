@@ -19,7 +19,7 @@ crumb: mimo-v2.5
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-07-19
+🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-07-19
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -29,7 +29,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-08-14
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-08-14
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

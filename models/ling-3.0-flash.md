@@ -19,7 +19,7 @@ crumb: ling-3.0-flash
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

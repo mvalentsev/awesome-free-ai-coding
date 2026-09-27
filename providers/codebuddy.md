@@ -11,7 +11,7 @@ crumb: CodeBuddy (Tencent)
 
 # CodeBuddy (Tencent) free tier
 
-🎁 Trials (no card when possible) · no card · not offered in the United States, India and Russia · **live** — last verified by a probe on 2026-09-27 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in the United States, India and Russia · **live** — last verified by a probe on 2026-09-27 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

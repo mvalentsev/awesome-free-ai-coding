@@ -11,7 +11,7 @@ crumb: IBM watsonx.ai (Lite plan)
 
 # IBM watsonx.ai (Lite plan) free tier
 
-🔌 LLM APIs with free tier · card required · not offered in Vietnam, Türkiye, Taiwan and 24 more places · **live** — last verified by a probe on 2026-09-27 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · not offered in Vietnam, Türkiye, Taiwan and 24 more places · **live** — last verified by a probe on 2026-09-27 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

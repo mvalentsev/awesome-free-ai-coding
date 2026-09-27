@@ -11,7 +11,7 @@ crumb: Qodo
 
 # Qodo free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-27 · [qodo.ai](https://www.qodo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-27 · [qodo.ai](https://www.qodo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

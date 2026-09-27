@@ -11,7 +11,7 @@ crumb: DeepSeek Platform
 
 # DeepSeek Platform free tier (archived)
 
-🎁 Trials (no card when possible) · no card · **archived** — delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant · [platform.deepseek.com](https://platform.deepseek.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **archived** — delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant · [platform.deepseek.com](https://platform.deepseek.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

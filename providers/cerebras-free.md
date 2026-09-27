@@ -11,7 +11,7 @@ crumb: Cerebras Inference
 
 # Cerebras Inference free tier (archived)
 
-🎁 Trials (no card when possible) · card required · **archived** — delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit · [cerebras.ai](https://www.cerebras.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · card required · **archived** — delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit · [cerebras.ai](https://www.cerebras.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

@@ -11,7 +11,7 @@ crumb: SambaNova Cloud
 
 # SambaNova Cloud free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier · [cloud.sambanova.ai](https://cloud.sambanova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

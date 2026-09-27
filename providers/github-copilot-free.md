@@ -11,7 +11,7 @@ crumb: GitHub Copilot Free
 
 # GitHub Copilot Free free tier
 
-🎁 Trials (no card when possible) · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-09-27 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-09-27 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

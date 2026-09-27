@@ -19,7 +19,7 @@ crumb: nemotron-3-nano-30b
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those
 
@@ -32,7 +32,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

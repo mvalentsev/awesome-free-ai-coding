@@ -19,7 +19,7 @@ crumb: minimax-m2.7
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -31,7 +31,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-16
 
 OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog
 

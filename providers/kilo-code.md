@@ -11,7 +11,7 @@ crumb: Kilo Code
 
 # Kilo Code free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-27 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-27 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

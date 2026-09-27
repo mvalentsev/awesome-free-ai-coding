@@ -11,7 +11,7 @@ crumb: Infomaniak AI Services
 
 # Infomaniak AI Services free tier (archived)
 
-🎁 Trials (no card when possible) · card required · **archived** — delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit · [infomaniak.com](https://www.infomaniak.com/en/hosting/ai-services) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · card required · **archived** — delisted on 2026-09-16: a one-month wallet of a million credits, and "A credit card is required to start using the API" — a one-off credit behind a card, which CONTRIBUTING does not admit · [infomaniak.com](https://www.infomaniak.com/en/hosting/ai-services) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

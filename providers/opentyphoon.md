@@ -11,7 +11,7 @@ crumb: OpenTyphoon (SCB 10X)
 
 # OpenTyphoon (SCB 10X) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -11,7 +11,7 @@ crumb: Token Harbor
 
 # Token Harbor free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-27 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-27 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

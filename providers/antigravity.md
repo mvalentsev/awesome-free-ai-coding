@@ -11,7 +11,7 @@ crumb: Google Antigravity
 
 # Google Antigravity free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-09-27 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · **live** — last verified by a probe on 2026-09-27 · [antigravity.google](https://antigravity.google) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

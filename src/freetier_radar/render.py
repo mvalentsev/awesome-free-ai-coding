@@ -158,6 +158,9 @@ README_PICKS = 3
 # fourteen on OpenRouter on 2026-09-24, and a README row is one line. The row's
 # page and the site, its model index among them, name them all.
 README_MODELS = 8
+# The separator between names on a line. The no-break space keeps the dot with the
+# name before it, so a wrapped line never starts with one.
+DOT = "\u00a0· "
 # How many strong models the README names in its Start here, the most widely
 # served first. The tier bar keeps the set short — seventeen families of 149 on
 # 2026-09-25 — and the cap keeps it short whatever the bar lets through; the
@@ -420,7 +423,7 @@ def _row_models(e: Entry, pages: set[str]) -> str:
     where it has one (what a reader who stops on a model name came for), then
     a count linking the row's page for the rest — Alibaba's fifty-seven."""
     shown, more = _readme_families(e)
-    return " · ".join(([_family_links(shown, pages, " · ")] if shown else [])
+    return DOT.join(([_family_links(shown, pages, DOT)] if shown else [])
                       + ([f"[+{more} more]({provider_page_url(e.id)})"] if more else []))
 
 
@@ -666,9 +669,12 @@ def _new_rows(active: list[Entry], history: list[Event], today: date) -> list[di
     seen: dict[str, dict] = {}
     for ev in added:
         # The name without its gloss — "(formerly Vertex AI)", "(free models)" — on a
-        # line that names up to a week of rows; the row itself keeps it.
-        seen.setdefault(ev.id, {"name": re.sub(r"\s*\([^()]*\)$", "", live[ev.id].name),
-                                "page": provider_page_url(ev.id)})
+        # line that names up to a week of rows; the row itself keeps it. A name that
+        # fits a phone's line is kept on one.
+        name = re.sub(r"\s*\([^()]*\)$", "", live[ev.id].name)
+        if len(name) <= 24:
+            name = name.replace(" ", "\u00a0")
+        seen.setdefault(ev.id, {"name": name, "page": provider_page_url(ev.id)})
     return list(seen.values())
 
 
@@ -1205,6 +1211,7 @@ def build_context(entries: list[Entry], today: date,
         order = {b.family: i for i, b in enumerate(chart.ranked())}
         strong = sorted(strong, key=lambda m: order.get(m["family"], len(order)))
     return {**shared,
+            "dot": DOT,
             "hero": hero,
             "hero_alt": hero_words(hero),
             "chart": chart,
@@ -2312,7 +2319,7 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
                           "last_modified_at": _last_modified(e, events),
                           "crumb": e.name}),
            "{% raw %}", "", f"# {e.name}", "",
-           " · ".join([CATEGORY_TITLES[e.category],
+           DOT.join([CATEGORY_TITLES[e.category],
                        f"**folded into [{name}]({page})** — one project, one row",
                        f"[back to the whole list]({PAGES_URL}/)"]),
            "", f"## The same project as {name}", "",
@@ -2399,7 +2406,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
             live += f"; {misses}, and {ARCHIVE_AFTER_FAILURES} misses in a row archive the row"
         flags.append(live)
     site = f"`{domain_of(e.url)}`" if blocked else f"[{domain_of(e.url)}]({e.url})"
-    out.append(" · ".join(flags) + f" · {site} · [back to the whole list]({PAGES_URL}/)")
+    out.append(DOT.join(flags + [site, f"[back to the whole list]({PAGES_URL}/)"]))
     # The name this service was also carried under, for the reader who arrives
     # by the other one: a folded row keeps its page, and this is the page it
     # points at.
@@ -2493,7 +2500,7 @@ def build_providers_index(entries: list[Entry], today: date,
         for e in rows:
             fams = _row_models(e, pages)
             out.append(f"- [{e.name}]({provider_page_url(e.id)}){_card_flag(e)} — verified "
-                       f"{e.last_verified.isoformat()}" + (f" · {fams}" if fams else ""))
+                       f"{e.last_verified.isoformat()}" + (DOT + fams if fams else ""))
         out.append("")
     if archived:
         out += ["## Archived", ""]
@@ -2581,7 +2588,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     since = _listed_since(events, e.id, family)
     if since is not None:
         flags.append(f"listed since {since.isoformat()}")
-    out = [f"### [{e.name}]({provider_page_url(e.id)})", "", " · ".join(flags), "", e.offering, ""]
+    out = [f"### [{e.name}]({provider_page_url(e.id)})", "", DOT.join(flags), "", e.offering, ""]
     if e.api and e.api.notice:
         # First, as on the row's page: the one thing a reader about to copy a
         # base URL needs before the base URL.

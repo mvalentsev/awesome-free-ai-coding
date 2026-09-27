@@ -11,7 +11,7 @@ crumb: AI21 Labs (Jamba)
 
 # AI21 Labs (Jamba) free tier (archived)
 
-🎁 Trials (no card when possible) · no card · **archived** — vendor-announced shutdown on 2026-08-09 · [ai21.com](https://www.ai21.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **archived** — vendor-announced shutdown on 2026-08-09 · [ai21.com](https://www.ai21.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

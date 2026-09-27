@@ -19,7 +19,7 @@ crumb: laguna-s-2.1
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -32,7 +32,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-08-11
 
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
@@ -45,7 +45,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -57,7 +57,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · verified 2026-09-27 · listed since 2026-08-14
+🧭 Aggregators (one key, many providers) · card required · verified 2026-09-27 · listed since 2026-08-14
 
 One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit
 
@@ -70,7 +70,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-27 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-27 · listed since 2026-09-16
 
 Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18 — on an OpenAI-compatible API
 

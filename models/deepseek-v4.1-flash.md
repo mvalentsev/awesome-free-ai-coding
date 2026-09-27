@@ -19,7 +19,7 @@ crumb: deepseek-v4.1-flash
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-09-16
+🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-09-16
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
 
@@ -29,7 +29,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 ### [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-27 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-27 · listed since 2026-09-16
 
 OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card
 

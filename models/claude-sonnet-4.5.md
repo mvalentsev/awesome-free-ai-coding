@@ -19,7 +19,7 @@ crumb: claude-sonnet-4.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-07-19
+🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-07-19
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 

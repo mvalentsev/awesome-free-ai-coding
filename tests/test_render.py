@@ -209,7 +209,7 @@ def test_a_list_item_is_the_name_the_offer_and_a_small_line_of_date_and_models(t
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     page = "https://mvalentsev.github.io/awesome-free-ai-coding/providers/"
     assert (f"- **[X](https://x.ai)** 💳 🧪 — An offer<br><sub>[verified 2026-07-19]({page}x/)"
-            " · `a` · `b`</sub>") in text
+            "\u00a0· `a`\u00a0· `b`</sub>") in text
     assert (f"- **[Y](https://x.ai)** — Another offer<br>"
             f"<sub>[verified 2026-07-19]({page}y/)</sub>") in text
 
@@ -468,7 +468,7 @@ def test_a_provider_page_says_when_its_probe_has_started_missing(tmp_path: Path)
     from freetier_radar.render import build_provider_page
 
     healthy = build_provider_page(make(id="ok"), [], TODAY)
-    assert "**live** — last verified by a probe on 2026-07-19 ·" in healthy
+    assert "**live** — last verified by a probe on 2026-07-19\u00a0·" in healthy
 
     once = build_provider_page(make(id="slipping", probe_failures=1), [], TODAY)
     assert "the probe since has not found that evidence" in once
@@ -723,7 +723,7 @@ def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_pa
     # Each model links its own page, where every row that serves it has its
     # limits and the ids to call.
     assert f"\n- [`big`]({PAGES_URL}/models/big/) <sub>frontier</sub> — [C](https://x.ai)\n" in start
-    assert (f"\n- [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) — [A](https://x.ai) · "
+    assert (f"\n- [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) — [A](https://x.ai)\u00a0· "
             "[B](https://x.ai) 💳\n") in start
     assert "`small`" not in start
 
@@ -1380,7 +1380,7 @@ def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
                         make(id="api", name="Api")])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
-    assert "\n- **[Ag](https://x.ai)** — `m-1` · `m-2`\n" in start
+    assert "\n- **[Ag](https://x.ai)** — `m-1`\u00a0· `m-2`\n" in start
     assert "\n- **An API key that gets the most done for free** — [Api](https://x.ai)\n" in start
     assert "| Agent |" not in start and "| I want… |" not in start
 
@@ -1475,7 +1475,7 @@ def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_pat
     save_registry(reg, entries)
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     hero = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
-    assert "- **Claude Code on a free lane** — [GwOne](https://x.ai) · [GwNoIds](https://x.ai)\n" in hero
+    assert "- **Claude Code on a free lane** — [GwOne](https://x.ai)\u00a0· [GwNoIds](https://x.ai)\n" in hero
     from freetier_radar.render import CONFIGS_README, render_configs_readme
     plug = render_configs_readme(reg, Path("templates"), tmp_path / CONFIGS_README, today=TODAY)
     assert "`https://one.example`" in plug and "claude-code.sh" in plug
@@ -2138,8 +2138,8 @@ def test_a_row_that_needs_a_key_links_where_to_get_one(tmp_path: Path):
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [keyed, keyless])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    assert "[verified 2026-07-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/k/) · [🔑 key](https://k.ai/keys)" in text
-    assert "(https://n.ai) ·" not in text
+    assert "[verified 2026-07-19](https://mvalentsev.github.io/awesome-free-ai-coding/providers/k/)\u00a0· [🔑 key](https://k.ai/keys)" in text
+    assert "(https://n.ai)\u00a0·" not in text
 
 
 def test_the_top_names_the_rows_added_this_week():
@@ -2154,3 +2154,22 @@ def test_the_top_names_the_rows_added_this_week():
     ctx = build_context(rows, TODAY, history=events)
     assert [r["name"] for r in ctx["new_rows"]] == ["New", "Older"]
     assert ctx["new_rows"][0]["page"].endswith("/providers/new/")
+
+
+def test_a_wrapped_readme_line_keeps_its_names_whole(tmp_path):
+    """A phone wraps the README's lines: a middle dot stays with the name before
+    it, a nav label with its emoji, and a new row's name that fits a line stays
+    on one."""
+    from freetier_radar.models import save_registry
+    rows = [make(id="short", name="Baidu Comate", models=[{"family": "a"}, {"family": "b"}]),
+            make(id="long", name="Gemini Enterprise Agent Platform express mode")]
+    events = [Event(ts=datetime(2026, 7, 18, 9, tzinfo=timezone.utc), event=EventType.ADDED,
+                    id=r.id, name=r.name) for r in rows]
+    names = [r["name"] for r in build_context(rows, TODAY, history=events)["new_rows"]]
+    assert names == ["Baidu\u00a0Comate", "Gemini Enterprise Agent Platform express mode"]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, rows)
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    assert "[🔌&nbsp;APIs]" in text and "[🔧&nbsp;Plug&nbsp;it&nbsp;in]" in text
+    assert "`a`\u00a0· `b`" in text
+    assert " · " not in text.split("```mermaid")[0] + text.split("```mermaid")[1].split("```", 1)[1]

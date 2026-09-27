@@ -11,7 +11,7 @@ crumb: NVIDIA NIM (build.nvidia.com)
 
 # NVIDIA NIM (build.nvidia.com) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · **live** — last verified by a probe on 2026-09-27 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · **live** — last verified by a probe on 2026-09-27 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

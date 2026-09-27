@@ -11,7 +11,7 @@ crumb: GitHub Models
 
 # GitHub Models free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — vendor-announced shutdown on 2026-06-16 · [github.com](https://github.com/marketplace/models) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — vendor-announced shutdown on 2026-06-16 · [github.com](https://github.com/marketplace/models) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

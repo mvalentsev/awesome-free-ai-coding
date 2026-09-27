@@ -19,7 +19,7 @@ crumb: deepseek-v4-flash
 
 ### [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-16
 
 OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog
 
@@ -30,7 +30,7 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -42,7 +42,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-27 · verified 2026-09-27 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-27 · verified 2026-09-27 · listed since 2026-09-27
 
 Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day
 
@@ -51,7 +51,7 @@ Open-source terminal coding agent from AtomGit, the code host run by CSDN and th
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-05
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-05
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 

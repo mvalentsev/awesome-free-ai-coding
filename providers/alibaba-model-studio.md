@@ -11,7 +11,7 @@ crumb: Alibaba Cloud Model Studio (DashScope, international)
 
 # Alibaba Cloud Model Studio (DashScope, international) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · **live** — last verified by a probe on 2026-09-27 · [alibabacloud.com](https://www.alibabacloud.com/en/product/modelstudio) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China · **live** — last verified by a probe on 2026-09-27 · [alibabacloud.com](https://www.alibabacloud.com/en/product/modelstudio) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -11,7 +11,7 @@ crumb: Ollama Cloud
 
 # Ollama Cloud free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

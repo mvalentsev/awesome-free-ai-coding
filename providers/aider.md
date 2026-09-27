@@ -11,7 +11,7 @@ crumb: Aider
 
 # Aider free tier (archived)
 
-🤖 Coding agents & CLIs · no card · **archived** — delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly · [aider.chat](https://aider.chat/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **archived** — delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly · [aider.chat](https://aider.chat/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

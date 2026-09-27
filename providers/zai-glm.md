@@ -11,7 +11,7 @@ crumb: Z.ai (Zhipu GLM)
 
 # Z.ai (Zhipu GLM) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [z.ai](https://z.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [z.ai](https://z.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

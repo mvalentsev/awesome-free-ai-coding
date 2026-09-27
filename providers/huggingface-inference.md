@@ -11,7 +11,7 @@ crumb: Hugging Face Inference Providers
 
 # Hugging Face Inference Providers free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-27 · [huggingface.co](https://huggingface.co/docs/inference-providers) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-09-27 · [huggingface.co](https://huggingface.co/docs/inference-providers) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

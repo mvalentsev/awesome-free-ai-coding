@@ -11,7 +11,7 @@ crumb: Novita AI
 
 # Novita AI free tier (archived)
 
-🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero · [novita.ai](https://novita.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **archived** — delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero · [novita.ai](https://novita.ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

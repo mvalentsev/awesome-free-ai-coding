@@ -19,7 +19,7 @@ crumb: gpt-6-luna
 
 ### [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-16 · verified 2026-09-27 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-16 · verified 2026-09-27 · listed since 2026-09-27
 
 Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
 

@@ -11,7 +11,7 @@ crumb: MiMoCode
 
 # MiMoCode
 
-🤖 Coding agents & CLIs · **folded into [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/)** — one project, one row · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · **folded into [MiMo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/)** — one project, one row · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## The same project as MiMo Code
 

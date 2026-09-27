@@ -19,7 +19,7 @@ crumb: glm-4.7-flash
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -31,7 +31,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-07-27
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-07-27
 
 GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)
 

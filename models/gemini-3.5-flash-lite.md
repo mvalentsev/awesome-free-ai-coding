@@ -19,7 +19,7 @@ crumb: gemini-3.5-flash-lite
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-27 · listed since 2026-08-14
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-27 · listed since 2026-08-14
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 

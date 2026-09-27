@@ -11,7 +11,7 @@ crumb: Devin Desktop (formerly Windsurf)
 
 # Devin Desktop (formerly Windsurf) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-27 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-27 · [devin.ai](https://devin.ai/desktop) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

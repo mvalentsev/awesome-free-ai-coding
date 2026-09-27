@@ -11,7 +11,7 @@ crumb: Hetzner Inference API
 
 # Hetzner Inference API free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [docs.hetzner.com](https://docs.hetzner.com/general/company-and-policy/experiments/inference/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -19,7 +19,7 @@ crumb: muse-spark-1.2
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-09-25
+🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-09-25
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
 

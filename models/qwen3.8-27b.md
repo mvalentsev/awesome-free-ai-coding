@@ -19,7 +19,7 @@ crumb: qwen3.8-27b
 
 ### [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-17
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-17
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
@@ -31,7 +31,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ### [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/)
 
-🔌 LLM APIs with free tier · no card · provisional since 2026-09-18 · verified 2026-09-27 · listed since 2026-09-18
+🔌 LLM APIs with free tier · no card · provisional since 2026-09-18 · verified 2026-09-27 · listed since 2026-09-18
 
 EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account
 
@@ -43,7 +43,7 @@ EU provider of one model whose quickstart prints a shared trial key for anyone: 
 
 ### [Hetzner Inference API](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-17
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-17
 
 OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs
 
@@ -55,7 +55,7 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -67,7 +67,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-17
+🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-17
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -79,7 +79,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/)
 
-🔌 LLM APIs with free tier · no card · provisional since 2026-09-17 · verified 2026-09-27 · listed since 2026-09-17
+🔌 LLM APIs with free tier · no card · provisional since 2026-09-17 · verified 2026-09-27 · listed since 2026-09-17
 
 OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha
 
@@ -90,7 +90,7 @@ OpenAI-compatible gateway for vision and language models whose models on VLM Run
 
 ### [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-17
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-17
 
 EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller
 

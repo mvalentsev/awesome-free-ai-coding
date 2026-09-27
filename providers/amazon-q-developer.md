@@ -11,7 +11,7 @@ crumb: Amazon Q Developer
 
 # Amazon Q Developer free tier (archived)
 
-🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-05-15 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-05-15 · [aws.amazon.com](https://aws.amazon.com/q/developer/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

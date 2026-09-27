@@ -11,7 +11,7 @@ crumb: Scaleway Generative APIs
 
 # Scaleway Generative APIs free tier (archived)
 
-🔌 LLM APIs with free tier · card required · **archived** — delisted on 2026-09-16: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit · [scaleway.com](https://www.scaleway.com/en/generative-apis/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · **archived** — delisted on 2026-09-16: 1,000,000 free tokens once per customer, and "Ordering Scaleway resources requires a valid credit card" — a one-off credit behind a card, which CONTRIBUTING does not admit · [scaleway.com](https://www.scaleway.com/en/generative-apis/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

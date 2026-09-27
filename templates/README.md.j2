@@ -16,14 +16,14 @@
 [![tests]({{ repo_url }}/actions/workflows/ci.yml/badge.svg)]({{ repo_url }}/actions/workflows/ci.yml)
 ![Every row verified {{ verified_floor }}](https://img.shields.io/badge/every%20row%20verified-{{ verified_floor | replace('-', '--') | urlencode }}-{{ verified_colour }})
 
-**[🌐 Website]({{ pages_url }}/) · [🔎 Search]({{ pages_url }}/#search) · [🤖 Agents](#-coding-agents--clis) · [🔌 APIs](#-llm-apis-with-free-tier) · [🎁 Trials](#-trials-no-card-when-possible) · [🧭 Aggregators](#-aggregators-one-key-many-providers) · [🔧 Plug it in](#-plug-it-into-your-agent) · [📡 How it works](#-how-this-list-stays-fresh)**
+**[🌐&nbsp;Website]({{ pages_url }}/){{ dot }}[🔎&nbsp;Search]({{ pages_url }}/#search){{ dot }}[🤖&nbsp;Agents](#-coding-agents--clis){{ dot }}[🔌&nbsp;APIs](#-llm-apis-with-free-tier){{ dot }}[🎁&nbsp;Trials](#-trials-no-card-when-possible){{ dot }}[🧭&nbsp;Aggregators](#-aggregators-one-key-many-providers){{ dot }}[🔧&nbsp;Plug&nbsp;it&nbsp;in](#-plug-it-into-your-agent){{ dot }}[📡&nbsp;How&nbsp;it&nbsp;works](#-how-this-list-stays-fresh)**
 
 </div>
 
 > **Machine-verified, not copy-pasted.** A live probe re-reads every row against the vendor's own API or pricing page {{ schedule }}; an offer that dies drops to the [Archive](#-archive) on its own, and each date below opens the row's evidence.
 {% if new_rows %}
 
-🆕 **New this week:** {% for r in new_rows %}[{{ r.name }}]({{ r.page }}){{ " · " if not loop.last }}{% endfor %}{{ '' }}
+🆕 **New this week:** {% for r in new_rows %}[{{ r.name }}]({{ r.page }}){{ dot if not loop.last }}{% endfor %}{{ '' }}
 {% endif %}
 
 ## 🚀 Start here
@@ -31,7 +31,7 @@
 {% if starters %}
 **Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
 
-{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %} · {% endif %}{% endfor %}{% if s.more %} · [+{{ s.more }} more]({{ s.page }}){% endif %}{{ '' }}
+{% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }} more]({{ s.page }}){% endif %}{{ '' }}
 {% endfor %}
 
 {% endif %}
@@ -52,7 +52,7 @@
 
 {% endif %}
 {# The '' keeps the line's newline, which trim_blocks takes from a line that ends in a block tag. #}
-{% for m in readme_strong %}- [`{{ m.family }}`]({{ m.page }}){% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ " · " if not loop.last }}{% endfor %}{{ '' }}
+{% for m in readme_strong %}- [`{{ m.family }}`]({{ m.page }}){% if m.frontier %} <sub>frontier</sub>{% endif %} — {% for p in m.providers %}[{{ p.name }}]({{ p.url }}){{ p.card_flag }}{{ dot if not loop.last }}{% endfor %}{{ '' }}
 {% endfor %}
 {% if chart %}
 
@@ -67,13 +67,13 @@
 {% if picks.frontier or picks.apis or picks.aggregators or picks.keyless or picks.trials or picks.claude_code %}
 **Or pick by what you need:**
 
-{% if picks.frontier %}- **Frontier-tier models on a $0 plan** — {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
-{% endif %}{% if picks.apis %}- **An API key that gets the most done for free** — {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
-{% endif %}{% if picks.aggregators %}- **One key, many free models** — {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
-{% endif %}{% if picks.keyless %}- **No account at all** — {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
-{% endif %}{% if picks.trials %}- **A trial that asks for no card** — {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
-{% endif %}{% if picks.claude_code %}- **Claude Code on a free lane** — {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %} · {% endif %}{% endfor %}{{ '' }}
-{% endif %}- **Codex CLI on a free lane** — {% for p in picks.codex %}[{{ p.name }}]({{ p.url }}) `{{ p.command }}` · {% endfor %}[any lane of the LiteLLM config]({{ codex.path }}) `codex -p {{ codex.name }}`{{ '' }}
+{% if picks.frontier %}- **Frontier-tier models on a $0 plan** — {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.apis %}- **An API key that gets the most done for free** — {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.aggregators %}- **One key, many free models** — {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.keyless %}- **No account at all** — {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.trials %}- **A trial that asks for no card** — {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.claude_code %}- **Claude Code on a free lane** — {% for p in picks.claude_code %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}- **Codex CLI on a free lane** — {% for p in picks.codex %}[{{ p.name }}]({{ p.url }}) `{{ p.command }}`{{ dot }}{% endfor %}[any lane of the LiteLLM config]({{ codex.path }}) `codex -p {{ codex.name }}`{{ '' }}
 
 
 <sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered){% if picks.frontier %}; frontier means within {{ frontier_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models){% endif %}{% if picks.claude_code %}; the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh){% endif %}; the Codex CLI line names lanes that take the request Codex sends, which every run sends again, one profile each in [`configs/codex/`](configs/codex/).</sub>
@@ -99,14 +99,14 @@
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, {% if card_count %}{{ card_count }} of {{ active_count }}{% else %}none today{% endif %}, and no other row asks for one{% if has_trains %} · **👁** — what you send may be used to train models, in the vendor's own words{% endif %}{% if has_provisional %} · **🧪** — new, provisional for {{ provisional_weeks }} of probes{% endif %} · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — the row wants a card on file, {% if card_count %}{{ card_count }} of {{ active_count }}{% else %}none today{% endif %}, and no other row asks for one{% if has_trains %}{{ dot }}**👁** — what you send may be used to train models, in the vendor's own words{% endif %}{% if has_provisional %}{{ dot }}**🧪** — new, provisional for {{ provisional_weeks }} of probes{% endif %}{{ dot }}**verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 {% for s in sections %}
 
 ### {{ s.title }}
 {% if s.rows %}
-<sub>**{{ s.count }}** live · {% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %} · sorted by how much work you can get done for free</sub>
+<sub>**{{ s.count }}** live{{ dot }}{% if s.all_no_card %}not one of them asks for a card{% else %}**{{ s.no_card }}** of them ask for no card{% endif %}{{ dot }}sorted by how much work you can get done for free</sub>
 
-{% for r in s.rows %}- **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} — {{ r.offering }}<br><sub>[verified {{ r.verified }}]({{ r.page }}){% if r.key_url %} · [🔑 key]({{ r.key_url }}){% endif %}{% if r.models %} · {{ r.models }}{% endif %}</sub>
+{% for r in s.rows %}- **[{{ r.name }}]({{ r.url }})**{{ r.card_flag }}{{ r.data_flag }}{{ r.new_flag }} — {{ r.offering }}<br><sub>[verified {{ r.verified }}]({{ r.page }}){% if r.key_url %}{{ dot }}[🔑 key]({{ r.key_url }}){% endif %}{% if r.models %}{{ dot }}{{ r.models }}{% endif %}</sub>
 {% endfor %}{% else %}
 _Nothing verified right now._
 {% endif %}
@@ -164,8 +164,8 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 - [`configs/claude-code.sh`](configs/claude-code.sh) — One shell function per gateway that serves the Anthropic Messages format: `source` it and run [Claude Code](https://code.claude.com/docs) on a free lane, key and model filled in where the row lists one
 - [`{{ codex.path }}`]({{ codex.path }}) — [Codex CLI](https://developers.openai.com/codex) profile over the LiteLLM config: Codex speaks only the OpenAI Responses API, and the proxy answers it for every lane in that file from the lane's chat completions — copy it to `~/.codex/` and run `codex -p {{ codex.name }}` (Codex CLI {{ codex.since }} and LiteLLM {{ codex.litellm_since }} or later)
 - [`configs/free-llm.env.example`](configs/free-llm.env.example) — Commented env exports for any OpenAI-compatible tool
-- [`llms.txt`](llms.txt) · [`index.json`](index.json) · [feed]({{ feed_url }}) — The list for machines: one text file for LLM search and agents, the JSON registry, and an Atom feed of every change
-- [`browse.html`]({{ pages_url }}/browse.html) · [provider pages]({{ pages_url }}/providers/) — The list as a filterable table, and one page per row: the offer in the vendor's own words, the connection details, the evidence and the history
+- [`llms.txt`](llms.txt){{ dot }}[`index.json`](index.json){{ dot }}[feed]({{ feed_url }}) — The list for machines: one text file for LLM search and agents, the JSON registry, and an Atom feed of every change
+- [`browse.html`]({{ pages_url }}/browse.html){{ dot }}[provider pages]({{ pages_url }}/providers/) — The list as a filterable table, and one page per row: the offer in the vendor's own words, the connection details, the evidence and the history
 
 ## 📡 How this list stays fresh
 
@@ -207,6 +207,6 @@ Know a legal free offer that's missing? **[Suggest a service](../../issues/new?t
 
 **⭐ If this list saved you a credit-card form, star the repo — it keeps the radar visible.**
 
-<sub>Maintained by robots · reviewed by humans · MIT · <a href="#top">back to top ↑</a></sub>
+<sub>Maintained by robots{{ dot }}reviewed by humans{{ dot }}MIT{{ dot }}<a href="#top">back to top ↑</a></sub>
 
 </div>

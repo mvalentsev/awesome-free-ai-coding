@@ -19,7 +19,7 @@ crumb: minimax-m2.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-25
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
@@ -29,7 +29,7 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -41,7 +41,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-24
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 

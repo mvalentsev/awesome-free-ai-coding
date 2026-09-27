@@ -19,7 +19,7 @@ crumb: qwen3.5-9b
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-27
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 

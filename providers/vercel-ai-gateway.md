@@ -11,7 +11,7 @@ crumb: Vercel AI Gateway
 
 # Vercel AI Gateway free tier
 
-🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-09-27 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · **live** — last verified by a probe on 2026-09-27 · [vercel.com](https://vercel.com/ai-gateway) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

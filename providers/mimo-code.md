@@ -11,7 +11,7 @@ crumb: MiMo Code
 
 # MiMo Code free tier (archived)
 
-🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-07-26 · [mimo.xiaomi.com](https://mimo.xiaomi.com/coder) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **archived** — vendor-announced shutdown on 2026-07-26 · [mimo.xiaomi.com](https://mimo.xiaomi.com/coder) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 Also carried as [MiMoCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimocode/), until that row was folded into this one — one project, one row.
 

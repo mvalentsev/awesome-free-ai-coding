@@ -19,7 +19,7 @@ crumb: gemini-3.1-pro
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-27 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-27 · listed since 2026-08-11
 
 Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 
@@ -29,7 +29,7 @@ Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Ge
 
 ### [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-09-27 · listed since 2026-09-23
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-09-27 · listed since 2026-09-23
 
 Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 

@@ -11,7 +11,7 @@ crumb: Groq
 
 # Groq free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [groq.com](https://groq.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

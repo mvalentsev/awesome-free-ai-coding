@@ -11,7 +11,7 @@ crumb: Cohere (trial keys)
 
 # Cohere (trial keys) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · **live** — last verified by a probe on 2026-09-27 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · **live** — last verified by a probe on 2026-09-27 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

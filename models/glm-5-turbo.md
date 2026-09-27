@@ -19,7 +19,7 @@ crumb: glm-5-turbo
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-25
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -31,7 +31,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-26 · verified 2026-09-27 · listed since 2026-09-26
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-26 · verified 2026-09-27 · listed since 2026-09-26
 
 Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card
 

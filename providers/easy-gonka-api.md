@@ -11,7 +11,7 @@ crumb: Easy GonkaAI API
 
 # Easy GonkaAI API free tier (archived)
 
-🎁 Trials (no card when possible) · no card · **archived** — delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam) · `gonka-api.org` · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **archived** — delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam) · `gonka-api.org` · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What it offered
 

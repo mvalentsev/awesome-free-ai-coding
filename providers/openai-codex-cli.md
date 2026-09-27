@@ -11,7 +11,7 @@ crumb: OpenAI Codex CLI
 
 # OpenAI Codex CLI free tier
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-09-27 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 24 more places · **live** — last verified by a probe on 2026-09-27 · [learn.chatgpt.com](https://learn.chatgpt.com/docs/codex/cli) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

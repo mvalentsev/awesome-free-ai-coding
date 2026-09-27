@@ -11,7 +11,7 @@ crumb: Qoder CN (formerly Lingma)
 
 # Qoder CN (formerly Lingma) free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-27, a regular row from the first probe it passes on or after 2026-10-11 · **live** — last verified by a probe on 2026-09-27 · [qoder.cn](https://qoder.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-27, a regular row from the first probe it passes on or after 2026-10-11 · **live** — last verified by a probe on 2026-09-27 · [qoder.cn](https://qoder.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

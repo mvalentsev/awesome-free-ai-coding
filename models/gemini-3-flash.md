@@ -19,7 +19,7 @@ crumb: gemini-3-flash
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-27 · listed since 2026-09-25
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 
@@ -31,7 +31,7 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ### [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-09-27 · listed since 2026-09-23
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-09-27 · listed since 2026-09-23
 
 Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 

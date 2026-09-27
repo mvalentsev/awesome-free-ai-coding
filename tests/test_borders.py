@@ -307,7 +307,7 @@ def test_a_provider_page_says_where_the_offer_reaches_and_what_share_that_leaves
     page = build_provider_page(bordered(left_out=["CN", "HK", "MO", "RU", "IR"],
                                         quote="not available in China or Russia"), [], TODAY)
     top = page.split("## What you get")[0]
-    assert "no card · not offered in mainland China, Russia, Hong Kong and 2 more places" in top
+    assert "no card\u00a0· not offered in mainland China, Russia, Hong Kong and 2 more places" in top
     section = page.split("## Where it is offered")[1].split("##")[0]
     assert section.strip().startswith(
         f"Not offered in mainland China, Russia, Hong Kong, Iran and Macao ([source]({REGIONS}), "
@@ -319,7 +319,7 @@ def test_a_provider_page_says_where_the_offer_reaches_and_what_share_that_leaves
 def test_a_sign_up_for_one_market_is_said_as_where_the_offer_is():
     from freetier_radar.render import build_provider_page
     page = build_provider_page(bordered(served=["CN"]), [], TODAY)
-    assert "no card · offered only in mainland China" in page
+    assert "no card\u00a0· offered only in mainland China" in page
     assert "Offered only in mainland China ([source]" in page
 
 
@@ -346,7 +346,7 @@ def test_an_archived_rows_page_says_nothing_of_a_border():
 def test_a_model_page_and_llms_txt_carry_the_border_beside_the_card():
     from freetier_radar.render import _llms_line, _model_row
     e = bordered(served=["CN", "HK", "MO", "TW"], models=[{"family": "x-mini-2"}])
-    assert " · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · " in \
+    assert "\u00a0· no card\u00a0· offered only in mainland China, Hong Kong, Taiwan and Macao\u00a0· " in \
         "\n".join(_model_row(e, "x-mini-2", []))
     assert "; no card; offered only in mainland China, Hong Kong, Taiwan and Macao" in _llms_line(e)
 

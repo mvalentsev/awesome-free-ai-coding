@@ -19,7 +19,7 @@ crumb: qwen3.7-flash
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -31,7 +31,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-08-03
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-08-03
 
 OpenAI-compatible gateway to a 128-id catalog whose free page counts two models on 2026-09-27, beside the auto:free router
 

@@ -11,7 +11,7 @@ crumb: SenseNova (SenseTime 商汤)
 
 # SenseNova (SenseTime 商汤) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-09-27 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China · **live** — last verified by a probe on 2026-09-27 · [sensenova.cn](https://www.sensenova.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -19,7 +19,7 @@ crumb: muse-glimmer-30b
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-17
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-17
 
 OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those
 
@@ -32,7 +32,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-27 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-27 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -44,7 +44,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-14
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-14
 
 OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog
 

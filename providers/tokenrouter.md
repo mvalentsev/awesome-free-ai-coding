@@ -11,7 +11,7 @@ crumb: TokenRouter (PaleBlueDot)
 
 # TokenRouter (PaleBlueDot) free tier
 
-🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-09-27 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-09-27 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

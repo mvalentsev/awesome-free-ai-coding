@@ -11,7 +11,7 @@ crumb: Dahl Inference
 
 # Dahl Inference free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-27 · [inference.dahl.global](https://inference.dahl.global) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-09-27 · [inference.dahl.global](https://inference.dahl.global) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
