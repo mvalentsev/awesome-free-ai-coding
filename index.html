@@ -4553,7 +4553,24 @@ vendor-announced shutdown on 2026-05-15            </td>
       if (a.getAttribute("href").charAt(0) === "#") { go(a); } else { location.href = a.href; }
     }
   });
-  dialog.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { close(); } });
+  // Where Tab moves focus inside the dialog, which says it is modal: from the
+  // last control back to the first, from the first (or from nowhere in it)
+  // back to the last, and -1 anywhere in between, where the browser moves it.
+  function wrapFocus(count, at, back) {
+    if (!count) { return -1; }
+    if (back && at <= 0) { return count - 1; }
+    if (!back && at === count - 1) { return 0; }
+    return -1;
+  }
+  dialog.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape") { close(); return; }
+    if (ev.key !== "Tab") { return; }
+    var controls = Array.prototype.filter.call(
+      dialog.querySelectorAll("input, button, a[href]"),
+      function (el) { return !el.disabled && el.getClientRects().length > 0; });
+    var to = wrapFocus(controls.length, controls.indexOf(document.activeElement), ev.shiftKey);
+    if (to >= 0) { ev.preventDefault(); controls[to].focus(); }
+  });
   dialog.addEventListener("click", function (ev) { if (ev.target === dialog) { close(); } });
   dialog.querySelector("[data-search-close]").addEventListener("click", function () { close(); });
   document.querySelectorAll("[data-search-open]").forEach(function (b) {

@@ -545,6 +545,22 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
     assert got["said"] == "Free: gemini/gemma-4-31b and gemini/gemma-4-26b-moe.", got
 
 
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+def test_tab_keeps_to_the_search_dialog_it_promises_is_modal(tmp_path):
+    """The dialog says aria-modal, and until 2026-09-27 Tab walked out of it onto
+    the page behind while Esc and a click outside closed it. Tab past the last
+    control comes back to the first, Shift+Tab before the first goes to the
+    last, and anywhere in between the browser moves focus itself."""
+    script = _render([make()], tmp_path).split('id="search-config">')[1]
+    harness = _js_function(script, "wrapFocus") + """
+    console.log(JSON.stringify([wrapFocus(4, 3, false), wrapFocus(4, 0, true),
+                                wrapFocus(4, 1, false), wrapFocus(4, 2, true),
+                                wrapFocus(4, -1, true), wrapFocus(0, 0, false)]));"""
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    assert json.loads(run.stdout) == [0, 3, -1, -1, 3, -1]
+
 def test_the_search_filters_on_the_answers_the_rows_carry(tmp_path):
     """Its filters are generated from the categories and the four answers a
     row's flags carry, so a filter can never ask for a flag no row has."""
