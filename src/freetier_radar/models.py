@@ -908,6 +908,12 @@ class Delisting(BaseModel):
         return value
 
 
+# The provider pages that are no row's: providers/index.md and
+# providers/checked.md, beside a page per row named by its id.
+PROVIDERS_INDEX_PAGE = "index"
+CHECKED_PAGE = "checked"
+
+
 class Entry(BaseModel):
     id: str
     name: str
@@ -939,6 +945,16 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+    @field_validator("id")
+    @classmethod
+    def _id_is_a_row_page_name(cls, value: str) -> str:
+        """A row's page is providers/<id>.md, beside the index of every provider
+        and the page of services checked, so neither name is a row's."""
+        if value in (PROVIDERS_INDEX_PAGE, CHECKED_PAGE):
+            raise ValueError(f"id {value!r} is not a row's page name — providers/{value}.md "
+                             "is a page of the site's own")
+        return value
 
     @model_validator(mode="after")
     def _keywords_must_anchor(self) -> Entry:

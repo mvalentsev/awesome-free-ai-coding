@@ -17,8 +17,9 @@ from .borders import SHARED, beyond_shared, left_out_of, load_yardstick, share
 from .countries import COUNTRIES, country_name
 from .history import (Event, EventType, archive_reason, load_history, pending_changes,
                       record_changes, refuse_deleted_rows)
-from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CODEX_LITELLM_PROFILE,
-                     PROBE_WEEKDAYS, WATCH_RECHECK_DAYS, Category, Entry, FreePart,
+from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
+                     CODEX_LITELLM_PROFILE, PROBE_WEEKDAYS, PROVIDERS_INDEX_PAGE,
+                     WATCH_RECHECK_DAYS, Category, Entry, FreePart,
                      ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
                      folded_into, id_family, is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
@@ -221,14 +222,10 @@ CHANGE_LABELS: dict[EventType, str] = {
     kind: f"{_EVENT_MARKS[kind]} {word}" for kind, word in EVENT_WORDS.items()}
 
 
-def _families(e: Entry) -> list[str]:
-    return live_families(e)
-
-
 def _readme_families(e: Entry) -> tuple[list[str], int]:
     """The families a README line names, in the row's own order and at most
     README_MODELS of them, and how many more the row's page names."""
-    fams = _families(e)
+    fams = live_families(e)
     return fams[:README_MODELS], max(0, len(fams) - README_MODELS)
 
 
@@ -447,8 +444,10 @@ def _archive(entries: list[Entry], today: date) -> list[Entry]:
     A row folded into another (`duplicate_of`) names a service the Archive
     already holds, so it is left out of every list that counts services. It
     stays in the registry, its page stays at its own URL pointing at the row
-    that holds the service (`build_folded_page`), and that row names it back."""
-    return [e for e in entries if is_archived(e, today) and e.duplicate_of is None]
+    that holds the service (`build_folded_page`), and that row names it back.
+    The latest departure comes first, as every Archive prints it."""
+    return sorted((e for e in entries if is_archived(e, today) and e.duplicate_of is None),
+                  key=lambda e: (_departure(e), e.name.lower()), reverse=True)
 
 
 def _archived_rows(entries: list[Entry], today: date) -> list[dict[str, str]]:
@@ -459,8 +458,7 @@ def _archived_rows(entries: list[Entry], today: date) -> list[dict[str, str]]:
     dead and at worst, for a row rejected for cause, a referral. No last probe
     pass either: a probe anchored on a page that outlives the offer goes on
     passing after the vendor's end date."""
-    gone = sorted(_archive(entries, today),
-                  key=lambda e: (_departure(e), e.name.lower()), reverse=True)
+    gone = _archive(entries, today)
     return [{"name": e.name, "page": provider_page_url(e.id),
              "why": _fold(archive_reason(e, today), README_LIMITS_TEASER,
                           README_LIMITS_COLLAPSE, small=True)}
@@ -533,6 +531,12 @@ def _configurable(entries: list[Entry], today: date) -> list[Entry]:
     return [e for e in _connectable(entries, today) if not _static_blockers(e)]
 
 
+def _notice_data(notice: Notice | None) -> dict | None:
+    """A notice as a template reads it, or None."""
+    return ({"since": notice.since.isoformat(), "text": notice.text, "url": notice.url or ""}
+            if notice else None)
+
+
 def _notice_since(notice: Notice) -> str:
     """The notice's date, linked to where the problem is followed when the row
     names a place — the same idiom as the README's verified dates, which link
@@ -568,7 +572,7 @@ def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
     families with the same rows."""
     by_family: dict[str, list[Entry]] = {}
     for e in active:
-        for family in _families(e):
+        for family in live_families(e):
             by_family.setdefault(family, []).append(e)
     return {family: sorted(rows, key=_by_rank)
             for family, rows in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))}
@@ -754,10 +758,15 @@ _TIER_FIRST = {Tier.FRONTIER: 0, Tier.STRONG: 1, Tier.NOTABLE: 2}
 
 def _starter(e: Entry) -> dict:
     tiers = {m.family: m.tier for m in e.models}
-    families = sorted(_families(e), key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
+    families = sorted(live_families(e), key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
     return {"name": e.name, "url": e.url, "families": families[:README_STARTER_MODELS],
             "more": max(0, len(families) - README_STARTER_MODELS),
             "page": provider_page_url(e.id)}
+
+
+def _codex_command(e: Entry) -> str:
+    """How a reader starts Codex CLI on a row's own profile."""
+    return f"codex -p {e.id}"
 
 
 def _pick(e: Entry, families: list[str] | None = None) -> dict:
@@ -804,7 +813,7 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
                         if e.api and e.api.anthropic_base_url][:README_PICKS],
         # Codex's answer: a lane that takes the request Codex sends, called
         # directly with the row's own profile, in rank order across sections.
-        "codex": [{**_pick(e), "command": f"codex -p {e.id}"}
+        "codex": [{**_pick(e), "command": _codex_command(e)}
                   for e in ranked if codex_ready(e)][:README_PICKS],
     }
 
@@ -834,8 +843,7 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
                      # The command stays on the page while the list waits for the
                      # vendor, so the page says, right under it, that it does not
                      # work and since when.
-                     "notice": ({"since": notice.since.isoformat(), "text": notice.text,
-                                 "url": notice.url or ""} if notice else None)}
+                     "notice": _notice_data(notice)}
             return {**start, "curl": _quickstart_curl(start)}
     return None
 
@@ -1122,7 +1130,7 @@ def build_context(entries: list[Entry], today: date,
         {"name": e.name, "base_url": e.api.base_url,
          "page": provider_page_url(e.id),
          "anthropic_base_url": e.api.anthropic_base_url or "",
-         "codex": f"codex -p {e.id}" if codex_ready(e) else "",
+         "codex": _codex_command(e) if codex_ready(e) else "",
          "codex_profile": (codex_profile_path(e).removeprefix("configs/")
                            if codex_ready(e) else ""),
          "auth": _auth_cell(e),
@@ -1323,8 +1331,7 @@ def _site_row(e: Entry) -> dict:
             ("strong", any(m.tier in (Tier.FRONTIER, Tier.STRONG) for m in families))) if on],
         # A row whose published lane is known not to work says so where it is
         # read, not only on its own page, before a reader copies the base URL.
-        "notice": ({"since": api.notice.since.isoformat(), "text": api.notice.text,
-                    "url": api.notice.url or ""} if api and api.notice else None),
+        "notice": _notice_data(api.notice if api else None),
     }
 
 
@@ -1356,7 +1363,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
         rows.append({
             "name": e.name, "page": provider_page_url(e.id),
             "base_url": e.api.base_url, "anthropic_base_url": e.api.anthropic_base_url or "",
-            "codex": f"codex -p {e.id}" if codex_ready(e) else "",
+            "codex": _codex_command(e) if codex_ready(e) else "",
             "codex_profile": codex_profile_path(e) if codex_ready(e) else "",
             "keyless": e.api.key_kind == "none", "env_var": env_var(e.id),
             "public_key": e.api.public_key or "",
@@ -1369,8 +1376,7 @@ def _site_connections(connectable: list[Entry]) -> list[dict]:
 
 
 def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
-    gone = sorted(_archive(entries, today),
-                  key=lambda e: (_departure(e), e.name.lower()), reverse=True)
+    gone = _archive(entries, today)
     return [{"id": e.id, "name": e.name, "page": provider_page_url(e.id),
              "when": _departure(e).isoformat(), "why": _site_fold(archive_reason(e, today))}
             for e in gone]
@@ -1384,6 +1390,11 @@ def _site_changes(events: list[Event], entries: list[Entry] | None,
              "name": ev.name, "url": _event_link(ev, entries, today),
              "detail": event_detail(ev, entries)}
             for ev in _newest_first(events, limit)]
+
+
+def _script_json(value, **dumps) -> str:
+    """JSON for a <script> element: no "<" in it can end the element early."""
+    return json.dumps(value, ensure_ascii=False, **dumps).replace("<", "\\u003c")
 
 
 def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
@@ -1425,7 +1436,7 @@ def _site_jsonld(active_count: int, family_count: int, today: date) -> str:
              ]},
         ],
     }
-    return json.dumps(graph, ensure_ascii=False, indent=2).replace("<", "\\u003c")
+    return _script_json(graph, indent=2)
 
 
 def build_site_context(entries: list[Entry], today: date,
@@ -1457,7 +1468,7 @@ def build_site_context(entries: list[Entry], today: date,
         "radar": SITE_RADAR,
         # Serialised here, like the structured data: autoescaping would turn a
         # JSON document's quotes into entities.
-        "search_config": json.dumps(_search_config(), ensure_ascii=False).replace("<", "\\u003c"),
+        "search_config": _script_json(_search_config()),
     }
 
 
@@ -1504,7 +1515,7 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"Anthropic Messages at {api.anthropic_base_url}")
         if codex_ready(e):
             parts.append(f"Codex CLI profile at {REPO_URL}/blob/main/{codex_profile_path(e)}")
-    fams = _families(e)
+    fams = live_families(e)
     if fams:
         parts.append("free models: " + ", ".join(f"`{f}`" for f in fams))
     if e.provisional:
@@ -1861,7 +1872,7 @@ def build_codex_profile(e: Entry) -> str:
                   "keeps its config, ~/.codex unless CODEX_HOME says otherwise:"),
         "#",
         f"#   cp {codex_profile_path(e)} ~/.codex/",
-        f"#   codex -p {e.id}",
+        f"#   {_codex_command(e)}",
         "#",
         *_comment(f"{key} The model is the first free id the row lists; the quota and "
                   f"every free id are on the row's page, {provider_page_url(e.id)} — codex -p "
@@ -2082,7 +2093,7 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
     if codex_ready(e):
         path = codex_profile_path(e)
         out.append(f"- Codex CLI: [`{path}`]({REPO_URL}/blob/main/{path}) — copy it to "
-                   f"`~/.codex/`, then `codex -p {e.id}`")
+                   f"`~/.codex/`, then `{_codex_command(e)}`")
     if ids:
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
     elif api.no_ids:
@@ -2384,7 +2395,7 @@ def build_providers_index(entries: list[Entry], today: date,
         out.append("")
     if archived:
         out += ["## Archived", ""]
-        for e in sorted(archived, key=lambda e: (_departure(e), e.name.lower()), reverse=True):
+        for e in archived:
             out.append(f"- [{e.name}]({provider_page_url(e.id)}) — {archive_reason(e, today)}")
     out += ["", "{% endraw %}", ""]
     return "\n".join(out)
@@ -2477,7 +2488,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     # families that names it, as the probe reads it — then the row page's own
     # connection lines.
     lane = lane_ids(e)
-    ids = [i for i in (lane.model_ids if lane else []) if id_family(_families(e), i) == family]
+    ids = [i for i in (lane.model_ids if lane else []) if id_family(live_families(e), i) == family]
     out += _connect_lines(e, ids)
     if e.api and e.api.base_url and not ids:
         out.append("- Callable ids: the row lists none for this model")
@@ -2672,9 +2683,6 @@ def _index_models(entries: list[Entry], today: date, pages: set[str]) -> list[di
     return out
 
 
-CHECKED_PAGE = "checked"
-
-
 def checked_page_url() -> str:
     return f"{PAGES_URL}/{PROVIDERS_DIR}/{CHECKED_PAGE}/"
 
@@ -2734,17 +2742,18 @@ def _history_beside(registry_path: Path) -> list[Event]:
     return load_history(_history_path(registry_path))
 
 
+def _env(template_dir: Path, autoescape: bool) -> Environment:
+    """A template environment where a key the context lacks is a render error
+    rather than an empty cell."""
+    return Environment(loader=FileSystemLoader(template_dir), undefined=StrictUndefined,
+                       autoescape=autoescape, keep_trailing_newline=True, trim_blocks=True,
+                       lstrip_blocks=True)
+
+
 def _markdown_env(template_dir: Path) -> Environment:
     """The environment of the pages GitHub renders: no autoescaping, because
-    every cell is Markdown the template composes from the registry, and a key
-    the context lacks is a render error rather than an empty cell."""
-    env = Environment(
-        loader=FileSystemLoader(template_dir),
-        undefined=StrictUndefined,
-        keep_trailing_newline=True,
-        trim_blocks=True,
-        lstrip_blocks=True,
-    )
+    every cell is Markdown the template composes from the registry."""
+    env = _env(template_dir, autoescape=False)
     # The quickstart's caveat is the lane's own api note, which can run to a
     # paragraph under the curl. The site prints it whole; the README folds it
     # like the connection notes, and the context keeps the sentence whole so the
@@ -2810,14 +2819,7 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     same guarantee from `{% raw %}`.
     """
     today = today or date.today()
-    env = Environment(
-        loader=FileSystemLoader(template_dir),
-        undefined=StrictUndefined,
-        autoescape=True,
-        keep_trailing_newline=True,
-        trim_blocks=True,
-        lstrip_blocks=True,
-    )
+    env = _env(template_dir, autoescape=True)
     entries, history = load_registry(registry_path), _history_beside(registry_path)
     refuse_deleted_rows(entries, history)
     context = build_site_context(entries, today,
@@ -2848,7 +2850,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     # is removed; a file of another kind is not this function's to delete.
     providers = root / PROVIDERS_DIR
     providers.mkdir(parents=True, exist_ok=True)
-    wanted = {"index.md", f"{CHECKED_PAGE}.md"}
+    wanted = {f"{PROVIDERS_INDEX_PAGE}.md", f"{CHECKED_PAGE}.md"}
     (providers / f"{CHECKED_PAGE}.md").write_text(build_checked_page(watchlist, today),
                                                   encoding="utf-8")
     for e in entries:
@@ -2857,7 +2859,7 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
             build_provider_page(e, history, today, blocked, registry=entries, pages=pages),
             encoding="utf-8")
         wanted.add(f"{e.id}.md")
-    (providers / "index.md").write_text(build_providers_index(entries, today, history, pages),
+    (providers / f"{PROVIDERS_INDEX_PAGE}.md").write_text(build_providers_index(entries, today, history, pages),
                                         encoding="utf-8")
     for stale in providers.glob("*.md"):
         if stale.name not in wanted:

@@ -763,3 +763,11 @@ def test_an_id_that_drops_a_mixture_of_experts_active_parameters_is_the_familys(
     assert family_names("qwen3.5-122b-a10b", "Qwen/Qwen3.5-122B-A10B-FP8")
     assert not family_names("qwen3-30b-a3b", "qwen3-30b-a6b")
     assert not family_names("qwen3.5-122b-a10b", "qwen3.5-12b")
+
+
+@pytest.mark.parametrize("taken", ["index", "checked"])
+def test_a_row_id_is_never_the_name_of_a_provider_page_that_is_no_rows(taken):
+    """A row's page is providers/<id>.md, beside the index of every provider and
+    the page of services checked; a row by either name would overwrite one."""
+    with pytest.raises(ValidationError, match="is not a row's page name"):
+        Entry.model_validate({**sample_entry(), "id": taken})
