@@ -117,10 +117,19 @@ def test_the_narrow_hero_follows_the_readers_theme_and_the_wide_pair_does_not():
         assert palette.canvas in wide and other.canvas not in wide
 
 
-def test_a_reader_who_asked_for_less_motion_sees_every_dot_lit():
-    svg = hero_svg(HERO, LIGHT)
-    assert re.search(r"@media \(prefers-reduced-motion: reduce\)\s*\{[^}]*\.dot\s*\{[^}]*"
-                     r"animation: none", svg)
+def test_a_reader_who_asked_for_less_motion_gets_a_still_picture():
+    """The beam stops at north and every dot stays lit. The beam turns by a CSS
+    animation for that: SMIL's <animate…> runs whatever the reader asked for.
+    It turns about the hub, the point its group's style names."""
+    for svg in (hero_svg(HERO, LIGHT), hero_svg(HERO, None, narrow=True), radar_svg(HERO)):
+        still = re.search(r"@media \(prefers-reduced-motion: reduce\) (\{.*?\}\})", svg).group(1)
+        assert re.search(r"\.dot \{ animation: none; opacity: 1 \}", still)
+        assert re.search(r"\.turning \{ animation: none \}", still)
+        assert "<animate" not in svg
+        hub = re.search(r'<circle class="hub" cx="([\d.]+)" cy="([\d.]+)"', svg).groups()
+        turning = re.search(r'<g class="turning" style="transform-origin:([\d.]+)px ([\d.]+)px">',
+                            svg).groups()
+        assert turning == hub
 
 
 def test_the_same_figures_draw_the_same_picture():

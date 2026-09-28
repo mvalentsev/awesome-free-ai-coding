@@ -185,10 +185,15 @@ def _style(palette: Palette | None) -> str:
             # A dot lights up as the beam passes it; the delay is that moment.
             + f".dot{{opacity:.45;animation:ping {BEAM_PERIOD:g}s linear infinite}}"
             + "@keyframes ping{0%,4%{opacity:1}55%,100%{opacity:.45}}"
-            # The flashing is what a reader who asked for less motion wants
-            # stopped, so every dot stays lit instead; the beam keeps its slow
-            # turn.
-            + "@media (prefers-reduced-motion: reduce) {.dot { animation: none; opacity: 1 }}"
+            # The beam turns clockwise from north, once a period, about the
+            # centre its group's style names. A CSS animation and not SMIL's
+            # <animateTransform>, which no media query can stop.
+            + f".turning{{animation:turn {BEAM_PERIOD:g}s linear infinite}}"
+            + "@keyframes turn{to{transform:rotate(360deg)}}"
+            # A reader who asked for less motion gets a still picture: the beam
+            # stays at north and every dot stays lit.
+            + "@media (prefers-reduced-motion: reduce) {.dot { animation: none; opacity: 1 } "
+              ".turning { animation: none }}"
             + "</style>")
 
 
@@ -222,9 +227,7 @@ def _radar(frame: _Frame, arcs: tuple[Arc, ...]) -> list[str]:
     out.append(f'<defs><linearGradient id="sweep" gradientUnits="userSpaceOnUse" '
                f'x1="{_num(gx0)}" y1="{_num(gy0)}" x2="{_num(gx1)}" y2="{_num(gy1)}">'
                f'<stop class="s0" offset="0"/><stop class="s1" offset="1"/></linearGradient></defs>')
-    out.append(f'<g><animateTransform attributeName="transform" type="rotate" '
-               f'from="0 {_num(cx)} {_num(cy)}" to="360 {_num(cx)} {_num(cy)}" '
-               f'dur="{BEAM_PERIOD:g}s" repeatCount="indefinite"/>'
+    out.append(f'<g class="turning" style="transform-origin:{_num(cx)}px {_num(cy)}px">'
                f'<path fill="url(#sweep)" d="M{_num(cx)} {_num(cy)}L{_num(tx)} {_num(ty)}'
                f'A{_num(R)} {_num(R)} 0 0 1 {_num(lx)} {_num(ly)}Z"/>'
                f'<line class="beam" x1="{_num(cx)}" y1="{_num(cy)}" x2="{_num(lx)}" '
