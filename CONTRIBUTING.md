@@ -873,7 +873,7 @@ cannot print two versions of it.
 | `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
 | `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page and the IndexNow ping on a push · not on the site | — | `hand` |
-| `.github/dependabot.yml` | **config** — the pinned actions' watcher · not on the site | — | `hand` |
+| `.github/dependabot.yml` | **config** — the watcher of the pinned actions and of uv.lock · not on the site | — | `hand` |
 | `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
 
 <!-- End of the map. -->

@@ -1,13 +1,33 @@
-# Here for one reason: `astral-sh/setup-uv` is pinned to an exact version in
-# every workflow because its publisher stopped shipping major tags at v8, and a
-# pin nobody watches is how a workflow ends up majors behind — setup-uv sat at
-# v5 against v10 before 2026-08-14. The other actions float their major tag and
-# are along for the ride.
+# Two things nobody would otherwise move. `astral-sh/setup-uv` is pinned to an
+# exact version in every workflow because its publisher stopped shipping major
+# tags at v8, and a pin nobody watches is how a workflow ends up majors behind —
+# setup-uv sat at v5 against v10 before 2026-08-14. The other actions float
+# their major tag and are along for the ride.
+#
+# And uv.lock. A security fix reaches it without this file, because the
+# dependency graph reads the lock; nothing else would. Its pull request touches
+# the lock alone (`lockfile-only`): a floor in pyproject.toml is the lowest
+# version CI runs the code on (the `floors` job in ci.yml), not the newest one
+# out, so a release never moves it. The dependencies' own dependencies come too
+# (`all`), one pull request a month for the lot.
 version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: monthly
+    versioning-strategy: lockfile-only
+    allow:
+      - dependency-type: all
+    groups:
+      locked:
+        patterns: ["*"]
     commit-message:
       prefix: chore
