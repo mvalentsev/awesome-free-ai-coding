@@ -2,7 +2,7 @@
 # do not edit by hand.
 # Codex speaks only the OpenAI Responses API, which few free lanes serve; the
 # LiteLLM proxy answers it for every lane in litellm.yaml by calling the
-# lane's chat completions. Needs Codex CLI 0.134 or later and LiteLLM 1.89 or
+# lane's chat completions. Needs Codex CLI 0.134 or later and LiteLLM 1.98 or
 # later; the file goes where Codex keeps its config, ~/.codex unless
 # CODEX_HOME says otherwise:
 #

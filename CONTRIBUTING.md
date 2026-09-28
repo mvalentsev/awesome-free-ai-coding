@@ -441,9 +441,12 @@ sends. LiteLLM's `/v1/responses` sends an `openai/` deployment's call on to the
 lane's own `/responses` unless the deployment carries `use_chat_completions_api`;
 then it builds the call from the lane's chat completions, the format every lane
 here is verified in. So every entry of `configs/litellm.yaml` carries the flag,
-and the header asks for LiteLLM 1.89 or later: 1.88.0 still wrote the flag into
-the vendor's request body, where a strict vendor refuses a field it does not
-know. [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) is
+and the header asks for LiteLLM 1.98 or later: 1.88.3 and earlier write the flag
+into the vendor's request body, where a strict vendor refuses a field it does
+not know (OVHcloud's and LLM7's lanes answered 400 to it on 2026-09-28), and
+1.98.0 is the first release to read the `allowed_fails_policy` each group
+deployment carries, without which a lane that answers 500 or has no key set is
+tried again instead of benched. [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) is
 Codex's profile for the proxy — `--profile NAME` has read
 `$CODEX_HOME/NAME.config.toml` since Codex CLI 0.134 — and its three settings are
 the ones measured that day, with Codex 0.157.1 and LiteLLM 1.102.1, to break a

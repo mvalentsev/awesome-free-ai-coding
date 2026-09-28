@@ -51,9 +51,10 @@ def test_every_litellm_deployment_answers_codex_through_the_lanes_chat_completio
 
 
 def test_the_litellm_header_names_the_version_that_keeps_the_flag_to_the_proxy(tmp_path):
-    """The header names the first LiteLLM that keeps the flag to itself: older ones
-    forward `use_chat_completions_api` to the vendor, and a strict vendor refuses
-    every chat call that carries it, not only Codex's."""
+    """The header names the LiteLLM the config needs: 1.88.3 and earlier forward
+    `use_chat_completions_api` to the vendor, where a strict one refuses every
+    chat call that carries it, not only Codex's, and the groups' own
+    allowed_fails_policy is read from 1.98.0 on."""
     header = (_rendered(tmp_path, _strong_and_keyless()) / "configs" / "litellm.yaml"
               ).read_text(encoding="utf-8")
     assert f"LiteLLM {render.LITELLM_BRIDGE_SINCE} or later" in header

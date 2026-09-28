@@ -1633,11 +1633,11 @@ GROUP_WORDS = {"free/frontier": "every frontier lane", "free/strong": "every str
 # Codex CLI on the free lanes. Codex speaks only the OpenAI Responses API (a
 # provider given `wire_api = "chat"` is a config error, its discussion #7782),
 # and LiteLLM's /v1/responses builds a call from a lane's chat completions when
-# the deployment carries `use_chat_completions_api`. LiteLLM 1.89.0 is the
-# first that keeps the flag to itself instead of writing it into the vendor's
-# request body; Codex 0.134.0 is the first whose `--profile NAME` reads
-# $CODEX_HOME/NAME.config.toml.
-LITELLM_BRIDGE_SINCE = "1.89"
+# the deployment carries `use_chat_completions_api`. LiteLLM 1.88.3 and earlier
+# write that flag into the vendor's request body, and 1.98.0 is the first to
+# read a deployment's own allowed_fails_policy, which the groups carry; Codex
+# 0.134.0 is the first whose `--profile NAME` reads $CODEX_HOME/NAME.config.toml.
+LITELLM_BRIDGE_SINCE = "1.98"
 CODEX_SINCE = "0.134"
 CODEX_DIR = "configs/codex"
 CODEX_LITELLM_PATH = f"{CODEX_DIR}/{CODEX_LITELLM_PROFILE}.config.toml"
@@ -2917,10 +2917,12 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
         "# Entries marked `api_key: none` need no account at all.\n"
         + "".join(f"{line}\n" for line in _comment(
             f"Needs LiteLLM {LITELLM_BRIDGE_SINCE} or later: every entry carries "
-            "use_chat_completions_api, which older versions send on to the vendor, and a "
-            "strict vendor refuses a field it does not know. The flag makes the proxy's "
-            "/v1/responses — the only API Codex CLI speaks — call each lane's chat "
-            "completions; codex/litellm.config.toml is Codex's profile for this file."))
+            "use_chat_completions_api, which 1.88.3 and earlier send on to the vendor, where a "
+            "strict one refuses a field it does not know, and every group deployment carries "
+            f"its own allowed_fails_policy, which LiteLLM reads from {LITELLM_BRIDGE_SINCE} on. "
+            "The flag makes the proxy's /v1/responses — the only API Codex CLI speaks — call "
+            "each lane's chat completions; codex/litellm.config.toml is Codex's profile for "
+            "this file."))
         + _litellm_groups_note(litellm_groups(entries, today))
         + "".join(f"# Left out: {e.name} — {why}.\n"
                   for e in _connectable(entries, today) for why in _static_blockers(e))

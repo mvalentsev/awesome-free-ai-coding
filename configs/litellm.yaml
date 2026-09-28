@@ -7,11 +7,13 @@
 # sets no master_key, so without that flag anyone on your network can spend
 # the keys it reads from the environment (see free-llm.env.example).
 # Entries marked `api_key: none` need no account at all.
-# Needs LiteLLM 1.89 or later: every entry carries use_chat_completions_api,
-# which older versions send on to the vendor, and a strict vendor refuses a
-# field it does not know. The flag makes the proxy's /v1/responses — the only
-# API Codex CLI speaks — call each lane's chat completions;
-# codex/litellm.config.toml is Codex's profile for this file.
+# Needs LiteLLM 1.98 or later: every entry carries use_chat_completions_api,
+# which 1.88.3 and earlier send on to the vendor, where a strict one refuses a
+# field it does not know, and every group deployment carries its own
+# allowed_fails_policy, which LiteLLM reads from 1.98 on. The flag makes the
+# proxy's /v1/responses — the only API Codex CLI speaks — call each lane's
+# chat completions; codex/litellm.config.toml is Codex's profile for this
+# file.
 #
 # Or ask for a group instead of a model: free/strong or free/nokey pool
 # every lane of that tier, and a call falls back down that order when a
