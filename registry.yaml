@@ -1148,7 +1148,6 @@ entries:
     aa_model: gemma-4-31b
   - family: gpt-oss-20b
     aa_model: gpt-oss-20b
-  - family: mistral-nemotron
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: diffusiongemma
@@ -1171,7 +1170,6 @@ entries:
     - meta/muse-glimmer-30b
     - nvidia/nemotron-3.5-lightning-30b-a3b
     - openai/gpt-oss-20b
-    - mistralai/mistral-nemotron
     - nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
     - google/diffusiongemma-26b-a4b-it
     - meta/llama-3.2-90b-vision-instruct
@@ -1189,7 +1187,8 @@ entries:
       and reports an id that joins or leaves it; ignored_ids are the free models made
       for another job: an embedding model, three safety classifiers, two translation
       models and a reader of quantum-calibration plots. The catalog also answers older
-      ids with no page and no free mark, and those are left out'
+      ids with no page and no free mark, and those are left out; so is a free one
+      the catalog stops answering, even while the list still marks it'
   data_use:
     trains: 'yes'
     quote: Your input and output will be recorded to provide you with this trial experience

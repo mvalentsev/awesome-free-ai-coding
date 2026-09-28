@@ -317,12 +317,6 @@ model_list:
     api_base: https://integrate.api.nvidia.com/v1
     api_key: os.environ/NVIDIA_NIM_API_KEY
     use_chat_completions_api: true
-- model_name: nvidia-nim/mistralai/mistral-nemotron
-  litellm_params:
-    model: openai/mistralai/mistral-nemotron
-    api_base: https://integrate.api.nvidia.com/v1
-    api_key: os.environ/NVIDIA_NIM_API_KEY
-    use_chat_completions_api: true
 - model_name: nvidia-nim/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning
   litellm_params:
     model: openai/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning

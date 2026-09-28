@@ -256,9 +256,6 @@
         "openai/gpt-oss-20b": {
           "name": "openai/gpt-oss-20b"
         },
-        "mistralai/mistral-nemotron": {
-          "name": "mistralai/mistral-nemotron"
-        },
         "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning": {
           "name": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning"
         },

@@ -19,7 +19,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ## Free models
 
-[`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), `mistral-nemotron`, [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/), `llama-3.2-90b-vision`, `llama-3.2-11b-vision`
+[`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/), `llama-3.2-90b-vision`, `llama-3.2-11b-vision`
 
 ## Limits, in the vendor's words
 
@@ -37,8 +37,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 - Base URL: `https://integrate.api.nvidia.com/v1`
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
-- Callable ids: `moonshotai/kimi-k3`, `z-ai/glm-5.3`, `z-ai/glm-5.3-flash`, `deepseek-ai/deepseek-v4.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`, `mistralai/mistral-nemotron`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `google/diffusiongemma-26b-a4b-it`, `meta/llama-3.2-90b-vision-instruct`, `meta/llama-3.2-11b-vision-instruct`
-- Note: model_ids are every chat model NVIDIA's free list marks "Free Endpoint" without a retirement date — the probe reads that list from NGC's catalog search and reports an id that joins or leaves it; ignored_ids are the free models made for another job: an embedding model, three safety classifiers, two translation models and a reader of quantum-calibration plots. The catalog also answers older ids with no page and no free mark, and those are left out
+- Callable ids: `moonshotai/kimi-k3`, `z-ai/glm-5.3`, `z-ai/glm-5.3-flash`, `deepseek-ai/deepseek-v4.1-flash`, `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `poolside/laguna-xs-2.1`, `google/gemma-4-31b-it`, `meta/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `openai/gpt-oss-20b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `google/diffusiongemma-26b-a4b-it`, `meta/llama-3.2-90b-vision-instruct`, `meta/llama-3.2-11b-vision-instruct`
+- Note: model_ids are every chat model NVIDIA's free list marks "Free Endpoint" without a retirement date — the probe reads that list from NGC's catalog search and reports an id that joins or leaves it; ignored_ids are the free models made for another job: an embedding model, three safety classifiers, two translation models and a reader of quantum-calibration plots. The catalog also answers older ids with no page and no free mark, and those are left out; so is a free one the catalog stops answering, even while the list still marks it
 
 Try it from your terminal with your key in `NVIDIA_NIM_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -62,6 +62,7 @@ curl -s https://integrate.api.nvidia.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-28` — Free models changed: dropped mistral-nemotron
 - `2026-09-24` — Free models changed: added diffusiongemma, gemma-4-31b, gpt-oss-20b, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-09-22` — Free models changed: added kimi-k3, laguna-xs-2.1, nemotron-3-super, nemotron-3-ultra; dropped nemotron
 - `2026-07-27` — Free models changed: dropped llama-4

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-27T09:00:27Z</updated>
+  <updated>2026-09-28T11:54:24Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260928T115424Z</id>
+    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
+    <link rel="alternate" href="https://build.nvidia.com"/>
+    <updated>2026-09-28T11:54:24Z</updated>
+    <summary type="text">dropped mistral-nemotron · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/atomcode/20260927T090027Z</id>
     <title>Added: AtomCode</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
     <updated>2026-09-23T22:17:46Z</updated>
     <summary type="text">vendor-announced shutdown on 2026-05-15</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/vertex-ai-express/20260923T212343Z</id>
-    <title>Added: Vertex AI express mode (Google Cloud)</title>
-    <link rel="alternate" href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview"/>
-    <updated>2026-09-23T21:23:43Z</updated>
-    <summary type="text">Google Cloud's express mode for the Gemini Enterprise Agent Platform, formerly Vertex AI: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account · free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash</summary>
   </entry>
 </feed>
