@@ -27,11 +27,11 @@ __all__ = ["BEAM_PERIOD", "WIDE_SHOWN", "NARROW_SHOWN", "NARROW_UNTIL", "NARROW_
 
 # One turn of the beam, in seconds.
 BEAM_PERIOD = 6.0
-# The width GitHub shows a README image at: the desktop column (1280-pixel
-# window) and a 390-pixel phone. The tests hold every word to eleven pixels at
-# these widths.
-WIDE_SHOWN = 830
-NARROW_SHOWN = 358
+# The width GitHub showed a README image at, signed out, on 2026-09-28: 823
+# pixels in a 1280-pixel desktop window, 324 on a 390-point iPhone (a 412-point
+# Pixel got 346). The tests hold every word to eleven pixels at these widths.
+WIDE_SHOWN = 823
+NARROW_SHOWN = 324
 # The widest screen the README serves the narrow pictures to.
 NARROW_UNTIL = 600
 # The files each picture is drawn as: the wide pair, one palette each, and the
@@ -411,7 +411,7 @@ def chart_svg(chart: Chart, palette: Palette | None, narrow: bool = False) -> st
                      "list below")
     height = end + 30 * len(notes) + 36
     guide_top, label_y = (156, 148) if narrow else (112, 124)
-    size = 19 if narrow else 16
+    size = 21 if narrow else 16
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
              f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title">',
              f'<title id="title">{escape(chart_words(chart))}</title>',
@@ -421,9 +421,9 @@ def chart_svg(chart: Chart, palette: Palette | None, narrow: bool = False) -> st
     if narrow:
         parts += [f'<text class="t" x="30" y="56" font-family="{SANS}" font-size="30" '
                   f'font-weight="700">Strong models, free</text>',
-                  f'<text class="m" x="30" y="92" font-family="{SANS}" font-size="20">scored on the '
+                  f'<text class="m" x="30" y="92" font-family="{SANS}" font-size="21">scored on the '
                   f'Artificial Analysis Intelligence Index,</text>',
-                  f'<text class="m" x="30" y="120" font-family="{SANS}" font-size="20">read '
+                  f'<text class="m" x="30" y="120" font-family="{SANS}" font-size="21">read '
                   f'{chart.read_on.isoformat()} · top: {escape(chart.top_name)}, '
                   f'{chart.top_score:.1f}</text>']
     else:
@@ -443,7 +443,10 @@ def chart_svg(chart: Chart, palette: Palette | None, narrow: bool = False) -> st
               f'font-size="{size}">strong</text>',
               f'<text class="m" x="{_num(frontier + 5)}" y="{label_y}" font-family="{SANS}" '
               f'font-size="{size}">frontier</text>']
-    parts.append(f'<text class="m" x="{_num(x1 + 6)}" y="{label_y}" font-family="{SANS}" '
+    # On the phone "frontier" runs past the top line, so "top" takes the line
+    # below, inside the guides and clear of the first row.
+    top_y = label_y + 28 if narrow else label_y
+    parts.append(f'<text class="m" x="{_num(x1 + 6)}" y="{top_y}" font-family="{SANS}" '
                  f'font-size="{size}">top</text>')
     for i, bar in enumerate(shown):
         tier = "frontier" if bar.frontier else "strong"
@@ -454,7 +457,7 @@ def chart_svg(chart: Chart, palette: Palette | None, narrow: bool = False) -> st
                       f'<rect class="bar {tier}" x="{_num(x0)}" y="{y + 12}" '
                       f'width="{_num(at(bar.score) - x0)}" height="16" rx="4"/>',
                       f'<text x="570" y="{y + 27}" text-anchor="end" font-family="{SANS}" '
-                      f'font-size="20">{_value(bar)}</text>']
+                      f'font-size="21">{_value(bar)}</text>']
         else:
             y = first + i * row
             parts += [f'<text class="t label" x="350" y="{y + 6}" text-anchor="end" '
