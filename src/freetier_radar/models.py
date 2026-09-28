@@ -528,9 +528,9 @@ class ApiInfo(BaseModel):
     # the day and the record, so freetier-bars counts their bar from there.
     free_since: list[FreeSince] = Field(default_factory=list, exclude_if=lambda v: not v)
     # Why the row lists no id to call, where it can list none: the vendor's
-    # catalog answers only a key and no page it publishes names the ids
-    # (SenseNova keeps them in a JavaScript console). Every other connectable
-    # row carries at least one (see freetier-check). Written only where set.
+    # catalog answers only a key and no page it publishes names the ids. Every
+    # other connectable row carries at least one (see freetier-check). Written
+    # only where set.
     no_ids: str = Field(default="", exclude_if=lambda v: not v)
     # The base of the vendor's Anthropic-format Messages API — the value Claude
     # Code's ANTHROPIC_BASE_URL takes, the client appending /v1/messages itself.

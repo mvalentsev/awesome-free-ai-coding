@@ -1532,7 +1532,11 @@
         "baseURL": "https://token.sensenova.cn/v1",
         "apiKey": "{env:SENSENOVA_API_KEY}"
       },
-      "models": {}
+      "models": {
+        "sensenova-6.8-flash-lite": {
+          "name": "sensenova-6.8-flash-lite"
+        }
+      }
     },
     "tencent-tokenhub": {
       "npm": "@ai-sdk/openai-compatible",

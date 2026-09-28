@@ -33,20 +33,23 @@ Offered only in mainland China ([source](https://platform.sensenova.cn/login), r
 
 - Base URL: `https://token.sensenova.cn/v1`
 - Key: `SENSENOVA_API_KEY` — get one at <https://platform.sensenova.cn>
-- Callable ids: none listed — the ids live only in the vendor's JavaScript console, and /v1/models answers only a key
-- Note: the base url is not printed on any server-rendered page — it is taken from the vendor's console docs and corroborated directly, since token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope. The callable ids live only in that JavaScript console, which no probe here can read, so none are published; the plan page names "SenseNova 6.8 Flash Lite" in prose alone.
+- Callable ids: `sensenova-6.8-flash-lite`
+- Note: the base url and the id are the ones SenseTime's own API guide on GitHub (OpenSenseNova, API.md) prints; token.sensenova.cn/v1/models answers 401 `Authorization Not Found` in an OpenAI-shaped envelope, so no run reads the catalog, and the id of SenseNova U1 Fast, the plan's other free model, is printed on no page a probe here can read.
 
-Check your key from your terminal — with it in `SENSENOVA_API_KEY`, the vendor's catalog lists the models it can call:
+Try it from your terminal with your key in `SENSENOVA_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
 ```sh
-curl -s https://token.sensenova.cn/v1/models \
-  -H "Authorization: Bearer $SENSENOVA_API_KEY"
+curl -s https://token.sensenova.cn/v1/chat/completions \
+  -H "Authorization: Bearer $SENSENOVA_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"sensenova-6.8-flash-lite","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
 - Probe: the page at <https://www.sensenova.cn/token-plan>, anchored on `公测期完全免费开放，付费档位即将上线`, `60,000 积分 / 5 小时`
 - Source: <https://www.sensenova.cn/token-plan>
+- Source: <https://github.com/OpenSenseNova/SenseNova6.8/blob/main/API.md>
 
 ## History
 

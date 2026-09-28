@@ -1823,6 +1823,12 @@ model_list:
     api_base: https://api-inference.modelscope.cn/v1
     api_key: os.environ/MODELSCOPE_API_KEY
     use_chat_completions_api: true
+- model_name: sensenova/sensenova-6.8-flash-lite
+  litellm_params:
+    model: openai/sensenova-6.8-flash-lite
+    api_base: https://token.sensenova.cn/v1
+    api_key: os.environ/SENSENOVA_API_KEY
+    use_chat_completions_api: true
 - model_name: tencent-tokenhub/kimi-k3
   litellm_params:
     model: openai/kimi-k3
