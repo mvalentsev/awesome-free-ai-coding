@@ -27,7 +27,7 @@ The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus
 
 ## Where it is offered
 
-Not offered in the United States, India and Russia ([the host's DNS answer](https://dns.google/resolve?name=www.codebuddy.ai&type=A), read 2026-09-26). That leaves out 33.2% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
+Not offered in the United States, India and Russia ([the host's DNS answer](https://dns.google/resolve?name=www.codebuddy.ai&type=A), read 2026-09-26). That leaves out 33.2% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
 
 ## Connect
 

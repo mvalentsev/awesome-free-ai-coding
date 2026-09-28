@@ -27,7 +27,7 @@ Trial keys are "limited to 1,000 API calls a month" and rate-limited per model �
 
 ## Where it is offered
 
-Not offered in mainland China, Russia, Hong Kong, Iran, Belarus, Syria, Macao and North Korea ([source](https://cohere.com/saas-agreement), read 2026-09-26). That leaves out 10.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “means Belarus, China (including Hong Kong and Macau), Iran, North Korea, Russia and Syria”.
+Not offered in mainland China, Russia, Hong Kong, Iran, Belarus, Syria, Macao and North Korea ([source](https://cohere.com/saas-agreement), read 2026-09-26). That leaves out 10.4% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “means Belarus, China (including Hong Kong and Macau), Iran, North Korea, Russia and Syria”.
 
 ## What happens to what you send
 

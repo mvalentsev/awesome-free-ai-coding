@@ -27,7 +27,7 @@ No card; the API key needs a free NVIDIA Developer Program account verified by a
 
 ## Where it is offered
 
-Not offered in Russia, Pakistan, Bangladesh, Iran, Kazakhstan, Belarus, Uzbekistan, Kyrgyzstan and 6 more places ([source](https://build.nvidia.com/api/runtime/config/otp-unsupported-countries.yaml), read 2026-09-26). That leaves out 5.5% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
+Not offered in Russia, Pakistan, Bangladesh, Iran, Kazakhstan, Belarus, Uzbekistan, Kyrgyzstan and 6 more places ([source](https://build.nvidia.com/api/runtime/config/otp-unsupported-countries.yaml), read 2026-09-26). That leaves out 5.5% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
 
 ## What happens to what you send
 

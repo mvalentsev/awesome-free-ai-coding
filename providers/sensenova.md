@@ -27,7 +27,7 @@ The plan page says 公测期完全免费开放，付费档位即将上线 — fr
 
 ## Where it is offered
 
-Offered only in mainland China ([source](https://platform.sensenova.cn/login), read 2026-09-26). That leaves out 93.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
+Offered only in mainland China ([source](https://platform.sensenova.cn/login), read 2026-09-26). That leaves out 93.6% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
 
 ## Connect
 

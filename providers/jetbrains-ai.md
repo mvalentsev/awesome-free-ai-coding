@@ -27,7 +27,7 @@ JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI P
 
 ## Where it is offered
 
-Offered in the 202 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Venezuela, Syria, Cuba and 20 more places ([source](https://www.jetbrains.com/legal/docs/terms/jetbrains-ai/service-territory/), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
+Offered in the 202 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Venezuela, Syria, Cuba and 20 more places ([source](https://www.jetbrains.com/legal/docs/terms/jetbrains-ai/service-territory/), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1).
 
 ## What happens to what you send
 

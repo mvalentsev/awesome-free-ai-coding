@@ -312,7 +312,7 @@ def test_a_provider_page_says_where_the_offer_reaches_and_what_share_that_leaves
     assert section.strip().startswith(
         f"Not offered in mainland China, Russia, Hong Kong, Iran and Macao ([source]({REGIONS}), "
         "read 2026-09-26). That leaves out ")
-    assert "beyond the embargoed countries most offers leave out" in section
+    assert "beyond the countries under comprehensive US embargo" in section
     assert "In the vendor's words: “not available in China or Russia”." in section
 
 
@@ -328,9 +328,9 @@ def test_an_offer_that_names_no_country_says_so_and_flags_nothing():
     page = build_provider_page(bordered(left_out=[]), [], TODAY)
     assert "The vendor names no country it keeps the offer from ([source]" in page
     assert "not offered in" not in page.split("## What you get")[0]
-    embargo = build_provider_page(bordered(left_out=["CU", "IR", "KP", "SY"]), [], TODAY)
-    assert ("Not offered in Cuba, Iran, North Korea or Syria, the embargoed countries most offers "
-            "leave out, and in no other country the vendor names") in embargo
+    embargo = build_provider_page(bordered(left_out=["CU", "IR", "KP"]), [], TODAY)
+    assert ("Not offered in Cuba, Iran or North Korea, under comprehensive US embargo, and in "
+            "no other country the vendor names") in embargo
     assert "That leaves out" not in embargo
 
 

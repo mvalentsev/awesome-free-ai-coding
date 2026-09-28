@@ -29,13 +29,12 @@ YARDSTICK_URL = "https://raw.githubusercontent.com/github/innovationgraph/main/d
 YARDSTICK_SOURCE = "https://github.com/github/innovationgraph/blob/main/data/developers.csv"
 YARDSTICK_PATH = Path(__file__).with_name("developers.json")
 
-# The exclusions that set no row apart ("an exclusion most vendors share",
-# CONTRIBUTING): the countries under comprehensive US embargo, which a
-# sanctions clause covers whether it names them or not. Any other country a
-# border leaves out is counted, Russia included: no embargo clause reaches it,
-# and most rows do not leave it out. See
-# test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows.
-SHARED = frozenset({"CU", "IR", "KP", "SY"})
+# The exclusions that set no row apart: the countries under comprehensive US
+# embargo, which a sanctions clause covers whether it names them or not —
+# OFAC's list, which Syria left on 2025-07-01. Any other country a border
+# leaves out is counted, Russia and Syria included: no embargo clause reaches
+# them. See test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows.
+SHARED = frozenset({"CU", "IR", "KP"})
 
 
 @dataclass(frozen=True)

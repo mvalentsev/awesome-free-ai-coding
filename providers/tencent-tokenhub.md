@@ -27,7 +27,7 @@ The free package page, updated 2026-09-04, gives each main account one grant whi
 
 ## Where it is offered
 
-Offered only in mainland China, Hong Kong, Taiwan and Macao ([source](https://cloud.tencent.com/document/product/378/3629), read 2026-09-26). That leaves out 90.8% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “其他类型国际证件请前往 国际站 进行认证”.
+Offered only in mainland China, Hong Kong, Taiwan and Macao ([source](https://cloud.tencent.com/document/product/378/3629), read 2026-09-26). That leaves out 90.8% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “其他类型国际证件请前往 国际站 进行认证”.
 
 ## What happens to what you send
 

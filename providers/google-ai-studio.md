@@ -27,7 +27,7 @@ Google prices the free tier per model: its pricing page reads "Free of charge" f
 
 ## Where it is offered
 
-Offered in the 230 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Syria, Afghanistan and 8 more places ([source](https://ai.google.dev/gemini-api/docs/available-regions), read 2026-09-26). That leaves out 10.5% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Gemini API and Google AI Studio are available in the following countries and territories”.
+Offered in the 230 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Syria, Afghanistan and 8 more places ([source](https://ai.google.dev/gemini-api/docs/available-regions), read 2026-09-26). That leaves out 10.5% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Gemini API and Google AI Studio are available in the following countries and territories”.
 
 ## What happens to what you send
 

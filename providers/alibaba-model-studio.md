@@ -27,7 +27,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ## Where it is offered
 
-Not offered in mainland China ([source](https://www.alibabacloud.com/help/en/account/step-1-register-an-alibaba-cloud-account), read 2026-09-26). That leaves out 5.9% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Alibaba Cloud international site does not support selecting the Chinese mainland as the registration region, and does not support binding a mobile number of the Chinese mainland”.
+Not offered in mainland China ([source](https://www.alibabacloud.com/help/en/account/step-1-register-an-alibaba-cloud-account), read 2026-09-26). That leaves out 5.9% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The Alibaba Cloud international site does not support selecting the Chinese mainland as the registration region, and does not support binding a mobile number of the Chinese mainland”.
 
 ## What happens to what you send
 

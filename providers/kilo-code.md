@@ -11,7 +11,7 @@ crumb: Kilo Code
 
 # Kilo Code free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-27 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-09-27 · [kilo.ai](https://kilo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -27,7 +27,7 @@ $0 a month, and no account for the free lane: "The gateway allows unauthenticate
 
 ## Where it is offered
 
-Not offered in Cuba, Iran, North Korea or Syria, the embargoed countries most offers leave out, and in no other country the vendor names ([source](https://kilo.ai/terms), read 2026-09-26). In the vendor's words: “including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine”.
+Not offered in Iran, Syria, Cuba and North Korea ([source](https://kilo.ai/terms), read 2026-09-26). That leaves out under 0.1% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “including Cuba, Iran, North Korea, Syria, or the Crimea, so-called Donetsk People’s Republic, or so-called Luhansk People’s Republic regions of Ukraine”.
 
 ## What happens to what you send
 

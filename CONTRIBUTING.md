@@ -79,10 +79,11 @@ leaves out. Readers are counted as developers: a border's share is its
 countries' part of the developers GitHub's
 [Innovation Graph](https://innovationgraph.github.com/) counts in its latest
 quarter, the EU's line left out of the total because it repeats the member
-states. An exclusion most vendors share sets no row apart and moves no rank: the
-countries under comprehensive US embargo — Cuba, Iran, North Korea and Syria —
-which a sanctions clause covers whether it names them or not. Russia is not one
-of them: on 2026-09-26 fifteen of the eighty live rows left it out in their own
+states. The countries under comprehensive US embargo — Cuba, Iran and North Korea —
+set no row apart and move no rank: a sanctions clause covers them whether it names
+them or not. Syria left that list on 2025-07-01
+([OFAC](https://ofac.treasury.gov/sanctions-programs-and-country-information/paarss)),
+so a border that names it counts. Russia is not one of them either: on 2026-09-26 fifteen of the eighty live rows left it out in their own
 words, so a border that leaves out Russia counts. On 2026-09-25 CodeBuddy's
 international site, sign-in and API endpoint answered 0.0.0.1 in the United
 States, India and Russia and resolved in the seventeen other countries and

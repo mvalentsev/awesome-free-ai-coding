@@ -27,7 +27,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Where it is offered
 
-Not offered in Vietnam, Türkiye, Taiwan, Nigeria, Ukraine, Egypt, Saudi Arabia, Switzerland and 19 more places ([source](https://cloud.ibm.com/docs/account?topic=account-account-getting-started), read 2026-09-26). That leaves out 10.2% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The following table shows the countries where personal use of the platform not related to business, trade, craft, or professional purposes is not supported”.
+Not offered in Vietnam, Türkiye, Taiwan, Nigeria, Ukraine, Egypt, Saudi Arabia, Switzerland and 19 more places ([source](https://cloud.ibm.com/docs/account?topic=account-account-getting-started), read 2026-09-26). That leaves out 10.2% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “The following table shows the countries where personal use of the platform not related to business, trade, craft, or professional purposes is not supported”.
 
 ## What happens to what you send
 

@@ -11,7 +11,7 @@ crumb: Mistral Studio
 
 # Mistral Studio free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-27 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in Iran, Syria, Cuba and 1 more place · **live** — last verified by a probe on 2026-09-27 · [mistral.ai](https://mistral.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -27,7 +27,7 @@ The Free card on mistral.ai/pricing lists "Limited coding sessions", "Test Mistr
 
 ## Where it is offered
 
-Not offered in Cuba, Iran, North Korea or Syria, the embargoed countries most offers leave out, and in no other country the vendor names ([source](https://legal.mistral.ai/terms/commercial-terms-of-service), read 2026-09-26). In the vendor's words: “including, as of the Effective Date, Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine”.
+Not offered in Iran, Syria, Cuba and North Korea ([source](https://legal.mistral.ai/terms/commercial-terms-of-service), read 2026-09-26). That leaves out under 0.1% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “including, as of the Effective Date, Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine”.
 
 ## What happens to what you send
 

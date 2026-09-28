@@ -27,7 +27,7 @@ GitHub folded its Copilot billing-concepts page into the plans page on or before
 
 ## Where it is offered
 
-Not offered in Russia, Iran, Belarus, Cuba and North Korea ([source](https://docs.github.com/en/site-policy/other-site-policies/github-and-trade-controls), read 2026-09-26). That leaves out 2.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “These destinations currently include Cuba, Iran, North Korea, Russia, Belarus, and the following regions of Ukraine: Crimea/Sevastopol and the separatist areas of Donetsk and Luhansk”.
+Not offered in Russia, Iran, Belarus, Cuba and North Korea ([source](https://docs.github.com/en/site-policy/other-site-policies/github-and-trade-controls), read 2026-09-26). That leaves out 2.6% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “These destinations currently include Cuba, Iran, North Korea, Russia, Belarus, and the following regions of Ukraine: Crimea/Sevastopol and the separatist areas of Donetsk and Luhansk”.
 
 ## What happens to what you send
 

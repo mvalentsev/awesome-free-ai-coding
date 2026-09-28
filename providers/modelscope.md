@@ -27,7 +27,7 @@ The limits page: "免费推理API由阿里云提供算力支持，要求您的Mo
 
 ## Where it is offered
 
-Offered only in mainland China ([source](https://help.aliyun.com/zh/account/verify-your-identity-individual-account), read 2026-09-26). That leaves out 93.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “输入个人认证的姓名和身份证号码”.
+Offered only in mainland China ([source](https://help.aliyun.com/zh/account/verify-your-identity-individual-account), read 2026-09-26). That leaves out 93.6% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “输入个人认证的姓名和身份证号码”.
 
 ## Connect
 

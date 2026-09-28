@@ -27,7 +27,7 @@ the free id sits in the default group and publishes no request cap; of the other
 
 ## Where it is offered
 
-Not offered in Russia, Iran, Belarus, Syria, Cuba and North Korea ([source](https://www.tokenrouter.com/docs/conditions-of-use/), read 2026-09-26). That leaves out 2.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “for or on behalf of parties located in, headquartered in, or having a parent company headquartered in Russia, Belarus, Iran, North Korea, Cuba, or the occupied regions of Ukraine”.
+Not offered in Russia, Iran, Belarus, Syria, Cuba and North Korea ([source](https://www.tokenrouter.com/docs/conditions-of-use/), read 2026-09-26). That leaves out 2.7% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “for or on behalf of parties located in, headquartered in, or having a parent company headquartered in Russia, Belarus, Iran, North Korea, Cuba, or the occupied regions of Ukraine”.
 
 ## Connect
 

@@ -338,8 +338,8 @@ def _left_out_order(codes: set[str]) -> list[str]:
 def _border_flag(e: Entry) -> str:
     """The border in one line, for the top of a page and a row elsewhere:
     "not offered in mainland China, Russia, Hong Kong and 25 more places". Empty
-    where the offer leaves out no more than the embargoed countries most offers
-    leave out."""
+    where the offer leaves out no more than the countries under comprehensive US
+    embargo."""
     if e.border is None:
         return ""
     yardstick = load_yardstick()
@@ -375,8 +375,8 @@ def border_words(e: Entry) -> str:
     elif beyond:
         where = f"Not offered in {_places(left, BORDER_NAMES)}"
     elif shared:
-        where = (f"Not offered in {series([country_name(c) for c in shared], 'or')}, the embargoed "
-                 f"countries most offers leave out, and in no other country the vendor names")
+        where = (f"Not offered in {series([country_name(c) for c in shared], 'or')}, under "
+                 f"comprehensive US embargo, and in no other country the vendor names")
     else:
         where = "The vendor names no country it keeps the offer from"
     # A border measured by DNS is a resolver's answer from inside each country,
@@ -385,7 +385,7 @@ def border_words(e: Entry) -> str:
     said = [f"{where} ([{source}]({b.source}), read {b.on.isoformat()})."]
     if beyond:
         said.append(f"That leaves out {_percent(share(b, yardstick))} of the developers GitHub "
-                    f"counts, beyond the embargoed countries most offers leave out "
+                    f"counts, beyond the countries under comprehensive US embargo "
                     f"([Innovation Graph]({INNOVATION_GRAPH_URL}), {yardstick.label}).")
     if b.quote:
         said.append(f"In the vendor's words: “{b.quote}”.")

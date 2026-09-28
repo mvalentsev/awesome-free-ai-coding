@@ -27,7 +27,7 @@ The home page: "$5 in free credits every month when you attach a payment method"
 
 ## Where it is offered
 
-Not offered in Russia, Iran, Syria, Cuba and North Korea ([source](https://www.sailresearch.com/terms), read 2026-09-26). That leaves out 2.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “access or use the Services in or for the benefit of any embargoed or sanctioned country, region, or person (including Cuba, Iran, North Korea, Syria, the Crimea, Donetsk, and Luhansk regions, and Russia)”.
+Not offered in Russia, Iran, Syria, Cuba and North Korea ([source](https://www.sailresearch.com/terms), read 2026-09-26). That leaves out 2.4% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “access or use the Services in or for the benefit of any embargoed or sanctioned country, region, or person (including Cuba, Iran, North Korea, Syria, the Crimea, Donetsk, and Luhansk regions, and Russia)”.
 
 ## What happens to what you send
 

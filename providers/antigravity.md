@@ -27,7 +27,7 @@ $0/month, no subscription. The plan's own bullet reads "Agent model: access to G
 
 ## Where it is offered
 
-Offered in the 222 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Moldova, Syria and 16 more places ([source](https://antigravity.google/docs/faq), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “Google Antigravity is available in the following countries and territories. If you’re not in one of these countries or territories, you will be unable to use Google Antigravity at this time”.
+Offered in the 222 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Myanmar, Moldova, Syria and 16 more places ([source](https://antigravity.google/docs/faq), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “Google Antigravity is available in the following countries and territories. If you’re not in one of these countries or territories, you will be unable to use Google Antigravity at this time”.
 
 ## What happens to what you send
 

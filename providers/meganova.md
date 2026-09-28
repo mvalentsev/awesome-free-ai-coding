@@ -27,7 +27,7 @@ Tier 1 is "Free registration — no credit card required", with "Free Access Mod
 
 ## Where it is offered
 
-Offered in the 187 countries and territories its list names, not in Hong Kong, Venezuela, Azerbaijan, Yemen, Côte d'Ivoire, Puerto Rico, DR Congo, Afghanistan and 35 more places ([source](https://docs.meganova.ai/faq/supported-countries.md), read 2026-09-26). That leaves out 2.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “We provide the following list of countries and territories where … services are officially supported”.
+Offered in the 187 countries and territories its list names, not in Hong Kong, Venezuela, Azerbaijan, Yemen, Côte d'Ivoire, Puerto Rico, DR Congo, Afghanistan and 35 more places ([source](https://docs.meganova.ai/faq/supported-countries.md), read 2026-09-26). That leaves out 2.4% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “We provide the following list of countries and territories where … services are officially supported”.
 
 ## Connect
 

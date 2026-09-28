@@ -27,7 +27,7 @@ The pricing page: "ChatGPT Work and Codex are included in your ChatGPT Free, Go,
 
 ## Where it is offered
 
-Offered in the 208 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Venezuela, Puerto Rico, Syria and 19 more places ([source](https://developers.openai.com/api/docs/supported-countries.md), read 2026-09-26). That leaves out 10.6% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “Accessing or offering access to our services outside of the countries and territories listed below may result in your account being blocked or suspended”.
+Offered in the 208 countries and territories its list names, not in mainland China, Russia, Hong Kong, Iran, Belarus, Venezuela, Puerto Rico, Syria and 19 more places ([source](https://developers.openai.com/api/docs/supported-countries.md), read 2026-09-26). That leaves out 10.7% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “Accessing or offering access to our services outside of the countries and territories listed below may result in your account being blocked or suspended”.
 
 ## Connect
 

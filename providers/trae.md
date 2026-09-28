@@ -27,7 +27,7 @@ Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Li
 
 ## Where it is offered
 
-Offered in the 235 countries and territories its list names, not in mainland China, Russia, Canada, Hong Kong, Taiwan, Egypt, Iran, Belarus and 6 more places ([source](https://docs.trae.ai/ide/supported-countries-and-regions), read 2026-09-26). That leaves out 14.4% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “TRAE is currently available in the following countries and regions”.
+Offered in the 235 countries and territories its list names, not in mainland China, Russia, Canada, Hong Kong, Taiwan, Egypt, Iran, Belarus and 6 more places ([source](https://docs.trae.ai/ide/supported-countries-and-regions), read 2026-09-26). That leaves out 14.5% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “TRAE is currently available in the following countries and regions”.
 
 ## What happens to what you send
 

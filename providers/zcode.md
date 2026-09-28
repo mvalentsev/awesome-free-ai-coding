@@ -27,7 +27,7 @@ The docs: "First-time ZCode users get 5 days of free benefits, ready to use out 
 
 ## Where it is offered
 
-Not offered in Cuba, Iran or North Korea, the embargoed countries most offers leave out, and in no other country the vendor names ([source](https://zcode.z.ai/en/terms), read 2026-09-26). In the vendor's words: “You confirm that you are not located in the following regions: Iran, North Korea, Cuba, Crimea, Donetsk, or Zaporizhzhia”.
+Not offered in Cuba, Iran or North Korea, under comprehensive US embargo, and in no other country the vendor names ([source](https://zcode.z.ai/en/terms), read 2026-09-26). In the vendor's words: “You confirm that you are not located in the following regions: Iran, North Korea, Cuba, Crimea, Donetsk, or Zaporizhzhia”.
 
 ## What happens to what you send
 

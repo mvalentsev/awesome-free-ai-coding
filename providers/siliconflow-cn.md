@@ -27,7 +27,7 @@ The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed
 
 ## Where it is offered
 
-Offered only in mainland China, Hong Kong, Taiwan and Macao ([source](https://docs.siliconflow.cn/docs/userguide/faqs/authentication), read 2026-09-26). That leaves out 90.8% of the developers GitHub counts, beyond the embargoed countries most offers leave out ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “不具有以上证件的用户，暂时不支持线上个人认证”.
+Offered only in mainland China, Hong Kong, Taiwan and Macao ([source](https://docs.siliconflow.cn/docs/userguide/faqs/authentication), read 2026-09-26). That leaves out 90.8% of the developers GitHub counts, beyond the countries under comprehensive US embargo ([Innovation Graph](https://innovationgraph.github.com/), 2026 Q1). In the vendor's words: “不具有以上证件的用户，暂时不支持线上个人认证”.
 
 ## What happens to what you send
 
