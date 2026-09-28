@@ -392,8 +392,8 @@ def test_a_page_fetch_keeps_its_own_timeout_when_the_budget_is_wide():
 def test_page_text_is_the_page_and_not_its_machinery():
     """Scripts, styles, menus, footers and the JavaScript-required notice are
     dropped, so the character cap is spent on the page's own words and a menu's
-    "Deprecations" is no retirement signal. JSON-LD stays: Freebuff publishes its
-    FAQ there and nowhere else."""
+    "Deprecations" is no retirement signal. JSON-LD stays: Freebuff prints most
+    of its FAQ answers only there."""
     respx.get("https://p.dev").mock(return_value=httpx.Response(200, text=(
         '<html><head><style>.nav{color:red}</style>'
         '<script>window.__d={"retired":true}</script>'
@@ -467,8 +467,8 @@ def test_the_digest_leaves_out_a_local_runtime():
 
 @respx.mock
 def test_the_digest_says_what_a_zero_in_this_catalog_does_not_mean():
-    """A zero in models.dev can be a currency it could not parse or usage inside
-    a paid subscription (every *-coding-plan provider), so the digest carries
+    """A zero in models.dev can be a price in another currency or usage a
+    subscription pays for (the *-coding-plan providers), so the digest carries
     that caveat for the scout."""
     respx.get(MODELS_DEV).mock(return_value=httpx.Response(200, json={
         "newgw": provider("newgw", "https://api.newgw.com/v1", (0, 0)),

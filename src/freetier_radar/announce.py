@@ -161,8 +161,8 @@ class Mastodon:
     name: str = "mastodon"
 
     def post(self, client: httpx.Client, text: str, key: str, now: datetime) -> str:
-        # The idempotency key is the event's own: Mastodon keeps it for hours,
-        # so a run retried inside that window cannot post the same line twice.
+        # The idempotency key is the event's own: Mastodon keeps it for an hour,
+        # so a run retried inside that hour cannot post the same line twice.
         r = client.post(f"{self.base_url.rstrip('/')}/api/v1/statuses",
                         headers={"Authorization": f"Bearer {self.token}", "Idempotency-Key": key},
                         json={"status": text, "visibility": "public", "language": "en"},
@@ -173,16 +173,14 @@ class Mastodon:
 
 
 DEVTO_API = "https://dev.to/api/articles"
-# Dev.to takes four tags at most; these are the ones its readers follow.
+# Dev.to takes four tags at most.
 DIGEST_TAGS = ["ai", "llm", "opensource", "free"]
 
 
 @dataclass
 class DevTo:
-    """One article a month, not one per event, since Dev.to is read as a blog:
-    the whole list in the registry's own words plus what changed last month
-    (see `build_digest`), which is what a search for
-    "free llm api <month> <year>" wants."""
+    """One article a month, not one per event: the whole list in the
+    registry's own words plus what changed last month (see `build_digest`)."""
     api_key: str
     name: str = "devto"
 

@@ -1528,9 +1528,8 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
     """The list as one text file in the llms.txt shape — a title, a summary in a
     blockquote, then sections of links with a note each.
 
-    An LLM answering "is there a free API for X" reads a page the way a crawler
-    does; this is the registry in the form that reads best as text, one line
-    per offer with what it needs (card, key) and where it answers.
+    This is the registry in the form that reads best as text, one line per
+    offer with what it needs (card, key) and where it answers.
     """
     live = [e for e in entries if not is_archived(e, today)]
     groups = litellm_groups(entries, today)
@@ -2128,16 +2127,15 @@ def _try_it(e: Entry) -> list[str]:
     into their own terminal: the command reads the key from the environment
     variable the configs name, so it never leaves the reader's machine. No page
     here takes a key itself — a form that takes a secret reads as a card
-    checker whatever its code does, and OpenAI's API reference says a key
-    "should never be exposed in client-side code"."""
+    checker whatever its code does, and OpenAI's API reference says not to
+    "expose it in any client-side code"."""
     api = e.api
     if not (api and api.base_url and api.openai_compatible and (api.model_ids or api.no_ids)):
         return []
     key = (None if api.key_kind == "none" else api.public_key if api.key_kind == "public"
            else f"${env_var(e.id)}")
     if not api.model_ids:
-        # No id to call: the catalog, which answers only a key, is the check
-        # the vendor itself points at.
+        # No id to call: the catalog answers only a key, so it is the check.
         return [f"Check your key from your terminal — with it in `{env_var(e.id)}`, the "
                 "vendor's catalog lists the models it can call:", "", "```sh",
                 f"curl -s {api.base_url.rstrip('/')}/models \\\n"

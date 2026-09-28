@@ -102,9 +102,10 @@ DEAD_MARKERS = (
     "end of the free tier",
 )
 
-# A bot wall answering HTTP 200. Cloudflare, Vercel's Security Checkpoint and
-# their kin serve a challenge page in place of the vendor's own; it carries none
-# of the probe keywords, so taken for the vendor's page it would fail an offer
+# A bot wall answering HTTP 200: a challenge page served in place of the
+# vendor's own (Cloudflare's and Vercel's answer 403 and 429, which the read
+# calls blocked, but a wall served as 200 is read here); it carries none of the
+# probe keywords, so taken for the vendor's page it would fail an offer
 # that never stopped working. Nor is it a pass: a challenge is no answer at all,
 # which is what INCONCLUSIVE is for.
 CHALLENGE_MARKERS = (
@@ -342,7 +343,7 @@ class Probe(BaseModel):
     lane: str | None = None
     # api-models: a keyless document in which the vendor marks which of the
     # catalog's models are free, for a catalog that publishes no price: NVIDIA's
-    # /v1/models gives nothing but the id and its owner, and NGC's catalog
+    # /v1/models names each id and its owner and prices none, and NGC's catalog
     # search returns build.nvidia.com's "Free Endpoint" marks in one call. The
     # probe joins the list onto the catalog and reads it as it reads a price
     # (see prober.join_free_list), so it takes require_zero_price with it.
@@ -998,8 +999,8 @@ class Entry(BaseModel):
         """A probe that reads each model's own free mark — a zero price, a free
         marker, a lane key, a free list — or a lane served inside the vendor's
         client is reading free models, whatever else the row offers: Vercel's $5
-        a month sits beside three models it prices at zero, and those three are
-        its column."""
+        a month sits beside the models it prices at zero, and those are its
+        column."""
         p = self.probe
         reads_free = self.client_lane is not None or (
             p.type is ProbeType.API_MODELS

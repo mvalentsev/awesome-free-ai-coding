@@ -58,7 +58,7 @@ CURATED_FEEDS = [
     # plan is sold, not the docs about it.
     "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/client/src/components/keys/shared.tsx",
     # It looks east: Chinese providers such as Intern AI, SenseNova and iFlytek
-    # Spark. Its criterion is "limit request rate rather than token count", so it
+    # Spark. Its criterion is "limit request rate over token count", so it
     # surfaces recurring lanes rather than credit grants, and it takes
     # OpenAI-format APIs only, so every row arrives with a base URL. Leads only,
     # twice over: the maintainer says the table is LLM-generated, and it lists
@@ -80,14 +80,14 @@ MODELS_DEV_CAVEAT = (
     "PROVIDERS ON models.dev PUBLISHING AT LEAST ONE MODEL AT COST 0, excluding every domain "
     "the registry, the watchlist or the blocklist already answers. A zero in this catalog is a "
     "lead and not evidence of a "
-    "free tier: it also reads zero when the usage is included in a paid subscription (which is "
-    "what every *-coding-plan and *-token-plan row is) and when the vendor quotes a currency "
-    "the catalog could not parse (kenari publishes IDR and reads 38/38 free). Confirm on the "
-    "vendor's own page before proposing any of these."
+    "free tier: it also reads zero when a subscription pays for the usage, as on the "
+    "*-coding-plan and *-token-plan rows, and when the vendor bills in another currency "
+    "(kenari bills in IDR and reads every row free). Confirm on the vendor's own page before "
+    "proposing any of these."
 )
 
-# Every catalog entry pointing at one of these is a runtime the user hosts, and
-# its models are priced 0 because there is no vendor in the transaction.
+# A catalog entry pointing at one of these runs on the user's own machine — a
+# runtime, or a vendor's local proxy — and no probe can reach it.
 LOCAL_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0", "[::1]", "::1"}
 
 # A catalog entry whose only URL is a package page or a repository names a
@@ -305,8 +305,9 @@ def _archived_repo(client: httpx.Client, feed: str, env: Mapping[str, str]) -> s
 
 
 def _timeout_within(left: float | None) -> httpx.Timeout:
-    """No single request may outlive the budget it is spending. The cap only ever
-    shrinks the module's own timeouts, so a wide budget changes nothing."""
+    """No single wait may outlive the budget it is spending — httpx bounds each
+    wait, not the whole request. The cap only ever shrinks the module's own
+    timeouts, so a wide budget changes nothing."""
     if left is None:
         return TIMEOUT
     return httpx.Timeout(min(TIMEOUT.read, left), connect=min(TIMEOUT.connect, left))
@@ -314,8 +315,8 @@ def _timeout_within(left: float | None) -> httpx.Timeout:
 
 # What a reader never sees and a model should not be fed: the site's menus and
 # footer, stylesheets, the JavaScript-required notice, and scripts — except
-# JSON-LD, which is page content in a structured coat (Freebuff publishes its
-# FAQ there and nowhere else). Left in, they spend PAGE_TEXT_LIMIT before the
+# JSON-LD, which is page content in a structured coat (Freebuff prints most of
+# its FAQ answers only there). Left in, they spend PAGE_TEXT_LIMIT before the
 # body text, and a sidebar word can trip the retirement sweep.
 _NOISE_BLOCK = re.compile(r"<(script|style|nav|footer|noscript)\b[^>]*>.*?</\1\s*>", re.S | re.I)
 _LD_JSON = re.compile(r"""type\s*=\s*["']?application/ld\+json""", re.I)

@@ -23,8 +23,8 @@ __all__ = ["COUNTRIES", "NOT_COUNTRIES", "DNS_SUBNETS", "country_name", "codes_n
 
 # code -> (the name a page prints, then every other spelling a vendor uses).
 # Matched as written, capitals and all: "chad", "turkey" and "china" are words.
-# "Korea" alone is the Republic of Korea, as every commercial list prints it
-# (TRAE's); the North is "North Korea" or "DPRK" wherever a vendor names it.
+# "Korea" alone is the Republic of Korea, as TRAE's list prints it; the North
+# is "North Korea" or "DPRK" where the vendors here name it.
 COUNTRIES: dict[str, tuple[str, ...]] = {
     "AD": ('Andorra', 'Principality of Andorra'),
     "AE": ('the United Arab Emirates', 'United Arab Emirates'),

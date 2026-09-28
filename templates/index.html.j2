@@ -990,8 +990,8 @@ tr.flash { animation: flash 1.6s ease-out; }
     }
     return Math.max(total, wholeOffer(o, terms));
   }
-  // Terms that spell one name the way its vendor writes it — "Nemotron 3 Ultra",
-  // "GLM 5", "Gemma 4 26B" — are read whole as well: a lone digit starts no
+  // Terms that spell one name — "Nemotron 3 Ultra", "GLM 5", "Gemma 4 26B" —
+  // are read whole as well: a lone digit starts no
   // name on its own, so term by term the name found nothing.
   function wholeOffer(o, terms) {
     var whole = terms.length > 1 ? written(terms.join("")) : "";

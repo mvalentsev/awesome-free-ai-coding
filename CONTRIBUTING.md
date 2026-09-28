@@ -298,7 +298,7 @@ promotion that ended and a key the vendor renamed want opposite repairs.
 **A lane served only inside the vendor's own client lists its ids in
 `client_lane`.** Cline's free models are picked in Cline — "Free model usage is
 not supported through the Cline API" — so the row has no `api` block, and until
-2026-09-25 nothing recorded which ids its lane carried: nine came or went
+2026-09-25 nothing recorded which ids its lane carried: eight came or went
 between 2026-09-10 and 09-25 by the vendor's own snapshots of the lane, and no
 run said so. `client_lane.model_ids` holds them, checked against the lane in
 both directions as `api.model_ids` is against a catalog and dated for the Models
@@ -366,8 +366,8 @@ and `unnamed` where it does not say which models the free part reaches — Copil
 Free's "auto model selection only", a credit whose models no page names. Only a
 row of `models` may name a family, and a probe that reads each model's own free
 mark, or a lane the vendor's client serves, reads `models` whatever else the row
-offers: Vercel's $5 a month sits beside three models it prices at zero, and
-those three are its column. `freetier-bars` asks the same question of every id a
+offers: Vercel's $5 a month sits beside the models it prices at zero, and
+those are its column. `freetier-bars` asks the same question of every id a
 row of `models` lists, whatever its probe reads, so a free model kept out of the
 column is kept out by a decision with its reason, never by a row the report did
 not look at.
@@ -390,7 +390,7 @@ never joins: OpenRouter and Kilo publish the date as `expiration_date`, and on
 2026-09-24 it was the next day for both Nex-N2.5 ids. Until that day a family that
 left the lane failed the row, so the column was kept to a few names per lane, and
 OpenRouter was missing from the list for `north-mini-code`, which it had served
-free since July. `uv run freetier-bars` dates every id in `api.model_ids` and
+free since June. `uv run freetier-bars` dates every id in `api.model_ids` and
 `client_lane.model_ids` from the registry's git history, or from the vendor's
 own date where the row's free list carries one and it is earlier — NVIDIA
 created `z-ai/glm-5.3`'s free endpoint on 2026-09-15 and the row listed it on
@@ -899,7 +899,7 @@ prints "no channel configured" and exits 0:
 | Mastodon | `MASTODON_BASE_URL` — the instance, e.g. `https://fosstodon.org` | `MASTODON_ACCESS_TOKEN` — an application token with `write:statuses` |
 | Dev.to | — | `DEVTO_API_KEY` — from Settings → Extensions; publishes **one article a month**, the whole list plus what changed last month, on the first run of each month |
 
-Mark the accounts as automated (Mastodon's "This is a bot account", Bluesky's
+Mark the accounts as automated (Mastodon's "This is an automated account", Bluesky's
 profile text) and link the repository from them. Nothing here posts to Hacker
 News, Reddit or anyone else's list: those forbid or punish automated
 submissions, and a post there is a person's decision every time.

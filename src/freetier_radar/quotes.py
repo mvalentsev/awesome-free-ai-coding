@@ -82,7 +82,7 @@ def page_texts(body: str) -> list[str]:
 def words(text: str) -> float:
     """How many words a phrase holds. Chinese and Japanese put no space between
     words, so `str.split()` would count a whole sentence of them as one; there,
-    two characters count as a word, about what one runs to."""
+    two characters count as a word."""
     return len(_CJK_WORD_CHAR.sub(" ", text).split()) + len(_CJK_WORD_CHAR.findall(text)) / 2
 
 

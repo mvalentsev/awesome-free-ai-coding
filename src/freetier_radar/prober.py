@@ -544,9 +544,8 @@ def _answered_as(asked: str, completion: dict) -> str | None:
 
     The two names are compared by `_model_key`, and one key running on into the
     other is the same model: vendors cut a served name short (LLM Tech answers
-    nvidia/Qwen3.8-27B-NVFP4 as qwen38) and add a dated revision (Router9's
-    deepseek-v4-flash as -0731), but a size or a version that differs is
-    another model. A router id names none, and a completion that names none is
+    nvidia/Qwen3.8-27B-NVFP4 as qwen38) and add a dated revision, but a size
+    or a version that differs is another model. A router id names none, and a completion that names none is
     taken at its word."""
     served = completion.get("model")
     if not isinstance(served, str):
@@ -1122,8 +1121,8 @@ RETIREMENT_FIELDS = ("retires", "expiration_date")
 
 
 def _retired_on(model: dict) -> date | None:
-    """The day a catalog row says it retired, once that day has come in UTC,
-    the zone the catalogs date in — or None.
+    """The day a catalog row says it retired, once that day has come in UTC —
+    or None.
 
     Requesty keeps a row in its catalog, still priced 0, after the day its
     `retires` names. A date still to come is notice, not a withdrawal: the id
@@ -1470,9 +1469,8 @@ _SPACE_LOOKALIKES = str.maketrans(dict.fromkeys(
 def _plain_spaces(text: str) -> str:
     """Text with plain spaces for the typographic ones a CMS puts between words
     a designer did not want broken across lines. They are invisible in a
-    browser and in a copy-paste, so a keyword quoted off the page ("100 million
-    free tokens" on Inception Labs' page) would otherwise never occur in the
-    bytes."""
+    browser and in a copy-paste, so a keyword quoted off such a page would
+    otherwise never occur in the bytes."""
     return text.translate(_SPACE_LOOKALIKES)
 
 
@@ -1502,9 +1500,9 @@ def _rendered(text: str) -> str:
     response sample goes on matching after the vendor's table dropped the model.
 
     JSON-LD is kept. It sits in a script tag like the rest, but structured data
-    is the vendor answering a question — Freebuff's whole offer is a JSON-LD FAQ
-    block and nothing else — so stripping script tags by their name alone would
-    take a real page's only evidence with it.
+    is the vendor answering a question — Freebuff prints most of its FAQ answers
+    only there — so stripping script tags by their name alone would take a real
+    page's only evidence with it.
     """
     def cut(match: re.Match[str]) -> str:
         attrs = (match.group(1) or "").lower()
@@ -1594,10 +1592,8 @@ def dead_model_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     the vendor's own client keeps its ids in `client_lane`, and is asked the
     same question of the lane its probe reads.
 
-    The match is exact, because the id is what goes in the request body:
-    `deepseek-ai/deepseek-v4-flash` and its successor
-    `deepseek-ai/deepseek-v4-flash-0731` are one model and two ids, and only the
-    second answers. A missing id is reported with any catalog id it may have
+    The match is exact, because the id is what goes in the request body: a
+    re-versioned id names the same model and is another string. A missing id is reported with any catalog id it may have
     become (see _successor_hint), since a re-versioned id wants a rename.
 
     It never fails an entry and never repairs one: a free lane rotating its ids
@@ -1734,7 +1730,7 @@ def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:
     (`deepseek-ai/deepseek-v4-flash` as `deepseek-ai/deepseek-v4-flash-0731`),
     and one built from exactly the same words in another order
     (`nvidia/nemotron-3-nano-30b-a3b` as `nvidia/nemotron-nano-3-30b-a3b`). The
-    metered twin of a free id (`llama-3.1-8b-instruct` beside Routeway's
+    metered twin of a free id (`llama-3.1-8b-instruct` beside
     `llama-3.1-8b-instruct:free`) is neither, so it is never offered as the
     successor."""
     words = _id_words(wanted)

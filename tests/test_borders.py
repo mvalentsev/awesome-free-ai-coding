@@ -46,7 +46,7 @@ def border(**kw) -> Border:
     ("United Kingdom of Great Britain and Northern Ireland", {"GB"}),
     ("China (including Hong Kong and Macau)", {"CN", "HK", "MO"}),
     ("Ukraine (with certain exceptions)", {"UA"}),
-    # A typographic apostrophe is the one Google's list prints.
+    # A typographic apostrophe is the one Antigravity's list prints.
     ("Côte d’Ivoire", {"CI"}),
     # A Chinese page runs its names together with no space between them.
     ("中国大陆、中国香港、中国澳门、中国台湾居民", {"CN", "HK", "MO", "TW"}),
@@ -161,7 +161,7 @@ def test_an_allow_list_leaves_out_every_economy_it_does_not_name():
 
 
 def test_a_share_counts_the_developers_left_out_beyond_the_shared_exclusions():
-    """Iran is on nearly every vendor's list, so leaving it out sets no row apart."""
+    """Iran is under a comprehensive US embargo, so leaving it out sets no row apart."""
     assert "IR" in SHARED
     assert share(border(left_out=["CN", "IR"]), yard()) == pytest.approx(300 / 1000)
     assert share(border(served=["US", "HK"]), yard()) == pytest.approx(350 / 1000)

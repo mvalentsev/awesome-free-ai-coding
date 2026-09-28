@@ -48,8 +48,8 @@ def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
 
 
 def test_a_provider_page_description_names_the_free_models_from_the_column():
-    """The description a search result shows under the page's title names the
-    free models from the Models column, the list a probe reads back, since
+    """The page's meta description names the free models from the Models
+    column, the list a probe reads back, since
     `offering` names none; a long column ends in how many more."""
     from freetier_radar.render import README_MODELS, build_provider_page
 
@@ -1259,9 +1259,8 @@ def test_picks_render_between_the_starters_and_the_list(tmp_path: Path):
 
 def test_the_readme_opens_on_the_hero_and_a_phone_is_served_the_narrow_one(tmp_path: Path):
     """The top of the README is one picture drawn from the list, and the first
-    <source> hands a phone the narrow one — asked by width alone, since GitHub
-    rewrites a <source> that names the theme, and the narrow picture follows the
-    theme itself. What the picture shows is in its alt text, figures and all."""
+    <source> hands a phone the narrow one by width alone, and the narrow picture
+    follows the theme itself. What the picture shows is in its alt text, figures and all."""
     from freetier_radar.models import save_registry
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [make(id="a", name="A", models=[{"family": "m"}]),

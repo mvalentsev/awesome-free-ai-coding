@@ -553,7 +553,7 @@ NGC_SEARCH = "https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=
 
 
 def nim_catalog(*ids: str) -> dict:
-    """NVIDIA's catalog shape: no price and no free flag, only the id and its owner."""
+    """NVIDIA's catalog shape: ids and their owners, with no price and no free flag."""
     return {"object": "list", "data": [
         {"id": i, "object": "model", "created": 735790403, "owned_by": i.split("/")[0]}
         for i in ids]}
@@ -888,8 +888,7 @@ async def test_new_api_row_without_any_price_field_is_not_free():
 
 @respx.mock
 async def test_a_non_breaking_space_does_not_hide_the_keyword():
-    """A non-breaking or thin space character matches a keyword's plain space, as
-    on Inception Labs' "100 million free tokens"."""
+    """A non-breaking or thin space character matches a keyword's plain space."""
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
         200, text="qwen3-coder free\u00a0tier no\u202fcredit\u2009card"))
     async with httpx.AsyncClient() as client:
@@ -1019,8 +1018,8 @@ async def test_withdrawal_wording_fails_even_when_keywords_match():
 
 @respx.mock
 async def test_bot_challenge_is_inconclusive_not_a_dead_offer():
-    """A bot wall served with HTTP 200 (a Vercel checkpoint, for one) carries none
-    of the keywords; counting it as a failure would archive a live service."""
+    """A bot wall served with HTTP 200 carries none of the keywords; counting it
+    as a failure would archive a live service."""
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
         200, text="<html><title>Just a moment...</title>"
                   "<body>Enable JavaScript and cookies to continue</body></html>"))
@@ -2662,7 +2661,8 @@ async def test_a_keyword_the_vendor_only_serves_as_page_data_is_declared():
 @respx.mock
 async def test_json_ld_is_the_page_speaking_and_stays_readable():
     """JSON-LD survives the script stripping: structured data is the vendor
-    answering a question, and a page can carry its offer nowhere else (Freebuff)."""
+    answering a question, and a page can carry part of its evidence nowhere else
+    (Freebuff's FAQ answers)."""
     entry = page_entry()
     entry.probe.keywords = ["25 free requests per day"]
     respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text=(

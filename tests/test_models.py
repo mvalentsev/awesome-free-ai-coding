@@ -754,9 +754,8 @@ def test_a_sentence_names_a_model_as_a_reader_writes_it():
 
 
 def test_an_id_that_drops_a_mixture_of_experts_active_parameters_is_the_familys():
-    """Regolo's id for Qwen3.5-122B-A10B is qwen3.5-122b; Google's for
-    Gemma 4 26B-A4B is gemma-4-26b-it. The active-parameter count may be left
-    off — never swapped for another."""
+    """Regolo's id for Qwen3.5-122B-A10B is qwen3.5-122b. The active-parameter
+    count may be left off — never swapped for another."""
     from freetier_radar.models import family_names
     assert family_names("qwen3.5-122b-a10b", "qwen3.5-122b")
     assert family_names("gemma-4-26b-a4b", "google/gemma-4-26b-it")

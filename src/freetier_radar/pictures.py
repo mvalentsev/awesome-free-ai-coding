@@ -11,9 +11,8 @@ for a desktop column, the narrow one — served to a phone through the README's
 `<picture>` — with the radar above the words and every word drawn large enough
 to read at the width a phone shows it. The wide pair holds one palette each and
 the README picks between them the way GitHub documents; the narrow one holds
-both and follows the reader's theme itself, because a `<source>` that asked for
-a width and a theme at once would be two conditions for GitHub's theme switcher
-to rewrite, and it rewrites only the one it knows.
+both and follows the reader's theme itself, and its `<source>` asks for a width
+alone.
 """
 from __future__ import annotations
 
@@ -187,8 +186,8 @@ def _style(palette: Palette | None) -> str:
             + f".dot{{opacity:.45;animation:ping {BEAM_PERIOD:g}s linear infinite}}"
             + "@keyframes ping{0%,4%{opacity:1}55%,100%{opacity:.45}}"
             # The flashing is what a reader who asked for less motion wants
-            # stopped, so every dot stays lit instead. The beam's slow turn is
-            # SMIL, which no stylesheet can stop.
+            # stopped, so every dot stays lit instead; the beam keeps its slow
+            # turn.
             + "@media (prefers-reduced-motion: reduce) {.dot { animation: none; opacity: 1 }}"
             + "</style>")
 

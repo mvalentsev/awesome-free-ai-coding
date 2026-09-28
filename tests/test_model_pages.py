@@ -1,8 +1,7 @@
 """A page per model, beside the page per row.
 
 A reader — or a model answering one — often arrives with a model in mind
-rather than a vendor, and a search engine matches a page's title to that
-question, not a fold of the front page. So a model the list can say something
+rather than a vendor. So a model the list can say something
 about across rows gets a page whose title is the question, and the index of
 every model is a page too. What these tests hold them to: the same families the
 model index names, every row with what a reader needs to call it, dates that
@@ -167,8 +166,7 @@ def test_a_model_page_is_titled_by_the_question_and_dated_by_the_evidence():
 
 
 def test_a_model_page_opens_with_the_answer():
-    """The first paragraph is the one a search result and a model's answer
-    quote: who serves it, what that asks of the reader, how fresh the evidence
+    """The first paragraph is the answer: who serves it, what that asks of the reader, how fresh the evidence
     is and how strong the model measures — each figure the registry's own."""
     strong = {"family": "qwen3.8-27b", "tier": "strong", "aa_model": "qwen3-8-27b"}
     entries = [groq(models=[strong]), keyless(models=[strong]), agent(models=[strong])]

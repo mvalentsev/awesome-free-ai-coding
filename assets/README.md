@@ -12,12 +12,11 @@ touches them.
 | `favicon.svg` | The site's icon, on `index.html`, `browse.html` and every page `_layouts/default.html` serves |
 
 The radar animates. The beam turns once every 6 seconds, driven by SMIL
-(`animateTransform`) rather than a CSS transform — a rendered-as-image SVG does not
-animate CSS transforms everywhere, and the beam is the one part that must move.
+(`animateTransform`).
 Each dot, a live offer, lights up as the beam reaches its bearing, on a CSS animation
 whose `animation-delay` **is** that arrival time (`pictures._arrival`). Readers who ask
 their system for less motion (`prefers-reduced-motion`) get no flashing and every dot
-lit; the beam keeps its slow turn, which CSS cannot stop for a SMIL animation.
+lit; the beam keeps its slow turn.
 
 The social preview is a still — it is rendered to PNG — and it carries no counts,
 because a number baked into an image is a claim nothing re-verifies. It is drawn in
@@ -26,7 +25,7 @@ line in JetBrains Mono with *free* in the list's green, the rest in Inter.
 
 ## Social preview setup (one-time, maintainer)
 
-GitHub has no API for this, so it's a one-click manual step:
+Setting it is a one-click manual step:
 **Settings → General → Social preview → Edit → Upload an image** → pick
 `assets/social-preview.png`. To restyle it later, edit `social-preview.svg` and re-render.
 The SVG names its fonts, and cairosvg takes them from the machine: install JetBrains Mono
