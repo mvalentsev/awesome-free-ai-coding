@@ -344,8 +344,8 @@ CODEX_PROBE_TOOL = {
                    "properties": {"cmd": {"type": "string",
                                           "description": "Shell command to execute."}}},
 }
-# The events that end a Responses stream, as Codex reads them: only the first
-# ends a turn it can use.
+# The events that end a Responses stream: only the first ends a turn Codex can
+# use.
 CODEX_DONE = "response.completed"
 CODEX_BROKEN = ("response.failed", "response.incomplete", "error")
 # What a read of the stream stops at: "error" is left to the parse, being a
@@ -612,9 +612,9 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
     ending, or a key the vendor replaced, which only a person reading its page
     can copy — fails the same way."""
     url = entry.api.base_url.rstrip("/") + "/chat/completions"
-    # A lane that wants an id per conversation (opencode Zen's x-opencode-session)
-    # answers a call without one with 400, so the call carries a fresh id of its own
-    # under this project's user agent, as the vendor asks any client to.
+    # A lane that wants an id per conversation (api.session_header) gets a fresh
+    # one in every call, under this project's user agent, as the vendor asks any
+    # client to.
     headers = ({entry.api.session_header: str(uuid.uuid4())}
                if entry.api.session_header else {})
     public = entry.api.public_key is not None

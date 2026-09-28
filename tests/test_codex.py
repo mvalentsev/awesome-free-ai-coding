@@ -1,7 +1,7 @@
 """Codex CLI on the free lanes.
 
-Codex speaks only the OpenAI Responses API, which few lanes serve, so it reaches
-the list through LiteLLM, whose /v1/responses builds each call from a lane's chat
+Codex speaks only the OpenAI Responses API, so it reaches the list through
+LiteLLM, whose /v1/responses builds each call from a lane's chat
 completions when the deployment sets `use_chat_completions_api`. A lane that takes
 Codex's request itself gets a profile of its own, and every run sends it that
 request again.
@@ -42,8 +42,8 @@ def _profile(root: Path) -> tuple[str, dict]:
 
 def test_every_litellm_deployment_answers_codex_through_the_lanes_chat_completions():
     """Every deployment, grouped or named, sets `use_chat_completions_api`: without
-    it LiteLLM passes Codex's call on to the lane's own /responses, which most
-    lanes do not serve."""
+    it LiteLLM passes Codex's call on to the lane's own /responses, which the run
+    does not verify."""
     cfg = render.build_litellm_config(_strong_and_keyless(), TODAY)
     assert {d["model_name"] for d in cfg["model_list"]} >= {"free/strong", "free/nokey"}
     assert all(d["litellm_params"]["use_chat_completions_api"] is True
@@ -167,7 +167,7 @@ def _keyless_lane_answers():
 
 def test_responses_api_is_said_only_of_an_openai_shaped_lane_codex_can_call():
     """The Responses API is OpenAI's; the profile names the row's first id; and
-    Codex sends no header of a vendor's naming, so a lane that wants an id per
+    a Codex profile's headers are fixed values, so a lane that wants a new id per
     conversation in one cannot take a profile."""
     with pytest.raises(ValidationError, match="responses_api"):
         ApiInfo(base_url="https://x/v1", model_ids=["m"], openai_compatible=False,

@@ -450,11 +450,13 @@ tried again instead of benched. [`configs/codex/litellm.config.toml`](configs/co
 Codex's profile for the proxy — `--profile NAME` has read
 `$CODEX_HOME/NAME.config.toml` since Codex CLI 0.134 — and its three settings are
 the ones measured that day, with Codex 0.157.1 and LiteLLM 1.102.1, to break a
-lane otherwise: reasoning summaries off, since LiteLLM hands Codex's summary
-setting to the lane as a `reasoning_effort` object, which all four lanes tried
-refused; sub-agents off, since Codex sends their tools as a `namespace`, which
-LLM7 refused through LiteLLM and OVHcloud directly; and web search off, a tool
-OpenAI's servers run, which LiteLLM passes on as `web_search_options`. With
+lane otherwise: reasoning summaries off, since LiteLLM 1.102.1 hands Codex's
+summary setting to the lane as a `reasoning_effort` object, which LLM7, LLM Tech
+and Pollinations refused; sub-agents off, since Codex sends their tools as a
+`namespace`, which OVHcloud refused called directly, and which LiteLLM hands on
+as plain functions that LLM7 refused (400 "does not support vision input" when
+asked again on 2026-09-28); and web search off, a tool OpenAI's servers run,
+which LiteLLM passes on as `web_search_options`. With
 those, Codex ran a shell command through the proxy on LLM7 and read its output
 back, and `free/strong` with no key set answered from the keyless lanes. A lane
 whose chat template takes a single system message — LLM Tech's Qwen answered

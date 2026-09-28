@@ -72,8 +72,8 @@ EVIDENCE_BUDGET_FRACTION = 0.25
 # timeout meant for generation.
 MODELS_LIST_TIMEOUT = 30.0
 
-# What an OpenAI-compatible endpoint answers about a model it no longer serves:
-# 400 (opencode Zen) or 404 (a stricter router). See `LLMClient._chat_any`.
+# The statuses read as "this model is not served here" from an OpenAI-compatible
+# endpoint. See `LLMClient._chat_any`.
 BAD_MODEL_STATUS = (400, 404)
 
 # How much of a refusal's body is read, and how much of the vendor's sentence

@@ -15,16 +15,18 @@ model = "kilo-auto/free"
 model_provider = "kilo-code"
 # The same three settings in every Codex profile here, so the request Codex
 # sends is the one the list's run checks; each is off for lanes that refuse it
-# or cannot run it. Reasoning summaries: LiteLLM hands them to a lane as a
-# reasoning_effort value, and the lanes tried refuse it.
+# or cannot run it. Reasoning summaries: some LiteLLM releases hand the
+# setting to a lane as a reasoning_effort object (1.102 does), which the lanes
+# tried refused.
 model_reasoning_summary = "none"
 # Web search: a tool OpenAI's servers run, which LiteLLM passes on to a lane
 # as web_search_options.
 web_search = "disabled"
 
 [features]
-# Sub-agents: Codex sends their tools as a namespace, a tool type some lanes
-# refuse.
+# Sub-agents: Codex sends their tools as a namespace, which LiteLLM 1.98 and
+# later pass on as plain functions; with them on, a turn failed both through
+# LiteLLM and on a lane called directly.
 multi_agent = false
 
 [model_providers.kilo-code]

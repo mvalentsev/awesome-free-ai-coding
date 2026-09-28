@@ -2171,9 +2171,9 @@ async def test_an_id_answered_as_another_model_is_a_note():
 # (id asked, model the completion names) — every pair the model asked, and why.
 ANSWERED_AS_ITSELF = [
     ("nvidia/Qwen3.8-27B-NVFP4", "qwen38"),  # LLM Tech's served name
-    ("qwen/qwen3.8-27b", "Qwen/Qwen3.8-27B"),  # VLM Run's spelling
+    ("qwen/qwen3.8-27b", "Qwen/Qwen3.8-27B"),  # an upper-case spelling
     ("nvidia/nemotron-3-super-120b-a12b:free", "nvidia/nemotron-3-super-120b-a12b"),  # the :free variant tag
-    ("deepseek/deepseek-v4-flash", "deepseek/deepseek-v4-flash-0731"),  # Router9's dated revision
+    ("deepseek/deepseek-v4-flash", "deepseek/deepseek-v4-flash-0731"),  # a dated revision
     ("codestral-latest", "codestral-2508"),  # an alias for the newest revision, answered under its date
     ("qwen/qwen3.8-flash-free", "qwen3.8-flash-0701"),  # a -free alias names a price, not a model
     ("kilo-auto/free", "inclusionai/ling-3.0-flash-vl:free"),  # Kilo's router
@@ -2349,8 +2349,7 @@ async def test_a_refused_first_id_beside_one_that_answers_is_a_note_not_a_failur
 
 @respx.mock
 async def test_a_keyless_lane_that_wants_a_session_header_is_called_with_one():
-    """A row that names api.session_header is called with a fresh UUID in it:
-    opencode Zen answers a keyless call without its x-opencode-session with 400."""
+    """A row that names api.session_header is called with a fresh UUID in it."""
     respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     call = respx.post("https://open.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("gpt-oss-120b")))

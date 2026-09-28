@@ -41,8 +41,8 @@ GENERIC_WORDS = frozenset({
 # ("no credit card required") stops and the vendor's own sentence begins.
 ANCHOR_PHRASE_WORDS = 4
 
-# A model id, a JSON field, a path: kilo's `advanced_model_request_limit`,
-# Mistral's `mistral-medium`, Trae's `"name":"free"`. Quotes count as boundary
+# A model id, a JSON field, a path: TRAE's `advanced_model_request_limit`,
+# Mistral's `mistral-medium`, TRAE's `"name":"Free"`. Quotes count as boundary
 # characters — a JSON key is exactly as anchoring as the id it holds.
 _ID_LIKE = re.compile(r'[\w"][-_/:.][\w"]')
 
@@ -565,9 +565,8 @@ class ApiInfo(BaseModel):
     public_key: str | None = None
     # A keyless lane that refuses any call carrying an Authorization header
     # while it answers a bare one. LiteLLM sends a bearer token on every call —
-    # `api_key: none` goes out as "Bearer none", an empty key is refused before
-    # the call, and OVHcloud answers an empty header value with 400 — so a lane
-    # that sets this is left out of litellm.yaml; opencode's
+    # `api_key: none` goes out as "Bearer none", and an empty key is refused
+    # before the call — so a lane that sets this is left out of litellm.yaml; opencode's
     # @ai-sdk/openai-compatible adds the header only when given a key, and keeps
     # the lane. The keyless probe asks again every run and says when it
     # changes, both ways. Written only where set.
@@ -645,9 +644,9 @@ class ApiInfo(BaseModel):
     @model_validator(mode="after")
     def _responses_api_is_a_lane_codex_can_call(self) -> ApiInfo:
         """The Responses API is OpenAI's; the profile names the first of
-        model_ids and the run calls it; and Codex sends no header of a vendor's
-        naming, so a lane that wants an id per conversation in one cannot take a
-        profile at all."""
+        model_ids and the run calls it; and a Codex profile's headers are fixed
+        values, so a lane that wants a new id per conversation in one cannot
+        take a profile at all."""
         if not self.responses_api:
             return self
         if not self.openai_compatible:
@@ -657,8 +656,8 @@ class ApiInfo(BaseModel):
             raise ValueError("responses_api needs a callable id: the Codex profile names the "
                              "first of model_ids, and the run calls it")
         if self.session_header:
-            raise ValueError("responses_api beside session_header: Codex sends no header of a "
-                             "vendor's naming, so no profile carries the id the lane asks for")
+            raise ValueError("responses_api beside session_header: a Codex profile's headers "
+                             "are fixed values, so none carries a new id per conversation")
         return self
 
     @model_validator(mode="after")
@@ -699,8 +698,8 @@ class ApiInfo(BaseModel):
     @classmethod
     def _anthropic_base_is_a_base(cls, value: str | None) -> str | None:
         """Claude Code appends /v1/messages; a value that already carries the
-        route would be sent to /v1/messages/v1/messages, and a trailing slash
-        would double the one the client adds."""
+        route would be sent to /v1/messages/v1/messages. A trailing slash is
+        dropped, so every page prints the base one way."""
         if value is None:
             return value
         value = value.rstrip("/")

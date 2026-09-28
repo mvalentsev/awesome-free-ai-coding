@@ -526,8 +526,9 @@ def _connectable(entries: list[Entry], today: date) -> list[Entry]:
 def _configurable(entries: list[Entry], today: date) -> list[Entry]:
     """The connectable rows a config written once can actually call: none whose
     ask it cannot carry (`_static_blockers`). OpenCode sends x-opencode-session
-    only for its own built-in provider, never for an opencode.json one, so a
-    session header rules out opencode.json too. Those rows are connected by a
+    only to a provider whose id starts with "opencode", its own, and
+    opencode.json names each provider after its row, so a session header rules
+    out opencode.json too. Those rows are connected by a
     client that sends the header, which the connection table, the provider page,
     the env example and llms.txt name."""
     return [e for e in _connectable(entries, today) if not _static_blockers(e)]
@@ -1734,7 +1735,7 @@ def litellm_groups(entries: list[Entry], today: date) -> list[str]:
 
     A group is there only while some lane is measured at its tier, so every page
     that names a group reads it from here: a group the config lacks is a name
-    LiteLLM answers with "model not found"."""
+    LiteLLM refuses with "Invalid model name"."""
     names = {d["model_name"] for d in build_litellm_config(entries, today)["model_list"]}
     return [name for name in FREE_GROUPS if name in names]
 
@@ -1789,8 +1790,8 @@ def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
     lines = [
         "# Codex CLI on the free lanes of litellm.yaml — generated from registry.yaml,",
         "# do not edit by hand.",
-        *_comment("Codex speaks only the OpenAI Responses API, which few free lanes serve; "
-                  "the LiteLLM proxy answers it for every lane in litellm.yaml by calling "
+        *_comment("Codex speaks only the OpenAI Responses API, and the LiteLLM proxy "
+                  "answers it for every lane in litellm.yaml by calling "
                   f"the lane's chat completions. Needs Codex CLI {CODEX_SINCE} or later and "
                   f"LiteLLM {LITELLM_BRIDGE_SINCE} or later; the file goes where Codex keeps "
                   "its config, ~/.codex unless CODEX_HOME says otherwise:"),
@@ -1822,16 +1823,18 @@ def _codex_settings() -> list[str]:
     return [
         *_comment("The same three settings in every Codex profile here, so the request Codex "
                   "sends is the one the list's run checks; each is off for lanes that refuse it "
-                  "or cannot run it. Reasoning summaries: LiteLLM hands them to a lane as a "
-                  "reasoning_effort value, and the lanes tried refuse it."),
+                  "or cannot run it. Reasoning summaries: some LiteLLM releases hand the "
+                  "setting to a lane as a reasoning_effort object (1.102 does), which the "
+                  "lanes tried refused."),
         'model_reasoning_summary = "none"',
         *_comment("Web search: a tool OpenAI's servers run, which LiteLLM passes on to a lane "
                   "as web_search_options."),
         'web_search = "disabled"',
         "",
         "[features]",
-        *_comment("Sub-agents: Codex sends their tools as a namespace, a tool type some lanes "
-                  "refuse."),
+        *_comment("Sub-agents: Codex sends their tools as a namespace, which LiteLLM "
+                  f"{LITELLM_BRIDGE_SINCE} and later pass on as plain functions; with them on, "
+                  "a turn failed both through LiteLLM and on a lane called directly."),
         "multi_agent = false",
         "",
     ]
@@ -1840,8 +1843,9 @@ def _codex_settings() -> list[str]:
 def codex_ready(e: Entry) -> bool:
     """Whether a row's lane gets a Codex profile of its own: it takes the request
     Codex sends (`api.responses_api`), and a profile written once can carry
-    every ask it makes — Codex names itself in its own User-Agent, and sends no
-    header of a vendor's naming."""
+    every ask it makes — Codex names itself in its own User-Agent, and a
+    profile's headers (`http_headers`) are fixed values, so a lane that wants a
+    new id per conversation (`_static_blockers`) gets none."""
     return bool(e.api and e.api.base_url and e.api.responses_api and not _static_blockers(e))
 
 

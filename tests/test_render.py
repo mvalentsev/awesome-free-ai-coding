@@ -484,7 +484,7 @@ def test_litellm_config_names_every_free_model_of_every_connectable_entry():
         {"model_name": "keyless/gpt-oss-120b",
          "litellm_params": {"model": "openai/gpt-oss-120b",
                             "api_base": "https://free.example/v1",
-                            "api_key": "none",  # LiteLLM's own spelling for "no key"
+                            "api_key": "none",  # a placeholder: LiteLLM sends "Bearer none"
                             "use_chat_completions_api": True}},
     ]
 
@@ -542,15 +542,15 @@ def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
         "routing_strategy": "simple-shuffle", "num_retries": 3,
         "fallbacks": [{"free/frontier": ["free/strong", "free/nokey"]},
                       {"free/strong": ["free/nokey"]}]}
-    # One dict per deployment: PyYAML writes a shared one as an &anchor, LiteLLM
-    # then hands every deployment the same model_info and the same id, and the
-    # group answers 429 to every call.
+    # One dict per deployment: PyYAML writes a shared one as an &anchor, and
+    # LiteLLM then hands every deployment the same model_info and the same id,
+    # so one cooldown benches them all.
     assert "&id" not in yaml.safe_dump(cfg)
 
 
 def test_every_page_offers_only_the_litellm_groups_the_config_defines(tmp_path: Path):
     """A group exists only while some lane is measured at its tier, and a group
-    litellm.yaml lacks is a call LiteLLM answers with "model not found": the
+    litellm.yaml lacks is a call LiteLLM refuses with "Invalid model name": the
     config's header, the configs README, llms.txt, the README and the site name
     only the groups the config defines."""
     from freetier_radar.models import save_registry

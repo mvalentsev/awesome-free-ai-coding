@@ -892,9 +892,8 @@ def test_a_retired_pin_costs_a_candidate_and_not_the_endpoint():
 
 @respx.mock
 def test_a_disowned_model_is_reported_with_the_vendor_s_reason():
-    """A 400 can mean a retired id or a lane closed to this client (opencode Zen's
-    free tier, locked to OpenCode), and only the vendor's sentence tells the two
-    repairs apart, so the failure carries it."""
+    """A 400 can mean a retired id or a lane closed to this client, and only the
+    vendor's sentence tells the two repairs apart, so the failure carries it."""
     respx.post("https://zen.example/v1/chat/completions").mock(return_value=httpx.Response(
         400, json={"type": "error", "error": {
             "type": "MissingSessionID",

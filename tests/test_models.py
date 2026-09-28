@@ -545,8 +545,8 @@ def test_a_session_header_is_a_header_name_on_a_row_with_an_endpoint():
 def test_anthropic_base_url_is_the_base_claude_code_appends_to():
     """The field is what ANTHROPIC_BASE_URL takes, and Claude Code appends
     /v1/messages itself — so a value that already ends in the route would send
-    it to /v1/messages/v1/messages, and a trailing slash would double the one
-    in between."""
+    it to /v1/messages/v1/messages; a trailing slash is dropped, so the base is
+    written one way."""
     d = sample_entry()
     d["api"] = {"base_url": "https://x.ai/v1", "anthropic_base_url": "https://x.ai/"}
     assert Entry.model_validate(d).api.anthropic_base_url == "https://x.ai"
