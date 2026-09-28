@@ -422,6 +422,17 @@ place — Cloudflare's config handed out `llama-4`, which Workers AI does not kn
 and Upstage's `solar-pro-3` for the id `solar-pro3` — so `freetier-check` now
 refuses a connectable row whose column names families with no ids beside them.
 
+**A key the reader has not set never becomes another of theirs.** LiteLLM gives
+an entry whose key variable is not set the `OPENAI_API_KEY` it runs with and
+sends it to that lane, so every place that prints the proxy's command starts it
+as `env -u OPENAI_API_KEY litellm --config …`. Claude Code with an empty
+`ANTHROPIC_AUTH_TOKEN` takes the next credential in its
+[authentication order](https://code.claude.com/docs/en/authentication#authentication-precedence),
+the reader's own sign-in included, and sends it to the gateway, so a keyed
+function in `claude-code.sh` stops until its variable is set. Both were measured
+on 2026-09-28 against a local stand-in for the lane: LiteLLM 1.89.0, 1.98.0 and
+1.103.0, and Claude Code 2.1.283.
+
 **Codex CLI reaches the lanes through LiteLLM.** Codex speaks only the OpenAI
 Responses API — a provider given `wire_api = "chat"` has been a config error
 since its discussion #7782 — and on 2026-09-27 seventeen of the list's 61 lanes

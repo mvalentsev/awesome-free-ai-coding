@@ -1415,13 +1415,15 @@ def test_claude_code_picks_and_connections_come_from_the_anthropic_field(tmp_pat
     sh = build_claude_code_sh(entries, TODAY)
     assert "claude-gw-one()" in sh and "claude-gw-noids()" in sh and "claude-gw-card()" in sh
     assert "claude-gw-plain" not in sh
-    block = sh.split("claude-gw-one()")[1].split("claude-gw-")[0]
+    def body(name: str) -> str:
+        return sh.split(f"{name}() {{")[1].split("\n}\n")[0]
+
+    block = body("claude-gw-one")
     assert 'ANTHROPIC_BASE_URL="https://one.example"' in block
     assert 'ANTHROPIC_AUTH_TOKEN="$GW_ONE_API_KEY"' in block
     assert 'ANTHROPIC_API_KEY=""' in block
     assert 'ANTHROPIC_MODEL="vendor/model-a:free"' in block
-    noids = sh.split("claude-gw-noids()")[1]
-    assert "ANTHROPIC_MODEL=" not in noids.split("}")[0]
+    assert "ANTHROPIC_MODEL=" not in body("claude-gw-noids")
 
     reg = tmp_path / "registry.yaml"
     save_registry(reg, entries)
@@ -1581,6 +1583,66 @@ def test_the_litellm_command_this_repo_prints_listens_on_localhost_only(tmp_path
     for text in (header, readme, codex):
         commands = re.findall(r"litellm --config \S+[^`\n]*", text)
         assert commands and all("--host 127.0.0.1" in c for c in commands), commands
+
+
+def test_every_printed_litellm_command_starts_the_proxy_without_openai_api_key(tmp_path: Path):
+    """LiteLLM gives an entry whose own key variable is not set the OPENAI_API_KEY
+    of the environment it runs in, and sends it to that entry's lane: a reader's
+    OpenAI key would reach a free lane they hold no key for. Every place the
+    command is printed runs the proxy with the variable unset, and the site's
+    row, which prints no command, says so."""
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_configs_readme, render_site
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(api={"base_url": "https://api.x.ai/v1", "model_ids": ["m"]})])
+    render_artifacts(reg, tmp_path, today=TODAY)
+    texts = {
+        "README.md": render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY),
+        "configs/README.md": render_configs_readme(reg, Path("templates"),
+                                                   tmp_path / "configs" / "README.md", today=TODAY),
+        "litellm.yaml": (tmp_path / "configs" / "litellm.yaml").read_text(encoding="utf-8"),
+        "litellm.config.toml": (tmp_path / "configs" / "codex" / "litellm.config.toml")
+        .read_text(encoding="utf-8"),
+    }
+    for name, text in texts.items():
+        prefixes = re.findall(r"(env -u OPENAI_API_KEY )?litellm --config", text)
+        assert prefixes and all(prefixes), (name, prefixes)
+    site = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
+    assert "OPENAI_API_KEY" in site
+
+
+def test_a_keyed_claude_code_function_stops_while_its_key_is_not_set(tmp_path: Path):
+    """With ANTHROPIC_AUTH_TOKEN empty, Claude Code falls back to the next
+    credential it holds — the reader's own sign-in included — and sends it to
+    the gateway, so a keyed function refuses to start Claude Code until its
+    variable is set; a keyless one passes its "none" as before."""
+    import shutil
+    import subprocess
+    from freetier_radar.render import build_claude_code_sh
+    shells = [s for s in (shutil.which("bash"), shutil.which("zsh")) if s]
+    if not shells:
+        pytest.skip("no bash or zsh here")
+    keyed = make(id="gw", api={"base_url": "https://gw.example/v1", "model_ids": ["m"],
+                               "anthropic_base_url": "https://gw.example"})
+    keyless = make(id="open", api={"base_url": "https://open.example/v1", "model_ids": ["m"],
+                                   "auth": "none", "anthropic_base_url": "https://open.example"})
+    script = tmp_path / "claude-code.sh"
+    script.write_text(build_claude_code_sh([keyed, keyless], TODAY), encoding="utf-8")
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    fake = bin_dir / "claude"
+    fake.write_text('#!/bin/sh\necho "started with token=$ANTHROPIC_AUTH_TOKEN"\n', encoding="utf-8")
+    fake.chmod(0o755)
+    env = {"PATH": f"{bin_dir}:/usr/bin:/bin", "HOME": str(tmp_path)}
+    for shell in shells:
+        def run(fn: str, **extra: str) -> subprocess.CompletedProcess:
+            return subprocess.run([shell, "-c", f". {script}; {fn}"], env={**env, **extra},
+                                  capture_output=True, text=True, timeout=30)
+        unset = run("claude-gw")
+        assert unset.returncode != 0 and "started" not in unset.stdout, (shell, unset)
+        assert "GW_API_KEY" in unset.stderr, (shell, unset.stderr)
+        assert run("claude-gw", GW_API_KEY="k").stdout.strip() == "started with token=k", shell
+        assert run("claude-open").stdout.strip() == "started with token=none", shell
 
 
 def test_render_writes_a_page_per_entry_and_removes_the_stale_ones(tmp_path: Path):

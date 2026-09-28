@@ -38,7 +38,7 @@
       "url": "https://mvalentsev.github.io/awesome-free-ai-coding/",
       "isAccessibleForFree": true,
       "license": "https://opensource.org/licenses/MIT",
-      "dateModified": "2026-09-27",
+      "dateModified": "2026-09-28",
       "creator": {
         "@type": "Person",
         "name": "mvalentsev",
@@ -3948,7 +3948,7 @@ ids are the price list&#39;s own; Hunyuan-MT-7B, the other chat row at ¥0, is a
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
           <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and <code>claude-openrouter-free</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane.</td></tr>
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
-          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model LiteLLM can call behind one local endpoint; ask for <code>free/strong</code> or <code>free/nokey</code> instead of a model and a call moves to the next free lane when one runs out. Without <code>--host 127.0.0.1</code> the proxy listens on every interface, and the file sets no master key.</td></tr>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model LiteLLM can call behind one local endpoint; ask for <code>free/strong</code> or <code>free/nokey</code> instead of a model and a call moves to the next free lane when one runs out. Start it as <code>env -u OPENAI_API_KEY litellm --config configs/litellm.yaml --host 127.0.0.1</code>: without <code>--host</code> the proxy listens on every interface, the file sets no master key, and LiteLLM would send your <code>OPENAI_API_KEY</code> to a lane whose own key is not set.</td></tr>
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/litellm.config.toml">configs/codex/litellm.config.toml</a></th>
           <td><a href="https://developers.openai.com/codex">Codex CLI</a> profile over <code>configs/litellm.yaml</code> — Codex speaks only the OpenAI Responses API, and the LiteLLM proxy answers it for every lane in that file by calling the lane's chat completions: run the proxy, copy the file to <code>~/.codex/</code>, then <code>codex -p litellm</code> (Codex CLI 0.134 and LiteLLM 1.89 or later).</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
@@ -4179,7 +4179,7 @@ vendor-announced shutdown on 2026-05-15            </td>
 <footer>
   <div class="wrap">
     <span>Rendered from <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/registry.yaml">registry.yaml</a> on
-      <time datetime="2026-09-27">2026-09-27</time> · MIT</span>
+      <time datetime="2026-09-28">2026-09-28</time> · MIT</span>
     <span><a href="https://github.com/mvalentsev/awesome-free-ai-coding">GitHub</a> · <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md">Contribute a row</a>
       · <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom</a> · <a href="browse.html">Filterable table</a>
       · <a href="#top">Back to top</a></span>

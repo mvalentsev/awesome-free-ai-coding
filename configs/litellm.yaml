@@ -1,6 +1,8 @@
 # Free LLM providers as a LiteLLM proxy config — generated from
 # registry.yaml, do not edit by hand.
-# Run: litellm --config litellm.yaml --host 127.0.0.1
+# Run: env -u OPENAI_API_KEY litellm --config litellm.yaml --host 127.0.0.1
+# LiteLLM gives an entry whose key variable is not set the OPENAI_API_KEY it
+# runs with and sends it to that lane, so the command runs it without one.
 # The proxy listens on 0.0.0.0 unless --host says otherwise, and this file
 # sets no master_key, so without that flag anyone on your network can spend
 # the keys it reads from the environment (see free-llm.env.example).

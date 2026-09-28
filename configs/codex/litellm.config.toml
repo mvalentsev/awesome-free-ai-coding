@@ -6,7 +6,7 @@
 # later; the file goes where Codex keeps its config, ~/.codex unless
 # CODEX_HOME says otherwise:
 #
-#   litellm --config configs/litellm.yaml --host 127.0.0.1
+#   env -u OPENAI_API_KEY litellm --config configs/litellm.yaml --host 127.0.0.1
 #   cp configs/codex/litellm.config.toml ~/.codex/
 #   codex -p litellm
 #

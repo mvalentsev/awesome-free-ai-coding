@@ -1795,7 +1795,7 @@ def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
                   f"LiteLLM {LITELLM_BRIDGE_SINCE} or later; the file goes where Codex keeps "
                   "its config, ~/.codex unless CODEX_HOME says otherwise:"),
         "#",
-        "#   litellm --config configs/litellm.yaml --host 127.0.0.1",
+        "#   env -u OPENAI_API_KEY litellm --config configs/litellm.yaml --host 127.0.0.1",
         f"#   cp {CODEX_LITELLM_PATH} ~/.codex/",
         f"#   codex -p {CODEX_LITELLM_PROFILE}",
         "#",
@@ -1948,11 +1948,13 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
     format, so `source configs/claude-code.sh` and `claude-<id>` runs Claude
     Code on that lane. Functions rather than exports because only one gateway
     can be current: a file of exports would leave the last block winning
-    silently, while a function scopes the four variables to one invocation —
-    the shape Vercel's own docs recommend. ANTHROPIC_API_KEY is emptied on
-    purpose in every block: Claude Code reads it before ANTHROPIC_AUTH_TOKEN,
-    and a stale value there wins. The key comes from the same variable
-    free-llm.env.example declares, so the two files are one setup.
+    silently, while a function scopes the four variables to one invocation.
+    A keyed function stops while its variable is empty: with
+    ANTHROPIC_AUTH_TOKEN empty, Claude Code falls back to the next credential
+    in its order — the reader's own sign-in included — and sends it to the
+    gateway. ANTHROPIC_API_KEY is emptied in every block, so a key for
+    Anthropic's own API is never one of them. The key comes from the same
+    variable free-llm.env.example declares, so the two files are one setup.
 
     The model is the first id the row lists, which on a rotating lane is the
     registry's own order; a row that lists none leaves ANTHROPIC_MODEL to the
@@ -1967,6 +1969,8 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
         "# answers. Usage:  source configs/free-llm.env.example  (fill the key you use),",
         "# then  source configs/claude-code.sh  and run the function named after the row"
         + example,
+        "# A function stops while its key is not set: without one, Claude Code sends the",
+        "# gateway the next credential it holds, your own sign-in included.",
         "",
     ]
     for e in ready:
@@ -1979,6 +1983,12 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
         else:
             lines.append(f"#    free ids: {', '.join(e.api.model_ids)}")
         lines.append(f"claude-{e.id}() {{")
+        if e.api.key_kind != "none":
+            var = env_var(e.id)
+            lines += [f'  if [ -z "${{{var}:-}}" ]; then',
+                      f'    echo "claude-{e.id}: set {var} first (configs/free-llm.env.example)" >&2',
+                      "    return 1",
+                      "  fi"]
         lines.append(f'  ANTHROPIC_BASE_URL="{e.api.anthropic_base_url}" \\')
         if e.api.key_kind == "none":
             lines.append('  ANTHROPIC_AUTH_TOKEN="none" \\')
@@ -2898,7 +2908,9 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     (configs / "litellm.yaml").write_text(
         "# Free LLM providers as a LiteLLM proxy config — generated from\n"
         "# registry.yaml, do not edit by hand.\n"
-        "# Run: litellm --config litellm.yaml --host 127.0.0.1\n"
+        "# Run: env -u OPENAI_API_KEY litellm --config litellm.yaml --host 127.0.0.1\n"
+        "# LiteLLM gives an entry whose key variable is not set the OPENAI_API_KEY it\n"
+        "# runs with and sends it to that lane, so the command runs it without one.\n"
         "# The proxy listens on 0.0.0.0 unless --host says otherwise, and this file\n"
         "# sets no master_key, so without that flag anyone on your network can spend\n"
         "# the keys it reads from the environment (see free-llm.env.example).\n"

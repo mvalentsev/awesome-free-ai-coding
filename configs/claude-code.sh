@@ -4,10 +4,16 @@
 # answers. Usage:  source configs/free-llm.env.example  (fill the key you use),
 # then  source configs/claude-code.sh  and run the function named after the row,
 # e.g. claude-openrouter-free. Works in bash and zsh.
+# A function stops while its key is not set: without one, Claude Code sends the
+# gateway the next credential it holds, your own sign-in included.
 
 # ── OpenRouter (free models) · get a key: https://openrouter.ai/settings/keys
 #    free ids: nvidia/nemotron-3-ultra-550b-a55b:free, nvidia/nemotron-3-super-120b-a12b:free, nvidia/nemotron-3.5-lightning:free, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, google/gemma-4-31b-it:free, google/gemma-4-26b-a4b-it:free, cohere/north-mini-code:free, poolside/laguna-s-2.1:free, poolside/laguna-xs-2.1:free, thinkingmachines/inkling:free, thinkingmachines/inkling-small:free, dots-studio/dots-3-note-preview:free, inclusionai/ling-3.0-flash-fin:free, inclusionai/ling-3.0-flash-sante:free, liquid/lfm-2.5-2.6b:free, qwen/qwen3.8-27b:free, openrouter/free
 claude-openrouter-free() {
+  if [ -z "${OPENROUTER_API_KEY:-}" ]; then
+    echo "claude-openrouter-free: set OPENROUTER_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://openrouter.ai/api" \
   ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -18,6 +24,10 @@ claude-openrouter-free() {
 # ── Requesty · get a key: https://app.requesty.ai/api-keys
 #    free ids: nvidia/nemotron-3-ultra-550b-a55b, nvidia/nemotron-3-super-120b-a12b, nvidia/nemotron-3-nano-30b-a3b, nvidia/nemotron-3-nano-omni-30b-a3b-reasoning, novita/inclusionai/ling-3.0-tiny, google/gemma-4-31b-it, mistral/leanstral-1-5, nvidia/muse-glimmer-30b, nvidia/nemotron-3.5-lightning-30b-a3b
 claude-requesty() {
+  if [ -z "${REQUESTY_API_KEY:-}" ]; then
+    echo "claude-requesty: set REQUESTY_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://router.requesty.ai" \
   ANTHROPIC_AUTH_TOKEN="$REQUESTY_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -28,6 +38,10 @@ claude-requesty() {
 # ── AIHubMix (free models) · get a key: https://aihubmix.com/token
 #    free ids: coding-glm-5.2-free, coding-glm-5.1-free, coding-kimi-k3-free, kimi-for-coding-free, xiaomi-mimo-v2.5-free, north-mini-code-free, ling-3.0-tiny-free, nemotron-3-ultra-550b-a55b-free, agents-a1-free, coding-glm-4.6-free, coding-glm-4.7-free, coding-glm-5-free, coding-glm-5-turbo-free, coding-glm-5.3-flash-free, coding-glm-5.3-free, coding-minimax-m2-free, coding-minimax-m2.1-free, coding-minimax-m2.5-free, coding-minimax-m2.7-free, coding-minimax-m3-free, dots-3-note-preview-free, glm-4.7-flash-free, hy3-free, intern-s2-free, k2.6-code-preview-free, laguna-s-2.1-free, laguna-xs-2.1-free, lfm-2.5-2.6b-free, ling-3.0-flash-free, mimo-v2-flash-free, minimax-m2.7-free, nemotron-3-nano-30b-a3b-free, nemotron-3-nano-omni-30b-a3b-reasoning-free, nemotron-3-super-120b-a12b-free, nemotron-3.5-lightning-free, nemotron-nano-12b-v2-vl-free, nemotron-nano-9b-v2-free, union-alpha-free, xiaomi-mimo-v2-omni-free, xiaomi-mimo-v2-pro-free, xiaomi-mimo-v2.5-pro-free, xiaomi-mimo-v2.6-flash-free, xiaomi-mimo-v2.6-pro-free
 claude-aihubmix() {
+  if [ -z "${AIHUBMIX_API_KEY:-}" ]; then
+    echo "claude-aihubmix: set AIHUBMIX_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://aihubmix.com" \
   ANTHROPIC_AUTH_TOKEN="$AIHUBMIX_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -38,6 +52,10 @@ claude-aihubmix() {
 # ── Z.ai (Zhipu GLM) · get a key: https://z.ai/manage-apikey/apikey-list
 #    free ids: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash
 claude-zai-glm() {
+  if [ -z "${ZAI_GLM_API_KEY:-}" ]; then
+    echo "claude-zai-glm: set ZAI_GLM_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic" \
   ANTHROPIC_AUTH_TOKEN="$ZAI_GLM_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -48,6 +66,10 @@ claude-zai-glm() {
 # ── Vercel AI Gateway · card required · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
 #    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free, stealth/pixel-canary
 claude-vercel-ai-gateway() {
+  if [ -z "${VERCEL_AI_GATEWAY_API_KEY:-}" ]; then
+    echo "claude-vercel-ai-gateway: set VERCEL_AI_GATEWAY_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://ai-gateway.vercel.sh" \
   ANTHROPIC_AUTH_TOKEN="$VERCEL_AI_GATEWAY_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -58,6 +80,10 @@ claude-vercel-ai-gateway() {
 # ── Token Harbor · get a key: https://tokenharbor.ai/dashboard/api-keys
 #    free ids: deepseek-v4.1-flash:free, mimo-v2.6-flash:free, qwen3.8-flash:free
 claude-token-harbor() {
+  if [ -z "${TOKEN_HARBOR_API_KEY:-}" ]; then
+    echo "claude-token-harbor: set TOKEN_HARBOR_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://tokenharbor.ai" \
   ANTHROPIC_AUTH_TOKEN="$TOKEN_HARBOR_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -68,6 +94,10 @@ claude-token-harbor() {
 # ── Opper · get a key: https://platform.opper.ai/settings/api-keys
 #    free ids: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b
 claude-opper() {
+  if [ -z "${OPPER_API_KEY:-}" ]; then
+    echo "claude-opper: set OPPER_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.opper.ai/v3/compat" \
   ANTHROPIC_AUTH_TOKEN="$OPPER_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -78,6 +108,10 @@ claude-opper() {
 # ── The Grid · get a key: https://app.thegrid.ai/profile
 #    free ids: agent-prime, code-prime, agent-max
 claude-the-grid() {
+  if [ -z "${THE_GRID_API_KEY:-}" ]; then
+    echo "claude-the-grid: set THE_GRID_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://messages-beta.api.thegrid.ai" \
   ANTHROPIC_AUTH_TOKEN="$THE_GRID_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -88,6 +122,10 @@ claude-the-grid() {
 # ── Moark (Gitee AI) · get a key: https://moark.com/dashboard/tokens
 #    free ids: deepseek-v4-flash-0731
 claude-moark() {
+  if [ -z "${MOARK_API_KEY:-}" ]; then
+    echo "claude-moark: set MOARK_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://moark.com/anthropic" \
   ANTHROPIC_AUTH_TOKEN="$MOARK_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -98,6 +136,10 @@ claude-moark() {
 # ── FreeInference (Harvard SEAS) · get a key: https://freeinference.org
 #    free ids: glm-5.3-flash, deepseek-v4-flash, qwen3.6-35b, diffusiongemma
 claude-freeinference() {
+  if [ -z "${FREEINFERENCE_API_KEY:-}" ]; then
+    echo "claude-freeinference: set FREEINFERENCE_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://freeinference.org/anthropic" \
   ANTHROPIC_AUTH_TOKEN="$FREEINFERENCE_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -108,6 +150,10 @@ claude-freeinference() {
 # ── Fireworks AI · get a key: https://app.fireworks.ai/settings/users/api-keys
 #    free ids: accounts/fireworks/models/deepseek-v4p1-flash, accounts/fireworks/models/glm-5p3-flash, accounts/fireworks/models/minimax-m3, accounts/fireworks/models/glm-5p3, accounts/fireworks/models/kimi-k3
 claude-fireworks-ai() {
+  if [ -z "${FIREWORKS_AI_API_KEY:-}" ]; then
+    echo "claude-fireworks-ai: set FIREWORKS_AI_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.fireworks.ai/inference" \
   ANTHROPIC_AUTH_TOKEN="$FIREWORKS_AI_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -118,6 +164,10 @@ claude-fireworks-ai() {
 # ── RouterPlex · get a key: https://routerplex.com/sign-up
 #    free ids: deepseek-v4-flash, glm-5.3-flash, claude-sonnet-4-6
 claude-routerplex() {
+  if [ -z "${ROUTERPLEX_API_KEY:-}" ]; then
+    echo "claude-routerplex: set ROUTERPLEX_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.routerplex.com" \
   ANTHROPIC_AUTH_TOKEN="$ROUTERPLEX_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -128,6 +178,10 @@ claude-routerplex() {
 # ── abliteration.ai · get a key: https://abliteration.ai/console
 #    free ids: abliterated-model-large-v2, abliterated-model, abliterated-model-large
 claude-abliteration-ai() {
+  if [ -z "${ABLITERATION_AI_API_KEY:-}" ]; then
+    echo "claude-abliteration-ai: set ABLITERATION_AI_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.abliteration.ai" \
   ANTHROPIC_AUTH_TOKEN="$ABLITERATION_AI_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -138,6 +192,10 @@ claude-abliteration-ai() {
 # ── Impossibl · get a key: https://impossibl.com/dashboard
 #    free ids: zai/glm-5.3-flash, deepseek/deepseek-v4.1-flash, qwen/qwen3.8-27b
 claude-impossibl() {
+  if [ -z "${IMPOSSIBL_API_KEY:-}" ]; then
+    echo "claude-impossibl: set IMPOSSIBL_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.impossibl.com" \
   ANTHROPIC_AUTH_TOKEN="$IMPOSSIBL_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -148,6 +206,10 @@ claude-impossibl() {
 # ── Standard Compute · get a key: https://standardcompute.com/signup
 #    free ids: anthropic/claude-standardcompute, StandardCompute
 claude-standardcompute() {
+  if [ -z "${STANDARDCOMPUTE_API_KEY:-}" ]; then
+    echo "claude-standardcompute: set STANDARDCOMPUTE_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.stdcmpt.com" \
   ANTHROPIC_AUTH_TOKEN="$STANDARDCOMPUTE_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -158,6 +220,10 @@ claude-standardcompute() {
 # ── ModelScope API-Inference (Alibaba) · get a key: https://modelscope.cn/my/myaccesstoken
 #    free ids: deepseek-ai/DeepSeek-V4.1-Flash, deepseek-ai/DeepSeek-V4-Pro, ZhipuAI/GLM-5.2, MiniMax/MiniMax-M3, Qwen/Qwen3.8-27B, Qwen/Qwen3.8-Flash-Next, stepfun-ai/Step-3.7-Flash, Qwen/Qwen3.5-397B-A17B, nex-agi/Nex-N2.5-Pro, deepseek-ai/DeepSeek-V4-Flash-0731, ZhipuAI/GLM-4.7-Flash
 claude-modelscope() {
+  if [ -z "${MODELSCOPE_API_KEY:-}" ]; then
+    echo "claude-modelscope: set MODELSCOPE_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api-inference.modelscope.cn" \
   ANTHROPIC_AUTH_TOKEN="$MODELSCOPE_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -168,6 +234,10 @@ claude-modelscope() {
 # ── Tencent Cloud TokenHub · get a key: https://console.cloud.tencent.com/tokenhub/apikey
 #    free ids: kimi-k3, glm-5.3, hy3, minimax-m3
 claude-tencent-tokenhub() {
+  if [ -z "${TENCENT_TOKENHUB_API_KEY:-}" ]; then
+    echo "claude-tencent-tokenhub: set TENCENT_TOKENHUB_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://tokenhub.tencentmaas.com" \
   ANTHROPIC_AUTH_TOKEN="$TENCENT_TOKENHUB_API_KEY" \
   ANTHROPIC_API_KEY="" \
@@ -178,6 +248,10 @@ claude-tencent-tokenhub() {
 # ── SiliconFlow (China) · get a key: https://cloud.siliconflow.cn/account/ak
 #    free ids: XingChenAGI/Xing4.0-29B, Qwen/Qwen3-8B, THUDM/GLM-4-9B-0414, THUDM/GLM-Z1-9B-0414, deepseek-ai/DeepSeek-R1-0528-Qwen3-8B, Qwen/Qwen3.5-4B, Qwen/Qwen2.5-7B-Instruct
 claude-siliconflow-cn() {
+  if [ -z "${SILICONFLOW_CN_API_KEY:-}" ]; then
+    echo "claude-siliconflow-cn: set SILICONFLOW_CN_API_KEY first (configs/free-llm.env.example)" >&2
+    return 1
+  fi
   ANTHROPIC_BASE_URL="https://api.siliconflow.cn" \
   ANTHROPIC_AUTH_TOKEN="$SILICONFLOW_CN_API_KEY" \
   ANTHROPIC_API_KEY="" \
