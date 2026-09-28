@@ -39,7 +39,7 @@
 <text x="811.1" y="412" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">39.6</tspan><tspan class="m"> · 1 offer</tspan></text>
 <text class="t label" x="350" y="444" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">deepseek-v4.1-flash</text>
 <rect class="bar strong" x="370.0" y="429" width="432.0" height="18" rx="4"/>
-<text x="810.0" y="444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">39.5</tspan><tspan class="m"> · 2 offers</tspan></text>
+<text x="810.0" y="444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">39.5</tspan><tspan class="m"> · 4 offers</tspan></text>
 <text class="t label" x="350" y="476" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gemini-3.7-flash</text>
 <rect class="bar strong" x="370.0" y="461" width="427.7" height="18" rx="4"/>
 <text x="805.7" y="476" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">39.1</tspan><tspan class="m"> · 2 offers</tspan></text>
@@ -51,7 +51,7 @@
 <text x="771.8" y="540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">36.0</tspan><tspan class="m"> · 1 offer</tspan></text>
 <text class="t label" x="350" y="572" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">deepseek-v4-flash</text>
 <rect class="bar strong" x="370.0" y="557" width="375.2" height="18" rx="4"/>
-<text x="753.2" y="572" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">34.3</tspan><tspan class="m"> · 4 offers</tspan></text>
+<text x="753.2" y="572" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">34.3</tspan><tspan class="m"> · 5 offers</tspan></text>
 <text class="t label" x="350" y="604" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">gemini-3.6-flash</text>
 <rect class="bar strong" x="370.0" y="589" width="371.9" height="18" rx="4"/>
 <text x="749.9" y="604" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">34.0</tspan><tspan class="m"> · 2 offers</tspan></text>

@@ -19,7 +19,7 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 
 ## Free models
 
-`agnes-3.0-flash`, `agnes-2.5-flash`
+[`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)
 
 ## Limits, in the vendor's words
 

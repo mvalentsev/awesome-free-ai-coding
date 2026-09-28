@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-09-28'
-description: 'OpenAI-compatible gateway to a 128-id catalog whose free page counts two models on 2026-09-27, beside the auto:free router. Free models: qwen3.7-flash. BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 50 weighted units/day. With…'
+description: 'OpenAI-compatible gateway to a 128-id catalog whose free page counts two models on 2026-09-27, beside the auto:free router. Free models: qwen3.7-flash, deepseek-v4-flash. BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 50…'
 permalink: /providers/bazaarlink/
 last_modified_at: 2026-09-28
 crumb: BazaarLink
@@ -19,7 +19,7 @@ OpenAI-compatible gateway to a 128-id catalog whose free page counts two models 
 
 ## Free models
 
-[`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/)
+[`qwen3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.7-flash/), [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)
 
 ## Limits, in the vendor's words
 
@@ -55,6 +55,7 @@ curl -s https://api.bazaarlink.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-28` — Free models changed: added deepseek-v4-flash
 - `2026-08-19` — Free models changed: dropped deepseek-v4-flash
 - `2026-08-03` — Added: OpenAI-compatible gateway to 199 models, with two always-free open models and an auto:free router
 

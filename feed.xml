@@ -5,8 +5,36 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-28T11:54:24Z</updated>
+  <updated>2026-09-28T11:59:17Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/alibaba-model-studio/20260928T115917Z</id>
+    <title>Free models changed: Alibaba Cloud Model Studio (DashScope, international)</title>
+    <link rel="alternate" href="https://www.alibabacloud.com/en/product/modelstudio"/>
+    <updated>2026-09-28T11:59:17Z</updated>
+    <summary type="text">added deepseek-v4.1-flash · free models: qwen3.8-max, qwen3.8-flash, qwen3.8-2.4t-a95b, qwen3.8-27b, deepseek-v4-pro, deepseek-v4-flash, deepseek-v4.1-flash, qwen3-coder-plus, qwen3-coder-next, qwen3.7-max, qwen3.7-plus, qwen3.7-flash, qwen3.6-max, qwen3.6-plus, qwen3.6-flash, qwen3.6-35b-a3b, qwen3.6-27b, qwen3.5-plus, qwen3.5-flash, qwen3.5-397b-a17b, qwen3.5-122b-a10b, qwen3.5-35b-a3b, qwen3.5-27b, qwen3-max, qwen3-coder-flash, qwen3-coder-480b-a35b, qwen3-coder-30b-a3b, qwen3-next-80b-a3b-thinking, qwen3-next-80b-a3b-instruct, qwen3-235b-a22b-thinking-2507, qwen3-235b-a22b-instruct-2507, qwen3-235b-a22b, qwen3-30b-a3b-thinking-2507, qwen3-30b-a3b-instruct-2507, qwen3-30b-a3b, qwen3-32b, qwen3-14b, qwen3-8b, qwen-max, qwen-plus, qwen-flash, qwen-turbo, qwq-plus, qvq-max, qwen3-vl-plus, qwen3-vl-flash, qwen3-vl-235b-a22b-thinking, qwen3-vl-235b-a22b-instruct, qwen3-vl-32b-thinking, qwen3-vl-32b-instruct, qwen3-vl-30b-a3b-thinking, qwen3-vl-30b-a3b-instruct, qwen3-vl-8b-thinking, qwen3-vl-8b-instruct, qwen-vl-max, qwen-vl-plus, deepseek-v3.2, glm-5.1</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/bazaarlink/20260928T115917Z</id>
+    <title>Free models changed: BazaarLink</title>
+    <link rel="alternate" href="https://bazaarlink.ai"/>
+    <updated>2026-09-28T11:59:17Z</updated>
+    <summary type="text">added deepseek-v4-flash · free models: qwen3.7-flash, deepseek-v4-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/cline/20260928T115917Z</id>
+    <title>Free models changed: Cline</title>
+    <link rel="alternate" href="https://cline.bot"/>
+    <updated>2026-09-28T11:59:17Z</updated>
+    <summary type="text">added deepseek-v4.1-flash · free models: muse-spark-1.3-contributor, deepseek-v4.1-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20260928T115917Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-09-28T11:59:17Z</updated>
+    <summary type="text">added agnes-2.5-flash, agnes-3.0-flash · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin, agnes-3.0-flash, agnes-2.5-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260928T115424Z</id>
     <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
@@ -328,33 +356,5 @@
     <link rel="alternate" href="https://freebuff.com"/>
     <updated>2026-09-23T22:44:14Z</updated>
     <summary type="text">dropped gpt-5.6-luna · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-jules/20260923T224414Z</id>
-    <title>Free models changed: Google Jules</title>
-    <link rel="alternate" href="https://jules.google/"/>
-    <updated>2026-09-23T22:44:14Z</updated>
-    <summary type="text">added gemini-3-flash · free models: gemini-3-flash, gemini-2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260923T223859Z</id>
-    <title>Free models changed: Google AI Studio (Gemini API)</title>
-    <link rel="alternate" href="https://aistudio.google.com"/>
-    <updated>2026-09-23T22:38:59Z</updated>
-    <summary type="text">dropped gemini-2.5-pro · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.5-flash-lite</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/sambanova-cloud/20260923T222323Z</id>
-    <title>Archived: SambaNova Cloud</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/"/>
-    <updated>2026-09-23T22:23:23Z</updated>
-    <summary type="text">delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read "Add a payment method and purchase credits to run your first requests" since 2026-08, where until 2026-06-20 it read "free API credits. No credit card required"; only the docs still describe a free tier</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/amazon-q-developer/20260923T221746Z</id>
-    <title>Archived: Amazon Q Developer</title>
-    <link rel="alternate" href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"/>
-    <updated>2026-09-23T22:17:46Z</updated>
-    <summary type="text">vendor-announced shutdown on 2026-05-15</summary>
   </entry>
 </feed>

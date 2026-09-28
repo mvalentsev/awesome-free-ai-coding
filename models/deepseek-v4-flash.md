@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'deepseek-v4-flash free: 4 providers, limits and ids, verified 2026-09-28'
-description: deepseek-v4-flash is served free by Routeway, Alibaba Cloud Model Studio (DashScope, international), AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'deepseek-v4-flash free: 5 providers, limits and ids, verified 2026-09-28'
+description: deepseek-v4-flash is served free by Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/deepseek-v4-flash/
 last_modified_at: 2026-09-28
 crumb: deepseek-v4-flash
@@ -11,7 +11,7 @@ crumb: deepseek-v4-flash
 
 # Where deepseek-v4-flash is free
 
-**4 rows on the list serve `deepseek-v4-flash` free:** Routeway, Alibaba Cloud Model Studio (DashScope, international), AtomCode and FreeInference (Harvard SEAS). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-flash).
+**5 rows on the list serve `deepseek-v4-flash` free:** Routeway, Alibaba Cloud Model Studio (DashScope, international), BazaarLink, AtomCode and FreeInference (Harvard SEAS). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -39,6 +39,17 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 - Key: `ALIBABA_MODEL_STUDIO_API_KEY` — get one at <https://modelstudio.console.alibabacloud.com>
 - Callable ids: `deepseek-v4-flash`
 - What you send is not used to train models ([the vendor's words](https://www.alibabacloud.com/help/en/model-studio/privacy-notice)).
+
+### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
+
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-28
+
+OpenAI-compatible gateway to a 128-id catalog whose free page counts two models on 2026-09-27, beside the auto:free router
+
+- Limits, in the vendor's words: BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 50 weighted units/day. With credit: 20 RPM and 100 weighted units/day." Where weighted limits are on, "Longer inputs consume more daily units"; the counter resets at 00:00 UTC, beside a "Site-wide free cap: 10 RPM" and "Concurrent free requests per account: 2". "After a limit, paid use is possible only when fallback is enabled and the account has sufficient credit"; everything else in the catalog is metered at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog's own id deepseek/deepseek-v4-flash-0731free:free, described as "Rate-limited free tier." and listed on the free page as "Deepseek V4 Flash 0731free", priced $0 beside a metered deepseek-v4-flash-0731free twin at $0.20/$0.40. Read 2026-09-27
+- Base URL: `https://api.bazaarlink.ai/v1`
+- Key: `BAZAARLINK_API_KEY` — get one at <https://bazaarlink.ai/keys>
+- Callable ids: `deepseek/deepseek-v4-flash-0731free:free`
 
 ### [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/)
 
@@ -69,12 +80,11 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 - [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-02 to 2026-09-16
 - [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — listed 2026-09-05 to 2026-09-16
 - [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-07-19 to 2026-08-20
-- [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/) — listed 2026-08-03 to 2026-08-19
 
 ## Related models
 
+- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor
 - [`deepseek-v3.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/) — free at Kiro and Alibaba Cloud Model Studio (DashScope, international)
-- [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) — free at Freebuff and Token Harbor
 - [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) — free at Alibaba Cloud Model Studio (DashScope, international)
 
 ---
