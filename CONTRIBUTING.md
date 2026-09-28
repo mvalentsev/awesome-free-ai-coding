@@ -447,7 +447,8 @@ into the vendor's request body, where a strict vendor refuses a field it does
 not know (OVHcloud's and LLM7's lanes answered 400 to it on 2026-09-28), and
 1.98.0 is the first release to read the `allowed_fails_policy` each group
 deployment carries, without which a lane that answers 500 or has no key set is
-tried again instead of benched. [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) is
+tried again instead of benched — one lane a request, since the proxy records one
+failure a request (1.98 and 1.103 on 2026-09-28). [`configs/codex/litellm.config.toml`](configs/codex/litellm.config.toml) is
 Codex's profile for the proxy — `--profile NAME` has read
 `$CODEX_HOME/NAME.config.toml` since Codex CLI 0.134 — and its three settings are
 the ones measured that day, with Codex 0.157.1 and LiteLLM 1.102.1, to break a
@@ -464,6 +465,18 @@ whose chat template takes a single system message — LLM Tech's Qwen answered
 "System message must be at the beginning" to the second one Codex sends — or a
 model that takes no tools, such as LLM7's Mistral Nemo, answers 400, and a group
 moves on to the next lane.
+
+**What the configs say LiteLLM and Codex do is run, not remembered.** Each
+sentence `configs/litellm.yaml` and the Codex profiles print about the two
+programs — which release reads a field, where the proxy sends a key, what Codex
+sends a lane — is a check in `src/freetier_radar/conformance.py`, and the
+`conformance` workflow runs them every Wednesday and on a push that changes what
+the files say: the oldest release the files ask for and the newest, the proxy
+started by the command the file prints, every lane pointed at one the check
+serves and records, Codex on the profile copied where the profile says. A
+sentence the programs stop bearing out is a red run that names it and the
+release; so is a sentence reworded with its check left behind, and a program
+that could not be run as printed.
 
 **`api.model_ids` is checked against the catalog in both directions.** On an
 `api-models` probe every id there must still be in the catalog, callable and —
@@ -872,7 +885,7 @@ cannot print two versions of it.
 | `.gitignore` | **config** — what git leaves alone · not on the site | — | `hand` |
 | `.imgbotconfig` | **config** — the images ImgBot leaves alone — all of them: the README's pictures are generated, the favicon and the preview's source keep their comments, and the preview's PNG is the one uploaded to GitHub · not on the site | — | `hand` |
 | `.githooks/*` | **config** — the git hooks that run freetier-gate — `git config core.hooksPath .githooks` · not on the site | — | `hand` |
-| `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page and the IndexNow ping on a push · not on the site | — | `hand` |
+| `.github/workflows/*.yml` | **config** — CI, the scheduled run, read-page, the IndexNow ping on a push and the conformance run of LiteLLM and Codex CLI on the configs · not on the site | — | `hand` |
 | `.github/dependabot.yml` | **config** — the watcher of the pinned actions and of uv.lock · not on the site | — | `hand` |
 | `.github/ISSUE_TEMPLATE/*.yml` | **config** — the suggest-a-service form · not on the site | — | `hand` |
 
@@ -984,6 +997,17 @@ that say when it ends** — Qoder's daily credits with "End time: To be
 announced", CodeBuddy's bonus with "The end date of this promotion will be
 announced separately" — so the run notices the day those words change, which is
 the day a rank resting on the promotion moves back.
+
+**A comment that says how someone else's program or service behaves says where
+that was read, and when.** A LiteLLM default, a Codex flag, a sanctions rule,
+the width GitHub shows a picture at: nothing reads a comment back the way
+`freetier-quotes` reads a row's quotes, and on 2026-09-28 a pass that read every
+such sentence here against its source — 845 of them — found 118 false or out of
+date and 38 with no source at all, four package floors and a key sent to a lane
+that was not its own among them. So such a comment names the page, the release
+or the command it rests on and the date it was read; what a config says LiteLLM
+or Codex does is a check in `conformance.py` instead; and a floor in
+`pyproject.toml` is one the `floors` job in CI installs and runs.
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
 `blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Two of

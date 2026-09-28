@@ -74,6 +74,17 @@ def _ci_pythons(root: Path) -> tuple[str, str]:
     return pythons[0], pythons[-1]
 
 
+def _cron_day(workflow: str) -> Callable[[Path], tuple[str, ...]]:
+    """The weekday a workflow's one cron line names."""
+    def truth(root: Path) -> tuple[str, ...]:
+        data = yaml.safe_load((root / workflow).read_text(encoding="utf-8"))
+        trigger = data.get("on", data.get(True)) or {}
+        days = {str(entry["cron"]).split()[4] for entry in trigger.get("schedule") or []}
+        names = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        return tuple(names[int(d) % 7] if d.isdigit() else d for d in sorted(days))
+    return truth
+
+
 def _site_url() -> tuple[str, str]:
     """PAGES_URL as Jekyll's `url` and `baseurl`."""
     host, base = PAGES_URL.rsplit("/", 1)
@@ -153,6 +164,9 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (CODEX_SINCE,), "render.CODEX_SINCE"),
     Claim("CONTRIBUTING.md", r"Python (\d+\.\d+) to (\d+\.\d+), httpx",
           _ci_pythons, "the oldest and the newest Python in .github/workflows/ci.yml"),
+    Claim("CONTRIBUTING.md", r"`conformance` workflow runs them every (\w+)",
+          _cron_day(".github/workflows/conformance.yml"),
+          ".github/workflows/conformance.yml's cron"),
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",

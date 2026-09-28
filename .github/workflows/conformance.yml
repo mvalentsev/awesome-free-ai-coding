@@ -1,0 +1,100 @@
+name: conformance
+
+# What configs/litellm.yaml and configs/codex/*.config.toml say LiteLLM and
+# Codex CLI do, held to the programs themselves (src/freetier_radar/conformance.py):
+# the oldest release the files ask for and the newest, on the committed files,
+# every lane pointed at one the check serves itself. Every Wednesday, because
+# the newest release changes with no commit here; on a push that changes what
+# the files say or how they are checked; and by hand. A red run is either a
+# sentence that stopped holding — its row in the summary says which and on
+# which release — or a program that could not be run as printed.
+
+on:
+  schedule:
+    - cron: "37 6 * * 3"   # Wednesday 06:37 UTC, between the list's runs
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - configs/litellm.yaml
+      - configs/codex/*.config.toml
+      - src/freetier_radar/conformance.py
+      - src/freetier_radar/prober.py
+      - .github/workflows/conformance.yml
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      # Exact by necessity — see the note in ci.yml.
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          python-version: "3.12"
+
+      - run: uv sync --locked
+
+      # The oldest from the constants the files print, the newest from PyPI
+      # and from Codex's latest release.
+      - name: The releases to run
+        id: releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          uv run freetier-conformance floors | sed 's/^/oldest_/' >> "$GITHUB_OUTPUT"
+          litellm=$(curl -fsSL --retry 3 https://pypi.org/pypi/litellm/json | jq -r .info.version)
+          codex=$(gh api repos/openai/codex/releases/latest --jq .tag_name)
+          echo "newest_litellm=$litellm" >> "$GITHUB_OUTPUT"
+          echo "newest_codex=${codex#rust-v}" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+      - name: Install LiteLLM
+        env:
+          OLDEST: ${{ steps.releases.outputs.oldest_litellm }}
+          NEWEST: ${{ steps.releases.outputs.newest_litellm }}
+        run: |
+          for v in $(printf '%s\n' "$OLDEST" "$NEWEST" | sort -u); do
+            uv venv --quiet --python 3.12 "$RUNNER_TEMP/litellm-$v"
+            uv pip install --quiet --python "$RUNNER_TEMP/litellm-$v/bin/python" "litellm[proxy]==$v"
+          done
+
+      - name: Download Codex CLI
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OLDEST: ${{ steps.releases.outputs.oldest_codex }}
+          NEWEST: ${{ steps.releases.outputs.newest_codex }}
+        run: |
+          for v in $(printf '%s\n' "$OLDEST" "$NEWEST" | sort -u); do
+            mkdir -p "$RUNNER_TEMP/codex-$v"
+            gh release download "rust-v$v" --repo openai/codex \
+              --pattern codex-x86_64-unknown-linux-musl.tar.gz --dir "$RUNNER_TEMP/codex-$v"
+            tar -xzf "$RUNNER_TEMP/codex-$v/codex-x86_64-unknown-linux-musl.tar.gz" -C "$RUNNER_TEMP/codex-$v"
+          done
+
+      - name: Run them on the committed configs
+        env:
+          LITELLM_OLDEST: ${{ steps.releases.outputs.oldest_litellm }}
+          LITELLM_NEWEST: ${{ steps.releases.outputs.newest_litellm }}
+          CODEX_OLDEST: ${{ steps.releases.outputs.oldest_codex }}
+          CODEX_NEWEST: ${{ steps.releases.outputs.newest_codex }}
+        run: |
+          uv run freetier-conformance run \
+            --litellm "$LITELLM_OLDEST=$RUNNER_TEMP/litellm-$LITELLM_OLDEST/bin/litellm" \
+            --litellm "$LITELLM_NEWEST=$RUNNER_TEMP/litellm-$LITELLM_NEWEST/bin/litellm" \
+            --codex "$CODEX_OLDEST=$RUNNER_TEMP/codex-$CODEX_OLDEST/codex-x86_64-unknown-linux-musl" \
+            --codex "$CODEX_NEWEST=$RUNNER_TEMP/codex-$CODEX_NEWEST/codex-x86_64-unknown-linux-musl" \
+            --work "$RUNNER_TEMP/conformance" --summary "$GITHUB_STEP_SUMMARY"
+
+      # The proxies' logs and the Codex homes, for a red run's reader.
+      - name: Keep the logs
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: conformance-logs
+          path: ${{ runner.temp }}/conformance
+          retention-days: 14

@@ -29,6 +29,7 @@ freetier-map = "freetier_radar.layout:main"
 freetier-gate = "freetier_radar.gate:main"
 freetier-bars = "freetier_radar.bars:main"
 freetier-borders = "freetier_radar.borders:main"
+freetier-conformance = "freetier_radar.conformance:main"
 
 [build-system]
 requires = ["hatchling"]
