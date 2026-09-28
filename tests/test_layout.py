@@ -164,6 +164,21 @@ def test_ci_runs_each_python_from_the_floor_up_and_the_lowest_versions_on_the_ol
         assert any(command in r for r in runs), command
 
 
+def test_a_real_run_waits_for_the_one_before_it_and_builds_on_what_it_pushed():
+    """Of two runs pushing to main, the later one's push is refused, and GitHub
+    starts a scheduled run hours late, onto whatever was dispatched by hand. So
+    a real run queues behind the one in progress — never cancelling it, which
+    could stop it between its commit and its push — and checks out the branch
+    as it is when the job starts; a dry run, which commits nothing, stays out
+    of the queue."""
+    workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
+    assert workflow["concurrency"] == {
+        "group": "${{ inputs.dry_run && github.run_id || 'update' }}", "cancel-in-progress": False}
+    checkout = next(s for s in workflow["jobs"]["update"]["steps"]
+                    if s.get("uses", "").startswith("actions/checkout"))
+    assert checkout["with"]["ref"] == "${{ github.ref }}"
+
+
 def test_a_dry_run_reaches_the_checks_when_a_row_fails():
     """A dry run is how a change to the workflow is tried before a real run,
     and the probe exits 1 on a dry run that finds a failing row — which a person

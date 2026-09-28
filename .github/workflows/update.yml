@@ -27,6 +27,17 @@ permissions:
   # The IndexNow step reads the Pages build of the commit it pings for.
   pages: read
 
+# One run that commits at a time. GitHub starts the scheduled run when it gets
+# to it — from half an hour to eleven hours after the cron time, July to
+# September 2026 — so it can land on a run dispatched by hand, and of two runs
+# pushing to main the later one's push is refused. The later run waits instead,
+# and then checks out main as the earlier one left it (see the checkout below).
+# A dry run commits nothing and gets a group of its own, so it neither waits
+# nor, pending, takes a scheduled run's place in the queue.
+concurrency:
+  group: ${{ inputs.dry_run && github.run_id || 'update' }}
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
@@ -36,9 +47,13 @@ jobs:
     timeout-minutes: 60
     steps:
       # The whole history: freetier-bars dates every id a free lane lists
-      # from the commits that added it to registry.yaml.
+      # from the commits that added it to registry.yaml. The branch as it is
+      # when the job starts, not the commit the run was started for: a run
+      # that waited for another, or a rerun, builds on what was pushed since,
+      # where that commit would be one its own push is refused on top of.
       - uses: actions/checkout@v7
         with:
+          ref: ${{ github.ref }}
           fetch-depth: 0
 
       # Exact by necessity — see the note in ci.yml.
@@ -227,11 +242,9 @@ jobs:
           labels: scout
 
       # Runs last, and only ever after the pull request and the summary exist,
-      # because a red run here is a notification and not an invitation to rerun:
-      # a rerun checks out the old SHA and its push is refused as
-      # non-fast-forward. A scout that could not think and a scout that found
-      # nothing produce the same empty report, and only this step tells them
-      # apart.
+      # so a red run here has already done everything else it was for. A scout
+      # that could not think and a scout that found nothing produce the same
+      # empty report, and only this step tells them apart.
       - name: Check the scout actually had a backend
         if: always()
         run: |
