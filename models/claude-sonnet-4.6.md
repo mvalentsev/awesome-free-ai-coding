@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'claude-sonnet-4.6 free: 1 provider, limits and ids, verified 2026-09-27'
+title: 'claude-sonnet-4.6 free: 1 provider, limits and ids, verified 2026-09-28'
 description: claude-sonnet-4.6 is served free by Google Antigravity. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/claude-sonnet-4.6/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: claude-sonnet-4.6
 ---
 
@@ -11,7 +11,7 @@ crumb: claude-sonnet-4.6
 
 # Where claude-sonnet-4.6 is free
 
-**One row on the list serves `claude-sonnet-4.6` free:** Google Antigravity. It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-sonnet-4-6), below its strong bar.
+**One row on the list serves `claude-sonnet-4.6` free:** Google Antigravity. It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-sonnet-4-6), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: claude-sonnet-4.6
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-27 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-09-28 · listed since 2026-08-11
 
 Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
 

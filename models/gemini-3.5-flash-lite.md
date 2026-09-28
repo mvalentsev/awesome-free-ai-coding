@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-3.5-flash-lite free: 1 provider, limits and ids, verified 2026-09-27'
+title: 'gemini-3.5-flash-lite free: 1 provider, limits and ids, verified 2026-09-28'
 description: gemini-3.5-flash-lite is served free by Google AI Studio (Gemini API). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemini-3.5-flash-lite/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: gemini-3.5-flash-lite
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-3.5-flash-lite
 
 # Where gemini-3.5-flash-lite is free
 
-**One row on the list serves `gemini-3.5-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-5-flash-lite), below its strong bar.
+**One row on the list serves `gemini-3.5-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-5-flash-lite), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-3.5-flash-lite
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-27 · listed since 2026-08-14
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-09-28 · listed since 2026-08-14
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 

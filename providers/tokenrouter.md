@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-27'
+title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-09-28'
 description: 'One zero-priced id, in the default group, inside a 140-row catalog that meters the rest. Free models: nemotron-3-nano-omni. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free…'
 permalink: /providers/tokenrouter/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: TokenRouter (PaleBlueDot)
 ---
 
@@ -11,7 +11,7 @@ crumb: TokenRouter (PaleBlueDot)
 
 # TokenRouter (PaleBlueDot) free tier
 
-🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-09-27 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-09-28 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

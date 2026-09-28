@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'nemotron-3-nano-30b free: 2 providers, limits and ids, verified 2026-09-27'
+title: 'nemotron-3-nano-30b free: 2 providers, limits and ids, verified 2026-09-28'
 description: nemotron-3-nano-30b is served free by Requesty and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/nemotron-3-nano-30b/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: nemotron-3-nano-30b
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3-nano-30b
 
 # Where nemotron-3-nano-30b is free
 
-**2 rows on the list serve `nemotron-3-nano-30b` free:** Requesty and AIHubMix (free models). None asks for a card. A live probe confirmed each one on 2026-09-27 and reads them again twice a week.
+**2 rows on the list serve `nemotron-3-nano-30b` free:** Requesty and AIHubMix (free models). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: nemotron-3-nano-30b
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
 
 OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those
 
@@ -32,7 +32,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 

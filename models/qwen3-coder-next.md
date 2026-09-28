@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3-coder-next free: 2 providers, limits and ids, verified 2026-09-27'
+title: 'qwen3-coder-next free: 2 providers, limits and ids, verified 2026-09-28'
 description: qwen3-coder-next is served free by Kiro and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3-coder-next/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: qwen3-coder-next
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3-coder-next
 
 # Where qwen3-coder-next is free
 
-**2 rows on the list serve `qwen3-coder-next` free:** Kiro and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. A live probe confirmed each one on 2026-09-27 and reads them again twice a week.
+**2 rows on the list serve `qwen3-coder-next` free:** Kiro and Alibaba Cloud Model Studio (DashScope, international). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3-coder-next
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · verified 2026-09-28 · listed since 2026-09-25
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
@@ -29,7 +29,7 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-28 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 

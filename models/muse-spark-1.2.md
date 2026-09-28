@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'muse-spark-1.2 free: 1 provider, limits and ids, verified 2026-09-27'
+title: 'muse-spark-1.2 free: 1 provider, limits and ids, verified 2026-09-28'
 description: muse-spark-1.2 is served free by Freebuff. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/muse-spark-1.2/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: muse-spark-1.2
 ---
 
@@ -11,7 +11,7 @@ crumb: muse-spark-1.2
 
 # Where muse-spark-1.2 is free
 
-**One row on the list serves `muse-spark-1.2` free:** Freebuff. It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-spark-1-2).
+**One row on the list serves `muse-spark-1.2` free:** Freebuff. It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-spark-1-2).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: muse-spark-1.2
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-27 · listed since 2026-09-25
+🤖 Coding agents & CLIs · no card · verified 2026-09-28 · listed since 2026-09-25
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
 

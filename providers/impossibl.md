@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Impossibl free tier: limits, free models, verified 2026-09-27'
+title: 'Impossibl free tier: limits, free models, verified 2026-09-28'
 description: 'Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an agent-created…'
 permalink: /providers/impossibl/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: Impossibl
 ---
 
@@ -11,7 +11,7 @@ crumb: Impossibl
 
 # Impossibl free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-27 · [impossibl.com](https://impossibl.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-28 · [impossibl.com](https://impossibl.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Freebuff free tier: limits, free models, verified 2026-09-27'
+title: 'Freebuff free tier: limits, free models, verified 2026-09-28'
 description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours. Free models: glm-5.3-flash, deepseek-v4.1-flash, muse-spark-1.2. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: Freebuff
 ---
 
@@ -11,7 +11,7 @@ crumb: Freebuff
 
 # Freebuff free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-27 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-09-28 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

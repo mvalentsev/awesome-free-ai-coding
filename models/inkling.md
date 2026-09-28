@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'inkling free: 1 provider, limits and ids, verified 2026-09-27'
+title: 'inkling free: 1 provider, limits and ids, verified 2026-09-28'
 description: inkling is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/inkling/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: inkling
 ---
 
@@ -11,7 +11,7 @@ crumb: inkling
 
 # Where inkling is free
 
-**One row on the list serves `inkling` free:** OpenRouter (free models). It asks for no card. A live probe confirmed it on 2026-09-27 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling), below its strong bar.
+**One row on the list serves `inkling` free:** OpenRouter (free models). It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: inkling
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-27 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 

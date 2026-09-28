@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gpt-oss-20b free: 4 providers, limits and ids, verified 2026-09-27'
+title: 'gpt-oss-20b free: 4 providers, limits and ids, verified 2026-09-28'
 description: gpt-oss-20b is served free by Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-oss-20b/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: gpt-oss-20b
 ---
 
@@ -11,7 +11,7 @@ crumb: gpt-oss-20b
 
 # Where gpt-oss-20b is free
 
-**4 rows on the list serve `gpt-oss-20b` free:** Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. A live probe confirmed each one on 2026-09-27 and reads them again twice a week.
+**4 rows on the list serve `gpt-oss-20b` free:** Groq, NVIDIA NIM (build.nvidia.com), Regolo AI and Pollinations.AI. None asks for a card; Pollinations.AI answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gpt-oss-20b
 
 ### [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · verified 2026-09-28 · listed since 2026-09-25
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
@@ -31,7 +31,7 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-27 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-28 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -43,7 +43,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-27 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · verified 2026-09-28 · listed since 2026-09-27
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -55,7 +55,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-09-27 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · verified 2026-09-28 · listed since 2026-09-25
 
 Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model
 

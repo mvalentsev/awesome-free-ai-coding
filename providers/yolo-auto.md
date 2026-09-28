@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Yolo-Auto free tier: limits, free models, verified 2026-09-27'
+title: 'Yolo-Auto free tier: limits, free models, verified 2026-09-28'
 description: 'One open-weight Qwen model served on the vendor''s own flat-rate API for coding agents; the free plan is 15 requests a week with no card. Free models: qwen3.8-flash. "15 free requests a week. No card required. Resets Monday at 00:00 UTC." on the home page and "No card required, free forever" on…'
 permalink: /providers/yolo-auto/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: Yolo-Auto
 ---
 
@@ -11,7 +11,7 @@ crumb: Yolo-Auto
 
 # Yolo-Auto free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-14, a regular row from the first probe it passes on or after 2026-09-28 · **live** — last verified by a probe on 2026-09-27 · [yolo-auto.com](https://yolo-auto.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-28 · [yolo-auto.com](https://yolo-auto.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 

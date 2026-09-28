@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Bytez free tier: limits, free models, verified 2026-09-27'
+title: 'Bytez free tier: limits, free models, verified 2026-09-28'
 description: Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing. The billing page's Free card reads "$0 / month - Get $1 in free credits", "Run open models up to 7B parameters", "1 concurrent…
 permalink: /providers/bytez/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-28
 crumb: Bytez
 ---
 
@@ -11,7 +11,7 @@ crumb: Bytez
 
 # Bytez free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-27 · [bytez.com](https://bytez.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-28 · [bytez.com](https://bytez.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
