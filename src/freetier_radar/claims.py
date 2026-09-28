@@ -66,6 +66,14 @@ def _keys(found: re.Match) -> tuple[str, ...]:
     return tuple(re.findall(r'"([a-z-]+)":', found.group(1)))
 
 
+def _ci_pythons(root: Path) -> tuple[str, str]:
+    """The oldest and the newest Python CI runs the suite on."""
+    ci = yaml.safe_load((root / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
+    pythons = sorted(ci["jobs"]["test"]["strategy"]["matrix"]["python"],
+                     key=lambda v: tuple(map(int, v.split("."))))
+    return pythons[0], pythons[-1]
+
+
 def _site_url() -> tuple[str, str]:
     """PAGES_URL as Jekyll's `url` and `baseurl`."""
     host, base = PAGES_URL.rsplit("/", 1)
@@ -143,6 +151,8 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (LITELLM_BRIDGE_SINCE,), "render.LITELLM_BRIDGE_SINCE"),
     Claim("CONTRIBUTING.md", r"since\s+Codex CLI (\d+\.\d+)",
           lambda root: (CODEX_SINCE,), "render.CODEX_SINCE"),
+    Claim("CONTRIBUTING.md", r"Python (\d+\.\d+) to (\d+\.\d+), httpx",
+          _ci_pythons, "the oldest and the newest Python in .github/workflows/ci.yml"),
     Claim("CONTRIBUTING.md", r"(No) row sets\s+the field today",
           _no_row_sets("session_header"), "the rows that set api.session_header"),
     Claim("CONTRIBUTING.md", r"countries under comprehensive US embargo — ([^—]+?)\s+—",

@@ -998,9 +998,12 @@ writes nothing (the scout's report lands in the run summary instead of a PR),
 and `scout_backend` forces one LLM backend instead of walking the chain — the
 only way to exercise a fallback that never gets its turn.
 
-Python 3.12+, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI runs
-it on every push to `main` and every pull request, together with `freetier-check` and
-`freetier-render --check`. The second one re-renders everything and compares it
+Python 3.12 to 3.14, httpx + pydantic v2 + Jinja2. Keep the test suite green — CI
+runs it on every push to `main` and every pull request, together with
+`freetier-check` and `freetier-render --check`: on each of those Pythons with the
+versions `uv.lock` pins, and on the oldest once more with the lowest versions
+`pyproject.toml` allows, so every floor written there is one the code has run on.
+`freetier-render --check` re-renders everything and compares it
 with what is committed, so an edit that never reached a file the map marks
 generated is a red run and not a page that quietly disagrees with the registry
 until the next scheduled run heals it. It pins the comparison to the date the committed

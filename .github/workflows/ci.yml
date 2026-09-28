@@ -10,6 +10,14 @@ permissions:
 
 jobs:
   test:
+    # Every Python CONTRIBUTING.md names, oldest first: claims.CLAIMS holds its
+    # sentence to this list, and the suite holds the oldest to requires-python
+    # in pyproject.toml and the list to every minor from there up.
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.13", "3.14"]
+    name: test (Python ${{ matrix.python }})
     runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
     steps:
       # The whole history, so the log check below can read the push's parent.
@@ -24,9 +32,12 @@ jobs:
       # can be this specific without going stale.
       - uses: astral-sh/setup-uv@v10.2.0
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python }}
 
-      - run: uv sync
+      # The versions uv.lock pins, and a red run when the lock no longer
+      # matches pyproject.toml — never a lock resolved afresh on the runner,
+      # which is not the one committed.
+      - run: uv sync --locked
 
       - run: uv run pytest -q
 
@@ -64,3 +75,29 @@ jobs:
           elif [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
             uv run freetier-gate diff "${{ github.event.before }}"
           fi
+
+  # The lowest version pyproject.toml allows of every dependency it names, on
+  # the oldest Python it allows, so a floor written there is one the code has
+  # run on. UV_RESOLUTION holds every uv command in the job to it: a plain
+  # `uv run` would first sync the environment back to uv.lock.
+  floors:
+    runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
+    env:
+      UV_RESOLUTION: lowest-direct
+    steps:
+      - uses: actions/checkout@v7
+
+      # Exact by necessity — see the note above.
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          python-version: "3.12"
+
+      - run: uv sync
+
+      - run: uv run pytest -q
+
+      - name: Registry renders, and the committed files are that render
+        run: uv run freetier-render --registry registry.yaml --templates templates --check
+
+      - name: Curated files + cross-file consistency
+        run: uv run freetier-check
