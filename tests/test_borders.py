@@ -391,10 +391,10 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_no_country_outside_the_shared_exclusions_is_left_out_by_most_rows():
-    """CONTRIBUTING: "an exclusion most vendors share sets no row apart". The
-    shared set is the embargoes a sanctions clause covers unnamed; a country
-    most live rows leave out in their own words would belong beside them, and
-    this fails when one does."""
+    """CONTRIBUTING: the countries under comprehensive US embargo "set no row
+    apart", since a sanctions clause covers them unnamed. A country outside
+    that set which most live rows leave out in their own words would be one
+    the rule has to name too, and this fails when one appears."""
     from freetier_radar.models import is_archived, load_registry
     live = [e for e in load_registry(ROOT / "registry.yaml") if not is_archived(e, TODAY)]
     counts: dict[str, int] = {}
