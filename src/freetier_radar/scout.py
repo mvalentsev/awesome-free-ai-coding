@@ -437,8 +437,9 @@ class LLMClient:
         self._deadline = deadline
         self._call_deadline = call_deadline
         self._clock = clock
-        # "auto" is what the workflow sends when nobody picked a backend, so the
-        # dispatch input needs no conditional around it.
+        # A dispatch that picks no backend sends "auto", a scheduled run (no
+        # inputs) an empty string; both mean the usual chain, so the workflow
+        # needs no conditional around the input.
         forced = (force or "").strip().lower()
         self._force = None if forced in ("", "auto") else forced
         self._http = http or httpx.Client(

@@ -33,8 +33,8 @@ _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
 FOR_CAUSE = "rejected for cause"
 
 # Text a Markdown renderer takes for an HTML tag: `<` straight into a letter, a
-# slash or a bang. "a < b" is left alone.
-_TAG = re.compile(r"<[A-Za-z/!][^<>]*>")
+# slash, a bang or a question mark. "a < b" is left alone.
+_TAG = re.compile(r"<[A-Za-z/!?][^<>]*>")
 
 
 def _source_key(url: str) -> str:
@@ -226,21 +226,20 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(
                 f"registry: {e.id} first_seen {e.first_seen} is after "
                 f"last_verified {e.last_verified}")
-        # GitHub Pages builds README.md with Jekyll (jekyll-readme-index serves it
-        # at the site's root), so every vendor sentence copied into an entry
-        # passes through Liquid, and `{{` or `{%` in one fails the build. The
-        # failure is quiet: the previous deploy keeps serving, and the Atom feed
-        # stops moving with nothing on the page to say why.
+        # GitHub Pages builds the provider and model pages with Jekyll, their
+        # bodies inside {% raw %}: a vendor sentence carrying `{% endraw %}`
+        # would close that block, and a `{{` or `{%` after it would fail the
+        # site's build.
         for field, text in (("offering", e.offering), ("limits", e.limits),
                             ("name", e.name), ("api.note", e.api.note if e.api else ""),
                             ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
                             ("delisted.reason", e.delisted.reason if e.delisted else "")):
             if "{{" in text or "{%" in text:
                 problems.append(
-                    f"registry: {e.id} has Liquid delimiters in {field} — GitHub Pages "
-                    f"renders README.md with Jekyll and would fail to build it")
+                    f"registry: {e.id} has Liquid delimiters in {field} — a Pages page "
+                    f"prints it inside {{% raw %}}, which a {{% endraw %}} in it would close")
 
-    # GitHub's sanitizer drops anything shaped like an HTML tag from README.md, and
+    # GitHub's sanitizer drops a tag it does not allow from README.md, and
     # Jekyll passes it through to the provider page as markup nobody sees
     # (opencode/<model-id> shows as "opencode/"). Inside backticks it is code and
     # survives.
@@ -376,9 +375,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
             problems.append(
                 f"watchlist: {w.name} has no reopen_if — a verdict with no way back "
                 f"is a blocklist entry in the wrong file")
-        # Both fields render as cells of the Markdown table on the page of
-        # services checked, where an unescaped pipe splits the row into extra
-        # columns.
+        # Neither field may carry a pipe, which would split a Markdown table
+        # cell: the page of services checked prints them as list items today,
+        # and this keeps a table that prints them later from breaking.
         for field, text in (("reason", w.reason), ("reopen_if", w.reopen_if)):
             if "|" in text:
                 problems.append(

@@ -65,9 +65,8 @@ CATEGORY_TITLES: dict[Category, str] = {
 }
 
 REPO_URL = "https://github.com/mvalentsev/awesome-free-ai-coding"
-# GitHub Pages rather than raw.githubusercontent.com, which serves every file as
-# text/plain and is documented as not being a CDN, for a file every subscriber
-# polls. The URL is the feed's own <id> and <link rel="self">: changing it breaks
+# GitHub Pages rather than raw.githubusercontent.com, which serves the feed as
+# text/plain, for a file every subscriber polls. The URL is the feed's own <id> and <link rel="self">: changing it breaks
 # every subscription.
 FEED_URL = "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"
 # The Pages site the feed lives on, where each row gets a page of its own
@@ -1288,8 +1287,7 @@ BADGE_WORDS = {BADGE_GREEN: "fresh", BADGE_AMBER: "ageing", BADGE_RED: "stale"}
 def _site_fold(text: str) -> dict[str, str]:
     """A long cell as data, not as markup: what the page shows first, and all of
     it. The template decides the markup and escapes both halves, so a vendor's
-    own sentence — angle brackets, ampersands and all — is data here, the way it
-    is inside the provider pages' `{% raw %}`."""
+    own sentence — angle brackets, ampersands and all — is data here."""
     if len(text) <= README_LIMITS_COLLAPSE:
         return {"text": text, "teaser": ""}
     return {"text": text, "teaser": f"{_cut(text, README_LIMITS_TEASER)} …"}
@@ -2266,7 +2264,7 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
 
     The body sits inside {% raw %}: GitHub Pages builds this with Jekyll, and
     a vendor sentence with two braces in it would otherwise fail the whole
-    site's build, quietly, with the previous deploy still serving.
+    site's build.
 
     An archived row's page is an epitaph, not instructions: what it offered,
     why it left, the evidence and the history — no connection details, no
@@ -2831,8 +2829,9 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
 
     Unlike the README's environment, this one autoescapes: every string on the
     page is a vendor's own sentence, a model id or a URL read out of the
-    registry, and none may reach a reader as markup. The provider pages get the
-    same guarantee from `{% raw %}`.
+    registry, and none may reach a reader as markup. The provider pages keep
+    Liquid off with `{% raw %}`, and freetier-check refuses a tag outside
+    backticks in the prose they print.
     """
     today = today or date.today()
     env = _env(template_dir, autoescape=True)

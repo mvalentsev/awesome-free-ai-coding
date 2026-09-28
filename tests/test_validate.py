@@ -409,10 +409,9 @@ def test_a_delisting_reason_is_a_readers_length(tmp_path: Path):
 
 
 def test_text_that_reads_as_liquid_would_break_the_published_page(tmp_path: Path):
-    """README.md is served through GitHub Pages, which renders it with Jekyll.
-    A vendor sentence carrying `{{` or `{%` is a Liquid tag to that build, and a
-    failed build leaves the whole site — the Atom feed with it — on the previous
-    deploy without anything on this page saying so."""
+    """The provider and model pages are built by GitHub Pages with Jekyll,
+    their bodies inside {% raw %}: a vendor sentence carrying `{% endraw %}`
+    would close that block, and a `{{` after it would fail the site's build."""
     root = build(tmp_path, entries=[{**ENTRY, "limits": "1000 req/day, {{ per key }}"}])
     assert any("Liquid" in p and "limits" in p for p in check(root, TODAY))
 
@@ -445,16 +444,16 @@ def test_a_notice_is_short_and_not_dated_in_the_future(tmp_path: Path):
 
 
 def test_a_notice_carries_no_liquid_delimiters(tmp_path: Path):
-    """The notice is printed into README.md, which GitHub Pages builds with Jekyll."""
+    """The notice is printed into the provider page, which GitHub Pages builds with Jekyll."""
     api = {"base_url": "https://x.ai/v1", "auth": "none",
            "notice": {"since": "2026-08-14", "text": "The answer is `{{ error }}`."}}
     problems = check(build(tmp_path, entries=[{**ENTRY, "api": api}]), TODAY)
-    assert ("registry: x has Liquid delimiters in api.notice — GitHub Pages renders README.md "
-            "with Jekyll and would fail to build it") in problems
+    assert ("registry: x has Liquid delimiters in api.notice — a Pages page prints it inside "
+            "{% raw %}, which a {% endraw %} in it would close") in problems
 
 
 def test_prose_keeps_angle_brackets_inside_backticks(tmp_path: Path):
-    """GitHub strips anything shaped like an HTML tag from a README, so
+    """GitHub strips a tag it does not allow from a README, so
     `opencode/<model-id>` outside backticks shows as `opencode/`; in backticks
     it survives."""
     entry = {**ENTRY, "limits": "ids are opencode/<model-id> inside the app",
@@ -463,6 +462,14 @@ def test_prose_keeps_angle_brackets_inside_backticks(tmp_path: Path):
     assert [p for p in problems if "HTML tag" in p] == [
         "registry: x limits has <model-id> outside backticks — GitHub drops it from the page "
         "as an HTML tag; put it in backticks"]
+
+
+def test_a_processing_instruction_reads_as_a_tag_too(tmp_path: Path):
+    """CommonMark takes `<?` up to `?>` for raw HTML as well, a processing
+    instruction, so it is refused outside backticks like a tag."""
+    entry = {**ENTRY, "limits": "the SDK writes <?xml version='1.0'?> first"}
+    problems = check(build(tmp_path, entries=[entry]), TODAY)
+    assert any("<?xml version='1.0'?>" in p and "HTML tag" in p for p in problems), problems
 
 
 def test_a_tier_names_the_artificial_analysis_model_it_was_read_from(tmp_path: Path):

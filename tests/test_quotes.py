@@ -140,8 +140,8 @@ async def test_a_source_that_does_not_answer_is_said_so_beside_the_quotes_it_cou
 @respx.mock
 async def test_a_quote_missing_while_a_source_did_not_answer_is_unverified_not_missing(tmp_path, capsys):
     """A quote the answering pages do not carry is unverified, not missing, while
-    another of the row's sources did not answer: a flaky page (Qodo's terms answer
-    403 on some reads) must not read as the vendor changing its words."""
+    another of the row's sources did not answer: a page that refuses one read
+    must not read as the vendor changing its words."""
     from freetier_radar.models import save_registry
     from freetier_radar.quotes import _amain
     respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(403))

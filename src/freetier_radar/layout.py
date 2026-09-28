@@ -48,7 +48,8 @@ class Node:
     # which the kind already says.
     written_by: tuple[str, ...] = ()
     # Served by the Pages site. Jekyll serves every file `exclude` in
-    # _config.yml does not name, apart from dot and underscore paths.
+    # _config.yml does not name, apart from paths that start with a dot, an
+    # underscore, # or ~, backups ending in ~, and node_modules or vendor.
     published: bool = False
     # A file that exists only once a command first writes it.
     optional: bool = False

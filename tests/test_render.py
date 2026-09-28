@@ -1976,7 +1976,7 @@ def test_the_row_that_holds_the_service_names_the_id_folded_into_it():
 def test_the_connection_table_is_a_readme_beside_the_configs(tmp_path: Path):
     """Base URL, key name and the notes that matter, for every live
     OpenAI-compatible API, in configs/README.md: GitHub renders a folder's
-    README under its file list, so it sits beside the four files it describes,
+    README under its file list, so it sits beside the configs it describes,
     and every link in it is written from there."""
     from freetier_radar.models import save_registry
     from freetier_radar.render import CONFIGS_README, PAGES_URL, render_configs_readme

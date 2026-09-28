@@ -54,8 +54,7 @@ class Missing:
     field: str
     quote: str
     # Not on the pages that answered, while another of the row's sources did not
-    # answer at all: a refused read (Qodo's terms page refuses some with 403) is
-    # not a vendor rewording.
+    # answer at all: a refused read is not a vendor rewording.
     unverified: bool = False
 
 

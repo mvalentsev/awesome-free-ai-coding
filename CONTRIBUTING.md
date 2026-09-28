@@ -749,9 +749,9 @@ registry by the same command from [`templates/index.html.j2`](templates/index.ht
 — **never edit it by hand.** It exists because GitHub Pages renders Markdown
 with kramdown, which does not read Markdown inside a block-level `<div>`, does
 not know GitHub's alert syntax and escapes a `<summary>` inside a table cell: the
-README is written for GitHub's own renderer, so served through Jekyll its whole
-hero arrived as literal `[![badge](…)]` text and every folded cell as a wall of
-prose. The README keeps its GitHub features, the site gets HTML, and
+README is written for GitHub's own renderer, so served through Jekyll its hero's
+badges arrived as literal `[![badge](…)]` text and every fold in a table cell as
+a bare "Details" with its summary escaped. The README keeps its GitHub features, the site gets HTML, and
 `freetier-render --check` holds both to the same registry. `_config.yml` leaves
 `README.md` out of the site for the same reason.
 
@@ -766,7 +766,7 @@ root README, so `_config.yml` leaves it off the site too; the site's own copy of
 table is on `index.html`. **Never edit it by hand.**
 
 `llms.txt` is generated with them — the whole list as one text file, in the
-shape LLM search and agents read — and `browse.html` is a hand-written static
+shape the [llms.txt proposal](https://llmstxt.org/) gives agents — and `browse.html` is a hand-written static
 page that reads `index.json` in the browser, so it changes only when a field
 does; `tests/test_browse.py` holds the two to the same field names. After the
 scheduled run pushes, `freetier-indexnow` submits to IndexNow (Bing, Yandex and
@@ -779,11 +779,12 @@ to them by a test, and the run's own push starts no workflow, so a commit is
 never announced twice; a hand push counts from the last ping that went out,
 since a push that lands while one waits cancels it, and leaves out what the
 run's verification commits in between changed, which the run pinged itself. Until 2026-09-27 every
-ping sent every URL, 186 of them for a commit that touched three rows. Both
+ping sent every URL, 186 of them for commits that each touched a handful of rows. Both
 wait until Pages has built the commit they ping for (`freetier-indexnow
 --after-pages-build`), so an engine that fetches on the ping reads the new page; the key it proves
-ownership with is the file named after it at the repository root, and it is
-not a secret.
+ownership with is the file named after it at the repository root: public
+here, though the protocol would keep it private, and all it lets anyone do is
+ask an engine to crawl this site's pages.
 
 Google takes a sitemap from Search Console or from the `Sitemap:` line of a
 `robots.txt`, and a crawler reads `robots.txt` only at the root of a host,
@@ -966,8 +967,8 @@ line, so its prose names what the amount buys.
 catalog, and reports every quote of three words or more that none of them
 carries; the fix is the vendor's exact words or a source URL that has them. A
 quote the pages that answered do not carry, while another of the row's sources
-did not answer, is reported as unverified rather than missing — Qodo's terms
-page refuses some reads with 403 and serves the next — and read again later. On
+did not answer, is reported as unverified rather than missing — a refused
+read is not a vendor rewording — and read again later. On
 2026-09-16 it found MegaNova quoting a sign-up line its pages never had and
 LLMTR promising a privacy guarantee its policy does not make. What an endpoint
 or a client answered — an error body, a refusal, a status line — is not a

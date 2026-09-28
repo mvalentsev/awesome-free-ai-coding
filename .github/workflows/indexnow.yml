@@ -70,8 +70,8 @@ jobs:
 
       - run: uv sync
 
-      # Pages builds a push in a minute or two, and an engine that fetched on
-      # the ping would read the pages before it: `--after-pages-build` waits for
+      # An engine that fetched on the ping before Pages built the push would
+      # read the pages as they were: `--after-pages-build` waits for
       # the build of this very commit (indexnow.wait_for_pages, the scheduled
       # run's wait too); a push that lands meanwhile cancels this job. Best
       # effort, as on the scheduled run: an engine being down is not a reason to

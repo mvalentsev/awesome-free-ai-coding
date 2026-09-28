@@ -73,9 +73,8 @@ def test_a_build_that_cannot_be_read_is_waited_out_not_fatal():
 
 
 def test_only_the_pages_whose_data_changed_are_submitted():
-    """Only the urls whose data changed are submitted, as the protocol asks: an
-    engine sent the same unchanged pages again and again has reason to discount
-    the pings. What changed is read off index.json, the site's data, before and
+    """Only the urls whose data changed are submitted, as the protocol asks:
+    unchanged pages sent again and again spend the site's crawl for nothing. What changed is read off index.json, the site's data, before and
     after the push; the footer's render date moves every page every day and is
     no change to a reader."""
     from freetier_radar.indexnow import changed_urls

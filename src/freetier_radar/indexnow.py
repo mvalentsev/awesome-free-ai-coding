@@ -2,10 +2,10 @@
 
 Bing, Yandex, Naver, Seznam and Yep share one submission protocol, and Bing's
 index is what DuckDuckGo and the search inside ChatGPT read. Without a ping
-they recrawl on their own schedule, which for a site this size is weeks. The
-key proves the site is ours: a file named after it at the site root, whose
-whole content is the key. It is not a secret — all it lets anyone do is ask an
-engine to crawl our own pages. Entry point: `freetier-indexnow` (`main`).
+they can take days to weeks to notice a change. The key proves the site is
+ours: a file named after it at the site root, whose whole content is the key.
+The protocol would keep it private; here it is public, and all it lets anyone
+do is ask an engine to crawl our own pages. Entry point: `freetier-indexnow` (`main`).
 """
 import argparse
 import json
@@ -25,8 +25,7 @@ HOST = "mvalentsev.github.io"
 INDEXNOW_KEY = "eb68c254f1e03877b906ccc800002691"
 KEY_FILE = f"{INDEXNOW_KEY}.txt"
 TIMEOUT = 30.0
-# How long a ping waits for Pages to build its commit: fifteen minutes, where a
-# build takes one or two.
+# How long a ping waits for Pages to build its commit: fifteen minutes.
 PAGES_ATTEMPTS = 60
 PAGES_EVERY = 15.0
 

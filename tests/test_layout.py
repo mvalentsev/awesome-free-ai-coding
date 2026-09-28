@@ -66,7 +66,8 @@ def test_a_file_two_lines_claim_is_reported():
 
 def test_the_site_serves_what_the_map_publishes_and_nothing_else():
     """Jekyll serves every file the site's `exclude` does not name, apart from
-    dot and underscore paths. A new directory of scripts would be published the
+    paths that start with a dot, an underscore, # or ~, backups ending in ~, and
+    node_modules or vendor. A new directory of scripts would be published the
     day it was committed; a page left out would quietly stop being served."""
     files = ["registry.yaml", "providers/a.md", "README.md", "src/pkg/x.py"]
     assert check_layout(files=files, nodes=TINY, exclude=["src"]) == [
@@ -120,8 +121,8 @@ def test_the_run_checks_what_ci_would_before_it_commits():
     workflow — so a commit that broke a test CI runs would sit on main until
     the maintainer's next commit met it at the pre-commit gate, with nothing to
     say which change did it. What CI runs, the run runs before it commits, and
-    the scout's branch reports it in the pull request CI does not run on
-    either."""
+    the scout's branch reports it in its pull request, where CI waits for an
+    approval."""
     workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     ci = yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))
     steps = workflow["jobs"]["update"]["steps"]

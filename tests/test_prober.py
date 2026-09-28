@@ -58,7 +58,7 @@ async def test_api_models_ok():
 
 @respx.mock
 async def test_api_models_accepts_a_bare_list():
-    """GitHub's catalog answers with a bare array instead of {"data": [...]}."""
+    """A bare array instead of {"data": [...]} is read as the model list."""
     respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
         200, json=[{"id": "vendor/qwen3-coder:free"}]
     ))

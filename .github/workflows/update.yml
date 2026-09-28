@@ -35,7 +35,7 @@ jobs:
     # for the default six hours.
     timeout-minutes: 60
     steps:
-      # The whole history, 3 MB: freetier-bars dates every id a free lane lists
+      # The whole history: freetier-bars dates every id a free lane lists
       # from the commits that added it to registry.yaml.
       - uses: actions/checkout@v7
         with:
@@ -50,8 +50,8 @@ jobs:
 
       # A real run's probe exits 0 whatever it finds and hands its failures to
       # the scout. A dry run's exits 1 on a failing row, and without this one
-      # FAIL would skip every step after it — the checks a dry run is
-      # dispatched to try among them. A scheduled run has no inputs, so
+      # FAIL would skip every later step that does not ask for always() — the
+      # checks a dry run is dispatched to try among them. A scheduled run has no inputs, so
       # null == true is false and nothing changes there.
       - name: Probe all entries
         continue-on-error: ${{ inputs.dry_run == true }}
@@ -128,9 +128,9 @@ jobs:
             echo "pushed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # Bing, Yandex and the engines sharing their index recrawl a site this
-      # size every few weeks on their own; a ping after a push has the pages
-      # that changed read the same day — once Pages has built the commit, or an
+      # Without a ping, Bing, Yandex and the engines sharing their index can
+      # take days to weeks to notice a change; a ping after a push names the
+      # pages that changed — once Pages has built the commit, or an
       # engine fetching on the ping reads the pages before it (see indexnow.yml,
       # which waits the same way for a push made by hand). Best effort: an
       # engine being down is not a reason to fail a run that has already
@@ -182,8 +182,9 @@ jobs:
       - name: Record the scout's changes and render every page
         run: uv run freetier-render --registry registry.yaml --templates templates --out README.md
 
-      # A pull request this workflow opens starts no CI run (GITHUB_TOKEN), so
-      # the checks run here on the branch's tree, earned fields and new rows
+      # CI runs on a pull request this workflow opens only once someone with
+      # write access approves them (GITHUB_TOKEN), so the checks run here on the
+      # branch's tree, earned fields and new rows
       # included, and their result heads the PR body and the run summary.
       - name: Check the scout's branch
         run: |

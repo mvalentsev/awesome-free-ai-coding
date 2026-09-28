@@ -1147,7 +1147,8 @@ def test_forcing_a_backend_that_is_not_configured_is_an_error():
 
 
 def test_auto_means_no_forced_backend():
-    """The workflow input defaults to "auto", so the env var arrives set."""
+    """A dispatch sends the input's default, "auto"; a scheduled run has no
+    inputs and sends an empty string. Both mean the usual chain."""
     assert LLMClient(force="auto")._force is None
     assert LLMClient(force="")._force is None
 
