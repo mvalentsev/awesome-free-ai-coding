@@ -2347,6 +2347,25 @@ async def test_a_keyless_call_is_asked_again_after_a_5xx():
 
 
 @respx.mock
+async def test_a_network_error_with_no_message_is_named_by_its_kind():
+    """httpx raises a read timeout with an empty message; the note names the
+    timeout rather than ending on a colon (VLM Run's 27B, cold for 109 s,
+    2026-09-29)."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        model = json.loads(request.content)["model"]
+        if model == "gpt-oss-120b":
+            raise httpx.ReadTimeout("")
+        return httpx.Response(200, json=completion(model))
+    respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=answer)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0, attempts=2)
+    assert "keyless call to gpt-oss-120b answered network error: ReadTimeout while" in result.detail
+
+
+@respx.mock
 async def test_a_first_id_rate_limited_for_a_moment_is_asked_again_before_another_is_named():
     """The README's id is asked again after a 429, as after a 5xx, before another
     id is named: a momentary rate limit would otherwise reorder the row from run

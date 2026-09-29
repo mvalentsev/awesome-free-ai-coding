@@ -191,7 +191,8 @@ async def _ask[A](send: Callable[[], Awaitable[A]], attempts: int, backoff: floa
         try:
             answer = await send()
         except httpx.HTTPError as exc:
-            last = f"network error: {exc}"
+            # httpx raises a read timeout with no message
+            last = f"network error: {str(exc) or type(exc).__name__}"
             continue
         if status(answer) >= 500:
             last = f"HTTP {status(answer)}"
