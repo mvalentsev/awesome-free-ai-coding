@@ -1,0 +1,42 @@
+# Codex CLI on abliteration.ai's free lane — generated from registry.yaml, do not
+# edit by hand.
+# abliteration.ai's own page sets Codex CLI up on this lane,
+# https://docs.abliteration.ai/integrations/codex, and every run of the list
+# reads it back and asks the lane's Responses route again; only a key can run
+# a turn there. Needs Codex CLI 0.134 or later; the file goes where Codex
+# keeps its config, ~/.codex unless CODEX_HOME says otherwise:
+#
+#   cp configs/codex/abliteration-ai.config.toml ~/.codex/
+#   codex -p abliteration-ai
+#
+# The key comes from $ABLITERATION_AI_API_KEY, the variable
+# free-llm.env.example exports; get one at https://abliteration.ai/console.
+# With $ABLITERATION_AI_API_KEY unset or empty, Codex stops before it sends
+# anything, so no other key of yours reaches the lane. The model is the first
+# id the row lists; what the free part covers and every id are on the row's
+# page,
+# https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/
+# — codex -p abliteration-ai -m <id> takes another.
+model = "abliterated-model-large-v2"
+model_provider = "abliteration-ai"
+# The same three settings in every Codex profile here, so the request Codex
+# sends is the one the list's run checks; each is off for lanes that refuse it
+# or cannot run it. Reasoning summaries: some LiteLLM releases hand the
+# setting to a lane as a reasoning_effort object (1.102 does), which the lanes
+# tried refused.
+model_reasoning_summary = "none"
+# Web search: a tool OpenAI's servers run, which LiteLLM passes on to a lane
+# as web_search_options.
+web_search = "disabled"
+
+[features]
+# Sub-agents: Codex sends their tools as a namespace, which LiteLLM 1.98 and
+# later pass on as plain functions; with them on, a turn failed both through
+# LiteLLM and on a lane called directly.
+multi_agent = false
+
+[model_providers.abliteration-ai]
+name = "abliteration.ai"
+base_url = "https://api.abliteration.ai/v1"
+wire_api = "responses"
+env_key = "ABLITERATION_AI_API_KEY"

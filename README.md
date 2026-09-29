@@ -69,7 +69,7 @@
 - **No account at all** — [Kilo Code](https://kilo.ai) · [LLM7.io](https://llm7.io) · [LLM Tech](https://llmtech.eu)
 - **A trial that asks for no card** — [GitHub Copilot Free](https://github.com/features/copilot) · [Kiro](https://kiro.dev/) · [Google Jules](https://jules.google/)
 - **Claude Code on a free lane** — [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com)
-- **Codex CLI on a free lane** — [Kilo Code](https://kilo.ai) `codex -p kilo-code` · [any lane of the LiteLLM config](configs/codex/litellm.config.toml) `codex -p litellm`
+- **Codex CLI on a free lane** — [OpenRouter (free models)](https://openrouter.ai) `codex -p openrouter-free` · [Kilo Code](https://kilo.ai) `codex -p kilo-code` · [AIHubMix (free models)](https://aihubmix.com) `codex -p aihubmix` · [any lane of the LiteLLM config](configs/codex/litellm.config.toml) `codex -p litellm`
 
 
 <sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered); the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh); the Codex CLI line names lanes Codex calls directly — ones that took its request with no key, which every run sends again, and ones whose vendor's own page sets Codex up, which every run reads back — one profile each in [`configs/codex/`](configs/codex/).</sub>

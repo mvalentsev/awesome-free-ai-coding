@@ -37,6 +37,7 @@ What you send is not used to train models. In the vendor's words: “By default,
 
 - Base URL: `https://models.mixlayer.ai/v1`
 - Key: `MIXLAYER_API_KEY` — get one at <https://console.mixlayer.com/app/api-keys>
+- Codex CLI: [`configs/codex/mixlayer.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/mixlayer.config.toml) — copy it to `~/.codex/`, then `codex -p mixlayer`; set up on the lane by the vendor's own page, <https://docs.mixlayer.com/codex-cli>: "A separate profile keeps Mixlayer isolated from your default Codex configuration"
 - Callable ids: `qwen/qwen3.5-4b-free`
 - Note: the id is the pricing page's and the docs' own example; /v1/models answers 401 without a key, so it is not read off a catalog
 

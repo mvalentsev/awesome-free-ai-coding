@@ -60,6 +60,7 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 - Base URL: `https://tokenharbor.ai/v1`
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`
+- Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
 - Callable ids: `deepseek-v4.1-flash:free`
 - What you send may be used to train or improve models ([the vendor's words](https://tokenharbor.ai/terms)).
 

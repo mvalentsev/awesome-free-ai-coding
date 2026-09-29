@@ -33,6 +33,7 @@ The vendor names no country it keeps the offer from ([source](https://huggingfac
 
 - Base URL: `https://router.huggingface.co/v1`
 - Key: `HUGGINGFACE_INFERENCE_API_KEY` — get one at <https://huggingface.co/settings/tokens>
+- Codex CLI: [`configs/codex/huggingface-inference.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/huggingface-inference.config.toml) — copy it to `~/.codex/`, then `codex -p huggingface-inference`; set up on the lane by the vendor's own page, <https://huggingface.co/docs/inference-providers/integrations/codex>: "all Codex requests are routed through Inference Providers"
 - Callable ids: `openai/gpt-oss-120b`, `Qwen/Qwen3.8-27B`, `zai-org/GLM-5.3-Flash`
 - Note: chat-only; model ids namespaced — three examples from the router's own catalog of 138, which the run reads back; the credit spends on any of them
 

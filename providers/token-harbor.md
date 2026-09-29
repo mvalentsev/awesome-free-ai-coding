@@ -38,6 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://tokenharbor.ai/v1`
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`
+- Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
 - Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`, `qwen3.8-flash:free`
 - Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free carries a Limited time badge dated free to 2026-10-04 13:00 UTC, and the pricing page says "2× Boost on Qwen3.8 Flash runs through October 4, 2026". For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
 

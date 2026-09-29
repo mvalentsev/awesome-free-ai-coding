@@ -38,6 +38,7 @@ What you send is not used to train models. In the vendor's words: “Opper never
 - Base URL: `https://api.opper.ai/v3/compat`
 - Key: `OPPER_API_KEY` — get one at <https://platform.opper.ai/settings/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`
+- Codex CLI: [`configs/codex/opper.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/opper.config.toml) — copy it to `~/.codex/`, then `codex -p opper`; set up on the lane by the vendor's own page, <https://docs.opper.ai/integrations/coding-agents/codex>: "Run OpenAI's Codex CLI on any model in the Opper catalog"
 - Callable ids: `gemini/gemma-4-31b`, `gemini/gemma-4-26b-moe`, `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`, `greenference/qwen3-14b`
 - Note: ids are five of the six rows the model directory flags free, greenference/qwen3-14b from 2026-09-27, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages
 

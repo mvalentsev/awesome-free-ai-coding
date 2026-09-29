@@ -80,6 +80,10 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - openrouter/free
     anthropic_base_url: https://openrouter.ai/api
+    codex:
+      base_url: https://openrouter.ai/api/v1
+      source: https://openrouter.ai/docs/cookbook/coding-agents/codex-cli
+      quote: Configure Codex for OpenRouter
     note: 'pick models with the :free suffix: every id carrying it is priced 0/0,
       18 on 2026-09-25, and the lane rotates, so a new id waits two weeks for the
       Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b,
@@ -1657,6 +1661,10 @@ entries:
     - openai/gpt-oss-120b
     - Qwen/Qwen3.8-27B
     - zai-org/GLM-5.3-Flash
+    codex:
+      base_url: https://router.huggingface.co/v1
+      source: https://huggingface.co/docs/inference-providers/integrations/codex
+      quote: all Codex requests are routed through Inference Providers
     note: chat-only; model ids namespaced — three examples from the router's own catalog
       of 138, which the run reads back; the credit spends on any of them
   border:
@@ -1976,6 +1984,10 @@ entries:
     no_family_ids:
     - stealth/pixel-canary
     anthropic_base_url: https://ai-gateway.vercel.sh
+    codex:
+      base_url: https://ai-gateway.vercel.sh/codex/v1
+      source: https://vercel.com/docs/ai-gateway/coding-agents/openai-codex
+      quote: Point Codex at its own compatibility endpoint
     note: every id listed is priced 0 in and 0 out and draws nothing from the $5 credit;
       any other Free-Tier-eligible model spends it. Zero-priced ids come and go within
       days, so a new one waits two weeks for the Models column; stealth/pixel-canary
@@ -2213,8 +2225,8 @@ entries:
     auth: api-key
     openai_compatible: true
     model_ids:
-    - muse-glimmer-30b:free
     - deepseek-v4-flash:free
+    - muse-glimmer-30b:free
     - minimax-m2.7:free
     ignored_ids:
     - gemma-4-26b-a4b-it-meromero:free
@@ -2223,6 +2235,10 @@ entries:
     - gemma-4-26b-a4b-it-luminous:free
     - gemma-4-26b-a4b-it-moonlight:free
     - gemma-4-26b-a4b-it-musica:free
+    codex:
+      base_url: https://api.routeway.ai/v1
+      source: https://docs.routeway.ai/integrations/agents/codex
+      quote: Use OpenAI’s Codex with Routeway by adding a custom provider
     note: the three :free ids are every zero-priced row in the catalog on 2026-09-23
       but six, all marked available; the six, left out, are Gemma 4 26B community
       finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the
@@ -2733,6 +2749,10 @@ entries:
     - lfm-2.5-2.6b-free
     - union-alpha-free
     anthropic_base_url: https://aihubmix.com
+    codex:
+      base_url: https://aihubmix.com/v1
+      source: https://docs.aihubmix.com/en/api/Codex-CLI
+      quote: Connect AIHubMix in Codex CLI
     note: 'every id the catalog prices at 0 is listed or ignored on purpose, 47 rows
       on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored:
       jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1
@@ -4365,6 +4385,10 @@ entries:
     no_family_ids:
     - qwen3.8-flash:free
     anthropic_base_url: https://tokenharbor.ai
+    codex:
+      base_url: https://tokenharbor.ai/v1
+      source: https://tokenharbor.ai/docs/integrations/codex
+      quote: Point OpenAI Codex at Token Harbor manually
     note: the :free suffix selects the free route, which has to be switched on in
       the dashboard first; /v1/models needs a key, so the ids are the ones the models
       page lists under Free, where qwen3.8-flash:free carries a Limited time badge
@@ -4606,6 +4630,10 @@ entries:
     - accounts/fireworks/models/glm-5p3
     - accounts/fireworks/models/kimi-k3
     anthropic_base_url: https://api.fireworks.ai/inference
+    codex:
+      base_url: https://api.fireworks.ai/inference/v1
+      source: https://docs.fireworks.ai/nexus/harnesses
+      quote: The Codex CLI, the Codex app, and the ChatGPT desktop app share one config
     note: ids are accounts/fireworks/models/ plus the slug the serverless pricing
       page links, read 2026-09-17; /inference/v1/models answers 401 without a key,
       so none is read off a catalog. The quickstart gives the Anthropic SDK base_url
@@ -4926,6 +4954,10 @@ entries:
     - poolside/laguna-xs-2.1
     - greenference/qwen3-14b
     anthropic_base_url: https://api.opper.ai/v3/compat
+    codex:
+      base_url: https://api.opper.ai/v3/compat
+      source: https://docs.opper.ai/integrations/coding-agents/codex
+      quote: Run OpenAI's Codex CLI on any model in the Opper catalog
     note: ids are five of the six rows the model directory flags free, greenference/qwen3-14b
       from 2026-09-27, checked against the keyless catalog at api.opper.ai/v3/models;
       opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code
@@ -4989,6 +5021,10 @@ entries:
     no_family_ids:
     - deepseek-v4-flash-0731
     anthropic_base_url: https://moark.com/anthropic
+    codex:
+      base_url: https://moark.com/v1
+      source: https://moark.com/docs/integrations/Development-Tools/Codex
+      quote: 模力方舟提供对 Codex 的原生支持
     note: 'the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic
       one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL
       with deepseek-v4-flash-0731 in every model slot; the id is checked against the
@@ -5049,6 +5085,10 @@ entries:
     openai_compatible: true
     model_ids:
     - qwen/qwen3.5-4b-free
+    codex:
+      base_url: https://models.mixlayer.ai/v1
+      source: https://docs.mixlayer.com/codex-cli
+      quote: A separate profile keeps Mixlayer isolated from your default Codex configuration
     note: the id is the pricing page's and the docs' own example; /v1/models answers
       401 without a key, so it is not read off a catalog
   data_use:
@@ -5161,6 +5201,10 @@ entries:
     - abliterated-model
     - abliterated-model-large
     anthropic_base_url: https://api.abliteration.ai
+    codex:
+      base_url: https://api.abliteration.ai/v1
+      source: https://docs.abliteration.ai/integrations/codex
+      quote: To use Codex with abliteration.ai, register a custom model provider
     note: ids are the three the docs' models page serves, read 2026-09-23 — abliterated-model-large
       the previous large model, from GLM-5.2; /v1/models answers 401 without a key.
       The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.abliteration.ai with
@@ -5345,6 +5389,10 @@ entries:
     - zai-org/glm-5.3-flash
     - moonshotai/kimi-k2.7-code
     - minimax/minimax-m3
+    codex:
+      base_url: https://api.hpc-ai.com/inference/v1
+      source: https://www.hpc-ai.com/doc/docs/Model-APIs/Integration/Codex/
+      quote: Codex CLI and the Codex IDE extension share the same config.toml layers
     note: ids are the keyless model list's at www.hpc-ai.com/api/maas/v1/models, 2026-09-17,
       the quick start's own example being moonshotai/kimi-k2.7-code
   data_use:

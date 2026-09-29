@@ -629,15 +629,15 @@ model_list:
     api_base: https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1
     api_key: os.environ/CLOUDFLARE_WORKERS_AI_API_KEY
     use_chat_completions_api: true
-- model_name: routeway/muse-glimmer-30b:free
-  litellm_params:
-    model: openai/muse-glimmer-30b:free
-    api_base: https://api.routeway.ai/v1
-    api_key: os.environ/ROUTEWAY_API_KEY
-    use_chat_completions_api: true
 - model_name: routeway/deepseek-v4-flash:free
   litellm_params:
     model: openai/deepseek-v4-flash:free
+    api_base: https://api.routeway.ai/v1
+    api_key: os.environ/ROUTEWAY_API_KEY
+    use_chat_completions_api: true
+- model_name: routeway/muse-glimmer-30b:free
+  litellm_params:
+    model: openai/muse-glimmer-30b:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
     use_chat_completions_api: true

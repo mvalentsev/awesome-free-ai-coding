@@ -452,11 +452,11 @@
         "apiKey": "{env:ROUTEWAY_API_KEY}"
       },
       "models": {
-        "muse-glimmer-30b:free": {
-          "name": "muse-glimmer-30b:free"
-        },
         "deepseek-v4-flash:free": {
           "name": "deepseek-v4-flash:free"
+        },
+        "muse-glimmer-30b:free": {
+          "name": "muse-glimmer-30b:free"
         },
         "minimax-m2.7:free": {
           "name": "minimax-m2.7:free"

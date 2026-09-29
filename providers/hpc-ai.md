@@ -37,6 +37,7 @@ What you send is not used to train models. In the vendor's words: “No customer
 
 - Base URL: `https://api.hpc-ai.com/inference/v1`
 - Key: `HPC_AI_API_KEY` — get one at <https://www.hpc-ai.com/models-console/api-key>
+- Codex CLI: [`configs/codex/hpc-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/hpc-ai.config.toml) — copy it to `~/.codex/`, then `codex -p hpc-ai`; set up on the lane by the vendor's own page, <https://www.hpc-ai.com/doc/docs/Model-APIs/Integration/Codex/>: "Codex CLI and the Codex IDE extension share the same config.toml layers"
 - Callable ids: `zai-org/glm-5.3-flash`, `moonshotai/kimi-k2.7-code`, `minimax/minimax-m3`
 - Note: ids are the keyless model list's at www.hpc-ai.com/api/maas/v1/models, 2026-09-17, the quick start's own example being moonshotai/kimi-k2.7-code
 

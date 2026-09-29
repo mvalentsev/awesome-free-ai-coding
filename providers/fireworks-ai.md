@@ -38,6 +38,7 @@ What you send is not used to train models. In the vendor's words: “No AI Train
 - Base URL: `https://api.fireworks.ai/inference/v1`
 - Key: `FIREWORKS_AI_API_KEY` — get one at <https://app.fireworks.ai/settings/users/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.fireworks.ai/inference`
+- Codex CLI: [`configs/codex/fireworks-ai.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/fireworks-ai.config.toml) — copy it to `~/.codex/`, then `codex -p fireworks-ai`; set up on the lane by the vendor's own page, <https://docs.fireworks.ai/nexus/harnesses>: "The Codex CLI, the Codex app, and the ChatGPT desktop app share one config"
 - Callable ids: `accounts/fireworks/models/deepseek-v4p1-flash`, `accounts/fireworks/models/glm-5p3-flash`, `accounts/fireworks/models/minimax-m3`, `accounts/fireworks/models/glm-5p3`, `accounts/fireworks/models/kimi-k3`
 - Note: ids are accounts/fireworks/models/ plus the slug the serverless pricing page links, read 2026-09-17; /inference/v1/models answers 401 without a key, so none is read off a catalog. The quickstart gives the Anthropic SDK base_url https://api.fireworks.ai/inference, which is Claude Code's ANTHROPIC_BASE_URL, the client appending /v1/messages
 
