@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-29T05:16:28Z</updated>
+  <updated>2026-09-29T06:01:47Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260929T060147Z</id>
+    <title>Free models changed: Kilo Code</title>
+    <link rel="alternate" href="https://kilo.ai"/>
+    <updated>2026-09-29T06:01:47Z</updated>
+    <summary type="text">dropped ling-3.0-flash-fin · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260929T060147Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-09-29T06:01:47Z</updated>
+    <summary type="text">dropped ling-3.0-flash-fin · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260929T051628Z</id>
     <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://www.requesty.ai"/>
     <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added laguna-m.1, laguna-xs.2, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni · free models: nemotron-3-ultra, nemotron-3-super, gemma-4, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, laguna-xs.2, laguna-m.1, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openai-codex-cli/20260923T225840Z</id>
-    <title>Free models changed: OpenAI Codex CLI</title>
-    <link rel="alternate" href="https://learn.chatgpt.com/docs/codex/cli"/>
-    <updated>2026-09-23T22:58:40Z</updated>
-    <summary type="text">dropped gpt-5.6</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-jules/20260923T224629Z</id>
-    <title>Free models changed: Google Jules</title>
-    <link rel="alternate" href="https://jules.google/"/>
-    <updated>2026-09-23T22:46:29Z</updated>
-    <summary type="text">dropped gemini-3-flash · free models: gemini-2.5</summary>
   </entry>
 </feed>

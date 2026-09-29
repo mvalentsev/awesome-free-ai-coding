@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-fin free: 4 providers, limits and ids, verified 2026-09-28'
-description: ling-3.0-flash-fin is served free by opencode, OpenRouter (free models), Kilo Code and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'ling-3.0-flash-fin free: 2 providers, limits and ids, verified 2026-09-28'
+description: ling-3.0-flash-fin is served free by opencode and LLMTR. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: ling-3.0-flash-fin
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-fin
 
 # Where ling-3.0-flash-fin is free
 
-**4 rows on the list serve `ling-3.0-flash-fin` free:** opencode, OpenRouter (free models), Kilo Code and LLMTR. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-flash-fin), below its strong bar.
+**2 rows on the list serve `ling-3.0-flash-fin` free:** opencode and LLMTR. None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-flash-fin), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -27,33 +27,6 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send may be used to train or improve models ([the vendor's words](https://opencode.ai/docs/zen/)).
 
-### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
-
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
-
-One API key for a rotating set of :free model variants, open-weight and stealth models among them
-
-- Limits, in the vendor's words: 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", and its limits page warns that a negative credit balance can produce errors "including for free models" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)
-- Base URL: `https://openrouter.ai/api/v1`
-- Key: `OPENROUTER_API_KEY` — get one at <https://openrouter.ai/settings/keys>
-- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://openrouter.ai/api`
-- Codex CLI: [`configs/codex/openrouter-free.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/openrouter-free.config.toml) — copy it to `~/.codex/`, then `codex -p openrouter-free`; set up on the lane by the vendor's own page, <https://openrouter.ai/docs/cookbook/coding-agents/codex-cli>: "Configure Codex for OpenRouter"
-- Callable ids: `inclusionai/ling-3.0-flash-fin:free`
-- What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://openrouter.ai/docs/guides/privacy/provider-logging)).
-
-### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
-
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-09-28 · listed since 2026-09-24
-
-Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
-
-- Limits, in the vendor's words: $0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
-- Base URL: `https://api.kilo.ai/api/gateway`
-- Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `inclusionai/ling-3.0-flash-fin:free`
-- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
-
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
 🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
@@ -68,6 +41,8 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — t
 
 ## Rows that listed it before
 
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-09-24 to 2026-09-29
+- [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/) — listed 2026-09-24 to 2026-09-29
 - [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) — listed 2026-09-17 to 2026-09-26
 
 ## Related models

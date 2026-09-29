@@ -149,12 +149,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/inclusionai/ling-3.0-flash-fin:free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-fin:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/inclusionai/ling-3.0-flash-sante:free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-sante:free
@@ -1190,6 +1184,12 @@ model_list:
 - model_name: nous-portal/meituan/longcat-2.0:free
   litellm_params:
     model: openai/meituan/longcat-2.0:free
+    api_base: https://inference-api.nousresearch.com/v1
+    api_key: os.environ/NOUS_PORTAL_API_KEY
+    use_chat_completions_api: true
+- model_name: nous-portal/meituan/longcat-2.5-preview:free
+  litellm_params:
+    model: openai/meituan/longcat-2.5-preview:free
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true

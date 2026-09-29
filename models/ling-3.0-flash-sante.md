@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, verified 2026-09-28'
 description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last…
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: ling-3.0-flash-sante
 ---
 
@@ -60,7 +60,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Related models
 
-- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, OpenRouter (free models), Kilo Code and LLMTR
+- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode and LLMTR
 - [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) — free at Requesty and AIHubMix (free models)
 - [`ling-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/) — free at AIHubMix (free models)
 

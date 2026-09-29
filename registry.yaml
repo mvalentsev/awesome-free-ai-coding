@@ -45,9 +45,6 @@ entries:
     tier: notable
     aa_model: inkling-small
   - family: dots-3-note
-  - family: ling-3.0-flash-fin
-    tier: notable
-    aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
@@ -69,7 +66,6 @@ entries:
     - thinkingmachines/inkling:free
     - thinkingmachines/inkling-small:free
     - dots-studio/dots-3-note-preview:free
-    - inclusionai/ling-3.0-flash-fin:free
     - inclusionai/ling-3.0-flash-sante:free
     - liquid/lfm-2.5-2.6b:free
     - qwen/qwen3.8-27b:free
@@ -617,9 +613,6 @@ entries:
     tier: notable
     aa_model: inkling-small
   - family: dots-3-note
-  - family: ling-3.0-flash-fin
-    tier: notable
-    aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
@@ -640,7 +633,6 @@ entries:
     - poolside/laguna-s-2.1:free
     - poolside/laguna-xs-2.1:free
     - liquid/lfm-2.5-2.6b:free
-    - inclusionai/ling-3.0-flash-fin:free
     - inclusionai/ling-3.0-flash-sante:free
     - dots-studio/dots-3-note-preview:free
     - thinkingmachines/inkling-small:free
@@ -3435,6 +3427,7 @@ entries:
     - evren/qwen3-vl-30b
     - evren/qwen3.8-flash-next
     - openai/gpt-oss-safeguard-20b
+    - evren/mimo-v2.6-pro-tr
     no_family_ids:
     - dots-studio/dots-3-note-preview
     - llmtr/space-bunny
@@ -3443,7 +3436,7 @@ entries:
       and llmtr/space-bunny is a "gizli" (hidden) model free "30 Eylül 2026 sonuna
       kadar" (to the end of 30 September), so neither is in the Models column. nvidia/nemotron-3-ultra-550b-a55b
       is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings
-      row, openai/gpt-oss-safeguard-20b, a content classifier, and five evren/* rows
+      row, openai/gpt-oss-safeguard-20b, a content classifier, and six evren/* rows
       priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own
       EVREN key)'
   data_use:
@@ -4458,7 +4451,8 @@ entries:
     - inclusionai/ling-3.0-flash-sante:free
     - upstage/solar-pro4:free
     - meituan/longcat-2.0:free
-    note: every id the keyless catalog prices at 0 on 2026-09-18; solar-pro4 is a
+    - meituan/longcat-2.5-preview:free
+    note: every id the keyless catalog prices at 0 on 2026-09-29; solar-pro4 is a
       limited-time trial on other gateways
   data_use:
     trains: opt-out

@@ -37,8 +37,8 @@ What you send may be used to train or improve models unless you turn that off. I
 
 - Base URL: `https://inference-api.nousresearch.com/v1`
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `upstage/solar-pro4:free`, `meituan/longcat-2.0:free`
-- Note: every id the keyless catalog prices at 0 on 2026-09-18; solar-pro4 is a limited-time trial on other gateways
+- Callable ids: `stepfun/step-3.7-flash:free`, `poolside/laguna-s-2.1:free`, `poolside/laguna-xs-2.1:free`, `inclusionai/ling-3.0-flash-fin:free`, `inclusionai/ling-3.0-flash-sante:free`, `upstage/solar-pro4:free`, `meituan/longcat-2.0:free`, `meituan/longcat-2.5-preview:free`
+- Note: every id the keyless catalog prices at 0 on 2026-09-29; solar-pro4 is a limited-time trial on other gateways
 
 Try it from your terminal with your key in `NOUS_PORTAL_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
