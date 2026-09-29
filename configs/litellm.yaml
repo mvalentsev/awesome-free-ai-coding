@@ -641,18 +641,6 @@ model_list:
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
     use_chat_completions_api: true
-- model_name: llm7/GLM-5.3-Flash
-  litellm_params:
-    model: openai/GLM-5.3-Flash
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
-- model_name: llm7/minimax-m2.7
-  litellm_params:
-    model: openai/minimax-m2.7
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
 - model_name: llm7/codestral-latest
   litellm_params:
     model: openai/codestral-latest
@@ -662,6 +650,12 @@ model_list:
 - model_name: llm7/mistral-Nemo-Instruct-2407
   litellm_params:
     model: openai/mistral-Nemo-Instruct-2407
+    api_base: https://api.llm7.io/v1
+    api_key: none
+    use_chat_completions_api: true
+- model_name: llm7/minimax-m2.7
+  litellm_params:
+    model: openai/minimax-m2.7
     api_base: https://api.llm7.io/v1
     api_key: none
     use_chat_completions_api: true
@@ -719,12 +713,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/llmtr/space-bunny
-  litellm_params:
-    model: openai/llmtr/space-bunny
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
@@ -746,6 +734,18 @@ model_list:
 - model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante-free
   litellm_params:
     model: openai/inclusionai/ling-3.0-flash-sante-free
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+- model_name: vercel-ai-gateway/inclusionai/ling-3.1-flash
+  litellm_params:
+    model: openai/inclusionai/ling-3.1-flash
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
+- model_name: vercel-ai-gateway/inclusionai/ling-3.1-flash-free
+  litellm_params:
+    model: openai/inclusionai/ling-3.1-flash-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
@@ -2199,28 +2199,6 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/nokey
   litellm_params:
-    model: openai/GLM-5.3-Flash
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
-    model: openai/minimax-m2.7
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
     model: openai/codestral-latest
     api_base: https://api.llm7.io/v1
     api_key: none
@@ -2233,6 +2211,17 @@ model_list:
 - model_name: free/nokey
   litellm_params:
     model: openai/mistral-Nemo-Instruct-2407
+    api_base: https://api.llm7.io/v1
+    api_key: none
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/minimax-m2.7
     api_base: https://api.llm7.io/v1
     api_key: none
     use_chat_completions_api: true

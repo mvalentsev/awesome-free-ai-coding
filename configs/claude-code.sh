@@ -64,7 +64,7 @@ claude-zai-glm() {
 }
 
 # ── Vercel AI Gateway · card required · get a key: https://vercel.com/dashboard/ai-gateway/api-keys
-#    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free, stealth/pixel-canary
+#    free ids: poolside/laguna-s-2.1-free, inclusionai/ling-3.0-flash-sante, inclusionai/ling-3.0-flash-sante-free, inclusionai/ling-3.1-flash, inclusionai/ling-3.1-flash-free, stealth/pixel-canary
 claude-vercel-ai-gateway() {
   if [ -z "${VERCEL_AI_GATEWAY_API_KEY:-}" ]; then
     echo "claude-vercel-ai-gateway: set VERCEL_AI_GATEWAY_API_KEY first (configs/free-llm.env.example)" >&2

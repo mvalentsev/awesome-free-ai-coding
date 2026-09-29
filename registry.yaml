@@ -1972,6 +1972,8 @@ entries:
     - poolside/laguna-s-2.1-free
     - inclusionai/ling-3.0-flash-sante
     - inclusionai/ling-3.0-flash-sante-free
+    - inclusionai/ling-3.1-flash
+    - inclusionai/ling-3.1-flash-free
     - stealth/pixel-canary
     no_family_ids:
     - stealth/pixel-canary
@@ -3372,7 +3374,7 @@ entries:
   - https://llmtr.com/v1/models
   card_required: false
   offering: Turkish OpenAI-compatible gateway whose free rows answer on a zero balance
-    — ten zero-priced chat ids on 2026-09-27
+    — nine zero-priced chat ids on 2026-09-29
   limits: 'A new account calls the free rows before any top-up: the migration guide
     says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick
     a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway
@@ -3382,9 +3384,10 @@ entries:
     3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free
     on its own inference API", with "no extra token allowance to track"; dots-3-note-preview
     closes on 30 September 2026. Paid use is prepaid credit: "An 8% platform margin
-    is added on top of the requested top-up amount" and "We never modify model prices".
-    The privacy page says prompt and response bodies are not written permanently to
-    its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-09-21'
+    is added on top of the requested top-up amount", and "The platform margin is not
+    added to model prices; it is applied only once, at top-up". The privacy page says
+    prompt and response bodies are not written permanently to its usage and billing
+    database ("kalıcı olarak yazılmaz"). Read 2026-09-29'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -3413,7 +3416,6 @@ entries:
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - motif/motif-3
-    - llmtr/space-bunny
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     - evren/deepseek-v4-flash-tr
@@ -3423,17 +3425,17 @@ entries:
     - evren/qwen3.8-flash-next
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
+    - minimax/minimax-m3.1-free
     no_family_ids:
     - dots-studio/dots-3-note-preview
-    - llmtr/space-bunny
-    note: 'the ten ids are every chat row the public catalog prices at 0 on 2026-09-27
-      outside the evren/* rows; dots-studio/dots-3-note-preview closes on 30 September,
-      and llmtr/space-bunny is a "gizli" (hidden) model free "30 Eylül 2026 sonuna
-      kadar" (to the end of 30 September), so neither is in the Models column. nvidia/nemotron-3-ultra-550b-a55b
-      is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings
-      row, openai/gpt-oss-safeguard-20b, a content classifier, and six evren/* rows
-      priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own
-      EVREN key)'
+    note: 'the nine ids are every chat row the public catalog prices at 0 on 2026-09-29
+      outside the evren/* rows and one dated trial; dots-studio/dots-3-note-preview
+      "30 Eylül 2026''da kapanıyor" (closes on 30 September), so it has no family.
+      nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin
+      the metered one. Ignored: an embeddings row, openai/gpt-oss-safeguard-20b, a
+      content classifier, minimax/minimax-m3.1-free, free "30 Eylül 2026 23:59''a
+      kadar" (to 30 September), and six evren/* rows priced 0 because each "kendi
+      EVREN anahtarınızla çalışır" (runs on your own EVREN key)'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -4045,7 +4047,6 @@ entries:
     - stealth/space-bunny-alpha
     - cline-free/mimo-v2.6-flash
     - cline-free/deepseek-v4.1-flash
-    - cline-free/gemini-3.8-flash
     - cline-free/muse-spark-1.3-contributor
     no_family_ids:
     - stealth/pixel-canary
@@ -4289,16 +4290,15 @@ entries:
   offering: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with
     $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted
     edit predictions on the $0 Personal plan'
-  limits: 'The docs, rewritten on 2026-09-23: "Trials include $5 of GPT-6 Luna usage
-    and unlimited Edit Predictions for 14 days from when you start the trial. GPT-6
-    Luna is the only hosted model available during the trial." "No credit card is
-    required", and the hosted-models page agrees — "The Zed Pro trial includes GPT-6
-    Luna only" — while zed.dev/pricing still offers "$5 of GPT-5.6 Luna usage" on
-    2026-09-27. The trial ends at the $5 or the 14 days, "whichever comes first",
-    the balance is shared with Delta, Zed''s other app, and "Trials automatically
-    convert to Zed Free" — the $0 Personal plan, whose "2,000 accepted edit predictions"
-    carry no period on the pricing page; Pro is $10 a month with $5 of monthly token
-    credit. Read 2026-09-27'
+  limits: 'The docs: "Trials include $5 of GPT-6 Luna usage and unlimited Edit Predictions
+    for 14 days from when you start the trial. GPT-6 Luna is the only hosted model
+    available during the trial." "No credit card is required", and the pricing page
+    says the same: "We offer a 14-day free trial of Pro with $5 of GPT-6 Luna usage
+    and unlimited accepted edit predictions". The trial ends at the $5 or the 14 days,
+    "whichever comes first", the balance is shared with Delta, Zed''s other app, and
+    "Trials automatically convert to Zed Free" — the $0 Personal plan, whose "2,000
+    accepted edit predictions" carry no period on the pricing page; Pro is $10 a month
+    with $5 of monthly token credit. Read 2026-09-29'
   free_part: models
   models:
   - family: gpt-6-luna
@@ -4532,11 +4532,9 @@ entries:
     and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io
     raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and
     Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models
-    are fast models available to anonymous and free-token users" — though the turbo
-    row marked usage_based_only, DeepSeek V4 Flash, answered a keyless call with 401
-    `Missing API key.`, and Gemini 3.1 Flash Lite, turbo on 2026-09-16, is in the
-    pro tier by 2026-09-27. The operator publishes terms, last updated 9 August 2026,
-    and names no upstream for any model. Read 2026-09-16
+    are fast models available to anonymous and free-token users" — four rows on 2026-09-29,
+    and which rows are turbo moves from week to week. The operator publishes terms,
+    last updated 9 August 2026, and names no upstream for any model. Read 2026-09-29
   free_part: models
   models: []
   api:
@@ -4545,20 +4543,19 @@ entries:
     auth: none
     openai_compatible: true
     model_ids:
-    - GLM-5.3-Flash
-    - minimax-m2.7
     - codestral-latest
     - mistral-Nemo-Instruct-2407
+    - minimax-m2.7
     no_family_ids:
-    - GLM-5.3-Flash
-    - minimax-m2.7
     - codestral-latest
     - mistral-Nemo-Instruct-2407
+    - minimax-m2.7
     note: 'no key for the anonymous tier — OpenAI SDKs want some api_key, and the
       quickstart passes `unused`. The ids listed are the turbo rows that answered
-      a keyless call on 2026-09-16; DeepSeek-V4-Flash-0731 needs a token. The four
-      stay out of the Models column: the limits page the probe reads names no model,
-      and the catalog that marks the turbo tier prices every row for balance accounting'
+      a keyless call on 2026-09-29, the quickest first; the fourth, DeepSeek-V4-Flash-0731,
+      answered `This model is temporarily busy`. The three stay out of the Models
+      column: the limits page the probe reads names no model, and the catalog that
+      marks the turbo tier prices every row for balance accounting'
   border:
     left_out: []
     'on': '2026-09-26'

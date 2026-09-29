@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Zed free tier: limits, free models, verified 2026-09-28'
-description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. Free models: gpt-6-luna. The docs, rewritten on 2026-09-23: "Trials include $5 of GPT-6 Luna usage and…'
+description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. Free models: gpt-6-luna. The docs: "Trials include $5 of GPT-6 Luna usage and unlimited Edit…'
 permalink: /providers/zed/
 last_modified_at: 2026-09-28
 crumb: Zed
@@ -23,7 +23,7 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of mo
 
 ## Limits, in the vendor's words
 
-The docs, rewritten on 2026-09-23: "Trials include $5 of GPT-6 Luna usage and unlimited Edit Predictions for 14 days from when you start the trial. GPT-6 Luna is the only hosted model available during the trial." "No credit card is required", and the hosted-models page agrees — "The Zed Pro trial includes GPT-6 Luna only" — while zed.dev/pricing still offers "$5 of GPT-5.6 Luna usage" on 2026-09-27. The trial ends at the $5 or the 14 days, "whichever comes first", the balance is shared with Delta, Zed's other app, and "Trials automatically convert to Zed Free" — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period on the pricing page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-27
+The docs: "Trials include $5 of GPT-6 Luna usage and unlimited Edit Predictions for 14 days from when you start the trial. GPT-6 Luna is the only hosted model available during the trial." "No credit card is required", and the pricing page says the same: "We offer a 14-day free trial of Pro with $5 of GPT-6 Luna usage and unlimited accepted edit predictions". The trial ends at the $5 or the 14 days, "whichever comes first", the balance is shared with Delta, Zed's other app, and "Trials automatically convert to Zed Free" — the $0 Personal plan, whose "2,000 accepted edit predictions" carry no period on the pricing page; Pro is $10 a month with $5 of monthly token credit. Read 2026-09-29
 
 ## Where it is offered
 

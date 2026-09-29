@@ -464,17 +464,14 @@
         "baseURL": "https://api.llm7.io/v1"
       },
       "models": {
-        "GLM-5.3-Flash": {
-          "name": "GLM-5.3-Flash"
-        },
-        "minimax-m2.7": {
-          "name": "minimax-m2.7"
-        },
         "codestral-latest": {
           "name": "codestral-latest"
         },
         "mistral-Nemo-Instruct-2407": {
           "name": "mistral-Nemo-Instruct-2407"
+        },
+        "minimax-m2.7": {
+          "name": "minimax-m2.7"
         }
       }
     },
@@ -512,9 +509,6 @@
         },
         "motif/motif-3": {
           "name": "motif/motif-3"
-        },
-        "llmtr/space-bunny": {
-          "name": "llmtr/space-bunny"
         }
       }
     },
@@ -547,6 +541,12 @@
         },
         "inclusionai/ling-3.0-flash-sante-free": {
           "name": "inclusionai/ling-3.0-flash-sante-free"
+        },
+        "inclusionai/ling-3.1-flash": {
+          "name": "inclusionai/ling-3.1-flash"
+        },
+        "inclusionai/ling-3.1-flash-free": {
+          "name": "inclusionai/ling-3.1-flash-free"
         },
         "stealth/pixel-canary": {
           "name": "stealth/pixel-canary"
