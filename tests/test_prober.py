@@ -2346,6 +2346,39 @@ async def test_a_keyless_call_is_asked_again_after_a_5xx():
             for c in call.calls] == [("gpt-oss-120b", False)] * 2 + [("gpt-oss-120b", True)]
 
 
+OVERLOADED = {"id": "gen-1", "error": {"code": 503, "message": "Upstream error from Nvidia: Service "
+                                                               "temporarily overloaded"}}
+
+
+@respx.mock
+async def test_a_5xx_a_200_carries_in_its_body_is_asked_again_like_any_5xx():
+    """OpenRouter's format, which Kilo answers in, sends the status line before
+    the first token, so an upstream's 503 arrives inside a 200 (Kilo's
+    kilo-auto/free, 2026-09-29): asked again as a 503 would be, and named in
+    full if it never clears."""
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=[httpx.Response(200, json=OVERLOADED), httpx.Response(200, json=completion("gpt-oss-120b")),
+                     httpx.Response(200, json=completion("gpt-oss-120b"))])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS, result.detail
+    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b"] * 3
+
+
+@respx.mock
+async def test_a_4xx_a_200_carries_in_its_body_is_an_answer():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=[
+        httpx.Response(200, json={"error": {"code": 400, "message": "No such model"}}),
+        httpx.Response(200, json=completion("qwen3-coder-30b"))])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert "put qwen3-coder-30b first" in result.detail
+    assert [json.loads(c.request.content)["model"] for c in call.calls] == ["gpt-oss-120b", "qwen3-coder-30b"]
+
+
 @respx.mock
 async def test_a_network_error_with_no_message_is_named_by_its_kind():
     """httpx raises a read timeout with an empty message; the note names the

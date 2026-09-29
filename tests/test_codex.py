@@ -284,8 +284,8 @@ async def test_a_lane_that_still_takes_codexs_request_is_a_pass():
 ])
 @respx.mock
 async def test_a_lane_that_stops_taking_codexs_request_is_a_note(answer):
-    """A refusal, a stream that fails, and a whole JSON answer to a request for
-    a stream all end Codex's turn the same way. The row stays verified by its
+    """A refusal, a stream that fails every time, and a whole JSON answer to a
+    request for a stream all end Codex's turn the same way. The row stays verified by its
     page; what broke is a connection detail the list publishes."""
     _keyless_lane_answers()
     respx.post("https://open.x.ai/v1/responses").mock(return_value=answer)
@@ -293,6 +293,59 @@ async def test_a_lane_that_stops_taking_codexs_request_is_a_note(answer):
         result = await probe_entry(client, codex_keyless(codex=KEYLESS_CODEX), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
     assert "no longer takes the request Codex CLI sends" in result.detail
+
+
+class _Chunks(httpx.AsyncByteStream):
+    def __init__(self, *parts: str):
+        self.parts = parts
+
+    async def __aiter__(self):
+        for part in self.parts:
+            yield part.encode()
+
+
+FAILED_UPSTREAM = _sse({"type": "response.created", "response": {"id": "resp_1"}},
+                      {"type": "response.failed", "response": {
+                          "id": "resp_1", "status": "failed",
+                          "error": {"code": "server_error",
+                                    "message": "Upstream error from Nvidia: Service temporarily overloaded"}}})
+
+
+@respx.mock
+async def test_a_failed_turn_is_asked_again_as_codex_asks_again():
+    """Codex CLI retries a response.failed — its parse_failed_response makes a
+    code it does not name Retryable, and "server_error" is not named — so one
+    failed turn is not a lane that stopped taking the request (Kilo's upstream
+    overload, one turn in twelve on 2026-09-29)."""
+    _keyless_lane_answers()
+    route = respx.post("https://open.x.ai/v1/responses").mock(side_effect=[FAILED_UPSTREAM, COMPLETED])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(codex=KEYLESS_CODEX), backoff=0)
+    assert result.status is ProbeStatus.PASS, result.detail
+    assert route.call_count == 2
+
+
+@respx.mock
+async def test_an_end_event_split_across_chunks_is_read_whole():
+    """The event that ends a turn names its type first and then carries the
+    whole response — Kilo's response.completed runs to about 8 KB — so its
+    type can arrive a chunk before the rest of its line. Stopping there left a
+    half line no parser reads, and a finished turn read as one that stopped at
+    response.output_item.done (Kilo, one read in four, 2026-09-29)."""
+    _keyless_lane_answers()
+    head = "".join(f"data: {json.dumps(e)}\n\n" for e in (
+        {"type": "response.created", "response": {"id": "resp_1"}},
+        {"type": "response.output_item.done", "item": {"type": "message"}}))
+    done = json.dumps({"type": "response.completed",
+                       "response": {"id": "resp_1", "status": "completed", "output": ["x" * 64]}})
+    split = done.index("status")
+    route = respx.post("https://open.x.ai/v1/responses").mock(return_value=httpx.Response(
+        200, headers={"content-type": "text/event-stream"},
+        stream=_Chunks(head + "data: " + done[:split], done[split:] + "\n\n")))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(codex=KEYLESS_CODEX), backoff=0)
+    assert result.status is ProbeStatus.PASS, result.detail
+    assert route.call_count == 1
 
 
 @respx.mock

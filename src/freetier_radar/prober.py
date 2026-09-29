@@ -424,8 +424,14 @@ def _codex_said(answer: tuple[int, str] | str) -> str:
 async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: dict,
                       attempts: int, backoff: float) -> tuple[int, str] | str:
     """One Codex turn's request and the stream it gets, read to its end or to
-    CODEX_READ_CAP: (status, text), or why there was none. A 5xx and a network
-    error are retried; a 5xx's stream is left unread."""
+    CODEX_READ_CAP: (status, text), or why there was none. A 5xx (its stream
+    left unread), a network error and a turn that breaks off are asked again.
+    Codex CLI asks a broken turn again itself: parse_failed_response makes a
+    failed turn's code Retryable unless it names the code, a failed turn with
+    no error and an incomplete one become Stream errors, and it retries both
+    (openai/codex codex-rs/codex-api/src/sse/responses_error.rs, responses.rs
+    and protocol/src/error.rs, read 2026-09-30) — so one broken turn is not a
+    lane that stopped taking the request."""
     async def turn() -> tuple[int, str]:
         async with client.stream("POST", url, json=codex_probe_body(model),
                                  headers={**headers, "Accept": "text/event-stream"},
@@ -434,11 +440,26 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
             if resp.status_code < 500:
                 async for chunk in resp.aiter_text():
                     text += chunk
-                    if len(text) > CODEX_READ_CAP or any(e in text for e in CODEX_STREAM_ENDS):
+                    if len(text) > CODEX_READ_CAP or _codex_ended(text):
                         break
             return resp.status_code, text
-    answer, last = await _ask(turn, attempts, backoff, status=lambda answer: answer[0])
+
+    def broke_off(answer: tuple[int, str], _pause: float) -> bool:
+        return answer[0] < 300 and any(e in CODEX_BROKEN for e in _codex_events(answer[1]))
+    answer, last = await _ask(turn, attempts, backoff, status=lambda answer: answer[0],
+                              again=broke_off)
     return answer if answer is not None else (last or "did not answer")
+
+
+def _codex_ended(text: str) -> bool:
+    """Whether a stream holds an event that ends it, its line arrived whole.
+    The type comes first in the line and the line runs on for the whole
+    response — Kilo's response.completed is about 8 KB — so a read that stops
+    at the type's chunk keeps half a line no JSON parser reads, and a finished
+    turn reads as one that stopped at its last whole event (one read in four
+    on 2026-09-29)."""
+    return any(at != -1 and "\n" in text[at:]
+               for at in (text.find(end) for end in CODEX_STREAM_ENDS))
 
 
 async def codex_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
@@ -518,16 +539,31 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
                         attempts: int, backoff: float,
                         patient_with_429: bool = False) -> httpx.Response | str:
     """One keyless completion for `model`: the response, or why there was none.
-    A 5xx and a network error are retried; so is a 429 when the caller is
-    patient with one and the vendor names no longer wait than the pause before
-    the next try; every other answer is final."""
-    def waited_out(resp: httpx.Response, pause: float) -> bool:
-        return resp.status_code == 429 and patient_with_429 and _asks_to_wait_at_most(resp, pause)
+    A 5xx and a network error are retried, and so is a 2xx whose body carries
+    a 5xx — OpenRouter's format sends the status line before the first token
+    (see _completion), so an upstream's 503 arrives inside a 200; so is a 429
+    when the caller is patient with one and the vendor names no longer wait
+    than the pause before the next try; every other answer is final."""
+    def again(resp: httpx.Response, pause: float) -> bool:
+        if resp.status_code == 429:
+            return patient_with_429 and _asks_to_wait_at_most(resp, pause)
+        return resp.status_code < 300 and _carried_status(resp) >= 500
     resp, last = await _ask(lambda: client.post(url, json={"model": model, **keyless_probe_body()},
                                                 headers=headers, timeout=TIMEOUT,
                                                 follow_redirects=True),
-                            attempts, backoff, again=waited_out)
+                            attempts, backoff, again=again)
     return resp if resp is not None else (last or "did not answer")
+
+
+def _carried_status(resp: httpx.Response) -> int:
+    """The status an error in a body names — `error.code` where it is a number,
+    as OpenRouter's format gives it — or 0 where the body names none."""
+    try:
+        error = resp.json().get("error")
+    except (ValueError, AttributeError):
+        return 0
+    code = error.get("code") if isinstance(error, dict) else None
+    return code if isinstance(code, int) else 0
 
 
 def _completion(answer: httpx.Response | str) -> dict | None:
