@@ -21,6 +21,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — verified 2026-09-28 · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 - [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) — verified 2026-09-28
 - [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) — verified 2026-09-28 · `fantail`
+- [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/) — verified 2026-09-29
 - [OpenAI Codex CLI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/) — verified 2026-09-28
 - [CodeGPT](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/) — verified 2026-09-28
 

@@ -6414,3 +6414,55 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 81
+- id: minimax-code
+  name: MiniMax Code
+  category: agent-cli
+  url: https://agent.minimax.io/download
+  source_urls:
+  - https://agent.minimax.io/docs/code/account/usage
+  - https://agent.minimax.io/download
+  - https://agent.minimax.io/docs/changelog
+  - https://github.com/MiniMax-AI/minimax-code
+  - https://agent.minimax.io/doc/en/terms-of-service.html
+  - https://agent.minimax.cn/docs/code/account/usage
+  - https://agent.minimaxi.com/docs/cli/quick-start
+  card_required: false
+  offering: MiniMax's coding agent — a desktop app for macOS and Windows, with an
+    open-source CLI beside it — whose daily check-in in the app earns free points
+    to spend on its tasks, coding among them
+  limits: 'The docs: "Daily check-ins earn 400 points", "Check-ins on day 4 and day
+    7 award 1,000 points per day", "A full week of check-ins earns 4,000 points",
+    and "Check-in points can be accumulated and are valid for 30 days from the day
+    they are credited"; points "can be used across MiniMax Code task scenarios, including
+    office work, Coding, deep research". No page says what a point buys: "Billing
+    and quota rules follow the latest product UI". The check-in is the desktop app''s
+    ("Open MiniMax Code and complete the daily check-in to earn points"), with no
+    payment step named before it, and the changelog doubles the points "From September
+    28 through October 7" for "New and existing users". Accounts are Global or mainland
+    China, each on its own site with the same check-in. The CLI, `mcode`, signs in
+    to the same account (`mcode login --region global` for a Global one) and its README
+    asks for "a MiniMax account with available credits or your own compatible model
+    API"; no page says the check-in points reach it. The terms ask users to be "16
+    years of age or older". Read 2026-09-29'
+  free_part: sum
+  models: []
+  border:
+    left_out: []
+    'on': '2026-09-29'
+    source: https://agent.minimax.io/doc/en/terms-of-service.html
+    quote: We make no representation that the Services or its content is accessible
+      or appropriate for use in all jurisdictions
+  probe:
+    type: page-keywords
+    endpoint: https://agent.minimax.io/docs/code/account/usage
+    keywords:
+    - 400 points
+    - valid for 30 days from the day they are credited
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-09-29'
+  last_verified: '2026-09-29'
+  probe_failures: 0
+  provisional: true
+  rank: 54

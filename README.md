@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 84 live offers, 80 need no card, 150 free models, 17 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 85 live offers, 81 need no card, 150 free models, 17 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -17,7 +17,7 @@
 
 > **Machine-verified, not copy-pasted.** A live probe re-reads every row against the vendor's own API or pricing page twice a week; an offer that dies drops to the [Archive](#-archive) on its own, and each date below opens the row's evidence.
 
-🆕 **New this week:** [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/) · [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) · [Baidu Comate](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/) · [Qoder CN](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) · [ZCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) · [Gemini Enterprise Agent Platform express mode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
+🆕 **New this week:** [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/) · [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/) · [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) · [Baidu Comate](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/) · [Qoder CN](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) · [ZCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/) · [Gemini Enterprise Agent Platform express mode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
 
 ## 🚀 Start here
 
@@ -87,10 +87,10 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 📋 The list
 
-<sub>**💳** — the row wants a card on file, 4 of 84, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
+<sub>**💳** — the row wants a card on file, 4 of 85, and no other row asks for one · **👁** — what you send may be used to train models, in the vendor's own words · **🧪** — new, provisional for two weeks of probes · **verified** — the last day a live probe confirmed the offer; it opens the row's page: the quota in the vendor's words, the evidence, the history</sub>
 
 ### 🤖 Coding agents & CLIs
-<sub>**9** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
+<sub>**10** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
 
 - **[opencode](https://opencode.ai)** 👁 — Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) · `big-pickle` · [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/) · [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/)</sub>
 - **[Kilo Code](https://kilo.ai)** 👁 — Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/) · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) · [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) · [+3 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)</sub>
@@ -99,6 +99,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Cline](https://cline.bot)** 👁 — Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)</sub>
 - **[Crush + Charm Hyper](https://hyper.charm.land)** — Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/)</sub>
 - **[Autohand Code](https://www.autohand.ai/code/)** 🧪 — Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, its messages counted per five hours and per week<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) · `fantail`</sub>
+- **[MiniMax Code](https://agent.minimax.io/download)** 🧪 — MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them<br><sub>[verified 2026-09-29](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/)</sub>
 - **[OpenAI Codex CLI](https://learn.chatgpt.com/docs/codex/cli)** — Open-source coding CLI, free by signing in with a $0 ChatGPT Free account; local coding tasks included on all plans<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/)</sub>
 - **[CodeGPT](https://www.codegpt.co)** — VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it<br><sub>[verified 2026-09-28](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/)</sub>
 
@@ -197,6 +198,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-09-29` | ➕ Added **[MiniMax Code](https://agent.minimax.io/download)** | <sub>MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them</sub> |
 | `2026-09-29` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>dropped ling-3.0-flash-fin</sub> |
 | `2026-09-29` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>dropped ling-3.0-flash-fin</sub> |
 | `2026-09-29` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>added glm-5.3, glm-5.3-flash</sub> |
@@ -206,7 +208,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-09-28` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added agnes-2.5-flash, agnes-3.0-flash</sub> |
 | `2026-09-28` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>dropped mistral-nemotron</sub> |
 | `2026-09-27` | ➕ Added **[AtomCode](https://atomcode.atomgit.com/)** | <sub>Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day</sub> |
-| `2026-09-27` | ➕ Added **[Autohand Code](https://www.autohand.ai/code/)** | <sub>Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, its messages counted per five hours and per week</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

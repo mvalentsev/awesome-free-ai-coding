@@ -1394,19 +1394,21 @@ watched:
     reopen_if: >-
       A signup balance or a free tier with a figure on the pricing page.
 
-  - domains: [minimax.io, minimaxi.com]
+  - domains: [platform.minimax.io, api.minimax.io, api-uw.minimax.io,
+              platform.minimaxi.com, api.minimaxi.com, platform.minimax.cn]
     name: MiniMax Open Platform
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-29'
     reason: >-
-      minimax.io/price and platform.minimax.io/docs (read 2026-09-05) price
-      MiniMax M3, M2.7 and M2.5 per token and sell Token Plans from $10 a
-      month; no free tier or signup grant is on any vendor page read, while
-      the third-party guides that credit new accounts with trial credits also
-      say the amount has shifted across promotions and is only visible on the
-      dashboard after activation. An amount the vendor does not print is not a
-      quota this list can carry. The free music APIs (Music-3.0-free,
-      Music-2.6-free, music-cover-free) were discontinued from 2026-08-20 by
-      the vendor's own notice.
+      The API prices every model — MiniMax-M3 at $0.30 / $1.20 per million
+      tokens after a "Permanent 50% off", M2.7 and the older M2 line at $0.3 /
+      $1.2 — and sells Token Plans from "$22 /month" and Credits at "1,000
+      credits = $1" (platform.minimax.io/docs/guides/pricing-paygo and
+      pricing-token-plan, read 2026-09-29). One tutorial there says "New users
+      without subscription can try the free quota from Pay-as-you-go", and the
+      rate-limits page speaks of a free tier, but no page states the quota's
+      size or how it is reached; an amount the vendor does not print is not a
+      quota this list can carry. MiniMax Code, the coding agent on
+      agent.minimax.io, is a row of its own.
     reopen_if: >-
       A signup grant or free lane with a figure on a vendor page.
 

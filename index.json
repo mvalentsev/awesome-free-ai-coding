@@ -8318,6 +8318,52 @@
       "rank": 81,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/"
+    },
+    {
+      "id": "minimax-code",
+      "name": "MiniMax Code",
+      "category": "agent-cli",
+      "url": "https://agent.minimax.io/download",
+      "source_urls": [
+        "https://agent.minimax.io/docs/code/account/usage",
+        "https://agent.minimax.io/download",
+        "https://agent.minimax.io/docs/changelog",
+        "https://github.com/MiniMax-AI/minimax-code",
+        "https://agent.minimax.io/doc/en/terms-of-service.html",
+        "https://agent.minimax.cn/docs/code/account/usage",
+        "https://agent.minimaxi.com/docs/cli/quick-start"
+      ],
+      "card_required": false,
+      "offering": "MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them",
+      "limits": "The docs: \"Daily check-ins earn 400 points\", \"Check-ins on day 4 and day 7 award 1,000 points per day\", \"A full week of check-ins earns 4,000 points\", and \"Check-in points can be accumulated and are valid for 30 days from the day they are credited\"; points \"can be used across MiniMax Code task scenarios, including office work, Coding, deep research\". No page says what a point buys: \"Billing and quota rules follow the latest product UI\". The check-in is the desktop app's (\"Open MiniMax Code and complete the daily check-in to earn points\"), with no payment step named before it, and the changelog doubles the points \"From September 28 through October 7\" for \"New and existing users\". Accounts are Global or mainland China, each on its own site with the same check-in. The CLI, `mcode`, signs in to the same account (`mcode login --region global` for a Global one) and its README asks for \"a MiniMax account with available credits or your own compatible model API\"; no page says the check-in points reach it. The terms ask users to be \"16 years of age or older\". Read 2026-09-29",
+      "free_part": "sum",
+      "models": [],
+      "border": {
+        "left_out": [],
+        "on": "2026-09-29",
+        "source": "https://agent.minimax.io/doc/en/terms-of-service.html",
+        "quote": "We make no representation that the Services or its content is accessible or appropriate for use in all jurisdictions",
+        "read": "page",
+        "also_named": []
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://agent.minimax.io/docs/code/account/usage",
+        "keywords": [
+          "400 points",
+          "valid for 30 days from the day they are credited"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-09-29",
+      "last_verified": "2026-09-29",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 54,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/"
     }
   ],
   "countries": [
@@ -11315,12 +11361,16 @@
     },
     {
       "domains": [
-        "minimax.io",
-        "minimaxi.com"
+        "platform.minimax.io",
+        "api.minimax.io",
+        "api-uw.minimax.io",
+        "platform.minimaxi.com",
+        "api.minimaxi.com",
+        "platform.minimax.cn"
       ],
       "name": "MiniMax Open Platform",
-      "checked_on": "2026-09-05",
-      "reason": "minimax.io/price and platform.minimax.io/docs (read 2026-09-05) price MiniMax M3, M2.7 and M2.5 per token and sell Token Plans from $10 a month; no free tier or signup grant is on any vendor page read, while the third-party guides that credit new accounts with trial credits also say the amount has shifted across promotions and is only visible on the dashboard after activation. An amount the vendor does not print is not a quota this list can carry. The free music APIs (Music-3.0-free, Music-2.6-free, music-cover-free) were discontinued from 2026-08-20 by the vendor's own notice.",
+      "checked_on": "2026-09-29",
+      "reason": "The API prices every model — MiniMax-M3 at $0.30 / $1.20 per million tokens after a \"Permanent 50% off\", M2.7 and the older M2 line at $0.3 / $1.2 — and sells Token Plans from \"$22 /month\" and Credits at \"1,000 credits = $1\" (platform.minimax.io/docs/guides/pricing-paygo and pricing-token-plan, read 2026-09-29). One tutorial there says \"New users without subscription can try the free quota from Pay-as-you-go\", and the rate-limits page speaks of a free tier, but no page states the quota's size or how it is reached; an amount the vendor does not print is not a quota this list can carry. MiniMax Code, the coding agent on agent.minimax.io, is a row of its own.",
       "reopen_if": "A signup grant or free lane with a figure on a vendor page.",
       "current": true
     },

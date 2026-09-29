@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-29T06:01:47Z</updated>
+  <updated>2026-09-29T20:33:20Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/minimax-code/20260929T203320Z</id>
+    <title>Added: MiniMax Code</title>
+    <link rel="alternate" href="https://agent.minimax.io/download"/>
+    <updated>2026-09-29T20:33:20Z</updated>
+    <summary type="text">MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20260929T060147Z</id>
     <title>Free models changed: Kilo Code</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code · free models: nemotron-3-ultra, gemma-4, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260924T070650Z</id>
-    <title>Free models changed: Requesty</title>
-    <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-09-24T07:06:50Z</updated>
-    <summary type="text">added laguna-m.1, laguna-xs.2, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni · free models: nemotron-3-ultra, nemotron-3-super, gemma-4, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, laguna-xs.2, laguna-m.1, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

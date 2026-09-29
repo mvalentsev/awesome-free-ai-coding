@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Free LLM models by name: who serves each one free, verified 2026-09-24 or later'
-description: 150 model families the list's 84 live rows serve free, and every row that serves each one; 85 of them have a page of their own with the limits in the vendor's words and the ids to call.
+description: 150 model families the list's 85 live rows serve free, and every row that serves each one; 85 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
 last_modified_at: 2026-09-29
 ---
