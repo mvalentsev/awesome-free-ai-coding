@@ -3,15 +3,16 @@ layout: default
 title: Services checked and not listed on the free AI coding list
 description: Every service this list checked and did not list, with the reason on the date it was read and what would change the answer.
 permalink: /providers/checked/
-last_modified_at: 2026-09-27
+last_modified_at: 2026-09-29
 ---
 
 {% raw %}
 
 # Checked and not listed
 
-243 services whose free tier [the list](https://mvalentsev.github.io/awesome-free-ai-coding/) could not find or could not verify on the date checked. Nothing here is disqualified — domains rejected for cause are in [`blocklist.yaml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/blocklist.yaml) — and each verdict expires after 90 days and is asked again. The records live in [`watchlist.yaml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/watchlist.yaml).
+244 services whose free tier [the list](https://mvalentsev.github.io/awesome-free-ai-coding/) could not find or could not verify on the date checked. Nothing here is disqualified — domains rejected for cause are in [`blocklist.yaml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/blocklist.yaml) — and each verdict expires after 90 days and is asked again. The records live in [`watchlist.yaml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/watchlist.yaml).
 
+- **ZeroTwo**, checked `2026-09-29` — An AI workspace over other vendors' models whose Free plan is chat — "15 messages per day" with a "Limited model selection", "no card required" (zerotwo.ai/pricing, read 2026-09-29). Its coding agent, ZeroCode, a desktop agent for local repositories, is "Not included" on Free in the plan table, which gives it from Plus at $14.99 a month (the docs, from Pro); the code-agent page's "Free to try" meets that table, and the table is the specific statement. Chat messages in a workspace are not model use a coding agent or an endpoint can spend. <sub>**Reopens if:** ZeroCode comes with the Free plan, or a free allowance a coding agent or an endpoint can spend.</sub>
 - **Atlas Cloud**, checked `2026-09-27` — Its get-started guide asks for money first — "The minimum top-up amount is $25" (atlascloud.ai/docs/en/get-started, read 2026-09-27) — while its model pages say "New users receive free credits to explore the platform and test models", of no stated size and with no stated way to reach them before paying: the SiliconFlow record. <sub>**Reopens if:** A page states the free credit's size and that it is spent before any payment step.</sub>
 - **Codebuff**, checked `2026-09-27` — Paid only: subscriptions or "Pay just 1¢ per credit" on codebuff.com/pricing (read 2026-09-27). The same company's free product is Freebuff, a row. <sub>**Reopens if:** codebuff.com publishes a free allowance of its own.</sub>
 - **CodeGeeX**, checked `2026-09-27` — Zhipu's IDE plugin says "CodeGeeX is available for free to all developers as a plugin product on your IDEs" in its VS Code and JetBrains marketplace descriptions, but its last VS Code release is 2025-09-01 and its last JetBrains one 2025-12-11, codegeex.cn serves a script shell, and nothing a probe reads would change the day the free service stopped answering — the descriptions are a year old (read 2026-09-27). Zhipu's current coding agent is the ZCode row. <sub>**Reopens if:** A release after 2025-12-11, or a page the client reads that states the free plugin plan today.</sub>

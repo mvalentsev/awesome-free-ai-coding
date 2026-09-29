@@ -12964,6 +12964,16 @@
       "reason": "Free and non-commercial (\"Free Edition accounts may not be used for commercial purposes\"), in a \"serverless-only, quota-limited environment\" where you can \"experiment with foundation models\", but its limits page names no model and no quota for them — \"Certain models not available\" — and the endpoint is each workspace's own (docs.databricks.com/aws/en/getting-started/free-edition and free-edition-limitations, read 2026-09-27). A reader cannot tell what they would be calling.",
       "reopen_if": "Databricks documents which foundation models a Free Edition workspace can query and at what limits.",
       "current": true
+    },
+    {
+      "domains": [
+        "zerotwo.ai"
+      ],
+      "name": "ZeroTwo",
+      "checked_on": "2026-09-29",
+      "reason": "An AI workspace over other vendors' models whose Free plan is chat — \"15 messages per day\" with a \"Limited model selection\", \"no card required\" (zerotwo.ai/pricing, read 2026-09-29). Its coding agent, ZeroCode, a desktop agent for local repositories, is \"Not included\" on Free in the plan table, which gives it from Plus at $14.99 a month (the docs, from Pro); the code-agent page's \"Free to try\" meets that table, and the table is the specific statement. Chat messages in a workspace are not model use a coding agent or an endpoint can spend.",
+      "reopen_if": "ZeroCode comes with the Free plan, or a free allowance a coding agent or an endpoint can spend.",
+      "current": true
     }
   ]
 }
