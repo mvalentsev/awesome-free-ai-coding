@@ -914,6 +914,28 @@ async def test_an_entity_in_the_page_source_reads_as_its_character():
 
 
 @respx.mock
+async def test_a_comment_in_the_page_source_splits_no_sentence():
+    """React writes an empty comment on each side of a value it prints into a
+    sentence; a reader sees one sentence and so does the keyword quoted from it
+    (Experiential Labs' pricing, 2026-09-29). What a comment holds is no more on
+    the page than a script is."""
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(
+        200, text="<p>The hosted gateway with <!-- -->500<!-- --> credits a month once you verify "
+                  "a card, on qwen3-coder with no credit card</p><!-- free tier ended -->"))
+    entry = page_entry()
+    entry.probe.keywords = ["500 credits a month once you verify a card"]
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.PASS, result.detail
+
+    entry.probe.keywords = ["free tier ended"]
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry, backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert result.detail.startswith("missing keywords: free tier ended (in the page's machinery only)")
+
+
+@respx.mock
 async def test_a_keyword_the_page_source_wraps_across_lines_still_matches():
     """Any run of whitespace in the source reads as one space, as a browser renders
     it, for keywords and dead markers alike — the way freetier-quotes reads it."""

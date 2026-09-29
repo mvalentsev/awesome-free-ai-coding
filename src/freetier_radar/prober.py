@@ -1508,6 +1508,7 @@ def _as_read(text: str) -> str:
 TAG = re.compile(r"<[^>]+>")
 _SCRIPT_OR_STYLE = re.compile(
     r"<script\b([^>]*)>.*?</script\s*>|<style\b[^>]*>.*?</style\s*>", re.S | re.I)
+_COMMENT = re.compile(r"<!--.*?-->", re.S)
 
 
 def _rendered(text: str) -> str:
@@ -1523,11 +1524,17 @@ def _rendered(text: str) -> str:
     is the vendor answering a question — Freebuff prints most of its FAQ answers
     only there — so stripping script tags by their name alone would take a real
     page's only evidence with it.
+
+    Comments go too, and leave nothing behind: React writes an empty one on each
+    side of a value it prints into a sentence, which a reader reads straight
+    through ("with <!-- -->500<!-- --> credits a month", Experiential Labs,
+    2026-09-29). They go after the scripts, so a script that carries the
+    characters "<!--" cannot take the text that follows it along.
     """
     def cut(match: re.Match[str]) -> str:
         attrs = (match.group(1) or "").lower()
         return match.group(0) if "ld+json" in attrs else " "
-    return _SCRIPT_OR_STYLE.sub(cut, text)
+    return _COMMENT.sub("", _SCRIPT_OR_STYLE.sub(cut, text))
 
 
 def _check_page_keywords(resp: httpx.Response, entry: Entry) -> str | None:
