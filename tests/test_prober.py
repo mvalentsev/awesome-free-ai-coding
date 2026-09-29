@@ -1762,6 +1762,25 @@ async def test_unreachable_after_retries_is_inconclusive():
     assert route.call_count == 2
 
 
+@respx.mock
+async def test_the_pause_before_a_try_grows_with_the_tries_made(monkeypatch):
+    """Every call the probe makes waits the same way: nothing before the first
+    try, then the backoff times the tries already made — and a 5xx that never
+    clears is named in the verdict."""
+    import freetier_radar.prober as prober
+    pauses: list[float] = []
+
+    async def pause(seconds: float) -> None:
+        pauses.append(seconds)
+    monkeypatch.setattr(prober.asyncio, "sleep", pause)
+    route = respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(503))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, page_entry(), attempts=3, backoff=2)
+    assert result.status is ProbeStatus.INCONCLUSIVE
+    assert result.detail == "unreachable after 3 attempts: HTTP 503"
+    assert route.call_count == 3 and pauses == [2, 4]
+
+
 def test_apply_results():
     ok, failing, blocked = api_entry(), page_entry(), page_entry()
     blocked.id = "blocked"
@@ -1937,6 +1956,27 @@ async def test_an_anthropic_route_that_is_gone_is_a_note_not_a_failure():
         result = await probe_entry(client, anthropic_entry(), backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
     assert "anthropic route gone" in result.detail and "HTTP 404" in result.detail
+
+
+@respx.mock
+async def test_an_anthropic_route_is_asked_again_after_a_5xx():
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    route = respx.post("https://x.ai/anthropic/v1/messages").mock(
+        side_effect=[httpx.Response(503), httpx.Response(404)])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, anthropic_entry(), backoff=0)
+    assert "anthropic route gone" in result.detail and route.call_count == 2
+
+
+@respx.mock
+async def test_an_anthropic_route_whose_5xx_never_clears_says_which():
+    respx.get("https://x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    route = respx.post("https://x.ai/anthropic/v1/messages").mock(return_value=httpx.Response(503))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, anthropic_entry(), backoff=0, attempts=2)
+    assert result.status is ProbeStatus.STALE_IDS and route.call_count == 2
+    assert result.detail == ("anthropic route could not be checked: "
+                             "POST https://x.ai/anthropic/v1/messages HTTP 503")
 
 
 @respx.mock
@@ -2268,6 +2308,20 @@ async def test_the_next_id_is_asked_only_after_the_pause_the_probe_takes_between
         result = await probe_entry(client, keyless_entry(), backoff=1.5)
     assert result.status is ProbeStatus.STALE_IDS and "put qwen3-coder-30b first" in result.detail
     assert pauses == [1.5]
+
+
+@respx.mock
+async def test_a_keyless_call_is_asked_again_after_a_5xx():
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
+    call = respx.post("https://open.x.ai/v1/chat/completions").mock(
+        side_effect=[httpx.Response(503), httpx.Response(200, json=completion("gpt-oss-120b")),
+                     httpx.Response(200, json=completion("gpt-oss-120b"))])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+    assert [(json.loads(c.request.content)["model"], "authorization" in c.request.headers)
+            for c in call.calls] == [("gpt-oss-120b", False)] * 2 + [("gpt-oss-120b", True)]
 
 
 @respx.mock

@@ -338,6 +338,27 @@ async def test_a_keyed_route_that_cannot_be_checked_is_said_so():
     assert "could not be checked" in result.detail
 
 
+@respx.mock
+async def test_a_keyed_route_is_asked_again_after_a_5xx():
+    respx.get("https://gate.x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    route = respx.post("https://gate.x.ai/v1/responses").mock(
+        side_effect=[httpx.Response(502), httpx.Response(404)])
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyed(codex=KEYED_CODEX), backoff=0)
+    assert "codex route gone" in result.detail and route.call_count == 2
+
+
+@respx.mock
+async def test_a_keyed_route_whose_5xx_never_clears_says_which():
+    respx.get("https://gate.x.ai/pricing").mock(return_value=httpx.Response(200, text="qwen3-coder"))
+    route = respx.post("https://gate.x.ai/v1/responses").mock(return_value=httpx.Response(502))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyed(codex=KEYED_CODEX), backoff=0, attempts=2)
+    assert result.status is ProbeStatus.STALE_IDS and route.call_count == 2
+    assert result.detail == ("codex route could not be checked: "
+                             "POST https://gate.x.ai/v1/responses HTTP 502")
+
+
 def _direct(**over):
     return make(id=over.pop("id", "kilo"), name=over.pop("name", "Kilo"), rank=over.pop("rank", 1),
                 models=[{"family": "gpt-oss"}],

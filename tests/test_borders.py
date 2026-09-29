@@ -284,6 +284,26 @@ async def test_a_border_page_that_cannot_be_read_is_said_so():
 
 
 @respx.mock
+async def test_a_border_page_is_asked_again_after_a_5xx():
+    respx.get(PAGE).mock(return_value=httpx.Response(200, text="x-mini-2, no credit card"))
+    regions = respx.get(REGIONS).mock(
+        side_effect=[httpx.Response(503), httpx.Response(200, text="United States")])
+    result = await verdict(probed(served=["US"]))
+    assert result.status is ProbeStatus.PASS and regions.call_count == 2
+
+
+@respx.mock
+async def test_a_border_page_whose_5xx_never_clears_is_said_so_as_the_probe_says_it():
+    """A second page's 5xx that outlasts every try reads as the probe's own
+    page's does: unreachable, and the last status."""
+    respx.get(PAGE).mock(return_value=httpx.Response(200, text="x-mini-2, no credit card"))
+    respx.get(REGIONS).mock(return_value=httpx.Response(503))
+    result = await verdict(probed(served=["US"]), attempts=2)
+    assert result.detail == (f"border could not be checked against {REGIONS}: "
+                             "unreachable after 2 attempts: HTTP 503")
+
+
+@respx.mock
 async def test_a_moved_border_and_a_moved_data_use_sentence_are_both_reported():
     respx.get(PAGE).mock(return_value=httpx.Response(200, text="x-mini-2, no credit card"))
     respx.get(REGIONS).mock(return_value=httpx.Response(200, text="Canada"))

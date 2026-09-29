@@ -6,6 +6,7 @@ import html
 import json
 import re
 import uuid
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from enum import Enum
@@ -174,33 +175,51 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
     return ProbeResult(ProbeStatus.FAIL, detail)
 
 
+async def _ask[A](send: Callable[[], Awaitable[A]], attempts: int, backoff: float,
+                  status: Callable[[A], int] = lambda answer: answer.status_code,
+                  again: Callable[[A, float], bool] | None = None) -> tuple[A | None, str]:
+    """The first answer `send` gets that is the caller's to read, or None and
+    why no try got one. Every call the probe makes is patient the same way: a
+    network error and a 5xx are asked again after a pause of `backoff` times
+    the tries already made, and so is an answer `again` finds worth the next
+    pause (a keyless lane's momentary 429); anything else — a 2xx, a 401, a
+    404 — is an answer."""
+    last = ""
+    for i in range(attempts):
+        if i:
+            await asyncio.sleep(backoff * i)
+        try:
+            answer = await send()
+        except httpx.HTTPError as exc:
+            last = f"network error: {exc}"
+            continue
+        if status(answer) >= 500:
+            last = f"HTTP {status(answer)}"
+            continue
+        if again is not None and i + 1 < attempts and again(answer, backoff * (i + 1)):
+            continue
+        return answer, ""
+    return None, last
+
+
 async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
                 named: bool = False) -> tuple[httpx.Response | None, ProbeResult | None]:
     """The page at `url`, or the verdict that reading it already is: a 401, 403
     or 429 is a wall rather than an answer, a 5xx or a network error is asked
     again, and any other 4xx is the page gone. `named` puts the url in the
     verdict, for a page the probe reached through another one."""
+    resp, last = await _ask(lambda: client.get(url, timeout=TIMEOUT, follow_redirects=True),
+                            attempts, backoff)
+    if resp is None:
+        where = f"{url} " if named else ""
+        return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
+                                 f"{where}unreachable after {attempts} attempts: {last}")
     said = f"{url} answered " if named else ""
-    last = ""
-    for i in range(attempts):
-        if i:
-            await asyncio.sleep(backoff * i)
-        try:
-            resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
-        except httpx.HTTPError as exc:
-            last = f"network error: {exc}"
-            continue
-        if resp.status_code in (401, 403, 429):
-            return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: {said}HTTP {resp.status_code}")
-        if resp.status_code >= 500:
-            last = f"HTTP {resp.status_code}"
-            continue
-        if resp.status_code >= 400:
-            return None, ProbeResult(ProbeStatus.FAIL, f"page gone: {said}HTTP {resp.status_code}")
-        return resp, None
-    where = f"{url} " if named else ""
-    return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
-                             f"{where}unreachable after {attempts} attempts: {last}")
+    if resp.status_code in (401, 403, 429):
+        return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: {said}HTTP {resp.status_code}")
+    if resp.status_code >= 400:
+        return None, ProbeResult(ProbeStatus.FAIL, f"page gone: {said}HTTP {resp.status_code}")
+    return resp, None
 
 
 def followed_url(index: object, follow: Follow) -> str | None:
@@ -314,24 +333,15 @@ async def anthropic_route_missing(client: httpx.AsyncClient, entry: Entry, attem
     # a route gone.
     body = ({**ANTHROPIC_PROBE_BODY, "model": entry.api.model_ids[0]}
             if entry.api.model_ids else ANTHROPIC_PROBE_BODY)
-    last = ""
-    for i in range(attempts):
-        if i:
-            await asyncio.sleep(backoff * i)
-        try:
-            resp = await client.post(url, json=body,
-                                     headers={"anthropic-version": "2023-06-01"},
-                                     timeout=TIMEOUT, follow_redirects=True)
-        except httpx.HTTPError as exc:
-            last = f"network error: {exc}"
-            continue
-        if resp.status_code >= 500:
-            last = f"HTTP {resp.status_code}"
-            continue
-        if resp.status_code in ROUTE_GONE:
-            return f"anthropic route gone: POST {url} answered HTTP {resp.status_code}"
-        return None
-    return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
+    resp, last = await _ask(lambda: client.post(url, json=body,
+                                                headers={"anthropic-version": "2023-06-01"},
+                                                timeout=TIMEOUT, follow_redirects=True),
+                            attempts, backoff)
+    if resp is None:
+        return f"anthropic route could not be checked: POST {url} {last or 'did not answer'}"
+    if resp.status_code in ROUTE_GONE:
+        return f"anthropic route gone: POST {url} answered HTTP {resp.status_code}"
+    return None
 
 
 # The request Codex CLI sends a provider under this list's profiles (captured
@@ -414,27 +424,20 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
                       attempts: int, backoff: float) -> tuple[int, str] | str:
     """One Codex turn's request and the stream it gets, read to its end or to
     CODEX_READ_CAP: (status, text), or why there was none. A 5xx and a network
-    error are retried."""
-    last = ""
-    for i in range(attempts):
-        if i:
-            await asyncio.sleep(backoff * i)
-        try:
-            async with client.stream("POST", url, json=codex_probe_body(model),
-                                     headers={**headers, "Accept": "text/event-stream"},
-                                     timeout=TIMEOUT, follow_redirects=True) as resp:
-                if resp.status_code >= 500:
-                    last = f"HTTP {resp.status_code}"
-                    continue
-                text = ""
+    error are retried; a 5xx's stream is left unread."""
+    async def turn() -> tuple[int, str]:
+        async with client.stream("POST", url, json=codex_probe_body(model),
+                                 headers={**headers, "Accept": "text/event-stream"},
+                                 timeout=TIMEOUT, follow_redirects=True) as resp:
+            text = ""
+            if resp.status_code < 500:
                 async for chunk in resp.aiter_text():
                     text += chunk
                     if len(text) > CODEX_READ_CAP or any(e in text for e in CODEX_STREAM_ENDS):
                         break
-                return resp.status_code, text
-        except httpx.HTTPError as exc:
-            last = f"network error: {exc}"
-    return last or "did not answer"
+            return resp.status_code, text
+    answer, last = await _ask(turn, attempts, backoff, status=lambda answer: answer[0])
+    return answer if answer is not None else (last or "did not answer")
 
 
 async def codex_route_missing(client: httpx.AsyncClient, entry: Entry, attempts: int,
@@ -517,24 +520,13 @@ async def _keyless_call(client: httpx.AsyncClient, url: str, model: str, headers
     A 5xx and a network error are retried; so is a 429 when the caller is
     patient with one and the vendor names no longer wait than the pause before
     the next try; every other answer is final."""
-    last = ""
-    for i in range(attempts):
-        if i:
-            await asyncio.sleep(backoff * i)
-        try:
-            resp = await client.post(url, json={"model": model, **keyless_probe_body()},
-                                     headers=headers, timeout=TIMEOUT, follow_redirects=True)
-        except httpx.HTTPError as exc:
-            last = f"network error: {exc}"
-            continue
-        if resp.status_code >= 500:
-            last = f"HTTP {resp.status_code}"
-            continue
-        if (resp.status_code == 429 and patient_with_429 and i + 1 < attempts
-                and _asks_to_wait_at_most(resp, backoff * (i + 1))):
-            continue
-        return resp
-    return last or "did not answer"
+    def waited_out(resp: httpx.Response, pause: float) -> bool:
+        return resp.status_code == 429 and patient_with_429 and _asks_to_wait_at_most(resp, pause)
+    resp, last = await _ask(lambda: client.post(url, json={"model": model, **keyless_probe_body()},
+                                                headers=headers, timeout=TIMEOUT,
+                                                follow_redirects=True),
+                            attempts, backoff, again=waited_out)
+    return resp if resp is not None else (last or "did not answer")
 
 
 def _completion(answer: httpx.Response | str) -> dict | None:
@@ -980,22 +972,13 @@ async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
     """A second page a row's checks read, or why it could not be read, with the
     patience the probe gives its own endpoint: a 5xx or a network error is
     retried, and any other answer but a 200 is reported."""
-    last = ""
-    for i in range(attempts):
-        if i:
-            await asyncio.sleep(backoff * i)
-        try:
-            resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
-        except httpx.HTTPError as exc:
-            last = f"network error: {exc}"
-            continue
-        if resp.status_code >= 500:
-            last = f"answered HTTP {resp.status_code}"
-            continue
-        if resp.status_code != 200:
-            return None, f"answered HTTP {resp.status_code}"
-        return resp, ""
-    return None, f"unreachable after {attempts} attempts: {last}"
+    resp, last = await _ask(lambda: client.get(url, timeout=TIMEOUT, follow_redirects=True),
+                            attempts, backoff)
+    if resp is None:
+        return None, f"unreachable after {attempts} attempts: {last}"
+    if resp.status_code != 200:
+        return None, f"answered HTTP {resp.status_code}"
+    return resp, ""
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,
