@@ -813,8 +813,8 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
         # sections, in rank order.
         "claude_code": [_pick(e) for e in ranked
                         if e.api and e.api.anthropic_base_url][:README_PICKS],
-        # Codex's answer: a lane that takes the request Codex sends, called
-        # directly with the row's own profile, in rank order across sections.
+        # Codex's answer: a lane Codex calls directly with the row's own
+        # profile (api.codex), in rank order across sections.
         "codex": [{**_pick(e), "command": _codex_command(e)}
                   for e in ranked if codex_ready(e)][:README_PICKS],
     }
@@ -1838,12 +1838,12 @@ def _codex_settings() -> list[str]:
 
 
 def codex_ready(e: Entry) -> bool:
-    """Whether a row's lane gets a Codex profile of its own: it takes the request
-    Codex sends (`api.responses_api`), and a profile written once can carry
-    every ask it makes — Codex names itself in its own User-Agent, and a
-    profile's headers (`http_headers`) are fixed values, so a lane that wants a
-    new id per conversation (`_static_blockers`) gets none."""
-    return bool(e.api and e.api.base_url and e.api.responses_api and not _static_blockers(e))
+    """Whether a row's lane gets a Codex profile of its own: Codex calls it
+    directly (`api.codex`), and a profile written once can carry every ask it
+    makes — Codex names itself in its own User-Agent, and a profile's headers
+    (`http_headers`) are fixed values, so a lane that wants a new id per
+    conversation (`_static_blockers`) gets none."""
+    return bool(e.api and e.api.base_url and e.api.codex and not _static_blockers(e))
 
 
 def codex_profile_path(e: Entry) -> str:
@@ -1856,38 +1856,64 @@ def _codex_direct(entries: list[Entry], today: date) -> list[Entry]:
                   key=_by_rank)
 
 
+def codex_unset_words(var: str) -> str:
+    """What a keyed profile says Codex does while its key is missing — measured
+    with Codex 0.134.0 and 0.158.0 on 2026-09-29 and checked every week by
+    conformance.py: an env_key that is unset or empty stops the turn with
+    "Missing environment variable" before any request, the reader's own
+    OPENAI_API_KEY and auth.json beside it or not."""
+    return (f"With ${var} unset or empty, Codex stops before it sends anything, so no "
+            "other key of yours reaches the lane.")
+
+
 def build_codex_profile(e: Entry) -> str:
     """A row's own Codex profile: its lane, called directly, with the settings
     every profile here carries. The model is the first id the row lists, the
     one the run calls; the key comes from the variable free-llm.env.example
     exports, and a keyless lane is given none, so Codex sends no Authorization
-    header, which a lane that refuses a bearer needs."""
+    header, which a lane that refuses a bearer needs.
+
+    The header says what the profile rests on: a lane without an account took
+    the request Codex sends, and every run sends it again; a keyed lane is one
+    whose vendor's own page sets Codex up on it, which every run reads back
+    beside asking the route — a turn there needs a key the run does not have."""
     api = e.api
-    key = ("No key: the lane is anonymous." if api.key_kind == "none" else
-           f"The key comes from ${env_var(e.id)}, the variable free-llm.env.example exports"
-           + (f"; the vendor prints one for anyone at {api.key_url}." if api.key_kind == "public"
-              else f"; get one at {api.key_url}." if api.key_url else "."))
+    var = env_var(e.id)
+    if api.key_kind == "own":
+        rests = (f"{e.name}'s own page sets Codex CLI up on this lane, {api.codex.source}, and "
+                 "every run of the list reads it back and asks the lane's Responses route "
+                 "again; only a key can run a turn there.")
+        key = (f"The key comes from ${var}, the variable free-llm.env.example exports"
+               + (f"; get one at {api.key_url}. " if api.key_url else ". ")
+               + codex_unset_words(var))
+    else:
+        rests = "The lane takes the request Codex sends, and every run of the list sends it again."
+        key = ("No key: the lane is anonymous." if api.key_kind == "none" else
+               f"The key comes from ${var}, the variable free-llm.env.example exports; the "
+               f"vendor prints one for anyone at {api.key_url}.")
+    model = ("The model is the first free id the row lists; the quota and every free id are "
+             if e.free_part is FreePart.MODELS else
+             "The model is the first id the row lists; what the free part covers and every id "
+             "are ")
     lines = [
         f"# Codex CLI on {e.name}'s free lane — generated from registry.yaml, do not",
         "# edit by hand.",
-        *_comment("The lane takes the request Codex sends, and every run of the list sends it "
-                  f"again. Needs Codex CLI {CODEX_SINCE} or later; the file goes where Codex "
+        *_comment(f"{rests} Needs Codex CLI {CODEX_SINCE} or later; the file goes where Codex "
                   "keeps its config, ~/.codex unless CODEX_HOME says otherwise:"),
         "#",
         f"#   cp {codex_profile_path(e)} ~/.codex/",
         f"#   {_codex_command(e)}",
         "#",
-        *_comment(f"{key} The model is the first free id the row lists; the quota and "
-                  f"every free id are on the row's page, {provider_page_url(e.id)} — codex -p "
+        *_comment(f"{key} {model}on the row's page, {provider_page_url(e.id)} — codex -p "
                   f"{e.id} -m <id> takes another."),
         f"model = {json.dumps(api.model_ids[0])}",
         f"model_provider = {json.dumps(e.id)}",
         *_codex_settings(),
         f"[model_providers.{e.id}]",
         f"name = {json.dumps(e.name)}",
-        f"base_url = {json.dumps(api.base_url)}",
+        f"base_url = {json.dumps(api.codex.base_url)}",
         'wire_api = "responses"',
-        *([f"env_key = {json.dumps(env_var(e.id))}"] if api.key_kind != "none" else []),
+        *([f"env_key = {json.dumps(var)}"] if api.key_kind != "none" else []),
     ]
     return "\n".join(lines) + "\n"
 
@@ -2105,8 +2131,14 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
                    f"`{api.anthropic_base_url}`")
     if codex_ready(e):
         path = codex_profile_path(e)
-        out.append(f"- Codex CLI: [`{path}`]({REPO_URL}/blob/main/{path}) — copy it to "
-                   f"`~/.codex/`, then `{_codex_command(e)}`")
+        line = (f"- Codex CLI: [`{path}`]({REPO_URL}/blob/main/{path}) — copy it to "
+                f"`~/.codex/`, then `{_codex_command(e)}`")
+        if api.codex.base_url != api.base_url.rstrip("/"):
+            line += f"; Codex's base is `{api.codex.base_url}`"
+        if api.codex.source:
+            line += (f"; set up on the lane by the vendor's own page, <{api.codex.source}>: "
+                     f"\"{api.codex.quote}\"")
+        out.append(line)
     if ids:
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
     elif api.no_ids:

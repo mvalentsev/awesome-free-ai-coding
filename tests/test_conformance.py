@@ -6,8 +6,8 @@ from pathlib import Path
 
 import yaml
 
-from freetier_radar.conformance import (SENTENCES, Finding, _chat_answer, as_run, bare,
-                                        comment_text, floors, lanes, listening,
+from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _chat_answer, as_run, bare,
+                                        comment_text, floors, keyed_profile, lanes, listening,
                                         missing_sentences, point_lanes, printed_profile,
                                         printed_run, shape_differences, summary)
 from freetier_radar.prober import codex_probe_body
@@ -27,16 +27,70 @@ def test_a_sentence_wrapped_across_comment_lines_reads_as_one():
     assert "The proxy listens on 0.0.0.0 unless --host says otherwise." in comment_text(text)
 
 
-def test_a_reworded_sentence_is_reported(tmp_path):
-    for s in SENTENCES.values():
-        target = tmp_path / s.file
+def _copied(tmp_path: Path) -> Path:
+    """The files the sentences are read from, as committed."""
+    for rel in ("configs/litellm.yaml", ENV_EXAMPLE, "CONTRIBUTING.md",
+                *(p.relative_to(ROOT).as_posix()
+                  for p in (ROOT / "configs/codex").glob("*.config.toml"))):
+        target = tmp_path / rel
         target.parent.mkdir(parents=True, exist_ok=True)
-        if not target.exists():
-            target.write_text((ROOT / s.file).read_text(encoding="utf-8"), encoding="utf-8")
-    profile = tmp_path / "configs/codex/litellm.config.toml"
+        target.write_text((ROOT / rel).read_text(encoding="utf-8"), encoding="utf-8")
+    return tmp_path
+
+
+def test_a_reworded_sentence_is_reported(tmp_path):
+    root = _copied(tmp_path)
+    profile = root / "configs/codex/litellm.config.toml"
     profile.write_text(profile.read_text().replace("since every Codex turn offers them",
                                                    "since Codex offers them"))
-    assert missing_sentences(tmp_path) == ["tools"]
+    assert missing_sentences(root) == ["tools"]
+
+
+def _keyed(root: Path, name: str = "gate", var: str = "GATE_API_KEY", filled: str = "") -> Path:
+    """A keyed lane's profile beside the committed ones, and its variable in the
+    env example — empty for the reader's own key, filled for one the vendor
+    prints for anyone."""
+    path = root / "configs/codex" / f"{name}.config.toml"
+    path.write_text(
+        f"# Gate's own page sets Codex CLI up on this lane.\n"
+        f"#   cp configs/codex/{name}.config.toml ~/.codex/\n#   codex -p {name}\n#\n"
+        f"# The key comes from ${var}, the variable free-llm.env.example exports; get one at\n"
+        f"# https://gate.example/keys. With ${var} unset or empty, Codex stops before it sends\n"
+        f"# anything, so no other key of yours reaches the lane.\n"
+        f'[model_providers.{name}]\nbase_url = "https://gate.example/v1"\n'
+        f'wire_api = "responses"\nenv_key = "{var}"\n', encoding="utf-8")
+    env = root / ENV_EXAMPLE
+    env.write_text(env.read_text(encoding="utf-8") + f'export {var}="{filled}"\n',
+                   encoding="utf-8")
+    return path
+
+
+def test_the_keyed_profile_is_one_whose_key_the_reader_brings(tmp_path):
+    """A lane whose key the env example leaves empty is the reader's own; one
+    it fills in is the vendor's key for anyone, and its profile says nothing
+    about a missing key."""
+    root = _copied(tmp_path)
+    assert keyed_profile(root) is None or keyed_profile(root).startswith("configs/codex/")
+    for p in (root / "configs/codex").glob("*.config.toml"):
+        if p.name != "litellm.config.toml" and p.name != "kilo-code.config.toml":
+            p.unlink()
+    assert keyed_profile(root) is None
+    _keyed(root, "public", "PUBLIC_API_KEY", filled="sk-for-anyone")
+    assert keyed_profile(root) is None
+    _keyed(root, "gate")
+    assert keyed_profile(root) == "configs/codex/gate.config.toml"
+
+
+def test_the_keyed_sentences_are_read_off_a_keyed_profile_only_where_one_exists(tmp_path):
+    root = _copied(tmp_path)
+    for p in (root / "configs/codex").glob("*.config.toml"):
+        if p.name not in ("litellm.config.toml", "kilo-code.config.toml"):
+            p.unlink()
+    assert missing_sentences(root) == []
+    path = _keyed(root)
+    assert missing_sentences(root) == []
+    path.write_text(path.read_text().replace("Codex stops before it sends", "Codex stops before"))
+    assert missing_sentences(root) == ["key-unset"]
 
 
 def test_the_oldest_releases_run_are_the_ones_the_files_ask_for():
@@ -178,6 +232,15 @@ def test_the_summary_leads_with_what_failed_and_counts_it():
     rows = [line for line in text.splitlines() if line.startswith("| ✓") or line.startswith("| ✗")]
     assert rows[0].startswith("| ✗ violation") and rows[1].startswith("| ✓")
     assert "the flag \\| reached a lane" in rows[0]
+
+
+def test_the_summary_names_a_keyed_profiles_variable_as_var():
+    """The keyed sentences match whichever variable the lane has; the summary
+    prints the sentence a reader can read."""
+    text = summary([Finding("key-unset", "ok", "Codex 0.158.0", "exit 1, 0 requests")],
+                   ["1.98.0"], ["0.158.0"])
+    assert "With $VAR unset or empty, Codex stops before it sends anything" in text
+    assert "(w+)" not in text
 
 
 def test_the_workflow_runs_the_oldest_and_the_newest_of_both_programs():

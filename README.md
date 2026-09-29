@@ -72,7 +72,7 @@
 - **Codex CLI on a free lane** — [Kilo Code](https://kilo.ai) `codex -p kilo-code` · [any lane of the LiteLLM config](configs/codex/litellm.config.toml) `codex -p litellm`
 
 
-<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered); the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh); the Codex CLI line names lanes that take the request Codex sends, which every run sends again, one profile each in [`configs/codex/`](configs/codex/).</sub>
+<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered); the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh); the Codex CLI line names lanes Codex calls directly — ones that took its request with no key, which every run sends again, and ones whose vendor's own page sets Codex up, which every run reads back — one profile each in [`configs/codex/`](configs/codex/).</sub>
 
 **No account at all?** [Kilo Code](https://kilo.ai) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
 

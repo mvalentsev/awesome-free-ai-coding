@@ -49,12 +49,16 @@ from .prober import CODEX_DONE, codex_probe_body
 from .render import CODEX_SINCE, LITELLM_BRIDGE_SINCE
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
-           "missing_sentences", "printed_run", "printed_profile", "as_run", "bare",
-           "lanes", "point_lanes", "shape_differences", "listening", "summary", "main"]
+           "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
+           "bare", "lanes", "point_lanes", "shape_differences", "listening", "summary", "main"]
 
 LITELLM_YAML = "configs/litellm.yaml"
 LITELLM_PROFILE = "configs/codex/litellm.config.toml"
 KILO_PROFILE = "configs/codex/kilo-code.config.toml"
+# Where the sentences a keyed lane's profile prints are read: the first such
+# profile by name (see keyed_profile), since one function writes them all.
+KEYED_PROFILE = "configs/codex/<a keyed lane>.config.toml"
+ENV_EXAMPLE = "configs/free-llm.env.example"
 CONTRIBUTING = "CONTRIBUTING.md"
 # The port the printed command leaves LiteLLM on, and the one the profile calls.
 PROXY_PORT = 4000
@@ -120,6 +124,11 @@ SENTENCES: dict[str, Sentence] = {
     "sub-agents": Sentence(LITELLM_PROFILE, r"Sub-agents: Codex sends their tools as a namespace, "
                                             r"which LiteLLM " + re.escape(LITELLM_BRIDGE_SINCE)
                                             + r" and later pass on as plain functions"),
+    "key": Sentence(KEYED_PROFILE, r"The key comes from \$(\w+), the variable "
+                                   r"free-llm\.env\.example exports"),
+    "key-unset": Sentence(KEYED_PROFILE, r"With \$(\w+) unset or empty, Codex stops before it "
+                                         r"sends anything, so no other key of yours reaches the "
+                                         r"lane\."),
 }
 
 
@@ -153,13 +162,36 @@ def comment_text(text: str) -> str:
     return " ".join(" ".join(lines).split())
 
 
+def keyed_profile(root: Path) -> str | None:
+    """The first Codex profile, by name, of a lane that takes the reader's own
+    key — its env_key a variable free-llm.env.example leaves empty, where a key
+    the vendor prints for anyone comes filled in — or None while no row has
+    one."""
+    env = (root / ENV_EXAMPLE).read_text(encoding="utf-8")
+    empty = set(re.findall(r'(?m)^export (\w+)=""$', env))
+    for path in sorted((root / "configs/codex").glob("*.config.toml")):
+        found = re.search(r'(?m)^env_key = "(\w+)"$', path.read_text(encoding="utf-8"))
+        if found and found.group(1) in empty:
+            return path.relative_to(root).as_posix()
+    return None
+
+
+def _sentence_file(root: Path, s: Sentence) -> str | None:
+    """The file a sentence is read from: its own, or for the keyed profile's
+    sentences the profile keyed_profile finds — none while no row has one."""
+    return keyed_profile(root) if s.file == KEYED_PROFILE else s.file
+
+
 def missing_sentences(root: Path, sentences: dict[str, Sentence] = SENTENCES) -> list[str]:
     texts: dict[str, str] = {}
     gone = []
     for key, s in sentences.items():
-        if s.file not in texts:
-            texts[s.file] = comment_text((root / s.file).read_text(encoding="utf-8"))
-        if not re.search(s.pattern, texts[s.file]):
+        file = _sentence_file(root, s)
+        if file is None:
+            continue
+        if file not in texts:
+            texts[file] = comment_text((root / file).read_text(encoding="utf-8"))
+        if not re.search(s.pattern, texts[file]):
             gone.append(key)
     return gone
 
@@ -391,6 +423,13 @@ def _handler(lanes_: _Lanes):
             self.wfile.write(data)
 
         def do_GET(self):
+            # Codex may read a provider's model list before its first turn: what
+            # the capture lane is asked that way is recorded too, since a key
+            # can ride on it.
+            if self.path.startswith("/capture/"):
+                with lanes_.lock:
+                    lanes_.records.append(_Record("capture-get", self.path,
+                                                  self.headers.get("Authorization"), None))
             self._send(200, b'{"object":"list","data":[]}')
 
         def do_POST(self):
@@ -532,8 +571,10 @@ def _chat(model: str, **extra) -> httpx.Response:
         **extra})
 
 
-def _codex(binary: str, home: Path, cwd: Path, args: list[str]) -> subprocess.CompletedProcess:
-    env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": str(home), "LANG": "C.UTF-8"}
+def _codex(binary: str, home: Path, cwd: Path, args: list[str],
+           extra: dict[str, str] | None = None) -> subprocess.CompletedProcess:
+    env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": str(home), "LANG": "C.UTF-8",
+           **(extra or {})}
     try:
         return subprocess.run([binary, "exec", *args], cwd=cwd, env=env, stdin=subprocess.DEVNULL,
                               capture_output=True, text=True, timeout=240)
@@ -929,6 +970,55 @@ def _check_capture(run: _Run, served: _Lanes, base: str, codex_versions: list[st
                          f"with {override}, Codex offered tools of kind {kinds}")
 
 
+def _check_keyed(run: _Run, served: _Lanes, base: str, codex_versions: list[str]) -> None:
+    """What a keyed lane's profile says Codex does with the reader's key: the
+    variable it names goes to the lane as the bearer token, and while it is
+    unset or empty nothing goes at all — with the reader's own OpenAI key in
+    OPENAI_API_KEY beside it, and in the auth.json Codex keeps once signed in
+    with a key. A profile written for one keyed lane is written for all of them
+    by the same function, so the first one stands for the rest."""
+    rel = keyed_profile(run.root)
+    if rel is None:
+        return
+    text = (run.root / rel).read_text(encoding="utf-8")
+    found = re.search(r'(?m)^env_key = "(\w+)"$', text)
+    if found is None:
+        run.note("key", "infra", "—", f"{rel} names no env_key")
+        return
+    var = found.group(1)
+    _, _, codex_cmd = printed_profile(text)
+    canary = LANE_KEY.format(var=var)
+    reader = {"auth_mode": "apikey", "OPENAI_API_KEY": READER_KEY}
+    cases = (("key", "set", {var: canary, "OPENAI_API_KEY": READER_KEY}, False),
+             ("key-unset", "unset, the reader's key in OPENAI_API_KEY and auth.json",
+              {"OPENAI_API_KEY": READER_KEY}, True),
+             ("key-unset", "empty, the reader's key in OPENAI_API_KEY",
+              {var: "", "OPENAI_API_KEY": READER_KEY}, False))
+    for c in codex_versions:
+        v = f"Codex {c}"
+        for n, (sentence, how, extra, auth_json) in enumerate(cases):
+            home, project = _codex_home(run, f"{c}-keyed-{n}", rel, base_url=f"{base}/capture/v1")
+            if auth_json:
+                (home / ".codex" / "auth.json").write_text(json.dumps(reader), encoding="utf-8")
+            mark = served.mark()
+            done = _codex(run.codex[c], home, project,
+                          [*codex_cmd[1:], "--skip-git-repo-check", "Say pong."], extra)
+            got = [r for r in served.since(mark) if r.lane.startswith("capture")]
+            said = sorted({r.authorization or "no Authorization" for r in got})
+            said = [a.replace(READER_KEY, "<the reader's own key>") for a in said]
+            if sentence == "key":
+                ok = (done.returncode == 0 and any(r.lane == "capture" for r in got)
+                      and all(r.authorization == f"Bearer {canary}" for r in got))
+            else:
+                ok = done.returncode != 0 and not got
+            run.note(sentence, "ok" if ok else "violation", v,
+                     f"`{' '.join(codex_cmd)}` on {rel} with ${var} {how}: exit "
+                     f"{done.returncode}, {len(got)} request{'' if len(got) == 1 else 's'} "
+                     "reached the lane"
+                     + (f", carrying {', '.join(said)}" if got else "")
+                     + ("" if ok else " — " + _tail(done.stdout + done.stderr)))
+
+
 def run_checks(root: Path, litellm: dict[str, str], codex: dict[str, str],
                work: Path) -> list[Finding]:
     run = _Run(root, work, litellm, codex)
@@ -969,6 +1059,7 @@ def run_checks(root: Path, litellm: dict[str, str], codex: dict[str, str],
                                profile_argv or run_argv, codex_versions)
                 _check_bare(run, version, binary, pointed, lanes_, served, run_argv)
             _check_capture(run, served, base, codex_versions)
+            _check_keyed(run, served, base, codex_versions)
         finally:
             with (run.work / "requests.jsonl").open("w", encoding="utf-8") as fh:
                 for r in served.since(0):
@@ -995,7 +1086,8 @@ def summary(findings: list[Finding], litellm: list[str], codex: list[str]) -> st
     rows = []
     for f in sorted(findings, key=lambda f: (f.verdict == "ok", list(SENTENCES).index(f.sentence))):
         s = SENTENCES[f.sentence]
-        said = re.sub(r"\\(.)", r"\1", s.pattern).replace("|", "\\|")
+        # A keyed profile's variable is whichever the lane's is: shown as $VAR.
+        said = re.sub(r"\\(.)", r"\1", s.pattern.replace(r"\$(\w+)", "$VAR")).replace("|", "\\|")
         detail = f.detail.replace("|", "\\|")
         rows.append(f"| {marks[f.verdict]} | `{s.file}`: {said} | {f.versions} | {detail} |")
     return "\n".join(head + rows) + "\n"

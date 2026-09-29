@@ -492,14 +492,72 @@ class Newcomer(BaseModel):
                              "that shows the model free: a Wayback snapshot, a commit of this list")
         return value
 
+
+class CodexRoute(BaseModel):
+    """Where Codex CLI calls a lane directly, and on whose word.
+
+    Codex speaks only the OpenAI Responses API, and a provider's `base_url` is
+    where it sends it, appending /responses. That is the lane's own base on most
+    rows, but a vendor may keep Codex apart: Vercel's AI Gateway serves it at
+    /codex/v1, whose model list is in the shape Codex reads at start. A lane
+    without an account is its own evidence — every run sends it the request
+    Codex sends. A keyed lane opens nothing to a call without a key, so its
+    evidence is the vendor's page setting Codex up on it, `source`, and words
+    from that page naming Codex, `quote`, which the run reads back with the
+    row's other quotes: a vendor that takes the page down leaves a quote gone.
+    """
+    base_url: str
+    source: str | None = None
+    quote: str | None = None  # verbatim; the pages print it inside quotation marks
+
+    @field_validator("base_url")
+    @classmethod
+    def _base_is_what_codex_appends_to(cls, value: str) -> str:
+        value = value.rstrip("/")
+        if not value.startswith("https://"):
+            raise ValueError("api.codex.base_url must be an https URL")
+        if value.endswith("/responses"):
+            raise ValueError("api.codex.base_url is the base Codex appends /responses to — "
+                             "drop the route from it")
+        return value
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_https(cls, value: str | None) -> str | None:
+        if value is not None and not value.startswith("https://"):
+            raise ValueError("api.codex.source must be an https URL")
+        return value
+
+    @field_validator("quote")
+    @classmethod
+    def _quote_names_codex(cls, value: str | None) -> str | None:
+        """Words that name Codex die with the page that sets it up; a sentence
+        about the gateway in general outlives it."""
+        if value is None:
+            return value
+        if '"' in value or "“" in value or "”" in value:
+            raise ValueError("api.codex.quote holds quotation marks — it is printed inside a "
+                             "pair of its own")
+        if "codex" not in value.lower():
+            raise ValueError("api.codex.quote does not name Codex — quote the words on the "
+                             "source page that set Codex up on this lane")
+        return value.strip()
+
+    @model_validator(mode="after")
+    def _page_and_words_together(self) -> CodexRoute:
+        if (self.source is None) != (self.quote is None):
+            raise ValueError("api.codex.source and api.codex.quote go together — the vendor's "
+                             "page and its words that set Codex up on the lane")
+        return self
+
 # What a lane can ask every request to carry besides its key — `ApiInfo.asks`.
 # Each page and config that says how to connect keys its words by these names,
 # and the render's tests refuse a table without one, so a new ask cannot reach
 # some pages and not others.
 ASKS = ("user-agent", "session-header")
 # The name `codex -p` takes for Codex CLI's profile over litellm.yaml, and so
-# the one id a row whose lane takes Codex's request cannot have: every other
-# Codex profile is named after its row.
+# the one id a row with a Codex route of its own (api.codex) cannot have: every
+# other Codex profile is named after its row.
 CODEX_LITELLM_PROFILE = "litellm"
 
 
@@ -572,13 +630,12 @@ class ApiInfo(BaseModel):
     # the lane. The keyless probe asks again every run and says when it
     # changes, both ways. Written only where set.
     refuses_bearer: bool = Field(default=False, exclude_if=lambda v: not v)
-    # The lane takes the request Codex CLI sends, at base_url + /responses
-    # (Codex speaks only the OpenAI Responses API). Set where a keyless call of
-    # that request completes, or where the vendor documents Codex; the row then
-    # gets a Codex profile of its own, and every run asks again — the whole
-    # request on a keyless lane, the route on a keyed one. Written only where
-    # set.
-    responses_api: bool = Field(default=False, exclude_if=lambda v: not v)
+    # Where Codex CLI calls the lane directly (see CodexRoute): set where a
+    # keyless call of the request Codex sends completes, or where the vendor's
+    # own page sets Codex up on the lane. The row then gets a Codex profile of
+    # its own, and every run asks again — the whole request on a lane without
+    # an account, the route on a keyed one.
+    codex: CodexRoute | None = None
     note: str = ""
     # A lane that does not work as published right now, owned up to while the
     # list waits for the vendor (see Notice). Rendered under the README's
@@ -643,22 +700,28 @@ class ApiInfo(BaseModel):
         return self
 
     @model_validator(mode="after")
-    def _responses_api_is_a_lane_codex_can_call(self) -> ApiInfo:
+    def _codex_is_a_lane_codex_can_call(self) -> ApiInfo:
         """The Responses API is OpenAI's; the profile names the first of
-        model_ids and the run calls it; and a Codex profile's headers are fixed
+        model_ids and the run calls it; a Codex profile's headers are fixed
         values, so a lane that wants a new id per conversation in one cannot
-        take a profile at all."""
-        if not self.responses_api:
+        take a profile at all; and a lane behind a key is asked only its route,
+        so the vendor's page is the one evidence that Codex's request works
+        there."""
+        if self.codex is None:
             return self
         if not self.openai_compatible:
-            raise ValueError("responses_api is said of an OpenAI-shaped lane, and "
+            raise ValueError("api.codex is said of an OpenAI-shaped lane, and "
                              "openai_compatible is false")
         if not self.model_ids:
-            raise ValueError("responses_api needs a callable id: the Codex profile names the "
+            raise ValueError("api.codex needs a callable id: the Codex profile names the "
                              "first of model_ids, and the run calls it")
         if self.session_header:
-            raise ValueError("responses_api beside session_header: a Codex profile's headers "
+            raise ValueError("api.codex beside session_header: a Codex profile's headers "
                              "are fixed values, so none carries a new id per conversation")
+        if self.key_kind == "own" and self.codex.source is None:
+            raise ValueError("api.codex on a keyed lane needs source and quote — a call without "
+                             "a key reaches only the route, so the vendor's page setting Codex "
+                             "up on the lane is the evidence")
         return self
 
     @model_validator(mode="after")
@@ -1096,8 +1159,8 @@ class Entry(BaseModel):
 
     @model_validator(mode="after")
     def _a_codex_profile_is_not_the_litellm_one(self) -> Entry:
-        if self.api and self.api.responses_api and self.id == CODEX_LITELLM_PROFILE:
-            raise ValueError(f"a row named {CODEX_LITELLM_PROFILE} that sets api.responses_api "
+        if self.api and self.api.codex and self.id == CODEX_LITELLM_PROFILE:
+            raise ValueError(f"a row named {CODEX_LITELLM_PROFILE} that sets api.codex "
                              "would have its Codex profile written over the one for LiteLLM — "
                              "an id is its page's URL, so rename the LiteLLM profile")
         return self

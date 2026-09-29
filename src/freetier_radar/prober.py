@@ -123,6 +123,9 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
             stale = stale_ids(catalog, entry)
             if stale:
                 return verdict(ProbeStatus.STALE_IDS, stale)
+            gap = codex_endpoint_gap(catalog, entry)
+            if gap:
+                return verdict(ProbeStatus.STALE_IDS, gap)
         # The Anthropic-format route a row names for Claude Code, asked keyless:
         # the answer is only whether anything listens at that path.
         if entry.api and entry.api.anthropic_base_url:
@@ -131,7 +134,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 return verdict(ProbeStatus.STALE_IDS, missing)
         # And the route a keyed row names for Codex CLI, asked the same way; a
         # row without an account was asked Codex's whole request above.
-        if entry.api and entry.api.responses_api and entry.api.key_kind == "own":
+        if entry.api and entry.api.codex and entry.api.key_kind == "own":
             missing = await codex_route_missing(client, entry, attempts, backoff)
             if missing:
                 return verdict(ProbeStatus.STALE_IDS, missing)
@@ -442,13 +445,46 @@ async def codex_route_missing(client: httpx.AsyncClient, entry: Entry, attempts:
     lane's turn, a 401 is the route saying it exists, a 404, 405 or 410 is a
     route that is gone, and one that cannot be reached is said so. A keyless
     row is asked the whole request instead (see _codex_drift)."""
-    url = entry.api.base_url.rstrip("/") + "/responses"
+    url = entry.api.codex.base_url + "/responses"
     answer = await _codex_call(client, url, entry.api.model_ids[0], {}, attempts, backoff)
     if isinstance(answer, str):
         return f"codex route could not be checked: POST {url} {answer}"
     if answer[0] in ROUTE_GONE:
         return f"codex route gone: POST {url} answered HTTP {answer[0]}"
     return None
+
+
+# Where a catalog lists the paths it serves each model at: Routeway's
+# `endpoints`, LLMTR's `supported_endpoints` (both read 2026-09-29).
+CATALOG_ENDPOINT_FIELDS = ("endpoints", "supported_endpoints")
+
+
+def codex_endpoint_gap(catalog: httpx.Response, entry: Entry) -> str:
+    """Why the id a row's Codex profile names cannot take Codex's request by
+    its own catalog's word, or "" while nothing says so.
+
+    A vendor's Codex page speaks of its gateway; a catalog that lists the paths
+    each model is served at speaks of the model, and it is the more specific
+    word: on 2026-09-29 Routeway's page set Codex up on its API while its
+    catalog served the row's first free id, muse-glimmer-30b:free, at
+    /v1/chat/completions alone. The profile names the first id, and a free lane
+    rotates, so the id is asked every run. A catalog that lists no paths for it
+    says nothing either way."""
+    if not (entry.api and entry.api.codex and entry.api.model_ids):
+        return ""
+    model = entry.api.model_ids[0]
+    for row in _catalog_items(catalog, entry.probe.lane) or []:
+        if _model_id(row) != model:
+            continue
+        for field in CATALOG_ENDPOINT_FIELDS:
+            paths = row.get(field)
+            if (isinstance(paths, list) and paths and all(isinstance(p, str) for p in paths)
+                    and not any(p.rstrip("/").endswith("/responses") for p in paths)):
+                return (f"codex profile names {model}, which the catalog serves at "
+                        f"{', '.join(paths)} only — put an id it serves at /responses first "
+                        "in api.model_ids, or take api.codex out")
+        return ""
+    return ""
 
 
 # The smallest chat call there is. What it reads is the status line, whether
@@ -698,11 +734,11 @@ async def keyless_lane_verdict(client: httpx.AsyncClient, entry: Entry, attempts
 
 async def _codex_drift(client: httpx.AsyncClient, entry: Entry, model: str, headers: dict,
                        attempts: int, backoff: float) -> str | None:
-    """Whether `api.responses_api` still says what a lane without an account
-    does, asked on the id that has just answered a chat call: the request Codex
-    CLI sends, at base_url + /responses, with the same headers. The whole turn
-    is asked, not the route: a route can answer and refuse the request (see
-    CODEX_PROBE_TOOL).
+    """Whether `api.codex` still says what a lane without an account does,
+    asked on the id that has just answered a chat call: the request Codex CLI
+    sends, at the Codex base + /responses — the lane's own base where the row
+    names none — with the same headers. The whole turn is asked, not the
+    route: a route can answer and refuse the request (see CODEX_PROBE_TOOL).
 
     An answer on a row without the field is a lane Codex could call directly,
     with a profile of its own, and a row with the field that stops taking the
@@ -713,14 +749,15 @@ async def _codex_drift(client: httpx.AsyncClient, entry: Entry, model: str, head
     send it."""
     if entry.api.session_header:
         return None
-    url = entry.api.base_url.rstrip("/") + "/responses"
+    claimed = entry.api.codex is not None
+    base = entry.api.codex.base_url if claimed else entry.api.base_url.rstrip("/")
+    url = base + "/responses"
     lane = "public-key" if entry.api.public_key else "keyless"
-    claimed = entry.api.responses_api
     answer = await _codex_call(client, url, model, headers, attempts if claimed else 1, backoff)
     took = _codex_completed(answer)
     if took and not claimed:
-        return (f"{lane} POST {url} took the request Codex CLI sends — set "
-                "api.responses_api: true and the row gets a Codex profile of its own")
+        return (f"{lane} POST {url} took the request Codex CLI sends — set api.codex.base_url "
+                f"to {base} and the row gets a Codex profile of its own")
     if claimed and not took:
         if isinstance(answer, str) or answer[0] == 429:
             return f"codex route could not be checked: POST {url} {_codex_said(answer)}"

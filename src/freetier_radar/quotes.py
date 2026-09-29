@@ -108,6 +108,9 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     # Quoted by construction, whatever its length: the page prints it in quotes.
     if entry.data_use:
         found.append(("data_use.quote", entry.data_use.quote))
+    # The words a keyed lane's Codex profile rests on (see models.CodexRoute).
+    if entry.api and entry.api.codex and entry.api.codex.quote:
+        found.append(("api.codex.quote", entry.api.codex.quote))
     return found
 
 
@@ -123,13 +126,15 @@ def quote_found(quote: str, pages: list[str]) -> bool:
 
 def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     """The row's sources, its probe's page — `page` where the probe follows an
-    index to it, the endpoint otherwise — its catalog, and the page its word on
-    training is quoted from."""
+    index to it, the endpoint otherwise — its catalog, the page its word on
+    training is quoted from and the page that sets Codex up on its lane."""
     urls = list(entry.source_urls) + [page or entry.probe.endpoint]
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)
     if entry.data_use:
         urls.append(entry.data_use.url)
+    if entry.api and entry.api.codex and entry.api.codex.source:
+        urls.append(entry.api.codex.source)
     return list(dict.fromkeys(urls))
 
 

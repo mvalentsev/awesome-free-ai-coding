@@ -106,7 +106,7 @@ MAP: tuple[Node, ...] = (
          "one Claude Code shell function per Anthropic-format lane",
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("configs/codex/*.config.toml", Kind.GENERATED,
-         "Codex CLI profiles: one over the LiteLLM config, one per lane taking Codex's request",
+         "Codex CLI profiles: one over the LiteLLM config, one per lane Codex calls directly",
          made_from=("registry.yaml",), written_by=("freetier-render",), published=True),
     Node("index.json", Kind.GENERATED, "every row and the watchlist, for machines",
          made_from=("registry.yaml", "watchlist.yaml"), written_by=("freetier-render",),

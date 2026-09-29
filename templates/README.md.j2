@@ -76,7 +76,7 @@
 {% endif %}- **Codex CLI on a free lane** — {% for p in picks.codex %}[{{ p.name }}]({{ p.url }}) `{{ p.command }}`{{ dot }}{% endfor %}[any lane of the LiteLLM config]({{ codex.path }}) `codex -p {{ codex.name }}`{{ '' }}
 
 
-<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered){% if picks.frontier %}; frontier means within {{ frontier_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models){% endif %}{% if picks.claude_code %}; the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh){% endif %}; the Codex CLI line names lanes that take the request Codex sends, which every run sends again, one profile each in [`configs/codex/`](configs/codex/).</sub>
+<sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered){% if picks.frontier %}; frontier means within {{ frontier_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models){% endif %}{% if picks.claude_code %}; the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh){% endif %}; the Codex CLI line names lanes Codex calls directly — ones that took its request with no key, which every run sends again, and ones whose vendor's own page sets Codex up, which every run reads back — one profile each in [`configs/codex/`](configs/codex/).</sub>
 
 {% endif %}
 {% if quickstart %}

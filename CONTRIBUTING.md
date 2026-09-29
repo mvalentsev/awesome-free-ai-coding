@@ -532,25 +532,46 @@ field feeds the Claude Code line of the picks table, the second URL in the
 connection table and [`configs/claude-code.sh`](configs/claude-code.sh), and
 `index.json` carries it as written.
 
-**`api.responses_api` is the Codex CLI answer, for a lane Codex calls
-directly.** Set it where a keyless call of the request Codex sends completes, or
-where the vendor documents Codex — never on a 401 alone. The request is the one
-Codex CLI 0.157.1 sent a provider under this list's profiles, cut to one tool
-and one message; a lane that takes it gets a profile of its own,
-`configs/codex/<id>.config.toml`, with the row's first id, the key from the
-variable `free-llm.env.example` exports and the same three settings as the
-LiteLLM profile, and the provider page, both connection tables, the picks and
-`llms.txt` name `codex -p <id>`. On 2026-09-27 Kilo's gateway was the one lane
-that took it keyless, and Codex ran a shell command on `kilo-auto/free` and read
-its output back. Every run asks again. A lane without an account is asked the
-whole request once its first id has answered a chat call, both ways, as with a
-bearer token: a row without the field that takes it is reported so, and a row
-with the field that stops taking it — a refusal, a stream that fails, a whole
-JSON answer to a request for a stream — is reported as `stale-ids` while the row
-stays verified. A keyed row with the field is asked the route keyless, the
-Anthropic check's way: a 404, 405 or 410 is a route that is gone. The field
-needs an OpenAI-shaped lane with an id and is refused beside `session_header`,
-since Codex sends no header of a vendor's naming; the one id a row with it
+**`api.codex` is the Codex CLI answer, for a lane Codex calls directly.** Its
+`base_url` is the value a Codex provider's `base_url` takes, Codex appending
+`/responses` itself: the lane's own base on most rows, while a vendor may keep
+Codex apart — Vercel's AI Gateway serves it at `/codex/v1`, whose model list is
+in the shape Codex reads when it starts. Set it where a keyless call of the
+request Codex sends completes, or where the vendor's own page sets Codex up on
+the lane — never on a 401 alone, nor on a Responses API reference that does not
+name Codex: OVHcloud's route exists and refused the request Codex sends. The
+page has to cover the lane the row lists and the id the profile names. A plan's
+own endpoint is another lane (Z.ai's Codex page is its GLM Coding Plan's), and a
+vendor that narrows Codex to some models decides for them: on 2026-09-29
+Requesty's Codex guide took only its `openai-responses/` models, none of them
+free, and LLMTR's catalog served every free id at `/v1/chat/completions` alone,
+which its Codex post says the Responses endpoint will not take. A keyed lane's
+block carries the page as `source` and words from it that name Codex as `quote`,
+which the run reads back with the row's other quotes; a lane without an account
+is its own evidence. The request is the one Codex CLI 0.157.1 sent a provider
+under this list's profiles, cut to one tool and one message; a lane with the
+field gets a profile of its own, `configs/codex/<id>.config.toml`, with the
+row's first id, the key from the variable `free-llm.env.example` exports and the
+same three settings as the LiteLLM profile, and the provider page, both
+connection tables, the picks and `llms.txt` name `codex -p <id>`. A keyed
+profile also says what Codex does while its key is missing: unset or empty, it
+stops before any request, the reader's own OpenAI key and `auth.json` beside it
+or not — measured with Codex 0.134.0 and 0.158.0 on 2026-09-29, and one of the
+sentences the conformance run holds to the program. On 2026-09-27 Kilo's gateway
+was the one lane that took the request keyless, and Codex ran a shell command on
+`kilo-auto/free` and read its output back. Every run asks again. A lane without
+an account is asked the whole request once its first id has answered a chat
+call, both ways, as with a bearer token: a row without the field that takes it
+is reported so, and a row with the field that stops taking it — a refusal, a
+stream that fails, a whole JSON answer to a request for a stream — is reported
+as `stale-ids` while the row stays verified. A keyed row with the field is asked
+the route keyless, the Anthropic check's way: a 404, 405 or 410 is a route that
+is gone. Where a catalog lists the paths it serves each model at — Routeway's
+`endpoints`, LLMTR's `supported_endpoints` — the profile's id is held to them
+too, since a free lane rotates and the next first id may be served at chat
+completions alone. The field needs an OpenAI-shaped lane with an id and is
+refused beside `session_header`, since Codex sends no header of a vendor's
+naming; the one id a row with it
 cannot take is `litellm`, the LiteLLM profile's name.
 
 **`api.session_header` is for a lane that wants an id per conversation.** Set it
@@ -858,7 +879,7 @@ cannot print two versions of it.
 | `configs/litellm.yaml` | **generated** — the LiteLLM proxy config and its groups | `registry.yaml` | `freetier-render` |
 | `configs/free-llm.env.example` | **generated** — one export per key | `registry.yaml` | `freetier-render` |
 | `configs/claude-code.sh` | **generated** — one Claude Code shell function per Anthropic-format lane | `registry.yaml` | `freetier-render` |
-| `configs/codex/*.config.toml` | **generated** — Codex CLI profiles: one over the LiteLLM config, one per lane taking Codex's request | `registry.yaml` | `freetier-render` |
+| `configs/codex/*.config.toml` | **generated** — Codex CLI profiles: one over the LiteLLM config, one per lane Codex calls directly | `registry.yaml` | `freetier-render` |
 | `index.json` | **generated** — every row and the watchlist, for machines | `registry.yaml`, `watchlist.yaml` | `freetier-render` |
 | `feed.xml` | **generated** — the Atom feed of the history | `history.jsonl`, `registry.yaml` | `freetier-render` |
 | `llms.txt` | **generated** — the whole list as one text file | `registry.yaml` | `freetier-render` |
