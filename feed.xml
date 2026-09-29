@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-28T11:59:17Z</updated>
+  <updated>2026-09-29T05:16:28Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20260929T051628Z</id>
+    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
+    <link rel="alternate" href="https://build.nvidia.com"/>
+    <updated>2026-09-29T05:16:28Z</updated>
+    <summary type="text">added glm-5.3, glm-5.3-flash · free models: kimi-k3, glm-5.3, glm-5.3-flash, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/alibaba-model-studio/20260928T115917Z</id>
     <title>Free models changed: Alibaba Cloud Model Studio (DashScope, international)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://jules.google/"/>
     <updated>2026-09-23T22:46:29Z</updated>
     <summary type="text">dropped gemini-3-flash · free models: gemini-2.5</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260923T224414Z</id>
-    <title>Free models changed: Freebuff</title>
-    <link rel="alternate" href="https://freebuff.com"/>
-    <updated>2026-09-23T22:44:14Z</updated>
-    <summary type="text">dropped gpt-5.6-luna · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
   </entry>
 </feed>

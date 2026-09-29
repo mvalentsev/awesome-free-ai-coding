@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28",
+  "generated": "2026-09-29",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -1902,6 +1902,16 @@
           "family": "kimi-k3",
           "tier": "strong",
           "aa_model": "kimi-k3"
+        },
+        {
+          "family": "glm-5.3",
+          "tier": "strong",
+          "aa_model": "glm-5-3"
+        },
+        {
+          "family": "glm-5.3-flash",
+          "tier": "strong",
+          "aa_model": "glm-5-3-flash"
         },
         {
           "family": "nemotron-3-ultra",
@@ -9383,6 +9393,17 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
+      "family": "glm-5.3-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "aihubmix",
+        "freeinference"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
+    },
+    {
       "family": "gpt-oss-120b",
       "rows": [
         "groq-free",
@@ -9443,14 +9464,14 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
     },
     {
-      "family": "glm-5.3-flash",
+      "family": "glm-5.3",
       "rows": [
-        "freebuff",
+        "nvidia-nim",
         "aihubmix",
-        "freeinference"
+        "zcode"
       ],
       "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
     },
     {
       "family": "ling-3.0-flash-sante",
@@ -9603,15 +9624,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
-    },
-    {
-      "family": "glm-5.3",
-      "rows": [
-        "aihubmix",
-        "zcode"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
     },
     {
       "family": "inkling-small",

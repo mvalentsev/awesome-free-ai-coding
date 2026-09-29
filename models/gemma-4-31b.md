@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-31b free: 5 providers, limits and ids, verified 2026-09-28'
 description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: gemma-4-31b
 ---
 
@@ -86,6 +86,6 @@ EU-hosted gateway over 700+ models whose free models answer an account with no c
 
 ---
 
-Generated from `registry.yaml` on 2026-09-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

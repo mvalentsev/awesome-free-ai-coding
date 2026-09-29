@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-xs-2.1 free: 5 providers, limits and ids, verified 2026-09-28'
 description: laguna-xs-2.1 is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: laguna-xs-2.1
 ---
 
@@ -85,6 +85,6 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — t
 
 ---
 
-Generated from `registry.yaml` on 2026-09-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

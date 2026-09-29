@@ -1132,6 +1132,12 @@ entries:
   - family: kimi-k3
     tier: strong
     aa_model: kimi-k3
+  - family: glm-5.3
+    tier: strong
+    aa_model: glm-5-3
+  - family: glm-5.3-flash
+    tier: strong
+    aa_model: glm-5-3-flash
   - family: nemotron-3-ultra
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b

@@ -3,7 +3,7 @@ layout: default
 title: 'muse-glimmer-30b free: 3 providers, limits and ids, verified 2026-09-28'
 description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/muse-glimmer-30b/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: muse-glimmer-30b
 ---
 
@@ -60,6 +60,6 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 
 ---
 
-Generated from `registry.yaml` on 2026-09-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

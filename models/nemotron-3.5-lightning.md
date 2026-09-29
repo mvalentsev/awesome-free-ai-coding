@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-lightning free: 6 providers, limits and ids, verified 2026-09-28'
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live…
 permalink: /models/nemotron-3.5-lightning/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: nemotron-3.5-lightning
 ---
 
@@ -99,6 +99,6 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ---
 
-Generated from `registry.yaml` on 2026-09-28 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

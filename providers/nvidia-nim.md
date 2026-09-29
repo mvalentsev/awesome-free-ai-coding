@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-28'
-description: 'Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). Free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1,…'
+description: 'Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). Free models: kimi-k3, glm-5.3, glm-5.3-flash, nemotron-3-ultra,…'
 permalink: /providers/nvidia-nim/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: NVIDIA NIM (build.nvidia.com)
 ---
 
@@ -19,7 +19,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ## Free models
 
-[`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/), `llama-3.2-90b-vision`, `llama-3.2-11b-vision`
+[`kimi-k3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/), [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/), `llama-3.2-90b-vision`, `llama-3.2-11b-vision`
 
 ## Limits, in the vendor's words
 
@@ -62,6 +62,7 @@ curl -s https://integrate.api.nvidia.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-29` — Free models changed: added glm-5.3, glm-5.3-flash
 - `2026-09-28` — Free models changed: dropped mistral-nemotron
 - `2026-09-24` — Free models changed: added diffusiongemma, gemma-4-31b, gpt-oss-20b, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-09-22` — Free models changed: added kimi-k3, laguna-xs-2.1, nemotron-3-super, nemotron-3-ultra; dropped nemotron
@@ -70,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-28 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
