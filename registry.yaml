@@ -3374,7 +3374,7 @@ entries:
   - https://llmtr.com/v1/models
   card_required: false
   offering: Turkish OpenAI-compatible gateway whose free rows answer on a zero balance
-    — nine zero-priced chat ids on 2026-09-29
+    — eight zero-priced chat ids on 2026-09-29
   limits: 'A new account calls the free rows before any top-up: the migration guide
     says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick
     a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway
@@ -3382,12 +3382,12 @@ entries:
     and usage logging work on a zero balance). Four free rows carry a daily quota
     whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B, Ling
     3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free
-    on its own inference API", with "no extra token allowance to track"; dots-3-note-preview
-    closes on 30 September 2026. Paid use is prepaid credit: "An 8% platform margin
-    is added on top of the requested top-up amount", and "The platform margin is not
-    added to model prices; it is applied only once, at top-up". The privacy page says
-    prompt and response bodies are not written permanently to its usage and billing
-    database ("kalıcı olarak yazılmaz"). Read 2026-09-29'
+    on its own inference API", with "no extra token allowance to track". Paid use
+    is prepaid credit: "An 8% platform margin is added on top of the requested top-up
+    amount", and "The platform margin is not added to model prices; it is applied
+    only once, at top-up". The privacy page says prompt and response bodies are not
+    written permanently to its usage and billing database ("kalıcı olarak yazılmaz").
+    Read 2026-09-29'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -3412,7 +3412,6 @@ entries:
     - qwen/qwen3.8-27b-free
     - poolside/laguna-xs-2.1
     - inclusionai/ling-3.0-flash-fin
-    - dots-studio/dots-3-note-preview
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - motif/motif-3
@@ -3426,16 +3425,13 @@ entries:
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
     - minimax/minimax-m3.1-free
-    no_family_ids:
-    - dots-studio/dots-3-note-preview
-    note: 'the nine ids are every chat row the public catalog prices at 0 on 2026-09-29
-      outside the evren/* rows and one dated trial; dots-studio/dots-3-note-preview
-      "30 Eylül 2026''da kapanıyor" (closes on 30 September), so it has no family.
-      nvidia/nemotron-3-ultra-550b-a55b is the free daily-quota row, its -262k twin
-      the metered one. Ignored: an embeddings row, openai/gpt-oss-safeguard-20b, a
-      content classifier, minimax/minimax-m3.1-free, free "30 Eylül 2026 23:59''a
-      kadar" (to 30 September), and six evren/* rows priced 0 because each "kendi
-      EVREN anahtarınızla çalışır" (runs on your own EVREN key)'
+    note: 'the eight ids are every chat row the public catalog prices at 0 on 2026-09-29
+      outside the evren/* rows and one dated trial. nvidia/nemotron-3-ultra-550b-a55b
+      is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings
+      row, openai/gpt-oss-safeguard-20b, a content classifier, minimax/minimax-m3.1-free,
+      free "30 Eylül 2026 23:59''a kadar" (to 30 September), and six evren/* rows
+      priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own
+      EVREN key)'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged

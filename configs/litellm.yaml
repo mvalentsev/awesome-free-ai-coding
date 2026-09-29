@@ -689,12 +689,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/dots-studio/dots-3-note-preview
-  litellm_params:
-    model: openai/dots-studio/dots-3-note-preview
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
 - model_name: llmtr/agnes/agnes-3.0-flash
   litellm_params:
     model: openai/agnes/agnes-3.0-flash
