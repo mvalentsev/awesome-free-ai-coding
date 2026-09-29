@@ -256,7 +256,11 @@ that exists only in the payload a framework ships — put those strings in
 say in `limits` where the evidence lives — trae's plan payload, the heading
 Upstage's docs render in the browser. What a page renders is also what its whitespace
 renders as: a line break in the source is a space, so a sentence a template
-wraps across two lines is matched whole, as a reader copies it.
+wraps across two lines is matched whole, as a reader copies it. Comments render
+as nothing, so they are taken out whole, what they hold with them: React writes
+an empty one on each side of a value it prints into a sentence, and
+Experiential Labs' "with 500 credits a month once you verify a card" reached its
+source on 2026-09-29 with the number between two.
 
 **A page that moves with every release is read through the index that names
 it.** ModelScope serves its docs under a dated release path —
@@ -563,8 +567,9 @@ was the one lane that took the request keyless, and Codex ran a shell command on
 an account is asked the whole request once its first id has answered a chat
 call, both ways, as with a bearer token: a row without the field that takes it
 is reported so, and a row with the field that stops taking it — a refusal, a
-stream that fails, a whole JSON answer to a request for a stream — is reported
-as `stale-ids` while the row stays verified. A keyed row with the field is asked
+stream that fails each time it is asked, a whole JSON answer to a request for a
+stream — is reported as `stale-ids` while the row stays verified; a turn that
+breaks off once is asked again, as Codex CLI asks it again. A keyed row with the field is asked
 the route keyless, the Anthropic check's way: a 404, 405 or 410 is a route that
 is gone. Where a catalog lists the paths it serves each model at — Routeway's
 `endpoints`, LLMTR's `supported_endpoints` — the profile's id is held to them
