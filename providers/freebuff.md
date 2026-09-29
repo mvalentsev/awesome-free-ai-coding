@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-09-28'
-description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours. Free models: glm-5.3-flash, deepseek-v4.1-flash, muse-spark-1.2. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on…'
+description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours. Free models: glm-5.3-flash, deepseek-v4.1-flash. "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: Freebuff
 ---
 
@@ -19,11 +19,11 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 ## Free models
 
-[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/), [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/)
+[`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 
 ## Limits, in the vendor's words
 
-"Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of DeepSeek V4.1 Flash, MiMo 2.6 Flash or Solar Pro 4, 6 of Muse Spark 1.2, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn't use your daily allowance". The table moves from week to week — on 2026-09-23 GPT-6 Luna and MiMo 2.6 Pro came only with a paid plan — and now "Gemini 3.8 Flash is included with a paid plan". "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Read 2026-09-27
+"Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), 25 anywhere else, where Freebuff runs in limited mode, and 20 "on a VPN or proxy". 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn't use your daily allowance". The table moves from week to week; now "Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan". "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash is marked "May use data for AI training". Read 2026-09-29
 
 ## Where it is offered
 
@@ -31,7 +31,7 @@ The vendor names no country it keeps the offer from ([source](https://freebuff.c
 
 ## What happens to what you send
 
-What you send may be used to train or improve models. In the vendor's words: “DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training. … Muse Spark 1.2: Queue. May use data for AI training.” ([source](https://freebuff.com/)).
+What you send may be used to train or improve models. In the vendor's words: “DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.” ([source](https://freebuff.com/)).
 
 ## Connect
 
@@ -48,6 +48,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-29` — Free models changed: dropped muse-spark-1.2
 - `2026-09-25` — Free models changed: added muse-spark-1.2
 - `2026-09-23` — Free models changed: dropped gpt-5.6-luna
 - `2026-09-22` — Free models changed: dropped mimo-v2.5

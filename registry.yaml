@@ -3219,17 +3219,16 @@ entries:
     of Freebucks spent on one-hour model sessions, set by where you connect from:
     100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland,
     Australia, New Zealand, South Korea and much of Western and Northern Europe),
-    and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks
-    buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of DeepSeek V4.1 Flash, MiMo
-    2.6 Flash or Solar Pro 4, 6 of Muse Spark 1.2, 5 of GPT-6 Luna or 3 of MiMo 2.6
-    Pro; they refill at midnight Pacific and do not carry over. The stealth Space
-    Bunny Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn''t
-    use your daily allowance". The table moves from week to week — on 2026-09-23 GPT-6
-    Luna and MiMo 2.6 Pro came only with a paid plan — and now "Gemini 3.8 Flash is
-    included with a paid plan". "Freebuff collects prompts, messages, code, files,
-    repository data, and agent traces when you use features that need them", and DeepSeek
-    V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Read
-    2026-09-27'
+    25 anywhere else, where Freebuff runs in limited mode, and 20 "on a VPN or proxy".
+    100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash
+    or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro;
+    they refill at midnight Pacific and do not carry over. The stealth Space Bunny
+    Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn''t
+    use your daily allowance". The table moves from week to week; now "Gemini 3.8
+    Flash and Muse Spark 1.3 are included with a paid plan". "Freebuff collects prompts,
+    messages, code, files, repository data, and agent traces when you use features
+    that need them", and DeepSeek V4.1 Flash is marked "May use data for AI training".
+    Read 2026-09-29'
   free_part: models
   models:
   - family: glm-5.3-flash
@@ -3238,9 +3237,6 @@ entries:
   - family: deepseek-v4.1-flash
     tier: strong
     aa_model: deepseek-v4-1-flash
-  - family: muse-spark-1.2
-    tier: strong
-    aa_model: muse-spark-1-2
   newcomers:
   - family: mimo-v2.6-flash
     'on': '2026-09-22'
@@ -3259,8 +3255,7 @@ entries:
     source: https://web.archive.org/web/20260926080857/https://freebuff.com/
   data_use:
     trains: 'yes'
-    quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training. … Muse
-      Spark 1.2: Queue. May use data for AI training.'
+    quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
     url: https://freebuff.com/
   border:
     left_out: []

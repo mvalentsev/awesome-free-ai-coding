@@ -1,34 +1,23 @@
 ---
 layout: default
-title: 'muse-spark-1.2 free: 1 provider, limits and ids, verified 2026-09-28'
-description: muse-spark-1.2 is served free by Freebuff. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'muse-spark-1.2 free: no longer free on the list, last listed 2026-09-29'
+description: No row on the list serves muse-spark-1.2 free any more. The list carried it at Freebuff and opencode until 2026-09-29. Every model free today is on the list's model index.
 permalink: /models/muse-spark-1.2/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-29
 crumb: muse-spark-1.2
 ---
 
 {% raw %}
 
-# Where muse-spark-1.2 is free
+# Where muse-spark-1.2 was free
 
-**One row on the list serves `muse-spark-1.2` free:** Freebuff. It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-spark-1-2).
+**No row on the list serves `muse-spark-1.2` free any more.** The list carried it at Freebuff and opencode until 2026-09-29. Each row's page says what it offers now.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
-## Who serves it free
+## Rows that listed it
 
-### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
-
-🤖 Coding agents & CLIs · no card · verified 2026-09-28 · listed since 2026-09-25
-
-Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
-
-- Limits, in the vendor's words: "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), and 25 anywhere else or over a VPN, where Freebuff runs in limited mode. 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of DeepSeek V4.1 Flash, MiMo 2.6 Flash or Solar Pro 4, 6 of Muse Spark 1.2, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn't use your daily allowance". The table moves from week to week — on 2026-09-23 GPT-6 Luna and MiMo 2.6 Pro came only with a paid plan — and now "Gemini 3.8 Flash is included with a paid plan". "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash and Muse Spark 1.2 are marked "May use data for AI training". Read 2026-09-27
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/)).
-
-## Rows that listed it before
-
+- [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-25 to 2026-09-29
 - [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) — listed 2026-08-20 to 2026-09-14
 
 ## Related models

@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-09-29T20:33:20Z</updated>
+  <updated>2026-09-29T20:59:17Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freebuff/20260929T205917Z</id>
+    <title>Free models changed: Freebuff</title>
+    <link rel="alternate" href="https://freebuff.com"/>
+    <updated>2026-09-29T20:59:17Z</updated>
+    <summary type="text">dropped muse-spark-1.2 · free models: glm-5.3-flash, deepseek-v4.1-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/minimax-code/20260929T203320Z</id>
     <title>Added: MiniMax Code</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://build.nvidia.com"/>
     <updated>2026-09-24T07:06:50Z</updated>
     <summary type="text">added diffusiongemma, gemma-4-31b, gpt-oss-20b, llama-3.2-11b-vision, llama-3.2-90b-vision, mistral-nemotron, muse-glimmer-30b, nemotron-3-nano-omni, nemotron-3.5-lightning · free models: kimi-k3, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, mistral-nemotron, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260924T070650Z</id>
-    <title>Free models changed: OpenRouter (free models)</title>
-    <link rel="alternate" href="https://openrouter.ai"/>
-    <updated>2026-09-24T07:06:50Z</updated>
-    <summary type="text">added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code · free models: nemotron-3-ultra, gemma-4, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

@@ -41,7 +41,6 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 ## Related models
 
 - [`muse-glimmer-30b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-glimmer-30b/) — free at Requesty, NVIDIA NIM (build.nvidia.com) and Routeway
-- [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/) — free at Freebuff
 
 ---
 

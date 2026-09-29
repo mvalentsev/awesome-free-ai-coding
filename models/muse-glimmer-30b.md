@@ -57,7 +57,6 @@ OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat mo
 ## Related models
 
 - [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) — free at opencode and Cline
-- [`muse-spark-1.2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.2/) — free at Freebuff
 
 ---
 
