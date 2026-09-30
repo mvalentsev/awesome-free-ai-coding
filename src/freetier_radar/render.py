@@ -1739,8 +1739,7 @@ def _litellm_groups_note(groups: list[str]) -> str:
            "lane runs out of quota or has no key set here")
     sentence = (f"Or ask for a group instead of a model: {series(groups, 'or')}{how} — set only "
                 "the keys you have, and a lane without one is skipped.")
-    lines = textwrap.wrap(sentence, width=73, break_long_words=False, break_on_hyphens=False)
-    return "#\n" + "".join(f"# {line}\n" for line in lines)
+    return "#\n" + "".join(f"{line}\n" for line in _comment(sentence))
 
 
 def _comment(text: str) -> list[str]:

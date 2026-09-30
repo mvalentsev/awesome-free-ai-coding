@@ -15,10 +15,10 @@
 # chat completions; codex/litellm.config.toml is Codex's profile for this
 # file.
 #
-# Or ask for a group instead of a model: free/strong or free/nokey pool
-# every lane of that tier, and a call falls back down that order when a
-# lane runs out of quota or has no key set here — set only the keys you
-# have, and a lane without one is skipped.
+# Or ask for a group instead of a model: free/strong or free/nokey pool every
+# lane of that tier, and a call falls back down that order when a lane runs
+# out of quota or has no key set here — set only the keys you have, and a lane
+# without one is skipped.
 # Left out: Kilo Code — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 # Left out: VLM Run Gateway — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 # Left out: OVHcloud AI Endpoints — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
