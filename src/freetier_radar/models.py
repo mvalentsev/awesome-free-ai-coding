@@ -352,6 +352,11 @@ class Probe(BaseModel):
     # for a vendor whose docs move to a new dated path each release (see Follow)
     follow: Follow | None = None
 
+    def carries_marker(self, model_id: str) -> bool:
+        """Whether an id carries `free_marker` in any case — every id does where
+        the row sets none."""
+        return self.free_marker.lower() in model_id.lower()
+
     @model_validator(mode="after")
     def _follow_reads_a_page(self) -> Probe:
         if self.follow is not None and self.type is not ProbeType.PAGE_KEYWORDS:

@@ -1408,7 +1408,6 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         if entry.probe.lane is not None:
             return _empty_lane(resp, entry.probe.lane)
         return "no model ids in response"
-    marker = entry.probe.free_marker.lower()
     missing, withdrawn, priced = [], [], []
     families = [f.family for f in entry.models]
     for family in entry.models:
@@ -1417,7 +1416,7 @@ def _check_api_models(resp: httpx.Response, entry: Entry) -> str | None:
         matches = [
             m for m in items
             if id_family(families, _model_id(m)) == family.family
-            and (not marker or marker in _model_id(m).lower())
+            and entry.probe.carries_marker(_model_id(m))
         ]
         if not matches:
             missing.append(family.family)
@@ -1713,12 +1712,11 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     if (entry.probe.type is not ProbeType.API_MODELS or lane is None
             or not (entry.probe.require_zero_price or entry.probe.lane)):
         return []
-    marker = entry.probe.free_marker.lower()
     known = set(lane.model_ids) | set(lane.ignored_ids)
     unlisted = set()
     for model in _catalog_items(resp, entry.probe.lane) or []:
         mid = _model_id(model)
-        if (mid and mid not in known and (not marker or marker in mid.lower())
+        if (mid and mid not in known and entry.probe.carries_marker(mid)
                 and (_is_free(model) or not entry.probe.require_zero_price)
                 and not _is_withdrawn(model)):
             unlisted.add(mid)
