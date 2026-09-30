@@ -757,6 +757,15 @@ def test_pick_openrouter_model_falls_back_on_error():
         assert pick_openrouter_model(http) == FALLBACK_OPENROUTER_MODEL
 
 
+def _ovh_answers(content: str) -> None:
+    """OVH's keyless lane, the chain's last backend: a catalog of one model, and
+    a completion that says `content`."""
+    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "gpt-oss-120b"}]}))
+    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
+        return_value=httpx.Response(200, json={"choices": [{"message": {"content": content}}]}))
+
+
 @respx.mock
 def test_llm_chain_falls_back_to_keyless_ovh(monkeypatch):
     import freetier_radar.scout as scout_mod
@@ -782,12 +791,7 @@ def test_llm_chain_skips_backend_on_empty_content():
     respx.post("https://nim.example/v1/chat/completions").mock(
         return_value=httpx.Response(200, json={"choices": [{"message": {"content": None}}]})
     )
-    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
-        200, json={"data": [{"id": "gpt-oss-120b"}]}
-    ))
-    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
-        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]})
-    )
+    _ovh_answers("ok")
     with httpx.Client() as http:
         llm = LLMClient(custom_base_url="https://nim.example/v1", custom_model="m",
                         custom_key="k", http=http)
@@ -804,12 +808,7 @@ def test_llm_chain_skips_a_backend_that_answers_something_other_than_json():
     respx.post(f"{OPENROUTER_BASE_URL}/chat/completions").mock(
         return_value=httpx.Response(200, text='{"choices": [{"message": {"cont')
     )
-    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
-        200, json={"data": [{"id": "gpt-oss-120b"}]}
-    ))
-    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
-        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ok"}}]})
-    )
+    _ovh_answers("ok")
     with httpx.Client() as http:
         assert LLMClient(openrouter_key="o", http=http).complete("hi") == "ok"
 
@@ -861,10 +860,7 @@ def test_llm_chain_uses_the_second_endpoint_before_openrouter():
 
 @respx.mock
 def test_a_half_configured_fallback_is_ignored():
-    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
-        200, json={"data": [{"id": "gpt-oss-120b"}]}))
-    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
-        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ovh"}}]}))
+    _ovh_answers("ovh")
     with httpx.Client() as http:
         llm = LLMClient(fallback_base_url="https://spare.example/v1", http=http)  # no model
         assert llm.complete("hi") == "ovh"
@@ -961,10 +957,7 @@ def test_a_spent_wallet_fails_the_backend_and_not_one_model():
     ids would only spend more calls on a wallet with nothing in it."""
     route = respx.post("https://wallet.example/v1/chat/completions").mock(
         return_value=httpx.Response(402, json={"error": "payment required"}))
-    respx.get(f"{OVH_BASE_URL}/models").mock(return_value=httpx.Response(
-        200, json={"data": [{"id": "gpt-oss-120b"}]}))
-    respx.post(f"{OVH_BASE_URL}/chat/completions").mock(
-        return_value=httpx.Response(200, json={"choices": [{"message": {"content": "ovh"}}]}))
+    _ovh_answers("ovh")
     with httpx.Client() as http:
         llm = LLMClient(custom_base_url="https://wallet.example/v1", custom_key="k",
                         models_by_base_url={"https://wallet.example/v1": ["a", "b", "c"]},
