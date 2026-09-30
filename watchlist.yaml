@@ -3698,3 +3698,43 @@ watched:
     reopen_if: >-
       tokentoworld.com serves its terms over HTTPS, stating a trial spent before
       any payment and where its Claude supply comes from.
+
+  - domains: [lightning.ai]
+    name: Lightning AI (Model APIs)
+    checked_on: '2026-09-30'
+    reason: >-
+      Its Model APIs are OpenAI-compatible, take Claude Code through
+      ANTHROPIC_BASE_URL, and "Users get up to 40 million free tokens to start"
+      at 15 requests a minute on the Free plan
+      (docs/platform/inference/model-apis). The account is free — "no credit
+      card required" to create it, a non-virtual phone number to verify it — and
+      "Eligible free plan users receive complimentary credits", which "can be
+      used for compute, inference, and storage" and are "promotional" (the
+      getting-started, FAQ and billing pages, read 2026-09-30). No page says the
+      credits reach an account without a card, and the console offers them
+      beside a card: its billing panel pairs "Claim your … free credits" with an
+      "Add card" button, and its sign-up promises "up to 30 free credits". The
+      44 models of the keyless catalog at lightning.ai/api/v1/models are all
+      priced, Claude Opus 4.8 and GPT-6 Astra among them, so the credit is the
+      whole offer — the SiliconFlow record, the card question open.
+    reopen_if: >-
+      A Lightning page says the free credits reach an account without a card, or
+      a model in its catalog is priced at zero.
+
+  - domains: [qwencloud.com, qwencloudapi.com]
+    name: QwenCloud
+    checked_on: '2026-09-30'
+    reason: >-
+      Alibaba's developer platform for Qwen and third-party models, run by
+      Intelligent Cloud Computing (Singapore), OpenAI-compatible at
+      https://maas.qwencloudapi.com/compatible-mode/v1 with Claude Code and
+      Codex guides. Its homepage says "Most models offer free API credits", and
+      its free-quota page gives each model a quota valid 90 days from
+      activation, but the way in is "Sign up for QwenCloud and complete your
+      payment information to activate your free quota"
+      (docs.qwencloud.com/resources/free-quota, read 2026-09-30) — a credit
+      behind payment details, which CONTRIBUTING does not take. Alibaba Cloud
+      Model Studio's international free quota is a row.
+    reopen_if: >-
+      A QwenCloud page grants the free quota before any payment information is
+      given.
