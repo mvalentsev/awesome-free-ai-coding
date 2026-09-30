@@ -1979,6 +1979,8 @@ entries:
     - inclusionai/ling-3.1-flash
     - inclusionai/ling-3.1-flash-free
     - stealth/pixel-canary
+    ignored_ids:
+    - liquid/d1
     no_family_ids:
     - stealth/pixel-canary
     anthropic_base_url: https://ai-gateway.vercel.sh
@@ -1986,14 +1988,14 @@ entries:
       base_url: https://ai-gateway.vercel.sh/codex/v1
       source: https://vercel.com/docs/ai-gateway/coding-agents/openai-codex
       quote: Point Codex at its own compatibility endpoint
-    note: every id listed is priced 0 in and 0 out and draws nothing from the $5 credit;
-      any other Free-Tier-eligible model spends it. Zero-priced ids come and go within
-      days, so a new one waits two weeks for the Models column; stealth/pixel-canary
-      is a stealth codename that names no model, so it stays out of it. spacexai/grok-stt
-      also shows a zero but is speech-to-text billed per second of audio. The same
-      key serves the Anthropic Messages format at https://ai-gateway.vercel.sh, which
-      Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY
-      empty
+    note: every id listed is priced 0 in and out and draws nothing from the $5 credit;
+      any other Free-Tier-eligible model spends it. Zero-priced ids come and go in
+      days, so a new one waits two weeks for the Models column; stealth/pixel-canary,
+      a codename naming no model, stays out of it. liquid/d1 (a decision model for
+      classification, routing and scoring) and spacexai/grok-stt (speech-to-text billed
+      per second) are no chat models. The same key serves the Anthropic Messages format
+      at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL
+      with ANTHROPIC_API_KEY empty
   data_use:
     trains: opt-out
     quote: By default, AI Gateway does not route based on the training data policy
@@ -5298,6 +5300,7 @@ entries:
   - https://thegrid.ai/docs/api-reference/errors-and-rate-limits.md
   - https://thegrid.ai/docs/instrument-specifications/current-instruments.md
   - https://thegrid.ai/docs/integrations-and-best-practices/integrations/claude-code.md
+  - https://thegrid.ai/docs/data-handling-and-privacy/data-handling-and-privacy.md
   card_required: false
   offering: OpenAI- and Anthropic-compatible inference market that sells quality tiers
     rather than model names — Agent Max was served by Claude Opus 5 in the 30 days
@@ -5307,13 +5310,16 @@ entries:
     to a first call ask for no payment method — adding one is listed under what to
     do next. Until a first deposit the credit is spent at a ceiling: "Free accounts
     have a daily request limit of 100 requests. Make your first deposit to lift all
-    daily request limits." Concurrency counts deposits only, "a signup bonus of $25
-    and a deposit of $20 only counts as $20", and an account with $0 to $20 deposited
-    gets 3 concurrent requests. A model name buys a specification: "The specific model
-    behind any given call can change between calls." The keyless catalog publishes
-    what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5,
-    Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million
-    tokens. Read 2026-09-27'
+    daily request limits." What a free account sends is kept, too: "We store the inputs
+    (prompts) and outputs (completions) of requests made on the free tier", and they
+    "stay stored after you upgrade"; zero data retention is for paid accounts, and
+    "Your account counts as paid once you make your first deposit." Concurrency counts
+    deposits only, "a signup bonus of $25 and a deposit of $20 only counts as $20",
+    and an account with $0 to $20 deposited gets 3 concurrent requests. A model name
+    buys a specification: "The specific model behind any given call can change between
+    calls." The keyless catalog publishes what each tier delivered over 30 days to
+    2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b
+    — at market prices per million tokens. Read 2026-09-30'
   free_part: unnamed
   models: []
   api:
@@ -5329,12 +5335,6 @@ entries:
     note: the ids are instruments from the keyless catalog at api.thegrid.ai/v1/models,
       where each carries the models it delivered; the Claude Code guide sets ANTHROPIC_BASE_URL=https://messages-beta.api.thegrid.ai,
       the Messages API in beta
-  data_use:
-    trains: 'no'
-    quote: Neither we nor our suppliers retain the content of your requests or responses.
-      Your data is not used for training, fine-tuning, or any purpose beyond serving
-      the request in front of it.
-    url: https://thegrid.ai/docs/data-handling-and-privacy/data-handling-and-privacy
   border:
     left_out: []
     'on': '2026-09-26'
