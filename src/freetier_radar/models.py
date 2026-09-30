@@ -1335,6 +1335,15 @@ def is_archived_for_good(entry: Entry, today: date) -> bool:
 # and an HTTP stack in behind them. A missing file always means "empty", never
 # an error — each of these is optional to a caller that has no opinion about it.
 
+def _records(path: Path, key: str) -> list:
+    """The records a file lists under `key`, or as the whole file where it is a
+    bare list; none for a missing or empty file."""
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return (data.get(key) if isinstance(data, dict) else data) or []
+
+
 def load_blocklist(path: Path) -> dict[str, str]:
     """domain -> reason; missing file means an empty blocklist."""
     if not path.exists():
@@ -1356,13 +1365,9 @@ def load_dismissed(path: Path) -> set[tuple[str, str, str]]:
     out. This file is that memory: a suggestion declined stays declined until a
     human removes the line.
     """
-    if not path.exists():
-        return set()
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    items = data.get("dismissed") if isinstance(data, dict) else data
     return {
         (str(d["entry"]), str(d["family"]), str(d["superseded_by"]))
-        for d in (items or [])
+        for d in _records(path, "dismissed")
         if isinstance(d, dict) and d.get("entry") and d.get("family") and d.get("superseded_by")
     }
 
@@ -1409,11 +1414,7 @@ WATCH_RECHECK_DAYS = 90
 def load_watchlist(path: Path) -> list[Watched]:
     """Missing file means an empty watchlist — the file is optional the way
     blocklist.yaml is."""
-    if not path.exists():
-        return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    items = data.get("watched") if isinstance(data, dict) else data
-    return [Watched.model_validate(w) for w in (items or [])]
+    return [Watched.model_validate(w) for w in _records(path, "watched")]
 
 
 class Source(BaseModel):
@@ -1444,11 +1445,7 @@ SOURCE_RECHECK_DAYS = 180
 
 def load_sources(path: Path) -> list[Source]:
     """Missing file means nothing has been declined yet."""
-    if not path.exists():
-        return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    items = data.get("read") if isinstance(data, dict) else data
-    return [Source.model_validate(s) for s in (items or [])]
+    return [Source.model_validate(s) for s in _records(path, "read")]
 
 
 def is_source_current(source: Source, today: date) -> bool:

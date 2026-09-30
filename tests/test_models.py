@@ -438,6 +438,19 @@ def test_a_missing_watchlist_is_an_empty_one(tmp_path: Path):
     assert load_watchlist(tmp_path / "nope.yaml") == []
 
 
+def test_a_hand_kept_list_is_its_key_or_a_bare_list_and_nothing_when_empty(tmp_path: Path):
+    """The watchlist, sources and dismissals read the same way: the records under
+    the file's key, or the file itself where it is a bare list, and none from an
+    empty file or an empty key."""
+    path = tmp_path / "watchlist.yaml"
+    path.write_text(yaml.safe_dump([watched()]), encoding="utf-8")
+    assert [w.name for w in load_watchlist(path)] == ["Example"]
+    save_yaml(path, {"watched": None})
+    assert load_watchlist(path) == []
+    path.write_text("", encoding="utf-8")
+    assert load_watchlist(path) == []
+
+
 def test_a_watch_entry_needs_a_domain():
     with pytest.raises(ValidationError):
         Watched.model_validate(watched(domains=[]))
