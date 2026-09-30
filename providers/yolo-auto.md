@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Yolo-Auto free tier: limits, free models, verified 2026-09-28'
-description: 'One open-weight Qwen model served on the vendor''s own flat-rate API for coding agents; the free plan is 15 requests a week with no card. Free models: qwen3.8-flash. "15 free requests a week. No card required. Resets Monday at 00:00 UTC." on the home page and "No card required, free forever" on…'
+description: 'One open-weight Qwen model served on the vendor''s own flat-rate API for coding agents; the free plan is 15 requests a week with no card. Free models: qwen3.8-flash. "15 free requests a week. No card required. Resets Monday at 00:00 UTC." on the home page and "No card required, free forever" on the…'
 permalink: /providers/yolo-auto/
 last_modified_at: 2026-09-28
 crumb: Yolo-Auto

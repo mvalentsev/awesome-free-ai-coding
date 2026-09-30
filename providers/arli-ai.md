@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Arli AI free tier: limits, free models, verified 2026-09-28'
-description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. The pricing page's Free plan, "Test out the Arli platform" at $0, lists only what it withholds — "Delayed Response",…
+description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. The pricing page's Free plan, "Test out the Arli platform" at $0, lists only what it withholds — "Delayed Response", "Slower…
 permalink: /providers/arli-ai/
 last_modified_at: 2026-09-28
 crumb: Arli AI

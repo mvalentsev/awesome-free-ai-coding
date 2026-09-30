@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'AtomCode free tier: limits, free models, verified 2026-09-28'
-description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash. CodingPlan "offers three…'
+description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash. CodingPlan "offers three tiers"…'
 permalink: /providers/atomcode/
 last_modified_at: 2026-09-28
 crumb: AtomCode

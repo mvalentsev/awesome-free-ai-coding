@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'CodeGPT free tier: limits, free models, verified 2026-09-28'
-description: VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it. 10 free interactions a day on Economy models, described as free forever,…
+description: VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it. 10 free interactions a day on Economy models, described as free forever…
 permalink: /providers/codegpt/
 last_modified_at: 2026-09-28
 crumb: CodeGPT

@@ -1,5 +1,5 @@
 """The words a figure is put in, shared by the pages and the checks."""
-from freetier_radar.words import number, ordinal, series, weeks
+from freetier_radar.words import clip, number, ordinal, series, weeks
 
 
 def test_a_figure_is_a_word_up_to_ten_and_digits_past_it():
@@ -17,3 +17,14 @@ def test_a_run_of_names_joins_the_last_with_its_conjunction():
     assert series(["a"]) == "a"
     assert series(["a", "b"]) == "a and b"
     assert series(["a", "b", "c"], "or") == "a, b or c"
+
+
+def test_a_sentence_is_cut_at_a_word_within_its_room():
+    """The whitespace collapses, a sentence that fits is left whole, and one
+    that does not ends at a word with "…", the dangling comma dropped, in no
+    more than the room."""
+    assert clip("  one\n two  ", 20) == "one two"
+    assert clip("alpha beta, gamma delta", 15) == "alpha beta…"
+    assert all(len(clip("alpha beta, gamma delta", room)) <= room for room in range(1, 25))
+    assert clip("supercalifragilistic", 8) == "superca…"
+    assert clip("anything at all", 1) == "…"

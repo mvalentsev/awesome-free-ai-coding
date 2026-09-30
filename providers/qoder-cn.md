@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qoder CN (formerly Lingma) free tier: limits, free models, verified 2026-09-28'
-description: Alibaba Cloud's agentic coding apps for China — Qoder CN IDE, JetBrains plugin and CLI, formerly Tongyi Lingma — with a two-week trial of 300 credits, then 100 credits a day to claim while that promotion runs, and limited completions on a basic model after. The free plan, 个人体验版, gives…
+description: Alibaba Cloud's agentic coding apps for China — Qoder CN IDE, JetBrains plugin and CLI, formerly Tongyi Lingma — with a two-week trial of 300 credits, then 100 credits a day to claim while that promotion runs, and limited completions on a basic model after. The free plan, 个人体验版, gives "有限的体验额度，含为期…
 permalink: /providers/qoder-cn/
 last_modified_at: 2026-09-28
 crumb: Qoder CN (formerly Lingma)

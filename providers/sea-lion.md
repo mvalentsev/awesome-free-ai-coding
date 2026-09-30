@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-09-28'
-description: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's. Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and…
+description: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's. Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no…
 permalink: /providers/sea-lion/
 last_modified_at: 2026-09-28
 crumb: SEA-LION (AI Singapore)

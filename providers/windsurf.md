@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-09-28'
-description: 'Free plan of Cognition''s desktop coding agent — the IDE that shipped as Windsurf. Free models: swe-1.6. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai. Its pricing page gives the $0 plan "Light quota…'
+description: 'Free plan of Cognition''s desktop coding agent — the IDE that shipped as Windsurf. Free models: swe-1.6. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai. Its pricing page gives the $0 plan "Light quota to…'
 permalink: /providers/windsurf/
 last_modified_at: 2026-09-28
 crumb: Devin Desktop (formerly Windsurf)

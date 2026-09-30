@@ -29,6 +29,7 @@ from .history import Event, EventType, jsonl_lines, load_history
 from .models import Entry, is_archived, live_families, load_registry, probe_frequency
 from .render import (EVENT_WORDS, REPO_URL, event_detail, picks, provider_page_url,
                      providers_index_url, sections)
+from .words import clip
 
 __all__ = ["MAX_AGE_DAYS", "POSTS_PER_RUN", "POST_LIMIT", "Bluesky", "Mastodon", "DevTo",
            "CREDENTIALS", "channels_from_env", "half_configured", "devto_from_env", "compose",
@@ -52,17 +53,6 @@ _URL = re.compile(r"https?://[^\s<>()]+")
 def event_key(ev: Event) -> str:
     """One string per history line: the run's clock, the kind and the row."""
     return f"{ev.ts.isoformat()}|{ev.event.value}|{ev.id}"
-
-
-def _cut(text: str, room: int) -> str:
-    """Cut at a word, mark the cut. `room` is what the fixed parts left over."""
-    text = " ".join(text.split())
-    if len(text) <= room:
-        return text
-    if room <= 1:
-        return "…"
-    cut = text.rfind(" ", 0, room - 1)
-    return text[:cut if cut > 0 else room - 1].rstrip(" ,;:.—-") + "…"
 
 
 def _listed(prefix: str, names: list[str], room: int) -> str:
@@ -111,7 +101,7 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
         tail = _listed("Now: ", ev.models, half(lead)) if ev.models else "The row keeps no free model"
     fixed = f"{lead} — .\n{tail} → {link}"
     room = limit - len(fixed)
-    text_body = _cut(body, room) if body and room > 1 else ""
+    text_body = clip(body, room) if body and room > 1 else ""
     first = f"{lead} — {text_body}." if text_body else f"{lead}."
     return f"{first}\n{tail} → {link}"
 

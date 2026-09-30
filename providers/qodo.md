@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qodo free tier: limits, free models, verified 2026-09-28'
-description: 'Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card. "Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited credits" is the whole free offer on the pricing page, and the FAQ beside it says so: "Is…'
+description: 'Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card. "Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited credits" is the whole free offer on the pricing page, and the FAQ beside it says so: "Is there…'
 permalink: /providers/qodo/
 last_modified_at: 2026-09-28
 crumb: Qodo

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-09-28'
-description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外,…'
+description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外, with…'
 permalink: /providers/sensenova/
 last_modified_at: 2026-09-28
 crumb: SenseNova (SenseTime 商汤)

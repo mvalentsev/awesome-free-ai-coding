@@ -1214,7 +1214,7 @@ def test_a_long_watch_reason_is_cut_by_length_not_at_the_first_full_stop():
                             TODAY, watchlist=[long_reason])
     quoted = rejected[0].split(" — ", 1)[1]
     assert quoted.startswith("api.llm7.io serves 35 models")
-    assert quoted.endswith("…") and len(quoted) <= scout.WATCH_REASON_IN_PR + 1
+    assert quoted.endswith("…") and len(quoted) <= scout.WATCH_REASON_IN_PR
 
 
 def test_a_delisted_row_leaves_its_domain_to_its_verdict():

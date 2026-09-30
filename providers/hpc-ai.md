@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-09-28'
-description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the…
+description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the page's…
 permalink: /providers/hpc-ai/
 last_modified_at: 2026-09-28
 crumb: HPC-AI Model APIs

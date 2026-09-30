@@ -1,14 +1,15 @@
-"""How the pages and the checks put a figure into words: a count, an ordinal, a
-span of days, a run of names.
+"""How the pages and the checks put things into words: a count, an ordinal, a
+span of days, a run of names, and a sentence cut to the room it has.
 
 The render prints a rule's figure from its constant ("where two rows or more
 serve it free"), and `claims` holds a hand-written sentence to the same
 constant. Both take their words from here, so a figure is spelled one way on
-the pages and in CONTRIBUTING.
+the pages and in CONTRIBUTING. A page's description, a post and a line of the
+scout's PR cut a long sentence here too, so each cut reads the same.
 """
 from __future__ import annotations
 
-__all__ = ["number", "ordinal", "weeks", "series"]
+__all__ = ["number", "ordinal", "weeks", "series", "clip"]
 
 _NUMBERS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven",
             8: "eight", 9: "nine", 10: "ten"}
@@ -40,3 +41,17 @@ def series(names: list[str], conjunction: str = "and") -> str:
     if len(names) == 1:
         return names[0]
     return ", ".join(names[:-1]) + f" {conjunction} " + names[-1]
+
+
+def clip(text: str, room: int) -> str:
+    """`text` with its whitespace collapsed, in at most `room` characters: cut
+    at the last word that fits beside the "…" marking the cut, without the
+    punctuation the cut leaves dangling. A first word longer than the room is
+    cut where the room ends."""
+    text = " ".join(text.split())
+    if len(text) <= room:
+        return text
+    if room <= 1:
+        return "…"
+    cut = text.rfind(" ", 0, room - 1)
+    return text[:cut if cut > 0 else room - 1].rstrip(" ,;:.—-") + "…"

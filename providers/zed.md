@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Zed free tier: limits, free models, verified 2026-09-28'
-description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. Free models: gpt-6-luna. The docs: "Trials include $5 of GPT-6 Luna usage and unlimited Edit…'
+description: 'Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan. Free models: gpt-6-luna. The docs: "Trials include $5 of GPT-6 Luna usage and unlimited Edit Predictions…'
 permalink: /providers/zed/
 last_modified_at: 2026-09-28
 crumb: Zed

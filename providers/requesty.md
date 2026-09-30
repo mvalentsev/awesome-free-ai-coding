@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Requesty free tier: limits, free models, verified 2026-09-28'
-description: 'OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those. Free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning,…'
+description: 'OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those. Free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning…'
 permalink: /providers/requesty/
 last_modified_at: 2026-09-28
 crumb: Requesty

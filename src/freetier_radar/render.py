@@ -34,7 +34,7 @@ from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Her
                        chart_words, hero_svg, hero_words, radar_svg)
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
-from .words import number, series, weeks
+from .words import clip, number, series, weeks
 # The log a commit will be made on, and the map of the repository, which
 # CONTRIBUTING.md prints.
 from .gate import committed_log
@@ -88,6 +88,8 @@ README_CHANGES = 10
 # reasons, and every long cell on the site (`_site_fold`). The teaser is a cut at
 # a word boundary, so the gap between the two is what keeps a cell from folding
 # away a line and a half of text to save half a line.
+# A page's <meta> description, cut at a word to fit in this many characters.
+DESCRIPTION_ROOM = 300
 README_LIMITS_TEASER = 150
 README_LIMITS_COLLAPSE = 260
 # The README is the landing page and the site is the reference. A row is one
@@ -2060,12 +2062,7 @@ def _page_description(e: Entry) -> str:
     shown, more = _readme_families(e)
     named = (f" Free models: {', '.join(shown)}{f' and {more} more' if more else ''}."
              if shown else "")
-    return _description(f"{offer}{named} {e.limits}")
-
-
-def _description(text: str) -> str:
-    text = " ".join(text.split())
-    return text if len(text) <= 300 else text[:297].rsplit(" ", 1)[0] + "…"
+    return clip(f"{offer}{named} {e.limits}", DESCRIPTION_ROOM)
 
 
 def _last_modified(e: Entry, events: list[Event]) -> date:
@@ -2605,9 +2602,9 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
             summary.append(f"It measures **{mark.tier.value}**: {where}.")
         title = (f"{family} free: {n} provider{'' if n == 1 else 's'}, limits and ids, "
                  f"verified {floor}")
-        description = _description(f"{family} is served free by {series(names)}. {asks} Each "
-                                   "one's limits in the vendor's words, the ids to call and the "
-                                   "day a live probe last confirmed it.")
+        description = clip(f"{family} is served free by {series(names)}. {asks} Each "
+                           "one's limits in the vendor's words, the ids to call and the "
+                           "day a live probe last confirmed it.", DESCRIPTION_ROOM)
         body = [f"# Where {family} is free", "", " ".join(summary), "", nav, "",
                 "## Who serves it free", ""]
         for e in rows:
@@ -2618,8 +2615,9 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         last = max(departed).isoformat() if departed else ""
         until = f" The list carried it at {series(names)} until {last}." if before else ""
         title = f"{family} free: no longer free on the list" + (f", last listed {last}" if last else "")
-        description = _description(f"No row on the list serves {family} free any more.{until} "
-                                   "Every model free today is on the list's model index.")
+        description = clip(f"No row on the list serves {family} free any more.{until} "
+                           "Every model free today is on the list's model index.",
+                           DESCRIPTION_ROOM)
         body = [f"# Where {family} was free", "",
                 f"**No row on the list serves `{family}` free any more.**{until} Each row's page "
                 "says what it offers now.", "", nav, ""]
@@ -2668,10 +2666,10 @@ def build_models_index(entries: list[Entry], today: date,
     gone.sort(key=lambda g: (g[1] or date.min, g[0]), reverse=True)
     by_id = {e.id: e for e in entries}
     title = f"Free LLM models by name: who serves each one free, verified {_floor(active, today)}"
-    description = _description(
+    description = clip(
         f"{len(by_family)} model families the list's {len(active)} live rows serve free, and every "
         f"row that serves each one; {len(pages & set(by_family))} of them have a page of their own "
-        "with the limits in the vendor's words and the ids to call.")
+        "with the limits in the vendor's words and the ids to call.", DESCRIPTION_ROOM)
     changed = [*(_last_modified(e, events) for e in active), *(g[1] for g in gone if g[1])]
     head = {"title": title, "description": description,
             "permalink": _permalink(models_index_url()),

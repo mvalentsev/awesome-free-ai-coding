@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Autohand Code free tier: limits, free models, verified 2026-09-28'
-description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, its messages counted per five hours and per week. Free models: fantail. The Free plan "includes 20 messages per five-hour window, 200…'
+description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, its messages counted per five hours and per week. Free models: fantail. The Free plan "includes 20 messages per five-hour window, 200 messages…'
 permalink: /providers/autohand-code/
 last_modified_at: 2026-09-28
 crumb: Autohand Code

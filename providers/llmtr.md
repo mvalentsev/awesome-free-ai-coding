@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-28'
-description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — eight zero-priced chat ids on 2026-09-29. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin, agnes-3.0-flash, agnes-2.5-flash, motif-3. A new account calls the free rows before any…'
+description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — eight zero-priced chat ids on 2026-09-29. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin, agnes-3.0-flash, agnes-2.5-flash, motif-3. A new account calls the free rows before any top-up…'
 permalink: /providers/llmtr/
 last_modified_at: 2026-09-30
 crumb: LLMTR

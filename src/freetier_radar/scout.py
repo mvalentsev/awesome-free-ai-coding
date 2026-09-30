@@ -23,11 +23,13 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
 from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
                      for_a_human, join_free_list_sync, probe_page_url_sync,
                      unevidenced_families)
+from .words import clip
 
 EDITABLE = {"offering", "limits", "card_required", "probe", "models"}
 
-# How much of a watchlist reason to quote when a proposal is turned away. The PR
-# body lists rejections on one line each; the full reason runs to a paragraph.
+# How much of a watchlist reason to quote when a proposal is turned away, "…"
+# included. The PR body lists rejections on one line each; the full reason runs
+# to a paragraph.
 WATCH_REASON_IN_PR = 120
 
 DISCOVERY_QUERIES = [
@@ -880,9 +882,7 @@ def apply_new(entries: list[Entry], new_entries: list[dict], today: date,
         if watched is not None:
             # Cut by length rather than at the first full stop: the reasons are
             # full of hostnames and prices, which a split on "." cuts in half.
-            reason = " ".join(watched.reason.split())
-            if len(reason) > WATCH_REASON_IN_PR:
-                reason = reason[:WATCH_REASON_IN_PR].rsplit(" ", 1)[0] + "…"
+            reason = clip(watched.reason, WATCH_REASON_IN_PR)
             rejected.append(
                 f"{e.id}: on the watchlist since {watched.checked_on.isoformat()} — {reason}")
             continue
