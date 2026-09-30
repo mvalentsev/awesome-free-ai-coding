@@ -720,22 +720,20 @@ def _strong_models(active: list[Entry]) -> list[dict]:
     The frontier and strong families, their tier marks measured against the
     Artificial Analysis index and never typed; the bar keeps the set short.
     Frontier first, then the most widely served — every row beside a model is
-    one more free quota of it — and the name to break a tie. A row that needs a
-    card carries its 💳 here as in the list."""
-    by_family: dict[str, tuple[bool, list[Entry]]] = {}
-    for e in active:
-        for m in e.models:
-            if m.superseded_by is None and m.tier in (Tier.FRONTIER, Tier.STRONG):
-                by_family.setdefault(m.family, (m.tier is Tier.FRONTIER, []))[1].append(e)
-    ordered = sorted(by_family.items(), key=lambda kv: (not kv[1][0], -len(kv[1][1]), kv[0]))
-    # Every family here measures strong or better, so every one has a page.
-    return [
-        {"family": family, "frontier": frontier, "page": model_page_url(family),
-         "providers": [{"name": p.name, "url": p.url,
-                        "card_flag": _card_flag(p)}
-                       for p in sorted(ps, key=_by_rank)]}
-        for family, (frontier, ps) in ordered
-    ]
+    one more free quota of it — and the name to break a tie. A family, its rows
+    and its mark are the ones its model page prints (`_rows_by_family`,
+    `_measured`). A row that needs a card carries its 💳 here as in the list."""
+    strong = []
+    for family, rows in _rows_by_family(active).items():
+        mark = _measured(family, rows)
+        if mark is not None and mark.tier in (Tier.FRONTIER, Tier.STRONG):
+            # Every family here measures strong or better, so every one has a page.
+            strong.append({"family": family, "frontier": mark.tier is Tier.FRONTIER,
+                           "page": model_page_url(family),
+                           "providers": [{"name": p.name, "url": p.url,
+                                          "card_flag": _card_flag(p)} for p in rows]})
+    # Stable: each tier keeps _rows_by_family's order, the most widely served first.
+    return sorted(strong, key=lambda m: not m["frontier"])
 
 
 def _starters(active: list[Entry]) -> list[dict]:

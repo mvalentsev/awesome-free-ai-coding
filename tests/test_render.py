@@ -683,6 +683,22 @@ def test_the_strong_models_are_named_with_every_row_that_serves_them_free(tmp_pa
     assert "`small`" not in start
 
 
+def test_a_strong_model_is_marked_and_served_as_its_model_page_says():
+    """The strong models read the model pages' grouping and mark: where two rows
+    measure one family apart, the family carries the better mark, as its page
+    does, and every row that serves it free stands beside it."""
+    entries = [
+        make(id="a", name="A", rank=1, models=[{"family": "kimi-k3", "tier": "strong",
+                                                "aa_model": "kimi-k3"}]),
+        make(id="b", name="B", rank=2, models=[{"family": "kimi-k3", "tier": "frontier",
+                                                "aa_model": "kimi-k3-thinking"}]),
+        make(id="c", name="C", rank=3, models=[{"family": "kimi-k3"}]),
+    ]
+    ctx = build_context(entries, TODAY)
+    assert [(m["family"], m["frontier"], [p["name"] for p in m["providers"]])
+            for m in ctx["strong_models"]] == [("kimi-k3", True, ["A", "B", "C"])]
+
+
 def test_the_strong_models_on_the_readme_are_capped_and_the_rest_linked(tmp_path: Path,
                                                                        monkeypatch):
     import freetier_radar.render as render
