@@ -4,10 +4,11 @@ import json
 from datetime import date, timedelta
 from pathlib import Path
 
+import pytest
 import yaml
 
 from freetier_radar.discovery import CURATED_FEEDS
-from freetier_radar.validate import check
+from freetier_radar.validate import PROSE_LIMITS, check
 
 TODAY = date(2026, 8, 14)
 
@@ -162,6 +163,22 @@ def test_a_rows_prose_stays_a_readers_length(tmp_path: Path):
     assert [p for p in problems if "characters" in p] == [
         f"registry: x limits is {PROSE_LIMITS['limits'] + 1} characters, over {PROSE_LIMITS['limits']} — "
         "keep what a reader needs to use the offer, and leave its history to history.jsonl"]
+
+
+@pytest.mark.parametrize("field", sorted(PROSE_LIMITS))
+def test_every_prose_limit_holds_its_field(tmp_path: Path, field: str):
+    """The check reads each limit off the row's prose by field name, so a limit
+    on a field it does not read would hold nothing."""
+    text = "w" * (PROSE_LIMITS[field] + 1)
+    api = {"base_url": "https://x.ai/v1", "auth": "none"}
+    entry = {"offering": {**ENTRY, "offering": text},
+             "limits": {**ENTRY, "limits": text},
+             "api.note": {**ENTRY, "api": {**api, "note": text}},
+             "api.notice": {**ENTRY, "api": {**api, "notice": {"since": "2026-08-14", "text": text}}},
+             "delisted.reason": {**ENTRY, "delisted": {"on": "2026-08-10", "reason": text}}}[field]
+    problems = check(build(tmp_path, entries=[entry]), TODAY)
+    assert f"registry: x {field} is {len(text)} characters, over {PROSE_LIMITS[field]} — keep what " \
+           "a reader needs to use the offer, and leave its history to history.jsonl" in problems
 
 
 def test_a_row_of_models_leaves_its_models_to_the_models_line(tmp_path: Path):

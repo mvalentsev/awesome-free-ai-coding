@@ -37,6 +37,15 @@ FOR_CAUSE = "rejected for cause"
 _TAG = re.compile(r"<[A-Za-z/!?][^<>]*>")
 
 
+def _prose(e: Entry) -> list[tuple[str, str]]:
+    """A row's prose field by field, "" where the row has none: what the pages
+    print as the row wrote it, so each rule on prose reads the same fields."""
+    return [("offering", e.offering), ("limits", e.limits), ("name", e.name),
+            ("api.note", e.api.note if e.api else ""),
+            ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
+            ("delisted.reason", e.delisted.reason if e.delisted else "")]
+
+
 def _source_key(url: str) -> str:
     """One identity for a source however it happens to be spelled.
 
@@ -230,10 +239,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
         # bodies inside {% raw %}: a vendor sentence carrying `{% endraw %}`
         # would close that block, and a `{{` or `{%` after it would fail the
         # site's build.
-        for field, text in (("offering", e.offering), ("limits", e.limits),
-                            ("name", e.name), ("api.note", e.api.note if e.api else ""),
-                            ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
-                            ("delisted.reason", e.delisted.reason if e.delisted else "")):
+        for field, text in _prose(e):
             if "{{" in text or "{%" in text:
                 problems.append(
                     f"registry: {e.id} has Liquid delimiters in {field} — a Pages page "
@@ -244,10 +250,7 @@ def check(root: Path, today: date | None = None) -> list[str]:
     # (opencode/<model-id> shows as "opencode/"). Inside backticks it is code and
     # survives.
     for e in entries:
-        for field, text in (("offering", e.offering), ("limits", e.limits), ("name", e.name),
-                            ("api.note", e.api.note if e.api else ""),
-                            ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
-                            ("delisted.reason", e.delisted.reason if e.delisted else "")):
+        for field, text in _prose(e):
             for tag in _TAG.findall(re.sub(r"`[^`]*`", "", text)):
                 problems.append(
                     f"registry: {e.id} {field} has {tag} outside backticks — GitHub drops it from "
@@ -257,14 +260,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
     # quota, the conditions, what happens to the data — not dated lane counts or
     # which id left when. History lives in history.jsonl and git log.
     for e in entries:
-        for field, text, limit in (("offering", e.offering, PROSE_LIMITS["offering"]),
-                                   ("limits", e.limits, PROSE_LIMITS["limits"]),
-                                   ("api.note", e.api.note if e.api else "", PROSE_LIMITS["api.note"]),
-                                   ("api.notice", e.api.notice.text if e.api and e.api.notice else "",
-                                    PROSE_LIMITS["api.notice"]),
-                                   ("delisted.reason", e.delisted.reason if e.delisted else "",
-                                    PROSE_LIMITS["delisted.reason"])):
-            if len(text) > limit:
+        for field, text in _prose(e):
+            limit = PROSE_LIMITS.get(field)
+            if limit is not None and len(text) > limit:
                 problems.append(
                     f"registry: {e.id} {field} is {len(text)} characters, over {limit} — "
                     f"keep what a reader needs to use the offer, and leave its history to history.jsonl")
