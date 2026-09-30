@@ -41,6 +41,7 @@ from typing import Callable, Iterator
 
 import yaml
 
+from . import git
 from .history import block_problems, parse_history
 from .layout import MAP, Kind, node_for
 from .models import Entry
@@ -181,16 +182,6 @@ def message_problems(text: str) -> list[str]:
 
 # ---- git
 
-def _git(repo: Path, *args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
-
-
-def _show(repo: Path, rev: str, path: str) -> str | None:
-    """A file as `rev` holds it — `rev` "" for the index — or None where it has none."""
-    shown = _git(repo, "show", f"{rev}:{path}")
-    return shown.stdout if shown.returncode == 0 else None
-
-
 def _registry(text: str | None) -> list[Entry]:
     if text is None:
         return []
@@ -199,11 +190,11 @@ def _registry(text: str | None) -> list[Entry]:
 
 def _pages_at(repo: Path, rev: str) -> set[str]:
     """The published pages a commit holds; none for a revision that does not exist yet."""
-    return _kept(_git(repo, "ls-tree", "-r", "--name-only", rev).stdout.splitlines())
+    return _kept(git.run(repo, "ls-tree", "-r", "--name-only", rev).stdout.splitlines())
 
 
 def _pages_staged(repo: Path) -> set[str]:
-    return _kept(_git(repo, "ls-files").stdout.splitlines())
+    return _kept(git.run(repo, "ls-files").stdout.splitlines())
 
 
 def _pages_on_disk(repo: Path) -> set[str]:
@@ -211,12 +202,12 @@ def _pages_on_disk(repo: Path) -> set[str]:
 
 
 def _branch(repo: Path) -> str:
-    return _git(repo, "symbolic-ref", "--quiet", "--short", "HEAD").stdout.strip()
+    return git.run(repo, "symbolic-ref", "--quiet", "--short", "HEAD").stdout.strip()
 
 
 def _merging(repo: Path) -> list[str]:
     """The other parents of the commit being made, when it is a merge."""
-    git_dir = Path(_git(repo, "rev-parse", "--absolute-git-dir").stdout.strip())
+    git_dir = Path(git.run(repo, "rev-parse", "--absolute-git-dir").stdout.strip())
     head = git_dir / "MERGE_HEAD"
     return head.read_text(encoding="utf-8").split() if head.is_file() else []
 
@@ -228,7 +219,7 @@ def log_base(repo: Path) -> str:
     lines anew, as one block against main."""
     if _branch(repo) == "main" or _merging(repo):
         return "HEAD"
-    return _git(repo, "merge-base", "HEAD", "origin/main").stdout.strip() or "HEAD"
+    return git.run(repo, "merge-base", "HEAD", "origin/main").stdout.strip() or "HEAD"
 
 
 def committed_log(path: Path) -> str | None:
@@ -236,14 +227,14 @@ def committed_log(path: Path) -> str | None:
     records against — or None outside a git work tree, where there is nothing
     to find it in and the render appends to the file as it stands."""
     where = path.resolve().parent
-    top = _git(where, "rev-parse", "--show-toplevel")
+    top = git.run(where, "rev-parse", "--show-toplevel")
     if top.returncode:
         return None
     repo = Path(top.stdout.strip())
-    if _git(repo, "rev-parse", "--verify", "--quiet", "HEAD").returncode:
+    if git.run(repo, "rev-parse", "--verify", "--quiet", "HEAD").returncode:
         return ""
     rel = path.resolve().relative_to(repo.resolve()).as_posix()
-    return _show(repo, log_base(repo), rel) or ""
+    return git.show(repo, log_base(repo), rel) or ""
 
 
 @contextlib.contextmanager
@@ -251,7 +242,7 @@ def snapshot_index(repo: Path) -> Iterator[Path]:
     """The index exported to a directory of its own: what the commit will hold,
     not the working tree, and nothing untracked."""
     with tempfile.TemporaryDirectory(prefix="freetier-gate-") as tmp:
-        exported = _git(repo, "checkout-index", "--all", f"--prefix={tmp}/")
+        exported = git.run(repo, "checkout-index", "--all", f"--prefix={tmp}/")
         if exported.returncode:
             raise SystemExit(f"could not export the index: {exported.stderr.strip()}")
         yield Path(tmp)
@@ -314,18 +305,18 @@ def pre_commit(repo: Path, steps: list[Step] | None = None) -> list[str]:
     problems += page_problems(_pages_at(repo, "HEAD"), _pages_staged(repo))
     fork = log_base(repo)
     for name in LOGS:
-        staged = _show(repo, "", name)
+        staged = git.show(repo, "", name)
         for parent in [fork, *merging]:
-            problems += log_problems(name, _show(repo, parent, name), staged,
+            problems += log_problems(name, git.show(repo, parent, name), staged,
                                      frozen=on_main and name not in RECORDED)
     if not merging:
         for name in RECORDED:
-            problems += history_problems(_show(repo, fork, name), _show(repo, "", name),
-                                         _show(repo, "", "registry.yaml"),
-                                         _show(repo, "", "index.json"),
+            problems += history_problems(git.show(repo, fork, name), git.show(repo, "", name),
+                                         git.show(repo, "", "registry.yaml"),
+                                         git.show(repo, "", "index.json"),
                                          datetime.now(timezone.utc))
-        problems += earned_problems(_registry(_show(repo, "HEAD", "registry.yaml")),
-                                    _registry(_show(repo, "", "registry.yaml")))
+        problems += earned_problems(_registry(git.show(repo, "HEAD", "registry.yaml")),
+                                    _registry(git.show(repo, "", "registry.yaml")))
     return problems
 
 
@@ -335,25 +326,21 @@ def _history_by_commit(repo: Path, base: str, local: str) -> list[str]:
     read whole would take a registry change and its line one commit later for
     a commit that recorded what it changed."""
     problems = []
-    listed = _git(repo, "rev-list", "--reverse", "--first-parent", "--format=%H %ct",
-                  f"{base}..{local}").stdout.splitlines()
-    for line in listed:
-        if line.startswith("commit "):
-            continue
-        sha, _, stamp = line.partition(" ")
+    for sha, stamp in git.commits(repo, "--reverse", "--first-parent", f"{base}..{local}",
+                                  field="%ct"):
         made = datetime.fromtimestamp(int(stamp), timezone.utc)
         for name in RECORDED:
             problems += [f"{sha[:7]}: {p}" for p in history_problems(
-                _show(repo, f"{sha}^", name), _show(repo, sha, name),
-                _show(repo, sha, "registry.yaml"), _show(repo, sha, "index.json"), made)]
+                git.show(repo, f"{sha}^", name), git.show(repo, sha, name),
+                git.show(repo, sha, "registry.yaml"), git.show(repo, sha, "index.json"), made)]
     return problems
 
 
 def _checked_from(repo: Path, base: str, local: str) -> str:
     """`base`, or the newest commit RATIFIED names on main's line from it to
     `local`."""
-    listed = _git(repo, "rev-list", "--first-parent", f"{base}..{local}").stdout.split()
-    return next((sha for sha in listed if sha in RATIFIED), base)
+    listed = git.commits(repo, "--first-parent", f"{base}..{local}")
+    return next((sha for sha, _ in listed if sha in RATIFIED), base)
 
 
 def diff(repo: Path, base: str, earned: bool) -> list[str]:
@@ -363,7 +350,7 @@ def diff(repo: Path, base: str, earned: bool) -> list[str]:
     problems = page_problems(_pages_at(repo, base), _pages_on_disk(repo))
     for name in LOGS:
         now = (repo / name).read_text(encoding="utf-8") if (repo / name).is_file() else None
-        problems += log_problems(name, _show(repo, base, name), now)
+        problems += log_problems(name, git.show(repo, base, name), now)
     problems += _history_by_commit(repo, base, "HEAD")
 
     def on_disk(name: str) -> str | None:
@@ -371,14 +358,14 @@ def diff(repo: Path, base: str, earned: bool) -> list[str]:
     # The working tree, where the scheduled run checks what it is about to
     # commit; a tree that is HEAD's own was read with HEAD's commit above.
     for name in RECORDED:
-        if all(on_disk(n) == _show(repo, "HEAD", n) for n in (name, "registry.yaml", "index.json")):
+        if all(on_disk(n) == git.show(repo, "HEAD", n) for n in (name, "registry.yaml", "index.json")):
             continue
-        problems += history_problems(_show(repo, "HEAD", name), on_disk(name),
+        problems += history_problems(git.show(repo, "HEAD", name), on_disk(name),
                                      on_disk("registry.yaml"), on_disk("index.json"),
                                      datetime.now(timezone.utc))
     if earned:
         registry = repo / "registry.yaml"
-        problems += earned_problems(_registry(_show(repo, base, "registry.yaml")),
+        problems += earned_problems(_registry(git.show(repo, base, "registry.yaml")),
                                     _registry(registry.read_text(encoding="utf-8")))
     return problems
 
@@ -397,7 +384,7 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
             continue
         local, remote = parts[1], parts[3]
         if remote == _ZERO:
-            base = _git(repo, "merge-base", local, "origin/main").stdout.strip() or None
+            base = git.run(repo, "merge-base", local, "origin/main").stdout.strip() or None
         else:
             base = remote
         with snapshot_commit(repo, local) as snap:
@@ -407,7 +394,7 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
         base = _checked_from(repo, base, local)
         problems += page_problems(_pages_at(repo, base), _pages_at(repo, local))
         for name in LOGS:
-            problems += log_problems(name, _show(repo, base, name), _show(repo, local, name))
+            problems += log_problems(name, git.show(repo, base, name), git.show(repo, local, name))
         problems += _history_by_commit(repo, base, local)
         problems += _earned_by_commit(repo, base, local)
     return problems
@@ -418,17 +405,13 @@ def _earned_by_commit(repo: Path, base: str, local: str) -> list[str]:
     run did not make — its own verification commits are where those fields are
     written."""
     problems = []
-    listed = _git(repo, "rev-list", "--reverse", "--no-merges", "--format=%H %an",
-                  f"{base}..{local}").stdout.splitlines()
-    for line in listed:
-        if line.startswith("commit "):
-            continue
-        sha, _, author = line.partition(" ")
+    for sha, author in git.commits(repo, "--reverse", "--no-merges", f"{base}..{local}",
+                                   field="%an"):
         if author == "freetier-bot":
             continue
         problems += [f"{sha[:7]}: {p}" for p in earned_problems(
-            _registry(_show(repo, f"{sha}^", "registry.yaml")),
-            _registry(_show(repo, sha, "registry.yaml")))]
+            _registry(git.show(repo, f"{sha}^", "registry.yaml")),
+            _registry(git.show(repo, sha, "registry.yaml")))]
     return problems
 
 
@@ -456,7 +439,7 @@ def main(argv: list[str] | None = None) -> None:
     between.add_argument("--earned", action="store_true",
                          help="the earned-field rules too (a pull request)")
     args = parser.parse_args(argv)
-    repo = Path(_git(Path("."), "rev-parse", "--show-toplevel").stdout.strip() or ".")
+    repo = Path(git.run(Path("."), "rev-parse", "--show-toplevel").stdout.strip() or ".")
     if args.command == "pre-commit":
         _report(pre_commit(repo), "commit")
     elif args.command == "commit-msg":

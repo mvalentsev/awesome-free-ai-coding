@@ -10,7 +10,6 @@ do is ask an engine to crawl our own pages. Entry point: `freetier-indexnow` (`m
 import argparse
 import json
 import os
-import subprocess
 import sys
 import time
 from pathlib import Path
@@ -18,6 +17,7 @@ from typing import Callable
 
 import httpx
 
+from . import git
 from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
@@ -94,11 +94,11 @@ def index_at(rev: str, path: str = "index.json", repo: Path = Path(".")) -> dict
     """index.json as commit `rev` holds it, or None where git has no such commit
     or file there — a new branch's all-zero `before`, a clone too shallow to
     reach it."""
-    run = subprocess.run(["git", "show", f"{rev}:{path}"], cwd=repo, capture_output=True, text=True)
-    if run.returncode != 0:
+    text = git.show(repo, rev, path)
+    if text is None:
         return None
     try:
-        return json.loads(run.stdout)
+        return json.loads(text)
     except json.JSONDecodeError:
         return None
 
@@ -117,11 +117,9 @@ def changed_since(before: str, now: dict, repo: Path = Path("."),
     out, so the run's own ping, from HEAD^, sends its verification commit
     whole; and a `before` git cannot read sends every page, as changed_urls
     does."""
-    log = subprocess.run(["git", "log", "--reverse", "--first-parent", "--format=%H %s",
-                          f"{before}..HEAD"], cwd=repo, capture_output=True, text=True)
-    commits = [line.partition(" ") for line in log.stdout.splitlines()] if log.returncode == 0 else []
+    commits = git.commits(repo, "--reverse", "--first-parent", f"{before}..HEAD", field="%s")
     head = commits[-1][0] if commits else None
-    cuts = [sha for sha, _, subject in commits
+    cuts = [sha for sha, subject in commits
             if subject.startswith(VERIFICATION_SUBJECT) and sha != head]
     wanted: list[str] = []
     start = before

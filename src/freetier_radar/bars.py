@@ -20,7 +20,6 @@ purpose (`api.no_family_ids`) is one the row lists and no family names.
 from __future__ import annotations
 
 import argparse
-import subprocess
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -29,6 +28,7 @@ from pathlib import Path
 import httpx
 import yaml
 
+from . import git
 from .models import Entry, FreePart, family_names, is_archived, lane_ids, load_registry
 from .prober import TIMEOUT, UA, free_list_dates
 
@@ -48,15 +48,11 @@ def arrivals(repo: Path, path: str = "registry.yaml") -> dict[tuple[str, str], d
     serves — without a break. An id is added on the read that finds it and
     taken out when the run says it left, so an id that came back is dated from
     its return."""
-    log = subprocess.run(["git", "log", "--reverse", "--format=%H %ct", "--", path],
-                         cwd=repo, capture_output=True, text=True, check=True).stdout
     since: dict[tuple[str, str], date] = {}
-    for line in log.splitlines():
-        sha, stamp = line.split()
-        text = subprocess.run(["git", "show", f"{sha}:{path}"], cwd=repo,
-                              capture_output=True, text=True).stdout
+    for sha, stamp in git.commits(repo, "--reverse", "HEAD", "--", path, field="%ct",
+                                  check=True):
         try:
-            data = yaml.load(text, Loader=_LOADER) or {}
+            data = yaml.load(git.show(repo, sha, path) or "", Loader=_LOADER) or {}
         except yaml.YAMLError:
             continue
         rows = (data.get("entries") or []) if isinstance(data, dict) else []
