@@ -8,8 +8,8 @@ import pytest
 
 from freetier_radar import git
 
-# The author named outright: git exports the committer's own name to a
-# pre-commit hook, and the gate runs these tests inside one.
+# The author named outright: GIT_AUTHOR_NAME and the rest, wherever a shell
+# or a hook sets them, outrank a repository's own config.
 _AS = {**os.environ, "GIT_AUTHOR_NAME": "a reviewer", "GIT_AUTHOR_EMAIL": "t@example.com",
        "GIT_COMMITTER_NAME": "a reviewer", "GIT_COMMITTER_EMAIL": "t@example.com"}
 

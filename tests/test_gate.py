@@ -315,6 +315,18 @@ def test_each_check_fails_on_a_snapshot_it_should_refuse(tmp_path):
     assert check(snap) == ""
 
 
+def test_a_snapshot_runs_without_the_git_variables_a_hook_is_handed(tmp_path, monkeypatch):
+    """`git commit -a` hands its pre-commit hook the absolute path of the index
+    it is committing; a test that builds a repository of its own under it
+    would stage into that commit. The snapshot runs as CI does, without them."""
+    from freetier_radar.gate import _run
+    monkeypatch.setenv("GIT_INDEX_FILE", str(tmp_path / "outer" / ".git" / "index.lock"))
+    monkeypatch.setenv("GIT_AUTHOR_NAME", "whoever commits")
+    leaked = ("import os, sys; leaked = sorted(k for k in os.environ if k.startswith('GIT_')); "
+              "sys.exit('leaked: ' + ' '.join(leaked) if leaked else 0)")
+    assert _run(tmp_path, "-c", leaked) == ""
+
+
 # ---- a page the site published
 
 def test_a_page_the_site_published_is_never_deleted(tmp_path):

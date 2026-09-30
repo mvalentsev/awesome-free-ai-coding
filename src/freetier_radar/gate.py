@@ -262,9 +262,15 @@ def snapshot_commit(repo: Path, rev: str) -> Iterator[Path]:
 
 def _run(snap: Path, *argv: str) -> str:
     """Run a command of the package on the snapshot's own code, the way CI runs
-    it; its output when it fails, "" when it passes."""
-    env = {**os.environ, "TZ": "UTC", "PYTHONPATH": str(snap / "src"),
-           "PYTHONDONTWRITEBYTECODE": "1"}
+    it; its output when it fails, "" when it passes.
+
+    Without the GIT_* variables git hands its hooks. GIT_INDEX_FILE names the
+    index being committed — for `git commit -a` or `git commit <paths>` by an
+    absolute path — so a test that builds a repository of its own would stage
+    its files into the commit; and GIT_AUTHOR_NAME outranks a test
+    repository's own author. CI runs with neither."""
+    env = {**{k: v for k, v in os.environ.items() if not k.startswith("GIT_")},
+           "TZ": "UTC", "PYTHONPATH": str(snap / "src"), "PYTHONDONTWRITEBYTECODE": "1"}
     done = subprocess.run([sys.executable, *argv], cwd=snap, env=env, capture_output=True,
                           text=True)
     return "" if done.returncode == 0 else (done.stdout + done.stderr).strip()
