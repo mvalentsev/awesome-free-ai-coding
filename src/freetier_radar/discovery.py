@@ -175,15 +175,19 @@ def hn_search(client: httpx.Client, query: str, count: int = 8) -> list[Hit]:
     return hits
 
 
+def github_headers(token: str | None) -> dict[str, str]:
+    """The headers of a GitHub REST API call: its media type, and the token
+    where one is given."""
+    return {"Accept": "application/vnd.github+json",
+            **({"Authorization": f"Bearer {token}"} if token else {})}
+
+
 def github_search(client: httpx.Client, query: str, token: str | None = None,
                   count: int = 8, min_stars: int = 20) -> list[Hit]:
-    headers = {"Accept": "application/vnd.github+json"}
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
     r = client.get(
         "https://api.github.com/search/repositories",
         params={"q": query, "sort": "updated", "per_page": count},
-        headers=headers,
+        headers=github_headers(token),
     )
     r.raise_for_status()
     return [
@@ -288,11 +292,9 @@ def _archived_repo(client: httpx.Client, feed: str, env: Mapping[str, str]) -> s
     if parsed.netloc != "raw.githubusercontent.com" or len(parts) < 2:
         return None
     repo = f"{parts[0]}/{parts[1]}"
-    headers = {"Accept": "application/vnd.github+json"}
-    if env.get("GITHUB_TOKEN"):
-        headers["Authorization"] = f"Bearer {env['GITHUB_TOKEN']}"
     try:
-        r = client.get(f"https://api.github.com/repos/{repo}", headers=headers)
+        r = client.get(f"https://api.github.com/repos/{repo}",
+                       headers=github_headers(env.get("GITHUB_TOKEN")))
         r.raise_for_status()
         data = r.json()
     except (httpx.HTTPError, ValueError):

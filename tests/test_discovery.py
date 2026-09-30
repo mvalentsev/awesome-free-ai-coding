@@ -3,7 +3,7 @@ import respx
 
 from freetier_radar.discovery import (
     Evidence, Hit, _feed_excerpt, domain_of, fetch_page_texts, format_evidence,
-    gather_evidence, github_search, hn_search, models_dev_digest, tavily_search,
+    gather_evidence, github_headers, github_search, hn_search, models_dev_digest, tavily_search,
 )
 from freetier_radar.models import Entry, known_domains
 
@@ -259,6 +259,14 @@ def test_a_fragment_can_name_where_the_list_ends_too(monkeypatch):
     with httpx.Client() as c:
         ev = gather_evidence(["q1"], set(), env={}, http=c)
     assert ev.feeds[feed].startswith("## Provider Directory") and ev.feeds[feed].endswith("## Links\n")
+
+
+def test_a_github_call_carries_the_token_only_where_one_is_given():
+    """The search, a feed's archive check and the Pages build read GitHub's API
+    with one set of headers; with no token the call goes keyless."""
+    assert github_headers("t0k") == {"Accept": "application/vnd.github+json",
+                                     "Authorization": "Bearer t0k"}
+    assert github_headers(None) == github_headers("") == {"Accept": "application/vnd.github+json"}
 
 
 @respx.mock

@@ -18,6 +18,7 @@ from typing import Callable
 import httpx
 
 from . import git
+from .discovery import github_headers
 from .render import PAGES_URL, REPO_URL, checked_page_url, models_index_url, providers_index_url
 
 ENDPOINT = "https://api.indexnow.org/indexnow"
@@ -150,9 +151,7 @@ def latest_pages_build(token: str | None = None) -> tuple[str, str]:
     token = token or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
     repo = REPO_URL.removeprefix("https://github.com/")
     response = httpx.get(f"https://api.github.com/repos/{repo}/pages/builds/latest",
-                         headers={"Accept": "application/vnd.github+json",
-                                  **({"Authorization": f"Bearer {token}"} if token else {})},
-                         timeout=TIMEOUT)
+                         headers=github_headers(token), timeout=TIMEOUT)
     response.raise_for_status()
     build = response.json()
     return build.get("status", ""), build.get("commit", "")
