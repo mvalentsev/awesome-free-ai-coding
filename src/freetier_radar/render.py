@@ -919,20 +919,15 @@ def event_detail(ev: Event, entries: list[Entry] | None) -> str:
 
 def _change_rows(events: list[Event], entries: list[Entry] | None = None,
                  today: date | None = None, limit: int = README_CHANGES) -> list[dict]:
-    """The tail of the log, newest first, as Markdown table cells.
+    """The tail of the log, newest first, as Markdown table cells: the site's
+    rows with the detail made safe for a table.
 
     Pipes are escaped here rather than rejected in `freetier-check`: an event's
     detail is copied out of an entry's own `offering`, so a pipe in it is a
     perfectly good sentence that only this one table would trip over.
     """
-    return [
-        {"date": ev.ts.date().isoformat(),
-         "label": CHANGE_LABELS[ev.event],
-         "name": ev.name,
-         "url": _event_link(ev, entries, today or date.today()),
-         "detail": event_detail(ev, entries).replace("|", r"\|") or "—"}
-        for ev in _newest_first(events, limit)
-    ]
+    return [{**row, "detail": row["detail"].replace("|", r"\|") or "—"}
+            for row in _site_changes(events, entries, today or date.today(), limit)]
 
 
 def _rfc3339(stamp: datetime) -> str:
@@ -1108,6 +1103,15 @@ def _shared_facts(entries: list[Entry], today: date,
     }
 
 
+def _card_counts(rows: list[Entry]) -> dict:
+    """A section's figures: its rows, how many ask for no card, and whether all
+    of them do — a section that is all no-card says so in words rather than
+    leaving the reader to compare two figures."""
+    no_card = sum(1 for e in rows if not e.card_required)
+    return {"count": len(rows), "no_card": no_card,
+            "all_no_card": bool(rows) and no_card == len(rows)}
+
+
 def build_context(entries: list[Entry], today: date,
                   watchlist: list[Watched] | None = None,
                   history: list[Event] | None = None,
@@ -1118,16 +1122,8 @@ def build_context(entries: list[Entry], today: date,
     sections = []
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
-        # A section whose rows all ask for no card says so in words rather than
-        # leaving the reader to compare two figures.
-        no_card = sum(1 for e in rows if not e.card_required)
-        sections.append({
-            "title": title,
-            "rows": [_row(e, pages) for e in rows],
-            "count": len(rows),
-            "no_card": no_card,
-            "all_no_card": bool(rows) and no_card == len(rows),
-        })
+        sections.append({"title": title, "rows": [_row(e, pages) for e in rows],
+                         **_card_counts(rows)})
     connections = [
         {"name": e.name, "base_url": e.api.base_url,
          "page": provider_page_url(e.id),
@@ -1341,11 +1337,9 @@ def _site_sections(active: list[Entry]) -> list[dict]:
     for cat, title in CATEGORY_TITLES.items():
         rows = _ordered(active, cat)
         emoji, _, name = title.partition(" ")
-        no_card = sum(1 for e in rows if not e.card_required)
         sections.append({
             "id": cat.value, "emoji": emoji, "title": name, "short": SITE_NAV_LABELS[cat],
-            "rows": [_site_row(e) for e in rows], "count": len(rows),
-            "no_card": no_card, "all_no_card": bool(rows) and no_card == len(rows),
+            "rows": [_site_row(e) for e in rows], **_card_counts(rows),
         })
     return sections
 
@@ -1385,8 +1379,9 @@ def _site_archived_rows(entries: list[Entry], today: date) -> list[dict]:
 
 def _site_changes(events: list[Event], entries: list[Entry] | None,
                   today: date, limit: int = SITE_CHANGES) -> list[dict]:
-    """The same events as the README's table, without its pipe escaping: HTML
-    has no cell separator to protect a vendor's sentence from."""
+    """The tail of the log, newest first, as the site prints it: the README's
+    table escapes these rows' pipes, and HTML has no cell separator to protect
+    a vendor's sentence from."""
     return [{"date": ev.ts.date().isoformat(), "label": CHANGE_LABELS[ev.event],
              "name": ev.name, "url": _event_link(ev, entries, today),
              "detail": event_detail(ev, entries)}
@@ -2049,6 +2044,15 @@ def _front_matter(fields: dict) -> str:
                                     width=10000).rstrip() + "\n---\n"
 
 
+def _page(fields: dict, body: list[str]) -> str:
+    """A Markdown page of the site: its front matter under the site's own
+    layout, and a body Liquid leaves alone. GitHub Pages builds the pages with
+    Jekyll, and a vendor's sentence may carry `{{` or `{%`, so the body sits
+    inside {% raw %} — freetier-check refuses a row's prose that would close it."""
+    return "\n".join([_front_matter({"layout": "default", **fields}), "{% raw %}", "", *body,
+                      "", "{% endraw %}", ""])
+
+
 def _page_description(e: Entry) -> str:
     """The <meta> description: the offer first, then the free models, then the
     figures, cut at a word. The models come off the column, the list a probe
@@ -2255,18 +2259,17 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
     """
     name = holder.name if holder else e.duplicate_of
     page = provider_page_url(e.duplicate_of)
-    out = [_front_matter({"layout": "default",
-                          "title": f"{e.name}: the same project as {name}",
-                          "description": f"{e.name} and {name} are one project. The list carried "
-                                         f"it twice and now keeps one row: the free tier, the "
-                                         f"evidence and the history are on the {name} page.",
-                          "permalink": _permalink(provider_page_url(e.id)),
-                          "last_modified_at": _last_modified(e, events),
-                          "crumb": e.name}),
-           "{% raw %}", "", f"# {e.name}", "",
+    head = {"title": f"{e.name}: the same project as {name}",
+            "description": f"{e.name} and {name} are one project. The list carried "
+                           f"it twice and now keeps one row: the free tier, the "
+                           f"evidence and the history are on the {name} page.",
+            "permalink": _permalink(provider_page_url(e.id)),
+            "last_modified_at": _last_modified(e, events),
+            "crumb": e.name}
+    out = [f"# {e.name}", "",
            DOT.join([CATEGORY_TITLES[e.category],
-                       f"**folded into [{name}]({page})** — one project, one row",
-                       f"[back to the whole list]({PAGES_URL}/)"]),
+                     f"**folded into [{name}]({page})** — one project, one row",
+                     f"[back to the whole list]({PAGES_URL}/)"]),
            "", f"## The same project as {name}", "",
            f"This row was {archive_reason(e, today)}. The free tier it named, the evidence "
            f"behind it and what became of it are on the [{name}]({page}) page — this id is kept "
@@ -2276,8 +2279,8 @@ def build_folded_page(e: Entry, events: list[Event], today: date,
     out += ["", "---", "",
             f"Generated from `registry.yaml` on {today.isoformat()}. No probe reads this row any "
             f"more — the list keeps one row per service; the full list, the Atom feed and the "
-            f"machinery are at <{REPO_URL}>.", "", "{% endraw %}", ""]
-    return "\n".join(out)
+            f"machinery are at <{REPO_URL}>."]
+    return _page(head, out)
 
 
 def build_provider_page(e: Entry, events: list[Event], today: date, blocked: bool = False,
@@ -2312,16 +2315,16 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         title = f"{e.name} free tier (archived): what it offered, and why it left the list"
     else:
         title = f"{e.name} free tier: limits, free models, verified {verified}"
-    out = [_front_matter({"layout": "default", "title": title,
-                          "description": _page_description(e),
-                          "permalink": _permalink(provider_page_url(e.id)),
-                          "last_modified_at": _last_modified(e, events),
-                          # The page's own name in the breadcrumb the layout
-                          # writes for search results.
-                          "crumb": e.name}),
-           # The page's one heading says what a search for it asks: the
-           # vendor and "free tier", as the title does.
-           "{% raw %}", "", f"# {e.name} free tier" + (" (archived)" if archived else ""), ""]
+    head = {"title": title,
+            "description": _page_description(e),
+            "permalink": _permalink(provider_page_url(e.id)),
+            "last_modified_at": _last_modified(e, events),
+            # The page's own name in the breadcrumb the layout writes for
+            # search results.
+            "crumb": e.name}
+    # The page's one heading says what a search for it asks: the vendor and
+    # "free tier", as the title does.
+    out = [f"# {e.name} free tier" + (" (archived)" if archived else ""), ""]
     flags = [CATEGORY_TITLES[e.category]]
     flags.append(_card_words(e))
     # At the top, beside the card: a reader who arrives from a search about
@@ -2403,9 +2406,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         standing = (f"Generated from `registry.yaml` on {today.isoformat()}. A probe still reads it "
                     f"{_schedule()}, and the first probe it passes brings it back to the list")
     out += ["", "---", "",
-            f"{standing}; the full list, the Atom feed and the machinery are at <{REPO_URL}>.",
-            "", "{% endraw %}", ""]
-    return "\n".join(out)
+            f"{standing}; the full list, the Atom feed and the machinery are at <{REPO_URL}>."]
+    return _page(head, out)
 
 
 def build_providers_index(entries: list[Entry], today: date,
@@ -2413,15 +2415,14 @@ def build_providers_index(entries: list[Entry], today: date,
                           pages: set[str] | None = None) -> str:
     """The page that links every provider page — live rows first, in section
     order, the archive after — so a crawler that lands anywhere finds the rest."""
-    out = [_front_matter({"layout": "default",
-                          "title": "Every free LLM API and coding agent on the list, with its evidence",
-                          "description": "One page per provider: the free tier in the vendor's own "
-                                         "words, connection details, the evidence a live probe reads "
-                                         f"{_schedule()}, and the row's history.",
-                          "permalink": _permalink(providers_index_url()),
-                          "last_modified_at": max((_last_modified(e, events or [])
-                                                   for e in entries), default=today)}),
-           "{% raw %}", "", "# Every provider, one page each", "",
+    head = {"title": "Every free LLM API and coding agent on the list, with its evidence",
+            "description": "One page per provider: the free tier in the vendor's own "
+                           "words, connection details, the evidence a live probe reads "
+                           f"{_schedule()}, and the row's history.",
+            "permalink": _permalink(providers_index_url()),
+            "last_modified_at": max((_last_modified(e, events or [])
+                                     for e in entries), default=today)}
+    out = ["# Every provider, one page each", "",
            f"Each page is generated from the same registry as [the list]({PAGES_URL}/); a live "
            f"row is re-verified {_schedule()}, and an archived one says why it left. Every free "
            f"model and the rows that serve it are on [the model index]({models_index_url()}).", ""]
@@ -2441,8 +2442,7 @@ def build_providers_index(entries: list[Entry], today: date,
         out += ["## Archived", ""]
         for e in archived:
             out.append(f"- [{e.name}]({provider_page_url(e.id)}) — {archive_reason(e, today)}")
-    out += ["", "{% endraw %}", ""]
-    return "\n".join(out)
+    return _page(head, out)
 
 
 def _oldest_verified(rows: list[Entry], today: date) -> date:
@@ -2640,15 +2640,14 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         body += ["## Related models", "",
                  *(f"- [`{f}`]({model_page_url(f)}) — free at "
                    f"{series([e.name for e in by_family[f]])}" for f in related), ""]
-    out = [_front_matter({"layout": "default", "title": title, "description": description,
-                          "permalink": _permalink(model_page_url(family)),
-                          "last_modified_at": max(changed, default=today),
-                          "crumb": family}),
-           "{% raw %}", "", *body, "---", "",
-           f"Generated from `registry.yaml` on {today.isoformat()} and re-verified {_schedule()}; "
-           f"every free model on the list is at <{models_index_url()}>, and the full list, "
-           f"the Atom feed and the machinery at <{REPO_URL}>.", "", "{% endraw %}", ""]
-    return "\n".join(out)
+    return _page({"title": title, "description": description,
+                  "permalink": _permalink(model_page_url(family)),
+                  "last_modified_at": max(changed, default=today),
+                  "crumb": family},
+                 [*body, "---", "",
+                  f"Generated from `registry.yaml` on {today.isoformat()} and re-verified "
+                  f"{_schedule()}; every free model on the list is at <{models_index_url()}>, and "
+                  f"the full list, the Atom feed and the machinery at <{REPO_URL}>."])
 
 
 def build_models_index(entries: list[Entry], today: date,
@@ -2677,10 +2676,10 @@ def build_models_index(entries: list[Entry], today: date,
         f"row that serves each one; {len(pages & set(by_family))} of them have a page of their own "
         "with the limits in the vendor's words and the ids to call.")
     changed = [*(_last_modified(e, events) for e in active), *(g[1] for g in gone if g[1])]
-    out = [_front_matter({"layout": "default", "title": title, "description": description,
-                          "permalink": _permalink(models_index_url()),
-                          "last_modified_at": max(changed, default=today)}),
-           "{% raw %}", "", "# Every free model on the list", "",
+    head = {"title": title, "description": description,
+            "permalink": _permalink(models_index_url()),
+            "last_modified_at": max(changed, default=today)}
+    out = ["# Every free model on the list", "",
            f"{len(by_family)} model families, and every row that serves each one free, the most "
            f"widely served first. A model gets a page of its own once {_model_page_rule()}: every "
            "row that serves it, the limits in the vendor's words and the ids to call. It keeps "
@@ -2705,8 +2704,7 @@ def build_models_index(entries: list[Entry], today: date,
                 for i in ids)
             out.append(f"| [`{family}`]({model_page_url(family)}) | "
                        f"{last.isoformat() if last else '—'} | {where or '—'} |")
-    out += ["", "{% endraw %}", ""]
-    return "\n".join(out)
+    return _page(head, out)
 
 
 def _index_models(entries: list[Entry], today: date, pages: set[str]) -> list[dict]:
@@ -2737,15 +2735,13 @@ def build_checked_page(watchlist: list[Watched], today: date) -> str:
     to know why a service is missing follows one link to it; the README stays
     the list."""
     rows = _watch_rows(watchlist, today)
-    out = [_front_matter({"layout": "default",
-                          "title": "Services checked and not listed on the free AI coding list",
-                          "description": "Every service this list checked and did not list, with the "
-                                         "reason on the date it was read and what would change the answer.",
-                          "permalink": _permalink(checked_page_url()),
-                          # The newest verdict: what a reader could see change.
-                          "last_modified_at": max((w.checked_on for w in watchlist),
-                                                  default=today)}),
-           "{% raw %}", "", "# Checked and not listed", "",
+    head = {"title": "Services checked and not listed on the free AI coding list",
+            "description": "Every service this list checked and did not list, with the "
+                           "reason on the date it was read and what would change the answer.",
+            "permalink": _permalink(checked_page_url()),
+            # The newest verdict: what a reader could see change.
+            "last_modified_at": max((w.checked_on for w in watchlist), default=today)}
+    out = ["# Checked and not listed", "",
            f"{len(rows)} services whose free tier [the list]({PAGES_URL}/) could not find or could not "
            "verify on the date checked. Nothing here is disqualified — domains rejected for cause are "
            f"in [`blocklist.yaml`]({REPO_URL}/blob/main/blocklist.yaml) — and each verdict expires after "
@@ -2758,8 +2754,8 @@ def build_checked_page(watchlist: list[Watched], today: date) -> str:
         stale = "" if w["current"] else " ⏰"
         out.append(f"- **{w['name']}**, checked `{w['checked_on']}`{stale} — {w['reason']}{reopen}")
     out += ["", f"<sub>⏰ — the verdict is older than {WATCH_RECHECK_DAYS} days, no longer suppresses "
-                "anything, and is due for a fresh look.</sub>", "", "{% endraw %}", ""]
-    return "\n".join(out)
+                "anything, and is due for a fresh look.</sub>"]
+    return _page(head, out)
 
 
 def _watchlist_beside(registry_path: Path, watchlist_path: Path | None) -> list[Watched]:
@@ -2876,6 +2872,18 @@ def render_site(registry_path: Path, template_dir: Path, out_path: Path,
     return text
 
 
+def _write_files(folder: Path, pattern: str, files: dict[str, str]) -> None:
+    """Write each file into `folder` and remove the ones there that match
+    `pattern` and are no longer among them. A file of another kind is not the
+    render's to delete."""
+    folder.mkdir(parents=True, exist_ok=True)
+    for name, text in files.items():
+        (folder / name).write_text(text, encoding="utf-8")
+    for stale in folder.glob(pattern):
+        if stale.name not in files:
+            stale.unlink()
+
+
 def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                      watchlist_path: Path | None = None) -> None:
     """Everything the render writes besides the README, the site's front page and
@@ -2891,39 +2899,21 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     # rule's, and every page already published beside the registry.
     pages = model_pages(entries, history, today, _published_beside(registry_path))
     (root / "feed.xml").write_text(build_feed(history, today, entries=entries), encoding="utf-8")
-    # A page per row, the checked page and the index. Any other .md file here
-    # is removed; a file of another kind is not this function's to delete.
-    providers = root / PROVIDERS_DIR
-    providers.mkdir(parents=True, exist_ok=True)
-    wanted = {f"{PROVIDERS_INDEX_PAGE}.md", f"{CHECKED_PAGE}.md"}
-    (providers / f"{CHECKED_PAGE}.md").write_text(build_checked_page(watchlist, today),
-                                                  encoding="utf-8")
-    for e in entries:
-        blocked = is_blocked(domain_of(e.url), blocklist)
-        (providers / f"{e.id}.md").write_text(
-            build_provider_page(e, history, today, blocked, registry=entries, pages=pages),
-            encoding="utf-8")
-        wanted.add(f"{e.id}.md")
-    (providers / f"{PROVIDERS_INDEX_PAGE}.md").write_text(build_providers_index(entries, today, history, pages),
-                                        encoding="utf-8")
-    for stale in providers.glob("*.md"):
-        if stale.name not in wanted:
-            stale.unlink()
+    # A page per row, the checked page and the index.
+    _write_files(root / PROVIDERS_DIR, "*.md", {
+        f"{CHECKED_PAGE}.md": build_checked_page(watchlist, today),
+        **{f"{e.id}.md": build_provider_page(e, history, today,
+                                             is_blocked(domain_of(e.url), blocklist),
+                                             registry=entries, pages=pages)
+           for e in entries},
+        f"{PROVIDERS_INDEX_PAGE}.md": build_providers_index(entries, today, history, pages)})
     # A page per model that has one, the pages already published among them,
     # and the index of every model. The only file taken away is one no family
     # names: a page the site published stays (`model_pages`).
-    models = root / MODELS_DIR
-    models.mkdir(parents=True, exist_ok=True)
-    wanted = {"index.md"}
-    for family in sorted(pages):
-        (models / f"{family}.md").write_text(
-            build_model_page(family, entries, history, today, pages), encoding="utf-8")
-        wanted.add(f"{family}.md")
-    (models / "index.md").write_text(build_models_index(entries, today, history, pages),
-                                     encoding="utf-8")
-    for stale in models.glob("*.md"):
-        if stale.name not in wanted:
-            stale.unlink()
+    _write_files(root / MODELS_DIR, "*.md", {
+        **{f"{family}.md": build_model_page(family, entries, history, today, pages)
+           for family in sorted(pages)},
+        "index.md": build_models_index(entries, today, history, pages)})
     (root / "index.json").write_text(
         json.dumps(build_index(entries, today, watchlist, pages), indent=2,
                    ensure_ascii=False) + "\n",
@@ -2966,19 +2956,11 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
                          allow_unicode=True),
         encoding="utf-8")
     # Codex's profiles: the one over litellm.yaml and one per lane it calls
-    # directly. A profile whose row stopped qualifying is removed; only the
-    # *.config.toml files here are this function's to remove.
-    codex = root / CODEX_DIR
-    codex.mkdir(parents=True, exist_ok=True)
-    (root / CODEX_LITELLM_PATH).write_text(build_codex_litellm_profile(entries, today),
-                                           encoding="utf-8")
-    wanted = {Path(CODEX_LITELLM_PATH).name}
-    for e in _codex_direct(entries, today):
-        (root / codex_profile_path(e)).write_text(build_codex_profile(e), encoding="utf-8")
-        wanted.add(Path(codex_profile_path(e)).name)
-    for stale in codex.glob("*.config.toml"):
-        if stale.name not in wanted:
-            stale.unlink()
+    # directly. A profile whose row stopped qualifying is removed.
+    _write_files(root / CODEX_DIR, "*.config.toml", {
+        Path(CODEX_LITELLM_PATH).name: build_codex_litellm_profile(entries, today),
+        **{Path(codex_profile_path(e)).name: build_codex_profile(e)
+           for e in _codex_direct(entries, today)}})
 
 
 # CONTRIBUTING.md is written by hand except for its map section, which is the
