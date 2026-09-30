@@ -19,7 +19,7 @@ Cohere's Command models via free trial API keys that never expire, plus a 30B/3B
 
 ## Free models
 
-`command-a-plus`, `command-a-reasoning`, [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b`
+[`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/), `command-a-reasoning`, [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), `command-a`, `command-a-vision`, `command-r-plus`, `command-r`, `command-r7b`
 
 ## Limits, in the vendor's words
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

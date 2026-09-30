@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, verified 2026-09-28'
-description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last…
+title: 'ling-3.0-flash-sante free: 4 providers, limits and ids, verified 2026-09-28'
+description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the…
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-09-29
+last_modified_at: 2026-09-30
 crumb: ling-3.0-flash-sante
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-sante
 
 # Where ling-3.0-flash-sante is free
 
-**3 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code and Vercel AI Gateway. Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week.
+**4 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -58,14 +58,26 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 - Callable ids: `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training)).
 
+### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
+
+🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-28 · listed since 2026-09-30
+
+Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API
+
+- Limits, in the vendor's words: The portal's plan table reads "Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The :free tag is what keeps it on the no-cost plan". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices eight rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-30
+- Base URL: `https://inference-api.nousresearch.com/v1`
+- Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
+- Callable ids: `inclusionai/ling-3.0-flash-sante:free`
+- What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
+
 ## Related models
 
-- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode and LLMTR
+- [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/) — free at opencode, LLMTR and Nous Portal (Hermes Agent)
 - [`ling-3.0-tiny`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-tiny/) — free at Requesty and AIHubMix (free models)
 - [`ling-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/) — free at AIHubMix (free models)
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29",
+  "generated": "2026-09-30",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -49,6 +49,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -823,6 +824,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -917,6 +919,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -1927,6 +1930,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -2289,6 +2293,16 @@
           "aa_model": "deepseek-v4-1-flash"
         },
         {
+          "family": "glm-5.3",
+          "tier": "strong",
+          "aa_model": "glm-5-3"
+        },
+        {
+          "family": "glm-5.2",
+          "tier": "strong",
+          "aa_model": "glm-5-2"
+        },
+        {
           "family": "qwen3-coder-plus"
         },
         {
@@ -2538,18 +2552,6 @@
           "deepseek-v3.2",
           "glm-5.1"
         ],
-        "free_since": [
-          {
-            "id": "glm-5.3",
-            "on": "2026-09-16",
-            "source": "https://web.archive.org/web/20260916141712/https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-          },
-          {
-            "id": "glm-5.2",
-            "on": "2026-09-16",
-            "source": "https://web.archive.org/web/20260916141712/https://www.alibabacloud.com/help/en/model-studio/model-pricing"
-          }
-        ],
         "note": "international (Singapore) endpoint; keys are region-specific. Free Quota Only is off by default, so a call past a model's million is billed: switch it on per model in the console. Each family calls its undated id; the dated snapshots priced beside it carry quotas of their own"
       },
       "data_use": {
@@ -2771,6 +2773,7 @@
       "models": [
         {
           "family": "command-a-plus",
+          "tier": "notable",
           "aa_model": "command-a-plus"
         },
         {
@@ -3344,6 +3347,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -4025,6 +4029,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -4524,7 +4529,6 @@
         },
         {
           "family": "qwen3.5-9b",
-          "tier": "notable",
           "aa_model": "qwen3-5-9b"
         },
         {
@@ -4976,6 +4980,11 @@
         },
         {
           "family": "agnes-2.5-flash"
+        },
+        {
+          "family": "motif-3",
+          "tier": "strong",
+          "aa_model": "motif-3"
         }
       ],
       "api": {
@@ -6212,8 +6221,8 @@
         "https://inference-api.nousresearch.com/v1/models"
       ],
       "card_required": false,
-      "offering": "Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven on 2026-09-18 — on an OpenAI-compatible API",
-      "limits": "The portal's plan table reads \"Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes\", and the Hermes Agent guide has you \"create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes\" — \"The :free tag is what keeps it on the no-cost plan\". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices seven rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-18",
+      "offering": "Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API",
+      "limits": "The portal's plan table reads \"Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes\", and the Hermes Agent guide has you \"create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes\" — \"The :free tag is what keeps it on the no-cost plan\". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices eight rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-30",
       "free_part": "models",
       "models": [
         {
@@ -6223,6 +6232,25 @@
         },
         {
           "family": "laguna-s-2.1"
+        },
+        {
+          "family": "laguna-xs-2.1"
+        },
+        {
+          "family": "ling-3.0-flash-fin",
+          "tier": "notable",
+          "aa_model": "ling-3-0-flash-fin"
+        },
+        {
+          "family": "ling-3.0-flash-sante"
+        },
+        {
+          "family": "solar-pro-4"
+        },
+        {
+          "family": "longcat-2.0",
+          "tier": "notable",
+          "aa_model": "longcat-2-0"
         }
       ],
       "api": {
@@ -6240,7 +6268,7 @@
           "meituan/longcat-2.0:free",
           "meituan/longcat-2.5-preview:free"
         ],
-        "note": "every id the keyless catalog prices at 0 on 2026-09-29; solar-pro4 is a limited-time trial on other gateways"
+        "note": "every id the keyless catalog prices at 0 on 2026-09-30; solar-pro4 is a limited-time trial on other gateways"
       },
       "data_use": {
         "trains": "opt-out",
@@ -6843,6 +6871,7 @@
       "models": [
         {
           "family": "qwen3.5-4b",
+          "tier": "notable",
           "aa_model": "qwen3-5-4b"
         }
       ],
@@ -7528,7 +7557,9 @@
       "limits": "100K free tokens/day; a larger free tier for Flash-Lite (50M tokens/day) is announced and the model is uncapped during rollout",
       "models": [
         {
-          "family": "longcat-2.0"
+          "family": "longcat-2.0",
+          "tier": "notable",
+          "aa_model": "longcat-2-0"
         },
         {
           "family": "longcat-flash"
@@ -9387,6 +9418,18 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
     },
     {
+      "family": "laguna-xs-2.1",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "nvidia-nim",
+        "aihubmix",
+        "llmtr",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
+    },
+    {
       "family": "nemotron-3-nano-omni",
       "rows": [
         "openrouter-free",
@@ -9420,6 +9463,7 @@
         "nvidia-nim",
         "aihubmix"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
     },
     {
@@ -9458,17 +9502,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
-      "family": "laguna-xs-2.1",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "nvidia-nim",
-        "aihubmix",
-        "llmtr"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/"
-    },
-    {
       "family": "deepseek-v4.1-flash",
       "rows": [
         "freebuff",
@@ -9478,6 +9511,17 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
+    },
+    {
+      "family": "glm-5.3",
+      "rows": [
+        "nvidia-nim",
+        "aihubmix",
+        "alibaba-model-studio",
+        "zcode"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
     },
     {
       "family": "glm-5.3-flash",
@@ -9511,6 +9555,16 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
     },
     {
+      "family": "ling-3.0-flash-sante",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "vercel-ai-gateway",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+    },
+    {
       "family": "north-mini-code",
       "rows": [
         "openrouter-free",
@@ -9540,23 +9594,24 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.1/"
     },
     {
-      "family": "glm-5.3",
+      "family": "glm-5.2",
       "rows": [
-        "nvidia-nim",
         "aihubmix",
-        "zcode"
+        "alibaba-model-studio",
+        "regolo"
       ],
       "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
-      "family": "ling-3.0-flash-sante",
+      "family": "ling-3.0-flash-fin",
       "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "vercel-ai-gateway"
+        "opencode",
+        "llmtr",
+        "nous-portal"
       ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
     },
     {
       "family": "minimax-m2.5",
@@ -9693,15 +9748,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5-turbo/"
     },
     {
-      "family": "glm-5.2",
-      "rows": [
-        "aihubmix",
-        "regolo"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
-    },
-    {
       "family": "inkling-small",
       "rows": [
         "openrouter-free",
@@ -9718,15 +9764,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
-    },
-    {
-      "family": "ling-3.0-flash-fin",
-      "rows": [
-        "opencode",
-        "llmtr"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
     },
     {
       "family": "ling-3.0-tiny",
@@ -9895,7 +9932,9 @@
       "family": "command-a-plus",
       "rows": [
         "cohere"
-      ]
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/"
     },
     {
       "family": "command-a-reasoning",
@@ -10096,6 +10135,14 @@
       ]
     },
     {
+      "family": "longcat-2.0",
+      "rows": [
+        "nous-portal"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
+    },
+    {
       "family": "mellum",
       "rows": [
         "jetbrains-ai"
@@ -10152,6 +10199,14 @@
       "rows": [
         "regolo"
       ]
+    },
+    {
+      "family": "motif-3",
+      "rows": [
+        "llmtr"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/motif-3/"
     },
     {
       "family": "nemotron-nano-12b-v2-vl",
@@ -10393,14 +10448,15 @@
       "family": "qwen3.5-4b",
       "rows": [
         "mixlayer"
-      ]
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
     },
     {
       "family": "qwen3.5-9b",
       "rows": [
         "regolo"
       ],
-      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/"
     },
     {
@@ -10489,6 +10545,12 @@
       "family": "qwq-plus",
       "rows": [
         "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "solar-pro-4",
+      "rows": [
+        "nous-portal"
       ]
     },
     {

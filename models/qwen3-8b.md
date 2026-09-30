@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3-8b free: 2 providers, limits and ids, verified 2026-09-28'
 description: qwen3-8b is served free by Alibaba Cloud Model Studio (DashScope, international) and SiliconFlow (China). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3-8b/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-30
 crumb: qwen3-8b
 ---
 
@@ -49,6 +49,6 @@ China's SiliconFlow prices eight small chat models at ¥0 for an account verifie
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

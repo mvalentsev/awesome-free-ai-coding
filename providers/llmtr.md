@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'LLMTR free tier: limits, free models, verified 2026-09-28'
-description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — eight zero-priced chat ids on 2026-09-29. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin, agnes-3.0-flash, agnes-2.5-flash. A new account calls the free rows before any top-up: the…'
+description: 'Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — eight zero-priced chat ids on 2026-09-29. Free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, ling-3.0-flash-fin, agnes-3.0-flash, agnes-2.5-flash, motif-3. A new account calls the free rows before any…'
 permalink: /providers/llmtr/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-30
 crumb: LLMTR
 ---
 
@@ -19,7 +19,7 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — e
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`agnes-3.0-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-3.0-flash/), [`agnes-2.5-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/agnes-2.5-flash/), [`motif-3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/motif-3/)
 
 ## Limits, in the vendor's words
 
@@ -62,6 +62,7 @@ curl -s https://llmtr.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-09-30` — Free models changed: added motif-3
 - `2026-09-28` — Free models changed: added agnes-2.5-flash, agnes-3.0-flash
 - `2026-09-24` — Free models changed: added laguna-xs-2.1, ling-3.0-flash-fin, nemotron-3-super
 - `2026-09-21` — Free models changed: dropped qwen3.6
@@ -71,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

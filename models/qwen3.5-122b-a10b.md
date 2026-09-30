@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.5-122b-a10b free: 2 providers, limits and ids, verified 2026-09-28'
 description: qwen3.5-122b-a10b is served free by Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.5-122b-a10b/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-30
 crumb: qwen3.5-122b-a10b
 ---
 
@@ -46,10 +46,11 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 - [`qwen3.5-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-27b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.5-35b-a3b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-35b-a3b/) — free at Alibaba Cloud Model Studio (DashScope, international)
 - [`qwen3.5-397b-a17b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-397b-a17b/) — free at Alibaba Cloud Model Studio (DashScope, international)
+- [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) — free at Mixlayer
 - [`qwen3.5-9b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-9b/) — free at Regolo AI
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

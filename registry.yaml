@@ -37,6 +37,7 @@ entries:
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: inkling
     tier: notable
@@ -538,6 +539,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: muse-spark-1.3-contributor
     tier: strong
@@ -608,6 +610,7 @@ entries:
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: inkling-small
     tier: notable
@@ -1145,6 +1148,7 @@ entries:
     tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: gemma-4-31b
     tier: notable
@@ -1445,6 +1449,12 @@ entries:
   - family: deepseek-v4.1-flash
     tier: strong
     aa_model: deepseek-v4-1-flash
+  - family: glm-5.3
+    tier: strong
+    aa_model: glm-5-3
+  - family: glm-5.2
+    tier: strong
+    aa_model: glm-5-2
   - family: qwen3-coder-plus
   - family: qwen3-coder-next
     aa_model: qwen3-coder-next
@@ -1591,13 +1601,6 @@ entries:
     - qwen-vl-plus
     - deepseek-v3.2
     - glm-5.1
-    free_since:
-    - id: glm-5.3
-      'on': '2026-09-16'
-      source: https://web.archive.org/web/20260916141712/https://www.alibabacloud.com/help/en/model-studio/model-pricing
-    - id: glm-5.2
-      'on': '2026-09-16'
-      source: https://web.archive.org/web/20260916141712/https://www.alibabacloud.com/help/en/model-studio/model-pricing
     note: 'international (Singapore) endpoint; keys are region-specific. Free Quota
       Only is off by default, so a call past a model''s million is billed: switch
       it on per model in the console. Each family calls its undated id; the dated
@@ -1802,6 +1805,7 @@ entries:
   free_part: models
   models:
   - family: command-a-plus
+    tier: notable
     aa_model: command-a-plus
   - family: command-a-reasoning
   - family: north-mini-code
@@ -2288,6 +2292,7 @@ entries:
     tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: leanstral-1.5
   - family: nemotron-3-nano-30b
@@ -2677,6 +2682,7 @@ entries:
     aa_model: mimo-v2-omni
   - family: dots-3-note
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: nemotron-3-nano-30b
   - family: nemotron-3-nano-omni
@@ -3150,7 +3156,6 @@ entries:
     aa_model: gpt-oss-20b
   - family: mistral-small-4
   - family: qwen3.5-9b
-    tier: notable
     aa_model: qwen3-5-9b
   - family: qwen3.5-122b-a10b
     tier: notable
@@ -3401,6 +3406,9 @@ entries:
     aa_model: ling-3-0-flash-fin
   - family: agnes-3.0-flash
   - family: agnes-2.5-flash
+  - family: motif-3
+    tier: strong
+    aa_model: motif-3
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -4414,21 +4422,30 @@ entries:
   - https://inference-api.nousresearch.com/v1/models
   card_required: false
   offering: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free
-    plan limited to the models it prices at zero — seven on 2026-09-18 — on an OpenAI-compatible
+    plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible
     API'
   limits: The portal's plan table reads "Free $0 Free models only Standard rate limits
     $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous
     Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The
     :free tag is what keeps it on the no-cost plan". No rate-limit figure is published
-    and no page read mentions a card. The keyless catalog prices seven rows at zero;
+    and no page read mentions a card. The keyless catalog prices eight rows at zero;
     a call without a key answers HTTP 402 with a payment offer, so the free models
-    want the portal's key. Read 2026-09-18
+    want the portal's key. Read 2026-09-30
   free_part: models
   models:
   - family: step-3.7-flash
     tier: notable
     aa_model: step-3-7-flash
   - family: laguna-s-2.1
+  - family: laguna-xs-2.1
+  - family: ling-3.0-flash-fin
+    tier: notable
+    aa_model: ling-3-0-flash-fin
+  - family: ling-3.0-flash-sante
+  - family: solar-pro-4
+  - family: longcat-2.0
+    tier: notable
+    aa_model: longcat-2-0
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com
@@ -4443,7 +4460,7 @@ entries:
     - upstage/solar-pro4:free
     - meituan/longcat-2.0:free
     - meituan/longcat-2.5-preview:free
-    note: every id the keyless catalog prices at 0 on 2026-09-29; solar-pro4 is a
+    note: every id the keyless catalog prices at 0 on 2026-09-30; solar-pro4 is a
       limited-time trial on other gateways
   data_use:
     trains: opt-out
@@ -5059,6 +5076,7 @@ entries:
   free_part: models
   models:
   - family: qwen3.5-4b
+    tier: notable
     aa_model: qwen3-5-4b
   api:
     base_url: https://models.mixlayer.ai/v1
@@ -5667,6 +5685,8 @@ entries:
     is announced and the model is uncapped during rollout
   models:
   - family: longcat-2.0
+    tier: notable
+    aa_model: longcat-2-0
   - family: longcat-flash
   api:
     base_url: https://api.longcat.chat/openai/v1

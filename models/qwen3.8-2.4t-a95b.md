@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-2.4t-a95b free: 1 provider, limits and ids, verified 2026-09-28'
 description: qwen3.8-2.4t-a95b is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.8-2.4t-a95b/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-09-30
 crumb: qwen3.8-2.4t-a95b
 ---
 
@@ -37,6 +37,6 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

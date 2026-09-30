@@ -11,7 +11,7 @@ crumb: nemotron-3.5-lightning
 
 # Where nemotron-3.5-lightning is free
 
-**6 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week.
+**6 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/nemotron-3-5-lightning), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -101,6 +101,6 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ---
 
-Generated from `registry.yaml` on 2026-09-29 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
