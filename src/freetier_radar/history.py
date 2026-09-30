@@ -33,7 +33,7 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
-from .models import ARCHIVE_AFTER_FAILURES, Entry, is_archived, live_families, load_registry
+from .models import ArchiveRule, Entry, archive_rule, is_archived, live_families, load_registry
 
 __all__ = ["EventType", "Event", "State", "archive_reason", "registry_state", "replay",
            "diff_state", "deleted_row_problem", "deleted_rows", "refuse_deleted_rows",
@@ -90,15 +90,16 @@ class State:
 
 
 def archive_reason(entry: Entry, today: date) -> str:
-    """Why this row is in the Archive, by the rules `is_archived` applies — a
-    reviewer's delisting, the vendor's shutdown date, the failure count,
-    staleness — so the feed cannot describe an archival the renderer disagrees
-    with."""
-    if entry.delisted is not None:
+    """Why this row is in the Archive, in the words of the rule `archive_rule`
+    finds — a reviewer's delisting, the vendor's shutdown date, the failure
+    count, staleness — so the feed cannot describe an archival the renderer
+    disagrees with."""
+    rule = archive_rule(entry, today)
+    if rule is ArchiveRule.DELISTED:
         return f"delisted on {entry.delisted.on.isoformat()}: {entry.delisted.reason}"
-    if entry.retired_on and today >= entry.retired_on:
+    if rule is ArchiveRule.RETIRED:
         return f"vendor-announced shutdown on {entry.retired_on.isoformat()}"
-    if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
+    if rule is ArchiveRule.FAILED:
         return (f"{entry.probe_failures} failed probes in a row, "
                 f"last passed {entry.last_verified.isoformat()}")
     return (f"unverified for {(today - entry.last_verified).days} days, "

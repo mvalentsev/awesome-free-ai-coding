@@ -1292,19 +1292,35 @@ def probe_frequency(weekdays: tuple[int, ...] = PROBE_WEEKDAYS) -> str:
 ARCHIVE_AFTER_FAILURES = 3
 
 
+class ArchiveRule(Enum):
+    """The rules that put a row in the Archive, in the order they are asked."""
+    DELISTED = "delisted"  # a reviewer took the row off
+    RETIRED = "retired"  # the vendor's own shutdown date has come
+    FAILED = "failed"  # ARCHIVE_AFTER_FAILURES probes failed in a row
+    STALE = "stale"  # no probe passed in ARCHIVE_AFTER_DAYS
+
+
+def archive_rule(entry: Entry, today: date) -> ArchiveRule | None:
+    """The first rule that archives the row, or None while it is live — the one
+    ordering is_archived, is_archived_for_good and the Archive's wording read."""
+    if entry.delisted is not None:
+        return ArchiveRule.DELISTED
+    if entry.retired_on is not None and today >= entry.retired_on:
+        return ArchiveRule.RETIRED
+    if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
+        return ArchiveRule.FAILED
+    if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
+        return ArchiveRule.STALE
+    return None
+
+
 def is_archived(entry: Entry, today: date) -> bool:
     """Liveness comes from probes, staleness, vendor-announced retirement and a
     reviewer's delisting — never from model generations. A provider whose catalog
     moves on is still free, so a superseded family means "bump the row", not
     "bury the entry".
     """
-    if is_archived_for_good(entry, today):
-        return True
-    if entry.probe_failures >= ARCHIVE_AFTER_FAILURES:
-        return True
-    if (today - entry.last_verified).days > ARCHIVE_AFTER_DAYS:
-        return True
-    return False
+    return archive_rule(entry, today) is not None
 
 
 def folded_into(entries: list[Entry], entry: Entry) -> Entry | None:
@@ -1329,9 +1345,7 @@ def is_archived_for_good(entry: Entry, today: date) -> bool:
     """Archived by a date or by a reviewer rather than by the probe — so no probe
     result can bring the row back, and none is asked for. A row the probe
     archived stays probed, and the first pass restores it."""
-    if entry.delisted is not None:
-        return True
-    return entry.retired_on is not None and today >= entry.retired_on
+    return archive_rule(entry, today) in (ArchiveRule.DELISTED, ArchiveRule.RETIRED)
 
 
 # ---- the files this repository curates by hand ----------------------------

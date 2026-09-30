@@ -5,9 +5,13 @@ from pathlib import Path
 import pytest
 
 from freetier_radar.history import (
-    Event, EventType, _line, diff_state, load_history, record_changes, registry_state, replay,
+    Event, EventType, _line, archive_reason, diff_state, load_history, record_changes,
+    registry_state, replay,
 )
-from freetier_radar.models import ARCHIVE_AFTER_DAYS, Entry, save_registry
+from freetier_radar.models import (
+    ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, ArchiveRule, Entry, archive_rule, is_archived,
+    is_archived_for_good, save_registry,
+)
 
 TODAY = date(2026, 8, 14)
 NOW = datetime(2026, 8, 14, 6, 30, tzinfo=timezone.utc)
@@ -61,6 +65,35 @@ def test_an_addition_already_recorded_is_not_reported_again():
 
 
 # ---- entries leaving and coming back --------------------------------------
+
+STALE_DAY = TODAY - timedelta(days=ARCHIVE_AFTER_DAYS + 1)
+
+
+@pytest.mark.parametrize("kw, rule, words", [
+    ({}, None, None),
+    ({"delisted": {"on": TODAY, "reason": "taken off by a reviewer"}, "retired_on": TODAY,
+      "probe_failures": ARCHIVE_AFTER_FAILURES, "last_verified": STALE_DAY},
+     ArchiveRule.DELISTED, "delisted on 2026-08-14: taken off by a reviewer"),
+    ({"retired_on": TODAY, "probe_failures": ARCHIVE_AFTER_FAILURES, "last_verified": STALE_DAY},
+     ArchiveRule.RETIRED, "vendor-announced shutdown on 2026-08-14"),
+    ({"probe_failures": ARCHIVE_AFTER_FAILURES, "last_verified": STALE_DAY},
+     ArchiveRule.FAILED,
+     f"{ARCHIVE_AFTER_FAILURES} failed probes in a row, last passed {STALE_DAY.isoformat()}"),
+    ({"last_verified": STALE_DAY},
+     ArchiveRule.STALE,
+     f"unverified for {ARCHIVE_AFTER_DAYS + 1} days, last passed {STALE_DAY.isoformat()}"),
+])
+def test_one_ordering_archives_a_row_and_says_why(kw, rule, words):
+    """is_archived, is_archived_for_good and the Archive's words all read
+    archive_rule, so a row that meets several rules is archived, kept from the
+    probe and described by the first of them."""
+    e = make(**kw)
+    assert archive_rule(e, TODAY) is rule
+    assert is_archived(e, TODAY) is (rule is not None)
+    assert is_archived_for_good(e, TODAY) is (rule in (ArchiveRule.DELISTED, ArchiveRule.RETIRED))
+    if words is not None:
+        assert archive_reason(e, TODAY) == words
+
 
 def test_an_entry_that_failed_three_probes_is_archived_once():
     live = [make()]

@@ -40,11 +40,11 @@ from .words import number, series, weeks
 from .gate import committed_log
 from .layout import MAP, markdown_table
 
-__all__ = ["ARCHIVE_AFTER_DAYS", "ARCHIVE_AFTER_FAILURES", "FEED_ENTRIES", "FEED_URL",
+__all__ = ["FEED_ENTRIES", "FEED_URL",
            "README_CHANGES", "README_MODELS", "README_PICKS", "README_STARTERS",
            "README_STARTER_MODELS", "README_STRONG",
            "badge_colour",
-           "is_archived", "build_context", "build_feed", "build_index", "check_rendered",
+           "build_context", "build_feed", "build_index", "check_rendered",
            "build_opencode_config", "build_env_example", "build_claude_code_sh", "env_var",
            "build_provider_page", "build_folded_page", "build_providers_index",
            "provider_page_url", "PAGES_URL",

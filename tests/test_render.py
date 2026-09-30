@@ -7,11 +7,11 @@ import pytest
 import yaml
 
 from freetier_radar.history import Event, EventType
-from freetier_radar.models import WATCH_RECHECK_DAYS, Entry, Watched
+from freetier_radar.models import ARCHIVE_AFTER_DAYS, WATCH_RECHECK_DAYS, Entry, Watched, is_archived
 from freetier_radar.render import (
-    ARCHIVE_AFTER_DAYS, FEED_ENTRIES, FEED_URL, PAGES_URL, README_CHANGES, README_NOTE_TEASER,
+    FEED_ENTRIES, FEED_URL, PAGES_URL, README_CHANGES, README_NOTE_TEASER,
     build_context, build_env_example, build_feed, build_index, build_litellm_config,
-    build_opencode_config, env_var, is_archived, render_artifacts, render_readme,
+    build_opencode_config, env_var, render_artifacts, render_readme,
 )
 
 TODAY = date(2026, 7, 19)
