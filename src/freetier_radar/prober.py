@@ -830,12 +830,9 @@ async def public_key_unprinted(client: httpx.AsyncClient, entry: Entry, probed: 
     it is read once.
     """
     url = entry.api.key_url
-    if url == entry.probe.endpoint and entry.probe.follow is None:
-        page = probed
-    else:
-        page, failure = await _fetch_page(client, url, attempts, backoff)
-        if page is None:
-            return f"api.public_key could not be checked against {url}: {failure}"
+    page, failure = await _page_beside(client, url, entry, probed, attempts, backoff)
+    if page is None:
+        return f"api.public_key could not be checked against {url}: {failure}"
     if entry.api.public_key in page.text:
         return None
     return (f"api.public_key is no longer printed on {url} — read the page for the key it "
@@ -854,12 +851,9 @@ async def data_use_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.
     every quote. A page that cannot be read is said so rather than skipped."""
     from .quotes import page_texts, quote_found  # quotes reads pages through this module
     url = entry.data_use.url
-    if url == entry.probe.endpoint and entry.probe.follow is None:
-        page = probed
-    else:
-        page, failure = await _fetch_page(client, url, attempts, backoff)
-        if page is None:
-            return f"data_use could not be checked against {url}: {failure}"
+    page, failure = await _page_beside(client, url, entry, probed, attempts, backoff)
+    if page is None:
+        return f"data_use could not be checked against {url}: {failure}"
     if quote_found(entry.data_use.quote, page_texts(page.text)):
         return None
     return (f"data_use quote is no longer on {url} — read what the vendor says now about "
@@ -897,12 +891,9 @@ async def border_moved(client: httpx.AsyncClient, entry: Entry, probed: httpx.Re
         # there is nothing on its page to hold the border to.
         return None
     url = border.source
-    if url == entry.probe.endpoint and entry.probe.follow is None:
-        page = probed
-    else:
-        page, failure = await _fetch_page(client, url, attempts, backoff)
-        if page is None:
-            return f"border could not be checked against {url}: {failure}"
+    page, failure = await _page_beside(client, url, entry, probed, attempts, backoff)
+    if page is None:
+        return f"border could not be checked against {url}: {failure}"
     if border.read == "codes":
         listed = _listed_codes(page.text)
         if listed is None:
@@ -1016,6 +1007,17 @@ async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
     if resp.status_code != 200:
         return None, f"answered HTTP {resp.status_code}"
     return resp, ""
+
+
+async def _page_beside(client: httpx.AsyncClient, url: str, entry: Entry,
+                       probed: httpx.Response, attempts: int,
+                       backoff: float) -> tuple[httpx.Response | None, str]:
+    """The page a check beside the probe reads at `url`: the page the probe
+    has just read where `url` is that page — one read, not two — else
+    `_fetch_page`'s, or why it could not be read."""
+    if url == entry.probe.endpoint and entry.probe.follow is None:
+        return probed, ""
+    return await _fetch_page(client, url, attempts, backoff)
 
 
 async def _fetch_catalog(client: httpx.AsyncClient, url: str, attempts: int,

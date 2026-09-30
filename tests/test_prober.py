@@ -2663,14 +2663,17 @@ TRIAL_DOCS = ("<p>Shared trial key <code>lt-trial-abc</code>: 2M tokens per day 
 @respx.mock
 async def test_a_lane_the_vendor_prints_a_key_for_is_called_with_that_key():
     """A lane the vendor prints a shared key for is called the way a reader is
-    told to: with that key as a bearer token, one token, on the first id."""
-    respx.get("https://trial.x.ai/docs").mock(return_value=httpx.Response(200, text=TRIAL_DOCS))
+    told to: with that key as a bearer token, one token, on the first id. The
+    key's page is the page the probe reads, so it is read once."""
+    docs = respx.get("https://trial.x.ai/docs").mock(
+        return_value=httpx.Response(200, text=TRIAL_DOCS))
     no_codex_route("https://api.trial.x.ai/v1")
     call = respx.post("https://api.trial.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("qwen-27b")))
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, public_key_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
+    assert docs.call_count == 1
     sent = call.calls.last.request
     assert sent.headers["authorization"] == "Bearer lt-trial-abc"
     assert json.loads(sent.content)["model"] == "qwen-27b"
