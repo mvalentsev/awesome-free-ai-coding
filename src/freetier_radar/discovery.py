@@ -69,6 +69,14 @@ CURATED_FEEDS = [
     # docs. Read from its provider directory up to its guides, which takes in the
     # directory and its base-URL table.
     "https://raw.githubusercontent.com/nejib1/Free-LLM/HEAD/README.md#provider-directory:guides",
+    # A proxy that runs Claude Code, Codex and other agents on other providers'
+    # models, and the providers it takes keys for: one table row each with the
+    # page that issues the key and an example model id. It is read because it
+    # adds a provider soon after one opens a free lane. Leads only: the table has
+    # no free-tier column, and it takes paid APIs and subscription sign-ins
+    # (ChatGPT, GitHub Copilot, Kimi Code) beside the free ones. Read from its
+    # provider catalog up to the part about connecting clients.
+    "https://raw.githubusercontent.com/Alishahryar1/free-claude-code/HEAD/README.md#choose-a-provider:connect-your-client",
 ]
 
 # A machine catalog rather than a list: one object per model with a published
