@@ -270,7 +270,7 @@ read:
 
   - url: https://github.com/pacocartones/free-llm-api-hub
     name: pacocartones/free-llm-api-hub
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-30'
     reason: >-
       The most like-minded list read: "A continuously-verified dataset", every
       row dated and sourced to the vendor's docs, data/providers.json validated
@@ -283,14 +283,23 @@ read:
       Pinecone) that this registry leaves out by category. The seven text-LLM
       rows became rows or verdicts the same day: IBM watsonx.ai Lite, Typhoon
       and Sarvam are registry rows, W&B Inference is on the watchlist, Arli AI
-      and Tencent's TokenHub have been rows since 2026-09-17, and Clarifai could not be reached from here (DNS
-      and connection timeouts on every fetch) — it went to the watchlist on
-      2026-09-12, once a GitHub runner could not reach it either. One of its readings did not
-      survive the vendor's page — the "$100/month of Serverless Inference
-      credits" it gives W&B is the Free plan's spending cap, and the credits
-      themselves are "for a limited time" with no figure. Not a feed, because
-      the scout reads a 20,000-character excerpt and the JSON's first twenty
-      rows are the vendors every list carries.
+      and Tencent's TokenHub have been rows since 2026-09-17, and Clarifai could
+      not be reached from here (DNS and connection timeouts on every fetch) — it
+      went to the watchlist on 2026-09-12, once a GitHub runner could not reach
+      it either. One of its readings did not survive the vendor's page — the
+      "$100/month of Serverless Inference credits" it gives W&B is the Free
+      plan's spending cap, and the credits themselves are "for a limited time"
+      with no figure. Not a feed, because the scout reads a 20,000-character
+      excerpt and the JSON's first twenty rows are the vendors every list
+      carries. Read again 2026-09-30, from GitHub's no-credit-card topic: 49
+      stars, and the one commit since 2026-09-02 hardens its workflows — the
+      dataset is still version 2.9.0, generated 2026-08-14, its 69 rows verified
+      between 2026-08-02 and 2026-08-14. Two rows set aside by category on the
+      first read carry text and are watchlist verdicts now: AssemblyAI, which it
+      lists as "$50 free credit on signup (no card)" beside "an
+      OpenAI-compatible LLM Gateway (25+ models)" while the gateway's own
+      rate-limit table gives the free account type "Not available", and
+      Contextual AI, a RAG platform whose $25 credit reaches no chat endpoint.
     reopen_if: >-
       data/providers.json gains a row with "text" in its modalities on a host
       this registry has no verdict on — filter on modalities before reading
@@ -455,10 +464,13 @@ read:
 
   - url: https://github.com/freellms/free-llm-api-keys
     name: freellms/free-llm-api-keys
-    checked_on: '2026-09-05'
+    checked_on: '2026-09-30'
     reason: >-
       A 4KB stub for the same site, 7 stars, two hosts, one of them
-      freellms.org.
+      freellms.org. Read again 2026-09-30, from GitHub's no-credit-card topic:
+      15 stars, the same single README, last pushed 2026-08-10, naming 13
+      providers whose every "Get Key" link goes to freellms.org — 11 of them
+      rows here, Cerebras and SambaNova on the watchlist.
     reopen_if: >-
       It grows a provider table of its own.
 
@@ -2102,3 +2114,105 @@ read:
       category. Read 2026-09-27.
     reopen_if: >-
       It adds a section of LLM APIs or coding agents with free model usage.
+
+  - url: https://github.com/free-llm-api/free-llm-api.github.io
+    name: free-llm-api/free-llm-api.github.io
+    checked_on: '2026-09-30'
+    reason: >-
+      An article, not a list (7 stars, created 2026-09-21): how routers such as
+      OpenRouter price models and how to sort a catalog for the cheapest, ending
+      in a link to synexa.ai, a per-run image, video and audio API, with
+      campaign tags on every link to it. It names no free offer this list could
+      carry; OpenRouter is a row. Read 2026-09-30.
+    reopen_if: >-
+      It lists free model endpoints by provider.
+
+  - url: https://github.com/topics/no-credit-card
+    name: GitHub topic no-credit-card
+    checked_on: '2026-09-30'
+    reason: >-
+      Twelve repositories carried the topic on 2026-09-30, this list among them.
+      Four are lists of free services with verdicts of their own in this file:
+      pacocartones/free-llm-api-hub, freellms/free-llm-api-keys and pnnnhan99's
+      awesome-free-ai-apis and awesome-free-dev-tools. Four are Chinese guides
+      to buying ChatGPT Plus, Pro and Codex through a paid intermediary (代充, a
+      top-up): momochoog/chatgpt-plus-daichong (2,026 stars) and
+      fangmumu111-bot/chatgpt-plus-pro-codex-cn-guide (1,363) send readers to
+      the shop aixiamo.com, fangmumu111-bot/gpt-daichong-safety-checklist is a
+      checklist from the second account, and
+      tokenhunter475/awesome-chatgpt-plus-guide sends them to payforchat.com —
+      so nothing in them is free. willianhecaiyan/claude-no-creditcard-demo
+      advertises the TokenToWorld relay, on the watchlist since the same day;
+      Parking-Master/offly is Docker hosting and
+      HowDoYouSpellComputers/yes-games a games site.
+    reopen_if: >-
+      A repository joins the topic that lists model APIs or coding agents rather
+      than selling a subscription.
+
+  - url: https://github.com/hkqr/my-free-code
+    name: hkqr/my-free-code
+    checked_on: '2026-09-30'
+    reason: >-
+      Software, not a list (643 stars, 212 forks, created 2026-08-27, pushed
+      2026-09-26): a local gateway that gives Claude Code, Codex and other
+      agents one Anthropic Messages and OpenAI Responses endpoint in front of
+      the providers in its catalog. That catalog
+      (my_free_code/providers/catalog.py) names 45 base URLs: 25 on hosts that
+      are rows here, 17 on the watchlist — DeepInfra, Featherless, Wafer,
+      NaraRouter and TokenRouter among them — and three local runtimes, so
+      nothing is new. Read 2026-09-30.
+    reopen_if: >-
+      Its catalog gains a remote provider this registry has no verdict on.
+
+  - url: https://github.com/ishandutta2007/Awesome-LLM-APIS-FREE
+    name: ishandutta2007/Awesome-LLM-APIS-FREE
+    checked_on: '2026-09-30'
+    reason: >-
+      A README for freellm.net (8 stars, written in one day, 2026-08-27), the
+      site behind open-free-llm-api/awesome-freellm-apis, which the scout
+      already reads as a curated feed; its badges and headline links all lead
+      there. Of the 88 addresses it links, badges aside, 53 are on hosts that
+      are rows here, Aion Labs, xAI and Zhipu's BigModel console are on the
+      watchlist, and the rest are freellm.net pages and local runtimes (Ollama,
+      LM Studio, Jan, GPT4All, llama.cpp). Read 2026-09-30.
+    reopen_if: >-
+      It stops pointing at freellm.net and lists providers of its own.
+
+  - url: https://github.com/konglong87/free-AI-free-token
+    name: konglong87/free-AI-free-token
+    checked_on: '2026-09-30'
+    reason: >-
+      A Chinese list of free API keys and models, 免费token集中营 (15 stars, created
+      2026-06-24, pushed 2026-09-08), with a folder per provider whose status
+      lines still read 待实测, "to be tested": Agnes, AI21 Labs, B.AI, Groq,
+      ModelScope, NVIDIA NIM, OpenRouter, SenseNova and Zhipu GLM. Every one has
+      a verdict here: Agnes, Groq, ModelScope, NVIDIA NIM, OpenRouter and
+      SenseNova are rows, AI21 Labs an archived one, and B.AI and the BigModel
+      console the Zhipu folder links are on the watchlist (Z.ai, the same
+      models' international console, is a row). Read 2026-09-30.
+    reopen_if: >-
+      It adds a provider folder for a host this registry has no verdict on.
+
+  - url: https://github.com/pnnnhan99/awesome-free-ai-apis
+    name: pnnnhan99/awesome-free-ai-apis
+    checked_on: '2026-09-30'
+    reason: >-
+      Ten APIs in a table built from data/ai-apis.json (6 stars, created
+      2026-09-28), whose nightly check asks only whether each homepage answers —
+      "HTTP 403 (Cloudflare) still counts as Online". Gemini, Groq, Cohere and
+      Hugging Face are rows here; Together AI, OpenAI and Anthropic are on the
+      watchlist; Stability AI, Deepgram and Roboflow are image, speech and
+      vision products outside this list's category. Read 2026-09-30.
+    reopen_if: >-
+      It adds a text-model API on a host this registry has no verdict on.
+
+  - url: https://github.com/pnnnhan99/awesome-free-dev-tools
+    name: pnnnhan99/awesome-free-dev-tools
+    checked_on: '2026-09-30'
+    reason: >-
+      Sixteen general developer services (7 stars, created 2026-09-28) —
+      databases, hosting, email, media storage, webhooks, a payment gateway,
+      Notion, Home Assistant, a NAS — and no model endpoint or coding agent; its
+      one AI entry, Hugging Face, is a row here. Read 2026-09-30.
+    reopen_if: >-
+      It adds a section of AI APIs or coding agents.
