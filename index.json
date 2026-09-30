@@ -13071,6 +13071,36 @@
       "reason": "An AI workspace over other vendors' models whose Free plan is chat — \"15 messages per day\" with a \"Limited model selection\", \"no card required\" (zerotwo.ai/pricing, read 2026-09-29). Its coding agent, ZeroCode, a desktop agent for local repositories, is \"Not included\" on Free in the plan table, which gives it from Plus at $14.99 a month (the docs, from Pro); the code-agent page's \"Free to try\" meets that table, and the table is the specific statement. Chat messages in a workspace are not model use a coding agent or an endpoint can spend.",
       "reopen_if": "ZeroCode comes with the Free plan, or a free allowance a coding agent or an endpoint can spend.",
       "current": true
+    },
+    {
+      "domains": [
+        "assemblyai.com"
+      ],
+      "name": "AssemblyAI (LLM Gateway)",
+      "checked_on": "2026-09-30",
+      "reason": "Its no-card free tier is speech. The pricing page answers \"Can I sign up for free?\" with \"You can create an account and start transcribing immediately with no credit card required. The free tier includes up to 185 hours of pre-recorded transcription and up to 333 hours of streaming transcription.\" Its LLM Gateway is OpenAI-compatible, at https://llm-gateway.assemblyai.com/v1, \"One API for Claude, GPT, Gemini, Qwen, Kimi, and more\", but the gateway's rate-limit page gives the Free account type \"Not available\" and a Paid one 30 requests a minute per model (assemblyai.com/pricing, docs/llm-gateway/rate-limits, read 2026-09-30). pacocartones/free-llm-api-hub lists the signup credit beside the gateway as though the one reached the other.",
+      "reopen_if": "The LLM Gateway's rate-limit page gives free accounts a limit, or an AssemblyAI page says the free tier reaches the gateway.",
+      "current": true
+    },
+    {
+      "domains": [
+        "contextual.ai"
+      ],
+      "name": "Contextual AI",
+      "checked_on": "2026-09-30",
+      "reason": "A RAG platform: its pricing page offers \"Claim your $25 in free credits\" on the on-demand plan, spent on datastores, agents and component APIs for parsing, reranking and grounded generation. Text comes out of its agents and out of Generate, a POST to https://api.contextual.ai/v1/generate for its Grounded Language Model, \"an LLM engineered specifically to prioritize faithfulness to in-context retrievals\", capped at 32,000 tokens a request; nothing in its documentation index (docs.contextual.ai/llms.txt, read 2026-09-30) is a chat-completions or messages endpoint a coding agent could be pointed at, so the credit buys nothing this list carries.",
+      "reopen_if": "Contextual AI documents an OpenAI- or Anthropic-compatible chat endpoint that the free credit reaches.",
+      "current": true
+    },
+    {
+      "domains": [
+        "tokentoworld.com"
+      ],
+      "name": "TokenToWorld",
+      "checked_on": "2026-09-30",
+      "reason": "Known only from three repositories an account opened on 2026-06-03 — willianhecaiyan/claude-no-creditcard-demo, TOKENTOWORLD and fix-openai-429-demo — which sell it as Claude 3, GPT-4o, DeepSeek, Kimi and Qwen for developers \"lacking US credit card\", with a \"Stable multi-source balance to avoid interface blocking\", wholesale and affiliate terms, and \"trial tokens\" of no stated size. Nothing answers to read: tokentoworld.com and www refuse HTTPS here and from a GitHub runner on 2026-09-30, and plain HTTP returns nginx's 404 page. A relay whose offer cannot be read cannot be verified to offer anything, the rule that settled Clarifai, Coze and Morph, and the ad does not say where the Claude it sells comes from.",
+      "reopen_if": "tokentoworld.com serves its terms over HTTPS, stating a trial spent before any payment and where its Claude supply comes from.",
+      "current": true
     }
   ]
 }
