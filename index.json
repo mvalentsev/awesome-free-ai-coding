@@ -6391,9 +6391,9 @@
         "machinery_keywords": []
       },
       "first_seen": "2026-09-16",
-      "last_verified": "2026-09-28",
-      "probe_failures": 1,
-      "provisional": true,
+      "last_verified": "2026-10-01",
+      "probe_failures": 0,
+      "provisional": false,
       "rank": 45,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/"

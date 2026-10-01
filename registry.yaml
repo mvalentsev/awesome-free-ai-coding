@@ -4584,9 +4584,9 @@ entries:
     catalog: https://api.llm7.io/v1/models
     machinery_keywords: []
   first_seen: '2026-09-16'
-  last_verified: '2026-09-28'
-  probe_failures: 1
-  provisional: true
+  last_verified: '2026-10-01'
+  probe_failures: 0
+  provisional: false
   rank: 45
 - id: fireworks-ai
   name: Fireworks AI
