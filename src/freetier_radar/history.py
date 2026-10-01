@@ -33,7 +33,8 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
-from .models import ArchiveRule, Entry, archive_rule, is_archived, live_families, load_registry
+from .models import (ArchiveRule, Entry, FreePart, archive_rule, is_archived,
+                     live_families, load_registry)
 
 __all__ = ["EventType", "Event", "State", "archive_reason", "registry_state", "replay",
            "diff_state", "deleted_row_problem", "deleted_rows", "refuse_deleted_rows",
@@ -98,6 +99,11 @@ def archive_reason(entry: Entry, today: date) -> str:
     if rule is ArchiveRule.DELISTED:
         return f"delisted on {entry.delisted.on.isoformat()}: {entry.delisted.reason}"
     if rule is ArchiveRule.RETIRED:
+        lane = entry.api or entry.client_lane
+        if lane and not lane.model_ids and entry.free_part is FreePart.MODELS and any(
+                a.until and a.until.astimezone(timezone.utc).date() == entry.retired_on
+                for a in lane.model_access.values()):
+            return f"documented free promotions ended on {entry.retired_on.isoformat()}"
         return f"vendor-announced shutdown on {entry.retired_on.isoformat()}"
     if rule is ArchiveRule.FAILED:
         return (f"{entry.probe_failures} failed probes in a row, "

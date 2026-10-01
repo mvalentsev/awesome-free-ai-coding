@@ -497,7 +497,7 @@
           "name": "poolside/laguna-xs-2.1"
         },
         "inclusionai/ling-3.1-flash": {
-          "name": "inclusionai/ling-3.1-flash"
+          "name": "inclusionai/ling-3.1-flash (free until 2026-10-13 19:00+03:00)"
         },
         "agnes/agnes-3.0-flash": {
           "name": "agnes/agnes-3.0-flash"
@@ -507,6 +507,9 @@
         },
         "motif/motif-3": {
           "name": "motif/motif-3"
+        },
+        "minimax/minimax-m3.1-flash-preview": {
+          "name": "minimax/minimax-m3.1-flash-preview (requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00)"
         }
       }
     },
@@ -1011,6 +1014,12 @@
         },
         "meganova-ai/manta-flash-1.0": {
           "name": "meganova-ai/manta-flash-1.0"
+        },
+        "zai-org/GLM-4.7-Flash": {
+          "name": "zai-org/GLM-4.7-Flash (requires $1 one-time top-up)"
+        },
+        "meganova-ai/manta-pro-1.0": {
+          "name": "meganova-ai/manta-pro-1.0 (requires $1 one-time top-up)"
         }
       }
     },

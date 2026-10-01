@@ -12,8 +12,8 @@
 # The key comes from $HPC_AI_API_KEY, the variable free-llm.env.example
 # exports; get one at https://www.hpc-ai.com/models-console/api-key. With
 # $HPC_AI_API_KEY unset or empty, Codex stops before it sends anything, so no
-# other key of yours reaches the lane. The model is the first id the row
-# lists; what the free part covers and every id are on the row's page,
+# other key of yours reaches the lane. The default prefers an unfunded,
+# undated id; what the free part covers and every id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/ —
 # codex -p hpc-ai -m <id> takes another.
 model = "zai-org/glm-5.3-flash"

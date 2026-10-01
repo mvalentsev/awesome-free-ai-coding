@@ -1,0 +1,65 @@
+name: expire promotions
+
+on:
+  schedule:
+    - cron: "11 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+# Serialize every writer of main with the verification workflow. An hourly
+# check is a no-op unless a documented deadline has passed; it calls no vendor
+# API or scout backend and cannot earn verification fields.
+concurrency:
+  group: update
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  expire:
+    runs-on: ${{ fromJSON(vars.RUNNER || '"ubuntu-latest"') }}
+    timeout-minutes: 20
+    env:
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          python-version: "3.12"
+      - run: uv sync
+      - name: Publish only promotions whose deadlines have passed
+        id: publish
+        run: |
+          uv run freetier-render --expire-only
+          if git diff --quiet -- registry.yaml; then
+            exit 0
+          fi
+          uv run freetier-check
+          uv run freetier-render --check
+          uv run freetier-gate diff HEAD --earned
+          uv run pytest -q
+          git config user.name "freetier-bot"
+          git config user.email "freetier-bot@users.noreply.github.com"
+          paths=$(uv run freetier-map paths run)
+          test -n "$paths"
+          git add -- $paths
+          git commit -m "chore: expire model promotions $(date -u +%F)"
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Ping IndexNow after Pages has built the expiry commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGED: ${{ steps.publish.outputs.changed }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          sha=$(git rev-parse HEAD)
+          before=$sha
+          mode=--ensure-pages-build
+          if [ "$CHANGED" = true ]; then before=$(git rev-parse HEAD^); fi
+          if [ "$EVENT" = workflow_dispatch ]; then mode=--request-pages-build; fi
+          uv run freetier-indexnow --index index.json "$mode" --after-pages-build "$sha" --before "$before"

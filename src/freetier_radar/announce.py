@@ -26,8 +26,9 @@ from pathlib import Path
 import httpx
 
 from .history import Event, EventType, jsonl_lines, load_history
-from .models import Entry, is_archived, live_families, load_registry, probe_frequency
-from .render import (EVENT_WORDS, REPO_URL, event_detail, picks, provider_page_url,
+from .models import (Entry, access_words, family_access, is_archived, live_families,
+                     load_registry, probe_frequency)
+from .render import (EVENT_WORDS, REPO_URL, _access_flag, event_detail, picks, provider_page_url,
                      providers_index_url, sections)
 from .words import clip
 
@@ -99,6 +100,9 @@ def compose(ev: Event, entries_by_id: dict[str, Entry], limit: int = POST_LIMIT)
         lead = f"{ev.name}: free models changed"
         body = ev.detail
         tail = _listed("Now: ", ev.models, half(lead)) if ev.models else "The row keeps no free model"
+    if (e is not None and ev.event in (EventType.ADDED, EventType.MODELS, EventType.RESTORED)
+            and (e.access or any(family_access(e, f) for f in ev.models))):
+        tail += "; see access conditions"
     fixed = f"{lead} — .\n{tail} → {link}"
     room = limit - len(fixed)
     text_body = clip(body, room) if body and room > 1 else ""
@@ -250,7 +254,9 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
     for cat_title, rows in sections(active):
         out += [f"### {cat_title}", "", "| Offer | Free models | Card | Verified |", "|---|---|---|---|"]
         for e in rows:
-            fams = ", ".join(f"`{f}`" for f in live_families(e)) or "—"
+            fams = ", ".join(f"`{f}`" + _access_flag(e, f) for f in live_families(e)) or "—"
+            if e.access:
+                fams += f"; {access_words(e.access)}"
             out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {fams} | "
                        f"{'yes' if e.card_required else 'no'} | {e.last_verified.isoformat()} |")
         out.append("")

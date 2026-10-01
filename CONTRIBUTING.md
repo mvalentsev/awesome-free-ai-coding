@@ -15,6 +15,34 @@ An entry must be **legal** and **directly usable by a developer**:
   or no-card trial credits, **or**
 - a coding agent / IDE / CLI with **bundled** free model usage or recurring free credits.
 
+**An initial payment is a condition, not an automatic rejection.** A documented
+free model quota or recurring free credit may require a one-time deposit or card
+verification charge. Include it with the amount and any top-up fee visible;
+usage within that quota must be free, with no recurring paid subscription required.
+An expiring free-model promotion qualifies too, with its exact deadline and
+timezone. A spend allowance still names no individually free model.
+
+Record whole-offer payment conditions in `access`, and conditions on specific
+callable IDs in `api.model_access` (or `client_lane.model_access`). Each uses the
+same structure: `source` (an official HTTPS page), `initial_payment_usd`, optional
+`payment_kind: card verification` (otherwise `top-up`), `topup_fee_percent`, and
+`until` (a timestamp with timezone, for model promotions). Omit conditions that
+do not apply. These fields generate the disclosures; do not duplicate them in
+templates or add exceptions for a particular vendor. For example:
+
+```yaml
+model_access:
+  vendor/preview:
+    source: https://vendor.example/models/preview
+    initial_payment_usd: 5
+    topup_fee_percent: 8
+    until: '2026-10-06T23:59:00+03:00'
+```
+
+Model deadlines inherit a whole-offer payment. Record that payment once in
+`access`; do not put a second payment in `model_access` on the same offer, where
+it could hide an account requirement or imply two different amounts.
+
 What does **not** qualify:
 
 - reverse proxies, key sharing, scraped or "unofficial" gateways;
@@ -69,7 +97,11 @@ paying?** In order of what moves a row up:
 A real but unquantified free tier sits below one that prints its numbers, and a
 row that publishes no free model list at all sits below both — the page cannot
 tell a reader what they would be calling. A row that needs a card never leads the
-no-card rows it ties with.
+no-card rows it ties with; the same applies to an obligatory initial payment.
+On a model's page, access without an initial payment leads payment-required
+access. Client defaults prefer IDs available without payment, and automatic
+`free/*` fallback pools omit IDs that require an initial payment. A named
+deployment remains available with its conditions disclosed.
 
 **A border counts like a wall.** An offer its vendor keeps from whole countries —
 a sign-up that refuses them, or a site and an endpoint that do not resolve there —
@@ -376,7 +408,31 @@ row of `models` lists, whatever its probe reads, so a free model kept out of the
 column is kept out by a decision with its reason, never by a row the report did
 not look at.
 
-**A lane that rotates names a model once it has stayed two weeks.** OpenRouter,
+**A dated free promotion is listed immediately.** Once official sources confirm
+the free usage and its conditions, give the model its family and record the
+deadline in `model_access.until`, even if it ends within two weeks. Readers can
+use a brief promotion to try a model they otherwise could not afford. The
+deadline appears beside the model; a dated promotion also gets its own model
+page. This is one rule for every vendor, not an exception granted to a request.
+
+`freetier-render` withdraws expired IDs and their families at the recorded
+instant, preserving a family if another matching ID remains live. It retains
+expired API conditions under `ignored_ids`, records the change through the
+history writer and keeps published pages. `--check` never mutates the registry.
+If the last free ID ends, the offer moves to Archive at the vendor deadline;
+the row and all its evidence remain available.
+The hourly `expire promotions` workflow invokes `freetier-render --expire-only`,
+which writes nothing before a deadline and earns no verification fields.
+It explicitly requests a Pages build before notifying IndexNow. A manual run
+also rebuilds Pages if no promotion ended, so the publication path can be
+checked without changing a deadline. Verification and expiry share a queued
+writer group, preserving pending verification runs.
+If an earlier publication failed, the next hourly check repairs its Pages build
+even when no further model expired.
+Publication follows the next successful run; GitHub scheduling can delay it.
+The exact deadline remains visible in the interim.
+
+**An undated model on a rotating lane waits two weeks.** OpenRouter,
 Kilo, Requesty, AIHubMix and Cline add and drop free ids within days, so a new id
 is callable from the read that finds it and joins `models[]` two weeks later,
 counted from that read or from the vendor's own date for the free id, such as the
@@ -389,9 +445,8 @@ the run reads it again — SEA-LION announces its free API on a page that names 
 model — and a lane that serves one model at a time and rotates it, where a family
 would fail the row at the next rotation; each is
 listed in `api.no_family_ids`, with the reason in `api.note` (`client_lane`'s own
-two fields on a lane no API serves). A free id the vendor dates to end within those two weeks
-never joins: OpenRouter and Kilo publish the date as `expiration_date`, and on
-2026-09-24 it was the next day for both Nex-N2.5 ids. Until that day a family that
+two fields on a lane no API serves). Dated promotions follow the rule above;
+an already expired promotion never joins. Until 2026-09-24 a family that
 left the lane failed the row, so the column was kept to a few names per lane, and
 OpenRouter was missing from the list for `north-mini-code`, which it had served
 free since June. `uv run freetier-bars` dates every id in `api.model_ids` and
@@ -771,7 +826,9 @@ order: what the row asks for, the day a probe last confirmed it, the day the
 list started carrying the model there, the limits in the vendor's words and the
 ids of that model to call, then the rows that listed it before and the days
 they did. A model one row serves and nothing measures in the index's upper half
-gets no page — it would repeat the row's — and stays on the index beside the row. **A page, once
+gets no page unless it has a dated free promotion; those promotions get a page
+immediately so readers can find them before they end. Other unmeasured models
+stay on the index beside the row. **A page, once
 published, stays**: a model that falls below the bar keeps its page, and a model
 no row serves any more keeps one that says so in its title, since when, and
 which rows listed it — the list never takes back an address a search engine
@@ -870,7 +927,7 @@ cannot print two versions of it.
 
 | File | What it is | Made from | Written by |
 |---|---|---|---|
-| `registry.yaml` | **data** — every row the list has published, live or archived — the single source of truth | — | `hand`, `freetier-probe`, `freetier-tiers`, `freetier-scout` |
+| `registry.yaml` | **data** — every row the list has published, live or archived — the single source of truth | — | `hand`, `freetier-probe`, `freetier-tiers`, `freetier-scout`, `freetier-render` |
 | `watchlist.yaml` | **data** — services checked and not listed: the date, the reason, what would reopen them | — | `hand` |
 | `blocklist.yaml` | **data** — domains rejected for cause | — | `hand` |
 | `sources.yaml` | **data** — lists read once and put down | — | `hand` |

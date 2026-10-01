@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'glm-4.7-flash free: 2 providers, limits and ids, verified 2026-10-01'
-description: glm-4.7-flash is served free by AIHubMix (free models) and Z.ai (Zhipu GLM). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'glm-4.7-flash free: 3 providers, limits and ids, verified 2026-10-01'
+description: 'glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Access conditions: MegaNova (requires $1 one-time top-up). Each one''s limits in the vendor''s words, the ids to call and the day a live probe last confirmed it.'
 permalink: /models/glm-4.7-flash/
 last_modified_at: 2026-10-01
 crumb: glm-4.7-flash
@@ -11,7 +11,7 @@ crumb: glm-4.7-flash
 
 # Where glm-4.7-flash is free
 
-**2 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models) and Z.ai (Zhipu GLM). None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
+**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Access conditions: MegaNova (requires $1 one-time top-up). A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -42,6 +42,18 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.z.ai/api/anthropic`
 - Callable ids: `glm-4.7-flash`
 - What you send is not used to train models ([the vendor's words](https://docs.z.ai/legal-agreement/terms-of-use)).
+
+### [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/)
+
+🧭 Aggregators (one key, many providers) · requires $1 one-time top-up · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · verified 2026-10-01 · listed since 2026-10-01
+
+OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit
+
+- Limits, in the vendor's words: Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free Model Quota table gives a Tier 1 account 50 requests a day ("50 RPD (Requests Per Day)") on each of Mistral-Small-3.2-24B, Manta Mini and Manta Flash, and on several roleplay fine-tunes, an embedding model and a reranker — "Total Free Quota per day 550", with a "daily reset at 00:00 UTC" — and 0 on GLM-4.7-Flash and Manta Pro until a "$1 deposit" moves the account to Tier 2. The terms say "Free modules are for evaluation and interactive use only and are not designed for production or unattended batch workloads". The operator is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16
+- Base URL: `https://api.meganova.ai/v1`
+- Key: `MEGANOVA_API_KEY` — get one at <https://www.meganova.ai/api-keys>
+- Callable ids: `zai-org/GLM-4.7-Flash`
+- `zai-org/GLM-4.7-Flash`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
 
 ## Rows that listed it before
 

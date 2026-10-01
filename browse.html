@@ -212,6 +212,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
 
     var offer = cell("offer", "Free offer");
     offer.appendChild(text(e.offering));
+    if (e.access_labels && e.access_labels.offer) offer.appendChild(el("p", "warn", e.access_labels.offer));
     offer.appendChild(el("br"));
     offer.appendChild(el("span", e.card_required ? "warn" : "ok", e.card_required ? "card required" : "no card"));
     if (keyless(e)) { offer.appendChild(text(" · ")); offer.appendChild(el("span", "ok", "no key")); }
@@ -230,6 +231,10 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
         name = page;
       }
       fam.appendChild(name);
+      if (e.access_labels && e.access_labels.models[m.family]) {
+        fam.appendChild(el("br"));
+        fam.appendChild(el("small", "muted", e.access_labels.models[m.family]));
+      }
       if (isFrontier(m)) fam.appendChild(text(" (frontier)"));
       models.appendChild(fam);
       if (i < fams.length - 1) models.appendChild(text(", "));

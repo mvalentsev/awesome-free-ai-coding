@@ -14,8 +14,8 @@
 # free-llm.env.example exports; get one at
 # https://huggingface.co/settings/tokens. With $HUGGINGFACE_INFERENCE_API_KEY
 # unset or empty, Codex stops before it sends anything, so no other key of
-# yours reaches the lane. The model is the first id the row lists; what the
-# free part covers and every id are on the row's page,
+# yours reaches the lane. The default prefers an unfunded, undated id; what
+# the free part covers and every id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/
 # — codex -p huggingface-inference -m <id> takes another.
 model = "openai/gpt-oss-120b"

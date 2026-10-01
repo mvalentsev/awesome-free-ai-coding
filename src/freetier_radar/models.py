@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime, timezone
 from enum import Enum
 from pathlib import Path
 from urllib.parse import urlparse
@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 import yaml
 from typing import Literal
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from .words import number
 
@@ -566,6 +566,50 @@ ASKS = ("user-agent", "session-header")
 CODEX_LITELLM_PROFILE = "litellm"
 
 
+class FreeAccess(BaseModel):
+    """Conditions on free usage, not its token price; shared by offers and IDs."""
+    model_config = ConfigDict(extra="forbid")
+    source: str
+    initial_payment_usd: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    payment_kind: Literal["top-up", "card verification"] = Field(
+        default="top-up", exclude_if=lambda v: v == "top-up")
+    topup_fee_percent: float = Field(default=0, ge=0, allow_inf_nan=False,
+                                     exclude_if=lambda v: not v)
+    until: datetime | None = None
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_https(cls, value: str) -> str:
+        if urlparse(value).scheme != "https" or not urlparse(value).netloc:
+            raise ValueError("access source must be an https URL")
+        return value
+
+    @field_validator("until")
+    @classmethod
+    def _deadline_has_a_timezone(cls, value: datetime | None) -> datetime | None:
+        if value is not None and value.utcoffset() is None:
+            raise ValueError("access.until needs the vendor's timezone")
+        return value
+
+    @model_validator(mode="after")
+    def _conditions_are_complete(self) -> FreeAccess:
+        if self.initial_payment_usd is None and self.until is None:
+            raise ValueError("access needs an initial payment or a free-until deadline")
+        if self.topup_fee_percent and (self.initial_payment_usd is None
+                                      or self.payment_kind != "top-up"):
+            raise ValueError("a top-up fee needs an initial top-up")
+        if self.payment_kind != "top-up" and self.initial_payment_usd is None:
+            raise ValueError("card verification needs its charge")
+        return self
+
+
+def _access_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
+                           conditions: dict[str, FreeAccess]) -> None:
+    unknown = conditions.keys() - set(model_ids) - set(ignored_ids)
+    if unknown:
+        raise ValueError(f"model_access names unlisted IDs: {', '.join(sorted(unknown))}")
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -573,6 +617,7 @@ class ApiInfo(BaseModel):
     auth: str = "api-key"  # "api-key" | "none"
     openai_compatible: bool = True
     model_ids: list[str] = []  # exact callable ids for generated configs
+    model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     # Zero-priced ids the catalog carries that are deliberately not in
     # model_ids — an image generator, a row whose own description says it was
     # removed, a lane the row does not track — with the reason in `note`. The probe reports every
@@ -650,6 +695,11 @@ class ApiInfo(BaseModel):
     # lane answers again.
     notice: Notice | None = None
 
+    @model_validator(mode="after")
+    def _access_names_ids(self) -> ApiInfo:
+        _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
+        return self
+
     @property
     def key_kind(self) -> str:
         """How a client is let in, decided once for every page, config and probe
@@ -692,7 +742,7 @@ class ApiInfo(BaseModel):
             raise ValueError("public_key says how to call base_url, and there is no base_url")
         if not self.key_url:
             raise ValueError("public_key needs key_url, the vendor's page that prints it")
-        if not self.model_ids:
+        if not self.model_ids and not self.no_ids:
             raise ValueError("public_key is checked by a call on the first of model_ids, "
                              "and there is none")
         return self
@@ -717,7 +767,7 @@ class ApiInfo(BaseModel):
         if not self.openai_compatible:
             raise ValueError("api.codex is said of an OpenAI-shaped lane, and "
                              "openai_compatible is false")
-        if not self.model_ids:
+        if not self.model_ids and not self.no_ids:
             raise ValueError("api.codex needs a callable id: the Codex profile names the "
                              "first of model_ids, and the run calls it")
         if self.session_header:
@@ -792,6 +842,8 @@ class ClientLane(BaseModel):
     this list's history for the two-week bar. Nothing a reader pastes is
     written from them: there is nothing to connect to."""
     model_ids: list[str]
+    model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
     # Ids the lane carries that no Models-column family will name, on purpose —
     # a stealth codename, a router — with the reason in `note`, as
     # `api.no_family_ids`. A lane no config is written from needs no second
@@ -802,13 +854,19 @@ class ClientLane(BaseModel):
     free_since: list[FreeSince] = Field(default_factory=list, exclude_if=lambda v: not v)
     note: str = Field(default="", exclude_if=lambda v: not v)
 
-    @field_validator("model_ids")
-    @classmethod
-    def _a_lane_records_ids(cls, value: list[str]) -> list[str]:
-        if not value:
+    @model_validator(mode="after")
+    def _access_names_ids(self) -> ClientLane:
+        _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
+        return self
+
+    @model_validator(mode="after")
+    def _a_lane_records_ids(self) -> ClientLane:
+        ended = self.ignored_ids and all(
+            (a := self.model_access.get(i)) and a.until for i in self.ignored_ids)
+        if not self.model_ids and not ended:
             raise ValueError("client_lane.model_ids is empty — a lane with no ids records nothing, "
                              "so drop the block")
-        return value
+        return self
 
     @model_validator(mode="after")
     def _free_since_dates_listed_ids(self) -> ClientLane:
@@ -833,7 +891,7 @@ def lane_ids(entry: Entry) -> LaneIds | None:
         return LaneIds("api", entry.api.model_ids, entry.api.ignored_ids, entry.api.no_family_ids,
                        entry.api.free_since)
     if entry.client_lane is not None:
-        return LaneIds("client_lane", entry.client_lane.model_ids, [],
+        return LaneIds("client_lane", entry.client_lane.model_ids, entry.client_lane.ignored_ids,
                        entry.client_lane.no_family_ids, entry.client_lane.free_since)
     return None
 
@@ -989,6 +1047,7 @@ class Entry(BaseModel):
     url: str
     source_urls: list[str] = []
     card_required: bool = False
+    access: FreeAccess | None = None
     offering: str
     limits: str = ""
     # Which kind of free this is; freetier-check refuses a live row without it.
@@ -1013,6 +1072,17 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+    @model_validator(mode="after")
+    def _whole_offer_access_is_an_initial_payment(self) -> Entry:
+        if self.access is not None and self.access.until is not None:
+            raise ValueError("whole-offer expiry uses retired_on; access.until belongs to model_access")
+        lane = self.api or self.client_lane
+        if self.access and self.access.initial_payment_usd and lane and any(
+                a.initial_payment_usd for a in lane.model_access.values()):
+            raise ValueError("record the whole-offer payment once in access; model_access may "
+                             "add deadlines but cannot replace it with another payment")
+        return self
 
     @field_validator("id")
     @classmethod
@@ -1183,7 +1253,7 @@ class Entry(BaseModel):
             raise ValueError(
                 f"{self.id}: probe.catalog belongs on a page-keywords probe — an "
                 "api-models probe reads its endpoint as the catalog")
-        if self.api is None or not self.api.model_ids:
+        if self.api is None or not (self.api.model_ids or self.api.no_ids):
             raise ValueError(
                 f"{self.id}: probe.catalog has nothing to check without api.model_ids")
         return self
@@ -1198,6 +1268,97 @@ def live_families(entry: Entry) -> list[str]:
     can see.
     """
     return [m.family for m in entry.models if m.superseded_by is None]
+
+
+def id_access(entry: Entry, model_id: str) -> FreeAccess | None:
+    lane = entry.api or entry.client_lane
+    scoped = lane.model_access.get(model_id) if lane else None
+    if scoped is None:
+        return entry.access
+    if entry.access and entry.access.initial_payment_usd and not scoped.initial_payment_usd:
+        return scoped.model_copy(update={
+            "initial_payment_usd": entry.access.initial_payment_usd,
+            "payment_kind": entry.access.payment_kind,
+            "topup_fee_percent": entry.access.topup_fee_percent})
+    return scoped
+
+
+def family_access(entry: Entry, family: str) -> FreeAccess | None:
+    """The least restrictive surviving ID: a free variant keeps a family free."""
+    lane = lane_ids(entry)
+    ids = [i for i in lane.model_ids if id_family(live_families(entry), i) == family] if lane else []
+    conditions = [id_access(entry, i) for i in ids] or [entry.access]
+    return min(conditions, key=lambda a: (
+        (a.initial_payment_usd or 0) * (1 + a.topup_fee_percent / 100) if a else 0,
+        -(a.until.timestamp() if a and a.until else float("inf"))))
+
+
+def access_words(access: FreeAccess | None) -> str:
+    if access is None:
+        return ""
+    words = []
+    if access.initial_payment_usd:
+        words.append(f"requires ${access.initial_payment_usd:g} one-time {access.payment_kind}")
+        if access.topup_fee_percent:
+            words[-1] += f" + {access.topup_fee_percent:g}% fee"
+    if access.until:
+        words.append(f"free until {access.until.isoformat(sep=' ', timespec='minutes')}")
+    return "; ".join(words)
+
+
+def requires_payment(entry: Entry, family: str | None = None) -> bool:
+    if family:
+        access = family_access(entry, family)
+        return bool(access and access.initial_payment_usd)
+    lane = lane_ids(entry)
+    if lane and lane.model_ids:
+        return all((a := id_access(entry, i)) and a.initial_payment_usd for i in lane.model_ids)
+    return bool(entry.access and entry.access.initial_payment_usd)
+
+
+def preferred_ids(entry: Entry) -> list[str]:
+    """Default to unfunded, undated access; retain the registry order on ties."""
+    lane = lane_ids(entry)
+    return sorted(lane.model_ids, key=lambda i: (
+        bool((a := id_access(entry, i)) and a.initial_payment_usd), bool(a and a.until))) if lane else []
+
+
+def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
+    """Withdraw ended promotions atomically; retain their conditions as evidence.
+
+    Called by the publication writer, never by validation or --check. Family
+    matching uses the same most-specific mapping as probes and generated configs.
+    """
+    if now.utcoffset() is None:
+        raise ValueError("expiry clock needs a timezone")
+    out = []
+    for e in entries:
+        block = e.api or e.client_lane
+        expired = {i for i in block.model_ids if (a := id_access(e, i))
+                   and a.until is not None and now >= a.until} if block else set()
+        if not expired:
+            out.append(e)
+            continue
+        surviving = [i for i in block.model_ids if i not in expired]
+        families = live_families(e)
+        affected = {id_family(families, i) for i in expired}
+        kept = {id_family(families, i) for i in surviving}
+        updates = {"model_ids": surviving,
+                   "ignored_ids": list(dict.fromkeys([*block.ignored_ids, *sorted(expired)])),
+                   "no_family_ids": [i for i in block.no_family_ids if i not in expired],
+                   "free_since": [s for s in block.free_since if s.id not in expired]}
+        if e.api:
+            if not surviving:
+                updates["no_ids"] = "the documented free promotions have ended; no current free ID is listed"
+        current = block.model_copy(update=updates)
+        entry_updates = {
+            "api" if e.api else "client_lane": current,
+            "models": [m for m in e.models if m.family not in affected or m.family in kept]}
+        if not surviving and e.free_part is FreePart.MODELS:
+            ended_on = max(id_access(e, i).until for i in expired).astimezone(timezone.utc).date()
+            entry_updates["retired_on"] = min(e.retired_on, ended_on) if e.retired_on else ended_on
+        out.append(e.model_copy(update=entry_updates))
+    return out
 
 
 def domain_of(url: str) -> str:

@@ -12,8 +12,8 @@
 # The key comes from $MOARK_API_KEY, the variable free-llm.env.example
 # exports; get one at https://moark.com/dashboard/tokens. With $MOARK_API_KEY
 # unset or empty, Codex stops before it sends anything, so no other key of
-# yours reaches the lane. The model is the first free id the row lists; the
-# quota and every free id are on the row's page,
+# yours reaches the lane. The default prefers an unfunded, undated free id;
+# the quota and every free id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/ — codex
 # -p moark -m <id> takes another.
 model = "deepseek-v4-flash-0731"

@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-01T14:18:41Z</updated>
+  <updated>2026-10-01T20:38:41Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261001T203841Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-01T20:38:41Z</updated>
+    <summary type="text">added ling-3.1-flash, minimax-m3.1-flash-preview · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, motif-3, ling-3.1-flash, minimax-m3.1-flash-preview</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/meganova/20261001T203841Z</id>
+    <title>Free models changed: MegaNova</title>
+    <link rel="alternate" href="https://meganova.ai"/>
+    <updated>2026-10-01T20:38:41Z</updated>
+    <summary type="text">added glm-4.7-flash · free models: mistral-small-3.2, glm-4.7-flash</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261001T141841Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://www.requesty.ai"/>
     <updated>2026-09-25T12:00:52Z</updated>
     <summary type="text">added gemma-4-31b; dropped gemma-4 · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, laguna-xs.2, laguna-m.1, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/google-ai-studio/20260925T115408Z</id>
-    <title>Free models changed: Google AI Studio (Gemini API)</title>
-    <link rel="alternate" href="https://aistudio.google.com"/>
-    <updated>2026-09-25T11:54:08Z</updated>
-    <summary type="text">added gemini-3-flash, gemini-3.1-flash-lite, gemini-3.5-flash, gemini-3.6-flash, gemma-4 · free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3-flash, gemma-4</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/freeinference/20260924T072435Z</id>
-    <title>Free models changed: FreeInference (Harvard SEAS)</title>
-    <link rel="alternate" href="https://freeinference.org"/>
-    <updated>2026-09-24T07:24:35Z</updated>
-    <summary type="text">added diffusiongemma, minimax-m2.5 · free models: deepseek-v4-flash, glm-5.1, glm-5.3-flash, minimax-m3, qwen3.6, minimax-m2.5, diffusiongemma</summary>
   </entry>
 </feed>

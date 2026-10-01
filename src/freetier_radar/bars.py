@@ -1,7 +1,8 @@
 """freetier-bars: when a model a rotating lane serves free is owed its family.
 
 CONTRIBUTING's rule for a lane that rotates: a new id is callable from the read
-that finds it and joins `models[]` two weeks later. The day an id entered a
+that finds it and joins `models[]` two weeks later. A documented dated promotion
+is due immediately, with its deadline beside it. The day an id entered a
 row's `api.model_ids` — or `client_lane.model_ids`, for a lane served only
 inside the vendor's own client — is read from the registry's git history, and
 the report says which ids are owed a family today and when the rest fall due.
@@ -22,14 +23,15 @@ from __future__ import annotations
 import argparse
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
 
 import httpx
 import yaml
 
 from . import git
-from .models import Entry, FreePart, family_names, is_archived, lane_ids, load_registry
+from .models import (Entry, FreePart, expire_entries, family_names, id_access,
+                     is_archived, lane_ids, load_registry)
 from .prober import TIMEOUT, UA, free_list_dates
 
 __all__ = ["BAR_DAYS", "Waiting", "arrivals", "vendor_dates", "waiting", "report", "main"]
@@ -84,6 +86,7 @@ class Waiting:
     # Where `vendor` was read: the vendor's free list, or the record a row's
     # free_since names for the id.
     vendor_source: str = "the vendor's list"
+    until: datetime | None = None
 
     @property
     def since(self) -> date:
@@ -93,7 +96,7 @@ class Waiting:
 
     @property
     def due_on(self) -> date:
-        return self.since + timedelta(days=BAR_DAYS)
+        return self.since if self.until else self.since + timedelta(days=BAR_DAYS)
 
 
 def vendor_dates(entries: list[Entry], fetch: Callable[[str], httpx.Response],
@@ -124,14 +127,15 @@ def vendor_dates(entries: list[Entry], fetch: Callable[[str], httpx.Response],
 
 
 def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: date,
-            vendor: dict[tuple[str, str], date] | None = None) -> list[Waiting]:
+            vendor: dict[tuple[str, str], date] | None = None,
+            now: datetime | None = None) -> list[Waiting]:
     """Every id a live row's free lane lists that no family names and no decision
     keeps out, soonest due first. An id the history has not seen, on a row edited
     and not yet committed, arrives today; the vendor's date for it, or a record
     the row's free_since names, counts where it is earlier."""
     vendor = vendor or {}
     out = []
-    for e in entries:
+    for e in expire_entries(entries, now or datetime.combine(today, time.min, timezone.utc)):
         lane = lane_ids(e)
         if is_archived(e, today) or not _free_lane(e):
             continue
@@ -151,7 +155,8 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
             if record is not None and (day is None or record.on < day):
                 day, source = record.on, f"<{record.source}>"
             out.append(Waiting(e.id, model_id, since.get((e.id, model_id), today),
-                               day, lane.field, source))
+                               day, lane.field, source,
+                               access.until if (access := id_access(e, model_id)) else None))
     return sorted(out, key=lambda w: (w.due_on, w.row, w.model_id))
 
 
@@ -160,21 +165,21 @@ def _dated(w: Waiting) -> str:
         return f"free on {w.vendor_source} since {w.listed}"
     listed = f"in {w.field}.model_ids since {w.listed}"
     if w.vendor is not None and w.vendor < w.listed:
-        return f"free on {w.vendor_source} since {w.vendor}, {listed}"
-    return listed
+        listed = f"free on {w.vendor_source} since {w.vendor}, {listed}"
+    return listed + (f", free until {w.until.isoformat()}" if w.until else "")
 
 
 def report(entries: list[Entry], since: dict[tuple[str, str], date], today: date,
            vendor: dict[tuple[str, str], date] | None = None,
-           unread: list[str] | tuple[str, ...] = ()) -> str:
-    rows = waiting(entries, since, today, vendor)
+           unread: list[str] | tuple[str, ...] = (), now: datetime | None = None) -> str:
+    rows = waiting(entries, since, today, vendor, now)
     due = [w for w in rows if w.due_on <= today]
     later = [w for w in rows if w.due_on > today]
     lines = ["## Models owed a family", ""]
     if not rows:
         lines.append("Every id a free lane lists has a family or a reason in `api.no_family_ids`.")
     if due:
-        lines += ["**Due**, two weeks in the lane: re-read the lane, then add the family, or list "
+        lines += ["**Due**, a dated promotion or two weeks in the lane: re-read the lane, then add the family, or list "
                   "the id in `api.no_family_ids` with the reason in `api.note`.", ""]
         lines += [f"- {w.row}: `{w.model_id}`, {_dated(w)} ({(today - w.since).days} days)"
                   for w in due]
@@ -201,7 +206,9 @@ def main(argv: list[str] | None = None) -> int:
     entries = load_registry(args.repo / args.registry)
     with httpx.Client(headers=UA, timeout=TIMEOUT, follow_redirects=True) as client:
         vendor, unread = vendor_dates(entries, client.get, args.today)
-    print(report(entries, arrivals(args.repo, args.registry), args.today, vendor, unread), end="")
+    now = datetime.now(timezone.utc)
+    print(report(entries, arrivals(args.repo, args.registry), args.today, vendor, unread,
+                 now=now if args.today == now.date() else None), end="")
     return 0
 
 

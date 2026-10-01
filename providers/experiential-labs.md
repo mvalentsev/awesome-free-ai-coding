@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-10-01'
-description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check. The Free plan is "500 credits a month once you verify a card (a one-time $1…
+description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification. The Free plan is "500 credits a month once you verify a card (a one-time $1 charge…
 permalink: /providers/experiential-labs/
 last_modified_at: 2026-10-01
 crumb: Experiential Labs
@@ -11,11 +11,11 @@ crumb: Experiential Labs
 
 # Experiential Labs free tier
 
-🧭 Aggregators (one key, many providers) · card required · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-10-01 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · card required · requires $1 one-time card verification · provisional — added on 2026-09-21, a regular row from the first probe it passes on or after 2026-10-05 · **live** — last verified by a probe on 2026-10-01 · [experientiallabs.ai](https://www.experientiallabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
-An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check
+An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification
 
 ## Free models
 
@@ -23,7 +23,7 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)", a credit being a cent ("2,000 credits / month · 1¢ each" on Pro), spent at list price: "Route on credits at each provider’s list price with nothing on top". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens. The one model its list marks Free is TypeSafe's Jev, whose catalog entry supports neither tools nor streaming, so not one to code with, and the other promotions are discounts, GPT-6 Luna at 75% off. "Prompt-capture opt-out" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-25
+The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, added to your balance)". A credit is a cent ("Flat 1¢ per credit, 0% token markup"), spent at list price: "Route on credits at each provider’s list price with nothing on top". In the public catalog with Free selected, GPT-6 Luna is 75% off and Qwen3.8 27B / DeepSeek V4 Flash are 50% off, not individually free; the 100% discounts belong to Ultra. Jev is marked Free but its entry lists no tool or streaming support. "Prompt and response storage off" is a paid-plan feature; prompts on the Free plan are stored. Read 2026-10-01
 
 ## Where it is offered
 

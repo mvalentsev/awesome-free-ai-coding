@@ -138,6 +138,8 @@ section > .wrap > header { margin-bottom: 18px; }
 .card ul { margin: 0; padding: 0; list-style: none; }
 .card li + li { margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--line-soft); }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+.model-access { display: inline-flex; flex-direction: column; gap: 3px; max-width: 100%; }
+.model-access small { font-size: .74rem; color: var(--muted); overflow-wrap: anywhere; }
 .chip { font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   background: var(--chip); border: 1px solid var(--line-soft); border-radius: 6px; padding: 1px 6px;
   color: var(--fg); }
@@ -569,13 +571,14 @@ tr.flash { animation: flash 1.6s ease-out; }
               {% if r.offering.teaser %}
               <details><summary>{{ r.offering.teaser }}</summary><span class="full">{{ r.offering.text }}</span></details>
               {% else %}{{ r.offering.text }}{% endif %}
+              {% if r.access %}<p class="access">{{ r.access }}</p>{% endif %}
             </td>
             <td class="models" data-label="Free models">
               {% if r.models %}
               <div class="chips">
-                {% for m in r.models %}{{ chip(m.family, m.tier == 'frontier') }}{% endfor %}
+                {% for m in r.models %}<span class="model-access">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
                 {% if r.more_models %}<details class="more"><summary class="chip">+{{ r.more_models | length }} more</summary><div class="chips">
-                  {% for m in r.more_models %}{{ chip(m.family, m.tier == 'frontier') }}{% endfor %}
+                  {% for m in r.more_models %}<span class="model-access">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
                 </div></details>{% endif %}
               </div>
               {% else %}<span class="empty">—</span>{% endif %}

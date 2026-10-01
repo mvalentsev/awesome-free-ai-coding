@@ -10,6 +10,28 @@ from test_render import TODAY, make
 ROOT = Path(__file__).resolve().parent.parent
 
 
+def test_bot_publication_explicitly_requests_a_pages_build_at_the_http_boundary():
+    import respx
+    from freetier_radar.indexnow import request_pages_build
+    with respx.mock() as routes:
+        build = routes.post('https://api.github.com/repos/mvalentsev/awesome-free-ai-coding/pages/builds').respond(201, json={'status': 'queued'})
+        request_pages_build('test-token')
+    assert build.call_count == 1
+    assert build.calls[0].request.headers['Authorization'] == 'Bearer test-token'
+
+
+def test_a_later_noop_repairs_failed_publication_but_keeps_a_current_build(monkeypatch):
+    from freetier_radar import indexnow
+    requested = []
+    monkeypatch.setattr(indexnow, 'request_pages_build', lambda: requested.append(True))
+    for status, commit, needs_request in [('built', 'current', False), ('queued', 'current', False),
+                                          ('building', 'current', False), ('errored', 'current', True),
+                                          ('built', 'old', True)]:
+        monkeypatch.setattr(indexnow, 'latest_pages_build', lambda: (status, commit))
+        assert indexnow.ensure_pages_build('current') is needs_request
+    assert len(requested) == 2
+
+
 def test_the_key_is_published_at_the_site_root_under_its_own_name():
     assert re.fullmatch(r"[a-f0-9]{32}", INDEXNOW_KEY)
     assert KEY_FILE == f"{INDEXNOW_KEY}.txt"
