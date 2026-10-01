@@ -3257,7 +3257,7 @@ entries:
     source: https://web.archive.org/web/20260926080857/https://freebuff.com/
   - family: gpt-6.1-sol
     'on': '2026-10-01'
-    source: https://github.com/mvalentsev/awesome-free-ai-coding/pull/25
+    source: https://github.com/mvalentsev/awesome-free-ai-coding/commit/09f0efbfa3b0a02b6e83ca4fb9c1966631b7f6e1
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
