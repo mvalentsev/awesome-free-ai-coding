@@ -3394,10 +3394,10 @@ entries:
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
+  - family: qwen3.8-27b
+    tier: strong
+    aa_model: qwen3-8-27b
   - family: laguna-xs-2.1
-  - family: ling-3.0-flash-fin
-    tier: notable
-    aa_model: ling-3-0-flash-fin
   - family: agnes-3.0-flash
   - family: agnes-2.5-flash
   - family: motif-3
@@ -4427,19 +4427,15 @@ entries:
     want the portal's key. Read 2026-09-30
   free_part: models
   models:
-  - family: step-3.7-flash
-    tier: notable
-    aa_model: step-3-7-flash
-  - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: ling-3.0-flash-fin
     tier: notable
     aa_model: ling-3-0-flash-fin
   - family: ling-3.0-flash-sante
-  - family: solar-pro-4
   - family: longcat-2.0
     tier: notable
     aa_model: longcat-2-0
+  - family: laguna-s-2.1
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com

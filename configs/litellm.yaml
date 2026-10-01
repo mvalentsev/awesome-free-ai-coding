@@ -2017,6 +2017,17 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
+    model: openai/qwen/qwen3.8-27b-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
     model: openai/motif/motif-3
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Nous Portal (Hermes Agent) free tier: limits, free models, verified 2026-10-01'
-description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API. Free models: step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, solar-pro-4, longcat-2.0. The…'
+description: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API. Free models: laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, longcat-2.0, laguna-s-2.1. The portal''s plan table reads "Free…'
 permalink: /providers/nous-portal/
 last_modified_at: 2026-10-01
 crumb: Nous Portal (Hermes Agent)
@@ -19,7 +19,7 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 
 ## Free models
 
-[`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), `solar-pro-4`, [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/)
+[`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)
 
 ## Limits, in the vendor's words
 
@@ -60,6 +60,7 @@ curl -s https://inference-api.nousresearch.com/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-01` — Free models changed: dropped solar-pro-4, step-3.7-flash
 - `2026-09-30` — Free models changed: added laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, longcat-2.0, solar-pro-4
 - `2026-09-16` — Added: Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-16, Step 3.7 Flash and Laguna S 2.1 among them — on an OpenAI-compatible API
 

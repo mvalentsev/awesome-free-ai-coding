@@ -4963,12 +4963,12 @@
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
-          "family": "laguna-xs-2.1"
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "aa_model": "qwen3-8-27b"
         },
         {
-          "family": "ling-3.0-flash-fin",
-          "tier": "notable",
-          "aa_model": "ling-3-0-flash-fin"
+          "family": "laguna-xs-2.1"
         },
         {
           "family": "agnes-3.0-flash"
@@ -6221,14 +6221,6 @@
       "free_part": "models",
       "models": [
         {
-          "family": "step-3.7-flash",
-          "tier": "notable",
-          "aa_model": "step-3-7-flash"
-        },
-        {
-          "family": "laguna-s-2.1"
-        },
-        {
           "family": "laguna-xs-2.1"
         },
         {
@@ -6240,12 +6232,12 @@
           "family": "ling-3.0-flash-sante"
         },
         {
-          "family": "solar-pro-4"
-        },
-        {
           "family": "longcat-2.0",
           "tier": "notable",
           "aa_model": "longcat-2-0"
+        },
+        {
+          "family": "laguna-s-2.1"
         }
       ],
       "api": {
@@ -9381,6 +9373,21 @@
   ],
   "models": [
     {
+      "family": "qwen3.8-27b",
+      "rows": [
+        "groq-free",
+        "llmtr",
+        "llmtech",
+        "hetzner-inference",
+        "alibaba-model-studio",
+        "regolo",
+        "vlm-run-gateway",
+        "ovh-ai-endpoints"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
+    },
+    {
       "family": "nemotron-3-ultra",
       "rows": [
         "opencode",
@@ -9393,20 +9400,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
-    },
-    {
-      "family": "qwen3.8-27b",
-      "rows": [
-        "groq-free",
-        "llmtech",
-        "hetzner-inference",
-        "alibaba-model-studio",
-        "regolo",
-        "vlm-run-gateway",
-        "ovh-ai-endpoints"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
     },
     {
       "family": "laguna-xs-2.1",
@@ -9594,16 +9587,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
     },
     {
-      "family": "ling-3.0-flash-fin",
-      "rows": [
-        "opencode",
-        "llmtr",
-        "nous-portal"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
-    },
-    {
       "family": "minimax-m2.5",
       "rows": [
         "kiro",
@@ -9756,6 +9739,15 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/kimi-k3/"
     },
     {
+      "family": "ling-3.0-flash-fin",
+      "rows": [
+        "opencode",
+        "nous-portal"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/"
+    },
+    {
       "family": "ling-3.0-tiny",
       "rows": [
         "requesty",
@@ -9857,15 +9849,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/"
-    },
-    {
-      "family": "step-3.7-flash",
-      "rows": [
-        "kilo-code",
-        "nous-portal"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
     },
     {
       "family": "apertus-70b",
@@ -10537,10 +10520,12 @@
       ]
     },
     {
-      "family": "solar-pro-4",
+      "family": "step-3.7-flash",
       "rows": [
-        "nous-portal"
-      ]
+        "kilo-code"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/"
     },
     {
       "family": "swe-1.6",

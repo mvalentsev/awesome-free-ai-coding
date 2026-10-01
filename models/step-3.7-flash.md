@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'step-3.7-flash free: 2 providers, limits and ids, verified 2026-10-01'
-description: step-3.7-flash is served free by Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+title: 'step-3.7-flash free: 1 provider, limits and ids, verified 2026-10-01'
+description: step-3.7-flash is served free by Kilo Code. It asks for no card; it answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/step-3.7-flash/
 last_modified_at: 2026-10-01
 crumb: step-3.7-flash
@@ -11,7 +11,7 @@ crumb: step-3.7-flash
 
 # Where step-3.7-flash is free
 
-**2 rows on the list serve `step-3.7-flash` free:** Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/step-3-7-flash), below its strong bar.
+**One row on the list serves `step-3.7-flash` free:** Kilo Code. It asks for no card; it answers with no account at all. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/step-3-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -30,20 +30,9 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 - Callable ids: `stepfun/step-3.7-flash:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
-### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
-
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-16
-
-Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API
-
-- Limits, in the vendor's words: The portal's plan table reads "Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The :free tag is what keeps it on the no-cost plan". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices eight rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-09-30
-- Base URL: `https://inference-api.nousresearch.com/v1`
-- Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
-- Callable ids: `stepfun/step-3.7-flash:free`
-- What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
-
 ## Rows that listed it before
 
+- [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) — listed 2026-09-16 to 2026-10-01
 - [Kenari](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/) — listed 2026-09-02 to 2026-09-16; the row itself is archived
 - [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/) — listed 2026-08-05 to 2026-08-30
 
