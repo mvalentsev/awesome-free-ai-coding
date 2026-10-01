@@ -896,6 +896,7 @@ cannot print two versions of it.
 | `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
+| `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
 | `LICENSE` | **doc** — MIT | — | `hand` |
 | `assets/README.md` | **doc** — what each asset is for · not on the site | — | `hand` |
@@ -964,18 +965,22 @@ the test suite on a snapshot of what is staged, with the dates in UTC. It also
 refuses what only a command may write: a line in `history.jsonl` that is not
 one the render records for the commit's own registry, or a change the registry
 makes that the commit does not record; a commit on `main` that changes
-`announced.jsonl`, which only the scheduled run writes; a log rewritten on any
+`announced.jsonl`, which only the scheduled run writes; a published log rewritten on any
 branch; and a hand edit of `last_verified`,
 `probe_failures`, `provisional` or `first_seen`, which only the run's probe
 writes — a new row enters provisional, with `first_seen` and `last_verified`
 both the day it is added; and a page the site published, under `providers/` or
 `models/`, deleted. `commit-msg` wants a subject that starts with its
 kind (`fix: …`) and a blank line before the body; `pre-push` runs the same
-checks on what is pushed, commit by commit. CI checks the logs again on every
+checks on what is pushed, commit by commit. A proposal branch may re-render its
+own unmerged history against the point it left `origin/main`; the push protects
+the inherited prefix, checks the full proposed block against its registry and
+still checks each new commit for earned fields. A push to `main` protects its
+remote tip. CI checks the logs again on every
 push and the earned fields on every pull request. CI never runs on the scheduled run's own commit,
 so the run checks its logs, the curated files, the render and the tests before it commits,
 and checks the scout's branch, earned fields and tests included, before it opens the pull
-request. A log rewritten or an earned field typed on purpose is the repository
+request. A published log rewritten or an earned field typed on purpose is the repository
 owner's alone: made once with the hooks off and named, with the reason, in
 `gate.RATIFIED` by the commit after it — a push or a CI run that meets it checks
 from it on.

@@ -3,6 +3,7 @@ import uuid
 from datetime import date
 
 import httpx
+import pytest
 import respx
 
 from freetier_radar.models import ApiInfo, DataUse, Entry, ModelFamily, save_registry
@@ -2118,6 +2119,41 @@ async def test_a_keyless_lane_that_refuses_a_bearer_token_is_a_note_for_the_prox
     route.mock(side_effect=_refuses_a_bearer(429))
     async with httpx.AsyncClient() as client:
         assert (await probe_entry(client, keyless_entry(), backoff=0)).status is ProbeStatus.PASS
+
+
+@respx.mock
+@pytest.mark.parametrize("control_status,control_body,expected", [
+    (200, completion("gpt-oss-120b"), ProbeStatus.STALE_IDS),
+    (429, {"error": "rate limited"}, ProbeStatus.PASS),
+    (200, {"error": "payment required"}, ProbeStatus.PASS),
+    (502, {"error": "upstream unavailable"}, ProbeStatus.PASS),
+])
+async def test_a_bearer_payment_refusal_needs_a_fresh_bare_completion(
+        control_status, control_body, expected):
+    respx.get("https://open.x.ai/v1/models").mock(return_value=httpx.Response(200, json=KEYLESS_CATALOG))
+    no_codex_route()
+    calls = []
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        if "authorization" in request.headers:
+            return httpx.Response(402, json={})
+        if len(calls) == 1:
+            return httpx.Response(200, json=completion("gpt-oss-120b"))
+        return httpx.Response(control_status, json=control_body)
+
+    respx.post("https://open.x.ai/v1/chat/completions").mock(side_effect=answer)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, keyless_entry(), backoff=0)
+    assert result.status is expected
+    assert len(calls) == 3
+    prompts = [json.loads(call.content)["messages"][0]["content"] for call in calls]
+    assert len(set(prompts)) == 3
+    if expected is ProbeStatus.STALE_IDS:
+        assert "HTTP 402" in result.detail
+        assert "api.refuses_bearer: true" in result.detail
+    else:
+        assert "refuses_bearer" not in result.detail
 
 
 @respx.mock

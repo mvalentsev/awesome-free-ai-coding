@@ -141,6 +141,7 @@ MAP: tuple[Node, ...] = (
     Node("eb68c254f1e03877b906ccc800002691.txt", Kind.PAGE,
          "the IndexNow key, named after itself (indexnow.INDEXNOW_KEY)", published=True),
     # ---- docs
+    Node("AGENTS.md", Kind.DOC, "standing review and evidence rules for repository work"),
     Node("CONTRIBUTING.md", Kind.DOC,
          "how the list works and how to change it; its map section is this table",
          made_from=("src/freetier_radar/layout.py",), written_by=("freetier-render",),

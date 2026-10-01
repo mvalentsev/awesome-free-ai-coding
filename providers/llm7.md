@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLM7.io free tier: limits, free models, verified 2026-09-28'
-description: OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models; a free token doubles it. The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io raises…
+description: 'OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models. The limits page now lists Free token and Pro, with no anonymous plan: a free token allows 1 request a second, 60 a minute, 250 an hour and "100,000…'
 permalink: /providers/llm7/
 last_modified_at: 2026-09-28
 crumb: LLM7.io
@@ -15,7 +15,7 @@ crumb: LLM7.io
 
 ## What you get
 
-OpenAI-compatible API with an anonymous tier — no account, no key — of 500,000 tokens a day on its turbo models; a free token doubles it
+OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models
 
 ## Free models
 
@@ -23,7 +23,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The limits page gives anonymous callers 1 request a second, 10 a minute and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models are fast models available to anonymous and free-token users" — four rows on 2026-09-29, and which rows are turbo moves from week to week. The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-09-29
+The limits page now lists Free token and Pro, with no anonymous plan: a free token allows 1 request a second, 60 a minute, 250 an hour and "100,000 tokens per 24 hours". "Free-token quotas are provided at no charge and may be reduced without notice". The quickstart requires a token from dash.llm7.io. "`turbo` models are fast models available with free API tokens", while the Models API defines usage_based_only as paid usage; turbo alone does not establish free eligibility. Pro is $12 a month. The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-10-01
 
 ## Where it is offered
 
@@ -32,25 +32,28 @@ The vendor names no country it keeps the offer from ([source](https://github.com
 ## Connect
 
 - Base URL: `https://api.llm7.io/v1`
-- Key: none — the lane is anonymous
+- Key: `LLM7_API_KEY` — get one at <https://dash.llm7.io>
 - Callable ids: `codestral-latest`, `mistral-Nemo-Instruct-2407`, `minimax-m2.7`
-- Note: no key for the anonymous tier — OpenAI SDKs want some api_key, and the quickstart passes `unused`. The ids listed are the turbo rows that answered a keyless call on 2026-09-29, the quickest first; the fourth, DeepSeek-V4-Flash-0731, answered `This model is temporarily busy`. The three stay out of the Models column: the limits page the probe reads names no model, and the catalog that marks the turbo tier prices every row for balance accounting
+- Note: get a free token at dash.llm7.io; current docs require it. The three ids remain turbo with usage_based_only false on 2026-10-01. Their anonymous completions were observed on 2026-09-29, but current authenticated access was not called without a personal token. They stay out of the Models column: the limits probe names no model and the catalog publishes balance-accounting prices. The former anonymous allowance is no longer documented
 
-Try it from your terminal — the lane takes no key:
+Try it from your terminal with your key in `LLM7_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
 ```sh
 curl -s https://api.llm7.io/v1/chat/completions \
+  -H "Authorization: Bearer $LLM7_API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{"model":"codestral-latest","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
 
 ## Evidence
 
-- Probe: the page at <https://docs.llm7.io/limits.md>, anchored on `500,000 tokens per 24 hours`, `1,000,000 tokens per 24 hours`; ids checked in <https://api.llm7.io/v1/models>
+- Probe: the page at <https://docs.llm7.io/limits.md>, anchored on `Free token`, `100,000 tokens per 24 hours`, `provided at no charge`; ids checked in <https://api.llm7.io/v1/models>
 - Source: <https://docs.llm7.io/limits.md>
 - Source: <https://docs.llm7.io/guides/models.md>
 - Source: <https://docs.llm7.io/quickstart.md>
 - Source: <https://github.com/chigwell/llm7.io/blob/main/TERMS.md>
+- Source: <https://docs.llm7.io/guides/models-api.md>
+- Source: <https://api.llm7.io/v1/models>
 
 ## History
 

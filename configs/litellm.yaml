@@ -22,6 +22,7 @@
 # Left out: Kilo Code — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 # Left out: VLM Run Gateway — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 # Left out: OVHcloud AI Endpoints — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
+# Left out: Pollinations.AI — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 model_list:
 - model_name: google-ai-studio/gemini-3.8-flash
   litellm_params:
@@ -645,19 +646,19 @@ model_list:
   litellm_params:
     model: openai/codestral-latest
     api_base: https://api.llm7.io/v1
-    api_key: none
+    api_key: os.environ/LLM7_API_KEY
     use_chat_completions_api: true
 - model_name: llm7/mistral-Nemo-Instruct-2407
   litellm_params:
     model: openai/mistral-Nemo-Instruct-2407
     api_base: https://api.llm7.io/v1
-    api_key: none
+    api_key: os.environ/LLM7_API_KEY
     use_chat_completions_api: true
 - model_name: llm7/minimax-m2.7
   litellm_params:
     model: openai/minimax-m2.7
     api_base: https://api.llm7.io/v1
-    api_key: none
+    api_key: os.environ/LLM7_API_KEY
     use_chat_completions_api: true
 - model_name: llmtr/nvidia/nemotron-3-ultra-550b-a55b
   litellm_params:
@@ -683,9 +684,9 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/inclusionai/ling-3.0-flash-fin
+- model_name: llmtr/inclusionai/ling-3.1-flash
   litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-fin
+    model: openai/inclusionai/ling-3.1-flash
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
@@ -740,12 +741,6 @@ model_list:
 - model_name: vercel-ai-gateway/inclusionai/ling-3.1-flash-free
   litellm_params:
     model: openai/inclusionai/ling-3.1-flash-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-    use_chat_completions_api: true
-- model_name: vercel-ai-gateway/stealth/pixel-canary
-  litellm_params:
-    model: openai/stealth/pixel-canary
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
@@ -1169,12 +1164,6 @@ model_list:
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
-- model_name: nous-portal/upstage/solar-pro4:free
-  litellm_params:
-    model: openai/upstage/solar-pro4:free
-    api_base: https://inference-api.nousresearch.com/v1
-    api_key: os.environ/NOUS_PORTAL_API_KEY
-    use_chat_completions_api: true
 - model_name: nous-portal/meituan/longcat-2.0:free
   litellm_params:
     model: openai/meituan/longcat-2.0:free
@@ -1370,30 +1359,6 @@ model_list:
 - model_name: opper/gemini/gemma-4-31b
   litellm_params:
     model: openai/gemini/gemma-4-31b
-    api_base: https://api.opper.ai/v3/compat
-    api_key: os.environ/OPPER_API_KEY
-    use_chat_completions_api: true
-- model_name: opper/gemini/gemma-4-26b-moe
-  litellm_params:
-    model: openai/gemini/gemma-4-26b-moe
-    api_base: https://api.opper.ai/v3/compat
-    api_key: os.environ/OPPER_API_KEY
-    use_chat_completions_api: true
-- model_name: opper/poolside/laguna-s-2.1
-  litellm_params:
-    model: openai/poolside/laguna-s-2.1
-    api_base: https://api.opper.ai/v3/compat
-    api_key: os.environ/OPPER_API_KEY
-    use_chat_completions_api: true
-- model_name: opper/poolside/laguna-xs-2.1
-  litellm_params:
-    model: openai/poolside/laguna-xs-2.1
-    api_base: https://api.opper.ai/v3/compat
-    api_key: os.environ/OPPER_API_KEY
-    use_chat_completions_api: true
-- model_name: opper/greenference/qwen3-14b
-  litellm_params:
-    model: openai/greenference/qwen3-14b
     api_base: https://api.opper.ai/v3/compat
     api_key: os.environ/OPPER_API_KEY
     use_chat_completions_api: true
@@ -1719,12 +1684,6 @@ model_list:
   litellm_params:
     model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
-    api_key: none
-    use_chat_completions_api: true
-- model_name: pollinations/gpt-oss-20b
-  litellm_params:
-    model: openai/gpt-oss-20b
-    api_base: https://text.pollinations.ai/openai
     api_key: none
     use_chat_completions_api: true
 - model_name: bytez/Qwen/Qwen3-4B
@@ -2226,39 +2185,6 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/nokey
   litellm_params:
-    model: openai/codestral-latest
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
-    model: openai/mistral-Nemo-Instruct-2407
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
-    model: openai/minimax-m2.7
-    api_base: https://api.llm7.io/v1
-    api_key: none
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
     api_base: https://api.llmtech.eu/v1
     api_key: os.environ/LLMTECH_API_KEY
@@ -2272,17 +2198,6 @@ model_list:
   litellm_params:
     model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
-    api_key: none
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/nokey
-  litellm_params:
-    model: openai/gpt-oss-20b
-    api_base: https://text.pollinations.ai/openai
     api_key: none
     use_chat_completions_api: true
   model_info:
