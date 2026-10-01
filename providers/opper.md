@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Opper free tier: limits, free models, verified 2026-09-28'
+title: 'Opper free tier: limits, free models, verified 2026-10-01'
 description: 'EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits. Free models: gemma-4-31b. The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the…'
 permalink: /providers/opper/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: Opper
 ---
 
@@ -11,7 +11,7 @@ crumb: Opper
 
 # Opper free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-17, a regular row from the first probe it passes on or after 2026-10-01 · **live** — last verified by a probe on 2026-09-28 · [opper.ai](https://opper.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-01 · [opper.ai](https://opper.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -66,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-09-28'
+title: 'NVIDIA NIM (build.nvidia.com) free tier: limits, free models, verified 2026-10-01'
 description: 'Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible). Free models: kimi-k3, glm-5.3, glm-5.3-flash, nemotron-3-ultra…'
 permalink: /providers/nvidia-nim/
-last_modified_at: 2026-09-29
+last_modified_at: 2026-10-01
 crumb: NVIDIA NIM (build.nvidia.com)
 ---
 
@@ -11,7 +11,7 @@ crumb: NVIDIA NIM (build.nvidia.com)
 
 # NVIDIA NIM (build.nvidia.com) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · **live** — last verified by a probe on 2026-09-28 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · **live** — last verified by a probe on 2026-10-01 · [build.nvidia.com](https://build.nvidia.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

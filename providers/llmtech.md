@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLM Tech free tier: limits, free models, verified 2026-09-28'
+title: 'LLM Tech free tier: limits, free models, verified 2026-10-01'
 description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. Free models: qwen3.8-27b. The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per…'
 permalink: /providers/llmtech/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: LLM Tech
 ---
 
@@ -11,7 +11,7 @@ crumb: LLM Tech
 
 # LLM Tech free tier
 
-🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-18, a regular row from the first probe it passes on or after 2026-10-02 · **live** — last verified by a probe on 2026-09-28 · [llmtech.eu](https://llmtech.eu) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · provisional — added on 2026-09-18, a regular row from the first probe it passes on or after 2026-10-02 · **live** — last verified by a probe on 2026-10-01 · [llmtech.eu](https://llmtech.eu) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-tiny free: 2 providers, limits and ids, verified 2026-09-28'
+title: 'ling-3.0-tiny free: 2 providers, limits and ids, verified 2026-10-01'
 description: ling-3.0-tiny is served free by Requesty and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/ling-3.0-tiny/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: ling-3.0-tiny
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-tiny
 
 # Where ling-3.0-tiny is free
 
-**2 rows on the list serve `ling-3.0-tiny` free:** Requesty and AIHubMix (free models). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-tiny), below its strong bar.
+**2 rows on the list serve `ling-3.0-tiny` free:** Requesty and AIHubMix (free models). None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-tiny
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-08-11
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-08-11
 
 OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those
 
@@ -32,7 +32,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -55,6 +55,6 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

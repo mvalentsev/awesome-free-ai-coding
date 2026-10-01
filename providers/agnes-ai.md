@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Agnes AI free tier: limits, free models, verified 2026-09-28'
+title: 'Agnes AI free tier: limits, free models, verified 2026-10-01'
 description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-3.0-flash, agnes-2.5-flash. "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the…'
 permalink: /providers/agnes-ai/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: Agnes AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Agnes AI
 
 # Agnes AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-28 · [agnes-ai.com](https://agnes-ai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-01 · [agnes-ai.com](https://agnes-ai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -65,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'inkling-small free: 2 providers, limits and ids, verified 2026-09-28'
+title: 'inkling-small free: 2 providers, limits and ids, verified 2026-10-01'
 description: inkling-small is served free by OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/inkling-small/
-last_modified_at: 2026-09-29
+last_modified_at: 2026-10-01
 crumb: inkling-small
 ---
 
@@ -11,7 +11,7 @@ crumb: inkling-small
 
 # Where inkling-small is free
 
-**2 rows on the list serve `inkling-small` free:** OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
+**2 rows on the list serve `inkling-small` free:** OpenRouter (free models) and Kilo Code. None asks for a card; Kilo Code answers with no account at all. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/inkling-small), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: inkling-small
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -33,7 +33,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-09-28 · listed since 2026-09-24
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-10-01 · listed since 2026-09-24
 
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
@@ -50,6 +50,6 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-26b-a4b free: 1 provider, limits and ids, verified 2026-09-28'
+title: 'gemma-4-26b-a4b free: 1 provider, limits and ids, verified 2026-10-01'
 description: gemma-4-26b-a4b is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-09-29
+last_modified_at: 2026-10-01
 crumb: gemma-4-26b-a4b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-26b-a4b
 
 # Where gemma-4-26b-a4b is free
 
-**One row on the list serves `gemma-4-26b-a4b` free:** OpenRouter (free models). It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-26b-a4b), below its strong bar.
+**One row on the list serves `gemma-4-26b-a4b` free:** OpenRouter (free models). It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-26b-a4b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemma-4-26b-a4b
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-25
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -37,6 +37,6 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

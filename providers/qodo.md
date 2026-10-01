@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qodo free tier: limits, free models, verified 2026-09-28'
+title: 'Qodo free tier: limits, free models, verified 2026-10-01'
 description: 'Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card. "Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited credits" is the whole free offer on the pricing page, and the FAQ beside it says so: "Is there…'
 permalink: /providers/qodo/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: Qodo
 ---
 
@@ -11,7 +11,7 @@ crumb: Qodo
 
 # Qodo free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-09-28 · [qodo.ai](https://www.qodo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-01 · [qodo.ai](https://www.qodo.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -47,6 +47,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

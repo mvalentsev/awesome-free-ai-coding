@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'muse-spark-1.3-contributor free: 2 providers, limits and ids, verified 2026-09-28'
+title: 'muse-spark-1.3-contributor free: 2 providers, limits and ids, verified 2026-10-01'
 description: muse-spark-1.3-contributor is served free by opencode and Cline. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/muse-spark-1.3-contributor/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: muse-spark-1.3-contributor
 ---
 
@@ -11,7 +11,7 @@ crumb: muse-spark-1.3-contributor
 
 # Where muse-spark-1.3-contributor is free
 
-**2 rows on the list serve `muse-spark-1.3-contributor` free:** opencode and Cline. None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-spark-1-3-xhigh).
+**2 rows on the list serve `muse-spark-1.3-contributor` free:** opencode and Cline. None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-spark-1-3-xhigh).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: muse-spark-1.3-contributor
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-28 · listed since 2026-09-16
+🤖 Coding agents & CLIs · no card · verified 2026-10-01 · listed since 2026-09-16
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -29,7 +29,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-28 · listed since 2026-09-24
+🤖 Coding agents & CLIs · no card · verified 2026-10-01 · listed since 2026-09-24
 
 Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 
@@ -44,6 +44,6 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

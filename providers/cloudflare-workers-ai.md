@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-09-28'
+title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-10-01'
 description: 10k neurons/day free. Cloudflare's free allocation "allows anyone to use a total of 10,000 Neurons per day at no charge", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. "All limits reset daily at 00:00 UTC", and past the cap "further operations will fail with an…
 permalink: /providers/cloudflare-workers-ai/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: Cloudflare Workers AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Cloudflare Workers AI
 
 # Cloudflare Workers AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-28 · [cloudflare.com](https://www.cloudflare.com/products/workers-ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-01 · [cloudflare.com](https://www.cloudflare.com/products/workers-ai/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -64,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

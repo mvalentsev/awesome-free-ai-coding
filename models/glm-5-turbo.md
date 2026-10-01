@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5-turbo free: 2 providers, limits and ids, verified 2026-09-28'
+title: 'glm-5-turbo free: 2 providers, limits and ids, verified 2026-10-01'
 description: glm-5-turbo is served free by AIHubMix (free models) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/glm-5-turbo/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: glm-5-turbo
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5-turbo
 
 # Where glm-5-turbo is free
 
-**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-turbo), below its strong bar.
+**2 rows on the list serve `glm-5-turbo` free:** AIHubMix (free models) and ZCode (Z.ai). None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-turbo), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-5-turbo
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-25
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -32,7 +32,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [ZCode (Z.ai)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-26 · verified 2026-09-28 · listed since 2026-09-26
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-26 · verified 2026-10-01 · listed since 2026-09-26
 
 Z.ai's desktop coding agent, free as an app, with five days of its GLM models for a new user and no card
 
@@ -53,6 +53,6 @@ Z.ai's desktop coding agent, free as an app, with five days of its GLM models fo
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Token Harbor free tier: limits, free models, verified 2026-09-28'
+title: 'Token Harbor free tier: limits, free models, verified 2026-10-01'
 description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash. "Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models…'
 permalink: /providers/token-harbor/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: Token Harbor
 ---
 
@@ -11,7 +11,7 @@ crumb: Token Harbor
 
 # Token Harbor free tier
 
-🧭 Aggregators (one key, many providers) · no card · provisional — added on 2026-09-16, a regular row from the first probe it passes on or after 2026-09-30 · **live** — last verified by a probe on 2026-09-28 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-01 · [tokenharbor.ai](https://tokenharbor.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -72,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

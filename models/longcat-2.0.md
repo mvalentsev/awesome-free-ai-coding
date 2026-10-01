@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'longcat-2.0 free: 1 provider, limits and ids, verified 2026-09-28'
+title: 'longcat-2.0 free: 1 provider, limits and ids, verified 2026-10-01'
 description: longcat-2.0 is served free by Nous Portal (Hermes Agent). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/longcat-2.0/
-last_modified_at: 2026-09-30
+last_modified_at: 2026-10-01
 crumb: longcat-2.0
 ---
 
@@ -11,7 +11,7 @@ crumb: longcat-2.0
 
 # Where longcat-2.0 is free
 
-**One row on the list serves `longcat-2.0` free:** Nous Portal (Hermes Agent). It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/longcat-2-0), below its strong bar.
+**One row on the list serves `longcat-2.0` free:** Nous Portal (Hermes Agent). It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/longcat-2-0), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: longcat-2.0
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-28 · listed since 2026-09-30
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-30
 
 Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API
 
@@ -35,6 +35,6 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

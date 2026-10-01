@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-fin free: 3 providers, limits and ids, verified 2026-09-28'
+title: 'ling-3.0-flash-fin free: 3 providers, limits and ids, verified 2026-10-01'
 description: ling-3.0-flash-fin is served free by opencode, LLMTR and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-09-30
+last_modified_at: 2026-10-01
 crumb: ling-3.0-flash-fin
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-fin
 
 # Where ling-3.0-flash-fin is free
 
-**3 rows on the list serve `ling-3.0-flash-fin` free:** opencode, LLMTR and Nous Portal (Hermes Agent). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-flash-fin), below its strong bar.
+**3 rows on the list serve `ling-3.0-flash-fin` free:** opencode, LLMTR and Nous Portal (Hermes Agent). None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-flash-fin), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-flash-fin
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-28 · listed since 2026-08-30
+🤖 Coding agents & CLIs · no card · verified 2026-10-01 · listed since 2026-08-30
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -29,7 +29,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-24
 
 Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — eight zero-priced chat ids on 2026-09-29
 
@@ -41,7 +41,7 @@ Turkish OpenAI-compatible gateway whose free rows answer on a zero balance — e
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-16 · verified 2026-09-28 · listed since 2026-09-30
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-30
 
 Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible API
 
@@ -65,6 +65,6 @@ Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemma-4-31b free: 5 providers, limits and ids, verified 2026-09-28'
+title: 'gemma-4-31b free: 5 providers, limits and ids, verified 2026-10-01'
 description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-09-29
+last_modified_at: 2026-10-01
 crumb: gemma-4-31b
 ---
 
@@ -11,7 +11,7 @@ crumb: gemma-4-31b
 
 # Where gemma-4-31b is free
 
-**5 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-31b), below its strong bar.
+**5 rows on the list serve `gemma-4-31b` free:** OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-31b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemma-4-31b
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-25
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -33,7 +33,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-25
 
 OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those
 
@@ -46,7 +46,7 @@ OpenAI-compatible router over a 690+ model catalog with routing, caching and fal
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-09-28 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-01 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -58,7 +58,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-09-28 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · verified 2026-10-01 · listed since 2026-09-27
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -70,7 +70,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [Opper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/)
 
-🧭 Aggregators (one key, many providers) · no card · provisional since 2026-09-17 · verified 2026-09-28 · listed since 2026-09-17
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-17
 
 EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits
 
@@ -88,6 +88,6 @@ EU-hosted gateway over 700+ models whose free models answer an account with no c
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Ollama Cloud free tier: limits, free models, verified 2026-09-28'
+title: 'Ollama Cloud free tier: limits, free models, verified 2026-10-01'
 description: 'Cloud-hosted open models on a $0 plan that grants starter usage credits for a starter subset of the catalog. The $0 plan is a wallet rather than a lane: "Starter usage credits included" and "Includes access to starter models", with "Add credits to unlock all models" under them. Neither figure is…'
 permalink: /providers/ollama-cloud/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: Ollama Cloud
 ---
 
@@ -11,7 +11,7 @@ crumb: Ollama Cloud
 
 # Ollama Cloud free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-28 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-01 · [ollama.com](https://ollama.com/cloud) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -64,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

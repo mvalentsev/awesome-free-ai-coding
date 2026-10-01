@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.8-max free: 1 provider, limits and ids, verified 2026-09-28'
+title: 'qwen3.8-max free: 1 provider, limits and ids, verified 2026-10-01'
 description: qwen3.8-max is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/qwen3.8-max/
-last_modified_at: 2026-09-30
+last_modified_at: 2026-10-01
 crumb: qwen3.8-max
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.8-max
 
 # Where qwen3.8-max is free
 
-**One row on the list serves `qwen3.8-max` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-max).
+**One row on the list serves `qwen3.8-max` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-max).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.8-max
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-09-28 · listed since 2026-09-10
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-01 · listed since 2026-09-10
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -37,6 +37,6 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gpt-6-luna free: 1 provider, limits and ids, verified 2026-09-28'
+title: 'gpt-6-luna free: 1 provider, limits and ids, verified 2026-10-01'
 description: gpt-6-luna is served free by Zed. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/gpt-6-luna/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: gpt-6-luna
 ---
 
@@ -11,7 +11,7 @@ crumb: gpt-6-luna
 
 # Where gpt-6-luna is free
 
-**One row on the list serves `gpt-6-luna` free:** Zed. It asks for no card. A live probe confirmed it on 2026-09-28 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gpt-6-luna).
+**One row on the list serves `gpt-6-luna` free:** Zed. It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gpt-6-luna).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gpt-6-luna
 
 ### [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-16 · verified 2026-09-28 · listed since 2026-09-27
+🎁 Trials (no card when possible) · no card · verified 2026-10-01 · listed since 2026-09-27
 
 Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of model usage and unlimited edit predictions, no card, then 2,000 accepted edit predictions on the $0 Personal plan
 
@@ -34,6 +34,6 @@ Open-source code editor with a hosted AI agent: a 14-day Pro trial with $5 of mo
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

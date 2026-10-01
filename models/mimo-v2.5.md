@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'mimo-v2.5 free: 2 providers, limits and ids, verified 2026-09-28'
+title: 'mimo-v2.5 free: 2 providers, limits and ids, verified 2026-10-01'
 description: mimo-v2.5 is served free by opencode and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
 permalink: /models/mimo-v2.5/
-last_modified_at: 2026-09-28
+last_modified_at: 2026-10-01
 crumb: mimo-v2.5
 ---
 
@@ -11,7 +11,7 @@ crumb: mimo-v2.5
 
 # Where mimo-v2.5 is free
 
-**2 rows on the list serve `mimo-v2.5` free:** opencode and AIHubMix (free models). None asks for a card. A live probe confirmed each one on 2026-09-28 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-5-0424), below its strong bar.
+**2 rows on the list serve `mimo-v2.5` free:** opencode and AIHubMix (free models). None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-5-0424), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: mimo-v2.5
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-09-28 · listed since 2026-07-19
+🤖 Coding agents & CLIs · no card · verified 2026-10-01 · listed since 2026-07-19
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -29,7 +29,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-09-28 · listed since 2026-08-14
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-08-14
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -55,6 +55,6 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ---
 
-Generated from `registry.yaml` on 2026-09-30 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
