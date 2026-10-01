@@ -3,7 +3,7 @@ about to be committed, the logs only ever appended to, the fields a probe
 earns never typed, and a message git can show as a subject and a body."""
 import json
 import subprocess
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -263,6 +263,93 @@ def test_the_gate_refuses_a_commit_on_main_that_touches_the_announcers_ledger(tm
     assert ran, "the checks run on the snapshot"
     assert problems == ["announced.jsonl changes in a commit on main — freetier-announce "
                         "writes it on the scheduled run and nowhere else"]
+
+
+def _rerendered_scout(repo: Path) -> tuple[str, str]:
+    base = _git(repo, "rev-parse", "HEAD").strip()
+    _git(repo, "update-ref", "refs/remotes/origin/main", base)
+    _git(repo, "switch", "-qc", "scout/weekly")
+    _add_row(repo, _line("added", "y"))
+    _git(repo, "commit", "-q", "-m", "feat: scout proposal")
+    published = _git(repo, "rev-parse", "HEAD").strip()
+    prefix = _git(repo, "show", f"{base}:history.jsonl")
+    (repo / "history.jsonl").write_text(
+        prefix + _line("added", "y", RENDERED_AT + timedelta(hours=1)), encoding="utf-8")
+    _git(repo, "add", ".")
+    assert pre_commit(repo, steps=[]) == []
+    _git(repo, "commit", "-q", "-m", "fix: rerender the proposal")
+    return base, published
+
+
+def test_a_scout_push_accepts_its_own_rerendered_history(tmp_path):
+    from freetier_radar.gate import pre_push
+    repo = _history_repo(tmp_path)
+    _, published = _rerendered_scout(repo)
+    local = _git(repo, "rev-parse", "HEAD").strip()
+    assert pre_push(repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]) == []
+
+
+def test_a_push_to_main_still_refuses_a_rewritten_remote_history(tmp_path):
+    from freetier_radar.gate import pre_push
+    repo = _history_repo(tmp_path)
+    _, published = _rerendered_scout(repo)
+    local = _git(repo, "rev-parse", "HEAD").strip()
+    assert pre_push(repo, [f"HEAD {local} refs/heads/main {published}"], steps=[]) == [
+        "history.jsonl rewrites line 2 of what is committed — it is append-only: restore the "
+        "file and let its command append"]
+
+
+def test_a_scout_push_cannot_rewrite_the_history_it_inherited_from_main(tmp_path):
+    from freetier_radar.gate import pre_push
+    repo = _history_repo(tmp_path)
+    _, published = _rerendered_scout(repo)
+    history = repo / "history.jsonl"
+    history.write_text(history.read_text().replace('"detail": "stuff"', '"detail": "changed"', 1))
+    _git(repo, "commit", "-qam", "fix: forged inherited line")
+    local = _git(repo, "rev-parse", "HEAD").strip()
+    assert any("rewrites line 1" in p for p in pre_push(
+        repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]))
+
+
+def test_a_scout_rerender_must_still_record_only_its_registry_changes(tmp_path):
+    from freetier_radar.gate import pre_push
+    repo = _history_repo(tmp_path)
+    _, published = _rerendered_scout(repo)
+    with (repo / "history.jsonl").open("a") as fh:
+        fh.write(_line("archived", "x", RENDERED_AT + timedelta(hours=1), detail="gone"))
+    _git(repo, "commit", "--amend", "-qam", "fix: forged proposal line")
+    local = _git(repo, "rev-parse", "HEAD").strip()
+    problems = pre_push(repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[])
+    assert any("archived x" in p and "not a change" in p for p in problems)
+
+
+def test_a_scout_history_rerender_does_not_allow_rewriting_the_remote_announcement_ledger(tmp_path):
+    from freetier_radar.gate import pre_push
+    repo = _history_repo(tmp_path)
+    _rerendered_scout(repo)
+    ledger = repo / "announced.jsonl"
+    ledger.write_text("a\nb\n")
+    _git(repo, "commit", "-qam", "chore: remote ledger")
+    published = _git(repo, "rev-parse", "HEAD").strip()
+    ledger.write_text("a\nc\n")
+    _git(repo, "commit", "-qam", "fix: rewritten ledger")
+    local = _git(repo, "rev-parse", "HEAD").strip()
+    assert pre_push(repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]) == [
+        "announced.jsonl rewrites line 2 of what is committed — it is append-only: restore the "
+        "file and let its command append"]
+
+
+def test_a_scout_rerender_does_not_allow_an_earned_field_edit(tmp_path):
+    from freetier_radar.gate import pre_push
+    repo = _history_repo(tmp_path)
+    _, published = _rerendered_scout(repo)
+    _add_row(repo, None)
+    save_registry(repo / "registry.yaml", [row(last_verified=date(2026, 9, 22)),
+        row(id="y", first_seen=date(2026, 9, 21), provisional=True)])
+    _git(repo, "commit", "-qam", "fix: forged verification date")
+    local = _git(repo, "rev-parse", "HEAD").strip()
+    assert any("last_verified 2026-09-21 → 2026-09-22" in p for p in pre_push(
+        repo, [f"HEAD {local} refs/heads/scout/weekly {published}"], steps=[]))
 
 
 def test_the_gate_refuses_a_commit_that_rewrites_the_history(tmp_path):

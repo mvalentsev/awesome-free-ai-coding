@@ -398,9 +398,24 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
         if base is None:
             continue
         base = _checked_from(repo, base, local)
+        # A proposal can be rendered again against the main history it
+        # inherited, as pre_commit allows. The destination decides: even a
+        # proposal branch pushed to main must protect main's remote tip.
+        fork = base
+        if parts[2].startswith("refs/heads/") and parts[2] != "refs/heads/main":
+            inherited = git.run(repo, "merge-base", local, "origin/main").stdout.strip()
+            if inherited:
+                fork = _checked_from(repo, inherited, local)
         problems += page_problems(_pages_at(repo, base), _pages_at(repo, local))
         for name in LOGS:
-            problems += log_problems(name, git.show(repo, base, name), git.show(repo, local, name))
+            protected = fork if name in RECORDED else base
+            problems += log_problems(name, git.show(repo, protected, name), git.show(repo, local, name))
+        if fork != base:
+            made = datetime.fromtimestamp(int(git.commits(repo, "-1", local, field="%ct")[0][1]),
+                                          timezone.utc)
+            for name in RECORDED:
+                problems += history_problems(git.show(repo, fork, name), git.show(repo, local, name),
+                    git.show(repo, local, "registry.yaml"), git.show(repo, local, "index.json"), made)
         problems += _history_by_commit(repo, base, local)
         problems += _earned_by_commit(repo, base, local)
     return problems
