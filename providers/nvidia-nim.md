@@ -54,8 +54,8 @@ curl -s https://integrate.api.nvidia.com/v1/chat/completions \
 - Probe: the models catalog at <https://integrate.api.nvidia.com/v1/models>, each listed family checked for its free mark on the vendor's free list at <https://api.ngc.nvidia.com/v2/search/catalog/resources/ENDPOINT?q=%7B%22filters%22%3A%5B%7B%22field%22%3A%22label%22%2C%22value%22%3A%22nim_type_preview%22%7D%5D%2C%22page%22%3A0%2C%22pageSize%22%3A100%2C%22query%22%3A%22%2A%22%7D>
 - Source: <https://build.nvidia.com/explore/discover>
 - Source: <https://build.nvidia.com/moonshotai/kimi-k3>
-- Source: <https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798>
-- Source: <https://forums.developer.nvidia.com/t/account-access-verification-update/360900>
+- Source: <https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798.json>
+- Source: <https://forums.developer.nvidia.com/t/account-access-verification-update/360900.json>
 - Source: <https://build.nvidia.com/api/runtime/config/otp-unsupported-countries.yaml>
 
 ## History

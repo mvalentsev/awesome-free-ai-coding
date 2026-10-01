@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Opper free tier: limits, free models, verified 2026-10-01'
-description: 'EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits. Free models: gemma-4-31b. The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the…'
+description: 'EU-hosted gateway whose signup guide explicitly advertises one Gemini Gemma free route before adding a card; the current model directory contradicts that promise. Free models: gemma-4-31b. The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model, so this call works before you…'
 permalink: /providers/opper/
 last_modified_at: 2026-10-01
 crumb: Opper
@@ -15,7 +15,7 @@ crumb: Opper
 
 ## What you get
 
-EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits
+EU-hosted gateway whose signup guide explicitly advertises one Gemini Gemma free route before adding a card; the current model directory contradicts that promise
 
 ## Free models
 
@@ -23,7 +23,7 @@ EU-hosted gateway over 700+ models whose free models answer an account with no c
 
 ## Limits, in the vendor's words
 
-The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags six rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b (on 2026-09-27) and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-27
+The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." The 2026-10-01 directory lists no free routes and omits that id; the Gemma page lists premium routes from other providers. The API catalog retains the Gemini id but states no price or availability. This exact-route contradiction is unresolved: its advertised free access is retained, with no authenticated completion to confirm it. The former Gemini Gemma 26B, Laguna S/XS and Greenference Qwen routes are omitted. No free quota or rate is published. Paid usage adds "a 3% fee on credit purchases". Opper Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01
 
 ## Where it is offered
 
@@ -39,8 +39,8 @@ What you send is not used to train models. In the vendor's words: “Opper never
 - Key: `OPPER_API_KEY` — get one at <https://platform.opper.ai/settings/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`
 - Codex CLI: [`configs/codex/opper.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/opper.config.toml) — copy it to `~/.codex/`, then `codex -p opper`; set up on the lane by the vendor's own page, <https://docs.opper.ai/integrations/coding-agents/codex>: "Run OpenAI's Codex CLI on any model in the Opper catalog"
-- Callable ids: `gemini/gemma-4-31b`, `gemini/gemma-4-26b-moe`, `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`, `greenference/qwen3-14b`
-- Note: ids are five of the six rows the model directory flags free, greenference/qwen3-14b from 2026-09-27, checked against the keyless catalog at api.opper.ai/v3/models; opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages
+- Callable ids: `gemini/gemma-4-31b`
+- Note: only the exact Gemini Gemma route still explicitly advertised free before a card in signup and llms.txt. Its catalog id remains, but the October 1 directory omits it and lists no free routes; availability is unresolved. Other formerly free ids are omitted. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages
 
 Try it from your terminal with your key in `OPPER_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -57,6 +57,9 @@ curl -s https://api.opper.ai/v3/compat/chat/completions \
 - Source: <https://opper.ai/pricing.md>
 - Source: <https://opper.ai/llms.txt>
 - Source: <https://docs.opper.ai/guides/claude-code-router.md>
+- Source: <https://opper.ai/sign-up/free.md>
+- Source: <https://opper.ai/models>
+- Source: <https://opper.ai/google/gemma-4-31b-it.md>
 
 ## History
 

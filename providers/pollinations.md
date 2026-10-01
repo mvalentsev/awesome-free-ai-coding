@@ -23,7 +23,7 @@ Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/op
 
 ## Limits, in the vendor's words
 
-The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-09-21. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — "Get an API key" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate
+The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-10-01. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — "Get an API key" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate
 
 ## Where it is offered
 
@@ -34,7 +34,7 @@ The vendor names no country it keeps the offer from ([source](https://pollinatio
 - Base URL: `https://text.pollinations.ai/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `gpt-oss-20b`
-- Note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai, answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys` (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
+- Note: no key and no account on the legacy host. Fresh gpt-oss-20b calls answered anonymously on 2026-10-01; Bearer none returned 402, so LiteLLM cannot use this lane. Legacy cache keys omit headers: identical-body calls can mask that difference. The replacement gen.pollinations.ai requires personal keys spending Pollen, bought or earned from Quests
 
 Try it from your terminal — the lane takes no key:
 

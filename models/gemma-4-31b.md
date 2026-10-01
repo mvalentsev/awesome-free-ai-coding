@@ -72,9 +72,9 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-17
 
-EU-hosted gateway over 700+ models whose free models answer an account with no card on file; every other model needs a card and credits
+EU-hosted gateway whose signup guide explicitly advertises one Gemini Gemma free route before adding a card; the current model directory contradicts that promise
 
-- Limits, in the vendor's words: The pricing FAQ: "Sign up needs no credit card: you get an API key straight away and the free models work in the playground and the API. Add a card to use premium models, pay-as-you-go with no minimum." The llms.txt names one of them — "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." — and the model directory at opper.ai/models flags six rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1, poolside/laguna-xs-2.1, greenference/qwen3-14b (on 2026-09-27) and Talkie 1930, a 13B model trained on pre-1931 text. The keyless catalog publishes no price for them, and no page gives the free models a quota or a rate limit. Paid usage is billed at provider rates with "a 3% fee on credit purchases". The operator is Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-27
+- Limits, in the vendor's words: The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." The 2026-10-01 directory lists no free routes and omits that id; the Gemma page lists premium routes from other providers. The API catalog retains the Gemini id but states no price or availability. This exact-route contradiction is unresolved: its advertised free access is retained, with no authenticated completion to confirm it. The former Gemini Gemma 26B, Laguna S/XS and Greenference Qwen routes are omitted. No free quota or rate is published. Paid usage adds "a 3% fee on credit purchases". Opper Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01
 - Base URL: `https://api.opper.ai/v3/compat`
 - Key: `OPPER_API_KEY` — get one at <https://platform.opper.ai/settings/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`

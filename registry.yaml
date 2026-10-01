@@ -1102,8 +1102,8 @@ entries:
   source_urls:
   - https://build.nvidia.com/explore/discover
   - https://build.nvidia.com/moonshotai/kimi-k3
-  - https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798
-  - https://forums.developer.nvidia.com/t/account-access-verification-update/360900
+  - https://forums.developer.nvidia.com/t/request-for-nvidia-nim-api-rate-limit-increase-40-200-rpm/369798.json
+  - https://forums.developer.nvidia.com/t/account-access-verification-update/360900.json
   - https://build.nvidia.com/api/runtime/config/otp-unsupported-countries.yaml
   card_required: false
   offering: Free endpoints for the models build.nvidia.com marks "Free Endpoint",
@@ -1360,7 +1360,7 @@ entries:
   limits: 'The keyless catalog publishes exactly one model and tags it with the tier
     it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)",
     tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with
-    no key answered it on 2026-09-21. It is the legacy host, and the only place the
+    no key answered it on 2026-10-01. It is the legacy host, and the only place the
     offer is stated now: the API docs on the vendor''s working branch describe gen.pollinations.ai
     alone — "Get an API key" at enter.pollinations.ai, usage billed in Pollen credits
     — and a keyless call there answers 401. The 1 request per 15 seconds this row
@@ -1376,9 +1376,12 @@ entries:
     openai_compatible: true
     model_ids:
     - gpt-oss-20b
-    note: no key and no account on the legacy host. The API that replaced it, gen.pollinations.ai,
-      answers a keyless call with `401` `A valid API key is required. Get one at https://enter.pollinations.ai/keys`
-      (2026-09-21); its keys spend Pollen, bought or earned from the site's Quests
+    refuses_bearer: true
+    note: 'no key and no account on the legacy host. Fresh gpt-oss-20b calls answered
+      anonymously on 2026-10-01; Bearer none returned 402, so LiteLLM cannot use this
+      lane. Legacy cache keys omit headers: identical-body calls can mask that difference.
+      The replacement gen.pollinations.ai requires personal keys spending Pollen,
+      bought or earned from Quests'
   border:
     left_out: []
     'on': '2026-09-26'
@@ -1956,9 +1959,9 @@ entries:
     credit a month at provider list rates, renewed monthly, with lower per-model rate
     limits and no BYOK; buying credits ends the monthly free credit. A handful of
     language models are priced 0 in and 0 out and never draw on the credit — Laguna
-    S 2.1 Free, Ling 3.0 Flash Sante with and without its -free suffix, and the anonymous
-    stealth/pixel-canary, on 2026-09-26. Mind the suffix: poolside/laguna-s-2.1 without
-    it costs $0.10/$0.20 per 1M tokens'
+    S 2.1 Free, Ling 3.0 Flash Sante and Ling 3.1 Flash, both Ling models with and
+    without their -free suffix, on 2026-10-01. Mind the suffix: poolside/laguna-s-2.1
+    without it costs $0.10/$0.20 per 1M tokens'
   free_part: models
   models:
   - family: laguna-s-2.1
@@ -1974,11 +1977,8 @@ entries:
     - inclusionai/ling-3.0-flash-sante-free
     - inclusionai/ling-3.1-flash
     - inclusionai/ling-3.1-flash-free
-    - stealth/pixel-canary
     ignored_ids:
     - liquid/d1
-    no_family_ids:
-    - stealth/pixel-canary
     anthropic_base_url: https://ai-gateway.vercel.sh
     codex:
       base_url: https://ai-gateway.vercel.sh/codex/v1
@@ -1986,12 +1986,11 @@ entries:
       quote: Point Codex at its own compatibility endpoint
     note: every id listed is priced 0 in and out and draws nothing from the $5 credit;
       any other Free-Tier-eligible model spends it. Zero-priced ids come and go in
-      days, so a new one waits two weeks for the Models column; stealth/pixel-canary,
-      a codename naming no model, stays out of it. liquid/d1 (a decision model for
-      classification, routing and scoring) and spacexai/grok-stt (speech-to-text billed
-      per second) are no chat models. The same key serves the Anthropic Messages format
-      at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL
-      with ANTHROPIC_API_KEY empty
+      days, so a new one waits two weeks for the Models column. liquid/d1 (a decision
+      model for classification, routing and scoring) and spacexai/grok-stt (speech-to-text
+      billed per second) are no chat models. The same key serves the Anthropic Messages
+      format at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's
+      ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY empty
   data_use:
     trains: opt-out
     quote: By default, AI Gateway does not route based on the training data policy
@@ -2359,13 +2358,15 @@ entries:
     the paid ones do
   limits: '$0/month, no subscription. The plan''s own bullet reads "Agent model: access
     to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude
-    Sonnet & Opus 4.6, gpt-oss-120b" (read 2026-09-03; Gemini 3.5 Flash stood there
+    Sonnet & Opus 4.6, gpt-oss-120b" (read 2026-10-01; Gemini 3.5 Flash stood there
     until 2026-08-31 and three newer Flash generations have taken its place), with
     unlimited Tab completions, unlimited Command requests and "Basic weekly rate limits".
     The docs'' availability table ticks all seven models in its Free column, and gives
     the Claude and GPT models a weekly allowance of their own, apart from the Gemini
     one. Google publishes no figure for either: "The baseline rate limits are primarily
-    determined to the degree we have capacity, and exist to prevent abuse"'
+    determined by available capacity and exist to prevent abuse." The plans overview
+    also lists access to third-party models under Ultra; the specific model table
+    and Individual pricing list still explicitly include them on Free.'
   free_part: models
   models:
   - family: gemini-3.1-pro
@@ -2408,11 +2409,9 @@ entries:
       RW, SA, SB, SC, SD, SE, SG, SH, SI, SK, SL, SN, SO, SR, SS, ST, SV, SZ, TC,
       TD, TG, TH, TJ, TK, TL, TM, TN, TO, TR, TT, TV, TW, TZ, UA, UG, UM, US, UY,
       UZ, VC, VE, VG, VI, VN, VU, WF, WS, XK, YE, ZA, ZM, ZW]
-    'on': '2026-09-26'
+    'on': '2026-10-01'
     source: https://antigravity.google/docs/faq
     quote: Google Antigravity is available in the following countries and territories.
-      If you’re not in one of these countries or territories, you will be unable to
-      use Google Antigravity at this time
   probe:
     type: page-keywords
     endpoint: https://antigravity.google/pricing
@@ -2683,6 +2682,8 @@ entries:
     aa_model: nemotron-3-nano-omni-30b-a3b
   - family: nemotron-nano-12b-v2-vl
   - family: nemotron-nano-9b-v2
+  - family: agents-a1
+  - family: intern-s2
   api:
     base_url: https://aihubmix.com/v1
     key_url: https://aihubmix.com/token
@@ -2747,14 +2748,13 @@ entries:
       base_url: https://aihubmix.com/v1
       source: https://docs.aihubmix.com/en/api/Codex-CLI
       quote: Connect AIHubMix in Codex CLI
-    note: 'every id the catalog prices at 0 is listed or ignored on purpose, 47 rows
-      on 2026-09-23; free ids carry a -free suffix beside a metered twin. Ignored:
-      jina-ocr-v1 is OCR, gpt-live-transcribe is speech-to-text, gpt-realtime-2.1
-      a realtime voice model, nemotron-3.5-content-safety-free a guardrail classifier,
-      and qwen3.6-plus-preview-free says it was "removed from the platform". Not in
-      the Models column: lfm-2.5-2.6b-free, union-alpha-free, a stealth model, and
-      k2.6-code-preview-free, whose entry describes kimi-for-coding. Claude Code:
-      ANTHROPIC_BASE_URL https://aihubmix.com, as its guide sets it'
+    note: 'every zero-priced -free chat id is listed or deliberately ignored, read
+      2026-10-01; intern-s2-free is Intern-S2-Preview 35B. Ignored: jina-ocr-v1 is
+      OCR, gpt-live-transcribe speech-to-text, gpt-realtime-2.1 realtime voice, nemotron-3.5-content-safety-free
+      a guardrail, qwen3.6-plus-preview-free says "removed from the platform". No
+      family: lfm-2.5-2.6b-free, union-alpha-free (stealth), k2.6-code-preview-free
+      (describes kimi-for-coding). decision-model-preview is a non-chat classifier/scorer
+      outside the -free lane. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com'
   border:
     left_out: []
     'on': '2026-09-26'
@@ -3224,12 +3224,13 @@ entries:
     100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash
     or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro;
     they refill at midnight Pacific and do not carry over. The stealth Space Bunny
-    Alpha, whose "Anonymous provider retains prompts", costs nothing: it "Doesn''t
-    use your daily allowance". The table moves from week to week; now "Gemini 3.8
-    Flash and Muse Spark 1.3 are included with a paid plan". "Freebuff collects prompts,
-    messages, code, files, repository data, and agent traces when you use features
-    that need them", and DeepSeek V4.1 Flash is marked "May use data for AI training".
-    Read 2026-09-29'
+    Alpha, whose "Anonymous provider retains prompts", is listed as "Unlimited hrs
+    Space Bunny Alpha". The table moves from week to week; now "Gemini 3.8 Flash and
+    Muse Spark 1.3 are included with a paid plan". "Freebuff collects prompts, messages,
+    code, files, repository data, and agent traces when you use features that need
+    them", and DeepSeek V4.1 Flash is marked "May use data for AI training". "GPT-6.1
+    Sol is free in the US" and included with a paid plan elsewhere, "one session a
+    day for every account"; it has not yet met the two-week bar. Read 2026-10-01'
   free_part: models
   models:
   - family: glm-5.3-flash
@@ -3254,6 +3255,9 @@ entries:
   - family: mimo-v2.6-pro
     'on': '2026-09-26'
     source: https://web.archive.org/web/20260926080857/https://freebuff.com/
+  - family: gpt-6.1-sol
+    'on': '2026-10-01'
+    source: https://github.com/mvalentsev/awesome-free-ai-coding/pull/25
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
@@ -3372,21 +3376,23 @@ entries:
   - https://llmtr.com/privacy
   - https://llmtr.com/v1/models
   card_required: false
-  offering: Turkish OpenAI-compatible gateway whose free rows answer on a zero balance
-    — eight zero-priced chat ids on 2026-09-29
+  offering: Turkish OpenAI-compatible gateway whose qualifying free rows answer on
+    a zero balance — eight zero-priced chat ids on 2026-10-01
   limits: 'A new account calls the free rows before any top-up: the migration guide
     says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick
-    a chat model marked free in the catalog), and "Bu adım, sıfır bakiye ile gateway
-    ve kullanım kaydı akışının çalıştığını doğrular" (this step checks that the gateway
-    and usage logging work on a zero balance). Four free rows carry a daily quota
-    whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B, Ling
-    3.0 Flash Fin); Laguna XS 2.1 is free because "Poolside serves these models free
+    a free chat model), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının
+    çalıştığını doğrular" (checks gateway use on a zero balance). Three free rows
+    carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super,
+    Qwen3.8 27B); Laguna XS 2.1 is free because "Poolside serves these models free
     on its own inference API", with "no extra token allowance to track". Paid use
     is prepaid credit: "An 8% platform margin is added on top of the requested top-up
     amount", and "The platform margin is not added to model prices; it is applied
     only once, at top-up". The privacy page says prompt and response bodies are not
     written permanently to its usage and billing database ("kalıcı olarak yazılmaz").
-    Read 2026-09-29'
+    Ling 3.1 Flash is a short promotion: "13 Ekim 2026 19:00''a kadar ucretsiz" (free
+    until October 13, 19:00). MiniMax M3.1 Flash Preview is excluded: "6 Ekim 2026
+    23:59''a kadar ücretsiz, en az bir kez bakiye yüklemiş hesaplara açık" (until
+    October 6, 23:59, only for accounts that have topped up). Read 2026-10-01'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -3394,9 +3400,6 @@ entries:
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
     aa_model: nvidia-nemotron-3-super-120b-a12b
-  - family: qwen3.8-27b
-    tier: strong
-    aa_model: qwen3-8-27b
   - family: laguna-xs-2.1
   - family: agnes-3.0-flash
   - family: agnes-2.5-flash
@@ -3413,7 +3416,7 @@ entries:
     - nvidia/nemotron-3-super-120b-a12b
     - qwen/qwen3.8-27b-free
     - poolside/laguna-xs-2.1
-    - inclusionai/ling-3.0-flash-fin
+    - inclusionai/ling-3.1-flash
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
     - motif/motif-3
@@ -3426,14 +3429,15 @@ entries:
     - evren/qwen3.8-flash-next
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
-    - minimax/minimax-m3.1-free
-    note: 'the eight ids are every chat row the public catalog prices at 0 on 2026-09-29
-      outside the evren/* rows and one dated trial. nvidia/nemotron-3-ultra-550b-a55b
-      is the free daily-quota row, its -262k twin the metered one. Ignored: an embeddings
-      row, openai/gpt-oss-safeguard-20b, a content classifier, minimax/minimax-m3.1-free,
-      free "30 Eylül 2026 23:59''a kadar" (to 30 September), and six evren/* rows
-      priced 0 because each "kendi EVREN anahtarınızla çalışır" (runs on your own
-      EVREN key)'
+    - minimax/minimax-m3.1-flash-preview
+    no_family_ids:
+    - inclusionai/ling-3.1-flash
+    note: 'eight zero-priced chat ids on 2026-10-01 outside EVREN BYOK and the deposit-gated
+      MiniMax trial. Ultra is the daily-quota row, its -262k twin metered. Ignored:
+      an embedding, Safeguard classifier, MiniMax M3.1 Flash Preview requiring a prior
+      top-up, and six evren/* rows that "kendi EVREN anahtarınızla çalışır". Ling
+      3.1 Flash stays out of the Models column: its October 13 deadline precedes the
+      two-week bar; Qwen3.8 27B waits until October 5'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -4041,20 +4045,18 @@ entries:
     aa_model: deepseek-v4-1-flash
   client_lane:
     model_ids:
-    - stealth/pixel-canary
     - stealth/space-bunny-alpha
     - cline-free/mimo-v2.6-flash
     - cline-free/deepseek-v4.1-flash
     - cline-free/muse-spark-1.3-contributor
     no_family_ids:
-    - stealth/pixel-canary
     - stealth/space-bunny-alpha
     free_since:
     - id: cline-free/mimo-v2.6-flash
       'on': '2026-09-23'
       source: https://github.com/cline/cline/blob/3af36a5c63530a5d1d2ac594d30dd732c6e4752a/sdk/packages/llms/src/catalog/cline-recommended.generated.ts
-    note: stealth/pixel-canary and stealth/space-bunny-alpha are stealth codenames
-      that name no model, so they stay out of the Models column
+    note: stealth/space-bunny-alpha is a stealth codename that names no model, so
+      it stays out of the Models column
   data_use:
     trains: 'yes'
     quote: Free model usage may be used to help improve model performance and quality.
@@ -4416,17 +4418,21 @@ entries:
   - https://inference-api.nousresearch.com/v1/models
   card_required: false
   offering: 'Nous Research''s inference portal behind its Hermes Agent: a $0 Free
-    plan limited to the models it prices at zero — eight on 2026-09-30 — on an OpenAI-compatible
-    API'
+    plan limited to the models it prices at zero — seven qualifying :free chat ids
+    on 2026-10-01 — on an OpenAI-compatible API'
   limits: The portal's plan table reads "Free $0 Free models only Standard rate limits
     $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous
     Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The
     :free tag is what keeps it on the no-cost plan". No rate-limit figure is published
-    and no page read mentions a card. The keyless catalog prices eight rows at zero;
-    a call without a key answers HTTP 402 with a payment offer, so the free models
-    want the portal's key. Read 2026-09-30
+    and no page read mentions a card. The keyless catalog prices seven qualifying
+    :free chat rows at zero; a call without a key answers HTTP 402 with a payment
+    offer, so the free models want the portal's key. Read 2026-10-01
   free_part: models
   models:
+  - family: step-3.7-flash
+    tier: notable
+    aa_model: step-3-7-flash
+  - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: ling-3.0-flash-fin
     tier: notable
@@ -4435,7 +4441,6 @@ entries:
   - family: longcat-2.0
     tier: notable
     aa_model: longcat-2-0
-  - family: laguna-s-2.1
   api:
     base_url: https://inference-api.nousresearch.com/v1
     key_url: https://portal.nousresearch.com
@@ -4447,11 +4452,12 @@ entries:
     - poolside/laguna-xs-2.1:free
     - inclusionai/ling-3.0-flash-fin:free
     - inclusionai/ling-3.0-flash-sante:free
-    - upstage/solar-pro4:free
     - meituan/longcat-2.0:free
     - meituan/longcat-2.5-preview:free
-    note: every id the keyless catalog prices at 0 on 2026-09-30; solar-pro4 is a
-      limited-time trial on other gateways
+    note: 'every qualifying :free chat id the keyless catalog prices at 0 on 2026-10-01.
+      Solar Pro 4 is absent. Step 3.7 Flash remains: current paid and free rows have
+      no expiration date, superseding the morning October 1 expiry. LongCat 2.5 Preview
+      waits until October 13 for the Models column'
   data_use:
     trains: opt-out
     quote: When Privacy Mode is enabled, we will not store your inference payloads
@@ -4528,22 +4534,25 @@ entries:
   - https://docs.llm7.io/guides/models.md
   - https://docs.llm7.io/quickstart.md
   - https://github.com/chigwell/llm7.io/blob/main/TERMS.md
+  - https://docs.llm7.io/guides/models-api.md
+  - https://api.llm7.io/v1/models
   card_required: false
-  offering: OpenAI-compatible API with an anonymous tier — no account, no key — of
-    500,000 tokens a day on its turbo models; a free token doubles it
-  limits: The limits page gives anonymous callers 1 request a second, 10 a minute
-    and 60 an hour, and "500,000 tokens per 24 hours"; a free token from dash.llm7.io
-    raises that to 40 a minute, 100 an hour and "1,000,000 tokens per 24 hours", and
-    Pro is $12 a month. The free models are a tier of the catalog — "`turbo` models
-    are fast models available to anonymous and free-token users" — four rows on 2026-09-29,
-    and which rows are turbo moves from week to week. The operator publishes terms,
-    last updated 9 August 2026, and names no upstream for any model. Read 2026-09-29
+  offering: OpenAI-compatible API with a free dashboard token and a recurring allowance
+    of 100,000 input plus output tokens per day on eligible turbo models
+  limits: 'The limits page now lists Free token and Pro, with no anonymous plan: a
+    free token allows 1 request a second, 60 a minute, 250 an hour and "100,000 tokens
+    per 24 hours". "Free-token quotas are provided at no charge and may be reduced
+    without notice". The quickstart requires a token from dash.llm7.io. "`turbo` models
+    are fast models available with free API tokens", while the Models API defines
+    usage_based_only as paid usage; turbo alone does not establish free eligibility.
+    Pro is $12 a month. The operator publishes terms, last updated 9 August 2026,
+    and names no upstream for any model. Read 2026-10-01'
   free_part: models
   models: []
   api:
     base_url: https://api.llm7.io/v1
     key_url: https://dash.llm7.io
-    auth: none
+    auth: api-key
     openai_compatible: true
     model_ids:
     - codestral-latest
@@ -4553,12 +4562,12 @@ entries:
     - codestral-latest
     - mistral-Nemo-Instruct-2407
     - minimax-m2.7
-    note: 'no key for the anonymous tier — OpenAI SDKs want some api_key, and the
-      quickstart passes `unused`. The ids listed are the turbo rows that answered
-      a keyless call on 2026-09-29, the quickest first; the fourth, DeepSeek-V4-Flash-0731,
-      answered `This model is temporarily busy`. The three stay out of the Models
-      column: the limits page the probe reads names no model, and the catalog that
-      marks the turbo tier prices every row for balance accounting'
+    note: 'get a free token at dash.llm7.io; current docs require it. The three ids
+      remain turbo with usage_based_only false on 2026-10-01. Their anonymous completions
+      were observed on 2026-09-29, but current authenticated access was not called
+      without a personal token. They stay out of the Models column: the limits probe
+      names no model and the catalog publishes balance-accounting prices. The former
+      anonymous allowance is no longer documented'
   border:
     left_out: []
     'on': '2026-09-26'
@@ -4567,8 +4576,9 @@ entries:
     type: page-keywords
     endpoint: https://docs.llm7.io/limits.md
     keywords:
-    - 500,000 tokens per 24 hours
-    - 1,000,000 tokens per 24 hours
+    - Free token
+    - 100,000 tokens per 24 hours
+    - provided at no charge
     free_marker: ''
     require_zero_price: false
     catalog: https://api.llm7.io/v1/models
@@ -4600,11 +4610,10 @@ entries:
     against 6,000 RPM with a payment method and credits. No page gives the dollar
     an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits
     billing system". The dollar buys list prices, input / cached input / output per
-    1M tokens: "DeepSeek V4.1 Flash $0.30 / $0.006 / $1.20" from 2026-10-01 ("$0.22
-    / $0.007 / $0.66" until then, by the changelog), "GLM 5.3 Flash $0.15 / $0.03
-    / $0.50", "MiniMax M3 $0.30 / $0.06 / $1.20" and "Kimi K3 $3.00 / $0.30 / $15.00"
-    — about 3.3M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Read
-    2026-09-27'
+    1M tokens: "DeepSeek V4.1 Flash $0.30 / $0.006 / $1.20", "GLM 5.3 Flash $0.15
+    / $0.03 / $0.50", "MiniMax M3 $0.30 / $0.06 / $1.20" and "Kimi K3 $3.00 / $0.30
+    / $15.00" — about 3.3M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi
+    K3. Read 2026-10-01'
   free_part: sum
   models: []
   api:
@@ -4912,20 +4921,22 @@ entries:
   - https://opper.ai/pricing.md
   - https://opper.ai/llms.txt
   - https://docs.opper.ai/guides/claude-code-router.md
+  - https://opper.ai/sign-up/free.md
+  - https://opper.ai/models
+  - https://opper.ai/google/gemma-4-31b-it.md
   card_required: false
-  offering: EU-hosted gateway over 700+ models whose free models answer an account
-    with no card on file; every other model needs a card and credits
-  limits: 'The pricing FAQ: "Sign up needs no credit card: you get an API key straight
-    away and the free models work in the playground and the API. Add a card to use
-    premium models, pay-as-you-go with no minimum." The llms.txt names one of them
-    — "gemini/gemma-4-31b is a free model, so this call works before you add a card.
-    It runs on a US-hosted route." — and the model directory at opper.ai/models flags
-    six rows free: gemini/gemma-4-31b, gemini/gemma-4-26b-moe, poolside/laguna-s-2.1,
-    poolside/laguna-xs-2.1, greenference/qwen3-14b (on 2026-09-27) and Talkie 1930,
-    a 13B model trained on pre-1931 text. The keyless catalog publishes no price for
-    them, and no page gives the free models a quota or a rate limit. Paid usage is
-    billed at provider rates with "a 3% fee on credit purchases". The operator is
-    Opper Technology AB, in Sweden, on AWS Stockholm. Read 2026-09-27'
+  offering: EU-hosted gateway whose signup guide explicitly advertises one Gemini
+    Gemma free route before adding a card; the current model directory contradicts
+    that promise
+  limits: 'The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model,
+    so this call works before you add a card. It runs on a US-hosted route." The 2026-10-01
+    directory lists no free routes and omits that id; the Gemma page lists premium
+    routes from other providers. The API catalog retains the Gemini id but states
+    no price or availability. This exact-route contradiction is unresolved: its advertised
+    free access is retained, with no authenticated completion to confirm it. The former
+    Gemini Gemma 26B, Laguna S/XS and Greenference Qwen routes are omitted. No free
+    quota or rate is published. Paid usage adds "a 3% fee on credit purchases". Opper
+    Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01'
   free_part: models
   models:
   - family: gemma-4-31b
@@ -4938,20 +4949,16 @@ entries:
     openai_compatible: true
     model_ids:
     - gemini/gemma-4-31b
-    - gemini/gemma-4-26b-moe
-    - poolside/laguna-s-2.1
-    - poolside/laguna-xs-2.1
-    - greenference/qwen3-14b
     anthropic_base_url: https://api.opper.ai/v3/compat
     codex:
       base_url: https://api.opper.ai/v3/compat
       source: https://docs.opper.ai/integrations/coding-agents/codex
       quote: Run OpenAI's Codex CLI on any model in the Opper catalog
-    note: ids are five of the six rows the model directory flags free, greenference/qwen3-14b
-      from 2026-09-27, checked against the keyless catalog at api.opper.ai/v3/models;
-      opper/talkie-1930, an 8K-context period piece, is left out. The Claude Code
-      guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending
-      /v1/messages
+    note: only the exact Gemini Gemma route still explicitly advertised free before
+      a card in signup and llms.txt. Its catalog id remains, but the October 1 directory
+      omits it and lists no free routes; availability is unresolved. Other formerly
+      free ids are omitted. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat,
+      the client appending /v1/messages
   data_use:
     trains: 'no'
     quote: Opper never trains on your data. Per-provider data policies are listed

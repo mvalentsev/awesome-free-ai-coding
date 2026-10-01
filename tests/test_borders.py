@@ -48,6 +48,8 @@ def border(**kw) -> Border:
     ("Ukraine (with certain exceptions)", {"UA"}),
     # A typographic apostrophe is the one Antigravity's list prints.
     ("Côte d’Ivoire", {"CI"}),
+    ("Heard Island", {"HM"}),
+    ("U.S. Outlying Islands", {"UM"}),
     # A Chinese page runs its names together with no space between them.
     ("中国大陆、中国香港、中国澳门、中国台湾居民", {"CN", "HK", "MO", "TW"}),
 ])

@@ -801,13 +801,20 @@ async def _bearer_drift(client: httpx.AsyncClient, entry: Entry, url: str, model
     the id that has just answered a bare call: the same call, carrying the bearer
     token LiteLLM would send. A refusal on a row without the field, or an answer
     on a row with it, is the note; anything else — a rate limit, an error, a bot
-    wall — says nothing about the header either way."""
+    wall — says nothing about the header either way. A bearer-only payment
+    refusal needs a further fresh bare completion: a 402 alone could be the
+    anonymous allowance running out between the two calls."""
     answer = await _keyless_call(client, url, model, {**headers, "Authorization": PROXY_BEARER},
                                  1, backoff)
     if isinstance(answer, str):
         return None
     said = f"keyless call to {model} with a bearer token answered HTTP {answer.status_code}"
-    if (answer.status_code in KEYLESS_REFUSED and not entry.api.refuses_bearer
+    refused = answer.status_code in KEYLESS_REFUSED
+    if (answer.status_code == 402 and not entry.api.refuses_bearer
+            and challenge_marker_hit(answer.text) is None):
+        control = await _keyless_call(client, url, model, headers, 1, backoff)
+        refused = not isinstance(control, str) and _completion(control) is not None
+    if (refused and not entry.api.refuses_bearer
             and challenge_marker_hit(answer.text) is None):
         return (f"{said} — LiteLLM sends one on every call, so set api.refuses_bearer: true to "
                 "leave the lane out of its config")
