@@ -145,6 +145,27 @@ def submit(urls: list[str], post=httpx.post) -> int:
     return response.status_code
 
 
+def request_pages_build(token: str | None = None) -> None:
+    """Explicitly publish a bot push with a Pages-write installation token."""
+    token = token or os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
+    repo = REPO_URL.removeprefix("https://github.com/")
+    response = httpx.post(f"https://api.github.com/repos/{repo}/pages/builds",
+                          headers=github_headers(token), timeout=TIMEOUT)
+    response.raise_for_status()
+
+
+def ensure_pages_build(sha: str, force: bool = False) -> bool:
+    """Repair a missing/failed build, without rebuilding an already served commit."""
+    try:
+        status, commit = latest_pages_build()
+    except (OSError, httpx.HTTPError, ValueError):
+        status, commit = "", ""
+    if not force and status in ("built", "building", "queued") and commit == sha:
+        return False
+    request_pages_build()
+    return True
+
+
 def latest_pages_build(token: str | None = None) -> tuple[str, str]:
     """The status and commit of the repository's newest Pages build, read with
     the workflow's token (GH_TOKEN or GITHUB_TOKEN)."""
@@ -182,13 +203,27 @@ def main() -> None:
     parser.add_argument("--index", type=Path, default=Path("index.json"))
     parser.add_argument("--after-pages-build", metavar="SHA",
                         help="wait until GitHub Pages has built this commit before pinging")
+    builds = parser.add_mutually_exclusive_group()
+    builds.add_argument("--request-pages-build", action="store_true",
+                        help="explicitly request a Pages branch build (needs Pages write)")
+    builds.add_argument("--ensure-pages-build", action="store_true",
+                        help="repair a missing or failed Pages branch build")
     parser.add_argument("--before", metavar="SHA",
                         help="submit only the pages whose data changed since this commit's index.json")
     args = parser.parse_args()
+    if args.request_pages_build or args.ensure_pages_build:
+        if not args.after_pages_build:
+            parser.error("requesting a Pages build needs --after-pages-build SHA")
+        requested = ensure_pages_build(args.after_pages_build, force=args.request_pages_build)
+        # A no-op expiry may be repairing an earlier failed publication. Tell
+        # engines about all pages then, rather than comparing HEAD with itself.
+        if requested and args.before == args.after_pages_build:
+            args.before = None
     if args.after_pages_build:
         waited = wait_for_pages(args.after_pages_build)
         print(f"indexnow: Pages build of {args.after_pages_build[:7]}: {waited}")
-        if waited == "errored":
+        if waited == "errored" or ((args.request_pages_build or args.ensure_pages_build)
+                                   and waited != "built"):
             sys.exit(1)
     index = json.loads(args.index.read_text(encoding="utf-8"))
     urls = changed_since(args.before, index, path=args.index.as_posix()) if args.before else site_urls(index)

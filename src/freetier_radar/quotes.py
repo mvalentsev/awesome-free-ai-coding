@@ -135,6 +135,10 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.append(entry.data_use.url)
     if entry.api and entry.api.codex and entry.api.codex.source:
         urls.append(entry.api.codex.source)
+    if entry.access:
+        urls.append(entry.access.source)
+    if lane := entry.api or entry.client_lane:
+        urls.extend(a.source for a in lane.model_access.values())
     return list(dict.fromkeys(urls))
 
 

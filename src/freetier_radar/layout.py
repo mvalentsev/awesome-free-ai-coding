@@ -72,7 +72,7 @@ MAP: tuple[Node, ...] = (
     # ---- curated data
     Node("registry.yaml", Kind.DATA,
          "every row the list has published, live or archived — the single source of truth",
-         written_by=("freetier-probe", "freetier-tiers", "freetier-scout"), published=True),
+         written_by=("freetier-probe", "freetier-tiers", "freetier-scout", "freetier-render"), published=True),
     Node("watchlist.yaml", Kind.DATA,
          "services checked and not listed: the date, the reason, what would reopen them",
          published=True),

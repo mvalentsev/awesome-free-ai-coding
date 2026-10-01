@@ -135,7 +135,7 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                 return verdict(ProbeStatus.STALE_IDS, missing)
         # And the route a keyed row names for Codex CLI, asked the same way; a
         # row without an account was asked Codex's whole request above.
-        if entry.api and entry.api.codex and entry.api.key_kind == "own":
+        if entry.api and entry.api.model_ids and entry.api.codex and entry.api.key_kind == "own":
             missing = await codex_route_missing(client, entry, attempts, backoff)
             if missing:
                 return verdict(ProbeStatus.STALE_IDS, missing)

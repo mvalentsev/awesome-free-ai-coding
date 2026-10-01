@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'MegaNova free tier: limits, free models, verified 2026-10-01'
-description: 'OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of its free rows — a chat model and the house Manta routers among them — 550 a day in all. Free models: mistral-small-3.2. Tier 1 is "Free registration — no credit card required", with "Free Access Models…'
+description: 'OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit. Free models: mistral-small-3.2, glm-4.7-flash. Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free…'
 permalink: /providers/meganova/
 last_modified_at: 2026-10-01
 crumb: MegaNova
@@ -15,11 +15,11 @@ crumb: MegaNova
 
 ## What you get
 
-OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of its free rows — a chat model and the house Manta routers among them — 550 a day in all
+OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit
 
 ## Free models
 
-`mistral-small-3.2`
+`mistral-small-3.2`, [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 one-time top-up)
 
 ## Limits, in the vendor's words
 
@@ -33,8 +33,10 @@ Offered in the 187 countries and territories its list names, not in Hong Kong, V
 
 - Base URL: `https://api.meganova.ai/v1`
 - Key: `MEGANOVA_API_KEY` — get one at <https://www.meganova.ai/api-keys>
-- Callable ids: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `meganova-ai/manta-mini-1.0`, `meganova-ai/manta-flash-1.0`
-- Note: the three ids listed are the chat rows a Tier 1 account can call for free; eleven more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash and manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B and bge-reranker-v2-m3 are not chat models, nor is MegaNova/Web-Search, a search API with 50 free queries a day, and five are roleplay fine-tunes (four of Llama, one of Mistral NeMo). Manta Mini and Manta Flash are MegaNova's own routers, tagged best_role_play in the catalog, so Mistral Small 3.2, at 8,192 tokens of context, is the one named coding model on the lane
+- Callable ids: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `meganova-ai/manta-mini-1.0`, `meganova-ai/manta-flash-1.0`, `zai-org/GLM-4.7-Flash`, `meganova-ai/manta-pro-1.0`
+- `zai-org/GLM-4.7-Flash`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
+- `meganova-ai/manta-pro-1.0`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
+- Note: Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are routers, kept out of Models. Other ignored rows are speech, embeddings, reranking, search and roleplay fine-tunes. Free quota is consumed first; paid continuation requires enabling the charge switch.
 
 Try it from your terminal with your key in `MEGANOVA_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -52,11 +54,13 @@ curl -s https://api.meganova.ai/v1/chat/completions \
 - Source: <https://docs.meganova.ai/tiers/tier-1.md>
 - Source: <https://docs.meganova.ai/legal-docs/terms-of-service.md>
 - Source: <https://api.meganova.ai/v1/models>
+- Source: <https://docs.meganova.ai/tiers/tier-2.md>
 
 ## History
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-01` — Free models changed: added glm-4.7-flash
 - `2026-09-02` — Added: OpenAI-compatible gateway whose no-card Tier 1 account gets a daily free quota on Mistral Small 3.2 and the house Manta routers — 50 a day per model, 550 across the lane
 
 ---

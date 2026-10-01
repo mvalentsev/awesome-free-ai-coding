@@ -7,8 +7,8 @@
 #   cp configs/codex/kilo-code.config.toml ~/.codex/
 #   codex -p kilo-code
 #
-# No key: the lane is anonymous. The model is the first free id the row lists;
-# the quota and every free id are on the row's page,
+# No key: the lane is anonymous. The default prefers an unfunded, undated free
+# id; the quota and every free id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/ —
 # codex -p kilo-code -m <id> takes another.
 model = "kilo-auto/free"

@@ -24,8 +24,8 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  # The IndexNow step reads the Pages build of the commit it pings for.
-  pages: read
+  # Publication requests a missing Pages build before notifying IndexNow.
+  pages: write
 
 # One run that commits at a time. GitHub starts the scheduled run when it gets
 # to it — from half an hour to eleven hours after the cron time, July to
@@ -37,6 +37,7 @@ permissions:
 concurrency:
   group: ${{ inputs.dry_run && github.run_id || 'update' }}
   cancel-in-progress: false
+  queue: max
 
 jobs:
   update:
@@ -155,7 +156,7 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: uv run freetier-indexnow --index index.json --after-pages-build "$(git rev-parse HEAD)" --before "$(git rev-parse HEAD^)"
+        run: uv run freetier-indexnow --index index.json --ensure-pages-build --after-pages-build "$(git rev-parse HEAD)" --before "$(git rev-parse HEAD^)"
 
       # Says what the history just recorded, from the project's own accounts,
       # once per event and channel (announced.jsonl is the ledger). With no

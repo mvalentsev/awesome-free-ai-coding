@@ -173,7 +173,8 @@ def test_a_real_run_waits_for_the_one_before_it_and_builds_on_what_it_pushed():
     of the queue."""
     workflow = yaml.safe_load((ROOT / ".github/workflows/update.yml").read_text(encoding="utf-8"))
     assert workflow["concurrency"] == {
-        "group": "${{ inputs.dry_run && github.run_id || 'update' }}", "cancel-in-progress": False}
+        "group": "${{ inputs.dry_run && github.run_id || 'update' }}", "cancel-in-progress": False,
+        "queue": "max"}
     checkout = next(s for s in workflow["jobs"]["update"]["steps"]
                     if s.get("uses", "").startswith("actions/checkout"))
     assert checkout["with"]["ref"] == "${{ github.ref }}"

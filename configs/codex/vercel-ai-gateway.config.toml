@@ -13,8 +13,9 @@
 # free-llm.env.example exports; get one at
 # https://vercel.com/dashboard/ai-gateway/api-keys. With
 # $VERCEL_AI_GATEWAY_API_KEY unset or empty, Codex stops before it sends
-# anything, so no other key of yours reaches the lane. The model is the first
-# free id the row lists; the quota and every free id are on the row's page,
+# anything, so no other key of yours reaches the lane. The default prefers an
+# unfunded, undated free id; the quota and every free id are on the row's
+# page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/
 # — codex -p vercel-ai-gateway -m <id> takes another.
 model = "poolside/laguna-s-2.1-free"

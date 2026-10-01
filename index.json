@@ -2657,8 +2657,13 @@
         "https://platform.experientiallabs.ai/models"
       ],
       "card_required": true,
-      "offering": "An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after a one-time $1 card check",
-      "limits": "The Free plan is \"500 credits a month once you verify a card (a one-time $1 charge, credited to your balance)\", a credit being a cent (\"2,000 credits / month · 1¢ each\" on Pro), spent at list price: \"Route on credits at each provider’s list price with nothing on top\". So the $5 buys what the catalog prices — Claude Opus 5 at $5 in / $25 out per 1M tokens. The one model its list marks Free is TypeSafe's Jev, whose catalog entry supports neither tools nor streaming, so not one to code with, and the other promotions are discounts, GPT-6 Luna at 75% off. \"Prompt-capture opt-out\" is a Pro feature, so prompts on the free plan are captured. Read 2026-09-25",
+      "access": {
+        "source": "https://www.experientiallabs.ai/pricing",
+        "initial_payment_usd": 1.0,
+        "payment_kind": "card verification"
+      },
+      "offering": "An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification",
+      "limits": "The Free plan is \"500 credits a month once you verify a card (a one-time $1 charge, added to your balance)\". A credit is a cent (\"Flat 1¢ per credit, 0% token markup\"), spent at list price: \"Route on credits at each provider’s list price with nothing on top\". In the public catalog with Free selected, GPT-6 Luna is 75% off and Qwen3.8 27B / DeepSeek V4 Flash are 50% off, not individually free; the 100% discounts belong to Ultra. Jev is marked Free but its entry lists no tool or streaming support. \"Prompt and response storage off\" is a paid-plan feature; prompts on the Free plan are stored. Read 2026-10-01",
       "free_part": "sum",
       "models": [],
       "api": {
@@ -2694,6 +2699,10 @@
       "provisional": true,
       "rank": 96,
       "archived": false,
+      "access_labels": {
+        "offer": "requires $1 one-time card verification",
+        "models": {}
+      },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"
     },
     {
@@ -4691,16 +4700,22 @@
         "https://docs.meganova.ai/free-model-quota",
         "https://docs.meganova.ai/tiers/tier-1.md",
         "https://docs.meganova.ai/legal-docs/terms-of-service.md",
-        "https://api.meganova.ai/v1/models"
+        "https://api.meganova.ai/v1/models",
+        "https://docs.meganova.ai/tiers/tier-2.md"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway whose no-card Tier 1 account gets 50 free requests a day on each of its free rows — a chat model and the house Manta routers among them — 550 a day in all",
+      "offering": "OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit",
       "limits": "Tier 1 is \"Free registration — no credit card required\", with \"Free Access Models (<100B), including Manta Mini\". The Free Model Quota table gives a Tier 1 account 50 requests a day (\"50 RPD (Requests Per Day)\") on each of Mistral-Small-3.2-24B, Manta Mini and Manta Flash, and on several roleplay fine-tunes, an embedding model and a reranker — \"Total Free Quota per day 550\", with a \"daily reset at 00:00 UTC\" — and 0 on GLM-4.7-Flash and Manta Pro until a \"$1 deposit\" moves the account to Tier 2. The terms say \"Free modules are for evaluation and interactive use only and are not designed for production or unattended batch workloads\". The operator is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16",
       "free_part": "models",
       "models": [
         {
           "family": "mistral-small-3.2",
           "aa_model": "mistral-small-3-2"
+        },
+        {
+          "family": "glm-4.7-flash",
+          "tier": "notable",
+          "aa_model": "glm-4-7-flash"
         }
       ],
       "api": {
@@ -4711,11 +4726,21 @@
         "model_ids": [
           "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
           "meganova-ai/manta-mini-1.0",
-          "meganova-ai/manta-flash-1.0"
-        ],
-        "ignored_ids": [
+          "meganova-ai/manta-flash-1.0",
           "zai-org/GLM-4.7-Flash",
-          "meganova-ai/manta-pro-1.0",
+          "meganova-ai/manta-pro-1.0"
+        ],
+        "model_access": {
+          "zai-org/GLM-4.7-Flash": {
+            "source": "https://docs.meganova.ai/tiers/tier-2.md",
+            "initial_payment_usd": 1.0
+          },
+          "meganova-ai/manta-pro-1.0": {
+            "source": "https://docs.meganova.ai/tiers/tier-2.md",
+            "initial_payment_usd": 1.0
+          }
+        },
+        "ignored_ids": [
           "Systran/faster-whisper-large-v3",
           "Qwen/Qwen3-Embedding-8B",
           "BAAI/bge-reranker-v2-m3",
@@ -4728,9 +4753,10 @@
         ],
         "no_family_ids": [
           "meganova-ai/manta-mini-1.0",
-          "meganova-ai/manta-flash-1.0"
+          "meganova-ai/manta-flash-1.0",
+          "meganova-ai/manta-pro-1.0"
         ],
-        "note": "the three ids listed are the chat rows a Tier 1 account can call for free; eleven more zero-priced rows are ignored on purpose — zai-org/GLM-4.7-Flash and manta-pro-1.0 have a Tier 1 quota of 0, faster-whisper, Qwen3-Embedding-8B and bge-reranker-v2-m3 are not chat models, nor is MegaNova/Web-Search, a search API with 50 free queries a day, and five are roleplay fine-tunes (four of Llama, one of Mistral NeMo). Manta Mini and Manta Flash are MegaNova's own routers, tagged best_role_play in the catalog, so Mistral Small 3.2, at 8,192 tokens of context, is the one named coding model on the lane"
+        "note": "Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are routers, kept out of Models. Other ignored rows are speech, embeddings, reranking, search and roleplay fine-tunes. Free quota is consumed first; paid continuation requires enabling the charge switch."
       },
       "border": {
         "served": [
@@ -4942,6 +4968,13 @@
       "provisional": false,
       "rank": 85,
       "archived": false,
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "mistral-small-3.2": "",
+          "glm-4.7-flash": "requires $1 one-time top-up"
+        }
+      },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/"
     },
     {
@@ -4954,11 +4987,13 @@
         "https://llmtr.com/docs/en/billing/",
         "https://llmtr.com/docs/en/gateway/poolside-laguna/",
         "https://llmtr.com/privacy",
-        "https://llmtr.com/v1/models"
+        "https://llmtr.com/v1/models",
+        "https://llmtr.com/models/minimax/minimax-m3.1-flash-preview",
+        "https://llmtr.com/models/inclusionai/ling-3.1-flash"
       ],
       "card_required": false,
-      "offering": "Turkish OpenAI-compatible gateway whose qualifying free rows answer on a zero balance — eight zero-priced chat ids on 2026-10-01",
-      "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a free chat model), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\". Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\", and \"The platform margin is not added to model prices; it is applied only once, at top-up\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Ling 3.1 Flash is a short promotion: \"13 Ekim 2026 19:00'a kadar ucretsiz\" (free until October 13, 19:00). MiniMax M3.1 Flash Preview is excluded: \"6 Ekim 2026 23:59'a kadar ücretsiz, en az bir kez bakiye yüklemiş hesaplara açık\" (until October 6, 23:59, only for accounts that have topped up). Read 2026-10-01",
+      "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
+      "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a free chat model), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\". Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\", and \"The platform margin is not added to model prices; it is applied only once, at top-up\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Ling 3.1 Flash is a short promotion: \"13 Ekim 2026 19:00'a kadar ucretsiz\" (free until October 13, 19:00). MiniMax M3.1 Flash Preview requires a top-up: \"6 Ekim 2026 23:59'a kadar ücretsiz, en az bir kez bakiye yüklemiş hesaplara açık\" (until October 6, 23:59, only for accounts that have topped up). Read 2026-10-01",
       "free_part": "models",
       "models": [
         {
@@ -4983,6 +5018,12 @@
           "family": "motif-3",
           "tier": "strong",
           "aa_model": "motif-3"
+        },
+        {
+          "family": "ling-3.1-flash"
+        },
+        {
+          "family": "minimax-m3.1-flash-preview"
         }
       ],
       "api": {
@@ -4998,8 +5039,21 @@
           "inclusionai/ling-3.1-flash",
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
-          "motif/motif-3"
+          "motif/motif-3",
+          "minimax/minimax-m3.1-flash-preview"
         ],
+        "model_access": {
+          "minimax/minimax-m3.1-flash-preview": {
+            "source": "https://llmtr.com/models/minimax/minimax-m3.1-flash-preview",
+            "initial_payment_usd": 5.0,
+            "topup_fee_percent": 8.0,
+            "until": "2026-10-06T23:59:00+03:00"
+          },
+          "inclusionai/ling-3.1-flash": {
+            "source": "https://llmtr.com/models/inclusionai/ling-3.1-flash",
+            "until": "2026-10-13T19:00:00+03:00"
+          }
+        },
         "ignored_ids": [
           "liquid/lfm-2.5-embedding-350m-free",
           "evren/deepseek-v4-flash-tr",
@@ -5008,13 +5062,9 @@
           "evren/qwen3-vl-30b",
           "evren/qwen3.8-flash-next",
           "openai/gpt-oss-safeguard-20b",
-          "evren/mimo-v2.6-pro-tr",
-          "minimax/minimax-m3.1-flash-preview"
+          "evren/mimo-v2.6-pro-tr"
         ],
-        "no_family_ids": [
-          "inclusionai/ling-3.1-flash"
-        ],
-        "note": "eight zero-priced chat ids on 2026-10-01 outside EVREN BYOK and the deposit-gated MiniMax trial. Ultra is the daily-quota row, its -262k twin metered. Ignored: an embedding, Safeguard classifier, MiniMax M3.1 Flash Preview requiring a prior top-up, and six evren/* rows that \"kendi EVREN anahtarınızla çalışır\". Ling 3.1 Flash stays out of the Models column: its October 13 deadline precedes the two-week bar; Qwen3.8 27B waits until October 5"
+        "note": "Most listed IDs work before funding; MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is metered. EVREN rows require your own EVREN key; the embedding and Safeguard classifier are left out. Qwen3.8 27B waits until October 5."
       },
       "data_use": {
         "trains": "yes",
@@ -5043,6 +5093,19 @@
       "provisional": false,
       "rank": 45,
       "archived": false,
+      "access_labels": {
+        "offer": "",
+        "models": {
+          "nemotron-3-ultra": "",
+          "nemotron-3-super": "",
+          "laguna-xs-2.1": "",
+          "agnes-3.0-flash": "",
+          "agnes-2.5-flash": "",
+          "motif-3": "",
+          "ling-3.1-flash": "free until 2026-10-13 19:00+03:00",
+          "minimax-m3.1-flash-preview": "requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00"
+        }
+      },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
     },
     {
@@ -9576,6 +9639,16 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"
     },
     {
+      "family": "glm-4.7-flash",
+      "rows": [
+        "aihubmix",
+        "zai-glm",
+        "meganova"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
+    },
+    {
       "family": "glm-5.1",
       "rows": [
         "aihubmix",
@@ -9701,15 +9774,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/"
-    },
-    {
-      "family": "glm-4.7-flash",
-      "rows": [
-        "aihubmix",
-        "zai-glm"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/"
     },
     {
       "family": "glm-5",
@@ -10125,6 +10189,13 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash/"
     },
     {
+      "family": "ling-3.1-flash",
+      "rows": [
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.1-flash/"
+    },
+    {
       "family": "llama-3.2-11b-vision",
       "rows": [
         "nvidia-nim"
@@ -10189,6 +10260,13 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/"
+    },
+    {
+      "family": "minimax-m3.1-flash-preview",
+      "rows": [
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash-preview/"
     },
     {
       "family": "mistral-small-3.2",

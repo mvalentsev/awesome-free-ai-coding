@@ -12,8 +12,8 @@
 # The key comes from $OPPER_API_KEY, the variable free-llm.env.example
 # exports; get one at https://platform.opper.ai/settings/api-keys. With
 # $OPPER_API_KEY unset or empty, Codex stops before it sends anything, so no
-# other key of yours reaches the lane. The model is the first free id the row
-# lists; the quota and every free id are on the row's page,
+# other key of yours reaches the lane. The default prefers an unfunded,
+# undated free id; the quota and every free id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/ — codex
 # -p opper -m <id> takes another.
 model = "gemini/gemma-4-31b"

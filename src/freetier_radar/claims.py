@@ -121,7 +121,7 @@ CLAIMS: tuple[Claim, ...] = (
           lambda root: (_word(README_STARTERS),), "render.README_STARTERS"),
     Claim("CONTRIBUTING.md", r"read (\w+) names deep per section",
           lambda root: (_word(README_PICKS),), "render.README_PICKS"),
-    Claim("CONTRIBUTING.md", r"A lane that rotates names a model once it has stayed (\w+ weeks|a week)",
+    Claim("CONTRIBUTING.md", r"An undated model on a rotating lane waits (\w+ weeks|a week)",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS"),
     Claim("CONTRIBUTING.md", r"and joins `models\[\]` (\w+ weeks|a week) later",
           lambda root: (_weeks(BAR_DAYS),), "bars.BAR_DAYS"),

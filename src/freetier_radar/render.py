@@ -23,7 +23,9 @@ from .models import (ARCHIVE_AFTER_DAYS, ARCHIVE_AFTER_FAILURES, CHECKED_PAGE,
                      ModelFamily, Notice, ProbeType, Tier, Watched, domain_of,
                      folded_into, id_family, is_archived,
                      is_archived_for_good, is_blocked, is_watch_current, lane_ids, live_families,
-                     load_blocklist, load_registry, load_watchlist, probe_frequency)
+                     load_blocklist, load_registry, load_watchlist, probe_frequency,
+                     access_words, expire_entries, family_access, id_access, requires_payment,
+                     save_registry, preferred_ids, family_names)
 # The promotion day is the probe's, and the pages say how far off it is.
 from .prober import PROVISIONAL_PROMOTE_DAYS
 # The bars a family's score must clear to be called frontier or strong, which
@@ -188,7 +190,7 @@ def _by_rank(e: Entry) -> tuple[int, bool, str]:
     them: `rank`, then a row that asks for no card before one that does
     (CONTRIBUTING: a row that needs a card never leads the no-card rows it ties
     with), then the name."""
-    return e.rank, e.card_required, e.name.lower()
+    return e.rank, e.card_required or requires_payment(e), e.name.lower()
 
 
 def _ordered(active: list[Entry], category: Category) -> list[Entry]:
@@ -290,7 +292,7 @@ def _model_page_rule() -> str:
     """Which models have a page, as every page that says so says it — from the
     constant that decides it."""
     return (f"{number(MODEL_PAGE_ROWS)} rows or more serve it "
-            "free, or it measures notable, strong or frontier")
+            "free, or it measures notable, strong or frontier, or it has a dated free promotion")
 
 
 # How a row's page and llms.txt say what the vendor does with what a reader
@@ -399,7 +401,7 @@ def _row_models(e: Entry, pages: set[str]) -> str:
     where it has one (what a reader who stops on a model name came for), then
     a count linking the row's page for the rest."""
     shown, more = _readme_families(e)
-    return DOT.join(([_family_links(shown, pages, DOT)] if shown else [])
+    return DOT.join(([_entry_family_links(e, shown, pages, DOT)] if shown else [])
                       + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else []))
 
 
@@ -415,7 +417,7 @@ def _row(e: Entry, pages: set[str]) -> dict[str, str]:
         # A mark beside the name: the card is the exception, easier to see there
         # than in a column of agreement, and the section headings count it in
         # words.
-        "card_flag": _card_flag(e),
+        "card_flag": _card_flag(e) + _access_flag(e),
         # Beside the name too: a fact about the row, not a value beside the date.
         "new_flag": " 🧪" if e.provisional else "",
         # What the reader pays besides money: the vendor may train on what they
@@ -475,6 +477,15 @@ def _card_flag(e: Entry) -> str:
 def _card_words(e: Entry) -> str:
     """The same fact where a page says it in words."""
     return "card required" if e.card_required else "no card"
+
+
+def _access_flag(e: Entry, family: str | None = None) -> str:
+    words = access_words(family_access(e, family) if family else e.access)
+    return f" ({words})" if words else ""
+
+
+def _entry_family_links(e: Entry, families: list[str], pages: set[str], sep: str = ", ") -> str:
+    return sep.join(_family_links([f], pages) + _access_flag(e, f) for f in families)
 
 
 def _provisional_words(e: Entry) -> str:
@@ -563,7 +574,7 @@ def _model_index(active: list[Entry], pages: set[str]) -> list[dict]:
                     "page": model_page_url(family) if family in pages else "",
                     "tier": mark.tier.value if mark is not None else "",
                     "providers": [{"id": p.id, "name": p.name, "url": p.url,
-                                   "card_flag": _card_flag(p)}
+                                   "card_flag": _card_flag(p) + _access_flag(p, family)}
                                   for p in ps]})
     return out
 
@@ -578,7 +589,7 @@ def _rows_by_family(active: list[Entry]) -> dict[str, list[Entry]]:
     for e in active:
         for family in live_families(e):
             by_family.setdefault(family, []).append(e)
-    return {family: sorted(rows, key=_by_rank)
+    return {family: sorted(rows, key=lambda e: (requires_payment(e, family), *_by_rank(e)))
             for family, rows in sorted(by_family.items(), key=lambda kv: (-len(kv[1]), kv[0]))}
 
 
@@ -596,7 +607,8 @@ def _measured(family: str, rows: list[Entry]) -> ModelFamily | None:
 
 
 def _has_model_page(family: str, rows: list[Entry]) -> bool:
-    return len(rows) >= MODEL_PAGE_ROWS or _measured(family, rows) is not None
+    return (len(rows) >= MODEL_PAGE_ROWS or _measured(family, rows) is not None
+            or any(a and a.until for e in rows if (a := family_access(e, family))))
 
 
 def model_pages(entries: list[Entry], events: list[Event], today: date,
@@ -733,7 +745,7 @@ def _strong_models(active: list[Entry]) -> list[dict]:
             strong.append({"family": family, "frontier": mark.tier is Tier.FRONTIER,
                            "page": model_page_url(family),
                            "providers": [{"name": p.name, "url": p.url,
-                                          "card_flag": _card_flag(p)} for p in rows]})
+                                          "card_flag": _card_flag(p) + _access_flag(p, family)} for p in rows]})
     # Stable: each tier keeps _rows_by_family's order, the most widely served first.
     return sorted(strong, key=lambda m: not m["frontier"])
 
@@ -750,7 +762,8 @@ def _starters(active: list[Entry]) -> list[dict]:
     to name models.
     """
     rows = [e for e in active
-            if e.category is Category.AGENT_CLI and not e.card_required and live_families(e)]
+            if e.category is Category.AGENT_CLI and not e.card_required
+            and not requires_payment(e) and live_families(e)]
     return [_starter(e) for e in sorted(rows, key=_by_rank)[:README_STARTERS]]
 
 
@@ -760,7 +773,8 @@ _TIER_FIRST = {Tier.FRONTIER: 0, Tier.STRONG: 1, Tier.NOTABLE: 2}
 
 def _starter(e: Entry) -> dict:
     tiers = {m.family: m.tier for m in e.models}
-    families = sorted(live_families(e), key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
+    families = sorted((f for f in live_families(e) if not requires_payment(e, f)),
+                      key=lambda f: _TIER_FIRST.get(tiers.get(f), len(_TIER_FIRST)))
     return {"name": e.name, "url": e.url, "families": families[:README_STARTER_MODELS],
             "more": max(0, len(families) - README_STARTER_MODELS),
             "page": provider_page_url(e.id)}
@@ -791,7 +805,7 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
     card rows not taken out: "no account" is a property of the endpoint, the
     same one the quickstart is chosen by.
     """
-    ranked = [e for e in sorted(active, key=_by_rank) if not e.card_required]
+    ranked = [e for e in sorted(active, key=_by_rank) if not e.card_required and not requires_payment(e)]
 
     def top(category: Category) -> list[dict]:
         return [_pick(e) for e in ranked if e.category is category][:README_PICKS]
@@ -799,7 +813,8 @@ def _picks(active: list[Entry], connectable: list[Entry]) -> dict[str, list[dict
     frontier = []
     for e in ranked:
         families = [m.family for m in e.models
-                    if m.superseded_by is None and m.tier is Tier.FRONTIER]
+                    if m.superseded_by is None and m.tier is Tier.FRONTIER
+                    and not requires_payment(e, m.family)]
         if families:
             frontier.append((len(families), e.rank, e.name.lower(), _pick(e, families)))
     frontier.sort(key=lambda row: (-row[0], row[1], row[2]))
@@ -839,7 +854,7 @@ def _quickstart(connectable: list[Entry]) -> dict | None:
             notice = e.api.notice
             start = {"name": e.name, "url": e.url,
                      "base_url": e.api.base_url.rstrip("/"),
-                     "model_id": e.api.model_ids[0],
+                     "model_id": preferred_ids(e)[0],
                      "note": e.api.note,
                      "asks": e.api.asks(),
                      # The command stays on the page while the list waits for the
@@ -1195,6 +1210,9 @@ def build_index(entries: list[Entry], today: date,
         "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today),
+             **({"access_labels": {"offer": access_words(e.access),
+                                   "models": {f: access_words(family_access(e, f)) for f in live_families(e)}}}
+                if e.access or ((lane := e.api or e.client_lane) and lane.model_access) else {}),
              **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
             for e in entries
@@ -1299,7 +1317,8 @@ def _site_row(e: Entry) -> dict:
     OpenAI-compatible is the connection table's to say, where the base URL is.
     """
     families = [m for m in e.models if m.superseded_by is None]
-    chips = [{"family": m.family, "tier": m.tier.value if m.tier else ""} for m in families]
+    chips = [{"family": m.family, "tier": m.tier.value if m.tier else "",
+              "access": access_words(family_access(e, m.family))} for m in families]
     api = e.api
     return {
         "id": e.id,
@@ -1312,6 +1331,7 @@ def _site_row(e: Entry) -> dict:
         "more_models": chips[SITE_MODELS:],
         "verified": e.last_verified.isoformat(),
         "card": e.card_required,
+        "access": access_words(e.access),
         "provisional": e.provisional,
         "trains": e.data_use.trains if _trains(e) else "",
         "no_key": bool(api and api.base_url and api.key_kind == "none"),
@@ -1482,6 +1502,8 @@ _ASK_TEXT = {"user-agent": "every request names its client in its own User-Agent
 def _llms_line(e: Entry) -> str:
     parts = [e.offering.strip().rstrip(".")]
     parts.append(_card_words(e))
+    if e.access:
+        parts.append(access_words(e.access))
     # Where the offer reaches, beside what it asks: "is there a free API I can
     # use from here" is a question a model answers from this file.
     if _border_flag(e):
@@ -1513,7 +1535,7 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"Codex CLI profile at {REPO_URL}/blob/main/{codex_profile_path(e)}")
     fams = live_families(e)
     if fams:
-        parts.append("free models: " + ", ".join(f"`{f}`" for f in fams))
+        parts.append("free models: " + ", ".join(f"`{f}`" + _access_flag(e, f) for f in fams))
     if e.provisional:
         parts.append(_provisional_words(e))
     return f"- [{e.name}]({provider_page_url(e.id)}): " + "; ".join(parts)
@@ -1563,6 +1585,7 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
             lines.append(f"- [{family}]({model_page_url(family)}): "
                          + (f"{mark.tier.value}; " if mark is not None else "")
                          + ", ".join(e.name + (f" ({_card_words(e)})" if e.card_required else "")
+                                     + _access_flag(e, family)
                                      for e in rows))
     if gone:
         lines += ["", "## Archived", ""]
@@ -1605,7 +1628,8 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
             options["apiKey"] = "{env:" + env_var(e.id) + "}"
         # The ids the row lists and nothing else: a family names a model, not
         # the string a request carries (see _litellm_ids).
-        models = {mid: {"name": mid} for mid in e.api.model_ids}
+        models = {mid: {"name": mid + (f" ({words})" if (words := access_words(id_access(e, mid))) else "")}
+                  for mid in e.api.model_ids}
         providers[e.id] = {
             "npm": "@ai-sdk/openai-compatible",
             "name": e.name,
@@ -1698,12 +1722,18 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
         for model_id in _litellm_ids(e):
             params = {"model": f"openai/{model_id}", "api_base": e.api.base_url,
                       "api_key": _litellm_key(e), "use_chat_completions_api": True}
-            models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params})
+            access = id_access(e, model_id)
+            words = access_words(access)
+            models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params,
+                           **({"model_info": {"access": words, "source": access.source}}
+                              if words else {})})
             # notable decides a model's page, not a pool: a caller asking for
             # free/strong asked for the strong bar.
             tier = _tier_of_id(e, model_id)
             names = ([f"free/{tier.value}"] if tier in (Tier.FRONTIER, Tier.STRONG) else []) + (
                 ["free/nokey"] if needs_no_account(e) else [])
+            if access and access.initial_payment_usd:
+                names = []
             for name in names:
                 groups[name].append({
                     "model_name": name,
@@ -1749,6 +1779,18 @@ def _comment(text: str) -> list[str]:
     headers are."""
     return [f"# {line}" for line in textwrap.wrap(text, width=76, break_long_words=False,
                                                   break_on_hyphens=False)]
+
+
+def _access_comments(e: Entry) -> list[str]:
+    """The same access labels and sources beside every generated client setup."""
+    out = _comment(f"Access: {access_words(e.access)}; {e.access.source}") if e.access else []
+    lane = e.api or e.client_lane
+    if lane:
+        for model_id in lane.model_ids:
+            access = id_access(e, model_id)
+            if access and access != e.access:
+                out += _comment(f"{model_id}: {access_words(access)}; {access.source}")
+    return out
 
 
 def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
@@ -1837,7 +1879,7 @@ def codex_ready(e: Entry) -> bool:
     makes — Codex names itself in its own User-Agent, and a profile's headers
     (`http_headers`) are fixed values, so a lane that wants a new id per
     conversation (`_static_blockers`) gets none."""
-    return bool(e.api and e.api.base_url and e.api.codex and not _static_blockers(e))
+    return bool(e.api and e.api.base_url and e.api.model_ids and e.api.codex and not _static_blockers(e))
 
 
 def codex_profile_path(e: Entry) -> str:
@@ -1862,8 +1904,8 @@ def codex_unset_words(var: str) -> str:
 
 def build_codex_profile(e: Entry) -> str:
     """A row's own Codex profile: its lane, called directly, with the settings
-    every profile here carries. The model is the first id the row lists, the
-    one the run calls; the key comes from the variable free-llm.env.example
+    every profile here carries. The default prefers an unfunded, undated id;
+    the key comes from the variable free-llm.env.example
     exports, and a keyless lane is given none, so Codex sends no Authorization
     header, which a lane that refuses a bearer needs.
 
@@ -1885,9 +1927,9 @@ def build_codex_profile(e: Entry) -> str:
         key = ("No key: the lane is anonymous." if api.key_kind == "none" else
                f"The key comes from ${var}, the variable free-llm.env.example exports; the "
                f"vendor prints one for anyone at {api.key_url}.")
-    model = ("The model is the first free id the row lists; the quota and every free id are "
+    model = ("The default prefers an unfunded, undated free id; the quota and every free id are "
              if e.free_part is FreePart.MODELS else
-             "The model is the first id the row lists; what the free part covers and every id "
+             "The default prefers an unfunded, undated id; what the free part covers and every id "
              "are ")
     lines = [
         f"# Codex CLI on {e.name}'s free lane — generated from registry.yaml, do not",
@@ -1900,7 +1942,8 @@ def build_codex_profile(e: Entry) -> str:
         "#",
         *_comment(f"{key} {model}on the row's page, {provider_page_url(e.id)} — codex -p "
                   f"{e.id} -m <id> takes another."),
-        f"model = {json.dumps(api.model_ids[0])}",
+        *_access_comments(e),
+        f"model = {json.dumps(preferred_ids(e)[0])}",
         f"model_provider = {json.dumps(e.id)}",
         *_codex_settings(),
         f"[model_providers.{e.id}]",
@@ -1943,6 +1986,7 @@ def build_env_example(entries: list[Entry], today: date) -> str:
         lines += [_ASK_ENV[name].format(value) for name, value in e.api.asks() if _ASK_ENV[name]]
         if e.api.note:
             lines.append(f"#    note: {e.api.note}")
+        lines += _access_comments(e)
         lines.append("")
     return "\n".join(lines)
 
@@ -1977,9 +2021,8 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
     Anthropic's own API is never one of them. The key comes from the same
     variable free-llm.env.example declares, so the two files are one setup.
 
-    The model is the first id the row lists, which on a rotating lane is the
-    registry's own order; a row that lists none leaves ANTHROPIC_MODEL to the
-    reader and says so."""
+    The default prefers an unfunded, undated id and keeps the registry order
+    on ties. A row that lists none leaves ANTHROPIC_MODEL to the reader."""
     ready = _anthropic_ready(entries, today)
     example = (f",\n# e.g. claude-{ready[0].id}. Works in bash and zsh." if ready
                else ".\n# Works in bash and zsh.")
@@ -1998,6 +2041,7 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
         card = " · card required" if e.card_required else ""
         key_hint = f" · get a key: {e.api.key_url}" if e.api.key_url else ""
         lines.append(f"# ── {e.name}{card}{key_hint}")
+        lines += _access_comments(e)
         if not e.api.model_ids:
             lines.append("#    the row lists no callable id: pass ANTHROPIC_MODEL=<a free id> "
                          "before the function, or set it inside")
@@ -2017,7 +2061,7 @@ def build_claude_code_sh(entries: list[Entry], today: date) -> str:
             lines.append(f'  ANTHROPIC_AUTH_TOKEN="${env_var(e.id)}" \\')
         lines.append('  ANTHROPIC_API_KEY="" \\')
         if e.api.model_ids:
-            lines.append(f'  ANTHROPIC_MODEL="{e.api.model_ids[0]}" \\')
+            lines.append(f'  ANTHROPIC_MODEL="{preferred_ids(e)[0]}" \\')
         lines.append('  claude "$@"')
         lines.append("}")
         lines.append("")
@@ -2139,6 +2183,8 @@ def _connect_lines(e: Entry, ids: list[str]) -> list[str]:
         out.append(line)
     if ids:
         out.append("- Callable ids: " + ", ".join(f"`{i}`" for i in ids))
+        out += [f"- `{i}`: {words} ([conditions]({id_access(e, i).source}))"
+                for i in ids if (words := access_words(id_access(e, i)))]
     elif api.no_ids:
         out.append(f"- Callable ids: none listed — {api.no_ids}")
     return out
@@ -2175,7 +2221,7 @@ def _try_it(e: Entry) -> list[str]:
             if api.key_kind == "public" else
             f"Try it from your terminal with your key in `{env_var(e.id)}` — "
             "it goes from your machine to the vendor and nowhere else:")
-    return [said, "", "```sh", _curl(api.base_url, api.model_ids[0], api.asks(), key), "```", ""]
+    return [said, "", "```sh", _curl(api.base_url, preferred_ids(e)[0], api.asks(), key), "```", ""]
 
 
 def _evidence_section(e: Entry, blocked: bool) -> list[str]:
@@ -2321,6 +2367,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     out = [f"# {e.name} free tier" + (" (archived)" if archived else ""), ""]
     flags = [CATEGORY_TITLES[e.category]]
     flags.append(_card_words(e))
+    if e.access:
+        flags.append(access_words(e.access))
     # At the top, beside the card: a reader who arrives from a search about
     # this vendor learns before anything else whether it reaches them.
     if _border_flag(e) and not archived:
@@ -2375,8 +2423,8 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
         named = ("The row names no free model family; the ids its lane serves, where the row has "
                  "them, are under Connect.")
     out += ["## Free models it listed" if archived else "## Free models", "",
-            _family_links(fams, model_pages(registry or [], events, today) if pages is None
-                          else pages) if fams else named,
+            _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
+                                else pages) if fams else named,
             ""]
     out += ["## Limits, in the vendor's words", "",
             e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
@@ -2483,12 +2531,17 @@ def _listed_since(events: list[Event], entry_id: str, family: str) -> date | Non
     return spans[-1][0] if spans and spans[-1][1] is None else None
 
 
-def _served_before(events: list[Event], family: str, serving: set[str]
-                   ) -> list[tuple[str, list[tuple[date, date]]]]:
+def _promotion_rows(entries: list[Entry], family: str) -> set[str]:
+    return {e.id for e in entries if (lane := e.api or e.client_lane)
+            for i, a in lane.model_access.items() if a.until and family_names(family, i)}
+
+
+def _served_before(events: list[Event], family: str, serving: set[str],
+                   dated: set[str] | frozenset[str] = frozenset()) -> list[tuple[str, list[tuple[date, date]]]]:
     """The rows that carried the family and carry it no more, each with the
-    stretches it did, the most recent departure first. A stretch that opened
-    and closed on one day is a correction, not a day a reader could have used
-    the model, and is left out. The list's word is "listed": a row can stop
+    stretches it did, the most recent departure first. Same-day corrections
+    are omitted; a documented promotion may genuinely last less than a day.
+    The list's word is "listed": a row can stop
     listing a model it still serves (a free part reread as a sum to spend), so
     the pages never say the row stopped serving it."""
     out = []
@@ -2496,7 +2549,7 @@ def _served_before(events: list[Event], family: str, serving: set[str]
         if entry_id in serving:
             continue
         spans = [(start, end) for start, end in _listed_spans(events, entry_id, family)
-                 if end is not None and end > start]
+                 if end is not None and (end > start or entry_id in dated)]
         if spans:
             out.append((entry_id, spans))
     return sorted(out, key=lambda kv: kv[1][-1][1], reverse=True)
@@ -2507,7 +2560,11 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     last confirmed it and since when it has carried the model, the limits in
     the vendor's words and how to call this model there. The evidence and the
     history stay on the row's own page, one click from its name."""
-    flags = [CATEGORY_TITLES[e.category], _card_words(e)]
+    flags = [CATEGORY_TITLES[e.category]]
+    if not requires_payment(e, family):
+        flags.append(_card_words(e))
+    if words := access_words(family_access(e, family)):
+        flags.append(words)
     if _border_flag(e):
         flags.append(_border_flag(e))
     if e.provisional:
@@ -2556,7 +2613,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
     pages = model_pages(entries, events, today) if pages is None else pages
     rows = by_family.get(family, [])
     by_id = {e.id: e for e in entries}
-    before = _served_before(events, family, {e.id for e in rows})
+    before = _served_before(events, family, {e.id for e in rows}, _promotion_rows(entries, family))
     if not rows and not before and family not in {m.family for e in entries for m in e.models}:
         raise ValueError(f"the list never named {family!r}, so it has no page")
     departed = [spans[-1][1] for _, spans in before]
@@ -2571,7 +2628,9 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         n, names = len(rows), [e.name for e in rows]
         floor = _floor(rows, today)
         card = [e.name for e in rows if e.card_required]
-        if not card:
+        if any(requires_payment(e, family) for e in rows):
+            asks = "Free usage is subject to the access conditions below"
+        elif not card:
             asks = "It asks for no card" if n == 1 else "None asks for a card"
         elif len(card) == n:
             asks = "It asks for a card on file" if n == 1 else "Each asks for a card on file"
@@ -2584,6 +2643,9 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                      f"; {series(anonymous)} {'answers' if len(anonymous) == 1 else 'answer'} "
                      "with no account at all")
         asks += "."
+        conditioned = [e.name + _access_flag(e, family) for e in rows if family_access(e, family)]
+        if conditioned:
+            asks += " Access conditions: " + "; ".join(conditioned) + "."
         served = ("**One row on the list serves" if n == 1 else f"**{n} rows on the list serve")
         summary = [f"{served} `{family}` free:** {series(names)}.", asks,
                    (f"A live probe confirmed it on {floor} and reads it again {_schedule()}."
@@ -2634,7 +2696,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
     if related:
         body += ["## Related models", "",
                  *(f"- [`{f}`]({model_page_url(f)}) — free at "
-                   f"{series([e.name for e in by_family[f]])}" for f in related), ""]
+                   f"{series([e.name + _access_flag(e, f) for e in by_family[f]])}" for f in related), ""]
     return _page({"title": title, "description": description,
                   "permalink": _permalink(model_page_url(family)),
                   "last_modified_at": max(changed, default=today),
@@ -2660,7 +2722,7 @@ def build_models_index(entries: list[Entry], today: date,
     pages = model_pages(entries, events, today) if pages is None else pages
     gone = []
     for family in pages - set(by_family):
-        before = _served_before(events, family, set())
+        before = _served_before(events, family, set(), _promotion_rows(entries, family))
         last = max((spans[-1][1] for _, spans in before), default=None)
         gone.append((family, last, [entry_id for entry_id, _ in before]))
     gone.sort(key=lambda g: (g[1] or date.min, g[0]), reverse=True)
@@ -2688,7 +2750,7 @@ def build_models_index(entries: list[Entry], today: date,
         if mark is not None:
             cell += f" · {mark.tier.value}"
         at = ", ".join("[{}]({}){}".format(e.name.replace("|", r"\|"), provider_page_url(e.id),
-                                           _card_flag(e)) for e in rows)
+                                           _card_flag(e) + _access_flag(e, family)) for e in rows)
         out.append(f"| {cell} | {at} |")
     if gone:
         out += ["", "## No longer free on the list", "",
@@ -3013,8 +3075,13 @@ def render_repository(registry_path: Path, template_dir: Path, root: Path,
     `committed` is the log the commit will be made on (`gate.committed_log`);
     the lines recorded are the ones it will add."""
     today = today or date.today()
+    now = now or datetime.now(timezone.utc)
+    entries = load_registry(registry_path)
+    current = expire_entries(entries, now)
+    if current != entries:
+        save_registry(registry_path, current)
     recorded = record_changes(registry_path, _history_path(registry_path), today,
-                              now or datetime.now(timezone.utc), committed=committed)
+                              now, committed=committed)
     render_all(registry_path, template_dir, root, readme_name, today=today,
                watchlist_path=watchlist_path)
     return recorded
@@ -3085,7 +3152,11 @@ def main() -> None:
     parser.add_argument("--check", action="store_true",
                         help="write nothing; report the generated files that no longer "
                              "match the registry, and exit 1 if any do")
+    parser.add_argument("--expire-only", action="store_true",
+                        help="publish ended model promotions; write nothing if none ended")
     args = parser.parse_args()
+    if args.check and args.expire_only:
+        parser.error("--check and --expire-only cannot be combined")
     root = args.out.parent if args.out.parent != Path("") else Path(".")
     # What the map says the render writes, so the summary is the map's list.
     written = ", ".join(n.path for n in MAP if "freetier-render" in n.written_by)
@@ -3100,6 +3171,11 @@ def main() -> None:
             print("run `TZ=UTC uv run freetier-render` and commit what it writes")
             raise SystemExit(1)
         return
+    if args.expire_only:
+        entries = load_registry(args.registry)
+        if expire_entries(entries, datetime.now(timezone.utc)) == entries:
+            print("no model promotion has ended")
+            return
     recorded = render_repository(args.registry, args.templates, root, args.out.name,
                                  watchlist_path=args.watchlist,
                                  committed=committed_log(_history_path(args.registry)))
