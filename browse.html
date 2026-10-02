@@ -33,6 +33,7 @@ td.connect { min-width: 280px; }
 code { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--chip); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
 /* A model name, a date or a tag is one word to a reader: a line breaks between them, never inside. */
 .fam, .nowrap { white-space: nowrap; }
+.fam small { white-space: normal; }
 .tag { display: inline-block; font-size: 12px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); margin-right: 4px; white-space: nowrap; }
 .ok { color: var(--ok); }
 .warn { color: var(--warn); }
@@ -52,7 +53,8 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   thead { display: none; }
   tr { display: grid; grid-template-columns: 1fr auto; gap: 0 10px; padding: 12px; margin: 0 0 10px; border: 1px solid var(--line); border-radius: 10px; }
   td { display: block; padding: 0; border: 0; max-width: none; min-width: 0; }
-  td.cat { text-align: right; }
+  td.provider, td.offer, td.models, td.connect { width: auto; min-width: 0; }
+  td.cat { text-align: right; min-width: max-content; }
   td.offer, td.models, td.connect, td.verified, td.empty { grid-column: 1 / -1; margin-top: 8px; }
   td[data-label]::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
   td.verified::before { display: inline; content: attr(data-label) " "; }
