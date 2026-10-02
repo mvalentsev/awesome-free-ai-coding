@@ -180,7 +180,7 @@ def report(entries: list[Entry], since: dict[tuple[str, str], date], today: date
         lines.append("Every id a free lane lists has a family or a reason in `api.no_family_ids`.")
     if due:
         lines += ["**Due**, a dated promotion or two weeks in the lane: re-read the lane, then add the family, or list "
-                  "the id in `api.no_family_ids` with the reason in `api.note`.", ""]
+                  "the id in `api.no_family_ids` with the reason in the commit message.", ""]
         lines += [f"- {w.row}: `{w.model_id}`, {_dated(w)} ({(today - w.since).days} days)"
                   for w in due]
         lines.append("")

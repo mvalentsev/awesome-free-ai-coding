@@ -1710,7 +1710,7 @@ def unlisted_free_ids(resp: httpx.Response, entry: Entry) -> list[str]:
     price unless the row reads prices too.
 
     Ids in `api.ignored_ids` are left out: a zero somebody has read and left
-    unlisted, with the reason in `api.note`, that would otherwise print on
+    unlisted, with the reason in the commit message, that would otherwise print on
     every run.
 
     Like dead_model_ids it never fails a row and is never handed to the
