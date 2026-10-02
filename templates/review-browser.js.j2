@@ -9,7 +9,7 @@ async (page) => {
     records.push({id,metrics,url:page.url(),...extra});
   };
   const go = async url => {
-    const response = await page.goto(url,{waitUntil:'networkidle'});
+    const response = await page.goto(url,{waitUntil:'domcontentloaded'});
     if(!response || response.status()!==200) throw Error('Page HTTP '+response?.status()+': '+url);
   };
   const folds = async body => {
@@ -31,6 +31,7 @@ async (page) => {
         await page.emulateMedia({colorScheme:scheme});
         const prefix=width+'/'+scheme+'/';
         await go(plan.site+'?review='+plan.sha+'#search');
+        if(plan.models.some(model=>model.rows.length)) await page.locator('#results .tries button').first().waitFor();
         for(const model of plan.models) {
           await page.locator('#q').fill(model.family);
           await page.waitForFunction(({family,count})=>new URL(location.href).searchParams.get('q')===family &&
@@ -104,6 +105,7 @@ async (page) => {
           await go(plan.repository+'?review='+plan.sha);
           const body=page.locator('article.markdown-body').first();await body.waitFor();
           const list=body.locator('details').filter({has:page.locator('summary',{hasText:'Where each one is free'})});
+          await list.waitFor();
           if(await list.count()!==1) throw Error('Missing shared model list');
           if(await list.getAttribute('open')!==null) throw Error('README list initially open');
           await list.locator('summary').click();
