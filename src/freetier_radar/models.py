@@ -620,16 +620,17 @@ class ApiInfo(BaseModel):
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     # Zero-priced ids the catalog carries that are deliberately not in
     # model_ids — an image generator, a row whose own description says it was
-    # removed, a lane the row does not track — with the reason in `note`. The probe reports every
-    # free id it finds outside model_ids, and this is where a decision about
+    # removed, a lane the row does not track — with the reason in the commit
+    # message. The probe reports every free id it finds outside model_ids,
+    # and this is where a decision about
     # one of them is recorded so it is not reported again. Written only where
     # set: every api block already carries model_ids and note, and this list
     # means something only on the rows whose catalog prices are read.
     ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
     # Ids in model_ids that no Models-column family will name, on purpose: a
     # router, a stealth codename, a model its own developer advises against
-    # agentic coding — with the reason in `note`. Every other id a free lane
-    # has carried for two weeks is owed a family, and freetier-bars says so;
+    # agentic coding — with the reason in the commit message. Every other id
+    # a free lane has carried for two weeks is owed a family, and freetier-bars says so;
     # this is where a decision not to give one is recorded.
     no_family_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
     # Ids in model_ids that an older record than this registry shows free, with
@@ -845,7 +846,7 @@ class ClientLane(BaseModel):
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     ignored_ids: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
     # Ids the lane carries that no Models-column family will name, on purpose —
-    # a stealth codename, a router — with the reason in `note`, as
+    # a stealth codename, a router — with the reason in the commit message, as
     # `api.no_family_ids`. A lane no config is written from needs no second
     # list for ids left out of it: every id it carries is listed here.
     no_family_ids: list[str] = Field(default_factory=list, exclude_if=lambda ids: not ids)
