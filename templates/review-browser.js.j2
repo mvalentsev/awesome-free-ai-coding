@@ -1,0 +1,140 @@
+async (page) => {
+  const plan = {{ plan }};
+  const records = [], pageErrors = [];
+  const listener = e => pageErrors.push(e.message);
+  page.on('pageerror', listener);
+  const record = async (id,extra={}) => {
+    const metrics = await page.evaluate(() => ({width:innerWidth, scroll:document.documentElement.scrollWidth}));
+    if(metrics.scroll > metrics.width) throw Error('Horizontal overflow: '+id);
+    records.push({id,metrics,url:page.url(),...extra});
+  };
+  const go = async url => {
+    const response = await page.goto(url,{waitUntil:'networkidle'});
+    if(!response || response.status()!==200) throw Error('Page HTTP '+response?.status()+': '+url);
+  };
+  const folds = async body => {
+    const details = body.locator('details').filter({has:page.locator('summary',{hasText:'Provider-wide limits'})});
+    for(let i=0;i<await details.count();i++) {
+      const fold=details.nth(i);
+      if(await fold.getAttribute('open')!==null || !await fold.locator('li').count()) throw Error('Limits not initially closed or not parsed');
+      await fold.locator('summary').click();
+      if(!await fold.locator('li').first().isVisible()) throw Error('Limits did not open');
+      await fold.locator('summary').click();
+      if(await fold.locator('li').first().isVisible()) throw Error('Limits did not close');
+    }
+  };
+  try {
+    await page.setExtraHTTPHeaders({});
+    for(const width of plan.widths) {
+      await page.setViewportSize({width,height:1000});
+      for(const scheme of plan.schemes) {
+        await page.emulateMedia({colorScheme:scheme});
+        const prefix=width+'/'+scheme+'/';
+        await go(plan.site+'?review='+plan.sha+'#search');
+        for(const model of plan.models) {
+          await page.locator('#q').fill(model.family);
+          await page.waitForFunction(({family,count})=>new URL(location.href).searchParams.get('q')===family &&
+            (count===0 || document.querySelector('#results a[href$="/models/'+family+'/"]')),{family:model.family,count:model.rows.length});
+          const card=page.locator('#results a[href="'+model.page+'"]').first();
+          if(!model.rows.length) {
+            if(await card.count()) throw Error('Archived family still offered in search');
+            await record(prefix+'search/'+model.family);continue;
+          }
+          const text=await card.innerText();
+          if(model.tier&&!text.includes(model.tier)) throw Error('Search tier: '+model.family);
+          if(!text.includes('free on '+model.rows.length+' offer')) throw Error('Search count: '+model.family);
+          const snippets=await page.locator('#results .snip.access').evaluateAll(es=>es.map(e=>({height:e.clientHeight,scroll:e.scrollHeight,visible:e.checkVisibility()})));
+          if(snippets.some(e=>!e.visible || e.scroll>e.height+1)) throw Error('Clipped access conditions');
+          await record(prefix+'search/'+model.family);
+        }
+        await go(plan.site+'browse.html?review='+plan.sha);
+        await page.locator('#rows tr').first().waitFor();
+        for(const model of plan.models) {
+          await page.locator('#q').fill(model.family);
+          await page.waitForFunction(f=>new URL(location.href).searchParams.get('q')===f,model.family);
+          for(const id of model.rows.filter(id=>plan.rows.some(e=>e.id===id))) {
+            const row=page.locator('#rows tr').filter({has:page.locator('a[href$="/providers/'+id+'/"]')});
+            if(await row.count()!==1 || !await row.locator('a[href="'+model.page+'"]').count()) throw Error('Missing browse association: '+id+' '+model.family);
+            if(['strong','frontier'].includes(model.tier) && !await row.locator('a[href="'+model.page+'"] .strong').count()) throw Error('Missing strong mark');
+          }
+          if(['strong','frontier'].includes(model.tier)) {
+            await page.locator('#strong').check();
+            await page.waitForFunction(()=>new URL(location.href).searchParams.get('strong')==='1');
+            for(const id of model.rows.filter(id=>plan.rows.some(e=>e.id===id))) {
+              if(await page.locator('#rows tr').filter({has:page.locator('a[href$="/providers/'+id+'/"]')}).count()!==1) throw Error('Strong filter removed a serving row');
+            }
+            await page.locator('#strong').uncheck();
+            await page.waitForFunction(()=>!new URL(location.href).searchParams.has('strong'));
+          }
+          await record(prefix+'browse/'+model.family);
+        }
+        for(const model of plan.models) {
+          if(model.rows.length) {
+            await go(plan.site+'?review='+plan.sha+'&q='+encodeURIComponent(model.family)+'#search');
+            await page.locator('#results a[href="'+model.page+'"]').first().click();
+            await page.waitForURL(model.page);
+          } else {await go(model.page);}
+          const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
+          const text=await body.innerText();
+          if((model.rows.length&&!text.includes(model.rows.length+' row'+(model.rows.length===1?'':'s')+' on the list')) || (model.tier&&!text.includes(model.tier))) throw Error('Model count/tier: '+model.family);
+          if(await body.locator('h3').count()!==model.rows.length) throw Error('Model headings count: '+model.family);
+          await folds(body);
+          if(width===375&&scheme==='light'&&model===plan.models[0]) await page.screenshot({path:plan.output.replace('.json','-mobile.png'),fullPage:true});
+          await record(prefix+'model/'+model.family);
+          for(const id of model.rows.filter(id=>plan.links.some(link=>link[0]===id&&link[1]===model.family))) {
+            await body.locator('h3 a[href$="/providers/'+id+'/"]').click();
+            await page.waitForURL('**/providers/'+id+'/');
+            await page.locator('.markdown-body a[href="'+model.page+'"]').first().click();
+            await page.waitForURL(model.page);await body.locator('h1').waitFor();
+          }
+        }
+        for(const row of plan.rows) {
+          await go(row.page);
+          const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
+          const text=await body.textContent();
+          if(row.archived) {
+            if(!/archived/i.test(text)) throw Error('Provider archive status: '+row.id);
+          } else {
+            for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
+            for(const id of row.api?.model_ids||[]) if(!text.includes(id)) throw Error('Provider API id: '+row.id+' '+id);
+          }
+          await record(prefix+'provider/'+row.id);
+        }
+        if(width!==320) {
+          await go(plan.repository+'?review='+plan.sha);
+          const body=page.locator('article.markdown-body').first();await body.waitFor();
+          const list=body.locator('details').filter({has:page.locator('summary',{hasText:'Where each one is free'})});
+          if(await list.count()!==1) throw Error('Missing shared model list');
+          if(await list.getAttribute('open')!==null) throw Error('README list initially open');
+          await list.locator('summary').click();
+          for(const model of plan.models.filter(m=>['strong','frontier'].includes(m.tier))) {
+            const row=body.locator('a[href="'+model.page+'"]').first().locator('xpath=ancestor::li[1]');
+            if(!await row.isVisible()) throw Error('README list did not open');
+            for(const id of model.rows.filter(id=>plan.rows.some(e=>e.id===id))) {
+              const name=plan.rows.find(e=>e.id===id).name;
+              if(!(await row.innerText()).includes(name)) throw Error('README provider: '+name);
+            }
+          }
+          await list.locator('summary').click();
+          const chart=body.locator('img[alt^="Bar chart of the"]').first();
+          await chart.scrollIntoViewIfNeeded();await chart.evaluate(img=>img.decode());
+          if(!await chart.evaluate(img=>img.naturalWidth>0&&img.clientWidth>0)) throw Error('README image failed');
+          if(plan.chart_date&&!(await chart.getAttribute('alt')).includes(plan.chart_date)) throw Error('README chart date');
+          const image=await chart.evaluate(img=>{
+            const selected=Array.from(img.parentElement.querySelectorAll('source')).find(s=>matchMedia(s.media).matches);
+            const url=selected?.srcset||img.src;
+            const match=decodeURIComponent(url).match(/assets\/readme\/[^?\s]+\.svg/);
+            if(!match) throw Error('Cannot identify selected README image');
+            return {image_url:img.currentSrc,image_path:match[0]};
+          });
+          if(width===1440&&scheme==='light') await page.screenshot({path:plan.output.replace('.json','-desktop.png'),fullPage:false});
+          await record(prefix+'readme',image);
+        }
+      }
+    }
+    if(pageErrors.length) throw Error(pageErrors.join('; '));
+    return {sha:plan.sha,passed:true,records,pageErrors};
+  } catch(error) {
+    return {sha:plan.sha,passed:false,records,pageErrors,error:String(error)};
+  } finally {page.off('pageerror',listener);}
+}

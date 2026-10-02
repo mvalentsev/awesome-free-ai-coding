@@ -1017,6 +1017,25 @@ uv run freetier-bars              # which ids a free lane has carried two weeks 
 uv run freetier-announce --dry-run  # print what the announcer would post, send nothing
 ```
 
+`freetier-review --out <private-directory>` collects evidence for a review.
+Use a git-ignored directory or one outside the repository. Run its phases in
+order: `prepare --base <commit> --head <commit>`, `sources`, `publication`,
+`browser`, then `report`. `publication` waits for the required workflows at that
+exact commit, saves their full logs and open PRs, and compares published bytes.
+For a bot verification commit, add `prepare --verification-run <update-run-id>`:
+the full successful update log must prove which commit it produced, since that
+push runs its checks and IndexNow inside the update instead of starting CI.
+It prints workflow updates only when their state changes. Run the emitted
+`browser.js` with Playwright's `browser_run_code_unsafe` filename argument,
+save the returned JSON privately, and import it with `browser --result <file>`.
+Run `publication` again to check the README images the browser actually loaded.
+`client --client <opencode|codex> --binary <path> --provider <id> --model <id>`
+checks a real keyless lane in an isolated home using the committed configuration,
+a fresh file, a completed tool read and its final answer. Every attempt is kept.
+The report covers collected evidence; source reads and quote matches still need
+vendor judgment, affected API lanes still need controls, and the full diff still
+needs independent review. The hooks below remain mandatory.
+
 **The checks run before a commit exists.** With the hooks on, `git commit`
 runs `freetier-gate pre-commit`: `freetier-check`, `freetier-render --check` and
 the test suite on a snapshot of what is staged, with the dates in UTC. It also

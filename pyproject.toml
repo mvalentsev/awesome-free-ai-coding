@@ -30,6 +30,7 @@ freetier-gate = "freetier_radar.gate:main"
 freetier-bars = "freetier_radar.bars:main"
 freetier-borders = "freetier_radar.borders:main"
 freetier-conformance = "freetier_radar.conformance:main"
+freetier-review = "freetier_radar.review:main"
 
 [build-system]
 requires = ["hatchling"]

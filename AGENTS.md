@@ -42,6 +42,13 @@ hooks, delete a registry row or published page, or hand-edit generated files
 and history. Keep raw responses, credentials and internal review notes outside
 tracked public files.
 
+Use `freetier-review` for reusable private evidence; its commands and limits are
+in CONTRIBUTING.md. Prepare from exact commits and keep full artifacts in a
+git-ignored directory. Use the generated browser coverage plan. The runner does
+not replace hooks, live API controls, vendor judgments or independent review.
+Read compact phase results first; open raw evidence for failures and disputed
+facts. Do not reuse a served-page check across publications.
+
 ## Attribution
 
 Do not add assistant or vendor attribution, co-author trailers, generated-by
