@@ -321,6 +321,7 @@ kbd.key { font-size: .76rem; line-height: 1.5; padding: 0 6px; border: 1px solid
 .presult .tags { display: inline-flex; margin: 0; }
 .presult .snip { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   overflow: hidden; margin-top: 2px; font-size: .86rem; color: var(--muted); }
+.presult .snip.access { display: block; -webkit-line-clamp: unset; overflow: visible; }
 .presult.gone .pname { color: var(--muted); }
 .presult mark { background: color-mix(in srgb, var(--warn) 28%, transparent); color: inherit;
   border-radius: 3px; padding: 0 1px; }
@@ -4330,10 +4331,16 @@ vendor-announced shutdown on 2026-05-15            </td>
       var name = tr.querySelector("a.name");
       var models = [].map.call(tr.querySelectorAll("td.models .chip"), textOf)
         .filter(function (t) { return !/^\+\d+ more$/.test(t); });
+      var modelAccess = {};
+      [].forEach.call(tr.querySelectorAll("td.models .model-access"), function (node) {
+        var chip = node.querySelector(".chip"), access = textOf(node.querySelector("small"));
+        if (chip && access) { modelAccess[textOf(chip)] = access; }
+      });
       return { kind: "offer", id: tr.dataset.id, order: i, row: tr,
                page: tr.querySelector("td.when a").getAttribute("href"),
                section: sections[tr.dataset.section], flags: tr.dataset.flags.split(" "),
                name: textOf(name), tags: tr.querySelector(".tags"), models: models,
+               access: textOf(tr.querySelector("td.what .access")), modelAccess: modelAccess,
                what: full(tr.querySelector("td.what")), limits: full(tr.querySelector("td.limits")) };
     });
     var byId = {};
@@ -4465,6 +4472,7 @@ vendor-announced shutdown on 2026-05-15            </td>
   // Why a row came up, in a line: its free models where a term names one of
   // them, else the sentence a match sits in, cut short around it at a word —
   // not the first two hundred characters of a paragraph.
+  function withAccess(name, access) { return name + (access ? " (" + access + ")" : ""); }
   function snippet(o, terms) {
     var whole = spelled(terms);
     function names(text) {
@@ -4480,9 +4488,11 @@ vendor-announced shutdown on 2026-05-15            </td>
     var named = said ? [] : spelt.concat(o.models.filter(function (m) {
       return spelt.indexOf(m) === -1 && names(m);
     }));
-    if (named.length && !names(o.name)) {
+    if (named.length) {
       var rest = o.models.filter(function (m) { return named.indexOf(m) === -1; });
-      return "Free models: " + named.concat(rest).slice(0, 8).join(", ")
+      return "Free models: " + named.concat(rest).slice(0, 8).map(function (family) {
+        return withAccess(family, o.modelAccess[family] || o.access);
+      }).join(", ")
         + (o.models.length > 8 ? " …" : "");
     }
     var fields = [o.what, o.limits];
@@ -4590,7 +4600,10 @@ vendor-announced shutdown on 2026-05-15            </td>
           top.appendChild(code);
           if (m.tier) { line(top, "tag" + (m.tier === "frontier" ? " front" : ""), m.tier); }
           line(top, "psec", "free on " + x.rows.length + (x.rows.length === 1 ? " offer" : " offers"));
-          line(a, "snip", x.rows.map(function (o) { return o.name; }).join(" · "));
+          var access = x.rows.some(function (o) { return o.modelAccess[m.family] || o.access; });
+          line(a, "snip" + (access ? " access" : ""), x.rows.map(function (o) {
+            return withAccess(o.name, o.modelAccess[m.family] || o.access);
+          }).join(" · "));
         }));
       });
     }
@@ -4604,9 +4617,14 @@ vendor-announced shutdown on 2026-05-15            </td>
           line(top, "psec", o.section.emoji + " " + o.section.label);
           if (o.tags && o.tags.children.length) { top.appendChild(o.tags.cloneNode(true)); }
           var snip = document.createElement("span");
-          snip.className = "snip";
-          snip.appendChild(marked(terms.length ? snippet(o, terms) : o.what, terms));
+          var summary = terms.length ? snippet(o, terms) : o.what;
+          var access = o.access || Object.keys(o.modelAccess).some(function (family) {
+            return summary.indexOf(o.modelAccess[family]) !== -1;
+          });
+          snip.className = "snip" + (access ? " access" : "");
+          snip.appendChild(marked(summary, terms));
           a.appendChild(snip);
+          if (o.access && summary.indexOf(o.access) === -1) { line(a, "snip access", o.access); }
         }));
       });
     }

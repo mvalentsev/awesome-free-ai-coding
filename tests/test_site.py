@@ -518,11 +518,12 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
     start a name. The page's own functions run here."""
     script = _render([make()], tmp_path).split('id="search-config">')[1]
     names = ("fold", "squash", "written", "prepareOffer", "prepareModel",
-             "scoreOffer", "wholeOffer", "scoreModel", "spelled", "snippet")
+             "scoreOffer", "wholeOffer", "scoreModel", "spelled", "withAccess", "snippet")
     harness = "\n".join(_js_function(script, n) for n in names) + """
     function q(s) { return fold(s).split(" ").filter(Boolean); }
-    function offer(models, limits) {
-      var o = {name: "Row", models: models, what: "A gateway", limits: limits || ""};
+    function offer(models, limits, access, modelAccess, name) {
+      var o = {name: name || "Row", models: models, what: "A gateway", limits: limits || "",
+               access: access || "", modelAccess: modelAccess || {}};
       prepareOffer(o); return o;
     }
     function model(f) { var m = {family: f}; prepareModel(m); return m; }
@@ -540,7 +541,14 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
       snippet: snippet(offer(["ling-3.0-flash-fin", "nemotron-3.5-lightning", "nemotron-3-ultra"]),
                        q("nemotron 3 ultra")),
       said: snippet(offer(["gemma-4-31b"], "Free: gemini/gemma-4-31b and gemini/gemma-4-26b-moe."),
-                    q("gemma 4 26b"))
+                    q("gemma 4 26b")),
+      funded: snippet(offer(["preview", "unfunded"], "", "", {
+        preview: "requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00"
+      }), q("preview")),
+      account: snippet(offer(["preview"], "", "requires $1 one-time top-up"), q("preview")),
+      vendor: snippet(offer(["minimax-preview"], "MiniMax is a short promotion.", "", {
+        "minimax-preview": "requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00"
+      }, "LLMTR"), q("LLMTR MiniMax"))
     }));"""
     run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
     assert run.returncode == 0, run.stderr
@@ -554,6 +562,11 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
                               "ling-3.0-flash-fin"), got
     # a model the column does not carry yet: the sentence that names it
     assert got["said"] == "Free: gemini/gemma-4-31b and gemini/gemma-4-26b-moe.", got
+    assert got["funded"] == ("Free models: preview (requires $5 one-time top-up + 8% fee; "
+                             "free until 2026-10-06 23:59+03:00), unfunded"), got
+    assert got["account"] == "Free models: preview (requires $1 one-time top-up)", got
+    assert got["vendor"] == ("Free models: minimax-preview (requires $5 one-time top-up + 8% fee; "
+                             "free until 2026-10-06 23:59+03:00)"), got
 
 
 
