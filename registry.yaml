@@ -29,12 +29,14 @@ entries:
     tier: notable
     aa_model: gemma-4-26b-a4b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: inkling
     tier: notable
@@ -46,6 +48,9 @@ entries:
   - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
+  - family: qwen3.8-27b
+    tier: strong
+    aa_model: qwen3-8-27b
   api:
     base_url: https://openrouter.ai/api/v1
     key_url: https://openrouter.ai/settings/keys
@@ -528,6 +533,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: muse-spark-1.3-contributor
     tier: strong
@@ -588,6 +594,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: north-mini-code
     aa_model: north-mini-code
@@ -597,6 +604,7 @@ entries:
   - family: laguna-s-2.1
   - family: laguna-xs-2.1
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: inkling-small
     tier: notable
@@ -605,6 +613,9 @@ entries:
   - family: ling-3.0-flash-sante
   - family: nemotron-3-nano-omni
     aa_model: nemotron-3-nano-omni-30b-a3b
+  - family: qwen3.8-27b
+    tier: strong
+    aa_model: qwen3-8-27b
   api:
     base_url: https://api.kilo.ai/api/gateway
     key_url: https://app.kilo.ai/profile
@@ -1118,12 +1129,14 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
   - family: muse-glimmer-30b
     tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: gemma-4-31b
     tier: notable
@@ -1135,6 +1148,9 @@ entries:
   - family: diffusiongemma
   - family: llama-3.2-90b-vision
   - family: llama-3.2-11b-vision
+  - family: deepseek-v4.1-flash
+    tier: strong
+    aa_model: deepseek-v4-1-flash
   api:
     base_url: https://integrate.api.nvidia.com/v1
     key_url: https://build.nvidia.com
@@ -2239,6 +2255,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: gemma-4-31b
     tier: notable
@@ -2249,6 +2266,7 @@ entries:
     tier: notable
     aa_model: muse-glimmer
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: leanstral-1.5
   - family: nemotron-3-nano-30b
@@ -2581,6 +2599,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: minimax-m3
     tier: notable
@@ -2628,6 +2647,7 @@ entries:
     aa_model: mimo-v2-omni
   - family: dots-3-note
   - family: nemotron-3.5-lightning
+    tier: notable
     aa_model: nemotron-3-5-lightning
   - family: nemotron-3-nano-30b
   - family: nemotron-3-nano-omni
@@ -3344,6 +3364,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: laguna-xs-2.1
   - family: agnes-3.0-flash
@@ -5779,6 +5800,7 @@ entries:
     tier: notable
     aa_model: nvidia-nemotron-3-ultra-550b-a55b
   - family: nemotron-3-super
+    tier: notable
     aa_model: nvidia-nemotron-3-super-120b-a12b
   - family: step-3.7-flash
     tier: notable

@@ -5,8 +5,29 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-01T20:38:41Z</updated>
+  <updated>2026-10-02T16:56:39Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261002T165639Z</id>
+    <title>Free models changed: Kilo Code</title>
+    <link rel="alternate" href="https://kilo.ai"/>
+    <updated>2026-10-02T16:56:39Z</updated>
+    <summary type="text">added qwen3.8-27b · free models: nemotron-3-ultra, nemotron-3-super, north-mini-code, step-3.7-flash, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling-small, dots-3-note, ling-3.0-flash-sante, nemotron-3-nano-omni, qwen3.8-27b</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/nvidia-nim/20261002T165639Z</id>
+    <title>Free models changed: NVIDIA NIM (build.nvidia.com)</title>
+    <link rel="alternate" href="https://build.nvidia.com"/>
+    <updated>2026-10-02T16:56:39Z</updated>
+    <summary type="text">added deepseek-v4.1-flash · free models: kimi-k3, glm-5.3, glm-5.3-flash, nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, muse-glimmer-30b, nemotron-3.5-lightning, gemma-4-31b, gpt-oss-20b, nemotron-3-nano-omni, diffusiongemma, llama-3.2-90b-vision, llama-3.2-11b-vision, deepseek-v4.1-flash</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20261002T165639Z</id>
+    <title>Free models changed: OpenRouter (free models)</title>
+    <link rel="alternate" href="https://openrouter.ai"/>
+    <updated>2026-10-02T16:56:39Z</updated>
+    <summary type="text">added qwen3.8-27b · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-sante, nemotron-3-nano-omni, qwen3.8-27b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261001T203841Z</id>
     <title>Free models changed: LLMTR</title>
@@ -335,26 +356,5 @@
     <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
     <updated>2026-09-25T12:00:52Z</updated>
     <summary type="text">added gpt-oss-120b; dropped gpt-oss · free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/pollinations/20260925T120052Z</id>
-    <title>Free models changed: Pollinations.AI</title>
-    <link rel="alternate" href="https://pollinations.ai"/>
-    <updated>2026-09-25T12:00:52Z</updated>
-    <summary type="text">added gpt-oss-20b; dropped gpt-oss · free models: gpt-oss-20b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260925T120052Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-25T12:00:52Z</updated>
-    <summary type="text">added gpt-oss-120b; dropped gpt-oss · free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260925T120052Z</id>
-    <title>Free models changed: Requesty</title>
-    <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-09-25T12:00:52Z</updated>
-    <summary type="text">added gemma-4-31b; dropped gemma-4 · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, laguna-xs.2, laguna-m.1, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

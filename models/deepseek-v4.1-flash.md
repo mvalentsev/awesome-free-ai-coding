@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, verified 2026-10-01'
-description: deepseek-v4.1-flash is served free by Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, verified 2026-10-01'
+description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: deepseek-v4.1-flash
 ---
 
@@ -11,11 +11,29 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**4 rows on the list serve `deepseek-v4.1-flash` free:** Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
+**5 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## Who serves it free
+
+### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
+
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-01 · listed since 2026-10-02
+
+Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: No card; the API key needs a free NVIDIA Developer Program account verified by a code sent to your phone, and on 2026-09-25 build.nvidia.com's own list kept fourteen countries out of that step: Afghanistan, Bangladesh, Belarus, Cuba, Iran, Kazakhstan, Kyrgyzstan, North Korea, Pakistan, Russia, Syria, Tajikistan, Tanzania and Uzbekistan. The ceiling is a rate, not credits: NVIDIA's site puts it at "Up to 40 rpm" and "10,000 requests per day", adding that "Rate limits may vary by model and traffic from other users may cause throttling"; NVIDIA staff call 40 RPM "the published free-tier cap" that "is not adjustable on a per-account basis". A key can also be issued and still not answer: since June 2026 the vendor's forum has carried thread after thread of new personal keys that list the catalog and get 404 on every chat call, and NVIDIA's pinned note on account access says verification "has been challenging for both the community and NVIDIA", sending such cases to help@build.nvidia.com. Each model's page states whether its free endpoint is available or deprecated, and NVIDIA renames ids without notice, so copy them from the catalog. Read 2026-09-25
+
+</details>
+
+- Base URL: `https://integrate.api.nvidia.com/v1`
+- Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
+- Callable ids: `deepseek-ai/deepseek-v4.1-flash`
+- What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
@@ -90,6 +108,6 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

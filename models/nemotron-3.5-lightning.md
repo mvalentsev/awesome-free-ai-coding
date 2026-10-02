@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3.5-lightning free: 6 providers, limits and ids, verified 2026-10-01'
 description: nemotron-3.5-lightning is served free by opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the…
 permalink: /models/nemotron-3.5-lightning/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: nemotron-3.5-lightning
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3.5-lightning
 
 # Where nemotron-3.5-lightning is free
 
-**6 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-01 and are rechecked twice a week.
+**6 rows on the list serve `nemotron-3.5-lightning` free:** opencode, OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/nemotron-3-5-lightning), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -131,6 +131,6 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

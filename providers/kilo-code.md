@@ -3,7 +3,7 @@ layout: default
 title: 'Kilo Code free tier: limits, free models, verified 2026-10-01'
 description: 'Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside. Free models: nemotron-3-ultra, nemotron-3-super, north-mini-code…'
 permalink: /providers/kilo-code/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: Kilo Code
 ---
 
@@ -19,7 +19,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 
 ## Limits, in the vendor's words
 
@@ -61,6 +61,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-02` — Free models changed: added qwen3.8-27b
 - `2026-09-29` — Free models changed: dropped ling-3.0-flash-fin
 - `2026-09-24` — Free models changed: added dots-3-note, inkling-small, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3.5-lightning
 - `2026-08-14` — Free models changed: dropped ling-3.0-tiny
@@ -73,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

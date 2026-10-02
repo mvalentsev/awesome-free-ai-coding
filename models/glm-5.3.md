@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5.3 free: 4 providers, limits and ids, verified 2026-10-01'
 description: glm-5.3 is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and ZCode (Z.ai). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/glm-5.3/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: glm-5.3
 ---
 
@@ -105,6 +105,6 @@ Z.ai's desktop coding agent, free as an app, with five days of its GLM models fo
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

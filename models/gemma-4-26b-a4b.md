@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-26b-a4b free: 1 provider, limits and ids, verified 2026-10-01'
 description: gemma-4-26b-a4b is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemma-4-26b-a4b/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: gemma-4-26b-a4b
 ---
 
@@ -43,6 +43,6 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

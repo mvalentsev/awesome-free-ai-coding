@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-10-01'
-description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning and 5 more. 20 requests per minute on any :free id…'
+description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning and 6 more. 20 requests per minute on any :free id…'
 permalink: /providers/openrouter-free/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: OpenRouter (free models)
 ---
 
@@ -19,7 +19,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ## Free models
 
-[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/)
+[`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`gemma-4-31b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-31b/), [`gemma-4-26b-a4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemma-4-26b-a4b/), [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/), [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/), [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`inkling`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling/), [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/), [`dots-3-note`](https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/), [`nemotron-3-nano-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-nano-omni/), [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)
 
 ## Limits, in the vendor's words
 
@@ -62,6 +62,7 @@ curl -s https://openrouter.ai/api/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-02` — Free models changed: added qwen3.8-27b
 - `2026-09-29` — Free models changed: dropped ling-3.0-flash-fin
 - `2026-09-25` — Free models changed: added gemma-4-26b-a4b, gemma-4-31b; dropped gemma-4
 - `2026-09-24` — Free models changed: added dots-3-note, inkling, inkling-small, laguna-s-2.1, laguna-xs-2.1, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni, nemotron-3-super, nemotron-3.5-lightning, north-mini-code
@@ -71,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

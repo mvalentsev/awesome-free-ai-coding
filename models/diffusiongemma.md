@@ -3,7 +3,7 @@ layout: default
 title: 'diffusiongemma free: 2 providers, limits and ids, verified 2026-10-01'
 description: diffusiongemma is served free by NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/diffusiongemma/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: diffusiongemma
 ---
 
@@ -55,6 +55,6 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

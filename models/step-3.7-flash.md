@@ -3,7 +3,7 @@ layout: default
 title: 'step-3.7-flash free: 2 providers, limits and ids, verified 2026-10-01'
 description: step-3.7-flash is served free by Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/step-3.7-flash/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-02
 crumb: step-3.7-flash
 ---
 
@@ -61,6 +61,6 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ---
 
-Generated from `registry.yaml` on 2026-10-01 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

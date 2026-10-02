@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-01",
+  "generated": "2026-10-02",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -35,6 +35,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -49,6 +50,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -70,6 +72,11 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "aa_model": "qwen3-8-27b"
         }
       ],
       "api": {
@@ -823,6 +830,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -898,6 +906,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -917,6 +926,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -933,6 +943,11 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
+        },
+        {
+          "family": "qwen3.8-27b",
+          "tier": "strong",
+          "aa_model": "qwen3-8-27b"
         }
       ],
       "api": {
@@ -1915,6 +1930,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -1927,6 +1943,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -1950,6 +1967,11 @@
         },
         {
           "family": "llama-3.2-11b-vision"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "tier": "strong",
+          "aa_model": "deepseek-v4-1-flash"
         }
       ],
       "api": {
@@ -3333,6 +3355,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -3351,6 +3374,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -3946,6 +3970,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -4031,6 +4056,7 @@
         },
         {
           "family": "nemotron-3.5-lightning",
+          "tier": "notable",
           "aa_model": "nemotron-3-5-lightning"
         },
         {
@@ -5003,6 +5029,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -7778,6 +7805,7 @@
         },
         {
           "family": "nemotron-3-super",
+          "tier": "notable",
           "aa_model": "nvidia-nemotron-3-super-120b-a12b"
         },
         {
@@ -9446,6 +9474,22 @@
   ],
   "models": [
     {
+      "family": "qwen3.8-27b",
+      "rows": [
+        "openrouter-free",
+        "groq-free",
+        "kilo-code",
+        "llmtech",
+        "hetzner-inference",
+        "alibaba-model-studio",
+        "regolo",
+        "vlm-run-gateway",
+        "ovh-ai-endpoints"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
+    },
+    {
       "family": "nemotron-3-ultra",
       "rows": [
         "opencode",
@@ -9458,20 +9502,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/"
-    },
-    {
-      "family": "qwen3.8-27b",
-      "rows": [
-        "groq-free",
-        "llmtech",
-        "hetzner-inference",
-        "alibaba-model-studio",
-        "regolo",
-        "vlm-run-gateway",
-        "ovh-ai-endpoints"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/"
     },
     {
       "family": "laguna-xs-2.1",
@@ -9507,6 +9537,7 @@
         "aihubmix",
         "llmtr"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/"
     },
     {
@@ -9519,6 +9550,7 @@
         "nvidia-nim",
         "aihubmix"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/"
     },
     {
@@ -9532,6 +9564,18 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "cline",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "gemma-4-31b",
@@ -9555,17 +9599,6 @@
         "nous-portal"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
-    },
-    {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "freebuff",
-        "cline",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "glm-5.3",
