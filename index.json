@@ -15,7 +15,7 @@
       ],
       "card_required": false,
       "offering": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
-      "limits": "20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)",
+      "limits": "20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. The quota figures are published in the limits page's JavaScript data. OpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)",
       "free_part": "models",
       "models": [
         {
@@ -108,7 +108,7 @@
           "source": "https://openrouter.ai/docs/cookbook/coding-agents/codex-cli",
           "quote": "Configure Codex for OpenRouter"
         },
-        "note": "pick models with the :free suffix: every id carrying it is priced 0/0, 18 on 2026-09-25, and the lane rotates, so a new id waits two weeks for the Models column. Kept out of it: openrouter/free, the free-models router; lfm-2.5-2.6b, which LiquidAI advises against agentic coding; and nemotron-3.5-content-safety, a guardrail classifier. For Claude Code, OpenRouter's cookbook sets ANTHROPIC_BASE_URL to https://openrouter.ai/api with ANTHROPIC_API_KEY empty and a :free id as ANTHROPIC_MODEL"
+        "note": "Use IDs with the :free suffix; their input and output prices are zero. openrouter/free chooses a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b. For Claude Code, set ANTHROPIC_BASE_URL=https://openrouter.ai/api, leave ANTHROPIC_API_KEY empty and use a :free ID as ANTHROPIC_MODEL."
       },
       "data_use": {
         "trains": "opt-out",
@@ -486,7 +486,7 @@
       ],
       "card_required": false,
       "offering": "Fast inference against a free plan Groq publishes as a per-model rate table",
-      "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-27). Those ten rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. The deprecations page retired qwen/qwen3.6-27b on 2026-09-14 \"in favor of qwen/qwen3.8-27b\", noting \"This deprecation applies to free and developer-tier usage\", and groq/compound and compound-mini on 09-21. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
+      "limits": "Groq states the free plan as a table rather than one quota, in RPM / RPD / TPM / TPD: 30 / 1K / 8K / 200K on openai/gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-20b and qwen/qwen3.8-27b, 30 / 14.4K / 15K / 500K on the two meta-llama/llama-prompt-guard classifiers, 20 / 2K on the two whisper models and 10 / 100 / 1.2K / 3.6K on the two canopylabs/orpheus voices (read 2026-09-27). Those ten rows are the whole free plan, with no Llama among them — the Llama ids in the page's API samples are not on it. Groq calls the table \"a high level summary and there may be exceptions\", and points at the limits page in an account for the exact figures",
       "free_part": "models",
       "models": [
         {
@@ -752,7 +752,7 @@
           "gemma4:31b",
           "nemotron-3-ultra"
         ],
-        "note": "the three ids left are the ones a key on the $0 plan actually answered on 2026-09-02, in that order of speed; minimax-m3 was dropped from this list because the same key gets 402 Payment Required for it. Which models the starter credits reach is published nowhere, so this list is measured rather than read, and /v1/models still lists the whole catalog, starter and metered alike"
+        "note": "Starter-model eligibility is unpublished. The listed IDs answered a $0-plan key; minimax-m3 returned `402 Payment Required`. /v1/models lists the whole catalog, including models outside the starter allowance."
       },
       "data_use": {
         "trains": "no",
@@ -888,7 +888,7 @@
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent whose $0 plan routes \"Auto Free\" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside",
-      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree — 21 ids on 2026-09-24, Nemotron 3 Ultra, Step 3.7 Flash and Laguna S 2.1 among them — and it rotates within days, so an id waits two weeks before it joins the Models column. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
+      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree and the free-model lineup rotates. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
       "free_part": "models",
       "models": [
         {
@@ -971,7 +971,7 @@
         "codex": {
           "base_url": "https://api.kilo.ai/api/gateway"
         },
-        "note": "no key at all for the free ids, capped at 200 requests per hour per IP; a metered id answers 401 `You need to sign in to use this model`. Every id listed is one the catalog marks isFree and mayTrainOnYourPrompts. kilo-auto/free leads because it routes over the free models the catalog's autoRouting list names; it and openrouter/free are routers, stealth/space-bunny-alpha names no model, and lfm-2.5-2.6b is one LiquidAI advises against agentic coding, so none of them is in the Models column. Ignored: nemotron-3.5-content-safety, a guardrail classifier"
+        "note": "Free IDs need no key, with 200 requests/hour per IP; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically; stealth/space-bunny-alpha names no model. LiquidAI advises against agentic coding with lfm-2.5-2.6b."
       },
       "data_use": {
         "trains": "yes",
@@ -1398,7 +1398,7 @@
       ],
       "card_required": false,
       "offering": "Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage",
-      "limits": "GitHub folded its Copilot billing-concepts page into the plans page on or before 2026-08-20 and restated the figures there. Inline suggestions are \"limited to 2000 completions per month on Copilot Free\"; for everything agentic, \"Copilot Free and Copilot Student both have an allowance of AI credits\" — an allowance GitHub numbers for every paid plan (1,500 monthly credits on Pro, 7,000 on Pro+, 20,000 on Max) and leaves unnumbered for Free, whose row in the plans table reads only \"An allowance of GitHub AI Credits\" and \"Limited\" agents. Model choice is not offered: \"on Copilot Free and Copilot Student plans, access to models is available through auto model selection only\". The plan is still scoped to developers no employer covers — \"Copilot Free plans are only available to individual developers who don't have access to Copilot through an organization or enterprise\" — but the list of business features it withholds went with the old page and is not on this one (read 2026-08-20)",
+      "limits": "Inline suggestions are \"limited to 2000 completions per month on Copilot Free\". Chat and agent usage have \"An allowance of GitHub AI Credits\", whose amount is unpublished for Free. Model choice is automatic: \"on Copilot Free and Copilot Student plans, access to models is available through auto model selection only\". Eligibility is individual: \"Copilot Free plans are only available to individual developers who don't have access to Copilot through an organization or enterprise\". Read 2026-08-20",
       "free_part": "unnamed",
       "models": [],
       "data_use": {
@@ -1983,7 +1983,7 @@
           "nvidia/riva-translate-4b-instruct-v1.1",
           "nvidia/ising-calibration-1.5-31b"
         ],
-        "note": "model_ids are every chat model NVIDIA's free list marks \"Free Endpoint\" without a retirement date — the probe reads that list from NGC's catalog search and reports an id that joins or leaves it; ignored_ids are the free models made for another job: an embedding model, three safety classifiers, two translation models and a reader of quantum-calibration plots. The catalog also answers older ids with no page and no free mark, and those are left out; so is a free one the catalog stops answering, even while the list still marks it"
+        "note": "Use available chat endpoints marked Free Endpoint. /v1/models also lists older IDs without a free mark, so catalog membership alone does not establish free access."
       },
       "data_use": {
         "trains": "yes",
@@ -2211,7 +2211,7 @@
           "gpt-oss-20b"
         ],
         "refuses_bearer": true,
-        "note": "no key and no account on the legacy host. Fresh gpt-oss-20b calls answered anonymously on 2026-10-01; Bearer none returned 402, so LiteLLM cannot use this lane. Legacy cache keys omit headers: identical-body calls can mask that difference. The replacement gen.pollinations.ai requires personal keys spending Pollen, bought or earned from Quests"
+        "note": "The legacy endpoint needs no key or Authorization header. Clients that always send Bearer authentication, including LiteLLM, cannot use it. The replacement gen.pollinations.ai requires personal keys and Pollen credits, bought or earned from Quests."
       },
       "border": {
         "left_out": [],
@@ -2616,7 +2616,7 @@
           "source": "https://huggingface.co/docs/inference-providers/integrations/codex",
           "quote": "all Codex requests are routed through Inference Providers"
         },
-        "note": "chat-only; model ids namespaced — three examples from the router's own catalog of 138, which the run reads back; the credit spends on any of them"
+        "note": "Chat-only; use namespaced model IDs. The listed IDs are examples, and the monthly credit can be spent across routed models."
       },
       "border": {
         "left_out": [],
@@ -2700,7 +2700,7 @@
       "rank": 96,
       "archived": false,
       "access_labels": {
-        "offer": "requires $1 one-time card verification",
+        "offer": "requires $1 card verification",
         "models": {}
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/"
@@ -3000,7 +3000,7 @@
           "source": "https://vercel.com/docs/ai-gateway/coding-agents/openai-codex",
           "quote": "Point Codex at its own compatibility endpoint"
         },
-        "note": "every id listed is priced 0 in and out and draws nothing from the $5 credit; any other Free-Tier-eligible model spends it. Zero-priced ids come and go in days, so a new one waits two weeks for the Models column. liquid/d1 (a decision model for classification, routing and scoring) and spacexai/grok-stt (speech-to-text billed per second) are no chat models. The same key serves the Anthropic Messages format at https://ai-gateway.vercel.sh, which Vercel's docs give as Claude Code's ANTHROPIC_BASE_URL with ANTHROPIC_API_KEY empty"
+        "note": "The listed IDs are priced zero in and out and do not spend the $5 credit; other Free-Tier-eligible models spend it. For Claude Code, use https://ai-gateway.vercel.sh as ANTHROPIC_BASE_URL and leave ANTHROPIC_API_KEY empty."
       },
       "data_use": {
         "trains": "opt-out",
@@ -3041,7 +3041,7 @@
         "https://bazaarlink.ai/en/docs"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway to a 127-id catalog whose free page counts two models on 2026-10-01, beside the auto:free router",
+      "offering": "OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router",
       "limits": "BazaarLink prints the figures on its free page, one allowance shared across the free models: \"No credit: 10 RPM and 60 weighted units/day. With credit: 20 RPM and 120 weighted units/day.\" Where weighted limits are on, \"Longer inputs consume more daily units\"; the counter resets at 00:00 UTC, beside a \"Site-wide free cap: 15 RPM\" and \"Concurrent free requests per account: 2\". \"After a limit, paid use is possible only when fallback is enabled and the account has sufficient credit\"; everything else in the catalog is metered at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog's own id deepseek/deepseek-v4-flash-0731free:free, described as \"Rate-limited free tier.\" and listed on the free page as \"Deepseek V4 Flash 0731free\", priced $0 beside a metered deepseek-v4-flash-0731free twin at $0.20/$0.40. Read 2026-10-01",
       "free_part": "models",
       "models": [
@@ -3102,8 +3102,8 @@
         "https://api.tokenrouter.com/api/pricing"
       ],
       "card_required": false,
-      "offering": "One zero-priced id, in the default group, inside a 140-row catalog that meters the rest",
-      "limits": "the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free ids have come and gone beside it: the zero-priced Kimi K3 this entry was registered for — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered",
+      "offering": "OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models",
+      "limits": "The free route is in the default group, with no published request cap. Other catalog routes are metered, apart from an unmarked zero-priced stealth route.",
       "free_part": "models",
       "models": [
         {
@@ -3119,7 +3119,7 @@
         "model_ids": [
           "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
         ],
-        "note": "one id in the catalog is priced 0 under the free marker, and it is the whole free lane here — nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, alone on 2026-08-14 and again on 2026-09-16; z-ai/glm-5.3-free stood beside it from 2026-09-02 until it left the catalog between the 2026-09-14 and 2026-09-16 reads. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here"
+        "note": "Use the zero-priced free-model ID in the default group. PaleBlueDot AI runs tokenrouter.com; similarly named gateways on other TLDs are separate services and their keys do not work here."
       },
       "border": {
         "left_out": [
@@ -3241,7 +3241,7 @@
         "https://docs.routeway.ai/getting-started/rate-limits.md"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog",
+      "offering": "OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models",
       "limits": "Free models — every id ending :free — cost nothing and \"are rate-limited to 20 requests/minute and 200 requests/day\", the FAQ says, where the rate-limits page gives \"5 Requests Per Minute (RPM)\" and \"200 Requests Per Day (RPD)\"; past either they answer 429, and the pay-as-you-go ids beside them \"require a positive account balance\". The lane itself rotates, ids joining and leaving within days while their metered twins stay, and free models \"can be removed at any time\". A key is sign-up and Create API Key with no payment step in the FAQ, while the terms, last updated 31.05.2025 behind a bot wall this list's client cannot pass, count a payment method among what any account needs. No legal entity is named, and support is by email and Discord. Read 2026-09-27",
       "free_part": "models",
       "models": [
@@ -3284,7 +3284,7 @@
           "source": "https://docs.routeway.ai/integrations/agents/codex",
           "quote": "Use OpenAI’s Codex with Routeway by adding a custom provider"
         },
-        "note": "the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. A new id joins the Models column after two weeks in the lane"
+        "note": "Only IDs ending :free are free; the same catalog meters Claude, GPT and other paid models. Some zero-priced community fine-tunes are intended for expressive writing and roleplay."
       },
       "border": {
         "left_out": [],
@@ -3322,7 +3322,7 @@
         "https://docs.requesty.ai/integrations/claude-code"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those",
+      "offering": "OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks",
       "limits": "Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go",
       "free_part": "models",
       "models": [
@@ -3384,7 +3384,7 @@
           "nvidia/nemotron-3.5-content-safety"
         ],
         "anthropic_base_url": "https://router.requesty.ai",
-        "note": "the nine ids listed and the one ignored are every row the catalog prices at 0 that its own `retires` date has not passed — poolside/laguna-xs.2 and laguna-m.1 stayed at 0 after retiring on 2026-09-21 — and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA row is marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety, a guardrail classifier, is left out. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)"
+        "note": "Free-plan IDs are priced zero and have no expired retirement date; they carry no :free suffix. NVIDIA rows disclose training use and 30-day retention. For Claude Code, set ANTHROPIC_BASE_URL=https://router.requesty.ai, or https://router.eu.requesty.ai for EU residency."
       },
       "data_use": {
         "trains": "yes",
@@ -3427,8 +3427,8 @@
         "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/"
       ],
       "card_required": false,
-      "offering": "Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do",
-      "limits": "$0/month, no subscription. The plan's own bullet reads \"Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b\" (read 2026-10-01; Gemini 3.5 Flash stood there until 2026-08-31 and three newer Flash generations have taken its place), with unlimited Tab completions, unlimited Command requests and \"Basic weekly rate limits\". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: \"The baseline rate limits are primarily determined by available capacity and exist to prevent abuse.\" The plans overview also lists access to third-party models under Ultra; the specific model table and Individual pricing list still explicitly include them on Free.",
+      "offering": "Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models",
+      "limits": "$0/month, no subscription. The plan's own bullet reads \"Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b\", with unlimited Tab completions, unlimited Command requests and \"Basic weekly rate limits\". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: \"The baseline rate limits are primarily determined by available capacity and exist to prevent abuse.\" The plans overview also lists access to third-party models under Ultra; the specific model table and Individual pricing list still explicitly include them on Free.",
       "free_part": "models",
       "models": [
         {
@@ -3749,7 +3749,7 @@
           "aisingapore/Qwen-SEA-LION-v4.5-27B-IT",
           "aisingapore/Llama-SEA-LION-v3.5-70B-R"
         ],
-        "note": "the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page. Both ids stay out of the Models column: the page that calls the API free names no model"
+        "note": "Create a Trial API Key. No expiry or credit balance is published; the documented ceiling is 10 calls/minute. /v1/models requires the key. The free-offer page does not identify which models it serves."
       },
       "border": {
         "left_out": [],
@@ -3845,7 +3845,7 @@
       ],
       "card_required": false,
       "offering": "VS Code / JetBrains coding agent whose $0 plan includes model usage rather than only BYOK — a small daily allowance on its own Economy models, plus BYOK across 15+ providers and local models (Ollama, LM Studio) beside it",
-      "limits": "10 free interactions a day on Economy models, described as free forever, plus a one-off $1.00 welcome credit for the premium ones, cut from $1.50 between the scheduled run of 2026-09-10 and a second read that evening; the pricing page says plainly \"No credit card required\". Unlimited use of the same Economy models is the paid Professional plan at $9-10/mo. CodeGPT does not publish which models the Economy tier routes to, so this row names none",
+      "limits": "10 free interactions a day on Economy models, described as free forever, plus a one-off $1.00 welcome credit for the premium ones; the pricing page says plainly \"No credit card required\". Unlimited use of the same Economy models is the paid Professional plan at $9-10/mo. CodeGPT does not publish which models the Economy tier routes to, so this row names none",
       "free_part": "unnamed",
       "models": [],
       "border": {
@@ -4121,7 +4121,7 @@
           "source": "https://docs.aihubmix.com/en/api/Codex-CLI",
           "quote": "Connect AIHubMix in Codex CLI"
         },
-        "note": "every zero-priced -free chat id is listed or deliberately ignored, read 2026-10-01; intern-s2-free is Intern-S2-Preview 35B. Ignored: jina-ocr-v1 is OCR, gpt-live-transcribe speech-to-text, gpt-realtime-2.1 realtime voice, nemotron-3.5-content-safety-free a guardrail, qwen3.6-plus-preview-free says \"removed from the platform\". No family: lfm-2.5-2.6b-free, union-alpha-free (stealth), k2.6-code-preview-free (describes kimi-for-coding). decision-model-preview is a non-chat classifier/scorer outside the -free lane. Claude Code: ANTHROPIC_BASE_URL https://aihubmix.com"
+        "note": "The listed -free IDs are zero-priced. intern-s2-free serves Intern-S2-Preview 35B; union-alpha-free is a stealth model, and k2.6-code-preview-free describes kimi-for-coding. For Claude Code, use https://aihubmix.com as ANTHROPIC_BASE_URL."
       },
       "border": {
         "left_out": [],
@@ -4159,7 +4159,7 @@
         "https://docs.inceptionlabs.ai/get-started/rate-limits"
       ],
       "card_required": false,
-      "offering": "A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls",
+      "offering": "A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits",
       "limits": "100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit \"shared across all models rather than granted per model\", so Mercury 2.5 spends the same balance as Mercury 2. Past it the account moves to pay-as-you-go: $0.25 per 1M input and $0.75 per 1M output on Mercury 2 and Mercury Edit 2, a list $0.20/$0.75 on Mercury 2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10). The Free tier's own ceiling is per minute rather than per month — 1,000 requests, 1,000,000 input tokens and 100,000 output tokens",
       "free_part": "sum",
       "models": [],
@@ -4233,7 +4233,7 @@
           "deepseek-ai/DeepSeek-V4-Flash-0731",
           "MiniMaxAI/MiniMax-M2.7"
         ],
-        "note": "ids are the keyless catalog's at inference.dahl.global/v1/models, 2026-09-21; they rotate with the network's capacity, and the models page already lists Kimi K2.6 and GLM-5.2 as retired. A key answers 402 until tokens are moved to it from the account pool"
+        "note": "Model IDs rotate with network capacity. Allocate tokens from the account pool to each key at /account; a key without allocated tokens answers `402`."
       },
       "border": {
         "left_out": [],
@@ -4272,7 +4272,7 @@
         "https://docs.poolside.ai/api/overview"
       ],
       "card_required": false,
-      "offering": "Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway",
+      "offering": "Free self-serve developer access to Poolside's own Laguna coding models",
       "limits": "Poolside publishes none. Its quickstart offers \"fast, free developer access\" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the docs site states a quota, a rate limit or a duration. Treat it as unquantified rather than as generous",
       "free_part": "unnamed",
       "models": [],
@@ -4285,7 +4285,7 @@
           "poolside/laguna-s-2.1",
           "poolside/laguna-xs-2.1"
         ],
-        "note": "the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split for Platform keys anywhere, so this row claims no free models and names none in its column. The key is created by signing in to Poolside Platform, whose dashboard sits behind a Cloudflare check no probe can read"
+        "note": "Sign in to Poolside Platform to create a key. Public docs do not distinguish free and paid Platform models."
       },
       "data_use": {
         "trains": "opt-out",
@@ -4450,7 +4450,7 @@
       ],
       "card_required": false,
       "offering": "Keyless OpenAI-compatible chat endpoint — no signup, no key, no account",
-      "limits": "The offer is a sentence — \"we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom\" — and the inference page draws the line between its two text hostnames: \"hermes.ai.unturf.com : public, 3 requests per second per IP\" and \"qwen.ai.unturf.com : API key required; anonymous traffic gets 403\". Hermes is the lane, and \"A hostname whose model is down gets a 502 instead of silently answering as whatever else is up\": it has answered 502 since 2026-09-26, while qwen took anonymous calls on 2026-09-27 against its own page, which this list does not count as an offer. The served id is not the one the page's own examples call, and the vendor says so — \"See our Model Discovery docs to query the current model IDs being hosted\" — so the id lives in api.model_ids and the Free models column stays empty. Read 2026-09-27",
+      "limits": "The offer is a sentence — \"we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom\" — and the inference page draws the line between its two text hostnames: \"hermes.ai.unturf.com : public, 3 requests per second per IP\" and \"qwen.ai.unturf.com : API key required; anonymous traffic gets 403\". Hermes is the lane, and \"A hostname whose model is down gets a 502 instead of silently answering as whatever else is up\": it has answered 502 since 2026-09-26, while qwen took anonymous calls on 2026-09-27 against its own page, which this list does not count as an offer. The served id is not the one the page's own examples call, and the vendor says so — \"See our Model Discovery docs to query the current model IDs being hosted\" — query Model Discovery for current callable IDs instead of relying on static examples. Read 2026-09-27",
       "free_part": "models",
       "models": [],
       "api": {
@@ -4463,7 +4463,7 @@
         "no_family_ids": [
           "turboderp/Qwen3.8-27B-exl3"
         ],
-        "note": "anonymous: the catalog and chat/completions both answer with no Authorization header at all. One id is served at a time and it rotates — \"Hostnames are routing labels\", and hermes serves a Qwen build — so treat the id as this week's, not the offer. It stays out of the Models column: a family would name this week's model, and the catalog serving none of the row's families fails the row at the next rotation"
+        "note": "Send requests without an Authorization header. One model is served at a time and it rotates. Hostnames are routing labels: hermes serves a Qwen build. Query the catalog for the current callable ID."
       },
       "border": {
         "left_out": [],
@@ -4613,7 +4613,7 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours",
-      "limits": "\"Freebuff is supported by text ads.\" The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), 25 anywhere else, where Freebuff runs in limited mode, and 20 \"on a VPN or proxy\". 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose \"Anonymous provider retains prompts\", is listed as \"Unlimited hrs Space Bunny Alpha\". The table moves from week to week; now \"Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan\". \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\", and DeepSeek V4.1 Flash is marked \"May use data for AI training\". \"GPT-6.1 Sol is free in the US\" and included with a paid plan elsewhere, \"one session a day for every account\"; it has not yet met the two-week bar. Read 2026-10-01",
+      "limits": "\"Freebuff is supported by text ads.\" The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), 25 anywhere else, where Freebuff runs in limited mode, and 20 \"on a VPN or proxy\". 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose \"Anonymous provider retains prompts\", is listed as \"Unlimited hrs Space Bunny Alpha\". The table moves from week to week; now \"Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan\". \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\", and DeepSeek V4.1 Flash is marked \"May use data for AI training\". \"GPT-6.1 Sol is free in the US\" and included with a paid plan elsewhere, \"one session a day for every account\". Read 2026-10-01",
       "free_part": "models",
       "models": [
         {
@@ -4756,7 +4756,7 @@
           "meganova-ai/manta-flash-1.0",
           "meganova-ai/manta-pro-1.0"
         ],
-        "note": "Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are routers, kept out of Models. Other ignored rows are speech, embeddings, reranking, search and roleplay fine-tunes. Free quota is consumed first; paid continuation requires enabling the charge switch. An agent using LiteLLM 1.103's Responses bridge can get `Message content must be normalized` from Mistral. Its streamed tool calls can finish as `stop`, so clients may skip execution. Manta routers can answer tool requests as text."
+        "note": "Free quota is used first; paid continuation requires enabling the charge switch. Mistral tool execution failed in the tested OpenCode setup, and its LiteLLM-to-Responses path failed in Codex CLI. Manta routers may return tool requests as plain text."
       },
       "border": {
         "served": [
@@ -4972,7 +4972,7 @@
         "offer": "",
         "models": {
           "mistral-small-3.2": "",
-          "glm-4.7-flash": "requires $1 one-time top-up"
+          "glm-4.7-flash": "requires $1 top-up"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/"
@@ -5064,7 +5064,7 @@
           "openai/gpt-oss-safeguard-20b",
           "evren/mimo-v2.6-pro-tr"
         ],
-        "note": "Most listed IDs work before funding, but new accounts have a reduced shared free-model allowance for their first 24 hours; respect the API's Retry-After. MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is metered. EVREN rows require your own EVREN key; the embedding and Safeguard classifier are left out. Qwen3.8 27B waits until October 5."
+        "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Use the listed free IDs; Nemotron Ultra's -262k variant is metered."
       },
       "data_use": {
         "trains": "yes",
@@ -5102,8 +5102,8 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "motif-3": "",
-          "ling-3.1-flash": "free until 2026-10-13 19:00+03:00",
-          "minimax-m3.1-flash-preview": "requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00"
+          "ling-3.1-flash": "until 2026-10-13",
+          "minimax-m3.1-flash-preview": "requires $5 top-up + 8% fee; until 2026-10-06"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -5313,7 +5313,7 @@
         "no_family_ids": [
           "typhoon-v2.5-30b-a3b-instruct"
         ],
-        "note": "the one chat id in the keyless catalog on 2026-09-05; the other five rows are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime, typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai, so it is a Qwen-class coder that also reads Thai; it stays out of the Models column because the FAQ the probe reads names no model"
+        "note": "Use typhoon-v2.5-30b-a3b-instruct for chat; it is a Thai fine-tune of Qwen3-30B-A3B. Other catalog routes handle OCR or speech."
       },
       "data_use": {
         "trains": "yes",
@@ -5360,7 +5360,7 @@
       ],
       "card_required": true,
       "offering": "IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill",
-      "limits": "\"300,000 tokens per month\", \"20 CUH per month\" of compute and \"2 inference requests per second\", on \"A free plan with limited capacity\" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says \"For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity\" and \"Lite plans do not incur charges\". Which foundation models the 300,000 tokens reach is on a separate docs page the probe does not read, which is why the Free models column is empty",
+      "limits": "\"300,000 tokens per month\", \"20 CUH per month\" of compute and \"2 inference requests per second\", on \"A free plan with limited capacity\" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says \"For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity\" and \"Lite plans do not incur charges\". The foundation models covered by the allowance are listed on a separate documentation page",
       "free_part": "models",
       "models": [],
       "api": {
@@ -5688,7 +5688,7 @@
       ],
       "card_required": false,
       "offering": "Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK",
-      "limits": "\"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota\", and \"Free models are available to any user with a Cline account\" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over \"on a rotating, limited-time basis\" — ids change within a day, so a model joins the Models column only after two weeks in the lane. The free-models page states two limits outright: \"Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI\", and \"Free model usage may be used to help improve model performance and quality\". Read 2026-09-14",
+      "limits": "\"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota\", and \"Free models are available to any user with a Cline account\" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over \"on a rotating, limited-time basis\". The free-models page states two limits outright: \"Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI\", and \"Free model usage may be used to help improve model performance and quality\". Read 2026-09-14",
       "free_part": "models",
       "models": [
         {
@@ -5719,7 +5719,7 @@
             "source": "https://github.com/cline/cline/blob/3af36a5c63530a5d1d2ac594d30dd732c6e4752a/sdk/packages/llms/src/catalog/cline-recommended.generated.ts"
           }
         ],
-        "note": "stealth/space-bunny-alpha is a stealth codename that names no model, so it stays out of the Models column"
+        "note": "stealth/space-bunny-alpha is a stealth codename; its underlying model is undisclosed."
       },
       "data_use": {
         "trains": "yes",
@@ -5851,7 +5851,7 @@
         "model_ids": [
           "qwen3.8-flash"
         ],
-        "note": "qwen3.8-flash is the one id the Free plan serves, \"the recommended model for coding, text, and tool use\" in the docs; qwen3.8-27b, the id this row carried until 2026-09-16, is still accepted from clients already configured with it, and yolo is a paid-only route whose server-side target can change. /v1/models and /v1/usage answer 401 without a key, and the free plan's context is 128K where Pro's is 256K"
+        "note": "qwen3.8-flash is the Free plan's model; qwen3.8-27b remains accepted for existing client configurations. The yolo route is paid-only and its target can change. /v1/models and /v1/usage require a key. Free context is 128K tokens, versus Pro's 256K."
       },
       "data_use": {
         "trains": "no",
@@ -6283,7 +6283,7 @@
         "https://inference-api.nousresearch.com/v1/models"
       ],
       "card_required": false,
-      "offering": "Nous Research's inference portal behind its Hermes Agent: a $0 Free plan limited to the models it prices at zero — seven qualifying :free chat ids on 2026-10-01 — on an OpenAI-compatible API",
+      "offering": "Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent",
       "limits": "The portal's plan table reads \"Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes\", and the Hermes Agent guide has you \"create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes\" — \"The :free tag is what keeps it on the no-cost plan\". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices seven qualifying :free chat rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-10-01",
       "free_part": "models",
       "models": [
@@ -6326,7 +6326,7 @@
           "meituan/longcat-2.0:free",
           "meituan/longcat-2.5-preview:free"
         ],
-        "note": "every qualifying :free chat id the keyless catalog prices at 0 on 2026-10-01. Solar Pro 4 is absent. Step 3.7 Flash remains: current paid and free rows have no expiration date, superseding the morning October 1 expiry. LongCat 2.5 Preview waits until October 13 for the Models column"
+        "note": "Select a :free model and use your Nous Portal key; paid variants are outside the free plan."
       },
       "data_use": {
         "trains": "opt-out",
@@ -6430,7 +6430,7 @@
           "mistral-Nemo-Instruct-2407",
           "minimax-m2.7"
         ],
-        "note": "get a free token at dash.llm7.io; current docs require it. The three ids remain turbo with usage_based_only false on 2026-10-01. Their anonymous completions were observed on 2026-09-29, but current authenticated access was not called without a personal token. They stay out of the Models column: the limits probe names no model and the catalog publishes balance-accounting prices. The former anonymous allowance is no longer documented"
+        "note": "Requires a free dashboard token. The listed IDs are marked turbo with usage_based_only false in the catalog; their authenticated availability has not been independently confirmed."
       },
       "border": {
         "left_out": [],
@@ -6628,7 +6628,7 @@
           "minimax-m3"
         ],
         "anthropic_base_url": "https://tokenhub.tencentmaas.com",
-        "note": "ids are the models page's model column (调用参数), read 2026-09-17; /v1/models answers 401 without a key, so none is read off a catalog. The Claude Code guide sets ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com with ANTHROPIC_MODEL=hy3. The four stay out of the Models column: the free-package page grants 所有语言模型, every language model, and names none of them"
+        "note": "Use the IDs in the models page's 调用参数 column; /v1/models requires a key. For Claude Code, set ANTHROPIC_BASE_URL=https://tokenhub.tencentmaas.com and ANTHROPIC_MODEL=hy3."
       },
       "data_use": {
         "trains": "no",
@@ -6742,7 +6742,7 @@
         "openai_compatible": true,
         "model_ids": [],
         "no_ids": "its public catalog names models by display name, and /v1/models, which holds the ids a request carries, answers only a key",
-        "note": "the quick-start calls it a drop-in OpenAI-API compatible endpoint and uses a placeholder model id; the catalog's names are the models page's, and the coding quick-start connects Roo Code and Kilo Code with a context window set to the model picked. /v1/chat/completions answers 401 without a key. The Models column stays empty: the docs page the probe reads names no model, and the trial covers every catalog row alike"
+        "note": "Choose an exact ID from the model catalog. The coding quickstart covers Roo Code and Kilo Code; set the context window for the selected model. Chat completions require an API key."
       },
       "data_use": {
         "trains": "no",
@@ -6789,8 +6789,8 @@
         "https://opper.ai/google/gemma-4-31b-it.md"
       ],
       "card_required": false,
-      "offering": "EU-hosted gateway whose signup guide explicitly advertises one Gemini Gemma free route before adding a card; the current model directory contradicts that promise",
-      "limits": "The signup guide and llms.txt still say \"gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route.\" The 2026-10-01 directory lists no free routes and omits that id; the Gemma page lists premium routes from other providers. The API catalog retains the Gemini id but states no price or availability. This exact-route contradiction is unresolved: its advertised free access is retained, with no authenticated completion to confirm it. The former Gemini Gemma 26B, Laguna S/XS and Greenference Qwen routes are omitted. No free quota or rate is published. Paid usage adds \"a 3% fee on credit purchases\". Opper Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01",
+      "offering": "EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability",
+      "limits": "The signup guide and llms.txt still say \"gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route.\" The 2026-10-01 directory lists no free routes and omits that id; the Gemma page lists premium routes from other providers. The API catalog retains the Gemini id but states no price or availability. Free access on the advertised route remains unconfirmed. No free quota or rate is published. Paid usage adds \"a 3% fee on credit purchases\". Opper Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01",
       "free_part": "models",
       "models": [
         {
@@ -6813,7 +6813,7 @@
           "source": "https://docs.opper.ai/integrations/coding-agents/codex",
           "quote": "Run OpenAI's Codex CLI on any model in the Opper catalog"
         },
-        "note": "only the exact Gemini Gemma route still explicitly advertised free before a card in signup and llms.txt. Its catalog id remains, but the October 1 directory omits it and lists no free routes; availability is unresolved. Other formerly free ids are omitted. The Claude Code guide sets ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat, the client appending /v1/messages"
+        "note": "The signup guide advertises gemini/gemma-4-31b as free before adding a card, but the model directory omits that route; availability is uncertain. For Claude Code, use ANTHROPIC_BASE_URL=https://api.opper.ai/v3/compat; the client appends /v1/messages."
       },
       "data_use": {
         "trains": "no",
@@ -6880,7 +6880,7 @@
           "source": "https://moark.com/docs/integrations/Development-Tools/Codex",
           "quote": "模力方舟提供对 Codex 的原生支持"
         },
-        "note": "the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL with deepseek-v4-flash-0731 in every model slot; the id is checked against the keyless catalog at api.moark.com/v1/models. It stays out of the Models column: the FAQ names no model, and the featured models the free token reaches are listed only on the client-rendered model square"
+        "note": "Use the free experience access token. For Claude Code, set ANTHROPIC_BASE_URL=https://moark.com/anthropic; its guide uses deepseek-v4-flash-0731 in every model slot. The featured models available to the free token are listed in the model square."
       },
       "data_use": {
         "trains": "no",
@@ -8359,7 +8359,7 @@
       ],
       "card_required": false,
       "offering": "Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day",
-      "limits": "CodingPlan \"offers three tiers\" and \"Quota is measured on a rolling 5-hour window\": Lite, \"30 days\" on a \"Free claim, 1,000 slots/day\"; a 7-day Pro Trial on \"100 slots/day at 10:00\" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model, left out of the Models column. Read 2026-09-27",
+      "limits": "CodingPlan \"offers three tiers\" and \"Quota is measured on a rolling 5-hour window\": Lite, \"30 days\" on a \"Free claim, 1,000 slots/day\"; a 7-day Pro Trial on \"100 slots/day at 10:00\" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model. Read 2026-09-27",
       "free_part": "models",
       "models": [
         {

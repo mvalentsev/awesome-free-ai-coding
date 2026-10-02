@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'glm-4.7-flash free: 3 providers, limits and ids, verified 2026-10-01'
-description: 'glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Access conditions: MegaNova (requires $1 one-time top-up). Each one''s limits in the vendor''s words, the ids to call and the day a live probe last confirmed it.'
+description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/glm-4.7-flash/
 last_modified_at: 2026-10-01
 crumb: glm-4.7-flash
@@ -11,7 +11,7 @@ crumb: glm-4.7-flash
 
 # Where glm-4.7-flash is free
 
-**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Access conditions: MegaNova (requires $1 one-time top-up). A live probe confirmed each one on 2026-10-01 and reads them again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
+**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,7 +23,13 @@ crumb: glm-4.7-flash
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
+
+</details>
+
 - Base URL: `https://aihubmix.com/v1`
 - Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
@@ -45,11 +51,17 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 
 ### [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/)
 
-🧭 Aggregators (one key, many providers) · requires $1 one-time top-up · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · verified 2026-10-01 · listed since 2026-10-01
+🧭 Aggregators (one key, many providers) · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · verified 2026-10-01 · listed since 2026-10-01
 
 OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: Tier 1 is "Free registration — no credit card required", with "Free Access Models (<100B), including Manta Mini". The Free Model Quota table gives a Tier 1 account 50 requests a day ("50 RPD (Requests Per Day)") on each of Mistral-Small-3.2-24B, Manta Mini and Manta Flash, and on several roleplay fine-tunes, an embedding model and a reranker — "Total Free Quota per day 550", with a "daily reset at 00:00 UTC" — and 0 on GLM-4.7-Flash and Manta Pro until a "$1 deposit" moves the account to Tier 2. The terms say "Free modules are for evaluation and interactive use only and are not designed for production or unattended batch workloads". The operator is Nebula Nova Inc., a Delaware corporation. Read 2026-09-16
+
+</details>
+
 - Base URL: `https://api.meganova.ai/v1`
 - Key: `MEGANOVA_API_KEY` — get one at <https://www.meganova.ai/api-keys>
 - Callable ids: `zai-org/GLM-4.7-Flash`

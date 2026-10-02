@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-10-01'
-description: 'OpenAI-compatible gateway to a 127-id catalog whose free page counts two models on 2026-10-01, beside the auto:free router. Free models: qwen3.7-flash, deepseek-v4-flash. BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 60 weighted…'
+description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: qwen3.7-flash, deepseek-v4-flash. BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 60 weighted units/day. With credit…'
 permalink: /providers/bazaarlink/
 last_modified_at: 2026-10-01
 crumb: BazaarLink
@@ -15,7 +15,7 @@ crumb: BazaarLink
 
 ## What you get
 
-OpenAI-compatible gateway to a 127-id catalog whose free page counts two models on 2026-10-01, beside the auto:free router
+OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
 
 ## Free models
 

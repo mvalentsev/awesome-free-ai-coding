@@ -34,7 +34,7 @@ The vendor names no country it keeps the offer from ([source](https://inference.
 - Base URL: `https://inference.dahl.global/v1`
 - Key: `DAHL_INFERENCE_API_KEY` — get one at <https://inference.dahl.global/account>
 - Callable ids: `zai-org/GLM-5.3-Flash`, `deepseek-ai/DeepSeek-V4-Flash-0731`, `MiniMaxAI/MiniMax-M2.7`
-- Note: ids are the keyless catalog's at inference.dahl.global/v1/models, 2026-09-21; they rotate with the network's capacity, and the models page already lists Kimi K2.6 and GLM-5.2 as retired. A key answers 402 until tokens are moved to it from the account pool
+- Note: Model IDs rotate with network capacity. Allocate tokens from the account pool to each key at /account; a key without allocated tokens answers `402`.
 
 Try it from your terminal with your key in `DAHL_INFERENCE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

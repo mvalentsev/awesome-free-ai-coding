@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Poolside Platform free tier: limits, free models, verified 2026-10-01'
-description: Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway. Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with…
+description: Free self-serve developer access to Poolside's own Laguna coding models. Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no…
 permalink: /providers/poolside/
 last_modified_at: 2026-10-01
 crumb: Poolside Platform
@@ -15,7 +15,7 @@ crumb: Poolside Platform
 
 ## What you get
 
-Free self-serve developer access to the Laguna coding models, direct from the vendor whose models this list already carries second-hand through OpenRouter and Kilo Gateway
+Free self-serve developer access to Poolside's own Laguna coding models
 
 ## Free models
 
@@ -38,7 +38,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Base URL: `https://inference.poolside.ai/v1`
 - Key: `POOLSIDE_API_KEY` — get one at <https://platform.poolside.ai>
 - Callable ids: `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1`
-- Note: the two ids come from docs.poolside.ai/api/overview, a different page from the one the probe reads — the vendor documents no free-versus-paid split for Platform keys anywhere, so this row claims no free models and names none in its column. The key is created by signing in to Poolside Platform, whose dashboard sits behind a Cloudflare check no probe can read
+- Note: Sign in to Poolside Platform to create a key. Public docs do not distinguish free and paid Platform models.
 
 Try it from your terminal with your key in `POOLSIDE_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

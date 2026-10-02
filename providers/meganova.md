@@ -19,7 +19,7 @@ OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus add
 
 ## Free models
 
-`mistral-small-3.2`, [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 one-time top-up)
+`mistral-small-3.2`, [`glm-4.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7-flash/) (requires $1 top-up)
 
 ## Limits, in the vendor's words
 
@@ -36,7 +36,7 @@ Offered in the 187 countries and territories its list names, not in Hong Kong, V
 - Callable ids: `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `meganova-ai/manta-mini-1.0`, `meganova-ai/manta-flash-1.0`, `zai-org/GLM-4.7-Flash`, `meganova-ai/manta-pro-1.0`
 - `zai-org/GLM-4.7-Flash`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
 - `meganova-ai/manta-pro-1.0`: requires $1 one-time top-up ([conditions](https://docs.meganova.ai/tiers/tier-2.md))
-- Note: Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are routers, kept out of Models. Other ignored rows are speech, embeddings, reranking, search and roleplay fine-tunes. Free quota is consumed first; paid continuation requires enabling the charge switch. An agent using LiteLLM 1.103's Responses bridge can get `Message content must be normalized` from Mistral. Its streamed tool calls can finish as `stop`, so clients may skip execution. Manta routers can answer tool requests as text.
+- Note: Free quota is used first; paid continuation requires enabling the charge switch. Mistral tool execution failed in the tested OpenCode setup, and its LiteLLM-to-Responses path failed in Codex CLI. Manta routers may return tool requests as plain text.
 
 Try it from your terminal with your key in `MEGANOVA_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

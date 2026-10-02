@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'qwen3.5-4b free: 1 provider, limits and ids, verified 2026-10-01'
-description: qwen3.5-4b is served free by Mixlayer. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+description: qwen3.5-4b is served free by Mixlayer. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/qwen3.5-4b/
 last_modified_at: 2026-10-01
 crumb: qwen3.5-4b
@@ -11,7 +11,7 @@ crumb: qwen3.5-4b
 
 # Where qwen3.5-4b is free
 
-**One row on the list serves `qwen3.5-4b` free:** Mixlayer. It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-4b), below its strong bar.
+**One row on the list serves `qwen3.5-4b` free:** Mixlayer. It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-4b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

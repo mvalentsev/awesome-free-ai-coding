@@ -38,7 +38,7 @@ What you send is not used to train models. In the vendor's words: “Prompt or r
 - Base URL: `https://ollama.com/v1`
 - Key: `OLLAMA_CLOUD_API_KEY` — get one at <https://ollama.com/settings/keys>
 - Callable ids: `gpt-oss:120b`, `gemma4:31b`, `nemotron-3-ultra`
-- Note: the three ids left are the ones a key on the $0 plan actually answered on 2026-09-02, in that order of speed; minimax-m3 was dropped from this list because the same key gets 402 Payment Required for it. Which models the starter credits reach is published nowhere, so this list is measured rather than read, and /v1/models still lists the whole catalog, starter and metered alike
+- Note: Starter-model eligibility is unpublished. The listed IDs answered a $0-plan key; minimax-m3 returned `402 Payment Required`. /v1/models lists the whole catalog, including models outside the starter allowance.
 
 Try it from your terminal with your key in `OLLAMA_CLOUD_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

@@ -23,7 +23,7 @@ __all__ = ["check", "check_repository", "registry_form_problems", "main"]
 
 # The most a row's prose may run to, in characters: a README cell and a provider
 # page, not a research log.
-PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "api.notice": 500,
+PROSE_LIMITS = {"offering": 300, "limits": 1200, "api.note": 600, "client_lane.note": 600, "api.notice": 500,
                 "delisted.reason": 300}
 
 _GITHUB_HOSTS = {"github.com", "raw.githubusercontent.com"}
@@ -36,12 +36,19 @@ FOR_CAUSE = "rejected for cause"
 # slash, a bang or a question mark. "a < b" is left alone.
 _TAG = re.compile(r"<[A-Za-z/!?][^<>]*>")
 
+# These describe this repository's maintenance, not a vendor's access conditions.
+_MAINTENANCE = re.compile(
+    r"\bModels column\b|\btwo[- ]week bar\b|\b(?:model_ids|ignored_ids)\b|"
+    r"\bsuperseding the morning\b|\bbetween the scheduled run\b|"
+    r"\bthe reason this row is here\b|\bthis list already carries\b", re.I)
+
 
 def _prose(e: Entry) -> list[tuple[str, str]]:
     """A row's prose field by field, "" where the row has none: what the pages
     print as the row wrote it, so each rule on prose reads the same fields."""
     return [("offering", e.offering), ("limits", e.limits), ("name", e.name),
             ("api.note", e.api.note if e.api else ""),
+            ("client_lane.note", e.client_lane.note if e.client_lane else ""),
             ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
             ("delisted.reason", e.delisted.reason if e.delisted else "")]
 
@@ -266,6 +273,12 @@ def check(root: Path, today: date | None = None) -> list[str]:
                 problems.append(
                     f"registry: {e.id} {field} is {len(text)} characters, over {limit} — "
                     f"keep what a reader needs to use the offer, and leave its history to history.jsonl")
+            if (not is_archived(e, today) and field in
+                    {"offering", "limits", "api.note", "client_lane.note"}
+                    and (match := _MAINTENANCE.search(text))):
+                problems.append(
+                    f"registry: {e.id} {field} contains maintenance diary {match.group()!r} — "
+                    "keep access and connection advice here; record review decisions in the commit log")
         # A notice records a problem that has started; one dated after today is a
         # typo, and it would hold a refusal for longer than NOTICE_HOLD_DAYS.
         if e.api and e.api.notice and e.api.notice.since > today:

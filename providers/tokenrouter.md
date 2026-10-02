@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-10-01'
-description: 'One zero-priced id, in the default group, inside a 140-row catalog that meters the rest. Free models: nemotron-3-nano-omni. the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free…'
+description: 'OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models. Free models: nemotron-3-nano-omni. The free route is in the default group, with no published request cap. Other catalog routes are metered, apart from an unmarked zero-priced stealth route.'
 permalink: /providers/tokenrouter/
 last_modified_at: 2026-10-01
 crumb: TokenRouter (PaleBlueDot)
@@ -15,7 +15,7 @@ crumb: TokenRouter (PaleBlueDot)
 
 ## What you get
 
-One zero-priced id, in the default group, inside a 140-row catalog that meters the rest
+OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models
 
 ## Free models
 
@@ -23,7 +23,7 @@ One zero-priced id, in the default group, inside a 140-row catalog that meters t
 
 ## Limits, in the vendor's words
 
-the free id sits in the default group and publishes no request cap; of the other 139 rows on 2026-09-16, 138 are metered and stealth/ox-alpha is priced 0 without the free marker the lane is read by. Two free ids have come and gone beside it: the zero-priced Kimi K3 this entry was registered for — moonshotai/kimi-k3-free had left the catalog by 2026-08-14 and only the paid moonshotai/kimi-k3 remains — and z-ai/glm-5.3-free, which stood beside Nemotron from 2026-09-02 and had left by 2026-09-16, while z-ai/glm-5.3, glm-5.3-fast and glm-5.3-flash stayed metered
+The free route is in the default group, with no published request cap. Other catalog routes are metered, apart from an unmarked zero-priced stealth route.
 
 ## Where it is offered
 
@@ -34,7 +34,7 @@ Not offered in Russia, Iran, Belarus, Syria, Cuba and North Korea ([source](http
 - Base URL: `https://api.tokenrouter.com/v1`
 - Key: `TOKENROUTER_API_KEY` — get one at <https://www.tokenrouter.com/console/token>
 - Callable ids: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`
-- Note: one id in the catalog is priced 0 under the free marker, and it is the whole free lane here — nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free, alone on 2026-08-14 and again on 2026-09-16; z-ai/glm-5.3-free stood beside it from 2026-09-02 until it left the catalog between the 2026-09-14 and 2026-09-16 reads. PaleBlueDot AI runs this gateway on tokenrouter.com; same-name gateways on other TLDs are separate services and their keys do not work here
+- Note: Use the zero-priced free-model ID in the default group. PaleBlueDot AI runs tokenrouter.com; similarly named gateways on other TLDs are separate services and their keys do not work here.
 
 Try it from your terminal with your key in `TOKENROUTER_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

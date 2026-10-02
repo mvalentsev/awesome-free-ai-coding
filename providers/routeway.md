@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-10-01'
-description: 'OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. Free models — every id ending :free — cost nothing and "are rate-limited to 20…'
+description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. Free models — every id ending :free — cost nothing and "are rate-limited to 20 requests/minute and 200 requests/day", the FAQ says, where the…'
 permalink: /providers/routeway/
 last_modified_at: 2026-10-01
 crumb: Routeway
@@ -15,7 +15,7 @@ crumb: Routeway
 
 ## What you get
 
-OpenAI-compatible gateway whose :free lane rotates — three zero-priced chat models on 2026-09-23 — beside 269 metered rows in the same catalog
+OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models
 
 ## Free models
 
@@ -35,7 +35,7 @@ The vendor names no country it keeps the offer from ([source](https://routeway.a
 - Key: `ROUTEWAY_API_KEY` — get one at <https://routeway.ai/dashboard/keys>
 - Codex CLI: [`configs/codex/routeway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/routeway.config.toml) — copy it to `~/.codex/`, then `codex -p routeway`; set up on the lane by the vendor's own page, <https://docs.routeway.ai/integrations/agents/codex>: "Use OpenAI’s Codex with Routeway by adding a custom provider"
 - Callable ids: `deepseek-v4-flash:free`, `muse-glimmer-30b:free`, `minimax-m2.7:free`
-- Note: the three :free ids are every zero-priced row in the catalog on 2026-09-23 but six, all marked available; the six, left out, are Gemma 4 26B community finetunes — meromero, chimerax, darksoul, luminous, moonlight and musica — the catalog describes for expressive writing and roleplay. Only the :free suffix is free, and the same catalog meters Claude and GPT at list rates. A new id joins the Models column after two weeks in the lane
+- Note: Only IDs ending :free are free; the same catalog meters Claude, GPT and other paid models. Some zero-priced community fine-tunes are intended for expressive writing and roleplay.
 
 Try it from your terminal with your key in `ROUTEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

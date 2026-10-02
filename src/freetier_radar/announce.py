@@ -254,7 +254,7 @@ def build_digest(entries: list[Entry], events: list[Event], today) -> tuple[str,
     for cat_title, rows in sections(active):
         out += [f"### {cat_title}", "", "| Offer | Free models | Card | Verified |", "|---|---|---|---|"]
         for e in rows:
-            fams = ", ".join(f"`{f}`" + _access_flag(e, f) for f in live_families(e)) or "—"
+            fams = ", ".join(f"`{f}`" + _access_flag(e, f, compact=False) for f in live_families(e)) or "—"
             if e.access:
                 fams += f"; {access_words(e.access)}"
             out.append(f"| [{e.name}]({provider_page_url(e.id)}) | {fams} | "

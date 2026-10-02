@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'gemma-4-26b-a4b free: 1 provider, limits and ids, verified 2026-10-01'
-description: gemma-4-26b-a4b is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+description: gemma-4-26b-a4b is served free by OpenRouter (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemma-4-26b-a4b/
 last_modified_at: 2026-10-01
 crumb: gemma-4-26b-a4b
@@ -11,7 +11,7 @@ crumb: gemma-4-26b-a4b
 
 # Where gemma-4-26b-a4b is free
 
-**One row on the list serves `gemma-4-26b-a4b` free:** OpenRouter (free models). It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-26b-a4b), below its strong bar.
+**One row on the list serves `gemma-4-26b-a4b` free:** OpenRouter (free models). It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemma-4-26b-a4b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,7 +23,13 @@ crumb: gemma-4-26b-a4b
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
-- Limits, in the vendor's words: 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. Those four figures are in the page only as JS constants — FREE_MODEL_RATE_LIMIT_RPM, FREE_MODEL_NO_CREDITS_RPD, FREE_MODEL_HAS_CREDITS_RPD and FREE_MODEL_CREDITS_THRESHOLD — and the table that should show them serves empty cells to anything reading the HTML. OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", and its limits page warns that a negative credit balance can produce errors "including for free models" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: 20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. The quota figures are published in the limits page's JavaScript data. OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", and its limits page warns that a negative credit balance can produce errors "including for free models" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)
+
+</details>
+
 - Base URL: `https://openrouter.ai/api/v1`
 - Key: `OPENROUTER_API_KEY` — get one at <https://openrouter.ai/settings/keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://openrouter.ai/api`

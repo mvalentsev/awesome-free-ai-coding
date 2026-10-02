@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'qwen3.5-9b free: 1 provider, limits and ids, verified 2026-10-01'
-description: qwen3.5-9b is served free by Regolo AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+description: qwen3.5-9b is served free by Regolo AI. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/qwen3.5-9b/
 last_modified_at: 2026-10-01
 crumb: qwen3.5-9b
@@ -11,7 +11,7 @@ crumb: qwen3.5-9b
 
 # Where qwen3.5-9b is free
 
-**One row on the list serves `qwen3.5-9b` free:** Regolo AI. It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week.
+**One row on the list serves `qwen3.5-9b` free:** Regolo AI. It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,7 +23,13 @@ crumb: qwen3.5-9b
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: "Start your 30-day free trial ... No credit card required, no commitment": the trial card names "1 month duration" ("Full access for 30 days, then choose a plan"), "1M tokens per day" and "Stricter rate limits" with "Fair usage throttling applies", against "All Core Models", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it "a lightweight prompt-complexity classifier designed for LLM routing pipelines", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)
+
+</details>
+
 - Base URL: `https://api.regolo.ai/v1`
 - Key: `REGOLO_API_KEY` — get one at <https://dashboard.regolo.ai>
 - Callable ids: `qwen3.5-9b`

@@ -34,7 +34,7 @@ The vendor names no country it keeps the offer from ([source](https://github.com
 - Base URL: `https://api.llm7.io/v1`
 - Key: `LLM7_API_KEY` — get one at <https://dash.llm7.io>
 - Callable ids: `codestral-latest`, `mistral-Nemo-Instruct-2407`, `minimax-m2.7`
-- Note: get a free token at dash.llm7.io; current docs require it. The three ids remain turbo with usage_based_only false on 2026-10-01. Their anonymous completions were observed on 2026-09-29, but current authenticated access was not called without a personal token. They stay out of the Models column: the limits probe names no model and the catalog publishes balance-accounting prices. The former anonymous allowance is no longer documented
+- Note: Requires a free dashboard token. The listed IDs are marked turbo with usage_based_only false in the catalog; their authenticated availability has not been independently confirmed.
 
 Try it from your terminal with your key in `LLM7_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

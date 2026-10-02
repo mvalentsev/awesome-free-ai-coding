@@ -339,7 +339,7 @@ between 2026-09-10 and 09-25 by the vendor's own snapshots of the lane, and no
 run said so. `client_lane.model_ids` holds them, checked against the lane in
 both directions as `api.model_ids` is against a catalog and dated for the Models
 column the same way; `client_lane.no_family_ids` keeps a stealth codename out of
-the column, with the reason in `client_lane.note`. Nothing a reader pastes is
+the column, with the review reason in the commit message. Nothing a reader pastes is
 written from it, and validation refuses it beside an `api` block — one lane,
 one list — or on a probe that cannot tell the lane from the rest of what it
 reads: a page, or a catalog with neither `probe.lane` nor prices read.
@@ -444,8 +444,8 @@ model the page the probe reads never names, since a family has to be named where
 the run reads it again — SEA-LION announces its free API on a page that names no
 model — and a lane that serves one model at a time and rotates it, where a family
 would fail the row at the next rotation; each is
-listed in `api.no_family_ids`, with the reason in `api.note` (`client_lane`'s own
-two fields on a lane no API serves). Dated promotions follow the rule above;
+listed in `api.no_family_ids`, with the review reason in the commit message
+(`client_lane.no_family_ids` on a lane no API serves). Dated promotions follow the rule above;
 an already expired promotion never joins. Until 2026-09-24 a family that
 left the lane failed the row, so the column was kept to a few names per lane, and
 OpenRouter was missing from the list for `north-mini-code`, which it had served
@@ -551,8 +551,9 @@ lane that grows is visible without anyone re-reading the catalog. Both are notes
 for a human and never repairs: an id is an exact string, and whether a new one
 belongs in the configs is a judgement about what the row is for. Record the ones
 you have read and left out — an image generator, a row whose own description says
-it was removed, a lane the row does not track — in `api.ignored_ids` with the
-reason in `api.note`, and they stop being reported. A `page-keywords` row whose
+it was removed, a lane the row does not track — in `api.ignored_ids`, with the
+review reason in the commit message, and they stop being reported. Keep `api.note`
+for advice a reader needs to connect. A `page-keywords` row whose
 vendor keeps its ids in a keyless catalog at another url names it in
 `probe.catalog`, and its ids are checked there for the dead direction; a
 catalog that stops answering is reported as `stale-ids` too, since a check that
@@ -1049,7 +1050,11 @@ decide something. What changed and when belongs to `history.jsonl` and the commi
 log, not to the row: by 2026-09-16 the median `limits` had grown from 87
 characters to 813, most of it dated lane counts, and the README to 260 KB.
 `freetier-check` holds `offering` to 300 characters, `limits` to 1,200 and
-`api.note` to 600. The README prints none of `limits`: since 2026-09-21 a row on it
+`api.note` to 600. It also rejects maintenance-diary phrases in live public prose,
+including Models-column waiting rules and registry field names. Full payment,
+fee and deadline details are shown with callable IDs; list labels use a shorter
+form from the same access metadata. Multi-model providers' shared limits fold
+under Provider-wide limits on model pages. The README prints none of `limits`: since 2026-09-21 a row on it
 is `offering`, the models and the date, and the quota is on the row's own page and
 the site, one click from the date.
 

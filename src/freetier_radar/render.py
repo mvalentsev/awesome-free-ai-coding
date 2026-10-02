@@ -479,8 +479,8 @@ def _card_words(e: Entry) -> str:
     return "card required" if e.card_required else "no card"
 
 
-def _access_flag(e: Entry, family: str | None = None) -> str:
-    words = access_words(family_access(e, family) if family else e.access)
+def _access_flag(e: Entry, family: str | None = None, *, compact: bool = True) -> str:
+    words = access_words(family_access(e, family) if family else e.access, compact=compact)
     return f" ({words})" if words else ""
 
 
@@ -1210,8 +1210,9 @@ def build_index(entries: list[Entry], today: date,
         "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today),
-             **({"access_labels": {"offer": access_words(e.access),
-                                   "models": {f: access_words(family_access(e, f)) for f in live_families(e)}}}
+             **({"access_labels": {"offer": access_words(e.access, compact=True),
+                                   "models": {f: access_words(family_access(e, f), compact=True)
+                                              for f in live_families(e)}}}
                 if e.access or ((lane := e.api or e.client_lane) and lane.model_access) else {}),
              **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
@@ -1318,7 +1319,7 @@ def _site_row(e: Entry) -> dict:
     """
     families = [m for m in e.models if m.superseded_by is None]
     chips = [{"family": m.family, "tier": m.tier.value if m.tier else "",
-              "access": access_words(family_access(e, m.family))} for m in families]
+              "access": access_words(family_access(e, m.family), compact=True)} for m in families]
     api = e.api
     return {
         "id": e.id,
@@ -1331,7 +1332,7 @@ def _site_row(e: Entry) -> dict:
         "more_models": chips[SITE_MODELS:],
         "verified": e.last_verified.isoformat(),
         "card": e.card_required,
-        "access": access_words(e.access),
+        "access": access_words(e.access, compact=True),
         "provisional": e.provisional,
         "trains": e.data_use.trains if _trains(e) else "",
         "no_key": bool(api and api.base_url and api.key_kind == "none"),
@@ -1535,7 +1536,7 @@ def _llms_line(e: Entry) -> str:
             parts.append(f"Codex CLI profile at {REPO_URL}/blob/main/{codex_profile_path(e)}")
     fams = live_families(e)
     if fams:
-        parts.append("free models: " + ", ".join(f"`{f}`" + _access_flag(e, f) for f in fams))
+        parts.append("free models: " + ", ".join(f"`{f}`" + _access_flag(e, f, compact=False) for f in fams))
     if e.provisional:
         parts.append(_provisional_words(e))
     return f"- [{e.name}]({provider_page_url(e.id)}): " + "; ".join(parts)
@@ -1585,7 +1586,7 @@ def build_llms_txt(entries: list[Entry], today: date, pages: set[str] | None = N
             lines.append(f"- [{family}]({model_page_url(family)}): "
                          + (f"{mark.tier.value}; " if mark is not None else "")
                          + ", ".join(e.name + (f" ({_card_words(e)})" if e.card_required else "")
-                                     + _access_flag(e, family)
+                                     + _access_flag(e, family, compact=False)
                                      for e in rows))
     if gone:
         lines += ["", "## Archived", ""]
@@ -1628,7 +1629,7 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
             options["apiKey"] = "{env:" + env_var(e.id) + "}"
         # The ids the row lists and nothing else: a family names a model, not
         # the string a request carries (see _litellm_ids).
-        models = {mid: {"name": mid + (f" ({words})" if (words := access_words(id_access(e, mid))) else "")}
+        models = {mid: {"name": mid + (f" ({words})" if (words := access_words(id_access(e, mid), compact=True)) else "")}
                   for mid in e.api.model_ids}
         providers[e.id] = {
             "npm": "@ai-sdk/openai-compatible",
@@ -2560,10 +2561,13 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     last confirmed it and since when it has carried the model, the limits in
     the vendor's words and how to call this model there. The evidence and the
     history stay on the row's own page, one click from its name."""
+    lane = lane_ids(e)
+    families = live_families(e)
+    ids = [i for i in (lane.model_ids if lane else []) if id_family(families, i) == family]
     flags = [CATEGORY_TITLES[e.category]]
     if not requires_payment(e, family):
         flags.append(_card_words(e))
-    if words := access_words(family_access(e, family)):
+    if not (e.api and e.api.base_url and ids) and (words := access_words(family_access(e, family))):
         flags.append(words)
     if _border_flag(e):
         flags.append(_border_flag(e))
@@ -2577,13 +2581,15 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     if e.api and e.api.notice:
         # First, as on the row's page: before a reader copies the base URL.
         out += [_notice_quote(e.api.notice), ""]
-    out.append(f"- Limits, in the vendor's words: {e.limits}" if e.limits
-               else "- The vendor publishes no figure for this tier.")
+    limits = (f"- Limits, in the vendor's words: {e.limits}" if e.limits
+              else "- The vendor publishes no figure for this tier.")
+    if e.limits and len(families) > 1 and len(e.limits) > README_LIMITS_COLLAPSE:
+        out += ['<details markdown="block">', "<summary>Provider-wide limits</summary>", "", limits, "", "</details>", ""]
+    else:
+        out.append(limits)
     # This model's ids and no other's — an id is the most specific of the row's
     # families that names it, as the probe reads it — then the row page's own
     # connection lines.
-    lane = lane_ids(e)
-    ids = [i for i in (lane.model_ids if lane else []) if id_family(live_families(e), i) == family]
     out += _connect_lines(e, ids)
     if e.api and e.api.base_url and not ids:
         out.append("- Callable ids: the row lists none for this model")
@@ -2643,14 +2649,11 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                      f"; {series(anonymous)} {'answers' if len(anonymous) == 1 else 'answer'} "
                      "with no account at all")
         asks += "."
-        conditioned = [e.name + _access_flag(e, family) for e in rows if family_access(e, family)]
-        if conditioned:
-            asks += " Access conditions: " + "; ".join(conditioned) + "."
         served = ("**One row on the list serves" if n == 1 else f"**{n} rows on the list serve")
         summary = [f"{served} `{family}` free:** {series(names)}.", asks,
-                   (f"A live probe confirmed it on {floor} and reads it again {_schedule()}."
-                    if n == 1 else f"A live probe confirmed each one on {floor} and reads them "
-                                   f"again {_schedule()}.")]
+                   (f"The published offer was checked on {floor} and is rechecked {_schedule()}."
+                    if n == 1 else f"The published offers were checked on {floor} and are "
+                                   f"rechecked {_schedule()}.")]
         mark = _measured(family, rows)
         if mark is not None:
             board = (f"https://artificialanalysis.ai/models/{mark.aa_model}" if mark.aa_model
@@ -2666,7 +2669,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                  f"verified {floor}")
         description = clip(f"{family} is served free by {series(names)}. {asks} Each "
                            "one's limits in the vendor's words, the ids to call and the "
-                           "day a live probe last confirmed it.", DESCRIPTION_ROOM)
+                           "day the published offer was last checked.", DESCRIPTION_ROOM)
         body = [f"# Where {family} is free", "", " ".join(summary), "", nav, "",
                 "## Who serves it free", ""]
         for e in rows:

@@ -38,7 +38,7 @@ What you send is not used to train models. In the vendor's words: “Your prompt
 - Base URL: `https://yolo-auto.com/v1`
 - Key: `YOLO_AUTO_API_KEY` — get one at <https://yolo-auto.com/app>
 - Callable ids: `qwen3.8-flash`
-- Note: qwen3.8-flash is the one id the Free plan serves, "the recommended model for coding, text, and tool use" in the docs; qwen3.8-27b, the id this row carried until 2026-09-16, is still accepted from clients already configured with it, and yolo is a paid-only route whose server-side target can change. /v1/models and /v1/usage answer 401 without a key, and the free plan's context is 128K where Pro's is 256K
+- Note: qwen3.8-flash is the Free plan's model; qwen3.8-27b remains accepted for existing client configurations. The yolo route is paid-only and its target can change. /v1/models and /v1/usage require a key. Free context is 128K tokens, versus Pro's 256K.
 
 Try it from your terminal with your key in `YOLO_AUTO_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

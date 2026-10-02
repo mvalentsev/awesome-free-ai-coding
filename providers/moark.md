@@ -40,7 +40,7 @@ What you send is not used to train models. In the vendor's words: “对于您�
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://moark.com/anthropic`
 - Codex CLI: [`configs/codex/moark.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/moark.config.toml) — copy it to `~/.codex/`, then `codex -p moark`; Codex's base is `https://moark.com/v1`; set up on the lane by the vendor's own page, <https://moark.com/docs/integrations/Development-Tools/Codex>: "模力方舟提供对 Codex 的原生支持"
 - Callable ids: `deepseek-v4-flash-0731`
-- Note: the FAQ gives the OpenAI base as https://api.moark.com/v1 and the Anthropic one as https://moark.com/anthropic, which the Claude Code guide sets as ANTHROPIC_BASE_URL with deepseek-v4-flash-0731 in every model slot; the id is checked against the keyless catalog at api.moark.com/v1/models. It stays out of the Models column: the FAQ names no model, and the featured models the free token reaches are listed only on the client-rendered model square
+- Note: Use the free experience access token. For Claude Code, set ANTHROPIC_BASE_URL=https://moark.com/anthropic; its guide uses deepseek-v4-flash-0731 in every model slot. The featured models available to the free token are listed in the model square.
 
 Try it from your terminal with your key in `MOARK_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

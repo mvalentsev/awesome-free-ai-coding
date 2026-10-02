@@ -106,6 +106,32 @@ def test_a_live_row_says_what_its_free_part_is(tmp_path: Path):
     assert not any("free_part" in p for p in problems), problems
 
 
+def test_maintenance_diary_is_rejected_in_live_public_copy(tmp_path: Path):
+    for field in ("offering", "limits", "api.note", "client_lane.note"):
+        row = {**ENTRY}
+        text = "A new model waits two weeks for the Models column."
+        if "." in field:
+            lane, _ = field.split(".")
+            row[lane] = {"model_ids": ["x-model"], "note": text}
+            if lane == "client_lane":
+                row["probe"] = {"type": "api-models", "endpoint": "https://x.ai/models", "lane": "free"}
+        else:
+            row[field] = text
+        problems = check(build(tmp_path, entries=[row], watched=[WATCHED]), TODAY)
+        assert any(field in p and "maintenance diary" in p for p in problems), problems
+        row["retired_on"] = "2026-08-01"
+        problems = check(build(tmp_path, entries=[row], watched=[WATCHED]), TODAY)
+        assert not any("maintenance diary" in p for p in problems), problems
+
+
+def test_connection_errors_and_vendor_evidence_remain_allowed(tmp_path: Path):
+    row = {**ENTRY, "limits": "The quota is published in the page's plan payload.",
+           "api": {"model_ids": ["x-model"],
+                   "note": "Use the free suffix. Tool calls may fail in this client; HTTP 429 means wait."}}
+    problems = check(build(tmp_path, entries=[row], watched=[WATCHED]), TODAY)
+    assert not any("maintenance diary" in p for p in problems), problems
+
+
 def test_a_live_row_says_where_its_offer_reaches(tmp_path: Path):
     """A rank argued from the readers a border leaves out needs every row's
     border, so a live row without one is a problem, and so is a border read on
@@ -174,6 +200,8 @@ def test_every_prose_limit_holds_its_field(tmp_path: Path, field: str):
     entry = {"offering": {**ENTRY, "offering": text},
              "limits": {**ENTRY, "limits": text},
              "api.note": {**ENTRY, "api": {**api, "note": text}},
+             "client_lane.note": {**ENTRY, "client_lane": {"model_ids": ["x-model"], "note": text},
+                                  "probe": {"type": "api-models", "endpoint": "https://x.ai/models", "lane": "free"}},
              "api.notice": {**ENTRY, "api": {**api, "notice": {"since": "2026-08-14", "text": text}}},
              "delisted.reason": {**ENTRY, "delisted": {"on": "2026-08-10", "reason": text}}}[field]
     problems = check(build(tmp_path, entries=[entry]), TODAY)

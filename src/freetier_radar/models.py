@@ -1293,16 +1293,18 @@ def family_access(entry: Entry, family: str) -> FreeAccess | None:
         -(a.until.timestamp() if a and a.until else float("inf"))))
 
 
-def access_words(access: FreeAccess | None) -> str:
+def access_words(access: FreeAccess | None, *, compact: bool = False) -> str:
     if access is None:
         return ""
     words = []
     if access.initial_payment_usd:
-        words.append(f"requires ${access.initial_payment_usd:g} one-time {access.payment_kind}")
+        once = "" if compact else "one-time "
+        words.append(f"requires ${access.initial_payment_usd:g} {once}{access.payment_kind}")
         if access.topup_fee_percent:
             words[-1] += f" + {access.topup_fee_percent:g}% fee"
     if access.until:
-        words.append(f"free until {access.until.isoformat(sep=' ', timespec='minutes')}")
+        words.append(f"until {access.until.date().isoformat()}" if compact else
+                     f"free until {access.until.isoformat(sep=' ', timespec='minutes')}")
     return "; ".join(words)
 
 

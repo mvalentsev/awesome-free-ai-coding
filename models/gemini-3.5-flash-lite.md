@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'gemini-3.5-flash-lite free: 1 provider, limits and ids, verified 2026-10-01'
-description: gemini-3.5-flash-lite is served free by Google AI Studio (Gemini API). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+description: gemini-3.5-flash-lite is served free by Google AI Studio (Gemini API). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemini-3.5-flash-lite/
 last_modified_at: 2026-10-01
 crumb: gemini-3.5-flash-lite
@@ -11,7 +11,7 @@ crumb: gemini-3.5-flash-lite
 
 # Where gemini-3.5-flash-lite is free
 
-**One row on the list serves `gemini-3.5-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-5-flash-lite), below its strong bar.
+**One row on the list serves `gemini-3.5-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-5-flash-lite), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,7 +23,13 @@ crumb: gemini-3.5-flash-lite
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: Google prices the free tier per model: its pricing page reads "Free of charge" for input and output on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software engineering", whose paid tier is "$0.75 through December 31, 2026" per 1M input and "$3.75 through December 31, 2026" output, doubling from 2027, and on 3.7, 3.6 and 3.5 Flash, 3.5 and 3.1 Flash-Lite, 3 Flash Preview and Gemma 4 — context caching free on the Flash models, "Not available" on the Flash-Lite ones — with "Not available" throughout for Gemini 3.1 Pro Preview and Omni Flash. The 2.5 models keep a free column, but since 2026-09-18 the changelog says Google is "limiting access to the 2.5 models to users who have actively used them in the past": "For any new projects, use our latest models: 3.5 Flash-Lite or 3.8 Flash". What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. Per-model RPM/TPM/RPD figures sit behind a sign-in at aistudio.google.com/rate-limit; the public rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial". Read 2026-09-27
+
+</details>
+
 - Base URL: `https://generativelanguage.googleapis.com/v1beta/openai/`
 - Key: `GOOGLE_AI_STUDIO_API_KEY` — get one at <https://aistudio.google.com/apikey>
 - Callable ids: `gemini-3.5-flash-lite`

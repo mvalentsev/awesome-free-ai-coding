@@ -34,7 +34,7 @@ The vendor names no country it keeps the offer from ([source](https://pollinatio
 - Base URL: `https://text.pollinations.ai/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `gpt-oss-20b`
-- Note: no key and no account on the legacy host. Fresh gpt-oss-20b calls answered anonymously on 2026-10-01; Bearer none returned 402, so LiteLLM cannot use this lane. Legacy cache keys omit headers: identical-body calls can mask that difference. The replacement gen.pollinations.ai requires personal keys spending Pollen, bought or earned from Quests
+- Note: The legacy endpoint needs no key or Authorization header. Clients that always send Bearer authentication, including LiteLLM, cannot use it. The replacement gen.pollinations.ai requires personal keys and Pollen credits, bought or earned from Quests.
 
 Try it from your terminal — the lane takes no key:
 

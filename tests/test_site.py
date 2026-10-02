@@ -558,12 +558,11 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
     assert got["letter"] > 0 and got["inside"] == 0, got
     assert got["row"] > 0 and got["waiting"] > 0 and got["other"] == 0 and got["terms"] > 0, got
     # why the row came up: the model the query spells, first — not a "3" in another name
-    assert got["snippet"] == ("Free models: nemotron-3-ultra, nemotron-3.5-lightning, "
-                              "ling-3.0-flash-fin"), got
+    assert got["snippet"] == "Free models: nemotron-3-ultra", got
     # a model the column does not carry yet: the sentence that names it
     assert got["said"] == "Free: gemini/gemma-4-31b and gemini/gemma-4-26b-moe.", got
     assert got["funded"] == ("Free models: preview (requires $5 one-time top-up + 8% fee; "
-                             "free until 2026-10-06 23:59+03:00), unfunded"), got
+                             "free until 2026-10-06 23:59+03:00)"), got
     assert got["account"] == "Free models: preview (requires $1 one-time top-up)", got
     assert got["vendor"] == ("Free models: minimax-preview (requires $5 one-time top-up + 8% fee; "
                              "free until 2026-10-06 23:59+03:00)"), got

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-10-01'
-description: A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls. 100 million tokens on every new account, no…
+description: A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits. 100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit "shared across…
 permalink: /providers/inception-labs/
 last_modified_at: 2026-10-01
 crumb: Inception Labs (Mercury)
@@ -15,7 +15,7 @@ crumb: Inception Labs (Mercury)
 
 ## What you get
 
-A signup grant on the Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle and code edits; the last is the reason this row is here, since an FIM endpoint is what an IDE completion plugin actually calls
+A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits
 
 ## Free models
 

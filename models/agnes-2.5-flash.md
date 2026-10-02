@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'agnes-2.5-flash free: 2 providers, limits and ids, verified 2026-10-01'
-description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/agnes-2.5-flash/
 last_modified_at: 2026-10-01
 crumb: agnes-2.5-flash
@@ -11,7 +11,7 @@ crumb: agnes-2.5-flash
 
 # Where agnes-2.5-flash is free
 
-**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. A live probe confirmed each one on 2026-10-01 and reads them again twice a week.
+**2 rows on the list serve `agnes-2.5-flash` free:** LLMTR and Agnes AI. None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -23,7 +23,13 @@ crumb: agnes-2.5-flash
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a free chat model), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because "Poolside serves these models free on its own inference API", with "no extra token allowance to track". Paid use is prepaid credit: "An 8% platform margin is added on top of the requested top-up amount", and "The platform margin is not added to model prices; it is applied only once, at top-up". The privacy page says prompt and response bodies are not written permanently to its usage and billing database ("kalıcı olarak yazılmaz"). Ling 3.1 Flash is a short promotion: "13 Ekim 2026 19:00'a kadar ucretsiz" (free until October 13, 19:00). MiniMax M3.1 Flash Preview requires a top-up: "6 Ekim 2026 23:59'a kadar ücretsiz, en az bir kez bakiye yüklemiş hesaplara açık" (until October 6, 23:59, only for accounts that have topped up). Read 2026-10-01
+
+</details>
+
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
 - Callable ids: `agnes/agnes-2.5-flash`
@@ -35,7 +41,13 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash and agnes-3.0-flash list at $0.05 in / $0.15 out per 1M and are charged $0 — "Cached input, input tokens, and output tokens are currently free for agnes-2.5-flash and agnes-3.0-flash" — while agnes-2.5-pro bills $0.45/$0.90 and the pro beta $0.10/$0.30. The page is candid that the zero is a current price rather than a contract: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". The ceiling is a rate, not a quota: a key that is neither on a paid Token Plan nor enterprise-verified gets 30 requests a minute allowed and 10 effective on text models since 2026-09-23, when "effective text model RPM (requests per minute) limits for free and enterprise users have been reduced by 50%", and no daily figure is published. Image models are free at every resolution too. The terms are governed by Singapore law. The docs live on wiki.agnes-ai.com. Read 2026-09-27
+
+</details>
+
 - Base URL: `https://apihub.agnes-ai.com/v1`
 - Key: `AGNES_AI_API_KEY` — get one at <https://platform.agnes-ai.com>
 - Callable ids: `agnes-2.5-flash`

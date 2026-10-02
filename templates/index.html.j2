@@ -1084,15 +1084,12 @@ tr.flash { animation: flash 1.6s ease-out; }
     var said = whole !== null && !spelt.length && [o.what, o.limits].some(function (text) {
       return fold(text).search(whole) !== -1;
     });
-    var named = said ? [] : spelt.concat(o.models.filter(function (m) {
-      return spelt.indexOf(m) === -1 && names(m);
-    }));
+    var named = said ? [] : (spelt.length ? spelt : o.models.filter(names));
     if (named.length) {
-      var rest = o.models.filter(function (m) { return named.indexOf(m) === -1; });
-      return "Free models: " + named.concat(rest).slice(0, 8).map(function (family) {
+      return "Free models: " + named.slice(0, 3).map(function (family) {
         return withAccess(family, o.modelAccess[family] || o.access);
       }).join(", ")
-        + (o.models.length > 8 ? " …" : "");
+        + (named.length > 3 ? " · +" + (named.length - 3) + " more" : "");
     }
     var fields = [o.what, o.limits];
     for (var f = 0; f < fields.length; f++) {
@@ -1199,10 +1196,11 @@ tr.flash { animation: flash 1.6s ease-out; }
           top.appendChild(code);
           if (m.tier) { line(top, "tag" + (m.tier === "frontier" ? " front" : ""), m.tier); }
           line(top, "psec", "free on " + x.rows.length + (x.rows.length === 1 ? " offer" : " offers"));
-          var access = x.rows.some(function (o) { return o.modelAccess[m.family] || o.access; });
-          line(a, "snip" + (access ? " access" : ""), x.rows.map(function (o) {
+          var shown = x.rows.slice(0, 3);
+          var access = shown.some(function (o) { return o.modelAccess[m.family] || o.access; });
+          line(a, "snip" + (access ? " access" : ""), shown.map(function (o) {
             return withAccess(o.name, o.modelAccess[m.family] || o.access);
-          }).join(" · "));
+          }).join(" · ") + (x.rows.length > 3 ? " · +" + (x.rows.length - 3) + " more" : ""));
         }));
       });
     }

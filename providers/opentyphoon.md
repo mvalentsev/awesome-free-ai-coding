@@ -38,7 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Base URL: `https://api.opentyphoon.ai/v1`
 - Key: `OPENTYPHOON_API_KEY` — get one at <https://playground.opentyphoon.ai/api-key>
 - Callable ids: `typhoon-v2.5-30b-a3b-instruct`
-- Note: the one chat id in the keyless catalog on 2026-09-05; the other five rows are OCR (typhoon-ocr, typhoon-ocr-v1.5, typhoon-ocr-preview) and speech (typhoon-asr-realtime, typhoon-isan-asr-realtime). Typhoon 2.5 is a Qwen3-30B-A3B fine-tune for Thai, so it is a Qwen-class coder that also reads Thai; it stays out of the Models column because the FAQ the probe reads names no model
+- Note: Use typhoon-v2.5-30b-a3b-instruct for chat; it is a Thai fine-tune of Qwen3-30B-A3B. Other catalog routes handle OCR or speech.
 
 Try it from your terminal with your key in `OPENTYPHOON_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

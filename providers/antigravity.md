@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-10-01'
-description: 'Google''s agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do. Free models: gemini-3.1-pro…'
+description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. $0/month, no subscription. The plan''s own bullet reads…'
 permalink: /providers/antigravity/
 last_modified_at: 2026-10-01
 crumb: Google Antigravity
@@ -15,7 +15,7 @@ crumb: Google Antigravity
 
 ## What you get
 
-Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Gemini CLI and the Code Assist IDE extensions stopped serving free, AI Pro and Ultra users on 2026-06-18. The $0 Individual plan carries the same agent models the paid ones do
+Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models
 
 ## Free models
 
@@ -23,7 +23,7 @@ Google's agent-first IDE and CLI, and where the Gemini CLI free tier went — Ge
 
 ## Limits, in the vendor's words
 
-$0/month, no subscription. The plan's own bullet reads "Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b" (read 2026-10-01; Gemini 3.5 Flash stood there until 2026-08-31 and three newer Flash generations have taken its place), with unlimited Tab completions, unlimited Command requests and "Basic weekly rate limits". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: "The baseline rate limits are primarily determined by available capacity and exist to prevent abuse." The plans overview also lists access to third-party models under Ultra; the specific model table and Individual pricing list still explicitly include them on Free.
+$0/month, no subscription. The plan's own bullet reads "Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b", with unlimited Tab completions, unlimited Command requests and "Basic weekly rate limits". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: "The baseline rate limits are primarily determined by available capacity and exist to prevent abuse." The plans overview also lists access to third-party models under Ultra; the specific model table and Individual pricing list still explicitly include them on Free.
 
 ## Where it is offered
 

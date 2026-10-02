@@ -122,6 +122,42 @@ def test_short_promotion_gets_a_discoverable_model_page_immediately():
     assert "preview" in model_pages([entry()], [], DAY)
 
 
+def test_model_conditions_appear_once_next_to_the_callable_id():
+    from freetier_radar.render import build_model_page
+    row = entry(limits="Steady has a daily allowance shared with other free models. "
+                      "Preview is available only after an initial payment, until the published deadline. "
+                      "Paid usage draws from a prepaid balance. Requests above the free allowance "
+                      "require paid fallback to be enabled; creating extra keys does not increase the allowance.")
+    page = build_model_page("preview", [row], [], DAY)
+    body = page.split("{% raw %}", 1)[1]
+    assert body.count("$5") == 1
+    assert body.count("2026-10-06 23:59+03:00") == 1
+    assert "`preview`: requires $5" in body
+    assert "<summary>Provider-wide limits</summary>" in body
+    assert row.limits in body
+
+
+def test_compact_list_labels_keep_payment_and_fee_with_full_details_on_the_page():
+    from freetier_radar.models import access_words
+    row = entry(api={"base_url": "https://vendor.example/v1", "model_ids": ["steady", "preview"],
+                     "model_access": {"preview": {**PAID, "topup_fee_percent": 8}}})
+    rendered = next(r for s in build_site_context([row], DAY)["sections"] for r in s["rows"])
+    label = rendered["models"][1]["access"]
+    assert label == "requires $5 top-up + 8% fee; until 2026-10-06"
+    assert build_index([row], DAY)["entries"][0]["access_labels"]["models"]["preview"] == label
+    assert access_words(row.api.model_access["preview"]) == (
+        "requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00")
+
+
+def test_payment_is_disclosed_even_when_the_family_has_no_callable_id():
+    from freetier_radar.render import build_model_page
+    row = entry(access={"initial_payment_usd": 5, "source": PAID["source"]},
+                api={"base_url": "https://vendor.example/v1", "model_ids": ["steady"]})
+    page = build_model_page("preview", [row], [], DAY)
+    assert "requires $5 one-time top-up" in page
+    assert "Callable ids: the row lists none for this model" in page
+
+
 def test_bars_reports_an_unlisted_dated_promotion_without_waiting_two_weeks():
     from freetier_radar.bars import waiting
     row = entry(models=[{"family": "steady"}])
@@ -242,9 +278,11 @@ def test_model_name_list_and_monthly_digest_disclose_the_same_conditions():
     from freetier_radar.render import build_llms_txt
     from freetier_radar.announce import build_digest
     row = entry()
-    model_line = next(x for x in build_llms_txt([row], DAY).splitlines() if x.startswith('- [preview]'))
+    llms = build_llms_txt([row], DAY)
+    provider_line = next(x for x in llms.splitlines() if x.startswith('- [Gateway]'))
+    model_line = next(x for x in llms.splitlines() if x.startswith('- [preview]'))
     _, digest = build_digest([row], [], DAY)
-    for text in (model_line, digest):
+    for text in (provider_line, model_line, digest):
         assert '$5' in text and '2026-10-06 23:59+03:00' in text
 
 

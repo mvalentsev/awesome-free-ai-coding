@@ -23,7 +23,7 @@ Open-source terminal coding agent from AtomGit, the code host run by CSDN and th
 
 ## Limits, in the vendor's words
 
-CodingPlan "offers three tiers" and "Quota is measured on a rolling 5-hour window": Lite, "30 days" on a "Free claim, 1,000 slots/day"; a 7-day Pro Trial on "100 slots/day at 10:00" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model, left out of the Models column. Read 2026-09-27
+CodingPlan "offers three tiers" and "Quota is measured on a rolling 5-hour window": Lite, "30 days" on a "Free claim, 1,000 slots/day"; a 7-day Pro Trial on "100 slots/day at 10:00" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model. Read 2026-09-27
 
 ## Where it is offered
 

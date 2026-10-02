@@ -23,7 +23,7 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-"300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per second", on "A free plan with limited capacity" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says "For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity" and "Lite plans do not incur charges". Which foundation models the 300,000 tokens reach is on a separate docs page the probe does not read, which is why the Free models column is empty
+"300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per second", on "A free plan with limited capacity" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says "For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity" and "Lite plans do not incur charges". The foundation models covered by the allowance are listed on a separate documentation page
 
 ## Where it is offered
 

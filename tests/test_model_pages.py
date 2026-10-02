@@ -174,7 +174,7 @@ def test_a_model_page_opens_with_the_answer():
     assert "# Where qwen3.8-27b is free" in page
     assert ("**3 rows on the list serve `qwen3.8-27b` free:** Groq, Open Lane and Some Agent. "
             "Some Agent asks for a card on file, the rest for none; Open Lane answers with no "
-            "account at all. A live probe confirmed each one on 2026-07-19 and reads them again "
+            "account at all. The published offers were checked on 2026-07-19 and are rechecked "
             "twice a week. It measures **strong**: within 25 points of the top of the "
             "[Artificial Analysis Intelligence Index]"
             "(https://artificialanalysis.ai/models/qwen3-8-27b).") in page
@@ -192,6 +192,7 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     assert groq_block.startswith(f"({PAGES_URL}/providers/groq-free/)")
     assert "🔌 LLM APIs with free tier\u00a0· no card\u00a0· verified 2026-07-19" in groq_block
     assert "Fast inference on a free plan" in groq_block
+    assert "Provider-wide limits" not in groq_block
     assert ("- Limits, in the vendor's words: 30 requests a minute and 1,000 a day on "
             "qwen/qwen3.8-27b") in groq_block
     assert ("- Base URL: `https://api.groq.com/openai/v1`\n"

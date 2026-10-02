@@ -34,7 +34,7 @@ The vendor names no country it keeps the offer from ([source](https://sea-lion.a
 - Base URL: `https://api.sea-lion.ai/v1`
 - Key: `SEA_LION_API_KEY` — get one at <https://playground.sea-lion.ai/key-manager>
 - Callable ids: `aisingapore/Qwen-SEA-LION-v4.5-27B-IT`, `aisingapore/Llama-SEA-LION-v3.5-70B-R`
-- Note: the key manager calls it a Trial API Key but publishes no expiry and no credit balance — the documented ceiling is the 10 calls/min rate limit. /v1/models needs the key, so the probe reads the offer page. Both ids stay out of the Models column: the page that calls the API free names no model
+- Note: Create a Trial API Key. No expiry or credit balance is published; the documented ceiling is 10 calls/minute. /v1/models requires the key. The free-offer page does not identify which models it serves.
 
 Try it from your terminal with your key in `SEA_LION_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

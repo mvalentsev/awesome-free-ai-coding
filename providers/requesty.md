@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Requesty free tier: limits, free models, verified 2026-10-01'
-description: 'OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those. Free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning…'
+description: 'OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks. Free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b and 1 more. Free plan is $0 with no credit…'
 permalink: /providers/requesty/
 last_modified_at: 2026-10-01
 crumb: Requesty
@@ -15,7 +15,7 @@ crumb: Requesty
 
 ## What you get
 
-OpenAI-compatible router over a 690+ model catalog with routing, caching and fallbacks; twelve rows in it are priced 0 and the free plan is the same gateway restricted to those
+OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
 ## Free models
 
@@ -39,7 +39,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Key: `REQUESTY_API_KEY` — get one at <https://app.requesty.ai/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://router.requesty.ai`
 - Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `nvidia/nemotron-3-nano-30b-a3b`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning`, `novita/inclusionai/ling-3.0-tiny`, `google/gemma-4-31b-it`, `mistral/leanstral-1-5`, `nvidia/muse-glimmer-30b`, `nvidia/nemotron-3.5-lightning-30b-a3b`
-- Note: the nine ids listed and the one ignored are every row the catalog prices at 0 that its own `retires` date has not passed — poolside/laguna-xs.2 and laguna-m.1 stayed at 0 after retiring on 2026-09-21 — and the free plan serves those alone; ids carry no :free suffix, so the price is the only thing separating them from the metered rows. Every NVIDIA row is marked data_used_for_training with 30-day retention; nemotron-3.5-content-safety, a guardrail classifier, is left out. For Claude Code, the guide sets ANTHROPIC_BASE_URL to https://router.requesty.ai (router.eu.requesty.ai for EU residency)
+- Note: Free-plan IDs are priced zero and have no expired retirement date; they carry no :free suffix. NVIDIA rows disclose training use and 30-day retention. For Claude Code, set ANTHROPIC_BASE_URL=https://router.requesty.ai, or https://router.eu.requesty.ai for EU residency.
 
 Try it from your terminal with your key in `REQUESTY_API_KEY` — it goes from your machine to the vendor and nowhere else:
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'gpt-6-luna free: 1 provider, limits and ids, verified 2026-10-01'
-description: gpt-6-luna is served free by Zed. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day a live probe last confirmed it.
+description: gpt-6-luna is served free by Zed. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gpt-6-luna/
 last_modified_at: 2026-10-01
 crumb: gpt-6-luna
@@ -11,7 +11,7 @@ crumb: gpt-6-luna
 
 # Where gpt-6-luna is free
 
-**One row on the list serves `gpt-6-luna` free:** Zed. It asks for no card. A live probe confirmed it on 2026-10-01 and reads it again twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gpt-6-luna).
+**One row on the list serves `gpt-6-luna` free:** Zed. It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gpt-6-luna).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
