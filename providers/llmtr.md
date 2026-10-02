@@ -40,7 +40,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Callable ids: `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`, `poolside/laguna-xs-2.1`, `inclusionai/ling-3.1-flash`, `agnes/agnes-3.0-flash`, `agnes/agnes-2.5-flash`, `motif/motif-3`, `minimax/minimax-m3.1-flash-preview`
 - `inclusionai/ling-3.1-flash`: free until 2026-10-13 19:00+03:00 ([conditions](https://llmtr.com/models/inclusionai/ling-3.1-flash))
 - `minimax/minimax-m3.1-flash-preview`: requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-preview))
-- Note: Most listed IDs work before funding; MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is metered. EVREN rows require your own EVREN key; the embedding and Safeguard classifier are left out. Qwen3.8 27B waits until October 5.
+- Note: Most listed IDs work before funding, but new accounts have a reduced shared free-model allowance for their first 24 hours; respect the API's Retry-After. MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is metered. EVREN rows require your own EVREN key; the embedding and Safeguard classifier are left out. Qwen3.8 27B waits until October 5.
 
 Try it from your terminal with your key in `LLMTR_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
