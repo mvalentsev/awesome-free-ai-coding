@@ -3313,7 +3313,7 @@ substitute {account_id} with your Cloudflare account ID            </td>
 <code>LLMTR_API_KEY</code>
 <div class="sub" style="margin-top:6px"><a href="https://llmtr.com/dashboard/api-keys">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
-                <details><summary>Most listed IDs work before funding; MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is …</summary><span class="full">Most listed IDs work before funding; MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is metered. EVREN rows require your own EVREN key; the embedding and Safeguard classifier are left out. Qwen3.8 27B waits until October 5.</span></details>
+                <details><summary>Most listed IDs work before funding, but new accounts have a reduced shared free-model allowance for their first 24 hours; respect the API&#39;s …</summary><span class="full">Most listed IDs work before funding, but new accounts have a reduced shared free-model allowance for their first 24 hours; respect the API&#39;s Retry-After. MiniMax Preview has the payment requirement shown beside its ID. Ultra has a daily quota and its -262k twin is metered. EVREN rows require your own EVREN key; the embedding and Safeguard classifier are left out. Qwen3.8 27B waits until October 5.</span></details>
             </td>
           </tr>
           <tr>
@@ -3543,7 +3543,7 @@ chat-only; model ids namespaced — three examples from the router&#39;s own cat
 <code>MEGANOVA_API_KEY</code>
 <div class="sub" style="margin-top:6px"><a href="https://www.meganova.ai/api-keys">get a key</a></div>            </td>
             <td class="limits" data-label="Notes">
-                <details><summary>Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are …</summary><span class="full">Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are routers, kept out of Models. Other ignored rows are speech, embeddings, reranking, search and roleplay fine-tunes. Free quota is consumed first; paid continuation requires enabling the charge switch.</span></details>
+                <details><summary>Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are …</summary><span class="full">Tier 1 IDs need no deposit; GLM-4.7-Flash and Manta Pro get 50 free requests/day after the required deposit shown beside each ID. Manta IDs are routers, kept out of Models. Other ignored rows are speech, embeddings, reranking, search and roleplay fine-tunes. Free quota is consumed first; paid continuation requires enabling the charge switch. An agent using LiteLLM 1.103&#39;s Responses bridge can get `Message content must be normalized` from Mistral. Its streamed tool calls can finish as `stop`, so clients may skip execution. Manta routers can answer tool requests as text.</span></details>
             </td>
           </tr>
           <tr>
