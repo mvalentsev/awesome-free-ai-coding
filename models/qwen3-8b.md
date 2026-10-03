@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3-8b free: 2 providers, limits and ids, verified 2026-10-01'
 description: qwen3-8b is served free by Alibaba Cloud Model Studio (DashScope, international) and SiliconFlow (China). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/qwen3-8b/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-03
 crumb: qwen3-8b
 ---
 
@@ -51,7 +51,7 @@ China's SiliconFlow prices eight small chat models at ¥0 for an account verifie
 - Base URL: `https://api.siliconflow.cn/v1`
 - Key: `SILICONFLOW_CN_API_KEY` — get one at <https://cloud.siliconflow.cn/account/ak>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.siliconflow.cn`
-- Callable ids: `Qwen/Qwen3-8B`, `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B`
+- Callable ids: `Qwen/Qwen3-8B`
 - What you send is not used to train models ([the vendor's words](https://docs.siliconflow.cn/docs/legals/privacy-policy)).
 
 ## Related models

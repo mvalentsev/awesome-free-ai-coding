@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-10-01'
-description: 'China''s SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. Free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414. The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model ("免费模型的 Rate…'
+description: 'China''s SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. Free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b. The rate-limit FAQ: free models cost nothing…'
 permalink: /providers/siliconflow-cn/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-03
 crumb: SiliconFlow (China)
 ---
 
@@ -19,7 +19,7 @@ China's SiliconFlow prices eight small chat models at ¥0 for an account verifie
 
 ## Free models
 
-`xing4.0-29b`, [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `glm-4-9b-0414`
+`xing4.0-29b`, [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/), `glm-4-9b-0414`, `qwen2.5-7b`, [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/), `glm-z1-9b-0414`, `deepseek-r1-0528-qwen3-8b`
 
 ## Limits, in the vendor's words
 
@@ -63,6 +63,7 @@ curl -s https://api.siliconflow.cn/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-03` — Free models changed: added deepseek-r1-0528-qwen3-8b, glm-z1-9b-0414, qwen2.5-7b, qwen3.5-4b
 - `2026-09-19` — Added: China's SiliconFlow prices eight small chat models at ¥0 — Qwen3-8B, GLM-4-9B-0414 and the 29B Xing4.0 among them — for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
 
 ---

@@ -7975,6 +7975,20 @@
         },
         {
           "family": "glm-4-9b-0414"
+        },
+        {
+          "family": "qwen2.5-7b"
+        },
+        {
+          "family": "qwen3.5-4b",
+          "tier": "notable",
+          "aa_model": "qwen3-5-4b"
+        },
+        {
+          "family": "glm-z1-9b-0414"
+        },
+        {
+          "family": "deepseek-r1-0528-qwen3-8b"
         }
       ],
       "api": {
@@ -9940,6 +9954,15 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/"
     },
     {
+      "family": "qwen3.5-4b",
+      "rows": [
+        "mixlayer",
+        "siliconflow-cn"
+      ],
+      "tier": "notable",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
+    },
+    {
       "family": "qwen3.7-flash",
       "rows": [
         "alibaba-model-studio",
@@ -10066,6 +10089,12 @@
       ]
     },
     {
+      "family": "deepseek-r1-0528-qwen3-8b",
+      "rows": [
+        "siliconflow-cn"
+      ]
+    },
+    {
       "family": "deepseek-v4-pro",
       "rows": [
         "alibaba-model-studio"
@@ -10170,6 +10199,12 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-4.7/"
+    },
+    {
+      "family": "glm-z1-9b-0414",
+      "rows": [
+        "siliconflow-cn"
+      ]
     },
     {
       "family": "gpt-6-luna",
@@ -10376,6 +10411,12 @@
       ]
     },
     {
+      "family": "qwen2.5-7b",
+      "rows": [
+        "siliconflow-cn"
+      ]
+    },
+    {
       "family": "qwen3-14b",
       "rows": [
         "alibaba-model-studio"
@@ -10556,14 +10597,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-397b-a17b/"
-    },
-    {
-      "family": "qwen3.5-4b",
-      "rows": [
-        "mixlayer"
-      ],
-      "tier": "notable",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
     },
     {
       "family": "qwen3.5-9b",

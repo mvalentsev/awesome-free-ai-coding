@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-02T16:56:39Z</updated>
+  <updated>2026-10-03T12:37:59Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/siliconflow-cn/20261003T123759Z</id>
+    <title>Free models changed: SiliconFlow (China)</title>
+    <link rel="alternate" href="https://siliconflow.cn"/>
+    <updated>2026-10-03T12:37:59Z</updated>
+    <summary type="text">added deepseek-r1-0528-qwen3-8b, glm-z1-9b-0414, qwen2.5-7b, qwen3.5-4b · free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/kilo-code/20261002T165639Z</id>
     <title>Free models changed: Kilo Code</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://openrouter.ai"/>
     <updated>2026-09-25T12:00:52Z</updated>
     <summary type="text">added gemma-4-26b-a4b, gemma-4-31b; dropped gemma-4 · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/ovh-ai-endpoints/20260925T120052Z</id>
-    <title>Free models changed: OVHcloud AI Endpoints</title>
-    <link rel="alternate" href="https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/"/>
-    <updated>2026-09-25T12:00:52Z</updated>
-    <summary type="text">added gpt-oss-120b; dropped gpt-oss · free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder</summary>
   </entry>
 </feed>

@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-10-02
+last_modified_at: 2026-10-03
 ---
 
 {% raw %}
@@ -57,7 +57,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [ModelScope API-Inference (Alibaba)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) — verified 2026-10-01
 - [SenseNova (SenseTime 商汤)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) — verified 2026-10-01
 - [Tencent Cloud TokenHub](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) — verified 2026-10-01
-- [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) — verified 2026-10-01 · `xing4.0-29b` · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · `glm-4-9b-0414`
+- [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) — verified 2026-10-01 · `xing4.0-29b` · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · `glm-4-9b-0414` · `qwen2.5-7b` · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) · `glm-z1-9b-0414` · `deepseek-r1-0528-qwen3-8b`
 
 ## 🎁 Trials (no card when possible)
 

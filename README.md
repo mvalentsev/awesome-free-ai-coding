@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 85 live offers, 81 need no card, 155 free models, 17 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 85 live offers, 81 need no card, 158 free models, 17 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -136,7 +136,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[ModelScope API-Inference (Alibaba)](https://modelscope.cn)** 🧪 — Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/) · [🔑 key](https://modelscope.cn/my/myaccesstoken)</sub>
 - **[SenseNova (SenseTime 商汤)](https://www.sensenova.cn)** — SenseTime's own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/) · [🔑 key](https://platform.sensenova.cn)</sub>
 - **[Tencent Cloud TokenHub](https://cloud.tencent.com/document/product/1823)** — Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/) · [🔑 key](https://console.cloud.tencent.com/tokenhub/apikey)</sub>
-- **[SiliconFlow (China)](https://siliconflow.cn)** 🧪 — China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) · [🔑 key](https://cloud.siliconflow.cn/account/ak) · `xing4.0-29b` · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · `glm-4-9b-0414`</sub>
+- **[SiliconFlow (China)](https://siliconflow.cn)** 🧪 — China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) · [🔑 key](https://cloud.siliconflow.cn/account/ak) · `xing4.0-29b` · [`qwen3-8b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3-8b/) · `glm-4-9b-0414` · `qwen2.5-7b` · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/) · `glm-z1-9b-0414` · `deepseek-r1-0528-qwen3-8b`</sub>
 
 ### 🎁 Trials (no card when possible)
 <sub>**29** live · not one of them asks for a card · sorted by how much work you can get done for free</sub>
@@ -190,7 +190,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Moark (Gitee AI)](https://moark.com)** — Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) · [🔑 key](https://moark.com/dashboard/tokens)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) 🧪 — An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification<br><sub>[verified 2026-10-01](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 155 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 158 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -198,6 +198,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-03` | 🔄 Free models changed **[SiliconFlow (China)](https://siliconflow.cn)** | <sub>added deepseek-r1-0528-qwen3-8b, glm-z1-9b-0414, qwen2.5-7b, qwen3.5-4b</sub> |
 | `2026-10-02` | 🔄 Free models changed **[Kilo Code](https://kilo.ai)** | <sub>added qwen3.8-27b</sub> |
 | `2026-10-02` | 🔄 Free models changed **[NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)** | <sub>added deepseek-v4.1-flash</sub> |
 | `2026-10-02` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>added qwen3.8-27b</sub> |
@@ -207,7 +208,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-01` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped ling-3.0-flash-fin</sub> |
 | `2026-10-01` | 🔄 Free models changed **[Nous Portal (Hermes Agent)](https://portal.nousresearch.com)** | <sub>dropped solar-pro-4</sub> |
 | `2026-09-30` | 🔄 Free models changed **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** | <sub>added glm-5.2, glm-5.3</sub> |
-| `2026-09-30` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added motif-3</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

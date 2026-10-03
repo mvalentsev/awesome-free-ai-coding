@@ -5961,6 +5961,12 @@ entries:
   - family: xing4.0-29b
   - family: qwen3-8b
   - family: glm-4-9b-0414
+  - family: qwen2.5-7b
+  - family: qwen3.5-4b
+    tier: notable
+    aa_model: qwen3-5-4b
+  - family: glm-z1-9b-0414
+  - family: deepseek-r1-0528-qwen3-8b
   api:
     base_url: https://api.siliconflow.cn/v1
     key_url: https://cloud.siliconflow.cn/account/ak
