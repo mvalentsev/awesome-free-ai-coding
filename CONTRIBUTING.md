@@ -502,7 +502,10 @@ sends it to that lane, so every place that prints the proxy's command starts it
 as `env -u OPENAI_API_KEY … litellm --config …`. The full local-development
 command comes from `render.litellm_command`, including the explicit keyless
 startup opt-in required by LiteLLM 1.104 and the loopback bind; conformance runs
-that command on the oldest and newest releases. Claude Code with an empty
+that command on the oldest and newest releases. Vendor-published trial keys
+from `api.public_key` are included in LiteLLM deployments directly, so a pool
+that needs no account also works before sourcing the env example. Conformance
+checks those literal credentials against their own lanes. Claude Code with an empty
 `ANTHROPIC_AUTH_TOKEN` takes the next credential in its
 [authentication order](https://code.claude.com/docs/en/authentication#authentication-precedence),
 the reader's own sign-in included, and sends it to the gateway, so a keyed

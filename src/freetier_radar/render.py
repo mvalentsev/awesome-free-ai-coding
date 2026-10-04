@@ -1703,6 +1703,8 @@ def _tier_of_id(e: Entry, model_id: str) -> Tier | None:
 
 
 def _litellm_key(e: Entry) -> str:
+    if e.api.public_key is not None:
+        return e.api.public_key
     return "none" if e.api.key_kind == "none" else f"os.environ/{env_var(e.id)}"
 
 

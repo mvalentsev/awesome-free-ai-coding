@@ -730,7 +730,7 @@ model_list:
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
     api_base: https://api.llmtech.eu/v1
-    api_key: os.environ/LLMTECH_API_KEY
+    api_key: lt-trial-ba1ef28c6d32ed6980678d8d
     use_chat_completions_api: true
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
@@ -2030,7 +2030,7 @@ model_list:
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
     api_base: https://api.llmtech.eu/v1
-    api_key: os.environ/LLMTECH_API_KEY
+    api_key: lt-trial-ba1ef28c6d32ed6980678d8d
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:
@@ -2228,7 +2228,7 @@ model_list:
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
     api_base: https://api.llmtech.eu/v1
-    api_key: os.environ/LLMTECH_API_KEY
+    api_key: lt-trial-ba1ef28c6d32ed6980678d8d
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:

@@ -145,7 +145,8 @@ class Lane:
     index: int
     name: str
     model: str
-    key: str | None       # the variable its api_key reads, None for `api_key: none`
+    key: str | None       # the variable its api_key reads, or no variable
+    public_key: str | None = None  # the vendor-published literal, otherwise `none`
 
 
 def floors() -> tuple[str, str]:
@@ -245,7 +246,8 @@ def lanes(config: dict) -> list[Lane]:
         params = entry["litellm_params"]
         key = str(params.get("api_key", ""))
         out.append(Lane(i, entry["model_name"], params["model"],
-                        key.removeprefix("os.environ/") if key.startswith("os.environ/") else None))
+                        key.removeprefix("os.environ/") if key.startswith("os.environ/") else None,
+                        key if key and key != "none" and not key.startswith("os.environ/") else None))
     return out
 
 
@@ -622,7 +624,7 @@ def _foreign_keys(records: list[_Record], by_index: dict[int, Lane]) -> list[str
         if not r.lane.isdigit() or not r.authorization:
             continue
         lane = by_index[int(r.lane)]
-        own = f"Bearer {LANE_KEY.format(var=lane.key)}" if lane.key else "Bearer none"
+        own = f"Bearer {LANE_KEY.format(var=lane.key)}" if lane.key else f"Bearer {lane.public_key or 'none'}"
         if r.authorization != own:
             said = "the reader's OPENAI_API_KEY" if READER_KEY in r.authorization else (
                 r.authorization.removeprefix("Bearer "))

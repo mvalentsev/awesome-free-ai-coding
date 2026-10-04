@@ -549,9 +549,9 @@ def test_litellm_pools_every_lane_of_a_tier_under_one_name_that_falls_back():
     assert groups == {
         "free/frontier": [("openai/zai/glm-5.3", "https://glm.example/v1", "os.environ/GLM_API_KEY")],
         "free/strong": [("openai/zai/glm-5.3-flash", "https://glm.example/v1", "os.environ/GLM_API_KEY"),
-                        ("openai/qwen3.8-27b", "https://trial.example/v1", "os.environ/TRIAL_API_KEY")],
+                        ("openai/qwen3.8-27b", "https://trial.example/v1", "pk-123")],
         "free/nokey": [("openai/gpt-oss-20b", "https://open.example/v1", "none"),
-                       ("openai/qwen3.8-27b", "https://trial.example/v1", "os.environ/TRIAL_API_KEY")],
+                       ("openai/qwen3.8-27b", "https://trial.example/v1", "pk-123")],
     }
     assert not [d for d in cfg["model_list"] if "bare.example" in d["litellm_params"]["api_base"]]
     assert cfg["router_settings"] == {
@@ -1929,6 +1929,10 @@ def test_a_public_key_reaches_every_place_that_tells_a_reader_how_to_connect():
     line = next(l for l in build_llms_txt([row], TODAY).splitlines() if l.startswith("- [Trial]"))
     assert "no account" in line and "`lt-trial-abc`" in line and "https://trial.example/docs" in line
     assert "no key" not in line
+
+    config = build_litellm_config([row], TODAY)
+    assert {d["model_name"] for d in config["model_list"]} == {"trial/qwen-27b", "free/nokey"}
+    assert all(d["litellm_params"]["api_key"] == row.api.public_key for d in config["model_list"])
 
 
 def test_a_lane_the_vendor_prints_a_key_for_needs_no_account():

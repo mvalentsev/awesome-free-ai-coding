@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _chat_answer, as_run, bare,
+from freetier_radar.conformance import (ENV_EXAMPLE, Finding, _Record, _chat_answer, _foreign_keys, as_run, bare,
                                         comment_text, floors, keyed_profile, lanes, listening,
                                         missing_sentences, point_lanes, printed_profile,
                                         printed_run, shape_differences, summary)
@@ -158,6 +158,17 @@ def test_an_entry_names_the_variable_its_key_is_read_from():
     got = lanes(CONFIG)
     assert [(lane.index, lane.name, lane.key) for lane in got] == [
         (0, "a/one", "A_API_KEY"), (1, "free/strong", None)]
+
+
+def test_a_vendor_public_key_is_available_without_an_environment_variable():
+    config = {"model_list": [{"model_name": "free/nokey", "litellm_params": {
+        "model": "openai/trial", "api_key": "vendor-public-trial"}}]}
+    lane = lanes(config)[0]
+    assert lane.key is None and lane.public_key == "vendor-public-trial"
+    records = [_Record("0", "/chat/completions", "Bearer vendor-public-trial", {})]
+    assert _foreign_keys(records, {0: lane}) == []
+    records[0].authorization = "Bearer somebody-else"
+    assert _foreign_keys(records, {0: lane})
 
 
 def test_the_committed_config_has_the_groups_the_checks_use():
