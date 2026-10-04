@@ -1043,6 +1043,9 @@ Use a git-ignored directory or one outside the repository. Run its phases in
 order: `prepare --base <commit> --head <commit>`, `sources`, `publication`,
 `browser`, then `report`. `publication` waits for the required workflows at that
 exact commit, saves their full logs and open PRs, and compares published bytes.
+Pages byte checks use the repository map: only files marked `published` are
+served there. Changed README files are also checked at the exact GitHub commit,
+including documentation excluded from Pages.
 For a bot verification commit, add `prepare --verification-run <update-run-id>`:
 the full successful update log must prove which commit it produced, since that
 push runs its checks and IndexNow inside the update instead of starting CI.

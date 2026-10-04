@@ -93,6 +93,38 @@ async def test_publication_retries_network_failures_but_preserves_a_wrong_body(t
 
 
 @respx.mock
+async def test_publication_checks_excluded_readmes_on_github_and_served_assets_on_pages(tmp_path, monkeypatch):
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    sha = 'a' * 40
+    paths = ['README.md', 'assets/README.md', 'configs/README.md',
+             'assets/model-name.js', 'configs/codex/litellm.config.toml']
+    bundle.save('scope', {'base': 'b' * 40, 'sha': sha, 'paths': paths,
+                          'workflows': ['pages build and deployment']})
+    bundle.save('workflows', {'sha': sha, 'passed': True, 'runs': [{
+        'name': 'pages build and deployment', 'headSha': sha,
+        'status': 'completed', 'conclusion': 'success'}]})
+    monkeypatch.setattr(review, 'PAGES_URL', 'https://site.example')
+    monkeypatch.setattr(review, 'REPO_URL', 'https://github.com/example/repo')
+    monkeypatch.setattr(review, 'blob', lambda repo, ref, path: path.encode())
+    raw = f'https://raw.githubusercontent.com/example/repo/{sha}/'
+    respx.route(url__startswith=raw).mock(
+        side_effect=lambda request: httpx.Response(200, content=str(request.url).removeprefix(raw).encode()))
+    def served(request):
+        path = str(request.url).removeprefix('https://site.example/')
+        return httpx.Response(404 if path.endswith('README.md') else 200, content=path.encode())
+    respx.route(url__startswith='https://site.example/').mock(side_effect=served)
+    result = await review.publication(bundle)
+    assert result['passed'], [c for c in result['checks'] if not c['passed']]
+    checked = {(c['kind'], c['path']) for c in result['checks']}
+    for path in paths[:3]:
+        assert ('source', path) in checked
+        assert ('served', path) not in checked
+    for path in paths[3:]:
+        assert ('source', path) in checked
+        assert ('served', path) in checked
+
+
+@respx.mock
 async def test_rate_limited_source_is_not_retried_or_treated_as_a_changed_quote(tmp_path):
     bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
     respx.get('https://vendor.example/catalog').respond(429, headers={'Retry-After': '120'})

@@ -338,10 +338,12 @@ async def publication(bundle: Bundle) -> dict:
     if workflows.get('passed') is not True or workflows.get('sha') != scope['sha'] or workflow_state(
             workflows.get('runs', []), scope['sha'], set(scope['workflows'])) != 'passed':
         raise ValueError('publication needs successful workflows for the exact commit')
-    public = [p for p in scope['paths'] if p == 'README.md' or ((node := node_for(p)) and node.published)]
+    public = [p for p in scope['paths'] if Path(p).name == 'README.md' or
+              ((node := node_for(p)) and node.published)]
     static = ['index.html', 'index.json', 'llms.txt', 'registry.yaml', 'history.jsonl',
               'configs/opencode.json', 'configs/litellm.yaml', 'configs/free-llm.env.example', 'feed.xml']
-    static += [p for p in scope['paths'] if p.startswith(('assets/', 'configs/')) and p not in static]
+    static += [p for p in scope['paths'] if p.startswith(('assets/', 'configs/')) and p not in static
+               and (node := node_for(p)) and node.published]
     previous = bundle.load('publication', {})
     cached = {r['url']: r for r in previous.get('checks', []) if r.get('kind') == 'source'}
     raw = REPO_URL.replace('github.com', 'raw.githubusercontent.com') + '/' + scope['sha'] + '/'
