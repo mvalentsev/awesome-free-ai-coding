@@ -3,7 +3,7 @@ from datetime import date
 import httpx
 import respx
 
-from freetier_radar.models import DataUse, Entry
+from freetier_radar.models import ClientLane, DataUse, Entry
 from freetier_radar.quotes import check_entries, flatten, page_texts, quote_found, quotes_in, row_quotes
 
 
@@ -35,6 +35,34 @@ def test_quotes_come_from_the_offering_the_limits_and_the_api_note():
     entry = quoted_entry('Tier 1 is "Free registration and no card".', note='the docs say "use the v1 route"')
     assert row_quotes(entry) == [("limits", "Free registration and no card"),
                                  ("api.note", "use the v1 route")]
+
+
+@respx.mock
+async def test_client_lane_quotes_are_checked_at_the_http_boundary():
+    data = quoted_entry("No quoted limits").model_dump()
+    data["probe"].update(type="api-models", lane="free")
+    data["client_lane"] = ClientLane(model_ids=["vendor/model"],
+                                     note='The guide says "only inside our client"; select "Free".')
+    entry = Entry.model_validate(data)
+    respx.get("https://vendor.example/pricing").mock(return_value=httpx.Response(
+        200, text="The free tier remains available."))
+    guide = respx.get(entry.probe.endpoint).mock(return_value=httpx.Response(
+        200, text="The guide no longer names that client restriction."))
+
+    async with httpx.AsyncClient() as client:
+        missing, unread = await check_entries([entry], client)
+        assert unread == {}
+        assert [(m.field, m.quote, m.unverified) for m in missing] == [
+            ("client_lane.note", "only inside our client", False)]
+
+        guide.mock(return_value=httpx.Response(200, text="Free usage is only inside our client."))
+        missing, unread = await check_entries([entry], client)
+        assert missing == [] and unread == {}
+
+        guide.mock(return_value=httpx.Response(503))
+        missing, unread = await check_entries([entry], client)
+        assert unread == {entry.id: [f"{entry.probe.endpoint}: HTTP 503"]}
+        assert [(m.field, m.unverified) for m in missing] == [("client_lane.note", True)]
 
 
 def test_the_data_use_quote_is_checked_on_the_page_it_names():

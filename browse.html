@@ -100,6 +100,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
 <li><b>Where you are</b> keeps the offers whose vendor serves that country, by the border each row records from the vendor's own words.</li>
 </ul></footer>
 </main>
+<script src="assets/model-name.js"></script>
 <script>
 (function () {
   "use strict";
@@ -142,10 +143,6 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
     var names = families(e).map(function (m) { return m.family; }).join(" ");
     return written([e.name, e.offering, e.category, names].join(" ").toLowerCase());
   }
-  // Separators aside, as a reader writes a name: "nemotron 3 ultra" finds
-  // nemotron-3-ultra, and the dot stays, so "qwen 3.8" is not qwen3-8b.
-  function written(text) { return text.replace(/[\s_-]+/g, ""); }
-
   function readState() {
     var params = new URLSearchParams(location.search);
     els.q.value = params.get("q") || "";

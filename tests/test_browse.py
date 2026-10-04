@@ -20,10 +20,11 @@ def _html() -> str:
     return PAGE.read_text(encoding="utf-8")
 
 
-def test_browse_page_is_self_contained_and_reads_index_json_beside_itself():
+def test_browse_page_uses_local_assets_and_reads_index_json_beside_itself():
     html = _html()
     assert 'fetch("index.json"' in html
-    assert not re.search(r'<script\b[^>]*\bsrc=', html), "no external scripts"
+    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js"]
+    assert (PAGE.parent / "assets/model-name.js").is_file()
     assert not re.search(r'<link\b[^>]*rel="stylesheet"', html), "no external styles"
     assert "prefers-color-scheme" in html
     assert 'name="viewport"' in html
@@ -144,7 +145,8 @@ def test_browse_page_finds_a_model_written_the_way_its_vendor_writes_it():
     row = build_index([make(offering="A free lane",
                             models=[{"family": "nemotron-3-ultra"}, {"family": "qwen3-8b"}])],
                       TODAY)["entries"][0]
-    harness = "\n".join(_js_function(html, n) for n in ("families", "haystack", "written")) + f"""
+    harness = (PAGE.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
+        _js_function(html, n) for n in ("families", "haystack")) + f"""
     var e = {json.dumps(row)};
     function finds(q) {{ return haystack(e).indexOf(written(q.trim().toLowerCase())) !== -1; }}
     console.log(JSON.stringify(["Nemotron 3 Ultra", "nemotron-3-ultra", "a free lane",

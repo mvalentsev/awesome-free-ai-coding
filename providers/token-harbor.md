@@ -23,7 +23,7 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ## Limits, in the vendor's words
 
-"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. There is "No separate per-minute cap on free models — only the free-account API limit of 60 requests/minute and 1,800/hour applies"; "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process free-route content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-27
+"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. There is "No separate per-minute cap on free models — only the free-account API limit of 60 requests/minute and 1,800/hour applies"; "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process request content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04
 
 ## Where it is offered
 
@@ -39,8 +39,8 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`
 - Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
-- Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`, `qwen3.8-flash:free`
-- Note: the :free suffix selects the free route, which has to be switched on in the dashboard first; /v1/models needs a key, so the ids are the ones the models page lists under Free, where qwen3.8-flash:free carries a Limited time badge dated free to 2026-10-04 13:00 UTC, and the pricing page says "2× Boost on Qwen3.8 Flash runs through October 4, 2026". For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints"
+- Callable ids: `deepseek-v4.1-flash:free`, `mimo-v2.6-flash:free`
+- Note: The :free suffix selects the free route, which has to be switched on in the dashboard first. /v1/models needs a key; use the IDs listed under Free on the Models page. For Claude Code the docs say "a free account works" and "every gateway model works on both endpoints".
 
 Try it from your terminal with your key in `TOKEN_HARBOR_API_KEY` — it goes from your machine to the vendor and nowhere else:
 
@@ -53,7 +53,7 @@ curl -s https://tokenharbor.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://tokenharbor.ai/pricing>, anchored on `Try Token Harbor with a free allowance and a rotating model lineup`, `Included every month (4 weeks)`
+- Probe: the page at <https://tokenharbor.ai/pricing>, anchored on `Try Token Harbor with a free allowance and a rotating model lineup`, `Resets on a rolling 7-day period`
 - Source: <https://tokenharbor.ai/pricing>
 - Source: <https://tokenharbor.ai/faq>
 - Source: <https://tokenharbor.ai/docs/billing/cashback>

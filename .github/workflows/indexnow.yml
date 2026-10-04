@@ -36,6 +36,7 @@ on:
       - "404.html"
       - "assets/*.svg"
       - "assets/*.png"
+      - "assets/*.js"
       - "eb68c254f1e03877b906ccc800002691.txt"
       - "CONTRIBUTING.md"
       - "LICENSE"

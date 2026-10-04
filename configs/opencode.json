@@ -491,7 +491,11 @@
           "name": "nvidia/nemotron-3-super-120b-a12b"
         },
         "qwen/qwen3.8-27b-free": {
-          "name": "qwen/qwen3.8-27b-free"
+          "name": "qwen/qwen3.8-27b-free",
+          "limit": {
+            "context": 131042,
+            "output": 16384
+          }
         },
         "poolside/laguna-xs-2.1": {
           "name": "poolside/laguna-xs-2.1"
@@ -505,11 +509,15 @@
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
         },
-        "motif/motif-3": {
-          "name": "motif/motif-3"
-        },
         "minimax/minimax-m3.1-flash-preview": {
           "name": "minimax/minimax-m3.1-flash-preview (requires $5 top-up + 8% fee; until 2026-10-06)"
+        },
+        "tesseracted/kolibri-1": {
+          "name": "tesseracted/kolibri-1 (until 2026-10-09)",
+          "limit": {
+            "context": 32768,
+            "output": 16384
+          }
         }
       }
     },
@@ -863,9 +871,6 @@
         },
         "mimo-v2.6-flash:free": {
           "name": "mimo-v2.6-flash:free"
-        },
-        "qwen3.8-flash:free": {
-          "name": "qwen3.8-flash:free"
         }
       }
     },

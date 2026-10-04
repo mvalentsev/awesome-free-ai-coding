@@ -462,6 +462,22 @@ def test_configs_call_the_ids_a_row_lists_never_its_family_names():
     assert build_opencode_config([row], TODAY)["provider"]["cf"]["models"] == {}
 
 
+def test_catalog_limits_reach_named_and_pooled_clients():
+    row = api_entry(probe={"type": "api-models", "endpoint": "https://api.x.ai/v1/models"},
+                    models=[{"family": "qwen3-coder", "tier": "strong"}], api={
+        "base_url": "https://api.x.ai/v1", "model_ids": ["qwen3-coder:free"],
+        "model_limits": {"qwen3-coder:free": {
+            "context_tokens": 131042, "output_tokens": 16384,
+            "source": "https://api.x.ai/v1/models",
+        }},
+    })
+    model = build_opencode_config([row], TODAY)["provider"][row.id]["models"]["qwen3-coder:free"]
+    assert model["limit"] == {"context": 131042, "output": 16384}
+    deployments = build_litellm_config([row], TODAY)["model_list"]
+    assert {d["model_name"] for d in deployments} == {f"{row.id}/qwen3-coder:free", "free/strong"}
+    assert all(d["litellm_params"]["max_tokens"] == 16384 for d in deployments)
+
+
 def test_litellm_config_names_every_free_model_of_every_connectable_entry():
     entries = [api_entry(id="groq-free", name="Groq", models=[{"family": "llama-4"}],
                          api={"base_url": "https://api.x.ai/v1", "key_url": "https://x.ai/keys",
@@ -1620,7 +1636,7 @@ def test_every_printed_litellm_command_starts_the_proxy_without_openai_api_key(t
         .read_text(encoding="utf-8"),
     }
     for name, text in texts.items():
-        prefixes = re.findall(r"(env -u OPENAI_API_KEY )?litellm --config", text)
+        prefixes = re.findall(r"(env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true )?litellm --config", text)
         assert prefixes and all(prefixes), (name, prefixes)
     site = render_site(reg, Path("templates"), tmp_path / "index.html", today=TODAY)
     assert "OPENAI_API_KEY" in site

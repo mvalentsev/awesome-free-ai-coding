@@ -166,6 +166,21 @@ def test_an_id_is_listed_or_ignored_never_both():
         Entry.model_validate(both)
 
 
+def test_a_page_probe_cannot_hide_an_undated_id_beside_expired_evidence():
+    data = {**sample_entry(),
+            "probe": {"type": "page-keywords", "endpoint": "https://x.ai/pricing",
+                      "keywords": ["one million free tokens"]},
+            "api": {"base_url": "https://api.x.ai/v1", "model_ids": ["steady"],
+                    "ignored_ids": ["ended", "undated"],
+                    "model_access": {"ended": {"source": "https://x.ai/promo",
+                                               "until": "2026-10-01T00:00:00Z"}}}}
+    with pytest.raises(ValidationError, match="ignored_ids needs an api-models"):
+        Entry.model_validate(data)
+    data["api"]["model_access"]["undated"] = {"source": "https://x.ai/pricing", "initial_payment_usd": 5}
+    with pytest.raises(ValidationError, match="ignored_ids needs an api-models"):
+        Entry.model_validate(data)
+
+
 def test_ignored_ids_are_written_only_where_set(tmp_path: Path):
     """A list that means something on a few rows adds no line to the others."""
     p = tmp_path / "registry.yaml"
@@ -654,6 +669,27 @@ def test_a_public_key_is_the_vendor_s_own_key_for_a_keyed_lane_on_a_page_that_pr
         d["api"] = {**api, **broken}
         with pytest.raises(ValidationError, match=match):
             Entry.model_validate(d)
+
+
+def test_client_limits_round_trip_and_require_the_rechecked_catalog(tmp_path: Path):
+    row = sample_entry()
+    limits = {"context_tokens": 32768, "output_tokens": 16384,
+              "source": row["probe"]["endpoint"]}
+    row["api"] = {"base_url": "https://openrouter.ai/api/v1", "model_ids": ["qwen3-coder:free"],
+                  "model_limits": {"qwen3-coder:free": limits}}
+    entry = Entry.model_validate(row)
+    path = tmp_path / "registry.yaml"
+    save_registry(path, [entry])
+    assert load_registry(path)[0].api.model_limits == entry.api.model_limits
+    for broken in ({"context_tokens": 0}, {"output_tokens": True},
+                   {"output_tokens": 32769}, {"source": "http://openrouter.ai/api/v1/models"},
+                   {"source": "https://openrouter.ai/unchecked"}):
+        row["api"]["model_limits"] = {"qwen3-coder:free": {**limits, **broken}}
+        with pytest.raises(ValidationError):
+            Entry.model_validate(row)
+    row["api"]["model_limits"] = {"unlisted": limits}
+    with pytest.raises(ValidationError, match="unlisted IDs"):
+        Entry.model_validate(row)
 
 
 def test_refusing_a_bearer_token_is_said_of_a_keyless_lane_only():

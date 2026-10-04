@@ -91,7 +91,7 @@ MAP: tuple[Node, ...] = (
     Node("README.md", Kind.GENERATED, "the landing page GitHub shows under the file list",
          made_from=("templates/README.md.j2", *_PAGES, _SCORES), written_by=("freetier-render",)),
     Node("index.html", Kind.GENERATED, "the Pages site's front page",
-         made_from=("templates/index.html.j2", *_PAGES), written_by=("freetier-render",),
+         made_from=("templates/index.html.j2", "assets/model-name.js", *_PAGES), written_by=("freetier-render",),
          published=True),
     Node("configs/README.md", Kind.GENERATED, "the connection table, beside the configs",
          made_from=("templates/configs-README.md.j2", *_PAGES),
@@ -131,13 +131,14 @@ MAP: tuple[Node, ...] = (
          published=True, kept=True),
     # ---- hand-written pages
     Node("browse.html", Kind.PAGE, "the filterable table, reading index.json in the browser",
-         made_from=("index.json",), published=True),
+         made_from=("index.json", "assets/model-name.js"), published=True),
     Node("404.html", Kind.PAGE,
          "what Pages serves for an address the site does not have, offering the rows that "
          "name what the address asked for", published=True),
     Node("assets/*.svg", Kind.PAGE, "the favicon and the social preview's source",
          published=True),
     Node("assets/*.png", Kind.PAGE, "the social preview", published=True),
+    Node("assets/*.js", Kind.PAGE, "shared browser model-name matching", published=True),
     Node("eb68c254f1e03877b906ccc800002691.txt", Kind.PAGE,
          "the IndexNow key, named after itself (indexnow.INDEXNOW_KEY)", published=True),
     # ---- docs

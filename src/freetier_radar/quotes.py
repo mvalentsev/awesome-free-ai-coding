@@ -1,9 +1,9 @@
 """Every phrase a row puts in quotation marks, read back against the pages it cites.
 
 A probe checks its keywords and nothing else. The prose around them —
-`offering`, `limits`, `api.note` — is written by hand, and quotation marks say
-its words are the vendor's; this checks that claim. For each live row it reads
-the row's pages (see `row_urls`), keeps both the rendered text and the raw body
+`offering`, `limits`, `api.note`, `client_lane.note` — is written by hand, and
+quotation marks say its words are the vendor's; this checks that claim. For each
+live row it reads the row's pages (see `row_urls`), keeps both the rendered text and the raw body
 — a quote can live in JSON-LD or a framework payload — and looks for every
 quote of three words or more in them, with the typography flattened (see
 `flatten`). A quote joined across an ellipsis is checked fragment by fragment.
@@ -104,6 +104,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     fields = [("offering", entry.offering), ("limits", entry.limits)]
     if entry.api and entry.api.note:
         fields.append(("api.note", entry.api.note))
+    if entry.client_lane and entry.client_lane.note:
+        fields.append(("client_lane.note", entry.client_lane.note))
     found = [(field, quote) for field, text in fields for quote in quotes_in(text)]
     # Quoted by construction, whatever its length: the page prints it in quotes.
     if entry.data_use:

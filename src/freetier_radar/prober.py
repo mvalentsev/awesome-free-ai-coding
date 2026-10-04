@@ -1789,7 +1789,28 @@ def stale_ids(catalog: httpx.Response, entry: Entry) -> str:
     """
     dead = dead_model_ids(catalog, entry)
     unlisted = unlisted_free_ids(catalog, entry)
-    return _stale_ids_detail(dead, unlisted, entry) if dead or unlisted else ""
+    notes = [_stale_ids_detail(dead, unlisted, entry)] if dead or unlisted else []
+    if entry.api and entry.api.model_limits:
+        rows = {}
+        for row in _catalog_items(catalog, entry.probe.lane) or []:
+            if mid := _model_id(row):
+                rows.setdefault(mid, row)
+        for mid, limits in entry.api.model_limits.items():
+            if mid not in entry.api.model_ids or mid not in rows:
+                continue
+            row = rows[mid]
+            top = row.get("top_provider")
+            values = {"context_tokens": row.get("context_length"),
+                      "output_tokens": top.get("max_completion_tokens") if isinstance(top, dict) else None}
+            changed = []
+            for field, value in values.items():
+                if type(value) is not int or value <= 0:
+                    changed.append(f"{field} unavailable")
+                elif value != (recorded := getattr(limits, field)):
+                    changed.append(f"{field}={value} (recorded {recorded})")
+            if changed:
+                notes.append(f"api.model_limits {mid}: " + ", ".join(changed))
+    return " | ".join(notes)
 
 
 def _successor_hint(wanted: str, catalog: dict[str, dict]) -> str:

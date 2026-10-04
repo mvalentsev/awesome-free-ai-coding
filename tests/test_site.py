@@ -42,9 +42,8 @@ def test_the_page_is_html_and_says_what_it_is(tmp_path):
     assert 'lang="en"' in html
     assert 'name="viewport"' in html
     assert "prefers-color-scheme" in html
-    # Self-contained: a page that fetched a script or a stylesheet would be one
-    # more thing that can rot between two probe runs.
-    assert not re.search(r'<script\b[^>]*\bsrc=', html), "no external scripts"
+    assert re.findall(r'<script\b[^>]*\bsrc="([^"]+)"', html) == ["assets/model-name.js"]
+    assert (TEMPLATES.parent / "assets/model-name.js").is_file()
     assert not re.search(r'<link\b[^>]*rel="stylesheet"', html), "no external styles"
 
 
@@ -517,9 +516,10 @@ def test_the_search_finds_a_model_written_the_way_its_vendor_writes_it(tmp_path)
     find the row's models and the model itself, though a lone "3" may only
     start a name. The page's own functions run here."""
     script = _render([make()], tmp_path).split('id="search-config">')[1]
-    names = ("fold", "squash", "written", "prepareOffer", "prepareModel",
+    names = ("fold", "squash", "prepareOffer", "prepareModel",
              "scoreOffer", "wholeOffer", "scoreModel", "spelled", "withAccess", "snippet")
-    harness = "\n".join(_js_function(script, n) for n in names) + """
+    harness = (TEMPLATES.parent / "assets/model-name.js").read_text() + "\n" + "\n".join(
+        _js_function(script, n) for n in names) + """
     function q(s) { return fold(s).split(" ").filter(Boolean); }
     function offer(models, limits, access, modelAccess, name) {
       var o = {name: name || "Row", models: models, what: "A gateway", limits: limits || "",

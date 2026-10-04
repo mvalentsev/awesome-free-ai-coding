@@ -70,12 +70,19 @@ def test_paid_unlock_does_not_enter_an_automatic_free_fallback_pool():
     assert pool == ["openai/steady"]
 
 
-def test_real_render_expires_at_the_vendor_instant_and_preserves_evidence(tmp_path):
+@pytest.mark.parametrize("probe", [
+    {"type": "api-models", "endpoint": "https://vendor.example/v1/models",
+     "require_zero_price": True},
+    {"type": "api-models", "endpoint": "https://vendor.example/v1/models"},
+    {"type": "page-keywords", "endpoint": "https://vendor.example/pricing",
+     "keywords": ["one million free tokens"]},
+])
+def test_real_render_expires_at_the_vendor_instant_and_preserves_evidence(tmp_path, probe):
     """A timed promotion must disappear from every generated callable surface, not just its label."""
     from freetier_radar.render import render_repository
 
     path = tmp_path / "registry.yaml"
-    save_registry(path, [entry()])
+    save_registry(path, [entry(probe=probe)])
     before = datetime(2026, 10, 6, 20, 58, 59, tzinfo=timezone.utc)
     render_repository(path, Path("templates"), tmp_path, today=before.date(), now=before)
     assert "preview" in build_opencode_config(load_registry(path), before.date())["provider"]["gateway"]["models"]

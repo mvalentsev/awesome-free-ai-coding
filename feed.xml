@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-03T12:37:59Z</updated>
+  <updated>2026-10-04T13:53:45Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261004T135345Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-04T13:53:45Z</updated>
+    <summary type="text">dropped motif-3 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, minimax-m3.1-flash-preview</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/siliconflow-cn/20261003T123759Z</id>
     <title>Free models changed: SiliconFlow (China)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://groq.com"/>
     <updated>2026-09-25T12:00:52Z</updated>
     <summary type="text">added gpt-oss-120b, gpt-oss-20b; dropped gpt-oss · free models: gpt-oss-120b, gpt-oss-20b, qwen3.6, qwen3.8-27b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/openrouter-free/20260925T120052Z</id>
-    <title>Free models changed: OpenRouter (free models)</title>
-    <link rel="alternate" href="https://openrouter.ai"/>
-    <updated>2026-09-25T12:00:52Z</updated>
-    <summary type="text">added gemma-4-26b-a4b, gemma-4-31b; dropped gemma-4 · free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning, inkling, inkling-small, dots-3-note, ling-3.0-flash-fin, ling-3.0-flash-sante, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

@@ -5,7 +5,7 @@
 # Codex CLI 0.134 or later and LiteLLM 1.98 or later; the file goes where
 # Codex keeps its config, ~/.codex unless CODEX_HOME says otherwise:
 #
-#   env -u OPENAI_API_KEY litellm --config configs/litellm.yaml --host 127.0.0.1
+#   env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config configs/litellm.yaml --host 127.0.0.1
 #   cp configs/codex/litellm.config.toml ~/.codex/
 #   codex -p litellm
 #

@@ -46,7 +46,7 @@ import httpx
 import yaml
 
 from .prober import CODEX_DONE, codex_probe_body
-from .render import CODEX_SINCE, LITELLM_BRIDGE_SINCE
+from .render import CODEX_SINCE, LITELLM_BRIDGE_SINCE, litellm_command
 
 __all__ = ["Sentence", "SENTENCES", "Finding", "Lane", "floors", "comment_text",
            "keyed_profile", "missing_sentences", "printed_run", "printed_profile", "as_run",
@@ -82,8 +82,7 @@ class Sentence:
 
 
 SENTENCES: dict[str, Sentence] = {
-    "run": Sentence(LITELLM_YAML, r"Run: env -u OPENAI_API_KEY litellm --config litellm\.yaml "
-                                  r"--host 127\.0\.0\.1"),
+    "run": Sentence(LITELLM_YAML, r"Run: " + re.escape(litellm_command("litellm.yaml"))),
     "reader-key": Sentence(LITELLM_YAML, r"LiteLLM gives an entry whose key variable is not set "
                                          r"the OPENAI_API_KEY it runs with and sends it to that "
                                          r"lane, so the command runs it without one\."),
@@ -228,10 +227,12 @@ def as_run(argv: list[str], litellm: str, config: str) -> list[str]:
 
 def bare(argv: list[str]) -> list[str]:
     """The printed command as a reader who skips its advice runs it: no
-    `env -u …` in front, no --host."""
+    OPENAI_API_KEY isolation or --host; retain settings needed for startup."""
     out = list(argv)
-    while out[:1] == ["env"]:
-        out = out[3:] if out[1:2] == ["-u"] else out[1:]
+    if out[:3] == ["env", "-u", "OPENAI_API_KEY"]:
+        del out[1:3]
+    if out[:1] == ["env"] and (len(out) == 1 or "=" not in out[1]):
+        del out[0]
     if "--host" in out:
         at = out.index("--host")
         del out[at:at + 2]

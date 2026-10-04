@@ -43,6 +43,11 @@ Model deadlines inherit a whole-offer payment. Record that payment once in
 `access`; do not put a second payment in `model_access` on the same offer, where
 it could hide an account requirement or imply two different amounts.
 
+The expiry writer removes an ended ID from callable configurations and retains
+its deadline in `model_access` beside `ignored_ids`. A page-based or unpriced
+catalog probe may retain these dated IDs as evidence; undated exclusions still
+require a catalog probe that reads zero prices.
+
 What does **not** qualify:
 
 - reverse proxies, key sharing, scraped or "unofficial" gateways;
@@ -482,10 +487,22 @@ place — Cloudflare's config handed out `llama-4`, which Workers AI does not kn
 and Upstage's `solar-pro-3` for the id `solar-pro3` — so `freetier-check` now
 refuses a connectable row whose column names families with no ids beside them.
 
+**Client token limits come from the catalog.** When a client's default exceeds
+the vendor's cap, record `api.model_limits[ID]` with positive `context_tokens`,
+`output_tokens` and `source`. The source must be this row's checked catalog;
+every verification compares `context_length` and
+`top_provider.max_completion_tokens`, reporting changed or unavailable values.
+The writers supply OpenCode's context/output limits and LiteLLM's default
+`max_tokens` for named and pooled deployments. An explicit client token request
+can override that LiteLLM default; verify affected clients with live requests.
+
 **A key the reader has not set never becomes another of theirs.** LiteLLM gives
 an entry whose key variable is not set the `OPENAI_API_KEY` it runs with and
 sends it to that lane, so every place that prints the proxy's command starts it
-as `env -u OPENAI_API_KEY litellm --config …`. Claude Code with an empty
+as `env -u OPENAI_API_KEY … litellm --config …`. The full local-development
+command comes from `render.litellm_command`, including the explicit keyless
+startup opt-in required by LiteLLM 1.104 and the loopback bind; conformance runs
+that command on the oldest and newest releases. Claude Code with an empty
 `ANTHROPIC_AUTH_TOKEN` takes the next credential in its
 [authentication order](https://code.claude.com/docs/en/authentication#authentication-precedence),
 the reader's own sign-in included, and sends it to the gateway, so a keyed
@@ -936,7 +953,7 @@ cannot print two versions of it.
 | `history.jsonl` | **log** — every change to what the list publishes, one event a line, append-only | `registry.yaml` | `freetier-render` |
 | `announced.jsonl` | **log** — the posts the announcer has sent, append-only | `history.jsonl` | `freetier-announce` |
 | `README.md` | **generated** — the landing page GitHub shows under the file list · not on the site | `templates/README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
-| `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
+| `index.html` | **generated** — the Pages site's front page | `templates/index.html.j2`, `assets/model-name.js`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `configs/README.md` | **generated** — the connection table, beside the configs · not on the site | `templates/configs-README.md.j2`, `registry.yaml`, `watchlist.yaml`, `history.jsonl` | `freetier-render` |
 | `configs/opencode.json` | **generated** — the opencode config | `registry.yaml` | `freetier-render` |
 | `configs/litellm.yaml` | **generated** — the LiteLLM proxy config and its groups | `registry.yaml` | `freetier-render` |
@@ -949,10 +966,11 @@ cannot print two versions of it.
 | `assets/readme/*.svg` | **generated** — the README's pictures: the radar at the top, a dot per live row, and the strong models drawn against the top of the index, in each width and theme the README serves — and the radar alone, the site's mark beside its name | `registry.yaml`, `src/freetier_radar/intelligence-index.json` | `freetier-render` |
 | `providers/*.md` | **generated** — a page per row, the provider index and the page of services checked · never deleted once published | `registry.yaml`, `history.jsonl`, `watchlist.yaml`, `blocklist.yaml` | `freetier-render` |
 | `models/*.md` | **generated** — a page per widely served or strong free model, and the index of every free model · never deleted once published | `registry.yaml`, `history.jsonl` | `freetier-render` |
-| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json` | `hand` |
+| `browse.html` | **page** — the filterable table, reading index.json in the browser | `index.json`, `assets/model-name.js` | `hand` |
 | `404.html` | **page** — what Pages serves for an address the site does not have, offering the rows that name what the address asked for | — | `hand` |
 | `assets/*.svg` | **page** — the favicon and the social preview's source | — | `hand` |
 | `assets/*.png` | **page** — the social preview | — | `hand` |
+| `assets/*.js` | **page** — shared browser model-name matching | — | `hand` |
 | `eb68c254f1e03877b906ccc800002691.txt` | **page** — the IndexNow key, named after itself (indexnow.INDEXNOW_KEY) | — | `hand` |
 | `AGENTS.md` | **doc** — standing review and evidence rules for repository work · not on the site | — | `hand` |
 | `CONTRIBUTING.md` | **doc** — how the list works and how to change it; its map section is this table | `src/freetier_radar/layout.py` | `hand`, `freetier-render` |
@@ -1088,7 +1106,9 @@ open-weight models" says what Kiro serves without listing it. A sum has no Model
 line, so its prose names what the amount buys.
 
 **A phrase in quotation marks is a claim that the vendor published those words.**
-`freetier-quotes` fetches a row's `source_urls`, its probe endpoint and its
+`freetier-quotes` reads quotes in `offering`, `limits`, `api.note` and
+`client_lane.note`, as well as the explicit data-use and API Codex quotes. It
+fetches a row's `source_urls`, its probe endpoint and its
 catalog, and reports every quote of three words or more that none of them
 carries; the fix is the vendor's exact words or a source URL that has them. A
 quote the pages that answered do not carry, while another of the row's sources
@@ -1120,6 +1140,15 @@ that was not its own among them. So such a comment names the page, the release
 or the command it rests on and the date it was read; what a config says LiteLLM
 or Codex does is a check in `conformance.py` instead; and a floor in
 `pyproject.toml` is one the `floors` job in CI installs and runs.
+
+**Every mutable claim needs a source and a recheck mechanism.** Prefer a
+canonical registry field and generated prose. Register handwritten assertions
+about repository behavior in `claims.py`; changes in documented client behavior
+need a check in `conformance.py`. Neither mechanism discovers arbitrary new
+claims automatically. External facts that cannot be checked or expired by code
+need a source, a checked date and a dated review with a clear trigger in private
+evidence. Model promotions use `model_access.until`; other dated bonuses need
+their own review, since a historical vendor quote can remain after a bonus ends.
 
 `freetier-check` is the one to run after editing any of `registry.yaml`,
 `blocklist.yaml`, `dismissed.yaml`, `watchlist.yaml` or `sources.yaml`. Two of

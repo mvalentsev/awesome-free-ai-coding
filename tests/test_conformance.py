@@ -103,11 +103,11 @@ def test_the_oldest_releases_run_are_the_ones_the_files_ask_for():
 
 def test_the_commands_are_the_ones_the_files_print():
     run = printed_run((ROOT / "configs/litellm.yaml").read_text(encoding="utf-8"))
-    assert run == ["env", "-u", "OPENAI_API_KEY", "litellm", "--config", "litellm.yaml",
+    assert run == ["env", "-u", "OPENAI_API_KEY", "LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true", "litellm", "--config", "litellm.yaml",
                    "--host", "127.0.0.1"]
     proxy, cp, codex = printed_profile(
         (ROOT / "configs/codex/litellm.config.toml").read_text(encoding="utf-8"))
-    assert proxy[:4] == ["env", "-u", "OPENAI_API_KEY", "litellm"] and "--host" in proxy
+    assert proxy[:5] == run[:5] and "--host" in proxy
     assert cp == ["cp", "configs/codex/litellm.config.toml", "~/.codex/"]
     assert codex == ["codex", "-p", "litellm"]
     proxy, cp, codex = printed_profile(
@@ -122,6 +122,10 @@ def test_a_printed_command_runs_here_as_printed_or_without_its_advice():
     assert here == ["env", "-u", "OPENAI_API_KEY", "/v/bin/litellm", "--config",
                     "/w/litellm.yaml", "--host", "127.0.0.1"]
     assert bare(here) == ["/v/bin/litellm", "--config", "/w/litellm.yaml"]
+    configured = [*printed[:3], "LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true", *printed[3:]]
+    assert bare(as_run(configured, "/v/bin/litellm", "/w/litellm.yaml")) == [
+        "env", "LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true",
+        "/v/bin/litellm", "--config", "/w/litellm.yaml"]
 
 
 CONFIG = {

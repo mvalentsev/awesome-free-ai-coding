@@ -610,6 +610,27 @@ def _access_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
         raise ValueError(f"model_access names unlisted IDs: {', '.join(sorted(unknown))}")
 
 
+class ModelLimits(BaseModel):
+    """Vendor catalog token limits used by generated clients and rechecked by the probe."""
+    model_config = ConfigDict(extra="forbid")
+    context_tokens: int = Field(gt=0, strict=True)
+    output_tokens: int = Field(gt=0, strict=True)
+    source: str
+
+    @field_validator("source")
+    @classmethod
+    def _catalog_is_https(cls, value: str) -> str:
+        if urlparse(value).scheme != "https" or not urlparse(value).netloc:
+            raise ValueError("model_limits source must be an https URL")
+        return value
+
+    @model_validator(mode="after")
+    def _output_fits_context(self) -> ModelLimits:
+        if self.output_tokens > self.context_tokens:
+            raise ValueError("model_limits output_tokens exceeds context_tokens")
+        return self
+
+
 class ApiInfo(BaseModel):
     """Connection details a developer pastes into an agent/SDK config."""
     base_url: str | None = None
@@ -618,6 +639,7 @@ class ApiInfo(BaseModel):
     openai_compatible: bool = True
     model_ids: list[str] = []  # exact callable ids for generated configs
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    model_limits: dict[str, ModelLimits] = Field(default_factory=dict, exclude_if=lambda v: not v)
     # Zero-priced ids the catalog carries that are deliberately not in
     # model_ids — an image generator, a row whose own description says it was
     # removed, a lane the row does not track — with the reason in the commit
@@ -699,6 +721,9 @@ class ApiInfo(BaseModel):
     @model_validator(mode="after")
     def _access_names_ids(self) -> ApiInfo:
         _access_ids_are_listed(self.model_ids, self.ignored_ids, self.model_access)
+        unknown = self.model_limits.keys() - set(self.model_ids) - set(self.ignored_ids)
+        if unknown:
+            raise ValueError(f"model_limits names unlisted IDs: {', '.join(sorted(unknown))}")
         return self
 
     @property
@@ -1173,16 +1198,27 @@ class Entry(BaseModel):
         return self
 
     @model_validator(mode="after")
+    def _limits_are_rechecked(self) -> Entry:
+        if self.api is not None and self.api.model_limits:
+            catalog = (self.probe.endpoint if self.probe.type is ProbeType.API_MODELS
+                       else self.probe.catalog)
+            if not catalog or any(l.source != catalog for l in self.api.model_limits.values()):
+                raise ValueError("api.model_limits source must be the catalog this probe rechecks")
+        return self
+
+    @model_validator(mode="after")
     def _ignored_ids_need_a_price_list(self) -> Entry:
         """`api.ignored_ids` is read where the probe compares a catalog's
         zero-priced rows with `api.model_ids` — an api-models probe with
-        require_zero_price set — and nowhere else. Anywhere else it would sit
-        in the registry recording a decision nothing acts on, the silence
-        _zero_price_needs_a_price_list refuses for the same reason. And an id
-        in both lists is two decisions about one id."""
+        require_zero_price set. Other probes may retain only IDs with a
+        documented promotion deadline, as the expiry writer's evidence.
+        Undated exclusions there would record a decision nothing acts on.
+        An id in both lists is two decisions about one id."""
         if self.api is None or not self.api.ignored_ids:
             return self
-        if not (self.probe.type is ProbeType.API_MODELS and self.probe.require_zero_price):
+        undated = [i for i in self.api.ignored_ids
+                   if not ((a := self.api.model_access.get(i)) and a.until)]
+        if undated and not (self.probe.type is ProbeType.API_MODELS and self.probe.require_zero_price):
             raise ValueError(
                 f"{self.id}: api.ignored_ids needs an api-models probe with "
                 "require_zero_price — nothing reads it anywhere else")

@@ -78,7 +78,7 @@ claude-vercel-ai-gateway() {
 }
 
 # ── Token Harbor · get a key: https://tokenharbor.ai/dashboard/api-keys
-#    free ids: deepseek-v4.1-flash:free, mimo-v2.6-flash:free, qwen3.8-flash:free
+#    free ids: deepseek-v4.1-flash:free, mimo-v2.6-flash:free
 claude-token-harbor() {
   if [ -z "${TOKEN_HARBOR_API_KEY:-}" ]; then
     echo "claude-token-harbor: set TOKEN_HARBOR_API_KEY first (configs/free-llm.env.example)" >&2

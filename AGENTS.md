@@ -42,6 +42,14 @@ hooks, delete a registry row or published page, or hand-edit generated files
 and history. Keep raw responses, credentials and internal review notes outside
 tracked public files.
 
+Every new or changed mutable claim needs a canonical field or a registered
+check, its source, and a recheck mechanism. Register handwritten repository
+assertions in claims.py and client behavior in conformance.py. External-behavior
+comments name the source or measured release and the date checked. For claims
+that cannot be generated, checked or expired automatically, record a dated
+review and its trigger in private evidence. Model promotion deadlines belong
+in model_access.until; a historical quote alone cannot detect an ended offer.
+
 Use `freetier-review` for reusable private evidence; its commands and limits are
 in CONTRIBUTING.md. Prepare from exact commits and keep full artifacts in a
 git-ignored directory. Use the generated browser coverage plan. The runner does

@@ -10,6 +10,7 @@ touches them.
 | `social-preview.svg` | Source of the social preview card |
 | `social-preview.png` | 1280×640 render for GitHub's social preview, and every Pages page's preview card (`_config.yml` defaults) |
 | `favicon.svg` | The site's icon, on `index.html`, `browse.html` and every page `_layouts/default.html` serves |
+| `model-name.js` | Model-name matching shared by the front-page search and the filterable table; preserves version dots |
 
 The radar animates. The beam turns once every 6 seconds, driven by SMIL
 (`animateTransform`).

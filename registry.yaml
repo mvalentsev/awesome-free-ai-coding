@@ -3340,6 +3340,9 @@ entries:
   - https://llmtr.com/v1/models
   - https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
   - https://llmtr.com/models/inclusionai/ling-3.1-flash
+  - https://llmtr.com/models/motif/motif-3
+  - https://llmtr.com/models/tesseracted/kolibri-1
+  - https://llmtr.com/models/qwen/qwen3.8-27b-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -3357,7 +3360,7 @@ entries:
     Ling 3.1 Flash is a short promotion: "13 Ekim 2026 19:00''a kadar ucretsiz" (free
     until October 13, 19:00). MiniMax M3.1 Flash Preview requires a top-up: "6 Ekim
     2026 23:59''a kadar ücretsiz, en az bir kez bakiye yüklemiş hesaplara açık" (until
-    October 6, 23:59, only for accounts that have topped up). Read 2026-10-01'
+    October 6, 23:59, only for accounts that have topped up). Read 2026-10-04'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -3369,9 +3372,6 @@ entries:
   - family: laguna-xs-2.1
   - family: agnes-3.0-flash
   - family: agnes-2.5-flash
-  - family: motif-3
-    tier: strong
-    aa_model: motif-3
   - family: ling-3.1-flash
   - family: minimax-m3.1-flash-preview
   api:
@@ -3387,8 +3387,8 @@ entries:
     - inclusionai/ling-3.1-flash
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
-    - motif/motif-3
     - minimax/minimax-m3.1-flash-preview
+    - tesseracted/kolibri-1
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -3398,6 +3398,18 @@ entries:
       inclusionai/ling-3.1-flash:
         source: https://llmtr.com/models/inclusionai/ling-3.1-flash
         until: '2026-10-13T19:00:00+03:00'
+      tesseracted/kolibri-1:
+        source: https://llmtr.com/models/tesseracted/kolibri-1
+        until: '2026-10-09T23:59:00+03:00'
+    model_limits:
+      qwen/qwen3.8-27b-free:
+        context_tokens: 131042
+        output_tokens: 16384
+        source: https://llmtr.com/v1/models
+      tesseracted/kolibri-1:
+        context_tokens: 32768
+        output_tokens: 16384
+        source: https://llmtr.com/v1/models
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free
     - evren/deepseek-v4-flash-tr
@@ -3407,8 +3419,10 @@ entries:
     - evren/qwen3.8-flash-next
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
-    note: New accounts have a reduced shared free-model allowance during their first
-      24 hours. Use the listed free IDs; Nemotron Ultra's -262k variant is metered.
+    note: 'New accounts have a reduced shared free-model allowance during their first
+      24 hours. Use the listed free IDs; Nemotron Ultra''s -262k variant is metered.
+      Checked 2026-10-04: small Qwen3.8 tool cycles completed, but full Codex and
+      OpenCode requests received provider_error; use another listed ID for those clients.'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -4318,8 +4332,8 @@ entries:
     allowance is exhausted", and "Free routes never charge your balance". "No card
     required". "Free routes are disabled by default" until you consent to them, "Token
     Harbor may retain prompts and responses sent through explicit free routes after
-    you opt in", and "Upstream providers separately process free-route content under
-    their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-09-27'
+    you opt in", and "Upstream providers separately process request content under
+    their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04'
   free_part: models
   models:
   - family: deepseek-v4.1-flash
@@ -4333,20 +4347,21 @@ entries:
     model_ids:
     - deepseek-v4.1-flash:free
     - mimo-v2.6-flash:free
-    - qwen3.8-flash:free
-    no_family_ids:
+    model_access:
+      qwen3.8-flash:free:
+        source: https://tokenharbor.ai/models?category=free
+        until: '2026-10-04T13:00:00Z'
+    ignored_ids:
     - qwen3.8-flash:free
     anthropic_base_url: https://tokenharbor.ai
     codex:
       base_url: https://tokenharbor.ai/v1
       source: https://tokenharbor.ai/docs/integrations/codex
       quote: Point OpenAI Codex at Token Harbor manually
-    note: the :free suffix selects the free route, which has to be switched on in
-      the dashboard first; /v1/models needs a key, so the ids are the ones the models
-      page lists under Free, where qwen3.8-flash:free carries a Limited time badge
-      dated free to 2026-10-04 13:00 UTC, and the pricing page says "2× Boost on Qwen3.8
-      Flash runs through October 4, 2026". For Claude Code the docs say "a free account
-      works" and "every gateway model works on both endpoints"
+    note: The :free suffix selects the free route, which has to be switched on in
+      the dashboard first. /v1/models needs a key; use the IDs listed under Free on
+      the Models page. For Claude Code the docs say "a free account works" and "every
+      gateway model works on both endpoints".
   data_use:
     trains: 'yes'
     quote: After you explicitly enable free models, Token Harbor may retain, log,
@@ -4363,7 +4378,7 @@ entries:
     endpoint: https://tokenharbor.ai/pricing
     keywords:
     - Try Token Harbor with a free allowance and a rotating model lineup
-    - Included every month (4 weeks)
+    - Resets on a rolling 7-day period
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

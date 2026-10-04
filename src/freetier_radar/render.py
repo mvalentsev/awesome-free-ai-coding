@@ -1095,6 +1095,7 @@ def _shared_facts(entries: list[Entry], today: date,
         # The LiteLLM groups the config defines today, and the shell function a
         # reader is shown as the example: both are read off the files they name.
         "litellm_groups": litellm_groups(entries, today),
+        "litellm_command": litellm_command(),
         "claude_example": f"claude-{anthropic[0].id}" if anthropic else "",
         # Codex's profile over litellm.yaml: its path from the repository's root
         # and from configs/, the name `codex -p` takes, and the versions it needs.
@@ -1631,6 +1632,11 @@ def build_opencode_config(entries: list[Entry], today: date) -> dict:
         # the string a request carries (see _litellm_ids).
         models = {mid: {"name": mid + (f" ({words})" if (words := access_words(id_access(e, mid), compact=True)) else "")}
                   for mid in e.api.model_ids}
+        # OpenCode's model schema requires both context and output limits.
+        # https://opencode.ai/config.json, read 2026-10-04; live client recheck.
+        for mid, limits in e.api.model_limits.items():
+            if mid in models:
+                models[mid]["limit"] = {"context": limits.context_tokens, "output": limits.output_tokens}
         providers[e.id] = {
             "npm": "@ai-sdk/openai-compatible",
             "name": e.name,
@@ -1662,6 +1668,16 @@ CODEX_LITELLM_PATH = f"{CODEX_DIR}/{CODEX_LITELLM_PROFILE}.config.toml"
 # Where the proxy listens when started the way this repo prints the command:
 # on the loopback address, at LiteLLM's own default port.
 LITELLM_LOCAL_URL = "http://127.0.0.1:4000/v1"
+
+
+def litellm_command(config: str = "configs/litellm.yaml") -> str:
+    """The local proxy command used by every page and profile."""
+    # LiteLLM 1.104.0 requires this explicit local-development opt-in when no
+    # master key is set. GeneralSettings in the official release's _types.py,
+    # read 2026-10-04; startup and loopback binding are held by conformance.
+    # https://github.com/BerriAI/litellm/blob/v1.104.0/litellm/proxy/_types.py
+    return ("env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true "
+            f"litellm --config {config} --host 127.0.0.1")
 
 
 def _litellm_lanes(entries: list[Entry], today: date) -> list[Entry]:
@@ -1723,6 +1739,8 @@ def build_litellm_config(entries: list[Entry], today: date) -> dict:
         for model_id in _litellm_ids(e):
             params = {"model": f"openai/{model_id}", "api_base": e.api.base_url,
                       "api_key": _litellm_key(e), "use_chat_completions_api": True}
+            if limits := e.api.model_limits.get(model_id):
+                params["max_tokens"] = limits.output_tokens
             access = id_access(e, model_id)
             words = access_words(access)
             models.append({"model_name": f"{e.id}/{model_id}", "litellm_params": params,
@@ -1830,7 +1848,7 @@ def build_codex_litellm_profile(entries: list[Entry], today: date) -> str:
                   f"LiteLLM {LITELLM_BRIDGE_SINCE} or later; the file goes where Codex keeps "
                   "its config, ~/.codex unless CODEX_HOME says otherwise:"),
         "#",
-        "#   env -u OPENAI_API_KEY litellm --config configs/litellm.yaml --host 127.0.0.1",
+        f"#   {litellm_command()}",
         f"#   cp {CODEX_LITELLM_PATH} ~/.codex/",
         f"#   codex -p {CODEX_LITELLM_PROFILE}",
         "#",
@@ -2991,7 +3009,8 @@ def render_artifacts(registry_path: Path, root: Path, today: date | None = None,
     (configs / "litellm.yaml").write_text(
         "# Free LLM providers as a LiteLLM proxy config — generated from\n"
         "# registry.yaml, do not edit by hand.\n"
-        "# Run: env -u OPENAI_API_KEY litellm --config litellm.yaml --host 127.0.0.1\n"
+        f"# Run: {litellm_command('litellm.yaml')}\n"
+        "# This command opts in to a keyless local-development proxy on loopback.\n"
         "# LiteLLM gives an entry whose key variable is not set the OPENAI_API_KEY it\n"
         "# runs with and sends it to that lane, so the command runs it without one.\n"
         "# The proxy listens on 0.0.0.0 unless --host says otherwise, and this file\n"

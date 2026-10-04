@@ -1,6 +1,7 @@
 # Free LLM providers as a LiteLLM proxy config — generated from
 # registry.yaml, do not edit by hand.
-# Run: env -u OPENAI_API_KEY litellm --config litellm.yaml --host 127.0.0.1
+# Run: env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config litellm.yaml --host 127.0.0.1
+# This command opts in to a keyless local-development proxy on loopback.
 # LiteLLM gives an entry whose key variable is not set the OPENAI_API_KEY it
 # runs with and sends it to that lane, so the command runs it without one.
 # The proxy listens on 0.0.0.0 unless --host says otherwise, and this file
@@ -678,6 +679,7 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
+    max_tokens: 16384
 - model_name: llmtr/poolside/laguna-xs-2.1
   litellm_params:
     model: openai/poolside/laguna-xs-2.1
@@ -705,12 +707,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/motif/motif-3
-  litellm_params:
-    model: openai/motif/motif-3
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
 - model_name: llmtr/minimax/minimax-m3.1-flash-preview
   litellm_params:
     model: openai/minimax/minimax-m3.1-flash-preview
@@ -720,6 +716,16 @@ model_list:
   model_info:
     access: requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00
     source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
+- model_name: llmtr/tesseracted/kolibri-1
+  litellm_params:
+    model: openai/tesseracted/kolibri-1
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 16384
+  model_info:
+    access: free until 2026-10-09 23:59+03:00
+    source: https://llmtr.com/models/tesseracted/kolibri-1
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
@@ -1263,12 +1269,6 @@ model_list:
 - model_name: token-harbor/mimo-v2.6-flash:free
   litellm_params:
     model: openai/mimo-v2.6-flash:free
-    api_base: https://tokenharbor.ai/v1
-    api_key: os.environ/TOKEN_HARBOR_API_KEY
-    use_chat_completions_api: true
-- model_name: token-harbor/qwen3.8-flash:free
-  litellm_params:
-    model: openai/qwen3.8-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
     use_chat_completions_api: true
@@ -2020,17 +2020,6 @@ model_list:
     model: openai/deepseek-v4-flash:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
-    model: openai/motif/motif-3
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
   model_info:
     allowed_fails_policy:

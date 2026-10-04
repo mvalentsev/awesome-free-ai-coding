@@ -87,6 +87,36 @@ def zero_price_entry() -> Entry:
 FREE_QWEN = {"id": "qwen/qwen3-coder:free", "pricing": {"prompt": "0", "completion": "0"}}
 
 
+@pytest.mark.parametrize("id_field", ["id", "model_id"])
+@pytest.mark.parametrize("catalog_limits, detail", [
+    ({"context_length": 131042, "top_provider": {"max_completion_tokens": 16384}}, ""),
+    ({"context_length": 65536, "top_provider": {"max_completion_tokens": 8192}},
+     "context_tokens=65536 (recorded 131042), output_tokens=8192 (recorded 16384)"),
+    ({"context_length": 131042}, "output_tokens unavailable"),
+    ({"context_length": True, "top_provider": {"max_completion_tokens": "16384"}},
+     "context_tokens unavailable, output_tokens unavailable"),
+])
+@respx.mock
+async def test_catalog_rechecks_limits_used_by_generated_clients(catalog_limits, detail, id_field):
+    row = zero_price_entry().model_dump()
+    row["api"] = {
+        "base_url": "https://api.x.ai/v1", "model_ids": [FREE_QWEN["id"]],
+        "model_limits": {FREE_QWEN["id"]: {
+            "context_tokens": 131042, "output_tokens": 16384,
+            "source": row["probe"]["endpoint"],
+        }},
+    }
+    model = {**FREE_QWEN, **catalog_limits}
+    model[id_field] = model.pop("id")
+    respx.get(row["probe"]["endpoint"]).mock(return_value=httpx.Response(
+        200, json={"data": [{"id": []}, model]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, Entry.model_validate(row), backoff=0)
+    assert result.status is (ProbeStatus.STALE_IDS if detail else ProbeStatus.PASS)
+    if detail:
+        assert f"api.model_limits {FREE_QWEN['id']}: {detail}" in result.detail
+
+
 def two_family_entry() -> Entry:
     e = zero_price_entry()
     e.models = [ModelFamily(family="qwen3-coder"), ModelFamily(family="llama-4")]
