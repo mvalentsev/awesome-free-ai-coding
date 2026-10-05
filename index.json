@@ -951,11 +951,6 @@
         {
           "family": "nemotron-3-nano-omni",
           "aa_model": "nemotron-3-nano-omni-30b-a3b"
-        },
-        {
-          "family": "qwen3.8-27b",
-          "tier": "strong",
-          "aa_model": "qwen3-8-27b"
         }
       ],
       "api": {
@@ -978,8 +973,6 @@
           "inclusionai/ling-3.0-flash-sante:free",
           "dots-studio/dots-3-note-preview:free",
           "thinkingmachines/inkling-small:free",
-          "qwen/qwen3.8-27b:free",
-          "stealth/space-bunny-alpha",
           "apodex/apodex-1.1-mini:free"
         ],
         "model_limits": {
@@ -995,14 +988,13 @@
         "no_family_ids": [
           "kilo-auto/free",
           "openrouter/free",
-          "liquid/lfm-2.5-2.6b:free",
-          "stealth/space-bunny-alpha"
+          "liquid/lfm-2.5-2.6b:free"
         ],
         "refuses_bearer": true,
         "codex": {
           "base_url": "https://api.kilo.ai/api/gateway"
         },
-        "note": "Free IDs need no key, with 200 requests/hour per IP; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically; stealth/space-bunny-alpha names no model. LiquidAI advises against agentic coding with lfm-2.5-2.6b."
+        "note": "Free IDs need no key, with 200 requests/hour per IP; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b."
       },
       "data_use": {
         "trains": "yes",
@@ -9536,7 +9528,6 @@
       "rows": [
         "openrouter-free",
         "groq-free",
-        "kilo-code",
         "llmtr",
         "llmtech",
         "hetzner-inference",

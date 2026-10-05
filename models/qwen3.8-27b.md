@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'qwen3.8-27b free: 10 providers, limits and ids, verified 2026-10-05'
-description: qwen3.8-27b is served free by OpenRouter (free models), Groq, Kilo Code, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; Kilo Code, LLM Tech, VLM Run Gateway and OVHcloud AI…
+title: 'qwen3.8-27b free: 9 providers, limits and ids, verified 2026-10-05'
+description: qwen3.8-27b is served free by OpenRouter (free models), Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with…
 permalink: /models/qwen3.8-27b/
 last_modified_at: 2026-10-05
 crumb: qwen3.8-27b
@@ -11,7 +11,7 @@ crumb: qwen3.8-27b
 
 # Where qwen3.8-27b is free
 
-**10 rows on the list serve `qwen3.8-27b` free:** OpenRouter (free models), Groq, Kilo Code, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; Kilo Code, LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-27b).
+**9 rows on the list serve `qwen3.8-27b` free:** OpenRouter (free models), Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-27b).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -54,25 +54,6 @@ Fast inference against a free plan Groq publishes as a per-model rate table
 - Key: `GROQ_API_KEY` — get one at <https://console.groq.com/keys>
 - Callable ids: `qwen/qwen3.8-27b`
 - What you send is not used to train models ([the vendor's words](https://console.groq.com/docs/legal/services-agreement)).
-
-### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
-
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-10-05 · listed since 2026-10-02
-
-Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: $0 a month, and no account for the free lane: "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)". The lane is whatever the gateway marks isFree and the free-model lineup rotates. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21
-
-</details>
-
-- Base URL: `https://api.kilo.ai/api/gateway`
-- Key: none — the lane is anonymous
-- Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
-- Callable ids: `qwen/qwen3.8-27b:free`
-- What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
@@ -186,6 +167,10 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 - Key: none — the lane is anonymous
 - Callable ids: `Qwen3.8-27B`
 - What you send is not used to train models ([the vendor's words](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)).
+
+## Rows that listed it before
+
+- [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — listed 2026-10-02 to 2026-10-05
 
 ## Related models
 

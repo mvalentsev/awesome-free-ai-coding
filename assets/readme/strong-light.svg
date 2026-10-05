@@ -57,6 +57,6 @@
 <text x="746.6" y="604" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">33.7</tspan><tspan class="m"> · 3 offers</tspan></text>
 <text class="t label" x="350" y="636" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19">qwen3.8-27b</text>
 <rect class="bar strong" x="370.0" y="621" width="368.6" height="18" rx="4"/>
-<text x="746.6" y="636" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">33.7</tspan><tspan class="m"> · 10 offers</tspan></text>
+<text x="746.6" y="636" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17"><tspan class="t" font-weight="700">33.7</tspan><tspan class="m"> · 9 offers</tspan></text>
 <text class="m" x="40" y="688" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16">each bar: a model a live offer on this list serves free — where, in the list below</text>
 </svg>
