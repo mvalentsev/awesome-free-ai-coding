@@ -175,6 +175,13 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
+- model_name: openrouter-free/apodex/apodex-1.1-mini:free
+  litellm_params:
+    model: openai/apodex/apodex-1.1-mini:free
+    api_base: https://openrouter.ai/api/v1
+    api_key: os.environ/OPENROUTER_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 235929
 - model_name: groq-free/openai/gpt-oss-120b
   litellm_params:
     model: openai/openai/gpt-oss-120b
@@ -244,6 +251,12 @@ model_list:
 - model_name: requesty/nvidia/nemotron-3.5-lightning-30b-a3b
   litellm_params:
     model: openai/nvidia/nemotron-3.5-lightning-30b-a3b
+    api_base: https://router.requesty.ai/v1
+    api_key: os.environ/REQUESTY_API_KEY
+    use_chat_completions_api: true
+- model_name: requesty/novita/ling-3.1-flash
+  litellm_params:
+    model: openai/novita/ling-3.1-flash
     api_base: https://router.requesty.ai/v1
     api_key: os.environ/REQUESTY_API_KEY
     use_chat_completions_api: true
@@ -735,18 +748,6 @@ model_list:
 - model_name: vercel-ai-gateway/poolside/laguna-s-2.1-free
   litellm_params:
     model: openai/poolside/laguna-s-2.1-free
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-    use_chat_completions_api: true
-- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-sante
-    api_base: https://ai-gateway.vercel.sh/v1
-    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
-    use_chat_completions_api: true
-- model_name: vercel-ai-gateway/inclusionai/ling-3.0-flash-sante-free
-  litellm_params:
-    model: openai/inclusionai/ling-3.0-flash-sante-free
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
@@ -2021,6 +2022,18 @@ model_list:
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
     use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/qwen/qwen3.8-27b-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 16384
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0

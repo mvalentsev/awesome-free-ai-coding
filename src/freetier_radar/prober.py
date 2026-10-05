@@ -1182,28 +1182,46 @@ def _is_withdrawn(model: dict) -> bool:
 
 
 # Where a catalog dates the end of a row itself: Requesty's `retires`, a Unix
-# time, and OpenRouter's and Kilo's `expiration_date`, a day.
+# time, and OpenRouter's and Kilo's `expiration_date`, a day (catalogs checked
+# 2026-10-05: https://api.kilo.ai/api/gateway/models and
+# https://openrouter.ai/api/v1/models). Kilo's Space Bunny still completed a
+# free request on its dated retirement day; a day alone names no cutoff time.
 RETIREMENT_FIELDS = ("retires", "expiration_date")
 
 
 def _retired_on(model: dict) -> date | None:
-    """The day a catalog row says it retired, once that day has come in UTC —
-    or None.
+    """The UTC retirement day after the boundary the catalog actually names.
 
     Requesty keeps a row in its catalog, still priced 0, after the day its
-    `retires` names. A date still to come is notice, not a withdrawal: the id
-    answers until then."""
-    today = datetime.now(timezone.utc).date()
+    `retires` names. A timestamp is compared at its exact instant; a date
+    without a time stays a notice for that day, rather than inventing a
+    midnight cutoff. An explicit available=false remains authoritative."""
+    now = datetime.now(timezone.utc)
     for key in RETIREMENT_FIELDS:
         value = model.get(key)
         if isinstance(value, bool):
             continue
-        if isinstance(value, (int, float)) and value > 0:
-            day = datetime.fromtimestamp(value, timezone.utc).date()
-        else:
-            day = _utc_day(value)
-        if day is not None and day <= today:
-            return day
+        if isinstance(value, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+            try:
+                day = date.fromisoformat(value)
+            except ValueError:
+                continue
+            if day < now.date():
+                return day
+            continue
+        try:
+            if isinstance(value, (int, float)) and value > 0:
+                moment = datetime.fromtimestamp(value, timezone.utc)
+            elif isinstance(value, str):
+                moment = datetime.fromisoformat(value)
+            else:
+                continue
+        except (ValueError, OverflowError, OSError):
+            continue
+        if moment.tzinfo is None:
+            moment = moment.replace(tzinfo=timezone.utc)
+        if moment <= now:
+            return moment.astimezone(timezone.utc).date()
     return None
 
 

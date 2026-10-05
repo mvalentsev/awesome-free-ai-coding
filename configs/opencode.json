@@ -93,6 +93,13 @@
         },
         "openrouter/free": {
           "name": "openrouter/free"
+        },
+        "apodex/apodex-1.1-mini:free": {
+          "name": "apodex/apodex-1.1-mini:free",
+          "limit": {
+            "context": 262144,
+            "output": 235929
+          }
         }
       }
     },
@@ -169,6 +176,13 @@
         },
         "stealth/space-bunny-alpha": {
           "name": "stealth/space-bunny-alpha"
+        },
+        "apodex/apodex-1.1-mini:free": {
+          "name": "apodex/apodex-1.1-mini:free",
+          "limit": {
+            "context": 262144,
+            "output": 235929
+          }
         }
       }
     },
@@ -206,6 +220,9 @@
         },
         "nvidia/nemotron-3.5-lightning-30b-a3b": {
           "name": "nvidia/nemotron-3.5-lightning-30b-a3b"
+        },
+        "novita/ling-3.1-flash": {
+          "name": "novita/ling-3.1-flash"
         }
       }
     },
@@ -544,12 +561,6 @@
       "models": {
         "poolside/laguna-s-2.1-free": {
           "name": "poolside/laguna-s-2.1-free"
-        },
-        "inclusionai/ling-3.0-flash-sante": {
-          "name": "inclusionai/ling-3.0-flash-sante"
-        },
-        "inclusionai/ling-3.0-flash-sante-free": {
-          "name": "inclusionai/ling-3.0-flash-sante-free"
         },
         "inclusionai/ling-3.1-flash": {
           "name": "inclusionai/ling-3.1-flash"
@@ -1318,14 +1329,14 @@
         "baseURL": "https://oai.endpoints.kepler.ai.cloud.ovh.net/v1"
       },
       "models": {
+        "Qwen3.6-27B": {
+          "name": "Qwen3.6-27B"
+        },
         "Qwen3.8-27B": {
           "name": "Qwen3.8-27B"
         },
         "gpt-oss-120b": {
           "name": "gpt-oss-120b"
-        },
-        "Qwen3.6-27B": {
-          "name": "Qwen3.6-27B"
         },
         "Qwen3-Coder-30B-A3B-Instruct": {
           "name": "Qwen3-Coder-30B-A3B-Instruct"

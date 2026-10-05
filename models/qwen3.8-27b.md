@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'qwen3.8-27b free: 9 providers, limits and ids, verified 2026-10-05'
-description: qwen3.8-27b is served free by OpenRouter (free models), Groq, Kilo Code, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; Kilo Code, LLM Tech, VLM Run Gateway and OVHcloud AI…
+title: 'qwen3.8-27b free: 10 providers, limits and ids, verified 2026-10-05'
+description: qwen3.8-27b is served free by OpenRouter (free models), Groq, Kilo Code, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; Kilo Code, LLM Tech, VLM Run Gateway and OVHcloud AI…
 permalink: /models/qwen3.8-27b/
 last_modified_at: 2026-10-05
 crumb: qwen3.8-27b
@@ -11,7 +11,7 @@ crumb: qwen3.8-27b
 
 # Where qwen3.8-27b is free
 
-**9 rows on the list serve `qwen3.8-27b` free:** OpenRouter (free models), Groq, Kilo Code, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; Kilo Code, LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-27b).
+**10 rows on the list serve `qwen3.8-27b` free:** OpenRouter (free models), Groq, Kilo Code, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; Kilo Code, LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-8-27b).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -73,6 +73,24 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 - Codex CLI: [`configs/codex/kilo-code.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/kilo-code.config.toml) — copy it to `~/.codex/`, then `codex -p kilo-code`
 - Callable ids: `qwen/qwen3.8-27b:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
+
+### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
+
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-10-05
+
+Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a free chat model), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because "Poolside serves these models free on its own inference API", with "no extra token allowance to track". Paid use is prepaid credit: "An 8% platform margin is added on top of the requested top-up amount", and "The platform margin is not added to model prices; it is applied only once, at top-up". The privacy page says prompt and response bodies are not written permanently to its usage and billing database ("kalıcı olarak yazılmaz"). Read 2026-10-05
+
+</details>
+
+- Base URL: `https://llmtr.com/v1`
+- Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
+- Callable ids: `qwen/qwen3.8-27b-free`
+- What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/poolside-laguna/)).
 
 ### [LLM Tech](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/)
 

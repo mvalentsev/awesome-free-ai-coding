@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, verified 2026-10-05'
-description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+title: 'deepseek-v4.1-flash free: 4 providers, limits and ids, verified 2026-10-05'
+description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/deepseek-v4.1-flash/
 last_modified_at: 2026-10-05
 crumb: deepseek-v4.1-flash
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**5 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
+**4 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -51,23 +51,6 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 - No API endpoint to paste: this row is a tool you install or sign in to.
 - What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/)).
 
-### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
-
-🤖 Coding agents & CLIs · no card · verified 2026-10-05 · listed since 2026-09-28
-
-Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: "Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota", and "Free models are available to any user with a Cline account" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over "on a rotating, limited-time basis". The free-models page states two limits outright: "Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI", and "Free model usage may be used to help improve model performance and quality". Read 2026-09-14
-
-</details>
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/deepseek-v4.1-flash`
-- What you send may be used to train or improve models ([the vendor's words](https://docs.cline.bot/getting-started/free-models)).
-
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
 🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-05 · listed since 2026-09-28
@@ -99,6 +82,10 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 - Codex CLI: [`configs/codex/token-harbor.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/token-harbor.config.toml) — copy it to `~/.codex/`, then `codex -p token-harbor`; set up on the lane by the vendor's own page, <https://tokenharbor.ai/docs/integrations/codex>: "Point OpenAI Codex at Token Harbor manually"
 - Callable ids: `deepseek-v4.1-flash:free`
 - What you send may be used to train or improve models ([the vendor's words](https://tokenharbor.ai/terms)).
+
+## Rows that listed it before
+
+- [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — listed 2026-09-28 to 2026-10-05
 
 ## Related models
 

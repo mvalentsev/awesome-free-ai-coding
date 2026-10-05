@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-05'
-description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Free models: laguna-s-2.1, ling-3.0-flash-sante. Vercel''s FAQ, in its error table: "The team must…'
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1. Vercel''s FAQ, in its error table: "The team must add a valid payment method…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-10-05
 crumb: Vercel AI Gateway
@@ -15,15 +15,15 @@ crumb: Vercel AI Gateway
 
 ## What you get
 
-One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit
+One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit
 
 ## Free models
 
-[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/)
+[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)
 
 ## Limits, in the vendor's words
 
-Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free, Ling 3.0 Flash Sante and Ling 3.1 Flash, both Ling models with and without their -free suffix, on 2026-10-01. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
+Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. The free language-model IDs listed under Connect are priced zero in and out and never draw on the credit. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens. Read 2026-10-05
 
 ## Where it is offered
 
@@ -39,7 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`, `inclusionai/ling-3.1-flash`, `inclusionai/ling-3.1-flash-free`
+- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.1-flash`, `inclusionai/ling-3.1-flash-free`
 - Note: The listed IDs are priced zero in and out and do not spend the $5 credit; other Free-Tier-eligible models spend it. For Claude Code, use https://ai-gateway.vercel.sh as ANTHROPIC_BASE_URL and leave ANTHROPIC_API_KEY empty.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:
@@ -63,6 +63,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-05` — Free models changed: dropped ling-3.0-flash-sante
 - `2026-09-26` — Free models changed: dropped ling-3.0-flash-fin
 - `2026-09-19` — Free models changed: added ling-3.0-flash-sante
 - `2026-09-17` — Free models changed: added ling-3.0-flash-fin

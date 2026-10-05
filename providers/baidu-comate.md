@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Baidu Comate (文心快码) free tier: limits, free models, verified 2026-10-01'
-description: 'Baidu''s coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI, whose free Personal Standard plan keeps code completion free and adds a one-time ¥10 voucher for agent requests. The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion: free) and…'
+description: 'Baidu''s coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days. The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion: free) and…'
 permalink: /providers/baidu-comate/
 last_modified_at: 2026-10-01
 crumb: Baidu Comate (文心快码)
@@ -15,7 +15,7 @@ crumb: Baidu Comate (文心快码)
 
 ## What you get
 
-Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI, whose free Personal Standard plan keeps code completion free and adds a one-time ¥10 voucher for agent requests
+Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days
 
 ## Free models
 
@@ -23,7 +23,7 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion: free) and "赠智能体请求券¥10（首次）" (a ¥10 agent-request voucher, the first time only). The Auto-Free mode the paid plans fall back to when their vouchers run out — 150k tokens an hour on Pro — is not on it, and Baidu does not name the model completion runs on. Read 2026-09-27
+The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion: free) and "赠7天有效期5000积分（首次）" (5,000 points valid for seven days, first grant only). Auto-Free fallback is a paid-plan benefit, not included on Personal Standard; Pro has 150k tokens an hour after its allowance runs out. Baidu does not name the model used for free completion. Read 2026-10-05
 
 ## Where it is offered
 
@@ -35,7 +35,7 @@ The vendor names no country it keeps the offer from ([source](https://cloud.baid
 
 ## Evidence
 
-- Probe: the page at <https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a>, anchored on `个人标准版`, `赠智能体请求券¥10（首次）`
+- Probe: the page at <https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a>, anchored on `个人标准版`, `赠7天有效期5000积分（首次）`
 - Source: <https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a>
 
 ## History

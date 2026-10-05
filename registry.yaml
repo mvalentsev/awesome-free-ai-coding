@@ -73,6 +73,12 @@ entries:
     - liquid/lfm-2.5-2.6b:free
     - qwen/qwen3.8-27b:free
     - openrouter/free
+    - apodex/apodex-1.1-mini:free
+    model_limits:
+      apodex/apodex-1.1-mini:free:
+        context_tokens: 262144
+        output_tokens: 235929
+        source: https://openrouter.ai/api/v1/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
@@ -638,6 +644,12 @@ entries:
     - thinkingmachines/inkling-small:free
     - qwen/qwen3.8-27b:free
     - stealth/space-bunny-alpha
+    - apodex/apodex-1.1-mini:free
+    model_limits:
+      apodex/apodex-1.1-mini:free:
+        context_tokens: 262144
+        output_tokens: 235929
+        source: https://api.kilo.ai/api/gateway/models
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety:free
     no_family_ids:
@@ -1309,9 +1321,9 @@ entries:
     auth: none
     openai_compatible: true
     model_ids:
+    - Qwen3.6-27B
     - Qwen3.8-27B
     - gpt-oss-120b
-    - Qwen3.6-27B
     - Qwen3-Coder-30B-A3B-Instruct
     refuses_bearer: true
     note: no key at all on the anonymous lane, where 2 requests per minute per model
@@ -1945,20 +1957,18 @@ entries:
   - https://vercel.com/docs/ai-gateway/sdks-and-apis/anthropic-messages-api
   card_required: true
   offering: One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits
-    every month once the team has a payment method on file, and three language models
-    priced at zero that never touch the credit
+    every month once the team has a payment method on file, and language models priced
+    at zero that never touch the credit
   limits: 'Vercel''s FAQ, in its error table: "The team must add a valid payment method
     before using free credits" (`403` `customer_verification_required`). $5 of gateway
     credit a month at provider list rates, renewed monthly, with lower per-model rate
-    limits and no BYOK; buying credits ends the monthly free credit. A handful of
-    language models are priced 0 in and 0 out and never draw on the credit — Laguna
-    S 2.1 Free, Ling 3.0 Flash Sante and Ling 3.1 Flash, both Ling models with and
-    without their -free suffix, on 2026-10-01. Mind the suffix: poolside/laguna-s-2.1
-    without it costs $0.10/$0.20 per 1M tokens'
+    limits and no BYOK; buying credits ends the monthly free credit. The free language-model
+    IDs listed under Connect are priced zero in and out and never draw on the credit.
+    Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens.
+    Read 2026-10-05'
   free_part: models
   models:
   - family: laguna-s-2.1
-  - family: ling-3.0-flash-sante
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -1966,12 +1976,12 @@ entries:
     openai_compatible: true
     model_ids:
     - poolside/laguna-s-2.1-free
-    - inclusionai/ling-3.0-flash-sante
-    - inclusionai/ling-3.0-flash-sante-free
     - inclusionai/ling-3.1-flash
     - inclusionai/ling-3.1-flash-free
     ignored_ids:
     - liquid/d1
+    - convaiinnovations/laya
+    - convaiinnovations/laya-free
     anthropic_base_url: https://ai-gateway.vercel.sh
     codex:
       base_url: https://ai-gateway.vercel.sh/codex/v1
@@ -2287,6 +2297,7 @@ entries:
     - mistral/leanstral-1-5
     - nvidia/muse-glimmer-30b
     - nvidia/nemotron-3.5-lightning-30b-a3b
+    - novita/ling-3.1-flash
     ignored_ids:
     - nvidia/nemotron-3.5-content-safety
     anthropic_base_url: https://router.requesty.ai
@@ -2329,16 +2340,15 @@ entries:
   card_required: false
   offering: Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini
     and third-party agent models
-  limits: '$0/month, no subscription. The plan''s own bullet reads "Agent model: access
-    to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude
-    Sonnet & Opus 4.6, gpt-oss-120b", with unlimited Tab completions, unlimited Command
-    requests and "Basic weekly rate limits". The docs'' availability table ticks all
-    seven models in its Free column, and gives the Claude and GPT models a weekly
-    allowance of their own, apart from the Gemini one. Google publishes no figure
-    for either: "The baseline rate limits are primarily determined by available capacity
-    and exist to prevent abuse." The plans overview also lists access to third-party
-    models under Ultra; the specific model table and Individual pricing list still
-    explicitly include them on Free.'
+  limits: 'The $0 Individual plan has unlimited Tab completions and Command requests,
+    with "Basic weekly rate limits". The model table marks the listed models available
+    under "Free & Google AI Plus"; Claude Sonnet 4.6, Claude Opus 4.6 and GPT-OSS-120b
+    carry its notice "Will be removed on November 2, 2026". Claude 5.5 models require
+    paid plans. Gemini and third-party models have separate weekly allowances. No
+    quota figure is published: "The baseline rate limits are primarily determined
+    by available capacity and exist to prevent abuse." The plans overview lists third-party
+    access under Ultra, while the specific model table still includes these older
+    models on Free. Read 2026-10-05'
   free_part: models
   models:
   - family: gemini-3.1-pro
@@ -2386,11 +2396,10 @@ entries:
     quote: Google Antigravity is available in the following countries and territories.
   probe:
     type: page-keywords
-    endpoint: https://antigravity.google/pricing
+    endpoint: https://antigravity.google/docs/models
     keywords:
-    - $0/month
-    - gpt-oss-120b
-    - basic weekly rate limits
+    - Free & Google AI Plus
+    - Gemini 3.8 Flash
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -3030,12 +3039,11 @@ entries:
     between its two text hostnames: "hermes.ai.unturf.com : public, 3 requests per
     second per IP" and "qwen.ai.unturf.com : API key required; anonymous traffic gets
     403". Hermes is the lane, and "A hostname whose model is down gets a 502 instead
-    of silently answering as whatever else is up": it has answered 502 since 2026-09-26,
-    while qwen took anonymous calls on 2026-09-27 against its own page, which this
-    list does not count as an offer. The served id is not the one the page''s own
-    examples call, and the vendor says so — "See our Model Discovery docs to query
-    the current model IDs being hosted" — query Model Discovery for current callable
-    IDs instead of relying on static examples. Read 2026-09-27'
+    of silently answering as whatever else is up": check the response before choosing
+    a model; temporary failures do not establish a shutdown. The served id is not
+    the one the page''s own examples call, and the vendor says so — "See our Model
+    Discovery docs to query the current model IDs being hosted" — query Model Discovery
+    for current callable IDs instead of relying on static examples. Read 2026-10-05'
   free_part: models
   models: []
   api:
@@ -3046,6 +3054,8 @@ entries:
     - turboderp/Qwen3.8-27B-exl3
     no_family_ids:
     - turboderp/Qwen3.8-27B-exl3
+    codex:
+      base_url: https://hermes.ai.unturf.com/v1
     note: 'Send requests without an Authorization header. One model is served at a
       time and it rotates. Hostnames are routing labels: hermes serves a Qwen build.
       Query the catalog for the current callable ID.'
@@ -3357,10 +3367,7 @@ entries:
     amount", and "The platform margin is not added to model prices; it is applied
     only once, at top-up". The privacy page says prompt and response bodies are not
     written permanently to its usage and billing database ("kalıcı olarak yazılmaz").
-    Ling 3.1 Flash is a short promotion: "13 Ekim 2026 19:00''a kadar ucretsiz" (free
-    until October 13, 19:00). MiniMax M3.1 Flash Preview requires a top-up: "6 Ekim
-    2026 23:59''a kadar ücretsiz, en az bir kez bakiye yüklemiş hesaplara açık" (until
-    October 6, 23:59, only for accounts that have topped up). Read 2026-10-04'
+    Read 2026-10-05'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -3374,6 +3381,10 @@ entries:
   - family: agnes-2.5-flash
   - family: ling-3.1-flash
   - family: minimax-m3.1-flash-preview
+  - family: qwen3.8-27b
+    tier: strong
+    aa_model: qwen3-8-27b
+  - family: kolibri-1
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -3420,9 +3431,10 @@ entries:
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
     note: 'New accounts have a reduced shared free-model allowance during their first
-      24 hours. Use the listed free IDs; Nemotron Ultra''s -262k variant is metered.
-      Checked 2026-10-04: small Qwen3.8 tool cycles completed, but full Codex and
-      OpenCode requests received provider_error; use another listed ID for those clients.'
+      24 hours. Nemotron Ultra''s -262k variant is metered. Checked 2026-10-05: Qwen
+      ordinary, streaming and small tool cycles completed, but full Codex and OpenCode
+      requests returned provider_error. Ling completed an OpenCode tool turn; Codex
+      via LiteLLM did not complete with either model.'
   data_use:
     trains: 'yes'
     quote: Poolside states that prompts and completions on free access may be logged
@@ -4020,14 +4032,10 @@ entries:
   - family: muse-spark-1.3-contributor
     tier: strong
     aa_model: muse-spark-1-3-xhigh
-  - family: deepseek-v4.1-flash
-    tier: strong
-    aa_model: deepseek-v4-1-flash
   client_lane:
     model_ids:
     - stealth/space-bunny-alpha
     - cline-free/mimo-v2.6-flash
-    - cline-free/deepseek-v4.1-flash
     - cline-free/muse-spark-1.3-contributor
     no_family_ids:
     - stealth/space-bunny-alpha
@@ -4573,20 +4581,19 @@ entries:
   - https://docs.fireworks.ai/getting-started/quickstart
   - https://docs.fireworks.ai/updates/changelog
   card_required: false
-  offering: Serverless inference on open-weight models — Kimi K3, GLM 5.3, DeepSeek
-    V4.1 Flash among them — with a one-time $1 of credit that is spent without a card,
-    at 10 requests a minute until a payment method is added
-  limits: 'The pricing page offers "Get started with $1 in free credits", and the
-    billing FAQ says what happens to an account "Without payment method" when the
-    dollar runs out: "Your account will be suspended until you add a payment method".
-    Until then the account quotas put "No payment method or no credits" at 10 RPM,
-    against 6,000 RPM with a payment method and credits. No page gives the dollar
-    an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits
-    billing system". The dollar buys list prices, input / cached input / output per
-    1M tokens: "DeepSeek V4.1 Flash $0.30 / $0.006 / $1.20", "GLM 5.3 Flash $0.15
-    / $0.03 / $0.50", "MiniMax M3 $0.30 / $0.06 / $1.20" and "Kimi K3 $3.00 / $0.30
-    / $15.00" — about 3.3M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi
-    K3. Read 2026-10-01'
+  offering: Serverless inference on open-weight models with a $1 trial credit documented
+    in the billing FAQ; current pricing no longer advertises a signup grant
+  limits: 'The billing FAQ documents a $1 credit and says what happens to an account
+    "Without payment method" when the dollar runs out: "Your account will be suspended
+    until you add a payment method". Until then the account quotas put "No payment
+    method or no credits" at 10 RPM, against 6,000 RPM with a payment method and credits.
+    No page gives the dollar an expiry or makes it recur, and beyond it Fireworks
+    "operates on a pre-paid credits billing system". The dollar buys list prices,
+    input / cached input / output per 1M tokens: "DeepSeek V4.1 Flash $0.30 / $0.006
+    / $1.20", "GLM 5.3 Flash $0.15 / $0.03 / $0.50", "MiniMax M3 $0.30 / $0.06 / $1.20"
+    and "Kimi K3 $3.00 / $0.30 / $15.00" — about 3.3M input tokens on DeepSeek V4.1
+    Flash, about 330K on Kimi K3. Current pricing describes prepaid billing and does
+    not promise a grant to new accounts; signup eligibility is unverified. Read 2026-10-05'
   free_part: sum
   models: []
   api:
@@ -6319,13 +6326,13 @@ entries:
   - https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a
   card_required: false
   offering: Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode,
-    with its own IDE and CLI, whose free Personal Standard plan keeps code completion
-    free and adds a one-time ¥10 voucher for agent requests
+    with its own IDE and CLI; the free Personal Standard plan includes code completion
+    and a one-time 5,000-point grant valid for seven days
   limits: 'The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion:
-    free) and "赠智能体请求券¥10（首次）" (a ¥10 agent-request voucher, the first time only).
-    The Auto-Free mode the paid plans fall back to when their vouchers run out — 150k
-    tokens an hour on Pro — is not on it, and Baidu does not name the model completion
-    runs on. Read 2026-09-27'
+    free) and "赠7天有效期5000积分（首次）" (5,000 points valid for seven days, first grant only).
+    Auto-Free fallback is a paid-plan benefit, not included on Personal Standard;
+    Pro has 150k tokens an hour after its allowance runs out. Baidu does not name
+    the model used for free completion. Read 2026-10-05'
   free_part: unnamed
   models: []
   border:
@@ -6337,7 +6344,7 @@ entries:
     endpoint: https://cloud.baidu.com/doc/COMATE/s/rlnvnio4a
     keywords:
     - 个人标准版
-    - 赠智能体请求券¥10（首次）
+    - 赠7天有效期5000积分（首次）
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -6405,16 +6412,16 @@ entries:
     7 award 1,000 points per day", "A full week of check-ins earns 4,000 points",
     and "Check-in points can be accumulated and are valid for 30 days from the day
     they are credited"; points "can be used across MiniMax Code task scenarios, including
-    office work, Coding, deep research". No page says what a point buys: "Billing
-    and quota rules follow the latest product UI". The check-in is the desktop app''s
-    ("Open MiniMax Code and complete the daily check-in to earn points"), with no
-    payment step named before it, and the changelog doubles the points "From September
-    28 through October 7" for "New and existing users". Accounts are Global or mainland
-    China, each on its own site with the same check-in. The CLI, `mcode`, signs in
-    to the same account (`mcode login --region global` for a Global one) and its README
-    asks for "a MiniMax account with available credits or your own compatible model
-    API"; no page says the check-in points reach it. The terms ask users to be "16
-    years of age or older". Read 2026-09-29'
+    office work, Coding, deep research". No page says what a point buys: "Available
+    tiers, supported models, billing, and quota rules follow the latest product UI".
+    The check-in is the desktop app''s ("Open MiniMax Code and complete the daily
+    check-in to earn points"), with no payment step named before it, and the changelog
+    doubles the points "From September 28 through October 7" for "New and existing
+    users". Accounts are Global or mainland China, each on its own site with the same
+    check-in. The CLI, `mcode`, signs in to the same account (`mcode login --region
+    global` for a Global one) and its README asks for "a MiniMax account with available
+    credits or your own compatible model API"; no page says the check-in points reach
+    it. The terms ask users to be "16 years of age or older". Read 2026-10-05'
   free_part: sum
   models: []
   border:

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cline free tier: limits, free models, verified 2026-10-05'
-description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: muse-spark-1.3-contributor, deepseek-v4.1-flash…'
+description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: muse-spark-1.3-contributor. "Cline periodically…'
 permalink: /providers/cline/
 last_modified_at: 2026-10-05
 crumb: Cline
@@ -19,7 +19,7 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 ## Free models
 
-[`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
+[`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/)
 
 ## Limits, in the vendor's words
 
@@ -36,7 +36,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `stealth/space-bunny-alpha`, `cline-free/mimo-v2.6-flash`, `cline-free/deepseek-v4.1-flash`, `cline-free/muse-spark-1.3-contributor`
+- In Cline's own model list: `stealth/space-bunny-alpha`, `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`
 
 ## Evidence
 
@@ -49,6 +49,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-05` — Free models changed: dropped deepseek-v4.1-flash
 - `2026-09-28` — Free models changed: added deepseek-v4.1-flash
 - `2026-09-24` — Free models changed: added muse-spark-1.3-contributor
 - `2026-09-23` — Free models changed: dropped laguna-s-2.1

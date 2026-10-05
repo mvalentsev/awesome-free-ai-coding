@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'ling-3.0-flash-sante free: 4 providers, limits and ids, verified 2026-10-05'
-description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day…
+title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, verified 2026-10-05'
+description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/ling-3.0-flash-sante/
 last_modified_at: 2026-10-05
 crumb: ling-3.0-flash-sante
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-sante
 
 # Where ling-3.0-flash-sante is free
 
-**4 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week.
+**3 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -56,26 +56,6 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 - Callable ids: `inclusionai/ling-3.0-flash-sante:free`
 - What you send may be used to train or improve models ([the vendor's words](https://api.kilo.ai/api/gateway/models)).
 
-### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
-
-🧭 Aggregators (one key, many providers) · card required · verified 2026-10-05 · listed since 2026-09-19
-
-One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. A handful of language models are priced 0 in and 0 out and never draw on the credit — Laguna S 2.1 Free, Ling 3.0 Flash Sante and Ling 3.1 Flash, both Ling models with and without their -free suffix, on 2026-10-01. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens
-
-</details>
-
-- Base URL: `https://ai-gateway.vercel.sh/v1`
-- Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
-- Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
-- Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `inclusionai/ling-3.0-flash-sante`, `inclusionai/ling-3.0-flash-sante-free`
-- What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training)).
-
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
 🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-30
@@ -93,6 +73,10 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 - Key: `NOUS_PORTAL_API_KEY` — get one at <https://portal.nousresearch.com>
 - Callable ids: `inclusionai/ling-3.0-flash-sante:free`
 - What you send may be used to train or improve models unless you turn that off ([the vendor's words](https://portal.nousresearch.com/privacy)).
+
+## Rows that listed it before
+
+- [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/) — listed 2026-09-19 to 2026-10-05
 
 ## Related models
 

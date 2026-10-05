@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 'minimax-m3.1-flash-preview free: 1 provider, limits and ids, verified 2026-10-05'
-description: minimax-m3.1-flash-preview is served free by LLMTR. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
-permalink: /models/minimax-m3.1-flash-preview/
+title: 'kolibri-1 free: 1 provider, limits and ids, verified 2026-10-05'
+description: kolibri-1 is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+permalink: /models/kolibri-1/
 last_modified_at: 2026-10-05
-crumb: minimax-m3.1-flash-preview
+crumb: kolibri-1
 ---
 
 {% raw %}
 
-# Where minimax-m3.1-flash-preview is free
+# Where kolibri-1 is free
 
-**One row on the list serves `minimax-m3.1-flash-preview` free:** LLMTR. Free usage is subject to the access conditions below. The published offer was checked on 2026-10-05 and is rechecked twice a week.
+**One row on the list serves `kolibri-1` free:** LLMTR. It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m3.1-flash-preview
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · verified 2026-10-05 · listed since 2026-10-01
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-10-05
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -32,17 +32,9 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 - Base URL: `https://llmtr.com/v1`
 - Key: `LLMTR_API_KEY` — get one at <https://llmtr.com/dashboard/api-keys>
-- Callable ids: `minimax/minimax-m3.1-flash-preview`
-- `minimax/minimax-m3.1-flash-preview`: requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00 ([conditions](https://llmtr.com/models/minimax/minimax-m3.1-flash-preview))
+- Callable ids: `tesseracted/kolibri-1`
+- `tesseracted/kolibri-1`: free until 2026-10-09 23:59+03:00 ([conditions](https://llmtr.com/models/tesseracted/kolibri-1))
 - What you send may be used to train or improve models ([the vendor's words](https://llmtr.com/docs/en/gateway/poolside-laguna/)).
-
-## Related models
-
-- [`minimax-m2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.5/) — free at Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS)
-- [`minimax-m2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.1/) — free at Kiro and AIHubMix (free models)
-- [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models) and Routeway
-- [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models) and FreeInference (Harvard SEAS)
-- [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)
 
 ---
 

@@ -403,6 +403,55 @@ async def test_a_retirement_date_still_to_come_leaves_the_id_callable():
         result = await probe_entry(client, zero_price_entry(), backoff=0)
     assert result.status is ProbeStatus.PASS
 
+
+@pytest.mark.parametrize("field,value", [
+    ("expiration_date", "2026-10-05"),
+    ("retires", 1791216000),  # 2026-10-05 16:00 UTC
+    ("expiration_date", "2026-10-05T19:00:00+03:00"),
+])
+@respx.mock
+async def test_retirement_does_not_invent_an_earlier_instant(monkeypatch, field, value):
+    from datetime import datetime, timezone
+    import freetier_radar.prober as prober
+
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return cls(2026, 10, 5, 15, 0, tzinfo=timezone.utc)
+
+    monkeypatch.setattr(prober, "datetime", Clock)
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", field: value,
+                             "pricing": {"prompt": "0", "completion": "0"}}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.PASS
+
+
+@pytest.mark.parametrize("field,value", [
+    ("expiration_date", "2026-10-04"),
+    ("retires", 1791212400),  # 2026-10-05 15:00 UTC
+    ("expiration_date", "2026-10-05T18:00:00+03:00"),
+])
+@respx.mock
+async def test_retirement_is_withdrawn_after_the_published_boundary(monkeypatch, field, value):
+    from datetime import datetime, timezone
+    import freetier_radar.prober as prober
+
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return cls(2026, 10, 5, 15, 0, tzinfo=timezone.utc)
+
+    monkeypatch.setattr(prober, "datetime", Clock)
+    respx.get("https://api.x.ai/v1/models").mock(return_value=httpx.Response(
+        200, json={"data": [{"id": "qwen/qwen3-coder:free", field: value,
+                             "pricing": {"prompt": "0", "completion": "0"}}]}))
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, zero_price_entry(), backoff=0)
+    assert result.status is ProbeStatus.FAIL
+    assert "retired on" in result.detail
+
 @respx.mock
 async def test_a_withdrawn_row_does_not_vouch_for_a_family_that_now_bills():
     """The withdrawn row is the free one, the callable row is priced. Counting

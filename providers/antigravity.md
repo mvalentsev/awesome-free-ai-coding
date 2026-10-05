@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-10-01'
-description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. $0/month, no subscription. The plan''s own bullet reads…'
+description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. The $0 Individual plan has unlimited Tab completions and…'
 permalink: /providers/antigravity/
 last_modified_at: 2026-10-01
 crumb: Google Antigravity
@@ -23,7 +23,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Limits, in the vendor's words
 
-$0/month, no subscription. The plan's own bullet reads "Agent model: access to Gemini 3.8 Flash, Gemini 3.7 Flash, Gemini 3.6 Flash, Gemini 3.1 Pro, Claude Sonnet & Opus 4.6, gpt-oss-120b", with unlimited Tab completions, unlimited Command requests and "Basic weekly rate limits". The docs' availability table ticks all seven models in its Free column, and gives the Claude and GPT models a weekly allowance of their own, apart from the Gemini one. Google publishes no figure for either: "The baseline rate limits are primarily determined by available capacity and exist to prevent abuse." The plans overview also lists access to third-party models under Ultra; the specific model table and Individual pricing list still explicitly include them on Free.
+The $0 Individual plan has unlimited Tab completions and Command requests, with "Basic weekly rate limits". The model table marks the listed models available under "Free & Google AI Plus"; Claude Sonnet 4.6, Claude Opus 4.6 and GPT-OSS-120b carry its notice "Will be removed on November 2, 2026". Claude 5.5 models require paid plans. Gemini and third-party models have separate weekly allowances. No quota figure is published: "The baseline rate limits are primarily determined by available capacity and exist to prevent abuse." The plans overview lists third-party access under Ultra, while the specific model table still includes these older models on Free. Read 2026-10-05
 
 ## Where it is offered
 
@@ -39,7 +39,7 @@ What you send may be used to train or improve models unless you turn that off. I
 
 ## Evidence
 
-- Probe: the page at <https://antigravity.google/pricing>, anchored on `$0/month`, `gpt-oss-120b`, `basic weekly rate limits`
+- Probe: the page at <https://antigravity.google/docs/models>, anchored on `Free & Google AI Plus`, `Gemini 3.8 Flash`
 - Source: <https://antigravity.google/pricing>
 - Source: <https://antigravity.google/docs/plans>
 - Source: <https://antigravity.google/docs/models>
