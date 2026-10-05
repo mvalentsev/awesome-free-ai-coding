@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-05'
-description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Free models: laguna-s-2.1, ling-3.0-flash-sante. Vercel''s FAQ, in its error table: "The team must…'
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit. Free models: laguna-s-2.1. Vercel''s FAQ, in its error table: "The team must add a valid payment…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-10-05
 crumb: Vercel AI Gateway
@@ -19,7 +19,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Free models
 
-[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/), [`ling-3.0-flash-sante`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/)
+[`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/)
 
 ## Limits, in the vendor's words
 
@@ -63,6 +63,7 @@ curl -s https://ai-gateway.vercel.sh/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-05` — Free models changed: dropped ling-3.0-flash-sante
 - `2026-09-26` — Free models changed: dropped ling-3.0-flash-fin
 - `2026-09-19` — Free models changed: added ling-3.0-flash-sante
 - `2026-09-17` — Free models changed: added ling-3.0-flash-fin

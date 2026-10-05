@@ -2996,9 +2996,6 @@
       "models": [
         {
           "family": "laguna-s-2.1"
-        },
-        {
-          "family": "ling-3.0-flash-sante"
         }
       ],
       "api": {
@@ -5735,11 +5732,6 @@
           "family": "muse-spark-1.3-contributor",
           "tier": "strong",
           "aa_model": "muse-spark-1-3-xhigh"
-        },
-        {
-          "family": "deepseek-v4.1-flash",
-          "tier": "strong",
-          "aa_model": "deepseek-v4-1-flash"
         }
       ],
       "client_lane": {
@@ -9604,18 +9596,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/"
     },
     {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "cline",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
       "family": "gemma-4-31b",
       "rows": [
         "openrouter-free",
@@ -9637,6 +9617,17 @@
         "nous-portal"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "glm-5.3",
@@ -9679,16 +9670,6 @@
         "pollinations"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/"
-    },
-    {
-      "family": "ling-3.0-flash-sante",
-      "rows": [
-        "openrouter-free",
-        "kilo-code",
-        "vercel-ai-gateway",
-        "nous-portal"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
     },
     {
       "family": "north-mini-code",
@@ -9738,6 +9719,15 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
+    },
+    {
+      "family": "ling-3.0-flash-sante",
+      "rows": [
+        "openrouter-free",
+        "kilo-code",
+        "nous-portal"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-sante/"
     },
     {
       "family": "minimax-m2.5",

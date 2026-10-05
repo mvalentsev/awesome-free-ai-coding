@@ -1958,7 +1958,6 @@ entries:
   free_part: models
   models:
   - family: laguna-s-2.1
-  - family: ling-3.0-flash-sante
   api:
     base_url: https://ai-gateway.vercel.sh/v1
     key_url: https://vercel.com/dashboard/ai-gateway/api-keys
@@ -4020,9 +4019,6 @@ entries:
   - family: muse-spark-1.3-contributor
     tier: strong
     aa_model: muse-spark-1-3-xhigh
-  - family: deepseek-v4.1-flash
-    tier: strong
-    aa_model: deepseek-v4-1-flash
   client_lane:
     model_ids:
     - stealth/space-bunny-alpha
