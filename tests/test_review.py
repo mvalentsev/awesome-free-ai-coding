@@ -44,6 +44,62 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
     assert json.loads((bundle.out / 'scope.json').read_text())['sha'] == scope['sha']
 
 
+def push_repo_at(tmp_path):
+    repo = repo_at(tmp_path)
+    base = review.revision(repo, 'HEAD~1')
+    for key, value in (('user.name', 'a reviewer'), ('user.email', 't@example.com')):
+        subprocess.run(['git', '-C', str(repo), 'config', key, value], check=True)
+    workflows = repo / '.github/workflows'; workflows.mkdir(parents=True)
+    for name, paths in (('ci', None), ('indexnow', ['index.json']),
+                        ('conformance', ['configs/litellm.yaml'])):
+        import yaml
+        (workflows / (name + '.yml')).write_text(yaml.safe_dump({
+            'name': name, 'on': {'push': {'paths': paths} if paths else {}}}))
+    (repo / 'configs').mkdir()
+    (repo / 'configs/litellm.yaml').write_text('model_list: []\n')
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: publish fixture'], check=True)
+    push_base = review.revision(repo, 'HEAD')
+    (repo / '.maintenance.txt').write_text('review-only change\n')
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: maintain fixture'], check=True)
+    return repo, base, push_base
+
+
+def test_scope_uses_final_push_paths_without_losing_review_coverage(tmp_path):
+    repo, base, push_base = push_repo_at(tmp_path)
+    whole = review.prepare(repo, base, 'HEAD', review.Bundle(repo / '.evidence/whole', repo))
+    scope = review.prepare(repo, base, 'HEAD', review.Bundle(repo / '.evidence/push', repo),
+                           push_base=push_base)
+    assert whole['workflows'] == ['ci', 'conformance', 'indexnow', 'pages build and deployment']
+    assert scope['workflows'] == ['ci', 'pages build and deployment']
+    assert scope['push_base'] == push_base
+    assert scope['push_paths'] == ['.maintenance.txt']
+    for key in ('base', 'sha', 'paths', 'rows', 'families'):
+        assert scope[key] == whole[key]
+
+
+def test_scope_cannot_rebind_push_base_in_existing_evidence(tmp_path):
+    repo, base, push_base = push_repo_at(tmp_path)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    review.prepare(repo, base, 'HEAD', bundle, push_base=push_base)
+    with pytest.raises(ValueError, match='different commits'):
+        review.prepare(repo, base, 'HEAD', bundle, push_base=base)
+
+
+def test_push_base_must_be_between_review_base_and_head(tmp_path):
+    repo, base, push_base = push_repo_at(tmp_path)
+    with pytest.raises(ValueError, match='push base must'):
+        review.prepare(repo, push_base, 'HEAD', review.Bundle(repo / '.evidence', repo), push_base=base)
+
+
+def test_bot_verification_cannot_rebind_its_push_base(tmp_path):
+    repo = repo_at(tmp_path)
+    with pytest.raises(ValueError, match='verification run'):
+        review.prepare(repo, 'HEAD~1', 'HEAD', review.Bundle(repo / '.evidence', repo),
+                       verification_run=123, push_base='HEAD~1')
+
+
 def test_evidence_cannot_overwrite_a_tracked_file_or_a_publishable_directory(tmp_path):
     repo = repo_at(tmp_path)
     for path in (repo, repo / 'public-evidence', repo / 'index.json', repo / '.git' / 'notes'):

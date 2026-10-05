@@ -91,7 +91,14 @@ def _site_url() -> tuple[str, str]:
     return host, "/" + base
 
 
+def _review_push_base(root: Path) -> tuple[str, ...]:
+    from .review import PUSH_BASE_FLAG
+    return (PUSH_BASE_FLAG,)
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r"`prepare (--push-base) <commit>` records the commit immediately before the final",
+          _review_push_base, "review.PUSH_BASE_FLAG and prepare; push-range regressions in tests/test_review.py"),
     Claim("CONTRIBUTING.md", r"and it\s+expires after (\d+) days, at which point the scout",
           lambda root: (str(WATCH_RECHECK_DAYS),), "models.WATCH_RECHECK_DAYS"),
     Claim("CONTRIBUTING.md", r"Those verdicts expire after (\d+)\s+days",

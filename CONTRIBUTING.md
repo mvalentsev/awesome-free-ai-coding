@@ -1053,6 +1053,11 @@ It prints workflow updates only when their state changes. Run the emitted
 `browser.js` with Playwright's `browser_run_code_unsafe` filename argument,
 save the returned JSON privately, and import it with `browser --result <file>`.
 Run `publication` again to check the README images the browser actually loaded.
+`prepare --push-base <commit>` records the commit immediately before the final
+human push when it differs from the review base. Workflow requirements use that
+push's paths; sources, served files and browser coverage keep the full review
+range. The push base must be between the review base and head, and cannot be
+changed in an existing evidence directory or combined with `--verification-run`.
 `client --client <opencode|codex> --binary <path> --provider <id> --model <id>`
 checks a real keyless lane in an isolated home using the committed configuration,
 a fresh file, a completed tool read and its final answer. Every attempt is kept.

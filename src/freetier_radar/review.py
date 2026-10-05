@@ -26,6 +26,8 @@ from .prober import TIMEOUT, UA, _ask, probe_page_url
 from .quotes import page_texts, quote_found, row_quotes, row_urls
 from .render import PAGES_URL, REPO_URL
 
+PUSH_BASE_FLAG = '--push-base'
+
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -115,20 +117,33 @@ def blob(repo: Path, sha: str, path: str) -> bytes:
     return result.stdout
 
 
-def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: int | None = None) -> dict:
+def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: int | None = None,
+            push_base: str | None = None) -> dict:
+    if verification_run is not None and push_base is not None:
+        raise ValueError('a verification run supplies its own push evidence')
     base, sha = revision(repo, base), revision(repo, head)
+    push_base = revision(repo, push_base) if push_base is not None else base
+    if any(git.run(repo, 'merge-base', '--is-ancestor', left, right).returncode
+           for left, right in ((base, push_base), (push_base, sha))):
+        raise ValueError('push base must be between the review base and head')
     previous = bundle.load('scope')
-    if previous and (previous.get('base'), previous.get('sha'), previous.get('verification_run')) != (base, sha, verification_run):
+    if previous and (previous.get('base'), previous.get('sha'), previous.get('verification_run'),
+                     previous.get('push_base', previous.get('base'))) != (base, sha, verification_run, push_base):
         raise ValueError('different commits require a new evidence directory')
     before, after = index_at(base, repo=repo), index_at(sha, repo=repo)
     if before is None or after is None:
         raise ValueError('both commits must contain a readable index.json')
     paths = git.run(repo, 'diff', '--name-only', '-z', base, sha).stdout.strip('\0').split('\0')
     paths = [p for p in paths if p]
+    push_paths = [p for p in git.run(repo, 'diff', '--name-only', '-z', push_base, sha).stdout.strip('\0').split('\0') if p]
     result = git.run(repo, 'diff', '--binary', base, sha)
     if result.returncode:
         raise ValueError('cannot read the complete diff')
     bundle.write('diff.patch', result.stdout.encode())
+    result = git.run(repo, 'diff', '--binary', push_base, sha)
+    if result.returncode:
+        raise ValueError('cannot read the push diff')
+    bundle.write('push.diff.patch', result.stdout.encode())
     registries = {}
     for ref, label in ((base, 'before'), (sha, 'after')):
         for path in ('registry.yaml', 'index.json'):
@@ -155,7 +170,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         patterns = (push or {}).get('paths', [])
         if any(pattern.startswith('!') for pattern in patterns):
             raise ValueError('negative workflow paths need explicit review')
-        if not patterns or any(fnmatchcase(path, pattern) for path in paths for pattern in patterns):
+        if not patterns or any(fnmatchcase(path, pattern) for path in push_paths for pattern in patterns):
             required.add(workflow['name'])
     if verification_run is not None:
         run = json.loads(gh('run', 'view', str(verification_run), '--repo', REPO_URL.removeprefix('https://github.com/'),
@@ -170,6 +185,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
             required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/' + path))['name'])
         required.add(workflow['name'])
     scope = {'base': base, 'sha': sha, 'paths': paths, 'rows': rows,
+             'push_base': push_base, 'push_paths': push_paths,
              'families': changed(before.get('models', []), after.get('models', []), 'family'),
              'workflows': sorted(required), 'verification_run': verification_run, 'prepared_at': now()}
     if previous and any(previous.get(key) != scope[key] for key in ('paths', 'rows', 'families', 'workflows')):
@@ -469,6 +485,7 @@ def main() -> None:
     sub = parser.add_subparsers(dest='phase', required=True)
     prepare_parser = sub.add_parser('prepare'); prepare_parser.add_argument('--base', required=True)
     prepare_parser.add_argument('--head', default='HEAD')
+    prepare_parser.add_argument(PUSH_BASE_FLAG, help='commit immediately before the final human push; defaults to --base')
     prepare_parser.add_argument('--verification-run', type=int, help='successful update run that produced this bot commit')
     source_parser = sub.add_parser('sources'); source_parser.add_argument('--url', action='append', default=[])
     publish_parser = sub.add_parser('publication'); publish_parser.add_argument('--every', type=float, default=15)
@@ -486,7 +503,7 @@ def main() -> None:
         lock = lock_bundle(bundle)
         bundle.files = bundle.load('manifest', {}).get('files', {})
         if args.phase == 'prepare':
-            result = prepare(args.root, args.base, args.head, bundle, args.verification_run)
+            result = prepare(args.root, args.base, args.head, bundle, args.verification_run, args.push_base)
         elif args.phase == 'sources':
             result = asyncio.run(sources(bundle, args.url))
         elif args.phase == 'publication':
