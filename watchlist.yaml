@@ -18,6 +18,31 @@
 # Delete a record to make the scout free to propose the service again.
 
 watched:
+  - domains: [blockrun.ai]
+    name: BlockRun
+    checked_on: '2026-10-05'
+    reason: >-
+      Free chat and streaming are real, with no key, wallet or payment header:
+      https://blockrun.ai/free documents automatic substitution and the response
+      names the model that answered. The seven free chat rows at
+      https://blockrun.ai/api/v1/models do not establish seven callable models:
+      five were marked unavailable, then six on a fresh read. Llama 3.2 11B
+      Vision answered under its own ID but returned non-JSON tool arguments;
+      the tool-result turn failed with an upstream parse error. Laguna XS 2.1
+      completed a tool read and answer through Nemotron 3 Super 120B instead,
+      which the catalog does not list, and Laguna was subsequently marked
+      unavailable too. The published free 1M contexts belong to unavailable rows.
+      https://blockrun.ai/docs/api-reference/chat-completions documents the
+      canonical /api/v1 route and /v1 alias; both were tested. Paid-model
+      control correctly returned an x402 payment challenge. The offer is
+      legitimate, but no catalog-listed available free ID demonstrated both
+      its advertised identity and a valid tool round trip for the configs.
+    reopen_if: >-
+      The catalog exposes an available zero-priced coding lane that completes
+      a tool call with JSON arguments and consumes its result, with the actual
+      served model matching the catalog or an explicitly cataloged free router
+      ID. Recheck the catalog and live calls when those routes are repaired.
+
   - domains: [siliconflow.com]
     name: SiliconFlow (international)
     checked_on: '2026-09-26'
