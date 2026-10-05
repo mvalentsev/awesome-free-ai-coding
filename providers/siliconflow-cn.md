@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-10-01'
+title: 'SiliconFlow (China) free tier: limits, free models, verified 2026-10-05'
 description: 'China''s SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers. Free models: xing4.0-29b, qwen3-8b, glm-4-9b-0414, qwen2.5-7b, qwen3.5-4b, glm-z1-9b-0414, deepseek-r1-0528-qwen3-8b. The rate-limit FAQ: free models cost nothing…'
 permalink: /providers/siliconflow-cn/
-last_modified_at: 2026-10-03
+last_modified_at: 2026-10-05
 crumb: SiliconFlow (China)
 ---
 
@@ -11,7 +11,7 @@ crumb: SiliconFlow (China)
 
 # SiliconFlow (China) free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · provisional — added on 2026-09-19, a regular row from the first probe it passes on or after 2026-10-03 · **live** — last verified by a probe on 2026-10-01 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · **live** — last verified by a probe on 2026-10-05 · [siliconflow.cn](https://siliconflow.cn) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

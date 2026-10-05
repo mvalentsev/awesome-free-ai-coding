@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'The Grid free tier: limits, free models, verified 2026-10-01'
+title: 'The Grid free tier: limits, free models, verified 2026-10-05'
 description: 'OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time. The quick start: "New accounts get a $25 signup credit (limited time), enough for…'
 permalink: /providers/the-grid/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: The Grid
 ---
 
@@ -11,7 +11,7 @@ crumb: The Grid
 
 # The Grid free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-01 · [thegrid.ai](https://thegrid.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [thegrid.ai](https://thegrid.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -64,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

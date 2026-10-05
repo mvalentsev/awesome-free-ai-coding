@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, verified 2026-10-01'
+title: 'deepseek-v4.1-flash free: 5 providers, limits and ids, verified 2026-10-05'
 description: deepseek-v4.1-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/deepseek-v4.1-flash/
-last_modified_at: 2026-10-02
+last_modified_at: 2026-10-05
 crumb: deepseek-v4.1-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4.1-flash
 
 # Where deepseek-v4.1-flash is free
 
-**5 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
+**5 rows on the list serve `deepseek-v4.1-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, Cline, Alibaba Cloud Model Studio (DashScope, international) and Token Harbor. None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4.1-flash
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-01 · listed since 2026-10-02
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-05 · listed since 2026-10-02
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -37,7 +37,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-10-01 · listed since 2026-09-16
+🤖 Coding agents & CLIs · no card · verified 2026-10-05 · listed since 2026-09-16
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
 
@@ -53,7 +53,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key
 
 ### [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-10-01 · listed since 2026-09-28
+🤖 Coding agents & CLIs · no card · verified 2026-10-05 · listed since 2026-09-28
 
 Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK
 
@@ -70,7 +70,7 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-01 · listed since 2026-09-28
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-05 · listed since 2026-09-28
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -88,7 +88,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ### [Token Harbor](https://mvalentsev.github.io/awesome-free-ai-coding/providers/token-harbor/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-16
 
 OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card
 
@@ -108,6 +108,6 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

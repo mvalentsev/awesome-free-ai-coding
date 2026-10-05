@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'command-a-plus free: 1 provider, limits and ids, verified 2026-10-01'
+title: 'command-a-plus free: 1 provider, limits and ids, verified 2026-10-05'
 description: command-a-plus is served free by Cohere (trial keys). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/command-a-plus/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: command-a-plus
 ---
 
@@ -11,7 +11,7 @@ crumb: command-a-plus
 
 # Where command-a-plus is free
 
-**One row on the list serves `command-a-plus` free:** Cohere (trial keys). It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/command-a-plus), below its strong bar.
+**One row on the list serves `command-a-plus` free:** Cohere (trial keys). It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/command-a-plus), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: command-a-plus
 
 ### [Cohere (trial keys)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · verified 2026-10-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · verified 2026-10-05 · listed since 2026-09-25
 
 Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type
 
@@ -37,6 +37,6 @@ Cohere's Command models via free trial API keys that never expire, plus a 30B/3B
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-10-02",
+  "read_on": "2026-10-05",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
@@ -276,11 +276,6 @@
     "mistral-small-3.2": {
       "slug": "mistral-small-3-2",
       "index": 8.2,
-      "estimated": true
-    },
-    "motif-3": {
-      "slug": "motif-3",
-      "index": 33.6,
       "estimated": true
     },
     "muse-glimmer-30b": {

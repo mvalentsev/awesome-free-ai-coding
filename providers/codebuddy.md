@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-10-01'
+title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-10-05'
 description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site and the agent's own endpoint unreachable from the US, India and Russia. The docs price table…
 permalink: /providers/codebuddy/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: CodeBuddy (Tencent)
 ---
 
@@ -11,7 +11,7 @@ crumb: CodeBuddy (Tencent)
 
 # CodeBuddy (Tencent) free tier
 
-🎁 Trials (no card when possible) · no card · not offered in the United States, India and Russia · **live** — last verified by a probe on 2026-10-01 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in the United States, India and Russia · **live** — last verified by a probe on 2026-10-05 · [codebuddy.ai](https://www.codebuddy.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -48,6 +48,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.5-4b free: 2 providers, limits and ids, verified 2026-10-01'
+title: 'qwen3.5-4b free: 2 providers, limits and ids, verified 2026-10-05'
 description: qwen3.5-4b is served free by Mixlayer and SiliconFlow (China). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/qwen3.5-4b/
-last_modified_at: 2026-10-03
+last_modified_at: 2026-10-05
 crumb: qwen3.5-4b
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.5-4b
 
 # Where qwen3.5-4b is free
 
-**2 rows on the list serve `qwen3.5-4b` free:** Mixlayer and SiliconFlow (China). None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-4b), below its strong bar.
+**2 rows on the list serve `qwen3.5-4b` free:** Mixlayer and SiliconFlow (China). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-4b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.5-4b
 
 ### [Mixlayer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-01 · listed since 2026-09-17
+🔌 LLM APIs with free tier · no card · verified 2026-10-05 · listed since 2026-09-17
 
 Serverless open models priced per token, one of them at $0 and callable without prepaid credit
 
@@ -32,7 +32,7 @@ Serverless open models priced per token, one of them at $0 and callable without 
 
 ### [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/)
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · provisional since 2026-09-19 · verified 2026-10-01 · listed since 2026-10-03
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · verified 2026-10-05 · listed since 2026-10-03
 
 China's SiliconFlow prices eight small chat models at ¥0 for an account verified with Chinese, Hong Kong, Macau or Taiwan papers
 
@@ -59,6 +59,6 @@ China's SiliconFlow prices eight small chat models at ¥0 for an account verifie
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

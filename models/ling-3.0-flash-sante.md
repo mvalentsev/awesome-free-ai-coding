@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-sante free: 4 providers, limits and ids, verified 2026-10-01'
+title: 'ling-3.0-flash-sante free: 4 providers, limits and ids, verified 2026-10-05'
 description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day…
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-10-02
+last_modified_at: 2026-10-05
 crumb: ling-3.0-flash-sante
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-sante
 
 # Where ling-3.0-flash-sante is free
 
-**4 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The published offers were checked on 2026-10-01 and are rechecked twice a week.
+**4 rows on the list serve `ling-3.0-flash-sante` free:** OpenRouter (free models), Kilo Code, Vercel AI Gateway and Nous Portal (Hermes Agent). Vercel AI Gateway asks for a card on file, the rest for none; Kilo Code answers with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-flash-sante
 
 ### [OpenRouter (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-24
 
 One API key for a rotating set of :free model variants, open-weight and stealth models among them
 
@@ -39,7 +39,7 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-10-01 · listed since 2026-09-24
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-10-05 · listed since 2026-09-24
 
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
@@ -58,7 +58,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ### [Vercel AI Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/)
 
-🧭 Aggregators (one key, many providers) · card required · verified 2026-10-01 · listed since 2026-09-19
+🧭 Aggregators (one key, many providers) · card required · verified 2026-10-05 · listed since 2026-09-19
 
 One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and three language models priced at zero that never touch the credit
 
@@ -78,7 +78,7 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-30
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-30
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
@@ -103,6 +103,6 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

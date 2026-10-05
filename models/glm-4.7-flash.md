@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-4.7-flash free: 3 providers, limits and ids, verified 2026-10-01'
+title: 'glm-4.7-flash free: 3 providers, limits and ids, verified 2026-10-05'
 description: glm-4.7-flash is served free by AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/glm-4.7-flash/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: glm-4.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-4.7-flash
 
 # Where glm-4.7-flash is free
 
-**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
+**3 rows on the list serve `glm-4.7-flash` free:** AIHubMix (free models), Z.ai (Zhipu GLM) and MegaNova. Free usage is subject to the access conditions below. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-4-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: glm-4.7-flash
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -38,7 +38,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ### [Z.ai (Zhipu GLM)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-01 · listed since 2026-07-27
+🔌 LLM APIs with free tier · no card · verified 2026-10-05 · listed since 2026-07-27
 
 GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4)
 
@@ -51,7 +51,7 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 
 ### [MegaNova](https://mvalentsev.github.io/awesome-free-ai-coding/providers/meganova/)
 
-🧭 Aggregators (one key, many providers) · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · verified 2026-10-01 · listed since 2026-10-01
+🧭 Aggregators (one key, many providers) · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · verified 2026-10-05 · listed since 2026-10-01
 
 OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit
 
@@ -84,6 +84,6 @@ OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus add
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

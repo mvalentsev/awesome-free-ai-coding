@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Qoder free tier: limits, free models, verified 2026-10-01'
+title: 'Qoder free tier: limits, free models, verified 2026-10-05'
 description: Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs. The Free plan is the trial — "The 2-week Pro Trial includes 300 credits" — and, since…
 permalink: /providers/qoder/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Qoder
 ---
 
@@ -11,7 +11,7 @@ crumb: Qoder
 
 # Qoder free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-01 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [qoder.com](https://qoder.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -48,6 +48,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

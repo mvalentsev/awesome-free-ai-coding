@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'diffusiongemma free: 2 providers, limits and ids, verified 2026-10-01'
+title: 'diffusiongemma free: 2 providers, limits and ids, verified 2026-10-05'
 description: diffusiongemma is served free by NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/diffusiongemma/
-last_modified_at: 2026-10-02
+last_modified_at: 2026-10-05
 crumb: diffusiongemma
 ---
 
@@ -11,7 +11,7 @@ crumb: diffusiongemma
 
 # Where diffusiongemma is free
 
-**2 rows on the list serve `diffusiongemma` free:** NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week.
+**2 rows on the list serve `diffusiongemma` free:** NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: diffusiongemma
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-01 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-05 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -37,7 +37,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-01 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · verified 2026-10-05 · listed since 2026-09-24
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 
@@ -55,6 +55,6 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

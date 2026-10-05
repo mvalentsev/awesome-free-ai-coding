@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Impossibl free tier: limits, free models, verified 2026-10-01'
+title: 'Impossibl free tier: limits, free models, verified 2026-10-05'
 description: 'Prepaid gateway at provider list prices, Claude, GPT, Gemini, DeepSeek and GLM among its models, whose keyless sign-up funds an account with $0.05 and adds $1 once a person claims it by email — no card. An account is one POST with no key, and the llms.txt says what it carries: "an agent-created…'
 permalink: /providers/impossibl/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Impossibl
 ---
 
@@ -11,7 +11,7 @@ crumb: Impossibl
 
 # Impossibl free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-01 · [impossibl.com](https://impossibl.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [impossibl.com](https://impossibl.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -62,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

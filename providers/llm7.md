@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'LLM7.io free tier: limits, free models, verified 2026-10-01'
+title: 'LLM7.io free tier: limits, free models, verified 2026-10-05'
 description: 'OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models. The limits page now lists Free token and Pro, with no anonymous plan: a free token allows 1 request a second, 60 a minute, 250 an hour and "100,000…'
 permalink: /providers/llm7/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: LLM7.io
 ---
 
@@ -11,7 +11,7 @@ crumb: LLM7.io
 
 # LLM7.io free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-01 · [llm7.io](https://llm7.io) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [llm7.io](https://llm7.io) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -63,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

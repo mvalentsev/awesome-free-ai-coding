@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'kimi-k3 free: 2 providers, limits and ids, verified 2026-10-01'
+title: 'kimi-k3 free: 2 providers, limits and ids, verified 2026-10-05'
 description: kimi-k3 is served free by NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/kimi-k3/
-last_modified_at: 2026-10-02
+last_modified_at: 2026-10-05
 crumb: kimi-k3
 ---
 
@@ -11,7 +11,7 @@ crumb: kimi-k3
 
 # Where kimi-k3 is free
 
-**2 rows on the list serve `kimi-k3` free:** NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/kimi-k3).
+**2 rows on the list serve `kimi-k3` free:** NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/kimi-k3).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: kimi-k3
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-01 · listed since 2026-09-22
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-05 · listed since 2026-09-22
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -37,7 +37,7 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-16
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -61,6 +61,6 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

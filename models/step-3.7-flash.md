@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'step-3.7-flash free: 2 providers, limits and ids, verified 2026-10-01'
+title: 'step-3.7-flash free: 2 providers, limits and ids, verified 2026-10-05'
 description: step-3.7-flash is served free by Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/step-3.7-flash/
-last_modified_at: 2026-10-02
+last_modified_at: 2026-10-05
 crumb: step-3.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: step-3.7-flash
 
 # Where step-3.7-flash is free
 
-**2 rows on the list serve `step-3.7-flash` free:** Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/step-3-7-flash), below its strong bar.
+**2 rows on the list serve `step-3.7-flash` free:** Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/step-3-7-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: step-3.7-flash
 
 ### [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 
-🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-10-01 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in Iran, Syria, Cuba and 1 more place · verified 2026-10-05 · listed since 2026-08-11
 
 Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside
 
@@ -38,7 +38,7 @@ Open-source VS Code / JetBrains / CLI agent whose $0 plan routes "Auto Free" to 
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-09-16
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-16
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
@@ -61,6 +61,6 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

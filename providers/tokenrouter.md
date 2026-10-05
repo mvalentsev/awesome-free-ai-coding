@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-10-01'
+title: 'TokenRouter (PaleBlueDot) free tier: limits, free models, verified 2026-10-05'
 description: 'OpenAI-compatible gateway with a zero-priced free-model route in its default group beside metered models. Free models: nemotron-3-nano-omni. The free route is in the default group, with no published request cap. Other catalog routes are metered, apart from an unmarked zero-priced stealth route.'
 permalink: /providers/tokenrouter/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: TokenRouter (PaleBlueDot)
 ---
 
@@ -11,7 +11,7 @@ crumb: TokenRouter (PaleBlueDot)
 
 # TokenRouter (PaleBlueDot) free tier
 
-🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-10-01 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Russia, Iran, Belarus and 3 more places · **live** — last verified by a probe on 2026-10-05 · [tokenrouter.com](https://www.tokenrouter.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -59,6 +59,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'MiniMax Code free tier: limits, free models, verified 2026-10-01'
+title: 'MiniMax Code free tier: limits, free models, verified 2026-10-05'
 description: 'MiniMax''s coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them. The docs: "Daily check-ins earn 400 points", "Check-ins on day 4 and day 7 award 1,000 points per day", "A…'
 permalink: /providers/minimax-code/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: MiniMax Code
 ---
 
@@ -11,7 +11,7 @@ crumb: MiniMax Code
 
 # MiniMax Code free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-29, a regular row from the first probe it passes on or after 2026-10-13 · **live** — last verified by a probe on 2026-10-01 · [agent.minimax.io](https://agent.minimax.io/download) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-29, a regular row from the first probe it passes on or after 2026-10-13 · **live** — last verified by a probe on 2026-10-05 · [agent.minimax.io](https://agent.minimax.io/download) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -52,6 +52,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

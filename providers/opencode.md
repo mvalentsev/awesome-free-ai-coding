@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'opencode free tier: limits, free models, verified 2026-10-01'
+title: 'opencode free tier: limits, free models, verified 2026-10-05'
 description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, mimo-v2.5, ling-3.0-flash-fin, nemotron-3-ultra, nemotron-3.5-lightning, muse-spark-1.3-contributor. The free ids work…'
 permalink: /providers/opencode/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: opencode
 ---
 
@@ -11,7 +11,7 @@ crumb: opencode
 
 # opencode free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-01 · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-05 · [opencode.ai](https://opencode.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -59,6 +59,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

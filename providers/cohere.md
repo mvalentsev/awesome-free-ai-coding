@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-10-01'
+title: 'Cohere (trial keys) free tier: limits, free models, verified 2026-10-05'
 description: 'Cohere''s Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type. Free models: command-a-plus, command-a-reasoning, north-mini-code, command-a, command-a-vision, command-r-plus, command-r, command-r7b. Trial keys are…'
 permalink: /providers/cohere/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Cohere (trial keys)
 ---
 
@@ -11,7 +11,7 @@ crumb: Cohere (trial keys)
 
 # Cohere (trial keys) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · **live** — last verified by a probe on 2026-10-01 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 5 more places · **live** — last verified by a probe on 2026-10-05 · [cohere.com](https://cohere.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

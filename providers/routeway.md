@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Routeway free tier: limits, free models, verified 2026-10-01'
+title: 'Routeway free tier: limits, free models, verified 2026-10-05'
 description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. Free models — every id ending :free — cost nothing and "are rate-limited to 20 requests/minute and 200 requests/day", the FAQ says, where the…'
 permalink: /providers/routeway/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Routeway
 ---
 
@@ -11,7 +11,7 @@ crumb: Routeway
 
 # Routeway free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-01 · [routeway.ai](https://routeway.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-05 · [routeway.ai](https://routeway.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-3-flash free: 2 providers, limits and ids, verified 2026-10-01'
+title: 'gemini-3-flash free: 2 providers, limits and ids, verified 2026-10-05'
 description: gemini-3-flash is served free by Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemini-3-flash/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: gemini-3-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-3-flash
 
 # Where gemini-3-flash is free
 
-**2 rows on the list serve `gemini-3-flash` free:** Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-flash), below its strong bar.
+**2 rows on the list serve `gemini-3-flash` free:** Google AI Studio (Gemini API) and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-flash), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-3-flash
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-10-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-10-05 · listed since 2026-09-25
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 
@@ -37,7 +37,7 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 
 ### [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-10-01 · listed since 2026-09-23
+🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-10-05 · listed since 2026-09-23
 
 Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 
@@ -66,6 +66,6 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

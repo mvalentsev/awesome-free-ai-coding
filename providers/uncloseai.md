@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-09-24'
+title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-10-05'
 description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the inference page draws…
 permalink: /providers/uncloseai/
-last_modified_at: 2026-09-26
+last_modified_at: 2026-10-05
 crumb: uncloseai (unturf)
 ---
 
@@ -11,7 +11,7 @@ crumb: uncloseai (unturf)
 
 # uncloseai (unturf) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-09-24 · [uncloseai.com](https://uncloseai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [uncloseai.com](https://uncloseai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -59,6 +59,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

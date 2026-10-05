@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Pollinations.AI free tier: limits, free models, verified 2026-10-01'
+title: 'Pollinations.AI free tier: limits, free models, verified 2026-10-05'
 description: 'Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model. Free models: gpt-oss-20b. The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous"…'
 permalink: /providers/pollinations/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Pollinations.AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Pollinations.AI
 
 # Pollinations.AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-01 · [pollinations.ai](https://pollinations.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [pollinations.ai](https://pollinations.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -59,6 +59,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

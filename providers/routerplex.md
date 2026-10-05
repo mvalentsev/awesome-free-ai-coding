@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'RouterPlex free tier: limits, free models, verified 2026-10-01'
+title: 'RouterPlex free tier: limits, free models, verified 2026-10-05'
 description: 'A one-time $1 of free credit on a prepaid reseller that bills its catalog at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. The home page: "Get $1 in free credit", granted "once…'
 permalink: /providers/routerplex/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: RouterPlex
 ---
 
@@ -11,7 +11,7 @@ crumb: RouterPlex
 
 # RouterPlex free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-01 · [routerplex.com](https://routerplex.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [routerplex.com](https://routerplex.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

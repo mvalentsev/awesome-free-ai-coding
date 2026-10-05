@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gpt-oss-120b free: 4 providers, limits and ids, verified 2026-10-01'
+title: 'gpt-oss-120b free: 4 providers, limits and ids, verified 2026-10-01 or later'
 description: gpt-oss-120b is served free by Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gpt-oss-120b/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: gpt-oss-120b
 ---
 
@@ -11,7 +11,7 @@ crumb: gpt-oss-120b
 
 # Where gpt-oss-120b is free
 
-**4 rows on the list serve `gpt-oss-120b` free:** Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. The published offers were checked on 2026-10-01 and are rechecked twice a week.
+**4 rows on the list serve `gpt-oss-120b` free:** Groq, Google Antigravity, Regolo AI and OVHcloud AI Endpoints. None asks for a card; OVHcloud AI Endpoints answers with no account at all. The published offers were checked on 2026-10-01 or later and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gpt-oss-120b
 
 ### [Groq](https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · verified 2026-10-05 · listed since 2026-09-25
 
 Fast inference against a free plan Groq publishes as a per-model rate table
 
@@ -53,7 +53,7 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ### [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-10-01 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · verified 2026-10-05 · listed since 2026-09-25
 
 EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card
 
@@ -71,7 +71,7 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 ### [OVHcloud AI Endpoints](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · verified 2026-10-05 · listed since 2026-09-25
 
 EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller
 
@@ -94,6 +94,6 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

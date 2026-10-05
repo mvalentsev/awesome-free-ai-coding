@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'deepseek-v4-pro free: 1 provider, limits and ids, verified 2026-10-01'
+title: 'deepseek-v4-pro free: 1 provider, limits and ids, verified 2026-10-05'
 description: deepseek-v4-pro is served free by Alibaba Cloud Model Studio (DashScope, international). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/deepseek-v4-pro/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: deepseek-v4-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: deepseek-v4-pro
 
 # Where deepseek-v4-pro is free
 
-**One row on the list serves `deepseek-v4-pro` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The published offer was checked on 2026-10-01 and is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-pro).
+**One row on the list serves `deepseek-v4-pro` free:** Alibaba Cloud Model Studio (DashScope, international). It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/deepseek-v4-pro).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: deepseek-v4-pro
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-05 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -47,6 +47,6 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

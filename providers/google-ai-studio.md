@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-10-01'
+title: 'Google AI Studio (Gemini API) free tier: limits, free models, verified 2026-10-05'
 description: 'Free tier on the Gemini API, priced model by model rather than as one account quota. Free models: gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3-flash, gemma-4. Google prices the free tier per model: its pricing page…'
 permalink: /providers/google-ai-studio/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Google AI Studio (Gemini API)
 ---
 
@@ -11,7 +11,7 @@ crumb: Google AI Studio (Gemini API)
 
 # Google AI Studio (Gemini API) free tier
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · **live** — last verified by a probe on 2026-10-01 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · **live** — last verified by a probe on 2026-10-05 · [aistudio.google.com](https://aistudio.google.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -69,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'qwen3.7-flash free: 2 providers, limits and ids, verified 2026-10-01'
+title: 'qwen3.7-flash free: 2 providers, limits and ids, verified 2026-10-05'
 description: qwen3.7-flash is served free by Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/qwen3.7-flash/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: qwen3.7-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: qwen3.7-flash
 
 # Where qwen3.7-flash is free
 
-**2 rows on the list serve `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. The published offers were checked on 2026-10-01 and are rechecked twice a week.
+**2 rows on the list serve `qwen3.7-flash` free:** Alibaba Cloud Model Studio (DashScope, international) and BazaarLink. None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: qwen3.7-flash
 
 ### [Alibaba Cloud Model Studio (DashScope, international)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-01 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China · verified 2026-10-05 · listed since 2026-09-25
 
 A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible
 
@@ -37,7 +37,7 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 ### [BazaarLink](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-01 · listed since 2026-08-03
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-08-03
 
 OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router
 
@@ -59,6 +59,6 @@ OpenAI-compatible gateway with a shared free allowance on selected models and an
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

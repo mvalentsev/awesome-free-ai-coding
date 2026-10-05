@@ -11,7 +11,7 @@ crumb: Baidu Comate (文心快码)
 
 # Baidu Comate (文心快码) free tier
 
-🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-27, a regular row from the first probe it passes on or after 2026-10-11 · **live** — last verified by a probe on 2026-10-01 · [comate.baidu.com](https://comate.baidu.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · provisional — added on 2026-09-27, a regular row from the first probe it passes on or after 2026-10-11 · **live** — last verified by a probe on 2026-10-01; the probe since has not found that evidence, and 3 misses in a row archive the row · [comate.baidu.com](https://comate.baidu.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -46,6 +46,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

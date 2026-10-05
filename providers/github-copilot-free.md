@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-10-01'
+title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-10-05'
 description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. Inline suggestions are "limited to 2000 completions per month on Copilot Free". Chat and agent usage have "An allowance of GitHub AI Credits", whose amount is…
 permalink: /providers/github-copilot-free/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: GitHub Copilot Free
 ---
 
@@ -11,7 +11,7 @@ crumb: GitHub Copilot Free
 
 # GitHub Copilot Free free tier
 
-🎁 Trials (no card when possible) · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-10-01 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in Russia, Iran, Belarus and 2 more places · **live** — last verified by a probe on 2026-10-05 · [github.com](https://github.com/features/copilot) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -51,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

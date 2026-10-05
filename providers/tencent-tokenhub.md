@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-10-01'
+title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-10-05'
 description: Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated 2026-09-04, gives each main account one grant while the promotion…
 permalink: /providers/tencent-tokenhub/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-05
 crumb: Tencent Cloud TokenHub
 ---
 
@@ -11,7 +11,7 @@ crumb: Tencent Cloud TokenHub
 
 # Tencent Cloud TokenHub free tier
 
-🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · **live** — last verified by a probe on 2026-10-01 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · offered only in mainland China, Hong Kong, Taiwan and Macao · **live** — last verified by a probe on 2026-10-05 · [cloud.tencent.com](https://cloud.tencent.com/document/product/1823) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-02 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
