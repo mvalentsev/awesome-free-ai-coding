@@ -1,6 +1,7 @@
 """Review evidence must refer to the requested tree, retain failures and stay private."""
 import json
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -175,6 +176,36 @@ def test_browser_plan_covers_changed_families_and_import_rejects_partial_or_wron
     result['sha'] = plan['sha']
     result['records'].append(result['records'][0])
     assert not accept_browser(bundle, result, plan)['passed']
+
+
+@pytest.mark.skipif(shutil.which('node') is None, reason='needs node to run the browser check')
+@pytest.mark.parametrize('count', [0, 1, 2])
+def test_browser_model_count_accepts_rendered_pages_and_rejects_wrong_intro(count):
+    from datetime import timedelta
+    from freetier_radar.render import build_model_page
+    from test_render import TODAY, make
+
+    entries = [make(id=f'vendor-{i}', name=f'Vendor {i}',
+                    models=[{'family': 'qwen3.8-27b'}]) for i in range(count)]
+    if not count:
+        entries = [make(models=[{'family': 'qwen3.8-27b'}], last_verified=TODAY - timedelta(days=90))]
+    text = build_model_page('qwen3.8-27b', entries, [], TODAY).replace('**', '')
+    script = (Path(__file__).resolve().parents[1] / 'templates/review-browser.js.j2').read_text()
+    check = script.split('const text=await body.innerText();', 1)[1].split('await folds(body);', 1)[0]
+    harness = """const {text,model}=JSON.parse(require('fs').readFileSync(0,'utf8'));
+        const body={locator:()=>({count:async()=>model.rows.length})};
+        (async()=>{ CHECK })().catch(e=>{console.error(e.message);process.exitCode=1;});""".replace('CHECK', check)
+    model = {'family': 'qwen3.8-27b', 'rows': [f'vendor-{i}' for i in range(count)]}
+
+    def run(value):
+        return subprocess.run(['node', '-e', harness], input=json.dumps({'text': value, 'model': model}),
+                              capture_output=True, text=True, timeout=30)
+
+    result = run(text)
+    assert result.returncode == 0, result.stderr
+    if count:
+        prefix = 'One row on the list' if count == 1 else f'{count} rows on the list'
+        assert run(text.replace(prefix, 'Wrong count on the list')).returncode != 0
 
 
 def test_report_rejects_present_but_unproven_phases(tmp_path):

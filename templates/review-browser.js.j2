@@ -77,7 +77,8 @@ async (page) => {
           } else {await go(model.page);}
           const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
           const text=await body.innerText();
-          if((model.rows.length&&!text.includes(model.rows.length+' row'+(model.rows.length===1?'':'s')+' on the list')) || (model.tier&&!text.includes(model.tier))) throw Error('Model count/tier: '+model.family);
+          const countText=model.rows.length===1?'One row on the list':model.rows.length+' rows on the list';
+          if((model.rows.length&&!text.includes(countText)) || (model.tier&&!text.includes(model.tier))) throw Error('Model count/tier: '+model.family);
           if(await body.locator('h3').count()!==model.rows.length) throw Error('Model headings count: '+model.family);
           await folds(body);
           if(width===375&&scheme==='light'&&model===plan.models[0]) await page.screenshot({path:plan.output.replace('.json','-mobile.png'),fullPage:true});
