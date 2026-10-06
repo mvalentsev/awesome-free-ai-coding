@@ -3,7 +3,7 @@ layout: default
 title: 'laguna-xs-2.1 free: 6 providers, limits and ids, verified 2026-10-05'
 description: laguna-xs-2.1 is served free by OpenRouter (free models), Kilo Code, NVIDIA NIM (build.nvidia.com), AIHubMix (free models), LLMTR and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the…
 permalink: /models/laguna-xs-2.1/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: laguna-xs-2.1
 ---
 

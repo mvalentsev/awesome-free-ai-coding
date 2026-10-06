@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-sante free: 3 providers, limits and ids, verified 2026-10-05'
 description: ling-3.0-flash-sante is served free by OpenRouter (free models), Kilo Code and Nous Portal (Hermes Agent). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/ling-3.0-flash-sante/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: ling-3.0-flash-sante
 ---
 

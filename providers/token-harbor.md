@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Token Harbor free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash. "Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models…'
+description: 'OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card. Free models: deepseek-v4.1-flash, mimo-v2.6-flash. "Models on permanent free routes carry an explicit :free model ID and are listed under…'
 permalink: /providers/token-harbor/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: Token Harbor
 ---
 
@@ -19,7 +19,7 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ## Free models
 
-[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
+[`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
 
 ## Limits, in the vendor's words
 
@@ -66,6 +66,7 @@ curl -s https://tokenharbor.ai/v1/chat/completions \
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-06` — Free models changed: added mimo-v2.6-flash
 - `2026-09-22` — Free models changed: dropped deepseek-v4-flash, mimo-v2.5
 - `2026-09-18` — Free models changed: added deepseek-v4-flash
 - `2026-09-16` — Added: OpenAI-compatible gateway with a $0 plan: explicit :free ids for DeepSeek V4.1 Flash, DeepSeek V4 Flash and MiMo V2.5 on a value-based allowance, no card

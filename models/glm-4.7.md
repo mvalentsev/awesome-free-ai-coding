@@ -3,7 +3,7 @@ layout: default
 title: 'glm-4.7 free: 1 provider, limits and ids, verified 2026-10-05'
 description: glm-4.7 is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/glm-4.7/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: glm-4.7
 ---
 

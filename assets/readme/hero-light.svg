@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1160" height="330" viewBox="0 0 1160 330" role="img" aria-labelledby="title">
-<title id="title">awesome-free-ai-coding — 85 live offers, 81 need no card, 160 free models, 17 strong models; every offer probed twice a week; one dot per live offer</title>
+<title id="title">awesome-free-ai-coding — 85 live offers, 81 need no card, 161 free models, 19 strong models; every offer probed twice a week; one dot per live offer</title>
 <style>.card{fill:#ffffff;stroke:#d1d9e0}.t{fill:#1f2328}.m{fill:#59636e}.ring{stroke:#1a7f37}.hub{fill:#1a7f37}.beam{stroke:#1a7f37}.s0,.s1,.g0,.g1{stop-color:#1a7f37}.a0{stop-color:#1a7f37}.a1{stop-color:#0969da}.dot.agents,.key.agents{fill:#1a7f37}.rim.agents{stroke:#1a7f37}.dot.apis,.key.apis{fill:#0969da}.rim.apis{stroke:#0969da}.dot.trials,.key.trials{fill:#9a6700}.rim.trials{stroke:#9a6700}.dot.aggregators,.key.aggregators{fill:#8250df}.rim.aggregators{stroke:#8250df}.rim{fill:none}.s0{stop-opacity:.5}.s1,.g1{stop-opacity:0}.g0{stop-opacity:.12}.dot{opacity:.45;animation:ping 6s linear infinite}@keyframes ping{0%,4%{opacity:1}55%,100%{opacity:.45}}.turning{animation:turn 6s linear infinite}@keyframes turn{to{transform:rotate(360deg)}}@media (prefers-reduced-motion: reduce) {.dot { animation: none; opacity: 1 } .turning { animation: none }}</style>
 <defs><linearGradient id="accent" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1100" y2="0"><stop class="a0" offset="0"/><stop class="a1" offset="1"/></linearGradient></defs>
 <rect class="card" x="1" y="1" width="1158" height="328" rx="18" stroke-width="2"/>
@@ -108,9 +108,9 @@
 <text class="m" x="352" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18">live offers</text>
 <text class="t" x="552" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700">81</text>
 <text class="m" x="552" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18">need no card</text>
-<text class="t" x="752" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700">160</text>
+<text class="t" x="752" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700">161</text>
 <text class="m" x="752" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18">free models</text>
-<text class="t" x="952" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700">17</text>
+<text class="t" x="952" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="700">19</text>
 <text class="m" x="952" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18">strong models</text>
 <text class="m" x="352" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17">one dot per live offer: <tspan class="key agents">●</tspan> agents <tspan class="key apis">●</tspan> APIs <tspan class="key trials">●</tspan> trials <tspan class="key aggregators">●</tspan> aggregators</text>
 </svg>

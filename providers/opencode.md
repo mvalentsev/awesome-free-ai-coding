@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'opencode free tier: limits, free models, verified 2026-10-05'
-description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, mimo-v2.5, ling-3.0-flash-fin, nemotron-3-ultra, nemotron-3.5-lightning, muse-spark-1.3-contributor. The free ids work…'
+description: 'Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK. Free models: big-pickle, mimo-v2.5, ling-3.0-flash-fin, nemotron-3-ultra, nemotron-3.5-lightning, muse-spark-1.3-contributor, mimo-v2.6-flash. Free…'
 permalink: /providers/opencode/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: opencode
 ---
 
@@ -19,11 +19,11 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 
 ## Free models
 
-`big-pickle`, [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/)
+`big-pickle`, [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/), [`ling-3.0-flash-fin`](https://mvalentsev.github.io/awesome-free-ai-coding/models/ling-3.0-flash-fin/), [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/), [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/), [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
 
 ## Limits, in the vendor's words
 
-The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer wrote "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)", so this row publishes no base URL. Inside OpenCode the ids are `opencode/<model-id>`, and all six answered the official 1.18.31 CLI, signed out, on 2026-09-18. By 2026-09-27 the page adds MiMo-V2.6-Flash Free and LongCat 2.5 Preview Free, waiting their two weeks, and the stealth Space Bunny Free and Jev 1.13 Free, a decision model, which stay out. Each is "available on OpenCode for a limited time", and the price is data: of the free models "collected data may be used to improve the model", the NVIDIA-backed ones are "Trial use only — do not submit personal or confidential data", and Muse Spark 1.3 Contributor is discounted "in exchange for permission to use your prompts and completions to train future Meta models". Mind the suffix: plain muse-spark-1.3 is a paid row, and max effort is "Standard-tier `muse-spark-1.3` only". Read 2026-09-27
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. The maintainer says "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)". Inside OpenCode, use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. No numerical usage quota is published. Offers rotate and each named free offer is "available on OpenCode for a limited time". For the free models, "collected data may be used to improve the model"; NVIDIA-backed offers are "Trial use only — do not submit personal or confidential data". Muse Spark Contributor is discounted "in exchange for permission to use your prompts and completions to train future Meta models", and max effort is "Standard-tier `muse-spark-1.3` only". Read 2026-10-06
 
 ## Where it is offered
 
@@ -49,6 +49,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-06` — Free models changed: added mimo-v2.6-flash
 - `2026-09-16` — Free models changed: added muse-spark-1.3-contributor
 - `2026-09-14` — Free models changed: dropped muse-spark-1.2
 - `2026-08-30` — Free models changed: added ling-3.0-flash-fin; dropped hy3

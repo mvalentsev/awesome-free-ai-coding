@@ -85,7 +85,13 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 
 OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card
 
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
 - Limits, in the vendor's words: "Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. There is "No separate per-minute cap on free models — only the free-account API limit of 60 requests/minute and 1,800/hour applies"; "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process request content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04
+
+</details>
+
 - Base URL: `https://tokenharbor.ai/v1`
 - Key: `TOKEN_HARBOR_API_KEY` — get one at <https://tokenharbor.ai/dashboard/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://tokenharbor.ai`

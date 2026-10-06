@@ -3,7 +3,7 @@ layout: default
 title: 'kimi-k3 free: 2 providers, limits and ids, verified 2026-10-05'
 description: kimi-k3 is served free by NVIDIA NIM (build.nvidia.com) and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/kimi-k3/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: kimi-k3
 ---
 

@@ -88,9 +88,6 @@
         "liquid/lfm-2.5-2.6b:free": {
           "name": "liquid/lfm-2.5-2.6b:free"
         },
-        "qwen/qwen3.8-27b:free": {
-          "name": "qwen/qwen3.8-27b:free"
-        },
         "openrouter/free": {
           "name": "openrouter/free"
         },

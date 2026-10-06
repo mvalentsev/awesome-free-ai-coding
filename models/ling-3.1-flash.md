@@ -11,7 +11,7 @@ crumb: ling-3.1-flash
 
 # Where ling-3.1-flash is free
 
-**One row on the list serves `ling-3.1-flash` free:** LLMTR. It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week.
+**One row on the list serves `ling-3.1-flash` free:** LLMTR. It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-1-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

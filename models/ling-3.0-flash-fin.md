@@ -3,7 +3,7 @@ layout: default
 title: 'ling-3.0-flash-fin free: 2 providers, limits and ids, verified 2026-10-05'
 description: ling-3.0-flash-fin is served free by opencode and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: ling-3.0-flash-fin
 ---
 
@@ -26,7 +26,7 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: The free ids work inside OpenCode and nowhere else. Since 2026-09-17 Zen has answered every other client with `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`, and on 2026-09-18 an OpenCode maintainer wrote "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)", so this row publishes no base URL. Inside OpenCode the ids are `opencode/<model-id>`, and all six answered the official 1.18.31 CLI, signed out, on 2026-09-18. By 2026-09-27 the page adds MiMo-V2.6-Flash Free and LongCat 2.5 Preview Free, waiting their two weeks, and the stealth Space Bunny Free and Jev 1.13 Free, a decision model, which stay out. Each is "available on OpenCode for a limited time", and the price is data: of the free models "collected data may be used to improve the model", the NVIDIA-backed ones are "Trial use only — do not submit personal or confidential data", and Muse Spark 1.3 Contributor is discounted "in exchange for permission to use your prompts and completions to train future Meta models". Mind the suffix: plain muse-spark-1.3 is a paid row, and max effort is "Standard-tier `muse-spark-1.3` only". Read 2026-09-27
+- Limits, in the vendor's words: Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. The maintainer says "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)". Inside OpenCode, use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. No numerical usage quota is published. Offers rotate and each named free offer is "available on OpenCode for a limited time". For the free models, "collected data may be used to improve the model"; NVIDIA-backed offers are "Trial use only — do not submit personal or confidential data". Muse Spark Contributor is discounted "in exchange for permission to use your prompts and completions to train future Meta models", and max effort is "Standard-tier `muse-spark-1.3` only". Read 2026-10-06
 
 </details>
 

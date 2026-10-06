@@ -3,7 +3,7 @@ layout: default
 title: 'glm-5.2 free: 3 providers, limits and ids, verified 2026-10-05'
 description: glm-5.2 is served free by AIHubMix (free models), Alibaba Cloud Model Studio (DashScope, international) and Regolo AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/glm-5.2/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: glm-5.2
 ---
 

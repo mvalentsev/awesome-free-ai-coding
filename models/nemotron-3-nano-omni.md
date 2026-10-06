@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3-nano-omni free: 6 providers, limits and ids, verified 2026-10-05'
 description: nemotron-3-nano-omni is served free by OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and TokenRouter (PaleBlueDot). None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and…
 permalink: /models/nemotron-3-nano-omni/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: nemotron-3-nano-omni
 ---
 

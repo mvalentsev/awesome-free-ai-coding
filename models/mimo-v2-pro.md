@@ -3,7 +3,7 @@ layout: default
 title: 'mimo-v2-pro free: 1 provider, limits and ids, verified 2026-10-05'
 description: mimo-v2-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/mimo-v2-pro/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: mimo-v2-pro
 ---
 
@@ -38,11 +38,12 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Related models
 
+- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at opencode, Freebuff, AIHubMix (free models) and Token Harbor
 - [`mimo-v2.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5/) — free at opencode and AIHubMix (free models)
 - [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) — free at AIHubMix (free models)
 - [`mimo-v2-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-omni/) — free at AIHubMix (free models)
 - [`mimo-v2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5-pro/) — free at AIHubMix (free models)
-- [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) — free at Freebuff
+- [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — free at AIHubMix (free models)
 
 ---
 

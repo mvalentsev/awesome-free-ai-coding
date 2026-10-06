@@ -3,7 +3,7 @@ layout: default
 title: 'nemotron-3-super free: 6 providers, limits and ids, verified 2026-10-05'
 description: nemotron-3-super is served free by OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published…
 permalink: /models/nemotron-3-super/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: nemotron-3-super
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3-super
 
 # Where nemotron-3-super is free
 
-**6 rows on the list serve `nemotron-3-super` free:** OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b), below its strong bar.
+**6 rows on the list serve `nemotron-3-super` free:** OpenRouter (free models), Kilo Code, Requesty, NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and LLMTR. None asks for a card; Kilo Code answers with no account at all. The published offers were checked on 2026-10-05 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 

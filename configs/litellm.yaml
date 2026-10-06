@@ -163,12 +163,6 @@ model_list:
     api_base: https://openrouter.ai/api/v1
     api_key: os.environ/OPENROUTER_API_KEY
     use_chat_completions_api: true
-- model_name: openrouter-free/qwen/qwen3.8-27b:free
-  litellm_params:
-    model: openai/qwen/qwen3.8-27b:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
 - model_name: openrouter-free/openrouter/free
   litellm_params:
     model: openai/openrouter/free
@@ -1908,17 +1902,6 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
-    model: openai/qwen/qwen3.8-27b:free
-    api_base: https://openrouter.ai/api/v1
-    api_key: os.environ/OPENROUTER_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    allowed_fails_policy:
-      AuthenticationErrorAllowedFails: 0
-      InternalServerErrorAllowedFails: 0
-      RateLimitErrorAllowedFails: 0
-- model_name: free/strong
-  litellm_params:
     model: openai/qwen/qwen3.8-27b
     api_base: https://api.groq.com/openai/v1
     api_key: os.environ/GROQ_API_KEY
@@ -2018,6 +2001,28 @@ model_list:
       RateLimitErrorAllowedFails: 0
 - model_name: free/strong
   litellm_params:
+    model: openai/xiaomi-mimo-v2.6-flash-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/xiaomi-mimo-v2.6-pro-free
+    api_base: https://aihubmix.com/v1
+    api_key: os.environ/AIHUBMIX_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
     model: openai/deepseek-v4-flash:free
     api_base: https://api.routeway.ai/v1
     api_key: os.environ/ROUTEWAY_API_KEY
@@ -2034,6 +2039,17 @@ model_list:
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
     max_tokens: 16384
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/inclusionai/ling-3.1-flash
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0
@@ -2196,6 +2212,17 @@ model_list:
 - model_name: free/strong
   litellm_params:
     model: openai/deepseek-v4.1-flash:free
+    api_base: https://tokenharbor.ai/v1
+    api_key: os.environ/TOKEN_HARBOR_API_KEY
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/mimo-v2.6-flash:free
     api_base: https://tokenharbor.ai/v1
     api_key: os.environ/TOKEN_HARBOR_API_KEY
     use_chat_completions_api: true

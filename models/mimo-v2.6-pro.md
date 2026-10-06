@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 'mimo-v2.5-pro free: 1 provider, limits and ids, verified 2026-10-05'
-description: mimo-v2.5-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
-permalink: /models/mimo-v2.5-pro/
+title: 'mimo-v2.6-pro free: 1 provider, limits and ids, verified 2026-10-05'
+description: mimo-v2.6-pro is served free by AIHubMix (free models). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+permalink: /models/mimo-v2.6-pro/
 last_modified_at: 2026-10-06
-crumb: mimo-v2.5-pro
+crumb: mimo-v2.6-pro
 ---
 
 {% raw %}
 
-# Where mimo-v2.5-pro is free
+# Where mimo-v2.6-pro is free
 
-**One row on the list serves `mimo-v2.5-pro` free:** AIHubMix (free models). It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-5-pro), below its strong bar.
+**One row on the list serves `mimo-v2.6-pro` free:** AIHubMix (free models). It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/mimo-v2-6-pro).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: mimo-v2.5-pro
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-25
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-10-06
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -34,7 +34,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - Key: `AIHUBMIX_API_KEY` — get one at <https://aihubmix.com/token>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://aihubmix.com`
 - Codex CLI: [`configs/codex/aihubmix.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/aihubmix.config.toml) — copy it to `~/.codex/`, then `codex -p aihubmix`; set up on the lane by the vendor's own page, <https://docs.aihubmix.com/en/api/Codex-CLI>: "Connect AIHubMix in Codex CLI"
-- Callable ids: `xiaomi-mimo-v2.5-pro-free`
+- Callable ids: `xiaomi-mimo-v2.6-pro-free`
 
 ## Related models
 
@@ -43,7 +43,7 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 - [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) — free at AIHubMix (free models)
 - [`mimo-v2-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-omni/) — free at AIHubMix (free models)
 - [`mimo-v2-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-pro/) — free at AIHubMix (free models)
-- [`mimo-v2.6-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-pro/) — free at AIHubMix (free models)
+- [`mimo-v2.5-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5-pro/) — free at AIHubMix (free models)
 
 ---
 

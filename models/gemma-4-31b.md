@@ -3,7 +3,7 @@ layout: default
 title: 'gemma-4-31b free: 5 providers, limits and ids, verified 2026-10-05'
 description: gemma-4-31b is served free by OpenRouter (free models), Requesty, NVIDIA NIM (build.nvidia.com), Regolo AI and Opper. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemma-4-31b/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: gemma-4-31b
 ---
 
