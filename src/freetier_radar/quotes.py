@@ -113,7 +113,14 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     # The words a keyed lane's Codex profile rests on (see models.CodexRoute).
     if entry.api and entry.api.codex and entry.api.codex.quote:
         found.append(("api.codex.quote", entry.api.codex.quote))
+    if entry.page_catalog:
+        from .page_catalog import catalog_quotes
+        found.extend(catalog_quotes(entry.page_catalog))
     return found
+
+
+def row_quote_source(entry: Entry, field: str) -> str | None:
+    return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
 
 
 def quote_found(quote: str, pages: list[str]) -> bool:
@@ -141,10 +148,15 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.append(entry.access.source)
     if lane := entry.api or entry.client_lane:
         urls.extend(a.source for a in lane.model_access.values())
+    if entry.page_catalog:
+        urls.append(entry.page_catalog.source)
+        urls.extend(a.source for a in entry.page_catalog.model_access.values())
+        urls.extend(m.first_free.source for m in entry.page_catalog.models if m.first_free)
     return list(dict.fromkeys(urls))
 
 
-async def fetch_pages(client: httpx.AsyncClient, urls: list[str]) -> tuple[list[str], list[str]]:
+async def fetch_pages(client: httpx.AsyncClient, urls: list[str],
+                      by_url: dict[str, list[str]] | None = None) -> tuple[list[str], list[str]]:
     """The flattened rendered text and raw body of every url that answered, and
     a line for each that did not — a quote is only as checked as its sources."""
     sem = asyncio.Semaphore(CONCURRENCY)
@@ -161,11 +173,13 @@ async def fetch_pages(client: httpx.AsyncClient, urls: list[str]) -> tuple[list[
 
     pages: list[str] = []
     unread: list[str] = []
-    for _, got in await asyncio.gather(*(one(u) for u in urls)):
+    for url, got in await asyncio.gather(*(one(u) for u in urls)):
         if isinstance(got, str):
             unread.append(got)
         else:
             pages.extend(got)
+            if by_url is not None:
+                by_url[url] = got
     return pages, unread
 
 
@@ -186,12 +200,16 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
         if not quotes:
             continue
         page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
-        pages, failed = await fetch_pages(client, row_urls(entry, page))
+        by_url = {}
+        pages, failed = await fetch_pages(client, row_urls(entry, page), by_url)
         if failed:
             unread[entry.id] = failed
         for field, quote in quotes:
-            if not quote_found(quote, pages):
-                missing.append(Missing(entry.id, field, quote, unverified=bool(failed)))
+            source = row_quote_source(entry, field)
+            selected = by_url.get(source, []) if source else pages
+            unavailable = source not in by_url if source else bool(failed)
+            if not quote_found(quote, selected):
+                missing.append(Missing(entry.id, field, quote, unverified=unavailable))
     return missing, unread
 
 

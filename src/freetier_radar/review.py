@@ -23,7 +23,7 @@ from .indexnow import index_at
 from .layout import node_for
 from .models import Entry
 from .prober import TIMEOUT, UA, _ask, probe_page_url
-from .quotes import page_texts, quote_found, row_quotes, row_urls
+from .quotes import page_texts, quote_found, row_quote_source, row_quotes, row_urls
 from .render import PAGES_URL, REPO_URL
 
 PUSH_BASE_FLAG = '--push-base'
@@ -253,18 +253,30 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
             async with sem:
                 return await fetch(client, url, bundle)
         checks = await asyncio.gather(*(one(u) for u in sorted(urls)))
-    bodies = {r['url']: page_texts((bundle.out / r['attempts'][-1]['file']).read_text(errors='replace'))
-              for r in checks if r['passed']}
-    quotes = []
+    raw_bodies = {r['url']: (bundle.out / r['attempts'][-1]['file']).read_text(errors='replace')
+                  for r in checks if r['passed']}
+    bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
+    quotes, catalogs = [], []
     for entry in entries:
         pages = [p for u in by_row[entry.id] for p in bodies.get(u, [])]
         unread = any(u not in bodies for u in by_row[entry.id])
-        quotes += [{'row': entry.id, 'field': field, 'quote': quote, 'found': quote_found(quote, pages),
-                    'unverified': unread} for field, quote in row_quotes(entry)]
+        for field, quote in row_quotes(entry):
+            source = row_quote_source(entry, field)
+            quotes.append({'row': entry.id, 'field': field, 'quote': quote,
+                           'found': quote_found(quote, bodies.get(source, []) if source else pages),
+                           'unverified': source not in bodies if source else unread})
+        if entry.page_catalog:
+            from .page_catalog import check_page_catalog
+            body = raw_bodies.get(entry.page_catalog.source)
+            notes = check_page_catalog(body, entry.page_catalog) if body is not None else ['source unreadable']
+            catalogs.append({'row': entry.id, 'source': entry.page_catalog.source, 'notes': notes,
+                             'passed': not notes})
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
                                   'checks': checks, 'quotes': quotes, 'followed': followed,
-                                  'passed': all(r['passed'] for r in checks) and all(q['found'] for q in quotes),
-                                  'judgment': 'Source reads and quote matching only; vendor eligibility still needs review.'})
+                                  'page_catalogs': catalogs,
+                                  'passed': all(r['passed'] for r in checks) and all(q['found'] for q in quotes)
+                                            and all(c['passed'] for c in catalogs),
+                                  'judgment': 'Source reads, quote matching and configured page catalogs; vendor eligibility still needs review.'})
 
 
 def produced_run(repo: Path, sha: str, run: dict, log: str, name: str) -> dict:

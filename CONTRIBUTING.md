@@ -380,6 +380,27 @@ that carries both, or list fewer families: an id that belongs to the free lane b
 has nothing to anchor it belongs in `api.model_ids`, which feeds the generated
 configs without making a claim on the page.
 
+**A page catalog keeps the complete picker separate from free families.**
+`page_catalog` derives `models` and `newcomers`; the registry writer saves only
+the catalog for these rows. Record regional credit budgets, model-hour examples
+and each picker or specialist model once. Shared conditions and sourced notes
+also live there, rather than in a second model list in `limits`. An unmetered
+offer or a conditional free session can start a named family's bar; wallet,
+paid-plan and specialist rows remain visible without entering the free-family
+index. `first_free` records the start of the independently free offer, not the
+day a model first appeared in a spending wallet. `listed` publishes an eligible
+family; the existing tier workflow writes its canonical `model` record.
+Wallet records keep family identity without an unchecked score tier.
+The provider, main table, JSON, browse and LLM views use the same catalog.
+The page probe compares the configured headed hours list and JSON-LD FAQ
+answers for budgets, the complete picker, limited-mode membership and exact
+conditions. An unreadable contract or changed value is a review finding;
+an unavailable page remains inconclusive. Known offer deadlines belong in
+`page_catalog.model_access[display name].until`: expiry removes the free-family
+claim and marks the ended offer while retaining the wallet and source evidence.
+The catalog source must be the row's directly probed page. This records the
+advertised selection; it does not establish an authenticated completion.
+
 **A sum to spend names no model.** The Models column lists models the vendor
 serves free in their own right: a free lane, a free tier or trial that names its
 models, a free quota per model. Where the free part is an amount the account
@@ -470,8 +491,8 @@ the day and the record, which the report counts from. Alibaba's pricing page
 gave DeepSeek V4.1 Flash its quota by 2026-09-14 by Wayback while the row listed
 the id on 09-25, and until that day such bars lived in a maintainer's notes. A
 record goes when the family joins, and `freetier-check` says so.
-A row with no lane has no ids to date — Freebuff's hour table and opencode's
-Zen page name their free models in prose — so a model such a page takes on free
+A row with no lane or structured page catalog has no ids to date — opencode's
+Zen page names its free models in prose — so a model such a page takes on free
 is recorded in `newcomers`: the family it will join as, the first day a record
 shows it free, and the record, a Wayback snapshot or the commit of this list that
 first named it. The report counts its two weeks from there, validation refuses

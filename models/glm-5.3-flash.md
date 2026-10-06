@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'glm-5.3-flash free: 4 providers, limits and ids, verified 2026-10-05'
-description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+title: 'glm-5.3-flash free: 3 providers, limits and ids, verified 2026-10-05'
+description: glm-5.3-flash is served free by NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/glm-5.3-flash/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-06
 crumb: glm-5.3-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: glm-5.3-flash
 
 # Where glm-5.3-flash is free
 
-**4 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), Freebuff, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3-flash).
+**3 rows on the list serve `glm-5.3-flash` free:** NVIDIA NIM (build.nvidia.com), AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **strong**: within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/glm-5-3-flash).
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -34,22 +34,6 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 - Key: `NVIDIA_NIM_API_KEY` — get one at <https://build.nvidia.com>
 - Callable ids: `z-ai/glm-5.3-flash`
 - What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
-
-### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
-
-🤖 Coding agents & CLIs · no card · verified 2026-10-05 · listed since 2026-09-02
-
-Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours
-
-<details markdown="block">
-<summary>Provider-wide limits</summary>
-
-- Limits, in the vendor's words: "Freebuff is supported by text ads." The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), 25 anywhere else, where Freebuff runs in limited mode, and 20 "on a VPN or proxy". 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose "Anonymous provider retains prompts", is listed as "Unlimited hrs Space Bunny Alpha". The table moves from week to week; now "Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan". "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them", and DeepSeek V4.1 Flash is marked "May use data for AI training". "GPT-6.1 Sol is free in the US" and included with a paid plan elsewhere, "one session a day for every account". Read 2026-10-01
-
-</details>
-
-- No API endpoint to paste: this row is a tool you install or sign in to.
-- What you send may be used to train or improve models ([the vendor's words](https://freebuff.com/)).
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
@@ -90,6 +74,7 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 
 ## Rows that listed it before
 
+- [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — listed 2026-09-02 to 2026-10-06
 - [Dahl Inference](https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/) — listed 2026-09-21 to 2026-09-25
 - [Sail Research](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/) — listed 2026-09-21 to 2026-09-25
 - [Sarvam AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/) — listed 2026-09-05 to 2026-09-16
@@ -107,6 +92,6 @@ Harvard SEAS's MadSys Lab serving open models free to every account behind both 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-05 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

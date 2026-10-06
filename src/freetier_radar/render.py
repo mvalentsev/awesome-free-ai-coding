@@ -37,6 +37,7 @@ from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Her
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import clip, number, series, weeks
+from .page_catalog import catalog_markdown, catalog_words, family_condition, limits_text
 # The log a commit will be made on, and the map of the repository, which
 # CONTRIBUTING.md prints.
 from .gate import committed_log
@@ -402,7 +403,9 @@ def _row_models(e: Entry, pages: set[str]) -> str:
     a count linking the row's page for the rest."""
     shown, more = _readme_families(e)
     return DOT.join(([_entry_family_links(e, shown, pages, DOT)] if shown else [])
-                      + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else []))
+                      + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else [])
+                      + ([f"[model catalog & access]({provider_page_url(e.id)}#models-and-access)"]
+                         if e.page_catalog else []))
 
 
 def _row(e: Entry, pages: set[str]) -> dict[str, str]:
@@ -480,8 +483,14 @@ def _card_words(e: Entry) -> str:
 
 
 def _access_flag(e: Entry, family: str | None = None, *, compact: bool = True) -> str:
-    words = access_words(family_access(e, family) if family else e.access, compact=compact)
+    words = _access_description(e, family, compact=compact)
     return f" ({words})" if words else ""
+
+
+def _access_description(e: Entry, family: str | None = None, *, compact: bool = True) -> str:
+    return "; ".join(text for text in (
+        access_words(family_access(e, family) if family else e.access, compact=compact),
+        family_condition(e, family) if family else "") if text)
 
 
 def _entry_family_links(e: Entry, families: list[str], pages: set[str], sep: str = ", ") -> str:
@@ -1210,11 +1219,12 @@ def build_index(entries: list[Entry], today: date,
         "source": REPO_URL,
         "feed": FEED_URL,
         "entries": [
-            {**e.model_dump(mode="json", exclude_none=True), "archived": is_archived(e, today),
+            {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
+             "archived": is_archived(e, today),
              **({"access_labels": {"offer": access_words(e.access, compact=True),
-                                   "models": {f: access_words(family_access(e, f), compact=True)
+                                   "models": {f: _access_description(e, f, compact=True)
                                               for f in live_families(e)}}}
-                if e.access or ((lane := e.api or e.client_lane) and lane.model_access) else {}),
+                if e.access or e.page_catalog or ((lane := e.api or e.client_lane) and lane.model_access) else {}),
              **({"archived_because": archive_reason(e, today)} if is_archived(e, today) else {}),
              "page": provider_page_url(e.id)}
             for e in entries
@@ -1320,7 +1330,7 @@ def _site_row(e: Entry) -> dict:
     """
     families = [m for m in e.models if m.superseded_by is None]
     chips = [{"family": m.family, "tier": m.tier.value if m.tier else "",
-              "access": access_words(family_access(e, m.family), compact=True)} for m in families]
+              "access": _access_description(e, m.family, compact=True)} for m in families]
     api = e.api
     return {
         "id": e.id,
@@ -1328,7 +1338,8 @@ def _site_row(e: Entry) -> dict:
         "url": e.url,
         "page": provider_page_url(e.id),
         "offering": _site_fold(e.offering),
-        "limits": _site_fold(e.limits) if e.limits else None,
+        "limits": _site_fold(limits_text(e)) if limits_text(e) else None,
+        "catalog": bool(e.page_catalog),
         "models": chips[:SITE_MODELS],
         "more_models": chips[SITE_MODELS:],
         "verified": e.last_verified.isoformat(),
@@ -1538,6 +1549,8 @@ def _llms_line(e: Entry) -> str:
     fams = live_families(e)
     if fams:
         parts.append("free models: " + ", ".join(f"`{f}`" + _access_flag(e, f, compact=False) for f in fams))
+    if e.page_catalog:
+        parts.append(" ".join(catalog_words(e.page_catalog).split()))
     if e.provisional:
         parts.append(_provisional_words(e))
     return f"- [{e.name}]({provider_page_url(e.id)}): " + "; ".join(parts)
@@ -2127,7 +2140,7 @@ def _page_description(e: Entry) -> str:
     shown, more = _readme_families(e)
     named = (f" Free models: {', '.join(shown)}{f' and {more} more' if more else ''}."
              if shown else "")
-    return clip(f"{offer}{named} {e.limits}", DESCRIPTION_ROOM)
+    return clip(f"{offer}{named} {limits_text(e)}", DESCRIPTION_ROOM)
 
 
 def _last_modified(e: Entry, events: list[Event]) -> date:
@@ -2443,10 +2456,13 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     else:
         named = ("The row names no free model family; the ids its lane serves, where the row has "
                  "them, are under Connect.")
-    out += ["## Free models it listed" if archived else "## Free models", "",
-            _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
-                                else pages) if fams else named,
-            ""]
+    if e.page_catalog and not archived:
+        out += catalog_markdown(e.page_catalog)
+    else:
+        out += ["## Free models it listed" if archived else "## Free models", "",
+                _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
+                                    else pages) if fams else named,
+                ""]
     out += ["## Limits, in the vendor's words", "",
             e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
     if e.border is not None and not archived:
@@ -2587,7 +2603,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     flags = [CATEGORY_TITLES[e.category]]
     if not requires_payment(e, family):
         flags.append(_card_words(e))
-    if not (e.api and e.api.base_url and ids) and (words := access_words(family_access(e, family))):
+    if not (e.api and e.api.base_url and ids) and (words := _access_description(e, family, compact=False)):
         flags.append(words)
     if _border_flag(e):
         flags.append(_border_flag(e))
@@ -2601,9 +2617,9 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
     if e.api and e.api.notice:
         # First, as on the row's page: before a reader copies the base URL.
         out += [_notice_quote(e.api.notice), ""]
-    limits = (f"- Limits, in the vendor's words: {e.limits}" if e.limits
+    limits = (f"- Limits, in the vendor's words: {limits_text(e)}" if limits_text(e)
               else "- The vendor publishes no figure for this tier.")
-    if e.limits and len(families) > 1 and len(e.limits) > README_LIMITS_COLLAPSE:
+    if limits_text(e) and len(families) > 1 and len(limits_text(e)) > README_LIMITS_COLLAPSE:
         out += ['<details markdown="block">', "<summary>Provider-wide limits</summary>", "", limits, "", "</details>", ""]
     else:
         out.append(limits)

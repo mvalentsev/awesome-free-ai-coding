@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05",
+  "generated": "2026-10-06",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -4643,56 +4643,218 @@
       "source_urls": [
         "https://freebuff.com/",
         "https://freebuff.com/cli",
-        "https://freebuff.com/terms-of-service"
+        "https://freebuff.com/terms-of-service",
+        "https://freebuff.com/privacy-policy"
       ],
       "card_required": false,
-      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with no API key and no card, on a daily budget of free model hours",
-      "limits": "\"Freebuff is supported by text ads.\" The free allowance is a daily budget of Freebucks spent on one-hour model sessions, set by where you connect from: 100 a day in the US, 70 or 40 in 23 other named countries (Canada, the UK, Ireland, Australia, New Zealand, South Korea and much of Western and Northern Europe), 25 anywhere else, where Freebuff runs in limited mode, and 20 \"on a VPN or proxy\". 100 Freebucks buy 20 hours of GLM 5.3 Flash or Solar Mini 4, 10 of MiMo 2.6 Flash or Solar Pro 4, 6 of DeepSeek V4.1 Flash, 5 of GPT-6 Luna or 3 of MiMo 2.6 Pro; they refill at midnight Pacific and do not carry over. The stealth Space Bunny Alpha, whose \"Anonymous provider retains prompts\", is listed as \"Unlimited hrs Space Bunny Alpha\". The table moves from week to week; now \"Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan\". \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\", and DeepSeek V4.1 Flash is marked \"May use data for AI training\". \"GPT-6.1 Sol is free in the US\" and included with a paid plan elsewhere, \"one session a day for every account\". Read 2026-10-01",
+      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. \"No API key, no credit card.\"",
+      "limits": "\"Freebuff is supported by text ads.\" \"Freebucks buy one-hour model sessions.\" \"Model prices and usage limits still apply.\" Available models depend on the app and access level. \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.\n\nDaily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCredit-funded hour examples use the whole the United States allowance on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 3 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nGemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. ([source](https://freebuff.com/)).",
       "free_part": "models",
-      "models": [
-        {
-          "family": "glm-5.3-flash",
-          "tier": "strong",
-          "aa_model": "glm-5-3-flash"
-        },
-        {
-          "family": "deepseek-v4.1-flash",
-          "tier": "strong",
-          "aa_model": "deepseek-v4-1-flash"
-        }
-      ],
+      "models": [],
       "newcomers": [
         {
-          "family": "mimo-v2.6-flash",
-          "on": "2026-09-22",
-          "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
-        },
-        {
-          "family": "solar-mini-4",
-          "on": "2026-09-23",
-          "source": "https://github.com/mvalentsev/awesome-free-ai-coding/commit/2d269178e7aff383341d3cb02eec3a5b7ea2496c"
-        },
-        {
           "family": "solar-pro-4",
-          "on": "2026-09-26",
-          "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
-        },
-        {
-          "family": "gpt-6-luna",
-          "on": "2026-09-26",
-          "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
-        },
-        {
-          "family": "mimo-v2.6-pro",
-          "on": "2026-09-26",
-          "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
+          "on": "2026-10-05",
+          "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-solar-promo.ts"
         },
         {
           "family": "gpt-6.1-sol",
-          "on": "2026-10-01",
-          "source": "https://github.com/mvalentsev/awesome-free-ai-coding/commit/09f0efbfa3b0a02b6e83ca4fb9c1966631b7f6e1"
+          "on": "2026-09-29",
+          "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-sol-promo.ts"
         }
       ],
+      "page_catalog": {
+        "source": "https://freebuff.com/",
+        "unit": "Freebucks",
+        "period": "day",
+        "budgets": [
+          {
+            "id": "us",
+            "amount": 150,
+            "countries": [
+              "US"
+            ]
+          },
+          {
+            "id": "full-105",
+            "amount": 105,
+            "countries": [
+              "CA",
+              "GB",
+              "AU",
+              "NZ",
+              "IE",
+              "NO",
+              "SE",
+              "DK",
+              "FI",
+              "NL",
+              "AT",
+              "LU",
+              "IS"
+            ]
+          },
+          {
+            "id": "full-60",
+            "amount": 60,
+            "countries": [
+              "DE",
+              "FR",
+              "ES",
+              "IT",
+              "PT",
+              "BE",
+              "CH",
+              "LI",
+              "MT",
+              "KR"
+            ]
+          },
+          {
+            "id": "limited",
+            "amount": 25,
+            "scope": "else"
+          },
+          {
+            "id": "vpn",
+            "amount": 20,
+            "scope": "vpn"
+          }
+        ],
+        "example_budget": "us",
+        "read": {
+          "table_heading": "Free hours per day, by model",
+          "models_question": "What models do you use?",
+          "budgets_question": "How do Freebucks work?",
+          "limited_question": "What is limited mode?",
+          "limited_prefix": "limited mode includes",
+          "limited_suffix": ", with"
+        },
+        "conditions": {
+          "paid": {
+            "kind": "paid",
+            "quote": "Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan."
+          },
+          "us-session": {
+            "kind": "free-session",
+            "quote": "GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account."
+          },
+          "specialist": {
+            "kind": "specialist",
+            "quote": "Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research."
+          }
+        },
+        "models": [
+          {
+            "name": "Solar Pro 4",
+            "model": {
+              "family": "solar-pro-4"
+            },
+            "hours": "unlimited",
+            "limited": true,
+            "first_free": {
+              "on": "2026-10-05",
+              "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-solar-promo.ts"
+            }
+          },
+          {
+            "name": "Space Bunny Alpha",
+            "hours": "unlimited",
+            "limited": true
+          },
+          {
+            "name": "Solar Mini 4",
+            "model": {
+              "family": "solar-mini-4"
+            },
+            "hours": 30,
+            "limited": true
+          },
+          {
+            "name": "MiMo 2.6 Flash",
+            "model": {
+              "family": "mimo-v2.6-flash"
+            },
+            "hours": 15,
+            "limited": true
+          },
+          {
+            "name": "GLM 5.3 Flash",
+            "model": {
+              "family": "glm-5.3-flash"
+            },
+            "hours": 15,
+            "limited": true
+          },
+          {
+            "name": "DeepSeek V4.1 Flash",
+            "model": {
+              "family": "deepseek-v4.1-flash"
+            },
+            "hours": 10,
+            "limited": true
+          },
+          {
+            "name": "GPT-6 Luna",
+            "model": {
+              "family": "gpt-6-luna"
+            },
+            "hours": 7
+          },
+          {
+            "name": "MiMo 2.6 Pro",
+            "model": {
+              "family": "mimo-v2.6-pro"
+            },
+            "hours": 5
+          },
+          {
+            "name": "DeepSeek V4.1 Flash Fast",
+            "model": {
+              "family": "deepseek-v4.1-flash"
+            },
+            "hours": 3
+          },
+          {
+            "name": "GPT-6.1 Sol",
+            "model": {
+              "family": "gpt-6.1-sol"
+            },
+            "condition": "us-session",
+            "first_free": {
+              "on": "2026-09-29",
+              "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-sol-promo.ts"
+            }
+          },
+          {
+            "name": "Gemini 3.8 Flash",
+            "model": {
+              "family": "gemini-3.8-flash"
+            },
+            "condition": "paid"
+          },
+          {
+            "name": "Muse Spark 1.3",
+            "model": {
+              "family": "muse-spark-1.3"
+            },
+            "condition": "paid"
+          },
+          {
+            "name": "Gemini 3.1 Flash Lite",
+            "model": {
+              "family": "gemini-3.1-flash-lite"
+            },
+            "condition": "specialist"
+          }
+        ],
+        "notes": [
+          "MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.",
+          "Space Bunny Alpha: 1M context. Anonymous provider retains prompts.",
+          "Daily Freebucks refill at midnight Pacific and don't carry over.",
+          "Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over."
+        ]
+      },
       "data_use": {
         "trains": "yes",
         "quote": "DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.",
@@ -4723,6 +4885,10 @@
       "provisional": false,
       "rank": 28,
       "archived": false,
+      "access_labels": {
+        "offer": "",
+        "models": {}
+      },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"
     },
     {
@@ -9639,17 +9805,6 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
-    },
-    {
       "family": "glm-5.3",
       "rows": [
         "nvidia-nim",
@@ -9659,17 +9814,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
-    },
-    {
-      "family": "glm-5.3-flash",
-      "rows": [
-        "nvidia-nim",
-        "freebuff",
-        "aihubmix",
-        "freeinference"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
       "family": "gpt-oss-120b",
@@ -9700,6 +9844,16 @@
         "cohere"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
+    },
+    {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "nvidia-nim",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "dots-3-note",
@@ -9739,6 +9893,16 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
+    },
+    {
+      "family": "glm-5.3-flash",
+      "rows": [
+        "nvidia-nim",
+        "aihubmix",
+        "freeinference"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
       "family": "ling-3.0-flash-sante",

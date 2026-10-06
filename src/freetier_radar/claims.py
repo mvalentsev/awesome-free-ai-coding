@@ -96,7 +96,19 @@ def _review_push_base(root: Path) -> tuple[str, ...]:
     return (PUSH_BASE_FLAG,)
 
 
+def _page_catalog_views(root: Path) -> tuple[str, ...]:
+    from .models import _row_payload
+    rows = [e for e in load_registry(root / "registry.yaml") if e.page_catalog]
+    if rows and all(e.models == e.page_catalog.published()
+                    and e.newcomers == e.page_catalog.waiting()
+                    and not {"models", "newcomers"} & _row_payload(e).keys() for e in rows):
+        return ("models", "newcomers")
+    return ("invalid canonical catalog",)
+
+
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r"`page_catalog` derives `(models)` and `(newcomers)`",
+          _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
     Claim("CONTRIBUTING.md", r"`prepare (--push-base) <commit>` records the commit immediately before the final",
           _review_push_base, "review.PUSH_BASE_FLAG and prepare; push-range regressions in tests/test_review.py"),
     Claim("CONTRIBUTING.md", r"and it\s+expires after (\d+) days, at which point the scout",

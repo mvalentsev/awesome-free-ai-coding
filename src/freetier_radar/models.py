@@ -603,6 +603,152 @@ class FreeAccess(BaseModel):
         return self
 
 
+class CatalogRead(BaseModel):
+    """The named table and FAQ answers which a page catalog rechecks."""
+    model_config = ConfigDict(extra="forbid", str_min_length=1)
+    table_heading: str
+    models_question: str
+    budgets_question: str
+    limited_question: str
+    limited_prefix: str
+    limited_suffix: str
+
+
+class CreditBudget(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    id: str = Field(pattern=r"^[a-z0-9-]+$")
+    amount: int = Field(gt=0, strict=True)
+    scope: Literal["countries", "else", "vpn"] = Field(
+        default="countries", exclude_if=lambda v: v == "countries")
+    countries: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
+
+    @model_validator(mode="after")
+    def _scope_names_known_countries(self) -> CreditBudget:
+        from .countries import COUNTRIES
+        if (self.scope == "countries") != bool(self.countries):
+            raise ValueError("a country budget needs countries; else/vpn budgets do not name countries")
+        if len(set(self.countries)) != len(self.countries) or any(c not in COUNTRIES for c in self.countries):
+            raise ValueError("budget countries must be distinct known country codes")
+        return self
+
+
+class CatalogCondition(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["free-session", "paid", "specialist"]
+    quote: str = Field(min_length=3, max_length=1200)
+
+
+class DatedSource(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    on: date
+    source: str
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_https(cls, value: str) -> str:
+        return FreeAccess._source_is_https(value)
+
+
+class PageModel(BaseModel):
+    """One current picker row, including models bought with a shared budget."""
+    model_config = ConfigDict(extra="forbid")
+    name: str = Field(min_length=1, max_length=100)
+    model: ModelFamily | None = None
+    hours: int | Literal["unlimited"] | None = None
+    limited: bool = Field(default=False, exclude_if=lambda v: not v)
+    condition: str | None = None
+    first_free: DatedSource | None = None
+    listed: bool = Field(default=False, exclude_if=lambda v: not v)
+    expired: bool = Field(default=False, exclude_if=lambda v: not v)
+
+    @field_validator("hours", mode="before")
+    @classmethod
+    def _hours_are_a_positive_count(cls, value):
+        if value not in (None, "unlimited") and (type(value) is not int or value <= 0):
+            raise ValueError("hours must be a positive integer or unlimited")
+        return value
+
+    @field_validator("name")
+    @classmethod
+    def _name_is_plain_text(cls, value: str) -> str:
+        if any(c in value for c in "<>|\n\r") or value != value.strip():
+            raise ValueError("catalog model names must be plain single-line text")
+        return value
+
+    @model_validator(mode="after")
+    def _one_kind_of_offer(self) -> PageModel:
+        if (self.hours is None) == (self.condition is None):
+            raise ValueError("a model needs hours or a condition, not both")
+        return self
+
+
+class PageCatalog(BaseModel):
+    """Canonical budget and picker data; published families are a derived view."""
+    model_config = ConfigDict(extra="forbid")
+    source: str
+    unit: str = Field(pattern=r"^[A-Za-z][A-Za-z ]*$")
+    period: Literal["day", "week", "month"]
+    budgets: list[CreditBudget] = Field(min_length=1)
+    example_budget: str
+    read: CatalogRead
+    conditions: dict[str, CatalogCondition] = Field(default_factory=dict)
+    models: list[PageModel] = Field(min_length=1)
+    model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    notes: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
+
+    @field_validator("source")
+    @classmethod
+    def _source_is_https(cls, value: str) -> str:
+        return FreeAccess._source_is_https(value)
+
+    def independently_free(self, model: PageModel) -> bool:
+        return not model.expired and (model.hours == "unlimited" or (
+            model.condition is not None and self.conditions[model.condition].kind == "free-session"))
+
+    def published(self) -> list[ModelFamily]:
+        return [m.model for m in self.models if m.listed and self.independently_free(m)]
+
+    def waiting(self) -> list[Newcomer]:
+        return [Newcomer(family=m.model.family, on=m.first_free.on, source=m.first_free.source)
+                for m in self.models if m.model and not m.listed and self.independently_free(m)]
+
+    @model_validator(mode="after")
+    def _references_and_free_families_are_consistent(self) -> PageCatalog:
+        names = [m.name for m in self.models]
+        if len(set(names)) != len(names):
+            raise ValueError("page catalog has duplicate model names")
+        ids = [b.id for b in self.budgets]
+        scopes = [(b.scope, tuple(sorted(b.countries))) for b in self.budgets]
+        countries = [c for b in self.budgets for c in b.countries]
+        if len(set(ids)) != len(ids) or len(set(scopes)) != len(scopes) or len(set(countries)) != len(countries):
+            raise ValueError("page catalog has duplicate or overlapping budgets")
+        if self.example_budget not in ids:
+            raise ValueError("example_budget must name a budget")
+        if any(not note.strip() or len(note) > 1200 for note in self.notes):
+            raise ValueError("catalog notes must be nonempty sourced sentences of at most 1200 characters")
+        used = {m.condition for m in self.models if m.condition is not None}
+        if used != self.conditions.keys():
+            raise ValueError("every catalog condition must be defined and used")
+        if self.model_access.keys() - set(names):
+            raise ValueError("page_catalog.model_access names an unlisted model")
+        published = []
+        for m in self.models:
+            free = self.independently_free(m)
+            if m.expired and not ((a := self.model_access.get(m.name)) and a.until):
+                raise ValueError("an expired catalog offer needs its model_access.until")
+            if m.listed and (m.model is None or not free):
+                raise ValueError("only an independently free named model may be listed")
+            if m.model and free and m.first_free is None:
+                raise ValueError("a free named catalog model needs first_free evidence")
+            if m.first_free and not free and not m.expired:
+                raise ValueError("wallet, paid and specialist models do not start a free-family bar")
+            if m.listed:
+                published.append(m.model.family)
+        if len(set(published)) != len(published):
+            raise ValueError("a page catalog publishes each family once")
+        return self
+
+
 def _access_ids_are_listed(model_ids: list[str], ignored_ids: list[str],
                            conditions: dict[str, FreeAccess]) -> None:
     unknown = conditions.keys() - set(model_ids) - set(ignored_ids)
@@ -1081,6 +1227,7 @@ class Entry(BaseModel):
     models: list[ModelFamily] = []
     # Models a page row's page serves free, waiting for their family — see Newcomer.
     newcomers: list[Newcomer] = Field(default_factory=list, exclude_if=lambda v: not v)
+    page_catalog: PageCatalog | None = None
     api: ApiInfo | None = None
     client_lane: ClientLane | None = None
     data_use: DataUse | None = None
@@ -1103,7 +1250,7 @@ class Entry(BaseModel):
     def _whole_offer_access_is_an_initial_payment(self) -> Entry:
         if self.access is not None and self.access.until is not None:
             raise ValueError("whole-offer expiry uses retired_on; access.until belongs to model_access")
-        lane = self.api or self.client_lane
+        lane = self.api or self.client_lane or self.page_catalog
         if self.access and self.access.initial_payment_usd and lane and any(
                 a.initial_payment_usd for a in lane.model_access.values()):
             raise ValueError("record the whole-offer payment once in access; model_access may "
@@ -1295,6 +1442,25 @@ class Entry(BaseModel):
                 f"{self.id}: probe.catalog has nothing to check without api.model_ids")
         return self
 
+    @model_validator(mode="after")
+    def _page_catalog_is_the_single_model_record(self) -> Entry:
+        if self.page_catalog is None:
+            return self
+        catalog = self.page_catalog
+        if self.api or self.client_lane or self.probe.type is not ProbeType.PAGE_KEYWORDS:
+            raise ValueError("page_catalog belongs on a page row without an API or client lane")
+        if catalog.source != self.probe.endpoint or self.probe.follow:
+            raise ValueError("page_catalog source must be the page this probe reads directly")
+        free = any(catalog.independently_free(m) for m in catalog.models)
+        if self.free_part is not (FreePart.MODELS if free else FreePart.SUM):
+            raise ValueError("page_catalog free_part must distinguish its free offers from its wallet")
+        if self.models and self.models != catalog.published():
+            raise ValueError("page_catalog derives models; edit its model records instead")
+        if self.newcomers and self.newcomers != catalog.waiting():
+            raise ValueError("page_catalog derives newcomers from first_free")
+        self.models, self.newcomers = catalog.published(), catalog.waiting()
+        return self
+
 
 def live_families(entry: Entry) -> list[str]:
     """The model families this entry actually publishes.
@@ -1309,7 +1475,8 @@ def live_families(entry: Entry) -> list[str]:
 
 def id_access(entry: Entry, model_id: str) -> FreeAccess | None:
     lane = entry.api or entry.client_lane
-    scoped = lane.model_access.get(model_id) if lane else None
+    scoped = (lane.model_access.get(model_id) if lane else
+              entry.page_catalog.model_access.get(model_id) if entry.page_catalog else None)
     if scoped is None:
         return entry.access
     if entry.access and entry.access.initial_payment_usd and not scoped.initial_payment_usd:
@@ -1324,6 +1491,9 @@ def family_access(entry: Entry, family: str) -> FreeAccess | None:
     """The least restrictive surviving ID: a free variant keeps a family free."""
     lane = lane_ids(entry)
     ids = [i for i in lane.model_ids if id_family(live_families(entry), i) == family] if lane else []
+    if entry.page_catalog:
+        ids = [m.name for m in entry.page_catalog.models if m.model and m.model.family == family
+               and entry.page_catalog.independently_free(m)]
     conditions = [id_access(entry, i) for i in ids] or [entry.access]
     return min(conditions, key=lambda a: (
         (a.initial_payment_usd or 0) * (1 + a.topup_fee_percent / 100) if a else 0,
@@ -1372,6 +1542,23 @@ def expire_entries(entries: list[Entry], now: datetime) -> list[Entry]:
         raise ValueError("expiry clock needs a timezone")
     out = []
     for e in entries:
+        if e.page_catalog:
+            expired_names = {m.name for m in e.page_catalog.models if not m.expired
+                             and (a := id_access(e, m.name)) and a.until and now >= a.until}
+            if expired_names:
+                row = e.model_dump(mode="json", exclude_none=True)
+                row.pop("models", None)
+                row.pop("newcomers", None)
+                for model in row["page_catalog"]["models"]:
+                    if model["name"] in expired_names:
+                        model.update(expired=True, listed=False)
+                catalog = PageCatalog.model_validate(row["page_catalog"])
+                row["free_part"] = (FreePart.MODELS if any(catalog.independently_free(m) for m in catalog.models)
+                                    else FreePart.SUM)
+                out.append(Entry.model_validate(row))
+            else:
+                out.append(e)
+            continue
         block = e.api or e.client_lane
         expired = {i for i in block.model_ids if (a := id_access(e, i))
                    and a.until is not None and now >= a.until} if block else set()
@@ -1716,6 +1903,11 @@ _RegistryDumper.add_representer(
 
 def _row_payload(e: Entry) -> dict:
     row = e.model_dump(mode="json", exclude_none=True)
+    if e.page_catalog:
+        if e.models != e.page_catalog.published() or e.newcomers != e.page_catalog.waiting():
+            raise ValueError("page_catalog derived models/newcomers diverged before saving")
+        row.pop("models", None)
+        row.pop("newcomers", None)
     if e.border is not None:
         # Only what the row says: the defaults — no quote, a page read, no names
         # outside the list — are left out.

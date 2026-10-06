@@ -149,6 +149,11 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # border_moved) are both read, and both notes kept: one does not answer
         # the other.
         moved = []
+        if entry.page_catalog is not None:
+            from .page_catalog import check_page_catalog
+            changes = check_page_catalog(page.text, entry.page_catalog)
+            if changes:
+                moved.append("page_catalog: " + "; ".join(changes))
         if entry.data_use is not None:
             moved.append(await data_use_moved(client, entry, page, attempts, backoff))
         if entry.border is not None:

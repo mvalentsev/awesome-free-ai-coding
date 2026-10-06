@@ -582,7 +582,8 @@ tr.flash { animation: flash 1.6s ease-out; }
                   {% for m in r.more_models %}<span class="model-access">{{ chip(m.family, m.tier == 'frontier') }}{% if m.access %}<small>{{ m.access }}</small>{% endif %}</span>{% endfor %}
                 </div></details>{% endif %}
               </div>
-              {% else %}<span class="empty">—</span>{% endif %}
+              {% elif not r.catalog %}<span class="empty">—</span>{% endif %}
+              {% if r.catalog %}<p><a href="{{ r.page }}#models-and-access">Model catalog &amp; access</a></p>{% endif %}
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
               {% if r.limits %}

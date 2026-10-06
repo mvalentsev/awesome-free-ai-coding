@@ -46,11 +46,16 @@ _MAINTENANCE = re.compile(
 def _prose(e: Entry) -> list[tuple[str, str]]:
     """A row's prose field by field, "" where the row has none: what the pages
     print as the row wrote it, so each rule on prose reads the same fields."""
-    return [("offering", e.offering), ("limits", e.limits), ("name", e.name),
+    fields = [("offering", e.offering), ("limits", e.limits), ("name", e.name),
             ("api.note", e.api.note if e.api else ""),
             ("client_lane.note", e.client_lane.note if e.client_lane else ""),
             ("api.notice", e.api.notice.text if e.api and e.api.notice else ""),
             ("delisted.reason", e.delisted.reason if e.delisted else "")]
+    if e.page_catalog:
+        from .page_catalog import catalog_quotes
+        fields += catalog_quotes(e.page_catalog)
+        fields += [("page_catalog.model.name", m.name) for m in e.page_catalog.models]
+    return fields
 
 
 def _source_key(url: str) -> str:
@@ -187,6 +192,17 @@ def check(root: Path, today: date | None = None) -> list[str]:
         # The same holds a page row's newcomer: it waits for its family, and the
         # record goes once the family is in the column.
         named = {m.family for m in e.models}
+        if e.page_catalog:
+            from .bars import BAR_DAYS
+            from datetime import timedelta
+            for m in e.page_catalog.models:
+                if m.model and m.model.tier and not (m.listed or m.expired):
+                    problems.append(f"registry: {e.id} page_catalog has an unchecked tier on {m.name}")
+                access = e.page_catalog.model_access.get(m.name)
+                if m.listed and m.first_free.on > today:
+                    problems.append(f"registry: {e.id} page_catalog dates {m.name} after today")
+                elif m.listed and not (access and access.until) and today < m.first_free.on + timedelta(days=BAR_DAYS):
+                    problems.append(f"registry: {e.id} page_catalog lists {m.name} before its free-family bar")
         for n in e.newcomers:
             if n.family in named:
                 problems.append(

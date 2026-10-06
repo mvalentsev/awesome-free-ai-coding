@@ -91,13 +91,41 @@ async (page) => {
           }
         }
         for(const row of plan.rows) {
-          await go(row.page);
+          if(row.page_catalog&&!row.archived) {
+            await go(plan.site+'?review='+plan.sha);
+            const provider=page.locator('#row-'+row.id);
+            await provider.waitFor();
+            const limits=provider.locator('td.limits details');
+            if(await limits.count()) await limits.locator('summary').click();
+            for(const model of row.page_catalog.models) if(!(await provider.innerText()).includes(model.name)) throw Error('Main table catalog: '+row.id+' '+model.name);
+            await provider.locator('a[href="'+row.page+'#models-and-access"]').click();
+            await page.waitForURL(row.page+'#models-and-access');
+          } else {
+            await go(row.page);
+          }
           const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
           const text=await body.textContent();
           if(row.archived) {
             if(!/archived/i.test(text)) throw Error('Provider archive status: '+row.id);
           } else {
-            for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
+            if(row.page_catalog) {
+              const catalog=row.page_catalog;
+              const budgets=body.locator('table').filter({has:page.getByRole('columnheader',{name:catalog.unit+' per '+catalog.period,exact:true})});
+              if(await budgets.count()!==1||await budgets.locator('tbody tr').count()!==catalog.budgets.length) throw Error('Provider budgets: '+row.id);
+              for(let i=0;i<catalog.budgets.length;i++) {
+                if((await budgets.locator('tbody tr').nth(i).locator('td').nth(1).textContent()).trim()!==String(catalog.budgets[i].amount)) throw Error('Provider budget amount: '+row.id);
+              }
+              const models=body.locator('table').filter({has:page.getByRole('columnheader',{name:'Model',exact:true})});
+              if(await models.count()!==1||await models.locator('tbody tr').count()!==catalog.models.length) throw Error('Provider catalog: '+row.id);
+              for(let i=0;i<catalog.models.length;i++) {
+                const model=catalog.models[i], cells=models.locator('tbody tr').nth(i).locator('td');
+                const hours=model.expired||model.hours==null?'—':model.hours==='unlimited'?'Unlimited':String(model.hours);
+                if((await cells.nth(0).textContent()).trim()!==model.name||(await cells.nth(2).textContent()).trim()!==hours||(await cells.nth(3).textContent()).trim()!==(model.limited&&!model.expired?'Yes':'—')) throw Error('Provider model access: '+row.id+' '+model.name);
+              }
+              for(const quote of [...Object.values(catalog.conditions).map(c=>c.quote),...(catalog.notes||[])]) if(!text.includes(quote)) throw Error('Provider condition: '+row.id);
+            } else {
+              for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
+            }
             for(const id of row.api?.model_ids||[]) if(!text.includes(id)) throw Error('Provider API id: '+row.id+' '+id);
           }
           await record(prefix+'provider/'+row.id);
