@@ -3608,7 +3608,6 @@ entries:
   - family: ling-3.1-flash
     tier: strong
     aa_model: ling-3-1-flash
-  - family: minimax-m3.1-flash-preview
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
@@ -3627,7 +3626,6 @@ entries:
     - inclusionai/ling-3.1-flash
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
-    - minimax/minimax-m3.1-flash-preview
     - tesseracted/kolibri-1
     - apodex/apodex-1.1-mini-free
     model_access:
@@ -3667,6 +3665,7 @@ entries:
     - evren/qwen3.8-flash-next
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
+    - minimax/minimax-m3.1-flash-preview
     note: 'New accounts have a reduced shared free-model allowance during their first
       24 hours. Nemotron Ultra''s -262k variant is metered. Checked 2026-10-05: Qwen
       ordinary, streaming and small tool cycles completed, but full Codex and OpenCode

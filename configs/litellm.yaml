@@ -714,15 +714,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/minimax/minimax-m3.1-flash-preview
-  litellm_params:
-    model: openai/minimax/minimax-m3.1-flash-preview
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-  model_info:
-    access: requires $5 one-time top-up + 8% fee; free until 2026-10-06 23:59+03:00
-    source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
 - model_name: llmtr/tesseracted/kolibri-1
   litellm_params:
     model: openai/tesseracted/kolibri-1

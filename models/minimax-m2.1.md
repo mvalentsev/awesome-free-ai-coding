@@ -60,7 +60,6 @@ per-model caps, spelled out in each model's catalog description: the newest codi
 - [`minimax-m2.7`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2.7/) — free at AIHubMix (free models) and Routeway
 - [`minimax-m3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3/) — free at AIHubMix (free models) and FreeInference (Harvard SEAS)
 - [`minimax-m2`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m2/) — free at AIHubMix (free models)
-- [`minimax-m3.1-flash-preview`](https://mvalentsev.github.io/awesome-free-ai-coding/models/minimax-m3.1-flash-preview/) — free at LLMTR (requires $5 top-up + 8% fee; until 2026-10-06)
 
 ---
 

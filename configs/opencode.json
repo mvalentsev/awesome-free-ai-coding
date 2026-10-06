@@ -517,9 +517,6 @@
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
         },
-        "minimax/minimax-m3.1-flash-preview": {
-          "name": "minimax/minimax-m3.1-flash-preview (requires $5 top-up + 8% fee; until 2026-10-06)"
-        },
         "tesseracted/kolibri-1": {
           "name": "tesseracted/kolibri-1 (until 2026-10-09)",
           "limit": {
