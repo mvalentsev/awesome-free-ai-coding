@@ -29,9 +29,11 @@ Daily allowance — the United States: 150 Freebucks per day; Canada, the United
 
 Credit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 3 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.
 
+Where the app uses session-based limited mode, the free allowance is 6 one-hour sessions per day.
+
 Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.
 
-MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. ([source](https://freebuff.com/)).
+MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/).
 
 ## Where it is offered
 

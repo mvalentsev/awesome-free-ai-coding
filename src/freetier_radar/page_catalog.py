@@ -196,13 +196,16 @@ def check_page_catalog(body: str, catalog: PageCatalog) -> list[str]:
                                                        if m.limited and not m.expired}, limited)
     evidence = [" ".join(page.visible), *[answer for answers in page.faq.values() for answer in answers]]
     pages = [text for part in evidence for text in page_texts(part)]
-    notes += [f"{field} no longer evidenced" for field, quote in catalog_quotes(catalog)
-              if not quote_found(quote, pages)]
+    for field, quote in catalog_quotes(catalog):
+        current = page_texts(answer or "") if field == "page_catalog.limited_allowance" else pages
+        if not quote_found(quote, current):
+            notes.append(f"{field} no longer evidenced")
     return notes
 
 
 def catalog_quotes(catalog: PageCatalog) -> list[tuple[str, str]]:
-    return [(f"page_catalog.conditions.{key}.quote", c.quote) for key, c in catalog.conditions.items()] + [
+    return ([("page_catalog.limited_allowance", catalog.limited_allowance)] if catalog.limited_allowance else []) + [
+        (f"page_catalog.conditions.{key}.quote", c.quote) for key, c in catalog.conditions.items()] + [
         (f"page_catalog.notes[{i}]", quote) for i, quote in enumerate(catalog.notes)]
 
 
@@ -237,7 +240,7 @@ def offer_access(catalog: PageCatalog, model: PageModel) -> str:
     text = access_words(access)
     if model.expired:
         text = text.replace("free until ", "offer ended ")
-    return f"{text} ([terms]({access.source}))"
+    return f"{text} (terms: {access.source})"
 
 
 def budget_scope(budget) -> str:
@@ -266,11 +269,13 @@ def catalog_words(catalog: PageCatalog) -> str:
     out = (PERIOD_WORDS[catalog.period] + " allowance — " + "; ".join(budgets) + ".\n\n"
            f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
            + "; ".join(offers) + ".")
+    if catalog.limited_allowance:
+        out += f"\n\nWhere the app uses session-based limited mode, the free allowance is {catalog.limited_allowance}."
     if catalog.conditions:
         out += "\n\n" + " ".join(c.quote for c in catalog.conditions.values())
     if catalog.notes:
         out += "\n\n" + " ".join(catalog.notes)
-    return out + f" ([source]({catalog.source}))."
+    return out + f" (source: {catalog.source})."
 
 
 def limits_text(entry: Entry) -> str:

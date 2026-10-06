@@ -134,6 +134,7 @@ async (page) => {
                 if(!text.includes(plain(offer))) throw Error('Provider model access: '+row.id+' '+model.name);
               }
               for(const quote of [...Object.values(catalog.conditions).map(c=>c.quote),...(catalog.notes||[])]) if(!text.includes(plain(quote))) throw Error('Provider condition: '+row.id);
+              if(catalog.limited_allowance&&!text.includes(plain(catalog.limited_allowance))) throw Error('Provider limited allowance: '+row.id);
             }
             for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
             for(const id of row.api?.model_ids||[]) if(!text.includes(id)) throw Error('Provider API id: '+row.id+' '+id);

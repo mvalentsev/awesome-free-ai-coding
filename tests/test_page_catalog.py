@@ -23,6 +23,7 @@ def catalog_data():
                     {"id": "other", "amount": 25, "scope": "else"},
                     {"id": "vpn", "amount": 20, "scope": "vpn"}],
         "conditions": {"plan": {"kind": "paid", "quote": "Gamma needs a paid plan."}},
+        "limited_allowance": "6 one-hour sessions per day",
         "models": [
             {"name": "Alpha", "model": {"family": "alpha"}, "hours": "unlimited",
              "limited": True, "first_free": {"on": "2026-09-01",
@@ -45,14 +46,14 @@ def entry(data=None):
 
 
 def page(*, amount=100, hours=10, names=("Alpha", "Beta", "Gamma"), rows=None,
-         limited="Alpha and Beta", condition="Gamma needs a paid plan."):
+         limited="Alpha and Beta", sessions=6, condition="Gamma needs a paid plan."):
     faq = {"@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": "Which models?", "acceptedAnswer": {
             "text": "\n".join(f"- {name}: description." for name in names)}},
         {"@type": "Question", "name": "How do credits work?", "acceptedAnswer": {
             "text": f"- US: {amount} Credits a day\n- Everywhere else: 25\n- Any VPN or proxy: 20"}},
         {"@type": "Question", "name": "What is limited mode?", "acceptedAnswer": {
-            "text": f"Session-based limited mode includes {limited}, with 6 sessions a day."}},
+            "text": f"Session-based limited mode includes {limited}, with {sessions} one-hour sessions per day."}},
     ]}
     table = rows if rows is not None else f"<li>Unlimited hrs Alpha</li><li>{hours} hrs Beta</li>"
     return (f'<script type="application/ld+json">{json.dumps(faq)}</script>'
@@ -78,6 +79,44 @@ async def test_unchanged_catalog_is_checked_without_authentication_or_extra_requ
     assert result.status is ProbeStatus.PASS
     assert route.call_count == 1
     assert "authorization" not in route.calls[0].request.headers
+
+
+@pytest.mark.parametrize("old_copy", ["", "<p>Earlier allowance: 6 one-hour sessions per day.</p>"])
+@respx.mock
+async def test_limited_allowance_changes_are_checked_in_the_configured_faq(old_copy):
+    respx.get("https://vendor.example/pricing").respond(200, text=page(sessions=1) + old_copy)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert "limited_allowance" in result.detail
+
+
+def test_page_promotion_deadlines_reach_the_bar_report():
+    from freetier_radar.bars import waiting, report
+    data = catalog_data(); data["models"][0]["first_free"]["on"] = "2026-10-05"
+    data["model_access"] = {"Alpha": {"source": data["source"], "until": "2026-11-01T00:00:00Z"}}
+    e = entry(data)
+    today = date(2026, 10, 6)
+    due = waiting([e], {}, today)[0]
+    assert due.until == datetime(2026, 11, 1, tzinfo=timezone.utc)
+    assert due.due_on == date(2026, 10, 5)
+    assert "free until 2026-11-01T00:00:00+00:00" in report([e], {}, today)
+    assert waiting([e], {}, date(2026, 11, 1)) == []
+
+
+def test_shared_limits_do_not_leak_markdown_links_into_html(tmp_path):
+    from pathlib import Path
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_site
+    data = catalog_data()
+    data["model_access"] = {"Alpha": {"source": "https://vendor.example/terms", "until": "2026-11-01T00:00:00Z"}}
+    e = entry(data)
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [e])
+    html = render_site(reg, Path("templates"), tmp_path / "index.html", today=date(2026, 10, 6))
+    limits = re.search(r'<td class="limits"[^>]*>(.*?)</td>', html, re.S).group(1)
+    assert not re.search(r'\[[^\]]+\]\(https?://', limits)
+    assert data["source"] in limits and "https://vendor.example/terms" in limits
 
 
 @pytest.mark.parametrize("body, finding", [
@@ -227,7 +266,7 @@ def test_payment_and_deadline_are_disclosed_and_ended_offers_lose_their_hours():
     for text in (catalog_words(e.page_catalog), build_provider_page(e, [], date(2026, 10, 5))):
         assert 'requires $1 one-time top-up' in text
         assert 'free until 2026-10-06 00:00+00:00' in text
-        assert f"[terms]({data['source']})" in text
+        assert f"terms: {data['source']}" in text
     after = expire_entries([e], datetime(2026, 10, 6, tzinfo=timezone.utc))[0]
     text = build_provider_page(after, [], date(2026, 10, 6))
     alpha = text.split('Alpha: ', 1)[1].split('; Beta:', 1)[0]

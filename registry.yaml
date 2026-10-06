@@ -3312,6 +3312,7 @@ entries:
       model:
         family: gemini-3.1-flash-lite
       condition: specialist
+    limited_allowance: 6 one-hour sessions per day
     notes:
     - MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
     - 'Space Bunny Alpha: 1M context. Anonymous provider retains prompts.'

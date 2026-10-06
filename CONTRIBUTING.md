@@ -394,7 +394,9 @@ Wallet records keep family identity without an unchecked score tier.
 The provider, main table, JSON, browse and LLM views use the same catalog.
 The page probe compares the configured headed hours list and JSON-LD FAQ
 answers for budgets, the complete picker, limited-mode membership and exact
-conditions. An unreadable contract or changed value is a review finding;
+conditions. Record a session-based limited allowance in `limited_allowance` as
+a short vendor quote from the configured limited-mode FAQ.
+An unreadable contract or changed value is a review finding;
 an unavailable page remains inconclusive. Known offer deadlines belong in
 `page_catalog.model_access[display name].until`: expiry removes the free-family
 claim and marks the ended offer while retaining the wallet and source evidence.

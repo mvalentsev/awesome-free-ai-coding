@@ -30,7 +30,7 @@ import httpx
 import yaml
 
 from . import git
-from .models import (Entry, FreePart, expire_entries, family_names, id_access,
+from .models import (Entry, FreePart, expire_entries, family_access, family_names, id_access,
                      is_archived, lane_ids, load_registry)
 from .prober import TIMEOUT, UA, free_list_dates
 
@@ -141,7 +141,8 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
             continue
         # A page row has no ids to date: its newcomers carry their own record.
         named = {m.family for m in e.models}
-        out += [Waiting(e.id, n.family, n.on, None, "newcomers", f"<{n.source}>")
+        out += [Waiting(e.id, n.family, n.on, None, "newcomers", f"<{n.source}>",
+                        access.until if (access := family_access(e, n.family)) else None)
                 for n in e.newcomers if n.family not in named]
         if lane is None:
             continue
@@ -162,9 +163,10 @@ def waiting(entries: list[Entry], since: dict[tuple[str, str], date], today: dat
 
 def _dated(w: Waiting) -> str:
     if w.field == "newcomers":
-        return f"free on {w.vendor_source} since {w.listed}"
-    listed = f"in {w.field}.model_ids since {w.listed}"
-    if w.vendor is not None and w.vendor < w.listed:
+        listed = f"free on {w.vendor_source} since {w.listed}"
+    else:
+        listed = f"in {w.field}.model_ids since {w.listed}"
+    if w.field != "newcomers" and w.vendor is not None and w.vendor < w.listed:
         listed = f"free on {w.vendor_source} since {w.vendor}, {listed}"
     return listed + (f", free until {w.until.isoformat()}" if w.until else "")
 

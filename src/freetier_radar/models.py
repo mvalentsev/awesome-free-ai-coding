@@ -694,6 +694,7 @@ class PageCatalog(BaseModel):
     conditions: dict[str, CatalogCondition] = Field(default_factory=dict)
     models: list[PageModel] = Field(min_length=1)
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
+    limited_allowance: str | None = Field(default=None, min_length=3, max_length=200, pattern=r"\S")
     notes: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
 
     @field_validator("source")
