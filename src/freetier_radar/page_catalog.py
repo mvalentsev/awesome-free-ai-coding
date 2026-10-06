@@ -285,6 +285,9 @@ def limits_text(entry: Entry) -> str:
 def family_condition(entry: Entry, family: str) -> str:
     if entry.page_catalog:
         for m in entry.page_catalog.models:
-            if m.model and m.model.family == family and m.listed and m.condition:
-                return entry.page_catalog.conditions[m.condition].quote
+            if m.model and m.model.family == family and m.listed:
+                if m.condition:
+                    return entry.page_catalog.conditions[m.condition].quote
+                if m.hours != "unlimited" and m.limited and entry.page_catalog.limited_allowance:
+                    return f"Session-based limited mode: {entry.page_catalog.limited_allowance}, shared across its models."
     return ""

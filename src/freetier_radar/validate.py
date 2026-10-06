@@ -196,6 +196,9 @@ def check(root: Path, today: date | None = None) -> list[str]:
             from .bars import BAR_DAYS
             from datetime import timedelta
             for m in e.page_catalog.models:
+                if (e.page_catalog.limited_allowance and m.limited and m.hours is not None
+                        and m.model and not m.first_free and not m.expired):
+                    problems.append(f"registry: {e.id} page_catalog needs first_free evidence for session-based limited model {m.name}")
                 if m.model and m.model.tier and not (m.listed or m.expired):
                     problems.append(f"registry: {e.id} page_catalog has an unchecked tier on {m.name}")
                 access = e.page_catalog.model_access.get(m.name)

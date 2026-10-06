@@ -752,6 +752,7 @@ def _strong_models(active: list[Entry]) -> list[dict]:
             strong.append({"family": family, "frontier": mark.tier is Tier.FRONTIER,
                            "page": model_page_url(family),
                            "providers": [{"name": p.name, "url": p.url,
+                                          "card_required": p.card_required,
                                           "card_flag": _card_flag(p) + _access_flag(p, family)} for p in rows]})
     # Stable: each tier keeps _rows_by_family's order, the most widely served first.
     return sorted(strong, key=lambda m: not m["frontier"])

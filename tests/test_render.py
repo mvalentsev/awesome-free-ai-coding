@@ -162,6 +162,19 @@ def test_a_card_is_marked_where_it_is_asked_for_and_nowhere_else():
     assert (ctx["card_count"], ctx["no_card_count"]) == (1, 1)
 
 
+@pytest.mark.parametrize("card_required", [False, True])
+def test_a_free_access_condition_does_not_imply_a_card_in_the_strong_model_caption(tmp_path, card_required):
+    from freetier_radar.models import save_registry
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [make(models=[{"family": "kimi-k3", "tier": "strong", "aa_model": "kimi-k3"}],
+                            card_required=card_required,
+                            access={"source": "https://x.ai/terms", "initial_payment_usd": 1})])
+    text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
+    caption = next(line for line in text.splitlines() if line.startswith("**Strong models, free.**"))
+    assert ("💳" in caption) is card_required
+    assert "requires $1" in text
+
+
 def test_rank_orders_rows_within_section():
     entries = [make(id="worst", name="Worst", rank=99), make(id="best", name="Best", rank=1)]
     ctx = build_context(entries, TODAY)

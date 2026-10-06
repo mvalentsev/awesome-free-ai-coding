@@ -3256,8 +3256,9 @@ entries:
       hours: unlimited
       limited: true
       first_free:
-        'on': '2026-10-05'
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-solar-promo.ts
+        'on': '2026-09-22'
+        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
+      listed: true
     - name: Space Bunny Alpha
       hours: unlimited
       limited: true
@@ -3266,21 +3267,42 @@ entries:
         family: solar-mini-4
       hours: 30
       limited: true
+      first_free:
+        'on': '2026-09-26'
+        source: https://web.archive.org/web/20260926080857/https://freebuff.com/
     - name: MiMo 2.6 Flash
       model:
         family: mimo-v2.6-flash
+        tier: strong
+        aa_model: mimo-v2-6-flash
       hours: 15
       limited: true
+      first_free:
+        'on': '2026-09-22'
+        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
+      listed: true
     - name: GLM 5.3 Flash
       model:
         family: glm-5.3-flash
+        tier: strong
+        aa_model: glm-5-3-flash
       hours: 15
       limited: true
+      first_free:
+        'on': '2026-09-22'
+        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
+      listed: true
     - name: DeepSeek V4.1 Flash
       model:
         family: deepseek-v4.1-flash
+        tier: strong
+        aa_model: deepseek-v4-1-flash
       hours: 10
       limited: true
+      first_free:
+        'on': '2026-09-22'
+        source: https://web.archive.org/web/20260922002138/https://freebuff.com/
+      listed: true
     - name: GPT-6 Luna
       model:
         family: gpt-6-luna
@@ -3292,7 +3314,7 @@ entries:
     - name: DeepSeek V4.1 Flash Fast
       model:
         family: deepseek-v4.1-flash
-      hours: 3
+      hours: 6
     - name: GPT-6.1 Sol
       model:
         family: gpt-6.1-sol

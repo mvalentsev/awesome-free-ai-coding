@@ -36,7 +36,7 @@
 
 {% endif %}
 {% if readme_strong %}
-{% set strong_card = readme_strong | map(attribute='providers') | sum(start=[]) | selectattr('card_flag') | list %}
+{% set strong_card = readme_strong | map(attribute='providers') | sum(start=[]) | selectattr('card_required') | list %}
 **Strong models, free.** Each of these scores within {{ strong_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read {{ schedule }}, and every row beside it serves it free{% if strong_card %} — 💳 where the row wants a card on file{% endif %}:
 
 {% if chart %}

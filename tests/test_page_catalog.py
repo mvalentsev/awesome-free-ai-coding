@@ -23,7 +23,6 @@ def catalog_data():
                     {"id": "other", "amount": 25, "scope": "else"},
                     {"id": "vpn", "amount": 20, "scope": "vpn"}],
         "conditions": {"plan": {"kind": "paid", "quote": "Gamma needs a paid plan."}},
-        "limited_allowance": "6 one-hour sessions per day",
         "models": [
             {"name": "Alpha", "model": {"family": "alpha"}, "hours": "unlimited",
              "limited": True, "first_free": {"on": "2026-09-01",
@@ -43,6 +42,39 @@ def entry(data=None):
                   "keywords": ["Credits every day for free"]},
         "page_catalog": data or catalog_data(),
     })
+
+
+def session_catalog_data():
+    data = catalog_data()
+    data["limited_allowance"] = "6 one-hour sessions per day"
+    data["models"][1]["first_free"] = {"on": "2026-09-01", "source": data["source"]}
+    return data
+
+
+def test_uniform_session_allowance_is_a_free_lane_beside_the_spending_wallet():
+    data = session_catalog_data()
+    data["models"][1]["listed"] = True
+    e = entry(data)
+    assert [m.family for m in e.models] == ["beta"]
+    assert [n.family for n in e.newcomers] == ["alpha"]
+    assert entry().models == []
+    assert not e.page_catalog.independently_free(e.page_catalog.models[2])
+
+
+def test_older_session_catalog_remains_readable_but_current_missing_dates_are_flagged(tmp_path):
+    from freetier_radar.models import load_registry, save_registry
+    from freetier_radar.validate import check
+    import yaml
+    data = catalog_data()
+    data["limited_allowance"] = "6 one-hour sessions per day"
+    e = entry(data)
+    assert e.models == []
+    save_registry(tmp_path / "registry.yaml", [e])
+    for name, content in [('blocklist', []), ('dismissed', {'dismissed': []}),
+                          ('watchlist', {'watched': []}), ('sources', {'read': []})]:
+        (tmp_path / (name + '.yaml')).write_text(yaml.safe_dump(content))
+    assert load_registry(tmp_path / "registry.yaml")[0].models == []
+    assert any("first_free evidence" in p and "Beta" in p for p in check(tmp_path, date(2026, 10, 6)))
 
 
 def page(*, amount=100, hours=10, names=("Alpha", "Beta", "Gamma"), rows=None,
@@ -86,7 +118,7 @@ async def test_unchanged_catalog_is_checked_without_authentication_or_extra_requ
 async def test_limited_allowance_changes_are_checked_in_the_configured_faq(old_copy):
     respx.get("https://vendor.example/pricing").respond(200, text=page(sessions=1) + old_copy)
     async with httpx.AsyncClient() as client:
-        result = await probe_entry(client, entry(), attempts=1, backoff=0)
+        result = await probe_entry(client, entry(session_catalog_data()), attempts=1, backoff=0)
     assert result.status is ProbeStatus.STALE_IDS
     assert "limited_allowance" in result.detail
 

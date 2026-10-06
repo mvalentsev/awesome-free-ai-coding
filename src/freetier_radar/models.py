@@ -704,7 +704,9 @@ class PageCatalog(BaseModel):
 
     def independently_free(self, model: PageModel) -> bool:
         return not model.expired and (model.hours == "unlimited" or (
-            model.condition is not None and self.conditions[model.condition].kind == "free-session"))
+            model.condition is not None and self.conditions[model.condition].kind == "free-session") or (
+            model.hours is not None and model.limited and self.limited_allowance is not None
+            and (model.model is None or model.first_free is not None)))
 
     def published(self) -> list[ModelFamily]:
         return [m.model for m in self.models if m.listed and self.independently_free(m)]
@@ -742,7 +744,7 @@ class PageCatalog(BaseModel):
             if m.model and free and m.first_free is None:
                 raise ValueError("a free named catalog model needs first_free evidence")
             if m.first_free and not free and not m.expired:
-                raise ValueError("wallet, paid and specialist models do not start a free-family bar")
+                raise ValueError("a spending wallet without a free lane, paid and specialist models do not start a free-family bar")
             if m.listed:
                 published.append(m.model.family)
         if len(set(published)) != len(published):

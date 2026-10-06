@@ -4648,14 +4648,33 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. \"No API key, no credit card.\"",
-      "limits": "\"Freebuff is supported by text ads.\" \"Freebucks buy one-hour model sessions.\" \"Model prices and usage limits still apply.\" Available models depend on the app and access level. \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.\n\nDaily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCredit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 3 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nWhere the app uses session-based limited mode, the free allowance is 6 one-hour sessions per day.\n\nGemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/).",
+      "limits": "\"Freebuff is supported by text ads.\" \"Freebucks buy one-hour model sessions.\" \"Model prices and usage limits still apply.\" Available models depend on the app and access level. \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.\n\nDaily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCredit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 6 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nWhere the app uses session-based limited mode, the free allowance is 6 one-hour sessions per day.\n\nGemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/).",
       "free_part": "models",
-      "models": [],
+      "models": [
+        {
+          "family": "solar-pro-4"
+        },
+        {
+          "family": "mimo-v2.6-flash",
+          "tier": "strong",
+          "aa_model": "mimo-v2-6-flash"
+        },
+        {
+          "family": "glm-5.3-flash",
+          "tier": "strong",
+          "aa_model": "glm-5-3-flash"
+        },
+        {
+          "family": "deepseek-v4.1-flash",
+          "tier": "strong",
+          "aa_model": "deepseek-v4-1-flash"
+        }
+      ],
       "newcomers": [
         {
-          "family": "solar-pro-4",
-          "on": "2026-10-05",
-          "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-solar-promo.ts"
+          "family": "solar-mini-4",
+          "on": "2026-09-26",
+          "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
         },
         {
           "family": "gpt-6.1-sol",
@@ -4753,9 +4772,10 @@
             "hours": "unlimited",
             "limited": true,
             "first_free": {
-              "on": "2026-10-05",
-              "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/0f887f52b0b4fd97d5a06ff73afb21d69196c754/common/src/constants/freebuff-solar-promo.ts"
-            }
+              "on": "2026-09-22",
+              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
+            },
+            "listed": true
           },
           {
             "name": "Space Bunny Alpha",
@@ -4768,31 +4788,56 @@
               "family": "solar-mini-4"
             },
             "hours": 30,
-            "limited": true
+            "limited": true,
+            "first_free": {
+              "on": "2026-09-26",
+              "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
+            }
           },
           {
             "name": "MiMo 2.6 Flash",
             "model": {
-              "family": "mimo-v2.6-flash"
+              "family": "mimo-v2.6-flash",
+              "tier": "strong",
+              "aa_model": "mimo-v2-6-flash"
             },
             "hours": 15,
-            "limited": true
+            "limited": true,
+            "first_free": {
+              "on": "2026-09-22",
+              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
+            },
+            "listed": true
           },
           {
             "name": "GLM 5.3 Flash",
             "model": {
-              "family": "glm-5.3-flash"
+              "family": "glm-5.3-flash",
+              "tier": "strong",
+              "aa_model": "glm-5-3-flash"
             },
             "hours": 15,
-            "limited": true
+            "limited": true,
+            "first_free": {
+              "on": "2026-09-22",
+              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
+            },
+            "listed": true
           },
           {
             "name": "DeepSeek V4.1 Flash",
             "model": {
-              "family": "deepseek-v4.1-flash"
+              "family": "deepseek-v4.1-flash",
+              "tier": "strong",
+              "aa_model": "deepseek-v4-1-flash"
             },
             "hours": 10,
-            "limited": true
+            "limited": true,
+            "first_free": {
+              "on": "2026-09-22",
+              "source": "https://web.archive.org/web/20260922002138/https://freebuff.com/"
+            },
+            "listed": true
           },
           {
             "name": "GPT-6 Luna",
@@ -4813,7 +4858,7 @@
             "model": {
               "family": "deepseek-v4.1-flash"
             },
-            "hours": 3
+            "hours": 6
           },
           {
             "name": "GPT-6.1 Sol",
@@ -4888,7 +4933,12 @@
       "archived": false,
       "access_labels": {
         "offer": "",
-        "models": {}
+        "models": {
+          "solar-pro-4": "",
+          "mimo-v2.6-flash": "Session-based limited mode: 6 one-hour sessions per day, shared across its models.",
+          "glm-5.3-flash": "Session-based limited mode: 6 one-hour sessions per day, shared across its models.",
+          "deepseek-v4.1-flash": "Session-based limited mode: 6 one-hour sessions per day, shared across its models."
+        }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"
     },
@@ -9806,6 +9856,17 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/"
     },
     {
+      "family": "deepseek-v4.1-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "alibaba-model-studio",
+        "token-harbor"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
+    },
+    {
       "family": "glm-5.3",
       "rows": [
         "nvidia-nim",
@@ -9815,6 +9876,17 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/"
+    },
+    {
+      "family": "glm-5.3-flash",
+      "rows": [
+        "nvidia-nim",
+        "freebuff",
+        "aihubmix",
+        "freeinference"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
       "family": "gpt-oss-120b",
@@ -9845,16 +9917,6 @@
         "cohere"
       ],
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
-    },
-    {
-      "family": "deepseek-v4.1-flash",
-      "rows": [
-        "nvidia-nim",
-        "alibaba-model-studio",
-        "token-harbor"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/"
     },
     {
       "family": "dots-3-note",
@@ -9894,16 +9956,6 @@
       ],
       "tier": "strong",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.2/"
-    },
-    {
-      "family": "glm-5.3-flash",
-      "rows": [
-        "nvidia-nim",
-        "aihubmix",
-        "freeinference"
-      ],
-      "tier": "strong",
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/"
     },
     {
       "family": "ling-3.0-flash-sante",
@@ -10528,6 +10580,14 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.5-pro/"
     },
     {
+      "family": "mimo-v2.6-flash",
+      "rows": [
+        "freebuff"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/"
+    },
+    {
       "family": "minimax-m2",
       "rows": [
         "aihubmix"
@@ -10889,6 +10949,12 @@
       "family": "qwq-plus",
       "rows": [
         "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "solar-pro-4",
+      "rows": [
+        "freebuff"
       ]
     },
     {

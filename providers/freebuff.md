@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-10-05'
-description: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. "No API key, no credit card.". "Freebuff is supported by text ads." "Freebucks buy one-hour model sessions." "Model prices and usage limits still…
+description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. "No API key, no credit card.". Free models: solar-pro-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. "Freebuff is supported by text ads."…'
 permalink: /providers/freebuff/
 last_modified_at: 2026-10-06
 crumb: Freebuff
@@ -19,7 +19,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regi
 
 ## Free models
 
-No free model family is listed yet; new offers must clear the two-week bar before entering this section.
+`solar-pro-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) (Session-based limited mode: 6 one-hour sessions per day, shared across its models.), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) (Session-based limited mode: 6 one-hour sessions per day, shared across its models.), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (Session-based limited mode: 6 one-hour sessions per day, shared across its models.)
 
 ## Limits, in the vendor's words
 
@@ -27,7 +27,7 @@ No free model family is listed yet; new offers must clear the two-week bar befor
 
 Daily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.
 
-Credit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 3 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.
+Credit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 6 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.
 
 Where the app uses session-based limited mode, the free allowance is 6 one-hour sessions per day.
 
@@ -59,6 +59,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-06` — Free models changed: added deepseek-v4.1-flash, glm-5.3-flash, mimo-v2.6-flash, solar-pro-4
 - `2026-10-06` — Free models changed: dropped deepseek-v4.1-flash, glm-5.3-flash
 - `2026-09-29` — Free models changed: dropped muse-spark-1.2
 - `2026-09-25` — Free models changed: added muse-spark-1.2

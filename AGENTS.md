@@ -18,6 +18,11 @@ regression check rejects the previous bad output before correcting it. Review
 unaffected peer rows as well as the changed row in the final diff and browser.
 Passing content assertions, byte checks and CI do not establish design quality.
 
+Review model classification separately from presentation. Compare the previous
+and resulting families, and record vendor evidence for every removal or new
+empty state. Check every advertised free access mode: a priced wallet can sit
+beside a free tier with the same usage cap on each model.
+
 ## Review every automated update without reminders
 
 When an update arrives, review both the verification commit and the scout PR.

@@ -1,9 +1,9 @@
 {
-  "read_on": "2026-10-05",
+  "read_on": "2026-10-06",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
-    "name": "Claude Opus 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)",
+    "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "index": 57.6
   },
   "median": 12.8,
@@ -246,6 +246,11 @@
     "mimo-v2.5-pro": {
       "slug": "mimo-v2-5-pro",
       "index": 26.0,
+      "estimated": false
+    },
+    "mimo-v2.6-flash": {
+      "slug": "mimo-v2-6-flash",
+      "index": 37.9,
       "estimated": false
     },
     "minimax-m2": {

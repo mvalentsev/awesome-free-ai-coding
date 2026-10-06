@@ -385,7 +385,8 @@ configs without making a claim on the page.
 the catalog for these rows. Record regional credit budgets, model-hour examples
 and each picker or specialist model once. Shared conditions and sourced notes
 also live there, rather than in a second model list in `limits`. An unmetered
-offer or a conditional free session can start a named family's bar; wallet,
+offer, a conditional free session or an explicitly free session-based limited
+lane can start a named family's bar. A spending wallet without such a lane,
 paid-plan and specialist rows remain visible without entering the free-family
 index. `first_free` records the start of the independently free offer, not the
 day a model first appeared in a spending wallet. `listed` publishes an eligible
