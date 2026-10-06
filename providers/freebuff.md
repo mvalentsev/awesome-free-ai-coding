@@ -17,55 +17,21 @@ crumb: Freebuff
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. "No API key, no credit card."
 
-## Daily allowance
+## Free models
 
-| Where | Freebucks per day |
-| --- | ---: |
-| the United States | 150 |
-| Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland | 105 |
-| Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea | 60 |
-| Other countries | 25 |
-| VPN or proxy | 20 |
-
-## Models and access
-
-Hours for credit-funded models use the entire daily allowance for the United States (150 Freebucks) on one model. They are alternative choices, not separate grants.
-
-| Model | Access | Hours | Free limited mode |
-| --- | --- | ---: | --- |
-| Solar Pro 4 | Unmetered offer | Unlimited | Yes |
-| Space Bunny Alpha | Unmetered offer | Unlimited | Yes |
-| Solar Mini 4 | Shared daily credits | 30 | Yes |
-| MiMo 2.6 Flash | Shared daily credits | 15 | Yes |
-| GLM 5.3 Flash | Shared daily credits | 15 | Yes |
-| DeepSeek V4.1 Flash | Shared daily credits | 10 | Yes |
-| GPT-6 Luna | Shared daily credits | 7 | — |
-| MiMo 2.6 Pro | Shared daily credits | 5 | — |
-| DeepSeek V4.1 Flash Fast | Shared daily credits | 3 | — |
-| GPT-6.1 Sol | Free session with conditions | — | — |
-| Gemini 3.8 Flash | Paid plan | — | — |
-| Muse Spark 1.3 | Paid plan | — | — |
-| Gemini 3.1 Flash Lite | Specialist tasks only | — | — |
-
-Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan.
-
-GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account.
-
-Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.
-
-MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
-
-Space Bunny Alpha: 1M context. Anonymous provider retains prompts.
-
-Daily Freebucks refill at midnight Pacific and don't carry over.
-
-Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over.
-
-[Source and current selection](https://freebuff.com/).
+No free model family is listed yet; new offers must clear the two-week bar before entering this section.
 
 ## Limits, in the vendor's words
 
 "Freebuff is supported by text ads." "Freebucks buy one-hour model sessions." "Model prices and usage limits still apply." Available models depend on the app and access level. "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.
+
+Daily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.
+
+Credit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 3 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.
+
+Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.
+
+MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. ([source](https://freebuff.com/)).
 
 ## Where it is offered
 

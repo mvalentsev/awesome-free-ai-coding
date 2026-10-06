@@ -31,6 +31,24 @@ def make(**kw) -> Entry:
     return Entry.model_validate(d)
 
 
+def test_every_provider_uses_the_shared_section_contract():
+    from freetier_radar.models import load_registry
+    from freetier_radar.render import build_provider_page
+    entries = load_registry(Path(__file__).resolve().parents[1] / "registry.yaml")
+    today = max(e.last_verified for e in entries)
+    for e in entries:
+        if e.duplicate_of:
+            continue
+        archived = is_archived(e, today)
+        required = ["What it offered" if archived else "What you get",
+                    "Free models it listed" if archived else "Free models",
+                    "Limits, in the vendor's words"]
+        optional = ["Where it is offered", "What happens to what you send"]
+        ending = ([] if archived else ["Connect"]) + ["Evidence", "History"]
+        headings = re.findall(r"^## (.+)$", build_provider_page(e, [], today), re.M)
+        assert headings == required + [h for h in optional if h in headings] + ending, e.id
+
+
 def test_a_provider_page_names_the_free_list_a_catalog_is_read_with():
     """The Evidence section says what the probe reads, and on a catalog that
     prices nothing "each listed family checked for a zero price" would be

@@ -264,38 +264,13 @@ def catalog_words(catalog: PageCatalog) -> str:
             text += "; " + access
         offers.append(text)
     out = (PERIOD_WORDS[catalog.period] + " allowance — " + "; ".join(budgets) + ".\n\n"
-           f"Credit-funded hour examples use the whole {scope} allowance on one model; they are not added together. "
+           f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
            + "; ".join(offers) + ".")
     if catalog.conditions:
         out += "\n\n" + " ".join(c.quote for c in catalog.conditions.values())
     if catalog.notes:
         out += "\n\n" + " ".join(catalog.notes)
     return out + f" ([source]({catalog.source}))."
-
-
-def catalog_markdown(catalog: PageCatalog) -> list[str]:
-    """Provider-page tables from the same facts as the text presentation."""
-    example = next(b for b in catalog.budgets if b.id == catalog.example_budget)
-    out = [f"## {PERIOD_WORDS[catalog.period]} allowance", "", f"| Where | {catalog.unit} per {catalog.period} |", "| --- | ---: |"]
-    out += [f"| {budget_scope(b)} | {b.amount} |" for b in catalog.budgets]
-    out += ["", "## Models and access", "",
-            f"Hours for credit-funded models use the entire {PERIOD_WORDS[catalog.period].lower()} allowance "
-            f"for {budget_scope(example)} ({example.amount} {catalog.unit}) on one model. "
-            "They are alternative choices, not separate grants.", "",
-            "| Model | Access | Hours | Free limited mode |", "| --- | --- | ---: | --- |"]
-    for m in catalog.models:
-        kind = funding(catalog, m)
-        access = funding_words(catalog, m)
-        if detail := offer_access(catalog, m):
-            access += "; " + detail
-        hours = "Unlimited" if m.hours == "unlimited" else str(m.hours) if m.hours else "—"
-        if m.expired:
-            hours = "—"
-        limited = "Yes" if m.limited and not m.expired else "—"
-        out.append(f"| {m.name} | {access} | {hours} | {limited} |")
-    out += ["", *[c.quote + "\n" for c in catalog.conditions.values()],
-            *[quote + "\n" for quote in catalog.notes], f"[Source and current selection]({catalog.source}).", ""]
-    return out
 
 
 def limits_text(entry: Entry) -> str:

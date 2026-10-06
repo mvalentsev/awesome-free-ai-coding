@@ -3,6 +3,21 @@
 Read CONTRIBUTING.md before changing registry data, probes, generated files or
 publication workflows. Public repository text is English.
 
+## Preserve the shared public interface
+
+Before changing presentation, inspect the previous committed output and at
+least two comparable rows. Record the existing sections, labels, empty states
+and navigation in private evidence. New registry data uses those shared
+components; a new data shape does not justify its own public sections or links.
+If the interface must change, apply and validate the shared change across
+representative rows rather than adding an exception for one data source.
+
+Check rendered output against the established contract independently of the
+feature's own content tests and generated browser plan. Demonstrate that a
+regression check rejects the previous bad output before correcting it. Review
+unaffected peer rows as well as the changed row in the final diff and browser.
+Passing content assertions, byte checks and CI do not establish design quality.
+
 ## Review every automated update without reminders
 
 When an update arrives, review both the verification commit and the scout PR.

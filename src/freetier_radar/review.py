@@ -155,8 +155,14 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         old = {v[field]: v for v in previous}
         new = {v[field]: v for v in current}
         return sorted(k for k in old.keys() | new.keys() if old.get(k) != new.get(k))
+    def changed_pages(folder, key, field):
+        return {v[field] for v in [*before.get(key, []), *after.get(key, [])]
+                if f'{folder}/{v[field]}.md' in paths}
     rows = sorted(set(changed(before.get('entries', []), after.get('entries', []), 'id')) |
-                  set(changed(registries['before'], registries['after'], 'id')))
+                  set(changed(registries['before'], registries['after'], 'id')) |
+                  changed_pages('providers', 'entries', 'id'))
+    families = sorted(set(changed(before.get('models', []), after.get('models', []), 'family')) |
+                      changed_pages('models', 'models', 'family'))
     required = {'pages build and deployment'}
     for filename in ('ci.yml', 'indexnow.yml', 'conformance.yml'):
         content = git.show(repo, sha, '.github/workflows/' + filename)
@@ -186,7 +192,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         required.add(workflow['name'])
     scope = {'base': base, 'sha': sha, 'paths': paths, 'rows': rows,
              'push_base': push_base, 'push_paths': push_paths,
-             'families': changed(before.get('models', []), after.get('models', []), 'family'),
+             'families': families,
              'workflows': sorted(required), 'verification_run': verification_run, 'prepared_at': now()}
     if previous and any(previous.get(key) != scope[key] for key in ('paths', 'rows', 'families', 'workflows')):
         raise ValueError('changed coverage requires a new evidence directory')

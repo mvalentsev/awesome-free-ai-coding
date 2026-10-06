@@ -1046,6 +1046,14 @@ submissions, and a post there is a person's decision every time.
 
 ## Development
 
+Keep additions within the existing public presentation: provider pages share
+their sections, the Free models column holds eligible families or its empty
+state, and selection details and conditions belong under Limits. Before
+changing a shared component, compare the previous output and representative
+peer rows. Preserve these structural contracts in tests separately from checks
+that the new data appears. Review the rendered desktop and mobile result;
+updating expected strings alone is not a presentation review.
+
 ```bash
 uv sync
 git config core.hooksPath .githooks   # once per clone: every check runs before each commit

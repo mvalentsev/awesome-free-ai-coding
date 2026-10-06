@@ -37,7 +37,7 @@ from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Her
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import clip, number, series, weeks
-from .page_catalog import catalog_markdown, catalog_words, family_condition, limits_text
+from .page_catalog import catalog_words, family_condition, limits_text
 # The log a commit will be made on, and the map of the repository, which
 # CONTRIBUTING.md prints.
 from .gate import committed_log
@@ -403,9 +403,7 @@ def _row_models(e: Entry, pages: set[str]) -> str:
     a count linking the row's page for the rest."""
     shown, more = _readme_families(e)
     return DOT.join(([_entry_family_links(e, shown, pages, DOT)] if shown else [])
-                      + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else [])
-                      + ([f"[model catalog & access]({provider_page_url(e.id)}#models-and-access)"]
-                         if e.page_catalog else []))
+                      + ([f"[+{more}\u00a0more]({provider_page_url(e.id)})"] if more else []))
 
 
 def _row(e: Entry, pages: set[str]) -> dict[str, str]:
@@ -1339,7 +1337,6 @@ def _site_row(e: Entry) -> dict:
         "page": provider_page_url(e.id),
         "offering": _site_fold(e.offering),
         "limits": _site_fold(limits_text(e)) if limits_text(e) else None,
-        "catalog": bool(e.page_catalog),
         "models": chips[:SITE_MODELS],
         "more_models": chips[SITE_MODELS:],
         "verified": e.last_verified.isoformat(),
@@ -2450,21 +2447,21 @@ def build_provider_page(e: Entry, events: list[Event], today: date, blocked: boo
     elif e.free_part is FreePart.UNNAMED:
         named = ("The vendor does not say which models the free part reaches, so the column names "
                  "none.")
+    elif e.newcomers:
+        named = ("No free model family is listed yet; new offers must clear the two-week bar "
+                 "before entering this section.")
     elif e.probe.type is ProbeType.PAGE_KEYWORDS:
         named = ("The page this row is verified against names no free model, so the column stays "
                  "empty; callable ids, where the row has them, are under Connect.")
     else:
         named = ("The row names no free model family; the ids its lane serves, where the row has "
                  "them, are under Connect.")
-    if e.page_catalog and not archived:
-        out += catalog_markdown(e.page_catalog)
-    else:
-        out += ["## Free models it listed" if archived else "## Free models", "",
-                _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
-                                    else pages) if fams else named,
-                ""]
+    out += ["## Free models it listed" if archived else "## Free models", "",
+            _entry_family_links(e, fams, model_pages(registry or [], events, today) if pages is None
+                                else pages) if fams else named,
+            ""]
     out += ["## Limits, in the vendor's words", "",
-            e.limits if e.limits else "The vendor publishes no figure for this tier.", ""]
+            limits_text(e) if limits_text(e) else "The vendor publishes no figure for this tier.", ""]
     if e.border is not None and not archived:
         out += ["## Where it is offered", "", border_words(e), ""]
     if e.data_use is not None and not archived:

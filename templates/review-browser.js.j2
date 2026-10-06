@@ -93,41 +93,49 @@ async (page) => {
           }
         }
         for(const row of plan.rows) {
-          if(row.page_catalog&&!row.archived) {
+          if(!row.archived) {
             await go(plan.site+'?review='+plan.sha);
             const provider=page.locator('#row-'+row.id);
             await provider.waitFor();
             const limits=provider.locator('td.limits details');
             if(await limits.count()) await limits.locator('summary').click();
-            for(const model of row.page_catalog.models) if(!(await provider.innerText()).includes(model.name)) throw Error('Main table catalog: '+row.id+' '+model.name);
-            await provider.locator('a[href="'+row.page+'#models-and-access"]').click();
-            await page.waitForURL(row.page+'#models-and-access');
+            const models=provider.locator('td.models');
+            const families=row.models.filter(model=>!model.superseded_by).map(model=>model.family);
+            const chips=await models.locator('.model-access > .chip').allTextContents();
+            if(JSON.stringify(chips)!==JSON.stringify(families)||(!families.length&&plain(await models.textContent())!=='—')) throw Error('Main table family slots: '+row.id);
+            if(await models.locator('a:not(.chip)').count()) throw Error('Main table model navigation: '+row.id);
+            if(row.page_catalog) for(const model of row.page_catalog.models) if(!(await provider.innerText()).includes(model.name)) throw Error('Main table selection: '+row.id+' '+model.name);
+            await provider.locator('td.when a[href="'+row.page+'"]').click();
+            await page.waitForURL(row.page);
           } else {
             await go(row.page);
           }
           const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
           const text=plain(await body.textContent());
+          const headings=(await body.locator('h2').allTextContents()).map(plain);
+          const required=[row.archived?'What it offered':'What you get',row.archived?'Free models it listed':'Free models',"Limits, in the vendor's words"];
+          const optional=['Where it is offered','What happens to what you send'].filter(heading=>headings.includes(heading));
+          const expected=[...required,...optional,...(row.archived?[]:['Connect']),'Evidence','History'];
+          if(JSON.stringify(headings)!==JSON.stringify(expected)) throw Error('Provider section contract: '+row.id);
           if(row.archived) {
             if(!/archived/i.test(text)) throw Error('Provider archive status: '+row.id);
           } else {
             if(row.page_catalog) {
               const catalog=row.page_catalog;
-              const budgets=body.locator('table').filter({has:page.getByRole('columnheader',{name:catalog.unit+' per '+catalog.period,exact:true})});
-              if(await budgets.count()!==1||await budgets.locator('tbody tr').count()!==catalog.budgets.length) throw Error('Provider budgets: '+row.id);
-              for(let i=0;i<catalog.budgets.length;i++) {
-                if((await budgets.locator('tbody tr').nth(i).locator('td').nth(1).textContent()).trim()!==String(catalog.budgets[i].amount)) throw Error('Provider budget amount: '+row.id);
-              }
-              const models=body.locator('table').filter({has:page.getByRole('columnheader',{name:'Model',exact:true})});
-              if(await models.count()!==1||await models.locator('tbody tr').count()!==catalog.models.length) throw Error('Provider catalog: '+row.id);
-              for(let i=0;i<catalog.models.length;i++) {
-                const model=catalog.models[i], cells=models.locator('tbody tr').nth(i).locator('td');
-                const hours=model.expired||model.hours==null?'—':model.hours==='unlimited'?'Unlimited':String(model.hours);
-                if(plain(await cells.nth(0).textContent())!==plain(model.name)||(await cells.nth(2).textContent()).trim()!==hours||(await cells.nth(3).textContent()).trim()!==(model.limited&&!model.expired?'Yes':'—')) throw Error('Provider model access: '+row.id+' '+model.name);
+              for(const budget of catalog.budgets) if(!text.includes(budget.amount+' '+catalog.unit+' per '+catalog.period)) throw Error('Provider budget amount: '+row.id);
+              const period={day:'daily',week:'weekly',month:'monthly'}[catalog.period];
+              const allowance=catalog.budgets.find(budget=>budget.id===catalog.example_budget);
+              for(const model of catalog.models) {
+                const kind=model.expired?'expired':model.hours==='unlimited'?'unmetered':model.hours!=null?'wallet':catalog.conditions[model.condition].kind;
+                const access={wallet:'shared '+period+' credits',unmetered:'unmetered offer','free-session':'free session with conditions',paid:'paid plan',specialist:'specialist tasks only',expired:'offer ended'}[kind];
+                let offer=model.name+': '+access;
+                if(model.hours!=null&&!model.expired) offer+=model.hours==='unlimited'?'; unlimited hours':'; '+model.hours+' hours with the whole '+allowance.amount+'-'+catalog.unit+' allowance';
+                if(['wallet','unmetered'].includes(kind)) offer+=model.limited?'; available in limited mode':'; full access only';
+                if(!text.includes(plain(offer))) throw Error('Provider model access: '+row.id+' '+model.name);
               }
               for(const quote of [...Object.values(catalog.conditions).map(c=>c.quote),...(catalog.notes||[])]) if(!text.includes(plain(quote))) throw Error('Provider condition: '+row.id);
-            } else {
-              for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
             }
+            for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
             for(const id of row.api?.model_ids||[]) if(!text.includes(id)) throw Error('Provider API id: '+row.id+' '+id);
           }
           await record(prefix+'provider/'+row.id);

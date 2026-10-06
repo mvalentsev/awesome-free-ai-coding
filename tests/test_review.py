@@ -44,6 +44,31 @@ def test_scope_resolves_refs_and_retains_whole_diff_without_reading_the_worktree
     assert json.loads((bundle.out / 'scope.json').read_text())['sha'] == scope['sha']
 
 
+@pytest.mark.parametrize('path,rows,families', [
+    ('providers/vendor.md', ['vendor'], []),
+    ('models/beta.md', [], ['beta']),
+    ('providers/index.md', [], []),
+])
+def test_rendered_page_changes_reach_review_coverage_without_registry_changes(tmp_path, path, rows, families):
+    repo, _, _ = push_repo_at(tmp_path)
+    before_index = (repo / 'index.json').read_bytes()
+    page = repo / path
+    page.parent.mkdir(exist_ok=True)
+    page.write_text('# Updated presentation\n')
+    subprocess.run(['git', '-C', str(repo), 'add', path], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'fix: update page'], check=True)
+    bundle = review.Bundle(repo / '.evidence/pages', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    assert (repo / 'index.json').read_bytes() == before_index
+    assert scope['rows'] == rows
+    assert scope['families'] == families
+    from freetier_radar.review_browser import browser_plan
+    plan = browser_plan(bundle)
+    assert [row['id'] for row in plan['rows']] == rows
+    if rows:
+        assert sum(case.endswith('/provider/vendor') for case in plan['cases']) == 6
+
+
 def push_repo_at(tmp_path):
     repo = repo_at(tmp_path)
     base = review.revision(repo, 'HEAD~1')

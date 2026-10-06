@@ -1,5 +1,6 @@
 """Page catalogs distinguish a spending wallet from independently free offers."""
 import json
+import re
 from datetime import date, datetime, timezone
 
 import httpx
@@ -217,29 +218,32 @@ def test_declared_deadline_expires_the_free_family_but_preserves_the_wallet():
 
 def test_payment_and_deadline_are_disclosed_and_ended_offers_lose_their_hours():
     from freetier_radar.models import expire_entries
-    from freetier_radar.page_catalog import catalog_markdown, catalog_words
+    from freetier_radar.page_catalog import catalog_words
+    from freetier_radar.render import build_provider_page
     data = catalog_data()
     data['model_access'] = {'Alpha': {'source': data['source'], 'until': '2026-10-06T00:00:00Z',
                                     'initial_payment_usd': 1}}
     e = entry(data)
-    for text in (catalog_words(e.page_catalog), '\n'.join(catalog_markdown(e.page_catalog))):
+    for text in (catalog_words(e.page_catalog), build_provider_page(e, [], date(2026, 10, 5))):
         assert 'requires $1 one-time top-up' in text
         assert 'free until 2026-10-06 00:00+00:00' in text
         assert f"[terms]({data['source']})" in text
     after = expire_entries([e], datetime(2026, 10, 6, tzinfo=timezone.utc))[0]
-    text = '\n'.join(catalog_markdown(after.page_catalog))
-    alpha = next(line for line in text.splitlines() if line.startswith('| Alpha |'))
-    assert 'Offer ended' in alpha and 'Unlimited' not in alpha and '| — | — |' in alpha
+    text = build_provider_page(after, [], date(2026, 10, 6))
+    alpha = text.split('Alpha: ', 1)[1].split('; Beta:', 1)[0]
+    assert alpha.startswith('offer ended') and 'unlimited hours' not in alpha
+    assert 'available in limited mode' not in alpha
     assert 'offer ended 2026-10-06 00:00+00:00' in alpha
 
 
 def test_weekly_budget_keeps_its_period_in_all_presentations():
-    from freetier_radar.page_catalog import catalog_markdown, catalog_words, check_page_catalog
+    from freetier_radar.page_catalog import catalog_words, check_page_catalog
+    from freetier_radar.render import build_provider_page
     data = catalog_data(); data['period'] = 'week'
     e = entry(data)
     body = page().replace('a day', 'a week').replace('every day', 'every week')
     assert check_page_catalog(body, e.page_catalog) == []
-    for text in (catalog_words(e.page_catalog), '\n'.join(catalog_markdown(e.page_catalog))):
+    for text in (catalog_words(e.page_catalog), build_provider_page(e, [], date(2026, 10, 6))):
         assert 'Weekly allowance' in text and 'Shared weekly credits'.lower() in text.lower()
         assert 'daily' not in text.lower()
 
@@ -287,14 +291,59 @@ def test_all_published_views_contain_the_wallet_picker_without_calling_paid_mode
     assert index["entries"][0]["models"] == []
     assert "Beta: shared daily credits" in index["entries"][0]["limits"]
     provider = build_provider_page(e, [], today, registry=[e], pages=set())
-    assert "| Alpha | Unmetered offer | Unlimited | Yes |" in provider
-    assert "| Beta | Shared daily credits | 10 | Yes |" in provider
-    assert "| Gamma | Paid plan | — | — |" in provider
+    assert "Alpha: unmetered offer; unlimited hours; available in limited mode" in provider
+    assert "Beta: shared daily credits; 10 hours with the whole 100-Credits allowance; available in limited mode" in provider
+    assert "Gamma: paid plan" in provider
     assert "Gamma needs a paid plan." in provider
     text = build_llms_txt([e], today, pages=set())
     assert "Beta: shared daily credits" in text and "Gamma: paid plan" in text
     assert "free models: `beta`" not in text and "free models: `gamma`" not in text
     context = build_site_context([e], today, pages=set())
     row = next(r for s in context["sections"] for r in s["rows"])
-    assert row["catalog"] and row["models"] == []
-    assert "model catalog & access" in next(r for s in build_context([e], today)["sections"] for r in s["rows"])["models"]
+    assert row["models"] == []
+    assert next(r for s in build_context([e], today)["sections"] for r in s["rows"])["models"] == ""
+
+
+@pytest.mark.parametrize("listed", [False, True])
+def test_catalog_uses_the_existing_provider_sections(listed):
+    from freetier_radar.render import build_provider_page
+    data = catalog_data(); data["models"][0]["listed"] = listed
+    e = entry(data)
+    ordinary = Entry.model_validate(e.model_dump(exclude={"page_catalog"}))
+    today = date(2026, 10, 6)
+    headings = lambda row: re.findall(r"^## (.+)$", build_provider_page(row, [], today), re.M)
+    assert headings(e) == headings(ordinary) == [
+        "What you get", "Free models", "Limits, in the vendor's words", "Connect", "Evidence", "History",
+    ]
+
+
+@pytest.mark.parametrize("listed", [False, True])
+def test_catalog_keeps_model_navigation_in_the_existing_family_slots(tmp_path, listed):
+    from pathlib import Path
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import render_readme, render_site, build_providers_index
+    data = catalog_data(); data["models"][0]["listed"] = listed
+    e = entry(data)
+    today = date(2026, 10, 6)
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [e])
+    site = render_site(reg, Path("templates"), tmp_path / "index.html", today=today)
+    cell = re.search(r'<td class="models"[^>]*>(.*?)</td>', site, re.S).group(1)
+    if listed:
+        # Every navigation item in this column is an eligible family chip.
+        chips = re.findall(r'<(?:a|span) class="chip[^"]*"[^>]*>(.*?)</(?:a|span)>', cell, re.S)
+        assert chips == ["alpha"]
+        assert len(re.findall(r'<a\b', cell)) == len(re.findall(r'<a class="chip', cell))
+        assert re.sub(r'<[^>]+>', '', cell).strip() == "alpha"
+    else:
+        assert cell.strip() == '<span class="empty">—</span>'
+    readme = render_readme(reg, Path("templates"), tmp_path / "README.md", today=today)
+    listing = next(line for line in readme.split("## 📋 The list", 1)[1].splitlines()
+                   if line.startswith('- **[Vendor]'))
+    small = re.search(r'<sub>(.*?)</sub>', listing).group(1)
+    assert re.sub(r'\[([^]]+)\]\([^)]*\)', r'\1', small) == (
+        "verified 2026-10-05" + ("\u00a0· `alpha`" if listed else ""))
+    index = build_providers_index([e], today)
+    row = next(line for line in index.splitlines() if line.startswith('- [Vendor]'))
+    assert re.sub(r'\[([^]]+)\]\([^)]*\)', r'\1', row) == (
+        "- Vendor — verified 2026-10-05" + ("\u00a0· `alpha`" if listed else ""))
