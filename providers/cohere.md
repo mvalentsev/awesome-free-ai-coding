@@ -23,7 +23,9 @@ Cohere's Command models via free trial API keys that never expire, plus a 30B/3B
 
 ## Limits, in the vendor's words
 
-Trial keys are "limited to 1,000 API calls a month" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys "are not permitted to be used for production or commercial purposes", and that every account "begins as a personal account and only has access to Trial API keys" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that "for both trial keys and production keys, North Mini Code is free until rate limits are reached", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)
+Trial keys: 1,000 requests/month per key
+
+Trial keys are rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys "are not permitted to be used for production or commercial purposes", and that every account "begins as a personal account and only has access to Trial API keys" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that "for both trial keys and production keys, North Mini Code is free until rate limits are reached", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)
 
 ## Where it is offered
 

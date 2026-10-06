@@ -27,14 +27,20 @@ async (page) => {
   };
   try {
     await page.setExtraHTTPHeaders({});
+    const selected=new Set(plan.selected_cases||plan.cases);
     for(const width of plan.widths) {
+      if(!Array.from(selected).some(id=>id.startsWith(width+'/'))) continue;
       await page.setViewportSize({width,height:1000});
       for(const scheme of plan.schemes) {
         await page.emulateMedia({colorScheme:scheme});
         const prefix=width+'/'+scheme+'/';
+        if(!Array.from(selected).some(id=>id.startsWith(prefix))) continue;
+        if(Array.from(selected).some(id=>id.startsWith(prefix+'search/'))) {
         await go(plan.site+'?review='+plan.sha+'#search');
         if(plan.models.some(model=>model.rows.length)) await page.locator('#results .tries button').first().waitFor();
+        }
         for(const model of plan.models) {
+          if(!selected.has(prefix+'search/'+model.family)) continue;
           await page.locator('#q').fill(model.family);
           await page.waitForFunction(({family,count})=>new URL(location.href).searchParams.get('q')===family &&
             (count===0 || document.querySelector('#results a[href$="/models/'+family+'/"]')),{family:model.family,count:model.rows.length});
@@ -50,9 +56,12 @@ async (page) => {
           if(snippets.some(e=>!e.visible || e.scroll>e.height+1)) throw Error('Clipped access conditions');
           await record(prefix+'search/'+model.family);
         }
-        await go(plan.site+'browse.html?review='+plan.sha);
-        await page.locator('#rows tr').first().waitFor();
+        if(Array.from(selected).some(id=>id.startsWith(prefix+'browse/'))) {
+          await go(plan.site+'browse.html?review='+plan.sha);
+          await page.locator('#rows tr').first().waitFor();
+        }
         for(const model of plan.models) {
+          if(!selected.has(prefix+'browse/'+model.family)) continue;
           await page.locator('#q').fill(model.family);
           await page.waitForFunction(f=>new URL(location.href).searchParams.get('q')===f,model.family);
           for(const id of model.rows.filter(id=>plan.rows.some(e=>e.id===id))) {
@@ -72,6 +81,7 @@ async (page) => {
           await record(prefix+'browse/'+model.family);
         }
         for(const model of plan.models) {
+          if(!selected.has(prefix+'model/'+model.family)) continue;
           if(model.rows.length) {
             await go(plan.site+'?review='+plan.sha+'&q='+encodeURIComponent(model.family)+'#search');
             await page.locator('#results a[href="'+model.page+'"]').first().click();
@@ -93,6 +103,7 @@ async (page) => {
           }
         }
         for(const row of plan.rows) {
+          if(!selected.has(prefix+'provider/'+row.id)) continue;
           if(!row.archived) {
             await go(plan.site+'?review='+plan.sha);
             const provider=page.locator('#row-'+row.id);
@@ -141,7 +152,7 @@ async (page) => {
           }
           await record(prefix+'provider/'+row.id);
         }
-        if(width!==320) {
+        if(width!==320&&selected.has(prefix+'readme')) {
           await go(plan.repository+'?review='+plan.sha);
           await page.locator('react-app[app-name="code-view"].loaded').waitFor();
           const body=page.locator('article.markdown-body').first();await body.waitFor();

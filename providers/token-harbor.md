@@ -23,7 +23,11 @@ OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lin
 
 ## Limits, in the vendor's words
 
-"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. There is "No separate per-minute cap on free models — only the free-account API limit of 60 requests/minute and 1,800/hour applies"; "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process request content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04
+Free routes: Rolling 7-day list-price value allowance: amount not published per account
+
+60 requests/minute; 1,800 requests/hour per account
+
+"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page", and "That set changes as models are added or retired". "Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests" — no figure is published, and the dashboard shows only a percentage. "Free routes stop accepting new requests when the period allowance is exhausted", and "Free routes never charge your balance". "No card required". "Free routes are disabled by default" until you consent to them, "Token Harbor may retain prompts and responses sent through explicit free routes after you opt in", and "Upstream providers separately process request content under their own terms". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04
 
 ## Where it is offered
 

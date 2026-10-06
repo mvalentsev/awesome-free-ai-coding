@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-10-05'
-description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning and 5 more. 20 requests per minute on any :free id…'
+description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning and 5 more. OpenRouter''s FAQ says its free models…'
 permalink: /providers/openrouter-free/
 last_modified_at: 2026-10-06
 crumb: OpenRouter (free models)
@@ -23,7 +23,11 @@ One API key for a rotating set of :free model variants, open-weight and stealth 
 
 ## Limits, in the vendor's words
 
-20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. The quota figures are published in the limits page's JavaScript data. OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", and its limits page warns that a negative credit balance can produce errors "including for free models" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)
+50 requests/day; 20 requests/minute per account
+
+1,000 requests/day per account (after 10 credits purchased all-time)
+
+OpenRouter's FAQ says its free models "have low rate limits" and "are usually not suitable for production use", and its limits page warns that a negative credit balance can produce errors "including for free models" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27) The docs define the daily counter as "Free-model requests recorded so far in the current UTC day". The higher daily ceiling is granted "starting one credit below the table’s threshold" to absorb rounding and top-up fees.
 
 ## Where it is offered
 

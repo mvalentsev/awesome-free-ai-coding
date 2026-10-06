@@ -23,6 +23,8 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 
 ## Limits, in the vendor's words
 
+MiMo V2.6 Flash/Pro: 100 requests/day; 5 requests/minute; 1,000,000 tokens/day per account per model
+
 per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
 
 ## Where it is offered

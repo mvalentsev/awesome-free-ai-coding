@@ -116,10 +116,16 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
     if entry.page_catalog:
         from .page_catalog import catalog_quotes
         found.extend(catalog_quotes(entry.page_catalog))
+    found.extend((f"quotas[{i}].quote", q.quote) for i, q in enumerate(entry.quotas))
+    found.extend((f"quotas[{i}].reset", q.reset) for i, q in enumerate(entry.quotas) if q.reset)
+    found.extend((f"quotas[{i}].condition_quote", q.condition_quote)
+                 for i, q in enumerate(entry.quotas) if q.condition_quote)
     return found
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
+    if match := re.fullmatch(r"quotas\[(\d+)\]\.(?:quote|reset|condition_quote)", field):
+        return entry.quotas[int(match[1])].source
     return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
 
 
@@ -138,6 +144,7 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
     index to it, the endpoint otherwise — its catalog, the page its word on
     training is quoted from and the page that sets Codex up on its lane."""
     urls = list(entry.source_urls) + [page or entry.probe.endpoint]
+    urls.extend(q.source for q in entry.quotas)
     if entry.probe.catalog:
         urls.append(entry.probe.catalog)
     if entry.data_use:

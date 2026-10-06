@@ -270,6 +270,17 @@ back as delisted rows, with the reason.
 
 ## Probes must anchor on the offer
 
+`quotas` stores `amount`, `unit`, `period` and `scope`. Each allowance cites
+its source and exact quote; optional conditions and reset words need evidence
+on that same source. The scheduled probe flags changed or unreadable quotas
+beside a still-live offer. Catalog checks bind the quote to each named model
+ID; constant checks compare the numeric JavaScript value. An unpublished amount
+stays null and requires a dated manual review after 7 days. Re-read the complete
+vendor terms at that review: a matching old phrase cannot prove that no new
+number has been published elsewhere. Freebuff's session quota is derived from
+its existing page catalog rather than recorded twice. Compact allowances appear
+first under the existing Limits section; shared caps do not become model labels.
+
 Every `page-keywords` probe needs at least one keyword that disappears when the
 free tier does. Three shapes qualify:
 

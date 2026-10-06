@@ -37,6 +37,7 @@ from .validate import PROSE_LIMITS
 from .words import number as _word, ordinal as _ordinal, series as _series, weeks as _weeks
 from .borders import SHARED
 from .countries import country_name
+from .quotas import UNKNOWN_RECHECK_DAYS, UsageQuota
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
 
@@ -107,6 +108,13 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r"`quotas` stores `(amount)`, `(unit)`, `(period)` and `(scope)`",
+          lambda root: tuple(field for field in ("amount", "unit", "period", "scope")
+                             if field in UsageQuota.model_fields),
+          "quotas.UsageQuota; HTTP-boundary and source-binding regressions in tests/test_quotas.py"),
+    Claim("CONTRIBUTING.md", r"dated manual review after (\d+) days",
+          lambda root: (str(UNKNOWN_RECHECK_DAYS),),
+          "quotas.UNKNOWN_RECHECK_DAYS and quota_moved; expiry regression in tests/test_quotas.py"),
     Claim("CONTRIBUTING.md", r"`page_catalog` derives `(models)` and `(newcomers)`",
           _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
     Claim("CONTRIBUTING.md", r"`prepare (--push-base) <commit>` records the commit immediately before the final",

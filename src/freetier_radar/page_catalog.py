@@ -248,7 +248,7 @@ def budget_scope(budget) -> str:
             "Other countries" if budget.scope == "else" else "VPN or proxy")
 
 
-def catalog_words(catalog: PageCatalog) -> str:
+def catalog_words(catalog: PageCatalog, *, include_session: bool = True) -> str:
     """One text presentation, reused by the site, JSON, browse and llms.txt."""
     budgets = []
     for b in catalog.budgets:
@@ -269,7 +269,7 @@ def catalog_words(catalog: PageCatalog) -> str:
     out = (PERIOD_WORDS[catalog.period] + " allowance — " + "; ".join(budgets) + ".\n\n"
            f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
            + "; ".join(offers) + ".")
-    if catalog.limited_allowance:
+    if catalog.limited_allowance and include_session:
         out += f"\n\nWhere the app uses session-based limited mode, the free allowance is {catalog.limited_allowance}."
     if catalog.conditions:
         out += "\n\n" + " ".join(c.quote for c in catalog.conditions.values())
@@ -279,7 +279,14 @@ def catalog_words(catalog: PageCatalog) -> str:
 
 
 def limits_text(entry: Entry) -> str:
-    return "\n\n".join(t for t in (entry.limits, catalog_words(entry.page_catalog) if entry.page_catalog else "") if t)
+    from .quotas import quota_summary, structured_quotas
+    summary = quota_summary(entry)
+    catalog = entry.page_catalog
+    derived_session = bool(catalog and any(q.get("quote") == catalog.limited_allowance
+                                          for q in structured_quotas(entry)))
+    return "\n\n".join(t for t in (summary, entry.limits,
+                                     catalog_words(catalog, include_session=not derived_session)
+                                     if catalog else "") if t)
 
 
 def family_condition(entry: Entry, family: str) -> str:

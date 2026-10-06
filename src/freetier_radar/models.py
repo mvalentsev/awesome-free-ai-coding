@@ -14,6 +14,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from .words import number
+from .quotas import UsageQuota
 
 # Words every vendor keeps on the page long after the offer is gone. A probe
 # built out of these alone verifies that the page loads, nothing more.
@@ -1225,6 +1226,7 @@ class Entry(BaseModel):
     access: FreeAccess | None = None
     offering: str
     limits: str = ""
+    quotas: list[UsageQuota] = Field(default_factory=list, exclude_if=lambda v: not v)
     # Which kind of free this is; freetier-check refuses a live row without it.
     free_part: FreePart | None = None
     models: list[ModelFamily] = []
@@ -1248,6 +1250,16 @@ class Entry(BaseModel):
     probe_failures: int = 0
     provisional: bool = False
     rank: int = 100  # sort key within a category: lower renders higher
+
+    @model_validator(mode="after")
+    def _quota_catalog_is_bound_to_the_lane(self) -> Entry:
+        for quota in self.quotas:
+            if quota.read == "catalog":
+                if quota.source not in (self.probe.endpoint, self.probe.catalog):
+                    raise ValueError("catalog quota source must be this row's checked catalog")
+                if not self.api or set(quota.model_ids) - set(self.api.model_ids):
+                    raise ValueError("catalog quota must name this row's callable model_ids")
+        return self
 
     @model_validator(mode="after")
     def _whole_offer_access_is_an_initial_payment(self) -> Entry:

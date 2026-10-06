@@ -79,9 +79,9 @@
 ```bash
 curl -s https://api.kilo.ai/api/gateway/chat/completions \
   -H 'Content-Type: application/json' \
-  -d '{"model":"kilo-auto/free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
+  -d '{"model":"openrouter/free","messages":[{"role":"user","content":"2+2? MAKE NO MISTAKES."}]}'
 ```
-<sub>Free IDs need no key, with 200 requests/hour per IP; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b.</sub>
+<sub>Free IDs need no key; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b.</sub>
 
 **Ready to wire one in?** Base URL and key name for every OpenAI-compatible API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai), [Claude Code](https://code.claude.com/docs) and [Codex CLI](https://developers.openai.com/codex) — all generated from the same registry and regenerated on every update.
 

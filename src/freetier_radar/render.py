@@ -1213,12 +1213,14 @@ def _index_countries() -> list[dict]:
 def build_index(entries: list[Entry], today: date,
                 watchlist: list[Watched] | None = None,
                 pages: set[str] | None = None) -> dict:
+    from .quotas import structured_quotas
     return {
         "generated": today.isoformat(),
         "source": REPO_URL,
         "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
+             **({"quotas": structured_quotas(e)} if structured_quotas(e) else {}),
              "archived": is_archived(e, today),
              **({"access_labels": {"offer": access_words(e.access, compact=True),
                                    "models": {f: _access_description(e, f, compact=True)
@@ -1315,6 +1317,9 @@ def _site_fold(text: str) -> dict[str, str]:
     own sentence — angle brackets, ampersands and all — is data here."""
     if len(text) <= README_LIMITS_COLLAPSE:
         return {"text": text, "teaser": ""}
+    lead, separator, rest = text.partition("\n\n")
+    if separator and len(lead) <= README_LIMITS_TEASER:
+        return {"text": rest, "teaser": lead + " …"}
     return {"text": text, "teaser": f"{_cut(text, README_LIMITS_TEASER)} …"}
 
 
@@ -2138,7 +2143,9 @@ def _page_description(e: Entry) -> str:
     shown, more = _readme_families(e)
     named = (f" Free models: {', '.join(shown)}{f' and {more} more' if more else ''}."
              if shown else "")
-    return clip(f"{offer}{named} {limits_text(e)}", DESCRIPTION_ROOM)
+    terms = "\n\n".join(t for t in (e.limits, catalog_words(e.page_catalog)
+                                    if e.page_catalog else "") if t)
+    return clip(f"{offer}{named} {terms}", DESCRIPTION_ROOM)
 
 
 def _last_modified(e: Entry, events: list[Event]) -> date:

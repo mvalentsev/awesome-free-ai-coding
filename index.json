@@ -15,7 +15,41 @@
       ],
       "card_required": false,
       "offering": "One API key for a rotating set of :free model variants, open-weight and stealth models among them",
-      "limits": "20 requests per minute on any :free id, 50 requests per day, and 1,000 per day once the account has purchased at least 10 credits all-time. The quota figures are published in the limits page's JavaScript data. OpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27)",
+      "limits": "50 requests/day; 20 requests/minute per account\n\n1,000 requests/day per account (after 10 credits purchased all-time)\n\nOpenRouter's FAQ says its free models \"have low rate limits\" and \"are usually not suitable for production use\", and its limits page warns that a negative credit balance can produce errors \"including for free models\" and that a 429 can come from the upstream provider rather than the platform (read 2026-09-27) The docs define the daily counter as \"Free-model requests recorded so far in the current UTC day\". The higher daily ceiling is granted \"starting one credit below the table’s threshold\" to absorb rounding and top-up fees.",
+      "quotas": [
+        {
+          "amount": 50.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "source": "https://openrouter.ai/docs/api_reference/limits",
+          "quote": "const FREE_MODEL_RATE_LIMIT_RPM=20;const FREE_MODEL_NO_CREDITS_RPD=50;const FREE_MODEL_HAS_CREDITS_RPD=1e3;const FREE_MODEL_CREDITS_THRESHOLD=10;",
+          "read": "constant",
+          "constant": "FREE_MODEL_NO_CREDITS_RPD"
+        },
+        {
+          "amount": 20.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "account",
+          "source": "https://openrouter.ai/docs/api_reference/limits",
+          "quote": "const FREE_MODEL_RATE_LIMIT_RPM=20;const FREE_MODEL_NO_CREDITS_RPD=50;const FREE_MODEL_HAS_CREDITS_RPD=1e3;const FREE_MODEL_CREDITS_THRESHOLD=10;",
+          "read": "constant",
+          "constant": "FREE_MODEL_RATE_LIMIT_RPM"
+        },
+        {
+          "amount": 1000.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account",
+          "condition": "after 10 credits purchased all-time",
+          "condition_quote": "The limit tier is selected by all-time credits purchased, independently of is_free_tier.",
+          "source": "https://openrouter.ai/docs/api_reference/limits",
+          "quote": "const FREE_MODEL_RATE_LIMIT_RPM=20;const FREE_MODEL_NO_CREDITS_RPD=50;const FREE_MODEL_HAS_CREDITS_RPD=1e3;const FREE_MODEL_CREDITS_THRESHOLD=10;",
+          "read": "constant",
+          "constant": "FREE_MODEL_HAS_CREDITS_RPD"
+        }
+      ],
       "free_part": "models",
       "models": [
         {
@@ -691,7 +725,18 @@
       ],
       "card_required": false,
       "offering": "10k neurons/day free",
-      "limits": "Cloudflare's free allocation \"allows anyone to use a total of 10,000 Neurons per day at no charge\", which at its own $0.011 per 1,000 Neurons is about $0.11 of inference a day. \"All limits reset daily at 00:00 UTC\", and past the cap \"further operations will fail with an error\" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Seven catalog models sit outside the free lane whatever the neuron count — \"Some models require a paid billing method. This applies to @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code, @cf/zai-org/glm-5.2, @cf/zai-org/glm-5.3, @cf/zai-org/glm-5.3-flash, @cf/deepseek-ai/deepseek-v4-flash-0731, and @cf/deepseek-ai/deepseek-v4-pro-0813\" (read 2026-09-27; GLM 5.3 Flash was free on 2026-08-14)",
+      "limits": "10,000 neurons/day per account. All limits reset daily at 00:00 UTC.\n\nPast the cap \"further operations will fail with an error\" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Seven catalog models sit outside the free lane whatever the neuron count — \"Some models require a paid billing method. This applies to @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code, @cf/zai-org/glm-5.2, @cf/zai-org/glm-5.3, @cf/zai-org/glm-5.3-flash, @cf/deepseek-ai/deepseek-v4-flash-0731, and @cf/deepseek-ai/deepseek-v4-pro-0813\" (read 2026-09-27; GLM 5.3 Flash was free on 2026-08-14)",
+      "quotas": [
+        {
+          "amount": 10000.0,
+          "unit": "neurons",
+          "period": "day",
+          "scope": "account",
+          "reset": "All limits reset daily at 00:00 UTC.",
+          "source": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+          "quote": "Our free allocation allows anyone to use a total of 10,000 Neurons per day at no charge."
+        }
+      ],
       "free_part": "sum",
       "models": [],
       "api": {
@@ -902,7 +947,17 @@
       ],
       "card_required": false,
       "offering": "Open-source VS Code / JetBrains / CLI agent whose $0 plan routes \"Auto Free\" to the models the Kilo Gateway marks free; the same gateway serves them to any OpenAI client without a key, with BYOK and local models alongside",
-      "limits": "$0 a month, and no account for the free lane: \"The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)\". The lane is whatever the gateway marks isFree and the free-model lineup rotates. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
+      "limits": "200 requests/hour per IP\n\n$0 a month; no account for the free lane.  The lane is whatever the gateway marks isFree and the free-model lineup rotates. It costs something other than money: every free id carries mayTrainOnYourPrompts, which almost no metered id does. Auto Free routes over the free models the catalog's autoRouting list names. Everything else runs on pay-as-you-go credits or a Kilo Pass subscription. Read 2026-09-21",
+      "quotas": [
+        {
+          "amount": 200.0,
+          "unit": "requests",
+          "period": "hour",
+          "scope": "ip",
+          "source": "https://kilo.ai/docs/gateway/authentication",
+          "quote": "The gateway allows unauthenticated access for free models only. Anonymous requests are identified by IP address and are subject to rate limiting (200 requests per hour per IP)"
+        }
+      ],
       "free_part": "models",
       "models": [
         {
@@ -956,8 +1011,8 @@
         "auth": "none",
         "openai_compatible": true,
         "model_ids": [
-          "kilo-auto/free",
           "openrouter/free",
+          "kilo-auto/free",
           "nvidia/nemotron-3-ultra-550b-a55b:free",
           "nvidia/nemotron-3-super-120b-a12b:free",
           "nvidia/nemotron-3.5-lightning:free",
@@ -991,7 +1046,7 @@
         "codex": {
           "base_url": "https://api.kilo.ai/api/gateway"
         },
-        "note": "Free IDs need no key, with 200 requests/hour per IP; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b."
+        "note": "Free IDs need no key; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b."
       },
       "data_use": {
         "trains": "yes",
@@ -2800,7 +2855,18 @@
       ],
       "card_required": false,
       "offering": "Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type",
-      "limits": "Trial keys are \"limited to 1,000 API calls a month\" and rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys \"are not permitted to be used for production or commercial purposes\", and that every account \"begins as a personal account and only has access to Trial API keys\" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that \"for both trial keys and production keys, North Mini Code is free until rate limits are reached\", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)",
+      "limits": "Trial keys: 1,000 requests/month per key\n\nTrial keys are rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys \"are not permitted to be used for production or commercial purposes\", and that every account \"begins as a personal account and only has access to Trial API keys\" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that \"for both trial keys and production keys, North Mini Code is free until rate limits are reached\", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)",
+      "quotas": [
+        {
+          "amount": 1000.0,
+          "unit": "requests",
+          "period": "month",
+          "scope": "key",
+          "label": "Trial keys",
+          "source": "https://docs.cohere.com/docs/rate-limits",
+          "quote": "Trial keys (and prod keys on newer chat model variants) are limited to 1,000 API calls a month."
+        }
+      ],
       "free_part": "models",
       "models": [
         {
@@ -3911,7 +3977,54 @@
       ],
       "card_required": false,
       "offering": "One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code",
-      "limits": "per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are \"limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day\", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says \"the developer advises against using this model for agentic coding tasks\". Every free id carries a -free suffix and the paid twin beside it is metered at list rates",
+      "limits": "MiMo V2.6 Flash/Pro: 100 requests/day; 5 requests/minute; 1,000,000 tokens/day per account per model\n\nper-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are \"limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day\", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says \"the developer advises against using this model for agentic coding tasks\". Every free id carries a -free suffix and the paid twin beside it is metered at list rates",
+      "quotas": [
+        {
+          "amount": 100.0,
+          "unit": "requests",
+          "period": "day",
+          "scope": "account-model",
+          "label": "MiMo V2.6 Flash/Pro",
+          "source": "https://aihubmix.com/api/v1/models",
+          "quote": "To maintain reliable service, each account is limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day.",
+          "value_phrase": "100 requests per day",
+          "read": "catalog",
+          "model_ids": [
+            "xiaomi-mimo-v2.6-flash-free",
+            "xiaomi-mimo-v2.6-pro-free"
+          ]
+        },
+        {
+          "amount": 5.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "account-model",
+          "label": "MiMo V2.6 Flash/Pro",
+          "source": "https://aihubmix.com/api/v1/models",
+          "quote": "To maintain reliable service, each account is limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day.",
+          "value_phrase": "5 requests per minute",
+          "read": "catalog",
+          "model_ids": [
+            "xiaomi-mimo-v2.6-flash-free",
+            "xiaomi-mimo-v2.6-pro-free"
+          ]
+        },
+        {
+          "amount": 1000000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "account-model",
+          "label": "MiMo V2.6 Flash/Pro",
+          "source": "https://aihubmix.com/api/v1/models",
+          "quote": "To maintain reliable service, each account is limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day.",
+          "value_phrase": "1 million tokens per day",
+          "read": "catalog",
+          "model_ids": [
+            "xiaomi-mimo-v2.6-flash-free",
+            "xiaomi-mimo-v2.6-pro-free"
+          ]
+        }
+      ],
       "free_part": "models",
       "models": [
         {
@@ -4539,7 +4652,19 @@
       ],
       "card_required": false,
       "offering": "EU (Italian) zero-retention inference; a month of full model access on a daily token allowance, no card",
-      "limits": "\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), \"1M tokens per day\" and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it \"a lightweight prompt-complexity classifier designed for LLM routing pipelines\", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)",
+      "limits": "30-day trial: 1,000,000 tokens/day per account\n\n\"Start your 30-day free trial ... No credit card required, no commitment\": the trial card names \"1 month duration\" (\"Full access for 30 days, then choose a plan\"), and \"Stricter rate limits\" with \"Fair usage throttling applies\", against \"All Core Models\", which on the same page is every chat model in the library table (each marked Included under Core). Nothing survives the 30 days — the page names no grant after it, only paid plans — and the daily figure is the only number the trial publishes. One model is priced at €0.00 in and out outside any trial, brick-v1-beta, and it is not one to code with: its own page calls it \"a lightweight prompt-complexity classifier designed for LLM routing pipelines\", a Qwen3.5-0.8B LoRA that labels a prompt easy, medium or hard for Regolo's Brick router (read 2026-09-21)",
+      "quotas": [
+        {
+          "amount": 1000000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "account",
+          "label": "30-day trial",
+          "source": "https://regolo.ai/pricing/",
+          "quote": "1 month duration Full access for 30 days, then choose a plan 1M tokens per day",
+          "value_phrase": "1M tokens per day"
+        }
+      ],
       "free_part": "models",
       "models": [
         {
@@ -4652,7 +4777,7 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. \"No API key, no credit card.\"",
-      "limits": "\"Freebuff is supported by text ads.\" \"Freebucks buy one-hour model sessions.\" \"Model prices and usage limits still apply.\" Available models depend on the app and access level. \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.\n\nDaily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCredit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 6 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nWhere the app uses session-based limited mode, the free allowance is 6 one-hour sessions per day.\n\nGemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\n\"Freebuff is supported by text ads.\" \"Freebucks buy one-hour model sessions.\" \"Model prices and usage limits still apply.\" Available models depend on the app and access level. \"Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them\". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.\n\nDaily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCredit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 6 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nGemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Space Bunny Alpha: 1M context. Anonymous provider retains prompts. Daily Freebucks refill at midnight Pacific and don't carry over. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/).",
       "free_part": "models",
       "models": [
         {
@@ -4934,6 +5059,17 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 28,
+      "quotas": [
+        {
+          "amount": 6,
+          "unit": "one-hour sessions",
+          "period": "day",
+          "scope": "account",
+          "label": "Session-based limited mode",
+          "source": "https://freebuff.com/",
+          "quote": "6 one-hour sessions per day"
+        }
+      ],
       "archived": false,
       "access_labels": {
         "offer": "",
@@ -5252,7 +5388,25 @@
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a free chat model), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\". Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\", and \"The platform margin is not added to model prices; it is applied only once, at top-up\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Apodex Mini has an unpublished daily per-account cap and may close before its deadline if the promotion pool runs out. Read 2026-10-06",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published\n\nA new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a free chat model), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (checks gateway use on a zero balance). Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\". Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\", and \"The platform margin is not added to model prices; it is applied only once, at top-up\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Apodex Mini has an unpublished daily per-account cap and may close before its deadline if the promotion pool runs out. Read 2026-10-06",
+      "quotas": [
+        {
+          "unit": "usage",
+          "period": "day",
+          "scope": "unspecified",
+          "label": "Nemotron Ultra/Super and Qwen3.8 27B",
+          "source": "https://llmtr.com/v1/models",
+          "quote": "günlük kotayla ücretsiz",
+          "read": "catalog",
+          "model_ids": [
+            "nvidia/nemotron-3-ultra-550b-a55b",
+            "nvidia/nemotron-3-super-120b-a12b",
+            "qwen/qwen3.8-27b-free"
+          ],
+          "reviewed_on": "2026-10-06",
+          "amount": null
+        }
+      ],
       "free_part": "models",
       "models": [
         {
@@ -6494,7 +6648,39 @@
       ],
       "card_required": false,
       "offering": "OpenAI- and Anthropic-compatible gateway with a standing $0 plan: a rotating lineup of :free ids on a value-based allowance per rolling 7-day period, no card",
-      "limits": "\"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page\", and \"That set changes as models are added or retired\". \"Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests\" — no figure is published, and the dashboard shows only a percentage. There is \"No separate per-minute cap on free models — only the free-account API limit of 60 requests/minute and 1,800/hour applies\"; \"Free routes stop accepting new requests when the period allowance is exhausted\", and \"Free routes never charge your balance\". \"No card required\". \"Free routes are disabled by default\" until you consent to them, \"Token Harbor may retain prompts and responses sent through explicit free routes after you opt in\", and \"Upstream providers separately process request content under their own terms\". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04",
+      "limits": "Free routes: Rolling 7-day list-price value allowance: amount not published per account\n\n60 requests/minute; 1,800 requests/hour per account\n\n\"Models on permanent free routes carry an explicit :free model ID and are listed under Free on the Models page\", and \"That set changes as models are added or retired\". \"Your first free request starts a personal rolling 7×24-hour period; it is not tied to a calendar week or midnight UTC. The allowance is measured by the list-price value of the work rather than a fixed number of requests\" — no figure is published, and the dashboard shows only a percentage. \"Free routes stop accepting new requests when the period allowance is exhausted\", and \"Free routes never charge your balance\". \"No card required\". \"Free routes are disabled by default\" until you consent to them, \"Token Harbor may retain prompts and responses sent through explicit free routes after you opt in\", and \"Upstream providers separately process request content under their own terms\". The operator is Token Harbor PTE. LTD., Singapore. Read 2026-10-04",
+      "quotas": [
+        {
+          "unit": "list-price value",
+          "period": "day",
+          "window": 7,
+          "rolling": true,
+          "scope": "account",
+          "label": "Free routes",
+          "source": "https://tokenharbor.ai/faq",
+          "quote": "Your first free request starts a personal rolling 7-day period. The allowance is value-based rather than a fixed request count, because different models and requests have different costs. Your dashboard shows usage as a percentage.",
+          "reviewed_on": "2026-10-06",
+          "amount": null
+        },
+        {
+          "amount": 60.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "account",
+          "source": "https://tokenharbor.ai/faq",
+          "quote": "60 requests/minute and 1,800 requests/hour per account, shared across all your API keys and all models",
+          "value_phrase": "60 requests/minute"
+        },
+        {
+          "amount": 1800.0,
+          "unit": "requests",
+          "period": "hour",
+          "scope": "account",
+          "source": "https://tokenharbor.ai/faq",
+          "quote": "60 requests/minute and 1,800 requests/hour per account, shared across all your API keys and all models",
+          "value_phrase": "1,800 requests/hour"
+        }
+      ],
       "free_part": "models",
       "models": [
         {

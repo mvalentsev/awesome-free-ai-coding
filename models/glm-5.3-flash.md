@@ -44,13 +44,13 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regi
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: "Freebuff is supported by text ads." "Freebucks buy one-hour model sessions." "Model prices and usage limits still apply." Available models depend on the app and access level. "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.
+- Limits, in the vendor's words: Session-based limited mode: 6 one-hour sessions per day per account
+
+"Freebuff is supported by text ads." "Freebucks buy one-hour model sessions." "Model prices and usage limits still apply." Available models depend on the app and access level. "Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them". The vendor gives conflicting reset rules in its hours table and FAQ; check the balance and picker in your app.
 
 Daily allowance — the United States: 150 Freebucks per day; Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland: 105 Freebucks per day; Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: 60 Freebucks per day; Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.
 
 Credit-funded hour examples use the whole allowance for the United States on one model; they are not added together. Solar Pro 4: unmetered offer; unlimited hours; available in limited mode; Space Bunny Alpha: unmetered offer; unlimited hours; available in limited mode; Solar Mini 4: shared daily credits; 30 hours with the whole 150-Freebucks allowance; available in limited mode; MiMo 2.6 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; GLM 5.3 Flash: shared daily credits; 15 hours with the whole 150-Freebucks allowance; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; 10 hours with the whole 150-Freebucks allowance; available in limited mode; GPT-6 Luna: shared daily credits; 7 hours with the whole 150-Freebucks allowance; full access only; MiMo 2.6 Pro: shared daily credits; 5 hours with the whole 150-Freebucks allowance; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; 6 hours with the whole 150-Freebucks allowance; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.
-
-Where the app uses session-based limited mode, the free allowance is 6 one-hour sessions per day.
 
 Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan. GPT-6.1 Sol is free in the US and included with a paid plan everywhere else, one session a day for every account. Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.
 
@@ -70,7 +70,9 @@ One OpenAI-compatible gateway over 800+ models, dozens of which the platform pri
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
+- Limits, in the vendor's words: MiMo V2.6 Flash/Pro: 100 requests/day; 5 requests/minute; 1,000,000 tokens/day per account per model
+
+per-model caps, spelled out in each model's catalog description: the newest coding routes — GLM-5.3, GLM-5.2, Kimi K3 and MiMo V2.5 among them — are "limited to 5 requests per minute, 100 requests per day, and 1 million tokens per day", others such as GLM-4.7, MiniMax M3 and kimi-for-coding allow 500 requests a day on the same caps, and the rest of the lane names no figure (read 2026-09-21); the vendor states the quotas reset daily with no trial expiry and no payment method on file. nemotron-3.5-content-safety-free is a guardrail classifier, and of lfm-2.5-2.6b-free the catalog says "the developer advises against using this model for agentic coding tasks". Every free id carries a -free suffix and the paid twin beside it is metered at list rates
 
 </details>
 

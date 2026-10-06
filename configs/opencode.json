@@ -126,11 +126,11 @@
         "baseURL": "https://api.kilo.ai/api/gateway"
       },
       "models": {
-        "kilo-auto/free": {
-          "name": "kilo-auto/free"
-        },
         "openrouter/free": {
           "name": "openrouter/free"
+        },
+        "kilo-auto/free": {
+          "name": "kilo-auto/free"
         },
         "nvidia/nemotron-3-ultra-550b-a55b:free": {
           "name": "nvidia/nemotron-3-ultra-550b-a55b:free"

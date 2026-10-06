@@ -262,7 +262,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
     raw_bodies = {r['url']: (bundle.out / r['attempts'][-1]['file']).read_text(errors='replace')
                   for r in checks if r['passed']}
     bodies = {url: page_texts(body) for url, body in raw_bodies.items()}
-    quotes, catalogs = [], []
+    quotes, catalogs, quotas = [], [], []
     for entry in entries:
         pages = [p for u in by_row[entry.id] for p in bodies.get(u, [])]
         unread = any(u not in bodies for u in by_row[entry.id])
@@ -277,11 +277,19 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
             notes = check_page_catalog(body, entry.page_catalog) if body is not None else ['source unreadable']
             catalogs.append({'row': entry.id, 'source': entry.page_catalog.source, 'notes': notes,
                              'passed': not notes})
+        from .quotas import quota_changes
+        for i, quota in enumerate(entry.quotas):
+            body = raw_bodies.get(quota.source)
+            notes = quota_changes(body, quota) if body is not None else ['source unreadable']
+            quotas.append({'row': entry.id, 'field': f'quotas[{i}]', 'source': quota.source,
+                           'notes': notes, 'passed': not notes})
     return bundle.save('sources', {'sha': scope['sha'], 'read_at': now(), 'by_row': by_row,
                                   'checks': checks, 'quotes': quotes, 'followed': followed,
                                   'page_catalogs': catalogs,
+                                  'quotas': quotas,
                                   'passed': all(r['passed'] for r in checks) and all(q['found'] for q in quotes)
-                                            and all(c['passed'] for c in catalogs),
+                                            and all(c['passed'] for c in catalogs)
+                                            and all(q['passed'] for q in quotas),
                                   'judgment': 'Source reads, quote matching and configured page catalogs; vendor eligibility still needs review.'})
 
 

@@ -39,9 +39,13 @@ def browser_plan(bundle: Bundle) -> dict:
             'output': str(bundle.out / 'browser-execution.json')}
 
 
-def browser_script(bundle: Bundle) -> str:
+def browser_script(bundle: Bundle, *, cases: list[str] | None = None) -> str:
     plan = browser_plan(bundle)
     bundle.save('browser-plan', plan)
+    if cases is not None:
+        if len(cases) != len(set(cases)) or not set(cases) <= set(plan['cases']):
+            raise ValueError('selected browser cases must be a unique subset of the full plan')
+        plan = {**plan, 'selected_cases': cases}
     template = Path(__file__).resolve().parents[2] / 'templates/review-browser.js.j2'
     return Environment(autoescape=False).from_string(template.read_text()).render(plan=json.dumps(plan))
 

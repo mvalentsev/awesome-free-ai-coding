@@ -457,3 +457,56 @@ def test_scope_includes_registry_changes_not_exposed_in_the_public_index(tmp_pat
     bundle = review.Bundle(repo / '.evidence', repo)
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     assert scope['rows'] == ['vendor']
+
+@respx.mock
+async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(tmp_path):
+    from freetier_radar.models import Entry, save_registry
+    repo = repo_at(tmp_path)
+    entry = Entry.model_validate({
+        'id':'vendor','name':'Vendor','url':'https://vendor.example','category':'api-free-tier',
+        'offering':'A free quota','first_seen':'2026-09-01','last_verified':'2026-10-05',
+        'probe':{'type':'page-keywords','endpoint':'https://vendor.example/pricing',
+                 'keywords':['Recurring free quota for chat']},
+        'quotas':[{'amount':20,'unit':'requests','period':'minute','scope':'account',
+                   'source':'https://vendor.example/limits','read':'constant',
+                   'constant':'FREE_MODEL_RATE_LIMIT_RPM',
+                   'quote':'Free models allow 20 requests per minute.'}]})
+    save_registry(repo/'registry.yaml',[entry])
+    subprocess.run(['git','-C',str(repo),'add','registry.yaml'],check=True)
+    subprocess.run(['git','-C',str(repo),'commit','-qm','fix: fixture quota'],check=True)
+    bundle = review.Bundle(repo/'.evidence',repo)
+    review.prepare(repo,'HEAD~1','HEAD',bundle)
+    respx.get(entry.probe.endpoint).respond(200,text='Recurring free quota for chat')
+    respx.get(entry.quotas[0].source).respond(200,text=
+        '<p>Free models allow 20 requests per minute.</p><script>const FREE_MODEL_RATE_LIMIT_RPM=10;</script>')
+    result = await review.sources(bundle, [])
+    assert all(q['found'] for q in result['quotes'])
+    assert not result['passed']
+    assert result['quotas'][0]['notes'] == ['quota constant FREE_MODEL_RATE_LIMIT_RPM=10 (recorded 20)']
+
+
+def test_browser_batches_keep_full_coverage_and_do_not_accept_a_partial_run(tmp_path):
+    from freetier_radar.review_browser import accept_browser, browser_plan, browser_script
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo/'.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    full = browser_plan(bundle)
+    chosen = full['cases'][:2]
+    script = browser_script(bundle, cases=chosen)
+    assert 'selected_cases' in script
+    assert bundle.load('browser-plan')['cases'] == full['cases']
+    result = {'sha':full['sha'],'passed':True,'records':[{'id':case} for case in chosen]}
+    assert not accept_browser(bundle, result, full)['passed']
+    with pytest.raises(ValueError):
+        browser_script(bundle, cases=['unknown'])
+
+
+def test_browser_batching_preserves_every_assertion_from_the_full_script(tmp_path):
+    from freetier_radar.review_browser import browser_script
+    repo = repo_at(tmp_path)
+    bundle = review.Bundle(repo/'.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    whole = browser_script(bundle)
+    selected = browser_script(bundle, cases=bundle.load('browser-plan')['cases'][:1])
+    assertions = lambda code: [line.strip() for line in code.splitlines() if 'throw Error' in line]
+    assert assertions(whole) == assertions(selected)

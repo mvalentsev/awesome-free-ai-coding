@@ -55,6 +55,9 @@ def _prose(e: Entry) -> list[tuple[str, str]]:
         from .page_catalog import catalog_quotes
         fields += catalog_quotes(e.page_catalog)
         fields += [("page_catalog.model.name", m.name) for m in e.page_catalog.models]
+    for i, quota in enumerate(e.quotas):
+        fields += [(f"quotas[{i}].{field}", getattr(quota, field))
+                   for field in ("label", "condition", "reset")]
     return fields
 
 

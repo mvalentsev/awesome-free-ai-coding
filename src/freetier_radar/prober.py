@@ -149,6 +149,10 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
         # border_moved) are both read, and both notes kept: one does not answer
         # the other.
         moved = []
+        if entry.quotas:
+            from .quotas import quota_moved
+            moved.extend(await quota_moved(client, entry, page, attempts, backoff,
+                                          today or date.today()))
         if entry.page_catalog is not None:
             from .page_catalog import check_page_catalog
             changes = check_page_catalog(page.text, entry.page_catalog)

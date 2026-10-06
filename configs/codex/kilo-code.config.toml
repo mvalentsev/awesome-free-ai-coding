@@ -11,7 +11,7 @@
 # id; the quota and every free id are on the row's page,
 # https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/ —
 # codex -p kilo-code -m <id> takes another.
-model = "kilo-auto/free"
+model = "openrouter/free"
 model_provider = "kilo-code"
 # The same three settings in every Codex profile here, so the request Codex
 # sends is the one the list's run checks; each is off for lanes that refuse it
