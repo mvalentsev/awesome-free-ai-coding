@@ -473,7 +473,9 @@ async def test_sources_check_numeric_quota_binding_beside_a_matching_old_quote(t
                    'quote':'Free models allow 20 requests per minute.'}]})
     save_registry(repo/'registry.yaml',[entry])
     subprocess.run(['git','-C',str(repo),'add','registry.yaml'],check=True)
-    subprocess.run(['git','-C',str(repo),'commit','-qm','fix: fixture quota'],check=True)
+    env = {**os.environ, 'GIT_AUTHOR_NAME':'a reviewer','GIT_AUTHOR_EMAIL':'t@example.com',
+           'GIT_COMMITTER_NAME':'a reviewer','GIT_COMMITTER_EMAIL':'t@example.com'}
+    subprocess.run(['git','-C',str(repo),'commit','-qm','fix: fixture quota'],check=True,env=env)
     bundle = review.Bundle(repo/'.evidence',repo)
     review.prepare(repo,'HEAD~1','HEAD',bundle)
     respx.get(entry.probe.endpoint).respond(200,text='Recurring free quota for chat')
