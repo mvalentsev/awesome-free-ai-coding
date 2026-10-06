@@ -1056,6 +1056,8 @@ changing a shared component, compare the previous output and representative
 peer rows. Preserve these structural contracts in tests separately from checks
 that the new data appears. Review the rendered desktop and mobile result;
 updating expected strings alone is not a presentation review.
+Shared usage limits appear once under Limits, rather than in per-model access
+labels. Keep conditions specific to a model attached to that model.
 
 ```bash
 uv sync

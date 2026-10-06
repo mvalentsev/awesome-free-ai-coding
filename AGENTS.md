@@ -18,6 +18,10 @@ regression check rejects the previous bad output before correcting it. Review
 unaffected peer rows as well as the changed row in the final diff and browser.
 Passing content assertions, byte checks and CI do not establish design quality.
 
+Preserve the scope of facts as well as section order. Shared usage limits belong
+once under Limits; model labels carry only conditions specific to that model.
+Check both scopes with a shared-limit case and a model-specific control.
+
 Review model classification separately from presentation. Compare the previous
 and resulting families, and record vendor evidence for every removal or new
 empty state. Check every advertised free access mode: a priced wallet can sit

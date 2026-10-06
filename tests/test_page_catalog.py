@@ -61,6 +61,51 @@ def test_uniform_session_allowance_is_a_free_lane_beside_the_spending_wallet():
     assert not e.page_catalog.independently_free(e.page_catalog.models[2])
 
 
+@pytest.mark.parametrize("surface", ["site", "readme", "provider", "index", "model"])
+def test_shared_session_allowance_stays_in_limits_instead_of_model_labels(tmp_path, surface):
+    from pathlib import Path
+    from freetier_radar.models import save_registry
+    from freetier_radar.render import (build_index, build_model_page, build_provider_page,
+                                     render_readme, render_site)
+    data = session_catalog_data()
+    for model in data["models"][:2]:
+        model["listed"] = True
+    e = entry(data)
+    today = date(2026, 10, 6)
+    allowance = data["limited_allowance"]
+    reg = tmp_path / "registry.yaml"
+    save_registry(reg, [e])
+    if surface == "site":
+        text = render_site(reg, Path("templates"), tmp_path / "index.html", today=today)
+        model_text = re.search(r'<td class="models"[^>]*>(.*?)</td>', text, re.S).group(1)
+    elif surface == "readme":
+        text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=today)
+        model_text = next(line for line in text.splitlines() if line.startswith('- **[Vendor]'))
+    elif surface == "provider":
+        text = build_provider_page(e, [], today, registry=[e], pages={"alpha", "beta"})
+        model_text = text.split("## Free models\n", 1)[1].split("## Limits,", 1)[0]
+    elif surface == "index":
+        row = build_index([e], today)["entries"][0]
+        text = row["limits"]
+        model_text = json.dumps(row["access_labels"]["models"])
+    else:
+        text = build_model_page("beta", [e], [], today, pages={"alpha", "beta"})
+        model_text = text.split('<details markdown="block">', 1)[0]
+    assert allowance not in model_text
+    assert "beta" in model_text
+    assert text.count(allowance) == (0 if surface == "readme" else 1)
+
+
+def test_a_model_specific_session_condition_keeps_its_access_label():
+    from freetier_radar.render import build_index
+    data = session_catalog_data()
+    quote = "Beta is free in the US, one session a day for every account."
+    data["conditions"]["us-session"] = {"kind": "free-session", "quote": quote}
+    data["models"][1].update(hours=None, limited=False, condition="us-session", listed=True)
+    row = build_index([entry(data)], date(2026, 10, 6))["entries"][0]
+    assert row["access_labels"]["models"]["beta"] == quote
+
+
 def test_older_session_catalog_remains_readable_but_current_missing_dates_are_flagged(tmp_path):
     from freetier_radar.models import load_registry, save_registry
     from freetier_radar.validate import check

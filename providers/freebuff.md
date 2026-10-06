@@ -19,7 +19,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regi
 
 ## Free models
 
-`solar-pro-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) (Session-based limited mode: 6 one-hour sessions per day, shared across its models.), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) (Session-based limited mode: 6 one-hour sessions per day, shared across its models.), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) (Session-based limited mode: 6 one-hour sessions per day, shared across its models.)
+`solar-pro-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 
 ## Limits, in the vendor's words
 

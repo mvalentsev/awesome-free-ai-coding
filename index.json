@@ -4935,9 +4935,9 @@
         "offer": "",
         "models": {
           "solar-pro-4": "",
-          "mimo-v2.6-flash": "Session-based limited mode: 6 one-hour sessions per day, shared across its models.",
-          "glm-5.3-flash": "Session-based limited mode: 6 one-hour sessions per day, shared across its models.",
-          "deepseek-v4.1-flash": "Session-based limited mode: 6 one-hour sessions per day, shared across its models."
+          "mimo-v2.6-flash": "",
+          "glm-5.3-flash": "",
+          "deepseek-v4.1-flash": ""
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/"

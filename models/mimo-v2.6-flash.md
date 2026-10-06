@@ -19,7 +19,7 @@ crumb: mimo-v2.6-flash
 
 ### [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-🤖 Coding agents & CLIs · no card · Session-based limited mode: 6 one-hour sessions per day, shared across its models. · verified 2026-10-05 · listed since 2026-10-06
+🤖 Coding agents & CLIs · no card · verified 2026-10-05 · listed since 2026-10-06
 
 Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and separate unmetered or conditional free-session offers. "No API key, no credit card."
 
