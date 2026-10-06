@@ -1,6 +1,8 @@
 async (page) => {
   const plan = {{ plan }};
   const records = [], pageErrors = [];
+  // Jekyll's served /providers/freebuff/ at 1dceb28 (2026-10-06) uses smart quotes.
+  const plain = text => text.replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/\s+/g,' ').trim();
   const listener = e => pageErrors.push(e.message);
   page.on('pageerror', listener);
   const record = async (id,extra={}) => {
@@ -104,7 +106,7 @@ async (page) => {
             await go(row.page);
           }
           const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
-          const text=await body.textContent();
+          const text=plain(await body.textContent());
           if(row.archived) {
             if(!/archived/i.test(text)) throw Error('Provider archive status: '+row.id);
           } else {
@@ -120,9 +122,9 @@ async (page) => {
               for(let i=0;i<catalog.models.length;i++) {
                 const model=catalog.models[i], cells=models.locator('tbody tr').nth(i).locator('td');
                 const hours=model.expired||model.hours==null?'—':model.hours==='unlimited'?'Unlimited':String(model.hours);
-                if((await cells.nth(0).textContent()).trim()!==model.name||(await cells.nth(2).textContent()).trim()!==hours||(await cells.nth(3).textContent()).trim()!==(model.limited&&!model.expired?'Yes':'—')) throw Error('Provider model access: '+row.id+' '+model.name);
+                if(plain(await cells.nth(0).textContent())!==plain(model.name)||(await cells.nth(2).textContent()).trim()!==hours||(await cells.nth(3).textContent()).trim()!==(model.limited&&!model.expired?'Yes':'—')) throw Error('Provider model access: '+row.id+' '+model.name);
               }
-              for(const quote of [...Object.values(catalog.conditions).map(c=>c.quote),...(catalog.notes||[])]) if(!text.includes(quote)) throw Error('Provider condition: '+row.id);
+              for(const quote of [...Object.values(catalog.conditions).map(c=>c.quote),...(catalog.notes||[])]) if(!text.includes(plain(quote))) throw Error('Provider condition: '+row.id);
             } else {
               for(const model of row.models) if(!text.includes(model.family)) throw Error('Provider family: '+row.id+' '+model.family);
             }
