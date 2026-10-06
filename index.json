@@ -5247,11 +5247,12 @@
         "https://llmtr.com/models/inclusionai/ling-3.1-flash",
         "https://llmtr.com/models/motif/motif-3",
         "https://llmtr.com/models/tesseracted/kolibri-1",
-        "https://llmtr.com/models/qwen/qwen3.8-27b-free"
+        "https://llmtr.com/models/qwen/qwen3.8-27b-free",
+        "https://llmtr.com/models/apodex/apodex-1.1-mini-free"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a free chat model), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\". Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\", and \"The platform margin is not added to model prices; it is applied only once, at top-up\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Read 2026-10-05",
+      "limits": "A new account calls the free rows before any top-up: the migration guide says \"Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin\" (pick a free chat model), and \"Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular\" (checks gateway use on a zero balance). Three free rows carry a daily quota whose figure is published nowhere (Nemotron 3 Ultra and Super, Qwen3.8 27B); Laguna XS 2.1 is free because \"Poolside serves these models free on its own inference API\", with \"no extra token allowance to track\". Paid use is prepaid credit: \"An 8% platform margin is added on top of the requested top-up amount\", and \"The platform margin is not added to model prices; it is applied only once, at top-up\". The privacy page says prompt and response bodies are not written permanently to its usage and billing database (\"kalıcı olarak yazılmaz\"). Apodex Mini has an unpublished daily per-account cap and may close before its deadline if the promotion pool runs out. Read 2026-10-06",
       "free_part": "models",
       "models": [
         {
@@ -5287,6 +5288,9 @@
         },
         {
           "family": "kolibri-1"
+        },
+        {
+          "family": "apodex-1.1-mini"
         }
       ],
       "api": {
@@ -5303,7 +5307,8 @@
           "agnes/agnes-3.0-flash",
           "agnes/agnes-2.5-flash",
           "minimax/minimax-m3.1-flash-preview",
-          "tesseracted/kolibri-1"
+          "tesseracted/kolibri-1",
+          "apodex/apodex-1.1-mini-free"
         ],
         "model_access": {
           "minimax/minimax-m3.1-flash-preview": {
@@ -5319,6 +5324,10 @@
           "tesseracted/kolibri-1": {
             "source": "https://llmtr.com/models/tesseracted/kolibri-1",
             "until": "2026-10-09T23:59:00+03:00"
+          },
+          "apodex/apodex-1.1-mini-free": {
+            "source": "https://llmtr.com/models/apodex/apodex-1.1-mini-free",
+            "until": "2026-10-10T23:59:00+03:00"
           }
         },
         "model_limits": {
@@ -5330,6 +5339,11 @@
           "tesseracted/kolibri-1": {
             "context_tokens": 32768,
             "output_tokens": 16384,
+            "source": "https://llmtr.com/v1/models"
+          },
+          "apodex/apodex-1.1-mini-free": {
+            "context_tokens": 262144,
+            "output_tokens": 32768,
             "source": "https://llmtr.com/v1/models"
           }
         },
@@ -5383,7 +5397,8 @@
           "ling-3.1-flash": "until 2026-10-13",
           "minimax-m3.1-flash-preview": "requires $5 top-up + 8% fee; until 2026-10-06",
           "qwen3.8-27b": "",
-          "kolibri-1": "until 2026-10-09"
+          "kolibri-1": "until 2026-10-09",
+          "apodex-1.1-mini": "until 2026-10-10"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -10264,6 +10279,13 @@
       "rows": [
         "regolo"
       ]
+    },
+    {
+      "family": "apodex-1.1-mini",
+      "rows": [
+        "llmtr"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/apodex-1.1-mini/"
     },
     {
       "family": "big-pickle",

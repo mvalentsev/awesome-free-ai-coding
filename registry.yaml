@@ -3466,6 +3466,7 @@ entries:
   - https://llmtr.com/models/motif/motif-3
   - https://llmtr.com/models/tesseracted/kolibri-1
   - https://llmtr.com/models/qwen/qwen3.8-27b-free
+  - https://llmtr.com/models/apodex/apodex-1.1-mini-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -3480,7 +3481,8 @@ entries:
     amount", and "The platform margin is not added to model prices; it is applied
     only once, at top-up". The privacy page says prompt and response bodies are not
     written permanently to its usage and billing database ("kalıcı olarak yazılmaz").
-    Read 2026-10-05'
+    Apodex Mini has an unpublished daily per-account cap and may close before its
+    deadline if the promotion pool runs out. Read 2026-10-06'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -3499,6 +3501,7 @@ entries:
     tier: strong
     aa_model: qwen3-8-27b
   - family: kolibri-1
+  - family: apodex-1.1-mini
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -3514,6 +3517,7 @@ entries:
     - agnes/agnes-2.5-flash
     - minimax/minimax-m3.1-flash-preview
     - tesseracted/kolibri-1
+    - apodex/apodex-1.1-mini-free
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -3526,6 +3530,9 @@ entries:
       tesseracted/kolibri-1:
         source: https://llmtr.com/models/tesseracted/kolibri-1
         until: '2026-10-09T23:59:00+03:00'
+      apodex/apodex-1.1-mini-free:
+        source: https://llmtr.com/models/apodex/apodex-1.1-mini-free
+        until: '2026-10-10T23:59:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -3534,6 +3541,10 @@ entries:
       tesseracted/kolibri-1:
         context_tokens: 32768
         output_tokens: 16384
+        source: https://llmtr.com/v1/models
+      apodex/apodex-1.1-mini-free:
+        context_tokens: 262144
+        output_tokens: 32768
         source: https://llmtr.com/v1/models
     ignored_ids:
     - liquid/lfm-2.5-embedding-350m-free

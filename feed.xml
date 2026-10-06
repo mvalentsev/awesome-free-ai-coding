@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-06T14:05:44Z</updated>
+  <updated>2026-10-06T14:30:45Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261006T143045Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-06T14:30:45Z</updated>
+    <summary type="text">added apodex-1.1-mini · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, minimax-m3.1-flash-preview, qwen3.8-27b, kolibri-1, apodex-1.1-mini</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/aihubmix/20261006T140544Z</id>
     <title>Free models changed: AIHubMix (free models)</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://platform.inceptionlabs.ai"/>
     <updated>2026-09-25T12:50:26Z</updated>
     <summary type="text">dropped mercury-2, mercury-2.5, mercury-edit-2</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/sail-research/20260925T125026Z</id>
-    <title>Free models changed: Sail Research</title>
-    <link rel="alternate" href="https://www.sailresearch.com"/>
-    <updated>2026-09-25T12:50:26Z</updated>
-    <summary type="text">dropped deepseek-v4-flash, deepseek-v4-pro, glm-5.3, glm-5.3-flash, kimi-k3</summary>
   </entry>
 </feed>
