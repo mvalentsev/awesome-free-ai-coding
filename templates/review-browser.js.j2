@@ -124,6 +124,13 @@ async (page) => {
           const body=page.locator('.markdown-body');await body.locator('h1').waitFor();
           const text=plain(await body.textContent());
           const headings=(await body.locator('h2').allTextContents()).map(plain);
+          if(row.duplicate_of) {
+            const target=plan.folded_targets[row.duplicate_of];
+            if(!target || JSON.stringify(headings)!==JSON.stringify(['The same project as '+target.name,'History'])) throw Error('Folded provider section contract: '+row.id);
+            if(!text.includes('folded into '+target.name) || !await body.locator('a[href="'+target.page+'"]').count()) throw Error('Folded provider navigation: '+row.id);
+            await record(prefix+'provider/'+row.id);
+            continue;
+          }
           const required=[row.archived?'What it offered':'What you get',row.archived?'Free models it listed':'Free models',"Limits, in the vendor's words"];
           const optional=['Where it is offered','What happens to what you send'].filter(heading=>headings.includes(heading));
           const expected=[...required,...optional,...(row.archived?[]:['Connect']),'Evidence','History'];

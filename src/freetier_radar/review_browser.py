@@ -20,6 +20,9 @@ def browser_plan(bundle: Bundle) -> dict:
     if not models:
         models = [m for m in index['models'] if m.get('page') and m.get('tier') == 'strong'][:2]
     rows = [e for e in index['entries'] if e['id'] in scope['rows']]
+    folded_ids = {e['duplicate_of'] for e in rows if e.get('duplicate_of')}
+    folded_targets = {e['id']: {'name': e['name'], 'page': e['page']}
+                      for e in index['entries'] if e['id'] in folded_ids}
     old = {e['id']: {m['family'] for m in e.get('models', [])} for e in before['entries']}
     links = [[e['id'], m['family']] for e in rows for m in e.get('models', [])
              if m['family'] not in old.get(e['id'], set())]
@@ -35,7 +38,8 @@ def browser_plan(bundle: Bundle) -> dict:
     return {'sha': scope['sha'], 'site': PAGES_URL + '/', 'repository': REPO_URL,
             'chart_date': json.loads(blob(bundle.repo, scope['sha'], 'src/freetier_radar/intelligence-index.json'))['read_on']
                           if 'src/freetier_radar/intelligence-index.json' in scope['paths'] else None,
-            'models': models, 'rows': rows, 'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
+            'models': models, 'rows': rows, 'folded_targets': folded_targets,
+            'links': links, 'widths': widths, 'schemes': schemes, 'cases': cases,
             'output': str(bundle.out / 'browser-execution.json')}
 
 

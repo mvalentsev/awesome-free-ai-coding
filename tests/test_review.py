@@ -512,3 +512,54 @@ def test_browser_batching_preserves_every_assertion_from_the_full_script(tmp_pat
     selected = browser_script(bundle, cases=bundle.load('browser-plan')['cases'][:1])
     assertions = lambda code: [line.strip() for line in code.splitlines() if 'throw Error' in line]
     assert assertions(whole) == assertions(selected)
+
+
+def test_browser_plan_keeps_folded_targets_outside_the_changed_rows(tmp_path):
+    repo = repo_at(tmp_path)
+    index = json.loads((repo / 'index.json').read_text())
+    index['entries'].append({'id': 'holder', 'name': 'Canonical service',
+                             'page': 'https://example.com/providers/holder/', 'models': []})
+    (repo / 'index.json').write_text(json.dumps(index))
+    env = {**os.environ, 'GIT_AUTHOR_NAME': 'Fixture', 'GIT_AUTHOR_EMAIL': 'fixture@example.com',
+           'GIT_COMMITTER_NAME': 'Fixture', 'GIT_COMMITTER_EMAIL': 'fixture@example.com'}
+    subprocess.run(['git', '-C', str(repo), 'add', 'index.json'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture holder'], check=True, env=env)
+    index['entries'][0].update(duplicate_of='holder', archived=True)
+    (repo / 'index.json').write_text(json.dumps(index))
+    subprocess.run(['git', '-C', str(repo), 'add', 'index.json'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture folded row'], check=True, env=env)
+    from freetier_radar.review_browser import browser_plan
+    bundle = review.Bundle(repo / '.evidence', repo)
+    review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    plan = browser_plan(bundle)
+    assert plan['folded_targets']['holder']['name'] == 'Canonical service'
+    assert 'holder' not in {row['id'] for row in plan['rows']}
+    assert len([case for case in plan['cases'] if '/provider/vendor' in case]) == 6
+
+
+@pytest.mark.skipif(shutil.which('node') is None, reason='needs node to run the browser check')
+@pytest.mark.parametrize('damage', [None, 'heading', 'link'])
+def test_browser_folded_contract_accepts_the_native_page_and_rejects_broken_navigation(damage):
+    import re
+    from freetier_radar.render import build_provider_page, provider_page_url
+    from test_render import _mimo_rows, TODAY
+    entries = _mimo_rows()
+    text = build_provider_page(entries[1], [], TODAY, registry=entries)
+    headings = re.findall(r'^## (.+)$', text, re.M)
+    script = (Path(__file__).resolve().parents[1] / 'templates/review-browser.js.j2').read_text()
+    check = script.split("const headings=(await body.locator('h2').allTextContents()).map(plain);", 1)[1].split('const required=', 1)[0]
+    harness = '''const {text,headings,linkCount,target}=JSON.parse(require('fs').readFileSync(0,'utf8'));
+    const row={id:'alias',duplicate_of:'holder'},plan={folded_targets:{holder:target}};
+    const prefix='',records=[],plain=t=>t.replace(/\\s+/g,' ').trim();
+    const body={locator:()=>({count:async()=>linkCount})};
+    const record=async id=>records.push(id);
+    (async()=>{for(const row of [{id:'alias',duplicate_of:'holder'}]){'''+check+'''}
+    if(records.length!==1)throw Error('folded provider was not checked');
+    })().catch(e=>{console.error(e.message);process.exit(1)});'''
+    visible = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', text.replace('**', ''))
+    payload = {'text': visible, 'headings': headings, 'linkCount': 0 if damage == 'link' else text.count(']('+provider_page_url(entries[0].id)+')'),
+               'target': {'name': entries[0].name, 'page': provider_page_url(entries[0].id)}}
+    if damage == 'heading':
+        payload['headings'] = ['What it offered', 'History']
+    result = subprocess.run(['node', '-e', harness], input=json.dumps(payload), text=True, capture_output=True)
+    assert (result.returncode == 0) == (damage is None), result.stderr
