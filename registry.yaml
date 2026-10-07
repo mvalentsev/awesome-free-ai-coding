@@ -4451,13 +4451,11 @@ entries:
     unit: Freebucks
     period: day
     budgets:
-    - id: us
-      amount: 150
+    - id: full
+      quote: Full access covers US, CA, GB, AU, NZ, IE, NO, SE, DK, FI, NL, AT, LU,
+        IS, DE, FR, ES, IT, PT, BE, CH, LI, MT and KR.
       countries:
       - US
-    - id: full-105
-      amount: 105
-      countries:
       - CA
       - GB
       - AU
@@ -4471,9 +4469,6 @@ entries:
       - AT
       - LU
       - IS
-    - id: full-60
-      amount: 60
-      countries:
       - DE
       - FR
       - ES
@@ -4484,17 +4479,19 @@ entries:
       - LI
       - MT
       - KR
-    - id: limited
+    - id: else
       amount: 25
+      quote: the free limited-access allowance is 25 Freebucks a day
       scope: else
     - id: vpn
       amount: 20
+      quote: 20 on a VPN or proxy
       scope: vpn
-    example_budget: us
+    example_budget: full
     read:
       format: markdown
       models_question: What models do you use?
-      budgets_question: How do Freebucks work?
+      budgets_question: What is limited mode?
       limited_question: What is limited mode?
       limited_prefix: limited mode includes
       limited_suffix: ', with'

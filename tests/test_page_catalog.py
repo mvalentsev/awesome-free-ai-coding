@@ -193,6 +193,57 @@ async def test_catalog_condition_is_checked_only_on_its_own_source():
     assert 'conditions.plan' in result.detail
 
 
+@respx.mock
+async def test_unpublished_regional_amount_and_quoted_limited_budgets(tmp_path):
+    from freetier_radar.models import load_registry, save_registry
+    from freetier_radar.render import build_index
+    data = session_catalog_data()
+    data['read'].update(format='markdown', table_heading=None)
+    data['reviewed_on'] = date.today().isoformat()
+    data['budgets'] = [
+        {'id': 'full', 'amount': None, 'countries': ['US', 'CA'], 'quote': 'Full access covers US and CA.'},
+        {'id': 'else', 'amount': 25, 'scope': 'else', 'quote': 'free limited allowance is 25 Credits a day'},
+        {'id': 'vpn', 'amount': 20, 'scope': 'vpn', 'quote': '20 on a VPN or proxy'},
+    ]
+    data['example_budget'] = 'full'
+    data['conditions']['wallet'] = {'kind': 'wallet', 'quote': 'Credits buy one-hour model sessions.'}
+    for model in data['models'][:2]:
+        model.update(hours=None, condition='wallet', listed=True)
+    body = '''# Vendor
+Credits every day for free.
+### Which models?
+- Alpha: Balanced.
+- Beta: Reasoning.
+- Gamma: Paid.
+### How do credits work?
+Full access covers US and CA. Your settings show your own daily allowance.
+Credits buy one-hour model sessions.
+### What is limited mode?
+The free limited allowance is 25 Credits a day, or 20 on a VPN or proxy.
+Session-based limited mode includes Alpha and Beta, with 6 one-hour sessions per day.
+Gamma needs a paid plan.
+'''
+    respx.get(data['source']).respond(200, text=body)
+    async with httpx.AsyncClient() as client:
+        good = await probe_entry(client, entry(data), attempts=1, backoff=0)
+        respx.get(data['source']).respond(200, text=body.replace('25 Credits', '35 Credits'))
+        bad = await probe_entry(client, entry(data), attempts=1, backoff=0)
+    assert good.status is ProbeStatus.PASS
+    assert bad.status is ProbeStatus.STALE_IDS and 'budgets[1].quote' in bad.detail
+    published = build_index([entry(data)], date.today())['entries'][0]
+    assert published['page_catalog']['budgets'][0]['amount'] is None
+    limits = published['limits']
+    assert 'amount not published (Credits per day)' in limits
+    assert '25 Credits per day' in limits and '20 Credits per day' in limits
+    assert '100 Credits per day' not in limits and '0 Credits per day' not in limits.replace('20 Credits', '')
+    save_registry(tmp_path / 'registry.yaml', [entry(data)])
+    assert load_registry(tmp_path / 'registry.yaml')[0].page_catalog.budgets[0].amount is None
+    with pytest.raises(ValueError, match='amount must match'):
+        wrong = dict(data, budgets=[dict(b) for b in data['budgets']])
+        wrong['budgets'][1]['amount'] = 35
+        entry(wrong)
+
+
 @pytest.mark.parametrize("changed", [{"amount": 150}, {"hours": 20}])
 @respx.mock
 async def test_changed_budget_and_hours_are_review_findings(changed):

@@ -154,7 +154,9 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
     actual = _budgets(answer, catalog) if answer is not None else None
     expected = {key: b.amount for b in catalog.budgets
                 for key in (b.countries if b.scope == "countries" else [b.scope])}
-    if actual is None:
+    if all(b.quote for b in catalog.budgets):
+        pass  # Each scope's exact evidence is checked with catalog_quotes below.
+    elif actual is None:
         notes.append("budgets unreadable in the configured FAQ answer")
     else:
         notes += _differences("budget scopes", set(expected), set(actual))
@@ -217,15 +219,16 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
         current = page_texts(answer or "") if field == "page_catalog.limited_allowance" else pages
         if not quote_found(quote, current):
             notes.append(f"{field} no longer evidenced")
-    if catalog.read.table_heading is None and catalog.reviewed_on:
+    if (catalog.read.table_heading is None or any(b.amount is None for b in catalog.budgets)) and catalog.reviewed_on:
         from .quotas import UNKNOWN_RECHECK_DAYS
         if ((today or date.today())-catalog.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
-            notes.append('unpublished model hour prices need a fresh dated review')
+            notes.append('unpublished model hour prices or budget amounts need a fresh dated review')
     return notes
 
 
 def catalog_quotes(catalog: PageCatalog) -> list[tuple[str, str]]:
     return ([("page_catalog.limited_allowance", catalog.limited_allowance)] if catalog.limited_allowance else []) + [
+        (f"page_catalog.budgets[{i}].quote", b.quote) for i, b in enumerate(catalog.budgets) if b.quote] + [
         (f"page_catalog.conditions.{key}.quote", c.quote) for key, c in catalog.conditions.items()] + [
         (f"page_catalog.notes[{i}]", quote) for i, quote in enumerate(catalog.notes)]
 
@@ -273,7 +276,9 @@ def catalog_words(catalog: PageCatalog, *, include_session: bool = True) -> str:
     """One text presentation, reused by the site, JSON, browse and llms.txt."""
     budgets = []
     for b in catalog.budgets:
-        budgets.append(f"{budget_scope(b)}: {b.amount} {catalog.unit} per {catalog.period}")
+        amount = (f"{b.amount} {catalog.unit} per {catalog.period}" if b.amount is not None
+                  else f"amount not published ({catalog.unit} per {catalog.period})")
+        budgets.append(f"{budget_scope(b)}: {amount}")
     example = next(b for b in catalog.budgets if b.id == catalog.example_budget)
     scope = budget_scope(example)
     offers = []
@@ -317,6 +322,14 @@ def limits_text(entry: Entry) -> str:
     return "\n\n".join(t for t in (summary, entry.limits,
                                      catalog_words(catalog, include_session=not derived_session)
                                      if catalog else "") if t)
+
+
+def catalog_index(catalog: PageCatalog) -> dict:
+    """Keep unknown regional amounts explicit in the public JSON."""
+    data = catalog.model_dump(mode='json', exclude_none=True)
+    for budget, recorded in zip(data['budgets'], catalog.budgets):
+        budget['amount'] = recorded.amount
+    return data
 
 
 def family_condition(entry: Entry, family: str) -> str:

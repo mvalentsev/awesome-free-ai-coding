@@ -619,7 +619,8 @@ class CatalogRead(BaseModel):
 class CreditBudget(BaseModel):
     model_config = ConfigDict(extra="forbid")
     id: str = Field(pattern=r"^[a-z0-9-]+$")
-    amount: int = Field(gt=0, strict=True)
+    amount: int | None = Field(default=None, gt=0, strict=True)
+    quote: str | None = Field(default=None, min_length=3, max_length=1200)
     scope: Literal["countries", "else", "vpn"] = Field(
         default="countries", exclude_if=lambda v: v == "countries")
     countries: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
@@ -727,6 +728,16 @@ class PageCatalog(BaseModel):
 
     @model_validator(mode="after")
     def _references_and_free_families_are_consistent(self) -> PageCatalog:
+        if any(b.amount is None for b in self.budgets) and self.reviewed_on is None:
+            raise ValueError('unpublished budget amounts need a dated review')
+        if any(b.quote for b in self.budgets):
+            if not all(b.quote for b in self.budgets):
+                raise ValueError('quoted budgets need evidence for every scope')
+            for budget in self.budgets:
+                if budget.amount is not None and not re.search(rf'\b{budget.amount}\b', budget.quote):
+                    raise ValueError('budget amount must match its evidence quote')
+                if budget.countries and any(not re.search(rf'\b{code}\b', budget.quote) for code in budget.countries):
+                    raise ValueError('budget countries must match their evidence quote')
         if self.read.table_heading is None:
             if any(m.hours is not None for m in self.models):
                 raise ValueError('published hour amounts need a checked table heading')
@@ -742,6 +753,8 @@ class PageCatalog(BaseModel):
             raise ValueError("page catalog has duplicate or overlapping budgets")
         if self.example_budget not in ids:
             raise ValueError("example_budget must name a budget")
+        if any(m.hours is not None for m in self.models) and next(b for b in self.budgets if b.id == self.example_budget).amount is None:
+            raise ValueError('model hour examples need a published example budget amount')
         if any(not note.strip() or len(note) > 1200 for note in self.notes):
             raise ValueError("catalog notes must be nonempty sourced sentences of at most 1200 characters")
         used = {m.condition for m in self.models if m.condition is not None}

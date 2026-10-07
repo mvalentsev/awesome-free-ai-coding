@@ -133,7 +133,10 @@ async (page) => {
           } else {
             if(row.page_catalog) {
               const catalog=row.page_catalog;
-              for(const budget of catalog.budgets) if(!text.includes(budget.amount+' '+catalog.unit+' per '+catalog.period)) throw Error('Provider budget amount: '+row.id);
+              for(const budget of catalog.budgets) {
+                const amount=budget.amount==null?'amount not published ('+catalog.unit+' per '+catalog.period+')':budget.amount+' '+catalog.unit+' per '+catalog.period;
+                if(!text.includes(amount)) throw Error('Provider budget amount: '+row.id);
+              }
               const period={day:'daily',week:'weekly',month:'monthly'}[catalog.period];
               const allowance=catalog.budgets.find(budget=>budget.id===catalog.example_budget);
               for(const model of catalog.models) {

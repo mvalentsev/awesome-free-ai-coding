@@ -37,7 +37,7 @@ from .pictures import (DARK, LIGHT, NARROW_UNTIL, VARIANTS, Arc, Bar, Chart, Her
 # How a figure is put into words, shared with the checks that hold the
 # hand-written files to the same constants.
 from .words import clip, number, series, weeks
-from .page_catalog import catalog_words, family_condition, limits_text
+from .page_catalog import catalog_index, catalog_words, family_condition, limits_text
 # The log a commit will be made on, and the map of the repository, which
 # CONTRIBUTING.md prints.
 from .gate import committed_log
@@ -1220,6 +1220,7 @@ def build_index(entries: list[Entry], today: date,
         "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
+             **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
              **({"quotas": structured_quotas(e)} if structured_quotas(e) else {}),
              "archived": is_archived(e, today),
              **({"access_labels": {"offer": access_words(e.access, compact=True),

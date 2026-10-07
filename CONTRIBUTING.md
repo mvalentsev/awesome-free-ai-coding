@@ -420,6 +420,8 @@ If model hour prices are no longer published, use `table_heading: null`, a
 `wallet` condition and a dated `reviewed_on`; the probe requests a fresh review
 after 7 days. A condition may name its own `source`, which is checked
 separately. Shared wallet conditions stay under Limits rather than model labels.
+Budgets may bind an exact `quote` for each scope. An unpublished `amount` stays
+null and needs the same dated review; it is never rendered as zero or unlimited.
 An unreadable contract or changed value is a review finding;
 an unavailable page remains inconclusive. Known offer deadlines belong in
 `page_catalog.model_access[display name].until`: expiry removes the free-family
