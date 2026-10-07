@@ -1,8 +1,8 @@
 """Read and present a page's credit budgets and complete model picker.
 
 The configurable contract is a headed HTML hours list plus named JSON-LD FAQ
-answers. Freebuff publishes this shape at https://freebuff.com/ (read
-2026-10-06); the fixture uses different vendor/model names. Framework state and
+answers, or a Markdown FAQ. Freebuff publishes the latter at
+https://freebuff.com/llms.txt (read 2026-10-07); the fixture uses different names. Framework state and
 unrelated model illustrations are deliberately outside the hours table.
 """
 from __future__ import annotations
@@ -10,6 +10,7 @@ from __future__ import annotations
 import html
 import json
 import re
+from datetime import date
 from html.parser import HTMLParser
 
 from .countries import country_name
@@ -98,6 +99,14 @@ class _Page(HTMLParser):
         return sorted(n for n in self.nodes if start < n[0] < end)
 
 
+class _Markdown(_Page):
+    def __init__(self,body: str):
+        self.faq, self.visible, self.nodes, self.position = {}, [body], [], 0
+        blocks=re.split(r'^#{1,6}\s+(.+?)\s*$',body,flags=re.M)
+        for i in range(1,len(blocks),2):
+            self.faq.setdefault(clean(blocks[i]).casefold(),[]).append(blocks[i+1])
+
+
 def _budgets(answer: str, catalog: PageCatalog) -> dict[str, int] | None:
     result: dict[str, int] = {}
     saw_unit = False
@@ -135,10 +144,11 @@ def _differences(label: str, expected: set[str], actual: set[str]) -> list[str]:
     return out
 
 
-def check_page_catalog(body: str, catalog: PageCatalog) -> list[str]:
+def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[str,str] | None = None,
+                       today: date | None = None) -> list[str]:
     """Notes for a reviewer; a changed price does not end the whole service."""
     from .quotes import page_texts, quote_found
-    page = _Page(body)
+    page = _Markdown(body) if catalog.read.format == 'markdown' else _Page(body)
     notes = []
     answer = page.answer(catalog.read.budgets_question)
     actual = _budgets(answer, catalog) if answer is not None else None
@@ -151,7 +161,7 @@ def check_page_catalog(body: str, catalog: PageCatalog) -> list[str]:
         notes += [f"budget {key}: {actual[key]} (recorded {amount})"
                   for key, amount in expected.items() if key in actual and actual[key] != amount]
 
-    table = page.table(catalog.read.table_heading)
+    table = page.table(catalog.read.table_heading) if catalog.read.table_heading else None
     hours = {}
     if table is not None:
         for _, tag, text in table:
@@ -162,9 +172,9 @@ def check_page_catalog(body: str, catalog: PageCatalog) -> list[str]:
                 notes.append("hours table has an unreadable or duplicate row")
                 continue
             hours[match[2].casefold()] = "unlimited" if match[1].casefold() == "unlimited" else int(match[1])
-    if not hours:
+    if not hours and catalog.read.table_heading:
         notes.append("hours table unreadable at the configured heading")
-    else:
+    elif hours:
         expected_hours = {m.name.casefold(): m.hours for m in catalog.models if m.hours is not None and not m.expired}
         notes += _differences("hours table models", set(expected_hours), set(hours))
         notes += [f"hours {name}: {hours[name]} (recorded {amount})"
@@ -197,9 +207,20 @@ def check_page_catalog(body: str, catalog: PageCatalog) -> list[str]:
     evidence = [" ".join(page.visible), *[answer for answers in page.faq.values() for answer in answers]]
     pages = [text for part in evidence for text in page_texts(part)]
     for field, quote in catalog_quotes(catalog):
+        if match := re.fullmatch(r'page_catalog\.conditions\.(.+)\.quote',field):
+            condition=catalog.conditions[match[1]]
+            if condition.source and condition.source != catalog.source:
+                extra=(condition_bodies or {}).get(condition.source)
+                if extra is None or not quote_found(quote,page_texts(extra)):
+                    notes.append(f'{field} no longer evidenced on its own source')
+                continue
         current = page_texts(answer or "") if field == "page_catalog.limited_allowance" else pages
         if not quote_found(quote, current):
             notes.append(f"{field} no longer evidenced")
+    if catalog.read.table_heading is None and catalog.reviewed_on:
+        from .quotas import UNKNOWN_RECHECK_DAYS
+        if ((today or date.today())-catalog.reviewed_on).days >= UNKNOWN_RECHECK_DAYS:
+            notes.append('unpublished model hour prices need a fresh dated review')
     return notes
 
 
@@ -266,13 +287,22 @@ def catalog_words(catalog: PageCatalog, *, include_session: bool = True) -> str:
         if access := offer_access(catalog, m):
             text += "; " + access
         offers.append(text)
-    out = (PERIOD_WORDS[catalog.period] + " allowance — " + "; ".join(budgets) + ".\n\n"
-           f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
+    intro=(f"Credit-funded hour examples use the whole allowance for {scope} on one model; they are not added together. "
+           if any(m.hours is not None for m in catalog.models)
+           else "Current model hour prices are not published; check your account's picker. ")
+    out = (PERIOD_WORDS[catalog.period] + " allowance — " + "; ".join(budgets) + ".\n\n" + intro
            + "; ".join(offers) + ".")
     if catalog.limited_allowance and include_session:
         out += f"\n\nWhere the app uses session-based limited mode, the free allowance is {catalog.limited_allowance}."
     if catalog.conditions:
-        out += "\n\n" + " ".join(c.quote for c in catalog.conditions.values())
+        conditions = []
+        for key, condition in catalog.conditions.items():
+            if condition.source and condition.source != catalog.source:
+                names = ", ".join(m.name for m in catalog.models if m.condition == key)
+                conditions.append(f'{names}: “{condition.quote}” (source: {condition.source}).')
+            else:
+                conditions.append(condition.quote)
+        out += "\n\n" + " ".join(conditions)
     if catalog.notes:
         out += "\n\n" + " ".join(catalog.notes)
     return out + f" (source: {catalog.source})."
@@ -292,6 +322,6 @@ def limits_text(entry: Entry) -> str:
 def family_condition(entry: Entry, family: str) -> str:
     if entry.page_catalog:
         for m in entry.page_catalog.models:
-            if m.model and m.model.family == family and m.listed and m.condition:
+            if m.model and m.model.family == family and m.listed and m.condition and entry.page_catalog.conditions[m.condition].kind != 'wallet':
                 return entry.page_catalog.conditions[m.condition].quote
     return ""

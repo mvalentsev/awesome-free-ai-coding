@@ -1,7 +1,7 @@
 """Page catalogs distinguish a spending wallet from independently free offers."""
 import json
 import re
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timezone, timedelta
 
 import httpx
 import pytest
@@ -136,6 +136,61 @@ def page(*, amount=100, hours=10, names=("Alpha", "Beta", "Gamma"), rows=None,
     return (f'<script type="application/ld+json">{json.dumps(faq)}</script>'
             f"<h2>Model hours</h2><p>{amount} Credits every day for free.</p><ul>{table}</ul>"
             f"<p>{condition}</p><h2>Other features</h2>")
+
+
+@respx.mock
+async def test_markdown_faq_checks_budgets_without_inventing_model_hour_prices(tmp_path):
+    from freetier_radar.render import build_index
+    from freetier_radar.models import load_registry,save_registry
+    data=session_catalog_data()
+    data['read'].update(format='markdown',table_heading=None)
+    data['reviewed_on']=date.today().isoformat()
+    data['conditions']['wallet']={'kind':'wallet','quote':'Credits buy one-hour model sessions.'}
+    for model in data['models'][:2]:model.update(hours=None,condition='wallet',listed=True)
+    body='''# Vendor
+Credits every day for free.
+## FAQ
+### Which models?
+- Alpha: Balanced.
+- Beta: Reasoning.
+- Gamma: Paid.
+### How do credits work?
+Credits buy one-hour model sessions.
+- US: 100 Credits a day
+- Everywhere else: 25
+- Any VPN or proxy: 20
+### What is limited mode?
+Session-based limited mode includes Alpha and Beta, with 6 one-hour sessions per day.
+Gamma needs a paid plan.
+'''
+    respx.get(data['source']).respond(200,text=body)
+    async with httpx.AsyncClient() as client:
+        good=await probe_entry(client,entry(data),attempts=1,backoff=0)
+        respx.get(data['source']).respond(200,text=body.replace('US: 100','US: 150'))
+        bad=await probe_entry(client,entry(data),attempts=1,backoff=0)
+        respx.get(data['source']).respond(200,text=body)
+        expired=await probe_entry(client,entry(data),attempts=1,backoff=0,today=date.today()+timedelta(days=7))
+    assert good.status is ProbeStatus.PASS
+    assert bad.status is ProbeStatus.STALE_IDS and 'budget US' in bad.detail
+    assert expired.status is ProbeStatus.STALE_IDS and 'fresh dated review' in expired.detail
+    row=build_index([entry(data)],date.today())['entries'][0]
+    assert [m['family'] for m in row['models']]==['alpha','beta']
+    assert 'hour prices are not published' in row['limits']
+    assert 'Credits buy' not in json.dumps(row['access_labels']['models'])
+    assert row['limits'].count('6 one-hour sessions per day')==1
+    save_registry(tmp_path/'registry.yaml',[entry(data)])
+    assert load_registry(tmp_path/'registry.yaml')[0].page_catalog.read.table_heading is None
+
+
+@respx.mock
+async def test_catalog_condition_is_checked_only_on_its_own_source():
+    data=catalog_data();data['conditions']['plan']['source']='https://vendor.example/eligibility'
+    respx.get(data['source']).respond(200,text=page())
+    respx.get('https://vendor.example/eligibility').respond(200,text='Gamma is paid at token prices.')
+    async with httpx.AsyncClient() as client:
+        result=await probe_entry(client,entry(data),attempts=1,backoff=0)
+    assert result.status is ProbeStatus.STALE_IDS
+    assert 'conditions.plan' in result.detail
 
 
 @pytest.mark.parametrize("changed", [{"amount": 150}, {"hours": 20}])

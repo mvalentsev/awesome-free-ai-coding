@@ -276,7 +276,7 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
         if entry.page_catalog:
             from .page_catalog import check_page_catalog
             body = raw_bodies.get(entry.page_catalog.source)
-            notes = check_page_catalog(body, entry.page_catalog) if body is not None else ['source unreadable']
+            notes = check_page_catalog(body, entry.page_catalog, raw_bodies) if body is not None else ['source unreadable']
             catalogs.append({'row': entry.id, 'source': entry.page_catalog.source, 'notes': notes,
                              'passed': not notes})
         from .quotas import quota_changes

@@ -607,7 +607,8 @@ class FreeAccess(BaseModel):
 class CatalogRead(BaseModel):
     """The named table and FAQ answers which a page catalog rechecks."""
     model_config = ConfigDict(extra="forbid", str_min_length=1)
-    table_heading: str
+    format: Literal['html','markdown'] = Field(default='html', exclude_if=lambda v: v == 'html')
+    table_heading: str | None = None
     models_question: str
     budgets_question: str
     limited_question: str
@@ -635,8 +636,14 @@ class CreditBudget(BaseModel):
 
 class CatalogCondition(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    kind: Literal["free-session", "paid", "specialist"]
+    kind: Literal["free-session", "paid", "specialist", "wallet"]
     quote: str = Field(min_length=3, max_length=1200)
+    source: str | None = None
+
+    @field_validator('source')
+    @classmethod
+    def _condition_source(cls,value):
+        return FreeAccess._source_is_https(value) if value else value
 
 
 class DatedSource(BaseModel):
@@ -697,6 +704,7 @@ class PageCatalog(BaseModel):
     model_access: dict[str, FreeAccess] = Field(default_factory=dict, exclude_if=lambda v: not v)
     limited_allowance: str | None = Field(default=None, min_length=3, max_length=200, pattern=r"\S")
     notes: list[str] = Field(default_factory=list, exclude_if=lambda v: not v)
+    reviewed_on: date | None = None
 
     @field_validator("source")
     @classmethod
@@ -706,7 +714,8 @@ class PageCatalog(BaseModel):
     def independently_free(self, model: PageModel) -> bool:
         return not model.expired and (model.hours == "unlimited" or (
             model.condition is not None and self.conditions[model.condition].kind == "free-session") or (
-            model.hours is not None and model.limited and self.limited_allowance is not None
+            model.limited and self.limited_allowance is not None
+            and (model.hours is not None or (model.condition and self.conditions[model.condition].kind == 'wallet'))
             and (model.model is None or model.first_free is not None)))
 
     def published(self) -> list[ModelFamily]:
@@ -718,6 +727,11 @@ class PageCatalog(BaseModel):
 
     @model_validator(mode="after")
     def _references_and_free_families_are_consistent(self) -> PageCatalog:
+        if self.read.table_heading is None:
+            if any(m.hours is not None for m in self.models):
+                raise ValueError('published hour amounts need a checked table heading')
+            if self.reviewed_on is None:
+                raise ValueError('unpublished model hour prices need a dated review')
         names = [m.name for m in self.models]
         if len(set(names)) != len(names):
             raise ValueError("page catalog has duplicate model names")

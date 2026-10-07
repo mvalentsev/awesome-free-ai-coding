@@ -4435,19 +4435,19 @@ entries:
   - https://freebuff.com/cli
   - https://freebuff.com/terms-of-service
   - https://freebuff.com/privacy-policy
+  - https://freebuff.com/llms.txt
+  - https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
+  - https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
   card_required: false
   offering: Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily
-    regional credits and separate unmetered or conditional free-session offers. "No
-    API key, no credit card."
-  limits: '"Freebuff is supported by text ads." "Freebucks buy one-hour model sessions."
-    "Model prices and usage limits still apply." Available models depend on the app
-    and access level. "Freebuff collects prompts, messages, code, files, repository
-    data, and agent traces when you use features that need them". The vendor gives
-    conflicting reset rules in its hours table and FAQ; check the balance and picker
-    in your app.'
+    regional credits and conditional free-session access. “No API key, no credit card.”
+  limits: “Freebuff is supported by text ads.” “Model prices and usage limits still
+    apply.” Available models depend on the app and access level. “Freebuff collects
+    prompts, messages, code, files, repository data, and agent traces when you use
+    features that need them”. Check the balance and picker in your app.
   free_part: models
   page_catalog:
-    source: https://freebuff.com/
+    source: https://freebuff.com/llms.txt
     unit: Freebucks
     period: day
     budgets:
@@ -4492,20 +4492,29 @@ entries:
       scope: vpn
     example_budget: us
     read:
-      table_heading: Free hours per day, by model
+      format: markdown
       models_question: What models do you use?
       budgets_question: How do Freebucks work?
       limited_question: What is limited mode?
       limited_prefix: limited mode includes
       limited_suffix: ', with'
     conditions:
-      paid:
+      wallet:
+        kind: wallet
+        quote: Freebucks buy one-hour model sessions.
+      paid-gemini:
         kind: paid
-        quote: Gemini 3.8 Flash and Muse Spark 1.3 are included with a paid plan.
+        quote: PAID-ONLY row
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
+      paid-muse:
+        kind: paid
+        quote: Muse Spark 1.3, on every paid plan.
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
       us-session:
         kind: free-session
-        quote: GPT-6.1 Sol is free in the US and included with a paid plan everywhere
-          else, one session a day for every account.
+        quote: Free in the US, a paid plan elsewhere, until the promotion ends. One
+          session a day on every plan.
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts
       specialist:
         kind: specialist
         quote: Gemini 3.1 Flash Lite handles specialist tasks such as file finding
@@ -4514,20 +4523,17 @@ entries:
     - name: Solar Pro 4
       model:
         family: solar-pro-4
-      hours: unlimited
       limited: true
+      condition: wallet
       first_free:
         'on': '2026-09-22'
         source: https://web.archive.org/web/20260922002138/https://freebuff.com/
       listed: true
-    - name: Space Bunny Alpha
-      hours: unlimited
-      limited: true
     - name: Solar Mini 4
       model:
         family: solar-mini-4
-      hours: 30
       limited: true
+      condition: wallet
       first_free:
         'on': '2026-09-26'
         source: https://web.archive.org/web/20260926080857/https://freebuff.com/
@@ -4536,8 +4542,8 @@ entries:
         family: mimo-v2.6-flash
         tier: strong
         aa_model: mimo-v2-6-flash
-      hours: 15
       limited: true
+      condition: wallet
       first_free:
         'on': '2026-09-22'
         source: https://web.archive.org/web/20260922002138/https://freebuff.com/
@@ -4547,8 +4553,8 @@ entries:
         family: glm-5.3-flash
         tier: strong
         aa_model: glm-5-3-flash
-      hours: 10
       limited: true
+      condition: wallet
       first_free:
         'on': '2026-09-22'
         source: https://web.archive.org/web/20260922002138/https://freebuff.com/
@@ -4558,8 +4564,8 @@ entries:
         family: deepseek-v4.1-flash
         tier: strong
         aa_model: deepseek-v4-1-flash
-      hours: 10
       limited: true
+      condition: wallet
       first_free:
         'on': '2026-09-22'
         source: https://web.archive.org/web/20260922002138/https://freebuff.com/
@@ -4567,15 +4573,15 @@ entries:
     - name: GPT-6 Luna
       model:
         family: gpt-6-luna
-      hours: 7
+      condition: wallet
     - name: MiMo 2.6 Pro
       model:
         family: mimo-v2.6-pro
-      hours: 5
+      condition: wallet
     - name: DeepSeek V4.1 Flash Fast
       model:
         family: deepseek-v4.1-flash
-      hours: 6
+      condition: wallet
     - name: GPT-6.1 Sol
       model:
         family: gpt-6.1-sol
@@ -4586,11 +4592,11 @@ entries:
     - name: Gemini 3.8 Flash
       model:
         family: gemini-3.8-flash
-      condition: paid
+      condition: paid-gemini
     - name: Muse Spark 1.3
       model:
         family: muse-spark-1.3
-      condition: paid
+      condition: paid-muse
     - name: Gemini 3.1 Flash Lite
       model:
         family: gemini-3.1-flash-lite
@@ -4598,24 +4604,23 @@ entries:
     limited_allowance: 6 one-hour sessions per day
     notes:
     - MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
-    - 'Space Bunny Alpha: 1M context. Anonymous provider retains prompts.'
-    - Daily Freebucks refill at midnight Pacific and don't carry over.
     - Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks
       do not carry over.
+    reviewed_on: '2026-10-07'
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
-    url: https://freebuff.com/
+    url: https://freebuff.com/llms.txt
   border:
     left_out: []
     'on': '2026-09-26'
     source: https://freebuff.com/
   probe:
     type: page-keywords
-    endpoint: https://freebuff.com/
+    endpoint: https://freebuff.com/llms.txt
     keywords:
-    - Freebuff is supported by text ads
-    - Freebucks every day
+    - Free access is supported by ads.
+    - 6 one-hour sessions per day
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []

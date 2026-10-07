@@ -412,10 +412,14 @@ day a model first appeared in a spending wallet. `listed` publishes an eligible
 family; the existing tier workflow writes its canonical `model` record.
 Wallet records keep family identity without an unchecked score tier.
 The provider, main table, JSON, browse and LLM views use the same catalog.
-The page probe compares the configured headed hours list and JSON-LD FAQ
+The page probe compares the configured headed hours list and HTML or Markdown FAQ
 answers for budgets, the complete picker, limited-mode membership and exact
 conditions. Record a session-based limited allowance in `limited_allowance` as
 a short vendor quote from the configured limited-mode FAQ.
+If model hour prices are no longer published, use `table_heading: null`, a
+`wallet` condition and a dated `reviewed_on`; the probe requests a fresh review
+after 7 days. A condition may name its own `source`, which is checked
+separately. Shared wallet conditions stay under Limits rather than model labels.
 An unreadable contract or changed value is a review finding;
 an unavailable page remains inconclusive. Known offer deadlines belong in
 `page_catalog.model_access[display name].until`: expiry removes the free-family

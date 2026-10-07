@@ -155,7 +155,11 @@ async def probe_entry(client: httpx.AsyncClient, entry: Entry,
                                           today or date.today()))
         if entry.page_catalog is not None:
             from .page_catalog import check_page_catalog
-            changes = check_page_catalog(page.text, entry.page_catalog)
+            condition_bodies={}
+            for source in {c.source for c in entry.page_catalog.conditions.values() if c.source}:
+                response,_ = await _page_beside(client,source,entry,page,attempts,backoff)
+                if response is not None:condition_bodies[source]=response.text
+            changes = check_page_catalog(page.text, entry.page_catalog, condition_bodies, today=today)
             if changes:
                 moved.append("page_catalog: " + "; ".join(changes))
         if entry.data_use is not None:

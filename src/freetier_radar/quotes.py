@@ -127,6 +127,8 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
 def row_quote_source(entry: Entry, field: str) -> str | None:
     if match := re.fullmatch(r"quotas\[(\d+)\]\.(?:quote|reset|condition_quote|period_quote)", field):
         return entry.quotas[int(match[1])].source
+    if entry.page_catalog and (match := re.fullmatch(r'page_catalog\.conditions\.(.+)\.quote',field)):
+        return entry.page_catalog.conditions[match[1]].source or entry.page_catalog.source
     return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
 
 
@@ -158,6 +160,7 @@ def row_urls(entry: Entry, page: str | None = None) -> list[str]:
         urls.extend(a.source for a in lane.model_access.values())
     if entry.page_catalog:
         urls.append(entry.page_catalog.source)
+        urls.extend(c.source for c in entry.page_catalog.conditions.values() if c.source)
         urls.extend(a.source for a in entry.page_catalog.model_access.values())
         urls.extend(m.first_free.source for m in entry.page_catalog.models if m.first_free)
     return list(dict.fromkeys(urls))
