@@ -26,7 +26,9 @@ Free tier on the Gemini API, priced model by model rather than as one account qu
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Google prices the free tier per model: its pricing page reads "Free of charge" for input and output on Gemini 3.8 Flash, "our most intelligent Flash model, engineered for long-horizon software engineering", whose paid tier is "$0.75 through December 31, 2026" per 1M input and "$3.75 through December 31, 2026" output, doubling from 2027, and on 3.7, 3.6 and 3.5 Flash, 3.5 and 3.1 Flash-Lite, 3 Flash Preview and Gemma 4 — context caching free on the Flash models, "Not available" on the Flash-Lite ones — with "Not available" throughout for Gemini 3.1 Pro Preview and Omni Flash. The 2.5 models keep a free column, but since 2026-09-18 the changelog says Google is "limiting access to the 2.5 models to users who have actively used them in the past": "For any new projects, use our latest models: 3.5 Flash-Lite or 3.8 Flash". What the free tier costs instead is one row lower in each table: "Used to improve our products" is Yes on the free tier and No on the paid one. Per-model RPM/TPM/RPD figures sit behind a sign-in at aistudio.google.com/rate-limit; the public rate-limits page keeps only the usage-tier table, whose free row reads "Active project or free trial". Read 2026-09-27
+- Limits, in the vendor's words: Usage allowance: see your account for values (period not published) per project per model
+
+Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma rows have a free input/output column; Gemini 3.1 Pro Preview and Omni Flash do not. Access to the 2.5 models is restricted to projects that previously used them. Actual rate limits are visible after signing in to AI Studio. Free-tier prompts and responses may be used to improve Google products; paid usage has different data-use terms. Context caching is free on the Flash models and unavailable on the Flash-Lite ones.
 
 </details>
 
@@ -44,7 +46,13 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to try Agent Platform for free for up to 90 days, within the specified quotas", and "You don't need to provide billing information to sign up in the free tier". Its model table gives gemini-3.1-pro-preview, gemini-3-pro-preview and gemini-3-flash-preview a dynamic rate limit and gemini-2.5-pro, gemini-2.5-flash and the Flash-Lite and 2.0 Flash rows 10 requests a minute. The FAQ: "If you don't enable billing, you won't be able to use express mode after 90 days". An existing Google Cloud user gets no free tier, and the separate $300 Free Trial asks for "a credit card or other payment method". Express mode is a Preview, and its terms add "Customer will not use the Express Mode Offerings to process personal data". Read 2026-09-23
+- Limits, in the vendor's words: Preview models: Per-minute requests allowance: amount varies per project per model
+
+Stable Gemini models: 10 requests/minute per project per model (Free express trial lasts up to 90 days); for `gemini-2.5-pro`, `gemini-2.5-flash`
+
+Preview Gemini models: Per-minute requests allowance: amount varies per project per model (Free express trial lasts up to 90 days); for `gemini-3.1-pro-preview`, `gemini-3-flash-preview`
+
+The free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data.
 
 </details>
 
@@ -66,6 +74,6 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

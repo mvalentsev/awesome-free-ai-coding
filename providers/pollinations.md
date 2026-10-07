@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Pollinations.AI free tier: limits, free models, verified 2026-10-05'
-description: 'Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model. Free models: gpt-oss-20b. The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous"…'
+description: 'Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/openai), on one model. Free models: gpt-oss-20b. The legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier; the configured gpt-oss-20b alias completed a keyless POST on 2026-10-07. The current…'
 permalink: /providers/pollinations/
 last_modified_at: 2026-10-05
 crumb: Pollinations.AI
@@ -23,7 +23,9 @@ Legacy open text API, no signup, OpenAI-compatible (POST text.pollinations.ai/op
 
 ## Limits, in the vendor's words
 
-The keyless catalog publishes exactly one model and tags it with the tier it belongs to — "openai-fast", described as "GPT-OSS 20B Reasoning LLM (OVH)", tier "anonymous", aliased to openai / gpt-oss / gpt-oss-20b — and a POST with no key answered it on 2026-10-01. It is the legacy host, and the only place the offer is stated now: the API docs on the vendor's working branch describe gen.pollinations.ai alone — "Get an API key" at enter.pollinations.ai, usage billed in Pollen credits — and a keyless call there answers 401. The 1 request per 15 seconds this row used to quote came from docs on a branch the vendor stopped updating on 2026-08-04, and no current page states an anonymous rate
+Legacy anonymous lane: Usage allowance: amount not published (period not published); scope not published
+
+The legacy keyless host lists openai-fast, GPT-OSS 20B on OVH, in the anonymous tier; the configured gpt-oss-20b alias completed a keyless POST on 2026-10-07. The current gen.pollinations.ai API requires a key and bills Pollen credits; without a key it returns 401. The former anonymous rate came from retired docs and is no longer a current published limit.
 
 ## Where it is offered
 
@@ -34,7 +36,7 @@ The vendor names no country it keeps the offer from ([source](https://pollinatio
 - Base URL: `https://text.pollinations.ai/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `gpt-oss-20b`
-- Note: The legacy endpoint needs no key or Authorization header. Clients that always send Bearer authentication, including LiteLLM, cannot use it. The replacement gen.pollinations.ai requires personal keys and Pollen credits, bought or earned from Quests.
+- Note: The legacy endpoint needs no key. Both bare requests and the dummy Bearer token used by LiteLLM completed on 2026-10-07; anonymous requests can also return HTTP 402, so availability varies. The replacement gen.pollinations.ai requires personal keys and Pollen credits, bought or earned from Quests.
 
 Try it from your terminal — the lane takes no key:
 
@@ -59,6 +61,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Autohand Code free tier: limits, free models, verified 2026-10-05'
-description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, its messages counted per five hours and per week. Free models: fantail. The Free plan "includes 20 messages per five-hour window, 200 messages…'
+description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, its messages counted per five hours and per week. Free models: fantail. Ongoing Free access is intended for evaluation and light use. It…'
 permalink: /providers/autohand-code/
 last_modified_at: 2026-10-05
 crumb: Autohand Code
@@ -23,7 +23,9 @@ Open-source coding agent for the terminal, VS Code, JetBrains and the desktop wh
 
 ## Limits, in the vendor's words
 
-The Free plan "includes 20 messages per five-hour window, 200 messages per week, and 10 requests per minute", is "designed for evaluation and light use", and "provides ongoing access rather than a one time trial". "A credit card is not required to use the Free plan": access takes one of a linked GitHub account "at least 30 days old", an invite, a grant from Autohand, or a card on file that "is not charged". Its larger model and more than 200 messages a week are the Pro plan. Read 2026-09-27
+20 messages/5 hours; 200 messages/week; 10 requests/minute per account
+
+Ongoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. All rate and message windows apply. The larger model and larger weekly budget need Pro.
 
 ## Where it is offered
 
@@ -47,6 +49,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

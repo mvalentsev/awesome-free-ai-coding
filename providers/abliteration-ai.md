@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'abliteration.ai free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect…'
+description: OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. Sign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance…
 permalink: /providers/abliteration-ai/
 last_modified_at: 2026-10-05
 crumb: abliteration.ai
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The pricing FAQ: "You can start with a one-credit free preview and no credit card. Sign in to use the Playground or API, inspect the available models, and add prepaid credit or a monthly plan when you are ready." No page says what a credit is worth; the credits endpoint reports the balance as "Total credits available to the organization, in USD". Usage is billed per token — abliterated-model $1.00 in and $3.00 out per million, abliterated-model-large-v2 and abliterated-model-large $3.00 and $5.00 — and plans start at $20 a month. The models "think before answering by default", stream and call tools, and abliterated-model-large-v2 is "Derived from the open-weight GLM-5.3 model, further abliterated and fine-tuned by Abliteration AI". The operator is Abliteration AI, Inc. Read 2026-09-17
+1 credits once per organization
+
+Sign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance endpoint uses USD; no conversion is inferred. Further usage needs prepaid credit or a paid plan and is billed per token. The models stream, call tools and think before answering by default.
 
 ## Where it is offered
 
@@ -68,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

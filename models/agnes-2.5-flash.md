@@ -26,9 +26,11 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published
+- Limits, in the vendor's words: Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`
 
-A new account calls the free rows before any top-up: the migration guide says "Model kataloğunda ücretsiz olarak işaretlenen bir chat modelini seçin" (pick a free chat model), and "Bu adım, sıfır bakiye ile gateway ve kullanım kaydı akışının çalıştığını doğrular" (checks gateway use on a zero balance). Laguna XS 2.1 is free because "Poolside serves these models free on its own inference API", with "no extra token allowance to track". Paid use is prepaid credit: "An 8% platform margin is added on top of the requested top-up amount", and "The platform margin is not added to model prices; it is applied only once, at top-up". The privacy page says prompt and response bodies are not written permanently to its usage and billing database ("kalıcı olarak yazılmaz"). Apodex Mini has an unpublished daily per-account cap and may close before its deadline if the promotion pool runs out. Read 2026-10-06
+Apodex 1.1 Mini: Daily usage allowance: amount not published per account per model; for `apodex/apodex-1.1-mini-free`
+
+Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Apodex Mini can close before its recorded deadline if the promotion pool runs out.
 
 </details>
 
@@ -46,7 +48,11 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash and agnes-3.0-flash list at $0.05 in / $0.15 out per 1M and are charged $0 — "Cached input, input tokens, and output tokens are currently free for agnes-2.5-flash and agnes-3.0-flash" — while agnes-2.5-pro bills $0.45/$0.90 and the pro beta $0.10/$0.30. The page is candid that the zero is a current price rather than a contract: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". The ceiling is a rate, not a quota: a key that is neither on a paid Token Plan nor enterprise-verified gets 30 requests a minute allowed and 10 effective on text models since 2026-09-23, when "effective text model RPM (requests per minute) limits for free and enterprise users have been reduced by 50%", and no daily figure is published. Image models are free at every resolution too. The terms are governed by Singapore law. The docs live on wiki.agnes-ai.com. Read 2026-09-27
+- Limits, in the vendor's words: Published allowed rate: 30 requests/minute per account
+
+Effective rate: 10 requests/minute per account
+
+The Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". Allowed and effective text RPM are separate ceilings for the default user class; the account's keys share them. Image rates are separate. No daily budget is published.
 
 </details>
 
@@ -61,6 +67,6 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

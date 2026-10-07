@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google Jules free tier: limits, free models, verified 2026-10-05'
-description: 'Free tier of Google''s async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously. Free models: gemini-2.5. 15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free…'
+description: 'Free tier of Google''s async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously. Free models: gemini-2.5. The limits table still names Gemini 2.5 Pro for Free, while the 2026-01-30 changelog says Gemini 3 Flash became the base model for all tiers. Google AI…'
 permalink: /providers/google-jules/
 last_modified_at: 2026-10-05
 crumb: Google Jules
@@ -23,7 +23,9 @@ Free tier of Google's async cloud coding agent, on Gemini models; connects to Gi
 
 ## Limits, in the vendor's words
 
-15 tasks per rolling 24 hours and 3 concurrent tasks, against 100 and 15 on Jules in Pro and 300 and 60 on Jules in Ultra. The same table still gives the free plan "Gemini 2.5 Pro" and both paid rows "starting with Gemini 3 Pro", but the changelog of 2026-01-30 reads "Today we’re launching Gemini 3 Flash in Jules for all users on all tiers", "our new base model", and Pro users default to Gemini 3.1 Pro since 2026-03-09. Upgrading runs through a Google AI plan, "currently available only for individual Google Accounts (ending in @gmail.com)"; task limits are "not shared or pooled" on a family plan; and Google states it "may adjust limits and features as we learn how people are using the product" (read 2026-09-23)
+15 tasks/rolling day; 3 tasks at once per account
+
+The limits table still names Gemini 2.5 Pro for Free, while the 2026-01-30 changelog says Gemini 3 Flash became the base model for all tiers. Google AI upgrades require an individual @gmail.com account; family-plan task limits are not pooled. Google may adjust limits and features.
 
 ## Where it is offered
 
@@ -55,6 +57,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

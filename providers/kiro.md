@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Kiro free tier: limits, free models, verified 2026-10-05'
-description: 'Perpetual free tier of AWS''s spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models. Free models: claude-sonnet-4.5, claude-sonnet-4, glm-5, minimax-m2.5, deepseek-v3.2, qwen3-coder-next, minimax-m2.1. 50 credits/month; requires social login or AWS Builder ID…'
+description: 'Perpetual free tier of AWS''s spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models. Free models: claude-sonnet-4.5, claude-sonnet-4, glm-5, minimax-m2.5, deepseek-v3.2, qwen3-coder-next, minimax-m2.1. Requires social login or AWS Builder ID. Credits do not…'
 permalink: /providers/kiro/
 last_modified_at: 2026-10-05
 crumb: Kiro
@@ -23,7 +23,9 @@ Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Deve
 
 ## Limits, in the vendor's words
 
-50 credits/month; requires social login or AWS Builder ID; credits do not roll over; not available in AWS GovCloud, and free-tier requests are always served from the US. Kiro's docs settle what those credits reach, in a table with a Free column: ticked for Claude Sonnet 4.5 and 4.0, Auto, GLM-5, Qwen3 Coder Next, DeepSeek 3.2 and MiniMax M2.5 and M2.1; blank for Claude Sonnet 4.6 and 5, every Opus, Haiku 4.5 and all three GPT-5.6 tiers. The pricing page now agrees with it — "The Free Tier includes access to open weight models and Claude Sonnet 4.5, with limits" — where until 2026-09-25 its FAQ prose said Sonnet 4.6 (checked 2026-09-27)
+50 credits/month per account
+
+Requires social login or AWS Builder ID. Credits do not roll over. Free requests are served from the US and AWS GovCloud is excluded. The docs' Free column determines model eligibility; newer Sonnet, Opus, Haiku and GPT tiers marked paid are outside the Free allowance.
 
 ## Where it is offered
 
@@ -56,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

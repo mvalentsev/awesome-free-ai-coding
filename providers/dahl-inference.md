@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Dahl Inference free tier: limits, free models, verified 2026-10-05'
-description: 'An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account. The docs: "100 million tokens as a gift at signup", paid…'
+description: An OpenAI-compatible gateway to open models served by the Gonka decentralized GPU network — GLM-5.3-Flash, DeepSeek V4 Flash and MiniMax M2.7 — whose sign-up asks for a username and nothing else and puts 100 million tokens in the account. Signup tokens enter the account pool; a new key starts…
 permalink: /providers/dahl-inference/
 last_modified_at: 2026-10-05
 crumb: Dahl Inference
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The docs: "100 million tokens as a gift at signup", paid into the account's pool rather than onto a key — a new key holds nothing and answers 402 until tokens are allocated to it at /account. The account is a username and a 32-character fingerprint, "Save the fingerprint shown once — it is the password", and "There is no email recovery by design". "Creating extra keys does not grant more free tokens", the terms forbid automating account creation "to harvest promotional allocations" and keep the right to "end discretionary free access", and past the grant the only top-up is crypto, "priced around $0.03 per 1M tokens". Requests are routed to "independent operators within a decentralised network" under terms from FROMZERO OÜ, an Estonian company. Read 2026-09-21
+100,000,000 tokens once per account
+
+Signup tokens enter the account pool; a new key starts empty and returns 402 until tokens are allocated at /account. Extra keys do not grant extra tokens. Save the fingerprint shown once: it is the password, with no email recovery. Terms prohibit automated account creation to harvest grants and permit ending discretionary free access. Further top-ups are crypto. Requests go to independent decentralized operators under FROMZERO OÜ's terms.
 
 ## Where it is offered
 
@@ -62,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

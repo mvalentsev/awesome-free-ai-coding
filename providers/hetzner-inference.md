@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Hetzner Inference API free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.6, qwen3.8-27b. Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in…'
+description: 'OpenAI-compatible API on Hetzner''s own EU hardware, free for as long as the experiment runs. Free models: qwen3.6, qwen3.8-27b. Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a…'
 permalink: /providers/hetzner-inference/
 last_modified_at: 2026-10-05
 crumb: Hetzner Inference API
@@ -23,7 +23,9 @@ OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the expe
 
 ## Limits, in the vendor's words
 
-Hetzner answers it in its own FAQ: "As long as the Inference API remains in experimental status, it is free of charge. Should this status change, we will notify you in advance via email with detailed information." Published per API key: 4M input and 100k output tokens per 60s, plus 10 requests per 60s, HTTP 429 over either. No daily, monthly or lifetime cap is published and no end date is named — the same page calls the service experimental, "provided for experimental purposes only" and offered as is, with performance and availability not guaranteed and no backups. A Hetzner account is needed to mint a token and the docs do not say whether a payment method is required; Hetzner's own fraud-prevention page offers a card charge as one of several verification routes (read 2026-08-30)
+4,000,000 input tokens/60 seconds; 100,000 output tokens/60 seconds; 10 requests/60 seconds per key
+
+Free while the Inference API remains experimental; Hetzner says it will email advance notice of a change. Per-key request and token windows both apply, with HTTP 429 at a cap. No daily, monthly or lifetime cap or end date is published. The service is offered as is for experimental use, without guaranteed availability or backups. Minting a token needs a Hetzner account; payment verification can include a card charge or other routes.
 
 ## Where it is offered
 
@@ -64,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

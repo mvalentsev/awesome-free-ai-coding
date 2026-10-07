@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Yolo-Auto free tier: limits, free models, verified 2026-10-05'
-description: 'One open-weight Qwen model served on the vendor''s own flat-rate API for coding agents; the free plan is 15 requests a week with no card. Free models: qwen3.8-flash. "15 free requests a week. No card required. Resets Monday at 00:00 UTC." on the home page and "No card required, free forever" on the…'
+description: 'One open-weight Qwen model served on the vendor''s own flat-rate API for coding agents; the free plan is 15 requests a week with no card. Free models: qwen3.8-flash. No card. The vendor calls the Free tier both free forever and for testing. It runs the model-serving stack rather than reselling…'
 permalink: /providers/yolo-auto/
 last_modified_at: 2026-10-05
 crumb: Yolo-Auto
@@ -23,7 +23,9 @@ One open-weight Qwen model served on the vendor's own flat-rate API for coding a
 
 ## Limits, in the vendor's words
 
-"15 free requests a week. No card required. Resets Monday at 00:00 UTC." on the home page and "No card required, free forever" on the Free plan card, at 128K context, against $19/mo Builder and $39/mo Pro — a handful of agent turns a week. The model is Qwen3.8 Flash, id qwen3.8-flash, charted with Artificial Analysis scores for Qwen3.8-Flash-Next, the mixture-of-experts Qwen published open-weight on 2026-08-24 (about 180B parameters, 10 of 512 experts active). Yolo-Auto "runs the model-serving stack rather than reselling a third-party model API". The FAQ calls the free tier "for testing" where the plan card says "free forever", and the terms forbid using "multiple accounts ... to combine capacity". Sign-in is through Google, GitHub or Discord, and prompt and response bodies are "not stored or retained". Read 2026-09-25
+15 requests/week per account. Resets Monday at 00:00 UTC.
+
+No card. The vendor calls the Free tier both free forever and for testing. It runs the model-serving stack rather than reselling another API. Sign in through Google, GitHub or Discord; multiple accounts may not combine capacity. Prompt and response bodies are not stored or retained.
 
 ## Where it is offered
 
@@ -70,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

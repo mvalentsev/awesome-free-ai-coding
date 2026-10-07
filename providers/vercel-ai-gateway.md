@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Vercel AI Gateway free tier: limits, free models, verified 2026-10-05'
-description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1. Vercel''s FAQ, in its error table: "The team must add a valid payment method…'
+description: 'One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every month once the team has a payment method on file, and language models priced at zero that never touch the credit. Free models: laguna-s-2.1. A team must add a valid payment method before using free credit; otherwise…'
 permalink: /providers/vercel-ai-gateway/
 last_modified_at: 2026-10-05
 crumb: Vercel AI Gateway
@@ -23,7 +23,11 @@ One OpenAI-compatible endpoint for 360+ models, with $5 of gateway credits every
 
 ## Limits, in the vendor's words
 
-Vercel's FAQ, in its error table: "The team must add a valid payment method before using free credits" (`403` `customer_verification_required`). $5 of gateway credit a month at provider list rates, renewed monthly, with lower per-model rate limits and no BYOK; buying credits ends the monthly free credit. The free language-model IDs listed under Connect are priced zero in and out and never draw on the credit. Mind the suffix: poolside/laguna-s-2.1 without it costs $0.10/$0.20 per 1M tokens. Read 2026-10-05
+Gateway credit: $5/month per team
+
+Zero-priced model routes: Usage allowance: amount not published (period not published) per team
+
+A team must add a valid payment method before using free credit; otherwise requests return `403 customer_verification_required`. Credit spends at provider list rates, has lower per-model rate limits and excludes BYOK. Buying credit ends the monthly free credit. Zero-priced model routes remain a separate free mode and do not spend that balance. Use their exact free IDs: a similarly named route without its free suffix can be metered.
 
 ## Where it is offered
 
@@ -75,6 +79,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

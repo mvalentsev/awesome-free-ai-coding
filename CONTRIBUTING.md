@@ -274,12 +274,20 @@ back as delisted rows, with the reason.
 its source and exact quote; optional conditions and reset words need evidence
 on that same source. The scheduled probe flags changed or unreadable quotas
 beside a still-live offer. Catalog checks bind the quote to each named model
-ID; constant checks compare the numeric JavaScript value. An unpublished amount
-stays null and requires a dated manual review after 7 days. Re-read the complete
+ID; constant checks compare the numeric JavaScript value. Read modes are `page`,
+`catalog`, `constant`, `table`, and `catalog-field`. Table bindings identify the
+plan, model row and value column; catalog fields identify the model and tier.
+An unpublished `amount` or `period` stays null. Unresolved allowances require a
+dated manual review after 7 days. Re-read the complete
 vendor terms at that review: a matching old phrase cannot prove that no new
 number has been published elsewhere. Freebuff's session quota is derived from
 its existing page catalog rather than recorded twice. Compact allowances appear
 first under the existing Limits section; shared caps do not become model labels.
+Concurrent ceilings, one-time grants and recurring windows remain distinct.
+Explicit unmetered usage is separate from an unpublished amount. Model-bound
+caps include their exact API IDs. Indexed documentation uses `follow` to resolve
+the current release before checking its allowance. Ended model promotions retain
+their quota evidence without advertising a current allowance.
 
 Every `page-keywords` probe needs at least one keyword that disappears when the
 free tier does. Three shapes qualify:

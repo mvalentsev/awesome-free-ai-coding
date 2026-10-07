@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-10-05'
-description: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill. "300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per…
+description: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill. The Lite service plan has limited capacity and no published expiry. IBM Cloud signup…
 permalink: /providers/ibm-watsonx-ai/
 last_modified_at: 2026-10-05
 crumb: IBM watsonx.ai (Lite plan)
@@ -23,7 +23,11 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-"300,000 tokens per month", "20 CUH per month" of compute and "2 inference requests per second", on "A free plan with limited capacity" — the Lite plan of watsonx.ai Runtime as its service-plans page reads on 2026-09-16, with no expiry named. The card is taken at the door and not charged: the sign-up doc says "For your IBM Cloud account, you enter your email address, personal information, and credit card information, which is used to verify your identity" and "Lite plans do not incur charges". The foundation models covered by the allowance are listed on a separate documentation page
+Lite: 300,000 tokens/month; 2 requests/second per service plan
+
+Lite compute: 20 CUH/month per service plan
+
+The Lite service plan has limited capacity and no published expiry. IBM Cloud signup requires personal and card information to verify identity; Lite plans do not incur charges. Its covered foundation models are listed separately. The compute allowance and inference-token budget measure different kinds of usage.
 
 ## Where it is offered
 
@@ -54,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

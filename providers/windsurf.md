@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Devin Desktop (formerly Windsurf) free tier: limits, free models, verified 2026-10-05'
-description: 'Free plan of Cognition''s desktop coding agent — the IDE that shipped as Windsurf. Free models: swe-1.6. Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai. Its pricing page gives the $0 plan "Light quota to…'
+description: 'Free plan of Cognition''s desktop coding agent — the IDE that shipped as Windsurf. Free models: swe-1.6. Windsurf is now Devin Desktop. Free has limited model availability; the model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At a cap, Free must wait for a reset; buying…'
 permalink: /providers/windsurf/
 last_modified_at: 2026-10-05
 crumb: Devin Desktop (formerly Windsurf)
@@ -23,7 +23,13 @@ Free plan of Cognition's desktop coding agent — the IDE that shipped as Windsu
 
 ## Limits, in the vendor's words
 
-Cognition renamed Windsurf to Devin Desktop on 2 June 2026, and windsurf.com, windsurf.com/pricing and docs.windsurf.com redirect to devin.ai. Its pricing page gives the $0 plan "Light quota to code with agents", "Limited model availability", "Unlimited inline edits" and "Unlimited Tab completions", and the models page says which model that is: "Free tier users only have access to SWE-1.6." The docs describe the quota, a "daily and weekly usage allowance that refreshes automatically", where Free means "Wait until your next daily or weekly reset" and only the paid plans can buy their way past it. Read 2026-09-27
+Agent usage: Daily usage allowance: amount not published; Weekly usage allowance: amount not published per account
+
+Tab: Unmetered completions per account
+
+Inline edits: Unmetered interactions per account
+
+Windsurf is now Devin Desktop. Free has limited model availability; the model docs name SWE-1.6 for Free. Daily and weekly agent windows both apply. At a cap, Free must wait for a reset; buying extra usage is a paid-plan feature. A separate SWE-2 promotion appears on the Pro card and does not establish eligibility for the Free plan.
 
 ## Where it is offered
 
@@ -59,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

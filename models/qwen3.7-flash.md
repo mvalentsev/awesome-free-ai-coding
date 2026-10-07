@@ -26,7 +26,9 @@ A million free tokens on each of its chat models in the Singapore region — Qwe
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: 1,000,000 free tokens per model, on the Singapore (international) region alone: "the following models offer a free quota only in Singapore. No free quota is available in other regions", and the quota "is independent per model and cannot be shared across models", a dated snapshot counting as a model of its own. The grant is "valid for 90 days from the date of Model Studio activation, model release, or application approval, whichever is later". The last column of each Singapore table, "Free quota", gives it to every Qwen text model from Qwen3.8 Max down to Qwen3 8B, the Coder and VL lines among them, to DeepSeek V4.1 Flash, V4 Pro, V4 Flash and V3.2, and to GLM-5.3, 5.2 and 5.1; the Kimi table has no such column, glm-5.2-fast-preview reads "None", and its translation, OCR, omni and realtime models are not ones to code with (read 2026-09-25). Since 2026-09-15 "you must complete your account information before activating Model Studio", and past the quota "you are automatically billed on a pay-as-you-go basis" unless Free Quota Only, which "is disabled by default", is switched on per model (read 2026-09-23)
+- Limits, in the vendor's words: Typical signup grant: 1,000,000 tokens once per account per model (Valid for 90 days from activation, model release or approval, whichever is later)
+
+Free grants apply in Singapore (international) only, independently per model and dated snapshot. The model pricing tables decide eligibility: Kimi has no free-quota column and glm-5.2-fast-preview has none. Account information must be completed before activation. After the grant, usage is automatically billed pay-as-you-go unless Free Quota Only is enabled separately for the model; that switch is disabled by default.
 
 </details>
 
@@ -44,7 +46,15 @@ OpenAI-compatible gateway with a shared free allowance on selected models and an
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 60 weighted units/day. With credit: 20 RPM and 120 weighted units/day." Where weighted limits are on, "Longer inputs consume more daily units"; the counter resets at 00:00 UTC, beside a "Site-wide free cap: 15 RPM" and "Concurrent free requests per account: 2". "After a limit, paid use is possible only when fallback is enabled and the account has sufficient credit"; everything else in the catalog is metered at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog's own id deepseek/deepseek-v4-flash-0731free:free, described as "Rate-limited free tier." and listed on the free page as "Deepseek V4 Flash 0731free", priced $0 beside a metered deepseek-v4-flash-0731free twin at $0.20/$0.40. Read 2026-10-01
+- Limits, in the vendor's words: Without credit: 10 requests/minute; 60 weighted units/day per account
+
+With credit: 20 requests/minute; 120 weighted units/day per account
+
+Free models: 2 requests at once per account
+
+Free models: 15 requests/minute shared across the endpoint
+
+The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.
 
 </details>
 
@@ -59,6 +69,6 @@ OpenAI-compatible gateway with a shared free allowance on selected models and an
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

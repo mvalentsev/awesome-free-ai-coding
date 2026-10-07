@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'JetBrains AI (AI Free) free tier: limits, free models, verified 2026-10-05'
-description: 'AI Free in JetBrains IDEs — unlimited code completion on JetBrains'' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents. Free models: mellum. JetBrains'' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro''s 10 for $10, and "Each AI Credit equals $1…'
+description: 'AI Free in JetBrains IDEs — unlimited code completion on JetBrains'' own model and 3 AI Credits ($3) of cloud models every 30 days for chat and agents. Free models: mellum. The credit window resets every 30 days from first use; AI Credits are not a guaranteed token count. Mellum completion is a…'
 permalink: /providers/jetbrains-ai/
 last_modified_at: 2026-10-05
 crumb: JetBrains AI (AI Free)
@@ -23,7 +23,11 @@ AI Free in JetBrains IDEs — unlimited code completion on JetBrains' own model 
 
 ## Limits, in the vendor's words
 
-JetBrains' plans table lists "AI Free Free 3 AI Credits per 30-days" beside AI Pro's 10 for $10, and "Each AI Credit equals $1 USD"; one credit is "about: ~10 requests to generate code in AI Chat. ~40 requests to generate code in the editor", and the quota resets every 30 days from first use. AI Free also carries "Unlimited code completion (powered by JetBrains’ Mellum model)" and unlimited local models through Ollama or LM Studio. It needs an IDE licence: "AI Free is available to all users with active JetBrains IDE licenses, including educational licenses, classroom licenses, open source licenses, IDE trial licenses", but not in IntelliJ IDEA without Ultimate, PyCharm without Pro, or Android Studio — for someone paying nothing, an educational or open-source licence, or the free non-commercial licence of RustRover, WebStorm and Rider. Only the optional 30-day AI Pro trial asks for a card. The tier is "only available in the serviceable territories, with the exception of Mainland China"; on 2026-09-25 that list, which JetBrains says its model providers set, also left out Hong Kong, Macao, Russia, Belarus, Venezuela, Iran, Cuba, Syria and North Korea, among others. Read 2026-09-25
+AI Free: 3 credits/30 days per account
+
+Unmetered completions per account
+
+The credit window resets every 30 days from first use; AI Credits are not a guaranteed token count. Mellum completion is a separate unmetered free mode. An active eligible IDE licence is required, including educational, open-source, trial or supported non-commercial licences. IntelliJ without Ultimate, PyCharm without Pro and Android Studio are excluded. Only the optional AI Pro trial asks for a card. Serviceable territories exclude mainland China and other provider-restricted regions.
 
 ## Where it is offered
 
@@ -54,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

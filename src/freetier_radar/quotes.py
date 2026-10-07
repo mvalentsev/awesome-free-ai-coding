@@ -117,6 +117,7 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
         from .page_catalog import catalog_quotes
         found.extend(catalog_quotes(entry.page_catalog))
     found.extend((f"quotas[{i}].quote", q.quote) for i, q in enumerate(entry.quotas))
+    found.extend((f"quotas[{i}].period_quote", q.period_quote) for i, q in enumerate(entry.quotas) if q.period_quote)
     found.extend((f"quotas[{i}].reset", q.reset) for i, q in enumerate(entry.quotas) if q.reset)
     found.extend((f"quotas[{i}].condition_quote", q.condition_quote)
                  for i, q in enumerate(entry.quotas) if q.condition_quote)
@@ -124,7 +125,7 @@ def row_quotes(entry: Entry) -> list[tuple[str, str]]:
 
 
 def row_quote_source(entry: Entry, field: str) -> str | None:
-    if match := re.fullmatch(r"quotas\[(\d+)\]\.(?:quote|reset|condition_quote)", field):
+    if match := re.fullmatch(r"quotas\[(\d+)\]\.(?:quote|reset|condition_quote|period_quote)", field):
         return entry.quotas[int(match[1])].source
     return entry.page_catalog.source if entry.page_catalog and field.startswith("page_catalog.") else None
 
@@ -203,6 +204,8 @@ async def check_entries(entries: list[Entry], client: httpx.AsyncClient,
     missing: list[Missing] = []
     unread: dict[str, list[str]] = {}
     for entry in live_rows(entries, today or date.today()):
+        from .quotas import resolved_quota_entry
+        entry = await resolved_quota_entry(client,entry)
         quotes = row_quotes(entry)
         if not quotes:
             continue

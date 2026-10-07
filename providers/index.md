@@ -3,7 +3,7 @@ layout: default
 title: Every free LLM API and coding agent on the list, with its evidence
 description: 'One page per provider: the free tier in the vendor''s own words, connection details, the evidence a live probe reads twice a week, and the row''s history.'
 permalink: /providers/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-07
 ---
 
 {% raw %}
@@ -18,7 +18,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Kilo Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/) — verified 2026-10-05 · [`nemotron-3-ultra`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-ultra/) · [`nemotron-3-super`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3-super/) · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · [`step-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/step-3.7-flash/) · [`laguna-s-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-s-2.1/) · [`laguna-xs-2.1`](https://mvalentsev.github.io/awesome-free-ai-coding/models/laguna-xs-2.1/) · [`nemotron-3.5-lightning`](https://mvalentsev.github.io/awesome-free-ai-coding/models/nemotron-3.5-lightning/) · [`inkling-small`](https://mvalentsev.github.io/awesome-free-ai-coding/models/inkling-small/) · [+3 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 - [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) — verified 2026-10-01 · [`gemini-3.1-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.1-pro/) · [`gemini-3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.8-flash/) · [`gemini-3.7-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.7-flash/) · [`gemini-3.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gemini-3.6-flash/) · [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) · [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) · [`gpt-oss-120b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-120b/)
 - [Freebuff](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/) — verified 2026-10-05 · `solar-pro-4` · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/) · [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
-- [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — verified 2026-10-05 · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/)
+- [Cline](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/) — verified 2026-10-05 · [`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/) · [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
 - [Crush + Charm Hyper](https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/) — verified 2026-10-05
 - [Autohand Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/) — verified 2026-10-05 · `fantail`
 - [MiniMax Code](https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/) — verified 2026-10-05
@@ -73,7 +73,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [Baidu Comate (文心快码)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/) — verified 2026-10-01
 - [TRAE (TraeCode)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/) — verified 2026-10-05
 - [Upstage (Solar API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/) — verified 2026-10-05
-- [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) — verified 2026-10-05 · [`gpt-6-luna`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-6-luna/)
+- [Zed](https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/) — verified 2026-10-05
 - [AtomCode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/) — verified 2026-10-05 · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/)
 - [CodeBuddy (Tencent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/) — verified 2026-10-05
 - [Qoder CN (formerly Lingma)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/) — verified 2026-10-05

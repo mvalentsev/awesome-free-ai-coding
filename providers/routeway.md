@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Routeway free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. Free models — every id ending :free — cost nothing and "are rate-limited to 20 requests/minute and 200 requests/day", the FAQ says, where the…'
+description: 'OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models. Free models: deepseek-v4-flash, minimax-m2.7, muse-glimmer-30b. The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at…'
 permalink: /providers/routeway/
 last_modified_at: 2026-10-05
 crumb: Routeway
@@ -23,7 +23,13 @@ OpenAI-compatible gateway with a rotating :free chat-model lane beside metered m
 
 ## Limits, in the vendor's words
 
-Free models — every id ending :free — cost nothing and "are rate-limited to 20 requests/minute and 200 requests/day", the FAQ says, where the rate-limits page gives "5 Requests Per Minute (RPM)" and "200 Requests Per Day (RPD)"; past either they answer 429, and the pay-as-you-go ids beside them "require a positive account balance". The lane itself rotates, ids joining and leaving within days while their metered twins stay, and free models "can be removed at any time". A key is sign-up and Create API Key with no payment step in the FAQ, while the terms, last updated 31.05.2025 behind a bot wall this list's client cannot pass, count a payment method among what any account needs. No legal entity is named, and support is by email and Discord. Read 2026-09-27
+Rate-limits documentation: 5 requests/minute (published sources disagree) per account
+
+FAQ: 20 requests/minute (published sources disagree) per account
+
+Free models: 200 requests/day per account
+
+The FAQ and rate-limit docs disagree on the per-minute cap; both publish the same daily cap. Free IDs end in :free, rotate and may be removed at any time. At a cap they return 429; paid twins require a positive balance. The FAQ describes signup and key creation without payment, but the older terms list a payment method and are behind a bot wall. No legal entity is named; support is email and Discord.
 
 ## Where it is offered
 
@@ -68,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

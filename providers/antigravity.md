@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Google Antigravity free tier: limits, free models, verified 2026-10-01'
-description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. The $0 Individual plan has unlimited Tab completions and…'
+description: 'Google''s agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models. Free models: gemini-3.1-pro, gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash, claude-opus-4.6, claude-sonnet-4.6, gpt-oss-120b. The model table includes older third-party models under Free…'
 permalink: /providers/antigravity/
 last_modified_at: 2026-10-01
 crumb: Google Antigravity
@@ -23,7 +23,15 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 
 ## Limits, in the vendor's words
 
-The $0 Individual plan has unlimited Tab completions and Command requests, with "Basic weekly rate limits". The model table marks the listed models available under "Free & Google AI Plus"; Claude Sonnet 4.6, Claude Opus 4.6 and GPT-OSS-120b carry its notice "Will be removed on November 2, 2026". Claude 5.5 models require paid plans. Gemini and third-party models have separate weekly allowances. No quota figure is published: "The baseline rate limits are primarily determined by available capacity and exist to prevent abuse." The plans overview lists third-party access under Ultra, while the specific model table still includes these older models on Free. Read 2026-10-05
+Gemini agent allowance: Weekly usage allowance: amount not published per account
+
+Claude and GPT agent allowance: Weekly usage allowance: amount not published per account
+
+Tab: Unmetered completions per account
+
+Command: Unmetered requests per account
+
+The model table includes older third-party models under Free & Google AI Plus, with removal on November 2, 2026; Claude 5.5 requires a paid plan. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on available capacity and abuse prevention; no numerical weekly budget is published.
 
 ## Where it is offered
 
@@ -55,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

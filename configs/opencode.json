@@ -167,13 +167,6 @@
         },
         "thinkingmachines/inkling-small:free": {
           "name": "thinkingmachines/inkling-small:free"
-        },
-        "apodex/apodex-1.1-mini:free": {
-          "name": "apodex/apodex-1.1-mini:free",
-          "limit": {
-            "context": 262144,
-            "output": 235929
-          }
         }
       }
     },
@@ -818,6 +811,9 @@
         },
         "meituan/longcat-2.5-preview:free": {
           "name": "meituan/longcat-2.5-preview:free"
+        },
+        "upstage/solar-mini4:free": {
+          "name": "upstage/solar-mini4:free"
         }
       }
     },

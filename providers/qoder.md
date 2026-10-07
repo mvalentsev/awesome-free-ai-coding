@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qoder free tier: limits, free models, verified 2026-10-05'
-description: Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs. The Free plan is the trial — "The 2-week Pro Trial includes 300 credits" — and, since…
+description: Alibaba's agentic coding apps — the Qoder desktop agent, Qoder IDE and CLI — with a 2-week Pro trial of 300 credits on signup, then 100 credits a day to claim in the desktop app while that promotion runs. The daily promotion must be claimed in the international desktop app and is available to free…
 permalink: /providers/qoder/
 last_modified_at: 2026-10-05
 crumb: Qoder
@@ -23,7 +23,13 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The Free plan is the trial — "The 2-week Pro Trial includes 300 credits" — and, since 2026-09-18, a promotion: "individual users of Qoder International can claim 100 Credits every day in the Qoder desktop app. Both free users and paid individual subscribers are eligible", with "End time: To be announced" and each claim "valid for 30 days". The basic models the pricing page still lists for Free are gone: on 2026-09-18 "the Lite model tier is removed from the model selector in all Qoder products", and "The product no longer switches to Lite when Credits run out"; the Efficient tier left in its place "is already free for paid users". Paid plans buy premium-model credits (2,000/month on Pro) that reset to zero when the subscription period ends. Read 2026-09-23
+Pro trial: 300 credits once per account (Valid for 2 weeks)
+
+Claimed promotional credit: 100 credits/day per account (Each claim valid for 30 days)
+
+Pro trial completion and next edits: Unmetered completions per account (Valid for 2 weeks)
+
+The daily promotion must be claimed in the international desktop app and is available to free and paid individual users. "End time: To be announced". The former Lite fallback was removed on 2026-09-18: credit exhaustion no longer switches to Lite, and Efficient is free only for paid users. Trial completions and next edits are unmetered during the trial; this does not create a permanent free agent budget.
 
 ## Where it is offered
 
@@ -48,6 +54,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

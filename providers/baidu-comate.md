@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Baidu Comate (文心快码) free tier: limits, free models, verified 2026-10-01'
-description: 'Baidu''s coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days. The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion: free) and…'
+description: Baidu's coding assistant for VS Code, JetBrains, Visual Studio and Xcode, with its own IDE and CLI; the free Personal Standard plan includes code completion and a one-time 5,000-point grant valid for seven days. Personal Standard completion is free, with no published amount or model name. The…
 permalink: /providers/baidu-comate/
 last_modified_at: 2026-10-01
 crumb: Baidu Comate (文心快码)
@@ -23,7 +23,11 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The Personal Standard plan, 个人标准版, is free: "智能补全 免费" (smart completion: free) and "赠7天有效期5000积分（首次）" (5,000 points valid for seven days, first grant only). Auto-Free fallback is a paid-plan benefit, not included on Personal Standard; Pro has 150k tokens an hour after its allowance runs out. Baidu does not name the model used for free completion. Read 2026-10-05
+5,000 points once per account (Valid for 7 days)
+
+Personal Standard completion: Completions allowance: amount not published (period not published) per account
+
+Personal Standard completion is free, with no published amount or model name. The points grant is introductory. Auto-Free fallback is a paid-plan benefit; Personal Standard does not receive the paid hourly token fallback.
 
 ## Where it is offered
 
@@ -46,6 +50,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

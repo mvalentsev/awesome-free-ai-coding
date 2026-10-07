@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'TRAE (TraeCode) free tier: limits, free models, verified 2026-10-05'
-description: TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions. Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and on some…
+description: TRAE's AI IDE, TraeCode, whose Free plan runs Auto mode only — no model choice — on a one-time Basic usage allowance of a dollar or so that does not reset, beside 5,000 autocompletions. Free uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its…
 permalink: /providers/trae/
 last_modified_at: 2026-10-05
 crumb: TRAE (TraeCode)
@@ -23,7 +23,13 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-Trae publishes the Free plan as words — "Auto mode only", "Limited usage", "Limited Autocomplete", and on some networks 5,000 autocompletions a month and two concurrent cloud tasks — and as numbers in the page payload, where basic_usage_limit is the dollar figure the paid plans print as $20 of usage a month. That figure depends on where the page is served: on 2026-09-16 a GitHub runner read $3 of Basic usage on Free and another network $1, with different paid-plan figures and prices too, and on 2026-09-27 a runner read $1. On Free the allowance does not come back: the pricing page's FAQ, read from a runner on 2026-09-27, says the Basic usage balance refreshes each subscription period on the paid plans and is a one-time allowance for free users that does not reset monthly. Both versions carry 5,000 autocompletions and 1,000 advanced-model requests on Free. Auto mode picks the model, and which models it routes to is published nowhere. The probe reads the payload because trae.ai renders per request and its table can arrive without the Free column
+Basic usage: One-time USD allowance: amount varies per account
+
+Autocompletion: 5,000 completions/month per account
+
+TRAEWORK: 2 tasks at once per account
+
+Free uses Auto mode, whose routed models are unpublished. The Basic dollar balance is a one-time grant; its amount differs between served versions of the pricing page. Measurements on 2026-09-16 found $1 and $3 on different networks; a runner read $1 on 2026-09-27. The payload also lists 1,000 advanced-model requests without stating their period. Published completion and concurrent-task figures apply where that Free table is served. Other versions describe limited usage and autocomplete without numbers.
 
 ## Where it is offered
 
@@ -50,6 +56,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

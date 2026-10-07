@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'VLM Run Gateway free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI-compatible gateway for vision and language models whose models on VLM Run''s own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha. Free models: qwen3.8-27b. The authentication page says it plainly: "The VLM Run Gateway serves anonymous callers on a…'
+description: 'OpenAI-compatible gateway for vision and language models whose models on VLM Run''s own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha. Free models: qwen3.8-27b. GPU-served models are public and anonymous; frontier models require paid access. All three IP…'
 permalink: /providers/vlm-run-gateway/
 last_modified_at: 2026-10-05
 crumb: VLM Run Gateway
@@ -23,7 +23,9 @@ OpenAI-compatible gateway for vision and language models whose models on VLM Run
 
 ## Limits, in the vendor's words
 
-The authentication page says it plainly: "The VLM Run Gateway serves anonymous callers on a small free quota, keyed by client IP", and "Every GPU-served model is public and reachable anonymously", while "The frontier models carry the paid access tier". The rate-limit table gives the anonymous tier "10/min, 30/hr, 100/day" per client IP, the three windows stacking, against 240 a minute with a key. The FAQ calls the gateway alpha, with a model catalog kept intentionally small: its chat models on VLM Run GPUs are Qwen3.8 27B, Qwen3.5 0.8B and DiffusionGemma 26B, beside OCR, embedding and speech models. The published request schema has no tools field, yet a keyless call carrying one tool was answered with a tool call on 2026-09-17. The operator is Autonomi AI Inc.; its terms render only in a browser. Read 2026-09-23
+Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP
+
+GPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together. The gateway is alpha and has a small catalog. Its published schema lacks a tools field, but a keyless tool request returned a tool call on 2026-09-17; that measurement does not make every model tool-capable. The operator is Autonomi AI Inc.; its terms render in a browser.
 
 ## Where it is offered
 
@@ -61,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

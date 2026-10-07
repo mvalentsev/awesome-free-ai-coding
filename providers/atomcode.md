@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'AtomCode free tier: limits, free models, verified 2026-10-05'
-description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash. CodingPlan "offers three tiers"…'
+description: 'Open-source terminal coding agent from AtomGit, the code host run by CSDN and the Open Atom Foundation, whose sign-in claims a free 30-day coding plan, its quota counted in five-hour windows and its claims capped at a thousand a day. Free models: deepseek-v4-flash. Claimed Lite lasts 30 days…'
 permalink: /providers/atomcode/
 last_modified_at: 2026-10-05
 crumb: AtomCode
@@ -23,7 +23,9 @@ Open-source terminal coding agent from AtomGit, the code host run by CSDN and th
 
 ## Limits, in the vendor's words
 
-CodingPlan "offers three tiers" and "Quota is measured on a rolling 5-hour window": Lite, "30 days" on a "Free claim, 1,000 slots/day"; a 7-day Pro Trial on "100 slots/day at 10:00" and a 30-day Pro for a PR merged in its activity repository add GLM-5.2. The plan is served inside AtomCode, which signs in through an AtomGit account (WeChat, SMS or password); other providers take your own key. Lite also carries Qwen3-VL-8B, a vision model. Read 2026-09-27
+Claimed Lite plan: Rolling 5-hour usage allowance: amount not published per account (Valid for 30 days)
+
+Claimed Lite lasts 30 days; claims have a platform-wide pool of 1,000 slots per day, not a per-user inference cap. A seven-day Pro trial has 100 claim slots at 10:00; a merged activity-repository PR can grant 30 days of Pro and access to GLM-5.2. All plan usage is measured in rolling five-hour windows without published numerical budgets. CodingPlan works inside AtomCode via AtomGit sign-in; other providers use your own key.
 
 ## Where it is offered
 
@@ -46,6 +48,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

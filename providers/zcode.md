@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'ZCode (Z.ai) free tier: limits, free models, verified 2026-10-05'
-description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5-turbo. The docs: "First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo at…'
+description: 'Z.ai''s desktop coding agent, free as an app, with five days of its GLM models for a new user and no card. Free models: glm-5.3, glm-5-turbo. Global per-model daily grants and the mainland BigModel pool are different trial modes. Both end after the first five days and do not create ongoing daily…'
 permalink: /providers/zcode/
 last_modified_at: 2026-10-05
 crumb: ZCode (Z.ai)
@@ -23,7 +23,13 @@ Z.ai's desktop coding agent, free as an app, with five days of its GLM models fo
 
 ## Limits, in the vendor's words
 
-The docs: "First-time ZCode users get 5 days of free benefits, ready to use out of the box with no setup" — GLM-5.3 at "3M tokens / day" and GLM-5-turbo at "2M tokens / day", and "the daily quotas below are granted only during these 5 days — they expire afterwards and are not an ongoing daily allowance". A BigModel (mainland China) account gets its own trial instead: "no payment required, with 8 million tokens per day for the first 5 days". After that the app runs on a GLM Coding Plan or a key of your own: "The ZCode application itself is completely free. As a developer, you still need your own API Key or a model service plan". Read 2026-09-26
+Global trial: GLM-5.3: 3,000,000 tokens/day per account per model (First 5 days only)
+
+Global trial: GLM-5-turbo: 2,000,000 tokens/day per account per model (First 5 days only)
+
+BigModel account trial: 8,000,000 tokens/day per account (First 5 days only)
+
+Global per-model daily grants and the mainland BigModel pool are different trial modes. Both end after the first five days and do not create ongoing daily access. Afterwards the app needs a GLM Coding Plan or your own API key; the application itself remains free.
 
 ## Where it is offered
 
@@ -52,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

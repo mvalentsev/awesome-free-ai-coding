@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Cline free tier: limits, free models, verified 2026-10-05'
-description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: muse-spark-1.3-contributor. "Cline periodically…'
+description: 'Open-source coding agent for VS Code, JetBrains and the terminal; signing in to its own Cline provider unlocks a rotating set of free models, each with a daily allowance, beside pay-as-you-go credits, the $9.99 ClinePass plan and BYOK. Free models: muse-spark-1.3-contributor, mimo-v2.6-flash. Free…'
 permalink: /providers/cline/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-07
 crumb: Cline
 ---
 
@@ -19,11 +19,13 @@ Open-source coding agent for VS Code, JetBrains and the terminal; signing in to 
 
 ## Free models
 
-[`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/)
+[`muse-spark-1.3-contributor`](https://mvalentsev.github.io/awesome-free-ai-coding/models/muse-spark-1.3-contributor/), [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/)
 
 ## Limits, in the vendor's words
 
-"Cline periodically offers free model promotions that let you try select models at no cost, up to a limited usage quota", and "Free models are available to any user with a Cline account" — a sign-in with Google, GitHub or email, no card. No figure is published; the quota is counted per model and per day, which is how Cline's clients word the stop: `You've reached today's free usage limit for this model`. The lane is the free list the model picker reads, keyless at api.cline.bot, and it turns over "on a rotating, limited-time basis". The free-models page states two limits outright: "Free model usage is not supported through the Cline API. Free models are only available in the Cline IDE Extension and CLI", and "Free model usage may be used to help improve model performance and quality". Read 2026-09-14
+Free model promotions: Daily usage allowance: amount not published per account per model
+
+Free promotions require a Cline account, with Google, GitHub or email signup and no card. The daily per-model scope is also reported by the client stop message: `You've reached today's free usage limit for this model`. The picker's free list rotates. These models work only in the Cline IDE extension and CLI, not through the Cline API. Free usage may improve model performance and quality.
 
 ## Where it is offered
 
@@ -36,7 +38,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 ## Connect
 
 - No API endpoint to paste: this row is a tool you install or sign in to.
-- In Cline's own model list: `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`
+- In Cline's own model list: `cline-free/mimo-v2.6-flash`, `cline-free/muse-spark-1.3-contributor`, `cline-free/solar-mini4`
 
 ## Evidence
 
@@ -49,6 +51,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-07` — Free models changed: added mimo-v2.6-flash
 - `2026-10-05` — Free models changed: dropped deepseek-v4.1-flash
 - `2026-09-28` — Free models changed: added deepseek-v4.1-flash
 - `2026-09-24` — Free models changed: added muse-spark-1.3-contributor
@@ -60,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

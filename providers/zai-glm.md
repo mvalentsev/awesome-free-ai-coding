@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Z.ai (Zhipu GLM) free tier: limits, free models, verified 2026-10-05'
-description: 'GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4). Free models: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash. GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three rows z.ai''s own price table reads Free on all four columns…'
+description: 'GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai/api/paas/v4). Free models: glm-4.7-flash, glm-4.5-flash, glm-4.6v-flash. GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output prices. The flagship rows'' limited-time-free cached-storage column…'
 permalink: /providers/zai-glm/
 last_modified_at: 2026-10-05
 crumb: Z.ai (Zhipu GLM)
@@ -23,7 +23,9 @@ GLM Flash models free on the API, vision included (OpenAI-compatible at api.z.ai
 
 ## Limits, in the vendor's words
 
-GLM-4.7-Flash, GLM-4.5-Flash and the GLM-4.6V-Flash vision model are the three rows z.ai's own price table reads Free on all four columns — every other model there says "Limited-time Free" instead, including the flagship GLM-5.x. Rate-limited
+Free Flash models: Usage allowance: amount not published (period not published) per account
+
+GLM-4.7-Flash, GLM-4.5-Flash and GLM-4.6V-Flash have free input and output prices. The flagship rows' limited-time-free cached-storage column does not make their input or output free. No numerical rate or usage allowance is published.
 
 ## Where it is offered
 
@@ -66,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

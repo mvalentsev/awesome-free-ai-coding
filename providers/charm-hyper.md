@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Crush + Charm Hyper free tier: limits, free models, verified 2026-10-05'
-description: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention. "Every new Hyper account starts on the free plan with 100 hypercredits that refresh monthly" (about $5), "the default plan for all users"; "Sign up with…
+description: Charm's Crush terminal agent with Hyper, its official hosted model gateway; the free plan includes monthly Hypercredits, zero data retention. The free plan is the default for new accounts. Sign up with Google, GitHub or email. Hypercredits are the vendor's usage unit; no fixed token count follows…
 permalink: /providers/charm-hyper/
 last_modified_at: 2026-10-05
 crumb: Crush + Charm Hyper
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-"Every new Hyper account starts on the free plan with 100 hypercredits that refresh monthly" (about $5), "the default plan for all users"; "Sign up with Google, GitHub, or email." Read 2026-09-27
+100 Hypercredits/month per account
+
+The free plan is the default for new accounts. Sign up with Google, GitHub or email. Hypercredits are the vendor's usage unit; no fixed token count follows from the allowance.
 
 ## Where it is offered
 
@@ -53,6 +55,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

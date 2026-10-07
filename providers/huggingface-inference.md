@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Hugging Face Inference Providers free tier: limits, free models, verified 2026-10-05'
-description: Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account. Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across…
+description: Routed access to 200+ models across providers (Groq, Cerebras, Together, etc.) with a free HF account. Credits apply only to HF-routed requests and their amount is subject to change. They spend at each provider's own rates across the router's catalog; a spending balance does not make any…
 permalink: /providers/huggingface-inference/
 last_modified_at: 2026-10-05
 crumb: Hugging Face Inference Providers
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-Free users get $0.10/month credits (subject to change); credits apply only on HF-routed requests. There is no free model list to publish — the credit is spent at each provider's own rate across everything the router reaches, so which models it buys depends on their price, not on a tier (read 2026-08-14)
+HF-routed usage: $0.1/month per account
+
+Credits apply only to HF-routed requests and their amount is subject to change. They spend at each provider's own rates across the router's catalog; a spending balance does not make any individual model free.
 
 ## Where it is offered
 
@@ -60,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

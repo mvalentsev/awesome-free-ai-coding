@@ -23,7 +23,9 @@ crumb: qwen3.5-4b
 
 Serverless open models priced per token, one of them at $0 and callable without prepaid credit
 
-- Limits, in the vendor's words: The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision and text. The billing docs: "Free models do not require prepaid credit." — a paid model on an empty prepaid balance answers `402`. Rate limits are set per organization and per model, and "Mixlayer does not publish fixed limit values because limits can differ by organization and model". The docs' introduction sends its first request to the free model. The operator is Mixlayer Labs Inc. Read 2026-09-17
+- Limits, in the vendor's words: Usage allowance: see your account for values (period not published) per organization per model
+
+Free models do not need prepaid credit; paid models return 402 when the balance is empty. The zero-priced Qwen route is separate from metered models. Rate limits are set per organization and model, with actual values unpublished. The operator is Mixlayer Labs Inc.
 - Base URL: `https://models.mixlayer.ai/v1`
 - Key: `MIXLAYER_API_KEY` — get one at <https://console.mixlayer.com/app/api-keys>
 - Codex CLI: [`configs/codex/mixlayer.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/mixlayer.config.toml) — copy it to `~/.codex/`, then `codex -p mixlayer`; set up on the lane by the vendor's own page, <https://docs.mixlayer.com/codex-cli>: "A separate profile keeps Mixlayer isolated from your default Codex configuration"
@@ -39,7 +41,9 @@ China's SiliconFlow prices eight small chat models at ¥0 for an account verifie
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: The rate-limit FAQ: free models cost nothing ("免费模型调用免费", billed at 0), their limits are fixed per model ("免费模型的 Rate Limits 固定", shown in the client-rendered model square), and "实名认证后使用全部的免费模型" — they open only after real-name verification. That is an Alipay face scan taking a mainland ID card, a Hong Kong, Macau or Taiwan travel or residence permit, or China's permanent-residence card for foreigners; without one "暂时不支持线上个人认证", and the FAQ offers a form to the staff instead. Sign-in is by SMS or email. The free rows are in the price list's own data, each at ¥0 in and out: Qwen3-8B, GLM-4-9B-0414, GLM-Z1-9B-0414, Qwen2.5-7B-Instruct, Qwen3.5-4B, DeepSeek-R1-0528-Qwen3-8B, Hunyuan-MT-7B and Xing4.0-29B, the last two also marked 免费 in the table the page renders. Read 2026-09-18
+- Limits, in the vendor's words: Verified free models: Usage allowance: see your account for values (period not published) per account per model
+
+Free models are zero-priced but require real-name verification. Online verification uses an Alipay face scan and accepted mainland, Hong Kong, Macau, Taiwan or Chinese permanent-residence documents; other applicants must contact staff. Sign in by SMS or email. Per-model fixed rate values are shown in the client-rendered model square, rather than public docs.
 
 </details>
 
@@ -59,6 +63,6 @@ China's SiliconFlow prices eight small chat models at ¥0 for an account verifie
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

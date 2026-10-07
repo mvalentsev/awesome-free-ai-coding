@@ -26,7 +26,9 @@ Open-source coding agent whose opencode Zen gateway prices a rotating set of mod
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. The maintainer says "You cannot use the free tier in other harnesses (this is only a limitation for the free tier nothing else)". Inside OpenCode, use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. No numerical usage quota is published. Offers rotate and each named free offer is "available on OpenCode for a limited time". For the free models, "collected data may be used to improve the model"; NVIDIA-backed offers are "Trial use only — do not submit personal or confidential data". Muse Spark Contributor is discounted "in exchange for permission to use your prompts and completions to train future Meta models", and max effort is "Standard-tier `muse-spark-1.3` only". Read 2026-10-06
+- Limits, in the vendor's words: Free model usage: Usage allowance: amount not published (period not published); scope not published
+
+Free models work only inside OpenCode; other clients receive `403 FreeTierError: OpenCode's free tier can only be used from within OpenCode`. Use `opencode/<model-id>` and select the Free variant; plain muse-spark-1.3 is paid. Offers rotate and each named free offer is "available on OpenCode for a limited time". Collected free-model data may improve models; NVIDIA offers are trial-only and exclude personal or confidential data. Muse Spark Contributor permits training on prompts and completions; max effort belongs to the paid Standard variant.
 
 </details>
 
@@ -42,7 +44,9 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: The portal's plan table reads "Free $0 Free models only Standard rate limits $0 monthly credits Try Hermes", and the Hermes Agent guide has you "create a Nous Portal account (or sign in), choose the Free plan, and authorize Hermes" — "The :free tag is what keeps it on the no-cost plan". No rate-limit figure is published and no page read mentions a card. The keyless catalog prices seven qualifying :free chat rows at zero; a call without a key answers HTTP 402 with a payment offer, so the free models want the portal's key. Read 2026-10-01
+- Limits, in the vendor's words: Free models: Usage allowance: amount not published (period not published) per account
+
+Choose the Free plan and use exact :free IDs; they are zero-priced, while metered routes are outside it. A portal key is required: a keyless chat call returns 402 even though the public catalog is readable. No page read mentions a card or a numerical rate cap.
 
 </details>
 
@@ -67,6 +71,6 @@ Nous Research's inference portal with a $0 Free plan for :free models, accessibl
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

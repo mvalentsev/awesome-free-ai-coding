@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-10-05'
-description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the page's…
+description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The invite-code grant is the total signup balance, not an extra amount added to the…
 permalink: /providers/hpc-ai/
 last_modified_at: 2026-10-05
 crumb: HPC-AI Model APIs
@@ -23,7 +23,17 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The Model APIs page answers its FAQ "Do you offer a free trial for users?" in the page's data rather than its text: every user receives $2 "in free credits. New accounts using the invite code" HPCAI-MAPI get $4, and "Supplies are limited". The console's welcome message, shipped in the same page, reads "Free credits have been added to your account — start calling open-source models right away." and "Make your first deposit to unlock higher RPM limits." The keyless model list gives the L0 tier, an account before its first deposit, 5 requests and 2M tokens a minute on 23 of its 24 models (DeepSeek V4 Pro gets 0), and the rate-limit docs say the move to L1 "is triggered by your first deposit rather than by spending". The credit buys list prices, GLM 5.3 Flash at $0.15 in and $0.50 out per million tokens and Kimi K3 at $3 and $15. No page read asks for a card before the credit is spent, and none gives it an expiry. Read 2026-09-17
+Standard signup grant: $2 once per account
+
+Signup grant with invite code: $4 once per account (Use invite code HPCAI-MAPI)
+
+L0 before first deposit: 5 requests/minute per account per model; for `zai-org/glm-5.3-flash`, `moonshotai/kimi-k2.7-code`, `zai-org/glm-5.3`, `deepseek/deepseek-v4-flash`, `anthropic/claude-fable-5`, `anthropic/claude-opus-4.7`, `anthropic/claude-opus-4.8`, `anthropic/claude-opus-5`, `moonshotai/kimi-k3`, `openai/gpt-5.5`, `openai/gpt-oss-120b`, `qwen/qwen3.8-2.4t-a95b`, `qwen/qwen3.8-max`, `zai-org/glm-5.2`, `anthropic/claude-opus-4.6`, `xiaomi/mimo-v2.5-pro`, `xiaomi/mimo-v2.5`, `moonshotai/kimi-k2.6`, `nvidia/nemotron-3-ultra-550b-a55b`, `minimax/minimax-m3`, `qwen/qwen-3.5-397b-a17b`, `qwen/qwen-3.5-35b-a3b`, `qwen/qwen-3.5-27b`
+
+Standard L0 models: 2,000,000 tokens/minute per account per model; for `zai-org/glm-5.3-flash`, `moonshotai/kimi-k2.7-code`, `zai-org/glm-5.3`, `deepseek/deepseek-v4-flash`, `anthropic/claude-fable-5`, `anthropic/claude-opus-4.7`, `anthropic/claude-opus-4.8`, `anthropic/claude-opus-5`, `moonshotai/kimi-k3`, `openai/gpt-5.5`, `openai/gpt-oss-120b`, `qwen/qwen3.8-2.4t-a95b`, `qwen/qwen3.8-max`, `zai-org/glm-5.2`, `xiaomi/mimo-v2.5-pro`, `xiaomi/mimo-v2.5`, `moonshotai/kimi-k2.6`, `nvidia/nemotron-3-ultra-550b-a55b`, `minimax/minimax-m3`, `qwen/qwen-3.5-397b-a17b`, `qwen/qwen-3.5-35b-a3b`, `qwen/qwen-3.5-27b`
+
+L0: Claude Opus 4.6: 10,000,000 tokens/minute per account per model; for `anthropic/claude-opus-4.6`
+
+The invite-code grant is the total signup balance, not an extra amount added to the standard grant; supplies are limited. Credit spends at model list prices. L0 applies before the first deposit; spending alone does not promote an account to L1. Claude Opus 4.6 has a higher token rate than the other positive-RPM L0 models; DeepSeek V4 Pro has zero L0 RPM. No card requirement or credit expiry is published.
 
 ## Where it is offered
 
@@ -66,6 +76,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

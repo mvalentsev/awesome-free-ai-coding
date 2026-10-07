@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Qodo free tier: limits, free models, verified 2026-10-05'
-description: 'Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card. "Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited credits" is the whole free offer on the pricing page, and the FAQ beside it says so: "Is there…'
+description: Agentic PR code review plus Git and IDE integrations on a 14-day Pro Team trial with unlimited reviews and credits and no card. No card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the…
 permalink: /providers/qodo/
 last_modified_at: 2026-10-05
 crumb: Qodo
@@ -23,7 +23,11 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-"Free 14 Day Trial no credit card" with "Unlimited reviews" and "Unlimited credits" is the whole free offer on the pricing page, and the FAQ beside it says so: "Is there a free plan? We don't offer a permanent free tier. After your trial, pick a paid plan to keep reviewing." The plan it trials is "Pro Team $30", "$.012/credit, pooled across the team", "Designed for up to 30 users", "Monthly billing • no commitment". The Terms grant Qodo a licence to use customer data "to train and improve the Platform's, the Qodo Models and Services' performance", while the pricing FAQ says "Qodo does not train models on your code". A standing free lane exists for one audience: "Qualified open source projects can apply to the Qodo for Open Source program for free access". Which models the trial runs on is not stated. Read 2026-09-16
+14-day trial: Unmetered credits per team (Free for 14 days)
+
+Open Source program: Usage allowance: amount not published (period not published) per project (Qualified projects; application required)
+
+No card for the trial. There is no permanent general-purpose free tier; continued reviewing needs a paid plan, except qualified open-source projects that apply to the standing free program. The trial's models are unnamed. The terms permit customer data to train and improve the platform and models, while the pricing FAQ says Qodo does not train on code; those statements conflict.
 
 ## Where it is offered
 
@@ -47,6 +51,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'RouterPlex free tier: limits, free models, verified 2026-10-05'
-description: 'A one-time $1 of free credit on a prepaid reseller that bills its catalog at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. The home page: "Get $1 in free credit", granted "once…'
+description: A one-time $1 of free credit on a prepaid reseller that bills its catalog at vendor list prices with 0% markup, no card — one key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. The key-creation grant is for an account with no earlier…
 permalink: /providers/routerplex/
 last_modified_at: 2026-10-05
 crumb: RouterPlex
@@ -23,7 +23,11 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The home page: "Get $1 in free credit", granted "once during key creation, not immediately after signup" to an account with "no previous paid top-up, no existing credit, and no previous setup-credit grant". "Trial traffic is limited to 10 requests per minute, 250,000 tokens per minute, and four concurrent requests", "Signup and guided setup have no payment step", and "The $1 credit does not expire". What the dollar buys is the catalog rate of whatever it is spent on, with "0% Token markup" on the pricing page, so at deepseek-v4-flash it is an afternoon of work and at claude-opus-5 a handful of turns. The terms narrow it: "Until an account makes its first paid top-up, promotional credit may be usable only with a subset of models and at reduced rate limits", "no promotional credit is guaranteed", and one account per person. Which models the subset holds is on no page. Continuing costs a top-up "from $5 by card or $15 by crypto". No legal entity is named on /terms or /about, and /v1/models answers 403 without a key, so nothing here is read off the catalog. A connection test with a little work in it, one step above the smallest trial on this list. Read 2026-09-27
+Key-creation grant: $1 once per account
+
+Trial traffic: 10 requests/minute; 250,000 tokens/minute; 4 requests at once per account
+
+The key-creation grant is for an account with no earlier paid top-up, existing credit or setup grant; signup has no payment step and the grant does not expire. It spends at catalog prices with no token markup. Before a first paid top-up, only an unpublished subset of models may accept promotional credit, at reduced rates. Terms do not guarantee a grant and allow one account per person. Continuing requires at least $5 by card or $15 by crypto. No legal entity is named; the catalog needs a key.
 
 ## Where it is offered
 
@@ -67,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

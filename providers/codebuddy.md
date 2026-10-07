@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'CodeBuddy (Tencent) free tier: limits, free models, verified 2026-10-05'
-description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site and the agent's own endpoint unreachable from the US, India and Russia. The docs price table…
+description: Tencent's VS Code / JetBrains / CLI coding agent whose Free plan carries 100 credits a month, a daily activity bonus of 30 and 250 welcome credits, with every model open while the promotion runs — its site and the agent's own endpoint unreachable from the US, India and Russia. The current…
 permalink: /providers/codebuddy/
 last_modified_at: 2026-10-05
 crumb: CodeBuddy (Tencent)
@@ -23,7 +23,17 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The docs price table gives Free "Base Credits / Month 100", a "Promotional Bonus (Limited-Time Offer)" of 30 credits a day, 5,000 completions a month ("unlimited during the promotional period") and auto routing ("all models available during the promotional period"); "Standard quotas resume when the promotion ends", and "The end date of this promotion will be announced separately". "Base and bonus credits are issued monthly and are valid for that month; they do not roll over", and "New users receive 250 credits immediately upon their first sign-in. The credits are valid for 14 days". No card for Free — only the 7-day Pro trial asks for one. The docs name no model for the plan. The terms, Tencent Cloud International Pte. Ltd.'s, require users "at least 18 years old". www.codebuddy.ai — where the plan is sold and signed in to, and the endpoint the VS Code extension's international build calls — does not resolve from US, Indian or Russian networks: on 2026-09-25 its DNS answered 0.0.0.1 to client subnets there and ordinary addresses in the seventeen other countries and territories asked. The same docs are served on Tencent's www.workbuddy.ai, which the probe reads. Read 2026-09-25
+Base Free plan: 100 credits/month per account
+
+Promotional daily bonus: 30 credits/day per account
+
+Standard completion allowance: 5,000 completions/month per account
+
+Current promotion: Unmetered completions per account
+
+Signup credit: 250 credits once per account (Valid for 14 days)
+
+The current promotion makes completions unmetered and enables auto routing across all available models. "Standard quotas resume when the promotion ends" and "The end date of this promotion will be announced separately". Monthly base and bonus credits expire in their month without rollover. Free needs no card; the Pro trial does. Models are unnamed. Users must be at least 18. A 2026-09-25 DNS measurement found the international website, login and extension endpoint unavailable from US, Indian and Russian networks; the docs are also served on workbuddy.ai.
 
 ## Where it is offered
 
@@ -48,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

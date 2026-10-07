@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Tencent Cloud TokenHub free tier: limits, free models, verified 2026-10-05'
-description: Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The free package page, updated 2026-09-04, gives each main account one grant while the promotion…
+description: Tencent Cloud's model platform, with a one-time grant of a million tokens on each of its language models, valid a year and no card, on an account that has passed Tencent Cloud real-name verification. The claiming promotion runs through December 31, 2026. Grants are selected per model or claimed on…
 permalink: /providers/tencent-tokenhub/
 last_modified_at: 2026-10-05
 crumb: Tencent Cloud TokenHub
@@ -23,7 +23,9 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The free package page, updated 2026-09-04, gives each main account one grant while the promotion runs, 本期活动时间截至 2026 年 12 月 31 日 (until 31 December 2026): 所有语言模型均提供 100 万 Tokens 的免费体验额度，有效期 1 年, a million tokens on every language model, valid a year from claiming. The grant is per model: packages are ticked model by model in the model square or claimed on a model's first call, 免费体验包每个账号每个模型仅可领取一次 (each account claims each model's package once), and the quickstart speaks of 各模型免费体验额度, each model's free quota — against one note that 同一账号下的所有模型共享额度 (the account's models share it), with the figures 以控制台显示为准 (as the console shows). When the grant is spent the service stops unless post-payment is switched on, so nothing is billed without it. The quickstart requires registering on Tencent Cloud and passing 实名认证, real-name verification, and personal verification is for 中国大陆、中国香港、中国澳门、中国台湾居民 — residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are sent to the international site. Read 2026-09-25
+Claimed promotional package: 1,000,000 tokens once per account per model (Valid for 1 year)
+
+The claiming promotion runs through December 31, 2026. Grants are selected per model or claimed on its first call; one note instead says models share the account's quota, so confirm the console's scope. Exhaustion stops usage unless post-payment is enabled. Real-name verification accepts residents of mainland China, Hong Kong, Macau and Taiwan; other identity documents are directed to the international service.
 
 ## Where it is offered
 
@@ -67,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

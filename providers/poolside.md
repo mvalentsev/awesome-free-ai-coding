@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Poolside Platform free tier: limits, free models, verified 2026-10-05'
-description: Free self-serve developer access to Poolside's own Laguna coding models. Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no…
+description: Free self-serve developer access to Poolside's own Laguna coding models. The quickstart recommends free developer access; an organization's enterprise deployment is a separate access path. No quota, rate, or duration is published. The pricing page returns 404, which does not establish unlimited…
 permalink: /providers/poolside/
 last_modified_at: 2026-10-05
 crumb: Poolside Platform
@@ -23,7 +23,9 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-Poolside publishes none. Its quickstart offers "fast, free developer access" as the recommended of four access paths, with the organisation's own deployment a separate enterprise one, but poolside.ai/pricing is a 404 and no page on the docs site states a quota, a rate limit or a duration. Treat it as unquantified rather than as generous
+Usage allowance: amount not published (period not published) per organization
+
+The quickstart recommends free developer access; an organization's enterprise deployment is a separate access path. No quota, rate, or duration is published. The pricing page returns 404, which does not establish unlimited capacity or a withdrawn offer.
 
 ## Where it is offered
 
@@ -63,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

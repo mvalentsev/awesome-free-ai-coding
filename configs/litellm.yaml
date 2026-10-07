@@ -23,7 +23,6 @@
 # Left out: Kilo Code — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 # Left out: VLM Run Gateway — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 # Left out: OVHcloud AI Endpoints — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
-# Left out: Pollinations.AI — its keyless lane answers only a call with no Authorization header, and LiteLLM sends one on every call.
 model_list:
 - model_name: google-ai-studio/gemini-3.8-flash
   litellm_params:
@@ -1190,6 +1189,12 @@ model_list:
     api_base: https://inference-api.nousresearch.com/v1
     api_key: os.environ/NOUS_PORTAL_API_KEY
     use_chat_completions_api: true
+- model_name: nous-portal/upstage/solar-mini4:free
+  litellm_params:
+    model: openai/upstage/solar-mini4:free
+    api_base: https://inference-api.nousresearch.com/v1
+    api_key: os.environ/NOUS_PORTAL_API_KEY
+    use_chat_completions_api: true
 - model_name: regolo/glm5.2
   litellm_params:
     model: openai/glm5.2
@@ -1710,6 +1715,12 @@ model_list:
   litellm_params:
     model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
+    api_key: none
+    use_chat_completions_api: true
+- model_name: pollinations/gpt-oss-20b
+  litellm_params:
+    model: openai/gpt-oss-20b
+    api_base: https://text.pollinations.ai/openai
     api_key: none
     use_chat_completions_api: true
 - model_name: bytez/Qwen/Qwen3-4B
@@ -2280,6 +2291,17 @@ model_list:
   litellm_params:
     model: openai/turboderp/Qwen3.8-27B-exl3
     api_base: https://hermes.ai.unturf.com/v1
+    api_key: none
+    use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/nokey
+  litellm_params:
+    model: openai/gpt-oss-20b
+    api_base: https://text.pollinations.ai/openai
     api_key: none
     use_chat_completions_api: true
   model_info:

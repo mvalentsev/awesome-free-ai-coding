@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SEA-LION (AI Singapore) free tier: limits, free models, verified 2026-10-05'
-description: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's. Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no…
+description: AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's. The free API is intended for prototyping; production use is directed to cloud partners. The free-offer page names no…
 permalink: /providers/sea-lion/
 last_modified_at: 2026-10-05
 crumb: SEA-LION (AI Singapore)
@@ -23,7 +23,9 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-Free API meant for prototyping — rate limited at 10 calls/min per user, with no credit or token budget published and no expiry stated; production use is pointed at cloud partners (AWS, Cloudflare, GCP, IBM, NVIDIA, Qualcomm) instead. The two surfaces do not overlap — the page that calls the API free names no model, and the docs page that names aisingapore/Qwen-SEA-LION-v4.5-27B-IT — and dates the 10 RPM limit to 04 Jun 2026 — never says free
+10 requests/minute per account
+
+The free API is intended for prototyping; production use is directed to cloud partners. The free-offer page names no model, while the model API docs publish the per-user rate. No token or credit budget or expiry is stated.
 
 ## Where it is offered
 
@@ -60,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

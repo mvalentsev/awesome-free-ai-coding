@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Experiential Labs free tier: limits, free models, verified 2026-10-05'
-description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification. The Free plan is "500 credits a month once you verify a card (a one-time $1 charge…
+description: An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification. Free requires a one-time $1 card-verification charge, added to the balance. Credits…
 permalink: /providers/experiential-labs/
 last_modified_at: 2026-10-05
 crumb: Experiential Labs
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The Free plan is "500 credits a month once you verify a card (a one-time $1 charge, added to your balance)". A credit is a cent ("Flat 1¢ per credit, 0% token markup"), spent at list price: "Route on credits at each provider’s list price with nothing on top". In the public catalog with Free selected, GPT-6 Luna is 75% off and Qwen3.8 27B / DeepSeek V4 Flash are 50% off, not individually free; the 100% discounts belong to Ultra. Jev is marked Free but its entry lists no tool or streaming support. "Prompt and response storage off" is a paid-plan feature; prompts on the Free plan are stored. Read 2026-10-01
+500 credits/month per account
+
+Free requires a one-time $1 card-verification charge, added to the balance. Credits spend at provider list prices with no token markup; a credit is one cent. Free catalog discounts are reductions from price, not individually free models. Jev is marked Free but lists no tool or streaming support. Prompt and response storage is enabled on Free; disabling it requires a paid plan.
 
 ## Where it is offered
 
@@ -58,6 +60,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

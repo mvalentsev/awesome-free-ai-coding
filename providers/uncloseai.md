@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-10-05'
-description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the inference page draws…
+description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. Hermes is the public text lane. qwen.ai.unturf.com requires a key and rejects anonymous traffic with 403. A down model's hostname returns 502; that temporary failure does not establish shutdown. Query Model Discovery for…
 permalink: /providers/uncloseai/
 last_modified_at: 2026-10-05
 crumb: uncloseai (unturf)
@@ -23,7 +23,9 @@ The row names no free model family; the ids its lane serves, where the row has t
 
 ## Limits, in the vendor's words
 
-The offer is a sentence — "we offer free AI services powered by multiple AI models and a TTS (text-to-speech) endpoint … embodying the principles of both free as in beer & free as in freedom" — and the inference page draws the line between its two text hostnames: "hermes.ai.unturf.com : public, 3 requests per second per IP" and "qwen.ai.unturf.com : API key required; anonymous traffic gets 403". Hermes is the lane, and "A hostname whose model is down gets a 502 instead of silently answering as whatever else is up": check the response before choosing a model; temporary failures do not establish a shutdown. The served id is not the one the page's own examples call, and the vendor says so — "See our Model Discovery docs to query the current model IDs being hosted" — query Model Discovery for current callable IDs instead of relying on static examples. Read 2026-10-05
+Hermes public endpoint: 3 requests/second per IP
+
+Hermes is the public text lane. qwen.ai.unturf.com requires a key and rejects anonymous traffic with 403. A down model's hostname returns 502; that temporary failure does not establish shutdown. Query Model Discovery for current callable IDs, since static examples can name an older ID.
 
 ## Where it is offered
 
@@ -60,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

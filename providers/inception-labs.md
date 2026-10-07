@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-10-05'
-description: A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits. 100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit "shared across…
+description: A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits. No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's…
 permalink: /providers/inception-labs/
 last_modified_at: 2026-10-05
 crumb: Inception Labs (Mercury)
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-100 million tokens on every new account, no payment details required, and the grant does not refill. The FAQ calls it a one-time credit "shared across all models rather than granted per model", so Mercury 2.5 spends the same balance as Mercury 2. Past it the account moves to pay-as-you-go: $0.25 per 1M input and $0.75 per 1M output on Mercury 2 and Mercury Edit 2, a list $0.20/$0.75 on Mercury 2.5 that the launch promotion is discounting 80% to $0.04/$0.15 (2026-09-10). The Free tier's own ceiling is per minute rather than per month — 1,000 requests, 1,000,000 input tokens and 100,000 output tokens
+100,000,000 tokens once; 1,000 requests/minute; 1,000,000 input tokens/minute; 100,000 output tokens/minute per account
+
+No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's per-minute traffic limits. After it, usage is pay-as-you-go at the model's current token prices; a launch discount is not a separate free model.
 
 ## Where it is offered
 
@@ -67,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

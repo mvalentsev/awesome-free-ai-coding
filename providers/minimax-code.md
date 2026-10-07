@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'MiniMax Code free tier: limits, free models, verified 2026-10-05'
-description: 'MiniMax''s coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them. The docs: "Daily check-ins earn 400 points", "Check-ins on day 4 and day 7 award 1,000 points per day", "A…'
+description: MiniMax's coding agent — a desktop app for macOS and Windows, with an open-source CLI beside it — whose daily check-in in the app earns free points to spend on its tasks, coding among them. The higher day-4 and day-7 check-ins replace the normal daily award rather than add to it. Check-in points…
 permalink: /providers/minimax-code/
 last_modified_at: 2026-10-05
 crumb: MiniMax Code
@@ -23,7 +23,11 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The docs: "Daily check-ins earn 400 points", "Check-ins on day 4 and day 7 award 1,000 points per day", "A full week of check-ins earns 4,000 points", and "Check-in points can be accumulated and are valid for 30 days from the day they are credited"; points "can be used across MiniMax Code task scenarios, including office work, Coding, deep research". No page says what a point buys: "Available tiers, supported models, billing, and quota rules follow the latest product UI". The check-in is the desktop app's ("Open MiniMax Code and complete the daily check-in to earn points"), with no payment step named before it, and the changelog doubles the points "From September 28 through October 7" for "New and existing users". Accounts are Global or mainland China, each on its own site with the same check-in. The CLI, `mcode`, signs in to the same account (`mcode login --region global` for a Global one) and its README asks for "a MiniMax account with available credits or your own compatible model API"; no page says the check-in points reach it. The terms ask users to be "16 years of age or older". Read 2026-10-05
+Standard check-in: 400 points/day per account (Points valid for 30 days)
+
+Check-in days 4 and 7: 1,000 points/day per account (Points valid for 30 days)
+
+The higher day-4 and day-7 check-ins replace the normal daily award rather than add to it. Check-in points cover MiniMax Code task scenarios; their spending value follows the product UI. The desktop check-in names no payment step. A promotion doubles points "From September 28 through October 7"; "New and existing users can participate". Its timezone is unstated. Global and mainland accounts use separate sites. The CLI accepts account credits or BYOK, but no source establishes check-in-point eligibility there. Users must be at least 16.
 
 ## Where it is offered
 
@@ -52,6 +56,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

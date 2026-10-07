@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-10-05'
-description: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use. Rate limits are the published ceiling — 5 requests per second and 200 per minute on typhoon-v2.5-30b-a3b-instruct, 2 and 20 on…
+description: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use. A free research showcase, with higher limits available by email. Usage data is collected to improve the model and API; the vendor…
 permalink: /providers/opentyphoon/
 last_modified_at: 2026-10-05
 crumb: OpenTyphoon (SCB 10X)
@@ -23,7 +23,9 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-Rate limits are the published ceiling — 5 requests per second and 200 per minute on typhoon-v2.5-30b-a3b-instruct, 2 and 20 on typhoon-ocr — with no token, daily or monthly cap stated; higher limits are by email "with details about your use case, expected volume, and requirements". The FAQ answers the price in one sentence, "The Typhoon API is a research showcase and free to use", and names the trade in the next: "Yes, we are collecting usage data from the Typhoon API", used "to improve the model and the API" and, it says, never shared with third parties. Production use is pointed elsewhere — "please support us by using the API through Together AI" — and the paid API Pro that ran there sunset on 2025-12-31 with an AWS successor announced for Q1 2026 that had not appeared by this read (2026-09-05). A key is minted in the playground after signing up; no card is mentioned on any page read
+5 requests/second; 200 requests/minute per account per model; for `typhoon-v2.5-30b-a3b-instruct`
+
+A free research showcase, with higher limits available by email. Usage data is collected to improve the model and API; the vendor says it is not shared with third parties. Production users are directed to Together AI. A key is minted in the playground after signup; no page read mentions a card. OCR has its own lower rates, separate from the coding model.
 
 ## Where it is offered
 
@@ -64,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

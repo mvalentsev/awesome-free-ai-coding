@@ -28,7 +28,11 @@ Cohere's Command models via free trial API keys that never expire, plus a 30B/3B
 
 - Limits, in the vendor's words: Trial keys: 1,000 requests/month per key
 
-Trial keys are rate-limited per model — 20 req/min on every Chat model, Command A and North Mini Code included, with Rerank at 10/min, Tokenize at 100/min, Embed at 2,000 inputs/min and audio transcription at 5/min. Two things that page does not say. Cohere's pricing page states that trial keys "are not permitted to be used for production or commercial purposes", and that every account "begins as a personal account and only has access to Trial API keys" — so the 1,000 calls are for evaluation, not for a product. And the North Mini Code page states that "for both trial keys and production keys, North Mini Code is free until rate limits are reached", which makes the one model here built for agentic coding the one that stays free on a paid key too (read 2026-08-14)
+Trial Chat models: 20 requests/minute per key per model
+
+North Mini Code on production keys: 500 requests/minute per key per model
+
+Trial keys are for evaluation, not production or commercial use; new accounts start with Trial keys. Chat limits differ from those for reranking, embeddings, tokenization and audio. North Mini Code is free on both Trial and production keys until the corresponding rate limit is reached. The trial monthly request allowance applies alongside its per-model rate caps.
 
 </details>
 
@@ -39,6 +43,6 @@ Trial keys are rate-limited per model — 20 req/min on every Chat model, Comman
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

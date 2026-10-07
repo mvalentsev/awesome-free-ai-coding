@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Gemini Enterprise Agent Platform express mode (formerly Vertex AI) free tier: limits, free models, verified 2026-10-05'
-description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. Free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash. The express mode overview: "New users…'
+description: 'Google Cloud''s express mode: an API key and 90 days of Gemini models within the free tier''s quotas, with no billing information, for a new Google Cloud user on a @gmail.com account. Free models: gemini-3.1-pro, gemini-3-flash, gemini-2.5-pro, gemini-2.5-flash. The free express trial is for new…'
 permalink: /providers/vertex-ai-express/
 last_modified_at: 2026-10-05
 crumb: Gemini Enterprise Agent Platform express mode (formerly Vertex AI)
@@ -23,7 +23,13 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 ## Limits, in the vendor's words
 
-The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to try Agent Platform for free for up to 90 days, within the specified quotas", and "You don't need to provide billing information to sign up in the free tier". Its model table gives gemini-3.1-pro-preview, gemini-3-pro-preview and gemini-3-flash-preview a dynamic rate limit and gemini-2.5-pro, gemini-2.5-flash and the Flash-Lite and 2.0 Flash rows 10 requests a minute. The FAQ: "If you don't enable billing, you won't be able to use express mode after 90 days". An existing Google Cloud user gets no free tier, and the separate $300 Free Trial asks for "a credit card or other payment method". Express mode is a Preview, and its terms add "Customer will not use the Express Mode Offerings to process personal data". Read 2026-09-23
+Preview models: Per-minute requests allowance: amount varies per project per model
+
+Stable Gemini models: 10 requests/minute per project per model (Free express trial lasts up to 90 days); for `gemini-2.5-pro`, `gemini-2.5-flash`
+
+Preview Gemini models: Per-minute requests allowance: amount varies per project per model (Free express trial lasts up to 90 days); for `gemini-3.1-pro-preview`, `gemini-3-flash-preview`
+
+The free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data.
 
 ## Where it is offered
 
@@ -58,6 +64,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

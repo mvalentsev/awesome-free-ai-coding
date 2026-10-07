@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cursor (Hobby) free tier: limits, free models, verified 2026-10-05'
-description: 'Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor''s own model and Tab completions, no credit card. Free models: composer. Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to…'
+description: 'Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Cursor''s own model and Tab completions, no credit card. Free models: composer. No credit card is required. Hobby includes limited Agent, Chat and Tab usage with Auto and access to Composer; neither a numerical allowance nor a…'
 permalink: /providers/cursor-hobby/
 last_modified_at: 2026-10-05
 crumb: Cursor (Hobby)
@@ -23,7 +23,9 @@ Permanent free Hobby plan of the Cursor AI IDE — limited Agent requests, Curso
 
 ## Limits, in the vendor's words
 
-Cursor publishes no figure for Hobby anywhere. Its pricing card reads "No credit card required", "Limited Agent requests" and "Access to Composer", the one model it names — Cursor's own, listed as Composer 2.5 in the Cursor Models pool of its model docs, where the Pro card names Grok and frontier models — and the help page adds only that "the Hobby plan gives you access to Cursor's core features with limited usage. You can use Agent, Chat, and Tab completions with the Auto model". Usage "resets monthly with your billing cycle" and "does not roll over"; at the cap Cursor shows a notification and offers on-demand usage or an upgrade. Cursor Router has not reached individual plans yet (read 2026-09-25)
+Agent usage: Monthly usage allowance: amount not published per account
+
+No credit card is required. Hobby includes limited Agent, Chat and Tab usage with Auto and access to Composer; neither a numerical allowance nor a separate Tab cap is published. Usage resets with the monthly billing cycle and does not roll over. The cap leads to a notification and an offer to upgrade or use on-demand billing. Cursor Router is not offered on individual plans.
 
 ## Where it is offered
 
@@ -54,6 +56,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLM Tech free tier: limits, free models, verified 2026-10-05'
-description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. Free models: qwen3.8-27b. The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per…'
+description: 'EU provider of one model whose quickstart prints a shared trial key for anyone: 2M tokens a day per address and 4 concurrent requests, tool calls included, no account. Free models: qwen3.8-27b. The public trial key shares its concurrency among all callers; the daily token budget is per IP and…'
 permalink: /providers/llmtech/
 last_modified_at: 2026-10-05
 crumb: LLM Tech
@@ -23,7 +23,13 @@ EU provider of one model whose quickstart prints a shared trial key for anyone: 
 
 ## Limits, in the vendor's words
 
-The quickstart prints the key itself: "Shared and rate-limited: 4 concurrent requests and 2M tokens per day per address, counted across prompt and completion and reset at 00:00 UTC. Enough to evaluate, not enough to run on." A personal key "with no daily limit is issued the same day" by email, paid "Per token. No subscription, no minimums", and "it shares the endpoint's 64 requests in flight with other keys". The model is the NVFP4 build of Qwen3.8-27B — "the trial key allows 4 for everyone using it together and a context of 131,072 tokens. Other keys get the full 262,144." — with tool calling, structured outputs and image input. Prompts and completions are held in "volatile memory only — never persisted" and never trained on; metadata, the source IP among it, is kept 13 months as billing evidence. The operator is one person, Artem Burei, trading as a sole proprietorship in Poland, serving since 22 August 2026 from GPUs in Italy behind an edge in Germany. Read 2026-09-27
+2,000,000 tokens/day per IP. reset at 00:00 UTC
+
+Shared trial key: 4 requests at once per key
+
+64 requests at once shared across the endpoint
+
+The public trial key shares its concurrency among all callers; the daily token budget is per IP and counts both prompt and completion. Its context is 131,072 tokens; personal paid keys have the full 262,144 and share the endpoint's separate inflight ceiling. Paid keys are issued by email, per token without subscription or minimum. Prompts and completions are volatile and never persisted or trained on; metadata, including IP, is retained 13 months. The sole proprietor operates in Poland, with GPUs in Italy behind a German edge.
 
 ## Where it is offered
 
@@ -68,6 +74,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

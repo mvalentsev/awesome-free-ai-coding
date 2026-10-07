@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Bytez free tier: limits, free models, verified 2026-10-05'
-description: Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing. The billing page's Free card reads "$0 / month - Get $1 in free credits", "Run open models up to 7B parameters", "1 concurrent…
+description: Serverless API over open models, whose Free plan grants $1 of credit every four weeks for open models of up to 7B parameters, one request at a time, with no billing. Credits expire four weeks after grant. The free balance supports open models up to 7B parameters. Closed-model docs conflict between…
 permalink: /providers/bytez/
 last_modified_at: 2026-10-05
 crumb: Bytez
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The billing page's Free card reads "$0 / month - Get $1 in free credits", "Run open models up to 7B parameters", "1 concurrent request (open models)" and "Credits refresh every 4 weeks", and the billing cycle adds that "Credits expire 4 weeks after grant", with no billing on the plan. The card also lists "Access all closed model providers", and the docs disagree about what that costs: the same billing page says "we pass through the provider's pricing plus a small platform fee" for closed models, while the get-started guide says a closed-source model needs "an account with the model provider" and is "billed directly by the provider". Read the second way, the free dollar reaches only the open models of 7B parameters or fewer — Qwen3 4B, the docs' own example, is one. An open model above 7B needs at least $10 of credit bought in the last four weeks, on the $3 a month plan. Read 2026-09-27
+Open models up to 7B: $1/4 weeks; 1 requests at once per account
+
+Credits expire four weeks after grant. The free balance supports open models up to 7B parameters. Closed-model docs conflict between provider prices plus a platform fee and BYOK billed directly by the provider, so the free dollar does not establish bundled closed-model access. Larger open models require paid credit and a paid plan.
 
 ## Where it is offered
 
@@ -60,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Mixlayer free tier: limits, free models, verified 2026-10-05'
-description: 'Serverless open models priced per token, one of them at $0 and callable without prepaid credit. Free models: qwen3.5-4b. The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision…'
+description: 'Serverless open models priced per token, one of them at $0 and callable without prepaid credit. Free models: qwen3.5-4b. Free models do not need prepaid credit; paid models return 402 when the balance is empty. The zero-priced Qwen route is separate from metered models. Rate limits are set per…'
 permalink: /providers/mixlayer/
 last_modified_at: 2026-10-05
 crumb: Mixlayer
@@ -23,7 +23,9 @@ Serverless open models priced per token, one of them at $0 and callable without 
 
 ## Limits, in the vendor's words
 
-The pricing page says "Free models stay free; pay-as-you-go for everything else." and prices its one free row, qwen/qwen3.5-4b-free, at $0.00 in and out, 131K context, vision and text. The billing docs: "Free models do not require prepaid credit." — a paid model on an empty prepaid balance answers `402`. Rate limits are set per organization and per model, and "Mixlayer does not publish fixed limit values because limits can differ by organization and model". The docs' introduction sends its first request to the free model. The operator is Mixlayer Labs Inc. Read 2026-09-17
+Usage allowance: see your account for values (period not published) per organization per model
+
+Free models do not need prepaid credit; paid models return 402 when the balance is empty. The zero-priced Qwen route is separate from metered models. Rate limits are set per organization and model, with actual values unpublished. The operator is Mixlayer Labs Inc.
 
 ## Where it is offered
 
@@ -65,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

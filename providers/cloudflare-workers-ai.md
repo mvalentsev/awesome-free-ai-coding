@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Cloudflare Workers AI free tier: limits, free models, verified 2026-10-05'
-description: 10k neurons/day free. Past the cap "further operations will fail with an error" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Seven catalog models sit outside the free lane whatever the neuron count — "Some models require a paid billing…
+description: '10k neurons/day free. Past the free allowance "further operations will fail with an error". Some models require a paid billing method even if neurons remain: Kimi K2.6, Kimi K2.7 Code, GLM 5.2, GLM 5.3, GLM 5.3 Flash, DeepSeek V4 Flash 0731 and DeepSeek V4 Pro 0813. The free text-generation rate…'
 permalink: /providers/cloudflare-workers-ai/
 last_modified_at: 2026-10-05
 crumb: Cloudflare Workers AI
@@ -25,7 +25,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 10,000 neurons/day per account. All limits reset daily at 00:00 UTC.
 
-Past the cap "further operations will fail with an error" rather than being billed. Rate limits are per task type — 300 requests per minute for Text Generation. Seven catalog models sit outside the free lane whatever the neuron count — "Some models require a paid billing method. This applies to @cf/moonshotai/kimi-k2.6, @cf/moonshotai/kimi-k2.7-code, @cf/zai-org/glm-5.2, @cf/zai-org/glm-5.3, @cf/zai-org/glm-5.3-flash, @cf/deepseek-ai/deepseek-v4-flash-0731, and @cf/deepseek-ai/deepseek-v4-pro-0813" (read 2026-09-27; GLM 5.3 Flash was free on 2026-08-14)
+Free text generation: 300 requests/minute per account
+
+Past the free allowance "further operations will fail with an error". Some models require a paid billing method even if neurons remain: Kimi K2.6, Kimi K2.7 Code, GLM 5.2, GLM 5.3, GLM 5.3 Flash, DeepSeek V4 Flash 0731 and DeepSeek V4 Pro 0813. The free text-generation rate does not apply to models requiring the Workers Paid plan.
 
 ## Where it is offered
 
@@ -66,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

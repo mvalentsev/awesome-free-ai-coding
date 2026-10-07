@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Sail Research free tier: limits, free models, verified 2026-10-05'
-description: 'Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account. The home page: "$5 in free credits every month when you attach a payment method", and its FAQ…'
+description: Open-weight models for long-running agents — Kimi K3, GLM-5.3, DeepSeek V4 Pro — behind OpenAI- and Anthropic-compatible APIs, with $5 of free credit every month once a payment method is on the account. Attaching a payment method is required for recurring free credit. Credit spends at per-token…
 permalink: /providers/sail-research/
 last_modified_at: 2026-10-05
 crumb: Sail Research
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The home page: "$5 in free credits every month when you attach a payment method", and its FAQ "with $5 in free credits refreshed every month". The credit spends at the per-token prices, which fall with the completion window a request asks for: GLM-5.3 is $0.98 in / $3.08 out per 1M tokens as soon as possible and $0.40 / $1.80 on flex, DeepSeek V4 Flash 0731 $0.09 / $0.18 and $0.05 / $0.09. "No strict rate limits", and request and response data is "not used to train models without written consent". Read 2026-09-21
+$5/month per account
+
+Attaching a payment method is required for recurring free credit. Credit spends at per-token prices that depend on the requested completion window. The vendor states "No strict rate limits" and says request and response data is not used to train models without written consent.
 
 ## Where it is offered
 
@@ -65,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

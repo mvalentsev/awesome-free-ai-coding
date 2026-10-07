@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'BazaarLink free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: qwen3.7-flash, deepseek-v4-flash. BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 60 weighted units/day. With credit…'
+description: 'OpenAI-compatible gateway with a shared free allowance on selected models and an auto:free router. Free models: qwen3.7-flash, deepseek-v4-flash. The free models share each account''s daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the…'
 permalink: /providers/bazaarlink/
 last_modified_at: 2026-10-05
 crumb: BazaarLink
@@ -23,7 +23,15 @@ OpenAI-compatible gateway with a shared free allowance on selected models and an
 
 ## Limits, in the vendor's words
 
-BazaarLink prints the figures on its free page, one allowance shared across the free models: "No credit: 10 RPM and 60 weighted units/day. With credit: 20 RPM and 120 weighted units/day." Where weighted limits are on, "Longer inputs consume more daily units"; the counter resets at 00:00 UTC, beside a "Site-wide free cap: 15 RPM" and "Concurrent free requests per account: 2". "After a limit, paid use is possible only when fallback is enabled and the account has sufficient credit"; everything else in the catalog is metered at list rates. The free ids are Qwen3.7 Flash and the 0731 revision of DeepSeek V4 Flash, under the catalog's own id deepseek/deepseek-v4-flash-0731free:free, described as "Rate-limited free tier." and listed on the free page as "Deepseek V4 Flash 0731free", priced $0 beside a metered deepseek-v4-flash-0731free twin at $0.20/$0.40. Read 2026-10-01
+Without credit: 10 requests/minute; 60 weighted units/day per account
+
+With credit: 20 requests/minute; 120 weighted units/day per account
+
+Free models: 2 requests at once per account
+
+Free models: 15 requests/minute shared across the endpoint
+
+The free models share each account's daily weighted allowance, reset at 00:00 UTC. Longer inputs can consume more units. Account concurrency and the site-wide rate also apply. Paid fallback happens only when enabled and the account has sufficient credit. Free IDs and their metered twins are separate catalog routes.
 
 ## Where it is offered
 
@@ -61,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

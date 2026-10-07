@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'LLM7.io free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models. The limits page now lists Free token and Pro, with no anonymous plan: a free token allows 1 request a second, 60 a minute, 250 an hour and "100,000…'
+description: OpenAI-compatible API with a free dashboard token and a recurring allowance of 100,000 input plus output tokens per day on eligible turbo models. Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but…
 permalink: /providers/llm7/
 last_modified_at: 2026-10-05
 crumb: LLM7.io
@@ -23,7 +23,9 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The limits page now lists Free token and Pro, with no anonymous plan: a free token allows 1 request a second, 60 a minute, 250 an hour and "100,000 tokens per 24 hours". "Free-token quotas are provided at no charge and may be reduced without notice". The quickstart requires a token from dash.llm7.io. "`turbo` models are fast models available with free API tokens", while the Models API defines usage_based_only as paid usage; turbo alone does not establish free eligibility. Pro is $12 a month. The operator publishes terms, last updated 9 August 2026, and names no upstream for any model. Read 2026-10-01
+100,000 tokens/24 hours; 1 requests/second; 60 requests/minute; 250 requests/hour per key
+
+Get a free token from dash.llm7.io; no anonymous plan is listed. Free quotas may be reduced without notice. Turbo IDs can be used by free tokens, but turbo alone does not establish eligibility: usage_based_only denotes paid usage. The operator names no upstream model provider.
 
 ## Where it is offered
 
@@ -63,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

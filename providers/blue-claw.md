@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Blue Claw Network free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start. The home page: "Every new account starts with a $5 welcome credit. After that, you run on prepaid USD…'
+description: OpenAI-compatible endpoint that routes calls to a network of independent GPU operators running open models; every new account starts with a $5 welcome credit, and no card is asked to start. No card to start; sign in by an emailed code. Further usage is prepaid USD without a subscription. No public…
 permalink: /providers/blue-claw/
 last_modified_at: 2026-10-05
 crumb: Blue Claw Network
@@ -23,7 +23,9 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The home page: "Every new account starts with a $5 welcome credit. After that, you run on prepaid USD credits — buy what you use, no subscriptions." and "No credit card required to start." Sign-in is a six-digit code sent by email. No public page names the models or their prices — "Live per-model pricing is on the Models page in the console" — and the quick start calls the model auto. Calls go to "a network of independent GPU operators", partners running Livepeer orchestrators among them; Blue Claw "does not log prompts, inputs, or outputs by default" and offers "No TEE, E2EE, or confidential-compute guarantee yet". No page gives the credit an expiry. Read 2026-09-17
+$5 once per account
+
+No card to start; sign in by an emailed code. Further usage is prepaid USD without a subscription. No public page states the model list, prices or grant expiry; see the console. Requests go to independent GPU operators, including Livepeer partners. Prompt, input and output logging is off by default, but no TEE, E2EE or confidential-compute guarantee is offered.
 
 ## Where it is offered
 
@@ -61,6 +63,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

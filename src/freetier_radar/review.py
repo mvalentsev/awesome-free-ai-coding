@@ -244,6 +244,8 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                          'at': now(), 'retry_after': response.headers.get('retry-after')})
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT) as client:
         client.event_hooks['response'] = [capture]
+        from .quotas import resolved_quota_entry
+        entries = [await resolved_quota_entry(client,e) for e in entries]
         for entry in entries:
             page = await probe_page_url(client, entry.probe) if entry.probe.follow else None
             selected = row_urls(entry, page)

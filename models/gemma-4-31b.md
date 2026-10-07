@@ -47,7 +47,9 @@ OpenRouter's FAQ says its free models "have low rate limits" and "are usually no
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
-- Limits, in the vendor's words: Free plan is $0 with no credit card — 200 requests a day, free models only, with routing, caching, fallbacks, spend tracking and EU data residency included; past that the same key moves to pay-as-you-go
+- Limits, in the vendor's words: 200 requests/day per account
+
+No credit card for the Free plan, which serves free models only. Routing, caching, fallbacks, spend tracking and EU data residency are included. Past the free allowance the same key moves to pay-as-you-go.
 - Base URL: `https://router.requesty.ai/v1`
 - Key: `REQUESTY_API_KEY` — get one at <https://app.requesty.ai/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://router.requesty.ai`
@@ -63,7 +65,9 @@ Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weigh
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: No card; the API key needs a free NVIDIA Developer Program account verified by a code sent to your phone, and on 2026-09-25 build.nvidia.com's own list kept fourteen countries out of that step: Afghanistan, Bangladesh, Belarus, Cuba, Iran, Kazakhstan, Kyrgyzstan, North Korea, Pakistan, Russia, Syria, Tajikistan, Tanzania and Uzbekistan. The ceiling is a rate, not credits: NVIDIA's site puts it at "Up to 40 rpm" and "10,000 requests per day", adding that "Rate limits may vary by model and traffic from other users may cause throttling"; NVIDIA staff call 40 RPM "the published free-tier cap" that "is not adjustable on a per-account basis". A key can also be issued and still not answer: since June 2026 the vendor's forum has carried thread after thread of new personal keys that list the catalog and get 404 on every chat call, and NVIDIA's pinned note on account access says verification "has been challenging for both the community and NVIDIA", sending such cases to help@build.nvidia.com. Each model's page states whether its free endpoint is available or deprecated, and NVIDIA renames ids without notice, so copy them from the catalog. Read 2026-09-25
+- Limits, in the vendor's words: Published ceiling: 40 requests/minute; 10,000 requests/day per account
+
+No card, but an API key requires an NVIDIA Developer Program account and phone verification in a supported country. Published ceilings can vary by model and traffic can cause throttling. Vendor forum reports describe new personal keys that can list models but receive 404 on chat calls; an issued key alone does not establish working inference. Model pages identify available and deprecated endpoints; copy current IDs from the catalog.
 
 </details>
 
@@ -98,7 +102,9 @@ EU (Italian) zero-retention inference; a month of full model access on a daily t
 
 EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability
 
-- Limits, in the vendor's words: The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." The 2026-10-01 directory lists no free routes and omits that id; the Gemma page lists premium routes from other providers. The API catalog retains the Gemini id but states no price or availability. Free access on the advertised route remains unconfirmed. No free quota or rate is published. Paid usage adds "a 3% fee on credit purchases". Opper Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01
+- Limits, in the vendor's words: Advertised route; free access unconfirmed: Usage allowance: amount not published (period not published); scope not published
+
+The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists paid alternatives. The API catalog retains the ID without a price or availability claim. Free access remains unconfirmed. Paid credit purchases add a 3% fee. Opper Technology AB operates in Sweden on AWS Stockholm.
 - Base URL: `https://api.opper.ai/v3/compat`
 - Key: `OPPER_API_KEY` — get one at <https://platform.opper.ai/settings/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://api.opper.ai/v3/compat`
@@ -112,6 +118,6 @@ EU-hosted model gateway advertising a free route before adding a card; current d
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

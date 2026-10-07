@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Opper free tier: limits, free models, verified 2026-10-05'
-description: 'EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability. Free models: gemma-4-31b. The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted…'
+description: 'EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability. Free models: gemma-4-31b. The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists…'
 permalink: /providers/opper/
 last_modified_at: 2026-10-05
 crumb: Opper
@@ -23,7 +23,9 @@ EU-hosted model gateway advertising a free route before adding a card; current d
 
 ## Limits, in the vendor's words
 
-The signup guide and llms.txt still say "gemini/gemma-4-31b is a free model, so this call works before you add a card. It runs on a US-hosted route." The 2026-10-01 directory lists no free routes and omits that id; the Gemma page lists premium routes from other providers. The API catalog retains the Gemini id but states no price or availability. Free access on the advertised route remains unconfirmed. No free quota or rate is published. Paid usage adds "a 3% fee on credit purchases". Opper Technology AB operates in Sweden on AWS Stockholm. Read 2026-10-01
+Advertised route; free access unconfirmed: Usage allowance: amount not published (period not published); scope not published
+
+The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists paid alternatives. The API catalog retains the ID without a price or availability claim. Free access remains unconfirmed. Paid credit purchases add a 3% fee. Opper Technology AB operates in Sweden on AWS Stockholm.
 
 ## Where it is offered
 
@@ -69,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

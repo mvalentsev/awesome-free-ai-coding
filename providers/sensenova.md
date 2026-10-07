@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'SenseNova (SenseTime 商汤) free tier: limits, free models, verified 2026-10-05'
-description: 'SenseTime''s own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外, with…'
+description: SenseTime's own SenseNova models behind an OpenAI-compatible url, free for everyone while the token plan is in public beta. Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The page states a…
 permalink: /providers/sensenova/
 last_modified_at: 2026-10-05
 crumb: SenseNova (SenseTime 商汤)
@@ -23,7 +23,9 @@ The page this row is verified against names no free model, so the column stays e
 
 ## Limits, in the vendor's words
 
-The plan page says 公测期完全免费开放，付费档位即将上线 — free during the public beta, paid tiers coming — at ¥0/month: 60,000 积分 / 5 小时, a rolling 60,000 credits per five hours, 特殊模型除外, with 最多 20 个 API Key and the tier marked 限时放量. The Free card names the two models it covers, SenseNova 6.8 Flash Lite and SenseNova U1 Fast. Signup needs a phone number; whether a non-mainland one is accepted could not be verified from any served page
+Public beta: 60,000 credits/5 hours per account
+
+Free during the public beta; paid tiers are planned. The Free card covers SenseNova 6.8 Flash Lite and SenseNova U1 Fast, with special-model exceptions. The page states a five-hour allowance without specifying a rolling reset. Up to 20 API keys are supported. Signup requires a phone number; acceptance of non-mainland numbers is unverified.
 
 ## Where it is offered
 
@@ -59,6 +61,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

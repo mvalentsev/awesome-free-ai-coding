@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Standard Compute free tier: limits, free models, verified 2026-10-05'
-description: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. "Eligible new accounts receive $0.25 of trial compute after activation. This is a finite platform…
+description: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. A finite platform-compute trial, not a recurring budget or fixed token count. No card is…
 permalink: /providers/standardcompute/
 last_modified_at: 2026-10-05
 crumb: Standard Compute
@@ -23,7 +23,9 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-"Eligible new accounts receive $0.25 of trial compute after activation. This is a finite platform compute allowance. It is not a recurring free tier, a fixed token count, or a value measured at another provider's prices" — the free-trial page, "Updated September 5, 2026", read here 2026-09-16; the pricing FAQ adds "with no card required". It does not refill, no card is asked for, and it is discretionary: "Access is subject to eligibility and availability", with a support address for accounts whose dashboard does not offer it. What the quarter buys is on no page — a flat-rate router publishes no per-token price, and the only conversion the site offers is its own marketing arithmetic, a $20 monthly compute budget on the paid Starter plan that its pricing table says does the work of up to $60 a month of direct API use. The vendor sets the expectation itself: "Start with one small request that lets you check the connection and response", while "a longer coding-quality comparison may need a paid allowance". It is the smallest offer on this list — a connection test, not a working allowance
+Platform compute: $0.25 once per account
+
+A finite platform-compute trial, not a recurring budget or fixed token count. No card is required, but eligibility and availability are discretionary; contact support if activation offers no grant. No expiry or per-token conversion is published. The vendor recommends a small connection test and warns that a longer coding comparison may need paid allowance.
 
 ## Where it is offered
 
@@ -65,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

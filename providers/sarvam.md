@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Sarvam AI free tier: limits, free models, verified 2026-10-05'
-description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. "Every new user receives ₹100 in credits", usable "across any of our APIs", and the credits "are universal and never expire"…
+description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. Signup credit is universal across APIs and never expires; its value is in INR, with no guaranteed token conversion. The Starter…
 permalink: /providers/sarvam/
 last_modified_at: 2026-10-05
 crumb: Sarvam AI
@@ -23,7 +23,11 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-"Every new user receives ₹100 in credits", usable "across any of our APIs", and the credits "are universal and never expire". Sarvam-105B costs ₹29.28 in and ₹73.2 out per 1M tokens, so the grant is about 3 million input tokens, and the Starter plan allows 40 chat requests a minute. DeepSeek V4 Flash, GLM 5.3 and Gemma 4 31B are served only on /v2/chat/completions, a beta that is "not enabled by default with standard API subscription keys" and is granted per key on request. No page read mentions a card (2026-09-18)
+₹100 once per account
+
+Starter: 40 requests/minute per account per model; for `sarvam-105b`
+
+Signup credit is universal across APIs and never expires; its value is in INR, with no guaranteed token conversion. The Starter rate below is for Sarvam-105B. DeepSeek, GLM and Gemma beta models use /v2/chat/completions, which standard subscription keys cannot access by default; approval is requested per key. No page read mentions a card.
 
 ## Where it is offered
 
@@ -68,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'OVHcloud AI Endpoints free tier: limits, free models, verified 2026-10-05'
-description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder. OVHcloud documents the anonymous lane: "Anonymous: 2…'
+description: 'EU-hosted serverless open-model API whose anonymous lane needs no signup, no key and no card (OpenAI-compatible), at two requests a minute per model shared by every anonymous caller. Free models: gpt-oss-120b, qwen3.6, qwen3.8-27b, qwen3-coder. The documentation attributes the anonymous cap to IP…'
 permalink: /providers/ovh-ai-endpoints/
 last_modified_at: 2026-10-05
 crumb: OVHcloud AI Endpoints
@@ -23,7 +23,9 @@ EU-hosted serverless open-model API whose anonymous lane needs no signup, no key
 
 ## Limits, in the vendor's words
 
-OVHcloud documents the anonymous lane: "Anonymous: 2 requests per minute, per IP and per model. Authenticated with an API access key: 400 requests per minute, per PCI project and per model", and its product page says "Test all our models for free in a sandbox or via the API". It is not counted per IP in practice: on 2026-09-24 one call a minute to Qwen3.8-27B from an address nothing else used answered twice in five, and each answer left `ratelimit-remaining: 0`, another caller having spent the minute's other request; the first call of a minute on six ids, and every call from a GitHub runner that morning, answered 429. The two requests a minute per model are shared by every anonymous caller. A key bills every chat model per token, Qwen3.8-27B at "0.4 € / Mtoken(input)" and "2.7 € / Mtoken(output)". Read 2026-09-24
+Anonymous lane: 2 requests/minute sharing scope disputed
+
+The documentation attributes the anonymous cap to IP and model. Tests on 2026-09-24 instead observed callers sharing a model's anonymous capacity, so its effective sharing scope remains disputed. Anonymous requests can receive 429 before a caller has spent the documented cap. Authenticated API keys are metered per token and use the paid project/model limits; they do not create a larger free allowance.
 
 ## Where it is offered
 
@@ -31,7 +33,7 @@ The vendor names no country it keeps the offer from ([source](https://contract.e
 
 ## What happens to what you send
 
-What you send is not used to train models. In the vendor's words: “Your data will never be used to train or improve our AI models” ([source](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)).
+What you send is not used to train models. In the vendor's words: “Your data is never used to train our models, and we only keep what is strictly necessary for billing.” ([source](https://www.ovhcloud.com/en/public-cloud/ai-endpoints/)).
 
 ## Connect
 
@@ -68,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

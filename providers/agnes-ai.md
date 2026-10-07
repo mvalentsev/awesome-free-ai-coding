@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Agnes AI free tier: limits, free models, verified 2026-10-05'
-description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-3.0-flash, agnes-2.5-flash. "Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the…'
+description: 'Agnes AI''s own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them. Free models: agnes-3.0-flash, agnes-2.5-flash. The Flash models'' input, cached input and output are currently zero-priced; Pro remains metered. Zero…'
 permalink: /providers/agnes-ai/
 last_modified_at: 2026-10-05
 crumb: Agnes AI
@@ -23,7 +23,11 @@ Agnes AI's own models behind an OpenAI-compatible API, with its Flash text model
 
 ## Limits, in the vendor's words
 
-"Is the API free to use? Yes. Our core AI models are free to use indefinitely", the FAQ says, and the pricing page shows the mechanism: agnes-2.5-flash and agnes-3.0-flash list at $0.05 in / $0.15 out per 1M and are charged $0 — "Cached input, input tokens, and output tokens are currently free for agnes-2.5-flash and agnes-3.0-flash" — while agnes-2.5-pro bills $0.45/$0.90 and the pro beta $0.10/$0.30. The page is candid that the zero is a current price rather than a contract: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". The ceiling is a rate, not a quota: a key that is neither on a paid Token Plan nor enterprise-verified gets 30 requests a minute allowed and 10 effective on text models since 2026-09-23, when "effective text model RPM (requests per minute) limits for free and enterprise users have been reduced by 50%", and no daily figure is published. Image models are free at every resolution too. The terms are governed by Singapore law. The docs live on wiki.agnes-ai.com. Read 2026-09-27
+Published allowed rate: 30 requests/minute per account
+
+Effective rate: 10 requests/minute per account
+
+The Flash models' input, cached input and output are currently zero-priced; Pro remains metered. Zero pricing is promotional: "Promotional end dates are subject to Agnes AI platform announcements and your account bill". Allowed and effective text RPM are separate ceilings for the default user class; the account's keys share them. Image rates are separate. No daily budget is published.
 
 ## Where it is offered
 
@@ -65,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Fireworks AI free tier: limits, free models, verified 2026-10-01'
-description: 'Serverless inference on open-weight models with a $1 trial credit documented in the billing FAQ; current pricing no longer advertises a signup grant. The billing FAQ documents a $1 credit and says what happens to an account "Without payment method" when the dollar runs out: "Your account will be…'
+description: Serverless inference on open-weight models with a $1 trial credit documented in the billing FAQ; current pricing no longer advertises a signup grant. The billing FAQ describes a credit and account suspension after exhaustion without a payment method. Current pricing instead emphasizes prepaid…
 permalink: /providers/fireworks-ai/
 last_modified_at: 2026-10-01
 crumb: Fireworks AI
@@ -23,7 +23,11 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The billing FAQ documents a $1 credit and says what happens to an account "Without payment method" when the dollar runs out: "Your account will be suspended until you add a payment method". Until then the account quotas put "No payment method or no credits" at 10 RPM, against 6,000 RPM with a payment method and credits. No page gives the dollar an expiry or makes it recur, and beyond it Fireworks "operates on a pre-paid credits billing system". The dollar buys list prices, input / cached input / output per 1M tokens: "DeepSeek V4.1 Flash $0.30 / $0.006 / $1.20", "GLM 5.3 Flash $0.15 / $0.03 / $0.50", "MiniMax M3 $0.30 / $0.06 / $1.20" and "Kimi K3 $3.00 / $0.30 / $15.00" — about 3.3M input tokens on DeepSeek V4.1 Flash, about 330K on Kimi K3. Current pricing describes prepaid billing and does not promise a grant to new accounts; signup eligibility is unverified. Read 2026-10-05
+Documented credit; signup eligibility unverified: $1 (period not published) (published sources disagree) per account
+
+10 requests/minute per account
+
+The billing FAQ describes a credit and account suspension after exhaustion without a payment method. Current pricing instead emphasizes prepaid credit and does not promise a signup grant; new-account eligibility remains unverified. No expiry or recurrence is stated. Credit spends at list token prices. The low account rate applies when no payment method or no credit is present.
 
 ## Where it is offered
 
@@ -53,7 +57,7 @@ curl -s https://api.fireworks.ai/inference/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://fireworks.ai/pricing>, anchored on `Get started with $1 in free credits`
+- Probe: the page at <https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit>, anchored on `When you finish your $1 credit`
 - Source: <https://fireworks.ai/pricing>
 - Source: <https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit>
 - Source: <https://docs.fireworks.ai/guides/quotas_usage/account-quotas>
@@ -69,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

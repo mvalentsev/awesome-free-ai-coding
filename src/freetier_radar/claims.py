@@ -14,7 +14,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
+from typing import Callable, get_args
 
 import yaml
 
@@ -115,6 +115,13 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("CONTRIBUTING.md", r"dated manual review after (\d+) days",
           lambda root: (str(UNKNOWN_RECHECK_DAYS),),
           "quotas.UNKNOWN_RECHECK_DAYS and quota_moved; expiry regression in tests/test_quotas.py"),
+    Claim("CONTRIBUTING.md", r"Read modes are `(page)`,\s+`(catalog)`, `(constant)`, `(table)`, and `(catalog-field)`",
+          lambda root: get_args(UsageQuota.model_fields['read'].annotation),
+          "quotas.UsageQuota and quota_changes; HTTP-boundary regressions in tests/test_quotas.py"),
+    Claim("CONTRIBUTING.md", r"An unpublished `(amount)` or `(period)` stays null",
+          lambda root: tuple(field for field in ('amount','period')
+                             if type(None) in get_args(UsageQuota.model_fields[field].annotation)),
+          "quotas.UsageQuota; nullable-window regression in tests/test_quotas.py"),
     Claim("CONTRIBUTING.md", r"`page_catalog` derives `(models)` and `(newcomers)`",
           _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
     Claim("CONTRIBUTING.md", r"`prepare (--push-base) <commit>` records the commit immediately before the final",

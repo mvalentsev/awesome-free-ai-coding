@@ -1257,7 +1257,10 @@ class Entry(BaseModel):
             if quota.read == "catalog":
                 if quota.source not in (self.probe.endpoint, self.probe.catalog):
                     raise ValueError("catalog quota source must be this row's checked catalog")
-                if not self.api or set(quota.model_ids) - set(self.api.model_ids):
+                retained = ({mid for mid in self.api.ignored_ids
+                             if mid in self.api.model_access and self.api.model_access[mid].until}
+                            if self.api else set())
+                if not self.api or set(quota.model_ids) - set(self.api.model_ids) - retained:
                     raise ValueError("catalog quota must name this row's callable model_ids")
         return self
 

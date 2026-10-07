@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'The Grid free tier: limits, free models, verified 2026-10-05'
-description: 'OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time. The quick start: "New accounts get a $25 signup credit (limited time), enough for…'
+description: OpenAI- and Anthropic-compatible inference market that sells quality tiers rather than model names — Agent Max was served by Claude Opus 5 in the 30 days to 2026-09-03 — with a $25 signup credit, for a limited time. The signup grant is a limited-time offer with no payment step. A first deposit…
 permalink: /providers/the-grid/
 last_modified_at: 2026-10-05
 crumb: The Grid
@@ -23,7 +23,11 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-The quick start: "New accounts get a $25 signup credit (limited time), enough for millions of test calls on" text-prime, and its three steps from sign-up to a first call ask for no payment method — adding one is listed under what to do next. Until a first deposit the credit is spent at a ceiling: "Free accounts have a daily request limit of 100 requests. Make your first deposit to lift all daily request limits." What a free account sends is kept, too: "We store the inputs (prompts) and outputs (completions) of requests made on the free tier", and they "stay stored after you upgrade"; zero data retention is for paid accounts, and "Your account counts as paid once you make your first deposit." Concurrency counts deposits only, "a signup bonus of $25 and a deposit of $20 only counts as $20", and an account with $0 to $20 deposited gets 3 concurrent requests. A model name buys a specification: "The specific model behind any given call can change between calls." The keyless catalog publishes what each tier delivered over 30 days to 2026-09-03 — Agent Max Claude Opus 5, Agent Prime MiniMax-M3, Agent Standard gpt-oss-120b — at market prices per million tokens. Read 2026-09-30
+Promotional signup credit: $25 once per account
+
+Before first deposit: 100 requests/day; 3 requests at once per account
+
+The signup grant is a limited-time offer with no payment step. A first deposit lifts the daily free cap; concurrency counts deposits, excluding signup bonus. Free-tier prompts and completions are stored and stay stored after upgrade; zero retention is paid-only. Model names buy specifications, and the underlying model can change between calls. Historical catalog deliveries do not guarantee the next call's model.
 
 ## Where it is offered
 
@@ -64,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

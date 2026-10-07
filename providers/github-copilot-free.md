@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'GitHub Copilot Free free tier: limits, free models, verified 2026-10-05'
-description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. Inline suggestions are "limited to 2000 completions per month on Copilot Free". Chat and agent usage have "An allowance of GitHub AI Credits", whose amount is…
+description: Free Copilot plan for individual developers in VS Code, JetBrains, Visual Studio and CLI; completions, limited chat and agent usage. Chat and agent features spend GitHub AI Credits, whose Free amount is unpublished. Model selection is automatic on Copilot Free and Student. Free is available only…
 permalink: /providers/github-copilot-free/
 last_modified_at: 2026-10-05
 crumb: GitHub Copilot Free
@@ -23,7 +23,11 @@ The vendor does not say which models the free part reaches, so the column names 
 
 ## Limits, in the vendor's words
 
-Inline suggestions are "limited to 2000 completions per month on Copilot Free". Chat and agent usage have "An allowance of GitHub AI Credits", whose amount is unpublished for Free. Model choice is automatic: "on Copilot Free and Copilot Student plans, access to models is available through auto model selection only". Eligibility is individual: "Copilot Free plans are only available to individual developers who don't have access to Copilot through an organization or enterprise". Read 2026-08-20
+2,000 completions/month per account
+
+Chat and agent usage: Monthly credits allowance: amount not published per account
+
+Chat and agent features spend GitHub AI Credits, whose Free amount is unpublished. Model selection is automatic on Copilot Free and Student. Free is available only to individual developers who do not receive Copilot through an organization or enterprise.
 
 ## Where it is offered
 
@@ -51,6 +55,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

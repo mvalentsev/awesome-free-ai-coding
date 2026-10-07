@@ -26,7 +26,15 @@ Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and t
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: The $0 Individual plan has unlimited Tab completions and Command requests, with "Basic weekly rate limits". The model table marks the listed models available under "Free & Google AI Plus"; Claude Sonnet 4.6, Claude Opus 4.6 and GPT-OSS-120b carry its notice "Will be removed on November 2, 2026". Claude 5.5 models require paid plans. Gemini and third-party models have separate weekly allowances. No quota figure is published: "The baseline rate limits are primarily determined by available capacity and exist to prevent abuse." The plans overview lists third-party access under Ultra, while the specific model table still includes these older models on Free. Read 2026-10-05
+- Limits, in the vendor's words: Gemini agent allowance: Weekly usage allowance: amount not published per account
+
+Claude and GPT agent allowance: Weekly usage allowance: amount not published per account
+
+Tab: Unmetered completions per account
+
+Command: Unmetered requests per account
+
+The model table includes older third-party models under Free & Google AI Plus, with removal on November 2, 2026; Claude 5.5 requires a paid plan. The plans overview instead lists third-party access under Ultra, so those sources disagree. Gemini and third-party models have separate weekly allowances. Baseline limits depend on available capacity and abuse prevention; no numerical weekly budget is published.
 
 </details>
 
@@ -42,7 +50,13 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
 
-- Limits, in the vendor's words: The express mode overview: "New users to Google Cloud can sign up for an express mode account in a free tier to try Agent Platform for free for up to 90 days, within the specified quotas", and "You don't need to provide billing information to sign up in the free tier". Its model table gives gemini-3.1-pro-preview, gemini-3-pro-preview and gemini-3-flash-preview a dynamic rate limit and gemini-2.5-pro, gemini-2.5-flash and the Flash-Lite and 2.0 Flash rows 10 requests a minute. The FAQ: "If you don't enable billing, you won't be able to use express mode after 90 days". An existing Google Cloud user gets no free tier, and the separate $300 Free Trial asks for "a credit card or other payment method". Express mode is a Preview, and its terms add "Customer will not use the Express Mode Offerings to process personal data". Read 2026-09-23
+- Limits, in the vendor's words: Preview models: Per-minute requests allowance: amount varies per project per model
+
+Stable Gemini models: 10 requests/minute per project per model (Free express trial lasts up to 90 days); for `gemini-2.5-pro`, `gemini-2.5-flash`
+
+Preview Gemini models: Per-minute requests allowance: amount varies per project per model (Free express trial lasts up to 90 days); for `gemini-3.1-pro-preview`, `gemini-3-flash-preview`
+
+The free express trial is for new Google Cloud users and requires no billing information. Stable and Preview model rate policies differ; enabling billing is necessary after the trial. Existing Google Cloud accounts do not get this offer. The separate $300 Cloud Free Trial needs a payment method. Express is Preview and may not process personal data.
 
 </details>
 
@@ -64,6 +78,6 @@ Google Cloud's express mode: an API key and 90 days of Gemini models within the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

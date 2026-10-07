@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'ModelScope API-Inference (Alibaba) free tier: limits, free models, verified 2026-10-05'
-description: 'Alibaba''s model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification. The limits page: "免费推理API由阿里云提供算力支持，要求您的ModelScope账号必须首先绑定阿里云账号", and the Alibaba Cloud account must have…'
+description: Alibaba's model community serves 35 models free — DeepSeek V4 Pro, GLM-5.2, MiniMax M3 and Qwen3.8 among them — for 250 魔粒 a day at 0.5 to 2 a call, after Alibaba Cloud real-name verification. API inference requires a bound Alibaba Cloud account with real-name verification; spending Magicube also…
 permalink: /providers/modelscope/
 last_modified_at: 2026-10-05
 crumb: ModelScope API-Inference (Alibaba)
@@ -23,7 +23,13 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-The limits page: "免费推理API由阿里云提供算力支持，要求您的ModelScope账号必须首先绑定阿里云账号", and the Alibaba Cloud account must have passed real-name verification before API-Inference works — which Alibaba Cloud does through a personal Alipay account that has passed its own. Calls are paid in 魔粒, "轻量模型（0.5 魔粒/次），主流模型（1 魔粒/次），旗舰模型（2 魔粒/次）", and the 魔粒 page grants 200 a day for signing in and 50 more with the Alibaba Cloud account bound, each valid 24 hours: 125 to 500 calls a day. Spending 魔粒 first needs a verified personal email. Concurrency is throttled to the platform's load, the service calls itself non-commercial and not for production — "请勿用于需要高并发以及SLA保障的线上任务" — and older models leave as new ones arrive. The docs are read through the index that names the current release (Data.TargetPrefix). Read 2026-09-19
+Magicube daily login: 200 credits/day per account (Valid for the day)
+
+Daily bound-account bonus: 50 credits/day per account (Alibaba Cloud account bound; valid for the day)
+
+Additional community rewards: Credits allowance: amount varies (period not published) per account
+
+API inference requires a bound Alibaba Cloud account with real-name verification; spending Magicube also requires a verified personal email. Calls cost 0.5, 1 or 2 credits by model class, so credits are not a fixed request count. Community rewards are separate and variable. Concurrency follows platform load. This is non-commercial, unsuitable for production requiring high concurrency or SLA; older models can be replaced.
 
 ## Where it is offered
 
@@ -62,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-06 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
