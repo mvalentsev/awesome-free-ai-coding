@@ -135,6 +135,8 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         raise ValueError('both commits must contain a readable index.json')
     paths = git.run(repo, 'diff', '--name-only', '-z', base, sha).stdout.strip('\0').split('\0')
     paths = [p for p in paths if p]
+    deleted_paths = [p for p in git.run(repo, 'diff', '--name-only', '--diff-filter=D', '-z',
+                                       base, sha).stdout.strip('\0').split('\0') if p]
     push_paths = [p for p in git.run(repo, 'diff', '--name-only', '-z', push_base, sha).stdout.strip('\0').split('\0') if p]
     result = git.run(repo, 'diff', '--binary', base, sha)
     if result.returncode:
@@ -190,7 +192,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         for path in ('ci.yml', 'indexnow.yml'):
             required.discard(yaml.safe_load(blob(repo, sha, '.github/workflows/' + path))['name'])
         required.add(workflow['name'])
-    scope = {'base': base, 'sha': sha, 'paths': paths, 'rows': rows,
+    scope = {'base': base, 'sha': sha, 'paths': paths, 'deleted_paths': deleted_paths, 'rows': rows,
              'push_base': push_base, 'push_paths': push_paths,
              'families': families,
              'workflows': sorted(required), 'verification_run': verification_run, 'prepared_at': now()}
@@ -200,7 +202,7 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
 
 
 async def fetch(client: httpx.AsyncClient, url: str, bundle: Bundle, *,
-                expected: bytes | None = None, backoff: float = 2) -> dict:
+                expected: bytes | None = None, expected_status: int = 200, backoff: float = 2) -> dict:
     attempts = []
     prefix = 'http/' + digest(url.encode())[:20] + '-' + uuid.uuid4().hex[:8]
     async def send():
@@ -216,10 +218,11 @@ async def fetch(client: httpx.AsyncClient, url: str, bundle: Bundle, *,
                          'final_url': str(response.url)})
         return response
     response, error = await _ask(send, 3, backoff)
-    passed = response is not None and response.status_code == 200
+    passed = response is not None and response.status_code == expected_status
     if expected is not None:
         passed = passed and response.content == expected
     return {'url': url, 'passed': passed, 'attempts': attempts, 'error': error,
+            'expected_status': expected_status,
             'expected_sha256': digest(expected) if expected is not None else None}
 
 
@@ -394,7 +397,8 @@ async def publication(bundle: Bundle) -> dict:
     async with httpx.AsyncClient(headers=UA, timeout=TIMEOUT) as client:
         sem = asyncio.Semaphore(8)
         async def one(kind, path):
-            expected = blob(bundle.repo, scope['sha'], path)
+            deleted = path in scope.get('deleted_paths', [])
+            expected = None if deleted else blob(bundle.repo, scope['sha'], path)
             url = (raw if kind == 'source' else PAGES_URL + '/') + path
             old = cached.get(url)
             if kind == 'source' and old and old['passed'] and old['attempts']:
@@ -402,7 +406,8 @@ async def publication(bundle: Bundle) -> dict:
                 if file.is_file() and file.read_bytes() == expected:
                     return old
             async with sem:
-                result = await fetch(client, url, bundle, expected=expected)
+                result = await fetch(client, url, bundle, expected=expected,
+                                     expected_status=404 if deleted else 200)
             return {**result, 'kind': kind, 'path': path}
         checks = await asyncio.gather(*(one('source', p) for p in public),
                                       *(one('served', p) for p in dict.fromkeys(static)))

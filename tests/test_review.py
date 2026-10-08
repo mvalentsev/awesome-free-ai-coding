@@ -206,6 +206,47 @@ async def test_publication_checks_excluded_readmes_on_github_and_served_assets_o
         assert ('served', path) in checked
 
 
+@pytest.mark.parametrize('served_status', [404, 200])
+@respx.mock
+async def test_publication_checks_deleted_profiles_and_rejects_stale_served_files(tmp_path, monkeypatch, served_status):
+    repo, _, _ = push_repo_at(tmp_path)
+    profile = 'configs/codex/retired.config.toml'
+    files = ['index.html', 'llms.txt', 'history.jsonl', 'configs/opencode.json',
+             'configs/free-llm.env.example', 'feed.xml', profile]
+    for path in files:
+        target = repo / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(path)
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: publish profile'], check=True)
+    base = review.revision(repo, 'HEAD')
+    (repo / profile).unlink()
+    subprocess.run(['git', '-C', str(repo), 'add', '-u'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: archive provider'], check=True)
+    bundle = review.Bundle(repo / '.evidence/deleted', repo)
+    scope = review.prepare(repo, base, 'HEAD', bundle)
+    sha = scope['sha']
+    bundle.save('workflows', {'sha': sha, 'passed': True, 'runs': [
+        {'name': name, 'headSha': sha, 'status': 'completed', 'conclusion': 'success'}
+        for name in scope['workflows']]})
+    monkeypatch.setattr(review, 'PAGES_URL', 'https://site.example')
+    monkeypatch.setattr(review, 'REPO_URL', 'https://github.com/example/repo')
+    raw = f'https://raw.githubusercontent.com/example/repo/{sha}/'
+    def response(request, prefix, deleted_status):
+        path = str(request.url).removeprefix(prefix)
+        return httpx.Response(deleted_status, content=b'old profile') if path == profile else httpx.Response(
+            200, content=review.blob(repo, sha, path))
+    respx.route(url__startswith=raw).mock(side_effect=lambda request: response(request, raw, 404))
+    respx.route(url__startswith='https://site.example/').mock(
+        side_effect=lambda request: response(request, 'https://site.example/', served_status))
+    result = await review.publication(bundle)
+    assert result['passed'] is (served_status == 404)
+    deleted = [check for check in result['checks'] if check['path'] == profile]
+    assert {check['kind'] for check in deleted} == {'source', 'served'}
+    assert all(check['expected_status'] == 404 for check in deleted)
+    assert next(check for check in deleted if check['kind'] == 'source')['passed']
+
+
 @respx.mock
 async def test_rate_limited_source_is_not_retried_or_treated_as_a_changed_quote(tmp_path):
     bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
