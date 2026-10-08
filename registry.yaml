@@ -444,24 +444,23 @@ entries:
   - https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key
   - https://docs.mistral.ai/admin/billing-usage/usage-limits
   card_required: false
-  offering: Mistral's Free plan — API keys with $10 a month of included usage, shared
-    by the API, Studio and the Vibe coding CLI, no card
-  limits: The allowance is shared across Studio, API and Vibe usage in the organization.
-    Free mode is the default for new accounts, with no credit card required. At the
-    cap usage can stop until the next billing period unless pay-as-you-go is enabled.
-    API throughput values are visible inside the account. API calls may be used to
-    improve Mistral services unless the Admin panel's `Anonymous improvement data`
-    toggle is off.
+  offering: Mistral's Free mode — no-card API access with an unpublished monthly allowance
+    shared across Studio, API and the Vibe coding CLI
+  limits: The monthly allowance is shared across Studio, API and Vibe usage in the
+    organization; its Free-mode amount is not published. Free mode is the default
+    for new accounts, with no credit card required. At the cap usage can stop until
+    the next billing period unless pay-as-you-go is enabled. API throughput values
+    are visible inside the account. API calls may be used to improve Mistral services
+    unless the Admin panel's `Anonymous improvement data` toggle is off.
   quotas:
-  - amount: 10.0
-    unit: USD
+  - unit: usage
     period: month
     scope: organization
-    label: Shared API, Studio and Vibe credit
-    source: https://mistral.ai/pricing
-    quote: $10 /mo in API credits
-    value_phrase: $10 /mo in API credits
-    reviewed_on: '2026-10-06'
+    label: Shared Studio, API and Vibe allowance
+    source: https://docs.mistral.ai/admin/billing-usage/subscriptions
+    quote: Each Mistral plan includes monthly usage that is shared across Studio,
+      the API, and Vibe Code.
+    reviewed_on: '2026-10-08'
   - unit: requests
     period: second
     scope: organization-model
@@ -507,10 +506,11 @@ entries:
     also_named: [AU, BD, CN, FR, IN, JP, KR, NZ, PK, SG, TH, UA, US, VN]
   probe:
     type: page-keywords
-    endpoint: https://mistral.ai/pricing
+    endpoint: https://docs.mistral.ai/admin/billing-usage/subscriptions
     keywords:
-    - $10 /mo in API credits
-    - Test Mistral models in Studio
+    - Free mode is the default state for new accounts
+    - Each Mistral plan includes monthly usage that is shared across Studio, the API,
+      and Vibe Code
     free_marker: ''
     require_zero_price: false
     machinery_keywords: []
@@ -2021,6 +2021,10 @@ entries:
     machinery_keywords: []
   first_seen: '2026-07-19'
   last_verified: '2026-10-05'
+  delisted:
+    'on': '2026-10-08'
+    reason: free accounts no longer receive inference credits — the current billing
+      table lists None and requires purchasing credits or a paid subscription
   probe_failures: 1
   provisional: false
   rank: 80
@@ -2451,10 +2455,13 @@ entries:
     - poolside/laguna-s-2.1-free
     - inclusionai/ling-3.1-flash
     - inclusionai/ling-3.1-flash-free
+    - stealth/glyph-cluster
     ignored_ids:
     - liquid/d1
     - convaiinnovations/laya
     - convaiinnovations/laya-free
+    no_family_ids:
+    - stealth/glyph-cluster
     anthropic_base_url: https://ai-gateway.vercel.sh
     codex:
       base_url: https://ai-gateway.vercel.sh/codex/v1
@@ -4943,6 +4950,7 @@ entries:
     - openai/gpt-oss-safeguard-20b
     - evren/mimo-v2.6-pro-tr
     - minimax/minimax-m3.1-flash-preview
+    - evren/deepseek-v4.1-flash-tr
     note: 'New accounts have a reduced shared free-model allowance during their first
       24 hours. Nemotron Ultra''s -262k variant is metered. Checked 2026-10-05: Qwen
       ordinary, streaming and small tool cycles completed, but full Codex and OpenCode
@@ -6511,7 +6519,7 @@ entries:
     source: https://docs.fireworks.ai/faq-new/billing-pricing/what-happens-when-i-finish-my-1-dollar-credit
     quote: $1 credit
     value_phrase: $1 credit
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-08'
   - amount: 10.0
     unit: requests
     period: minute
@@ -6519,7 +6527,7 @@ entries:
     source: https://docs.fireworks.ai/guides/quotas_usage/account-quotas
     quote: No payment method or no credits 10 RPM
     value_phrase: No payment method or no credits 10 RPM
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-08'
   free_part: sum
   models: []
   api:
@@ -8810,11 +8818,10 @@ entries:
     to spend on its tasks, coding among them
   limits: The higher day-4 and day-7 check-ins replace the normal daily award rather
     than add to it. Check-in points cover MiniMax Code task scenarios; their spending
-    value follows the product UI. The desktop check-in names no payment step. A promotion
-    doubles points "From September 28 through October 7"; "New and existing users
-    can participate". Its timezone is unstated. Global and mainland accounts use separate
-    sites. The CLI accepts account credits or BYOK, but no source establishes check-in-point
-    eligibility there. Users must be at least 16.
+    value follows the product UI. The desktop check-in names no payment step. Global
+    and mainland accounts use separate sites. The CLI accepts account credits or BYOK,
+    but no source establishes check-in-point eligibility there. Users must be at least
+    16.
   quotas:
   - amount: 400.0
     unit: points
@@ -8826,7 +8833,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Daily check-ins earn 400 points
     value_phrase: Daily check-ins earn 400 points
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-08'
   - amount: 1000.0
     unit: points
     period: day
@@ -8837,7 +8844,7 @@ entries:
     source: https://agent.minimax.io/docs/code/account/usage
     quote: Check-ins on day 4 and day 7 award 1,000 points per day
     value_phrase: Check-ins on day 4 and day 7 award 1,000 points per day
-    reviewed_on: '2026-10-06'
+    reviewed_on: '2026-10-08'
   free_part: sum
   models: []
   border:
@@ -8860,3 +8867,72 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 54
+- id: wallaby
+  name: Wallaby
+  category: trial
+  url: https://wallabytoken.com
+  source_urls:
+  - https://wallabytoken.com/docs
+  - https://wallabytoken.com/blog/p/kimi-k3-free-trial
+  - https://wallabytoken.com/pricing.json
+  - https://wallabytoken.com/about
+  - https://wallabytoken.com/terms
+  - https://wallabytoken.com/privacy
+  - https://wallabytoken.com/aup
+  card_required: false
+  offering: OpenAI-compatible Kimi K3 API from an Australian open-weight inference
+    gateway, with $0.50 of signup credit and no card or initial payment
+  limits: One trial per person or organisation, with a verified email and human check.
+    The trial credit does not expire; requests stop when it is exhausted. Optional
+    paid top-ups start at $20. Trial access may have lower rate limits or model restrictions;
+    the vendor publishes no numeric trial rate. Wallaby says it does not log or train
+    on prompts, but its privacy policy does not establish the upstream providers'
+    retention or training rules. Users must be at least 18.
+  quotas:
+  - amount: 0.5
+    unit: USD
+    period: one-time
+    scope: account
+    label: Signup trial credit
+    condition: No card or top-up required
+    condition_quote: No card, no top-up, no sales call.
+    source: https://wallabytoken.com/blog/p/kimi-k3-free-trial
+    quote: every new Wallaby Token account starts with $0.50 of free trial credit
+      for the Kimi K3 API
+    reviewed_on: '2026-10-08'
+  - unit: requests
+    scope: account
+    label: Trial rate limit
+    source: https://wallabytoken.com/terms
+    quote: may be restricted to specific models and lower rate limits
+    reviewed_on: '2026-10-08'
+  free_part: sum
+  models: []
+  api:
+    base_url: https://api.wallabytoken.com/v1
+    key_url: https://api.wallabytoken.com/register
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - kimi-k3
+    note: Create an account, verify your email and create a token under Tokens → Add
+      token. The official API docs name kimi-k3, support streaming, function tools
+      and structured outputs. The catalog requires a key; the signup credit is a spending
+      balance, not an individually free model.
+  border:
+    left_out: []
+    'on': '2026-10-08'
+    source: https://wallabytoken.com/aup
+  probe:
+    type: page-keywords
+    endpoint: https://wallabytoken.com/docs
+    keywords:
+    - $0.50 of free trial credit
+    free_marker: ''
+    require_zero_price: false
+    machinery_keywords: []
+  first_seen: '2026-10-08'
+  last_verified: '2026-10-08'
+  probe_failures: 0
+  provisional: true
+  rank: 93

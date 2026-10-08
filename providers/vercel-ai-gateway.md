@@ -43,7 +43,7 @@ What you send may be used to train or improve models unless you turn that off. I
 - Key: `VERCEL_AI_GATEWAY_API_KEY` — get one at <https://vercel.com/dashboard/ai-gateway/api-keys>
 - Anthropic-format base (Claude Code's `ANTHROPIC_BASE_URL`): `https://ai-gateway.vercel.sh`
 - Codex CLI: [`configs/codex/vercel-ai-gateway.config.toml`](https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/vercel-ai-gateway.config.toml) — copy it to `~/.codex/`, then `codex -p vercel-ai-gateway`; Codex's base is `https://ai-gateway.vercel.sh/codex/v1`; set up on the lane by the vendor's own page, <https://vercel.com/docs/ai-gateway/coding-agents/openai-codex>: "Point Codex at its own compatibility endpoint"
-- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.1-flash`, `inclusionai/ling-3.1-flash-free`
+- Callable ids: `poolside/laguna-s-2.1-free`, `inclusionai/ling-3.1-flash`, `inclusionai/ling-3.1-flash-free`, `stealth/glyph-cluster`
 - Note: The listed IDs are priced zero in and out and do not spend the $5 credit; other Free-Tier-eligible models spend it. For Claude Code, use https://ai-gateway.vercel.sh as ANTHROPIC_BASE_URL and leave ANTHROPIC_API_KEY empty.
 
 Try it from your terminal with your key in `VERCEL_AI_GATEWAY_API_KEY` — it goes from your machine to the vendor and nowhere else:

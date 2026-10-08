@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Mistral Studio free tier: limits, free models, verified 2026-10-05'
-description: Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card. The allowance is shared across Studio, API and Vibe usage in the organization. Free mode is the default for new accounts, with no credit card required. At the cap usage…
+description: Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI. The monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts…
 permalink: /providers/mistral-free/
 last_modified_at: 2026-10-05
 crumb: Mistral Studio
@@ -15,7 +15,7 @@ crumb: Mistral Studio
 
 ## What you get
 
-Mistral's Free plan — API keys with $10 a month of included usage, shared by the API, Studio and the Vibe coding CLI, no card
+Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI
 
 ## Free models
 
@@ -23,11 +23,11 @@ No model is free by itself here: the free part is an amount the account spends a
 
 ## Limits, in the vendor's words
 
-Shared API, Studio and Vibe credit: $10/month per organization
+Shared Studio, API and Vibe allowance: Monthly usage allowance: amount not published per organization
 
 API rate limits: Per-second requests allowance: see your account for values; Per-minute tokens allowance: see your account for values per organization per model
 
-The allowance is shared across Studio, API and Vibe usage in the organization. Free mode is the default for new accounts, with no credit card required. At the cap usage can stop until the next billing period unless pay-as-you-go is enabled. API throughput values are visible inside the account. API calls may be used to improve Mistral services unless the Admin panel's `Anonymous improvement data` toggle is off.
+The monthly allowance is shared across Studio, API and Vibe usage in the organization; its Free-mode amount is not published. Free mode is the default for new accounts, with no credit card required. At the cap usage can stop until the next billing period unless pay-as-you-go is enabled. API throughput values are visible inside the account. API calls may be used to improve Mistral services unless the Admin panel's `Anonymous improvement data` toggle is off.
 
 ## Where it is offered
 
@@ -55,7 +55,7 @@ curl -s https://api.mistral.ai/v1/chat/completions \
 
 ## Evidence
 
-- Probe: the page at <https://mistral.ai/pricing>, anchored on `$10 /mo in API credits`, `Test Mistral models in Studio`
+- Probe: the page at <https://docs.mistral.ai/admin/billing-usage/subscriptions>, anchored on `Free mode is the default state for new accounts`, `Each Mistral plan includes monthly usage that is shared across Studio, the API, and Vibe Code`
 - Source: <https://mistral.ai/pricing>
 - Source: <https://docs.mistral.ai/admin/billing-usage/subscriptions>
 - Source: <https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key>

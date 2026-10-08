@@ -2415,17 +2415,6 @@ watched:
     reopen_if: >-
       Vultr publishes a free inference allowance that needs no subscription.
 
-  - domains: [wallabytoken.com]
-    name: Wallaby
-    checked_on: '2026-09-17'
-    reason: >-
-      Kimi K3 on a prepaid balance — "Top up — prepaid USD, from $20" — from
-      Wallaby Data Pty Ltd in Australia. The terms mention a trial no page
-      quantifies: "new accounts may receive promotional trial credit", which "may
-      be restricted to specific models and lower rate limits".
-    reopen_if: >-
-      Wallaby publishes a trial credit with a figure.
-
   - domains: [vivgrid.com]
     name: Vivgrid
     checked_on: '2026-09-17'
@@ -3763,3 +3752,16 @@ watched:
     reopen_if: >-
       A QwenCloud page grants the free quota before any payment information is
       given.
+
+  - domains: [huggingface.co]
+    name: Hugging Face Inference Providers
+    checked_on: '2026-10-08'
+    reason: >-
+      The current official pricing table at
+      https://huggingface.co/docs/inference-providers/pricing lists Free Users
+      with no monthly credits. Inference requires purchased credits or a paid
+      PRO, Team or Enterprise subscription; BYOK offers no bundled free usage.
+      The former $0.10/month allowance is no longer advertised.
+    reopen_if: >-
+      Hugging Face publishes bundled free inference usage or a no-card trial
+      available to free accounts, without buying credits or a subscription.

@@ -555,6 +555,9 @@
         },
         "inclusionai/ling-3.1-flash-free": {
           "name": "inclusionai/ling-3.1-flash-free"
+        },
+        "stealth/glyph-cluster": {
+          "name": "stealth/glyph-cluster"
         }
       }
     },
@@ -957,25 +960,6 @@
         }
       }
     },
-    "huggingface-inference": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Hugging Face Inference Providers",
-      "options": {
-        "baseURL": "https://router.huggingface.co/v1",
-        "apiKey": "{env:HUGGINGFACE_INFERENCE_API_KEY}"
-      },
-      "models": {
-        "openai/gpt-oss-120b": {
-          "name": "openai/gpt-oss-120b"
-        },
-        "Qwen/Qwen3.8-27B": {
-          "name": "Qwen/Qwen3.8-27B"
-        },
-        "zai-org/GLM-5.3-Flash": {
-          "name": "zai-org/GLM-5.3-Flash"
-        }
-      }
-    },
     "upstage": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Upstage (Solar API)",
@@ -1272,6 +1256,19 @@
         },
         "claude-sonnet-4-6": {
           "name": "claude-sonnet-4-6"
+        }
+      }
+    },
+    "wallaby": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Wallaby",
+      "options": {
+        "baseURL": "https://api.wallabytoken.com/v1",
+        "apiKey": "{env:WALLABY_API_KEY}"
+      },
+      "models": {
+        "kimi-k3": {
+          "name": "kimi-k3"
         }
       }
     },

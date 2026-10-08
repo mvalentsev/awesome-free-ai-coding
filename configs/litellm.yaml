@@ -757,6 +757,12 @@ model_list:
     api_base: https://ai-gateway.vercel.sh/v1
     api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
     use_chat_completions_api: true
+- model_name: vercel-ai-gateway/stealth/glyph-cluster
+  litellm_params:
+    model: openai/stealth/glyph-cluster
+    api_base: https://ai-gateway.vercel.sh/v1
+    api_key: os.environ/VERCEL_AI_GATEWAY_API_KEY
+    use_chat_completions_api: true
 - model_name: hetzner-inference/Qwen/Qwen3.6-35B-A3B-FP8
   litellm_params:
     model: openai/Qwen/Qwen3.6-35B-A3B-FP8
@@ -1339,24 +1345,6 @@ model_list:
     api_base: https://api.cohere.com/compatibility/v1
     api_key: os.environ/COHERE_API_KEY
     use_chat_completions_api: true
-- model_name: huggingface-inference/openai/gpt-oss-120b
-  litellm_params:
-    model: openai/openai/gpt-oss-120b
-    api_base: https://router.huggingface.co/v1
-    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
-    use_chat_completions_api: true
-- model_name: huggingface-inference/Qwen/Qwen3.8-27B
-  litellm_params:
-    model: openai/Qwen/Qwen3.8-27B
-    api_base: https://router.huggingface.co/v1
-    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
-    use_chat_completions_api: true
-- model_name: huggingface-inference/zai-org/GLM-5.3-Flash
-  litellm_params:
-    model: openai/zai-org/GLM-5.3-Flash
-    api_base: https://router.huggingface.co/v1
-    api_key: os.environ/HUGGINGFACE_INFERENCE_API_KEY
-    use_chat_completions_api: true
 - model_name: upstage/solar-pro4
   litellm_params:
     model: openai/solar-pro4
@@ -1620,6 +1608,12 @@ model_list:
     model: openai/claude-sonnet-4-6
     api_base: https://api.routerplex.com/v1
     api_key: os.environ/ROUTERPLEX_API_KEY
+    use_chat_completions_api: true
+- model_name: wallaby/kimi-k3
+  litellm_params:
+    model: openai/kimi-k3
+    api_base: https://api.wallabytoken.com/v1
+    api_key: os.environ/WALLABY_API_KEY
     use_chat_completions_api: true
 - model_name: abliteration-ai/abliterated-model-large-v2
   litellm_params:

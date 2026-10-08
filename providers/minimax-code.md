@@ -27,7 +27,7 @@ Standard check-in: 400 points/day per account (Points valid for 30 days)
 
 Check-in days 4 and 7: 1,000 points/day per account (Points valid for 30 days)
 
-The higher day-4 and day-7 check-ins replace the normal daily award rather than add to it. Check-in points cover MiniMax Code task scenarios; their spending value follows the product UI. The desktop check-in names no payment step. A promotion doubles points "From September 28 through October 7"; "New and existing users can participate". Its timezone is unstated. Global and mainland accounts use separate sites. The CLI accepts account credits or BYOK, but no source establishes check-in-point eligibility there. Users must be at least 16.
+The higher day-4 and day-7 check-ins replace the normal daily award rather than add to it. Check-in points cover MiniMax Code task scenarios; their spending value follows the product UI. The desktop check-in names no payment step. Global and mainland accounts use separate sites. The CLI accepts account credits or BYOK, but no source establishes check-in-point eligibility there. Users must be at least 16.
 
 ## Where it is offered
 
