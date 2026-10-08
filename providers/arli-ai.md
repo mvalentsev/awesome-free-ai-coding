@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Arli AI free tier: limits, free models, verified 2026-10-05'
+title: 'Arli AI free tier: limits, free models, verified 2026-10-08'
 description: OpenAI-compatible inference on open models and their fine-tunes, whose Free plan tries each model five times every two days at 12K tokens of context, one request at a time. Free is for testing, with delayed responses, slower service as use increases and a 12K context limit. Its catalog includes…
 permalink: /providers/arli-ai/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Arli AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Arli AI
 
 # Arli AI free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-08 · [arliai.com](https://www.arliai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

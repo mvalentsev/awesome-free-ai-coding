@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'nemotron-3-nano-30b free: 2 providers, limits and ids, verified 2026-10-05'
+title: 'nemotron-3-nano-30b free: 2 providers, limits and ids, verified 2026-10-08'
 description: nemotron-3-nano-30b is served free by Requesty and AIHubMix (free models). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/nemotron-3-nano-30b/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-08
 crumb: nemotron-3-nano-30b
 ---
 
@@ -11,7 +11,7 @@ crumb: nemotron-3-nano-30b
 
 # Where nemotron-3-nano-30b is free
 
-**2 rows on the list serve `nemotron-3-nano-30b` free:** Requesty and AIHubMix (free models). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week.
+**2 rows on the list serve `nemotron-3-nano-30b` free:** Requesty and AIHubMix (free models). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: nemotron-3-nano-30b
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-24
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
@@ -34,7 +34,7 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -66,6 +66,6 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'MegaNova free tier: limits, free models, verified 2026-10-05'
+title: 'MegaNova free tier: limits, free models, verified 2026-10-08'
 description: 'OpenAI-compatible gateway with daily free model quotas: no-card Tier 1, plus additional free access after a one-time deposit. Free models: mistral-small-3.2, glm-4.7-flash. Tier 1 registration needs no card. A $1 deposit unlocks Tier 2''s separate per-model free allowances. Daily quotas reset at…'
 permalink: /providers/meganova/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: MegaNova
 ---
 
@@ -11,7 +11,7 @@ crumb: MegaNova
 
 # MegaNova free tier
 
-🧭 Aggregators (one key, many providers) · no card · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · **live** — last verified by a probe on 2026-10-05 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · not offered in Hong Kong, Venezuela, Azerbaijan and 40 more places · **live** — last verified by a probe on 2026-10-08 · [meganova.ai](https://meganova.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -83,6 +83,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

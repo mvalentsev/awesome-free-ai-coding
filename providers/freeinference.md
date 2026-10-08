@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-10-05'
+title: 'FreeInference (Harvard SEAS) free tier: limits, free models, verified 2026-10-08'
 description: 'Harvard SEAS''s MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup. Free models: deepseek-v4-flash, glm-5.1, glm-5.3-flash, minimax-m3, qwen3.6, minimax-m2.5, diffusiongemma. No card. This is an…'
 permalink: /providers/freeinference/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: FreeInference (Harvard SEAS)
 ---
 
@@ -11,7 +11,7 @@ crumb: FreeInference (Harvard SEAS)
 
 # FreeInference (Harvard SEAS) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [freeinference.org](https://freeinference.org) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-08 · [freeinference.org](https://freeinference.org) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -66,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

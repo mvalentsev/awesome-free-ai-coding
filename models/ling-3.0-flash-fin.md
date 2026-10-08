@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'ling-3.0-flash-fin free: 2 providers, limits and ids, verified 2026-10-05'
+title: 'ling-3.0-flash-fin free: 2 providers, limits and ids, verified 2026-10-08'
 description: ling-3.0-flash-fin is served free by opencode and Nous Portal (Hermes Agent). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/ling-3.0-flash-fin/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-08
 crumb: ling-3.0-flash-fin
 ---
 
@@ -11,7 +11,7 @@ crumb: ling-3.0-flash-fin
 
 # Where ling-3.0-flash-fin is free
 
-**2 rows on the list serve `ling-3.0-flash-fin` free:** opencode and Nous Portal (Hermes Agent). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-flash-fin), below its strong bar.
+**2 rows on the list serve `ling-3.0-flash-fin` free:** opencode and Nous Portal (Hermes Agent). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/ling-3-0-flash-fin), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: ling-3.0-flash-fin
 
 ### [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 
-🤖 Coding agents & CLIs · no card · verified 2026-10-05 · listed since 2026-08-30
+🤖 Coding agents & CLIs · no card · verified 2026-10-08 · listed since 2026-08-30
 
 Open-source coding agent whose opencode Zen gateway prices a rotating set of models at zero — inside OpenCode only, no sign-in; any provider via BYOK
 
@@ -37,7 +37,7 @@ Free models work only inside OpenCode; other clients receive `403 FreeTierError:
 
 ### [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-30
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-30
 
 Nous Research's inference portal with a $0 Free plan for :free models, accessible through an OpenAI-compatible API and Hermes Agent
 
@@ -71,6 +71,6 @@ Choose the Free plan and use exact :free IDs; they are zero-priced, while metere
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

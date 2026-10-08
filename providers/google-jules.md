@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Google Jules free tier: limits, free models, verified 2026-10-05'
+title: 'Google Jules free tier: limits, free models, verified 2026-10-08'
 description: 'Free tier of Google''s async cloud coding agent, on Gemini models; connects to GitHub repos and works autonomously. Free models: gemini-2.5. The limits table still names Gemini 2.5 Pro for Free, while the 2026-01-30 changelog says Gemini 3 Flash became the base model for all tiers. Google AI…'
 permalink: /providers/google-jules/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Google Jules
 ---
 
@@ -11,7 +11,7 @@ crumb: Google Jules
 
 # Google Jules free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [jules.google](https://jules.google/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-08 · [jules.google](https://jules.google/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -57,6 +57,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Yolo-Auto free tier: limits, free models, verified 2026-10-05'
+title: 'Yolo-Auto free tier: limits, free models, verified 2026-10-08'
 description: 'One open-weight Qwen model served on the vendor''s own flat-rate API for coding agents; the free plan is 15 requests a week with no card. Free models: qwen3.8-flash. No card. The vendor calls the Free tier both free forever and for testing. It runs the model-serving stack rather than reselling…'
 permalink: /providers/yolo-auto/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Yolo-Auto
 ---
 
@@ -11,7 +11,7 @@ crumb: Yolo-Auto
 
 # Yolo-Auto free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [yolo-auto.com](https://yolo-auto.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-08 · [yolo-auto.com](https://yolo-auto.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -72,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

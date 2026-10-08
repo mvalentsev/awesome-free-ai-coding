@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Standard Compute free tier: limits, free models, verified 2026-10-05'
+title: 'Standard Compute free tier: limits, free models, verified 2026-10-08'
 description: A one-time $0.25 of smart-routed compute on a flat-rate agent gateway, no card — a real key on both wires, OpenAI-compatible Chat Completions and an Anthropic Messages base Claude Code takes as it is. A finite platform-compute trial, not a recurring budget or fixed token count. No card is…
 permalink: /providers/standardcompute/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Standard Compute
 ---
 
@@ -11,7 +11,7 @@ crumb: Standard Compute
 
 # Standard Compute free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [standardcompute.com](https://standardcompute.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-08 · [standardcompute.com](https://standardcompute.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -67,6 +67,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

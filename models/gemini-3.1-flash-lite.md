@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-3.1-flash-lite free: 1 provider, limits and ids, verified 2026-10-05'
+title: 'gemini-3.1-flash-lite free: 1 provider, limits and ids, verified 2026-10-08'
 description: gemini-3.1-flash-lite is served free by Google AI Studio (Gemini API). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemini-3.1-flash-lite/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: gemini-3.1-flash-lite
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-3.1-flash-lite
 
 # Where gemini-3.1-flash-lite is free
 
-**One row on the list serves `gemini-3.1-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-1-flash-lite-preview), below its strong bar.
+**One row on the list serves `gemini-3.1-flash-lite` free:** Google AI Studio (Gemini API). It asks for no card. The published offer was checked on 2026-10-08 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-1-flash-lite-preview), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-3.1-flash-lite
 
 ### [Google AI Studio (Gemini API)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/)
 
-🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-10-05 · listed since 2026-09-25
+🔌 LLM APIs with free tier · no card · not offered in mainland China, Russia, Hong Kong and 13 more places · verified 2026-10-08 · listed since 2026-09-25
 
 Free tier on the Gemini API, priced model by model rather than as one account quota
 
@@ -50,6 +50,6 @@ Free eligibility is priced per model. The current Flash, Flash-Lite and Gemma ro
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

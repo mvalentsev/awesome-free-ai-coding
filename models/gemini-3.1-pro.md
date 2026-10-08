@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-3.1-pro free: 2 providers, limits and ids, verified 2026-10-01 or later'
+title: 'gemini-3.1-pro free: 2 providers, limits and ids, verified 2026-10-08'
 description: gemini-3.1-pro is served free by Google Antigravity and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemini-3.1-pro/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: gemini-3.1-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-3.1-pro
 
 # Where gemini-3.1-pro is free
 
-**2 rows on the list serve `gemini-3.1-pro` free:** Google Antigravity and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. The published offers were checked on 2026-10-01 or later and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-1-pro-preview), below its strong bar.
+**2 rows on the list serve `gemini-3.1-pro` free:** Google Antigravity and Gemini Enterprise Agent Platform express mode (formerly Vertex AI). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-3-1-pro-preview), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-3.1-pro
 
 ### [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 
-🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-10-01 · listed since 2026-08-11
+🤖 Coding agents & CLIs · no card · not offered in mainland China, Russia, Hong Kong and 21 more places · verified 2026-10-08 · listed since 2026-08-11
 
 Google's agent-first IDE and CLI, with a $0 Individual plan serving Gemini and third-party agent models
 
@@ -43,7 +43,7 @@ The model table includes older third-party models under Free & Google AI Plus, w
 
 ### [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-10-05 · listed since 2026-09-23
+🎁 Trials (no card when possible) · no card · verified 2026-10-08 · listed since 2026-09-23
 
 Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 
@@ -78,6 +78,6 @@ The free express trial is for new Google Cloud users and requires no billing inf
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

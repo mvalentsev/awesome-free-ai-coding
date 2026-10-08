@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Sarvam AI free tier: limits, free models, verified 2026-10-05'
+title: 'Sarvam AI free tier: limits, free models, verified 2026-10-08'
 description: India's Sarvam AI credits every new account ₹100 that never expire, spendable on any of its APIs — including its own Sarvam-105B chat model on an OpenAI-shaped endpoint. Signup credit is universal across APIs and never expires; its value is in INR, with no guaranteed token conversion. The Starter…
 permalink: /providers/sarvam/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Sarvam AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Sarvam AI
 
 # Sarvam AI free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-08 · [sarvam.ai](https://www.sarvam.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -72,6 +72,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

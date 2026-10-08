@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Opper free tier: limits, free models, verified 2026-10-05'
+title: 'Opper free tier: limits, free models, verified 2026-10-08'
 description: 'EU-hosted model gateway advertising a free route before adding a card; current documentation conflicts on its availability. Free models: gemma-4-31b. The signup guide advertises a free US-hosted Gemma route before adding a card, but the current directory has no free routes and its Gemma page lists…'
 permalink: /providers/opper/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Opper
 ---
 
@@ -11,7 +11,7 @@ crumb: Opper
 
 # Opper free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-05 · [opper.ai](https://opper.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-08 · [opper.ai](https://opper.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -71,6 +71,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

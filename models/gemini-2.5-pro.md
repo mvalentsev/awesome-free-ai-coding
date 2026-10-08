@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'gemini-2.5-pro free: 1 provider, limits and ids, verified 2026-10-05'
+title: 'gemini-2.5-pro free: 1 provider, limits and ids, verified 2026-10-08'
 description: gemini-2.5-pro is served free by Gemini Enterprise Agent Platform express mode (formerly Vertex AI). It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/gemini-2.5-pro/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: gemini-2.5-pro
 ---
 
@@ -11,7 +11,7 @@ crumb: gemini-2.5-pro
 
 # Where gemini-2.5-pro is free
 
-**One row on the list serves `gemini-2.5-pro` free:** Gemini Enterprise Agent Platform express mode (formerly Vertex AI). It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-2-5-pro), below its strong bar.
+**One row on the list serves `gemini-2.5-pro` free:** Gemini Enterprise Agent Platform express mode (formerly Vertex AI). It asks for no card. The published offer was checked on 2026-10-08 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/gemini-2-5-pro), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: gemini-2.5-pro
 
 ### [Gemini Enterprise Agent Platform express mode (formerly Vertex AI)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/)
 
-🎁 Trials (no card when possible) · no card · provisional since 2026-09-23 · verified 2026-10-05 · listed since 2026-09-23
+🎁 Trials (no card when possible) · no card · verified 2026-10-08 · listed since 2026-09-23
 
 Google Cloud's express mode: an API key and 90 days of Gemini models within the free tier's quotas, with no billing information, for a new Google Cloud user on a @gmail.com account
 
@@ -58,6 +58,6 @@ The free express trial is for new Google Cloud users and requires no billing inf
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Autohand Code free tier: limits, free models, verified 2026-10-05'
+title: 'Autohand Code free tier: limits, free models, verified 2026-10-08'
 description: 'Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand''s own latency-first coding model with no card, its messages counted per five hours and per week. Free models: fantail. Ongoing Free access is intended for evaluation and light use. It…'
 permalink: /providers/autohand-code/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Autohand Code
 ---
 
@@ -11,7 +11,7 @@ crumb: Autohand Code
 
 # Autohand Code free tier
 
-🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-27, a regular row from the first probe it passes on or after 2026-10-11 · **live** — last verified by a probe on 2026-10-05 · [autohand.ai](https://www.autohand.ai/code/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · provisional — added on 2026-09-27, a regular row from the first probe it passes on or after 2026-10-11 · **live** — last verified by a probe on 2026-10-08 · [autohand.ai](https://www.autohand.ai/code/) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -49,6 +49,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

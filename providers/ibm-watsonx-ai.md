@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-10-05'
+title: 'IBM watsonx.ai (Lite plan) free tier: limits, free models, verified 2026-10-08'
 description: IBM's watsonx.ai Runtime on its Lite plan — 300,000 tokens a month of foundation-model inference (Granite, Llama, Mistral and other hosted models) on IBM Cloud, a plan IBM's own docs call free and never bill. The Lite service plan has limited capacity and no published expiry. IBM Cloud signup…
 permalink: /providers/ibm-watsonx-ai/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: IBM watsonx.ai (Lite plan)
 ---
 
@@ -11,7 +11,7 @@ crumb: IBM watsonx.ai (Lite plan)
 
 # IBM watsonx.ai (Lite plan) free tier
 
-🔌 LLM APIs with free tier · card required · not offered in Vietnam, Türkiye, Taiwan and 24 more places · **live** — last verified by a probe on 2026-10-05 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · card required · not offered in Vietnam, Türkiye, Taiwan and 24 more places · **live** — last verified by a probe on 2026-10-08 · [ibm.com](https://www.ibm.com/products/watsonx-ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -58,6 +58,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

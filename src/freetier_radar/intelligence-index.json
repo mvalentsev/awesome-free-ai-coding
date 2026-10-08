@@ -1,12 +1,12 @@
 {
-  "read_on": "2026-10-06",
+  "read_on": "2026-10-08",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "index": 57.6
   },
-  "median": 12.9,
+  "median": 13.1,
   "families": {
     "apertus-70b": {
       "slug": "apertus-70b-instruct",
@@ -167,11 +167,6 @@
       "slug": "gpt-4-1",
       "index": 12.7,
       "estimated": true
-    },
-    "gpt-6-luna": {
-      "slug": "gpt-6-luna",
-      "index": 38.1,
-      "estimated": false
     },
     "gpt-oss-120b": {
       "slug": "gpt-oss-120b",

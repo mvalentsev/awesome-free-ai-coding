@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'kolibri-1 free: 1 provider, limits and ids, verified 2026-10-05'
+title: 'kolibri-1 free: 1 provider, limits and ids, verified 2026-10-08'
 description: kolibri-1 is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/kolibri-1/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-08
 crumb: kolibri-1
 ---
 
@@ -11,7 +11,7 @@ crumb: kolibri-1
 
 # Where kolibri-1 is free
 
-**One row on the list serves `kolibri-1` free:** LLMTR. It asks for no card. The published offer was checked on 2026-10-05 and is rechecked twice a week.
+**One row on the list serves `kolibri-1` free:** LLMTR. It asks for no card. The published offer was checked on 2026-10-08 and is rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: kolibri-1
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-10-05
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-10-05
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -42,6 +42,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

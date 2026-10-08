@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'abliteration.ai free tier: limits, free models, verified 2026-10-05'
+title: 'abliteration.ai free tier: limits, free models, verified 2026-10-08'
 description: OpenAI- and Anthropic-compatible API for three uncensored reasoning models, the large one derived from GLM-5.3, that opens with a one-credit free preview and no card. Sign in to use the preview without a card. A preview credit's fiat value is unpublished even though the organization balance…
 permalink: /providers/abliteration-ai/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: abliteration.ai
 ---
 
@@ -11,7 +11,7 @@ crumb: abliteration.ai
 
 # abliteration.ai free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-08 · [abliteration.ai](https://abliteration.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -70,6 +70,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

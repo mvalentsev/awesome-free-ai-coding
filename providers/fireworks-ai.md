@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Fireworks AI free tier: limits, free models, verified 2026-10-01'
+title: 'Fireworks AI free tier: limits, free models, verified 2026-10-08'
 description: Serverless inference on open-weight models with a $1 trial credit documented in the billing FAQ; current pricing no longer advertises a signup grant. The billing FAQ describes a credit and account suspension after exhaustion without a payment method. Current pricing instead emphasizes prepaid…
 permalink: /providers/fireworks-ai/
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-08
 crumb: Fireworks AI
 ---
 
@@ -11,7 +11,7 @@ crumb: Fireworks AI
 
 # Fireworks AI free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-01; the probe since has not found that evidence, and 3 misses in a row archive the row · [fireworks.ai](https://fireworks.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-08 · [fireworks.ai](https://fireworks.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -73,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

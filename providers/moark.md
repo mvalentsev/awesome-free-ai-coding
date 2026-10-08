@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-10-05'
+title: 'Moark (Gitee AI) free tier: limits, free models, verified 2026-10-08'
 description: Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought. Choose the free experience token; it can be used without buying a resource…
 permalink: /providers/moark/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Moark (Gitee AI)
 ---
 
@@ -11,7 +11,7 @@ crumb: Moark (Gitee AI)
 
 # Moark (Gitee AI) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-05 · [moark.com](https://moark.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-08 · [moark.com](https://moark.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -68,6 +68,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

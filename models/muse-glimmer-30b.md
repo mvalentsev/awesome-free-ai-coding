@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'muse-glimmer-30b free: 3 providers, limits and ids, verified 2026-10-05'
+title: 'muse-glimmer-30b free: 3 providers, limits and ids, verified 2026-10-08'
 description: muse-glimmer-30b is served free by Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/muse-glimmer-30b/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: muse-glimmer-30b
 ---
 
@@ -11,7 +11,7 @@ crumb: muse-glimmer-30b
 
 # Where muse-glimmer-30b is free
 
-**3 rows on the list serve `muse-glimmer-30b` free:** Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-glimmer), below its strong bar.
+**3 rows on the list serve `muse-glimmer-30b` free:** Requesty, NVIDIA NIM (build.nvidia.com) and Routeway. None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/muse-glimmer), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: muse-glimmer-30b
 
 ### [Requesty](https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-17
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-17
 
 OpenAI-compatible router with free models beside a metered catalog, routing, caching and fallbacks
 
@@ -34,7 +34,7 @@ No credit card for the Free plan, which serves free models only. Routing, cachin
 
 ### [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/)
 
-🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-05 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · not offered in Russia, Pakistan, Bangladesh and 11 more places · verified 2026-10-08 · listed since 2026-09-24
 
 Free endpoints for the models build.nvidia.com marks "Free Endpoint", open-weight models from several labs among them, called with a free NVIDIA Developer Program key at integrate.api.nvidia.com/v1 (OpenAI-compatible)
 
@@ -54,7 +54,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 ### [Routeway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-14
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-14
 
 OpenAI-compatible gateway with a rotating :free chat-model lane beside metered models
 
@@ -82,6 +82,6 @@ The FAQ and rate-limit docs disagree on the per-minute cap; both publish the sam
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

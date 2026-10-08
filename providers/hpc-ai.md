@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-10-05'
+title: 'HPC-AI Model APIs free tier: limits, free models, verified 2026-10-08'
 description: OpenAI-compatible APIs over 24 models, GLM 5.3 Flash, Kimi K3 and MiniMax M3 among them, with $2 of free credit for every user — $4 with the vendor's invite code — at 5 requests a minute until a first deposit. The invite-code grant is the total signup balance, not an extra amount added to the…
 permalink: /providers/hpc-ai/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: HPC-AI Model APIs
 ---
 
@@ -11,7 +11,7 @@ crumb: HPC-AI Model APIs
 
 # HPC-AI Model APIs free tier
 
-🎁 Trials (no card when possible) · no card · not offered in mainland China · **live** — last verified by a probe on 2026-10-05 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · not offered in mainland China · **live** — last verified by a probe on 2026-10-08 · [hpc-ai.com](https://www.hpc-ai.com/model-apis) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -76,6 +76,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

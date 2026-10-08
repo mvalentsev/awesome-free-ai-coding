@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-10-05'
+title: 'OpenTyphoon (SCB 10X) free tier: limits, free models, verified 2026-10-08'
 description: Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use. A free research showcase, with higher limits available by email. Usage data is collected to improve the model and API; the vendor…
 permalink: /providers/opentyphoon/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: OpenTyphoon (SCB 10X)
 ---
 
@@ -11,7 +11,7 @@ crumb: OpenTyphoon (SCB 10X)
 
 # OpenTyphoon (SCB 10X) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-08 · [opentyphoon.ai](https://opentyphoon.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -66,6 +66,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

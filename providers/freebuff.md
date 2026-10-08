@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Freebuff free tier: limits, free models, verified 2026-10-05'
+title: 'Freebuff free tier: limits, free models, verified 2026-10-08'
 description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No API key, no credit card.”. Free models: solar-pro-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. “Freebuff is supported by text ads.” “Model prices and usage…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-08
 crumb: Freebuff
 ---
 
@@ -11,7 +11,7 @@ crumb: Freebuff
 
 # Freebuff free tier
 
-🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-05 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🤖 Coding agents & CLIs · no card · **live** — last verified by a probe on 2026-10-08 · [freebuff.com](https://freebuff.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -73,6 +73,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

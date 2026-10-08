@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-10-05'
+title: 'uncloseai (unturf) free tier: limits, free models, verified 2026-10-08'
 description: Keyless OpenAI-compatible chat endpoint — no signup, no key, no account. Hermes is the public text lane. qwen.ai.unturf.com requires a key and rejects anonymous traffic with 403. A down model's hostname returns 502; that temporary failure does not establish shutdown. Query Model Discovery for…
 permalink: /providers/uncloseai/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: uncloseai (unturf)
 ---
 
@@ -11,7 +11,7 @@ crumb: uncloseai (unturf)
 
 # uncloseai (unturf) free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [uncloseai.com](https://uncloseai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-08 · [uncloseai.com](https://uncloseai.com) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -62,6 +62,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

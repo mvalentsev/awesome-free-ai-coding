@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-10-05'
+title: 'OpenRouter (free models) free tier: limits, free models, verified 2026-10-08'
 description: 'One API key for a rotating set of :free model variants, open-weight and stealth models among them. Free models: nemotron-3-ultra, gemma-4-31b, gemma-4-26b-a4b, nemotron-3-super, north-mini-code, laguna-s-2.1, laguna-xs-2.1, nemotron-3.5-lightning and 5 more. OpenRouter''s FAQ says its free models…'
 permalink: /providers/openrouter-free/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-08
 crumb: OpenRouter (free models)
 ---
 
@@ -11,7 +11,7 @@ crumb: OpenRouter (free models)
 
 # OpenRouter (free models) free tier
 
-🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-05 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🧭 Aggregators (one key, many providers) · no card · **live** — last verified by a probe on 2026-10-08 · [openrouter.ai](https://openrouter.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -77,6 +77,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

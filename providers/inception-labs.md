@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-10-05'
+title: 'Inception Labs (Mercury) free tier: limits, free models, verified 2026-10-08'
 description: A signup grant on Mercury diffusion models — Mercury 2.5 and Mercury 2 for chat, Mercury Edit 2 for fill-in-the-middle completions and code edits. No payment details are required. The signup token balance is shared across all models, does not refill and is spent alongside the Free tier's…
 permalink: /providers/inception-labs/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Inception Labs (Mercury)
 ---
 
@@ -11,7 +11,7 @@ crumb: Inception Labs (Mercury)
 
 # Inception Labs (Mercury) free tier
 
-🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-05 · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🎁 Trials (no card when possible) · no card · **live** — last verified by a probe on 2026-10-08 · [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -69,6 +69,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

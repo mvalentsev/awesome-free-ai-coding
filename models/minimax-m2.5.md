@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'minimax-m2.5 free: 3 providers, limits and ids, verified 2026-10-05'
+title: 'minimax-m2.5 free: 3 providers, limits and ids, verified 2026-10-08'
 description: minimax-m2.5 is served free by Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/minimax-m2.5/
-last_modified_at: 2026-10-06
+last_modified_at: 2026-10-08
 crumb: minimax-m2.5
 ---
 
@@ -11,7 +11,7 @@ crumb: minimax-m2.5
 
 # Where minimax-m2.5 is free
 
-**3 rows on the list serve `minimax-m2.5` free:** Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-05 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/minimax-m2-5), below its strong bar.
+**3 rows on the list serve `minimax-m2.5` free:** Kiro, AIHubMix (free models) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/minimax-m2-5), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: minimax-m2.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-10-05 · listed since 2026-09-25
+🎁 Trials (no card when possible) · no card · verified 2026-10-08 · listed since 2026-09-25
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
@@ -37,7 +37,7 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ### [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-05 · listed since 2026-09-24
+🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-24
 
 One OpenAI-compatible gateway over 800+ models, dozens of which the platform prices at 0 and subsidises itself, with an Anthropic-format /v1/messages too, so a free id can back Claude Code
 
@@ -62,7 +62,7 @@ Free IDs end in -free; paid twins are metered at list prices. The daily request 
 
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-05 · listed since 2026-09-24
+🔌 LLM APIs with free tier · no card · verified 2026-10-08 · listed since 2026-09-24
 
 Harvard SEAS's MadSys Lab serving open models free to every account behind both an OpenAI-shaped and an Anthropic-shaped endpoint, with a documented Claude Code setup
 
@@ -89,6 +89,6 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

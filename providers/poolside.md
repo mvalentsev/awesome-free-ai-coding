@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'Poolside Platform free tier: limits, free models, verified 2026-10-05'
+title: 'Poolside Platform free tier: limits, free models, verified 2026-10-08'
 description: Free self-serve developer access to Poolside's own Laguna coding models. The quickstart recommends free developer access; an organization's enterprise deployment is a separate access path. No quota, rate, or duration is published. The pricing page returns 404, which does not establish unlimited…
 permalink: /providers/poolside/
-last_modified_at: 2026-10-05
+last_modified_at: 2026-10-08
 crumb: Poolside Platform
 ---
 
@@ -11,7 +11,7 @@ crumb: Poolside Platform
 
 # Poolside Platform free tier
 
-🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-05 · [poolside.ai](https://poolside.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
+🔌 LLM APIs with free tier · no card · **live** — last verified by a probe on 2026-10-08 · [poolside.ai](https://poolside.ai) · [back to the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
 ## What you get
 
@@ -65,6 +65,6 @@ Each line is a change to what this page publishes, dated the day it reached the 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-07 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; the full list, the Atom feed and the machinery are at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
