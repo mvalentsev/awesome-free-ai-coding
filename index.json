@@ -6361,6 +6361,7 @@
       "source_urls": [
         "https://freebuff.com/",
         "https://freebuff.com/cli",
+        "https://freebuff.com/plans",
         "https://freebuff.com/terms-of-service",
         "https://freebuff.com/privacy-policy",
         "https://freebuff.com/llms.txt",
@@ -6368,7 +6369,7 @@
         "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts"
       ],
       "card_required": false,
-      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No API key, no credit card.”",
+      "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”",
       "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\n“Freebuff is supported by text ads.” “Model prices and usage limits still apply.” Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCurrent model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nFreebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). Muse Spark 1.3: “Muse Spark 1.3, on every paid plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: “Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
@@ -9497,7 +9498,7 @@
           "google/diffusiongemma-26b-a4b-it"
         ],
         "refuses_bearer": true,
-        "note": "Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are invalid. Only qwen/qwen3.8-27b advertises tools; tools on the other two IDs returned 500. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma. OpenCode 2.0.24 requested 32,000 output tokens for the 27B ID: HTTP 400, reply budget 16,000. The catalog omits that output limit. A complete agent tool cycle was not established."
+        "note": "Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` worked despite the authentication docs. Only qwen/qwen3.8-27b advertises tools; the other two IDs returned 500 for tools. OpenCode 2.0.24 sends 32,000 output tokens by default: HTTP 400, reply budget 16,000, absent from the catalog. An experimental 8,000-token output ceiling completed a tool read and reply, but the final CLI completion event was missing. Full agent completion remains unproved. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma."
       },
       "border": {
         "left_out": [],

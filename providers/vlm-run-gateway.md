@@ -36,7 +36,7 @@ The vendor names no country it keeps the offer from ([source](https://vlm.run/te
 - Base URL: `https://gateway.vlm.run/v1/openai`
 - Key: none — the lane is anonymous
 - Callable ids: `qwen/qwen3.8-27b`, `qwen/qwen3.5-0.8b`, `google/diffusiongemma-26b-a4b-it`
-- Note: Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are invalid. Only qwen/qwen3.8-27b advertises tools; tools on the other two IDs returned 500. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma. OpenCode 2.0.24 requested 32,000 output tokens for the 27B ID: HTTP 400, reply budget 16,000. The catalog omits that output limit. A complete agent tool cycle was not established.
+- Note: Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` worked despite the authentication docs. Only qwen/qwen3.8-27b advertises tools; the other two IDs returned 500 for tools. OpenCode 2.0.24 sends 32,000 output tokens by default: HTTP 400, reply budget 16,000, absent from the catalog. An experimental 8,000-token output ceiling completed a tool read and reply, but the final CLI completion event was missing. Full agent completion remains unproved. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma.
 
 Try it from your terminal — the lane takes no key:
 

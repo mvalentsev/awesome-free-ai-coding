@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-10-08'
-description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No API key, no credit card.”. Free models: solar-pro-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. “Freebuff is supported by text ads.” “Model prices and usage…'
+description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”. Free models: solar-pro-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. “Freebuff is supported by text ads.” “Model prices and usage limits…'
 permalink: /providers/freebuff/
 last_modified_at: 2026-10-08
 crumb: Freebuff
@@ -15,7 +15,7 @@ crumb: Freebuff
 
 ## What you get
 
-Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No API key, no credit card.”
+Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”
 
 ## Free models
 
@@ -52,6 +52,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 - Probe: the page at <https://freebuff.com/llms.txt>, anchored on `Free access is supported by ads.`, `6 one-hour sessions per day`
 - Source: <https://freebuff.com/>
 - Source: <https://freebuff.com/cli>
+- Source: <https://freebuff.com/plans>
 - Source: <https://freebuff.com/terms-of-service>
 - Source: <https://freebuff.com/privacy-policy>
 - Source: <https://freebuff.com/llms.txt>

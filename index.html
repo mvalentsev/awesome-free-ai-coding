@@ -703,7 +703,7 @@ The model table includes older third-party models under Free &amp; Google AI Plu
 <span class="tag card" title="What you send may be used to train models; the vendor's words are on the row's page">👁 may train on prompts</span>              </div>
             </th>
             <td class="what" data-label="What you get">
-Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No API key, no credit card.”            </td>
+Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
 <span class="model-access"><span class="chip">solar-pro-4</span></span><span class="model-access"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/">mimo-v2.6-flash</a></span><span class="model-access"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/">glm-5.3-flash</a></span><span class="model-access"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/">deepseek-v4.1-flash</a></span>              </div>
@@ -3656,7 +3656,7 @@ Use the zero-priced free-model ID in the default group. PaleBlueDot AI runs toke
 <span class="tag nokey">none — the lane is anonymous</span>
             </td>
             <td class="limits" data-label="Notes">
-                <details><summary>Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are …</summary><span class="full">Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are invalid. Only qwen/qwen3.8-27b advertises tools; tools on the other two IDs returned 500. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma. OpenCode 2.0.24 requested 32,000 output tokens for the 27B ID: HTTP 400, reply budget 16,000. The catalog omits that output limit. A complete agent tool cycle was not established.</span></details>
+                <details><summary>Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` worked despite the authentication docs. Only …</summary><span class="full">Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` worked despite the authentication docs. Only qwen/qwen3.8-27b advertises tools; the other two IDs returned 500 for tools. OpenCode 2.0.24 sends 32,000 output tokens by default: HTTP 400, reply budget 16,000, absent from the catalog. An experimental 8,000-token output ceiling completed a tool read and reply, but the final CLI completion event was missing. Full agent completion remains unproved. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma.</span></details>
             </td>
           </tr>
           <tr>

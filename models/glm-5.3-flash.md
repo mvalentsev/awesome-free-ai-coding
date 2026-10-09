@@ -41,7 +41,7 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 
 🤖 Coding agents & CLIs · no card · verified 2026-10-08 · listed since 2026-10-06
 
-Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No API key, no credit card.”
+Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”
 
 <details markdown="block">
 <summary>Provider-wide limits</summary>
