@@ -195,10 +195,11 @@ def test_the_request_codex_sends_is_held_to_the_runs_whole():
 
 
 def test_an_older_codex_is_held_only_to_asking_nothing_the_run_leaves_out():
-    probe = codex_probe_body("m")
-    older = {k: v for k, v in codex_probe_body("m").items() if k != "prompt_cache_key"}
+    probe = codex_probe_body("m", legacy_instructions=True)
+    older = {k: v for k, v in probe.items() if k != "prompt_cache_key"}
     older.update(parallel_tool_calls=False, reasoning=None, include=[])
     assert shape_differences(older, probe, exact=False) == []
+    assert shape_differences(older, codex_probe_body("m"), exact=False) != []
     assert shape_differences(older, probe, exact=True) != []
     assert shape_differences({**older, "service_tier": "flex"}, probe, exact=False) == [
         "Codex sends `service_tier`, which the run's request leaves out"]

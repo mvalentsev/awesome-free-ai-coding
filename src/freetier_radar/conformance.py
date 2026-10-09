@@ -944,7 +944,6 @@ def _check_bare(run: _Run, version: str, binary: str, config: Path, lanes_: list
 def _check_capture(run: _Run, served: _Lanes, base: str, codex_versions: list[str]) -> None:
     """The request Codex sends a lane under the profiles' settings, beside the
     one the list's run sends."""
-    probe = codex_probe_body("m")
     for c in codex_versions:
         newest = c == codex_versions[-1]
         v = f"Codex {c}"
@@ -962,6 +961,11 @@ def _check_capture(run: _Run, served: _Lanes, base: str, codex_versions: list[st
                 run.note(sentence, "infra", v, "Codex sent the capture lane nothing")
                 continue
             if sentence == "same-request":
+                # The newest remains an exact comparison with the current
+                # probe. Older clients are compared with the legacy request
+                # the run also sends, without ignoring any extra fields.
+                probe = codex_probe_body("m", legacy_instructions=(
+                    not newest and "instructions" in sent))
                 diff = shape_differences(sent, probe, exact=newest)
                 same = ("the same fields, tools and settings as the run's request" if newest else
                         "nothing the run's request leaves out")

@@ -398,11 +398,12 @@ CODEX_STREAM_ENDS = (CODEX_DONE, *CODEX_BROKEN[:2])
 CODEX_READ_CAP = 256 * 1024
 
 
-def codex_probe_body(model: str) -> dict:
+def codex_probe_body(model: str, *, legacy_instructions: bool = False) -> dict:
     """The request, asking something no cache has answered before (see
     keyless_probe_body)."""
     conversation = str(uuid.uuid4())
-    return {"model": model, "instructions": "You are a coding agent. Answer in one word.",
+    instructions = "You are a coding agent. Answer in one word."
+    body = {"model": model,
             "input": [{"type": "message", "role": "user", "content": [
                 {"type": "input_text",
                  "text": f"Reply with the word pong. ({uuid.uuid4().hex[:12]})"}]}],
@@ -410,6 +411,15 @@ def codex_probe_body(model: str) -> dict:
             "reasoning": {}, "store": False, "stream": True,
             "include": ["reasoning.encrypted_content"],
             "prompt_cache_key": conversation, "client_metadata": {"session_id": conversation}}
+    # CLI 0.162.0 HTTP capture, checked 2026-10-09: instructions are developer
+    # input. The supported 0.134.0 capture still has the separate field; both
+    # requests are exercised by _codex_drift and checked by conformance.
+    if legacy_instructions:
+        body["instructions"] = instructions
+    else:
+        body["input"].insert(0, {"type": "message", "role": "developer", "content": [
+            {"type": "input_text", "text": instructions}]})
+    return body
 
 
 def _codex_events(text: str) -> list[str]:
@@ -451,7 +461,8 @@ def _codex_said(answer: tuple[int, str] | str) -> str:
 
 
 async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: dict,
-                      attempts: int, backoff: float) -> tuple[int, str] | str:
+                      attempts: int, backoff: float, *, legacy_instructions: bool = False
+                      ) -> tuple[int, str] | str:
     """One Codex turn's request and the stream it gets, read to its end or to
     CODEX_READ_CAP: (status, text), or why there was none. A 5xx (its stream
     left unread), a network error and a turn that breaks off are asked again.
@@ -462,7 +473,8 @@ async def _codex_call(client: httpx.AsyncClient, url: str, model: str, headers: 
     and protocol/src/error.rs, read 2026-09-30) — so one broken turn is not a
     lane that stopped taking the request."""
     async def turn() -> tuple[int, str]:
-        async with client.stream("POST", url, json=codex_probe_body(model),
+        async with client.stream("POST", url, json=codex_probe_body(
+                model, legacy_instructions=legacy_instructions),
                                  headers={**headers, "Accept": "text/event-stream"},
                                  timeout=TIMEOUT, follow_redirects=True) as resp:
             text = ""
@@ -797,11 +809,13 @@ async def _codex_drift(client: httpx.AsyncClient, entry: Entry, model: str, head
     sends, at the Codex base + /responses — the lane's own base where the row
     names none — with the same headers. The whole turn is asked, not the
     route: a route can answer and refuse the request (see CODEX_PROBE_TOOL).
+    Both current and legacy instruction shapes must complete: a route that
+    takes only one cannot confirm the published supported client range.
 
     An answer on a row without the field is a lane Codex could call directly,
     with a profile of its own, and a row with the field that stops taking the
-    request hands readers a profile that fails the same way. Asked once where
-    the field is not set, since a refusal there is the ordinary answer, and
+    request hands readers a profile that fails the same way. Each shape is
+    asked once where the field is not set, since a refusal there is ordinary, and
     patiently where it is, since there a refusal is news. A lane that wants an
     id per conversation in its own header is not asked: no Codex profile could
     send it."""
@@ -813,6 +827,10 @@ async def _codex_drift(client: httpx.AsyncClient, entry: Entry, model: str, head
     lane = "public-key" if entry.api.public_key else "keyless"
     answer = await _codex_call(client, url, model, headers, attempts if claimed else 1, backoff)
     took = _codex_completed(answer)
+    if took:
+        answer = await _codex_call(client, url, model, headers, attempts if claimed else 1,
+                                   backoff, legacy_instructions=True)
+        took = _codex_completed(answer)
     if took and not claimed:
         return (f"{lane} POST {url} took the request Codex CLI sends — set api.codex.base_url "
                 f"to {base} and the row gets a Codex profile of its own")

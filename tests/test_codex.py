@@ -124,7 +124,7 @@ import respx
 from pydantic import ValidationError
 
 from freetier_radar.models import ApiInfo, Entry, load_registry
-from freetier_radar.prober import ProbeStatus, probe_entry
+from freetier_radar.prober import ProbeStatus, _codex_call, _codex_completed, probe_entry
 from test_prober import BASE, KEYLESS_CATALOG, completion
 
 
@@ -169,6 +169,38 @@ def _keyless_lane_answers():
         return_value=httpx.Response(200, json=KEYLESS_CATALOG))
     respx.post("https://open.x.ai/v1/chat/completions").mock(
         return_value=httpx.Response(200, json=completion("gpt-oss-120b")))
+
+
+@respx.mock
+async def test_the_current_codex_probe_sends_instructions_as_developer_input():
+    def answer(request):
+        body = json.loads(request.content)
+        if "instructions" in body or not any(m.get("role") == "developer" for m in body["input"]):
+            return httpx.Response(400, text="use developer input for instructions")
+        return COMPLETED
+
+    respx.post("https://open.x.ai/v1/responses").mock(side_effect=answer)
+    async with httpx.AsyncClient() as client:
+        result = await _codex_call(client, "https://open.x.ai/v1/responses", "m", {}, 1, 0)
+    assert _codex_completed(result)
+
+
+@pytest.mark.parametrize("refused", [None, "current", "legacy"])
+@respx.mock
+async def test_codex_route_verification_covers_both_supported_request_shapes(refused):
+    _keyless_lane_answers()
+    shapes = []
+
+    def answer(request):
+        shape = "legacy" if "instructions" in json.loads(request.content) else "current"
+        shapes.append(shape)
+        return httpx.Response(400, text=f"{shape} request refused") if refused == shape else COMPLETED
+
+    respx.post("https://open.x.ai/v1/responses").mock(side_effect=answer)
+    async with httpx.AsyncClient() as client:
+        result = await probe_entry(client, codex_keyless(codex=KEYLESS_CODEX), backoff=0)
+    assert result.status is (ProbeStatus.PASS if refused is None else ProbeStatus.STALE_IDS)
+    assert shapes == (["current"] if refused == "current" else ["current", "legacy"])
 
 
 def test_api_codex_is_said_only_of_an_openai_shaped_lane_codex_can_call():
@@ -318,11 +350,12 @@ async def test_a_failed_turn_is_asked_again_as_codex_asks_again():
     failed turn is not a lane that stopped taking the request (Kilo's upstream
     overload, one turn in twelve on 2026-09-29)."""
     _keyless_lane_answers()
-    route = respx.post("https://open.x.ai/v1/responses").mock(side_effect=[FAILED_UPSTREAM, COMPLETED])
+    route = respx.post("https://open.x.ai/v1/responses").mock(
+        side_effect=[FAILED_UPSTREAM, COMPLETED, COMPLETED])
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, codex_keyless(codex=KEYLESS_CODEX), backoff=0)
     assert result.status is ProbeStatus.PASS, result.detail
-    assert route.call_count == 2
+    assert route.call_count == 3  # a retried current turn, then the legacy control
 
 
 @respx.mock
@@ -345,7 +378,7 @@ async def test_an_end_event_split_across_chunks_is_read_whole():
     async with httpx.AsyncClient() as client:
         result = await probe_entry(client, codex_keyless(codex=KEYLESS_CODEX), backoff=0)
     assert result.status is ProbeStatus.PASS, result.detail
-    assert route.call_count == 1
+    assert route.call_count == 2  # both instruction shapes read the split end whole
 
 
 @respx.mock
