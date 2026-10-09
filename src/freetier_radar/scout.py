@@ -21,7 +21,7 @@ from .models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source, Wat
                      load_registry, load_sources, load_watchlist, save_registry, site_of,
                      probe_frequency, watch_match)
 from .prober import (UA, ProbeStatus, challenge_marker_hit, check_content, family_named,
-                     for_a_human, join_free_list_sync, probe_page_url_sync,
+                     for_a_human, join_free_list_sync, page_response_ok, probe_page_url_sync,
                      unevidenced_families)
 from .words import clip
 
@@ -718,7 +718,7 @@ def probe_check_sync(entry: Entry, client: httpx.Client) -> str | None:
         resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
     except httpx.HTTPError as exc:
         return f"unreachable: {exc}"
-    if resp.status_code >= 400:
+    if not page_response_ok(resp):
         return f"HTTP {resp.status_code}"
     if entry.probe.free_list is not None:
         resp, failure = join_free_list_sync(client, entry, resp)
@@ -958,9 +958,9 @@ def named_by_row(client: httpx.Client, time_left: Callable[[], float] | None = N
                 resp = client.get(probe_page_url_sync(client, entry.probe), follow_redirects=True)
             except httpx.HTTPError:
                 resp = None
-            if resp is not None and resp.status_code < 400 and entry.probe.free_list is not None:
+            if resp is not None and page_response_ok(resp) and entry.probe.free_list is not None:
                 resp, _ = join_free_list_sync(client, entry, resp)
-            responses[entry.id] = resp if resp is not None and resp.status_code < 400 else None
+            responses[entry.id] = resp if resp is not None and page_response_ok(resp) else None
         resp = responses[entry.id]
         return None if resp is None else family_named(resp, entry, family)
 
@@ -1219,6 +1219,8 @@ def main() -> None:
           f"providers: {evidence.describe_providers() or 'none'}")
     for warning in evidence.feed_warnings:
         print(f"feed warning: {warning}")
+    for warning in evidence.page_warnings:
+        print(f"page warning: {warning}")
 
     try:
         with httpx.Client(timeout=httpx.Timeout(20.0, connect=10.0),
@@ -1228,7 +1230,9 @@ def main() -> None:
             # entry, each at its own 30s read timeout, inside a phase that checks
             # the budget once, before any of them.
             result = run_scout(llm, entries, failures,
-                               partial(fetch_page_texts, time_left=deadline.remaining),
+                               partial(fetch_page_texts, time_left=deadline.remaining,
+                                       on_unread=lambda warning: print(f"page warning: {warning}",
+                                                                       flush=True)),
                                date.today(),
                                evidence=evidence,
                                verifier=lambda e: probe_check_sync(e, probe_client),

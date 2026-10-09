@@ -7,7 +7,7 @@ import pytest
 import respx
 
 from freetier_radar import scout
-from freetier_radar.discovery import Evidence, Hit
+from freetier_radar.discovery import Evidence, Hit, fetch_page_texts
 from freetier_radar.models import (SOURCE_RECHECK_DAYS, WATCH_RECHECK_DAYS, Entry, Source,
                                    Watched, save_registry)
 from freetier_radar.scout import (
@@ -487,6 +487,30 @@ def test_apply_retirements_needs_the_quote_on_the_page():
         "id": "x", "retired_on": "2026-09-30",
         "quote": "We are shutting the free tier down on 30 September 2026"}], pages)
     assert grounded == ["x (2026-09-30)"] and entries[0].retired_on == date(2026, 9, 30)
+
+
+@pytest.mark.parametrize("status", [200, 302, 304, 401, 403, 404, 410, 429, 503])
+def test_retirement_evidence_requires_a_successful_http_read(status):
+    quote = "The free tier will be permanently shut down on 30 September 2026."
+    entry = make(source_urls=["https://x.ai/blog"])
+    transport = httpx.MockTransport(lambda request: httpx.Response(status, text=quote))
+    with httpx.Client(transport=transport) as client:
+        pages = fetch_page_texts(entry.source_urls, client)
+    applied = apply_retirements([entry], [{"id": entry.id, "retired_on": "2026-09-30",
+                                          "quote": quote}], pages)
+    assert applied == (["x (2026-09-30)"] if status == 200 else [])
+    assert entry.retired_on == (date(2026, 9, 30) if status == 200 else None)
+
+
+@pytest.mark.parametrize("status", [200, 403])
+def test_retirement_sweep_never_sends_an_http_error_body_to_the_llm(status):
+    quote = "The free tier will be permanently shut down on 30 September 2026."
+    llm = StubLLM({"FIND-RETIREMENTS": "```yaml\nretire: []\n```"})
+    entry = make(source_urls=["https://x.ai/blog"])
+    transport = httpx.MockTransport(lambda request: httpx.Response(status, text=quote))
+    with httpx.Client(transport=transport) as client:
+        run_scout(llm, [entry], [], lambda urls: fetch_page_texts(urls, client), TODAY)
+    assert any("FIND-RETIREMENTS" in p for p in llm.prompts) is (status == 200)
 
 
 def test_apply_retirements_ignores_bad_dates_and_short_quotes():
@@ -1322,6 +1346,29 @@ def test_a_feed_that_went_quiet_reaches_the_status_file_and_the_pull_request(
     assert json.loads((tmp_path / "scout-status.json").read_text())["feed_warnings"] == [warning]
     assert f"Curated feeds that need a look: {warning}" in (tmp_path / "scout-pr.md").read_text()
     assert f"feed warning: {warning}" in capsys.readouterr().out
+
+
+@respx.mock
+def test_unread_discovery_and_retirement_pages_keep_their_status_in_the_run_log(
+        tmp_path, monkeypatch, capsys):
+    url = "https://x.ai/blog"
+    save_registry(tmp_path / "registry.yaml", [make(source_urls=[url])])
+    warning = "https://newtool.dev/pricing: HTTP 429"
+    monkeypatch.setattr(scout, "gather_evidence",
+                        lambda *a, **k: Evidence(page_warnings=[warning]))
+    respx.get(url).mock(return_value=httpx.Response(403, text="permanently shut down"))
+
+    def run(llm, entries, failures, page_fetcher, *args, **kwargs):
+        assert page_fetcher([url]) == {url: ""}
+        return EMPTY_RUN
+
+    monkeypatch.setattr(scout, "run_scout", run)
+    monkeypatch.setattr(sys, "argv", _scout_argv(tmp_path, "--dry-run"))
+    scout.main()
+    log = capsys.readouterr().out
+    assert f"page warning: {warning}" in log
+    assert f"page warning: {url}: HTTP 403" in log
+    assert "permanently shut down" not in log
 
 
 def _scout_argv(tmp_path, *extra) -> list[str]:

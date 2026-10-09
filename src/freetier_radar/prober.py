@@ -216,6 +216,15 @@ async def _ask[A](send: Callable[[], Awaitable[A]], attempts: int, backoff: floa
     return None, last
 
 
+def page_response_ok(response: httpx.Response) -> bool:
+    """Only a final 2xx response can supply page or catalog evidence.
+
+    Callers keep their own retries, deadlines and failure verdicts. Error and
+    unfinished redirect bodies must never confirm a quote, model or retirement.
+    """
+    return response.is_success
+
+
 async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: float,
                 named: bool = False) -> tuple[httpx.Response | None, ProbeResult | None]:
     """The page at `url`, or the verdict that reading it already is: a 401, 403
@@ -228,12 +237,15 @@ async def _read(client: httpx.AsyncClient, url: str, attempts: int, backoff: flo
         where = f"{url} " if named else ""
         return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
                                  f"{where}unreachable after {attempts} attempts: {last}")
+    if page_response_ok(resp):
+        return resp, None
     said = f"{url} answered " if named else ""
     if resp.status_code in (401, 403, 429):
         return None, ProbeResult(ProbeStatus.INCONCLUSIVE, f"blocked: {said}HTTP {resp.status_code}")
     if resp.status_code >= 400:
         return None, ProbeResult(ProbeStatus.FAIL, f"page gone: {said}HTTP {resp.status_code}")
-    return resp, None
+    return None, ProbeResult(ProbeStatus.INCONCLUSIVE,
+                             f"page not read: {said}HTTP {resp.status_code}")
 
 
 def followed_url(index: object, follow: Follow) -> str | None:
@@ -295,7 +307,7 @@ def join_free_list_sync(client: httpx.Client, entry: Entry, catalog: httpx.Respo
         listed = client.get(url, follow_redirects=True)
     except httpx.HTTPError as exc:
         return None, f"free list {url} unreachable: {exc}"
-    if listed.status_code != 200:
+    if not page_response_ok(listed):
         return None, f"free list {url} answered HTTP {listed.status_code}"
     joined, failure = join_free_list(catalog, listed, entry.probe.lane)
     return (joined, "") if joined is not None else (None, f"free list {url} {failure}")
@@ -311,6 +323,8 @@ async def probe_page_url(client: httpx.AsyncClient, probe: Probe) -> str:
         resp = await client.get(probe.endpoint, timeout=TIMEOUT, follow_redirects=True)
     except httpx.HTTPError:
         return probe.endpoint
+    if not page_response_ok(resp):
+        return probe.endpoint
     return _index_names(resp, probe.follow) or probe.endpoint
 
 
@@ -321,6 +335,8 @@ def probe_page_url_sync(client: httpx.Client, probe: Probe) -> str:
     try:
         resp = client.get(probe.endpoint, follow_redirects=True)
     except httpx.HTTPError:
+        return probe.endpoint
+    if not page_response_ok(resp):
         return probe.endpoint
     return _index_names(resp, probe.follow) or probe.endpoint
 
@@ -1019,12 +1035,12 @@ async def _fetch_page(client: httpx.AsyncClient, url: str, attempts: int,
                       backoff: float) -> tuple[httpx.Response | None, str]:
     """A second page a row's checks read, or why it could not be read, with the
     patience the probe gives its own endpoint: a 5xx or a network error is
-    retried, and any other answer but a 200 is reported."""
+    retried, and any answer outside 2xx is reported."""
     resp, last = await _ask(lambda: client.get(url, timeout=TIMEOUT, follow_redirects=True),
                             attempts, backoff)
     if resp is None:
         return None, f"unreachable after {attempts} attempts: {last}"
-    if resp.status_code != 200:
+    if not page_response_ok(resp):
         return None, f"answered HTTP {resp.status_code}"
     return resp, ""
 

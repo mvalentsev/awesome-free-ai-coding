@@ -22,7 +22,7 @@ from urllib.parse import urlparse
 import httpx
 
 from .models import domain_of, is_covered, under
-from .prober import UA
+from .prober import UA, page_response_ok
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 
@@ -138,6 +138,8 @@ class Evidence:
     # One line per curated feed that is failing the scout, for the run's log and
     # status file — never for the prompt. See `_read_feed`.
     feed_warnings: list[str] = field(default_factory=list)
+    # Unavailable pages are logged separately; their bodies never enter prompts.
+    page_warnings: list[str] = field(default_factory=list)
 
     def is_empty(self) -> bool:
         return not (self.hits or self.pages or self.feeds or self.digests)
@@ -348,14 +350,15 @@ def page_text(html: str) -> str:
 
 def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
                      limit: int = PAGE_TEXT_LIMIT,
-                     time_left: Callable[[], float] | None = None) -> dict[str, str]:
+                     time_left: Callable[[], float] | None = None,
+                     on_unread: Callable[[str], None] | None = None) -> dict[str, str]:
     """GET each URL, strip tags, collapse whitespace. Failures become empty strings.
 
     `time_left` returns the seconds the run has left (`Deadline.remaining`). Given
     one, the loop stops rather than starting a fetch it cannot afford, and each
     fetch's timeout is capped by what is left. A URL left unfetched is absent
-    from the result — callers read it with `.get(url, "")` — since an empty
-    string would claim the page was read.
+    from the result. `on_unread` receives the URL and status or exception class
+    for failed reads, without the response body.
     """
     own = client is None
     client = client or httpx.Client(timeout=TIMEOUT, follow_redirects=True, headers=UA)
@@ -366,14 +369,21 @@ def fetch_page_texts(urls: list[str], client: httpx.Client | None = None,
             if left is not None and left <= 0:
                 break
             try:
-                r = client.get(u, timeout=_timeout_within(left))
+                r = client.get(u, timeout=_timeout_within(left), follow_redirects=True)
+                if not page_response_ok(r):
+                    out[u] = ""
+                    if on_unread is not None:
+                        on_unread(f"{u}: HTTP {r.status_code}")
+                    continue
                 # A catalog answers JSON, which the tag stripper would eat from
                 # the first "<" in a model's description on.
                 is_json = "json" in r.headers.get("content-type", "").lower()
                 text = re.sub(r"\s+", " ", r.text) if is_json else page_text(r.text)
                 out[u] = text[:limit]
-            except httpx.HTTPError:
+            except httpx.HTTPError as exc:
                 out[u] = ""
+                if on_unread is not None:
+                    on_unread(f"{u}: {type(exc).__name__}")
     finally:
         if own:
             client.close()
@@ -503,7 +513,7 @@ def gather_evidence(queries: list[str], known_domains: set[str], env: Mapping[st
         ev.hits = kept
 
         ev.pages = fetch_page_texts([h.url for h in kept[:max_pages]], client,
-                                    time_left=time_left)
+                                    time_left=time_left, on_unread=ev.page_warnings.append)
 
         for feed in CURATED_FEEDS:
             if spent():

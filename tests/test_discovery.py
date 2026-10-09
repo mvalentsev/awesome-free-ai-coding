@@ -374,6 +374,23 @@ def test_fetch_page_texts_stops_at_the_deadline():
     assert list(pages) == ["https://a.dev"]
 
 
+def test_discovery_keeps_failed_page_diagnostics_out_of_the_prompt(monkeypatch):
+    import freetier_radar.discovery as discovery
+    url = "https://newtool.dev/pricing"
+    monkeypatch.setattr(discovery, "_searchers", lambda client, env: [
+        ("hn", lambda query: [Hit(url, "New tool", "A discovery lead", "hn")])])
+    monkeypatch.setattr(discovery, "CURATED_FEEDS", ())
+    monkeypatch.setattr(discovery, "models_dev_digest", lambda *args: "")
+    transport = httpx.MockTransport(lambda request: httpx.Response(
+        403, text="This service has been permanently shut down."))
+    with httpx.Client(transport=transport) as client:
+        ev = gather_evidence(["query"], set(), {}, http=client)
+    assert ev.pages == {url: ""}
+    assert ev.page_warnings == [f"{url}: HTTP 403"]
+    assert "permanently shut down" not in format_evidence(ev)
+    assert "HTTP 403" not in format_evidence(ev)
+
+
 @respx.mock
 def test_a_page_fetch_never_outlives_the_budget_it_is_spending():
     """Checking the clock between requests bounds how many are made; capping the

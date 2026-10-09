@@ -24,7 +24,7 @@ from pathlib import Path
 import httpx
 
 from .models import Entry, is_archived, load_registry
-from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, probe_page_url
+from .prober import CONCURRENCY, TAG, UA, _plain_spaces, _rendered, page_response_ok, probe_page_url
 
 TIMEOUT = httpx.Timeout(30.0, connect=10.0)
 MIN_WORDS = 3
@@ -178,7 +178,7 @@ async def fetch_pages(client: httpx.AsyncClient, urls: list[str],
                 resp = await client.get(url, timeout=TIMEOUT, follow_redirects=True)
             except httpx.HTTPError as exc:
                 return url, f"{url}: {type(exc).__name__}"
-        if resp.status_code >= 400:
+        if not page_response_ok(resp):
             return url, f"{url}: HTTP {resp.status_code}"
         return url, page_texts(resp.text)
 
