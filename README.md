@@ -4,7 +4,7 @@
 <picture>
   <source media="(max-width: 600px)" srcset="assets/readme/hero-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <img alt="awesome-free-ai-coding — 85 live offers, 81 need no card, 160 free models, 18 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
+  <img alt="awesome-free-ai-coding — 85 live offers, 81 need no card, 161 free models, 18 strong models; every offer probed twice a week; one dot per live offer" src="assets/readme/hero-light.svg" width="860">
 </picture>
 
 [![pipeline](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/update.yml)
@@ -34,7 +34,7 @@
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
   <source media="(max-width: 600px)" srcset="assets/readme/strong-narrow.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/strong-dark.svg">
-  <img alt="Bar chart of the 18 strong models live offers here serve free, by Artificial Analysis Intelligence Index score read 2026-10-08: the strongest, mimo-v2.6-pro, scores 46.3 and is free on 1 offer; the top of the index, Claude Opus 5.5, 57.6" src="assets/readme/strong-light.svg" width="860">
+  <img alt="Bar chart of the 18 strong models live offers here serve free, by Artificial Analysis Intelligence Index score read 2026-10-09: the strongest, mimo-v2.6-pro, scores 46.3 and is free on 1 offer; the top of the index, Claude Opus 5.5, 57.6" src="assets/readme/strong-light.svg" width="860">
 </picture></a>
 </div>
 
@@ -117,7 +117,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Hetzner Inference API](https://docs.hetzner.com/general/company-and-policy/experiments/inference/)** — OpenAI-compatible API on Hetzner's own EU hardware, free for as long as the experiment runs<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/) · [🔑 key](https://experiments.hetzner.com/inference) · [`qwen3.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.6/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</sub>
 - **[Alibaba Cloud Model Studio (DashScope, international)](https://www.alibabacloud.com/en/product/modelstudio)** — A million free tokens on each of its chat models in the Singapore region — Qwen, DeepSeek and GLM among them — valid 90 days from activation or the model's release; OpenAI-compatible<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/) · [🔑 key](https://modelstudio.console.alibabacloud.com) · [`qwen3.8-max`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-max/) · [`qwen3.8-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-flash/) · [`qwen3.8-2.4t-a95b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-2.4t-a95b/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`deepseek-v4-pro`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-pro/) · [`deepseek-v4-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4-flash/) · [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/) · [`glm-5.3`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3/) · [+52 more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/)</sub>
 - **[Mistral Studio](https://mistral.ai)** 👁 — Mistral's Free mode — no-card API access with an unpublished monthly allowance shared across Studio, API and the Vibe coding CLI<br><sub>[verified 2026-10-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/) · [🔑 key](https://console.mistral.ai/api-keys)</sub>
-- **[VLM Run Gateway](https://vlm.run)** — OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/)</sub>
+- **[VLM Run Gateway](https://vlm.run)** — OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/) · [`qwen3.8-27b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/) · [`diffusiongemma`](https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/) · `qwen3.5-0.8b`</sub>
 - **[Cohere (trial keys)](https://cohere.com)** 👁 — Cohere's Command models via free trial API keys that never expire, plus a 30B/3B Apache-2.0 coding model Cohere prices at zero on every key type<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/) · [🔑 key](https://dashboard.cohere.com/api-keys) · [`command-a-plus`](https://mvalentsev.github.io/awesome-free-ai-coding/models/command-a-plus/) · `command-a-reasoning` · [`north-mini-code`](https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/) · `command-a` · `command-a-vision` · `command-r-plus` · `command-r` · `command-r7b`</sub>
 - **[SEA-LION (AI Singapore)](https://sea-lion.ai)** — AI Singapore's open Southeast-Asian model family behind a first-party OpenAI-compatible API — the vendor hosting its own weights rather than a gateway reselling somebody else's<br><sub>[verified 2026-10-05](https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/) · [🔑 key](https://playground.sea-lion.ai/key-manager)</sub>
 - **[OpenTyphoon (SCB 10X)](https://opentyphoon.ai)** 👁 — Thai-tuned open models from SCB 10X, the venture arm of Siam Commercial Bank, behind an OpenAI-compatible API whose FAQ calls it a research showcase and free to use<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/) · [🔑 key](https://playground.opentyphoon.ai/api-key)</sub>
@@ -191,7 +191,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 - **[Moark (Gitee AI)](https://moark.com)** — Gitee's model platform, formerly Gitee AI — 200+ open models behind OpenAI- and Anthropic-compatible APIs — whose free experience token gives every user 100 calls a day across its featured models, with nothing bought<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/) · [🔑 key](https://moark.com/dashboard/tokens)</sub>
 - **[Experiential Labs](https://www.experientiallabs.ai)** 💳 (requires $1 card verification) — An open-source AI gateway backed by Y Combinator — every hosted provider behind one OpenAI-compatible key at the providers' list prices — whose free plan carries 500 credits ($5) a month after card verification<br><sub>[verified 2026-10-08](https://mvalentsev.github.io/awesome-free-ai-coding/providers/experiential-labs/) · [🔑 key](https://platform.experientiallabs.ai)</sub>
 
-**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 160 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
+**🧠 Looking for one model in particular?** [The website's model index](https://mvalentsev.github.io/awesome-free-ai-coding/#model-index) names all 161 model families on the list and everyone who serves each one free; the strong ones are [under Start here](#-start-here). A model gets [a page of its own](https://mvalentsev.github.io/awesome-free-ai-coding/models/) once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.
 
 <details>
 <summary><b>🕰 What changed</b> — the last 10 registry events, and an <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a> of each new one</summary>
@@ -199,6 +199,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 | When | What | Details |
 |---|---|---|
+| `2026-10-09` | 🔄 Free models changed **[VLM Run Gateway](https://vlm.run)** | <sub>added diffusiongemma, qwen3.5-0.8b</sub> |
 | `2026-10-08` | 📦 Archived **[Hugging Face Inference Providers](https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/)** | <sub>delisted on 2026-10-08: free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription</sub> |
 | `2026-10-08` | ➕ Added **[Wallaby](https://wallabytoken.com)** | <sub>OpenAI-compatible Kimi K3 API from an Australian open-weight inference gateway, with $0.50 of signup credit and no card or initial payment</sub> |
 | `2026-10-07` | 🔄 Free models changed **[Cline](https://cline.bot)** | <sub>added mimo-v2.6-flash</sub> |
@@ -208,7 +209,6 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-06` | 🔄 Free models changed **[AIHubMix (free models)](https://aihubmix.com)** | <sub>added mimo-v2.6-flash, mimo-v2.6-pro</sub> |
 | `2026-10-06` | 🔄 Free models changed **[opencode](https://opencode.ai)** | <sub>added mimo-v2.6-flash</sub> |
 | `2026-10-06` | 🔄 Free models changed **[OpenRouter (free models)](https://openrouter.ai)** | <sub>dropped qwen3.8-27b</sub> |
-| `2026-10-06` | 🔄 Free models changed **[Token Harbor](https://tokenharbor.ai)** | <sub>added mimo-v2.6-flash</sub> |
 
 <sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
 

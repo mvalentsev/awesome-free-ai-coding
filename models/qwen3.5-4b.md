@@ -11,7 +11,7 @@ crumb: qwen3.5-4b
 
 # Where qwen3.5-4b is free
 
-**2 rows on the list serve `qwen3.5-4b` free:** Mixlayer and SiliconFlow (China). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week.
+**2 rows on the list serve `qwen3.5-4b` free:** Mixlayer and SiliconFlow (China). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/qwen3-5-4b), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -63,6 +63,6 @@ Free models are zero-priced but require real-name verification. Online verificat
 
 ---
 
-Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

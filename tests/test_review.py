@@ -269,6 +269,54 @@ def test_client_success_requires_the_fresh_answer_a_tool_and_no_error():
     assert not review.client_result('opencode', 0, good, 'different-marker')['passed']
 
 
+@pytest.mark.parametrize('mode,auto', [('--standalone', True), ('--pure', True), ('--pure', False), (None, False)])
+def test_live_client_uses_the_binarys_isolated_run_mode(tmp_path, monkeypatch, mode, auto):
+    entry = {'id': 'vendor', 'name': 'Vendor', 'category': 'api-free-tier',
+             'url': 'https://vendor.example', 'offering': 'Public chat lane',
+             'free_part': 'models', 'models': [{'family': 'alpha'}],
+             'api': {'base_url': 'https://vendor.example/v1', 'auth': 'none',
+                     'openai_compatible': True, 'model_ids': ['alpha']},
+             'probe': {'type': 'api-models', 'endpoint': 'https://vendor.example/v1/models'},
+             'first_seen': '2026-09-01', 'last_verified': '2026-10-09'}
+    registry = json.dumps({'entries': [entry]}).encode()
+    monkeypatch.setattr(review, 'scoped', lambda bundle: {'sha': 'a' * 40})
+    monkeypatch.setattr(review, 'blob', lambda repo, sha, path:
+                        registry if path == 'registry.yaml' else b'{"provider":{}}')
+    binary = tmp_path / 'opencode'
+    supported = [*([mode] if mode else []), *(['--auto'] if auto else [])]
+    binary.write_text('''#!/usr/bin/env python3
+import json, sys
+from pathlib import Path
+args = sys.argv[1:]
+supported = ''' + repr(supported) + '''
+if args == ['run', '--help']:
+    print('\\n'.join(supported))
+    sys.exit(0)
+if any(flag in args for flag in ('--standalone', '--pure', '--auto') if flag not in supported):
+    print('Unrecognized flag', file=sys.stderr)
+    sys.exit(2)
+if not all(flag in args for flag in supported):
+    print('Isolation or noninteractive permission flag missing', file=sys.stderr)
+    sys.exit(3)
+marker = Path('audit-marker.txt').read_text().strip()
+for event in [
+    {'type':'tool_use','part':{'type':'tool','state':{'status':'completed','output':marker}}},
+    {'type':'text','part':{'type':'text','text':marker}},
+    {'type':'step_finish','part':{'type':'step-finish','reason':'stop'}}
+]:
+    print(json.dumps(event))
+''')
+    binary.chmod(0o755)
+    bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
+    result = review.live_client(bundle, 'opencode', str(binary), 'vendor', 'alpha')
+    if mode is None:
+        assert not result['passed']
+        assert 'no supported isolated run mode' in result['launch_error']
+        assert result['command'] == []
+        return
+    assert result['passed'], (bundle.out / result['evidence'] / 'stderr.log').read_text()
+
+
 def test_report_keeps_missing_phases_and_failed_live_calls_visible(tmp_path):
     bundle = review.Bundle(tmp_path / 'evidence', tmp_path)
     bundle.save('scope', {'sha': 'a' * 40})

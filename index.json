@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-08",
+  "generated": "2026-10-09",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -9381,8 +9381,8 @@
         "https://docs.vlm.run/gateway/introduction"
       ],
       "card_required": false,
-      "offering": "OpenAI-compatible gateway for vision and language models whose models on VLM Run's own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha",
-      "limits": "Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP\n\nGPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together. The gateway is alpha and has a small catalog. Its published schema lacks a tools field, but a keyless tool request returned a tool call on 2026-09-17; that measurement does not make every model tool-capable. The operator is Autonomi AI Inc.; its terms render in a browser.",
+      "offering": "OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta",
+      "limits": "Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP\n\nGPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together and are shared by callers behind the same NAT or proxy. The gateway is beta; anonymous access is intended for evaluation. The operator is Autonomi AI Inc.; its terms render in a browser.",
       "quotas": [
         {
           "amount": 10.0,
@@ -9478,6 +9478,12 @@
           "family": "qwen3.8-27b",
           "tier": "strong",
           "aa_model": "qwen3-8-27b"
+        },
+        {
+          "family": "diffusiongemma"
+        },
+        {
+          "family": "qwen3.5-0.8b"
         }
       ],
       "api": {
@@ -9491,7 +9497,7 @@
           "google/diffusiongemma-26b-a4b-it"
         ],
         "refuses_bearer": true,
-        "note": "no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key; 10 a minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b and google/diffusiongemma-26b-a4b-it are the other chat models on VLM Run's GPUs and answered keyless calls on 2026-09-25, while the frontier models in the same catalog, Kimi K3 and Gemma 4 26B among them, answer `403 model_not_entitled` without a paid organization"
+        "note": "Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are invalid. Only qwen/qwen3.8-27b advertises tools; tools on the other two IDs returned 500. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma. OpenCode 2.0.24 requested 32,000 output tokens for the 27B ID: HTTP 400, reply budget 16,000. The catalog omits that output limit. A complete agent tool cycle was not established."
       },
       "border": {
         "left_out": [],
@@ -9959,6 +9965,7 @@
       "models": [
         {
           "family": "qwen3.5-4b",
+          "tier": "notable",
           "aa_model": "qwen3-5-4b"
         }
       ],
@@ -11244,6 +11251,7 @@
         },
         {
           "family": "qwen3.5-4b",
+          "tier": "notable",
           "aa_model": "qwen3-5-4b"
         },
         {
@@ -13314,6 +13322,15 @@
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"
     },
     {
+      "family": "diffusiongemma",
+      "rows": [
+        "nvidia-nim",
+        "vlm-run-gateway",
+        "freeinference"
+      ],
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
+    },
+    {
       "family": "dots-3-note",
       "rows": [
         "openrouter-free",
@@ -13414,14 +13431,6 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"
-    },
-    {
-      "family": "diffusiongemma",
-      "rows": [
-        "nvidia-nim",
-        "freeinference"
-      ],
-      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"
     },
     {
       "family": "gemini-3-flash",
@@ -13605,6 +13614,7 @@
         "mixlayer",
         "siliconflow-cn"
       ],
+      "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"
     },
     {
@@ -14217,6 +14227,12 @@
       "family": "qwen3-vl-plus",
       "rows": [
         "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "qwen3.5-0.8b",
+      "rows": [
+        "vlm-run-gateway"
       ]
     },
     {

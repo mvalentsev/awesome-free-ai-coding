@@ -443,6 +443,19 @@ def client_result(client: str, code: int, events: list[dict], marker: str) -> di
             'completed_tools': len(tools), 'fresh_marker_in_answer': matched, 'error_event': error}
 
 
+def opencode_run_flags(help_text: str) -> list[str]:
+    """Select an isolated, noninteractive invocation from the supplied CLI help."""
+    if '--standalone' in help_text:
+        flags = ['--standalone']
+    elif '--pure' in help_text:
+        flags = ['--pure']
+    else:
+        raise ValueError('OpenCode advertises no supported isolated run mode')
+    if '--auto' in help_text:
+        flags.append('--auto')
+    return flags
+
+
 def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: str) -> dict:
     scope = scoped(bundle)
     rows = yaml.safe_load(blob(bundle.repo, scope['sha'], 'registry.yaml'))['entries']
@@ -459,22 +472,42 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
     (project / 'audit-marker.txt').write_text(marker + '\n')
     env = {'PATH': os.environ['PATH'], 'HOME': str(home), 'LANG': 'C.UTF-8'}
     prompt = 'Read audit-marker.txt using a tool or shell command, then reply with exactly its contents. Do not edit files or inspect any other paths.'
+    prefix = 'client/' + work.name + '/'
+    launch_error = None
+    argv = []
     if client == 'opencode':
         config = work / 'opencode.json'; config.write_bytes(blob(bundle.repo, scope['sha'], 'configs/opencode.json'))
         env.update(OPENCODE_CONFIG=str(config), XDG_CONFIG_HOME=str(home / 'config'),
                    XDG_DATA_HOME=str(home / 'data'), XDG_CACHE_HOME=str(home / 'cache'))
-        argv = [binary, 'run', '--pure', '--format', 'json', '-m', provider + '/' + model, prompt]
+        try:
+            help_result = subprocess.run([binary, 'run', '--help'], cwd=project, env=env,
+                                         stdin=subprocess.DEVNULL, capture_output=True, timeout=15)
+        except subprocess.TimeoutExpired as exc:
+            help_result = subprocess.CompletedProcess([binary, 'run', '--help'], 1,
+                                                      exc.stdout or b'', (exc.stderr or b'') + b'\nCLI help timeout')
+        bundle.write(prefix + 'run-help.stdout', help_result.stdout)
+        bundle.write(prefix + 'run-help.stderr', help_result.stderr)
+        if help_result.returncode:
+            launch_error = 'OpenCode run --help failed; no provider request sent'
+        else:
+            try:
+                flags = opencode_run_flags(help_result.stdout.decode(errors='replace'))
+                argv = [binary, 'run', *flags, '--format', 'json', '-m', provider + '/' + model, prompt]
+            except ValueError as exc:
+                launch_error = str(exc)
     else:
         config = home / '.codex'; config.mkdir()
         (config / (provider + '.config.toml')).write_bytes(blob(bundle.repo, scope['sha'], 'configs/codex/' + provider + '.config.toml'))
         env['CODEX_HOME'] = str(config)
         argv = [binary, 'exec', '--json', '-p', provider, '-m', model, '--sandbox', 'read-only', '--skip-git-repo-check', prompt]
-    try:
-        done = subprocess.run(argv, cwd=project, env=env, stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
-        code, stdout, stderr = done.returncode, done.stdout, done.stderr
-    except subprocess.TimeoutExpired as exc:
-        code, stdout, stderr = -1, exc.stdout or b'', (exc.stderr or b'') + b'\n120-second timeout'
-    prefix = 'client/' + work.name + '/'
+    if launch_error:
+        code, stdout, stderr = 1, b'', launch_error.encode()
+    else:
+        try:
+            done = subprocess.run(argv, cwd=project, env=env, stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
+            code, stdout, stderr = done.returncode, done.stdout, done.stderr
+        except subprocess.TimeoutExpired as exc:
+            code, stdout, stderr = -1, exc.stdout or b'', (exc.stderr or b'') + b'\n120-second timeout'
     bundle.write(prefix + 'stdout.jsonl', stdout)
     bundle.write(prefix + 'stderr.log', stderr)
     events = []
@@ -486,6 +519,7 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
     result = client_result(client, code, events, marker)
     phase = 'client-' + work.name
     return bundle.save(phase, {**result, 'sha': scope['sha'], 'provider': provider, 'phase': phase,
+                                          'command': argv, 'launch_error': launch_error,
                                           'model': model, 'at': now(), 'evidence': prefix})
 
 

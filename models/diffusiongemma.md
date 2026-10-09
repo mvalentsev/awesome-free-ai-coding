@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'diffusiongemma free: 2 providers, limits and ids, verified 2026-10-08'
-description: diffusiongemma is served free by NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+title: 'diffusiongemma free: 3 providers, limits and ids, verified 2026-10-08'
+description: diffusiongemma is served free by NVIDIA NIM (build.nvidia.com), VLM Run Gateway and FreeInference (Harvard SEAS). None asks for a card; VLM Run Gateway answers with no account at all. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/diffusiongemma/
-last_modified_at: 2026-10-08
+last_modified_at: 2026-10-09
 crumb: diffusiongemma
 ---
 
@@ -11,7 +11,7 @@ crumb: diffusiongemma
 
 # Where diffusiongemma is free
 
-**2 rows on the list serve `diffusiongemma` free:** NVIDIA NIM (build.nvidia.com) and FreeInference (Harvard SEAS). None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week.
+**3 rows on the list serve `diffusiongemma` free:** NVIDIA NIM (build.nvidia.com), VLM Run Gateway and FreeInference (Harvard SEAS). None asks for a card; VLM Run Gateway answers with no account at all. The published offers were checked on 2026-10-08 and are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -37,6 +37,25 @@ No card, but an API key requires an NVIDIA Developer Program account and phone v
 - Callable ids: `google/diffusiongemma-26b-a4b-it`
 - What you send may be used to train or improve models ([the vendor's words](https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b)).
 
+### [VLM Run Gateway](https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/)
+
+🔌 LLM APIs with free tier · no card · verified 2026-10-08 · listed since 2026-10-09
+
+OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta
+
+<details markdown="block">
+<summary>Provider-wide limits</summary>
+
+- Limits, in the vendor's words: Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP
+
+GPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together and are shared by callers behind the same NAT or proxy. The gateway is beta; anonymous access is intended for evaluation. The operator is Autonomi AI Inc.; its terms render in a browser.
+
+</details>
+
+- Base URL: `https://gateway.vlm.run/v1/openai`
+- Key: none — the lane is anonymous
+- Callable ids: `google/diffusiongemma-26b-a4b-it`
+
 ### [FreeInference (Harvard SEAS)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/)
 
 🔌 LLM APIs with free tier · no card · verified 2026-10-08 · listed since 2026-09-24
@@ -59,6 +78,6 @@ No card. This is an experimental research service with capacity-dependent limits
 
 ---
 
-Generated from `registry.yaml` on 2026-10-08 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

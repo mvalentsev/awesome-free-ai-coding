@@ -34,11 +34,11 @@
       "@type": "Dataset",
       "@id": "https://mvalentsev.github.io/awesome-free-ai-coding/#dataset",
       "name": "awesome-free-ai-coding registry",
-      "description": "85 legal free LLM APIs, coding agents and no-card trials, with the free models they name (160 families), the limits in the vendor's own words and the day a live probe last confirmed each.",
+      "description": "85 legal free LLM APIs, coding agents and no-card trials, with the free models they name (161 families), the limits in the vendor's own words and the day a live probe last confirmed each.",
       "url": "https://mvalentsev.github.io/awesome-free-ai-coding/",
       "isAccessibleForFree": true,
       "license": "https://opensource.org/licenses/MIT",
-      "dateModified": "2026-10-08",
+      "dateModified": "2026-10-09",
       "creator": {
         "@type": "Person",
         "name": "mvalentsev",
@@ -403,7 +403,7 @@ tr.flash { animation: flash 1.6s ease-out; }
     </p>
     <button class="searchbox" type="button" data-search-open hidden aria-haspopup="dialog">
       <span aria-hidden="true">🔎</span>
-      <span class="ph">Search 85 offers and 160 models<span class="eg"> — kimi, groq, no card, claude code</span></span>
+      <span class="ph">Search 85 offers and 161 models<span class="eg"> — kimi, groq, no card, claude code</span></span>
       <kbd class="key">/</kbd>
     </button>
     <div class="cta">
@@ -418,7 +418,7 @@ tr.flash { animation: flash 1.6s ease-out; }
       <li><b>81</b><span>need no card</span></li>
       <li><b>6</b><span>need no signup</span></li>
       <li><b>59</b><span>OpenAI-compatible</span></li>
-      <li><b>160</b><span>free model families</span></li>
+      <li><b>161</b><span>free model families</span></li>
     </ul>
   </div>
 </header>
@@ -432,7 +432,7 @@ tr.flash { animation: flash 1.6s ease-out; }
     <a href="#api-free-tier">🔌 APIs <span class="n">31</span></a>
     <a href="#trial">🎁 Trials <span class="n">30</span></a>
     <a href="#aggregator">🧭 Aggregators <span class="n">14</span></a>
-<a href="#models">🧠 Models <span class="n">160</span></a>    <a href="#plug">🔧 Plug it in</a>
+<a href="#models">🧠 Models <span class="n">161</span></a>    <a href="#plug">🔧 Plug it in</a>
     <a href="#machinery">📡 How it works</a>
     <a href="#archive">📦 Archive</a>
   </div>
@@ -1078,13 +1078,13 @@ The monthly allowance is shared across Studio, API and Vibe usage in the organiz
 <span class="tag nokey">no key</span>              </div>
             </th>
             <td class="what" data-label="What you get">
-OpenAI-compatible gateway for vision and language models whose models on VLM Run&#39;s own GPUs answer anonymous callers — no signup, no key — at 100 requests a day per IP, in alpha            </td>
+OpenAI-compatible gateway whose GPU-served vision and language models accept anonymous callers — no signup or key — in beta            </td>
             <td class="models" data-label="Free models">
               <div class="chips">
-<span class="model-access"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/">qwen3.8-27b</a></span>              </div>
+<span class="model-access"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.8-27b/">qwen3.8-27b</a></span><span class="model-access"><a class="chip" href="https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/">diffusiongemma</a></span><span class="model-access"><span class="chip">qwen3.5-0.8b</span></span>              </div>
             </td>
             <td class="limits" data-label="Limits, in the vendor's words">
-                <details><summary>Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP …</summary><span class="full">GPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together. The gateway is alpha and has a small catalog. Its published schema lacks a tools field, but a keyless tool request returned a tool call on 2026-09-17; that measurement does not make every model tool-capable. The operator is Autonomi AI Inc.; its terms render in a browser.</span></details>
+                <details><summary>Anonymous lane: 10 requests/minute; 30 requests/hour; 100 requests/day per IP …</summary><span class="full">GPU-served models are public and anonymous; frontier models require paid access. All three IP windows apply together and are shared by callers behind the same NAT or proxy. The gateway is beta; anonymous access is intended for evaluation. The operator is Autonomi AI Inc.; its terms render in a browser.</span></details>
             </td>
             <td class="when" data-label="Verified">
               <a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/"><time datetime="2026-10-08">2026-10-08</time></a>
@@ -2490,7 +2490,7 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
   <div class="wrap">
     <header>
       <h2>🧠 Looking for one model in particular?</h2>
-      <p class="sub">160 model families, and everyone who serves each one free. A
+      <p class="sub">161 model families, and everyone who serves each one free. A
         model gets <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/">a page of its own</a> once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion.</p>
     </header>
     <details id="model-index" class="fold">
@@ -2578,6 +2578,11 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/north-mini-code/"><code>north-mini-code</code></a></th>
               <td><a href="https://openrouter.ai">OpenRouter (free models)</a>, <a href="https://kilo.ai">Kilo Code</a>, <a href="https://aihubmix.com">AIHubMix (free models)</a>, <a href="https://cohere.com">Cohere (trial keys)</a></td>
             </tr>
+            <tr id="model-diffusiongemma" data-family="diffusiongemma" data-tier=""
+                data-rows="nvidia-nim vlm-run-gateway freeinference">
+              <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"><code>diffusiongemma</code></a></th>
+              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://vlm.run">VLM Run Gateway</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
+            </tr>
             <tr id="model-dots-3-note" data-family="dots-3-note" data-tier=""
                 data-rows="openrouter-free kilo-code aihubmix">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/dots-3-note/"><code>dots-3-note</code></a></th>
@@ -2632,11 +2637,6 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
                 data-rows="kiro alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v3.2/"><code>deepseek-v3.2</code></a></th>
               <td><a href="https://kiro.dev/">Kiro</a>, <a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
-            </tr>
-            <tr id="model-diffusiongemma" data-family="diffusiongemma" data-tier=""
-                data-rows="nvidia-nim freeinference">
-              <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/diffusiongemma/"><code>diffusiongemma</code></a></th>
-              <td><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a>, <a href="https://freeinference.org">FreeInference (Harvard SEAS)</a></td>
             </tr>
             <tr id="model-gemini-3-flash" data-family="gemini-3-flash" data-tier="notable"
                 data-rows="google-ai-studio vertex-ai-express">
@@ -2738,7 +2738,7 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-122b-a10b/"><code>qwen3.5-122b-a10b</code></a></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a>, <a href="https://regolo.ai/pricing/">Regolo AI</a></td>
             </tr>
-            <tr id="model-qwen3.5-4b" data-family="qwen3.5-4b" data-tier=""
+            <tr id="model-qwen3.5-4b" data-family="qwen3.5-4b" data-tier="notable"
                 data-rows="mixlayer siliconflow-cn">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/"><code>qwen3.5-4b</code></a></th>
               <td><a href="https://www.mixlayer.com">Mixlayer</a>, <a href="https://siliconflow.cn">SiliconFlow (China)</a></td>
@@ -3203,6 +3203,11 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
               <th scope="row"><code>qwen3-vl-plus</code></th>
               <td><a href="https://www.alibabacloud.com/en/product/modelstudio">Alibaba Cloud Model Studio (DashScope, international)</a></td>
             </tr>
+            <tr id="model-qwen3.5-0.8b" data-family="qwen3.5-0.8b" data-tier=""
+                data-rows="vlm-run-gateway">
+              <th scope="row"><code>qwen3.5-0.8b</code></th>
+              <td><a href="https://vlm.run">VLM Run Gateway</a></td>
+            </tr>
             <tr id="model-qwen3.5-27b" data-family="qwen3.5-27b" data-tier="notable"
                 data-rows="alibaba-model-studio">
               <th scope="row"><a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-27b/"><code>qwen3.5-27b</code></a></th>
@@ -3651,7 +3656,7 @@ Use the zero-priced free-model ID in the default group. PaleBlueDot AI runs toke
 <span class="tag nokey">none — the lane is anonymous</span>
             </td>
             <td class="limits" data-label="Notes">
-                <details><summary>no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key …</summary><span class="full">no key: a call with no Authorization header is anonymous, and `Bearer vlmrun` is the explicit anonymous form for a client that needs a non-empty key; 10 a minute, 30 an hour and 100 a day per IP. qwen/qwen3.5-0.8b and google/diffusiongemma-26b-a4b-it are the other chat models on VLM Run&#39;s GPUs and answered keyless calls on 2026-09-25, while the frontier models in the same catalog, Kimi K3 and Gemma 4 26B among them, answer `403 model_not_entitled` without a paid organization</span></details>
+                <details><summary>Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are …</summary><span class="full">Omit Authorization; generic bearer tokens return 401. Checked 2026-10-09: `Bearer vlmrun` also worked despite docs saying unrecognized tokens are invalid. Only qwen/qwen3.8-27b advertises tools; tools on the other two IDs returned 500. Ordinary chat completed on all three; streaming completed on 0.8B and DiffusionGemma. OpenCode 2.0.24 requested 32,000 output tokens for the 27B ID: HTTP 400, reply budget 16,000. The catalog omits that output limit. A complete agent tool cycle was not established.</span></details>
             </td>
           </tr>
           <tr>
@@ -4360,6 +4365,11 @@ vendor-announced shutdown on 2026-05-15            </td>
     </header>
     <ul class="changes">
       <li>
+        <time datetime="2026-10-09">2026-10-09</time>
+        <span class="label">🔄 Free models changed</span>
+        <span><a href="https://vlm.run">VLM Run Gateway</a> — added diffusiongemma, qwen3.5-0.8b</span>
+      </li>
+      <li>
         <time datetime="2026-10-08">2026-10-08</time>
         <span class="label">📦 Archived</span>
         <span><a href="https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/">Hugging Face Inference Providers</a> — delisted on 2026-10-08: free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription</span>
@@ -4394,11 +4404,6 @@ vendor-announced shutdown on 2026-05-15            </td>
         <span class="label">🔄 Free models changed</span>
         <span><a href="https://aihubmix.com">AIHubMix (free models)</a> — added mimo-v2.6-flash, mimo-v2.6-pro</span>
       </li>
-      <li>
-        <time datetime="2026-10-06">2026-10-06</time>
-        <span class="label">🔄 Free models changed</span>
-        <span><a href="https://opencode.ai">opencode</a> — added mimo-v2.6-flash</span>
-      </li>
     </ul>
   </div>
 </section>
@@ -4408,7 +4413,7 @@ vendor-announced shutdown on 2026-05-15            </td>
 <footer>
   <div class="wrap">
     <span>Rendered from <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/registry.yaml">registry.yaml</a> on
-      <time datetime="2026-10-08">2026-10-08</time> · MIT</span>
+      <time datetime="2026-10-09">2026-10-09</time> · MIT</span>
     <span><a href="https://github.com/mvalentsev/awesome-free-ai-coding">GitHub</a> · <a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/CONTRIBUTING.md">Contribute a row</a>
       · <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom</a> · <a href="browse.html">Filterable table</a>
       · <a href="#top">Back to top</a></span>

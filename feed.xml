@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-08T12:45:12Z</updated>
+  <updated>2026-10-09T07:01:10Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vlm-run-gateway/20261009T070110Z</id>
+    <title>Free models changed: VLM Run Gateway</title>
+    <link rel="alternate" href="https://vlm.run"/>
+    <updated>2026-10-09T07:01:10Z</updated>
+    <summary type="text">added diffusiongemma, qwen3.5-0.8b · free models: qwen3.8-27b, diffusiongemma, qwen3.5-0.8b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/archived/huggingface-inference/20261008T124512Z</id>
     <title>Archived: Hugging Face Inference Providers</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://www.requesty.ai"/>
     <updated>2026-09-27T04:36:24Z</updated>
     <summary type="text">dropped laguna-m.1, laguna-xs.2 · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/zcode/20260926T085135Z</id>
-    <title>Added: ZCode (Z.ai)</title>
-    <link rel="alternate" href="https://zcode.z.ai/en"/>
-    <updated>2026-09-26T08:51:35Z</updated>
-    <summary type="text">Z.ai's desktop coding agent built around GLM-5.3, free as an app, with five days of GLM-5.3 and GLM-5-turbo for a new user and no card · free models: glm-5.3, glm-5-turbo</summary>
   </entry>
 </feed>
