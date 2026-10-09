@@ -37,7 +37,7 @@ Offered in the 235 countries and territories its list names, not in mainland Chi
 
 ## What happens to what you send
 
-What you send may be used to train or improve models unless you turn that off. In the vendor's words: “When you use TraeCode's services, your information like your chat interactions, including related code snippets and AI-generated outputs, may be used for analytics, product improvement, and model training. … When Privacy mode is enabled, TraeCode will not use any of your chat interactions, including related code snippets and AI-generated outputs, for the above-mentioned purposes.” ([source](https://docs.trae.ai/ide/privacy-mode)).
+What you send may be used to train or improve models unless you turn that off. In the vendor's words: “When you use TRAE's services, your information like your chat interactions, including related code snippets and AI-generated outputs, may be used for analytics, product improvement, and model training. … When Privacy mode is enabled, TRAE will not use any of your chat interactions, including related code snippets and AI-generated outputs, for the above-mentioned purposes.” ([source](https://docs.trae.ai/ide/privacy-mode)).
 
 ## Connect
 
