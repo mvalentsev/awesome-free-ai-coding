@@ -3,7 +3,7 @@ layout: default
 title: 'apodex-1.1-mini free: 1 provider, limits and ids, verified 2026-10-08'
 description: apodex-1.1-mini is served free by LLMTR. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/apodex-1.1-mini/
-last_modified_at: 2026-10-08
+last_modified_at: 2026-10-10
 crumb: apodex-1.1-mini
 ---
 
@@ -42,6 +42,6 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ---
 
-Generated from `registry.yaml` on 2026-10-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

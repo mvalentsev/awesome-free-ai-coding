@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-09T07:01:10Z</updated>
+  <updated>2026-10-10T00:43:56Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261010T004356Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-10T00:43:56Z</updated>
+    <summary type="text">dropped kolibri-1 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, qwen3.8-27b, apodex-1.1-mini</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/vlm-run-gateway/20261009T070110Z</id>
     <title>Free models changed: VLM Run Gateway</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://regolo.ai/pricing/"/>
     <updated>2026-09-27T04:36:24Z</updated>
     <summary type="text">added gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b · free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/requesty/20260927T043624Z</id>
-    <title>Free models changed: Requesty</title>
-    <link rel="alternate" href="https://www.requesty.ai"/>
-    <updated>2026-09-27T04:36:24Z</updated>
-    <summary type="text">dropped laguna-m.1, laguna-xs.2 · free models: nemotron-3-ultra, nemotron-3-super, gemma-4-31b, ling-3.0-tiny, muse-glimmer-30b, nemotron-3.5-lightning, leanstral-1.5, nemotron-3-nano-30b, nemotron-3-nano-omni</summary>
   </entry>
 </feed>

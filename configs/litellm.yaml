@@ -713,16 +713,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/tesseracted/kolibri-1
-  litellm_params:
-    model: openai/tesseracted/kolibri-1
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 16384
-  model_info:
-    access: free until 2026-10-09 23:59+03:00
-    source: https://llmtr.com/models/tesseracted/kolibri-1
 - model_name: llmtr/apodex/apodex-1.1-mini-free
   litellm_params:
     model: openai/apodex/apodex-1.1-mini-free

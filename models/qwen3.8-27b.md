@@ -3,7 +3,7 @@ layout: default
 title: 'qwen3.8-27b free: 8 providers, limits and ids, verified 2026-10-08'
 description: qwen3.8-27b is served free by Groq, LLMTR, LLM Tech, Hetzner Inference API, Alibaba Cloud Model Studio (DashScope, international), Regolo AI, VLM Run Gateway and OVHcloud AI Endpoints. None asks for a card; LLM Tech, VLM Run Gateway and OVHcloud AI Endpoints answer with no account at all. Each…
 permalink: /models/qwen3.8-27b/
-last_modified_at: 2026-10-09
+last_modified_at: 2026-10-10
 crumb: qwen3.8-27b
 ---
 
@@ -189,6 +189,6 @@ The documentation attributes the anonymous cap to IP and model. Tests on 2026-09
 
 ---
 
-Generated from `registry.yaml` on 2026-10-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

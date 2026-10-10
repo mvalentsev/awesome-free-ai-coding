@@ -510,13 +510,6 @@
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
         },
-        "tesseracted/kolibri-1": {
-          "name": "tesseracted/kolibri-1 (until 2026-10-09)",
-          "limit": {
-            "context": 32768,
-            "output": 16384
-          }
-        },
         "apodex/apodex-1.1-mini-free": {
           "name": "apodex/apodex-1.1-mini-free (until 2026-10-10)",
           "limit": {

@@ -3,7 +3,7 @@ layout: default
 title: 'agnes-2.5-flash free: 2 providers, limits and ids, verified 2026-10-08'
 description: agnes-2.5-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
 permalink: /models/agnes-2.5-flash/
-last_modified_at: 2026-10-08
+last_modified_at: 2026-10-10
 crumb: agnes-2.5-flash
 ---
 
@@ -67,6 +67,6 @@ The Flash models' input, cached input and output are currently zero-priced; Pro 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-09 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}
