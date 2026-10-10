@@ -972,6 +972,13 @@ tr.flash { animation: flash 1.6s ease-out; }
     return { terms: text.split(" ").filter(Boolean), picked: picked };
   }
 
+  function selection(q) {
+    var filters = {};
+    Object.keys(state.filters).forEach(function (f) { if (state.filters[f]) { filters[f] = true; } });
+    Object.keys(q.picked.filters).forEach(function (f) { filters[f] = true; });
+    return { section: q.picked.section || state.section, filters: filters };
+  }
+
   function wanted(o, section, filters) {
     if (section && o.section.id !== section) { return false; }
     return Object.keys(filters).every(function (f) { return !filters[f] || o.flags.indexOf(f) !== -1; });
@@ -1131,10 +1138,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   function render() {
     index = index || readPage();
     var q = parse(input.value);
-    var section = q.picked.section || state.section;
-    var filters = {};
-    Object.keys(state.filters).forEach(function (f) { if (state.filters[f]) { filters[f] = true; } });
-    Object.keys(q.picked.filters).forEach(function (f) { filters[f] = true; });
+    var chosen = selection(q), section = chosen.section, filters = chosen.filters;
     chipsBox.querySelectorAll(".fchip").forEach(function (b) {
       var on = b.dataset.section ? b.dataset.section === section : !!filters[b.dataset.filter];
       b.setAttribute("aria-pressed", on ? "true" : "false");
@@ -1307,12 +1311,13 @@ tr.flash { animation: flash 1.6s ease-out; }
     b.setAttribute("aria-pressed", "false");
     b.addEventListener("click", function () {
       var q = parse(input.value);
+      state = selection(q);
       if (f.emoji) {
-        state.section = (q.picked.section || state.section) === f.id ? "" : f.id;
+        state.section = state.section === f.id ? "" : f.id;
       } else {
-        state.filters[f.id] = !(state.filters[f.id] || q.picked.filters[f.id]);
+        state.filters[f.id] = !state.filters[f.id];
       }
-      // A filter typed as words and switched off by its chip leaves the words.
+      // Keep typed choices in state when their words leave the input.
       input.value = q.terms.join(" ");
       input.focus();
       render();

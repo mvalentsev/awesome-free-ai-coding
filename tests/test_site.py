@@ -600,6 +600,49 @@ def test_the_search_filters_on_the_answers_the_rows_carry(tmp_path):
     assert len(words) == len(set(words)), "a word selects one filter"
 
 
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node to run the page's script")
+@pytest.mark.parametrize("query,clicked,initial,section,filters,remaining", [
+    ("api no card no key", "strong", {}, "api-free-tier", {"nocard", "nokey", "strong"}, ""),
+    ("api no card no key", "nocard", {}, "api-free-tier", {"nokey"}, ""),
+    ("api no card no key", "trial", {}, "trial", {"nocard", "nokey"}, ""),
+    ("apis no card strong models", "api-free-tier", {}, "", {"nocard", "strong"}, ""),
+    ("groq no key", "claude", {"section": "aggregator", "filters": {"nocard": True, "strong": True}},
+     "aggregator", {"nocard", "nokey", "strong", "claude"}, "groq"),
+    ("groq", "nocard", {}, "", {"nocard"}, "groq"),
+])
+def test_toggling_a_search_chip_preserves_other_choices(tmp_path, query, clicked, initial,
+                                                       section, filters, remaining):
+    html = _render([make()], tmp_path)
+    config = json.loads(re.search(r'id="search-config">(.*?)</script>', html, re.S).group(1))
+    script = html.split('id="search-config">')[1]
+    parser = script[script.index("function parse("):script.index("function wanted(")]
+    binding = script[script.index("CONFIG.sections.concat(CONFIG.filters).forEach("):
+                     script.index('input.addEventListener("input"')]
+    setup = {"CONFIG": config, "query": query, "initial": initial, "clicked": clicked}
+    harness = "var args = " + json.dumps(setup) + ";\n" + """
+    var CONFIG = args.CONFIG, buttons = [], renders = 0;
+    var state = {section: args.initial.section || "", filters: args.initial.filters || {}};
+    var input = {value: args.query, focus: function () {}};
+    var chipsBox = {appendChild: function (button) {buttons.push(button);}};
+    var document = {createElement: function () {return {
+      dataset: {}, setAttribute: function () {},
+      addEventListener: function (event, callback) {this.click = callback;}
+    };}};
+    function render() {renders++;}
+    """ + _js_function(script, "fold") + parser + binding + """
+    buttons.find(function (b) {
+      return (b.dataset.filter || b.dataset.section) === args.clicked;
+    }).click();
+    console.log(JSON.stringify({state: state, query: input.value, renders: renders}));
+    """
+    run = subprocess.run(["node", "-e", harness], capture_output=True, text=True, timeout=30)
+    assert run.returncode == 0, run.stderr
+    got = json.loads(run.stdout)
+    assert got["state"]["section"] == section
+    assert {f for f, on in got["state"]["filters"].items() if on} == filters
+    assert got["query"] == remaining and got["renders"] == 1
+
+
 def test_without_a_script_the_page_shows_no_search_it_cannot_run(tmp_path):
     """Progressive enhancement: the dialog and the ways into it are hidden in
     the markup and shown by the script, like the copy buttons; and the search
