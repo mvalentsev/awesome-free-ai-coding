@@ -524,7 +524,7 @@ def live_client(bundle: Bundle, client: str, binary: str, provider: str, model: 
 
 
 def report(bundle: Bundle) -> dict:
-    required = ('scope', 'sources', 'workflows', 'publication', 'browser')
+    required = ('scope', 'sources', 'workflows', 'publication', 'browser', 'judgment')
     names = [*required, *(p.stem for p in bundle.out.glob('client-*.json'))]
     phases = {name: bundle.load(name) for name in names if (bundle.out / (name + '.json')).exists()}
     missing = [p for p in required if p not in phases]
@@ -532,6 +532,12 @@ def report(bundle: Bundle) -> dict:
     failed = [p for p, value in phases.items() if (p != 'scope' and value.get('passed') is not True) or
               (value.get('sha') != sha) or (p == 'scope' and value.get('passed') is False)]
     problems = integrity(bundle)
+    if 'judgment' in phases:
+        from .quality import check_judgment
+        try:
+            check_judgment(bundle, phases.get('scope', {}))
+        except (ValueError, KeyError, TypeError) as exc:
+            problems.append('independent review: ' + str(exc))
     browser = bundle.load('browser-execution', {})
     images = {(r['image_url'], r['image_path']) for r in browser.get('records', []) if r.get('image_url')}
     verified = {(r['url'], r['path']) for r in phases.get('publication', {}).get('checks', [])
@@ -558,6 +564,8 @@ def main() -> None:
     publish_parser = sub.add_parser('publication'); publish_parser.add_argument('--every', type=float, default=15)
     publish_parser.add_argument('--timeout', type=float, default=900)
     browser_parser = sub.add_parser('browser'); browser_parser.add_argument('--result', type=Path)
+    judgment_parser = sub.add_parser('judgment', help='record an independent review of this exact diff')
+    judgment_parser.add_argument('--result', type=Path, required=True)
     client_parser = sub.add_parser('client'); client_parser.add_argument('--client', choices=('opencode', 'codex'), required=True)
     client_parser.add_argument('--binary', required=True); client_parser.add_argument('--provider', required=True)
     client_parser.add_argument('--model', required=True)
@@ -592,6 +600,9 @@ def main() -> None:
             else:
                 result = {'sha': scope['sha'], 'script': bundle.write('browser.js', browser_script(bundle).encode())}
                 bundle.save('browser-script', result)
+        elif args.phase == 'judgment':
+            from .quality import accept_judgment
+            result = accept_judgment(bundle, json.loads(args.result.read_text()))
         else:
             result = report(bundle)
         artifact = {'prepare': 'scope', 'browser': 'browser' if getattr(args, 'result', None) else 'browser-script'}.get(args.phase, args.phase)

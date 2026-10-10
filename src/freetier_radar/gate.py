@@ -397,6 +397,8 @@ def pre_push(repo: Path, lines: list[str], steps: list[Step] | None = None) -> l
             problems += _run_steps(snap, steps)
         if base is None:
             continue
+        from .quality import review_problems
+        problems += review_problems(repo, base, local)
         base = _checked_from(repo, base, local)
         # A proposal can be rendered again against the main history it
         # inherited, as pre_commit allows. The destination decides: even a

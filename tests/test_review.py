@@ -324,6 +324,7 @@ def test_report_keeps_missing_phases_and_failed_live_calls_visible(tmp_path):
     result = review.report(bundle)
     assert not result['complete']
     assert 'publication' in result['missing']
+    assert 'judgment' in result['missing']
     assert 'client-opencode' in result['failed']
     assert result['human_review_required']
 
@@ -494,12 +495,22 @@ def test_report_requires_byte_checks_for_every_loaded_github_image(tmp_path):
     scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
     for phase in ('sources','workflows','publication','browser'):
         bundle.save(phase, {'sha': scope['sha'], 'passed': True})
+    from freetier_radar.quality import CRITERIA
+    proof = bundle.write('judgment/test.txt', b'Independent fixture findings')
+    bundle.save('judgment', {'sha': scope['sha'], 'base': scope['base'], 'passed': True,
+                            'paths': sorted(scope['paths']), 'decision': 'approve',
+                            'criteria': {name: {'verdict': 'pass', 'finding': 'Reviewed ' + name,
+                                                'evidence': [proof]} for name in CRITERIA}})
     bundle.save('browser-execution', {'sha': scope['sha'], 'records': [
         {'image_url': 'https://github.com/image.svg', 'image_path': 'assets/image.svg'}]})
     assert not review.report(bundle)['complete']
     bundle.save('publication', {'sha': scope['sha'], 'passed': True, 'checks': [
         {'url': 'https://github.com/image.svg', 'path': 'assets/image.svg', 'kind': 'github-image', 'passed': True}]})
     assert review.report(bundle)['complete']
+    bundle.save('judgment', {'sha': scope['sha'], 'passed': True})
+    report = review.report(bundle)
+    assert not report['complete']
+    assert any('independent review' in p for p in report['integrity_problems'])
 
 
 def test_verification_log_must_prove_the_exact_produced_commit(tmp_path):

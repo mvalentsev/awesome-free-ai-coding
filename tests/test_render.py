@@ -243,7 +243,7 @@ def test_the_readme_keeps_the_plug_it_in_heading_and_sends_the_reader_to_configs
     save_registry(reg, [api_entry(id="groq-free", name="Groq")])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     plug = text.split("## 🔧 Plug it into your agent")[1].split("## 📡 How this list stays fresh")[0]
-    assert "[`configs/README.md`](configs/README.md)" in plug
+    assert "[Connection table](configs/README.md)" in plug
     assert "| Provider | Base URL |" not in plug and "https://api.x.ai/v1" not in plug
     assert "[`llms.txt`](llms.txt)" in plug and "[`index.json`](index.json)" in plug
     assert f"{PAGES_URL}/#connections" in plug
@@ -852,7 +852,7 @@ def test_the_quickstart_curl_sends_the_session_header_its_lane_asks_for(tmp_path
         "base_url": "https://zen.example/v1", "auth": "none", "model_ids": ["free-a"],
         "session_header": "x-zen-session"})])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("No account at all?")[1].split("## 📋 The list")[0]
+    quickstart = text.split("**Try without an account:**")[1].split("## 📋 The list")[0]
     assert '  -H "x-zen-session: quickstart-$RANDOM$RANDOM" \\\n' in quickstart
     assert "curl -s https://zen.example/v1/chat/completions \\\n" in quickstart
     assert render_readme(reg, Path("templates"), tmp_path / "README2.md", today=TODAY) == text
@@ -869,10 +869,10 @@ def test_quickstart_note_reaches_the_page(tmp_path: Path):
                                   "model_ids": ["gpt-oss-120b"],
                                   "note": "2 requests per minute, per IP and per model"})])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("No account at all?")[1].split("## 📋 The list")[0]
+    quickstart = text.split("**Try without an account:**")[1].split("## 📋 The list")[0]
     assert "2 requests per minute, per IP and per model" in quickstart
     # and it is framed as the demo it is, never as the way to work
-    assert "not a setup to write code on" in quickstart
+    assert "rate-limited connectivity check" in quickstart
 
 
 def test_starters_answer_what_to_code_with_before_the_reference_table(tmp_path: Path):
@@ -1383,7 +1383,7 @@ def test_the_start_blocks_are_lists_like_the_rows(tmp_path: Path):
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
     start = text.split("## 🚀 Start here")[1].split("## 📋 The list")[0]
     assert "\n- **[Ag](https://x.ai)** — `m-1`\u00a0· `m-2`\n" in start
-    assert "\n- **An API key that gets the most done for free** — [Api](https://x.ai)\n" in start
+    assert "\n- **Free API access** — [Api](https://x.ai)\n" in start
     assert "| Agent |" not in start and "| I want… |" not in start
 
 
@@ -1851,7 +1851,7 @@ def test_a_notice_on_the_quickstart_lane_is_a_warning_right_under_the_curl(tmp_p
     reg = tmp_path / "registry.yaml"
     save_registry(reg, [_noticed()])
     text = render_readme(reg, Path("templates"), tmp_path / "README.md", today=TODAY)
-    quickstart = text.split("No account at all?")[1].split("## 📋 The list")[0]
+    quickstart = text.split("**Try without an account:**")[1].split("## 📋 The list")[0]
     after_curl = quickstart.split("```bash\n")[1].split("```\n", 1)[1]
     assert after_curl.startswith(
         "> [!WARNING]\n"

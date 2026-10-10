@@ -551,9 +551,11 @@ def check_repository(root: Path) -> list[str]:
     # Imported here: claims imports PROSE_LIMITS from this module.
     from .claims import check_claims
     from .layout import check_layout
+    from .presentation import check_presentation
     from .render import CONTRIBUTING, MAP_BEGIN, MAP_END
     problems = [f"layout: {p}" for p in check_layout(root)]
     problems += [f"claims: {p}" for p in check_claims(root)]
+    problems += [f"presentation: {p}" for p in check_presentation(root)]
     text = (root / CONTRIBUTING).read_text(encoding="utf-8")
     if MAP_BEGIN not in text or MAP_END not in text:
         problems.append(f"layout: {CONTRIBUTING} has lost the lines the map section is printed "

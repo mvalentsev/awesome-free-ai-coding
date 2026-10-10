@@ -11,6 +11,7 @@ claim that matches nothing checks nothing.
 """
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -38,6 +39,7 @@ from .words import number as _word, ordinal as _ordinal, series as _series, week
 from .borders import SHARED
 from .countries import country_name
 from .quotas import UNKNOWN_RECHECK_DAYS, UsageQuota
+from .quality import CRITERIA
 
 __all__ = ["Claim", "CLAIMS", "SCHEDULED", "check_claims"]
 
@@ -65,6 +67,14 @@ def _no_row_sets(field: str) -> Callable[[Path], tuple[str, ...]]:
 def _keys(found: re.Match) -> tuple[str, ...]:
     """The keys of a JavaScript object literal, in the order written."""
     return tuple(re.findall(r'"([a-z-]+)":', found.group(1)))
+
+
+def _ordered_keys(found: re.Match) -> tuple[str, ...]:
+    try:
+        pairs = json.loads('{' + found.group(1) + '}', object_pairs_hook=list)
+    except json.JSONDecodeError:
+        return ('invalid category order',)
+    return tuple(f'{key}:{value}' for key, value in pairs)
 
 
 def _ci_pythons(root: Path) -> tuple[str, str]:
@@ -108,6 +118,9 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("CONTRIBUTING.md", r'these `criteria`: `(existing_behavior)`, `(reuse)`,\s+`(copy)`, `(user_path)`, `(regression)`, `(diff)`',
+          lambda root: CRITERIA,
+          "quality.CRITERIA; judgment and normal pre-push regressions in tests/test_quality.py"),
     Claim("browse.html", r'function noAccount\(e\) \{ return e\.(no_account) === true; \}',
           lambda root: ('no_account',),
           "render.build_index publishes render.needs_no_account; actual browser parity in tests/test_evidence_contracts.py"),
@@ -218,8 +231,9 @@ CLAIMS: tuple[Claim, ...] = (
     Claim("browse.html", r'<link rel="canonical" href="([^"]+)/browse\.html">',
           lambda root: (PAGES_URL,), "render.PAGES_URL"),
     Claim("browse.html", r"var ORDER = \{([^}]*)\}",
-          lambda root: tuple(c.value for c in CATEGORY_TITLES), "render.CATEGORY_TITLES",
-          read=_keys),
+          lambda root: tuple(f'{c.value}:{index}' for index, c in enumerate(CATEGORY_TITLES)),
+          "render.CATEGORY_TITLES order; divergence controls in tests/test_claims.py",
+          read=_ordered_keys),
     Claim("browse.html", r"var LABEL = \{([^}]*)\}",
           lambda root: tuple(c.value for c in CATEGORY_TITLES), "render.CATEGORY_TITLES",
           read=_keys),

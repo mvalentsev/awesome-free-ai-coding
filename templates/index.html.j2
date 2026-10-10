@@ -352,9 +352,8 @@ tr.flash { animation: flash 1.6s ease-out; }
       <h1><span class="name">awesome-free-ai-coding</span>
         <span class="tagline">Legal free LLM APIs &amp; coding agents</span></h1>
     </div>
-    <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
-      free-model APIs for AI coding — probed {{ schedule }} against live model APIs and pricing pages;
-      an offer that dies drops to the <a href="#archive">Archive</a> once {{ archive_after_failures }} runs in a row find it gone.</p>
+    <p class="lede">Checked against live model APIs and pricing pages {{ schedule }}.
+      Offers move to the <a href="#archive">Archive</a> after {{ archive_after_failures }} consecutive failed probes.</p>
     <p class="meta">
       <span class="dot" style="background:#{{ verified_colour }}"></span>
       every row verified <b>{{ verified_floor }}</b> ({{ verified_word }})
@@ -367,7 +366,6 @@ tr.flash { animation: flash 1.6s ease-out; }
     </button>
     <div class="cta">
       <a class="btn primary" href="#start">Start here</a>
-      <a class="btn" href="#plug">🔧 Client configs</a>
       <a class="btn" href="browse.html">▦ Table with filters</a>
       <a class="btn" href="{{ repo_url }}">★ GitHub</a>
       <a class="btn minor" href="{{ feed_url }}">📡 Atom feed</a>
@@ -406,7 +404,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   <div class="wrap">
     <header>
       <h2>🚀 Start here</h2>
-      <p class="sub">Free is not the same as weak. Everything below runs on a $0 plan.</p>
+      <p class="sub">Coding agents and models available on a $0 plan.</p>
     </header>
 
     {% if starters %}
@@ -461,7 +459,7 @@ tr.flash { animation: flash 1.6s ease-out; }
       {% endif %}
       {% if picks.apis %}
       <div class="card">
-        <h3>An API key that gets the most done</h3>
+        <h3>Free API access</h3>
         <ul>{% for p in picks.apis %}<li><span class="who"><a href="{{ p.url }}">{{ p.name }}</a></span></li>{% endfor %}</ul>
       </div>
       {% endif %}
@@ -639,12 +637,9 @@ tr.flash { animation: flash 1.6s ease-out; }
   <div class="wrap">
     <header>
       <h2>🔧 Plug it into your agent</h2>
-      <p class="sub">Connection details for every live OpenAI-compatible API above — paste the base
-        URL into opencode, aider, Cline or any OpenAI SDK. Codex CLI speaks only the OpenAI Responses
-        API: it reaches every lane here through LiteLLM, with the profile below, and calls directly a
-        lane that shows a profile of its own. Where a second URL is shown,
-        the same key also serves the Anthropic Messages format: that one is Claude Code's
-        <code>ANTHROPIC_BASE_URL</code>, and the probe checks it answers.</p>
+      <p class="sub">Base URLs and keys for opencode, aider, Cline and OpenAI SDKs.
+        Anthropic-format URLs use the same key with Claude Code's <code>ANTHROPIC_BASE_URL</code>.
+        For Codex CLI, use a listed direct profile or the LiteLLM profile below.</p>
     </header>
     <details id="connections" class="fold">
     <summary>Show the connection table for all {{ connections | length }} APIs</summary>
@@ -713,9 +708,9 @@ tr.flash { animation: flash 1.6s ease-out; }
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
           <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and {% if claude_example %}<code>{{ claude_example }}</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane{% else %}run the function named after a row to start <a href="https://code.claude.com/docs">Claude Code</a> on its lane{% endif %}.</td></tr>
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
-          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model LiteLLM can call behind one local endpoint{% if litellm_groups %}; ask for {% for g in litellm_groups %}<code>{{ g }}</code>{{ ', ' if loop.revindex > 2 else (' or ' if loop.revindex == 2 else '') }}{% endfor %} instead of a model and a call moves to the next free lane when one runs out{% endif %}. Start it as <code>{{ litellm_command }}</code>: without <code>--host</code> the proxy listens on every interface, the file sets no master key, and LiteLLM would send your <code>OPENAI_API_KEY</code> to a lane whose own key is not set.</td></tr>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy for compatible free models{% if litellm_groups %}; {% for g in litellm_groups %}<code>{{ g }}</code>{{ ', ' if loop.revindex > 2 else (' or ' if loop.revindex == 2 else '') }}{% endfor %} switch lanes when one runs out{% endif %}. Start with <code>{{ litellm_command }}</code> to bind to loopback and prevent fallback to your <code>OPENAI_API_KEY</code>. No proxy master key is configured.</td></tr>
         <tr><th scope="row"><a href="{{ repo_url }}/blob/main/{{ codex.path }}">{{ codex.path }}</a></th>
-          <td><a href="https://developers.openai.com/codex">Codex CLI</a> profile over <code>configs/litellm.yaml</code> — Codex speaks only the OpenAI Responses API, and the LiteLLM proxy answers it for every lane in that file by calling the lane's chat completions: run the proxy, copy the file to <code>~/.codex/</code>, then <code>codex -p {{ codex.name }}</code> (Codex CLI {{ codex.since }} and LiteLLM {{ codex.litellm_since }} or later).</td></tr>
+          <td><a href="https://developers.openai.com/codex">Codex CLI</a> profile: LiteLLM converts chat completions to the Responses API required by Codex. Run the proxy, copy the file to <code>~/.codex/</code>, then <code>codex -p {{ codex.name }}</code> (Codex CLI {{ codex.since }} and LiteLLM {{ codex.litellm_since }} or later).</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
           <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
         <tr><th scope="row"><a href="index.json">index.json</a></th>
@@ -740,7 +735,7 @@ tr.flash { animation: flash 1.6s ease-out; }
     </header>
     <div class="grid cols-3">
       <div class="card">
-        <h3>Probed, not remembered</h3>
+        <h3>Live verification</h3>
         <p class="sub">Every row anchors on something that dies with the offer: a model id in the
           vendor's own <code>/models</code>, or wording on the page that states the free tier. A row
           that fails {{ archive_after_failures }} probes in a row, or goes {{ archive_after_days }}
@@ -748,9 +743,8 @@ tr.flash { animation: flash 1.6s ease-out; }
       </div>
       <div class="card">
         <h3>The vendor's own words</h3>
-        <p class="sub">The limits column is the vendor's own words, from the page they were read on. No figure
-          here is a summary of a summary, and a quote that stops matching its source is re-read
-          before it is edited.</p>
+        <p class="sub">Limits link to vendor sources. Quotes are checked against those sources;
+          mismatches require review.</p>
       </div>
       <div class="card">
         <h3>Legal free only</h3>
@@ -777,8 +771,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   <div class="wrap">
     <header>
       <h2>📦 Archive</h2>
-      <p class="sub">Rows this list carried and carries no more, each with why it left — kept so a
-        dead tier is never silently forgotten. A row is never deleted from the registry.</p>
+      <p class="sub">Previously listed offers and why they left. Their pages and history are retained.</p>
     </header>
     {% if archived %}
     <div class="scroll">

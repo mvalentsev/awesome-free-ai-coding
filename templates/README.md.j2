@@ -16,11 +16,11 @@
 [![tests]({{ repo_url }}/actions/workflows/ci.yml/badge.svg)]({{ repo_url }}/actions/workflows/ci.yml)
 ![Every row verified {{ verified_floor }}](https://img.shields.io/badge/every%20row%20verified-{{ verified_floor | replace('-', '--') | urlencode }}-{{ verified_colour }})
 
-**[🌐&nbsp;Website]({{ pages_url }}/){{ dot }}[🔎&nbsp;Search]({{ pages_url }}/#search){{ dot }}[🔧&nbsp;Client&nbsp;configs](configs/README.md){{ dot }}[🤖&nbsp;Agents](#-coding-agents--clis){{ dot }}[🔌&nbsp;APIs](#-llm-apis-with-free-tier){{ dot }}[🎁&nbsp;Trials](#-trials-no-card-when-possible){{ dot }}[🧭&nbsp;Aggregators](#-aggregators-one-key-many-providers){{ dot }}[🔧&nbsp;Plug&nbsp;it&nbsp;in](#-plug-it-into-your-agent){{ dot }}[📡&nbsp;How&nbsp;it&nbsp;works](#-how-this-list-stays-fresh)**
+**[🌐&nbsp;Website]({{ pages_url }}/){{ dot }}[🔎&nbsp;Search]({{ pages_url }}/#search){{ dot }}[🤖&nbsp;Agents](#-coding-agents--clis){{ dot }}[🔌&nbsp;APIs](#-llm-apis-with-free-tier){{ dot }}[🎁&nbsp;Trials](#-trials-no-card-when-possible){{ dot }}[🧭&nbsp;Aggregators](#-aggregators-one-key-many-providers){{ dot }}[🔧&nbsp;Plug&nbsp;it&nbsp;in](#-plug-it-into-your-agent){{ dot }}[📡&nbsp;How&nbsp;it&nbsp;works](#-how-this-list-stays-fresh)**
 
 </div>
 
-> **Machine-verified, not copy-pasted.** A live probe re-reads every row against the vendor's own API or pricing page {{ schedule }}; an offer that dies drops to the [Archive](#-archive) on its own, and each date below opens the row's evidence.
+> Live probes check every row against the vendor's API or pricing page {{ schedule }}. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 {% if new_rows %}
 
 🆕 **New this week:** {% for r in new_rows %}[{{ r.name }}]({{ r.page }}){{ dot if not loop.last }}{% endfor %}{{ '' }}
@@ -29,7 +29,7 @@
 ## 🚀 Start here
 
 {% if starters %}
-**Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
+**Free coding agents, no card required:**
 
 {% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }}&nbsp;more]({{ s.page }}){% endif %}{{ '' }}
 {% endfor %}
@@ -37,7 +37,7 @@
 {% endif %}
 {% if readme_strong %}
 {% set strong_card = readme_strong | map(attribute='providers') | sum(start=[]) | selectattr('card_required') | list %}
-**Strong models, free.** Each of these scores within {{ strong_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read {{ schedule }}, and every row beside it serves it free{% if strong_card %} — 💳 where the row wants a card on file{% endif %}:
+**Strong models, free.** Scores within {{ strong_within }} points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), checked {{ schedule }}. Each linked provider offers the model free{% if strong_card %}; 💳 means a card is required{% endif %}:
 
 {% if chart %}
 {# Inside a <div> block, or the line opening on <a><picture> is a paragraph and GitHub
@@ -68,7 +68,7 @@
 **Or pick by what you need:**
 
 {% if picks.frontier %}- **Frontier-tier models on a $0 plan** — {% for p in picks.frontier %}[{{ p.name }}]({{ p.url }}) {% for f in p.families %}`{{ f }}`{% if not loop.last %} {% endif %}{% endfor %}{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
-{% endif %}{% if picks.apis %}- **An API key that gets the most done for free** — {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
+{% endif %}{% if picks.apis %}- **Free API access** — {% for p in picks.apis %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
 {% endif %}{% if picks.aggregators %}- **One key, many free models** — {% for p in picks.aggregators %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
 {% endif %}{% if picks.keyless %}- **No account at all** — {% for p in picks.keyless %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
 {% endif %}{% if picks.trials %}- **A trial that asks for no card** — {% for p in picks.trials %}[{{ p.name }}]({{ p.url }}){% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{{ '' }}
@@ -80,7 +80,7 @@
 
 {% endif %}
 {% if quickstart %}
-**No account at all?** [{{ quickstart.name }}]({{ quickstart.url }}) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
+**Try without an account:** [{{ quickstart.name }}]({{ quickstart.url }}) — a rate-limited connectivity check:
 
 ```bash
 {{ quickstart.curl }}
@@ -95,7 +95,7 @@
 {% endif %}
 
 {% endif %}
-**Ready to wire one in?** Base URL and key name for every OpenAI-compatible API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai), [Claude Code](https://code.claude.com/docs) and [Codex CLI](https://developers.openai.com/codex) — all generated from the same registry and regenerated on every update.
+**Connect your coding agent:** [base URLs, keys and client configs](#-plug-it-into-your-agent).
 
 ## 📋 The list
 
@@ -126,7 +126,7 @@ _Nothing verified right now._
 {% for c in changes %}| `{{ c.date }}` | {{ c.label }} **[{{ c.name }}]({{ c.url }})** | <sub>{{ c.detail }}</sub> |
 {% endfor %}
 
-<sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="{{ feed_url }}">the feed</a> instead of re-reading the table.</sub>
+<sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="{{ feed_url }}">Atom feed</a>.</sub>
 
 </details>
 {% endif %}
@@ -134,7 +134,7 @@ _Nothing verified right now._
 ## 📦 Archive
 
 <details>
-<summary>{% if archived %}{{ archived | length }} rows{% else %}Rows{% endif %} this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
+<summary>{% if archived %}{{ archived | length }}{% else %}Previously listed{% endif %} offers and why they left</summary>
 <br>
 {% if archived %}
 
@@ -147,7 +147,7 @@ _Nothing verified right now._
 _Empty — the radar is clean._
 {% endif %}
 
-<sub>A row leaves the list for this table and nowhere else: when its vendor's own shutdown date arrives, after {{ archive_after_failures }} failed probes in a row, after {{ archive_after_days }} days without a passing probe, or when a reviewer takes it off — an offer that ended without notice, a row that no longer meets the rules, a service rejected for cause. A row its probe put here comes back the day it passes again. Each name links the row's own page, with what it offered and the evidence; a row is never deleted from `registry.yaml`, and `freetier-check` refuses a registry that has lost one. Two rows that named one service are folded into one line, and the folded id keeps its own page, pointing here.</sub>
+<sub>Provider pages retain the offer, evidence and history. A row archived by its probe returns when it passes again. Merged entries keep their old pages, pointing to the retained row. See [the archive rules](#-how-this-list-stays-fresh) below.</sub>
 
 </details>
 
@@ -157,7 +157,7 @@ _Empty — the radar is clean._
 
 ## 🔧 Plug it into your agent
 
-Base URL, key name and the notes that matter for every live OpenAI-compatible API on this page — {{ endpoint_count }} today, with Claude Code's Anthropic-format route wherever the vendor documents one and Codex's profile wherever the lane takes its request — are in **[`configs/README.md`](configs/README.md)**, beside the files it describes; the same table with copy buttons is on [the website]({{ pages_url }}/#connections). Ready-made, regenerated on every update:
+**[Connection table](configs/README.md)** — base URLs, keys and client notes for {{ endpoint_count }} live OpenAI-compatible APIs, plus available Claude Code routes and direct Codex profiles. [Copy buttons on the website]({{ pages_url }}/#connections). These configs are regenerated on every update:
 
 - [`configs/opencode.json`](configs/opencode.json) — Drop-in [opencode](https://opencode.ai) config with every provider wired up: keys via `{env:...}`, keyless endpoints work immediately
 - [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai) proxy config: `{{ litellm_command }}` puts every free model LiteLLM can call behind one local endpoint{% if litellm_groups %}; ask for {{ litellm_groups | either_code }} instead of a model and a call moves to the next free lane when one runs out{% endif %} — LiteLLM would send your `OPENAI_API_KEY` to a lane whose own key is not set{{ '' }}
@@ -169,7 +169,7 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 
 ## 📡 How this list stays fresh
 
-This repository is an autonomous system, not a hand-curated list:
+Discovery, verification and publication:
 
 ```mermaid
 flowchart LR
@@ -205,8 +205,6 @@ Know a legal free offer that's missing? **[Suggest a service](../../issues/new?t
 
 <div align="center">
 
-**⭐ If this list saved you a credit-card form, star the repo — it keeps the radar visible.**
-
-<sub>Maintained by robots{{ dot }}reviewed by humans{{ dot }}MIT{{ dot }}<a href="#top">back to top ↑</a></sub>
+<sub>MIT{{ dot }}<a href="#top">back to top ↑</a></sub>
 
 </div>

@@ -18,6 +18,12 @@ regression check rejects the previous bad output before correcting it. Review
 unaffected peer rows as well as the changed row in the final diff and browser.
 Passing content assertions, byte checks and CI do not establish design quality.
 
+Before pushing, use `freetier-review judgment` to record the exact diff's
+existing behavior, reuse, copy, user path, regression and complete diff review.
+Each finding needs private evidence; pre-push requires that signoff for its exact
+commits. A check asserting that a newly proposed element exists is not evidence
+that the element is needed. Search existing actions and implementations first.
+
 Preserve the scope of facts as well as section order. Shared usage limits belong
 once under Limits; model labels carry only conditions specific to that model.
 Check both scopes with a shared-limit case and a model-specific control.

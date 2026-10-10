@@ -4,6 +4,7 @@ the constants; these files cannot, so each such sentence is held to its
 constant and the day the two part is a failed check."""
 from pathlib import Path
 
+import pytest
 import yaml
 
 from freetier_radar.claims import CLAIMS, Claim, check_claims
@@ -68,3 +69,19 @@ def test_every_claim_names_where_its_truth_lives():
 
 def test_the_committed_files_state_what_the_code_applies():
     assert check_claims(ROOT) == []
+
+
+@pytest.mark.parametrize('values', ['"agent-cli": 1, "api-free-tier": 0, "trial": 2, "aggregator": 3',
+                                   '"agent-cli": 0, "api-free-tier": 1, "trial": 9, "aggregator": 3',
+                                   '"agent-cli": 0, "api-free-tier": 1e9, "trial": 2, "aggregator": 3'])
+def test_browse_category_order_cannot_diverge_while_retaining_the_same_keys(tmp_path, values):
+    root = _root(tmp_path, '', **{'browse.html': 'var ORDER = {' + values + '};'})
+    claim = next(c for c in CLAIMS if c.file == 'browse.html' and 'var ORDER' in c.pattern)
+    assert check_claims(root, (claim,), scheduled=())
+
+
+def test_browse_category_order_accepts_the_established_order(tmp_path):
+    root = _root(tmp_path, '', **{'browse.html':
+        'var ORDER = {"agent-cli": 0, "api-free-tier": 1, "trial": 2, "aggregator": 3};'})
+    claim = next(c for c in CLAIMS if c.file == 'browse.html' and 'var ORDER' in c.pattern)
+    assert check_claims(root, (claim,), scheduled=()) == []

@@ -11,24 +11,24 @@
 [![tests](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml/badge.svg)](https://github.com/mvalentsev/awesome-free-ai-coding/actions/workflows/ci.yml)
 ![Every row verified 2026-10-05 or later](https://img.shields.io/badge/every%20row%20verified-2026--10--05%20or%20later-3fb950)
 
-**[🌐&nbsp;Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎&nbsp;Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🔧&nbsp;Client&nbsp;configs](configs/README.md) · [🤖&nbsp;Agents](#-coding-agents--clis) · [🔌&nbsp;APIs](#-llm-apis-with-free-tier) · [🎁&nbsp;Trials](#-trials-no-card-when-possible) · [🧭&nbsp;Aggregators](#-aggregators-one-key-many-providers) · [🔧&nbsp;Plug&nbsp;it&nbsp;in](#-plug-it-into-your-agent) · [📡&nbsp;How&nbsp;it&nbsp;works](#-how-this-list-stays-fresh)**
+**[🌐&nbsp;Website](https://mvalentsev.github.io/awesome-free-ai-coding/) · [🔎&nbsp;Search](https://mvalentsev.github.io/awesome-free-ai-coding/#search) · [🤖&nbsp;Agents](#-coding-agents--clis) · [🔌&nbsp;APIs](#-llm-apis-with-free-tier) · [🎁&nbsp;Trials](#-trials-no-card-when-possible) · [🧭&nbsp;Aggregators](#-aggregators-one-key-many-providers) · [🔧&nbsp;Plug&nbsp;it&nbsp;in](#-plug-it-into-your-agent) · [📡&nbsp;How&nbsp;it&nbsp;works](#-how-this-list-stays-fresh)**
 
 </div>
 
-> **Machine-verified, not copy-pasted.** A live probe re-reads every row against the vendor's own API or pricing page twice a week; an offer that dies drops to the [Archive](#-archive) on its own, and each date below opens the row's evidence.
+> Live probes check every row against the vendor's API or pricing page twice a week. Ended offers move to the [Archive](#-archive); verified dates link to the evidence.
 
 🆕 **New this week:** [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) · [Wallaby](https://mvalentsev.github.io/awesome-free-ai-coding/providers/wallaby/)
 
 ## 🚀 Start here
 
-**Free is not the same as weak.** These agents run on a $0 plan, ask for no card, and this is what they hand you:
+**Free coding agents, no card required:**
 
 - **[opencode](https://opencode.ai)** — `muse-spark-1.3-contributor` · `mimo-v2.6-flash` · `mimo-v2.5` · `ling-3.0-flash-fin` · [+3&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 - **[Kilo Code](https://kilo.ai)** — `nemotron-3-ultra` · `step-3.7-flash` · `inkling-small` · `nemotron-3-super` · [+7&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)
 - **[Google Antigravity](https://antigravity.google)** — `gemini-3.8-flash` · `gemini-3.7-flash` · `gemini-3.6-flash` · `gemini-3.1-pro` · [+3&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/)
 - **[Freebuff](https://freebuff.com)** — `mimo-v2.6-flash` · `glm-5.3-flash` · `deepseek-v4.1-flash` · `solar-pro-4` · [+1&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/freebuff/)
 
-**Strong models, free.** Each of these scores within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), re-read twice a week, and every row beside it serves it free:
+**Strong models, free.** Scores within 25 points of the top of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/leaderboards/models), checked twice a week. Each linked provider offers the model free:
 
 <div align="center">
 <a href="https://mvalentsev.github.io/awesome-free-ai-coding/models/"><picture>
@@ -65,7 +65,7 @@
 
 **Or pick by what you need:**
 
-- **An API key that gets the most done for free** — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Groq](https://groq.com) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
+- **Free API access** — [Google AI Studio (Gemini API)](https://aistudio.google.com) · [Groq](https://groq.com) · [NVIDIA NIM (build.nvidia.com)](https://build.nvidia.com)
 - **One key, many free models** — [OpenRouter (free models)](https://openrouter.ai) · [Requesty](https://www.requesty.ai) · [AIHubMix (free models)](https://aihubmix.com)
 - **No account at all** — [Kilo Code](https://kilo.ai) · [LLM Tech](https://llmtech.eu) · [VLM Run Gateway](https://vlm.run)
 - **A trial that asks for no card** — [GitHub Copilot Free](https://github.com/features/copilot) · [Kiro](https://kiro.dev/) · [Google Jules](https://jules.google/)
@@ -75,7 +75,7 @@
 
 <sub>The top of each section in the list's own order — [how rows are ordered](CONTRIBUTING.md#how-rows-are-ordered); the Claude Code line names gateways with an Anthropic-format route every run calls, one shell function each in [`configs/claude-code.sh`](configs/claude-code.sh); the Codex CLI line names lanes Codex calls directly — ones that took its request with no key, which every run sends again, and ones whose vendor's own page sets Codex up, which every run reads back — one profile each in [`configs/codex/`](configs/codex/).</sub>
 
-**No account at all?** [Kilo Code](https://kilo.ai) answers in the terminal you already have open — a rate-limited lane to prove this page is live, not a setup to write code on:
+**Try without an account:** [Kilo Code](https://kilo.ai) — a rate-limited connectivity check:
 
 ```bash
 curl -s https://api.kilo.ai/api/gateway/chat/completions \
@@ -84,7 +84,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 ```
 <sub>Free IDs need no key; metered IDs require sign-in. Free catalog entries allow training on prompts. kilo-auto/free and openrouter/free choose a free model automatically. LiquidAI advises against agentic coding with lfm-2.5-2.6b.</sub>
 
-**Ready to wire one in?** Base URL and key name for every OpenAI-compatible API on this page are in [`configs/README.md`](configs/README.md), beside drop-in configs for [opencode](https://opencode.ai), [LiteLLM](https://docs.litellm.ai), [Claude Code](https://code.claude.com/docs) and [Codex CLI](https://developers.openai.com/codex) — all generated from the same registry and regenerated on every update.
+**Connect your coding agent:** [base URLs, keys and client configs](#-plug-it-into-your-agent).
 
 ## 📋 The list
 
@@ -211,14 +211,14 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | `2026-10-06` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>dropped minimax-m3.1-flash-preview</sub> |
 | `2026-10-06` | 🔄 Free models changed **[LLMTR](https://llmtr.com)** | <sub>added apodex-1.1-mini</sub> |
 
-<sub>Every event is a change to what this page publishes: a row appearing, a row dropping to the Archive, a provider's free-model list moving. The full log is [`history.jsonl`](history.jsonl), append-only, one line per event — subscribe to <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">the feed</a> instead of re-reading the table.</sub>
+<sub>Arrivals, departures and free-model changes. Full log: [`history.jsonl`](history.jsonl); updates: <a href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">Atom feed</a>.</sub>
 
 </details>
 
 ## 📦 Archive
 
 <details>
-<summary>17 rows this list carried and carries no more, each with why it left — kept so a dead tier is never silently forgotten</summary>
+<summary>17 offers and why they left</summary>
 <br>
 
 | Tool | Why it left |
@@ -241,7 +241,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 | [GitHub Models](https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/) | <sub>vendor-announced shutdown on 2026-06-16</sub> |
 | [Amazon Q Developer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/) | <sub>vendor-announced shutdown on 2026-05-15</sub> |
 
-<sub>A row leaves the list for this table and nowhere else: when its vendor's own shutdown date arrives, after 3 failed probes in a row, after 60 days without a passing probe, or when a reviewer takes it off — an offer that ended without notice, a row that no longer meets the rules, a service rejected for cause. A row its probe put here comes back the day it passes again. Each name links the row's own page, with what it offered and the evidence; a row is never deleted from `registry.yaml`, and `freetier-check` refuses a registry that has lost one. Two rows that named one service are folded into one line, and the folded id keeps its own page, pointing here.</sub>
+<sub>Provider pages retain the offer, evidence and history. A row archived by its probe returns when it passes again. Merged entries keep their old pages, pointing to the retained row. See [the archive rules](#-how-this-list-stays-fresh) below.</sub>
 
 </details>
 
@@ -249,7 +249,7 @@ curl -s https://api.kilo.ai/api/gateway/chat/completions \
 
 ## 🔧 Plug it into your agent
 
-Base URL, key name and the notes that matter for every live OpenAI-compatible API on this page — 60 today, with Claude Code's Anthropic-format route wherever the vendor documents one and Codex's profile wherever the lane takes its request — are in **[`configs/README.md`](configs/README.md)**, beside the files it describes; the same table with copy buttons is on [the website](https://mvalentsev.github.io/awesome-free-ai-coding/#connections). Ready-made, regenerated on every update:
+**[Connection table](configs/README.md)** — base URLs, keys and client notes for 60 live OpenAI-compatible APIs, plus available Claude Code routes and direct Codex profiles. [Copy buttons on the website](https://mvalentsev.github.io/awesome-free-ai-coding/#connections). These configs are regenerated on every update:
 
 - [`configs/opencode.json`](configs/opencode.json) — Drop-in [opencode](https://opencode.ai) config with every provider wired up: keys via `{env:...}`, keyless endpoints work immediately
 - [`configs/litellm.yaml`](configs/litellm.yaml) — [LiteLLM](https://docs.litellm.ai) proxy config: `env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config configs/litellm.yaml --host 127.0.0.1` puts every free model LiteLLM can call behind one local endpoint; ask for `free/strong` or `free/nokey` instead of a model and a call moves to the next free lane when one runs out — LiteLLM would send your `OPENAI_API_KEY` to a lane whose own key is not set
@@ -261,7 +261,7 @@ Base URL, key name and the notes that matter for every live OpenAI-compatible AP
 
 ## 📡 How this list stays fresh
 
-This repository is an autonomous system, not a hand-curated list:
+Discovery, verification and publication:
 
 ```mermaid
 flowchart LR
@@ -297,8 +297,6 @@ Know a legal free offer that's missing? **[Suggest a service](../../issues/new?t
 
 <div align="center">
 
-**⭐ If this list saved you a credit-card form, star the repo — it keeps the radar visible.**
-
-<sub>Maintained by robots · reviewed by humans · MIT · <a href="#top">back to top ↑</a></sub>
+<sub>MIT · <a href="#top">back to top ↑</a></sub>
 
 </div>

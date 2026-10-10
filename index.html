@@ -393,9 +393,8 @@ tr.flash { animation: flash 1.6s ease-out; }
       <h1><span class="name">awesome-free-ai-coding</span>
         <span class="tagline">Legal free LLM APIs &amp; coding agents</span></h1>
     </div>
-    <p class="lede"><b>Every row on this page is machine-verified.</b> Legal free tiers, trials and
-      free-model APIs for AI coding — probed twice a week against live model APIs and pricing pages;
-      an offer that dies drops to the <a href="#archive">Archive</a> once 3 runs in a row find it gone.</p>
+    <p class="lede">Checked against live model APIs and pricing pages twice a week.
+      Offers move to the <a href="#archive">Archive</a> after 3 consecutive failed probes.</p>
     <p class="meta">
       <span class="dot" style="background:#3fb950"></span>
       every row verified <b>2026-10-05 or later</b> (fresh)
@@ -408,7 +407,6 @@ tr.flash { animation: flash 1.6s ease-out; }
     </button>
     <div class="cta">
       <a class="btn primary" href="#start">Start here</a>
-      <a class="btn" href="#plug">🔧 Client configs</a>
       <a class="btn" href="browse.html">▦ Table with filters</a>
       <a class="btn" href="https://github.com/mvalentsev/awesome-free-ai-coding">★ GitHub</a>
       <a class="btn minor" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml">📡 Atom feed</a>
@@ -445,7 +443,7 @@ tr.flash { animation: flash 1.6s ease-out; }
   <div class="wrap">
     <header>
       <h2>🚀 Start here</h2>
-      <p class="sub">Free is not the same as weak. Everything below runs on a $0 plan.</p>
+      <p class="sub">Coding agents and models available on a $0 plan.</p>
     </header>
 
     <div class="grid cols-2">
@@ -564,7 +562,7 @@ tr.flash { animation: flash 1.6s ease-out; }
 
     <div class="grid cols-3" style="margin-top:22px">
       <div class="card">
-        <h3>An API key that gets the most done</h3>
+        <h3>Free API access</h3>
         <ul><li><span class="who"><a href="https://aistudio.google.com">Google AI Studio (Gemini API)</a></span></li><li><span class="who"><a href="https://groq.com">Groq</a></span></li><li><span class="who"><a href="https://build.nvidia.com">NVIDIA NIM (build.nvidia.com)</a></span></li></ul>
       </div>
       <div class="card">
@@ -3332,12 +3330,9 @@ An open-source AI gateway backed by Y Combinator — every hosted provider behin
   <div class="wrap">
     <header>
       <h2>🔧 Plug it into your agent</h2>
-      <p class="sub">Connection details for every live OpenAI-compatible API above — paste the base
-        URL into opencode, aider, Cline or any OpenAI SDK. Codex CLI speaks only the OpenAI Responses
-        API: it reaches every lane here through LiteLLM, with the profile below, and calls directly a
-        lane that shows a profile of its own. Where a second URL is shown,
-        the same key also serves the Anthropic Messages format: that one is Claude Code's
-        <code>ANTHROPIC_BASE_URL</code>, and the probe checks it answers.</p>
+      <p class="sub">Base URLs and keys for opencode, aider, Cline and OpenAI SDKs.
+        Anthropic-format URLs use the same key with Claude Code's <code>ANTHROPIC_BASE_URL</code>.
+        For Codex CLI, use a listed direct profile or the LiteLLM profile below.</p>
     </header>
     <details id="connections" class="fold">
     <summary>Show the connection table for all 60 APIs</summary>
@@ -4207,9 +4202,9 @@ ids are the price list&#39;s own; Hunyuan-MT-7B, the other chat row at ¥0, is a
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/claude-code.sh">configs/claude-code.sh</a></th>
           <td>One shell function per gateway that serves the Anthropic Messages format — <code>source</code> it and <code>claude-openrouter-free</code> runs <a href="https://code.claude.com/docs">Claude Code</a> on that lane.</td></tr>
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/litellm.yaml">configs/litellm.yaml</a></th>
-          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy config — every free model LiteLLM can call behind one local endpoint; ask for <code>free/strong</code> or <code>free/nokey</code> instead of a model and a call moves to the next free lane when one runs out. Start it as <code>env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config configs/litellm.yaml --host 127.0.0.1</code>: without <code>--host</code> the proxy listens on every interface, the file sets no master key, and LiteLLM would send your <code>OPENAI_API_KEY</code> to a lane whose own key is not set.</td></tr>
+          <td><a href="https://docs.litellm.ai">LiteLLM</a> proxy for compatible free models; <code>free/strong</code> or <code>free/nokey</code> switch lanes when one runs out. Start with <code>env -u OPENAI_API_KEY LITELLM_DANGEROUSLY_PERMIT_WEAK_OR_UNSET_MASTER_KEY=true litellm --config configs/litellm.yaml --host 127.0.0.1</code> to bind to loopback and prevent fallback to your <code>OPENAI_API_KEY</code>. No proxy master key is configured.</td></tr>
         <tr><th scope="row"><a href="https://github.com/mvalentsev/awesome-free-ai-coding/blob/main/configs/codex/litellm.config.toml">configs/codex/litellm.config.toml</a></th>
-          <td><a href="https://developers.openai.com/codex">Codex CLI</a> profile over <code>configs/litellm.yaml</code> — Codex speaks only the OpenAI Responses API, and the LiteLLM proxy answers it for every lane in that file by calling the lane's chat completions: run the proxy, copy the file to <code>~/.codex/</code>, then <code>codex -p litellm</code> (Codex CLI 0.134 and LiteLLM 1.98 or later).</td></tr>
+          <td><a href="https://developers.openai.com/codex">Codex CLI</a> profile: LiteLLM converts chat completions to the Responses API required by Codex. Run the proxy, copy the file to <code>~/.codex/</code>, then <code>codex -p litellm</code> (Codex CLI 0.134 and LiteLLM 1.98 or later).</td></tr>
         <tr><th scope="row"><a href="llms.txt">llms.txt</a></th>
           <td>The whole list as one text file for LLM search and agents — every live offer with its page, what it needs and where it answers.</td></tr>
         <tr><th scope="row"><a href="index.json">index.json</a></th>
@@ -4234,7 +4229,7 @@ ids are the price list&#39;s own; Hunyuan-MT-7B, the other chat row at ¥0, is a
     </header>
     <div class="grid cols-3">
       <div class="card">
-        <h3>Probed, not remembered</h3>
+        <h3>Live verification</h3>
         <p class="sub">Every row anchors on something that dies with the offer: a model id in the
           vendor's own <code>/models</code>, or wording on the page that states the free tier. A row
           that fails 3 probes in a row, or goes 60
@@ -4242,9 +4237,8 @@ ids are the price list&#39;s own; Hunyuan-MT-7B, the other chat row at ¥0, is a
       </div>
       <div class="card">
         <h3>The vendor's own words</h3>
-        <p class="sub">The limits column is the vendor's own words, from the page they were read on. No figure
-          here is a summary of a summary, and a quote that stops matching its source is re-read
-          before it is edited.</p>
+        <p class="sub">Limits link to vendor sources. Quotes are checked against those sources;
+          mismatches require review.</p>
       </div>
       <div class="card">
         <h3>Legal free only</h3>
@@ -4268,8 +4262,7 @@ A <span class="tag card">👁</span> tag means what you send may be used to
   <div class="wrap">
     <header>
       <h2>📦 Archive</h2>
-      <p class="sub">Rows this list carried and carries no more, each with why it left — kept so a
-        dead tier is never silently forgotten. A row is never deleted from the registry.</p>
+      <p class="sub">Previously listed offers and why they left. Their pages and history are retained.</p>
     </header>
     <div class="scroll">
       <table class="rows">

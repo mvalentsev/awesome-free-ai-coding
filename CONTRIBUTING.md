@@ -1099,7 +1099,7 @@ uv run freetier-announce --dry-run  # print what the announcer would post, send 
 
 `freetier-review --out <private-directory>` collects evidence for a review.
 Use a git-ignored directory or one outside the repository. Run its phases in
-order: `prepare --base <commit> --head <commit>`, `sources`, `publication`,
+order: `prepare --base <commit> --head <commit>`, `sources`, `judgment`, `publication`,
 `browser`, then `report`. `publication` waits for the required workflows at that
 exact commit, saves their full logs and open PRs, and compares published bytes.
 Pages byte checks use the repository map: only files marked `published` are
@@ -1123,6 +1123,24 @@ a fresh file, a completed tool read and its final answer. Every attempt is kept.
 The report covers collected evidence; source reads and quote matches still need
 vendor judgment, affected API lanes still need controls, and the full diff still
 needs independent review. The hooks below remain mandatory.
+
+Before pushing, record that independent review with `judgment --result <file>`.
+The JSON names `base`, `sha`, every changed file in sorted `paths`,
+`decision: "approve"`, and these `criteria`: `existing_behavior`, `reuse`,
+`copy`, `user_path`, `regression`, `diff`. Each criterion needs a `verdict`
+(`pass` or `not-applicable`), a concrete `finding` and an `evidence` list of
+private file paths. The command imports and hashes those files; pre-push refuses
+a missing review, a different push, incomplete coverage or changed evidence.
+
+Review the existing output and peer rows before proposing UI changes; search
+for an existing implementation before adding one; remove repeated or unhelpful
+copy; exercise the path from choosing an offer to connecting a client; prove
+regression checks reject the old defect and allow valid controls; read the whole
+diff, including unaffected peers. A test demanding the proposed new control
+does not demonstrate its usefulness. Explain non-applicability with evidence.
+Signoffs stay in `.remember/review-signoffs/`, never in published files.
+CI and scheduled jobs run structural checks; private signoffs are enforced by
+the local pre-push hook. The report also requires the recorded judgment.
 
 **The checks run before a commit exists.** With the hooks on, `git commit`
 runs `freetier-gate pre-commit`: `freetier-check`, `freetier-render --check` and
