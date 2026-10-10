@@ -21,7 +21,7 @@
 
 ## 🚀 Start here
 
-**Free coding agents, no card required:**
+**Free is not the same as weak.** Coding agents on a $0 plan, no card required:
 
 - **[opencode](https://opencode.ai)** — `muse-spark-1.3-contributor` · `mimo-v2.6-flash` · `mimo-v2.5` · `ling-3.0-flash-fin` · [+3&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/)
 - **[Kilo Code](https://kilo.ai)** — `nemotron-3-ultra` · `step-3.7-flash` · `inkling-small` · `nemotron-3-super` · [+7&nbsp;more](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/)

@@ -29,7 +29,7 @@
 ## 🚀 Start here
 
 {% if starters %}
-**Free coding agents, no card required:**
+**Free is not the same as weak.** Coding agents on a $0 plan, no card required:
 
 {% for s in starters %}- **[{{ s.name }}]({{ s.url }})** — {% for f in s.families %}`{{ f }}`{% if not loop.last %}{{ dot }}{% endif %}{% endfor %}{% if s.more %}{{ dot }}[+{{ s.more }}&nbsp;more]({{ s.page }}){% endif %}{{ '' }}
 {% endfor %}
