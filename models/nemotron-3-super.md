@@ -133,8 +133,6 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 - Limits, in the vendor's words: Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`
 
-Apodex 1.1 Mini: Daily usage allowance: amount not published per account per model; for `apodex/apodex-1.1-mini-free`
-
 Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Apodex Mini can close before its recorded deadline if the promotion pool runs out.
 
 </details>

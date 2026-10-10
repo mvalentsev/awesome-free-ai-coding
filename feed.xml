@@ -5,8 +5,15 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-10T15:58:51Z</updated>
+  <updated>2026-10-10T22:26:41Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261010T222641Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-10T22:26:41Z</updated>
+    <summary type="text">dropped apodex-1.1-mini · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, qwen3.8-27b</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/added/aion-labs/20261010T155851Z</id>
     <title>Added: Aion Labs</title>
@@ -349,12 +356,5 @@
     <link rel="alternate" href="https://devin.ai/desktop"/>
     <updated>2026-09-27T04:51:59Z</updated>
     <summary type="text">added swe-1.6 · free models: swe-1.6</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/zed/20260927T045159Z</id>
-    <title>Free models changed: Zed</title>
-    <link rel="alternate" href="https://zed.dev"/>
-    <updated>2026-09-27T04:51:59Z</updated>
-    <summary type="text">added gpt-6-luna; dropped gpt-5.6-luna · free models: gpt-6-luna</summary>
   </entry>
 </feed>

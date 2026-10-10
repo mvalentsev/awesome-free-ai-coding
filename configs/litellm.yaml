@@ -713,16 +713,6 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
-- model_name: llmtr/apodex/apodex-1.1-mini-free
-  litellm_params:
-    model: openai/apodex/apodex-1.1-mini-free
-    api_base: https://llmtr.com/v1
-    api_key: os.environ/LLMTR_API_KEY
-    use_chat_completions_api: true
-    max_tokens: 32768
-  model_info:
-    access: free until 2026-10-10 23:59+03:00
-    source: https://llmtr.com/models/apodex/apodex-1.1-mini-free
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4

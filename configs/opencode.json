@@ -509,13 +509,6 @@
         },
         "agnes/agnes-2.5-flash": {
           "name": "agnes/agnes-2.5-flash"
-        },
-        "apodex/apodex-1.1-mini-free": {
-          "name": "apodex/apodex-1.1-mini-free (until 2026-10-10)",
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
         }
       }
     },
