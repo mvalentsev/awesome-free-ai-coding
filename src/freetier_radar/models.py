@@ -15,6 +15,8 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 
 from .words import number
 from .quotas import UsageQuota
+from .source_urls import valid_source_url
+from .countries import quoted_codes
 
 # Words every vendor keeps on the page long after the offer is gone. A probe
 # built out of these alone verifies that the page loads, nothing more.
@@ -400,7 +402,7 @@ class Probe(BaseModel):
             raise ValueError(
                 f"probe {self.endpoint}: free_list stands in for the prices a catalog does "
                 "not publish, so it needs an api-models probe with require_zero_price: true")
-        if not self.free_list.startswith("https://"):
+        if not valid_source_url(self.free_list):
             raise ValueError(f"probe {self.endpoint}: free_list must be an https URL")
         return self
 
@@ -438,7 +440,7 @@ class Notice(BaseModel):
     @field_validator("url")
     @classmethod
     def _url_is_https(cls, value: str | None) -> str | None:
-        if value is not None and not value.startswith("https://"):
+        if value is not None and not valid_source_url(value):
             raise ValueError("notice url must be an https URL — a reader clicks it from the README")
         return value
 
@@ -460,7 +462,7 @@ class FreeSince(BaseModel):
     @field_validator("source")
     @classmethod
     def _source_is_a_page(cls, value: str) -> str:
-        if not value.startswith("https://"):
+        if not valid_source_url(value):
             raise ValueError(f"free_since source {value!r} is not an https URL — name the record "
                              "that shows the id free: a Wayback snapshot, the vendor's own snapshot")
         return value
@@ -493,7 +495,7 @@ class Newcomer(BaseModel):
     @field_validator("source")
     @classmethod
     def _source_is_a_page(cls, value: str) -> str:
-        if not value.startswith("https://"):
+        if not valid_source_url(value):
             raise ValueError(f"newcomer source {value!r} is not an https URL — name the record "
                              "that shows the model free: a Wayback snapshot, a commit of this list")
         return value
@@ -520,7 +522,7 @@ class CodexRoute(BaseModel):
     @classmethod
     def _base_is_what_codex_appends_to(cls, value: str) -> str:
         value = value.rstrip("/")
-        if not value.startswith("https://"):
+        if not valid_source_url(value):
             raise ValueError("api.codex.base_url must be an https URL")
         if value.endswith("/responses"):
             raise ValueError("api.codex.base_url is the base Codex appends /responses to — "
@@ -530,7 +532,7 @@ class CodexRoute(BaseModel):
     @field_validator("source")
     @classmethod
     def _source_is_https(cls, value: str | None) -> str | None:
-        if value is not None and not value.startswith("https://"):
+        if value is not None and not valid_source_url(value):
             raise ValueError("api.codex.source must be an https URL")
         return value
 
@@ -581,7 +583,7 @@ class FreeAccess(BaseModel):
     @field_validator("source")
     @classmethod
     def _source_is_https(cls, value: str) -> str:
-        if urlparse(value).scheme != "https" or not urlparse(value).netloc:
+        if not valid_source_url(value):
             raise ValueError("access source must be an https URL")
         return value
 
@@ -736,7 +738,7 @@ class PageCatalog(BaseModel):
             for budget in self.budgets:
                 if budget.amount is not None and not re.search(rf'\b{budget.amount}\b', budget.quote):
                     raise ValueError('budget amount must match its evidence quote')
-                if budget.countries and any(not re.search(rf'\b{code}\b', budget.quote) for code in budget.countries):
+                if budget.countries and set(budget.countries) != quoted_codes(budget.quote):
                     raise ValueError('budget countries must match their evidence quote')
         if self.read.table_heading is None:
             if any(m.hours is not None for m in self.models):
@@ -797,7 +799,7 @@ class ModelLimits(BaseModel):
     @field_validator("source")
     @classmethod
     def _catalog_is_https(cls, value: str) -> str:
-        if urlparse(value).scheme != "https" or not urlparse(value).netloc:
+        if not valid_source_url(value):
             raise ValueError("model_limits source must be an https URL")
         return value
 
@@ -1025,7 +1027,7 @@ class ApiInfo(BaseModel):
         if value is None:
             return value
         value = value.rstrip("/")
-        if not value.startswith("https://"):
+        if not valid_source_url(value):
             raise ValueError("anthropic_base_url must be an https URL")
         if value.endswith("/messages"):
             raise ValueError(
@@ -1129,7 +1131,7 @@ class DataUse(BaseModel):
     @field_validator("url")
     @classmethod
     def _url_is_https(cls, value: str) -> str:
-        if not value.startswith("https://"):
+        if not valid_source_url(value):
             raise ValueError("data_use.url must be an https URL")
         return value
 
@@ -1171,7 +1173,7 @@ class Border(BaseModel):
     @field_validator("source")
     @classmethod
     def _source_is_https(cls, value: str) -> str:
-        if not value.startswith("https://"):
+        if not valid_source_url(value):
             raise ValueError("border.source must be an https URL")
         return value
 

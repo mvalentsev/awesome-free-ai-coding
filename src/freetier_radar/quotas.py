@@ -5,7 +5,7 @@ import re
 from html.parser import HTMLParser
 from datetime import date
 from typing import TYPE_CHECKING, Literal
-from urllib.parse import urlparse
+from .source_urls import valid_source_url
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -209,8 +209,7 @@ class UsageQuota(BaseModel):
     @field_validator('source')
     @classmethod
     def _http_source(cls, value):
-        p = urlparse(value)
-        if p.scheme not in ('http','https') or not p.hostname or p.username or p.password:
+        if not valid_source_url(value, schemes=('http','https')):
             raise ValueError('quota.source needs a public HTTP source without credentials')
         return value
 

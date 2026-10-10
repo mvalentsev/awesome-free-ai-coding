@@ -13,7 +13,7 @@ import re
 from datetime import date
 from html.parser import HTMLParser
 
-from .countries import country_name
+from .countries import country_name, quoted_codes
 from .models import Entry, PageCatalog, PageModel, access_words
 
 
@@ -155,7 +155,9 @@ def check_page_catalog(body: str, catalog: PageCatalog, condition_bodies: dict[s
     expected = {key: b.amount for b in catalog.budgets
                 for key in (b.countries if b.scope == "countries" else [b.scope])}
     if all(b.quote for b in catalog.budgets):
-        pass  # Each scope's exact evidence is checked with catalog_quotes below.
+        for budget in catalog.budgets:
+            if budget.countries:
+                notes += _differences('quoted budget countries', set(budget.countries), quoted_codes(budget.quote))
     elif actual is None:
         notes.append("budgets unreadable in the configured FAQ answer")
     else:

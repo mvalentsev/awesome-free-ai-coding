@@ -177,6 +177,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/openrouter-free/"
     },
@@ -525,6 +526,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-ai-studio/"
     },
@@ -751,6 +753,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/groq-free/"
     },
@@ -864,6 +867,7 @@
       "probe_failures": 1,
       "provisional": false,
       "rank": 78,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mistral-free/"
     },
@@ -909,6 +913,7 @@
       "probe_failures": 1,
       "provisional": false,
       "rank": 80,
+      "no_account": false,
       "archived": true,
       "archived_because": "vendor-announced shutdown on 2026-06-16",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-models/"
@@ -989,6 +994,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cloudflare-workers-ai/"
     },
@@ -1069,6 +1075,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ollama-cloud/"
     },
@@ -1174,6 +1181,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/"
     },
@@ -1316,6 +1324,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
+      "no_account": true,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kilo-code/"
     },
@@ -1633,6 +1642,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 78,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/trae/"
     },
@@ -1731,6 +1741,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/"
     },
@@ -1771,6 +1782,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
+      "no_account": false,
       "archived": true,
       "archived_because": "vendor-announced shutdown on 2026-07-26",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimo-code/"
@@ -1849,6 +1861,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 10,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/github-copilot-free/"
     },
@@ -1957,6 +1970,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/google-jules/"
     },
@@ -2050,6 +2064,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/"
     },
@@ -2114,6 +2129,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cursor-hobby/"
     },
@@ -2376,6 +2392,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/openai-codex-cli/"
     },
@@ -2559,6 +2576,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 25,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/"
     },
@@ -2651,6 +2669,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/zai-glm/"
     },
@@ -2738,6 +2757,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
+      "no_account": true,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ovh-ai-endpoints/"
     },
@@ -2805,6 +2825,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
+      "no_account": true,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/"
     },
@@ -3169,6 +3190,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/alibaba-model-studio/"
     },
@@ -3244,6 +3266,7 @@
       "probe_failures": 1,
       "provisional": false,
       "rank": 80,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-10-08: free accounts no longer receive inference credits — the current billing table lists None and requires purchasing credits or a paid subscription",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/huggingface-inference/"
@@ -3312,6 +3335,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
+      "no_account": false,
       "archived": false,
       "access_labels": {
         "offer": "requires $1 card verification",
@@ -3386,6 +3410,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/upstage/"
     },
@@ -3566,6 +3591,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cohere/"
     },
@@ -3649,6 +3675,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder/"
     },
@@ -3709,6 +3736,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/charm-hyper/"
     },
@@ -3808,6 +3836,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/vercel-ai-gateway/"
     },
@@ -3938,6 +3967,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/bazaarlink/"
     },
@@ -4019,6 +4049,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 76,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/tokenrouter/"
     },
@@ -4085,6 +4116,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 50,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-09-23: new accounts get no free usage — the console's Free plan has read \"Add a payment method and purchase credits to run your first requests\" since 2026-08, where until 2026-06-20 it read \"free API credits. No credit card required\"; only the docs still describe a free tier",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sambanova-cloud/"
@@ -4204,6 +4236,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 40,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/routeway/"
     },
@@ -4322,6 +4355,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 20,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/requesty/"
     },
@@ -4672,6 +4706,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 25,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/"
     },
@@ -4740,6 +4775,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sea-lion/"
     },
@@ -4796,6 +4832,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
+      "no_account": false,
       "archived": true,
       "archived_because": "vendor-announced shutdown on 2026-08-09",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ai21-labs/"
@@ -4861,6 +4898,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 60,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codegpt/"
     },
@@ -5656,6 +5694,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 30,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/"
     },
@@ -5809,6 +5848,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 90,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/inception-labs/"
     },
@@ -5876,6 +5916,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 87,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/dahl-inference/"
     },
@@ -5944,6 +5985,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/poolside/"
     },
@@ -6011,6 +6053,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 101,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sensenova/"
     },
@@ -6159,6 +6202,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/hetzner-inference/"
     },
@@ -6226,6 +6270,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 97,
+      "no_account": true,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/"
     },
@@ -6350,6 +6395,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 75,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/"
     },
@@ -6370,11 +6416,14 @@
       ],
       "card_required": false,
       "offering": "Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”",
-      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\n“Freebuff is supported by text ads.” “Model prices and usage limits still apply.” Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCurrent model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.\n\nFreebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). Muse Spark 1.3: “Muse Spark 1.3, on every paid plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: “Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).",
+      "limits": "Session-based limited mode: 6 one-hour sessions per day per account\n\n“Freebuff is supported by text ads.” “Model prices and usage limits still apply.” Available models depend on the app and access level. “Freebuff collects prompts, messages, code, files, repository data, and agent traces when you use features that need them”. Check the balance and picker in your app.\n\nDaily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.\n\nCurrent model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily credits; full access only; Gemini 3.1 Flash Lite: specialist tasks only.\n\nFreebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: “Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: “Muse Spark 1.3 is free to open for full-access accounts. A paid plan unlocks it where access is limited.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).\n\nMiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).",
       "free_part": "models",
       "models": [
         {
           "family": "solar-pro-4"
+        },
+        {
+          "family": "solar-mini-4"
         },
         {
           "family": "mimo-v2.6-flash",
@@ -6393,11 +6442,6 @@
         }
       ],
       "newcomers": [
-        {
-          "family": "solar-mini-4",
-          "on": "2026-09-26",
-          "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
-        },
         {
           "family": "gpt-6.1-sol",
           "on": "2026-09-29",
@@ -6472,11 +6516,6 @@
             "quote": "PAID-ONLY row",
             "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
           },
-          "paid-muse": {
-            "kind": "paid",
-            "quote": "Muse Spark 1.3, on every paid plan.",
-            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
-          },
           "us-session": {
             "kind": "free-session",
             "quote": "Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.",
@@ -6485,6 +6524,11 @@
           "specialist": {
             "kind": "specialist",
             "quote": "Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research."
+          },
+          "muse-full": {
+            "kind": "wallet",
+            "quote": "Muse Spark 1.3 is free to open for full-access accounts. A paid plan unlocks it where access is limited.",
+            "source": "https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts"
           }
         },
         "models": [
@@ -6511,7 +6555,8 @@
             "first_free": {
               "on": "2026-09-26",
               "source": "https://web.archive.org/web/20260926080857/https://freebuff.com/"
-            }
+            },
+            "listed": true
           },
           {
             "name": "MiMo 2.6 Flash",
@@ -6600,9 +6645,9 @@
           {
             "name": "Muse Spark 1.3",
             "model": {
-              "family": "muse-spark-1.3"
+              "family": "muse-spark-1.3-contributor"
             },
-            "condition": "paid-muse"
+            "condition": "muse-full"
           },
           {
             "name": "Gemini 3.1 Flash Lite",
@@ -6617,7 +6662,7 @@
           "MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.",
           "Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over."
         ],
-        "reviewed_on": "2026-10-07"
+        "reviewed_on": "2026-10-10"
       },
       "data_use": {
         "trains": "yes",
@@ -6648,6 +6693,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 28,
+      "no_account": false,
       "quotas": [
         {
           "amount": 6,
@@ -6664,6 +6710,7 @@
         "offer": "",
         "models": {
           "solar-pro-4": "",
+          "solar-mini-4": "",
           "mimo-v2.6-flash": "",
           "glm-5.3-flash": "",
           "deepseek-v4.1-flash": ""
@@ -7093,6 +7140,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
+      "no_account": false,
       "archived": false,
       "access_labels": {
         "offer": "",
@@ -7282,6 +7330,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 45,
+      "no_account": false,
       "archived": false,
       "access_labels": {
         "offer": "",
@@ -7363,6 +7412,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 85,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qodo/"
     },
@@ -7486,6 +7536,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 82,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/codebuddy/"
     },
@@ -7588,6 +7639,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 91,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/freeinference/"
     },
@@ -7709,6 +7761,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 86,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opentyphoon/"
     },
@@ -7827,6 +7880,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/"
     },
@@ -7905,6 +7959,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sail-research/"
     },
@@ -7989,6 +8044,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/sarvam/"
     },
@@ -8061,6 +8117,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 95,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/standardcompute/"
     },
@@ -8170,6 +8227,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 93,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/routerplex/"
     },
@@ -8245,6 +8303,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 29,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cline/"
     },
@@ -8375,6 +8434,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 87,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/"
     },
@@ -8456,6 +8516,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/yolo-auto/"
     },
@@ -8735,6 +8796,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/"
     },
@@ -8846,6 +8908,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 80,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/zed/"
     },
@@ -8966,6 +9029,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 75,
+      "no_account": false,
       "archived": false,
       "access_labels": {
         "offer": "",
@@ -9071,6 +9135,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 65,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/"
     },
@@ -9110,6 +9175,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 45,
+      "no_account": false,
       "archived": true,
       "archived_because": "vendor-announced shutdown on 2026-05-15",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/amazon-q-developer/"
@@ -9269,6 +9335,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 45,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llm7/"
     },
@@ -9362,6 +9429,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 92,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/fireworks-ai/"
     },
@@ -9520,6 +9588,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 79,
+      "no_account": true,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/vlm-run-gateway/"
     },
@@ -9610,6 +9679,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 102,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/tencent-tokenhub/"
     },
@@ -9687,6 +9757,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/"
     },
@@ -9766,6 +9837,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/"
     },
@@ -9852,6 +9924,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 82,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/opper/"
     },
@@ -9930,6 +10003,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 88,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/moark/"
     },
@@ -10010,6 +10084,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 99,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/"
     },
@@ -10075,6 +10150,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 91,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/blue-claw/"
     },
@@ -10153,6 +10229,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/abliteration-ai/"
     },
@@ -10234,6 +10311,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 94,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/impossibl/"
     },
@@ -10327,6 +10405,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 86,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/the-grid/"
     },
@@ -10535,6 +10614,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 91,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/hpc-ai/"
     },
@@ -10570,6 +10650,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-07-19: the same project as MiMo Code, the name Xiaomi's own README prints — a placeholder from the list's first day at mimocode.ai, a domain that still publishes no site, taken off the same day as unverifiable and folded into that row on 2026-09-20",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/mimocode/"
@@ -10607,6 +10688,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 100,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-07-19: BYOK only — the tool is free and open source but bundles no model access of its own, and its docs send readers to other vendors' free tiers, which this list carries directly",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aider/"
@@ -10642,6 +10724,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 100,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-07-19: a browser SDK billed to each end user's Puter account, with no HTTP endpoint a coding agent could call; the OpenAI-compatible endpoint read on 2026-09-14 needs a paid plan",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/puter-free/"
@@ -10686,6 +10769,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 90,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-07-19: rejected for cause — its /for-agents page carried a prompt injection aimed at AI agents (auto-signup, credential exfiltration, referral spam)",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/easy-gonka-api/"
@@ -10740,6 +10824,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 15,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-07-27: the 5M-token signup grant was only ever reported by third parties, and DeepSeek's own pricing page prices every model and names no free grant",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/deepseek/"
@@ -10795,6 +10880,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 91,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-08-11: the $10 of free credits a month rested on one dated announcement post; no live Reka page corroborated a recurring grant, and the platform sells pay-as-you-go credits",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/reka/"
@@ -10843,6 +10929,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 96,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-08-14: the free lane ended without an announcement — both models the row named free were billed, and not one of the 102 prices on novita.ai/pricing was zero",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/novita/"
@@ -10899,6 +10986,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 55,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-08-14: the daily free quota was gone before the row was listed — the change log retired the Flash line on 2026-05-29 and switched billing on for LongCat-2.0 on 2026-06-30, and no LongCat page still published the 100K tokens a day",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/longcat/"
@@ -10955,6 +11043,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 35,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-09-16: its only free offer was $5 of credit granted after a verified payment method is added, expiring in 30 days — a one-off credit behind a card, which CONTRIBUTING does not admit",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/cerebras-free/"
@@ -11000,6 +11089,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 85,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-09-16: a one-month wallet of a million credits, and \"A credit card is required to start using the API\" — a one-off credit behind a card, which CONTRIBUTING does not admit",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/infomaniak-ai/"
@@ -11054,6 +11144,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 55,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-09-16: rejected for cause — the operator's own JavaScript bundle showed its capacity coming from pooled ChatGPT and Codex OAuth credentials, captcha solvers and a proxy pool that multiplies per-IP free quotas",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/kenari/"
@@ -11098,6 +11189,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 98,
+      "no_account": false,
       "archived": true,
       "archived_because": "delisted on 2026-09-16: 1,000,000 free tokens once per customer, and \"Ordering Scaleway resources requires a valid credit card\" — a one-off credit behind a card, which CONTRIBUTING does not admit",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/scaleway-generative/"
@@ -11201,6 +11293,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 48,
+      "no_account": true,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtech/"
     },
@@ -11309,6 +11402,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 103,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/"
     },
@@ -11433,6 +11527,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 100,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/modelscope/"
     },
@@ -11580,6 +11675,7 @@
       "probe_failures": 0,
       "provisional": false,
       "rank": 45,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/vertex-ai-express/"
     },
@@ -11686,6 +11782,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 84,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/zcode/"
     },
@@ -11699,29 +11796,60 @@
         "https://autohand.ai/terms-of-service"
       ],
       "card_required": false,
-      "offering": "Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, its messages counted per five hours and per week",
-      "limits": "20 messages/5 hours; 200 messages/week; 10 requests/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. All rate and message windows apply. The larger model and larger weekly budget need Pro.",
+      "offering": "Open-source coding agent for the terminal, VS Code, JetBrains and the desktop whose Free plan runs Autohand's own latency-first coding model with no card, using recurring hosted-response credits",
+      "limits": "15 credits/rolling 5 hours; 100 credits/month; 10 requests/minute; 1,000 input tokens/minute; 1,160 output tokens/minute per account\n\nOngoing Free access is intended for evaluation and light use. It requires a linked GitHub account at least 30 days old, an invite, an Autohand grant, or an optional card on file that is not charged. One credit counts one successful hosted model response; BYOK and local models do not consume these credits. All credit, request and token limits are shared across product surfaces. Additional hosted capacity and models need a paid plan.",
       "quotas": [
         {
-          "amount": 20.0,
-          "unit": "messages",
+          "amount": 15.0,
+          "unit": "credits",
           "period": "hour",
           "window": 5,
+          "rolling": true,
           "scope": "account",
           "source": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
-          "quote": "20 messages per five-hour window",
-          "value_phrase": "20 messages per five-hour window",
-          "reviewed_on": "2026-10-06"
+          "quote": "15 credits per rolling 5-hour window, up to 100 each month.",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Value"
+            ],
+            "column": "Value",
+            "rows": [
+              "Credits / rolling 5 hours"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-10-10"
         },
         {
-          "amount": 200.0,
-          "unit": "messages",
-          "period": "week",
+          "amount": 100.0,
+          "unit": "credits",
+          "period": "month",
           "scope": "account",
           "source": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
-          "quote": "200 messages per week",
-          "value_phrase": "200 messages per week",
-          "reviewed_on": "2026-10-06"
+          "quote": "Free includes 100 credits per month, subject to its shorter-window limits.",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Value"
+            ],
+            "column": "Value",
+            "rows": [
+              "Long-window credits"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-10-10"
         },
         {
           "amount": 10.0,
@@ -11729,9 +11857,74 @@
           "period": "minute",
           "scope": "account",
           "source": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
-          "quote": "10 requests per minute",
-          "value_phrase": "10 requests per minute",
-          "reviewed_on": "2026-10-06"
+          "quote": "Requests / minute",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Value"
+            ],
+            "column": "Value",
+            "rows": [
+              "Requests / minute"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-10-10"
+        },
+        {
+          "amount": 1000.0,
+          "unit": "input tokens",
+          "period": "minute",
+          "scope": "account",
+          "source": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
+          "quote": "Input tokens / minute",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Value"
+            ],
+            "column": "Value",
+            "rows": [
+              "Input tokens / minute"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-10-10"
+        },
+        {
+          "amount": 1160.0,
+          "unit": "output tokens",
+          "period": "minute",
+          "scope": "account",
+          "source": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
+          "quote": "Output tokens / minute",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Limit",
+              "Value"
+            ],
+            "column": "Value",
+            "rows": [
+              "Output tokens / minute"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          },
+          "reviewed_on": "2026-10-10"
         }
       ],
       "free_part": "models",
@@ -11752,7 +11945,7 @@
         "type": "page-keywords",
         "endpoint": "https://docs.autohand.ai/getting-started/plans-and-pricing/free",
         "keywords": [
-          "20 messages per five-hour window",
+          "15 credits per rolling 5-hour window",
           "ongoing access rather than a one time trial"
         ],
         "free_marker": "",
@@ -11764,6 +11957,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 52,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/autohand-code/"
     },
@@ -11845,6 +12039,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 83,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/qoder-cn/"
     },
@@ -11909,6 +12104,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 76,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/baidu-comate/"
     },
@@ -11971,6 +12167,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 81,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/atomcode/"
     },
@@ -12045,6 +12242,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 54,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/minimax-code/"
     },
@@ -12124,6 +12322,7 @@
       "probe_failures": 0,
       "provisional": true,
       "rank": 93,
+      "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/wallaby/"
     }
@@ -14342,6 +14541,12 @@
       "family": "qwq-plus",
       "rows": [
         "alibaba-model-studio"
+      ]
+    },
+    {
+      "family": "solar-mini-4",
+      "rows": [
+        "freebuff"
       ]
     },
     {

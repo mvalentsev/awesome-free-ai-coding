@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 'Freebuff free tier: limits, free models, verified 2026-10-08'
-description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”. Free models: solar-pro-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. “Freebuff is supported by text ads.” “Model prices and usage limits…'
+description: 'Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regional credits and conditional free-session access. “No card required.”. Free models: solar-pro-4, solar-mini-4, mimo-v2.6-flash, glm-5.3-flash, deepseek-v4.1-flash. “Freebuff is supported by text ads.” “Model prices and…'
 permalink: /providers/freebuff/
-last_modified_at: 2026-10-08
+last_modified_at: 2026-10-10
 crumb: Freebuff
 ---
 
@@ -19,7 +19,7 @@ Ad-funded coding agent — CLI, desktop, web, cloud and chat — with daily regi
 
 ## Free models
 
-`solar-pro-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
+`solar-pro-4`, `solar-mini-4`, [`mimo-v2.6-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2.6-flash/), [`glm-5.3-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/glm-5.3-flash/), [`deepseek-v4.1-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/deepseek-v4.1-flash/)
 
 ## Limits, in the vendor's words
 
@@ -29,9 +29,9 @@ Session-based limited mode: 6 one-hour sessions per day per account
 
 Daily allowance — the United States, Canada, the United Kingdom, Australia, New Zealand, Ireland, Norway, Sweden, Denmark, Finland, the Netherlands, Austria, Luxembourg, Iceland, Germany, France, Spain, Italy, Portugal, Belgium, Switzerland, Liechtenstein, Malta, South Korea: amount not published (Freebucks per day); Other countries: 25 Freebucks per day; VPN or proxy: 20 Freebucks per day.
 
-Current model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: paid plan; Gemini 3.1 Flash Lite: specialist tasks only.
+Current model hour prices are not published; check your account's picker. Solar Pro 4: shared daily credits; available in limited mode; Solar Mini 4: shared daily credits; available in limited mode; MiMo 2.6 Flash: shared daily credits; available in limited mode; GLM 5.3 Flash: shared daily credits; available in limited mode; DeepSeek V4.1 Flash: shared daily credits; available in limited mode; GPT-6 Luna: shared daily credits; full access only; MiMo 2.6 Pro: shared daily credits; full access only; DeepSeek V4.1 Flash Fast: shared daily credits; full access only; GPT-6.1 Sol: free session with conditions; Gemini 3.8 Flash: paid plan; Muse Spark 1.3: shared daily credits; full access only; Gemini 3.1 Flash Lite: specialist tasks only.
 
-Freebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). Muse Spark 1.3: “Muse Spark 1.3, on every paid plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: “Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research.
+Freebucks buy one-hour model sessions. Gemini 3.8 Flash: “PAID-ONLY row” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts). GPT-6.1 Sol: “Free in the US, a paid plan elsewhere, until the promotion ends. One session a day on every plan.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-sol-promo.ts). Gemini 3.1 Flash Lite handles specialist tasks such as file finding and research. Muse Spark 1.3: “Muse Spark 1.3 is free to open for full-access accounts. A paid plan unlocks it where access is limited.” (source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts).
 
 MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud. Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks do not carry over. (source: https://freebuff.com/llms.txt).
 
@@ -63,6 +63,7 @@ What you send may be used to train or improve models. In the vendor's words: “
 
 Each line is a change to what this page publishes, dated the day it reached the list, in UTC.
 
+- `2026-10-10` — Free models changed: added solar-mini-4
 - `2026-10-06` — Free models changed: added deepseek-v4.1-flash, glm-5.3-flash, mimo-v2.6-flash, solar-pro-4
 - `2026-10-06` — Free models changed: dropped deepseek-v4.1-flash, glm-5.3-flash
 - `2026-09-29` — Free models changed: dropped muse-spark-1.2

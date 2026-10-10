@@ -4505,10 +4505,6 @@ entries:
         kind: paid
         quote: PAID-ONLY row
         source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
-      paid-muse:
-        kind: paid
-        quote: Muse Spark 1.3, on every paid plan.
-        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
       us-session:
         kind: free-session
         quote: Free in the US, a paid plan elsewhere, until the promotion ends. One
@@ -4518,6 +4514,11 @@ entries:
         kind: specialist
         quote: Gemini 3.1 Flash Lite handles specialist tasks such as file finding
           and research.
+      muse-full:
+        kind: wallet
+        quote: Muse Spark 1.3 is free to open for full-access accounts. A paid plan
+          unlocks it where access is limited.
+        source: https://raw.githubusercontent.com/CodebuffAI/codebuff/main/common/src/constants/freebuff-models.ts
     models:
     - name: Solar Pro 4
       model:
@@ -4536,6 +4537,7 @@ entries:
       first_free:
         'on': '2026-09-26'
         source: https://web.archive.org/web/20260926080857/https://freebuff.com/
+      listed: true
     - name: MiMo 2.6 Flash
       model:
         family: mimo-v2.6-flash
@@ -4594,8 +4596,8 @@ entries:
       condition: paid-gemini
     - name: Muse Spark 1.3
       model:
-        family: muse-spark-1.3
-      condition: paid-muse
+        family: muse-spark-1.3-contributor
+      condition: muse-full
     - name: Gemini 3.1 Flash Lite
       model:
         family: gemini-3.1-flash-lite
@@ -4605,7 +4607,7 @@ entries:
     - MiMo 2.6 Flash is the default on CLI, Desktop, Web, and Cloud.
     - Daily Freebucks refill at midnight in your reset timezone and unused daily Freebucks
       do not carry over.
-    reviewed_on: '2026-10-07'
+    reviewed_on: '2026-10-10'
   data_use:
     trains: 'yes'
     quote: 'DeepSeek V4.1 Flash: Smart & Fast. May use data for AI training.'
@@ -8581,37 +8583,116 @@ entries:
   card_required: false
   offering: Open-source coding agent for the terminal, VS Code, JetBrains and the
     desktop whose Free plan runs Autohand's own latency-first coding model with no
-    card, its messages counted per five hours and per week
+    card, using recurring hosted-response credits
   limits: Ongoing Free access is intended for evaluation and light use. It requires
     a linked GitHub account at least 30 days old, an invite, an Autohand grant, or
-    an optional card on file that is not charged. All rate and message windows apply.
-    The larger model and larger weekly budget need Pro.
+    an optional card on file that is not charged. One credit counts one successful
+    hosted model response; BYOK and local models do not consume these credits. All
+    credit, request and token limits are shared across product surfaces. Additional
+    hosted capacity and models need a paid plan.
   quotas:
-  - amount: 20.0
-    unit: messages
+  - amount: 15.0
+    unit: credits
     period: hour
     window: 5
+    rolling: true
     scope: account
     source: https://docs.autohand.ai/getting-started/plans-and-pricing/free
-    quote: 20 messages per five-hour window
-    value_phrase: 20 messages per five-hour window
-    reviewed_on: '2026-10-06'
-  - amount: 200.0
-    unit: messages
-    period: week
+    quote: 15 credits per rolling 5-hour window, up to 100 each month.
+    read: table
+    table:
+      headers:
+      - Limit
+      - Value
+      column: Value
+      rows:
+      - Credits / rolling 5 hours
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-10-10'
+  - amount: 100.0
+    unit: credits
+    period: month
     scope: account
     source: https://docs.autohand.ai/getting-started/plans-and-pricing/free
-    quote: 200 messages per week
-    value_phrase: 200 messages per week
-    reviewed_on: '2026-10-06'
+    quote: Free includes 100 credits per month, subject to its shorter-window limits.
+    read: table
+    table:
+      headers:
+      - Limit
+      - Value
+      column: Value
+      rows:
+      - Long-window credits
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-10-10'
   - amount: 10.0
     unit: requests
     period: minute
     scope: account
     source: https://docs.autohand.ai/getting-started/plans-and-pricing/free
-    quote: 10 requests per minute
-    value_phrase: 10 requests per minute
-    reviewed_on: '2026-10-06'
+    quote: Requests / minute
+    read: table
+    table:
+      headers:
+      - Limit
+      - Value
+      column: Value
+      rows:
+      - Requests / minute
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-10-10'
+  - amount: 1000.0
+    unit: input tokens
+    period: minute
+    scope: account
+    source: https://docs.autohand.ai/getting-started/plans-and-pricing/free
+    quote: Input tokens / minute
+    read: table
+    table:
+      headers:
+      - Limit
+      - Value
+      column: Value
+      rows:
+      - Input tokens / minute
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-10-10'
+  - amount: 1160.0
+    unit: output tokens
+    period: minute
+    scope: account
+    source: https://docs.autohand.ai/getting-started/plans-and-pricing/free
+    quote: Output tokens / minute
+    read: table
+    table:
+      headers:
+      - Limit
+      - Value
+      column: Value
+      rows:
+      - Output tokens / minute
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+    reviewed_on: '2026-10-10'
   free_part: models
   models:
   - family: fantail
@@ -8624,7 +8705,7 @@ entries:
     type: page-keywords
     endpoint: https://docs.autohand.ai/getting-started/plans-and-pricing/free
     keywords:
-    - 20 messages per five-hour window
+    - 15 credits per rolling 5-hour window
     - ongoing access rather than a one time trial
     free_marker: ''
     require_zero_price: false

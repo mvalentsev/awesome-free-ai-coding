@@ -108,6 +108,9 @@ def _page_catalog_views(root: Path) -> tuple[str, ...]:
 
 
 CLAIMS: tuple[Claim, ...] = (
+    Claim("browse.html", r'function noAccount\(e\) \{ return e\.(no_account) === true; \}',
+          lambda root: ('no_account',),
+          "render.build_index publishes render.needs_no_account; actual browser parity in tests/test_evidence_contracts.py"),
     Claim("CONTRIBUTING.md", r"`quotas` stores `(amount)`, `(unit)`, `(period)` and `(scope)`",
           lambda root: tuple(field for field in ("amount", "unit", "period", "scope")
                              if field in UsageQuota.model_fields),

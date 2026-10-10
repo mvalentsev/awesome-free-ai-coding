@@ -19,7 +19,12 @@ from __future__ import annotations
 import re
 from functools import lru_cache
 
-__all__ = ["COUNTRIES", "NOT_COUNTRIES", "DNS_SUBNETS", "country_name", "codes_named"]
+__all__ = ["COUNTRIES", "NOT_COUNTRIES", "DNS_SUBNETS", "country_name", "codes_named", "quoted_codes"]
+
+
+def quoted_codes(text: str) -> set[str]:
+    """The complete set of explicit ISO codes in a country-scope quote."""
+    return set(re.findall(r'\b[A-Z]{2}\b', text)) & COUNTRIES.keys()
 
 # code -> (the name a page prints, then every other spelling a vendor uses).
 # Matched as written, capitals and all: "chad", "turkey" and "china" are words.

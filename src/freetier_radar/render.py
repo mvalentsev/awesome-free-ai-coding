@@ -1220,6 +1220,7 @@ def build_index(entries: list[Entry], today: date,
         "feed": FEED_URL,
         "entries": [
             {**e.model_dump(mode="json", exclude_none=True), "limits": limits_text(e),
+             "no_account": needs_no_account(e),
              **({"page_catalog": catalog_index(e.page_catalog)} if e.page_catalog else {}),
              **({"quotas": structured_quotas(e)} if structured_quotas(e) else {}),
              "archived": is_archived(e, today),

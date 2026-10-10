@@ -120,7 +120,7 @@ footer ul { margin: 6px 0 0; padding-left: 18px; }
   function keyless(e) { return !!(e.api && e.api.auth === "none"); }
   // A key the vendor prints for anyone is no account to open either.
   function publicKey(e) { return !!(e.api && e.api.public_key); }
-  function noAccount(e) { return keyless(e) || publicKey(e); }
+  function noAccount(e) { return e.no_account === true; }
   function openaiCompatible(e) { return !!(e.api && e.api.base_url && e.api.openai_compatible); }
   function claudeRoute(e) { return !!(e.api && e.api.anthropic_base_url); }
   // The models a reader comes for, the set the front page's "Strong models,
