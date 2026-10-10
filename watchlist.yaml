@@ -172,24 +172,6 @@ watched:
       novita.ai/pricing shows a zero price, or a model on novita.ai/models
       carries "isFree": true.
 
-  - domains: [aionlabs.ai]
-    name: Aion Labs
-    checked_on: '2026-08-14'
-    reason: >-
-      Re-checked 2026-08-14, and the first reason recorded here was wrong: this
-      is an LLM API vendor, not the email-agent company of the same name. The
-      site sells "Powerful AI Models & Agents" with "access via an
-      OpenAI-compatible API"; api.aionlabs.ai/v1/models answers
-      keyless with four models — aion-2.0, aion-3.0, aion-3.0-mini and
-      aion-rp-llama-3.1-8b, roleplay and storytelling variants of DeepSeek and
-      GLM. The verdict is unchanged for a different reason: every one of the
-      four publishes a price and none of them is zero, the cheapest being
-      aion-3.0-mini at $0.0000007 per prompt token. Note the catalog answers
-      {"models": [...]} rather than the OpenAI {"data": [...]} shape, so an
-      api-models probe here would need that read first.
-    reopen_if: >-
-      A zero-priced row appears in the api.aionlabs.ai catalog.
-
   - domains: [tokenrouter.io]
     name: TokenRouter.io
     checked_on: '2026-08-05'

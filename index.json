@@ -12325,6 +12325,156 @@
       "no_account": false,
       "archived": false,
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/wallaby/"
+    },
+    {
+      "id": "aion-labs",
+      "name": "Aion Labs",
+      "category": "api-free-tier",
+      "url": "https://www.aionlabs.ai",
+      "source_urls": [
+        "https://www.aionlabs.ai/pricing/",
+        "https://www.aionlabs.ai/docs/",
+        "https://www.aionlabs.ai/docs/quickstart/",
+        "https://www.aionlabs.ai/docs/rate-limits/",
+        "https://api.aionlabs.ai/v1/models",
+        "https://www.aionlabs.ai/terms/",
+        "https://www.aionlabs.ai/privacy/"
+      ],
+      "card_required": false,
+      "offering": "OpenAI-compatible text-model API with a daily credit allowance on its $0 Free tier, no card required",
+      "limits": "Daily credits allowance: amount not published; 15 requests/minute; 20,000 tokens/minute; 20,000 tokens/day per account\n\nThe reset timezone is unpublished. Request and token ceilings apply separately from the credit balance; completions are billed at each model's price. An account and API key are required.",
+      "quotas": [
+        {
+          "unit": "credits",
+          "period": "day",
+          "scope": "account",
+          "source": "https://www.aionlabs.ai/pricing/",
+          "quote": "A daily credit allowance to try agent jobs, the API, and browser chat. No card required.",
+          "reviewed_on": "2026-10-10",
+          "amount": null
+        },
+        {
+          "amount": 15.0,
+          "unit": "requests",
+          "period": "minute",
+          "scope": "account",
+          "source": "https://www.aionlabs.ai/docs/rate-limits/",
+          "quote": "Free 15",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Tier",
+              "Requests Per Minute"
+            ],
+            "column": "Requests Per Minute",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        },
+        {
+          "amount": 20000.0,
+          "unit": "tokens",
+          "period": "minute",
+          "scope": "account",
+          "source": "https://www.aionlabs.ai/docs/rate-limits/",
+          "quote": "Free 20,000 20,000",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Tier",
+              "Tokens Per Minute",
+              "Daily Token Limit"
+            ],
+            "column": "Tokens Per Minute",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        },
+        {
+          "amount": 20000.0,
+          "unit": "tokens",
+          "period": "day",
+          "scope": "account",
+          "source": "https://www.aionlabs.ai/docs/rate-limits/",
+          "quote": "Free 20,000 20,000",
+          "read": "table",
+          "table": {
+            "headers": [
+              "Tier",
+              "Tokens Per Minute",
+              "Daily Token Limit"
+            ],
+            "column": "Daily Token Limit",
+            "rows": [
+              "Free"
+            ],
+            "row_column": 0,
+            "where": {},
+            "cell_part": "",
+            "active_tab": "",
+            "active_class": ""
+          }
+        }
+      ],
+      "free_part": "sum",
+      "models": [],
+      "api": {
+        "base_url": "https://api.aionlabs.ai/v1",
+        "key_url": "https://www.aionlabs.ai/app/api-keys/",
+        "auth": "api-key",
+        "openai_compatible": true,
+        "model_ids": [
+          "aion-labs/aion-3.5",
+          "aion-labs/aion-3.5-mini",
+          "aion-labs/aion-3.0-mini",
+          "aion-labs/aion-3.0",
+          "aion-labs/aion-2.0",
+          "aion-labs/aion-rp-llama-3.1-8b"
+        ],
+        "note": "Create an API key in the dashboard and send it as a bearer token with the OpenAI Chat Completions format."
+      },
+      "border": {
+        "left_out": [],
+        "on": "2026-10-10",
+        "source": "https://www.aionlabs.ai/terms/",
+        "quote": "",
+        "read": "page",
+        "also_named": [
+          "PL"
+        ]
+      },
+      "probe": {
+        "type": "page-keywords",
+        "endpoint": "https://www.aionlabs.ai/pricing/",
+        "keywords": [
+          "A daily credit allowance to try agent jobs, the API, and browser chat",
+          "No card required"
+        ],
+        "free_marker": "",
+        "require_zero_price": false,
+        "catalog": "https://api.aionlabs.ai/v1/models",
+        "machinery_keywords": []
+      },
+      "first_seen": "2026-10-10",
+      "last_verified": "2026-10-10",
+      "probe_failures": 0,
+      "provisional": true,
+      "rank": 99,
+      "no_account": false,
+      "archived": false,
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/"
     }
   ],
   "countries": [
@@ -14698,16 +14848,6 @@
       "checked_on": "2026-08-14",
       "reason": "Listed here from 2026-07-19 until 2026-08-14, when a hand check found the free lane gone with no announcement anywhere. novita.ai/pricing carries 102 published prices and not one of them is zero; the two models this entry named as free are now billed — inclusionai/ling-3.0-flash at $0.06/$0.18 per Mt and mindai/macaron-v1-venti at 15000/45000 micro-units — and novita.ai/models marks every one of its 102 rows \"isFree\": false in its own page data. The keyless catalog does carry eleven rows at input_token_price_per_m 0, but they publish no pricing object, four are plainly internal (ai_infer_test_1/2/3, bunny) and the rest 404 on their own model pages, so that is an unpriced shelf and not an offer. What is left is the ~$0.5 signup credit, and a trial is not a tier. The old probe passed through all of this because it anchored on the id \"ling-3.0-flash\" plus the word \"free\" — both still on the page — instead of on the price beside the id.",
       "reopen_if": "novita.ai/pricing shows a zero price, or a model on novita.ai/models carries \"isFree\": true.",
-      "current": true
-    },
-    {
-      "domains": [
-        "aionlabs.ai"
-      ],
-      "name": "Aion Labs",
-      "checked_on": "2026-08-14",
-      "reason": "Re-checked 2026-08-14, and the first reason recorded here was wrong: this is an LLM API vendor, not the email-agent company of the same name. The site sells \"Powerful AI Models & Agents\" with \"access via an OpenAI-compatible API\"; api.aionlabs.ai/v1/models answers keyless with four models — aion-2.0, aion-3.0, aion-3.0-mini and aion-rp-llama-3.1-8b, roleplay and storytelling variants of DeepSeek and GLM. The verdict is unchanged for a different reason: every one of the four publishes a price and none of them is zero, the cheapest being aion-3.0-mini at $0.0000007 per prompt token. Note the catalog answers {\"models\": [...]} rather than the OpenAI {\"data\": [...]} shape, so an api-models probe here would need that read first.",
-      "reopen_if": "A zero-priced row appears in the api.aionlabs.ai catalog.",
       "current": true
     },
     {

@@ -9021,3 +9021,124 @@ entries:
   probe_failures: 0
   provisional: true
   rank: 93
+- id: aion-labs
+  name: Aion Labs
+  category: api-free-tier
+  url: https://www.aionlabs.ai
+  source_urls:
+  - https://www.aionlabs.ai/pricing/
+  - https://www.aionlabs.ai/docs/
+  - https://www.aionlabs.ai/docs/quickstart/
+  - https://www.aionlabs.ai/docs/rate-limits/
+  - https://api.aionlabs.ai/v1/models
+  - https://www.aionlabs.ai/terms/
+  - https://www.aionlabs.ai/privacy/
+  card_required: false
+  offering: OpenAI-compatible text-model API with a daily credit allowance on its
+    $0 Free tier, no card required
+  limits: The reset timezone is unpublished. Request and token ceilings apply separately
+    from the credit balance; completions are billed at each model's price. An account
+    and API key are required.
+  quotas:
+  - unit: credits
+    period: day
+    scope: account
+    source: https://www.aionlabs.ai/pricing/
+    quote: A daily credit allowance to try agent jobs, the API, and browser chat.
+      No card required.
+    reviewed_on: '2026-10-10'
+  - amount: 15.0
+    unit: requests
+    period: minute
+    scope: account
+    source: https://www.aionlabs.ai/docs/rate-limits/
+    quote: Free 15
+    read: table
+    table:
+      headers:
+      - Tier
+      - Requests Per Minute
+      column: Requests Per Minute
+      rows:
+      - Free
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+  - amount: 20000.0
+    unit: tokens
+    period: minute
+    scope: account
+    source: https://www.aionlabs.ai/docs/rate-limits/
+    quote: Free 20,000 20,000
+    read: table
+    table:
+      headers:
+      - Tier
+      - Tokens Per Minute
+      - Daily Token Limit
+      column: Tokens Per Minute
+      rows:
+      - Free
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+  - amount: 20000.0
+    unit: tokens
+    period: day
+    scope: account
+    source: https://www.aionlabs.ai/docs/rate-limits/
+    quote: Free 20,000 20,000
+    read: table
+    table:
+      headers:
+      - Tier
+      - Tokens Per Minute
+      - Daily Token Limit
+      column: Daily Token Limit
+      rows:
+      - Free
+      row_column: 0
+      where: {}
+      cell_part: ''
+      active_tab: ''
+      active_class: ''
+  free_part: sum
+  models: []
+  api:
+    base_url: https://api.aionlabs.ai/v1
+    key_url: https://www.aionlabs.ai/app/api-keys/
+    auth: api-key
+    openai_compatible: true
+    model_ids:
+    - aion-labs/aion-3.5
+    - aion-labs/aion-3.5-mini
+    - aion-labs/aion-3.0-mini
+    - aion-labs/aion-3.0
+    - aion-labs/aion-2.0
+    - aion-labs/aion-rp-llama-3.1-8b
+    note: Create an API key in the dashboard and send it as a bearer token with the
+      OpenAI Chat Completions format.
+  border:
+    left_out: []
+    'on': '2026-10-10'
+    source: https://www.aionlabs.ai/terms/
+    also_named: [PL]
+  probe:
+    type: page-keywords
+    endpoint: https://www.aionlabs.ai/pricing/
+    keywords:
+    - A daily credit allowance to try agent jobs, the API, and browser chat
+    - No card required
+    free_marker: ''
+    require_zero_price: false
+    catalog: https://api.aionlabs.ai/v1/models
+    machinery_keywords: []
+  first_seen: '2026-10-10'
+  last_verified: '2026-10-10'
+  probe_failures: 0
+  provisional: true
+  rank: 99

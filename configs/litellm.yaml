@@ -1707,6 +1707,42 @@ model_list:
     api_base: https://text.pollinations.ai/openai
     api_key: none
     use_chat_completions_api: true
+- model_name: aion-labs/aion-labs/aion-3.5
+  litellm_params:
+    model: openai/aion-labs/aion-3.5
+    api_base: https://api.aionlabs.ai/v1
+    api_key: os.environ/AION_LABS_API_KEY
+    use_chat_completions_api: true
+- model_name: aion-labs/aion-labs/aion-3.5-mini
+  litellm_params:
+    model: openai/aion-labs/aion-3.5-mini
+    api_base: https://api.aionlabs.ai/v1
+    api_key: os.environ/AION_LABS_API_KEY
+    use_chat_completions_api: true
+- model_name: aion-labs/aion-labs/aion-3.0-mini
+  litellm_params:
+    model: openai/aion-labs/aion-3.0-mini
+    api_base: https://api.aionlabs.ai/v1
+    api_key: os.environ/AION_LABS_API_KEY
+    use_chat_completions_api: true
+- model_name: aion-labs/aion-labs/aion-3.0
+  litellm_params:
+    model: openai/aion-labs/aion-3.0
+    api_base: https://api.aionlabs.ai/v1
+    api_key: os.environ/AION_LABS_API_KEY
+    use_chat_completions_api: true
+- model_name: aion-labs/aion-labs/aion-2.0
+  litellm_params:
+    model: openai/aion-labs/aion-2.0
+    api_base: https://api.aionlabs.ai/v1
+    api_key: os.environ/AION_LABS_API_KEY
+    use_chat_completions_api: true
+- model_name: aion-labs/aion-labs/aion-rp-llama-3.1-8b
+  litellm_params:
+    model: openai/aion-labs/aion-rp-llama-3.1-8b
+    api_base: https://api.aionlabs.ai/v1
+    api_key: os.environ/AION_LABS_API_KEY
+    use_chat_completions_api: true
 - model_name: bytez/Qwen/Qwen3-4B
   litellm_params:
     model: openai/Qwen/Qwen3-4B

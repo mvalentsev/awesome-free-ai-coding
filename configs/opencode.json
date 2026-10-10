@@ -1414,6 +1414,34 @@
         }
       }
     },
+    "aion-labs": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Aion Labs",
+      "options": {
+        "baseURL": "https://api.aionlabs.ai/v1",
+        "apiKey": "{env:AION_LABS_API_KEY}"
+      },
+      "models": {
+        "aion-labs/aion-3.5": {
+          "name": "aion-labs/aion-3.5"
+        },
+        "aion-labs/aion-3.5-mini": {
+          "name": "aion-labs/aion-3.5-mini"
+        },
+        "aion-labs/aion-3.0-mini": {
+          "name": "aion-labs/aion-3.0-mini"
+        },
+        "aion-labs/aion-3.0": {
+          "name": "aion-labs/aion-3.0"
+        },
+        "aion-labs/aion-2.0": {
+          "name": "aion-labs/aion-2.0"
+        },
+        "aion-labs/aion-rp-llama-3.1-8b": {
+          "name": "aion-labs/aion-rp-llama-3.1-8b"
+        }
+      }
+    },
     "arli-ai": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Arli AI",

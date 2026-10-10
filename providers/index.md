@@ -50,6 +50,7 @@ Each page is generated from the same registry as [the list](https://mvalentsev.g
 - [uncloseai (unturf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/uncloseai/) — verified 2026-10-08
 - [Pollinations.AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/pollinations/) — verified 2026-10-08 · [`gpt-oss-20b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/gpt-oss-20b/)
 - [IBM watsonx.ai (Lite plan)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/ibm-watsonx-ai/) 💳 — verified 2026-10-08
+- [Aion Labs](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aion-labs/) — verified 2026-10-10
 - [Arli AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/arli-ai/) — verified 2026-10-08
 - [Bytez](https://mvalentsev.github.io/awesome-free-ai-coding/providers/bytez/) — verified 2026-10-08
 - [Mixlayer](https://mvalentsev.github.io/awesome-free-ai-coding/providers/mixlayer/) — verified 2026-10-08 · [`qwen3.5-4b`](https://mvalentsev.github.io/awesome-free-ai-coding/models/qwen3.5-4b/)
