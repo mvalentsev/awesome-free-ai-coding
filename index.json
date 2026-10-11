@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10",
+  "generated": "2026-10-11",
   "source": "https://github.com/mvalentsev/awesome-free-ai-coding",
   "feed": "https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml",
   "entries": [
@@ -1138,17 +1138,25 @@
           "family": "mimo-v2.6-flash",
           "tier": "strong",
           "aa_model": "mimo-v2-6-flash"
+        },
+        {
+          "family": "longcat-2.5-preview"
         }
       ],
       "newcomers": [
         {
-          "family": "longcat-2.5-preview",
-          "on": "2026-09-27",
-          "source": "https://github.com/mvalentsev/awesome-free-ai-coding/commit/f1ab06809271bf2f2033359a1d1fb50db0a9421b"
-        },
-        {
           "family": "ling-3.1-flash",
           "on": "2026-10-06",
+          "source": "https://opencode.ai/docs/zen/"
+        },
+        {
+          "family": "step-5-preview",
+          "on": "2026-10-11",
+          "source": "https://opencode.ai/docs/zen/"
+        },
+        {
+          "family": "jev-1.13",
+          "on": "2026-10-11",
           "source": "https://opencode.ai/docs/zen/"
         }
       ],
@@ -7167,11 +7175,15 @@
         "https://llmtr.com/models/motif/motif-3",
         "https://llmtr.com/models/tesseracted/kolibri-1",
         "https://llmtr.com/models/qwen/qwen3.8-27b-free",
-        "https://llmtr.com/models/apodex/apodex-1.1-mini-free"
+        "https://llmtr.com/models/apodex/apodex-1.1-mini-free",
+        "https://llmtr.com/models/anthropic/claude-haiku-5.5-free",
+        "https://llmtr.com/docs/en/gateway/system-one/",
+        "https://llmtr.com/models/nace/drex-v1.0-free",
+        "https://llmtr.com/models/nace/drex-v1.5-free"
       ],
       "card_required": false,
       "offering": "Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up",
-      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Apodex Mini can close before its recorded deadline if the promotion pool runs out.",
+      "limits": "Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`\n\nClaude Haiku 5.5: Daily usage allowance: amount not published per account per model; for `anthropic/claude-haiku-5.5-free`\n\nFree chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.",
       "quotas": [
         {
           "unit": "usage",
@@ -7187,6 +7199,19 @@
             "qwen/qwen3.8-27b-free"
           ],
           "reviewed_on": "2026-10-06",
+          "amount": null
+        },
+        {
+          "unit": "usage",
+          "period": "day",
+          "scope": "account-model",
+          "label": "Claude Haiku 5.5",
+          "source": "https://llmtr.com/models/anthropic/claude-haiku-5.5-free",
+          "quote": "Kullanım hesap başına günlük olarak sınırlıdır",
+          "model_ids": [
+            "anthropic/claude-haiku-5.5-free"
+          ],
+          "reviewed_on": "2026-10-11",
           "amount": null
         }
       ],
@@ -7219,6 +7244,11 @@
           "family": "qwen3.8-27b",
           "tier": "strong",
           "aa_model": "qwen3-8-27b"
+        },
+        {
+          "family": "claude-haiku-5.5",
+          "tier": "strong",
+          "aa_model": "claude-haiku-5-5"
         }
       ],
       "api": {
@@ -7233,7 +7263,8 @@
           "poolside/laguna-xs-2.1",
           "inclusionai/ling-3.1-flash",
           "agnes/agnes-3.0-flash",
-          "agnes/agnes-2.5-flash"
+          "agnes/agnes-2.5-flash",
+          "anthropic/claude-haiku-5.5-free"
         ],
         "model_access": {
           "minimax/minimax-m3.1-flash-preview": {
@@ -7253,6 +7284,10 @@
           "apodex/apodex-1.1-mini-free": {
             "source": "https://llmtr.com/models/apodex/apodex-1.1-mini-free",
             "until": "2026-10-10T23:59:00+03:00"
+          },
+          "anthropic/claude-haiku-5.5-free": {
+            "source": "https://llmtr.com/models/anthropic/claude-haiku-5.5-free",
+            "until": "2026-10-14T23:59:00+03:00"
           }
         },
         "model_limits": {
@@ -7270,6 +7305,11 @@
             "context_tokens": 262144,
             "output_tokens": 32768,
             "source": "https://llmtr.com/v1/models"
+          },
+          "anthropic/claude-haiku-5.5-free": {
+            "context_tokens": 100000,
+            "output_tokens": 32768,
+            "source": "https://llmtr.com/v1/models"
           }
         },
         "ignored_ids": [
@@ -7284,7 +7324,9 @@
           "minimax/minimax-m3.1-flash-preview",
           "evren/deepseek-v4.1-flash-tr",
           "tesseracted/kolibri-1",
-          "apodex/apodex-1.1-mini-free"
+          "apodex/apodex-1.1-mini-free",
+          "nace/drex-v1.0-free",
+          "nace/drex-v1.5-free"
         ],
         "note": "New accounts have a reduced shared free-model allowance during their first 24 hours. Nemotron Ultra's -262k variant is metered. Checked 2026-10-05: Qwen ordinary, streaming and small tool cycles completed, but full Codex and OpenCode requests returned provider_error. Ling completed an OpenCode tool turn; Codex via LiteLLM did not complete with either model."
       },
@@ -7325,7 +7367,8 @@
           "agnes-3.0-flash": "",
           "agnes-2.5-flash": "",
           "ling-3.1-flash": "until 2026-10-13",
-          "qwen3.8-27b": ""
+          "qwen3.8-27b": "",
+          "claude-haiku-5.5": "until 2026-10-14"
         }
       },
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/"
@@ -13991,6 +14034,14 @@
       ]
     },
     {
+      "family": "claude-haiku-5.5",
+      "rows": [
+        "llmtr"
+      ],
+      "tier": "strong",
+      "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/"
+    },
+    {
       "family": "claude-opus-4.6",
       "rows": [
         "antigravity"
@@ -14259,6 +14310,12 @@
       ],
       "tier": "notable",
       "page": "https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/"
+    },
+    {
+      "family": "longcat-2.5-preview",
+      "rows": [
+        "opencode"
+      ]
     },
     {
       "family": "mellum",

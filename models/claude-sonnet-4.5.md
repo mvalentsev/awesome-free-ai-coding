@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, verified 2026-10-08'
-description: claude-sonnet-4.5 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+title: 'claude-sonnet-4.5 free: 1 provider, limits and ids, provider probes 2026-10-08'
+description: claude-sonnet-4.5 is served free by Kiro. It asks for no card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/claude-sonnet-4.5/
 last_modified_at: 2026-10-08
 crumb: claude-sonnet-4.5
@@ -11,7 +11,7 @@ crumb: claude-sonnet-4.5
 
 # Where claude-sonnet-4.5 is free
 
-**One row on the list serves `claude-sonnet-4.5` free:** Kiro. It asks for no card. The published offer was checked on 2026-10-08 and is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-4-5-sonnet), below its strong bar.
+**One row on the list serves `claude-sonnet-4.5` free:** Kiro. It asks for no card. The provider's last scheduled probe was on 2026-10-08; its offer is rechecked twice a week. It measures **notable**: in the upper half of the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/models/claude-4-5-sonnet), below its strong bar.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: claude-sonnet-4.5
 
 ### [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/)
 
-🎁 Trials (no card when possible) · no card · verified 2026-10-08 · listed since 2026-07-19
+🎁 Trials (no card when possible) · no card · last probe 2026-10-08 · listed since 2026-07-19
 
 Perpetual free tier of AWS's spec-driven agentic IDE (successor to Amazon Q Developer) with Claude and open-weight models
 
@@ -37,12 +37,13 @@ Requires social login or AWS Builder ID. Credits do not roll over. Free requests
 
 ## Related models
 
+- [`claude-haiku-5.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/) — free at LLMTR (until 2026-10-14)
 - [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) — free at Google Antigravity
 - [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) — free at Kiro
 - [`claude-sonnet-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.6/) — free at Google Antigravity
 
 ---
 
-Generated from `registry.yaml` on 2026-10-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-11 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

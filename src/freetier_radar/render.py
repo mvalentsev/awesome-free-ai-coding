@@ -2616,7 +2616,7 @@ def _model_row(e: Entry, family: str, events: list[Event]) -> list[str]:
         flags.append(_border_flag(e))
     if e.provisional:
         flags.append(_provisional_words(e))
-    flags.append(f"verified {e.last_verified.isoformat()}")
+    flags.append(f"last probe {e.last_verified.isoformat()}")
     since = _listed_since(events, e.id, family)
     if since is not None:
         flags.append(f"listed since {since.isoformat()}")
@@ -2649,11 +2649,11 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
     A reader arrives with a model in mind as often as with a vendor — where is
     Kimi K3 free — and a search engine answers that with a page whose title is
     the question. This is that page: the model, "free", how many rows serve it
-    and the date a probe confirmed them in the title; then every live row that
+    and the providers' last probe dates in the title; then every live row that
     serves it, in the list's order, with what a reader needs to use it there,
     and the rows that listed it before, with the days they did. A model no row
-    serves any more keeps its page (`model_pages`), and the page says so in its
-    title: no longer free, since when, which rows listed it. Every word is the
+    currently lists keeps its page (`model_pages`), and the page says so in its
+    title: no current listing, since when, which rows listed it. Every word is the
     registry's or the history's, and the body sits inside {% raw %} for the
     reason the provider pages' does.
     """
@@ -2670,7 +2670,7 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
     stem = family.split("-")[0]
     # The same name before the first hyphen — glm, gemini, qwen3.8 — is the
     # family a reader who came for one of them is likeliest to ask about next,
-    # and the one to offer a reader whose model is no longer free.
+    # and the one to offer a reader whose model is no longer listed.
     related = [f for f in by_family if f != family and f.split("-")[0] == stem and f in pages]
     nav = f"[Every free model]({models_index_url()}) · [the whole list]({PAGES_URL}/)"
     if rows:
@@ -2694,9 +2694,10 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         asks += "."
         served = ("**One row on the list serves" if n == 1 else f"**{n} rows on the list serve")
         summary = [f"{served} `{family}` free:** {series(names)}.", asks,
-                   (f"The published offer was checked on {floor} and is rechecked {_schedule()}."
-                    if n == 1 else f"The published offers were checked on {floor} and are "
-                                   f"rechecked {_schedule()}.")]
+                   (f"The provider's last scheduled probe was on {floor}; its offer is "
+                    f"rechecked {_schedule()}." if n == 1 else
+                    f"The providers' last scheduled probes were on {floor}; their offers "
+                    f"are rechecked {_schedule()}.")]
         mark = _measured(family, rows)
         if mark is not None:
             board = (f"https://artificialanalysis.ai/models/{mark.aa_model}" if mark.aa_model
@@ -2709,10 +2710,10 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
                 where = f"within {within:g} points of the top of the {index}"
             summary.append(f"It measures **{mark.tier.value}**: {where}.")
         title = (f"{family} free: {n} provider{'' if n == 1 else 's'}, limits and ids, "
-                 f"verified {floor}")
+                 f"provider probes {floor}")
         description = clip(f"{family} is served free by {series(names)}. {asks} Each "
                            "one's limits in the vendor's words, the ids to call and the "
-                           "day the published offer was last checked.", DESCRIPTION_ROOM)
+                           "provider's last probe date.", DESCRIPTION_ROOM)
         body = [f"# Where {family} is free", "", " ".join(summary), "", nav, "",
                 "## Who serves it free", ""]
         for e in rows:
@@ -2722,12 +2723,12 @@ def build_model_page(family: str, entries: list[Entry], events: list[Event], tod
         names = [by_id[i].name if i in by_id else i for i, _ in before]
         last = max(departed).isoformat() if departed else ""
         until = f" The list carried it at {series(names)} until {last}." if before else ""
-        title = f"{family} free: no longer free on the list" + (f", last listed {last}" if last else "")
-        description = clip(f"No row on the list serves {family} free any more.{until} "
-                           "Every model free today is on the list's model index.",
+        title = f"{family} free: no current listing" + (f", last listed {last}" if last else "")
+        description = clip(f"No row currently lists {family} under Free models.{until} "
+                           "Each row's page gives its current offer.",
                            DESCRIPTION_ROOM)
         body = [f"# Where {family} was free", "",
-                f"**No row on the list serves `{family}` free any more.**{until} Each row's page "
+                f"**No row currently lists `{family}` under Free models.**{until} Each row's page "
                 "says what it offers now.", "", nav, ""]
         gone_heading = "## Rows that listed it"
     if before:
@@ -2773,7 +2774,7 @@ def build_models_index(entries: list[Entry], today: date,
         gone.append((family, last, [entry_id for entry_id, _ in before]))
     gone.sort(key=lambda g: (g[1] or date.min, g[0]), reverse=True)
     by_id = {e.id: e for e in entries}
-    title = f"Free LLM models by name: who serves each one free, verified {_floor(active, today)}"
+    title = f"Free LLM models by name: who serves each one free, provider probes {_floor(active, today)}"
     description = clip(
         f"{len(by_family)} model families the list's {len(active)} live rows serve free, and every "
         f"row that serves each one; {len(pages & set(by_family))} of them have a page of their own "
@@ -2799,7 +2800,7 @@ def build_models_index(entries: list[Entry], today: date,
                                            _card_flag(e) + _access_flag(e, family)) for e in rows)
         out.append(f"| {cell} | {at} |")
     if gone:
-        out += ["", "## No longer free on the list", "",
+        out += ["", "## Previously listed models", "",
                 "| Model | Last listed | Rows that listed it |", "|---|---|---|"]
         for family, last, ids in gone:
             where = ", ".join("[{}]({})".format(

@@ -713,6 +713,16 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
+- model_name: llmtr/anthropic/claude-haiku-5.5-free
+  litellm_params:
+    model: openai/anthropic/claude-haiku-5.5-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 32768
+  model_info:
+    access: free until 2026-10-14 23:59+03:00
+    source: https://llmtr.com/models/anthropic/claude-haiku-5.5-free
 - model_name: llmtech/nvidia/Qwen3.8-27B-NVFP4
   litellm_params:
     model: openai/nvidia/Qwen3.8-27B-NVFP4
@@ -2072,6 +2082,18 @@ model_list:
     api_base: https://llmtr.com/v1
     api_key: os.environ/LLMTR_API_KEY
     use_chat_completions_api: true
+  model_info:
+    allowed_fails_policy:
+      AuthenticationErrorAllowedFails: 0
+      InternalServerErrorAllowedFails: 0
+      RateLimitErrorAllowedFails: 0
+- model_name: free/strong
+  litellm_params:
+    model: openai/anthropic/claude-haiku-5.5-free
+    api_base: https://llmtr.com/v1
+    api_key: os.environ/LLMTR_API_KEY
+    use_chat_completions_api: true
+    max_tokens: 32768
   model_info:
     allowed_fails_policy:
       AuthenticationErrorAllowedFails: 0

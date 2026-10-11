@@ -315,6 +315,6 @@ def test_real_expiry_command_archives_an_ended_offer_and_keeps_its_page(tmp_path
     current = load_registry(path)[0]
     assert current.retired_on == ended.date()
     assert archive_reason(current, ended.date()).startswith('documented free promotions ended')
-    assert 'no longer free' in (tmp_path / 'models/preview.md').read_text()
+    assert 'no current listing' in (tmp_path / 'models/preview.md').read_text()
     assert '"archived"' in (tmp_path / 'history.jsonl').read_text()
     assert 'gateway' not in build_opencode_config([current], ended.date())['provider']

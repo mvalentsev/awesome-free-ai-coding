@@ -27,6 +27,8 @@ from .quotes import page_texts, quote_found, row_quote_source, row_quotes, row_u
 from .render import PAGES_URL, REPO_URL
 
 PUSH_BASE_FLAG = '--push-base'
+PRODUCER_WORKFLOWS = {'verification': ('update.yml', 'verification'),
+                      'expiry': ('expire.yml', 'expire model promotions')}
 
 
 def now() -> str:
@@ -158,8 +160,14 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
         new = {v[field]: v for v in current}
         return sorted(k for k in old.keys() | new.keys() if old.get(k) != new.get(k))
     def changed_pages(folder, key, field):
+        def semantic_change(path):
+            old, new = (git.show(repo, ref, path) or '' for ref in (base, sha))
+            if folder == 'providers':
+                pattern = r'(?m)(^Generated from `registry.yaml` on )\d{4}-\d{2}-\d{2}\b'
+                old, new = (re.sub(pattern, r'\1<date>', text) for text in (old, new))
+            return old != new
         return {v[field] for v in [*before.get(key, []), *after.get(key, [])]
-                if f'{folder}/{v[field]}.md' in paths}
+                if (path := f'{folder}/{v[field]}.md') in paths and semantic_change(path)}
     rows = sorted(set(changed(before.get('entries', []), after.get('entries', []), 'id')) |
                   set(changed(registries['before'], registries['after'], 'id')) |
                   changed_pages('providers', 'entries', 'id'))
@@ -185,8 +193,14 @@ def prepare(repo: Path, base: str, head: str, bundle: Bundle, verification_run: 
                             '--json', 'databaseId,name,status,conclusion,headSha,url,attempt'))
         log = gh('run', 'view', str(verification_run), '--repo', REPO_URL.removeprefix('https://github.com/'),
                  '--attempt', str(run['attempt']), '--log')
-        workflow = yaml.safe_load(blob(repo, sha, '.github/workflows/update.yml'))
-        run = produced_run(repo, sha, run, log, workflow['name'])
+        for filename, subject in PRODUCER_WORKFLOWS.values():
+            body = git.show(repo, sha, '.github/workflows/' + filename)
+            workflow = yaml.safe_load(body) if body else None
+            if workflow and run['name'] == workflow['name']:
+                break
+        else:
+            raise ValueError('verification run must be a configured verification or expiry writer')
+        run = produced_run(repo, sha, run, log, workflow['name'], subject)
         run['log'] = bundle.write(f"workflows/{run['databaseId']}-{run['attempt']}.log", log.encode())
         bundle.save('verification-run', run)
         for path in ('ci.yml', 'indexnow.yml'):
@@ -298,9 +312,10 @@ async def sources(bundle: Bundle, extra: list[str]) -> dict:
                                   'judgment': 'Source reads, quote matching and configured page catalogs; vendor eligibility still needs review.'})
 
 
-def produced_run(repo: Path, sha: str, run: dict, log: str, name: str) -> dict:
-    """A scheduled run's trigger SHA differs from the verification commit it creates."""
-    candidates = re.findall(r'\[main ([0-9a-f]{7,40})\] chore: verification', log)
+def produced_run(repo: Path, sha: str, run: dict, log: str, name: str,
+                 subject: str = 'verification') -> dict:
+    """A main writer's trigger SHA differs from the commit it creates."""
+    candidates = re.findall(r'\[main ([0-9a-f]{7,40})\] chore: '+re.escape(subject)+r'(?:\s|$)', log)
     matched = any(revision(repo, candidate) == sha for candidate in candidates)
     ancestor = git.run(repo, 'merge-base', '--is-ancestor', run['headSha'], sha).returncode == 0
     if run['name'] != name or run['status'] != 'completed' or run['conclusion'] != 'success' or not matched or not ancestor:
@@ -559,7 +574,7 @@ def main() -> None:
     prepare_parser = sub.add_parser('prepare'); prepare_parser.add_argument('--base', required=True)
     prepare_parser.add_argument('--head', default='HEAD')
     prepare_parser.add_argument(PUSH_BASE_FLAG, help='commit immediately before the final human push; defaults to --base')
-    prepare_parser.add_argument('--verification-run', type=int, help='successful update run that produced this bot commit')
+    prepare_parser.add_argument('--verification-run', type=int, help='successful verification or expiry run that produced this bot commit')
     source_parser = sub.add_parser('sources'); source_parser.add_argument('--url', action='append', default=[])
     publish_parser = sub.add_parser('publication'); publish_parser.add_argument('--every', type=float, default=15)
     publish_parser.add_argument('--timeout', type=float, default=900)

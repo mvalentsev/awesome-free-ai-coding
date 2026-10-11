@@ -5,8 +5,22 @@
   <id>https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml</id>
   <link rel="self" href="https://mvalentsev.github.io/awesome-free-ai-coding/feed.xml"/>
   <link rel="alternate" href="https://github.com/mvalentsev/awesome-free-ai-coding"/>
-  <updated>2026-10-10T22:26:41Z</updated>
+  <updated>2026-10-11T10:58:39Z</updated>
   <author><name>freetier-radar</name></author>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261011T105839Z</id>
+    <title>Free models changed: LLMTR</title>
+    <link rel="alternate" href="https://llmtr.com"/>
+    <updated>2026-10-11T10:58:39Z</updated>
+    <summary type="text">added claude-haiku-5.5 · free models: nemotron-3-ultra, nemotron-3-super, laguna-xs-2.1, agnes-3.0-flash, agnes-2.5-flash, ling-3.1-flash, qwen3.8-27b, claude-haiku-5.5</summary>
+  </entry>
+  <entry>
+    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/opencode/20261011T105839Z</id>
+    <title>Free models changed: opencode</title>
+    <link rel="alternate" href="https://opencode.ai"/>
+    <updated>2026-10-11T10:58:39Z</updated>
+    <summary type="text">added longcat-2.5-preview · free models: big-pickle, mimo-v2.5, ling-3.0-flash-fin, nemotron-3-ultra, nemotron-3.5-lightning, muse-spark-1.3-contributor, mimo-v2.6-flash, longcat-2.5-preview</summary>
+  </entry>
   <entry>
     <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/llmtr/20261010T222641Z</id>
     <title>Free models changed: LLMTR</title>
@@ -342,19 +356,5 @@
     <link rel="alternate" href="https://qoder.cn"/>
     <updated>2026-09-27T09:00:27Z</updated>
     <summary type="text">Alibaba Cloud's agentic coding apps for China — Qoder CN IDE, JetBrains plugin and CLI, formerly Tongyi Lingma — with a two-week trial of 300 credits, then 100 credits a day to claim while that promotion runs, and limited completions on a basic model after</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/regolo/20260927T053850Z</id>
-    <title>Free models changed: Regolo AI</title>
-    <link rel="alternate" href="https://regolo.ai/pricing/"/>
-    <updated>2026-09-27T05:38:50Z</updated>
-    <summary type="text">added qwen3.5-122b-a10b · free models: glm-5.2, gpt-oss-120b, qwen3.8-27b, apertus-70b, gemma-4-31b, gpt-oss-20b, mistral-small-4, qwen3.5-9b, qwen3.5-122b-a10b</summary>
-  </entry>
-  <entry>
-    <id>tag:mvalentsev.github.io,2026:awesome-free-ai-coding/models/windsurf/20260927T045159Z</id>
-    <title>Free models changed: Devin Desktop (formerly Windsurf)</title>
-    <link rel="alternate" href="https://devin.ai/desktop"/>
-    <updated>2026-09-27T04:51:59Z</updated>
-    <summary type="text">added swe-1.6 · free models: swe-1.6</summary>
   </entry>
 </feed>

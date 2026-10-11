@@ -107,6 +107,11 @@ def _review_push_base(root: Path) -> tuple[str, ...]:
     return (PUSH_BASE_FLAG,)
 
 
+def _review_producer_workflows(root: Path) -> tuple[str, ...]:
+    from .review import PRODUCER_WORKFLOWS
+    return tuple(PRODUCER_WORKFLOWS)
+
+
 def _page_catalog_views(root: Path) -> tuple[str, ...]:
     from .models import _row_payload
     rows = [e for e in load_registry(root / "registry.yaml") if e.page_catalog]
@@ -145,6 +150,9 @@ CLAIMS: tuple[Claim, ...] = (
           _page_catalog_views, "models.PageCatalog, Entry and _row_payload; tests/test_page_catalog.py"),
     Claim("CONTRIBUTING.md", r"`prepare (--push-base) <commit>` records the commit immediately before the final",
           _review_push_base, "review.PUSH_BASE_FLAG and prepare; push-range regressions in tests/test_review.py"),
+    Claim("CONTRIBUTING.md", r"For a bot (verification) or (expiry) commit, add `prepare --verification-run",
+          _review_producer_workflows,
+          "review.PRODUCER_WORKFLOWS and prepare; matching main-writer receipt regressions in tests/test_review.py"),
     Claim("CONTRIBUTING.md", r"and it\s+expires after (\d+) days, at which point the scout",
           lambda root: (str(WATCH_RECHECK_DAYS),), "models.WATCH_RECHECK_DAYS"),
     Claim("CONTRIBUTING.md", r"Those verdicts expire after (\d+)\s+days",

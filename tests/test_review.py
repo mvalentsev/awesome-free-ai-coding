@@ -69,6 +69,37 @@ def test_rendered_page_changes_reach_review_coverage_without_registry_changes(tm
         assert sum(case.endswith('/provider/vendor') for case in plan['cases']) == 6
 
 
+@pytest.mark.parametrize('change,rows', [
+    ('date', []), ('copy', ['vendor']), ('heading', ['vendor']),
+])
+@pytest.mark.parametrize('standing', [
+    ' and re-verified twice a week; the full list is linked below.',
+    '. No probe reads this row any more.',
+    '. A probe still reads it and can bring it back.',
+])
+def test_provider_generation_date_keeps_byte_checks_without_expanding_vendor_facts(tmp_path, change, rows, standing):
+    repo, _, _ = push_repo_at(tmp_path)
+    page = repo / 'providers/vendor.md'
+    page.parent.mkdir()
+    original = '# Vendor\n\nFree usage.\n\nGenerated from `registry.yaml` on 2026-10-10'+standing+'\n'
+    page.write_text(original)
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture'], check=True)
+    current = original.replace('2026-10-10', '2026-10-11')
+    if change == 'copy':
+        current = current.replace('Free usage.', 'New allowance.')
+    elif change == 'heading':
+        current = current.replace('# Vendor', '# Vendor current offer')
+    page.write_text(current)
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture'], check=True)
+    bundle = review.Bundle(repo / '.evidence', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle)
+    assert scope['paths'] == ['providers/vendor.md']
+    assert scope['rows'] == rows
+    assert '2026-10-11' in (bundle.out / 'diff.patch').read_text()
+
+
 def push_repo_at(tmp_path):
     repo = repo_at(tmp_path)
     base = review.revision(repo, 'HEAD~1')
@@ -528,6 +559,54 @@ def test_verification_log_must_prove_the_exact_produced_commit(tmp_path):
         with pytest.raises(ValueError):
             review.produced_run(repo, sha, wrong_run, wrong_log, 'update')
     assert review.workflow_state([verified], sha, {'update'}) == 'passed'
+
+
+@pytest.mark.parametrize('filename,name,subject', [
+    ('update.yml', 'update', 'verification'),
+    ('expire.yml', 'expire promotions', 'expire model promotions'),
+])
+def test_prepare_accepts_only_the_matching_main_writer_receipt(tmp_path, monkeypatch,
+                                                              filename, name, subject):
+    import yaml
+    repo = repo_at(tmp_path)
+    workflows = repo / '.github/workflows'
+    workflows.mkdir(parents=True)
+    for file, workflow_name in [('update.yml', 'update'), ('expire.yml', 'expire promotions'),
+                                ('ci.yml', 'ci'), ('indexnow.yml', 'indexnow')]:
+        (workflows / file).write_text(yaml.safe_dump({
+            'name': workflow_name, 'on': {'push': {}} if file in {'ci.yml', 'indexnow.yml'} else {}}))
+    env = {**os.environ, 'GIT_AUTHOR_NAME': 'a reviewer', 'GIT_AUTHOR_EMAIL': 't@example.com',
+           'GIT_COMMITTER_NAME': 'a reviewer', 'GIT_COMMITTER_EMAIL': 't@example.com'}
+    subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True, env=env)
+    subprocess.run(['git', '-C', str(repo), 'commit', '-qm', 'chore: fixture'], check=True, env=env)
+    sha = review.revision(repo, 'HEAD')
+    run = {'name': name, 'status': 'completed', 'conclusion': 'success',
+           'headSha': review.revision(repo, 'HEAD~1'), 'databaseId': 3, 'attempt': 1}
+    log = 'step timestamp [main '+sha[:7]+'] chore: '+subject+' 2026-10-11'
+    monkeypatch.setattr(review, 'gh', lambda *args: log if '--log' in args else json.dumps(run))
+    bundle = review.Bundle(repo / '.evidence/good', repo)
+    scope = review.prepare(repo, 'HEAD~1', 'HEAD', bundle, verification_run=3)
+    assert set(scope['workflows']) == {'pages build and deployment', name}
+    assert bundle.load('verification-run')['producedSha'] == sha
+    assert log in (bundle.out / 'workflows/3-1.log').read_text()
+
+    wrong_subject = 'verification' if filename == 'expire.yml' else 'expire model promotions'
+    wrong_log = log.replace('chore: '+subject, 'chore: '+wrong_subject)
+    monkeypatch.setattr(review, 'gh', lambda *args: wrong_log if '--log' in args else json.dumps(run))
+    with pytest.raises(ValueError, match='exact produced commit'):
+        review.prepare(repo, 'HEAD~1', 'HEAD', review.Bundle(repo / '.evidence/bad', repo),
+                       verification_run=3)
+
+    for index, (bad_run, bad_log) in enumerate([
+        ({**run, 'conclusion': 'failure'}, log),
+        ({**run, 'name': 'ci'}, log),
+        (run, log.replace(sha[:7], run['headSha'][:7])),
+        (run, log.replace('chore: '+subject, 'chore: '+subject+'-other')),
+    ]):
+        monkeypatch.setattr(review, 'gh', lambda *args: bad_log if '--log' in args else json.dumps(bad_run))
+        with pytest.raises(ValueError):
+            review.prepare(repo, 'HEAD~1', 'HEAD', review.Bundle(repo / ('.evidence/rejected-'+str(index)), repo),
+                           verification_run=3)
 
 
 def test_browser_plan_keeps_changed_archived_provider_pages(tmp_path):

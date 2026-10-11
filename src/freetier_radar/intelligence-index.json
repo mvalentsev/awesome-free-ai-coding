@@ -1,5 +1,5 @@
 {
-  "read_on": "2026-10-09",
+  "read_on": "2026-10-11",
   "source": "https://artificialanalysis.ai/leaderboards/models",
   "top": {
     "slug": "claude-opus-5-5",
@@ -12,6 +12,11 @@
       "slug": "apertus-70b-instruct",
       "index": 5.1,
       "estimated": true
+    },
+    "claude-haiku-5.5": {
+      "slug": "claude-haiku-5-5",
+      "index": 43.4,
+      "estimated": false
     },
     "claude-opus-4.6": {
       "slug": "claude-opus-4-6",

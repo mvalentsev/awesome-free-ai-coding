@@ -1105,9 +1105,9 @@ exact commit, saves their full logs and open PRs, and compares published bytes.
 Pages byte checks use the repository map: only files marked `published` are
 served there. Changed README files are also checked at the exact GitHub commit,
 including documentation excluded from Pages.
-For a bot verification commit, add `prepare --verification-run <update-run-id>`:
-the full successful update log must prove which commit it produced, since that
-push runs its checks and IndexNow inside the update instead of starting CI.
+For a bot verification or expiry commit, add `prepare --verification-run <producer-run-id>`:
+the full successful writer log must prove which commit it produced, since that
+push runs its checks and IndexNow inside the writer instead of starting CI.
 It prints workflow updates only when their state changes. Run the emitted
 `browser.js` with Playwright's `browser_run_code_unsafe` filename argument,
 save the returned JSON privately, and import it with `browser --result <file>`.

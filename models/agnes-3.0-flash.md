@@ -1,9 +1,9 @@
 ---
 layout: default
-title: 'agnes-3.0-flash free: 2 providers, limits and ids, verified 2026-10-08'
-description: agnes-3.0-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the day the published offer was last checked.
+title: 'agnes-3.0-flash free: 2 providers, limits and ids, provider probes 2026-10-08'
+description: agnes-3.0-flash is served free by LLMTR and Agnes AI. None asks for a card. Each one's limits in the vendor's words, the ids to call and the provider's last probe date.
 permalink: /models/agnes-3.0-flash/
-last_modified_at: 2026-10-10
+last_modified_at: 2026-10-11
 crumb: agnes-3.0-flash
 ---
 
@@ -11,7 +11,7 @@ crumb: agnes-3.0-flash
 
 # Where agnes-3.0-flash is free
 
-**2 rows on the list serve `agnes-3.0-flash` free:** LLMTR and Agnes AI. None asks for a card. The published offers were checked on 2026-10-08 and are rechecked twice a week.
+**2 rows on the list serve `agnes-3.0-flash` free:** LLMTR and Agnes AI. None asks for a card. The providers' last scheduled probes were on 2026-10-08; their offers are rechecked twice a week.
 
 [Every free model](https://mvalentsev.github.io/awesome-free-ai-coding/models/) · [the whole list](https://mvalentsev.github.io/awesome-free-ai-coding/)
 
@@ -19,7 +19,7 @@ crumb: agnes-3.0-flash
 
 ### [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/)
 
-🧭 Aggregators (one key, many providers) · no card · verified 2026-10-08 · listed since 2026-09-28
+🧭 Aggregators (one key, many providers) · no card · last probe 2026-10-08 · listed since 2026-09-28
 
 Turkish OpenAI-compatible gateway with free models on a zero balance and dated previews; some previews require a previous top-up
 
@@ -28,7 +28,9 @@ Turkish OpenAI-compatible gateway with free models on a zero balance and dated p
 
 - Limits, in the vendor's words: Nemotron Ultra/Super and Qwen3.8 27B: Daily usage allowance: amount not published; scope not published; for `nvidia/nemotron-3-ultra-550b-a55b`, `nvidia/nemotron-3-super-120b-a12b`, `qwen/qwen3.8-27b-free`
 
-Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database. Apodex Mini can close before its recorded deadline if the promotion pool runs out.
+Claude Haiku 5.5: Daily usage allowance: amount not published per account per model; for `anthropic/claude-haiku-5.5-free`
+
+Free chat rows can be called on a new account with zero balance before any top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token allowance to track. Paid use is prepaid; an 8% margin applies once at top-up, not to model prices. Prompt and response bodies are not permanently written to the usage and billing database.
 
 </details>
 
@@ -39,7 +41,7 @@ Free chat rows can be called on a new account with zero balance before any top-u
 
 ### [Agnes AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/agnes-ai/)
 
-🔌 LLM APIs with free tier · no card · verified 2026-10-08 · listed since 2026-09-14
+🔌 LLM APIs with free tier · no card · last probe 2026-10-08 · listed since 2026-09-14
 
 Agnes AI's own models behind an OpenAI-compatible API, with its Flash text models charged at zero today and image generation free beside them
 
@@ -65,6 +67,6 @@ The Flash models' input, cached input and output are currently zero-priced; Pro 
 
 ---
 
-Generated from `registry.yaml` on 2026-10-10 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
+Generated from `registry.yaml` on 2026-10-11 and re-verified twice a week; every free model on the list is at <https://mvalentsev.github.io/awesome-free-ai-coding/models/>, and the full list, the Atom feed and the machinery at <https://github.com/mvalentsev/awesome-free-ai-coding>.
 
 {% endraw %}

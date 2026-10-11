@@ -739,12 +739,16 @@ entries:
   - family: mimo-v2.6-flash
     tier: strong
     aa_model: mimo-v2-6-flash
-  newcomers:
   - family: longcat-2.5-preview
-    'on': '2026-09-27'
-    source: https://github.com/mvalentsev/awesome-free-ai-coding/commit/f1ab06809271bf2f2033359a1d1fb50db0a9421b
+  newcomers:
   - family: ling-3.1-flash
     'on': '2026-10-06'
+    source: https://opencode.ai/docs/zen/
+  - family: step-5-preview
+    'on': '2026-10-11'
+    source: https://opencode.ai/docs/zen/
+  - family: jev-1.13
+    'on': '2026-10-11'
     source: https://opencode.ai/docs/zen/
   data_use:
     trains: 'yes'
@@ -4851,6 +4855,10 @@ entries:
   - https://llmtr.com/models/tesseracted/kolibri-1
   - https://llmtr.com/models/qwen/qwen3.8-27b-free
   - https://llmtr.com/models/apodex/apodex-1.1-mini-free
+  - https://llmtr.com/models/anthropic/claude-haiku-5.5-free
+  - https://llmtr.com/docs/en/gateway/system-one/
+  - https://llmtr.com/models/nace/drex-v1.0-free
+  - https://llmtr.com/models/nace/drex-v1.5-free
   card_required: false
   offering: Turkish OpenAI-compatible gateway with free models on a zero balance and
     dated previews; some previews require a previous top-up
@@ -4858,8 +4866,7 @@ entries:
     top-up. Laguna XS 2.1 follows Poolside's free inference offer, without a token
     allowance to track. Paid use is prepaid; an 8% margin applies once at top-up,
     not to model prices. Prompt and response bodies are not permanently written to
-    the usage and billing database. Apodex Mini can close before its recorded deadline
-    if the promotion pool runs out.
+    the usage and billing database.
   quotas:
   - unit: usage
     period: day
@@ -4882,6 +4889,15 @@ entries:
     model_ids:
     - apodex/apodex-1.1-mini-free
     reviewed_on: '2026-10-06'
+  - unit: usage
+    period: day
+    scope: account-model
+    label: Claude Haiku 5.5
+    source: https://llmtr.com/models/anthropic/claude-haiku-5.5-free
+    quote: Kullanım hesap başına günlük olarak sınırlıdır
+    model_ids:
+    - anthropic/claude-haiku-5.5-free
+    reviewed_on: '2026-10-11'
   free_part: models
   models:
   - family: nemotron-3-ultra
@@ -4898,6 +4914,9 @@ entries:
   - family: qwen3.8-27b
     tier: strong
     aa_model: qwen3-8-27b
+  - family: claude-haiku-5.5
+    tier: strong
+    aa_model: claude-haiku-5-5
   api:
     base_url: https://llmtr.com/v1
     key_url: https://llmtr.com/dashboard/api-keys
@@ -4911,6 +4930,7 @@ entries:
     - inclusionai/ling-3.1-flash
     - agnes/agnes-3.0-flash
     - agnes/agnes-2.5-flash
+    - anthropic/claude-haiku-5.5-free
     model_access:
       minimax/minimax-m3.1-flash-preview:
         source: https://llmtr.com/models/minimax/minimax-m3.1-flash-preview
@@ -4926,6 +4946,9 @@ entries:
       apodex/apodex-1.1-mini-free:
         source: https://llmtr.com/models/apodex/apodex-1.1-mini-free
         until: '2026-10-10T23:59:00+03:00'
+      anthropic/claude-haiku-5.5-free:
+        source: https://llmtr.com/models/anthropic/claude-haiku-5.5-free
+        until: '2026-10-14T23:59:00+03:00'
     model_limits:
       qwen/qwen3.8-27b-free:
         context_tokens: 131042
@@ -4937,6 +4960,10 @@ entries:
         source: https://llmtr.com/v1/models
       apodex/apodex-1.1-mini-free:
         context_tokens: 262144
+        output_tokens: 32768
+        source: https://llmtr.com/v1/models
+      anthropic/claude-haiku-5.5-free:
+        context_tokens: 100000
         output_tokens: 32768
         source: https://llmtr.com/v1/models
     ignored_ids:
@@ -4952,6 +4979,8 @@ entries:
     - evren/deepseek-v4.1-flash-tr
     - tesseracted/kolibri-1
     - apodex/apodex-1.1-mini-free
+    - nace/drex-v1.0-free
+    - nace/drex-v1.5-free
     note: 'New accounts have a reduced shared free-model allowance during their first
       24 hours. Nemotron Ultra''s -262k variant is metered. Checked 2026-10-05: Qwen
       ordinary, streaming and small tool cycles completed, but full Codex and OpenCode

@@ -11,10 +11,11 @@ the links from every page that names the model.
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+import pytest
 import yaml
 
 from freetier_radar.history import Event
-from freetier_radar.models import ARCHIVE_AFTER_DAYS, save_registry
+from freetier_radar.models import ARCHIVE_AFTER_DAYS, load_registry, save_registry
 from freetier_radar.render import (
     MODEL_PAGE_ROWS, MODELS_DIR, PAGES_URL, build_context, build_index, build_llms_txt,
     build_model_page, build_models_index, build_provider_page, check_rendered, model_page_url,
@@ -141,13 +142,13 @@ def test_check_rendered_sees_a_model_page_the_render_no_longer_makes(tmp_path):
 
 def test_a_model_page_is_titled_by_the_question_and_dated_by_the_evidence():
     """The title is what a reader types — the model, "free" — with the count and
-    the date a probe confirmed it. Several rows carry several dates, and the
+    the providers' last probe dates. Several rows carry several dates, and the
     oldest is a floor, so it says "or later" (the badge's rule); the sitemap's
     date is the newest change a reader could see: a probe pass or a history line."""
     entries = [groq(last_verified=date(2026, 7, 18)), keyless(), agent()]
     page = build_model_page("qwen3.8-27b", entries, [], TODAY)
     meta = front(page)
-    assert meta["title"] == "qwen3.8-27b free: 3 providers, limits and ids, verified 2026-07-18 or later"
+    assert meta["title"] == "qwen3.8-27b free: 3 providers, limits and ids, provider probes 2026-07-18 or later"
     assert meta["permalink"] == "/models/qwen3.8-27b/"
     assert meta["layout"] == "default"
     assert meta["last_modified_at"] == TODAY
@@ -158,7 +159,7 @@ def test_a_model_page_is_titled_by_the_question_and_dated_by_the_evidence():
 
     one = front(build_model_page("gpt-oss-120b", [groq(models=[
         {"family": "gpt-oss-120b", "tier": "strong", "aa_model": "gpt-oss-120b"}])], [], TODAY))
-    assert one["title"] == "gpt-oss-120b free: 1 provider, limits and ids, verified 2026-07-19"
+    assert one["title"] == "gpt-oss-120b free: 1 provider, limits and ids, provider probes 2026-07-19"
 
     moved = at("2026-07-21", id="groq-free", name="Groq", models=["qwen3.8-27b", "gpt-oss-120b"])
     assert front(build_model_page("qwen3.8-27b", entries, [moved], TODAY + timedelta(days=3))
@@ -174,8 +175,8 @@ def test_a_model_page_opens_with_the_answer():
     assert "# Where qwen3.8-27b is free" in page
     assert ("**3 rows on the list serve `qwen3.8-27b` free:** Groq, Open Lane and Some Agent. "
             "Some Agent asks for a card on file, the rest for none; Open Lane answers with no "
-            "account at all. The published offers were checked on 2026-07-19 and are rechecked "
-            "twice a week. It measures **strong**: within 25 points of the top of the "
+            "account at all. The providers' last scheduled probes were on 2026-07-19; their offers "
+            "are rechecked twice a week. It measures **strong**: within 25 points of the top of the "
             "[Artificial Analysis Intelligence Index]"
             "(https://artificialanalysis.ai/models/qwen3-8-27b).") in page
     assert f"[Every free model]({PAGES_URL}/models/)" in page
@@ -190,7 +191,7 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     page = build_model_page("qwen3.8-27b", entries, [], TODAY)
     groq_block = page.split("### [Groq]")[1].split("\n### ")[0]
     assert groq_block.startswith(f"({PAGES_URL}/providers/groq-free/)")
-    assert "🔌 LLM APIs with free tier\u00a0· no card\u00a0· verified 2026-07-19" in groq_block
+    assert "🔌 LLM APIs with free tier\u00a0· no card\u00a0· last probe 2026-07-19" in groq_block
     assert "Fast inference on a free plan" in groq_block
     assert "Provider-wide limits" not in groq_block
     assert ("- Limits, in the vendor's words: 30 requests a minute and 1,000 a day on "
@@ -202,7 +203,7 @@ def test_every_row_says_what_it_asks_and_how_to_call_the_model():
     open_block = page.split("### [Open Lane]")[1].split("\n### ")[0]
     assert "- Key: none — the lane is anonymous\n- Callable ids: `Qwen/Qwen3.8-27B`" in open_block
     agent_block = page.split("### [Some Agent]")[1].split("\n## ")[0]
-    assert "🤖 Coding agents & CLIs\u00a0· card required\u00a0· verified 2026-07-19" in agent_block
+    assert "🤖 Coding agents & CLIs\u00a0· card required\u00a0· last probe 2026-07-19" in agent_block
     assert "- No API endpoint to paste: this row is a tool you install or sign in to." in agent_block
     assert "The vendor publishes no figure for this tier." in agent_block
 
@@ -284,7 +285,7 @@ def test_a_row_says_since_when_the_list_has_carried_the_model_there():
     ]
     page = build_model_page("qwen3.8-27b", [groq(), keyless()], events, TODAY)
     groq_block = page.split("### [Groq]")[1].split("\n### ")[0]
-    assert "· verified 2026-07-19\u00a0· listed since 2026-07-09" in groq_block
+    assert "· last probe 2026-07-19\u00a0· listed since 2026-07-09" in groq_block
     open_block = page.split("### [Open Lane]")[1]
     assert "listed since" not in open_block
 
@@ -324,7 +325,7 @@ def test_the_models_index_names_every_family_and_links_the_pages():
     page = build_models_index(entries, TODAY)
     meta = front(page)
     assert meta["permalink"] == "/models/"
-    assert meta["title"] == "Free LLM models by name: who serves each one free, verified 2026-07-19"
+    assert meta["title"] == "Free LLM models by name: who serves each one free, provider probes 2026-07-19"
     assert meta["last_modified_at"] == TODAY
     assert (f"| [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) | [A]({PAGES_URL}/providers/a/), "
             f"[B]({PAGES_URL}/providers/b/) 💳 |") in page
@@ -448,6 +449,51 @@ def serving(entry_id: str, *families: str, day: date = TODAY):
                 models=[{"family": f} for f in families])
 
 
+@pytest.mark.parametrize("pending_free_lane", [False, True])
+def test_empty_family_page_describes_listing_not_current_vendor_availability(tmp_path, pending_free_lane):
+    """A family can leave Free models while a free API id waits for its bar.
+    The same historical page must describe its listing, with or without that
+    pending lane, rather than infer that every vendor stopped serving it."""
+    _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
+    entries = [serving("a", "glm-5", day=LATER), serving("b", "glm-5", day=LATER)]
+    if pending_free_lane:
+        entries.append(make(id="waiting", name="Waiting", last_verified=LATER,
+                            models=[],
+                            api={"base_url": "https://free.example/v1", "auth": "none",
+                                 "model_ids": ["kimi-k3:free"]}))
+    _publish(tmp_path, entries, LATER)
+    if pending_free_lane:
+        assert "kimi-k3:free" in (tmp_path / "configs/opencode.json").read_text()
+    page = (tmp_path / MODELS_DIR / "kimi-k3.md").read_text()
+    assert front(page)["title"] == "kimi-k3 free: no current listing, last listed 2026-07-22"
+    assert "No row currently lists kimi-k3 under Free models." in front(page)["description"]
+    assert "**No row currently lists `kimi-k3` under Free models.**" in page
+    assert "serves `kimi-k3` free any more" not in page
+    assert "Every model free today" not in front(page)["description"]
+    assert "## Rows that listed it" in page
+    assert f"[Every free model]({PAGES_URL}/models/)" in page
+    assert "## Previously listed models" in (tmp_path / MODELS_DIR / "index.md").read_text()
+
+
+@pytest.mark.parametrize("row_count", [1, 2])
+def test_new_family_does_not_inherit_an_earlier_model_verification_claim(tmp_path, row_count):
+    """Adding a model after the scheduled probe must keep the earned row date
+    and label its scope, rather than claim that probe checked the new model."""
+    entries = [serving(str(i), "glm-5") for i in range(row_count)]
+    _publish(tmp_path, entries, TODAY)
+    later = [e.model_copy(update={"models": [*e.models,
+              type(e.models[0]).model_validate({"family": "kimi-k3", **STRONG})]}) for e in entries]
+    _publish(tmp_path, later, LATER)
+    page = (tmp_path / MODELS_DIR / "kimi-k3.md").read_text()
+    assert front(page)["title"].endswith("provider probes 2026-07-19")
+    assert "The published offer was checked on 2026-07-19" not in page
+    assert "The published offers were checked on 2026-07-19" not in page
+    assert "last scheduled probe" in page
+    assert "last probe 2026-07-19" in page
+    assert "listed since 2026-07-22" in page
+    assert all(e.last_verified == TODAY for e in load_registry(tmp_path / "registry.yaml"))
+
+
 def test_a_model_page_stays_when_the_model_drops_below_the_bar(tmp_path):
     """Two rows gave kimi-k3 its page; one row keeps serving it. The address was
     published — a search engine indexed it, an answer cited it — and the model
@@ -465,17 +511,17 @@ def test_a_model_page_stays_when_the_model_drops_below_the_bar(tmp_path):
 
 def test_a_model_no_row_serves_any_more_keeps_a_page_that_says_where_it_went(tmp_path):
     """The page a reader lands on from an old link answers the question they
-    brought — is it still free? — instead of a 404: no longer, since when, where
-    it was, and every other model free today one link away."""
+    brought — where did the listing go? — instead of a 404: when it was last
+    listed, where it was, and the current model index one link away."""
     _publish(tmp_path, [serving("a", "kimi-k3"), serving("b", "kimi-k3")], TODAY)
     reg = _publish(tmp_path, [serving("a", "glm-5", day=LATER),
                               serving("b", "glm-5", day=LATER)], LATER)
     page = (tmp_path / MODELS_DIR / "kimi-k3.md").read_text(encoding="utf-8")
     meta = front(page)
-    assert meta["title"] == "kimi-k3 free: no longer free on the list, last listed 2026-07-22"
+    assert meta["title"] == "kimi-k3 free: no current listing, last listed 2026-07-22"
     assert meta["last_modified_at"] == date(2026, 7, 22)
     assert "# Where kimi-k3 was free" in page
-    assert ("**No row on the list serves `kimi-k3` free any more.** The list carried it at A "
+    assert ("**No row currently lists `kimi-k3` under Free models.** The list carried it at A "
             "and B until 2026-07-22.") in page
     assert f"- [A]({PAGES_URL}/providers/a/) — listed 2026-07-19 to 2026-07-22" in page
     assert f"[Every free model]({PAGES_URL}/models/)" in page
@@ -483,7 +529,7 @@ def test_a_model_no_row_serves_any_more_keeps_a_page_that_says_where_it_went(tmp
     index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
     assert {"family": "kimi-k3", "rows": [], "page": model_page_url("kimi-k3")} in index["models"]
     models_index = (tmp_path / MODELS_DIR / "index.md").read_text(encoding="utf-8")
-    gone = models_index.split("## No longer free on the list")[1]
+    gone = models_index.split("## Previously listed models")[1]
     assert (f"| [`kimi-k3`]({PAGES_URL}/models/kimi-k3/) | 2026-07-22 | "
             f"[A]({PAGES_URL}/providers/a/), [B]({PAGES_URL}/providers/b/) |") in gone
     assert not [s for s in check_rendered(reg, TEMPLATES, tmp_path) if s.startswith(MODELS_DIR)]

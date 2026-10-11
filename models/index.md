@@ -1,16 +1,16 @@
 ---
 layout: default
-title: 'Free LLM models by name: who serves each one free, verified 2026-10-05 or later'
-description: 160 model families the list's 86 live rows serve free, and every row that serves each one; 89 of them have a page of their own with the limits in the vendor's words and the ids to call.
+title: 'Free LLM models by name: who serves each one free, provider probes 2026-10-05 or later'
+description: 162 model families the list's 86 live rows serve free, and every row that serves each one; 90 of them have a page of their own with the limits in the vendor's words and the ids to call.
 permalink: /models/
-last_modified_at: 2026-10-10
+last_modified_at: 2026-10-11
 ---
 
 {% raw %}
 
 # Every free model on the list
 
-160 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
+162 model families, and every row that serves each one free, the most widely served first. A model gets a page of its own once two rows or more serve it free, or it measures notable, strong or frontier, or it has a dated free promotion: every row that serves it, the limits in the vendor's words and the ids to call. It keeps the page when fewer rows serve it, and when none does the page says since when and which rows listed it. A live probe reads every row again twice a week.
 
 [The whole list](https://mvalentsev.github.io/awesome-free-ai-coding/) · [Every provider](https://mvalentsev.github.io/awesome-free-ai-coding/providers/)
 
@@ -71,6 +71,7 @@ last_modified_at: 2026-10-10
 | `agents-a1` | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | `apertus-70b` | [Regolo AI](https://mvalentsev.github.io/awesome-free-ai-coding/providers/regolo/) |
 | `big-pickle` | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
+| [`claude-haiku-5.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-haiku-5.5/) · strong | [LLMTR](https://mvalentsev.github.io/awesome-free-ai-coding/providers/llmtr/) (until 2026-10-14) |
 | [`claude-opus-4.6`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-opus-4.6/) · notable | [Google Antigravity](https://mvalentsev.github.io/awesome-free-ai-coding/providers/antigravity/) |
 | [`claude-sonnet-4`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
 | [`claude-sonnet-4.5`](https://mvalentsev.github.io/awesome-free-ai-coding/models/claude-sonnet-4.5/) · notable | [Kiro](https://mvalentsev.github.io/awesome-free-ai-coding/providers/kiro/) |
@@ -110,6 +111,7 @@ last_modified_at: 2026-10-10
 | `llama-3.2-11b-vision` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | `llama-3.2-90b-vision` | [NVIDIA NIM (build.nvidia.com)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nvidia-nim/) |
 | [`longcat-2.0`](https://mvalentsev.github.io/awesome-free-ai-coding/models/longcat-2.0/) · notable | [Nous Portal (Hermes Agent)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/nous-portal/) |
+| `longcat-2.5-preview` | [opencode](https://mvalentsev.github.io/awesome-free-ai-coding/providers/opencode/) |
 | `mellum` | [JetBrains AI (AI Free)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/jetbrains-ai/) |
 | [`mimo-v2-flash`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-flash/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
 | [`mimo-v2-omni`](https://mvalentsev.github.io/awesome-free-ai-coding/models/mimo-v2-omni/) · notable | [AIHubMix (free models)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/aihubmix/) |
@@ -177,7 +179,7 @@ last_modified_at: 2026-10-10
 | `swe-1.6` | [Devin Desktop (formerly Windsurf)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/windsurf/) |
 | `xing4.0-29b` | [SiliconFlow (China)](https://mvalentsev.github.io/awesome-free-ai-coding/providers/siliconflow-cn/) |
 
-## No longer free on the list
+## Previously listed models
 
 | Model | Last listed | Rows that listed it |
 |---|---|---|
