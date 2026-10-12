@@ -87,12 +87,16 @@ def browser_challenge(response: httpx.Response) -> bool:
 def _eligible(response: httpx.Response, client: httpx.Client | httpx.AsyncClient) -> bool:
     if (any(os.environ.get(k) for k in ("HTTPS_PROXY", "https_proxy", "ALL_PROXY", "all_proxy"))
             or response.status_code not in (200, 403) or response.headers.get("retry-after")
-            or client.auth is not None or not public_page_url(str(response.request.url))
-            or not public_page_url(str(response.url))
-            or any(h in response.request.headers or h in client.headers
-                   for h in ("authorization", "cookie", "x-api-key", "x-goog-api-key"))
+            or client.auth is not None
             or "html" not in response.headers.get("content-type", "").lower()):
         return False
+    credentials = ("authorization", "cookie", "x-api-key", "x-goog-api-key")
+    # An ordinary redirect can strip query credentials or an Authorization
+    # header. Inspect the original chain before starting an anonymous retry.
+    for hop in [*response.history, response]:
+        if (not public_page_url(str(hop.request.url)) or not public_page_url(str(hop.url))
+                or any(h in hop.request.headers or h in client.headers for h in credentials)):
+            return False
     return browser_challenge(response)
 
 

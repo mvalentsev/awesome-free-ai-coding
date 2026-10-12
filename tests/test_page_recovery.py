@@ -261,3 +261,23 @@ async def test_already_decoded_profile_html_is_not_decompressed_twice(monkeypatc
     respx.get(URL).respond(403,text='Checking your browser',headers={'content-type':'text/html'})
     async with httpx.AsyncClient() as client:
         assert (await probe_entry(client,entry(),backoff=0)).status is ProbeStatus.PASS
+
+@pytest.mark.parametrize('first_url,first_headers',[
+    (URL+'?token=private',{}),
+    (URL,{'Authorization':'Bearer private'}),
+    ('https://127.0.0.1/private',{}),
+])
+def test_original_redirect_chain_cannot_hide_sensitive_request(monkeypatch,first_url,first_headers):
+    import curl_cffi
+    from freetier_radar.page_reader import recover_page_sync
+    calls=[]
+    def alternate(url,**kw):
+        calls.append(url)
+        return SimpleNamespace(status_code=200,content=HTML.encode(),url=url,headers={'content-type':'text/html'})
+    monkeypatch.setattr(curl_cffi,'get',alternate)
+    first=httpx.Response(302,headers={'location':URL},request=httpx.Request('GET',first_url,headers=first_headers))
+    final=httpx.Response(403,text='Checking your browser',headers={'content-type':'text/html'},
+        request=httpx.Request('GET',URL),history=[first])
+    with httpx.Client() as client:
+        assert recover_page_sync(client,final) is final
+    assert calls==[]
